@@ -1,8 +1,10 @@
 import Ajv from 'ajv';
+import addFormats from 'ajv-formats';
 import schema from './schemas/sigillin.schema.json';
 import { Sigillin } from './types';
 
 const ajv = new Ajv();
+addFormats(ajv);
 const validate = ajv.compile(schema);
 
 export const SigillinGenerator = (

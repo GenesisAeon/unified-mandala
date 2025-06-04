@@ -1,14 +1,20 @@
+import { useCREP } from '../hooks/useCREP';
+
 interface CREPTriggerPanelProps {
-  availableTriggers: string[];
-  onTrigger: (trigger: string) => void;
+  availableTriggers: Array<{ label: string; data: { C: number; R: number; E: number; P: number } }>;
 }
-const CREPTriggerPanel: React.FC<CREPTriggerPanelProps> = ({ availableTriggers, onTrigger }) => (
-  <div aria-label="CREP Trigger Panel">
-    {availableTriggers.map(trigger => (
-      <button key={trigger} onClick={() => onTrigger(trigger)} aria-label={`Trigger ${trigger}`}>
-        {trigger}
-      </button>
-    ))}
-  </div>
-);
+
+const CREPTriggerPanel: React.FC<CREPTriggerPanelProps> = ({ availableTriggers }) => {
+  const { triggerCREP } = useCREP();
+  return (
+    <div aria-label="CREP Trigger Panel">
+      {availableTriggers.map(t => (
+        <button key={t.label} onClick={() => triggerCREP(t.data)} aria-label={`Trigger ${t.label}`}>
+          {t.label}
+        </button>
+      ))}
+    </div>
+  );
+};
+
 export default CREPTriggerPanel;

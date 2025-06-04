@@ -12,6 +12,10 @@ interface MandalaNode {
   type: string;
   status: string;
   poetry?: string;
+  x?: number;
+  y?: number;
+  fx?: number | null;
+  fy?: number | null;
 }
 
 const colorForCREP = ({ C, R, E, P }: MandalaNode["crep"]) =>
@@ -31,9 +35,9 @@ export const MandalaNetworkView: React.FC = () => {
       (n.related || []).map(r => ({
         source: n.id,
         target: r.id,
-        relation: r.relation
+        relation: r.relation,
       }))
-    );
+    ) as Array<{ source: string; target: string; relation: string }>;
 
     const simulation = d3.forceSimulation(nodes as any)
       .force("link", d3.forceLink(links).id((d: any) => d.id).distance(120))
@@ -56,20 +60,20 @@ export const MandalaNetworkView: React.FC = () => {
       .enter()
       .append("circle")
       .attr("r", 24)
-      .attr("fill", d => colorForCREP(d.crep))
+      .attr("fill", (d: MandalaNode) => colorForCREP(d.crep))
       .attr("stroke", "#222")
       .attr("stroke-width", 2)
       .call(d3.drag<SVGCircleElement, MandalaNode>()
-        .on("start", (event, d) => {
+        .on("start", (event: d3.D3DragEvent<SVGCircleElement, MandalaNode, unknown>, d) => {
           if (!event.active) simulation.alphaTarget(0.3).restart();
           d.fx = d.x;
           d.fy = d.y;
         })
-        .on("drag", (event, d) => {
+        .on("drag", (event: d3.D3DragEvent<SVGCircleElement, MandalaNode, unknown>, d) => {
           d.fx = event.x;
           d.fy = event.y;
         })
-        .on("end", (event, d) => {
+        .on("end", (event: d3.D3DragEvent<SVGCircleElement, MandalaNode, unknown>, d) => {
           if (!event.active) simulation.alphaTarget(0);
           d.fx = null;
           d.fy = null;
@@ -90,16 +94,16 @@ export const MandalaNetworkView: React.FC = () => {
 
     simulation.on("tick", () => {
       link
-        .attr("x1", d => d.source.x)
-        .attr("y1", d => d.source.y)
-        .attr("x2", d => d.target.x)
-        .attr("y2", d => d.target.y);
+      .attr("x1", d => (d.source as any).x)
+      .attr("y1", d => (d.source as any).y)
+      .attr("x2", d => (d.target as any).x)
+      .attr("y2", d => (d.target as any).y);
       node
-        .attr("cx", d => d.x)
-        .attr("cy", d => d.y);
+        .attr("cx", d => d.x!)
+        .attr("cy", d => d.y!);
       label
-        .attr("x", d => d.x)
-        .attr("y", d => d.y);
+        .attr("x", d => d.x!)
+        .attr("y", d => d.y!);
     });
   }, []);
 

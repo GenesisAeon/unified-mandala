@@ -3,6 +3,13 @@ const { program } = require('commander');
 const fs = require('fs');
 const Ajv = require('ajv');
 const schema = require('../genesis-sigillin-core/schemas/sigillin.schema.json');
+let SigillinGenerator;
+try {
+  // use compiled version if available
+  ({ SigillinGenerator } = require('../../dist/genesis-sigillin-core/SigillinGenerator.js'));
+} catch (e) {
+  ({ SigillinGenerator } = require('../genesis-sigillin-core/SigillinGenerator'));
+}
 
 program
   .command('validate <file>')
@@ -22,16 +29,7 @@ program
   .command('init <id> <type>')
   .description('Erzeugt neues Sigillin-Template')
   .action((id, type) => {
-    const template = {
-      schema_version: '1.0.0',
-      id,
-      type,
-      status: 'draft',
-      creator: 'GenesisGPT',
-      created_at: new Date().toISOString(),
-      related_sigils: [],
-      changes: ['Initial erstellt'],
-    };
+    const template = SigillinGenerator(id, type, 'draft', 'GenesisGPT');
     fs.writeFileSync(`${id}.sigil.json`, JSON.stringify(template, null, 2));
     console.log(`Sigillin ${id}.sigil.json erstellt.`);
   });
