@@ -1,6 +1,18 @@
 #!/usr/bin/env node
 const fs = require('fs');
-const { CREPManager } = require('../crep-engine/CREPManager');
+let CREPManager;
+if (typeof globalThis.localStorage === 'undefined') {
+  globalThis.localStorage = {
+    getItem: () => null,
+    setItem: () => {},
+  };
+}
+try {
+  // use compiled version if available
+  ({ CREPManager } = require('../../dist/crep-engine/CREPManager.js'));
+} catch (e) {
+  ({ CREPManager } = require('../crep-engine/CREPManager'));
+}
 
 const crep = new CREPManager();
 const history = crep.getCREPHistory();
