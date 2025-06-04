@@ -1,5 +1,6 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import * as d3 from "d3";
+import { Tooltip } from "react-tooltip";
 
 // Annahme: sigillin_nodes.json ist bereits im Projekt und importierbar
 import nodesData from "../data/sigillin_nodes.json";
@@ -23,6 +24,9 @@ const colorForCREP = ({ C, R, E, P }: MandalaNode["crep"]) =>
 
 export const MandalaNetworkView: React.FC = () => {
   const svgRef = useRef<SVGSVGElement>(null);
+  const [filterType, setFilterType] = useState<string>('all');
+  // verfügbare Sigillin-Typen für die Filter-UI ermitteln
+  const types = Array.from(new Set(nodesData.map(n => n.type)));
 
   useEffect(() => {
     // D3-Force-Simulation
@@ -30,7 +34,7 @@ export const MandalaNetworkView: React.FC = () => {
     const svg = d3.select(svgRef.current);
     svg.selectAll("*").remove();
 
-    const nodes: MandalaNode[] = nodesData;
+    const nodes: MandalaNode[] = nodesData.filter(n => filterType === 'all' || n.type === filterType);
     const links = nodes.flatMap(n =>
       (n.related || []).map(r => ({
         source: n.id,
@@ -63,24 +67,26 @@ export const MandalaNetworkView: React.FC = () => {
       .attr("fill", (d: MandalaNode) => colorForCREP(d.crep))
       .attr("stroke", "#222")
       .attr("stroke-width", 2)
-      .call(d3.drag<SVGCircleElement, MandalaNode>()
-        .on("start", (event: d3.D3DragEvent<SVGCircleElement, MandalaNode, unknown>, d) => {
-          if (!event.active) simulation.alphaTarget(0.3).restart();
-          d.fx = d.x;
-          d.fy = d.y;
-        })
-        .on("drag", (event: d3.D3DragEvent<SVGCircleElement, MandalaNode, unknown>, d) => {
-          d.fx = event.x;
-          d.fy = event.y;
-        })
-        .on("end", (event: d3.D3DragEvent<SVGCircleElement, MandalaNode, unknown>, d) => {
-          if (!event.active) simulation.alphaTarget(0);
-          d.fx = null;
-          d.fy = null;
-        }));
-
-    node.append("title")
-      .text(d => `${d.label}\n${d.poetry || ""}`);
+      .attr("data-tooltip-id", "node-tooltip")
+      .attr("data-tooltip-content", d => `${d.label}\n${d.poetry ?? ''}`)
+      .call(
+        d3
+          .drag<SVGCircleElement, MandalaNode>()
+          .on("start", (event: d3.D3DragEvent<SVGCircleElement, MandalaNode, unknown>, d) => {
+            if (!event.active) simulation.alphaTarget(0.3).restart();
+            d.fx = d.x;
+            d.fy = d.y;
+          })
+          .on("drag", (event: d3.D3DragEvent<SVGCircleElement, MandalaNode, unknown>, d) => {
+            d.fx = event.x;
+            d.fy = event.y;
+          })
+          .on("end", (event: d3.D3DragEvent<SVGCircleElement, MandalaNode, unknown>, d) => {
+            if (!event.active) simulation.alphaTarget(0);
+            d.fx = null;
+            d.fy = null;
+          })
+      );
 
     const label = svg.append("g")
       .selectAll("text")
@@ -105,7 +111,7 @@ export const MandalaNetworkView: React.FC = () => {
         .attr("x", d => d.x!)
         .attr("y", d => d.y!);
     });
-  }, []);
+  }, [filterType]);
 
   const handleExportSVG = () => {
     const svg = svgRef.current;
@@ -123,10 +129,24 @@ export const MandalaNetworkView: React.FC = () => {
 
   return (
     <div className="flex flex-col items-center">
+      <label className="mb-2">
+        Filter nach Typ:
+        <select
+          value={filterType}
+          onChange={e => setFilterType(e.target.value)}
+          className="ml-2 border p-1 rounded"
+        >
+          <option value="all">Alle</option>
+          {types.map(t => (
+            <option key={t} value={t}>{t}</option>
+          ))}
+        </select>
+      </label>
       <svg ref={svgRef} width={800} height={600} tabIndex={0} aria-label="Mandala Netzwerk" />
       <button onClick={handleExportSVG} className="mt-4 p-2 bg-blue-600 text-white rounded-lg shadow">
         Export as SVG
       </button>
+      <Tooltip id="node-tooltip" />
     </div>
   );
 };

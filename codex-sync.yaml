@@ -1,0 +1,6 @@
+name: Sigillin Sync
+schedule: "0 * * * *"
+description: |
+  Periodisches Verknüpfen neuer Sigillin-Dateien
+steps:
+  - run: node packages/cli-tools/sigillin-cli.js list

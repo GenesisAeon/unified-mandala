@@ -16,5 +16,32 @@
     "type": "poetic-root",
     "status": "aktiv",
     "poetry": "Der Beginn aller Dinge"
+  },
+  {
+    "id": "vision",
+    "label": "Sigillin: Vision",
+    "crep": { "C": 6, "R": 5, "E": 8, "P": 4 },
+    "related": [{ "id": "genesis", "relation": "inspired-by" }],
+    "type": "insight",
+    "status": "aktiv",
+    "poetry": "Ein Blick in mögliche Zukünfte"
+  },
+  {
+    "id": "harmonie",
+    "label": "Sigillin: Harmonie",
+    "crep": { "C": 7, "R": 9, "E": 6, "P": 5 },
+    "related": [{ "id": "vision", "relation": "balances" }],
+    "type": "balance",
+    "status": "aktiv",
+    "poetry": "Schwingender Einklang"
+  },
+  {
+    "id": "transzendenz",
+    "label": "Sigillin: Transzendenz",
+    "crep": { "C": 9, "R": 6, "E": 10, "P": 3 },
+    "related": [{ "id": "harmonie", "relation": "ascends" }],
+    "type": "elevation",
+    "status": "ruhend",
+    "poetry": "Über die Grenzen des Seins"
   }
 ]

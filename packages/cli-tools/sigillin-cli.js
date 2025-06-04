@@ -34,4 +34,14 @@ program
     console.log(`Sigillin ${id}.sigil.json erstellt.`);
   });
 
+program
+  .command('list')
+  .description('Listet vorhandene *.sigil.json Dateien im aktuellen Verzeichnis')
+  .action(() => {
+    const files = fs.readdirSync(process.cwd())
+      .filter(f => f.endsWith('.sigil.json'));
+    console.log('Gefundene Sigillin-Dateien:');
+    files.forEach(f => console.log(' -', f));
+  });
+
 program.parse(process.argv);
