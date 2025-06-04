@@ -3,6 +3,7 @@ const { program } = require('commander');
 const fs = require('fs');
 const Ajv = require('ajv');
 const schema = require('../genesis-sigillin-core/schemas/sigillin.schema.json');
+const YAML = require('yaml');
 let SigillinGenerator;
 try {
   // use compiled version if available
@@ -17,7 +18,10 @@ program
   .action((file) => {
     const ajv = new Ajv();
     const validate = ajv.compile(schema);
-    const data = JSON.parse(fs.readFileSync(file, 'utf8'));
+    const content = fs.readFileSync(file, 'utf8');
+    const data = file.endsWith('.yaml') || file.endsWith('.yml')
+      ? YAML.parse(content)
+      : JSON.parse(content);
     if (!validate(data)) {
       console.error(validate.errors);
       process.exit(1);
@@ -42,6 +46,25 @@ program
     const files = glob.sync('**/*.sigil.json', { ignore: 'node_modules/**' });
     console.log('Gefundene Sigillin-Dateien:');
     files.forEach(f => console.log(' -', f));
+  });
+
+program
+  .command('convert <input> [output]')
+  .description('Konvertiert zwischen YAML und JSON')
+  .action((input, output) => {
+    const content = fs.readFileSync(input, 'utf8');
+    let data;
+    let targetFile;
+    if (input.endsWith('.yaml') || input.endsWith('.yml')) {
+      data = YAML.parse(content);
+      targetFile = output || input.replace(/\.ya?ml$/, '.json');
+      fs.writeFileSync(targetFile, JSON.stringify(data, null, 2));
+    } else {
+      data = JSON.parse(content);
+      targetFile = output || input.replace(/\.json$/, '.yaml');
+      fs.writeFileSync(targetFile, YAML.stringify(data));
+    }
+    console.log(`Konvertiert -> ${targetFile}`);
   });
 
 program
