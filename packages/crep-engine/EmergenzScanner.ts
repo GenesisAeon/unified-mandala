@@ -1,5 +1,5 @@
 import { CREPManager } from './CREPManager';
-import { GPTEventHub } from '../../gpt-bridges/GPTEventHub';
+import { GPTEventHub } from '../gpt-bridges/GPTEventHub';
 
 export class EmergenzScanner {
   constructor(private crepManager: CREPManager) {}

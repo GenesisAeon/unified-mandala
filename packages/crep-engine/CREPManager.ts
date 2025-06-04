@@ -1,5 +1,5 @@
 import { CREPEntry } from './types';
-import { GPTEventHub } from '../../gpt-bridges/GPTEventHub';
+import { GPTEventHub } from '../gpt-bridges/GPTEventHub';
 
 export class CREPManager {
   private crepHistory: CREPEntry[] = [];
