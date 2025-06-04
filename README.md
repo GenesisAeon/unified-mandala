@@ -31,7 +31,7 @@ narrative Interfaces und adaptive Bewusstseinsräume.
   ├── unifiedmandala-ui         # React-Komponenten (inkl. MandalaNetworkView)
   ├── crep-engine               # Zustandssimulation, CREP-Evaluierung
   ├── gpt-bridges               # EventHub für KI-Interaktion
-  ├── cli-tools                 # sigillin-cli, sigillin-archive, export-doc
+  ├── cli-tools                 # sigillin-cli (inkl. YAML/JSON-Konvertierung), sigillin-archive, export-doc
 /scripts/
   ├── aeon.sh                   # Poetisches Bash-CLI für Mandala-Steuerung
   ├── setup-unifiedmandala.sh   # Installer & Initialisierung
@@ -54,6 +54,7 @@ chmod +x scripts/aeon.sh
 ./scripts/aeon.sh sigil_invoke     # Exportiert Sigillin & CREP-Dokumentation
 ./scripts/aeon.sh chronopoem       # Erzeugt poetische Commit-Signatur (CHRONOPOEM.md)
 ./scripts/aeon.sh onboarding       # Zeigt Onboarding-Ritus für neue Contributors
+pnpm sigillin-cli convert beispiel.yaml # YAML/JSON-Konvertierung
 
 Das CHRONOPOEM.md entsteht automatisch – und kann bei jedem Commit erneuert werden.
 
