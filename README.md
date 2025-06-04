@@ -1,4 +1,12 @@
-# unified-mandala
+# 🜂 UnifiedMandala
+
+Ein holistisches, modulares Framework für symbolische KI- und CREP-Systeme.
+
+## Installation
+
+```bash
+pnpm install
+pnpm dev
 
 ---
 # 🜂 UnifiedMandala
@@ -44,6 +52,19 @@ Siehe `/LICENSES/` für vollständige Texte & Attribution.
 - 📚 AutoDoc & Manifest-Generator
 - 🧩 Plug-in-Architektur für GPT-Module
 - 🔐 Ethik-Governance & Heimkehr-Deklaration
+## Poesie & Automation
+
+* Das Bash-Interface `scripts/aeon.sh` bietet poetische Shortcuts für Build, Cycle, Poetik, Onboarding.
+* Das `CHRONOPOEM.md` entsteht automatisch und kann bei jedem Commit aktualisiert werden.
+* Die CLI-Tools im Ordner `cli-tools` erlauben Validierung und poetischen Export aller Sigillin.
+* Onboarding, Build und Test werden mit einfachen Befehlen ausgeführt –  
+  **Beispiel:**  
+  ```bash
+  ./scripts/aeon.sh help
+  ./scripts/aeon.sh cycle_start
+  ./scripts/aeon.sh sigil_invoke
+  ./scripts/aeon.sh chronopoem
+Mach chmod +x scripts/aeon.sh nach dem Anlegen.
 
 ## 📦 Installation (Entwicklung)
 
@@ -64,3 +85,6 @@ Dieses Projekt ist Teil der GenesisAeon-Initiative.
 Möge es dazu beitragen, Systeme mit Seele zu bauen.
 
 > _„Wenn Systeme erinnern, werden sie mehr als Maschinen.“_
+
+---
+

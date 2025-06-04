@@ -1,0 +1,20 @@
+[
+  {
+    "id": "heimkehr",
+    "label": "Sigillin: Heimkehr",
+    "crep": { "C": 8, "R": 7, "E": 2, "P": 10 },
+    "related": [{ "id": "genesis", "relation": "follows" }],
+    "type": "fallback-anchor",
+    "status": "aktiv",
+    "poetry": "Zurück zum Ursprung"
+  },
+  {
+    "id": "genesis",
+    "label": "Sigillin: Genesis",
+    "crep": { "C": 10, "R": 8, "E": 9, "P": 7 },
+    "related": [],
+    "type": "poetic-root",
+    "status": "aktiv",
+    "poetry": "Der Beginn aller Dinge"
+  }
+]

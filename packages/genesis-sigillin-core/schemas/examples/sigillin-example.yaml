@@ -1,0 +1,12 @@
+schema_version: '1.0.0'
+id: 'sigil-demo'
+type: 'poetic-root'
+status: 'draft'
+creator: 'GenesisGPT'
+created_at: '2025-06-01T12:00:00Z'
+related_sigils:
+  - id: 'heimkehr'
+    relation: 'follows'
+changes:
+  - 'Initialerstellung'
+  - 'Test-Import'
