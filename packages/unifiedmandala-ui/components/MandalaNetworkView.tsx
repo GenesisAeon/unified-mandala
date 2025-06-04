@@ -25,6 +25,7 @@ const colorForCREP = ({ C, R, E, P }: MandalaNode["crep"]) =>
 export const MandalaNetworkView: React.FC = () => {
   const svgRef = useRef<SVGSVGElement>(null);
   const [filterType, setFilterType] = useState<string>('all');
+  const [filterLevel, setFilterLevel] = useState<string>('all');
   // verfügbare Sigillin-Typen für die Filter-UI ermitteln
   const types = Array.from(new Set(nodesData.map(n => n.type)));
 
@@ -34,7 +35,14 @@ export const MandalaNetworkView: React.FC = () => {
     const svg = d3.select(svgRef.current);
     svg.selectAll("*").remove();
 
-    const nodes: MandalaNode[] = nodesData.filter(n => filterType === 'all' || n.type === filterType);
+    const nodes: MandalaNode[] = nodesData.filter(n => {
+      if (filterType !== 'all' && n.type !== filterType) return false;
+      const sum = n.crep.C + n.crep.R + n.crep.E + n.crep.P;
+      if (filterLevel === 'low' && sum >= 10) return false;
+      if (filterLevel === 'medium' && (sum < 10 || sum > 20)) return false;
+      if (filterLevel === 'high' && sum <= 20) return false;
+      return true;
+    });
     const links = nodes.flatMap(n =>
       (n.related || []).map(r => ({
         source: n.id,
@@ -68,7 +76,10 @@ export const MandalaNetworkView: React.FC = () => {
       .attr("stroke", "#222")
       .attr("stroke-width", 2)
       .attr("data-tooltip-id", "node-tooltip")
-      .attr("data-tooltip-content", d => `${d.label}\n${d.poetry ?? ''}`)
+      .attr(
+        "data-tooltip-content",
+        d => `${d.label}\nC:${d.crep.C} R:${d.crep.R} E:${d.crep.E} P:${d.crep.P}\n${d.poetry ?? ''}`
+      )
       .call(
         d3
           .drag<SVGCircleElement, MandalaNode>()
@@ -98,6 +109,12 @@ export const MandalaNetworkView: React.FC = () => {
       .attr("dy", 40)
       .text(d => d.label);
 
+    svg.call(
+      d3.zoom<any, any>().on('zoom', (event) => {
+        svg.selectAll('g').attr('transform', event.transform.toString());
+      })
+    );
+
     simulation.on("tick", () => {
       link
       .attr("x1", d => (d.source as any).x)
@@ -111,7 +128,7 @@ export const MandalaNetworkView: React.FC = () => {
         .attr("x", d => d.x!)
         .attr("y", d => d.y!);
     });
-  }, [filterType]);
+  }, [filterType, filterLevel]);
 
   const handleExportSVG = () => {
     const svg = svgRef.current;
@@ -142,11 +159,24 @@ export const MandalaNetworkView: React.FC = () => {
           ))}
         </select>
       </label>
+      <label className="mb-2">
+        CREP-Level:
+        <select
+          value={filterLevel}
+          onChange={e => setFilterLevel(e.target.value)}
+          className="ml-2 border p-1 rounded"
+        >
+          <option value="all">Alle</option>
+          <option value="low">Niedrig</option>
+          <option value="medium">Mittel</option>
+          <option value="high">Hoch</option>
+        </select>
+      </label>
       <svg ref={svgRef} width={800} height={600} tabIndex={0} aria-label="Mandala Netzwerk" />
       <button onClick={handleExportSVG} className="mt-4 p-2 bg-blue-600 text-white rounded-lg shadow">
         Export as SVG
       </button>
-      <Tooltip id="node-tooltip" />
+      <Tooltip id="node-tooltip" data-testid="tooltip-anchor" />
     </div>
   );
 };

@@ -2,6 +2,7 @@
 jest.mock('d3', () => ({
   select: () => ({
     selectAll: () => ({ remove: jest.fn() }),
+    call: jest.fn().mockReturnThis(),
     append: () => ({
       attr: jest.fn().mockReturnThis(),
       selectAll: jest.fn().mockReturnThis(),
@@ -17,6 +18,7 @@ jest.mock('d3', () => ({
   forceManyBody: () => ({ strength: jest.fn().mockReturnThis() }),
   forceCenter: jest.fn(),
   drag: () => ({ on: jest.fn().mockReturnThis() }),
+  zoom: () => ({ on: jest.fn().mockReturnThis() }),
   interpolateRainbow: jest.fn(() => '#fff'),
 }));
 
@@ -27,7 +29,9 @@ import MandalaNetworkView from './MandalaNetworkView';
 test('renders svg and filter options', () => {
   render(<MandalaNetworkView />);
   expect(screen.getByLabelText('Mandala Netzwerk')).toBeInTheDocument();
+  const selects = screen.getAllByRole('combobox');
+  expect(selects.length).toBe(2);
   // one option per type plus "Alle"
   const options = screen.getAllByRole('option');
-  expect(options.length).toBeGreaterThan(1);
+  expect(options.length).toBeGreaterThan(2);
 });
