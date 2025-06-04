@@ -49,8 +49,10 @@ git clone https://github.com/GenesisAeon/unified-mandala.git
 cd unified-mandala
 pnpm install
 pnpm run build
+pnpm run docs:build
 pnpm dev
 ```
+Die generierte API-Dokumentation findest du danach unter `docs/api`.
 
 Für `npm` oder `yarn` nutze alternativ:
 

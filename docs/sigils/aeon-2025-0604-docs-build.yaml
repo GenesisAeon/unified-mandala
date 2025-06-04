@@ -1,0 +1,15 @@
+sigillin_id: aeon:2025-0604-DOCS-BUILD
+Titel: "API-Dokumentations-Modul"
+datum: 2025-06-04
+autor: CodexAI
+typ: "dev-feature"
+resonanz: mittel
+zuordnung: GenesisAeon/unified-mandala
+symbolzeit: abend
+inhalt:
+  - "Ein Typedoc-basiertes Build-System erzeugt HTML-Dokumentation."
+  - "README um Schritt 'pnpm run docs:build' erweitert."
+  - "Neue typedoc.json definiert Einstiegspunkte."
+wirkung:
+  - "Erhöht Nachvollziehbarkeit der Module."
+  - "Erleichtert Erweiterungen im Mandala." 

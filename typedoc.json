@@ -1,0 +1,8 @@
+{
+  "entryPoints": ["packages"],
+  "out": "docs/api",
+  "exclude": ["**/*.test.ts", "**/*.test.tsx", "**/*.stories.tsx"],
+  "entryPointStrategy": "expand",
+  "tsconfig": "tsconfig.json",
+  "includeVersion": true
+}
