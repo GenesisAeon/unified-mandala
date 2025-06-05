@@ -4,4 +4,8 @@ packages:
   - 'packages/genesis-sigillin-core'
   - 'packages/gpt-bridges'
   - 'packages/cli-tools'
+  - 'packages/aeon-shell'
+  - 'packages/aeon-genesisos'
+  - 'packages/aeon-fraktalurs'
+  - 'packages/aeon-resoecho'
   - 'apps/*'
