@@ -4,3 +4,4 @@ packages:
   - 'packages/genesis-sigillin-core'
   - 'packages/gpt-bridges'
   - 'packages/cli-tools'
+  - 'apps/*'
