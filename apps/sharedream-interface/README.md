@@ -1,5 +1,9 @@
 # Sharedream Interface
 
-Dieses Verzeichnis dient als Ausgangspunkt für die Weboberfläche des UnifiedMandala-Projekts.
-Hier sollen MandalaMap, Upload-Komponenten und GPT-Eingaben entstehen.
-Aktuell enthält es nur die Basisstruktur.
+Dieses Verzeichnis bildet den Prototyp der Weboberfläche für UnifiedMandala. Hier entstehen:
+
+- MandalaMap zur Visualisierung von Sigillin-Knoten
+- Upload-Komponenten für Daten und Sigillin-Bundles
+- Eingaben für GPT-Module und CREP-Analyse
+
+Derzeit enthält der Ordner nur die Grundstruktur. Weitere Module folgen in Phase 2.
