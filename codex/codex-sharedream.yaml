@@ -1,0 +1,88 @@
+# 🜂 codex-sharedream.yaml
+# Auftrag für Codex: Aufbau & Integration neuer Systemmodule (Phase 1–2)
+
+task: "Erzeuge, aktualisiere und verknüpfe neue Core- und Interface-Komponenten für UnifiedMandala"
+
+description: |
+  Dieses Codex-Command-Set erweitert das UnifiedMandala-Projekt um neue essentielle Komponenten,
+  die sowohl systemisch (CREP, Symbolzeit) als auch UI-bezogen (SharedreamInterface, SigillinLoader)
+  das System vollständig machen. GPT-Stubs und CREP-Module werden vorbereitet.
+
+targets:
+
+  - path: packages/unifiedmandala-ui/components/SigillinLoader.tsx
+    type: file
+    action: generate
+    description: >
+      React-Komponente, die Sigillin-Bundles aus JSON lädt, darstellt, filterbar macht und CREP-Farben unterstützt.
+    context:
+      - sigillin_nodes.json
+      - MandalaNetworkView.tsx (zum Vergleich)
+
+  - path: packages/unifiedmandala-ui/data/sigillin_nodes.json
+    type: file
+    action: update
+    description: >
+      Ergänze alle fehlenden Sigillin aus dem MasterCanvas (HEIMKEHR, FRAKTALURS, RESO-ECHO etc.)
+    format: json
+
+  - path: packages/gpt-bridges/aeon-gpt-synapse.ts
+    type: file
+    action: generate
+    description: >
+      Stub für GPT-Orchestrierung, inkl. Funktion zum Einspeisen von Ideen, Feedback und CREP-Rückgabe.
+    content_outline:
+      - GPT-Connector (async)
+      - CREPInterpretation(GPToutput)
+      - Interface zu AEONPOET und CREPJUDGE
+
+  - path: packages/crep-engine/data/CREPPhaseMatrix.yaml
+    type: file
+    action: generate
+    description: >
+      YAML-Matrix zur phasenbasierten Bewertung von Zuständen (z. B. Erschöpfung, Kohärenzverlust).
+    format: yaml
+
+  - path: packages/crep-engine/data/symbolzeit.yaml
+    type: file
+    action: generate
+    description: >
+      Symbolzeit-Definitionen (morgen, tag, abend, nacht) für UI und CLI-Auswertung.
+    format: yaml
+
+  - path: packages/crep-engine/hooks/useSymbolzeit.ts
+    type: file
+    action: generate
+    description: >
+      React-Hook zur Auswertung der Symbolzeitphase anhand der Systemzeit & YAML-Definition.
+    dependencies:
+      - symbolzeit.yaml
+
+  - path: packages/gpt-bridges/GPT-AEONPOET.ts
+    type: file
+    action: generate
+    description: >
+      GPT-Modul zur poetischen Auswertung und Kommentierung von CREP- und Sigillin-Daten.
+    notes: |
+      Dieses Modul kann auch für Commit-Kommentare verwendet werden.
+
+  - path: packages/gpt-bridges/GPT-CREPJUDGE.ts
+    type: file
+    action: generate
+    description: >
+      GPT-Modul zur analytischen Bewertung von CREP-Werten und Entwicklungsvorschlägen.
+
+  - path: apps/sharedream-interface/
+    type: folder
+    action: create
+    description: >
+      Neues Frontend-Repository für die Weboberfläche: MandalaMap, Upload-Interface, GPT-Eingabe.
+    note: |
+      Kann später auf GitHub Pages oder Vercel deployed werden. Derzeit: Nur Struktur + Readme.
+
+  - path: codex-roadmap.yaml
+    type: file
+    action: update
+    description: >
+      Ergänze neue Tasks zu SigillinLoader, Symbolzeit, GPT-Schnittstellen und SharedreamInterface.
+
