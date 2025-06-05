@@ -1,0 +1,14 @@
+phase: 2
+milestones:
+  - id: sigillin-loader-ui
+    description: Symbolischer SigillinLoader als React-Komponente
+  - id: mastercanvas-nodes
+    description: MasterCanvas-Knoten in sigillin_nodes.json ergänzt
+  - id: gpt-stubs
+    description: Stub-Module für aeon-gpt-synapse, AEONPOET und CREPJUDGE erstellt
+  - id: symbolzeit-config
+    description: Basiskonfiguration in symbolzeit.yaml angelegt
+  - id: crep-phase-matrix
+    description: CREPPhaseMatrix.yaml definiert Phasen-Fokus
+  - id: sharedream-interface
+    description: Repository apps/sharedream-interface vorbereitet

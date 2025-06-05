@@ -43,5 +43,95 @@
     "type": "elevation",
     "status": "ruhend",
     "poetry": "Über die Grenzen des Seins"
+  },
+  {
+    "id": "mastercanvas",
+    "label": "MasterCanvas",
+    "crep": { "C": 8, "R": 8, "E": 8, "P": 8 },
+    "related": [],
+    "type": "core",
+    "status": "aktiv",
+    "poetry": "Zentrale Übersicht aller Module"
+  },
+  {
+    "id": "aeongenesisos",
+    "label": "AeonGenesisOS",
+    "crep": { "C": 8, "R": 6, "E": 5, "P": 5 },
+    "related": [{ "id": "mastercanvas", "relation": "part-of" }],
+    "type": "master",
+    "status": "geplant",
+    "poetry": "CREP-Betriebssystem"
+  },
+  {
+    "id": "aeonshell",
+    "label": "AeonShell",
+    "crep": { "C": 7, "R": 5, "E": 4, "P": 6 },
+    "related": [{ "id": "aeongenesisos", "relation": "interfaces" }],
+    "type": "master",
+    "status": "geplant",
+    "poetry": "CLI und Symbolzeit"
+  },
+  {
+    "id": "aeonfraktalurs",
+    "label": "AeonFraktalurs",
+    "crep": { "C": 6, "R": 7, "E": 5, "P": 6 },
+    "related": [{ "id": "aeongenesisos", "relation": "archives" }],
+    "type": "master",
+    "status": "geplant",
+    "poetry": "GPT-Kontextarchiv"
+  },
+  {
+    "id": "aeonresoecho",
+    "label": "AeonResoEcho",
+    "crep": { "C": 5, "R": 8, "E": 4, "P": 5 },
+    "related": [{ "id": "aeongenesisos", "relation": "records" }],
+    "type": "master",
+    "status": "geplant",
+    "poetry": "CREP-Ereignisgedächtnis"
+  },
+  {
+    "id": "sharedream-interface",
+    "label": "SharedreamInterface",
+    "crep": { "C": 6, "R": 7, "E": 5, "P": 7 },
+    "related": [{ "id": "aeonshell", "relation": "connects" }],
+    "type": "master",
+    "status": "geplant",
+    "poetry": "Community-Webportal"
+  },
+  {
+    "id": "aeonmemorydaemon",
+    "label": "AeonMemoryDaemon",
+    "crep": { "C": 7, "R": 7, "E": 3, "P": 4 },
+    "related": [{ "id": "aeongenesisos", "relation": "stores" }],
+    "type": "master",
+    "status": "geplant",
+    "poetry": "Langzeitarchivierung"
+  },
+  {
+    "id": "aeon-gpt-synapse",
+    "label": "Aeon-GPT-Synapse",
+    "crep": { "C": 5, "R": 5, "E": 5, "P": 5 },
+    "related": [{ "id": "aeonfraktalurs", "relation": "orchestrates" }],
+    "type": "gpt-module",
+    "status": "geplant",
+    "poetry": "Verbindung zu GPT"
+  },
+  {
+    "id": "aeonpoet",
+    "label": "GPT-AEONPOET",
+    "crep": { "C": 4, "R": 6, "E": 7, "P": 8 },
+    "related": [{ "id": "aeon-gpt-synapse", "relation": "uses" }],
+    "type": "gpt-module",
+    "status": "geplant",
+    "poetry": "Poesie-Generator"
+  },
+  {
+    "id": "crepjudge",
+    "label": "GPT-CREPJUDGE",
+    "crep": { "C": 8, "R": 4, "E": 6, "P": 6 },
+    "related": [{ "id": "aeon-gpt-synapse", "relation": "uses" }],
+    "type": "gpt-module",
+    "status": "geplant",
+    "poetry": "CREP-Bewertung"
   }
 ]
