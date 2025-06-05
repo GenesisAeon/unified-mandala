@@ -7,6 +7,8 @@ interface SigillinLoaderProps {
 
 const SigillinLoader: React.FC<SigillinLoaderProps> = ({ onLoaded }) => {
   const [error, setError] = useState<string | null>(null);
+  const [filter, setFilter] = useState('');
+  const [data, setData] = useState<any[]>([]);
 
   const handleFile = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -15,11 +17,12 @@ const SigillinLoader: React.FC<SigillinLoaderProps> = ({ onLoaded }) => {
     reader.onload = evt => {
       try {
         const text = evt.target?.result as string;
-        const data = file.name.endsWith('.yaml') || file.name.endsWith('.yml')
+        const parsed = file.name.endsWith('.yaml') || file.name.endsWith('.yml')
           ? YAML.parse(text)
           : JSON.parse(text);
+        setData(Array.isArray(parsed) ? parsed : [parsed]);
         setError(null);
-        onLoaded?.(data);
+        onLoaded?.(parsed);
       } catch (err) {
         setError('Fehler beim Laden der Datei');
         console.error(err);
@@ -27,6 +30,10 @@ const SigillinLoader: React.FC<SigillinLoaderProps> = ({ onLoaded }) => {
     };
     reader.readAsText(file);
   };
+
+  const filtered = data.filter(item =>
+    filter ? JSON.stringify(item).toLowerCase().includes(filter.toLowerCase()) : true
+  );
 
   return (
     <div>
@@ -36,7 +43,15 @@ const SigillinLoader: React.FC<SigillinLoaderProps> = ({ onLoaded }) => {
         onChange={handleFile}
         aria-label="Sigillin laden"
       />
+      <input
+        type="text"
+        placeholder="Filter"
+        value={filter}
+        onChange={e => setFilter(e.target.value)}
+        aria-label="Filter"
+      />
       {error && <p role="alert">{error}</p>}
+      <pre>{filtered.length} Einträge geladen</pre>
     </div>
   );
 };
