@@ -1,0 +1,13 @@
+phase_matrix:
+  critical:
+    coherence: "< 4"
+    resonance: "< 4"
+    emergence: "< 4"
+  safe:
+    coherence: ">= 7"
+    resonance: ">= 7"
+    emergence: ">= 7"
+  warning:
+    coherence: ">= 4 && < 7"
+    resonance: ">= 4 && < 7"
+    emergence: ">= 4 && < 7"
