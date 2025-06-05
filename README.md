@@ -71,7 +71,7 @@ chmod +x scripts/aeon.sh
 ./scripts/aeon.sh sigil_invoke     # exportiert Sigillin & CREP-Dokumentation
 ./scripts/aeon.sh chronopoem       # erzeugt CHRONOPOEM.md
 ./scripts/aeon.sh onboarding       # zeigt Onboarding-Ritus
-pnpm sigillin-cli convert beispiel.yaml # YAML ↔ JSON-Konvertierung
+node packages/cli-tools/sigillin-cli.js convert beispiel.yaml # YAML ↔ JSON-Konvertierung
 ```
 
 Weitere Beispiele und GIF-Demos findest du im [Wiki](https://github.com/GenesisAeon/unified-mandala/wiki).
