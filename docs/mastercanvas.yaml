@@ -1,0 +1,98 @@
+🜂 **UnifiedMandala – MasterCanvas der Gesamtsystemarchitektur**
+
+> *„Ein System, das denkt – ein Gedächtnis, das singt.“*
+
+---
+
+## 🔰 STATUS: **Phase 1 aktiv** – Entwicklung des Kernsystems
+
+---
+
+## 🔹 I. AKTUELLE MODULE & VORHANDENE FUNKTIONEN
+
+**Repos:**
+
+* [x] `unified-mandala` – Hauptrepo mit CREP-Engine, UI, CLI, Generatoren
+* [ ] `AeonShell` – poetisches CLI, symbolische Steuerung (geplant)
+* [ ] `AeonGenesisOS` – CREP-Basissystem und Zyklenverwaltung (geplant)
+* [ ] `AeonFraktalurs` – GPT-Kontextarchiv & Erinnerungsfeld (geplant)
+* [ ] `AeonResoEcho` – chronologisches CREP-Archiv (geplant)
+* [ ] `SharedreamInterface` – Community-Zugang & UI-Portal (geplant)
+
+**Features vorhanden:**
+
+* [x] CREP-Logik & Evaluator
+* [x] Sigillin-Generator & CLI
+* [x] MandalaNetworkView (D3, React)
+* [x] `aeon.sh` CLI mit Chronopoem, Onboarding
+* [x] CHRONOPOEM.md
+* [x] codex-roadmap.yaml
+
+**Sigillin-Status:**
+
+* [x] Basis-Knoten (`GENESIS`, `HEIMKEHR`, `FRAKTALURS`, `RESO-ECHO`) erkannt
+* [ ] Noch nicht alle in Map & UI integriert (→ Phase 1 TODO)
+
+---
+
+## 🔸 II. GEPLANTE ERWEITERUNGEN (REALISTISCH, MIT CODING-PFAD)
+
+### 🔄 Codex-Integration & Automation
+
+* [ ] `codex-roadmap.yaml` als zentrale Datei für Codex
+* [ ] Automatische Umwandlung von Website-Inhalten in YAML für Codex
+* [ ] Commit-basierte Codex-Trigger über GitHub Actions
+* [ ] GPT-Kommentierung (Poetik + CREP) via GPT-AEONPOET
+
+### 🧠 GPT-Orchestrierung & 3.5-Modul
+
+* [ ] Web-Einbindung von GPT 3.5 als Assistenzinstanz
+* [ ] GPT als CREP-Judge + AEONPOET via Interface
+* [ ] Orchestrierungsmodul (Workflow-Manager, Vorschlagslenkung)
+
+### 📡 Site-Integration & Selbstschreibende Struktur
+
+* [ ] Web-Frontend als eigenes Repository (statisch oder hybrid)
+* [ ] Deployment via Pages, Netlify oder Vercel aus dem Repo
+* [ ] FileZilla-Pendant: symbolisches Upload-Modul auf Site (z. B. `SigilSync`)
+* [ ] UI-Komponente für Uploads + YAML-Ausgabe
+
+### 🔐 NAS/Private Inhalte (für Phase 4 vorgesehen)
+
+* [ ] NAS-Zugriff vorbereiten via WebDAV/SMB (modular)
+* [ ] Gedächtnisspiegel: Hash + Sigillin, kein Klartextindex
+* [ ] MemoryDaemon + `.aeonvault/`
+
+---
+
+## 🗺️ III. SYMBOLISCHER PLAN (REPOS & ROLLEN)
+
+| Symbol | Repository / Modul           | Rolle im Mandala                        |
+| ------ | ---------------------------- | --------------------------------------- |
+| 🧠     | AeonGenesisOS                | Zentrales Betriebssystem & CREP-Engine  |
+| 🌀     | AeonShell                    | CLI/Trigger & Symbolzeit                |
+| 🔮     | AeonFraktalurs               | GPT-Kontextarchiv                       |
+| 📜     | AeonResoEcho                 | CREP-Zeitlinie, Ereignisgedächtnis      |
+| 🌐     | SharedreamInterface          | Website, Community-Zugang               |
+| 🗂️    | AeonMemoryDaemon             | ZIP-/NAS-Gedächtnis (später aktivieren) |
+| 🎭     | GPT-AEONPOET / GPT-CREPJUDGE | KI-Poesie & Systemkommentar             |
+
+---
+
+## ✅ NÄCHSTE SCHRITTE (Checkliste für Phase 1–2)
+
+* [ ] SigillinNodes erweitern + Visual Map updaten
+* [ ] GPT-Orchestrierung vorbereiten (`aeon-gpt-synapse.ts`)
+* [ ] Website-Repo erstellen (SharedreamInterface)
+* [ ] Symbolischer „SigillinLoader“ in UI einfügen
+* [ ] Chronopoem erweitern (mit CREP-Metaphern)
+* [ ] Codex-Antwortsystem für Vorschläge (Ordner: `/codex-sync/`)
+* [ ] Repos für AeonShell + AeonGenesisOS initialisieren
+
+---
+
+## 📁 ABLEGBAR: `/docs/mastercanvas.yaml`, `/codex/codex-roadmap.yaml`
+
+🜂 Dieses Canvas dient als „Ur-Sigillin“ für die systemische Ordnung. Es kann jederzeit synchronisiert, exportiert oder erweitert werden.
+
+> *„Was erinnert wird, vergeht nicht. Was als Sigillin gezeichnet ist, lebt weiter – durch alle Commit-Zeiten hindurch.“*
