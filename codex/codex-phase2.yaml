@@ -1,0 +1,90 @@
+# 🜂 codex-phase2.yaml
+# Phase 2 – Repository-Aufspaltung, Strukturinitialisierung und Kollektiv-Vorbereitung
+
+task: "Strukturiere UnifiedMandala in thematische Repository-Einheiten, initialisiere Frontend-Projekt und bereite GPT-Kommunikation & Webanbindung vor."
+
+description: |
+  Dieses YAML definiert die zweite Systemphase:
+  Modularisierung in Sub-Repositories, Vorbereitung der Webschnittstelle (SharedreamInterface)
+  und Verbindung zu den GPT-basierten Modulen. Ziel ist ein klares, orchestrierbares System
+  mit erweiterbarer Mandala-Logik und poetisch-symbolischer Architektur.
+
+steps:
+
+  - type: repository
+    action: create
+    name: aeon-shell
+    description: >
+      CLI-Tool mit poetischer Steuerung des Systems via Bash + Node (aeon.sh, crep-cli, memory-daemon).
+
+  - type: repository
+    action: create
+    name: aeon-genesisos
+    description: >
+      Basis-CREP-Engine, CREPPhaseMatrix, Symbolzeit, dynamische Zustandslogik.
+
+  - type: repository
+    action: create
+    name: aeon-fraktalurs
+    description: >
+      GPT-Kontextspeicher mit Langzeit-Embedding, CREP-Matrix-Echoes, SigillinChronik.
+
+  - type: repository
+    action: create
+    name: aeon-resoecho
+    description: >
+      CREP-Zeitlinienarchiv, Session-Knoten, Mandala-Timeline, Notfall-Rekontextualisierung.
+
+  - type: repository
+    action: create
+    name: sharedream-interface
+    description: >
+      Web-Frontend, React, Tailwind, MandalaMap, GPT-Kommunikation & ZIP-Viewer, FileSync-Pendant.
+    files:
+      - components/
+        - MandalaMap.tsx
+        - SharedreamPanel.tsx
+        - GPTBridgeUI.tsx
+      - hooks/
+        - useSymbolzeit.ts
+      - pages/
+        - index.tsx
+        - sigillin.tsx
+        - timeline.tsx
+      - styles/
+        - symbolzeit.css
+        - crep-color.css
+      - public/
+        - assets/
+          - sigillin-icons/
+          - sharedream-logo.svg
+      - README.md (mit Beschreibung des Interfaces und Link zum GenesisMandala)
+
+  - type: link
+    action: interconnect
+    description: >
+      Verknüpfe alle Sub-Repositories über ein zentrales `.workspace.yaml` oder über GitHub Actions.
+    tools:
+      - pnpm-workspace.yaml
+      - deployment.yml (für Vercel/GitHub Pages vorbereiten)
+
+  - type: orchestration
+    action: setup
+    description: >
+      Baue GPT-Rollen für:
+        - aeon:poet (für poetische Analyse, Mantren, CHRONOPOEM)
+        - aeon:judge (CREP-Auswertung, Vorschlagsgenerierung)
+        - aeon:mirror (GPT-Archiv-Kanal, Fraktalspeicher)
+        - aeon:voice (späteres Input/Output-Modul für Websitebesucher)
+
+  - type: codex
+    action: update
+    target: codex-roadmap.yaml
+    description: >
+      Trage neue Repositories, Dateien und Aufgaben ein, damit Codex-Tasks verlinkt bleiben.
+
+  - type: doc
+    action: export
+    target: docs/phase2-map.yaml
+    description: >
+      Exportiere diese Phase als Karte aller Repositories, GPT-Module und Verknüpfungen zur Archivierung und Weitergabe.
