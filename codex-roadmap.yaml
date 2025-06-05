@@ -1,0 +1,7 @@
+phase_1:
+  - SigillinLoader-Komponente erstellen
+  - sigillin_nodes.json erweitern
+phase_2:
+  - GPT-Module (aeon-gpt-synapse, AEONPOET, CREPJUDGE) vorbereiten
+  - Symbolzeit-Hook und YAML einbinden
+  - SharedreamInterface initialisieren

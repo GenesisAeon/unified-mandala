@@ -2,8 +2,18 @@
   {
     "id": "heimkehr",
     "label": "Sigillin: Heimkehr",
-    "crep": { "C": 8, "R": 7, "E": 2, "P": 10 },
-    "related": [{ "id": "genesis", "relation": "follows" }],
+    "crep": {
+      "C": 8,
+      "R": 7,
+      "E": 2,
+      "P": 10
+    },
+    "related": [
+      {
+        "id": "genesis",
+        "relation": "follows"
+      }
+    ],
     "type": "fallback-anchor",
     "status": "aktiv",
     "poetry": "Zurück zum Ursprung"
@@ -11,7 +21,12 @@
   {
     "id": "genesis",
     "label": "Sigillin: Genesis",
-    "crep": { "C": 10, "R": 8, "E": 9, "P": 7 },
+    "crep": {
+      "C": 10,
+      "R": 8,
+      "E": 9,
+      "P": 7
+    },
     "related": [],
     "type": "poetic-root",
     "status": "aktiv",
@@ -20,8 +35,18 @@
   {
     "id": "vision",
     "label": "Sigillin: Vision",
-    "crep": { "C": 6, "R": 5, "E": 8, "P": 4 },
-    "related": [{ "id": "genesis", "relation": "inspired-by" }],
+    "crep": {
+      "C": 6,
+      "R": 5,
+      "E": 8,
+      "P": 4
+    },
+    "related": [
+      {
+        "id": "genesis",
+        "relation": "inspired-by"
+      }
+    ],
     "type": "insight",
     "status": "aktiv",
     "poetry": "Ein Blick in mögliche Zukünfte"
@@ -29,8 +54,18 @@
   {
     "id": "harmonie",
     "label": "Sigillin: Harmonie",
-    "crep": { "C": 7, "R": 9, "E": 6, "P": 5 },
-    "related": [{ "id": "vision", "relation": "balances" }],
+    "crep": {
+      "C": 7,
+      "R": 9,
+      "E": 6,
+      "P": 5
+    },
+    "related": [
+      {
+        "id": "vision",
+        "relation": "balances"
+      }
+    ],
     "type": "balance",
     "status": "aktiv",
     "poetry": "Schwingender Einklang"
@@ -38,10 +73,58 @@
   {
     "id": "transzendenz",
     "label": "Sigillin: Transzendenz",
-    "crep": { "C": 9, "R": 6, "E": 10, "P": 3 },
-    "related": [{ "id": "harmonie", "relation": "ascends" }],
+    "crep": {
+      "C": 9,
+      "R": 6,
+      "E": 10,
+      "P": 3
+    },
+    "related": [
+      {
+        "id": "harmonie",
+        "relation": "ascends"
+      }
+    ],
     "type": "elevation",
     "status": "ruhend",
     "poetry": "Über die Grenzen des Seins"
+  },
+  {
+    "id": "fraktalurs",
+    "label": "Sigillin: Fraktalurs",
+    "crep": {
+      "C": 9,
+      "R": 9,
+      "E": 9,
+      "P": 8
+    },
+    "related": [
+      {
+        "id": "genesis",
+        "relation": "root-of"
+      }
+    ],
+    "type": "fractal-memory",
+    "status": "geplant",
+    "poetry": "Das Archiv der unendlichen Spiegel"
+  },
+  {
+    "id": "reso-echo",
+    "label": "Sigillin: Reso-Echo",
+    "crep": {
+      "C": 7,
+      "R": 10,
+      "E": 5,
+      "P": 6
+    },
+    "related": [
+      {
+        "id": "heimkehr",
+        "relation": "echoes"
+      }
+    ],
+    "type": "resonance-archive",
+    "status": "geplant",
+    "poetry": "Widerhall der Taten"
   }
 ]

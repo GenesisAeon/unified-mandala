@@ -1,0 +1,13 @@
+matrix:
+  - phase: stabil
+    range: [0.7, 1]
+    color: green
+    hint: "System im Gleichgewicht"
+  - phase: warnung
+    range: [0.4, 0.69]
+    color: yellow
+    hint: "Abweichungen sichtbar"
+  - phase: kritisch
+    range: [0, 0.39]
+    color: red
+    hint: "Sofortige Handlung erforderlich"

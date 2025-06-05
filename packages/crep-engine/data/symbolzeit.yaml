@@ -1,0 +1,20 @@
+morgen:
+  start: 5
+  end: 11
+  phase: Initiation
+  farbe: "#B4E3F2"
+tag:
+  start: 12
+  end: 17
+  phase: Aktivierung
+  farbe: "#E3F4D6"
+abend:
+  start: 18
+  end: 21
+  phase: Integration
+  farbe: "#F7D9C4"
+nacht:
+  start: 22
+  end: 4
+  phase: Reflexion
+  farbe: "#2C3E50"
