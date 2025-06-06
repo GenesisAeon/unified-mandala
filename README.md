@@ -24,6 +24,7 @@ narrative Interfaces und adaptive Bewusstseinsräume.
 - 🔐 **Ethik-Governance & Heimkehr-Deklaration** – Offene, poetische Ethik als Systembasis
 - 🎭 **Poesie & Automation** – Bash-Interface (`aeon.sh`), automatisches Chronopoem, symbolisches Onboarding
 - 🌟 **CREP-Illumination** – Chronopoem reflektiert aktuellen CREP-Zustand
+- 🔍 **SelfAuditModul** – analysiert die Repository-Struktur
 
 ## 📦 Paketstruktur
 
@@ -75,6 +76,7 @@ chmod +x scripts/aeon.sh
 ./scripts/aeon.sh onboarding       # zeigt Onboarding-Ritus
 node packages/cli-tools/sigillin-cli.js convert beispiel.yaml # YAML ↔ JSON-Konvertierung
 node scripts/split-conversations.js 50   # zerlegt conversations.json in 50er-Stücke
+node scripts/self-analyze.js          # zeigt Repository-Statistiken
 ```
 
 Weitere Beispiele und GIF-Demos findest du im [Wiki](https://github.com/GenesisAeon/unified-mandala/wiki).
