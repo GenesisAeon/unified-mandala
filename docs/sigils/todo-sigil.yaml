@@ -134,3 +134,225 @@ aufgaben:
   - id: task-44
     beschreibung: "CREPManager Durchschnittsfunktion"
     status: erledigt
+  - id: task-45
+    beschreibung: "SigillinActivationManager implementieren"
+    status: offen
+  - id: task-46
+    beschreibung: "SymbolzeitModulator entwickeln"
+    status: offen
+  - id: task-47
+    beschreibung: "Gespr\xE4chsfallGenerator integrieren"
+    status: offen
+  - id: task-48
+    beschreibung: "BackupManager implementieren"
+    status: offen
+  - id: task-49
+    beschreibung: "GlobalLoggingSystem einrichten"
+    status: offen
+  - id: task-50
+    beschreibung: "MandalaThemeManager entwickeln"
+    status: offen
+  - id: task-51
+    beschreibung: "EmergenzScanner vorbereiten"
+    status: offen
+  - id: task-52
+    beschreibung: "CREPWirkungstracker anlegen"
+    status: offen
+  - id: task-53
+    beschreibung: "MicroserviceMigration planen"
+    status: offen
+  - id: task-54
+    beschreibung: "AutoDocGeneration Modul erstellen"
+    status: offen
+  - id: task-55
+    beschreibung: "CREPMemoryWeaver implementieren"
+    status: offen
+  - id: task-56
+    beschreibung: "RitualCompiler bauen"
+    status: offen
+  - id: task-57
+    beschreibung: "SigillinVersionTracker entwickeln"
+    status: offen
+  - id: task-58
+    beschreibung: "SymbolFormInput erstellen"
+    status: offen
+  - id: task-59
+    beschreibung: "SoforthilfeOverlay bauen"
+    status: offen
+  - id: task-60
+    beschreibung: "CREPTriggerPanel implementieren"
+    status: offen
+  - id: task-61
+    beschreibung: "LiveCREPPanel aktivieren"
+    status: offen
+  - id: task-62
+    beschreibung: "SigillinMetaSignatur entwickeln"
+    status: offen
+  - id: task-63
+    beschreibung: "AeonStoryMode hinzuf\xFCgen"
+    status: offen
+  - id: task-64
+    beschreibung: "SymbolicWayfinder implementieren"
+    status: offen
+  - id: task-65
+    beschreibung: "InviteBanner integrieren"
+    status: offen
+  - id: task-66
+    beschreibung: "SigillinTimeline anzeigen"
+    status: offen
+  - id: task-67
+    beschreibung: "MandalaMap umsetzen"
+    status: offen
+  - id: task-68
+    beschreibung: "EthikRatPanel bauen"
+    status: offen
+  - id: task-69
+    beschreibung: "MandalaQuests implementieren"
+    status: offen
+  - id: task-70
+    beschreibung: "HelferGPT integrieren"
+    status: offen
+  - id: task-71
+    beschreibung: "EmpathieGPT einbinden"
+    status: offen
+  - id: task-72
+    beschreibung: "LangGPT anlegen"
+    status: offen
+  - id: task-73
+    beschreibung: "CodeGPT integrieren"
+    status: offen
+  - id: task-74
+    beschreibung: "CREPJudgeGPT anbinden"
+    status: offen
+  - id: task-75
+    beschreibung: "AeonPoetGPT aktivieren"
+    status: offen
+  - id: task-76
+    beschreibung: "HypothesisGPT entwickeln"
+    status: offen
+  - id: task-77
+    beschreibung: "DocGPT integrieren"
+    status: offen
+  - id: task-78
+    beschreibung: "VisGPT implementieren"
+    status: offen
+  - id: task-79
+    beschreibung: "PublicGenesisGPT bereitstellen"
+    status: offen
+  - id: task-80
+    beschreibung: "KISpezialist erstellen"
+    status: offen
+  - id: task-81
+    beschreibung: "AeonWebArchitekt konfigurieren"
+    status: offen
+  - id: task-82
+    beschreibung: "Metronaut integrieren"
+    status: offen
+  - id: task-83
+    beschreibung: "AlbertEinstein GPT-Rolle implementieren"
+    status: offen
+  - id: task-84
+    beschreibung: "Buddha GPT-Rolle implementieren"
+    status: offen
+  - id: task-85
+    beschreibung: "Sigillin-Instanzen & symbolische Dateien erzeugen"
+    status: offen
+  - id: task-86
+    beschreibung: "Manifeste f\xFCr alle Module erstellen"
+    status: offen
+  - id: task-87
+    beschreibung: "CREP-Dummy-Daten generieren"
+    status: offen
+  - id: task-88
+    beschreibung: "notfall-sigillin.json anbinden"
+    status: offen
+  - id: task-89
+    beschreibung: "Verbindung zu sigillin_id: aeon:2025-0527-HEIMKEHR herstellen"
+    status: offen
+  - id: task-90
+    beschreibung: "symbolphasen.yaml konfigurieren"
+    status: offen
+  - id: task-91
+    beschreibung: "UI dynamisch nach Symbolzeit anpassen"
+    status: offen
+  - id: task-92
+    beschreibung: "GPT-Antworten an Symbolzeit ausrichten"
+    status: offen
+  - id: task-93
+    beschreibung: "gespr\xE4chsfall-generator.ts integrieren"
+    status: offen
+  - id: task-94
+    beschreibung: "GPT-Dialoge mit Signaturankern starten"
+    status: offen
+  - id: task-95
+    beschreibung: "API-Routen definieren und verbinden"
+    status: offen
+  - id: task-96
+    beschreibung: "CREP \xE2\x86\x92 UI, PDF & Netzwerk verkn\xFCpfen"
+    status: offen
+  - id: task-97
+    beschreibung: "Exportfunktionen & Offline-Kiosk-Modus umsetzen"
+    status: offen
+  - id: task-98
+    beschreibung: "NetzwerkGPT & GeoGPT integrieren"
+    status: offen
+  - id: task-99
+    beschreibung: "TransparenzDashboard aktivieren"
+    status: offen
+  - id: task-100
+    beschreibung: "CREPWirkungstracker verbinden"
+    status: offen
+  - id: task-101
+    beschreibung: "AeonCouncil konfigurieren & Abstimmungslogik"
+    status: offen
+  - id: task-102
+    beschreibung: "GreenIT-Initiative & BlockchainSigillin vorbereiten"
+    status: offen
+  - id: task-103
+    beschreibung: "CREPMemoryWeaver aktivieren"
+    status: offen
+  - id: task-104
+    beschreibung: "SigillinTimeline in LiveFeed einbinden"
+    status: offen
+  - id: task-105
+    beschreibung: "MandalaQuests ansto\xDFen"
+    status: offen
+  - id: task-106
+    beschreibung: "MandalaMap Visualisierung mit LiveFeed"
+    status: offen
+  - id: task-107
+    beschreibung: "SelfAuditModul integrieren"
+    status: offen
+  - id: task-108
+    beschreibung: "MandalaNarrativeEngine hinzuf\xFCgen"
+    status: offen
+  - id: task-109
+    beschreibung: "SymbolzeitDashboard verbinden"
+    status: offen
+  - id: task-110
+    beschreibung: "GenesisQuorum einsetzen"
+    status: offen
+  - id: task-111
+    beschreibung: "SigillinForge integrieren"
+    status: offen
+  - id: task-112
+    beschreibung: "EmergenceSimulator starten"
+    status: offen
+  - id: task-113
+    beschreibung: "IntrospectionReflector.tsx implementieren"
+    status: offen
+  - id: task-114
+    beschreibung: "ChronoRoomRenderer.ts entwickeln"
+    status: offen
+  - id: task-115
+    beschreibung: "ResonanceRitualCycle.ts einrichten"
+    status: offen
+  - id: task-116
+    beschreibung: "SigillinMosaicEngine.tsx realisieren"
+    status: offen
+  - id: task-117
+    beschreibung: "KarmaBalance.ts integrieren"
+    status: offen
+  - id: task-118
+    beschreibung: "SymbolicForecaster.ts hinzuf\xFCgen"
+    status: offen
