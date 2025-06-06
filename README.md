@@ -35,6 +35,10 @@ narrative Interfaces und adaptive Bewusstseinsräume.
 - 📜 **SigillinTimeline & InviteBanner** – Verlauf und Einladungsbanner
 - 💾 **BackupManager** – einfache Dateisicherungen
 - 📢 **GlobalLoggingSystem** – zentrale Log-Schnittstelle
+- 🗄️ **Big-File Sigil** – Konzept zum Aufteilen großer Dateien
+- 📊 **CREPWirkungstracker** – misst den Effekt aus CREP-Daten
+- ⚖️ **KarmaBalance** – verwaltet Karma-Punkte
+- 🔮 **SymbolicForecaster** – sagt kommende Symbolzeit-Phasen voraus
 
 ## 📦 Paketstruktur
 

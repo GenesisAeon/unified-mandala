@@ -1,6 +1,8 @@
 sigillin_id: aeon:2025-0605-TODO
 symbolzeit: tag
 titel: UnifiedMandala ToDo Übersicht
+verweise:
+  - ../sigil/big-files.sigil.yaml
 aufgaben:
   - id: task-1
     beschreibung: "`unified-mandala` – Hauptrepo mit CREP-Engine, UI, CLI, Generatoren"
@@ -157,7 +159,7 @@ aufgaben:
     status: erledigt
   - id: task-52
     beschreibung: "CREPWirkungstracker anlegen"
-    status: offen
+    status: erledigt
   - id: task-53
     beschreibung: "MicroserviceMigration planen"
     status: offen
@@ -172,7 +174,7 @@ aufgaben:
     status: offen
   - id: task-57
     beschreibung: "SigillinVersionTracker entwickeln"
-    status: offen
+    status: erledigt
   - id: task-58
     beschreibung: "SymbolFormInput erstellen"
     status: erledigt
@@ -352,7 +354,7 @@ aufgaben:
     status: offen
   - id: task-117
     beschreibung: "KarmaBalance.ts integrieren"
-    status: offen
+    status: erledigt
   - id: task-118
     beschreibung: "SymbolicForecaster.ts hinzuf\xFCgen"
-    status: offen
+    status: erledigt
