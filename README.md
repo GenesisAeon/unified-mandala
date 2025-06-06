@@ -25,6 +25,10 @@ narrative Interfaces und adaptive Bewusstseinsräume.
 - 🎭 **Poesie & Automation** – Bash-Interface (`aeon.sh`), automatisches Chronopoem, symbolisches Onboarding
 - 🌟 **CREP-Illumination** – Chronopoem reflektiert aktuellen CREP-Zustand
 - 🔍 **SelfAuditModul** – analysiert die Repository-Struktur
+- 🎨 **SigillinViewer & SigillinMap** – Übersicht und Detailansicht aller Sigillin
+- 🚩 **SymbolicWayfinder & SoforthilfeOverlay** – Navigation und Hilfedialoge
+- 📈 **CREPChart & CREPTriggerPanel** – CREP-Historie und Steuerung
+- 🌠 **AeonStoryMode & Onboarding-Flow** – Präsentations- und Einstiegskomponenten
 
 ## 📦 Paketstruktur
 
@@ -34,7 +38,13 @@ packages/
   ├── unifiedmandala-ui         # React-Komponenten (MandalaNetworkView, Dialoge)
   ├── crep-engine               # CREP-Zustandssimulation, Evaluator, Scanner
   ├── gpt-bridges               # Mitt-basierter EventHub für GPT-Module
-  └── cli-tools                 # CLI: sigillin-cli, export-doc, Archivierung
+  ├── cli-tools                 # CLI: sigillin-cli, export-doc, Archivierung
+  ├── aeon-shell                # Symbolzeit & CLI-Trigger
+  ├── aeon-genesisos            # Basis-Engine & CREP-Matrix
+  ├── aeon-fraktalurs           # GPT-Kontextarchiv
+  ├── aeon-resoecho             # CREP-Zeitlinienarchiv
+  ├── sharedream-interface      # Web-Schnittstelle & Sync
+  └── shared-utils              # Hilfsfunktionen für alle Pakete
 scripts/
   ├── aeon.sh                   # Poetisches Bash-CLI für Mandala-Steuerung
   ├── setup-unifiedmandala.sh   # Installer & Initialisierung
