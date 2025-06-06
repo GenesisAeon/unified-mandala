@@ -1,0 +1,22 @@
+# 🜂 codex-sync.yaml – Übersicht aller abhängigen Repositories & Reihenfolge
+
+repositories:
+  - name: aeon-shell
+    path: ../aeon-shell
+    depends_on: []
+
+  - name: aeon-genesisos
+    path: ../aeon-genesisos
+    depends_on: [aeon-shell]
+
+  - name: aeon-fraktalurs
+    path: ../aeon-fraktalurs
+    depends_on: [aeon-genesisos]
+
+  - name: aeon-resoecho
+    path: ../aeon-resoecho
+    depends_on: [aeon-fraktalurs]
+
+  - name: sharedream-interface
+    path: ../sharedream-interface
+    depends_on: [aeon-resoecho, aeon-genesisos]

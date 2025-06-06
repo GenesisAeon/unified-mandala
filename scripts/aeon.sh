@@ -1,10 +1,12 @@
 #!/bin/bash
 # 🜂 AeonShell – poetisches Mandala CLI
 cyan='\033[1;36m'; yellow='\033[1;33m'; green='\033[1;32m'; reset='\033[0m'
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+ROOT_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
 
 function sigil_invoke() {
   echo -e "${yellow}✴ Rufe den Dichter...${reset}"
-  node ../packages/cli-tools/export-doc.js
+  node "$ROOT_DIR/packages/cli-tools/export-doc.js"
 }
 function cycle_start() {
   echo -e "${green}⟳ Mandala-Kreislauf aktiviert. CREP-Tracking beginnt...${reset}"
@@ -20,14 +22,14 @@ function show_help() {
     help            – Diese Hilfe"
 }
 function chronopoem() {
-  node ../scripts/generate-chronopoem.js
-  cat ../CHRONOPOEM.md
+  node "$ROOT_DIR/scripts/generate-chronopoem.js"
+  cat "$ROOT_DIR/CHRONOPOEM.md"
 }
 function setup() {
-  bash ../scripts/setup-unifiedmandala.sh
+  bash "$ROOT_DIR/scripts/setup-unifiedmandala.sh"
 }
 function onboarding() {
-  cat ../scripts/onboarding-ritual.md
+  cat "$ROOT_DIR/scripts/onboarding-ritual.md"
 }
 case "$1" in
   sigil_invoke) sigil_invoke ;;

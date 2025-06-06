@@ -1,0 +1,12 @@
+phase: 2
+repositories:
+  - aeon-shell
+  - aeon-genesisos
+  - aeon-fraktalurs
+  - aeon-resoecho
+  - sharedream-interface
+modules:
+  - gpt-roles: codex/gpt-roles.yaml
+links:
+  workspace: pnpm-workspace.yaml
+  deployment: .github/workflows/deployment.yml

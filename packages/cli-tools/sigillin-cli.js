@@ -4,6 +4,15 @@ const fs = require('fs');
 const Ajv = require('ajv');
 const schema = require('../genesis-sigillin-core/schemas/sigillin.schema.json');
 const YAML = require('yaml');
+<<<<<<< Updated upstream
+=======
+let splitFile;
+try {
+  ({ splitFile } = require('../../dist/shared-utils/textFragmenter.js'));
+} catch {
+  ({ splitFile } = require('../shared-utils/textFragmenter'));
+}
+>>>>>>> Stashed changes
 let SigillinGenerator;
 try {
   // use compiled version if available
@@ -88,6 +97,49 @@ program
     });
     fs.writeFileSync('sigillin-relations.mmd', out);
     console.log('sigillin-relations.mmd erstellt');
+  });
+
+program
+  .command('fragment <file>')
+  .option('-s, --size <size>', 'Fragmentlänge', '1000')
+  .description('Zerlegt eine Textdatei in handliche Fragmente')
+  .action((file, opts) => {
+    const size = parseInt(opts.size, 10);
+    const chunks = splitFile(file, size);
+    chunks.forEach((chunk, i) => {
+      console.log(`--- Fragment ${i + 1} ---`);
+      console.log(chunk);
+    });
+  });
+
+program
+  .command('todo-sigil [source]')
+  .description('Generiert docs/sigils/todo-sigil.yaml aus MasterCanvas oder anderer Datei')
+  .action((source = 'docs/mastercanvas.yaml') => {
+    const path = require('path');
+    let extractTodosFromFile;
+    try {
+      ({ extractTodosFromFile } = require('../../dist/shared-utils/todoParser.js'));
+    } catch {
+      ({ extractTodosFromFile } = require('../shared-utils/todoParser'));
+    }
+    const tasks = extractTodosFromFile(path.resolve(source));
+    const yamlTasks = tasks.map((t, idx) => ({
+      id: `task-${idx + 1}`,
+      beschreibung: t.text,
+      status: t.done ? 'erledigt' : 'offen',
+    }));
+    const out = {
+      sigillin_id: 'aeon:2025-0605-TODO',
+      symbolzeit: 'tag',
+      titel: 'UnifiedMandala ToDo Übersicht',
+      aufgaben: yamlTasks,
+    };
+    fs.writeFileSync(
+      path.join('docs/sigils/todo-sigil.yaml'),
+      YAML.stringify(out)
+    );
+    console.log('todo-sigil.yaml aktualisiert.');
   });
 
 program.parse(process.argv);

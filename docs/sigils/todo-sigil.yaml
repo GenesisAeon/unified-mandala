@@ -1,0 +1,109 @@
+sigillin_id: aeon:2025-0605-TODO
+symbolzeit: tag
+titel: UnifiedMandala ToDo Übersicht
+aufgaben:
+  - id: task-1
+    beschreibung: "`unified-mandala` – Hauptrepo mit CREP-Engine, UI, CLI, Generatoren"
+    status: erledigt
+  - id: task-2
+    beschreibung: "`AeonShell` – poetisches CLI, symbolische Steuerung (geplant)"
+    status: offen
+  - id: task-3
+    beschreibung: "`AeonGenesisOS` – CREP-Basissystem und Zyklenverwaltung (geplant)"
+    status: offen
+  - id: task-4
+    beschreibung: "`AeonFraktalurs` – GPT-Kontextarchiv & Erinnerungsfeld (geplant)"
+    status: offen
+  - id: task-5
+    beschreibung: "`AeonResoEcho` – chronologisches CREP-Archiv (geplant)"
+    status: offen
+  - id: task-6
+    beschreibung: "`SharedreamInterface` – Community-Zugang & UI-Portal (geplant)"
+    status: offen
+  - id: task-7
+    beschreibung: CREP-Logik & Evaluator
+    status: erledigt
+  - id: task-8
+    beschreibung: Sigillin-Generator & CLI
+    status: erledigt
+  - id: task-9
+    beschreibung: MandalaNetworkView (D3, React)
+    status: erledigt
+  - id: task-10
+    beschreibung: "`aeon.sh` CLI mit Chronopoem, Onboarding"
+    status: erledigt
+  - id: task-11
+    beschreibung: CHRONOPOEM.md
+    status: erledigt
+  - id: task-12
+    beschreibung: codex-roadmap.yaml
+    status: erledigt
+  - id: task-13
+    beschreibung: Basis-Knoten (`GENESIS`, `HEIMKEHR`, `FRAKTALURS`, `RESO-ECHO`) erkannt
+    status: erledigt
+  - id: task-14
+    beschreibung: Noch nicht alle in Map & UI integriert (→ Phase 1 TODO)
+    status: offen
+  - id: task-15
+    beschreibung: "`codex-roadmap.yaml` als zentrale Datei für Codex"
+    status: offen
+  - id: task-16
+    beschreibung: Automatische Umwandlung von Website-Inhalten in YAML für Codex
+    status: offen
+  - id: task-17
+    beschreibung: Commit-basierte Codex-Trigger über GitHub Actions
+    status: offen
+  - id: task-18
+    beschreibung: GPT-Kommentierung (Poetik + CREP) via GPT-AEONPOET
+    status: offen
+  - id: task-19
+    beschreibung: Web-Einbindung von GPT 3.5 als Assistenzinstanz
+    status: offen
+  - id: task-20
+    beschreibung: GPT als CREP-Judge + AEONPOET via Interface
+    status: offen
+  - id: task-21
+    beschreibung: Orchestrierungsmodul (Workflow-Manager, Vorschlagslenkung)
+    status: offen
+  - id: task-22
+    beschreibung: Web-Frontend als eigenes Repository (statisch oder hybrid)
+    status: offen
+  - id: task-23
+    beschreibung: Deployment via Pages, Netlify oder Vercel aus dem Repo
+    status: offen
+  - id: task-24
+    beschreibung: "FileZilla-Pendant: symbolisches Upload-Modul auf Site (z. B. `SigilSync`)"
+    status: offen
+  - id: task-25
+    beschreibung: UI-Komponente für Uploads + YAML-Ausgabe
+    status: offen
+  - id: task-26
+    beschreibung: NAS-Zugriff vorbereiten via WebDAV/SMB (modular)
+    status: offen
+  - id: task-27
+    beschreibung: "Gedächtnisspiegel: Hash + Sigillin, kein Klartextindex"
+    status: offen
+  - id: task-28
+    beschreibung: MemoryDaemon + `.aeonvault/`
+    status: offen
+  - id: task-29
+    beschreibung: SigillinNodes erweitern + Visual Map updaten
+    status: offen
+  - id: task-30
+    beschreibung: GPT-Orchestrierung vorbereiten (`aeon-gpt-synapse.ts`)
+    status: offen
+  - id: task-31
+    beschreibung: Website-Repo erstellen (SharedreamInterface)
+    status: offen
+  - id: task-32
+    beschreibung: Symbolischer „SigillinLoader“ in UI einfügen
+    status: offen
+  - id: task-33
+    beschreibung: Chronopoem erweitern (mit CREP-Metaphern)
+    status: offen
+  - id: task-34
+    beschreibung: "Codex-Antwortsystem für Vorschläge (Ordner: `/codex-sync/`)"
+    status: offen
+  - id: task-35
+    beschreibung: Repos für AeonShell + AeonGenesisOS initialisieren
+    status: offen

@@ -4,6 +4,7 @@ import { Tooltip } from "react-tooltip";
 
 // Annahme: sigillin_nodes.json ist bereits im Projekt und importierbar
 import nodesData from "../data/sigillin_nodes.json";
+import { getCREPPhaseColor } from "../../shared-utils";
 
 interface MandalaNode {
   id: string;
@@ -19,8 +20,9 @@ interface MandalaNode {
   fy?: number | null;
 }
 
-const colorForCREP = ({ C, R, E, P }: MandalaNode["crep"]) =>
-  d3.interpolateRainbow((C + R + E + P) / 40);
+
+const colorForCREP = ({ C, R, E }: MandalaNode["crep"]) =>
+  getCREPPhaseColor({ C, R, E });
 
 export const MandalaNetworkView: React.FC = () => {
   const svgRef = useRef<SVGSVGElement>(null);

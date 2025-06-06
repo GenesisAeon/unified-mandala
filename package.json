@@ -12,7 +12,12 @@
     "test": "jest",
     "dev": "echo 'dev script placeholder'",
     "docs:build": "typedoc",
+<<<<<<< Updated upstream
     "prepare": "husky install"
+=======
+    "prepare": "husky install",
+    "split:conversations": "node scripts/split-conversations.js"
+>>>>>>> Stashed changes
   },
   "dependencies": {
     "ajv": "^8.0.0",
