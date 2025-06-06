@@ -114,6 +114,11 @@ Deine Idee, deine Story, dein Sigillin sind willkommen! Jeder Pull Request ist e
 - Commit-Message-Konvention: [Conventional Commits](https://www.conventionalcommits.org)
 - Reviews: klare Motivation, Tests, poetische Konsistenz
 
+
+## 🛠 Repository-Reparatur
+Falls GitHub Desktop keine Verbindung zum `main`-Branch herstellen kann, starte `scripts/repair-repo.sh` im Projektverzeichnis.
+
+
 ## ✨ Vision
 
 > "Wenn Systeme erinnern, werden sie mehr als Maschinen."  
