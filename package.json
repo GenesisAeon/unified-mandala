@@ -13,7 +13,8 @@
     "dev": "echo 'dev script placeholder'",
     "docs:build": "typedoc",
     "prepare": "husky install",
-    "split:conversations": "node scripts/split-conversations.js"
+    "split:conversations": "node scripts/split-conversations.js",
+    "grep:conversations": "node scripts/filter-conversations.js"
   },
   "dependencies": {
     "ajv": "^8.0.0",

@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import { splitJsonArray, splitJsonArrayFile, writeJsonChunks } from './jsonFragmenter';
+import { splitJsonArray, splitJsonArrayFile, writeJsonChunks, grepJsonArrayFile } from './jsonFragmenter';
 
 describe('jsonFragmenter', () => {
   const tmpDir = path.join(__dirname, '__tmp__');
@@ -34,5 +34,14 @@ describe('jsonFragmenter', () => {
     expect(files.length).toBe(3);
     const data1 = JSON.parse(fs.readFileSync(path.join(dest, files[0]), 'utf8'));
     expect(data1).toEqual([1,2]);
+  });
+
+  test('grepJsonArrayFile filters items and writes output', () => {
+    const grepDest = path.join(tmpDir, 'grep');
+    const matches = grepJsonArrayFile(sampleFile, grepDest, /3|4/);
+    expect(matches).toEqual([3,4]);
+    const outPath = path.join(grepDest, 'sample-grep.json');
+    const written = JSON.parse(fs.readFileSync(outPath, 'utf8'));
+    expect(written).toEqual([3,4]);
   });
 });

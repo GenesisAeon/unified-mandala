@@ -43,3 +43,24 @@ export function writeJsonChunks(filePath: string, destDir: string, chunkSize: nu
     fs.writeFileSync(outPath, JSON.stringify(chunk, null, 2), 'utf8');
   });
 }
+
+/**
+ * Filters a JSON array file by a regex applied to each item's stringified form.
+ * Matching items are written to <basename>-grep.json in destDir.
+ * @param filePath Input JSON array file.
+ * @param destDir Destination directory for grep result file.
+ * @param pattern Regular expression used to match items.
+ */
+export function grepJsonArrayFile<T>(filePath: string, destDir: string, pattern: RegExp): T[] {
+  const raw = fs.readFileSync(filePath, 'utf8');
+  const data: T[] = JSON.parse(raw);
+  if (!Array.isArray(data)) {
+    throw new Error('Input JSON must be an array');
+  }
+  const matches = data.filter(item => pattern.test(JSON.stringify(item)));
+  if (!fs.existsSync(destDir)) fs.mkdirSync(destDir, { recursive: true });
+  const base = filePath.replace(/\.json$/i, '');
+  const outPath = `${destDir}/${base.split('/').pop()}-grep.json`;
+  fs.writeFileSync(outPath, JSON.stringify(matches, null, 2), 'utf8');
+  return matches;
+}

@@ -79,6 +79,7 @@ node packages/cli-tools/sigillin-cli.js todo-sigil           # aktualisiert todo
 node scripts/generate-todo-sigil.js      # todo-sigil ohne Abhängigkeiten erzeugen
 node scripts/update-todo-sigil.js        # Status im todo-sigil.yaml aktualisieren
 node scripts/split-conversations.js 50   # zerlegt conversations.json in 50er-Stücke
+node scripts/filter-conversations.js TODO # filtert conversations.json nach Keyword
 node scripts/self-analyze.js          # zeigt Repository-Statistiken
 node scripts/check-todo-sigil.js      # prüft erledigte Aufgaben
 ```
