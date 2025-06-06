@@ -30,6 +30,8 @@ function setup() {
 }
 function onboarding() {
   cat "$ROOT_DIR/scripts/onboarding-ritual.md"
+  echo -e "\n${yellow}Aktueller Chronopoem:${reset}"
+  chronopoem
 }
 case "$1" in
   sigil_invoke) sigil_invoke ;;
