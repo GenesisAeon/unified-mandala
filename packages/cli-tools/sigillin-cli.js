@@ -139,4 +139,20 @@ program
     console.log('todo-sigil.yaml aktualisiert.');
   });
 
+program
+  .command('todo-update [file]')
+  .description('Pr\xFCft und aktualisiert Status im todo-sigil.yaml')
+  .action(async (file = 'docs/sigils/todo-sigil.yaml') => {
+    const path = require('path');
+    let updateTodoSigilStatus;
+    try {
+      ({ updateTodoSigilStatus } = require('../../dist/shared-utils/todoSigilUpdater.js'));
+    } catch {
+      ({ updateTodoSigilStatus } = require('../shared-utils/todoSigilUpdater'));
+    }
+    const { checks } = require('../../scripts/check-todo-sigil');
+    await updateTodoSigilStatus(path.resolve(file), checks);
+    console.log('todo-sigil.yaml Status gepr\xFCft und aktualisiert.');
+  });
+
 program.parse(process.argv);
