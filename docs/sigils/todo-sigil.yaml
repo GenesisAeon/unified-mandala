@@ -46,7 +46,7 @@ aufgaben:
     status: offen
   - id: task-15
     beschreibung: "`codex-roadmap.yaml` als zentrale Datei für Codex"
-    status: offen
+    status: erledigt
   - id: task-16
     beschreibung: "Automatische Umwandlung von Website-Inhalten in YAML für Codex"
     status: offen
@@ -107,3 +107,6 @@ aufgaben:
   - id: task-35
     beschreibung: "Repos für AeonShell + AeonGenesisOS initialisieren"
     status: offen
+  - id: task-36
+    beschreibung: "CodeSnippet-Archiv über conversations.json erstellen"
+    status: erledigt

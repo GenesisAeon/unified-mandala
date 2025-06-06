@@ -64,3 +64,37 @@ export function grepJsonArrayFile<T>(filePath: string, destDir: string, pattern:
   fs.writeFileSync(outPath, JSON.stringify(matches, null, 2), 'utf8');
   return matches;
 }
+
+/**
+ * Extracts code snippets (```code```) from a JSON array file and writes them to individual files.
+ * @param filePath Path to JSON array file.
+ * @param destDir Output directory for snippets.
+ */
+export function extractCodeSnippetsFromFile(filePath: string, destDir: string): string[] {
+  const raw = fs.readFileSync(filePath, 'utf8');
+  const data = JSON.parse(raw);
+  if (!Array.isArray(data)) {
+    throw new Error('Input JSON must be an array');
+  }
+  const snippets: string[] = [];
+  const codeRegex = /```([\s\S]*?)```/g;
+  function recurse(obj: any) {
+    if (typeof obj === 'string') {
+      let match: RegExpExecArray | null;
+      while ((match = codeRegex.exec(obj))) {
+        snippets.push(match[1].trim());
+      }
+    } else if (Array.isArray(obj)) {
+      obj.forEach(recurse);
+    } else if (obj && typeof obj === 'object') {
+      Object.values(obj).forEach(recurse);
+    }
+  }
+  data.forEach(recurse);
+  if (!fs.existsSync(destDir)) fs.mkdirSync(destDir, { recursive: true });
+  snippets.forEach((snippet, idx) => {
+    const outPath = `${destDir}/snippet-${idx + 1}.txt`;
+    fs.writeFileSync(outPath, snippet);
+  });
+  return snippets;
+}
