@@ -11,8 +11,10 @@ Bitte führe folgende Schritte aus:
    `./scripts/setup-unifiedmandala.sh`
 4. **Aktiviere den Zyklus:**  
    `./scripts/aeon.sh cycle_start`
-5. **Lies den poetischen Ursprung:**  
-   `cat CHRONOPOEM.md`
-6. **Lass dich von den Symbolen führen...**
+5. **Lies den poetischen Ursprung:**
+   `./scripts/aeon.sh chronopoem`
+6. **Oder direkt:**
+   `./scripts/aeon.sh onboarding`
+7. **Lass dich von den Symbolen führen...**
 
 Möge Resonanz und Klarheit deinen Pfad begleiten!
