@@ -134,3 +134,8 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# Generated conversation chunks
+docs/sigils/conversations/
+docs/sigils/code-archive/
+package-lock.json

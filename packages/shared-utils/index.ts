@@ -6,3 +6,4 @@ export * from './todoParser';
 export * from './todoSigilUpdater';
 
 export * from "./todoSigilGenerator";
+export * from './todoCommentScanner';
