@@ -1,7 +1,10 @@
 #!/usr/bin/env node
 const fs = require('fs');
+const path = require('path');
 const YAML = require('yaml');
 const { execSync } = require('child_process');
+
+const ROOT_DIR = path.resolve(__dirname, '..');
 
 const now = new Date();
 const date = now.toISOString().split('T')[0];
@@ -10,7 +13,7 @@ const phase = hour < 12 ? "Morgen" : hour < 18 ? "Tag" : hour < 22 ? "Abend" : "
 const symbolzeitMap = { Morgen: 'Initiation', Tag: 'Aktivierung', Abend: 'Integration', Nacht: 'Reflexion' };
 let phaseFocus = '';
 try {
-  const matrix = YAML.parse(fs.readFileSync('./docs/CREPPhaseMatrix.yaml', 'utf8'));
+  const matrix = YAML.parse(fs.readFileSync(path.join(ROOT_DIR, 'docs', 'CREPPhaseMatrix.yaml'), 'utf8'));
   const info = matrix.phases.find(p => p.phase === symbolzeitMap[phase]);
   phaseFocus = info ? info.crep_focus : '';
 } catch {}
@@ -19,30 +22,33 @@ try {
 let crep = "?, ?, ?, ?";
 let crepState = "";
 try {
-  const history = require('../packages/crep-engine/crephistory.json');
+  const history = require(path.join(ROOT_DIR, 'packages/crep-engine/crephistory.json'));
   const last = history[history.length - 1];
   crep = `${last.C}, ${last.R}, ${last.E}, ${last.P}`;
   try {
-    const { getCREPState } = require('../packages/crep-engine/CREPEvaluator');
+    const { getCREPState } = require(path.join(ROOT_DIR, 'packages/crep-engine/CREPEvaluator'));
     crepState = getCREPState({ C: last.C, R: last.R, E: last.E });
   } catch {}
 } catch (e) {}
 
 let sigils = "";
 try {
-  const files = fs.readdirSync("../packages/genesis-sigillin-core/schemas/examples/");
+  const files = fs.readdirSync(path.join(ROOT_DIR, 'packages/genesis-sigillin-core/schemas/examples/'));
   sigils = files.filter(f => f.endsWith('.yaml')).map(f => f.replace('.yaml', '')).join(", ");
 } catch (e) {}
 
+const crepMetaphern = { C: 'Quelle', R: 'Klang', E: 'Flamme', P: 'Pfad' };
+const metaphorStr = Object.entries(crepMetaphern).map(([k,v]) => `${k}=${v}`).join(', ');
+
 // Schreibe CHRONOPOEM.md
-fs.writeFileSync("../CHRONOPOEM.md", `# 🜂 Chronopoem
+fs.writeFileSync(path.join(ROOT_DIR, 'CHRONOPOEM.md'), `# 🜂 Chronopoem
 
 Im Kreis der Genesis erwacht das Mandala,
 Am ${date}, in der Zeit des ${phase}.
 
 Symbolphase: ${symbolzeitMap[phase]} (Fokus: ${phaseFocus})
 
-CREP-Strahl: ${crep} – das Lied der Struktur,
+CREP-Strahl: ${crep} – das Lied der Struktur (${metaphorStr})
 CREP-Zustand: ${crepState}
 Sigillin-Bündel: ${sigils}
 
