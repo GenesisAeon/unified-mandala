@@ -14,6 +14,7 @@ React-Komponenten für das Mandala-Frontend.
 - **AeonStoryMode** – Präsentationsmodus mit poetischen Sequenzen
 - **onboarding-flow** – Einstiegskomponente für neue Nutzer
 - **SelfAuditModul** – zeigt Kennzahlen des Repositories an
+- **LiveCREPPanel** – kombiniert Trigger und Chart für Live-Daten
 
 ## Hooks
 - **useSymbolzeit** – liefert aktuelle Symbolzeit-Phase
