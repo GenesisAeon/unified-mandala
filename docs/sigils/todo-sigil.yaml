@@ -1,0 +1,25 @@
+sigillin_id: aeon:2025-0605-TODO
+symbolzeit: tag
+titel: "UnifiedMandala ToDo Übersicht"
+aufgaben:
+  - id: sigillin-nodes
+    beschreibung: "SigillinNodes erweitern + Visual Map updaten"
+    status: offen
+  - id: gpt-orchestrierung
+    beschreibung: "GPT-Orchestrierung vorbereiten (aeon-gpt-synapse.ts)"
+    status: offen
+  - id: sharedream-interface
+    beschreibung: "Website-Repo erstellen (SharedreamInterface)"
+    status: offen
+  - id: sigillin-loader
+    beschreibung: "Symbolischer SigillinLoader in UI einfügen"
+    status: offen
+  - id: chronopoem
+    beschreibung: "Chronopoem erweitern (mit CREP-Metaphern)"
+    status: offen
+  - id: codex-answersystem
+    beschreibung: "Codex-Antwortsystem für Vorschläge"
+    status: offen
+  - id: repo-init
+    beschreibung: "Repos für AeonShell + AeonGenesisOS initialisieren"
+    status: offen

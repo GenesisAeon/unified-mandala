@@ -13,6 +13,7 @@ React-Komponenten für das Mandala-Frontend.
 - **SymbolicWayfinder** – Navigations-Komponente für das Mandala
 - **AeonStoryMode** – Präsentationsmodus mit poetischen Sequenzen
 - **onboarding-flow** – Einstiegskomponente für neue Nutzer
+- **SelfAuditModul** – zeigt Kennzahlen des Repositories an
 
 ## Hooks
 - **useSymbolzeit** – liefert aktuelle Symbolzeit-Phase
