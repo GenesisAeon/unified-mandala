@@ -3,6 +3,7 @@ packages:
   - 'packages/unifiedmandala-ui'
   - 'packages/genesis-sigillin-core'
   - 'packages/gpt-bridges'
+  - 'packages/shared-utils'
   - 'packages/cli-tools'
   - 'packages/aeon-shell'
   - 'packages/aeon-genesisos'
