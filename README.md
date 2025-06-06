@@ -77,6 +77,7 @@ chmod +x scripts/aeon.sh
 node packages/cli-tools/sigillin-cli.js convert beispiel.yaml # YAML ↔ JSON-Konvertierung
 node packages/cli-tools/sigillin-cli.js todo-sigil           # aktualisiert todo-sigil.yaml
 node scripts/generate-todo-sigil.js      # todo-sigil ohne Abhängigkeiten erzeugen
+node scripts/update-todo-sigil.js        # Status im todo-sigil.yaml aktualisieren
 node scripts/split-conversations.js 50   # zerlegt conversations.json in 50er-Stücke
 node scripts/self-analyze.js          # zeigt Repository-Statistiken
 node scripts/check-todo-sigil.js      # prüft erledigte Aufgaben
