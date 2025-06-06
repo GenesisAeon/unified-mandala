@@ -13,3 +13,5 @@ Gemeinsame Hilfsfunktionen für UnifiedMandala.
 - **createTodoSigil** und **generateTodoSigilFromFile** – erzeugen ToDo-Sigilline
 - **extractCodeSnippetsFromFile** – durchsucht Conversation-JSON nach Code und legt Snippets ab
 - **scanTodoComments** – findet TODO-Kommentare in Quelltexten
+- **isFragmentProcessed**, **markFragmentProcessed** und **listProcessedFragments** –
+  protokollieren bearbeitete Conversation-Fragmente
