@@ -1,0 +1,20 @@
+phase: repo-split
+summary: |
+  Die Aufgaben aus docs/sigils/todo-sigil.yaml sind zu umfangreich f\xC3\xBCr ein einzelnes Repository.
+  Daher werden mehrere spezialisierte Repositories vorgeschlagen.
+repositories:
+  - name: unified-mandala
+    role: Monorepo-Orchestrator mit Basis-Paketen und CI.
+  - name: aeon-shell
+    role: Poetisches CLI f\xC3\xBCr Symbolzeit-Steuerung.
+  - name: aeon-genesisos
+    role: CREP-Engine und Zustandsverwaltung.
+  - name: aeon-fraktalurs
+    role: Langzeit-GPT-Archiv und Erinnerungsfeld.
+  - name: aeon-resoecho
+    role: Chronologisches CREP-Archiv und Timeline.
+  - name: sharedream-interface
+    role: Web-Frontend und Community-Portal.
+links:
+  workspace: pnpm-workspace.yaml
+  gpt-roles: codex/gpt-roles.yaml

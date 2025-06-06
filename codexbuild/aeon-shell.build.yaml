@@ -1,0 +1,10 @@
+name: aeon-shell
+purpose: Poetisches CLI
+features:
+  - chronopoem command
+  - sigil_invoke to export Sigillin
+  - cycle management via genesisos
+  - memory-daemon for .aeonvault
+integration:
+  - uses: aeon-genesisos
+  - uses: aeon-fraktalurs

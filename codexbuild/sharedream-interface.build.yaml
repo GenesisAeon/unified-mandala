@@ -1,0 +1,9 @@
+name: sharedream-interface
+purpose: Web-Frontend
+features:
+  - MandalaMap Visualization
+  - SigillinLoader & Upload UI
+  - GPT-Bridge
+  - Deployment via Pages or Vercel
+integration:
+  - consumes aeon-genesisos, aeon-resoecho, aeon-fraktalurs
