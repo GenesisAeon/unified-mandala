@@ -11,3 +11,4 @@ Gemeinsame Hilfsfunktionen für UnifiedMandala.
 - **extractTodosFromFile** – liest Aufgabenlisten aus Dateien
 - **updateTodoSigilStatus** – markiert erledigte Aufgaben im todo-sigil.yaml
 - **createTodoSigil** und **generateTodoSigilFromFile** – erzeugen ToDo-Sigilline
+- **extractCodeSnippetsFromFile** – durchsucht Conversation-JSON nach Code und legt Snippets ab
