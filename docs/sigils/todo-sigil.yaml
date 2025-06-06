@@ -273,16 +273,16 @@ aufgaben:
     status: offen
   - id: task-90
     beschreibung: "symbolphasen.yaml konfigurieren"
-    status: offen
+    status: erledigt
   - id: task-91
     beschreibung: "UI dynamisch nach Symbolzeit anpassen"
-    status: offen
+    status: erledigt
   - id: task-92
     beschreibung: "GPT-Antworten an Symbolzeit ausrichten"
-    status: offen
+    status: erledigt
   - id: task-93
     beschreibung: "gespr\xE4chsfall-generator.ts integrieren"
-    status: offen
+    status: erledigt
   - id: task-94
     beschreibung: "GPT-Dialoge mit Signaturankern starten"
     status: offen

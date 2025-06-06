@@ -24,9 +24,11 @@ Dieses Handbuch gibt einen Überblick über die wichtigsten Module und Funktione
 
 ### gpt-bridges
 - `GPTEventHub` – Zentrales Event-System zwischen GPT-Modulen.
-- `aeon-gpt-synapse.ts` – Stub zur Kommunikation mit GPT-APIs.
+- `aeon-gpt-synapse.ts` – Stub zur Kommunikation mit GPT-APIs, passt Antworten an die Symbolzeit an.
 - `GPT_AEONPOET` – Beispielhafter poetischer GPT-Ausdruck.
 - `GPT_CREPJUDGE` – Bewertet CREP-Werte.
+- `GPTConversationLogger` – protokolliert Prompts und Antworten über den EventHub.
+
 
 ### genesis-sigillin-core
 - `SigillinGenerator` – Erstellt und validiert Sigillin-Dateien.
@@ -47,6 +49,7 @@ Dieses Handbuch gibt einen Überblick über die wichtigsten Module und Funktione
 - `KarmaBalance` – Einfache Punktesammlung.
 - `SymbolicForecaster` – Berechnet die nächste Symbolzeitphase.
 - `CREPWirkungstracker` – Protokolliert Effekte von CREP-Einträgen.
+- `loadSymbolphasen` – liest die Symbolphasen-Definition aus `config/symbolphasen.yaml`.
 
 ### unifiedmandala-ui (Auswahl)
 - `MandalaNetworkView` – Visualisierung der Sigillin-Knoten als D3-Graph.
@@ -55,6 +58,7 @@ Dieses Handbuch gibt einen Überblick über die wichtigsten Module und Funktione
 - `LiveCREPPanel` – Kombiniert Trigger und Chart für Live-Daten.
 - `SigillinLoader` – Lädt Sigillin-Dateien und filtert Einträge.
 - `SelfAuditModul` – Zeigt Kennzahlen aus `selfAnalyzer`.
+- `useSymbolzeit` – liest Symbolphasen aus der YAML und steuert Farben dynamisch.
 
 
 Weitere Module sind in Arbeit.

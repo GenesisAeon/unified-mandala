@@ -1,11 +1,7 @@
 import { useState, useEffect } from 'react';
+import { loadSymbolphasen } from '../../shared-utils';
 
-const SymbolzeitTabelle = {
-  morgen: { phase: "Initiation", farbe: "#B4E3F2" },
-  tag: { phase: "Aktivierung", farbe: "#E3F4D6" },
-  abend: { phase: "Integration", farbe: "#F7D9C4" },
-  nacht: { phase: "Reflexion", farbe: "#2C3E50" },
-};
+const SymbolzeitTabelle = loadSymbolphasen();
 
 export const useSymbolzeit = () => {
   const [symbolPhase, setSymbolPhase] = useState(SymbolzeitTabelle.tag);

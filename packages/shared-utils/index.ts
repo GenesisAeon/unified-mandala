@@ -11,3 +11,5 @@ export * from './conversationProgress';
 export * from "./CREPWirkungstracker";
 export * from "./KarmaBalance";
 export * from "./SymbolicForecaster";
+export * from './symbolzeitModulator';
+export * from './loadSymbolphasen';
