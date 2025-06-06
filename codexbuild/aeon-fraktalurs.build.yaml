@@ -1,0 +1,8 @@
+name: aeon-fraktalurs
+purpose: Langzeit-GPT-Archiv
+features:
+  - SigillinChronik
+  - Embedding Speicher
+  - CREPMemoryWeaver
+integration:
+  - provides context to aeon-shell and sharedream-interface

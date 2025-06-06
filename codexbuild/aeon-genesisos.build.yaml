@@ -1,0 +1,9 @@
+name: aeon-genesisos
+purpose: CREP-Grundsystem
+modules:
+  - CREPContext
+  - CREPManager
+  - SymbolzeitModulator
+  - BackupManager
+integration:
+  - export library to aeon-shell and sharedream-interface

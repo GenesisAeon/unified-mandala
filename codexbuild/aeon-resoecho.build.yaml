@@ -1,0 +1,7 @@
+name: aeon-resoecho
+purpose: CREP-Zeitlinienarchiv
+features:
+  - MandalaTimeline
+  - Notfall-Rekontextualisierung
+integration:
+  - shares data with aeon-fraktalurs and sharedream-interface

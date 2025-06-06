@@ -1,0 +1,13 @@
+name: unified-mandala
+scope: monorepo
+focus:
+  - crep-engine
+  - gpt-bridges
+  - unifiedmandala-ui
+  - shared-utils
+steps:
+  - description: CREP-Engine erweitern (CREPContext, CREPManager, Tooltips)
+  - description: GPT-Synapse und Rollen festigen
+  - description: UI-Komponenten vervollst\xC3\xA4ndigen (MandalaMap, SigillinTimeline)
+  - description: Codex-Antwortsystem und SelfAudit weiterentwickeln
+  - description: CI f\xC3\xBCr Lint, Test, Docs vorbereiten
