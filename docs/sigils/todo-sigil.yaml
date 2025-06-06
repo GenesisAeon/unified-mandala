@@ -361,3 +361,57 @@ aufgaben:
   - id: task-119
     beschreibung: "Handbuch weiter ausbauen"
     status: offen
+  - id: task-120
+    beschreibung: "CREPContext.ts – zentraler Zustandsmanager (Context + Reducer)"
+    status: offen
+  - id: task-121
+    beschreibung: "CREPManager.ts – Initialisierung, Manipulation, Logging von CREP-Werten"
+    status: offen
+  - id: task-122
+    beschreibung: "CREPTooltip.tsx – Info-Overlay zu CREP-Werten"
+    status: offen
+  - id: task-123
+    beschreibung: "CREPInfoModal.tsx – Erklärungsdialog für CREP-Werte"
+    status: offen
+  - id: task-124
+    beschreibung: "CREPPlayEngine.tsx – Spielmodul zur CREP-Gewichtung"
+    status: offen
+  - id: task-125
+    beschreibung: "sigillin.schema.json – Schema für Sigillin-Dateien"
+    status: offen
+  - id: task-126
+    beschreibung: "SigillinValidator.ts – CLI-Modul zur Validierung von Sigillin-Dateien"
+    status: offen
+  - id: task-127
+    beschreibung: "SigillinViewer.tsx – React-Komponente zum Durchblättern von Sigillin"
+    status: offen
+  - id: task-128
+    beschreibung: "sigillin-cli.js – Kommandozeilentool für create, validate, list-relations, bump-version"
+    status: offen
+  - id: task-129
+    beschreibung: "CREPTestHarness.tsx – UI zum Durchspielen von CREP-Änderungen"
+    status: offen
+  - id: task-130
+    beschreibung: "GitHub Action + npm Script für Linter, Build, Schema-Validation, Unit-Tests"
+    status: offen
+  - id: task-131
+    beschreibung: "CREPDocExport.md – Dokumentation der CREP-Exportstruktur"
+    status: offen
+  - id: task-132
+    beschreibung: "sigillin.examples/ – Sammlung von Beispielsigillin"
+    status: offen
+  - id: task-133
+    beschreibung: "ProgmakerGPT einrichten (Simulation & Algorithmusentwicklung)"
+    status: offen
+  - id: task-134
+    beschreibung: "PublisherGPT einrichten (wissenschaftliche Aufbereitung)"
+    status: offen
+  - id: task-135
+    beschreibung: "CoreGPT optional für Meta-Analyse integrieren"
+    status: offen
+  - id: task-136
+    beschreibung: "Statusmodul mit Fortschrittsanzeige je Phase und TODO-Listen pro GPT"
+    status: offen
+  - id: task-137
+    beschreibung: "Synchronisierten Theorie-Index erstellen"
+    status: offen
