@@ -4,7 +4,12 @@ const fs = require('fs');
 const Ajv = require('ajv');
 const schema = require('../genesis-sigillin-core/schemas/sigillin.schema.json');
 const YAML = require('yaml');
-const { splitFile } = require('../shared-utils/textFragmenter');
+let splitFile;
+try {
+  ({ splitFile } = require('../../dist/shared-utils/textFragmenter.js'));
+} catch {
+  ({ splitFile } = require('../shared-utils/textFragmenter'));
+}
 let SigillinGenerator;
 try {
   // use compiled version if available
@@ -102,6 +107,36 @@ program
       console.log(`--- Fragment ${i + 1} ---`);
       console.log(chunk);
     });
+  });
+
+program
+  .command('todo-sigil [source]')
+  .description('Generiert docs/sigils/todo-sigil.yaml aus MasterCanvas oder anderer Datei')
+  .action((source = 'docs/mastercanvas.yaml') => {
+    const path = require('path');
+    let extractTodosFromFile;
+    try {
+      ({ extractTodosFromFile } = require('../../dist/shared-utils/todoParser.js'));
+    } catch {
+      ({ extractTodosFromFile } = require('../shared-utils/todoParser'));
+    }
+    const tasks = extractTodosFromFile(path.resolve(source));
+    const yamlTasks = tasks.map((t, idx) => ({
+      id: `task-${idx + 1}`,
+      beschreibung: t.text,
+      status: t.done ? 'erledigt' : 'offen',
+    }));
+    const out = {
+      sigillin_id: 'aeon:2025-0605-TODO',
+      symbolzeit: 'tag',
+      titel: 'UnifiedMandala ToDo Übersicht',
+      aufgaben: yamlTasks,
+    };
+    fs.writeFileSync(
+      path.join('docs/sigils/todo-sigil.yaml'),
+      YAML.stringify(out)
+    );
+    console.log('todo-sigil.yaml aktualisiert.');
   });
 
 program.parse(process.argv);
