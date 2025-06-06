@@ -19,6 +19,7 @@ function show_help() {
     chronopoem      – Erzeugt poetische Commit-Signatur
     setup           – Führt das Setup-Ritual aus
     onboarding      – Zeigt das Onboarding-Ritual
+    todo_sigil      – Generiert docs/sigils/todo-sigil.yaml
     help            – Diese Hilfe"
 }
 function chronopoem() {
@@ -31,11 +32,15 @@ function setup() {
 function onboarding() {
   cat "$ROOT_DIR/scripts/onboarding-ritual.md"
 }
+function todo_sigil() {
+  node "$ROOT_DIR/packages/cli-tools/sigillin-cli.js" todo-sigil
+}
 case "$1" in
   sigil_invoke) sigil_invoke ;;
   cycle_start) cycle_start ;;
   chronopoem) chronopoem ;;
   setup) setup ;;
   onboarding) onboarding ;;
+  todo_sigil) todo_sigil ;;
   help|*) show_help ;;
 esac

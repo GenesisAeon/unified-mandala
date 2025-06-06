@@ -74,7 +74,9 @@ chmod +x scripts/aeon.sh
 ./scripts/aeon.sh sigil_invoke     # exportiert Sigillin & CREP-Dokumentation
 ./scripts/aeon.sh chronopoem       # erzeugt CHRONOPOEM.md
 ./scripts/aeon.sh onboarding       # zeigt Onboarding-Ritus
+./scripts/aeon.sh todo_sigil       # erzeugt todo-sigil.yaml
 node packages/cli-tools/sigillin-cli.js convert beispiel.yaml # YAML ↔ JSON-Konvertierung
+node packages/cli-tools/sigillin-cli.js todo-sigil           # aktualisiert todo-sigil.yaml
 node scripts/split-conversations.js 50   # zerlegt conversations.json in 50er-Stücke
 node scripts/self-analyze.js          # zeigt Repository-Statistiken
 ```
