@@ -3,3 +3,4 @@ export * from './crepHelpers';
 export * from './jsonFragmenter';
 export * from './selfAnalyzer';
 export * from './todoParser';
+export * from './todoSigilUpdater';

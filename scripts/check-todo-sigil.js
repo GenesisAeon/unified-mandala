@@ -51,4 +51,4 @@ if (require.main === module) {
   process.exitCode = ok ? 0 : 1;
 }
 
-module.exports = { checkTodos };
+module.exports = { checkTodos, checks };
