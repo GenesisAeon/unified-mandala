@@ -5,5 +5,8 @@ modules:
   - CREPManager
   - SymbolzeitModulator
   - BackupManager
+packages:
+  - packages/aeon-genesisos
 integration:
   - export library to aeon-shell and sharedream-interface
+  - exposes: CREPContext API

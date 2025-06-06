@@ -5,6 +5,10 @@ features:
   - sigil_invoke to export Sigillin
   - cycle management via genesisos
   - memory-daemon for .aeonvault
+packages:
+  - packages/cli-tools
+  - packages/aeon-shell
 integration:
   - uses: aeon-genesisos
   - uses: aeon-fraktalurs
+  - exposes bin: aeon.sh

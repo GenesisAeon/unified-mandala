@@ -3,5 +3,8 @@ purpose: CREP-Zeitlinienarchiv
 features:
   - MandalaTimeline
   - Notfall-Rekontextualisierung
+packages:
+  - packages/aeon-resoecho
 integration:
   - shares data with aeon-fraktalurs and sharedream-interface
+  - exports: timeline-api

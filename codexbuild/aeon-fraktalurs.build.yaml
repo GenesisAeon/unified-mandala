@@ -4,5 +4,8 @@ features:
   - SigillinChronik
   - Embedding Speicher
   - CREPMemoryWeaver
+packages:
+  - packages/aeon-fraktalurs
 integration:
   - provides context to aeon-shell and sharedream-interface
+  - exposes: fractal-api

@@ -5,5 +5,8 @@ features:
   - SigillinLoader & Upload UI
   - GPT-Bridge
   - Deployment via Pages or Vercel
+packages:
+  - packages/sharedream-interface
 integration:
   - consumes aeon-genesisos, aeon-resoecho, aeon-fraktalurs
+  - exposes: web-ui

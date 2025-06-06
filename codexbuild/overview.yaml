@@ -15,6 +15,14 @@ repositories:
     role: Chronologisches CREP-Archiv und Timeline.
   - name: sharedream-interface
     role: Web-Frontend und Community-Portal.
+shared_configs:
+  node: '>=18'
+  package_manager: pnpm
+  lint: config/eslint
+  tsconfig: tsconfig.json
 links:
   workspace: pnpm-workspace.yaml
   gpt-roles: codex/gpt-roles.yaml
+notes: |
+  Alle Repositories sollten die gleichen Linting- und Build-Skripte verwenden.
+  Die Basiskonfiguration befindet sich in unified-mandala/config und wird jeweils kopiert.
