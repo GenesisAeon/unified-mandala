@@ -4,15 +4,12 @@ const fs = require('fs');
 const Ajv = require('ajv');
 const schema = require('../genesis-sigillin-core/schemas/sigillin.schema.json');
 const YAML = require('yaml');
-<<<<<<< Updated upstream
-=======
 let splitFile;
 try {
   ({ splitFile } = require('../../dist/shared-utils/textFragmenter.js'));
 } catch {
   ({ splitFile } = require('../shared-utils/textFragmenter'));
 }
->>>>>>> Stashed changes
 let SigillinGenerator;
 try {
   // use compiled version if available

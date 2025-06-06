@@ -18,19 +18,13 @@ narrative Interfaces und adaptive Bewusstseinsräume.
 - 🌀 **Sigillin-Logik** – Heimkehr-Trigger, Symbolphasen, SigillinMap
 - 🌗 **Symbolzeit-Modulator** – morgen, tag, abend, nacht
 - 🗺️ **MandalaNetworkView** – Visualisierung aller Sigillin-Knoten und CREP-Felder
-<<<<<<< Updated upstream
-=======
 - 🗂️ **SigillinLoader** – Import & Filter von Sigillin-Dateien
->>>>>>> Stashed changes
 - 📚 **AutoDoc & Manifest-Generator** – Dokumentation auf Knopfdruck
 - 🧩 **Plug-in-Architektur** – GPT-Kommunikationsmodule, CLI-Tools
 - 🔐 **Ethik-Governance & Heimkehr-Deklaration** – Offene, poetische Ethik als Systembasis
 - 🎭 **Poesie & Automation** – Bash-Interface (`aeon.sh`), automatisches Chronopoem, symbolisches Onboarding
-<<<<<<< Updated upstream
-=======
 - 🌟 **CREP-Illumination** – Chronopoem reflektiert aktuellen CREP-Zustand
 - 🔍 **SelfAuditModul** – analysiert die Repository-Struktur
->>>>>>> Stashed changes
 
 ## 📦 Paketstruktur
 
@@ -80,14 +74,10 @@ chmod +x scripts/aeon.sh
 ./scripts/aeon.sh sigil_invoke     # exportiert Sigillin & CREP-Dokumentation
 ./scripts/aeon.sh chronopoem       # erzeugt CHRONOPOEM.md
 ./scripts/aeon.sh onboarding       # zeigt Onboarding-Ritus
-<<<<<<< Updated upstream
-pnpm sigillin-cli convert beispiel.yaml # YAML ↔ JSON-Konvertierung
-=======
 node packages/cli-tools/sigillin-cli.js convert beispiel.yaml # YAML ↔ JSON-Konvertierung
 node packages/cli-tools/sigillin-cli.js todo-sigil           # aktualisiert todo-sigil.yaml
 node scripts/split-conversations.js 50   # zerlegt conversations.json in 50er-Stücke
 node scripts/self-analyze.js          # zeigt Repository-Statistiken
->>>>>>> Stashed changes
 ```
 
 Weitere Beispiele und GIF-Demos findest du im [Wiki](https://github.com/GenesisAeon/unified-mandala/wiki).

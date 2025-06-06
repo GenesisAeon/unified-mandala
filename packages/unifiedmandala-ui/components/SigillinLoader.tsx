@@ -7,11 +7,8 @@ interface SigillinLoaderProps {
 
 const SigillinLoader: React.FC<SigillinLoaderProps> = ({ onLoaded }) => {
   const [error, setError] = useState<string | null>(null);
-<<<<<<< Updated upstream
-=======
   const [filter, setFilter] = useState('');
   const [data, setData] = useState<any[]>([]);
->>>>>>> Stashed changes
 
   const handleFile = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -20,20 +17,12 @@ const SigillinLoader: React.FC<SigillinLoaderProps> = ({ onLoaded }) => {
     reader.onload = evt => {
       try {
         const text = evt.target?.result as string;
-<<<<<<< Updated upstream
-        const data = file.name.endsWith('.yaml') || file.name.endsWith('.yml')
-          ? YAML.parse(text)
-          : JSON.parse(text);
-        setError(null);
-        onLoaded?.(data);
-=======
         const parsed = file.name.endsWith('.yaml') || file.name.endsWith('.yml')
           ? YAML.parse(text)
           : JSON.parse(text);
         setData(Array.isArray(parsed) ? parsed : [parsed]);
         setError(null);
         onLoaded?.(parsed);
->>>>>>> Stashed changes
       } catch (err) {
         setError('Fehler beim Laden der Datei');
         console.error(err);
@@ -42,13 +31,10 @@ const SigillinLoader: React.FC<SigillinLoaderProps> = ({ onLoaded }) => {
     reader.readAsText(file);
   };
 
-<<<<<<< Updated upstream
-=======
   const filtered = data.filter(item =>
     filter ? JSON.stringify(item).toLowerCase().includes(filter.toLowerCase()) : true
   );
 
->>>>>>> Stashed changes
   return (
     <div>
       <input
@@ -57,9 +43,6 @@ const SigillinLoader: React.FC<SigillinLoaderProps> = ({ onLoaded }) => {
         onChange={handleFile}
         aria-label="Sigillin laden"
       />
-<<<<<<< Updated upstream
-      {error && <p role="alert">{error}</p>}
-=======
       <input
         type="text"
         placeholder="Filter"
@@ -69,7 +52,6 @@ const SigillinLoader: React.FC<SigillinLoaderProps> = ({ onLoaded }) => {
       />
       {error && <p role="alert">{error}</p>}
       <pre>{filtered.length} Einträge geladen</pre>
->>>>>>> Stashed changes
     </div>
   );
 };

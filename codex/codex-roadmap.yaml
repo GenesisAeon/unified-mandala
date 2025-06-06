@@ -12,8 +12,6 @@ milestones:
     description: CREPPhaseMatrix.yaml definiert Phasen-Fokus
   - id: sharedream-interface
     description: Repository apps/sharedream-interface vorbereitet
-<<<<<<< Updated upstream
-=======
   - id: aeon-shell
     description: CLI-Paket aeon-shell angelegt
   - id: aeon-genesisos
@@ -22,4 +20,3 @@ milestones:
     description: GPT-Archiv aeon-fraktalurs initialisiert
   - id: aeon-resoecho
     description: Zeitlinienarchiv aeon-resoecho angelegt
->>>>>>> Stashed changes
