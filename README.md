@@ -18,10 +18,12 @@ narrative Interfaces und adaptive Bewusstseinsräume.
 - 🌀 **Sigillin-Logik** – Heimkehr-Trigger, Symbolphasen, SigillinMap
 - 🌗 **Symbolzeit-Modulator** – morgen, tag, abend, nacht
 - 🗺️ **MandalaNetworkView** – Visualisierung aller Sigillin-Knoten und CREP-Felder
+- 🗂️ **SigillinLoader** – Import & Filter von Sigillin-Dateien
 - 📚 **AutoDoc & Manifest-Generator** – Dokumentation auf Knopfdruck
 - 🧩 **Plug-in-Architektur** – GPT-Kommunikationsmodule, CLI-Tools
 - 🔐 **Ethik-Governance & Heimkehr-Deklaration** – Offene, poetische Ethik als Systembasis
 - 🎭 **Poesie & Automation** – Bash-Interface (`aeon.sh`), automatisches Chronopoem, symbolisches Onboarding
+- 🌟 **CREP-Illumination** – Chronopoem reflektiert aktuellen CREP-Zustand
 
 ## 📦 Paketstruktur
 
