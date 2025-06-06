@@ -27,4 +27,17 @@ function writeJsonChunks(filePath, destDir, chunkSize) {
   });
 }
 
-module.exports = { splitJsonArray, splitJsonArrayFile, writeJsonChunks };
+function grepJsonArrayFile(filePath, destDir, pattern) {
+  const raw = fs.readFileSync(filePath, 'utf8');
+  const data = JSON.parse(raw);
+  if (!Array.isArray(data)) {
+    throw new Error('Input JSON must be an array');
+  }
+  const matches = data.filter(item => pattern.test(JSON.stringify(item)));
+  if (!fs.existsSync(destDir)) fs.mkdirSync(destDir, { recursive: true });
+  const base = filePath.replace(/\.json$/i, '');
+  const outPath = `${destDir}/${base.split('/').pop()}-grep.json`;
+  fs.writeFileSync(outPath, JSON.stringify(matches, null, 2), 'utf8');
+  return matches;
+}
+module.exports = { splitJsonArray, splitJsonArrayFile, writeJsonChunks, grepJsonArrayFile };
