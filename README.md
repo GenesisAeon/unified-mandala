@@ -28,6 +28,7 @@ narrative Interfaces und adaptive Bewusstseinsräume.
 - 🎨 **SigillinViewer & SigillinMap** – Übersicht und Detailansicht aller Sigillin
 - 🚩 **SymbolicWayfinder & SoforthilfeOverlay** – Navigation und Hilfedialoge
 - 📈 **CREPChart & CREPTriggerPanel** – CREP-Historie und Steuerung
+- 📊 **CREPAverage-Analyse** – Durchschnittswerte aus dem CREP-Verlauf
 - 🌠 **AeonStoryMode & Onboarding-Flow** – Präsentations- und Einstiegskomponenten
 
 ## 📦 Paketstruktur

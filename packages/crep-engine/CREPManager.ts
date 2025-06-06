@@ -29,4 +29,26 @@ export class CREPManager {
   getCREPHistory() {
     return this.crepHistory;
   }
+
+  getAverageCREP(lastN = this.crepHistory.length) {
+    const slice = this.crepHistory.slice(-lastN);
+    if (!slice.length) return { C: 0, R: 0, E: 0, P: 0 };
+    const totals = slice.reduce(
+      (acc, e) => {
+        acc.C += e.C;
+        acc.R += e.R;
+        acc.E += e.E;
+        acc.P += e.P;
+        return acc;
+      },
+      { C: 0, R: 0, E: 0, P: 0 }
+    );
+    const count = slice.length;
+    return {
+      C: totals.C / count,
+      R: totals.R / count,
+      E: totals.E / count,
+      P: totals.P / count,
+    };
+  }
 }
