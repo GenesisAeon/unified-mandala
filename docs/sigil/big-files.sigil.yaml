@@ -1,0 +1,16 @@
+sigillin_id: aeon:2025-0607-BIGFILES
+symbolzeit: tag
+titel: Umgang mit großen Dateien
+beschreibung: |
+  Dieses Sigillin dokumentiert, wie große Dateien im Repository bearbeitet werden.
+  Vor allem `docs/sigils/conversations.json` (ca. 45 MB) wird schrittweise
+  verarbeitet. Verwende die Skripte `split-conversations.js` und
+  `filter-conversations.js`, um Teilstücke zu erzeugen. Verarbeitete Fragmente
+  werden in `docs/sigils/conversations-progress.json` protokolliert über
+  `mark-fragment.js`.
+files:
+  - path: docs/sigils/conversations.json
+    size: 45MB
+    progress_file: docs/sigils/conversations-progress.json
+    verarbeitung: Aufteilen in JSON-Chunks à 100 Einträge
+processed_fragments: []

@@ -8,3 +8,6 @@ export * from './todoSigilUpdater';
 export * from "./todoSigilGenerator";
 export * from './todoCommentScanner';
 export * from './conversationProgress';
+export * from "./CREPWirkungstracker";
+export * from "./KarmaBalance";
+export * from "./SymbolicForecaster";
