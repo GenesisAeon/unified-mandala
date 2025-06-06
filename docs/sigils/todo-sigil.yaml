@@ -136,25 +136,25 @@ aufgaben:
     status: erledigt
   - id: task-45
     beschreibung: "SigillinActivationManager implementieren"
-    status: offen
+    status: erledigt
   - id: task-46
     beschreibung: "SymbolzeitModulator entwickeln"
-    status: offen
+    status: erledigt
   - id: task-47
     beschreibung: "Gespr\xE4chsfallGenerator integrieren"
-    status: offen
+    status: erledigt
   - id: task-48
     beschreibung: "BackupManager implementieren"
-    status: offen
+    status: erledigt
   - id: task-49
     beschreibung: "GlobalLoggingSystem einrichten"
-    status: offen
+    status: erledigt
   - id: task-50
     beschreibung: "MandalaThemeManager entwickeln"
-    status: offen
+    status: erledigt
   - id: task-51
     beschreibung: "EmergenzScanner vorbereiten"
-    status: offen
+    status: erledigt
   - id: task-52
     beschreibung: "CREPWirkungstracker anlegen"
     status: offen
@@ -175,31 +175,31 @@ aufgaben:
     status: offen
   - id: task-58
     beschreibung: "SymbolFormInput erstellen"
-    status: offen
+    status: erledigt
   - id: task-59
     beschreibung: "SoforthilfeOverlay bauen"
-    status: offen
+    status: erledigt
   - id: task-60
     beschreibung: "CREPTriggerPanel implementieren"
-    status: offen
+    status: erledigt
   - id: task-61
     beschreibung: "LiveCREPPanel aktivieren"
     status: offen
   - id: task-62
     beschreibung: "SigillinMetaSignatur entwickeln"
-    status: offen
+    status: erledigt
   - id: task-63
     beschreibung: "AeonStoryMode hinzuf\xFCgen"
-    status: offen
+    status: erledigt
   - id: task-64
     beschreibung: "SymbolicWayfinder implementieren"
-    status: offen
+    status: erledigt
   - id: task-65
     beschreibung: "InviteBanner integrieren"
-    status: offen
+    status: erledigt
   - id: task-66
     beschreibung: "SigillinTimeline anzeigen"
-    status: offen
+    status: erledigt
   - id: task-67
     beschreibung: "MandalaMap umsetzen"
     status: offen
@@ -322,7 +322,7 @@ aufgaben:
     status: offen
   - id: task-107
     beschreibung: "SelfAuditModul integrieren"
-    status: offen
+    status: erledigt
   - id: task-108
     beschreibung: "MandalaNarrativeEngine hinzuf\xFCgen"
     status: offen

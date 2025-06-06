@@ -30,6 +30,11 @@ narrative Interfaces und adaptive Bewusstseinsräume.
 - 📈 **CREPChart & CREPTriggerPanel** – CREP-Historie und Steuerung
 - 📊 **CREPAverage-Analyse** – Durchschnittswerte aus dem CREP-Verlauf
 - 🌠 **AeonStoryMode & Onboarding-Flow** – Präsentations- und Einstiegskomponenten
+- 🎨 **MandalaThemeManager** – hell/dunkel umschalten
+- ✨ **SigillinActivationManager & MetaSignatur** – Aktivierung & Signatur von Sigillin
+- 📜 **SigillinTimeline & InviteBanner** – Verlauf und Einladungsbanner
+- 💾 **BackupManager** – einfache Dateisicherungen
+- 📢 **GlobalLoggingSystem** – zentrale Log-Schnittstelle
 
 ## 📦 Paketstruktur
 
