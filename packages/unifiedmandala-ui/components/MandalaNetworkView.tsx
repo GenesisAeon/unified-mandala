@@ -4,6 +4,7 @@ import { Tooltip } from "react-tooltip";
 
 // Annahme: sigillin_nodes.json ist bereits im Projekt und importierbar
 import nodesData from "../data/sigillin_nodes.json";
+import { getCREPPhaseColor } from "../../shared-utils";
 
 interface MandalaNode {
   id: string;
@@ -19,12 +20,6 @@ interface MandalaNode {
   fy?: number | null;
 }
 
-function getCREPPhaseColor(crep: { C: number; R: number; E: number }) {
-  const { C, R, E } = crep;
-  if (C < 4 || R < 4 || E < 4) return "red";
-  if (C >= 7 && R >= 7 && E >= 7) return "green";
-  return "orange";
-}
 
 const colorForCREP = ({ C, R, E }: MandalaNode["crep"]) =>
   getCREPPhaseColor({ C, R, E });
