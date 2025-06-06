@@ -9,6 +9,7 @@ React-Komponenten für das Mandala-Frontend.
 - **SigillinLoader** – Laden und Filtern von Sigillin-Dateien
 - **SigillinViewer** – Darstellung einzelner Sigillin-Daten
 - **SigillinMap** – Übersicht aller bekannten Sigillin
+- **MandalaMap** – einfache SVG-Karte der Mandala-Knoten
 - **SoforthilfeOverlay** – Kontextabhängige Hilfedialoge
 - **SymbolicWayfinder** – Navigations-Komponente für das Mandala
 - **AeonStoryMode** – Präsentationsmodus mit poetischen Sequenzen
@@ -19,6 +20,7 @@ React-Komponenten für das Mandala-Frontend.
 ## Hooks
 - **useSymbolzeit** – liefert aktuelle Symbolzeit-Phase
 - **useCREP** – Zugriff auf CREP-Historie und Trigger
+- **CREPContext** – stellt CREP-Daten via React Context bereit
 
 Zusätzlich stellt `shared-utils` die Funktion **getCREPPhaseColor** bereit,
 um CREP-Werte in Farbzustände zu übersetzen.

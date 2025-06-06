@@ -1,5 +1,5 @@
 import React from 'react';
-import { Tooltip } from 'react-tooltip'; // Annahme: react-tooltip als Abhängigkeit installiert
+import { Tooltip } from 'react-tooltip';
 
 interface CREPTooltipProps {
   label: string;
@@ -15,7 +15,7 @@ const CREPTooltip: React.FC<CREPTooltipProps> = ({ label, value }) => {
   };
 
   return (
-    <Tooltip content={`${descriptionMap[label]} Wert: ${value.toFixed(2)}`}>
+    <Tooltip content={`${descriptionMap[label]} Wert: ${value.toFixed(2)}`}> 
       <span className="crep-label">{label}: {value.toFixed(2)}</span>
     </Tooltip>
   );
