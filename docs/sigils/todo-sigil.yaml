@@ -88,7 +88,7 @@ aufgaben:
     status: offen
   - id: task-29
     beschreibung: "SigillinNodes erweitern + Visual Map updaten"
-    status: offen
+    status: erledigt
   - id: task-30
     beschreibung: "GPT-Orchestrierung vorbereiten (`aeon-gpt-synapse.ts`)"
     status: offen
@@ -97,7 +97,7 @@ aufgaben:
     status: offen
   - id: task-32
     beschreibung: "Symbolischer „SigillinLoader“ in UI einfügen"
-    status: offen
+    status: erledigt
   - id: task-33
     beschreibung: "Chronopoem erweitern (mit CREP-Metaphern)"
     status: offen

@@ -1,5 +1,5 @@
 module.exports = {
-  preset: 'ts-jest',
+  transform: { '^.+\\.tsx?$': ['<rootDir>/node_modules/ts-jest', {}] },
   testEnvironment: 'jsdom',
   testPathIgnorePatterns: ['/dist/'],
 };
