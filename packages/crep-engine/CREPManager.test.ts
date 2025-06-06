@@ -7,7 +7,9 @@ describe('CREPManager', () => {
       store: {} as Record<string, string>,
       getItem(key: string) { return this.store[key] || null; },
       setItem(key: string, value: string) { this.store[key] = value; },
+      clear() { this.store = {}; }
     };
+    (globalThis as any).localStorage.clear();
     jest.spyOn(GPTEventHub, 'emit');
   });
 
@@ -28,5 +30,16 @@ describe('CREPManager', () => {
     (globalThis as any).localStorage.setItem('crepHistory', JSON.stringify([{ timestamp: ts, C: 1, R: 1, E: 1, P: 1 }]));
     const manager = new CREPManager();
     expect(manager.getCREPHistory()).toHaveLength(1);
+  });
+
+  it('calculates average CREP values', () => {
+    const manager = new CREPManager();
+    manager.addCREPEntry(2, 4, 6, 8);
+    manager.addCREPEntry(4, 6, 8, 10);
+    const avg = manager.getAverageCREP();
+    expect(avg.C).toBe(3);
+    expect(avg.R).toBe(5);
+    expect(avg.E).toBe(7);
+    expect(avg.P).toBe(9);
   });
 });
