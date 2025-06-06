@@ -12,6 +12,7 @@
     "test": "jest",
     "dev": "echo 'dev script placeholder'",
     "docs:build": "typedoc",
+    "docs:auto": "node scripts/generate-api-docs.js",
     "prepare": "husky install",
     "split:conversations": "node scripts/split-conversations.js",
     "grep:conversations": "node scripts/filter-conversations.js"

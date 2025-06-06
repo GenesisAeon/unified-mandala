@@ -7,5 +7,7 @@ test('tracks average effect', () => {
   tracker.addEntry(entry);
   tracker.addEntry({ ...entry, C: 3 });
   const avg = tracker.getAverage();
-  expect(avg).toBeCloseTo(1.5);
+  // Effect value averages all CREP dimensions for each entry
+  // so here we expect (1 + 1.5) / 2 = 1.25
+  expect(avg).toBeCloseTo(1.25);
 });

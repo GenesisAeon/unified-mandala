@@ -165,7 +165,7 @@ aufgaben:
     status: offen
   - id: task-54
     beschreibung: "AutoDocGeneration Modul erstellen"
-    status: offen
+    status: erledigt
   - id: task-55
     beschreibung: "CREPMemoryWeaver implementieren"
     status: offen
@@ -186,7 +186,7 @@ aufgaben:
     status: erledigt
   - id: task-61
     beschreibung: "LiveCREPPanel aktivieren"
-    status: offen
+    status: erledigt
   - id: task-62
     beschreibung: "SigillinMetaSignatur entwickeln"
     status: erledigt
@@ -358,3 +358,6 @@ aufgaben:
   - id: task-118
     beschreibung: "SymbolicForecaster.ts hinzuf\xFCgen"
     status: erledigt
+  - id: task-119
+    beschreibung: "Handbuch weiter ausbauen"
+    status: offen
