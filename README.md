@@ -74,6 +74,7 @@ chmod +x scripts/aeon.sh
 ./scripts/aeon.sh chronopoem       # erzeugt CHRONOPOEM.md
 ./scripts/aeon.sh onboarding       # zeigt Onboarding-Ritus
 node packages/cli-tools/sigillin-cli.js convert beispiel.yaml # YAML ↔ JSON-Konvertierung
+node scripts/split-conversations.js 50   # zerlegt conversations.json in 50er-Stücke
 ```
 
 Weitere Beispiele und GIF-Demos findest du im [Wiki](https://github.com/GenesisAeon/unified-mandala/wiki).
