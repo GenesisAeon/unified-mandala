@@ -4,6 +4,7 @@ const fs = require('fs');
 const Ajv = require('ajv');
 const schema = require('../genesis-sigillin-core/schemas/sigillin.schema.json');
 const YAML = require('yaml');
+const { splitFile } = require('../shared-utils/textFragmenter');
 let SigillinGenerator;
 try {
   // use compiled version if available
@@ -88,6 +89,19 @@ program
     });
     fs.writeFileSync('sigillin-relations.mmd', out);
     console.log('sigillin-relations.mmd erstellt');
+  });
+
+program
+  .command('fragment <file>')
+  .option('-s, --size <size>', 'Fragmentlänge', '1000')
+  .description('Zerlegt eine Textdatei in handliche Fragmente')
+  .action((file, opts) => {
+    const size = parseInt(opts.size, 10);
+    const chunks = splitFile(file, size);
+    chunks.forEach((chunk, i) => {
+      console.log(`--- Fragment ${i + 1} ---`);
+      console.log(chunk);
+    });
   });
 
 program.parse(process.argv);
