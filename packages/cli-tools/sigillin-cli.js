@@ -114,27 +114,15 @@ program
   .description('Generiert docs/sigils/todo-sigil.yaml aus MasterCanvas oder anderer Datei')
   .action((source = 'docs/mastercanvas.yaml') => {
     const path = require('path');
-    let extractTodosFromFile;
+    let generateTodoSigilFromFile;
     try {
-      ({ extractTodosFromFile } = require('../../dist/shared-utils/todoParser.js'));
+      ({ generateTodoSigilFromFile } = require('../../dist/shared-utils/todoSigilGenerator.js'));
     } catch {
-      ({ extractTodosFromFile } = require('../shared-utils/todoParser'));
+      ({ generateTodoSigilFromFile } = require('../shared-utils/todoSigilGenerator'));
     }
-    const tasks = extractTodosFromFile(path.resolve(source));
-    const yamlTasks = tasks.map((t, idx) => ({
-      id: `task-${idx + 1}`,
-      beschreibung: t.text,
-      status: t.done ? 'erledigt' : 'offen',
-    }));
-    const out = {
-      sigillin_id: 'aeon:2025-0605-TODO',
-      symbolzeit: 'tag',
-      titel: 'UnifiedMandala ToDo Übersicht',
-      aufgaben: yamlTasks,
-    };
-    fs.writeFileSync(
-      path.join('docs/sigils/todo-sigil.yaml'),
-      YAML.stringify(out)
+    generateTodoSigilFromFile(
+      path.resolve(source),
+      path.join('docs/sigils/todo-sigil.yaml')
     );
     console.log('todo-sigil.yaml aktualisiert.');
   });

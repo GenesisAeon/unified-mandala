@@ -4,3 +4,5 @@ export * from './jsonFragmenter';
 export * from './selfAnalyzer';
 export * from './todoParser';
 export * from './todoSigilUpdater';
+
+export * from "./todoSigilGenerator";
