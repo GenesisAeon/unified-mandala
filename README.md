@@ -93,6 +93,7 @@ node scripts/filter-conversations.js TODO # filtert conversations.json nach Keyw
 node scripts/extract-snippets.js          # extrahiert Code-Snippets aus conversations.json
 node scripts/self-analyze.js          # zeigt Repository-Statistiken
 node scripts/check-todo-sigil.js      # prüft erledigte Aufgaben
+node scripts/mark-fragment.js ID      # zeichnet bearbeitete Conversation-Fragmente
 ```
 
 Weitere Beispiele und GIF-Demos findest du im [Wiki](https://github.com/GenesisAeon/unified-mandala/wiki).
