@@ -1,0 +1,24 @@
+# 🜂 codexwork.yaml
+# Repository context for automated agents
+
+paths:
+  conversations: docs/sigils/conversations.json
+  progress: docs/sigils/conversations-progress.json
+  big_files_sigil: docs/sigil/big-files.sigil.yaml
+
+workflow: |
+  The file `docs/sigils/conversations.json` (~45MB) holds long-term conversation
+  data. Split this file with `node scripts/split-conversations.js <chunkSize>`
+  or filter entries using `node scripts/filter-conversations.js <keyword>`.
+  Processed fragments are tracked in `docs/sigils/conversations-progress.json` via
+  `scripts/mark-fragment.js`. Consult `docs/sigil/big-files.sigil.yaml` for detailed
+  policies on handling these large files.
+
+sigillin_memory: |
+  Sigillin files in `docs/sigils/` capture symbolic instructions related to the
+  conversations. Updates to the progress file signal which Sigillin fragments have
+  been processed. Agents should reference this memory before operating on the repo.
+
+note: |
+  Automated agents must read this YAML before modifying repository content to
+  maintain consistent handling of the conversation memory and Sigillin files.
