@@ -8,3 +8,9 @@ todos:
   - id: todo-3
     beschreibung: "Innovationsplanung-Modul auf Basis der conversations.json entwickeln"
     status: offen
+  - id: todo-4
+    beschreibung: "Automatische Aktualisierung von docs/sigils/todo-sigil.yaml per todoSigilUpdater"
+    status: offen
+  - id: todo-5
+    beschreibung: "CLI-Option zum Filtern von conversations.json nach Stichwort implementieren"
+    status: offen
