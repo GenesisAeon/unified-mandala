@@ -70,3 +70,9 @@ Weitere Module sind in Arbeit.
 
 ## Ausblick
 Dieses Handbuch deckt die wichtigsten Bereiche ab. Eine detaillierte Beschreibung aller Komponenten ist noch offen.
+
+### CREP-Export
+Informationen zur Exportstruktur der CREP-Daten finden sich in [docs/CREPDocExport.md](docs/CREPDocExport.md).
+
+### Sigillin-Beispiele
+Beispielhafte Sigillin-Dateien liegen unter [docs/sigillin.examples](docs/sigillin.examples).
