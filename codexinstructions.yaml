@@ -1,0 +1,7 @@
+# 🜂 codexinstructions.yaml
+workflow_steps:
+  - "codexwork.yaml öffnen und ausführen"
+  - "Nach unimplementierten Aufgaben oder TODO-Kommentaren suchen und in docs/sigils/todo-sigil.yaml ergänzen"
+  - "Fehlt diese Datei, alle offenen TODOs sammeln und als neue docs/sigils/todo-sigil.yaml anlegen"
+  - "Hinweise im Ordner repositorypflege beachten"
+  - "Während eines Commits möglichst viele TODOs abarbeiten und dokumentieren"
