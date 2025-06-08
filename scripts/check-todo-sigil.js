@@ -31,6 +31,7 @@ const checks = {
   'task-11': () => fs.existsSync('CHRONOPOEM.md'),
   'task-12': () => fs.existsSync('codex/codex-roadmap.yaml'),
   'task-13': () => fs.existsSync('docs/sigils'),
+  'task-126': () => fs.existsSync('packages/shared-utils/SigillinValidator.ts'),
 };
 
 function checkTodos(filePath) {
