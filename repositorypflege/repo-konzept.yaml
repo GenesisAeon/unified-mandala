@@ -1,0 +1,35 @@
+konzept:
+  basis:
+    inspiration: "Das Konzept orientiert sich am Aufbau des 'UnifiedMandala'-Repositories."
+  hauptordner:
+    - apps/
+    - packages/
+    - docs/
+    - scripts/
+    - config/
+  dokumente:
+    README.md: "Projektübersicht, Features, Nutzung"
+    DOCKERFILE: "Baut Node-Applikation, nutzt Nginx als Webserver"
+    Handbuch.md: "Detailierte Beschreibung der Pakete und Werkzeuge"
+    CHRONOPOEM.md: "Poetisches Logbuch mit Zeitmarken"
+    GenesisChronik.md: "Kurzchronik der Meilensteine"
+    CODE_OF_CONDUCT.md: "Grundregeln der Zusammenarbeit"
+    CONTRIBUTING.md: "Workflow zum Einreichen von Änderungen"
+    AI_POLICY.md: "Hinweise zur KI-Nutzung"
+  pflege:
+    tests: "pnpm test"
+    lint: "pnpm lint"
+    docs_build: "pnpm run docs:build"
+    setup_script: "scripts/setup-unifiedmandala.sh"
+    releases: "Conventional Commits, Pull Requests gegen main"
+  extras:
+    sync: "codex-sync.yaml für periodische Abläufe"
+    symbolzeit: "Symbolzeit-Modulator aus packages/aeon-shell"
+  handbuch_inhalt:
+    - Überblick über Packages
+    - Kurzbeschreibung von Tools und Skripten
+    - Ausblick auf zukünftige Komponenten
+  chronopoem_format:
+    - Datum und Symbolzeit
+    - CREP-Strahl
+    - Poetisches Fragment
