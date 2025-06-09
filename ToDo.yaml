@@ -13,4 +13,7 @@ todos:
     status: offen
   - id: todo-5
     beschreibung: "CLI-Option zum Filtern von conversations.json nach Stichwort implementieren"
+    status: erledigt
+  - id: todo-6
+    beschreibung: "Merge-Skript für gesplittete conversation-Fragmente entwickeln"
     status: offen

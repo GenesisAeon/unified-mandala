@@ -429,4 +429,7 @@ aufgaben:
     status: offen
   - id: task-142
     beschreibung: "CLI-Option zum Filtern von conversations.json nach Stichwort implementieren"
+    status: erledigt
+  - id: task-143
+    beschreibung: "Merge-Skript für gesplittete conversation-Fragmente entwickeln"
     status: offen
