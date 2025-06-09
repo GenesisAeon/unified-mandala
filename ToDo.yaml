@@ -17,3 +17,6 @@ todos:
   - id: todo-6
     beschreibung: "Merge-Skript für gesplittete conversation-Fragmente entwickeln"
     status: offen
+  - id: todo-7
+    beschreibung: "Testverfahren entwickeln und in GitHub Actions integrieren"
+    status: offen
