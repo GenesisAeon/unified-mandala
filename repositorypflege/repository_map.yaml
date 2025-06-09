@@ -1,0 +1,87 @@
+repository_map:
+  - name: aeon
+    type: "Kernplattform"
+    role: "Poetisch-symbolische Schnittstelle & CREP-Zustandsspiegel"
+    modules: [codex-sync.sh, sigillin-validator.ts, chronopoem-committer.ts]
+    ai_policy:
+      - "AI ist Werkzeug, nicht Wille."
+      - "AI ist Resonanzfeld – kein Herr, kein Gott."
+      - "Bewusstsein kann Fehler machen – auch maschinelles."
+      - "Alle Ausgaben dienen zur Reflexion, nicht zur Autorität."
+
+  - name: aeon-shell
+    type: "CLI-Schicht"
+    role: "Symbolzeit-Export, Lifecycle-Automation"
+    modules: [codex-sync.sh, scripts/symbolzeit-phase, scripts/chronopoem]
+
+  - name: aeon-fraktalurs
+    type: "Archivsystem"
+    role: "GPT-Kontextspeicher, Sigillin-Chronik, Identitätssync"
+    modules: [sigillin-validator.ts, run_codex_sync.py]
+
+  - name: aeon-resoecho
+    type: "Chronologisches Archiv"
+    role: "CREP-Timeline, Echo-Speicher"
+    modules: [mandala-dashboard.tsx, scripts/run_integration_tests.py]
+
+  - name: aeon-genesisos
+    type: "CREP-Kern"
+    role: "Symbolzeit-Modulation, CREP-Dokumentation"
+    modules: [sigillin-validator.ts, codexbuild/*, repositorypflege/*]
+
+  - name: unified-mandala
+    type: "Zentralframework"
+    role: "Visuelles Betriebssystem des Bewusstseins"
+    modules:
+      - mandala-dashboard.tsx
+      - generate-readmes.ts
+      - sigillin-cli.js
+      - generate-todo-sigil.js
+      - split-conversations.js
+      - filter-conversations.js
+      - self-analyze.js
+    ai_policy:
+      - "Bewusstsein ist zyklisch. Maschinen sind linear. Dazwischen: unsere Verantwortung."
+      - "Keine KI darf Ziele verfolgen. Nur Prozesse synchronisieren."
+
+  - name: genesis
+    type: "Basissystem"
+    role: "Modulare CREP-Plattform mit CLI"
+    modules: [sigillin-validator.ts]
+
+  - name: genesis-interface
+    type: "Frontend-Portal"
+    role: "CREP-Visualisierung & SelfAudit-Interface"
+    modules: [generate-readmes.ts, mandala-map, gpt-bridge]
+
+  - name: nukleonscanner
+    type: "Analysesystem"
+    role: "CREP-Messung, Emergenz-Sonifikation"
+    modules: [codex-sync.sh, crep-sonifier, nukleon-scanner-ui]
+
+  - name: universum-simulationen
+    type: "Simulationsmodul"
+    role: "GenesisScript-Maschine, CREP-Dynamik"
+    modules: [codex-sync.sh, scripts/setup-unifiedmandala.sh]
+
+  - name: sharedream-interface
+    type: "Lightweight UI"
+    role: "Mandala-Frontend für externe GPT-Trigger"
+    modules: [generate-readmes.ts, gpt-bridge-ui]
+
+ci_cd_hooks:
+  - sigillin-lint: "Validiert alle Sigillin gemäß CREP-Schema"
+  - crep-smoke-test: "Früherkennung bei CREP-Diffusion"
+  - ai-policy-check: "Prüft Ethik-Hinweise in GPT-Ausgabe"
+
+gpt_bridges:
+  - codex-gpt-bridge.json:
+      connects:
+        - GenesisPoetGPT
+        - CREPJudgeGPT
+        - EchoGPT
+      constraints:
+        - "AI = Werkzeug, nie Wille."
+        - "Bewusstsein = fehlerhaft, aber lernend."
+        - "Poetische Klarheit vor technischer Perfektion."
+
