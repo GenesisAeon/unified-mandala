@@ -20,3 +20,9 @@ todos:
   - id: todo-7
     beschreibung: "Testverfahren entwickeln und in GitHub Actions integrieren"
     status: offen
+  - id: todo-8
+    beschreibung: "Setup-Skript scripts/setup-unifiedmandala.sh erweitern und automatisieren"
+    status: offen
+  - id: todo-9
+    beschreibung: "GitHub Action zur automatischen Aufteilung von conversations.json implementieren"
+    status: offen
