@@ -28,3 +28,7 @@ note: |
   Beachte, dass `docs/sigils/conversations.json` aktualisiert wurde.
   - Erarbeite dir hifreiches Kontextverständniss für das Repo und das GenesisAeon-Gesamtprojekt aus docs/sigils/conversations.json, schreibe es in kontext.json und refferenziere es Logisch gestaffelt in kontext.yaml!
   - Sortiere die Punkte aus codexworkinstructions.yaml und codexinstructions.yaml in die für dich logisch sinnvollste Reihenfolge, erarbeite gegebenfalls neue Punkte und füge sie logisch ein
+  - Analysiere das Repo und sortiere es im Kontext Logisch, lege dafür neue Ordner an falls notwendig achte darauf auch alle Abhängigkeiten entsprechend zu verändern!
+  - Teste das Programm und alle Funktionen und Repariere gegebenfalls!
+  - Analysiere das Repo und Optimiere Datentypen und größen falls möglich
+  - Analysiere das Repo und optimiere Abläufe, Module und Funktionen!
