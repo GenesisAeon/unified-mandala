@@ -24,4 +24,5 @@ note: |
   maintain consistent handling of the conversation memory and Sigillin files.
   Beachte bei allem `repositorypflege/repository_map.yaml` als GenesisAeongesamtstruktur.
   Folge `codexinstructions.yaml`.
+  - erarbeite und Implementiere Testverfahren falls nicht vorhanden
   Beachte, dass `docs/sigils/conversations.json` aktualisiert wurde.

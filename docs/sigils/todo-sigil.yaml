@@ -433,3 +433,6 @@ aufgaben:
   - id: task-143
     beschreibung: "Merge-Skript für gesplittete conversation-Fragmente entwickeln"
     status: offen
+  - id: task-144
+    beschreibung: "Erarbeite und implementiere Testverfahren, falls noch nicht vorhanden"
+    status: offen
