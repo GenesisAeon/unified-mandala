@@ -436,3 +436,6 @@ aufgaben:
   - id: task-144
     beschreibung: "Erarbeite und implementiere Testverfahren, falls noch nicht vorhanden"
     status: offen
+  - id: task-145
+    beschreibung: "Testverfahren entwickeln und in GitHub Actions integrieren"
+    status: offen
