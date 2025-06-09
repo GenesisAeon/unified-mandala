@@ -415,3 +415,18 @@ aufgaben:
   - id: task-137
     beschreibung: "Synchronisierten Theorie-Index erstellen"
     status: offen
+  - id: task-138
+    beschreibung: "Nukleon-Scanner als Analysetool implementieren und an CREP-Engine anbinden"
+    status: offen
+  - id: task-139
+    beschreibung: "Fraktalkunst-Visualizer f\xC3\xBCr Sigillin-Daten in der UI integrieren"
+    status: offen
+  - id: task-140
+    beschreibung: "Innovationsplanung-Modul auf Basis der conversations.json entwickeln"
+    status: offen
+  - id: task-141
+    beschreibung: "Automatische Aktualisierung von docs/sigils/todo-sigil.yaml per todoSigilUpdater"
+    status: offen
+  - id: task-142
+    beschreibung: "CLI-Option zum Filtern von conversations.json nach Stichwort implementieren"
+    status: offen
