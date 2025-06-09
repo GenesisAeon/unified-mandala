@@ -143,4 +143,23 @@ program
     console.log('todo-sigil.yaml Status gepr\xFCft und aktualisiert.');
   });
 
+program
+  .command('grep-conversations <keyword>')
+  .option('-o, --output <dir>', 'Zielordner', '../../docs/sigils/conversations')
+  .description('Filtert conversations.json nach Stichwort')
+  .action((keyword, opts) => {
+    const path = require('path');
+    let grepJsonArrayFile;
+    try {
+      ({ grepJsonArrayFile } = require('../../dist/shared-utils/jsonFragmenter.js'));
+    } catch {
+      ({ grepJsonArrayFile } = require('../shared-utils/jsonFragmenter'));
+    }
+    const file = path.join(__dirname, '../../docs/sigils/conversations.json');
+    const dest = path.join(__dirname, '../../', opts.output);
+    const regex = new RegExp(keyword, 'i');
+    const matches = grepJsonArrayFile(file, dest, regex);
+    console.log(`Filtered ${matches.length} items containing '${keyword}'. Output: ${dest}`);
+  });
+
 program.parse(process.argv);
