@@ -22,7 +22,10 @@ todos:
     status: offen
   - id: todo-8
     beschreibung: "Setup-Skript scripts/setup-unifiedmandala.sh erweitern und automatisieren"
-    status: offen
+    status: erledigt
   - id: todo-9
     beschreibung: "GitHub Action zur automatischen Aufteilung von conversations.json implementieren"
+    status: offen
+  - id: todo-10
+    beschreibung: "kontext.json regelmäßig mit Inhalten aus conversations.json aktualisieren"
     status: offen

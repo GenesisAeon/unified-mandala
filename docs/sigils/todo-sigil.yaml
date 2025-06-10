@@ -439,3 +439,9 @@ aufgaben:
   - id: task-145
     beschreibung: "Testverfahren entwickeln und in GitHub Actions integrieren"
     status: offen
+  - id: task-146
+    beschreibung: "Setup-Skript scripts/setup-unifiedmandala.sh erweitern und automatisieren"
+    status: erledigt
+  - id: task-147
+    beschreibung: "kontext.json regelmäßig mit Inhalten aus conversations.json aktualisieren"
+    status: offen
