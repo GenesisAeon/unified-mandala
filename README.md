@@ -70,9 +70,7 @@ Jeder Unterordner kann eine eigene README enthalten – siehe die Links in den j
 # Node.js ≥ 18 & pnpm installiert
 git clone https://github.com/GenesisAeon/unified-mandala.git
 cd unified-mandala
-pnpm install
-pnpm run build
-pnpm run docs:build
+./scripts/setup-unifiedmandala.sh
 pnpm dev
 ```
 Die generierte API-Dokumentation findest du danach unter `docs/api`.
