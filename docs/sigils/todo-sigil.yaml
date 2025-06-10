@@ -445,3 +445,6 @@ aufgaben:
   - id: task-147
     beschreibung: "kontext.json regelmäßig mit Inhalten aus conversations.json aktualisieren"
     status: offen
+  - id: task-148
+    beschreibung: "Automatisches Scannen von TODO-Kommentaren und Update von todo-sigil.yaml"
+    status: offen
