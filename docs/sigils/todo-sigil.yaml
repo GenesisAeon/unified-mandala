@@ -457,3 +457,6 @@ aufgaben:
   - id: task-151
     beschreibung: "Verarbeitung von conversations.json mit Fortschrittsdatei automatisieren"
     status: offen
+  - id: task-152
+    beschreibung: 'sendemail-validate.sample mit echten Checks ausstatten'
+    status: offen
