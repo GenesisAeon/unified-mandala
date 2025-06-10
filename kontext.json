@@ -1,12 +1,15 @@
 {
   "project": "GenesisAeon",
   "repository": "unified-mandala",
-  "summary": "UnifiedMandala dient als zentrales Framework f\u00fcr symbolische KI und CREP-basierte Systeme. Die Gespr\u00e4che in docs/sigils/conversations.json beleuchten Codex-Synchronisierung, Sigillin-Design, GenesisOS-Module, AeonShell-CLI, Nukleon-Scanner, Ethik und Web-Architektur.",
+  "summary": "Automatisch generiert aus 232 Gesprächen.",
   "topics": {
     "codex": [
       "Codex Resonanzsynchronisation",
+      "Codex Resonanz und Sigillin",
       "Codex-Sync Erweiterung Analyse",
-      "Codex Synchronisierung \u00dcbergabe"
+      "Codex Synchronisierung Analyse",
+      "Codex Synchronisierung Übergabe",
+      "Codex-Synchronisierung Übergabe Zusammenfassung"
     ],
     "genesisos": [
       "GenesisOS Entwicklung",
@@ -14,28 +17,84 @@
     ],
     "unified_mandala": [
       "UnifiedMandala README Struktur",
-      "Unified Mandala Erweiterung"
+      "Unified Mandala Erweiterung",
+      "UnifiedMandala Analyse",
+      "UnifiedMandala Innovationsplanung",
+      "Sigillin Mandala Erweiterung",
+      "Ethikbewertung UnifiedMandala CREP",
+      "UnifiedMandala Optimierung Tipps",
+      "UnifiedMandala Resonanz Analyse",
+      "Mandalas als Systemarchitektur",
+      "Willkommen im Mandala",
+      "Mandala der Resonanz"
     ],
     "aeonshell": [
+      "AeonShell Genesis Fortsetzung",
+      "AeonShell Feedback EthikCoreGPT",
+      "AeonShell Feedback HypothesisGPT",
       "AeonShell Feedback AeonPoetGPT",
-      "AeonShell Genesis Fortsetzung"
+      "AeonShell Feedback Zyklus",
+      "AeonShell Feedback Runde",
+      "AeonShell Feedback CoreWeaver",
+      "AeonShell Feedback ArchivGPT",
+      "AeonShell Feedback STRATO OpenAI",
+      "AeonShell STRATO Feedback",
+      "AeonShell STRATO OpenAI Feedback",
+      "AeonShell Konzeptanalyse",
+      "AeonShell Feedback Meta-Analyse",
+      "AeonShell Feedback FraktalAeonGPT",
+      "AeonShell Entwicklung Überblick",
+      "AeonShell Feedback Zusammenfassung",
+      "AeonShell Feedbackrunde I"
     ],
     "genesis_aeon": [
       "GenesisAeon Web Architektur",
+      "GenesisAeon Ablaufbewertung",
       "GenesisAeon Symbolische Navigation",
-      "GenesisAeon Ablaufbewertung"
+      "GenesisAeon Website Plan",
+      "GenesisAeon Struktur und Bewertung",
+      "GenesisAeon Webplanung",
+      "GenesisAeon Projektplanung",
+      "GenesisAeon Ethik-Analyse",
+      "GenesisAeon Webplan Umsetzung",
+      "GenesisAeon Strukturplanung",
+      "Genesisaeon Kollektiv Resonanz",
+      "Resonanzethik und GenesisAeon",
+      "Genesisaeon Resonanzstruktur",
+      "GenesisAeon Kollektiv Aufruf"
     ],
     "nukleon_scanner": [
       "Nukleon-Scanner v0.6 Analyse",
-      "Nukleon-Scanner Analyse Feedback"
+      "Nukleon-Scanner Analyse Feedback",
+      "Nukleon-Scanner und emergente Stabilität",
+      "Nukleon Stabilität Analyse",
+      "Nukleon-Scanner Analyse und Feedback",
+      "Nukleon-Scanner Bewertungssystem",
+      "Nukleon-Scanner Analyse",
+      "Nukleon-Scanner Analyse v0.6",
+      "Nukleon-Scanner Analyse und Kritik",
+      "Nukleon-Scanner v0.6 Feedback",
+      "Nukleonscanner Analyse Anfrage",
+      "Nukleon-Scanner Entwicklung v0.6",
+      "Nukleon-Scanner Architekturfeedback",
+      "Nukleon-Scanner Feedback Analyse"
     ],
     "sigillin": [
       "Sigillin Analyse und Entwurf",
-      "Sigillin Kreation und CREP"
+      "Sigillin Kreation und CREP",
+      "Sigillin und CREP Integration",
+      "Sigillin Knoten Erweiterung",
+      "Sigillin Öffnen und Erkunden",
+      "Sigillin Feedback Analyse",
+      "Sigillin Genesis Öffnung",
+      "Sigillin Aktivierung und Analyse",
+      "Sigillin Öffnen und Extraktion",
+      "Sigillin Öffnungstransformation",
+      "Feedback zu Sigillin Struktur",
+      "Gedächtnisfraktal und Sigillin"
     ],
     "innovation": [
-      "Innovationsplanung Analyse",
-      "GenesisAeon Projektplanung"
+      "Innovationsplanung Analyse"
     ]
   }
 }

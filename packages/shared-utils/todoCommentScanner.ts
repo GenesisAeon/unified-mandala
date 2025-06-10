@@ -14,12 +14,18 @@ export interface TodoComment {
  */
 export function scanTodoComments(dir: string): TodoComment[] {
   const patterns = ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'];
-  const files = patterns.flatMap(p => glob.sync(p, { cwd: dir, absolute: true, ignore: 'node_modules/**' }));
+  const files = patterns.flatMap(p =>
+    glob.sync(p, {
+      cwd: dir,
+      absolute: true,
+      ignore: ['node_modules/**', 'dist/**', '**/*.test.*']
+    })
+  );
   const todos: TodoComment[] = [];
   for (const file of files) {
     const lines = fs.readFileSync(file, 'utf8').split(/\r?\n/);
     lines.forEach((line, idx) => {
-      const m = line.match(/TODO[:]?\s*(.*)/);
+      const m = line.match(/^\s*(?:\/\/|#|<!--)\s*TODO[:]?\s*(.*?)(?:-->.*)?$/);
       if (m) {
         todos.push({ file: path.relative(dir, file), line: idx + 1, text: m[1].trim() });
       }
