@@ -438,7 +438,7 @@ aufgaben:
     status: offen
   - id: task-145
     beschreibung: "Testverfahren entwickeln und in GitHub Actions integrieren"
-    status: offen
+    status: erledigt
   - id: task-146
     beschreibung: "Setup-Skript scripts/setup-unifiedmandala.sh erweitern und automatisieren"
     status: erledigt
@@ -447,4 +447,13 @@ aufgaben:
     status: offen
   - id: task-148
     beschreibung: "Automatisches Scannen von TODO-Kommentaren und Update von todo-sigil.yaml"
+    status: offen
+  - id: task-149
+    beschreibung: "CI-Check zur Einhaltung von AI_POLICY.md in GitHub Actions einrichten"
+    status: offen
+  - id: task-150
+    beschreibung: "Sigillin-Lint in CI integrieren"
+    status: offen
+  - id: task-151
+    beschreibung: "Verarbeitung von conversations.json mit Fortschrittsdatei automatisieren"
     status: offen
