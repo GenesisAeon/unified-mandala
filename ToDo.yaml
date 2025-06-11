@@ -44,3 +44,12 @@ todos:
   - id: todo-15
     beschreibung: "sendemail-validate.sample Hook mit echten Validierungs-Checks ausstatten"
     status: offen
+  - id: todo-16
+    beschreibung: "Binäre Existenzsimulation mit 1, -1 und 0 gemäß conversations.json implementieren"
+    status: offen
+  - id: todo-17
+    beschreibung: "Quanten- und Gravitationseffekte in die Simulation integrieren"
+    status: offen
+  - id: todo-18
+    beschreibung: "Dokumentation des Binärmodells in docs/BinaryExistenz.md anlegen"
+    status: offen

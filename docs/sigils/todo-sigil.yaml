@@ -460,3 +460,12 @@ aufgaben:
   - id: task-152
     beschreibung: 'sendemail-validate.sample mit echten Checks ausstatten'
     status: offen
+  - id: task-153
+    beschreibung: "Binäre Existenzsimulation gemäß neuem conversations.json-Abschnitt umsetzen"
+    status: offen
+  - id: task-154
+    beschreibung: "Quanten- und Gravitationseinflüsse in Simulation einbinden"
+    status: offen
+  - id: task-155
+    beschreibung: "Dokumentation BinaryExistenz.md erstellen und in kontext.yaml referenzieren"
+    status: offen
