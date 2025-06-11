@@ -55,7 +55,7 @@ todos:
     status: offen
   - id: todo-19
     beschreibung: "Agents.md Manifest mit Self-Initiation Protocol und Agentendefinitionen erstellen"
-    status: offen
+    status: erledigt
   - id: todo-20
     beschreibung: "runDryAgent.ts zur Simulation aller Agenten ohne Nebeneffekte implementieren"
     status: offen
@@ -94,4 +94,31 @@ todos:
     status: offen
   - id: todo-32
     beschreibung: "Kollisionsenergie und Gasbildung in Binärsimulation implementieren"
+    status: offen
+  - id: todo-33
+    beschreibung: "conversations_parser.ts entwickeln, um Gespräche in modulare Fragmente zu zerlegen"
+    status: offen
+  - id: todo-34
+    beschreibung: "crep-flow-synchronizer.ts implementieren für CREP-Datenabgleich zwischen Repositories"
+    status: offen
+  - id: todo-35
+    beschreibung: "symbolic-context-injector.ts erstellen, um symbolische Informationen in den Codex zu injizieren"
+    status: offen
+  - id: todo-36
+    beschreibung: "sigillin_bridge_engine.ts konzipieren für Sigillin-basierte Verbindungen"
+    status: offen
+  - id: todo-37
+    beschreibung: "emergence_signal_hub.ts zur Koordination von CREP- und Sigillin-Signalen bauen"
+    status: offen
+  - id: todo-38
+    beschreibung: "GenesisOS-Modul \"KernelGPT-DriverBuilder\" vorbereiten"
+    status: offen
+  - id: todo-39
+    beschreibung: "Proof of Concept: USB-Tastatur als Sigillin-Device einbinden"
+    status: offen
+  - id: todo-40
+    beschreibung: "Watcher-Skript für dmesg/udevadm schreiben, um Treibersignale an GPT weiterzugeben"
+    status: offen
+  - id: todo-41
+    beschreibung: "Mandala-Interface zur Anzeige symbolischer Gerätezustände entwickeln"
     status: offen
