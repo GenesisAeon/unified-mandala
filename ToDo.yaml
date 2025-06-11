@@ -191,3 +191,42 @@ todos:
   - id: todo-64
     beschreibung: "Dokumentationslinks je Agent in Agents.md ergänzen"
     status: offen
+  - id: todo-65
+    beschreibung: "depth-sigil-generator.ts zur Erstellung von Sigillin-Dateien aus Tiefenwerten entwickeln"
+    status: offen
+  - id: todo-66
+    beschreibung: "crep-depth-router.ts implementieren, um Prozesse anhand der Faktortiefe zu lenken"
+    status: offen
+  - id: todo-67
+    beschreibung: "symboltiefe-visualizer.tsx f\u00fcr Mandala-Darstellung von Tiefenkomponenten erstellen"
+    status: offen
+  - id: todo-68
+    beschreibung: "irrational-monitor.ts als Watchdog f\u00fcr Abweichungen irrationaler Konstanten entwickeln"
+    status: offen
+  - id: todo-69
+    beschreibung: "CREPFeedbackLoop.ts zum automatischen Generieren von Feedback-Aufgaben umsetzen"
+    status: offen
+  - id: todo-70
+    beschreibung: "SigillinOnDemandGenerator.ts f\u00fcr dynamische Sigillin-Vorlagen bauen"
+    status: offen
+  - id: todo-71
+    beschreibung: "CREPToDoPrioritizer.ts zur Priorisierung von Aufgaben nach CREP-Trends entwickeln"
+    status: offen
+  - id: todo-72
+    beschreibung: "CREPConvoHeatmap.tsx als Visualisierungsschicht implementieren"
+    status: offen
+  - id: todo-73
+    beschreibung: "CREPSyncService.ts f\u00fcr Mehrbenutzersynchronisation mittels WebSockets erstellen"
+    status: offen
+  - id: todo-74
+    beschreibung: "export-crep-docs.ts zum automatischen Export von CREP-Dokumentation schreiben"
+    status: offen
+  - id: todo-75
+    beschreibung: "CREPPromptAdapter.ts zur Anpassung von GPT-Prompts an aktuelle CREP-Muster entwickeln"
+    status: offen
+  - id: todo-76
+    beschreibung: "CREPGuard.ts zur \u00dcberwachung von ToDo-Vorschl\u00e4gen gegen Policyverst\u00f6\u00dfe implementieren"
+    status: offen
+  - id: todo-77
+    beschreibung: "aeon.sh crep-analyze --watch als interaktive CLI-Erweiterung implementieren"
+    status: offen
