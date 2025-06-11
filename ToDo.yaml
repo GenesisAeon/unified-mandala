@@ -152,3 +152,33 @@ todos:
   - id: todo-51
     beschreibung: "PoeticMotifGenerator.ts und SigillinSuggestionEngine.ts ausarbeiten"
     status: offen
+  - id: todo-52
+    beschreibung: "Fuzzy Device Matching für reflexscanner_gpt implementieren"
+    status: offen
+  - id: todo-53
+    beschreibung: "Plugin-Architektur für reflexscanner_gpt entwerfen"
+    status: offen
+  - id: todo-54
+    beschreibung: "Realtime-Dashboard zur Visualisierung erkannter Sigillins bauen"
+    status: offen
+  - id: todo-55
+    beschreibung: "Cloud-Event-Export für reflexscanner-Daten integrieren"
+    status: offen
+  - id: todo-56
+    beschreibung: "Gesprächsdaten verschlüsselt speichern (encryption at rest)"
+    status: offen
+  - id: todo-57
+    beschreibung: "Dynamisches Reloading der triggers.yaml ohne Neustart ermöglichen"
+    status: offen
+  - id: todo-58
+    beschreibung: "Performance-Metriken für reflexscanner_gpt mit Prometheus sammeln"
+    status: offen
+  - id: todo-59
+    beschreibung: "OAuth2-Unterstützung für externe Integrationen hinzufügen"
+    status: offen
+  - id: todo-60
+    beschreibung: "Mehrsprachige Ausgabe via CLI-Flag implementieren"
+    status: offen
+  - id: todo-61
+    beschreibung: "Developer-Mode mit farbigen Debug-Logs und Live-dmesg"
+    status: offen
