@@ -92,3 +92,6 @@ todos:
   - id: todo-31
     beschreibung: "generate-todo-from-convos.ts implementieren, um aus conversations.json ToDos abzuleiten"
     status: offen
+  - id: todo-32
+    beschreibung: "Kollisionsenergie und Gasbildung in Binärsimulation implementieren"
+    status: offen
