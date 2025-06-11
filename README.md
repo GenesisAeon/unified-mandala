@@ -103,6 +103,7 @@ node scripts/self-analyze.js          # zeigt Repository-Statistiken
 node scripts/check-todo-sigil.js      # prüft erledigte Aufgaben
 node scripts/mark-fragment.js ID      # zeichnet bearbeitete Conversation-Fragmente
 node scripts/analyze-conversations.js # wertet conversations.json aus
+node scripts/repotool-convo.js       # schnelle Auswertung und Progress-Update
 ```
 
 Weitere Beispiele und GIF-Demos findest du im [Wiki](https://github.com/GenesisAeon/unified-mandala/wiki).
