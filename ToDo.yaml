@@ -128,3 +128,27 @@ todos:
   - id: todo-43
     beschreibung: "Resonanzbaum als Mandala zur Visualisierung aller Systemelemente zeichnen"
     status: offen
+  - id: todo-44
+    beschreibung: "Module für Aeon-Zahlensysteme erstellen (greekmath-core.ts, phimath-core.ts, pimath-core.ts, binmath-core.ts, faktormath-core.ts)"
+    status: offen
+  - id: todo-45
+    beschreibung: "Tiefenwert-Modul depthvalue-core.ts implementieren und mit Zahlensystemen verknüpfen"
+    status: offen
+  - id: todo-46
+    beschreibung: "CREPConversationScanner.ts zur Analyse von conversations.json entwickeln"
+    status: offen
+  - id: todo-47
+    beschreibung: "ChronoPoemExtractor.ts zur Erzeugung von CHRONOPOEM_TIMELINE.md umsetzen"
+    status: offen
+  - id: todo-48
+    beschreibung: "SymbolEchoLayer.ts und useCREPMemoryPattern.ts für Resonanzschichten erstellen"
+    status: offen
+  - id: todo-49
+    beschreibung: "GPTExpressionWeaver.ts und CREPToDoLinker.ts implementieren"
+    status: offen
+  - id: todo-50
+    beschreibung: "CREPChronoMonitor.ts und ResonanceActionPrompt.tsx entwickeln"
+    status: offen
+  - id: todo-51
+    beschreibung: "PoeticMotifGenerator.ts und SigillinSuggestionEngine.ts ausarbeiten"
+    status: offen
