@@ -472,6 +472,9 @@ aufgaben:
   - id: task-156
     beschreibung: "Agents.md Manifest mit allen Agentenrollen anlegen"
     status: offen
+  - id: task-155b
+    beschreibung: "Kollisionsenergie führt zu Gasbildung in der Simulation"
+    status: offen
   - id: task-157
     beschreibung: "runDryAgent.ts zur trockenen Ausführung aller Agenten erstellen"
     status: offen
