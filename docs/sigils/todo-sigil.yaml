@@ -469,3 +469,42 @@ aufgaben:
   - id: task-155
     beschreibung: "Dokumentation BinaryExistenz.md erstellen und in kontext.yaml referenzieren"
     status: offen
+  - id: task-156
+    beschreibung: "Agents.md Manifest mit allen Agentenrollen anlegen"
+    status: offen
+  - id: task-157
+    beschreibung: "runDryAgent.ts zur trockenen Ausführung aller Agenten erstellen"
+    status: offen
+  - id: task-158
+    beschreibung: "Mermaid-Diagramm agents_chain.mmd samt SVG-Export erzeugen"
+    status: offen
+  - id: task-159
+    beschreibung: "Ordner docs/agents/ für Einzelbeschreibungen der Agenten einrichten"
+    status: offen
+  - id: task-160
+    beschreibung: "Workflow agents_ci.yaml zur Agentenprüfung via GitHub Actions implementieren"
+    status: offen
+  - id: task-161
+    beschreibung: "CodexZentral.yaml Grundgerüst vorbereiten"
+    status: offen
+  - id: task-162
+    beschreibung: "codex-sync.sh mit CREP-Validierung entwickeln"
+    status: offen
+  - id: task-163
+    beschreibung: "sigillin-validator.ts nach CREP-Schema umsetzen"
+    status: offen
+  - id: task-164
+    beschreibung: "generate-readmes.ts zur automatischen Dokumenterstellung bauen"
+    status: offen
+  - id: task-165
+    beschreibung: "chronopoem-committer.ts für poetische Commits anlegen"
+    status: offen
+  - id: task-166
+    beschreibung: "mandala-dashboard.tsx zur Anzeige des Synchronstatus implementieren"
+    status: offen
+  - id: task-167
+    beschreibung: "codex-memory-kernel.ts für Referenzgedächtnis entwickeln"
+    status: offen
+  - id: task-168
+    beschreibung: "generate-todo-from-convos.ts zum Ableiten von Aufgaben aus conversations.json erstellen"
+    status: offen
