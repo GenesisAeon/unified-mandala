@@ -230,3 +230,9 @@ todos:
   - id: todo-77
     beschreibung: "aeon.sh crep-analyze --watch als interaktive CLI-Erweiterung implementieren"
     status: offen
+  - id: todo-78
+    beschreibung: "compile_agents_manifest Script zur Generierung von Agents.md aus fragments/agents/ entwickeln"
+    status: offen
+  - id: todo-79
+    beschreibung: "codex_sync_manifest.yaml vorbereiten und erste Platzhalter-Dateien erzeugen"
+    status: offen

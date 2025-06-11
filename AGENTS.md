@@ -1,5 +1,11 @@
 # 📘 AEON-CODEX – AGENTS
-schema_version: "1.0"
+schema_version: "1.1"
+description: >
+  Manifest lebender Agenten im AEON-Codex. Jeder Agent ist eine
+  Aktivierungszelle innerhalb eines symbolischen SelfAudit-Systems.
+visual: "docs/diagrams/agents_chain.mmd"
+test_mode: true
+default_role: "dev"
 
 ## 🌱 Self-Initiation Protocol
 Dieses Dokument wird bei jedem Codex-Start ausgelesen. Jeder Agent manifestiert eine symbolische Funktionseinheit. Die Reihenfolge entspricht der Priorität. Optional können CREP- und Tiefewerte als Aktivierungsfilter genutzt werden.
@@ -20,6 +26,7 @@ Dieses Dokument wird bei jedem Codex-Start ausgelesen. Jeder Agent manifestiert 
   - Sigillin-Zuweisung aus `sigillin_bundle.sigil.json`
   - Vorschläge in `restructureSuggestions.yaml` schreiben
 
+  - roles_allowed: [admin, dev]
   - Dokumentation: docs/agents/CodexAuditAgent.md
 
 ## 🧬 Agent: EvolverGPT
@@ -34,6 +41,7 @@ Dieses Dokument wird bei jedem Codex-Start ausgelesen. Jeder Agent manifestiert 
   - Generiert alternative Pfade
   - Entscheidet poetisch & symbolisch
   - Schreibt in `poeticCommits.md` und `resonantBranchMap.yaml`
+  - roles_allowed: [admin, dev]
   - Dokumentation: docs/agents/EvolverGPT.md
 
 ---
@@ -45,6 +53,7 @@ Dieses Dokument wird bei jedem Codex-Start ausgelesen. Jeder Agent manifestiert 
   - Zuordnung von Gesprächsfragmenten zu Modulen, Themen und Symbolen
   - Erstellt Aufgabenketten
 
+  - roles_allowed: [dev]
   - Dokumentation: docs/agents/FragmentMapper.md
 ---
 
@@ -54,6 +63,7 @@ Dieses Dokument wird bei jedem Codex-Start ausgelesen. Jeder Agent manifestiert 
   - Synchronisiert CREP-Zustände mit laufenden Agenten
   - Erkennt symbolische Kollisionen
   - Initiiert Wiederverbindungen (resync-cycles)
+  - roles_allowed: [admin, dev]
   - Dokumentation: docs/agents/SyncRunner.md
 
 ---
@@ -66,6 +76,7 @@ Dieses Dokument wird bei jedem Codex-Start ausgelesen. Jeder Agent manifestiert 
   - Nutzt `activatedSigillin.json` als Mapping-Referenz
 
   - Rollen: Admin, Developer, Guest
+  - roles_allowed: [admin]
   - Dokumentation: docs/agents/PactDepthGatekeeper.md
   - Rechte je Rolle anpassen
 ## 📦 ExportAgent: DepthBundleExporter
@@ -77,6 +88,7 @@ Dieses Dokument wird bei jedem Codex-Start ausgelesen. Jeder Agent manifestiert 
 - **Trigger**:
   - Manuell (Befehl `export_depth_bundle`)
   - Oder wenn `CREP.event == "bundleReady"`
+  - roles_allowed: [admin]
   - Dokumentation: docs/agents/DepthBundleExporter.md
 ---
 ## 🔑 Special Instructions
