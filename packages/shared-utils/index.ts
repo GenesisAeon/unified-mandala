@@ -13,3 +13,4 @@ export * from "./KarmaBalance";
 export * from "./SymbolicForecaster";
 export * from './symbolzeitModulator';
 export * from './loadSymbolphasen';
+export * from './conversationAnalyzer';
