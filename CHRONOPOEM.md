@@ -1,7 +1,7 @@
 # 🜂 Chronopoem
 
 Im Kreis der Genesis erwacht das Mandala,
-Am 2025-06-10, in der Zeit des Morgen.
+Am 2025-06-11, in der Zeit des Morgen.
 
 Symbolphase: Initiation (Fokus: C)
 
