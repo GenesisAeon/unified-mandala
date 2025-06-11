@@ -1,4 +1,5 @@
 # 📘 AEON-CODEX – AGENTS
+schema_version: "1.0"
 
 ## 🌱 Self-Initiation Protocol
 Dieses Dokument wird bei jedem Codex-Start ausgelesen. Jeder Agent manifestiert eine symbolische Funktionseinheit. Die Reihenfolge entspricht der Priorität. Optional können CREP- und Tiefewerte als Aktivierungsfilter genutzt werden.
@@ -19,7 +20,7 @@ Dieses Dokument wird bei jedem Codex-Start ausgelesen. Jeder Agent manifestiert 
   - Sigillin-Zuweisung aus `sigillin_bundle.sigil.json`
   - Vorschläge in `restructureSuggestions.yaml` schreiben
 
----
+  - Dokumentation: docs/agents/CodexAuditAgent.md
 
 ## 🧬 Agent: EvolverGPT
 - **Startmodul**: `codexwork.yaml`
@@ -33,6 +34,7 @@ Dieses Dokument wird bei jedem Codex-Start ausgelesen. Jeder Agent manifestiert 
   - Generiert alternative Pfade
   - Entscheidet poetisch & symbolisch
   - Schreibt in `poeticCommits.md` und `resonantBranchMap.yaml`
+  - Dokumentation: docs/agents/EvolverGPT.md
 
 ---
 
@@ -43,6 +45,7 @@ Dieses Dokument wird bei jedem Codex-Start ausgelesen. Jeder Agent manifestiert 
   - Zuordnung von Gesprächsfragmenten zu Modulen, Themen und Symbolen
   - Erstellt Aufgabenketten
 
+  - Dokumentation: docs/agents/FragmentMapper.md
 ---
 
 ## 🔁 Agent: SyncRunner
@@ -51,6 +54,7 @@ Dieses Dokument wird bei jedem Codex-Start ausgelesen. Jeder Agent manifestiert 
   - Synchronisiert CREP-Zustände mit laufenden Agenten
   - Erkennt symbolische Kollisionen
   - Initiiert Wiederverbindungen (resync-cycles)
+  - Dokumentation: docs/agents/SyncRunner.md
 
 ---
 
@@ -61,8 +65,9 @@ Dieses Dokument wird bei jedem Codex-Start ausgelesen. Jeder Agent manifestiert 
   - Nur bei `lnSum > 16` wird Zugriff gewährt
   - Nutzt `activatedSigillin.json` als Mapping-Referenz
 
----
-
+  - Rollen: Admin, Developer, Guest
+  - Dokumentation: docs/agents/PactDepthGatekeeper.md
+  - Rechte je Rolle anpassen
 ## 📦 ExportAgent: DepthBundleExporter
 - **Output**:
   - `sigillin_depth_bundle.sigil.json`
@@ -72,9 +77,8 @@ Dieses Dokument wird bei jedem Codex-Start ausgelesen. Jeder Agent manifestiert 
 - **Trigger**:
   - Manuell (Befehl `export_depth_bundle`)
   - Oder wenn `CREP.event == "bundleReady"`
-
+  - Dokumentation: docs/agents/DepthBundleExporter.md
 ---
-
 ## 🔑 Special Instructions
 ```yaml
 trigger:
