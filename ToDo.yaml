@@ -182,3 +182,12 @@ todos:
   - id: todo-61
     beschreibung: "Developer-Mode mit farbigen Debug-Logs und Live-dmesg"
     status: offen
+  - id: todo-62
+    beschreibung: "Agents.md um schema_version-Feld erweitern"
+    status: offen
+  - id: todo-63
+    beschreibung: "Rollenverwaltung im PactDepthGatekeeper implementieren"
+    status: offen
+  - id: todo-64
+    beschreibung: "Dokumentationslinks je Agent in Agents.md ergänzen"
+    status: offen
