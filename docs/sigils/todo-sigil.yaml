@@ -517,3 +517,33 @@ aufgaben:
   - id: task-170
     beschreibung: "Resonanzbaum als Mandala zur Visualisierung aller Systemelemente zeichnen"
     status: offen
+  - id: task-171
+    beschreibung: "Fuzzy Device Matching für reflexscanner_gpt implementieren"
+    status: offen
+  - id: task-172
+    beschreibung: "Plugin-Architektur für reflexscanner_gpt entwerfen"
+    status: offen
+  - id: task-173
+    beschreibung: "Realtime-Dashboard zur Visualisierung erkannter Sigillins bauen"
+    status: offen
+  - id: task-174
+    beschreibung: "Cloud-Event-Export für reflexscanner-Daten integrieren"
+    status: offen
+  - id: task-175
+    beschreibung: "Gesprächsdaten verschlüsselt speichern (encryption at rest)"
+    status: offen
+  - id: task-176
+    beschreibung: "Dynamisches Reloading der triggers.yaml ohne Neustart ermöglichen"
+    status: offen
+  - id: task-177
+    beschreibung: "Performance-Metriken für reflexscanner_gpt mit Prometheus sammeln"
+    status: offen
+  - id: task-178
+    beschreibung: "OAuth2-Unterstützung für externe Integrationen hinzufügen"
+    status: offen
+  - id: task-179
+    beschreibung: "Mehrsprachige Ausgabe via CLI-Flag implementieren"
+    status: offen
+  - id: task-180
+    beschreibung: "Developer-Mode mit farbigen Debug-Logs und Live-dmesg"
+    status: offen

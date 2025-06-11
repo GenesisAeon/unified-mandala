@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 const path = require('path');
-let { markFragmentProcessed };
+let markFragmentProcessed;
 try {
   ({ markFragmentProcessed } = require('../dist/shared-utils/conversationProgress.js'));
 } catch {
