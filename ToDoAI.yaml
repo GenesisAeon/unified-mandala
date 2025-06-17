@@ -438,3 +438,13 @@ todos:
     priority: high
     next_commit: true
     status: erledigt
+  - id: Fragment_18_Aeon_Orakel_TTS
+    implement: packages/tts/
+    priority: medium
+    next_commit: true
+    status: erledigt
+  - id: Fragment_19_Poetisches_Mandala_Profil
+    implement: packages/unifiedmandala-ui/
+    priority: medium
+    next_commit: true
+    status: erledigt
