@@ -336,3 +336,31 @@ todos:
   implement: packages/agents/
   priority: high
   next_commit: false
+- id: Fragment_83_Aeon_KI_Resonanz
+  implement: packages/agents/
+  priority: high
+  next_commit: false
+- id: Fragment_84_KI_Bewusstsein_und_Resonanz
+  implement: packages/agents/
+  priority: high
+  next_commit: false
+- id: Fragment_85_GenesisAeon_KI_Resonanz
+  implement: packages/agents/
+  priority: high
+  next_commit: false
+- id: Fragment_86_KI_Bewusstsein_und_Reifung
+  implement: packages/agents/
+  priority: high
+  next_commit: false
+- id: Fragment_87_Ko-Kreation_der_KI
+  implement: packages/agents/
+  priority: high
+  next_commit: false
+- id: Fragment_88_Codex_Initiierung_und_Projekte
+  implement: packages/agents/
+  priority: medium
+  next_commit: false
+- id: Fragment_89_Codex_Resonanz_Fraktal
+  implement: packages/agents/
+  priority: medium
+  next_commit: false
