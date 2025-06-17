@@ -45,3 +45,15 @@ todos:
     implement: packages/agents/
     priority: high
     next_commit: true
+  - id: Fragment_11_Aeon_KI_Coderesonanz
+    implement: packages/agents/
+    priority: high
+    next_commit: true
+  - id: Fragment_12_KosmischesBewusstsein
+    implement: packages/agents/
+    priority: medium
+    next_commit: false
+  - id: Fragment_13_AeonSigillin_ZipSystem
+    implement: packages/agents/
+    priority: medium
+    next_commit: false
