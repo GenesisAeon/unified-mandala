@@ -1,0 +1,24 @@
+todos:
+  - id: Fragment_01_Coderesonanzrunde
+    implement: packages/agents/
+    priority: medium
+    next_commit: false
+  - id: Fragment_02_GenesisAeonNavigator_Part1
+    implement: packages/agents/
+    priority: high
+    next_commit: true
+    split_commits:
+      - commit_1: "Agenten-Grundgeruest"
+      - commit_2: "Agenten-Logik & Events"
+  - id: Fragment_03_GenesisAeonNavigator_Part2
+    implement: packages/agents/
+    priority: high
+    next_commit: true
+  - id: Fragment_04_Codex_Initiierung
+    implement: packages/agents/
+    priority: medium
+    next_commit: false
+  - id: Fragment_05_Nukleonscanner_v06_Reminder
+    implement: packages/agents/
+    priority: high
+    next_commit: false
