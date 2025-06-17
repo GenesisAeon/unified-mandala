@@ -27,6 +27,7 @@ todos:
     implement: packages/agents/
     priority: high
     next_commit: true
+    status: erledigt
     split_commits:
       - commit_1: Ko-Kreation Grundstein
       - commit_2: Resonanzinitialisierung
