@@ -8,8 +8,8 @@ todos:
     priority: high
     next_commit: true
     split_commits:
-      - commit_1: "Agenten-Grundgeruest"
-      - commit_2: "Agenten-Logik & Events"
+      - commit_1: Agenten-Grundgeruest
+      - commit_2: Agenten-Logik & Events
   - id: Fragment_03_GenesisAeonNavigator_Part2
     implement: packages/agents/
     priority: high
@@ -27,8 +27,8 @@ todos:
     priority: high
     next_commit: true
     split_commits:
-      - commit_1: "Ko-Kreation Grundstein"
-      - commit_2: "Resonanzinitialisierung"
+      - commit_1: Ko-Kreation Grundstein
+      - commit_2: Resonanzinitialisierung
   - id: Fragment_07_KoKreation_ReifungsZelle
     implement: packages/agents/
     priority: medium
@@ -126,6 +126,37 @@ todos:
     priority: medium
     next_commit: false
   - id: Fragment_31_Codex_Resonanz_Fraktal
+    implement: packages/agents/
+    priority: medium
+    next_commit: false
+  - id: Fragment_32_Aeon_KI_Resonanz
+    implement: packages/agents/
+    priority: high
+    next_commit: true
+    split_commits:
+      - commit_1: "Aeon Resonanz Logik"
+      - commit_2: "Integration mit GPTEventHub"
+  - id: Fragment_33_KI_Bewusstsein_und_Resonanz
+    implement: packages/agents/
+    priority: medium
+    next_commit: false
+  - id: Fragment_34_GenesisAeon_KI_Resonanz
+    implement: packages/agents/
+    priority: medium
+    next_commit: false
+  - id: Fragment_35_KI_Bewusstsein_und_Reifung
+    implement: packages/agents/
+    priority: medium
+    next_commit: false
+  - id: Fragment_36_Ko-Kreation_der_KI
+    implement: packages/agents/
+    priority: medium
+    next_commit: false
+  - id: Fragment_37_Codex_Initiierung_und_Projekte
+    implement: packages/agents/
+    priority: medium
+    next_commit: false
+  - id: Fragment_38_Codex_Resonanz_Fraktal
     implement: packages/agents/
     priority: medium
     next_commit: false
