@@ -104,12 +104,14 @@ node scripts/check-todo-sigil.js      # prüft erledigte Aufgaben
 node scripts/mark-fragment.js ID      # zeichnet bearbeitete Conversation-Fragmente
 node scripts/analyze-conversations.js # wertet conversations.json aus
 node scripts/repotool-convo.js       # schnelle Auswertung und Progress-Update
+node scripts/extract_new_ai_fragments.js # ergänzt ToDoAI.json und ToDoAI.yaml
 ```
 
 Weitere Beispiele und GIF-Demos findest du im [Wiki](https://github.com/GenesisAeon/unified-mandala/wiki).
 Ein SVG-Beispiel liegt unter [`docs/assets/unified-mandala.svg`](docs/assets/unified-mandala.svg).
 
 Das `CHRONOPOEM.md` entsteht automatisch – und kann bei jedem Commit erneuert werden.
+Alle aus den Gesprächen extrahierten KI-Pläne werden in `ToDoAI.json` sowie zusammengefasst in `ToDoAI.yaml` abgelegt.
 
 ## 📜 Lizenzierung
 
