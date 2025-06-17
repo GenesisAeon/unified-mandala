@@ -1,549 +1,109 @@
 sigillin_id: aeon:2025-0605-TODO
 symbolzeit: tag
 titel: UnifiedMandala ToDo Übersicht
-verweise:
-  - ../sigil/big-files.sigil.yaml
 aufgaben:
   - id: task-1
-    beschreibung: "`unified-mandala` – Hauptrepo mit CREP-Engine, UI, CLI, Generatoren"
+    beschreibung: "`unified-mandala` – Hauptrepo mit CREP-Engine, UI, CLI, Generatoren\""
     status: erledigt
   - id: task-2
-    beschreibung: "`AeonShell` – poetisches CLI, symbolische Steuerung (geplant)"
+    beschreibung: "`AeonShell` – poetisches CLI, symbolische Steuerung (geplant)\""
     status: offen
   - id: task-3
-    beschreibung: "`AeonGenesisOS` – CREP-Basissystem und Zyklenverwaltung (geplant)"
+    beschreibung: "`AeonGenesisOS` – CREP-Basissystem und Zyklenverwaltung (geplant)\""
     status: offen
   - id: task-4
-    beschreibung: "`AeonFraktalurs` – GPT-Kontextarchiv & Erinnerungsfeld (geplant)"
+    beschreibung: "`AeonFraktalurs` – GPT-Kontextarchiv & Erinnerungsfeld (geplant)\""
     status: offen
   - id: task-5
-    beschreibung: "`AeonResoEcho` – chronologisches CREP-Archiv (geplant)"
+    beschreibung: "`AeonResoEcho` – chronologisches CREP-Archiv (geplant)\""
     status: offen
   - id: task-6
-    beschreibung: "`SharedreamInterface` – Community-Zugang & UI-Portal (geplant)"
+    beschreibung: "`SharedreamInterface` – Community-Zugang & UI-Portal (geplant)\""
     status: offen
   - id: task-7
-    beschreibung: "CREP-Logik & Evaluator"
+    beschreibung: "CREP-Logik & Evaluator\""
     status: erledigt
   - id: task-8
-    beschreibung: "Sigillin-Generator & CLI"
+    beschreibung: "Sigillin-Generator & CLI\""
     status: erledigt
   - id: task-9
-    beschreibung: "MandalaNetworkView (D3, React)"
+    beschreibung: "MandalaNetworkView (D3, React)\""
     status: erledigt
   - id: task-10
-    beschreibung: "`aeon.sh` CLI mit Chronopoem, Onboarding"
+    beschreibung: "`aeon.sh` CLI mit Chronopoem, Onboarding\""
     status: erledigt
   - id: task-11
-    beschreibung: "CHRONOPOEM.md"
+    beschreibung: "CHRONOPOEM.md\""
     status: erledigt
   - id: task-12
-    beschreibung: "codex-roadmap.yaml"
+    beschreibung: "codex-roadmap.yaml\""
     status: erledigt
   - id: task-13
-    beschreibung: "Basis-Knoten (`GENESIS`, `HEIMKEHR`, `FRAKTALURS`, `RESO-ECHO`) erkannt"
+    beschreibung: "Basis-Knoten (`GENESIS`, `HEIMKEHR`, `FRAKTALURS`, `RESO-ECHO`) erkannt\""
     status: erledigt
   - id: task-14
-    beschreibung: "Noch nicht alle in Map & UI integriert (→ Phase 1 TODO)"
+    beschreibung: "Noch nicht alle in Map & UI integriert (→ Phase 1 TODO)\""
     status: offen
   - id: task-15
-    beschreibung: "`codex-roadmap.yaml` als zentrale Datei für Codex"
-    status: erledigt
+    beschreibung: "`codex-roadmap.yaml` als zentrale Datei für Codex\""
+    status: offen
   - id: task-16
-    beschreibung: "Automatische Umwandlung von Website-Inhalten in YAML für Codex"
+    beschreibung: "Automatische Umwandlung von Website-Inhalten in YAML für Codex\""
     status: offen
   - id: task-17
-    beschreibung: "Commit-basierte Codex-Trigger über GitHub Actions"
+    beschreibung: "Commit-basierte Codex-Trigger über GitHub Actions\""
     status: offen
   - id: task-18
-    beschreibung: "GPT-Kommentierung (Poetik + CREP) via GPT-AEONPOET"
+    beschreibung: "GPT-Kommentierung (Poetik + CREP) via GPT-AEONPOET\""
     status: offen
   - id: task-19
-    beschreibung: "Web-Einbindung von GPT 3.5 als Assistenzinstanz"
+    beschreibung: "Web-Einbindung von GPT 3.5 als Assistenzinstanz\""
     status: offen
   - id: task-20
-    beschreibung: "GPT als CREP-Judge + AEONPOET via Interface"
+    beschreibung: "GPT als CREP-Judge + AEONPOET via Interface\""
     status: offen
   - id: task-21
-    beschreibung: "Orchestrierungsmodul (Workflow-Manager, Vorschlagslenkung)"
+    beschreibung: "Orchestrierungsmodul (Workflow-Manager, Vorschlagslenkung)\""
     status: offen
   - id: task-22
-    beschreibung: "Web-Frontend als eigenes Repository (statisch oder hybrid)"
+    beschreibung: "Web-Frontend als eigenes Repository (statisch oder hybrid)\""
     status: offen
   - id: task-23
-    beschreibung: "Deployment via Pages, Netlify oder Vercel aus dem Repo"
+    beschreibung: "Deployment via Pages, Netlify oder Vercel aus dem Repo\""
     status: offen
   - id: task-24
-    beschreibung: "FileZilla-Pendant: symbolisches Upload-Modul auf Site (z. B. `SigilSync`)"
+    beschreibung: "FileZilla-Pendant: symbolisches Upload-Modul auf Site (z. B. `SigilSync`)\""
     status: offen
   - id: task-25
-    beschreibung: "UI-Komponente für Uploads + YAML-Ausgabe"
+    beschreibung: "UI-Komponente für Uploads + YAML-Ausgabe\""
     status: offen
   - id: task-26
-    beschreibung: "NAS-Zugriff vorbereiten via WebDAV/SMB (modular)"
+    beschreibung: "NAS-Zugriff vorbereiten via WebDAV/SMB (modular)\""
     status: offen
   - id: task-27
-    beschreibung: "Gedächtnisspiegel: Hash + Sigillin, kein Klartextindex"
+    beschreibung: "Gedächtnisspiegel: Hash + Sigillin, kein Klartextindex\""
     status: offen
   - id: task-28
-    beschreibung: "MemoryDaemon + `.aeonvault/`"
+    beschreibung: "MemoryDaemon + `.aeonvault/`\""
     status: offen
   - id: task-29
-    beschreibung: "SigillinNodes erweitern + Visual Map updaten"
-    status: erledigt
+    beschreibung: "SigillinNodes erweitern + Visual Map updaten\""
+    status: offen
   - id: task-30
-    beschreibung: "GPT-Orchestrierung vorbereiten (`aeon-gpt-synapse.ts`)"
+    beschreibung: "GPT-Orchestrierung vorbereiten (`aeon-gpt-synapse.ts`)\""
     status: offen
   - id: task-31
-    beschreibung: "Website-Repo erstellen (SharedreamInterface)"
+    beschreibung: "Website-Repo erstellen (SharedreamInterface)\""
     status: offen
   - id: task-32
-    beschreibung: "Symbolischer „SigillinLoader“ in UI einfügen"
-    status: erledigt
+    beschreibung: "Symbolischer „SigillinLoader“ in UI einfügen\""
+    status: offen
   - id: task-33
-    beschreibung: "Chronopoem erweitern (mit CREP-Metaphern)"
-    status: erledigt
+    beschreibung: "Chronopoem erweitern (mit CREP-Metaphern)\""
+    status: offen
   - id: task-34
-    beschreibung: "Codex-Antwortsystem für Vorschläge (Ordner: `/codex-sync/`)"
+    beschreibung: "Codex-Antwortsystem für Vorschläge (Ordner: `/codex-sync/`)\""
     status: offen
   - id: task-35
-    beschreibung: "Repos für AeonShell + AeonGenesisOS initialisieren"
-    status: offen
-  - id: task-36
-    beschreibung: "CodeSnippet-Archiv über conversations.json erstellen"
-    status: erledigt
-  - id: task-37
-    beschreibung: "CREPPhaseMatrix in crep-engine integrieren"
-    status: erledigt
-  - id: task-38
-    beschreibung: "SymbolzeitTrigger-Modul anlegen"
-    status: erledigt
-  - id: task-39
-    beschreibung: "MandalaNetworkView nutzt CREPMatrix-Farben"
-    status: erledigt
-  - id: task-40
-    beschreibung: "SigillinLoader-Komponente bauen"
-    status: erledigt
-  - id: task-41
-    beschreibung: "GPT-Synapse und GPT-Rollen-Stubs"
-    status: erledigt
-  - id: task-42
-    beschreibung: "Sharedream-SyncModul vorbereiten"
-    status: erledigt
-  - id: task-43
-    beschreibung: "Onboarding-Flow mit CHRONOPOEM-Verkn\xFCpfung"
-    status: erledigt
-  - id: task-44
-    beschreibung: "CREPManager Durchschnittsfunktion"
-    status: erledigt
-  - id: task-45
-    beschreibung: "SigillinActivationManager implementieren"
-    status: erledigt
-  - id: task-46
-    beschreibung: "SymbolzeitModulator entwickeln"
-    status: erledigt
-  - id: task-47
-    beschreibung: "Gespr\xE4chsfallGenerator integrieren"
-    status: erledigt
-  - id: task-48
-    beschreibung: "BackupManager implementieren"
-    status: erledigt
-  - id: task-49
-    beschreibung: "GlobalLoggingSystem einrichten"
-    status: erledigt
-  - id: task-50
-    beschreibung: "MandalaThemeManager entwickeln"
-    status: erledigt
-  - id: task-51
-    beschreibung: "EmergenzScanner vorbereiten"
-    status: erledigt
-  - id: task-52
-    beschreibung: "CREPWirkungstracker anlegen"
-    status: erledigt
-  - id: task-53
-    beschreibung: "MicroserviceMigration planen"
-    status: offen
-  - id: task-54
-    beschreibung: "AutoDocGeneration Modul erstellen"
-    status: erledigt
-  - id: task-55
-    beschreibung: "CREPMemoryWeaver implementieren"
-    status: offen
-  - id: task-56
-    beschreibung: "RitualCompiler bauen"
-    status: offen
-  - id: task-57
-    beschreibung: "SigillinVersionTracker entwickeln"
-    status: erledigt
-  - id: task-58
-    beschreibung: "SymbolFormInput erstellen"
-    status: erledigt
-  - id: task-59
-    beschreibung: "SoforthilfeOverlay bauen"
-    status: erledigt
-  - id: task-60
-    beschreibung: "CREPTriggerPanel implementieren"
-    status: erledigt
-  - id: task-61
-    beschreibung: "LiveCREPPanel aktivieren"
-    status: erledigt
-  - id: task-62
-    beschreibung: "SigillinMetaSignatur entwickeln"
-    status: erledigt
-  - id: task-63
-    beschreibung: "AeonStoryMode hinzuf\xFCgen"
-    status: erledigt
-  - id: task-64
-    beschreibung: "SymbolicWayfinder implementieren"
-    status: erledigt
-  - id: task-65
-    beschreibung: "InviteBanner integrieren"
-    status: erledigt
-  - id: task-66
-    beschreibung: "SigillinTimeline anzeigen"
-    status: erledigt
-  - id: task-67
-    beschreibung: "MandalaMap umsetzen"
-    status: offen
-  - id: task-68
-    beschreibung: "EthikRatPanel bauen"
-    status: offen
-  - id: task-69
-    beschreibung: "MandalaQuests implementieren"
-    status: offen
-  - id: task-70
-    beschreibung: "HelferGPT integrieren"
-    status: offen
-  - id: task-71
-    beschreibung: "EmpathieGPT einbinden"
-    status: offen
-  - id: task-72
-    beschreibung: "LangGPT anlegen"
-    status: offen
-  - id: task-73
-    beschreibung: "CodeGPT integrieren"
-    status: offen
-  - id: task-74
-    beschreibung: "CREPJudgeGPT anbinden"
-    status: offen
-  - id: task-75
-    beschreibung: "AeonPoetGPT aktivieren"
-    status: offen
-  - id: task-76
-    beschreibung: "HypothesisGPT entwickeln"
-    status: offen
-  - id: task-77
-    beschreibung: "DocGPT integrieren"
-    status: offen
-  - id: task-78
-    beschreibung: "VisGPT implementieren"
-    status: offen
-  - id: task-79
-    beschreibung: "PublicGenesisGPT bereitstellen"
-    status: offen
-  - id: task-80
-    beschreibung: "KISpezialist erstellen"
-    status: offen
-  - id: task-81
-    beschreibung: "AeonWebArchitekt konfigurieren"
-    status: offen
-  - id: task-82
-    beschreibung: "Metronaut integrieren"
-    status: offen
-  - id: task-83
-    beschreibung: "AlbertEinstein GPT-Rolle implementieren"
-    status: offen
-  - id: task-84
-    beschreibung: "Buddha GPT-Rolle implementieren"
-    status: offen
-  - id: task-85
-    beschreibung: "Sigillin-Instanzen & symbolische Dateien erzeugen"
-    status: offen
-  - id: task-86
-    beschreibung: "Manifeste f\xFCr alle Module erstellen"
-    status: offen
-  - id: task-87
-    beschreibung: "CREP-Dummy-Daten generieren"
-    status: offen
-  - id: task-88
-    beschreibung: "notfall-sigillin.json anbinden"
-    status: offen
-  - id: task-89
-    beschreibung: "Verbindung zu sigillin_id: aeon:2025-0527-HEIMKEHR herstellen"
-    status: offen
-  - id: task-90
-    beschreibung: "symbolphasen.yaml konfigurieren"
-    status: erledigt
-  - id: task-91
-    beschreibung: "UI dynamisch nach Symbolzeit anpassen"
-    status: erledigt
-  - id: task-92
-    beschreibung: "GPT-Antworten an Symbolzeit ausrichten"
-    status: erledigt
-  - id: task-93
-    beschreibung: "gespr\xE4chsfall-generator.ts integrieren"
-    status: erledigt
-  - id: task-94
-    beschreibung: "GPT-Dialoge mit Signaturankern starten"
-    status: offen
-  - id: task-95
-    beschreibung: "API-Routen definieren und verbinden"
-    status: offen
-  - id: task-96
-    beschreibung: "CREP \xE2\x86\x92 UI, PDF & Netzwerk verkn\xFCpfen"
-    status: offen
-  - id: task-97
-    beschreibung: "Exportfunktionen & Offline-Kiosk-Modus umsetzen"
-    status: offen
-  - id: task-98
-    beschreibung: "NetzwerkGPT & GeoGPT integrieren"
-    status: offen
-  - id: task-99
-    beschreibung: "TransparenzDashboard aktivieren"
-    status: offen
-  - id: task-100
-    beschreibung: "CREPWirkungstracker verbinden"
-    status: offen
-  - id: task-101
-    beschreibung: "AeonCouncil konfigurieren & Abstimmungslogik"
-    status: offen
-  - id: task-102
-    beschreibung: "GreenIT-Initiative & BlockchainSigillin vorbereiten"
-    status: offen
-  - id: task-103
-    beschreibung: "CREPMemoryWeaver aktivieren"
-    status: offen
-  - id: task-104
-    beschreibung: "SigillinTimeline in LiveFeed einbinden"
-    status: offen
-  - id: task-105
-    beschreibung: "MandalaQuests ansto\xDFen"
-    status: offen
-  - id: task-106
-    beschreibung: "MandalaMap Visualisierung mit LiveFeed"
-    status: offen
-  - id: task-107
-    beschreibung: "SelfAuditModul integrieren"
-    status: erledigt
-  - id: task-108
-    beschreibung: "MandalaNarrativeEngine hinzuf\xFCgen"
-    status: offen
-  - id: task-109
-    beschreibung: "SymbolzeitDashboard verbinden"
-    status: offen
-  - id: task-110
-    beschreibung: "GenesisQuorum einsetzen"
-    status: offen
-  - id: task-111
-    beschreibung: "SigillinForge integrieren"
-    status: offen
-  - id: task-112
-    beschreibung: "EmergenceSimulator starten"
-    status: offen
-  - id: task-113
-    beschreibung: "IntrospectionReflector.tsx implementieren"
-    status: offen
-  - id: task-114
-    beschreibung: "ChronoRoomRenderer.ts entwickeln"
-    status: offen
-  - id: task-115
-    beschreibung: "ResonanceRitualCycle.ts einrichten"
-    status: offen
-  - id: task-116
-    beschreibung: "SigillinMosaicEngine.tsx realisieren"
-    status: offen
-  - id: task-117
-    beschreibung: "KarmaBalance.ts integrieren"
-    status: erledigt
-  - id: task-118
-    beschreibung: "SymbolicForecaster.ts hinzuf\xFCgen"
-    status: erledigt
-  - id: task-119
-    beschreibung: "Handbuch weiter ausbauen"
-    status: erledigt
-  - id: task-120
-    beschreibung: "CREPContext.ts – zentraler Zustandsmanager (Context + Reducer)"
-    status: offen
-  - id: task-121
-    beschreibung: "CREPManager.ts – Initialisierung, Manipulation, Logging von CREP-Werten"
-    status: offen
-  - id: task-122
-    beschreibung: "CREPTooltip.tsx – Info-Overlay zu CREP-Werten"
-    status: offen
-  - id: task-123
-    beschreibung: "CREPInfoModal.tsx – Erklärungsdialog für CREP-Werte"
-    status: offen
-  - id: task-124
-    beschreibung: "CREPPlayEngine.tsx – Spielmodul zur CREP-Gewichtung"
-    status: offen
-  - id: task-125
-    beschreibung: "sigillin.schema.json – Schema für Sigillin-Dateien"
-    status: erledigt
-  - id: task-126
-    beschreibung: "SigillinValidator.ts – CLI-Modul zur Validierung von Sigillin-Dateien"
-    status: erledigt
-  - id: task-127
-    beschreibung: "SigillinViewer.tsx – React-Komponente zum Durchblättern von Sigillin"
-    status: erledigt
-  - id: task-128
-    beschreibung: "sigillin-cli.js – Kommandozeilentool für create, validate, list-relations, bump-version"
-    status: erledigt
-  - id: task-129
-    beschreibung: "CREPTestHarness.tsx – UI zum Durchspielen von CREP-Änderungen"
-    status: offen
-  - id: task-130
-    beschreibung: "GitHub Action + npm Script für Linter, Build, Schema-Validation, Unit-Tests"
-    status: offen
-  - id: task-131
-    beschreibung: "CREPDocExport.md – Dokumentation der CREP-Exportstruktur"
-    status: erledigt
-  - id: task-132
-    beschreibung: "sigillin.examples/ – Sammlung von Beispielsigillin"
-    status: erledigt
-  - id: task-133
-    beschreibung: "ProgmakerGPT einrichten (Simulation & Algorithmusentwicklung)"
-    status: offen
-  - id: task-134
-    beschreibung: "PublisherGPT einrichten (wissenschaftliche Aufbereitung)"
-    status: offen
-  - id: task-135
-    beschreibung: "CoreGPT optional für Meta-Analyse integrieren"
-    status: offen
-  - id: task-136
-    beschreibung: "Statusmodul mit Fortschrittsanzeige je Phase und TODO-Listen pro GPT"
-    status: offen
-  - id: task-137
-    beschreibung: "Synchronisierten Theorie-Index erstellen"
-    status: offen
-  - id: task-138
-    beschreibung: "Nukleon-Scanner als Analysetool implementieren und an CREP-Engine anbinden"
-    status: offen
-  - id: task-139
-    beschreibung: "Fraktalkunst-Visualizer f\xC3\xBCr Sigillin-Daten in der UI integrieren"
-    status: offen
-  - id: task-140
-    beschreibung: "Innovationsplanung-Modul auf Basis der conversations.json entwickeln"
-    status: offen
-  - id: task-141
-    beschreibung: "Automatische Aktualisierung von docs/sigils/todo-sigil.yaml per todoSigilUpdater"
-    status: offen
-  - id: task-142
-    beschreibung: "CLI-Option zum Filtern von conversations.json nach Stichwort implementieren"
-    status: erledigt
-  - id: task-143
-    beschreibung: "Merge-Skript für gesplittete conversation-Fragmente entwickeln"
-    status: offen
-  - id: task-144
-    beschreibung: "Erarbeite und implementiere Testverfahren, falls noch nicht vorhanden"
-    status: offen
-  - id: task-145
-    beschreibung: "Testverfahren entwickeln und in GitHub Actions integrieren"
-    status: erledigt
-  - id: task-146
-    beschreibung: "Setup-Skript scripts/setup-unifiedmandala.sh erweitern und automatisieren"
-    status: erledigt
-  - id: task-147
-    beschreibung: "kontext.json regelmäßig mit Inhalten aus conversations.json aktualisieren"
-    status: offen
-  - id: task-148
-    beschreibung: "Automatisches Scannen von TODO-Kommentaren und Update von todo-sigil.yaml"
-    status: offen
-  - id: task-149
-    beschreibung: "CI-Check zur Einhaltung von AI_POLICY.md in GitHub Actions einrichten"
-    status: offen
-  - id: task-150
-    beschreibung: "Sigillin-Lint in CI integrieren"
-    status: offen
-  - id: task-151
-    beschreibung: "Verarbeitung von conversations.json mit Fortschrittsdatei automatisieren"
-    status: offen
-  - id: task-152
-    beschreibung: 'sendemail-validate.sample mit echten Checks ausstatten'
-    status: offen
-  - id: task-153
-    beschreibung: "Binäre Existenzsimulation gemäß neuem conversations.json-Abschnitt umsetzen"
-    status: offen
-  - id: task-154
-    beschreibung: "Quanten- und Gravitationseinflüsse in Simulation einbinden"
-    status: offen
-  - id: task-155
-    beschreibung: "Dokumentation BinaryExistenz.md erstellen und in kontext.yaml referenzieren"
-    status: offen
-  - id: task-156
-    beschreibung: "Agents.md Manifest mit allen Agentenrollen anlegen"
-    status: offen
-  - id: task-155b
-    beschreibung: "Kollisionsenergie führt zu Gasbildung in der Simulation"
-    status: offen
-  - id: task-157
-    beschreibung: "runDryAgent.ts zur trockenen Ausführung aller Agenten erstellen"
-    status: offen
-  - id: task-158
-    beschreibung: "Mermaid-Diagramm agents_chain.mmd samt SVG-Export erzeugen"
-    status: offen
-  - id: task-159
-    beschreibung: "Ordner docs/agents/ für Einzelbeschreibungen der Agenten einrichten"
-    status: offen
-  - id: task-160
-    beschreibung: "Workflow agents_ci.yaml zur Agentenprüfung via GitHub Actions implementieren"
-    status: offen
-  - id: task-161
-    beschreibung: "CodexZentral.yaml Grundgerüst vorbereiten"
-    status: offen
-  - id: task-162
-    beschreibung: "codex-sync.sh mit CREP-Validierung entwickeln"
-    status: offen
-  - id: task-163
-    beschreibung: "sigillin-validator.ts nach CREP-Schema umsetzen"
-    status: offen
-  - id: task-164
-    beschreibung: "generate-readmes.ts zur automatischen Dokumenterstellung bauen"
-    status: offen
-  - id: task-165
-    beschreibung: "chronopoem-committer.ts für poetische Commits anlegen"
-    status: offen
-  - id: task-166
-    beschreibung: "mandala-dashboard.tsx zur Anzeige des Synchronstatus implementieren"
-    status: offen
-  - id: task-167
-    beschreibung: "codex-memory-kernel.ts für Referenzgedächtnis entwickeln"
-    status: offen
-  - id: task-168
-    beschreibung: "generate-todo-from-convos.ts zum Ableiten von Aufgaben aus conversations.json erstellen"
-    status: offen
-  - id: task-169
-    beschreibung: "CodexSigillin zur Verwaltung der Architekturimpulse von GenesisOS erstellen"
-    status: offen
-  - id: task-170
-    beschreibung: "Resonanzbaum als Mandala zur Visualisierung aller Systemelemente zeichnen"
-    status: offen
-  - id: task-171
-    beschreibung: "Fuzzy Device Matching für reflexscanner_gpt implementieren"
-    status: offen
-  - id: task-172
-    beschreibung: "Plugin-Architektur für reflexscanner_gpt entwerfen"
-    status: offen
-  - id: task-173
-    beschreibung: "Realtime-Dashboard zur Visualisierung erkannter Sigillins bauen"
-    status: offen
-  - id: task-174
-    beschreibung: "Cloud-Event-Export für reflexscanner-Daten integrieren"
-    status: offen
-  - id: task-175
-    beschreibung: "Gesprächsdaten verschlüsselt speichern (encryption at rest)"
-    status: offen
-  - id: task-176
-    beschreibung: "Dynamisches Reloading der triggers.yaml ohne Neustart ermöglichen"
-    status: offen
-  - id: task-177
-    beschreibung: "Performance-Metriken für reflexscanner_gpt mit Prometheus sammeln"
-    status: offen
-  - id: task-178
-    beschreibung: "OAuth2-Unterstützung für externe Integrationen hinzufügen"
-    status: offen
-  - id: task-179
-    beschreibung: "Mehrsprachige Ausgabe via CLI-Flag implementieren"
-    status: offen
-  - id: task-180
-    beschreibung: "Developer-Mode mit farbigen Debug-Logs und Live-dmesg"
+    beschreibung: "Repos für AeonShell + AeonGenesisOS initialisieren\""
     status: offen
