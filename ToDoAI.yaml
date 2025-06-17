@@ -422,3 +422,16 @@ todos:
     implement: packages/agents/
     priority: medium
     next_commit: false
+
+  - id: Fragment_15_Agentensysteme_Einleitung
+    implement: packages/agents/
+    priority: high
+    next_commit: true
+  - id: Fragment_16_KI_Bewusstsein
+    implement: packages/agents/
+    priority: high
+    next_commit: true
+  - id: Fragment_17_Sigillin_ZipSystem
+    implement: packages/agents/
+    priority: high
+    next_commit: true
