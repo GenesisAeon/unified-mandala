@@ -57,3 +57,47 @@ todos:
     implement: packages/agents/
     priority: medium
     next_commit: false
+  - id: Fragment_14_AIPlan_Part1
+    implement: packages/agents/
+    priority: high
+    next_commit: false
+  - id: Fragment_15_AIPlan_Part2
+    implement: packages/agents/
+    priority: high
+    next_commit: false
+  - id: Fragment_16_AIPlan_Part3
+    implement: packages/agents/
+    priority: high
+    next_commit: false
+  - id: Fragment_17_AIPlan_Part4
+    implement: packages/agents/
+    priority: medium
+    next_commit: false
+  - id: Fragment_18_AIPlan_Part5
+    implement: packages/agents/
+    priority: medium
+    next_commit: false
+  - id: Fragment_19_AIPlan_Part6
+    implement: packages/agents/
+    priority: medium
+    next_commit: false
+  - id: Fragment_20_AIPlan_Part7
+    implement: packages/agents/
+    priority: medium
+    next_commit: false
+  - id: Fragment_21_AIPlan_Part8
+    implement: packages/agents/
+    priority: low
+    next_commit: false
+  - id: Fragment_22_AIPlan_Part9
+    implement: packages/agents/
+    priority: low
+    next_commit: false
+  - id: Fragment_23_AIPlan_Part10
+    implement: packages/agents/
+    priority: low
+    next_commit: false
+  - id: Fragment_24_AIPlan_Part11
+    implement: packages/agents/
+    priority: low
+    next_commit: false
