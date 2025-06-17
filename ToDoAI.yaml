@@ -427,11 +427,14 @@ todos:
     implement: packages/agents/
     priority: high
     next_commit: true
+    status: erledigt
   - id: Fragment_16_KI_Bewusstsein
     implement: packages/agents/
     priority: high
     next_commit: true
+    status: erledigt
   - id: Fragment_17_Sigillin_ZipSystem
     implement: packages/agents/
     priority: high
     next_commit: true
+    status: erledigt
