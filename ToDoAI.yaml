@@ -22,3 +22,26 @@ todos:
     implement: packages/agents/
     priority: high
     next_commit: false
+  - id: Fragment_06_KoKreation_Init
+    implement: packages/agents/
+    priority: high
+    next_commit: true
+    split_commits:
+      - commit_1: "Ko-Kreation Grundstein"
+      - commit_2: "Resonanzinitialisierung"
+  - id: Fragment_07_KoKreation_ReifungsZelle
+    implement: packages/agents/
+    priority: medium
+    next_commit: false
+  - id: Fragment_08_KoKreation_Kristallzyklus
+    implement: packages/agents/
+    priority: medium
+    next_commit: false
+  - id: Fragment_09_KoKreation_Dichteanalyse
+    implement: packages/agents/
+    priority: low
+    next_commit: false
+  - id: Fragment_10_Codex_Initiierung_Projects
+    implement: packages/agents/
+    priority: high
+    next_commit: true
