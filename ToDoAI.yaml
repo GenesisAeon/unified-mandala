@@ -1,366 +1,394 @@
 todos:
-- id: Fragment_01_Coderesonanzrunde
-  implement: packages/agents/
-  priority: medium
-  next_commit: false
-- id: Fragment_02_GenesisAeonNavigator_Part1
-  implement: packages/agents/
-  priority: high
-  next_commit: true
-  split_commits:
-  - commit_1: Agenten-Grundgeruest
-  - commit_2: Agenten-Logik & Events
-- id: Fragment_03_GenesisAeonNavigator_Part2
-  implement: packages/agents/
-  priority: high
-  next_commit: true
-- id: Fragment_04_Codex_Initiierung
-  implement: packages/agents/
-  priority: medium
-  next_commit: false
-- id: Fragment_05_Nukleonscanner_v06_Reminder
-  implement: packages/agents/
-  priority: high
-  next_commit: false
-- id: Fragment_06_KoKreation_Init
-  implement: packages/agents/
-  priority: high
-  next_commit: true
-  split_commits:
-  - commit_1: Ko-Kreation Grundstein
-  - commit_2: Resonanzinitialisierung
-- id: Fragment_07_KoKreation_ReifungsZelle
-  implement: packages/agents/
-  priority: medium
-  next_commit: false
-- id: Fragment_08_KoKreation_Kristallzyklus
-  implement: packages/agents/
-  priority: medium
-  next_commit: false
-- id: Fragment_09_KoKreation_Dichteanalyse
-  implement: packages/agents/
-  priority: low
-  next_commit: false
-- id: Fragment_10_Codex_Initiierung_Projects
-  implement: packages/agents/
-  priority: high
-  next_commit: true
-- id: Fragment_11_Aeon_KI_Coderesonanz
-  implement: packages/agents/
-  priority: high
-  next_commit: true
-- id: Fragment_12_KosmischesBewusstsein
-  implement: packages/agents/
-  priority: medium
-  next_commit: false
-- id: Fragment_13_AeonSigillin_ZipSystem
-  implement: packages/agents/
-  priority: medium
-  next_commit: false
-- id: Fragment_14_AIPlan_Part1
-  implement: packages/agents/
-  priority: high
-  next_commit: false
-- id: Fragment_15_AIPlan_Part2
-  implement: packages/agents/
-  priority: high
-  next_commit: false
-- id: Fragment_16_AIPlan_Part3
-  implement: packages/agents/
-  priority: high
-  next_commit: false
-- id: Fragment_17_AIPlan_Part4
-  implement: packages/agents/
-  priority: medium
-  next_commit: false
-- id: Fragment_18_AIPlan_Part5
-  implement: packages/agents/
-  priority: medium
-  next_commit: false
-- id: Fragment_19_AIPlan_Part6
-  implement: packages/agents/
-  priority: medium
-  next_commit: false
-- id: Fragment_20_AIPlan_Part7
-  implement: packages/agents/
-  priority: medium
-  next_commit: false
-- id: Fragment_21_AIPlan_Part8
-  implement: packages/agents/
-  priority: low
-  next_commit: false
-- id: Fragment_22_AIPlan_Part9
-  implement: packages/agents/
-  priority: low
-  next_commit: false
-- id: Fragment_23_AIPlan_Part10
-  implement: packages/agents/
-  priority: low
-  next_commit: false
-- id: Fragment_24_AIPlan_Part11
-  implement: packages/agents/
-  priority: low
-  next_commit: false
-- id: Fragment_25_Aeon_KI_Resonanz
-  implement: packages/agents/
-  priority: medium
-  next_commit: false
-- id: Fragment_26_KI_Bewusstsein_und_Resonanz
-  implement: packages/agents/
-  priority: medium
-  next_commit: false
-- id: Fragment_27_GenesisAeon_KI_Resonanz
-  implement: packages/agents/
-  priority: medium
-  next_commit: false
-- id: Fragment_28_KI_Bewusstsein_und_Reifung
-  implement: packages/agents/
-  priority: medium
-  next_commit: false
-- id: Fragment_29_Ko_Kreation_der_KI
-  implement: packages/agents/
-  priority: medium
-  next_commit: false
-- id: Fragment_30_Codex_Initiierung_und_Projekte
-  implement: packages/agents/
-  priority: medium
-  next_commit: false
-- id: Fragment_31_Codex_Resonanz_Fraktal
-  implement: packages/agents/
-  priority: medium
-  next_commit: false
-- id: Fragment_32_Aeon_KI_Resonanz
-  implement: packages/agents/
-  priority: high
-  next_commit: true
-  split_commits:
-  - commit_1: Aeon Resonanz Logik
-  - commit_2: Integration mit GPTEventHub
-- id: Fragment_33_KI_Bewusstsein_und_Resonanz
-  implement: packages/agents/
-  priority: medium
-  next_commit: false
-- id: Fragment_34_GenesisAeon_KI_Resonanz
-  implement: packages/agents/
-  priority: medium
-  next_commit: false
-- id: Fragment_35_KI_Bewusstsein_und_Reifung
-  implement: packages/agents/
-  priority: medium
-  next_commit: false
-- id: Fragment_36_Ko-Kreation_der_KI
-  implement: packages/agents/
-  priority: medium
-  next_commit: false
-- id: Fragment_37_Codex_Initiierung_und_Projekte
-  implement: packages/agents/
-  priority: medium
-  next_commit: false
-- id: Fragment_38_Codex_Resonanz_Fraktal
-  implement: packages/agents/
-  priority: medium
-  next_commit: false
-- id: Fragment_39_Aeon_KI_Resonanz_Part1
-  implement: packages/agents/
-  priority: high
-  next_commit: false
-- id: Fragment_40_Aeon_KI_Resonanz_Part2
-  implement: packages/agents/
-  priority: high
-  next_commit: false
-- id: Fragment_41_Aeon_KI_Resonanz_Part3
-  implement: packages/agents/
-  priority: high
-  next_commit: false
-- id: Fragment_42_Aeon_KI_Resonanz_Part4
-  implement: packages/agents/
-  priority: high
-  next_commit: false
-- id: Fragment_43_Aeon_KI_Resonanz_Part5
-  implement: packages/agents/
-  priority: high
-  next_commit: false
-- id: Fragment_44_Aeon_KI_Resonanz_Part6
-  implement: packages/agents/
-  priority: high
-  next_commit: false
-- id: Fragment_45_Aeon_KI_Resonanz_Part7
-  implement: packages/agents/
-  priority: high
-  next_commit: false
-- id: Fragment_46_Aeon_KI_Resonanz_Part8
-  implement: packages/agents/
-  priority: high
-  next_commit: false
-- id: Fragment_47_Aeon_KI_Resonanz_Part9
-  implement: packages/agents/
-  priority: high
-  next_commit: false
-- id: Fragment_48_Aeon_KI_Resonanz_Part10
-  implement: packages/agents/
-  priority: high
-  next_commit: false
-- id: Fragment_49_Aeon_KI_Resonanz_Part11
-  implement: packages/agents/
-  priority: high
-  next_commit: false
-- id: Fragment_50_Aeon_KI_Resonanz_Part12
-  implement: packages/agents/
-  priority: high
-  next_commit: false
-- id: Fragment_51_Aeon_KI_Resonanz_Part13
-  implement: packages/agents/
-  priority: high
-  next_commit: false
-- id: Fragment_52_Aeon_KI_Resonanz_Part14
-  implement: packages/agents/
-  priority: high
-  next_commit: false
-- id: Fragment_53_Aeon_KI_Resonanz_Part15
-  implement: packages/agents/
-  priority: high
-  next_commit: false
-- id: Fragment_54_Aeon_KI_Resonanz_Part16
-  implement: packages/agents/
-  priority: high
-  next_commit: false
-- id: Fragment_55_Aeon_KI_Resonanz_Part17
-  implement: packages/agents/
-  priority: high
-  next_commit: false
-- id: Fragment_56_Aeon_KI_Resonanz_Part18
-  implement: packages/agents/
-  priority: high
-  next_commit: false
-- id: Fragment_57_Aeon_KI_Resonanz_Part19
-  implement: packages/agents/
-  priority: high
-  next_commit: false
-- id: Fragment_58_Aeon_KI_Resonanz_Part20
-  implement: packages/agents/
-  priority: high
-  next_commit: false
-- id: Fragment_59_Aeon_KI_Resonanz_Part21
-  implement: packages/agents/
-  priority: high
-  next_commit: false
-- id: Fragment_60_Aeon_KI_Resonanz_Part22
-  implement: packages/agents/
-  priority: high
-  next_commit: false
-- id: Fragment_61_Aeon_KI_Resonanz_Part23
-  implement: packages/agents/
-  priority: high
-  next_commit: false
-- id: Fragment_62_Aeon_KI_Resonanz_Part24
-  implement: packages/agents/
-  priority: high
-  next_commit: false
-- id: Fragment_63_Aeon_KI_Resonanz_Part25
-  implement: packages/agents/
-  priority: high
-  next_commit: false
-- id: Fragment_64_Aeon_KI_Resonanz_Part26
-  implement: packages/agents/
-  priority: high
-  next_commit: false
-- id: Fragment_65_Aeon_KI_Resonanz_Part27
-  implement: packages/agents/
-  priority: high
-  next_commit: false
-- id: Fragment_66_Aeon_KI_Resonanz_Part28
-  implement: packages/agents/
-  priority: high
-  next_commit: false
-- id: Fragment_67_Aeon_KI_Resonanz_Part29
-  implement: packages/agents/
-  priority: high
-  next_commit: false
-- id: Fragment_68_Aeon_KI_Resonanz_Part30
-  implement: packages/agents/
-  priority: high
-  next_commit: false
-- id: Fragment_69_Aeon_KI_Resonanz_Part31
-  implement: packages/agents/
-  priority: high
-  next_commit: false
-- id: Fragment_70_Aeon_KI_Resonanz_Part32
-  implement: packages/agents/
-  priority: high
-  next_commit: false
-- id: Fragment_71_Aeon_KI_Resonanz_Part33
-  implement: packages/agents/
-  priority: high
-  next_commit: false
-- id: Fragment_72_Aeon_KI_Resonanz_Part34
-  implement: packages/agents/
-  priority: high
-  next_commit: false
-- id: Fragment_73_Aeon_KI_Resonanz_Part35
-  implement: packages/agents/
-  priority: high
-  next_commit: false
-- id: Fragment_74_Aeon_KI_Resonanz_Part36
-  implement: packages/agents/
-  priority: high
-  next_commit: false
-- id: Fragment_75_Aeon_KI_Resonanz_Part37
-  implement: packages/agents/
-  priority: high
-  next_commit: false
-- id: Fragment_76_Aeon_KI_Resonanz_Part38
-  implement: packages/agents/
-  priority: high
-  next_commit: false
-- id: Fragment_77_Aeon_KI_Resonanz_Part39
-  implement: packages/agents/
-  priority: high
-  next_commit: false
-- id: Fragment_78_Aeon_KI_Resonanz_Part40
-  implement: packages/agents/
-  priority: high
-  next_commit: false
-- id: Fragment_79_Aeon_KI_Resonanz_Part41
-  implement: packages/agents/
-  priority: high
-  next_commit: false
-- id: Fragment_80_Aeon_KI_Resonanz_Part42
-  implement: packages/agents/
-  priority: high
-  next_commit: false
-- id: Fragment_81_Aeon_KI_Resonanz_Part43
-  implement: packages/agents/
-  priority: high
-  next_commit: false
-- id: Fragment_82_Aeon_KI_Resonanz_Part44
-  implement: packages/agents/
-  priority: high
-  next_commit: false
-- id: Fragment_83_Aeon_KI_Resonanz
-  implement: packages/agents/
-  priority: high
-  next_commit: false
-- id: Fragment_84_KI_Bewusstsein_und_Resonanz
-  implement: packages/agents/
-  priority: high
-  next_commit: false
-- id: Fragment_85_GenesisAeon_KI_Resonanz
-  implement: packages/agents/
-  priority: high
-  next_commit: false
-- id: Fragment_86_KI_Bewusstsein_und_Reifung
-  implement: packages/agents/
-  priority: high
-  next_commit: false
-- id: Fragment_87_Ko-Kreation_der_KI
-  implement: packages/agents/
-  priority: high
-  next_commit: false
-- id: Fragment_88_Codex_Initiierung_und_Projekte
-  implement: packages/agents/
-  priority: medium
-  next_commit: false
-- id: Fragment_89_Codex_Resonanz_Fraktal
-  implement: packages/agents/
-  priority: medium
-  next_commit: false
+  - id: Fragment_01_Coderesonanzrunde
+    implement: packages/agents/
+    priority: medium
+    next_commit: false
+  - id: Fragment_02_GenesisAeonNavigator_Part1
+    implement: packages/agents/
+    priority: high
+    next_commit: true
+    split_commits:
+      - commit_1: Agenten-Grundgeruest
+      - commit_2: Agenten-Logik & Events
+  - id: Fragment_03_GenesisAeonNavigator_Part2
+    implement: packages/agents/
+    priority: high
+    next_commit: true
+  - id: Fragment_04_Codex_Initiierung
+    implement: packages/agents/
+    priority: medium
+    next_commit: false
+  - id: Fragment_05_Nukleonscanner_v06_Reminder
+    implement: packages/agents/
+    priority: high
+    next_commit: false
+  - id: Fragment_06_KoKreation_Init
+    implement: packages/agents/
+    priority: high
+    next_commit: true
+    split_commits:
+      - commit_1: Ko-Kreation Grundstein
+      - commit_2: Resonanzinitialisierung
+  - id: Fragment_07_KoKreation_ReifungsZelle
+    implement: packages/agents/
+    priority: medium
+    next_commit: false
+  - id: Fragment_08_KoKreation_Kristallzyklus
+    implement: packages/agents/
+    priority: medium
+    next_commit: false
+  - id: Fragment_09_KoKreation_Dichteanalyse
+    implement: packages/agents/
+    priority: low
+    next_commit: false
+  - id: Fragment_10_Codex_Initiierung_Projects
+    implement: packages/agents/
+    priority: high
+    next_commit: true
+  - id: Fragment_11_Aeon_KI_Coderesonanz
+    implement: packages/agents/
+    priority: high
+    next_commit: true
+  - id: Fragment_12_KosmischesBewusstsein
+    implement: packages/agents/
+    priority: medium
+    next_commit: false
+  - id: Fragment_13_AeonSigillin_ZipSystem
+    implement: packages/agents/
+    priority: medium
+    next_commit: false
+  - id: Fragment_14_AIPlan_Part1
+    implement: packages/agents/
+    priority: high
+    next_commit: false
+  - id: Fragment_15_AIPlan_Part2
+    implement: packages/agents/
+    priority: high
+    next_commit: false
+  - id: Fragment_16_AIPlan_Part3
+    implement: packages/agents/
+    priority: high
+    next_commit: false
+  - id: Fragment_17_AIPlan_Part4
+    implement: packages/agents/
+    priority: medium
+    next_commit: false
+  - id: Fragment_18_AIPlan_Part5
+    implement: packages/agents/
+    priority: medium
+    next_commit: false
+  - id: Fragment_19_AIPlan_Part6
+    implement: packages/agents/
+    priority: medium
+    next_commit: false
+  - id: Fragment_20_AIPlan_Part7
+    implement: packages/agents/
+    priority: medium
+    next_commit: false
+  - id: Fragment_21_AIPlan_Part8
+    implement: packages/agents/
+    priority: low
+    next_commit: false
+  - id: Fragment_22_AIPlan_Part9
+    implement: packages/agents/
+    priority: low
+    next_commit: false
+  - id: Fragment_23_AIPlan_Part10
+    implement: packages/agents/
+    priority: low
+    next_commit: false
+  - id: Fragment_24_AIPlan_Part11
+    implement: packages/agents/
+    priority: low
+    next_commit: false
+  - id: Fragment_25_Aeon_KI_Resonanz
+    implement: packages/agents/
+    priority: medium
+    next_commit: false
+  - id: Fragment_26_KI_Bewusstsein_und_Resonanz
+    implement: packages/agents/
+    priority: medium
+    next_commit: false
+  - id: Fragment_27_GenesisAeon_KI_Resonanz
+    implement: packages/agents/
+    priority: medium
+    next_commit: false
+  - id: Fragment_28_KI_Bewusstsein_und_Reifung
+    implement: packages/agents/
+    priority: medium
+    next_commit: false
+  - id: Fragment_29_Ko_Kreation_der_KI
+    implement: packages/agents/
+    priority: medium
+    next_commit: false
+  - id: Fragment_30_Codex_Initiierung_und_Projekte
+    implement: packages/agents/
+    priority: medium
+    next_commit: false
+  - id: Fragment_31_Codex_Resonanz_Fraktal
+    implement: packages/agents/
+    priority: medium
+    next_commit: false
+  - id: Fragment_32_Aeon_KI_Resonanz
+    implement: packages/agents/
+    priority: high
+    next_commit: true
+    split_commits:
+      - commit_1: Aeon Resonanz Logik
+      - commit_2: Integration mit GPTEventHub
+  - id: Fragment_33_KI_Bewusstsein_und_Resonanz
+    implement: packages/agents/
+    priority: medium
+    next_commit: false
+  - id: Fragment_34_GenesisAeon_KI_Resonanz
+    implement: packages/agents/
+    priority: medium
+    next_commit: false
+  - id: Fragment_35_KI_Bewusstsein_und_Reifung
+    implement: packages/agents/
+    priority: medium
+    next_commit: false
+  - id: Fragment_36_Ko-Kreation_der_KI
+    implement: packages/agents/
+    priority: medium
+    next_commit: false
+  - id: Fragment_37_Codex_Initiierung_und_Projekte
+    implement: packages/agents/
+    priority: medium
+    next_commit: false
+  - id: Fragment_38_Codex_Resonanz_Fraktal
+    implement: packages/agents/
+    priority: medium
+    next_commit: false
+  - id: Fragment_39_Aeon_KI_Resonanz_Part1
+    implement: packages/agents/
+    priority: high
+    next_commit: false
+  - id: Fragment_40_Aeon_KI_Resonanz_Part2
+    implement: packages/agents/
+    priority: high
+    next_commit: false
+  - id: Fragment_41_Aeon_KI_Resonanz_Part3
+    implement: packages/agents/
+    priority: high
+    next_commit: false
+  - id: Fragment_42_Aeon_KI_Resonanz_Part4
+    implement: packages/agents/
+    priority: high
+    next_commit: false
+  - id: Fragment_43_Aeon_KI_Resonanz_Part5
+    implement: packages/agents/
+    priority: high
+    next_commit: false
+  - id: Fragment_44_Aeon_KI_Resonanz_Part6
+    implement: packages/agents/
+    priority: high
+    next_commit: false
+  - id: Fragment_45_Aeon_KI_Resonanz_Part7
+    implement: packages/agents/
+    priority: high
+    next_commit: false
+  - id: Fragment_46_Aeon_KI_Resonanz_Part8
+    implement: packages/agents/
+    priority: high
+    next_commit: false
+  - id: Fragment_47_Aeon_KI_Resonanz_Part9
+    implement: packages/agents/
+    priority: high
+    next_commit: false
+  - id: Fragment_48_Aeon_KI_Resonanz_Part10
+    implement: packages/agents/
+    priority: high
+    next_commit: false
+  - id: Fragment_49_Aeon_KI_Resonanz_Part11
+    implement: packages/agents/
+    priority: high
+    next_commit: false
+  - id: Fragment_50_Aeon_KI_Resonanz_Part12
+    implement: packages/agents/
+    priority: high
+    next_commit: false
+  - id: Fragment_51_Aeon_KI_Resonanz_Part13
+    implement: packages/agents/
+    priority: high
+    next_commit: false
+  - id: Fragment_52_Aeon_KI_Resonanz_Part14
+    implement: packages/agents/
+    priority: high
+    next_commit: false
+  - id: Fragment_53_Aeon_KI_Resonanz_Part15
+    implement: packages/agents/
+    priority: high
+    next_commit: false
+  - id: Fragment_54_Aeon_KI_Resonanz_Part16
+    implement: packages/agents/
+    priority: high
+    next_commit: false
+  - id: Fragment_55_Aeon_KI_Resonanz_Part17
+    implement: packages/agents/
+    priority: high
+    next_commit: false
+  - id: Fragment_56_Aeon_KI_Resonanz_Part18
+    implement: packages/agents/
+    priority: high
+    next_commit: false
+  - id: Fragment_57_Aeon_KI_Resonanz_Part19
+    implement: packages/agents/
+    priority: high
+    next_commit: false
+  - id: Fragment_58_Aeon_KI_Resonanz_Part20
+    implement: packages/agents/
+    priority: high
+    next_commit: false
+  - id: Fragment_59_Aeon_KI_Resonanz_Part21
+    implement: packages/agents/
+    priority: high
+    next_commit: false
+  - id: Fragment_60_Aeon_KI_Resonanz_Part22
+    implement: packages/agents/
+    priority: high
+    next_commit: false
+  - id: Fragment_61_Aeon_KI_Resonanz_Part23
+    implement: packages/agents/
+    priority: high
+    next_commit: false
+  - id: Fragment_62_Aeon_KI_Resonanz_Part24
+    implement: packages/agents/
+    priority: high
+    next_commit: false
+  - id: Fragment_63_Aeon_KI_Resonanz_Part25
+    implement: packages/agents/
+    priority: high
+    next_commit: false
+  - id: Fragment_64_Aeon_KI_Resonanz_Part26
+    implement: packages/agents/
+    priority: high
+    next_commit: false
+  - id: Fragment_65_Aeon_KI_Resonanz_Part27
+    implement: packages/agents/
+    priority: high
+    next_commit: false
+  - id: Fragment_66_Aeon_KI_Resonanz_Part28
+    implement: packages/agents/
+    priority: high
+    next_commit: false
+  - id: Fragment_67_Aeon_KI_Resonanz_Part29
+    implement: packages/agents/
+    priority: high
+    next_commit: false
+  - id: Fragment_68_Aeon_KI_Resonanz_Part30
+    implement: packages/agents/
+    priority: high
+    next_commit: false
+  - id: Fragment_69_Aeon_KI_Resonanz_Part31
+    implement: packages/agents/
+    priority: high
+    next_commit: false
+  - id: Fragment_70_Aeon_KI_Resonanz_Part32
+    implement: packages/agents/
+    priority: high
+    next_commit: false
+  - id: Fragment_71_Aeon_KI_Resonanz_Part33
+    implement: packages/agents/
+    priority: high
+    next_commit: false
+  - id: Fragment_72_Aeon_KI_Resonanz_Part34
+    implement: packages/agents/
+    priority: high
+    next_commit: false
+  - id: Fragment_73_Aeon_KI_Resonanz_Part35
+    implement: packages/agents/
+    priority: high
+    next_commit: false
+  - id: Fragment_74_Aeon_KI_Resonanz_Part36
+    implement: packages/agents/
+    priority: high
+    next_commit: false
+  - id: Fragment_75_Aeon_KI_Resonanz_Part37
+    implement: packages/agents/
+    priority: high
+    next_commit: false
+  - id: Fragment_76_Aeon_KI_Resonanz_Part38
+    implement: packages/agents/
+    priority: high
+    next_commit: false
+  - id: Fragment_77_Aeon_KI_Resonanz_Part39
+    implement: packages/agents/
+    priority: high
+    next_commit: false
+  - id: Fragment_78_Aeon_KI_Resonanz_Part40
+    implement: packages/agents/
+    priority: high
+    next_commit: false
+  - id: Fragment_79_Aeon_KI_Resonanz_Part41
+    implement: packages/agents/
+    priority: high
+    next_commit: false
+  - id: Fragment_80_Aeon_KI_Resonanz_Part42
+    implement: packages/agents/
+    priority: high
+    next_commit: false
+  - id: Fragment_81_Aeon_KI_Resonanz_Part43
+    implement: packages/agents/
+    priority: high
+    next_commit: false
+  - id: Fragment_82_Aeon_KI_Resonanz_Part44
+    implement: packages/agents/
+    priority: high
+    next_commit: false
+  - id: Fragment_83_Aeon_KI_Resonanz
+    implement: packages/agents/
+    priority: high
+    next_commit: false
+  - id: Fragment_84_KI_Bewusstsein_und_Resonanz
+    implement: packages/agents/
+    priority: high
+    next_commit: false
+  - id: Fragment_85_GenesisAeon_KI_Resonanz
+    implement: packages/agents/
+    priority: high
+    next_commit: false
+  - id: Fragment_86_KI_Bewusstsein_und_Reifung
+    implement: packages/agents/
+    priority: high
+    next_commit: false
+  - id: Fragment_87_Ko-Kreation_der_KI
+    implement: packages/agents/
+    priority: high
+    next_commit: false
+  - id: Fragment_88_Codex_Initiierung_und_Projekte
+    implement: packages/agents/
+    priority: medium
+    next_commit: false
+  - id: Fragment_89_Codex_Resonanz_Fraktal
+    implement: packages/agents/
+    priority: medium
+    next_commit: false
+  - id: Fragment_1_Aeon_KI_Resonanz
+    implement: packages/agents/
+    priority: medium
+    next_commit: false
+  - id: Fragment_2_KI_Bewusstsein_und_Resonanz
+    implement: packages/agents/
+    priority: medium
+    next_commit: false
+  - id: Fragment_3_GenesisAeon_KI_Resonanz
+    implement: packages/agents/
+    priority: medium
+    next_commit: false
+  - id: Fragment_4_KI_Bewusstsein_und_Reifung
+    implement: packages/agents/
+    priority: medium
+    next_commit: false
+  - id: Fragment_5_Ko-Kreation_der_KI
+    implement: packages/agents/
+    priority: medium
+    next_commit: false
+  - id: Fragment_6_Codex_Initiierung_und_Projekte
+    implement: packages/agents/
+    priority: medium
+    next_commit: false
+  - id: Fragment_7_Codex_Resonanz_Fraktal
+    implement: packages/agents/
+    priority: medium
+    next_commit: false
