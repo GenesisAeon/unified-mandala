@@ -10,6 +10,7 @@ todos:
     split_commits:
       - commit_1: Agenten-Grundgeruest
       - commit_2: Agenten-Logik & Events
+    status: erledigt
   - id: Fragment_03_GenesisAeonNavigator_Part2
     implement: packages/agents/
     priority: high
