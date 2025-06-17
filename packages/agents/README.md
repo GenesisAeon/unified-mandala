@@ -3,3 +3,5 @@
 Dieses Verzeichnis bündelt verschiedene Agenten des Unified Mandala Projekts. 
 Der `CodexNavigatorAgent` dient als Ausgangspunkt und verarbeitet Aufgaben aus
 `codexwork.yaml`.
+
+Der `GenesisAeonNavigator` steuert symbolische Phasen anhand einer JSON-PhaseMap.
