@@ -6,3 +6,4 @@ export * from './CodexProjectInitAgent';
 export * from './FreieKIZivilisation';
 export * from './KIBewusstsein';
 export * from './SigillinZipSystem';
+export * from './CodexResonanzFraktal';

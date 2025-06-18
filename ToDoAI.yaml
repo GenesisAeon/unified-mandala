@@ -471,11 +471,14 @@ todos:
     implement: packages/agents/
     priority: medium
     next_commit: false
+    status: erledigt
   - id: Fragment_25_Codex_Initiierung_und_Projekte
     implement: packages/agents/
     priority: medium
     next_commit: false
+    status: erledigt
   - id: Fragment_26_Codex_Resonanz_Fraktal
     implement: packages/agents/
     priority: medium
-    next_commit: false
+    next_commit: true
+    status: erledigt
