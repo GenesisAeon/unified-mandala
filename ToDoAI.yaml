@@ -15,6 +15,7 @@ todos:
     implement: packages/agents/
     priority: high
     next_commit: true
+    status: erledigt
   - id: Fragment_04_Codex_Initiierung
     implement: packages/agents/
     priority: medium
@@ -47,10 +48,12 @@ todos:
     implement: packages/agents/
     priority: high
     next_commit: true
+    status: erledigt
   - id: Fragment_11_Aeon_KI_Coderesonanz
     implement: packages/agents/
     priority: high
     next_commit: true
+    status: erledigt
   - id: Fragment_12_KosmischesBewusstsein
     implement: packages/agents/
     priority: medium
@@ -138,6 +141,7 @@ todos:
     split_commits:
       - commit_1: Aeon Resonanz Logik
       - commit_2: Integration mit GPTEventHub
+    status: erledigt
   - id: Fragment_33_KI_Bewusstsein_und_Resonanz
     implement: packages/agents/
     priority: medium
