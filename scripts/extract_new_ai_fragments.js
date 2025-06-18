@@ -19,21 +19,35 @@ function convToText(conv){
   return msgs.map(m => `${m.message.author.role || 'unknown'}: ${m.message.content.parts.join('\n')}`).join('\n');
 }
 
-let todoJson = { fragments: [] };
-if (fs.existsSync(todoJsonPath)) todoJson = JSON.parse(fs.readFileSync(todoJsonPath, 'utf8'));
+let todoJsonRaw = [];
+if (fs.existsSync(todoJsonPath)) {
+  todoJsonRaw = JSON.parse(fs.readFileSync(todoJsonPath, 'utf8'));
+}
+
+let fragments = [];
+if (Array.isArray(todoJsonRaw)) {
+  fragments = todoJsonRaw;
+} else if (todoJsonRaw.fragments && Array.isArray(todoJsonRaw.fragments)) {
+  fragments = todoJsonRaw.fragments;
+} else {
+  fragments = [];
+}
+
 let todoYaml = { todos: [] };
 if (fs.existsSync(todoYamlPath)) todoYaml = yaml.parse(fs.readFileSync(todoYamlPath, 'utf8'));
 
-const startIndex = todoJson.fragments.length > 0 ? parseInt(todoJson.fragments[todoJson.fragments.length-1].id.match(/Fragment_(\d+)/)[1]) + 1 : 1;
+const startIndex = fragments.length > 0 ?
+  parseInt(fragments[fragments.length - 1].id.match(/Fragment_(\d+)/)[1]) + 1 : 1;
 
 diffConvs.forEach((conv, idx) => {
   const idNum = startIndex + idx;
   const fragId = `Fragment_${idNum}_${conv.title.replace(/\s+/g, '_')}`;
   const content = convToText(conv);
-  todoJson.fragments.push({ id: fragId, title: conv.title, content, tags: ["Agent", "AI", "CREP"] });
+  fragments.push({ id: fragId, title: conv.title, content, tags: ["Agent", "AI", "CREP"] });
   todoYaml.todos.push({ id: fragId, implement: 'packages/agents/', priority: 'medium', next_commit: false });
 });
 
-fs.writeFileSync(todoJsonPath, JSON.stringify(todoJson, null, 2));
+const outputJson = Array.isArray(todoJsonRaw) ? fragments : { ...todoJsonRaw, fragments };
+fs.writeFileSync(todoJsonPath, JSON.stringify(outputJson, null, 2));
 fs.writeFileSync(todoYamlPath, yaml.stringify(todoYaml));
 console.log(`Added ${diffConvs.length} fragments.`);

@@ -426,7 +426,6 @@ todos:
     implement: packages/agents/
     priority: medium
     next_commit: false
-
   - id: Fragment_15_Agentensysteme_Einleitung
     implement: packages/agents/
     priority: high
@@ -452,3 +451,31 @@ todos:
     priority: medium
     next_commit: true
     status: erledigt
+  - id: Fragment_20_Aeon_KI_Resonanz
+    implement: packages/agents/
+    priority: medium
+    next_commit: false
+  - id: Fragment_21_KI_Bewusstsein_und_Resonanz
+    implement: packages/agents/
+    priority: medium
+    next_commit: false
+  - id: Fragment_22_GenesisAeon_KI_Resonanz
+    implement: packages/agents/
+    priority: medium
+    next_commit: false
+  - id: Fragment_23_KI_Bewusstsein_und_Reifung
+    implement: packages/agents/
+    priority: medium
+    next_commit: false
+  - id: Fragment_24_Ko-Kreation_der_KI
+    implement: packages/agents/
+    priority: medium
+    next_commit: false
+  - id: Fragment_25_Codex_Initiierung_und_Projekte
+    implement: packages/agents/
+    priority: medium
+    next_commit: false
+  - id: Fragment_26_Codex_Resonanz_Fraktal
+    implement: packages/agents/
+    priority: medium
+    next_commit: false
