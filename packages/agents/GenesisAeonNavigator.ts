@@ -1,3 +1,5 @@
+import { GPTEventHub } from '../gpt-bridges/GPTEventHub';
+
 export interface GenesisNavigatorOptions {
   phaseMapPath: string;
   logFile?: string;
@@ -23,10 +25,15 @@ export class GenesisAeonNavigator {
     this.log('GenesisAeonNavigator start');
   }
 
+  public updatePhaseMap(map: any): void {
+    this.phaseMap = map;
+  }
+
   public navigate(phase: string): void {
     const next = this.phaseMap[phase];
     if (next) {
       this.log(`Navigate to ${next}`);
+      GPTEventHub.emit('genesis:navigate', { from: phase, to: next });
     } else {
       this.log(`Unknown phase: ${phase}`);
     }
