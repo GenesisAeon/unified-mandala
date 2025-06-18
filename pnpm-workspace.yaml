@@ -9,5 +9,6 @@ packages:
   - 'packages/aeon-genesisos'
   - 'packages/aeon-fraktalurs'
   - 'packages/aeon-resoecho'
+  - 'packages/event-bus'
   - 'packages/sharedream-interface'
   - 'apps/*'

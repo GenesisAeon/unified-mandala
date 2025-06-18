@@ -31,7 +31,8 @@
     "react-tooltip": "^5.18.0",
     "recharts": "^2.8.0",
     "socket.io-client": "^4.7.5",
-    "yaml": "^2.8.0"
+    "yaml": "^2.8.0",
+    "nats": "^2.29.3"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^6.6.3",
