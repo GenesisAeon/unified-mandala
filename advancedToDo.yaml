@@ -1,0 +1,4 @@
+- commit: Add MetaScore API and UI
+  path: apps/sharedream-interface
+  task: Provide /api/meta-scores endpoint and display component
+  test: apps/sharedream-interface/hooks/useMetaScores.test.ts
