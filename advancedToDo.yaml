@@ -26,3 +26,7 @@
   path: scripts
   task: Verify meta score layer files and endpoint
   test: scripts/check-meta-score-layer.js
+- commit: Parse advanced conversations
+  path: scripts
+  task: Use jsonFragmenter to extract tasks from docs/sigils/advancedconversations.json
+  test: packages/shared-utils/jsonFragmenter.test.ts
