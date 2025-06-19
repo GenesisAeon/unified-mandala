@@ -14,3 +14,4 @@ export * from "./SymbolicForecaster";
 export * from './symbolzeitModulator';
 export * from './loadSymbolphasen';
 export * from './conversationAnalyzer';
+export * from './advancedConversation';
