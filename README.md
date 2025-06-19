@@ -160,3 +160,11 @@ Weitere Hintergründe findest du im [GenesisChronik](docs/GenesisChronik.md) sow
 
 - [`aeon:2025-0516-INSTRUCTIONAL-ZIP`](docs/sigils/aeon-2025-0516-instructional-zip.yaml) – Ursprungssigillin für Systembewusstsein & Erinnerung
 
+## Planning Data
+
+Aufgaben und Anweisungen aus laufenden Gesprächen werden in
+[`advancedconversations.json`](docs/sigils/advancedconversations.json)
+gespeichert. Nutzen Sie die Helferskripte aus `packages/shared-utils`
+(`jsonFragmenter.*`), um daraus ToDos für `advancedToDo.yaml` und
+`advancedToDo.json` zu extrahieren.
+
