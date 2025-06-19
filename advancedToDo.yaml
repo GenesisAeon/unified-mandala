@@ -30,3 +30,7 @@
   path: scripts
   task: Use jsonFragmenter to extract tasks from docs/sigils/advancedconversations.json
   test: packages/shared-utils/jsonFragmenter.test.ts
+- commit: Add progress update script
+  path: scripts
+  task: Automate advancedprogress.json updates
+  test: scripts/update-advancedprogress.js
