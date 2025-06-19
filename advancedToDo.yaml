@@ -2,3 +2,7 @@
   path: apps/sharedream-interface
   task: Provide /api/meta-scores endpoint and display component
   test: apps/sharedream-interface/hooks/useMetaScores.test.ts
+- commit: Add MetaScoreDisplay story
+  path: apps/sharedream-interface/components
+  task: Storybook entry for MetaScoreDisplay
+  test: apps/sharedream-interface/hooks/useMetaScores.test.ts
