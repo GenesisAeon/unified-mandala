@@ -6,3 +6,11 @@
   path: apps/sharedream-interface/components
   task: Storybook entry for MetaScoreDisplay
   test: apps/sharedream-interface/hooks/useMetaScores.test.ts
+- commit: Add MetaScoreChart
+  path: apps/sharedream-interface/components
+  task: Visualize meta scores via Recharts
+  test: apps/sharedream-interface/components/MetaScoreChart.test.tsx
+- commit: Self-Check meta score layer
+  path: apps/sharedream-interface
+  task: Verify UI, API and tests in sync
+  test: apps/sharedream-interface/components/MetaScoreChart.test.tsx
