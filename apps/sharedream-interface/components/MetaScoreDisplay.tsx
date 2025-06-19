@@ -1,8 +1,9 @@
 import { useMetaScores } from '../hooks/useMetaScores';
 
 export default function MetaScoreDisplay() {
-  const scores = useMetaScores();
+  const { scores, error } = useMetaScores();
 
+  if (error) return <div>{error}</div>;
   if (!scores.length) return <div>Keine Meta-Scores verfügbar.</div>;
 
   return (

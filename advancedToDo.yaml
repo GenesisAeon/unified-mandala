@@ -18,3 +18,7 @@
   path: apps/sharedream-interface/pages/api
   task: Ensure meta-scores endpoint returns correct data
   test: apps/sharedream-interface/pages/api/meta-scores.test.ts
+- commit: Handle fetch errors in useMetaScores
+  path: apps/sharedream-interface/hooks
+  task: Return error state when meta-score fetch fails and update components
+  test: apps/sharedream-interface/hooks/useMetaScores.test.ts

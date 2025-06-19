@@ -4,10 +4,13 @@ import '@testing-library/jest-dom';
 import MetaScoreChart from './MetaScoreChart';
 
 jest.mock('../hooks/useMetaScores', () => ({
-  useMetaScores: () => [
-    { id: 'a', value: 0.4 },
-    { id: 'b', value: 0.7 },
-  ],
+  useMetaScores: () => ({
+    scores: [
+      { id: 'a', value: 0.4 },
+      { id: 'b', value: 0.7 },
+    ],
+    error: null,
+  }),
 }));
 
 it('renders chart with meta score data', () => {
