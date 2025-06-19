@@ -16,7 +16,8 @@
     "prepare": "husky install",
     "split:conversations": "node scripts/split-conversations.js",
     "grep:conversations": "node scripts/filter-conversations.js",
-    "analyze:conversations": "node scripts/analyze-conversations.js"
+    "analyze:conversations": "node scripts/analyze-conversations.js",
+    "update:advanced-todo": "node scripts/update-advanced-todo.js"
   },
   "dependencies": {
     "ajv": "^8.0.0",
