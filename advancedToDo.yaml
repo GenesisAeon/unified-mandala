@@ -14,3 +14,7 @@
   path: apps/sharedream-interface
   task: Verify UI, API and tests in sync
   test: apps/sharedream-interface/components/MetaScoreChart.test.tsx
+- commit: Add meta-scores API test
+  path: apps/sharedream-interface/pages/api
+  task: Ensure meta-scores endpoint returns correct data
+  test: apps/sharedream-interface/pages/api/meta-scores.test.ts
