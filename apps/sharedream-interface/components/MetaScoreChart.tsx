@@ -3,7 +3,11 @@ import { LineChart, Line, XAxis, YAxis, Tooltip, CartesianGrid } from 'recharts'
 import { useMetaScores } from '../hooks/useMetaScores';
 
 export default function MetaScoreChart() {
-  const scores = useMetaScores();
+  const { scores, error } = useMetaScores();
+
+  if (error) {
+    return <div>{error}</div>;
+  }
 
   if (!scores.length) {
     return <div>Keine Meta-Scores verfügbar.</div>;
