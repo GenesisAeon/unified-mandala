@@ -34,5 +34,11 @@
     "path": "apps/sharedream-interface/hooks",
     "task": "Return error state when meta-score fetch fails and update components",
     "test": "apps/sharedream-interface/hooks/useMetaScores.test.ts"
+  },
+  {
+    "commit": "Add meta score layer self-check",
+    "path": "scripts",
+    "task": "Verify meta score layer files and endpoint",
+    "test": "scripts/check-meta-score-layer.js"
   }
 ]
