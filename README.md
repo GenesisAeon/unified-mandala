@@ -168,3 +168,5 @@ gespeichert. Nutzen Sie die Helferskripte aus `packages/shared-utils`
 (`jsonFragmenter.*`), um daraus ToDos für `advancedToDo.yaml` und
 `advancedToDo.json` zu extrahieren.
 
+Nutze `node scripts/parse-advanced-conversations.js` um Gesprächs-TODOs aus dem Datensatz zu filtern.
+
