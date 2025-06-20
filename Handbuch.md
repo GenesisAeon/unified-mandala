@@ -197,6 +197,8 @@ packages/
   ├── tts                  # Sprachsynthese
   ├── universum-simulationen # Simulationsmodule
   └── shared-utils              # Hilfsfunktionen für alle Pakete
+modules/
+  └── codex-navigator-agent     # Parser für Codex-Instruktionen
 scripts/
   ├── aeon.sh                   # Poetisches Bash-CLI für Mandala-Steuerung
   ├── setup-unifiedmandala.sh   # Installer & Initialisierung
@@ -205,6 +207,7 @@ scripts/
 ```
 
 Jeder Unterordner kann eine eigene README enthalten – siehe die Links in den jeweiligen Verzeichnissen.
+Utilities liegen in `packages/shared-utils/`, weitere Module unter `modules/`.
 
 ## 💻 Schnellstart
 

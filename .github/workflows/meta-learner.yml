@@ -1,0 +1,13 @@
+name: Meta Learner
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: pnpm install
+      - run: pnpm test -- MetaLearnerAgent .github/workflows/storybook-deploy.yml

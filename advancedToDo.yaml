@@ -2483,9 +2483,9 @@ status: done
   path: packages/codex-navigator-agent
   task: Grundgeruest mit Parsern fuer codexinstructions.yaml und AGENTS.md
   test: packages/codex-navigator-agent/CodexNavigatorAgent.test.ts
-  status: todo
+  status: done
 - commit: Extend NucleonScanner with phi profile
   path: packages/crep-engine
   task: Normiertes Phi-Profil und dynamische Profilgenerierung, WeightHistory Logging
   test: packages/crep-engine/NucleonScanner.test.ts
-  status: todo
+  status: done
