@@ -953,11 +953,29 @@
     "path": ".github/workflows",
     "task": "Periodischer Lern-Agent per Action ausfuehren",
     "test": ".github/workflows/MetaLearnerAgent.test.ts"
-  }
-  ,{
+  },
+  {
     "commit": "Implement MandalaCoreLicense",
     "path": "packages/shared-utils",
     "task": "Lizenzmodell verwalten",
     "test": "packages/shared-utils/MandalaCoreLicense.test.ts"
+  },
+  {
+    "commit": "Create AeonKIResonanzAgent",
+    "path": "packages/agents",
+    "task": "Agent analysiert Resonanzdaten aus conversations",
+    "test": "packages/agents/AeonKIResonanzAgent.test.ts"
+  },
+  {
+    "commit": "Implement KIBewusstseinAgent",
+    "path": "packages/agents",
+    "task": "Modul zur Bewusstseins- und Resonanzbewertung",
+    "test": "packages/agents/KIBewusstsein.test.ts"
+  },
+  {
+    "commit": "Extend NucleonScanner for v0.6 analysis",
+    "path": "packages/crep-engine",
+    "task": "Phi-Profil dynamisch berechnen und loggen",
+    "test": "packages/crep-engine/NucleonScanner.test.ts"
   }
 ]
