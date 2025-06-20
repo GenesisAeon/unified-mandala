@@ -7,4 +7,5 @@ Enthält:
 - **getAverageCREP** – ermittelt Durchschnittswerte über die letzten Einträge
 - **CREPEvaluator** – Threshold-Logik und State-Berechnung
 - **getCREPState** – Hilfsfunktion für Status "safe", "warning" oder "critical"
+- **CREPBewertungsmodul** – Berechnet Durchschnitt und Klassifizierung
 
