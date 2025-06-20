@@ -52,6 +52,7 @@ Schau auch ins [Glossar](docs/glossar-genesis.md) für Begriffe.
 - 🪄 **RitualCompiler** – wandelt Rituale in CREP-FSMs
 - 🤝 **AutomergeFederation** – führt verteilte Edits automatisch zusammen
 - 🛡️ **MandalaCoreLicense** – ethisches Lizenzmodell für Module
+- 🤖 **KI Bewusstsein & Resonanz** – bewertet Bewusstseinsdaten
 
 ## 📦 Paketstruktur
 

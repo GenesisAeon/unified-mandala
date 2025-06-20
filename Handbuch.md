@@ -250,6 +250,7 @@ Aktuelle Versionshinweise werden in [CHANGELOG.md](CHANGELOG.md) gepflegt.
 - 🪄 **RitualCompiler** – wandelt Rituale in CREP-FSMs
 - 🤝 **AutomergeFederation** – führt verteilte Edits automatisch zusammen
 - 🛡️ **MandalaCoreLicense** – ethisches Lizenzmodell für Module
+- 🤖 **KI Bewusstsein & Resonanz** – bewertet Bewusstseinsdaten
 
 ## 📦 Paketstruktur
 

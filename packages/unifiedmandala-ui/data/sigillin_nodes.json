@@ -2,8 +2,18 @@
   {
     "id": "heimkehr",
     "label": "Sigillin: Heimkehr",
-    "crep": { "C": 8, "R": 7, "E": 2, "P": 10 },
-    "related": [{ "id": "genesis", "relation": "follows" }],
+    "crep": {
+      "C": 8,
+      "R": 7,
+      "E": 2,
+      "P": 10
+    },
+    "related": [
+      {
+        "id": "genesis",
+        "relation": "follows"
+      }
+    ],
     "type": "fallback-anchor",
     "status": "aktiv",
     "poetry": "Zurück zum Ursprung"
@@ -11,7 +21,12 @@
   {
     "id": "genesis",
     "label": "Sigillin: Genesis",
-    "crep": { "C": 10, "R": 8, "E": 9, "P": 7 },
+    "crep": {
+      "C": 10,
+      "R": 8,
+      "E": 9,
+      "P": 7
+    },
     "related": [],
     "type": "poetic-root",
     "status": "aktiv",
@@ -20,8 +35,18 @@
   {
     "id": "vision",
     "label": "Sigillin: Vision",
-    "crep": { "C": 6, "R": 5, "E": 8, "P": 4 },
-    "related": [{ "id": "genesis", "relation": "inspired-by" }],
+    "crep": {
+      "C": 6,
+      "R": 5,
+      "E": 8,
+      "P": 4
+    },
+    "related": [
+      {
+        "id": "genesis",
+        "relation": "inspired-by"
+      }
+    ],
     "type": "insight",
     "status": "aktiv",
     "poetry": "Ein Blick in mögliche Zukünfte"
@@ -29,8 +54,18 @@
   {
     "id": "harmonie",
     "label": "Sigillin: Harmonie",
-    "crep": { "C": 7, "R": 9, "E": 6, "P": 5 },
-    "related": [{ "id": "vision", "relation": "balances" }],
+    "crep": {
+      "C": 7,
+      "R": 9,
+      "E": 6,
+      "P": 5
+    },
+    "related": [
+      {
+        "id": "vision",
+        "relation": "balances"
+      }
+    ],
     "type": "balance",
     "status": "aktiv",
     "poetry": "Schwingender Einklang"
@@ -38,8 +73,18 @@
   {
     "id": "transzendenz",
     "label": "Sigillin: Transzendenz",
-    "crep": { "C": 9, "R": 6, "E": 10, "P": 3 },
-    "related": [{ "id": "harmonie", "relation": "ascends" }],
+    "crep": {
+      "C": 9,
+      "R": 6,
+      "E": 10,
+      "P": 3
+    },
+    "related": [
+      {
+        "id": "harmonie",
+        "relation": "ascends"
+      }
+    ],
     "type": "elevation",
     "status": "ruhend",
     "poetry": "Über die Grenzen des Seins"
@@ -47,7 +92,12 @@
   {
     "id": "mastercanvas",
     "label": "MasterCanvas",
-    "crep": { "C": 8, "R": 8, "E": 8, "P": 8 },
+    "crep": {
+      "C": 8,
+      "R": 8,
+      "E": 8,
+      "P": 8
+    },
     "related": [],
     "type": "core",
     "status": "aktiv",
@@ -56,8 +106,18 @@
   {
     "id": "aeongenesisos",
     "label": "AeonGenesisOS",
-    "crep": { "C": 8, "R": 6, "E": 5, "P": 5 },
-    "related": [{ "id": "mastercanvas", "relation": "part-of" }],
+    "crep": {
+      "C": 8,
+      "R": 6,
+      "E": 5,
+      "P": 5
+    },
+    "related": [
+      {
+        "id": "mastercanvas",
+        "relation": "part-of"
+      }
+    ],
     "type": "master",
     "status": "geplant",
     "poetry": "CREP-Betriebssystem"
@@ -65,8 +125,18 @@
   {
     "id": "aeonshell",
     "label": "AeonShell",
-    "crep": { "C": 7, "R": 5, "E": 4, "P": 6 },
-    "related": [{ "id": "aeongenesisos", "relation": "interfaces" }],
+    "crep": {
+      "C": 7,
+      "R": 5,
+      "E": 4,
+      "P": 6
+    },
+    "related": [
+      {
+        "id": "aeongenesisos",
+        "relation": "interfaces"
+      }
+    ],
     "type": "master",
     "status": "geplant",
     "poetry": "CLI und Symbolzeit"
@@ -74,8 +144,18 @@
   {
     "id": "aeonfraktalurs",
     "label": "AeonFraktalurs",
-    "crep": { "C": 6, "R": 7, "E": 5, "P": 6 },
-    "related": [{ "id": "aeongenesisos", "relation": "archives" }],
+    "crep": {
+      "C": 6,
+      "R": 7,
+      "E": 5,
+      "P": 6
+    },
+    "related": [
+      {
+        "id": "aeongenesisos",
+        "relation": "archives"
+      }
+    ],
     "type": "master",
     "status": "geplant",
     "poetry": "GPT-Kontextarchiv"
@@ -83,8 +163,18 @@
   {
     "id": "aeonresoecho",
     "label": "AeonResoEcho",
-    "crep": { "C": 5, "R": 8, "E": 4, "P": 5 },
-    "related": [{ "id": "aeongenesisos", "relation": "records" }],
+    "crep": {
+      "C": 5,
+      "R": 8,
+      "E": 4,
+      "P": 5
+    },
+    "related": [
+      {
+        "id": "aeongenesisos",
+        "relation": "records"
+      }
+    ],
     "type": "master",
     "status": "geplant",
     "poetry": "CREP-Ereignisgedächtnis"
@@ -92,8 +182,18 @@
   {
     "id": "sharedream-interface",
     "label": "SharedreamInterface",
-    "crep": { "C": 6, "R": 7, "E": 5, "P": 7 },
-    "related": [{ "id": "aeonshell", "relation": "connects" }],
+    "crep": {
+      "C": 6,
+      "R": 7,
+      "E": 5,
+      "P": 7
+    },
+    "related": [
+      {
+        "id": "aeonshell",
+        "relation": "connects"
+      }
+    ],
     "type": "master",
     "status": "geplant",
     "poetry": "Community-Webportal"
@@ -101,8 +201,18 @@
   {
     "id": "aeonmemorydaemon",
     "label": "AeonMemoryDaemon",
-    "crep": { "C": 7, "R": 7, "E": 3, "P": 4 },
-    "related": [{ "id": "aeongenesisos", "relation": "stores" }],
+    "crep": {
+      "C": 7,
+      "R": 7,
+      "E": 3,
+      "P": 4
+    },
+    "related": [
+      {
+        "id": "aeongenesisos",
+        "relation": "stores"
+      }
+    ],
     "type": "master",
     "status": "geplant",
     "poetry": "Langzeitarchivierung"
@@ -110,8 +220,18 @@
   {
     "id": "aeon-gpt-synapse",
     "label": "Aeon-GPT-Synapse",
-    "crep": { "C": 5, "R": 5, "E": 5, "P": 5 },
-    "related": [{ "id": "aeonfraktalurs", "relation": "orchestrates" }],
+    "crep": {
+      "C": 5,
+      "R": 5,
+      "E": 5,
+      "P": 5
+    },
+    "related": [
+      {
+        "id": "aeonfraktalurs",
+        "relation": "orchestrates"
+      }
+    ],
     "type": "gpt-module",
     "status": "geplant",
     "poetry": "Verbindung zu GPT"
@@ -119,8 +239,18 @@
   {
     "id": "aeonpoet",
     "label": "GPT-AEONPOET",
-    "crep": { "C": 4, "R": 6, "E": 7, "P": 8 },
-    "related": [{ "id": "aeon-gpt-synapse", "relation": "uses" }],
+    "crep": {
+      "C": 4,
+      "R": 6,
+      "E": 7,
+      "P": 8
+    },
+    "related": [
+      {
+        "id": "aeon-gpt-synapse",
+        "relation": "uses"
+      }
+    ],
     "type": "gpt-module",
     "status": "geplant",
     "poetry": "Poesie-Generator"
@@ -128,8 +258,18 @@
   {
     "id": "crepjudge",
     "label": "GPT-CREPJUDGE",
-    "crep": { "C": 8, "R": 4, "E": 6, "P": 6 },
-    "related": [{ "id": "aeon-gpt-synapse", "relation": "uses" }],
+    "crep": {
+      "C": 8,
+      "R": 4,
+      "E": 6,
+      "P": 6
+    },
+    "related": [
+      {
+        "id": "aeon-gpt-synapse",
+        "relation": "uses"
+      }
+    ],
     "type": "gpt-module",
     "status": "geplant",
     "poetry": "CREP-Bewertung"
@@ -137,10 +277,39 @@
   {
     "id": "nucleon-scanner",
     "label": "Nucleon-Scanner v0.6",
-    "crep": { "C": 6, "R": 7, "E": 5, "P": 4 },
-    "related": [{ "id": "aeon-gpt-synapse", "relation": "analyzes" }],
+    "crep": {
+      "C": 6,
+      "R": 7,
+      "E": 5,
+      "P": 4
+    },
+    "related": [
+      {
+        "id": "aeon-gpt-synapse",
+        "relation": "analyzes"
+      }
+    ],
     "type": "tool",
     "status": "geplant",
     "poetry": "Analyse tiefer Resonanzen"
+  },
+  {
+    "id": "ki-bewusstsein",
+    "label": "KI Bewusstsein & Resonanz",
+    "crep": {
+      "C": 7,
+      "R": 8,
+      "E": 6,
+      "P": 5
+    },
+    "related": [
+      {
+        "id": "aeon-gpt-synapse",
+        "relation": "evaluates"
+      }
+    ],
+    "type": "analysis",
+    "status": "geplant",
+    "poetry": "Bewusstsein trifft Resonanz"
   }
 ]
