@@ -2400,22 +2400,28 @@
   path: packages/aeon-genesisos
   task: Navigator-Modul erweitern, Archetypenlogik integrieren
   test: packages/aeon-genesisos/ResonanzNavigator.test.ts
+status: done
+status: done
 - commit: Integriere CREPManager History
   path: packages/crep-engine
   task: History aus CREPManager.getCREPHistory() laden
   test: packages/crep-engine/CREPManager.test.ts
+status: done
 - commit: Aktivitätsdaten via Dispatcher laden
   path: packages/aeon-genesisos
   task: Daten aus Dispatcher/Registry für ActivityPanel verwenden
   test: packages/aeon-genesisos/ActivityDataLoader.test.ts
+status: done
 - commit: Dispatch Befehl nutzt REST/gRPC Client
   path: apps/cli-tools
   task: dispatchCmd ruft REST/gRPC Client für Task-Dispatch auf
   test: packages/cli-tools/dispatchCmd.test.ts
+status: done
 - commit: Implement SigillinParser
   path: packages/genesis-sigillin-core
   task: YAML-Header aus ZIP-Mem lesen und Sigillin-Signatur erzeugen
   test: packages/genesis-sigillin-core/SigillinParser.test.ts
+status: done
 - commit: Implement ResonanzNavigator
   path: packages/aeon-genesisos
   task: Zustände anhand Sigillin-Signatur aktualisieren
@@ -2424,23 +2430,28 @@
   path: packages/core
   task: TriggerArchive und useTriggerArchive hook bereitstellen
   test: packages/core/TriggerArchive.test.ts
+status: done
 - commit: Add PoeticReactorAgent
   path: packages/agents
   task: Agent generiert Haikus bei hohen CREP-Werten
   test: packages/agents/PoeticReactorAgent.test.ts
+status: done
 - commit: Create AgentHeatmap dashboard
   path: packages/unifiedmandala-ui
   task: useAgentActivity Hook und AgentHeatmap Komponente implementieren
   test: packages/unifiedmandala-ui/components/AgentHeatmap.test.tsx
+status: done
 - commit: Introduce AeonMemory
   path: packages/core
   task: Speichert erledigte Tasks in mandala-chronik.yaml und stellt useAeonMemory
     bereit
   test: packages/core/AeonMemory.test.ts
+status: done
 - commit: Implement CollaborativeEditor
   path: packages/collab-editor
   task: Texteditor mit Federation-Routes für Sync
   test: packages/collab-editor/CollaborativeEditor.test.ts
+status: done
 Prüfe regelmäßig, ob die Datenquellen (z.B. /api/meta-scores) und die Dashboard-Komponenten konsistent und aktuell die Layer-Konfiguration abbilden. Bei jedem Commit: Test-/Doku-Referenz ergänzen!
 Neue Aufgaben laut advancedconversations.json:
 - AestheticsLayer und EthicsLayer umsetzen.

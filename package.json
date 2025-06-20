@@ -18,8 +18,8 @@
     "grep:conversations": "node scripts/filter-conversations.js",
     "analyze:conversations": "node scripts/analyze-conversations.js",
     "update:advanced-todo": "node scripts/update-advanced-todo.js",
-    "export:crep-docs": "node scripts/export-crep-docs.js"
-    ,"symbolzeit:run": "node scripts/symbolzeit-runner.js"
+    "export:crep-docs": "node scripts/export-crep-docs.js",
+    "symbolzeit:run": "node scripts/symbolzeit-runner.js"
   },
   "dependencies": {
     "ajv": "^8.0.0",
@@ -28,14 +28,15 @@
     "d3": "^7.8.5",
     "focus-trap-react": "^9.0.2",
     "glob": "^8.0.0",
+    "js-yaml": "^4.1.0",
     "mitt": "^3.0.0",
+    "nats": "^2.29.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-tooltip": "^5.18.0",
     "recharts": "^2.8.0",
     "socket.io-client": "^4.7.5",
-    "yaml": "^2.8.0",
-    "nats": "^2.29.3"
+    "yaml": "^2.8.0"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^6.6.3",
@@ -43,6 +44,7 @@
     "@types/d3": "^7.4.3",
     "@types/glob": "^8.1.0",
     "@types/jest": "^29.5.7",
+    "@types/js-yaml": "^4.0.9",
     "@types/node": "^20.10.0",
     "@types/react": "^18.2.21",
     "@types/react-dom": "^18.2.7",

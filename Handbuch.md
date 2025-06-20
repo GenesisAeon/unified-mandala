@@ -51,6 +51,32 @@ Dieses Handbuch gibt einen Überblick über die wichtigsten Module und Funktione
 - `CREPWirkungstracker` – Protokolliert Effekte von CREP-Einträgen.
 - `loadSymbolphasen` – liest die Symbolphasen-Definition aus `config/symbolphasen.yaml`.
 
+### core
+- `AeonMemory` – Persistiert Aufgaben in `mandala-chronik.yaml`.
+- `TriggerArchive` – Hält Timeline von Triggern und React-Hook.
+
+### agents
+- `PoeticReactorAgent` – Generiert Haikus bei hohen CREP-Werten.
+- `GenesisAeonNavigator` – Schaltet Phasen anhand Sigillin frei.
+
+### collab-editor
+- `CollaborativeEditor` – Federated Texteditor mit Remote-Sync.
+
+### event-bus
+- `NatsEventBus` – Layer für NATS Nachrichtenkommunikation.
+
+### conversation-analysis
+- `CREPConversationScanner` – scannt Gesprächslogs nach CREP-Phrasen.
+
+### crep-automation
+- `AestheticsLayer` – Kontrast/Luminanz-Berechnung für Themes.
+- `EthicsLayer` – Filter für unethische Eingaben.
+
+### tts
+- `AeonOrakelTTS` – Einfache Sprachsynthese.
+
+### universum-simulationen
+- Module für narrative KI-Simulationen.
 ### unifiedmandala-ui (Auswahl)
 - `MandalaNetworkView` – Visualisierung der Sigillin-Knoten als D3-Graph.
 - `CREPChart` – Linienchart für CREP-Werte.

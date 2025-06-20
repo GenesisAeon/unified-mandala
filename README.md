@@ -54,6 +54,14 @@ packages/
   ├── aeon-fraktalurs           # GPT-Kontextarchiv
   ├── aeon-resoecho             # CREP-Zeitlinienarchiv
   ├── sharedream-interface      # Web-Schnittstelle & Sync
+  ├── agents               # Spezielle Agenten
+  ├── core                 # Zentrale Utilities
+  ├── collab-editor        # Kollaborativer Editor
+  ├── event-bus            # NATS-EventBus Implementierung
+  ├── conversation-analysis # Analyse von Gesprächen
+  ├── crep-automation      # CREP-bezogene Automationen
+  ├── tts                  # Sprachsynthese
+  ├── universum-simulationen # Simulationsmodule
   └── shared-utils              # Hilfsfunktionen für alle Pakete
 scripts/
   ├── aeon.sh                   # Poetisches Bash-CLI für Mandala-Steuerung
