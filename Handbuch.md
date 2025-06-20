@@ -1,6 +1,11 @@
 # UnifiedMandala Handbuch
 
-Dieses Handbuch gibt einen Überblick über die wichtigsten Module und Funktionen des Repositories.
+Dieses Handbuch gibt einen kompakten Überblick über Aufbau und Nutzung des Frameworks.
+
+> **TL;DR**
+> - Module sind thematisch in Packages organisiert.
+> - CLI-Skripte und Docs sorgen für schnellen Einstieg.
+> - Beispiele findest du in den jeweiligen Sektionen.
 
 ## Packages
 
@@ -29,12 +34,17 @@ Dieses Handbuch gibt einen Überblick über die wichtigsten Module und Funktione
 - `GPT_CREPJUDGE` – Bewertet CREP-Werte.
 - `GPTConversationLogger` – protokolliert Prompts und Antworten über den EventHub.
 
-
 ### genesis-sigillin-core
 - `SigillinGenerator` – Erstellt und validiert Sigillin-Dateien.
 - `SigillinActivationManager` – Verwalten aktiver Sigillin.
 - `SigillinSyncManager` – Synchronisiert Status über WebSocket oder BroadcastChannel.
 - `SigillinMetaSignatur` – Erzeugt eine Prüfsumme eines Objekts.
+
+```ts
+import { SigillinGenerator } from 'genesis-sigillin-core';
+const sig = SigillinGenerator('demo', 'generic', 'active', 'tester');
+console.log(sig.id);
+```
 
 ### shared-utils
 - `textFragmenter` – Zerlegt Texte oder Dateien in Fragmente.
@@ -71,11 +81,18 @@ Dieses Handbuch gibt einen Überblick über die wichtigsten Module und Funktione
 ### crep-automation
 - `AestheticsLayer` – Kontrast/Luminanz-Berechnung für Themes.
 - `EthicsLayer` – Filter für unethische Eingaben.
-
 - `SymbolzeitSync` – Verbindung CREPGameEngine ↔ SymbolzeitManager.
 - `RitualCompiler` – Kompiliert Rituale in CREP-FSMs.
+
 ### tts
 - `AeonOrakelTTS` – Einfache Sprachsynthese.
+
+```ts
+import { AeonOrakelTTS } from 'tts';
+import { GPTEventHub } from 'gpt-bridges';
+const orakel = new AeonOrakelTTS();
+GPTEventHub.emit('orakel:says', { content: 'Hallo UnifiedMandala' });
+```
 
 ### cli-tools
 - `sigillin-cli.ts` – Konvertiert und validiert Sigillin-Dateien.
@@ -87,6 +104,7 @@ Dieses Handbuch gibt einen Überblick über die wichtigsten Module und Funktione
 
 ### universum-simulationen
 - Module für narrative KI-Simulationen.
+
 ### unifiedmandala-ui (Auswahl)
 - `MandalaNetworkView` – Visualisierung der Sigillin-Knoten als D3-Graph.
 - `CREPChart` – Linienchart für CREP-Werte.
@@ -95,7 +113,6 @@ Dieses Handbuch gibt einen Überblick über die wichtigsten Module und Funktione
 - `SigillinLoader` – Lädt Sigillin-Dateien und filtert Einträge.
 - `SelfAuditModul` – Zeigt Kennzahlen aus `selfAnalyzer`.
 - `useSymbolzeit` – liest Symbolphasen aus der YAML und steuert Farben dynamisch.
-
 
 Weitere Module sind in Arbeit.
 
@@ -112,3 +129,6 @@ Informationen zur Exportstruktur der CREP-Daten finden sich in [docs/CREPDocExpo
 
 ### Sigillin-Beispiele
 Beispielhafte Sigillin-Dateien liegen unter [docs/sigillin.examples](docs/sigillin.examples).
+
+### Changelog
+Siehe [CHANGELOG.md](CHANGELOG.md) für eine Liste aller Änderungen.
