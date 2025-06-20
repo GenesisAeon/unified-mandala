@@ -2489,3 +2489,33 @@ status: done
   task: Normiertes Phi-Profil und dynamische Profilgenerierung, WeightHistory Logging
   test: packages/crep-engine/NucleonScanner.test.ts
   status: done
+- commit: Implement AestheticsLayer
+  path: packages/crep-automation
+  task: Bewertungs-Layer fuer Harmonie, Farbe und Form
+  test: packages/crep-automation/AestheticsLayer.test.ts
+  status: todo
+- commit: Implement EthicsLayer
+  path: packages/crep-automation
+  task: Bewertungs-Layer fuer ethische Eingaben
+  test: packages/crep-automation/EthicsLayer.test.ts
+  status: todo
+- commit: Setup mTLS and Kong JWT Gateway
+  path: config
+  task: Sichere API mit Zertifikaten und JWT Gateway
+  test: scripts/security-ci.test.ts
+  status: todo
+- commit: Add OpenTelemetry and Storybook CI
+  path: ci
+  task: Monitoring und visuelle Snapshot Tests integrieren
+  test: ci/storybook-ci.test.ts
+  status: todo
+- commit: Provide Automerge-Federation with SyncStatus
+  path: packages/collab-editor
+  task: Automatisches Mergen verteilter Edits mit Statusanzeige
+  test: packages/collab-editor/AutomergeFederation.test.ts
+  status: todo
+- commit: Run MetaLearnerAgent via GitHub Action
+  path: .github/workflows
+  task: Periodischer Lern-Agent per Action ausfuehren
+  test: .github/workflows/MetaLearnerAgent.test.ts
+  status: todo
