@@ -1,5 +1,7 @@
 import fs from 'fs';
+import yaml from 'js-yaml';
 
 test('meta learner workflow exists', () => {
-  expect(fs.existsSync('.github/workflows/meta-learner-agent.yml')).toBe(true);
+  const doc = yaml.load(fs.readFileSync('.github/workflows/meta-learner.yml', 'utf8')) as any;
+  expect(doc.name).toBe('Meta Learner');
 });

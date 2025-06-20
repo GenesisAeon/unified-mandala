@@ -1,0 +1,7 @@
+gateway:
+  url: https://api.local
+  jwt_sign_key: example-key
+mtls:
+  cert: ./certs/client.crt
+  key: ./certs/client.key
+  ca: ./certs/ca.crt
