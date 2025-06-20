@@ -19,6 +19,7 @@
     "analyze:conversations": "node scripts/analyze-conversations.js",
     "update:advanced-todo": "node scripts/update-advanced-todo.js",
     "export:crep-docs": "node scripts/export-crep-docs.js"
+    ,"symbolzeit:run": "node scripts/symbolzeit-runner.js"
   },
   "dependencies": {
     "ajv": "^8.0.0",
