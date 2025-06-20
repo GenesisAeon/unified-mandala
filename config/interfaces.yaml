@@ -1,0 +1,10 @@
+apis:
+  AeonShellAPI:
+    description: Shell-Kommandos zur Steuerung von Mandala-Instanzen
+    endpoint: /api/aeon-shell
+  GenesisPublicDocsAPI:
+    description: Zugriff auf öffentliche Genesis-Dokumentation
+    endpoint: /api/docs
+  SigillinValidatorAPI:
+    description: Validierung von Sigillin-Dateien
+    endpoint: /api/sigillin/validate

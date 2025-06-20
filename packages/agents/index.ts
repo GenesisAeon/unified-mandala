@@ -10,3 +10,5 @@ export * from './CodexResonanzFraktal';
 export * from './PoeticReactorAgent';
 export * from './ResonanzMetrics';
 export * from './BewusstseinsResonanzComparator';
+export * from './AeonKIResonanzAnalyzer';
+export * from './KIBewusstseinResonanzMonitor';
