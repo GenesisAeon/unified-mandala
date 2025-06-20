@@ -11,4 +11,5 @@ packages:
   - 'packages/aeon-resoecho'
   - 'packages/event-bus'
   - 'packages/sharedream-interface'
+  - 'packages/conversation-analysis'
   - 'apps/*'
