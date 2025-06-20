@@ -133,5 +133,14 @@
     "type": "gpt-module",
     "status": "geplant",
     "poetry": "CREP-Bewertung"
+  },
+  {
+    "id": "nucleon-scanner",
+    "label": "Nucleon-Scanner v0.6",
+    "crep": { "C": 6, "R": 7, "E": 5, "P": 4 },
+    "related": [{ "id": "aeon-gpt-synapse", "relation": "analyzes" }],
+    "type": "tool",
+    "status": "geplant",
+    "poetry": "Analyse tiefer Resonanzen"
   }
 ]

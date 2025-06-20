@@ -10,13 +10,24 @@ import { getSymbolzeitPhase } from '../shared-utils/symbolzeitModulator';
 import { loadSymbolphasen } from '../shared-utils/loadSymbolphasen';
 import { isValidRole } from './gptRoles';
 
-export function sendToGPT(request: GPTRequest) {
+export async function sendToGPT(request: GPTRequest): Promise<string> {
   if (!isValidRole(request.role)) {
     throw new Error(`Unbekannte GPT-Rolle: ${request.role}`);
   }
   const phaseId = getSymbolzeitPhase();
   const phases = loadSymbolphasen();
   const prefix = phases[phaseId]?.phase ? `[${phases[phaseId].phase}] ` : '';
-  console.log('Stub für GPT-Verbindung:', request, 'Phase:', phaseId);
-  return `${prefix}Dies ist ein GPT-Stubsignal.`;
+
+  const endpoint = process.env.GPT_ENDPOINT || 'http://localhost:3000/gpt';
+  const response = await fetch(endpoint, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ ...request, phase: phaseId })
+  });
+  if (!response.ok) {
+    throw new Error(`GPT request failed: ${response.status}`);
+  }
+  const data = await response.json();
+  const answer = data.response ?? '';
+  return `${prefix}${answer}`;
 }
