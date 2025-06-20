@@ -984,12 +984,14 @@
     "commit": "Add ResonanzMetrics analyzer",
     "path": "packages/agents",
     "task": "Analysiert Resonanzdaten aus Aeon KI Resonanz Gesprächen",
-    "test": "packages/agents/ResonanzMetrics.test.ts"
+    "test": "packages/agents/ResonanzMetrics.test.ts",
+    "status": "done"
   },
   {
     "commit": "Add BewusstseinsResonanzComparator",
     "path": "packages/agents",
     "task": "Vergleicht Bewusstseins- und Resonanzwerte",
-    "test": "packages/agents/BewusstseinsResonanzComparator.test.ts"
+    "test": "packages/agents/BewusstseinsResonanzComparator.test.ts",
+    "status": "done"
   }
 ]

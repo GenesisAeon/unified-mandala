@@ -81,6 +81,13 @@ console.log(sigil.id); // hello
 ### agents
 - `PoeticReactorAgent` – Generiert Haikus bei hohen CREP-Werten.
 - `GenesisAeonNavigator` – Schaltet Phasen anhand Sigillin frei.
+- `AeonKIResonanzAgent` – Sendet Resonanzereignisse an den GPTEventHub.
+- `KIBewusstsein` – Bewertet Symbiosepfade und Zielharmonie.
+- `SigillinZipSystem` – Packt und entpackt Sigillin-Bundles.
+- `CodexNavigatorAgent` – Liest Anweisungen aus `codexwork.yaml`.
+- `CodexProjectInitAgent` – Initialisiert neue Projektpfade.
+- `ResonanzMetrics` – Berechnet Durchschnitts- und Maximalwerte aus Resonanzdaten.
+- `BewusstseinsResonanzComparator` – Vergleicht Bewusstseins- und Resonanzwerte.
 
 ### collab-editor
 - `CollaborativeEditor` – Federated Texteditor mit Remote-Sync.

@@ -8,3 +8,5 @@ export * from './KIBewusstsein';
 export * from './SigillinZipSystem';
 export * from './CodexResonanzFraktal';
 export * from './PoeticReactorAgent';
+export * from './ResonanzMetrics';
+export * from './BewusstseinsResonanzComparator';
