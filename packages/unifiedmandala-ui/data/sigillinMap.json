@@ -1,3 +1,7 @@
 {
-  "fields": ["id", "symbol", "meaning"]
+  "fields": ["id", "symbol", "meaning"],
+  "data": [
+    { "id": "sun", "symbol": "\uD83C\uDF1E", "meaning": "fire" },
+    { "id": "water", "symbol": "\uD83C\uDF0A", "meaning": "water" }
+  ]
 }
