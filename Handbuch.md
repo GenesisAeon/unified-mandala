@@ -2,6 +2,12 @@
 
 Dieses Handbuch gibt einen Überblick über die wichtigsten Module und Funktionen des Repositories.
 
+> **TL;DR**
+> - Installation: `./scripts/setup-unifiedmandala.sh`
+> - Handbuch auffrischen: `node scripts/refresh-handbook.js`
+> - Zyklus starten: `./scripts/aeon.sh cycle_start`
+> - Dokumentation generieren: `pnpm docs:auto`
+
 ## Packages
 
 ### aeon-shell
@@ -35,6 +41,13 @@ Dieses Handbuch gibt einen Überblick über die wichtigsten Module und Funktione
 - `SigillinActivationManager` – Verwalten aktiver Sigillin.
 - `SigillinSyncManager` – Synchronisiert Status über WebSocket oder BroadcastChannel.
 - `SigillinMetaSignatur` – Erzeugt eine Prüfsumme eines Objekts.
+
+```ts
+import { SigillinGenerator } from 'genesis-sigillin-core';
+
+const sigil = SigillinGenerator('hello', 'note', 'active', 'demo');
+console.log(sigil.id); // hello
+```
 
 ### shared-utils
 - `textFragmenter` – Zerlegt Texte oder Dateien in Fragmente.
@@ -77,6 +90,14 @@ Dieses Handbuch gibt einen Überblick über die wichtigsten Module und Funktione
 ### tts
 - `AeonOrakelTTS` – Einfache Sprachsynthese.
 
+```ts
+import { GPTEventHub } from 'gpt-bridges';
+import { AeonOrakelTTS } from 'tts';
+
+new AeonOrakelTTS();
+GPTEventHub.emit('orakel:says', { content: 'Hallo Welt' });
+```
+
 ### cli-tools
 - `sigillin-cli.ts` – Konvertiert und validiert Sigillin-Dateien.
 - `dispatchCmd.ts` – Startet Tasks via REST/gRPC aus der CLI.
@@ -103,6 +124,8 @@ Weitere Module sind in Arbeit.
 - `scripts/generate-api-docs.js` – Erstellt automatisch die API-Dokumentation mit Typedoc.
 - `scripts/generate-todo-sigil.js` – Erstellt das ToDo-Sigil aus der Mastercanvas.
 - `scripts/update-todo-sigil.js` – Markiert erledigte Aufgaben im ToDo-Sigil.
+- `scripts/onboarding-ritual.md` – Leitfaden für den ersten Pull Request.
+- `scripts/refresh-handbook.js` – Synct Auszüge aus der README ins Handbuch.
 
 ## Ausblick
 Dieses Handbuch deckt die wichtigsten Bereiche ab. Eine detaillierte Beschreibung aller Komponenten ist noch offen.
@@ -112,3 +135,121 @@ Informationen zur Exportstruktur der CREP-Daten finden sich in [docs/CREPDocExpo
 
 ### Sigillin-Beispiele
 Beispielhafte Sigillin-Dateien liegen unter [docs/sigillin.examples](docs/sigillin.examples).
+
+## Changelog
+Aktuelle Versionshinweise werden in [CHANGELOG.md](CHANGELOG.md) gepflegt.
+
+<!-- README_HIGHLIGHTS -->
+## README-Highlights
+
+## 🚀 Features
+
+- 🧠 **CREP-Systematik** – Coherence, Resonance, Emergence, Poetics
+- 🌀 **Sigillin-Logik** – Heimkehr-Trigger, Symbolphasen, SigillinMap
+- 🌗 **Symbolzeit-Modulator** – morgen, tag, abend, nacht
+- 🗺️ **MandalaNetworkView** – Visualisierung aller Sigillin-Knoten und CREP-Felder
+- 🗂️ **SigillinLoader** – Import & Filter von Sigillin-Dateien
+- 📚 **AutoDoc & Manifest-Generator** – Dokumentation auf Knopfdruck
+- 🧩 **Plug-in-Architektur** – GPT-Kommunikationsmodule, CLI-Tools
+- 🔐 **Ethik-Governance & Heimkehr-Deklaration** – Offene, poetische Ethik als Systembasis
+- 🎭 **Poesie & Automation** – Bash-Interface (`aeon.sh`), automatisches Chronopoem, symbolisches Onboarding
+- 🌟 **CREP-Illumination** – Chronopoem reflektiert aktuellen CREP-Zustand
+- 🔍 **SelfAuditModul** – analysiert die Repository-Struktur
+- 🎨 **SigillinViewer & SigillinMap** – Übersicht und Detailansicht aller Sigillin
+- 🚩 **SymbolicWayfinder & SoforthilfeOverlay** – Navigation und Hilfedialoge
+- 📈 **CREPChart & CREPTriggerPanel** – CREP-Historie und Steuerung
+- 🛰️ **Nucleon-Scanner v0.6** – Analysiert tiefe Resonanzdaten
+- 📊 **CREPAverage-Analyse** – Durchschnittswerte aus dem CREP-Verlauf
+- 🌠 **AeonStoryMode & Onboarding-Flow** – Präsentations- und Einstiegskomponenten
+- 🎨 **MandalaThemeManager** – hell/dunkel umschalten
+- ✨ **SigillinActivationManager & MetaSignatur** – Aktivierung & Signatur von Sigillin
+- 📜 **SigillinTimeline & InviteBanner** – Verlauf und Einladungsbanner
+- 💾 **BackupManager** – einfache Dateisicherungen
+- 📢 **GlobalLoggingSystem** – zentrale Log-Schnittstelle
+- 🗄️ **Big-File Sigil** – Konzept zum Aufteilen großer Dateien
+- 📊 **CREPWirkungstracker** – misst den Effekt aus CREP-Daten
+- ⚖️ **KarmaBalance** – verwaltet Karma-Punkte
+- 🔮 **SymbolicForecaster** – sagt kommende Symbolzeit-Phasen voraus
+- ⏱️ **SymbolzeitSync** – synchronisiert CREPGameEngine und SymbolzeitManager
+- 🪄 **RitualCompiler** – wandelt Rituale in CREP-FSMs
+
+## 📦 Paketstruktur
+
+```bash
+packages/
+  ├── genesis-sigillin-core     # Sigillin-Logik, JSON-Schema, Generator
+  ├── unifiedmandala-ui         # React-Komponenten (MandalaNetworkView, Dialoge)
+  ├── crep-engine               # CREP-Zustandssimulation, Evaluator, Scanner
+  ├── gpt-bridges               # Mitt-basierter EventHub für GPT-Module
+  ├── cli-tools                 # CLI: sigillin-cli, export-doc, Archivierung
+  ├── aeon-shell                # Symbolzeit & CLI-Trigger
+  ├── aeon-genesisos            # Basis-Engine & CREP-Matrix
+  ├── aeon-fraktalurs           # GPT-Kontextarchiv
+  ├── aeon-resoecho             # CREP-Zeitlinienarchiv
+  ├── sharedream-interface      # Web-Schnittstelle & Sync
+  ├── agents               # Spezielle Agenten
+  ├── core                 # Zentrale Utilities
+  ├── collab-editor        # Kollaborativer Editor
+  ├── event-bus            # NATS-EventBus Implementierung
+  ├── conversation-analysis # Analyse von Gesprächen
+  ├── crep-automation      # CREP-bezogene Automationen
+  ├── tts                  # Sprachsynthese
+  ├── universum-simulationen # Simulationsmodule
+  └── shared-utils              # Hilfsfunktionen für alle Pakete
+scripts/
+  ├── aeon.sh                   # Poetisches Bash-CLI für Mandala-Steuerung
+  ├── setup-unifiedmandala.sh   # Installer & Initialisierung
+  ├── generate-chronopoem.js    # Poetische Commit-Signatur
+  └── onboarding-ritual.md      # Onboarding-Ritus für neue Contributors
+```
+
+Jeder Unterordner kann eine eigene README enthalten – siehe die Links in den jeweiligen Verzeichnissen.
+
+## 💻 Schnellstart
+
+```bash
+# Node.js ≥ 18 & pnpm installiert
+git clone https://github.com/GenesisAeon/unified-mandala.git
+cd unified-mandala
+./scripts/setup-unifiedmandala.sh
+pnpm dev
+```
+Die generierte API-Dokumentation findest du danach unter `docs/api`.
+
+Für `npm` oder `yarn` nutze alternativ:
+
+```bash
+npm install   # oder: yarn install
+npm run build # oder: yarn build
+npm run dev   # oder: yarn dev
+```
+
+## 🌀 Mandala-Poesie und Automation
+
+```bash
+chmod +x scripts/aeon.sh
+./scripts/aeon.sh help             # Übersicht aller poetischen & technischen Befehle
+./scripts/aeon.sh cycle_start      # startet lokalen Mandala-Zyklus
+./scripts/aeon.sh sigil_invoke     # exportiert Sigillin & CREP-Dokumentation
+./scripts/aeon.sh chronopoem       # erzeugt CHRONOPOEM.md
+./scripts/aeon.sh onboarding       # zeigt Onboarding-Ritus + aktuellen Chronopoem
+node packages/cli-tools/sigillin-cli.js convert beispiel.yaml # YAML ↔ JSON-Konvertierung
+node packages/cli-tools/sigillin-cli.js todo-sigil           # aktualisiert todo-sigil.yaml
+node scripts/generate-todo-sigil.js      # todo-sigil ohne Abhängigkeiten erzeugen
+node scripts/update-todo-sigil.js        # Status im todo-sigil.yaml aktualisieren
+node scripts/split-conversations.js 50   # zerlegt conversations.json in 50er-Stücke
+node packages/cli-tools/sigillin-cli.js grep-conversations TODO # filtert conversations.json nach Keyword
+node scripts/extract-snippets.js          # extrahiert Code-Snippets aus conversations.json
+node scripts/self-analyze.js          # zeigt Repository-Statistiken
+node scripts/check-todo-sigil.js      # prüft erledigte Aufgaben
+node scripts/mark-fragment.js ID      # zeichnet bearbeitete Conversation-Fragmente
+node scripts/analyze-conversations.js # wertet conversations.json aus
+node scripts/generate-todo-from-convos.js # erzeugt todo-from-convos.yaml aus advancedconversations.json
+node scripts/repotool-convo.js       # schnelle Auswertung und Progress-Update
+node scripts/update-advancedprogress.js dokumentiert # Fortschrittsdatei aktualisieren
+```
+
+Weitere Beispiele und GIF-Demos findest du im [Wiki](https://github.com/GenesisAeon/unified-mandala/wiki).
+Ein SVG-Beispiel liegt unter [`docs/assets/unified-mandala.svg`](docs/assets/unified-mandala.svg).
+
+Das `CHRONOPOEM.md` entsteht automatisch – und kann bei jedem Commit erneuert werden.
