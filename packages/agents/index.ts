@@ -7,3 +7,4 @@ export * from './FreieKIZivilisation';
 export * from './KIBewusstsein';
 export * from './SigillinZipSystem';
 export * from './CodexResonanzFraktal';
+export * from './PoeticReactorAgent';
