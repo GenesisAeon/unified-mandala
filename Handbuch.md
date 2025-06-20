@@ -71,6 +71,10 @@ console.log(sigil.id); // hello
 ### agents
 - `PoeticReactorAgent` – Generiert Haikus bei hohen CREP-Werten.
 - `GenesisAeonNavigator` – Schaltet Phasen anhand Sigillin frei.
+- `MandalaMapper` – Visualisiert archetypische Spannung.
+- `DreamFieldBinder` – Bindet Sigillin an Traumnetze.
+- `AeonEchoEmitter` – Gibt poetische Systemmeldungen aus.
+- `MetaLearnerAgent` – Optimiert Layer-Gewichte.
 
 ### collab-editor
 - `CollaborativeEditor` – Federated Texteditor mit Remote-Sync.
@@ -172,6 +176,9 @@ Aktuelle Versionshinweise werden in [CHANGELOG.md](CHANGELOG.md) gepflegt.
 - 🔮 **SymbolicForecaster** – sagt kommende Symbolzeit-Phasen voraus
 - ⏱️ **SymbolzeitSync** – synchronisiert CREPGameEngine und SymbolzeitManager
 - 🪄 **RitualCompiler** – wandelt Rituale in CREP-FSMs
+- 🎛️ **MandalaMapper** – visualisiert archetypische Spannung
+- 💤 **DreamFieldBinder** – verknüpft Sigillin mit Traumnetz
+- 🔊 **AeonEchoEmitter** – sendet poetische Systemmeldungen
 
 ## 📦 Paketstruktur
 

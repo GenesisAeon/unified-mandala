@@ -1,0 +1,9 @@
+_format_version: "3.0"
+services:
+  - name: unified-mandala
+    url: http://localhost:3000
+    routes:
+      - name: api
+        paths: ["/api"]
+plugins:
+  - name: jwt

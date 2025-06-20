@@ -2477,3 +2477,33 @@ Zyklische Review mit advancedprogress.json
   task: GPT-Orchestrierung vorbereiten und SigillinNodes erweitern
   test: packages/gpt-bridges/aeon-gpt-synapse.test.ts
 status: done
+- commit: Implement MandalaMapper
+  path: packages/agents
+  task: Visualisiert archetypische Spannung
+  test: packages/agents/MandalaMapper.test.ts
+  status: done
+- commit: Implement DreamFieldBinder
+  path: packages/agents
+  task: Verknüpft Sigillin mit Traumnetz
+  test: packages/agents/DreamFieldBinder.test.ts
+  status: done
+- commit: Implement AeonEchoEmitter
+  path: packages/agents
+  task: Sendet poetische Systemmeldungen
+  test: packages/agents/AeonEchoEmitter.test.ts
+  status: done
+- commit: Implement MetaLearnerAgent
+  path: packages/agents
+  task: Optimiert Layer-Gewichte
+  test: packages/agents/MetaLearnerAgent.test.ts
+  status: done
+- commit: Add mTLS script and Kong config
+  path: scripts
+  task: gen-certs.sh und kong.yml bereitstellen
+  test: ''
+  status: done
+- commit: Add tracing and Storybook workflow
+  path: packages/core
+  task: OpenTelemetry-Setup und Storybook CI
+  test: ''
+  status: done

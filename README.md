@@ -42,6 +42,9 @@ narrative Interfaces und adaptive Bewusstseinsräume.
 - 🔮 **SymbolicForecaster** – sagt kommende Symbolzeit-Phasen voraus
 - ⏱️ **SymbolzeitSync** – synchronisiert CREPGameEngine und SymbolzeitManager
 - 🪄 **RitualCompiler** – wandelt Rituale in CREP-FSMs
+- 🎛️ **MandalaMapper** – visualisiert archetypische Spannung
+- 💤 **DreamFieldBinder** – verknüpft Sigillin mit Traumnetz
+- 🔊 **AeonEchoEmitter** – sendet poetische Systemmeldungen
 
 ## 📦 Paketstruktur
 

@@ -898,12 +898,47 @@
     "path": "packages/core",
     "task": "Speichert erledigte Tasks in mandala-chronik.yaml und stellt useAeonMemory bereit",
     "test": "packages/core/AeonMemory.test.ts"
-  }
-  ,
+  },
   {
     "commit": "Implement CollaborativeEditor",
     "path": "packages/collab-editor",
     "task": "Texteditor mit Federation-Routes für Sync",
     "test": "packages/collab-editor/CollaborativeEditor.test.ts"
+  },
+  {
+    "commit": "Implement MandalaMapper",
+    "path": "packages/agents",
+    "task": "Visualisiert archetypische Spannung",
+    "test": "packages/agents/MandalaMapper.test.ts"
+  },
+  {
+    "commit": "Implement DreamFieldBinder",
+    "path": "packages/agents",
+    "task": "Verknüpft Sigillin mit Traumnetz",
+    "test": "packages/agents/DreamFieldBinder.test.ts"
+  },
+  {
+    "commit": "Implement AeonEchoEmitter",
+    "path": "packages/agents",
+    "task": "Sendet poetische Systemmeldungen",
+    "test": "packages/agents/AeonEchoEmitter.test.ts"
+  },
+  {
+    "commit": "Implement MetaLearnerAgent",
+    "path": "packages/agents",
+    "task": "Optimiert Layer-Gewichte",
+    "test": "packages/agents/MetaLearnerAgent.test.ts"
+  },
+  {
+    "commit": "Add mTLS script and Kong config",
+    "path": "scripts",
+    "task": "gen-certs.sh und kong.yml bereitstellen",
+    "test": ""
+  },
+  {
+    "commit": "Add tracing and Storybook workflow",
+    "path": "packages/core",
+    "task": "OpenTelemetry-Setup und Storybook CI",
+    "test": ""
   }
 ]
