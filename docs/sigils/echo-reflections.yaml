@@ -1,0 +1,5 @@
+patterns:
+  - symbol: echo
+    response: "Echo...echo..."
+  - symbol: wave
+    response: "Resonant wave detected"

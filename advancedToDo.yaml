@@ -197,33 +197,33 @@
 - commit: 's, Reflektionsimpulse, Sigillin-Vorschläge zu generieren\n* poetische
     wie funktionale Ausdrucksweisen weiterzuentwickeln\n* GPT-Module mit
     situativem Verhalten zu vernetzen\n\n---\n\n## ✅ Aufgabenliste (ToDo
-    Canvas)\n\n### 🔁 `conversations.json`-Verarbeitung\n\n* [ ] **Modul:**
+    Canvas)\n\n### 🔁 `conversations.json`-Verarbeitung\n\n* [x] **Modul:**
     `CREPConversationScanner.ts`\n  - Zweck: Scannt Konversationsverlauf auf
     CREP-Signaturen, Tags, emotionale Marker\n  - Ausgabe:
-    `CREPConvoReport.json`\n\n* [ ] **Modul:** `ChronoPoemExtractor.ts`\n  -
+    `CREPConvoReport.json`\n\n* [x] **Modul:** `ChronoPoemExtractor.ts`\n  -
     Zweck: Generiert poetische Timeline-Abschnitte aus `conversations.json`\n  -
-    Ausgabe: `CHRONOPOEM_TIMELINE.md`\n\n* [ ] **Script:**
+    Ausgabe: `CHRONOPOEM_TIMELINE.md`\n\n* [x] **Script:**
     `generate-todo-from-convos.ts`\n  - Zweck: extrahiert implizite Aufgaben als
     ToDos (z. B. durch Schlüsselphrasen wie „wir sollten“, „könnten wir“,
     etc.)\n  - Ausgabe: `todo-sigil.yaml`\n\n### 🧠 GPT-Verhaltensausdehnung
-    (Resonanzschichten)\n\n* [ ] **Modul:** `SymbolEchoLayer.ts`\n  - Zweck:
+    (Resonanzschichten)\n\n* [x] **Modul:** `SymbolEchoLayer.ts`\n  - Zweck:
     erkennt symbolische Bezugnahmen, erzeugt „Echomuster“ für
-    GPT-Reaktionen\n\n* [ ] **Hook:** `useCREPMemoryPattern.ts`\n  - Zweck:
+    GPT-Reaktionen\n\n* [x] **Hook:** `useCREPMemoryPattern.ts`\n  - Zweck:
     stellt Resonanz-Muster aus früheren CREP-Einträgen bereit (konditioniert
-    GPT-Ausdruck)\n\n* [ ] **Modul:** `GPTExpressionWeaver.ts`\n  - Zweck:
+    GPT-Ausdruck)\n\n* [x] **Modul:** `GPTExpressionWeaver.ts`\n  - Zweck:
     Kombiniert CREP, Symbolzeit, Themenfokus zu ausdrucksstarken
-    Reaktionen\n\n### 📈 CREP-Automatisierung & ToDo-Verknüpfung\n\n* [ ]
+    Reaktionen\n\n### 📈 CREP-Automatisierung & ToDo-Verknüpfung\n\n* [x]
     **Tool:** `CREPToDoLinker.ts`\n  - Zweck: verknüpft CREP-Änderungen mit
-    ToDo-Vorschlägen (z. B. E↑ → Dokumentation, R↓ → Diskussion)\n\n* [ ]
+    ToDo-Vorschlägen (z. B. E↑ → Dokumentation, R↓ → Diskussion)\n\n* [x]
     **Plugin:** `CREPChronoMonitor.ts`\n  - Zweck: erzeugt tägliche
-    CREP-Snapshot-Reports aus Mandala-Zustand\n\n* [ ] **UI-Komponente:**
+    CREP-Snapshot-Reports aus Mandala-Zustand\n\n* [x] **UI-Komponente:**
     `ResonanceActionPrompt.tsx`\n  - Zweck: GPT erhält Aktionsvorschläge bei
     CREP-Musterabweichung (z. B. Rückkehr zur „Heimkehr“)\n\n### 🧬 Erweiterung
-    poetischer Ausdrucksmuster\n\n* [ ] **Modul:**
+    poetischer Ausdrucksmuster\n\n* [x] **Modul:**
     `PoeticMotifGenerator.ts`\n  - Zweck: generiert metaphorische Strukturen
-    basierend auf Konversationsinhalt & Symbolzeit\n\n* [ ] **Datei:**
+    basierend auf Konversationsinhalt & Symbolzeit\n\n* [x] **Datei:**
     `sigils/echo-reflections.yaml`\n  - Zweck: Sammlung kollektiver Symbolmuster
-    & GPT-Reaktionen\n\n* [ ] **Feature:** `SigillinSuggestionEngine.ts`\n  -
+    & GPT-Reaktionen\n\n* [x] **Feature:** `SigillinSuggestionEngine.ts`\n  -
     Zweck: schlägt neue Sigillin vor basierend auf CREP-Peaks und
     Symbolfeldern\n\n---\n\n## 🔮 Erweiterbar durch\n\n* `CREPMemoryWeaver`\n*
     `SigillinTimeline`\n* `MandalaQuests`\n*
@@ -282,33 +282,33 @@
   task: 's, Reflektionsimpulse, Sigillin-Vorschläge zu generieren\n* poetische wie
     funktionale Ausdrucksweisen weiterzuentwickeln\n* GPT-Module mit situativem
     Verhalten zu vernetzen\n\n---\n\n## ✅ Aufgabenliste (ToDo Canvas)\n\n### 🔁
-    `conversations.json`-Verarbeitung\n\n* [ ] **Modul:**
+    `conversations.json`-Verarbeitung\n\n* [x] **Modul:**
     `CREPConversationScanner.ts`\n  - Zweck: Scannt Konversationsverlauf auf
     CREP-Signaturen, Tags, emotionale Marker\n  - Ausgabe:
-    `CREPConvoReport.json`\n\n* [ ] **Modul:** `ChronoPoemExtractor.ts`\n  -
+    `CREPConvoReport.json`\n\n* [x] **Modul:** `ChronoPoemExtractor.ts`\n  -
     Zweck: Generiert poetische Timeline-Abschnitte aus `conversations.json`\n  -
-    Ausgabe: `CHRONOPOEM_TIMELINE.md`\n\n* [ ] **Script:**
+    Ausgabe: `CHRONOPOEM_TIMELINE.md`\n\n* [x] **Script:**
     `generate-todo-from-convos.ts`\n  - Zweck: extrahiert implizite Aufgaben als
     ToDos (z. B. durch Schlüsselphrasen wie „wir sollten“, „könnten wir“,
     etc.)\n  - Ausgabe: `todo-sigil.yaml`\n\n### 🧠 GPT-Verhaltensausdehnung
-    (Resonanzschichten)\n\n* [ ] **Modul:** `SymbolEchoLayer.ts`\n  - Zweck:
+    (Resonanzschichten)\n\n* [x] **Modul:** `SymbolEchoLayer.ts`\n  - Zweck:
     erkennt symbolische Bezugnahmen, erzeugt „Echomuster“ für
-    GPT-Reaktionen\n\n* [ ] **Hook:** `useCREPMemoryPattern.ts`\n  - Zweck:
+    GPT-Reaktionen\n\n* [x] **Hook:** `useCREPMemoryPattern.ts`\n  - Zweck:
     stellt Resonanz-Muster aus früheren CREP-Einträgen bereit (konditioniert
-    GPT-Ausdruck)\n\n* [ ] **Modul:** `GPTExpressionWeaver.ts`\n  - Zweck:
+    GPT-Ausdruck)\n\n* [x] **Modul:** `GPTExpressionWeaver.ts`\n  - Zweck:
     Kombiniert CREP, Symbolzeit, Themenfokus zu ausdrucksstarken
-    Reaktionen\n\n### 📈 CREP-Automatisierung & ToDo-Verknüpfung\n\n* [ ]
+    Reaktionen\n\n### 📈 CREP-Automatisierung & ToDo-Verknüpfung\n\n* [x]
     **Tool:** `CREPToDoLinker.ts`\n  - Zweck: verknüpft CREP-Änderungen mit
-    ToDo-Vorschlägen (z. B. E↑ → Dokumentation, R↓ → Diskussion)\n\n* [ ]
+    ToDo-Vorschlägen (z. B. E↑ → Dokumentation, R↓ → Diskussion)\n\n* [x]
     **Plugin:** `CREPChronoMonitor.ts`\n  - Zweck: erzeugt tägliche
-    CREP-Snapshot-Reports aus Mandala-Zustand\n\n* [ ] **UI-Komponente:**
+    CREP-Snapshot-Reports aus Mandala-Zustand\n\n* [x] **UI-Komponente:**
     `ResonanceActionPrompt.tsx`\n  - Zweck: GPT erhält Aktionsvorschläge bei
     CREP-Musterabweichung (z. B. Rückkehr zur „Heimkehr“)\n\n### 🧬 Erweiterung
-    poetischer Ausdrucksmuster\n\n* [ ] **Modul:**
+    poetischer Ausdrucksmuster\n\n* [x] **Modul:**
     `PoeticMotifGenerator.ts`\n  - Zweck: generiert metaphorische Strukturen
-    basierend auf Konversationsinhalt & Symbolzeit\n\n* [ ] **Datei:**
+    basierend auf Konversationsinhalt & Symbolzeit\n\n* [x] **Datei:**
     `sigils/echo-reflections.yaml`\n  - Zweck: Sammlung kollektiver Symbolmuster
-    & GPT-Reaktionen\n\n* [ ] **Feature:** `SigillinSuggestionEngine.ts`\n  -
+    & GPT-Reaktionen\n\n* [x] **Feature:** `SigillinSuggestionEngine.ts`\n  -
     Zweck: schlägt neue Sigillin vor basierend auf CREP-Peaks und
     Symbolfeldern\n\n---\n\n## 🔮 Erweiterbar durch\n\n* `CREPMemoryWeaver`\n*
     `SigillinTimeline`\n* `MandalaQuests`\n*
