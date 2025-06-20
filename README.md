@@ -65,11 +65,11 @@ packages/
   ├── crep-automation      # CREP-bezogene Automationen
   ├── tts                  # Sprachsynthese
   ├── universum-simulationen # Simulationsmodule
-  └── shared-utils              # Hilfsfunktionen für alle Pakete
-      └── RestClient.ts         # einfacher REST-Helper
-
-modules/
+  ├── shared-utils              # Hilfsfunktionen für alle Pakete
+  │   └── RestClient.ts         # einfacher REST-Helper
   └── codex-navigator-agent     # Parser für Codex-Instruktionen
+apps/
+  └── sharedream-interface      # Web-Schnittstelle & Sync
 
 scripts/
   ├── aeon.sh                   # Poetisches Bash-CLI für Mandala-Steuerung
@@ -79,7 +79,7 @@ scripts/
 ```
 
 Jeder Unterordner kann eine eigene README enthalten – siehe die Links in den jeweiligen Verzeichnissen.
-Utilities liegen in `packages/shared-utils/`, weitere Module unter `modules/`.
+Utilities liegen in `packages/shared-utils/`, weitere Module findest du ebenfalls unter `packages/`.
 
 ## 💻 Schnellstart
 
