@@ -63,6 +63,7 @@ console.log(sigil.id); // hello
 - `SymbolicForecaster` – Berechnet die nächste Symbolzeitphase.
 - `CREPWirkungstracker` – Protokolliert Effekte von CREP-Einträgen.
 - `loadSymbolphasen` – liest die Symbolphasen-Definition aus `config/symbolphasen.yaml`.
+- `RestClient` – einfacher HTTP/HTTPS-Client für Tests und Skripte.
 
 ### core
 - `AeonMemory` – Persistiert Aufgaben in `mandala-chronik.yaml`.

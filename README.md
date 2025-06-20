@@ -66,6 +66,7 @@ packages/
   ├── tts                  # Sprachsynthese
   ├── universum-simulationen # Simulationsmodule
   └── shared-utils              # Hilfsfunktionen für alle Pakete
+      └── RestClient.ts         # einfacher REST-Helper
 scripts/
   ├── aeon.sh                   # Poetisches Bash-CLI für Mandala-Steuerung
   ├── setup-unifiedmandala.sh   # Installer & Initialisierung
