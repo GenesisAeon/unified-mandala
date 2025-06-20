@@ -12,4 +12,5 @@ packages:
   - 'packages/event-bus'
   - 'packages/sharedream-interface'
   - 'packages/conversation-analysis'
+  - 'packages/collab-editor'
   - 'apps/*'

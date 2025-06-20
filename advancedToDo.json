@@ -899,4 +899,11 @@
     "task": "Speichert erledigte Tasks in mandala-chronik.yaml und stellt useAeonMemory bereit",
     "test": "packages/core/AeonMemory.test.ts"
   }
+  ,
+  {
+    "commit": "Implement CollaborativeEditor",
+    "path": "packages/collab-editor",
+    "task": "Texteditor mit Federation-Routes für Sync",
+    "test": "packages/collab-editor/CollaborativeEditor.test.ts"
+  }
 ]
