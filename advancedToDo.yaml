@@ -2524,3 +2524,18 @@ status: done
   task: Lizenzmodell verwalten
   test: packages/shared-utils/MandalaCoreLicense.test.ts
   status: done
+- commit: Create AeonKIResonanzAgent
+  path: packages/agents
+  task: Agent analysiert Resonanzdaten aus conversations
+  test: packages/agents/AeonKIResonanzAgent.test.ts
+  status: open
+- commit: Implement KIBewusstseinAgent
+  path: packages/agents
+  task: Modul zur Bewusstseins- und Resonanzbewertung
+  test: packages/agents/KIBewusstsein.test.ts
+  status: open
+- commit: Extend NucleonScanner for v0.6 analysis
+  path: packages/crep-engine
+  task: Phi-Profil dynamisch berechnen und loggen
+  test: packages/crep-engine/NucleonScanner.test.ts
+  status: open
