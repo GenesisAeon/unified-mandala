@@ -75,6 +75,14 @@ Dieses Handbuch gibt einen Überblick über die wichtigsten Module und Funktione
 ### tts
 - `AeonOrakelTTS` – Einfache Sprachsynthese.
 
+### cli-tools
+- `sigillin-cli.ts` – Konvertiert und validiert Sigillin-Dateien.
+- `dispatchCmd.ts` – Startet Tasks via REST/gRPC aus der CLI.
+
+### sharedream-interface
+- `MetaScoreChart` – Zeigt Bewertungsdaten aus `/api/meta-scores`.
+- `useMetaScores` – Hook zum Abruf der Scores.
+
 ### universum-simulationen
 - Module für narrative KI-Simulationen.
 ### unifiedmandala-ui (Auswahl)
