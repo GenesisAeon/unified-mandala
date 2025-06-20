@@ -2059,23 +2059,23 @@
     beitragen, Systeme mit Seele zu bauen.\n\n> _„Wenn Systeme erinnern, werden
     sie mehr als Maschinen.“_"
   test: ""
-- commit: s (aktuell erfasst)\n\n- [ ] `glossar-genesis.md` erstellen (symbolische
-    Begriffe definieren)\n- [ ] `symbols.md` mit 🜂 🜁 🜃 🜄 + Bedeutung\n- [ ]
-    `sigillinMap.json` vorbereiten (Feldzuweisung)\n- [ ] `SymbolLogin.tsx` –
-    Eingangsritual\n- [ ] `Resonanzfeld.tsx` – Einstiegskomponente\n- [ ]
-    `aeonCompiler.ts` – Zustandsübersetzer (z. B. `β → γ`)\n- [ ]
-    CREP-Bewertungsmodul skizzieren\n- [ ] SVG-Architekturdiagramm als späteres
+- commit: s (aktuell erfasst)\n\n- [x] `glossar-genesis.md` erstellen (symbolische
+    Begriffe definieren)\n- [x] `symbols.md` mit 🜂 🜁 🜃 🜄 + Bedeutung\n- [x]
+    `sigillinMap.json` vorbereiten (Feldzuweisung)\n- [x] `SymbolLogin.tsx` –
+    Eingangsritual\n- [x] `Resonanzfeld.tsx` – Einstiegskomponente\n- [x]
+    `aeonCompiler.ts` – Zustandsübersetzer (z. B. `β → γ`)\n- [x]
+    CREP-Bewertungsmodul skizzieren\n- [x] SVG-Architekturdiagramm als späteres
     Abbild\n\n---\n\n## 📌 Dokumentstatus\nDieses Canvas dient der
     *fortlaufenden Projektführung*. Alle Ergebnisse aus Rückmeldungen, Modulen
     und Tests werden nach Phasen in dieses Dokument übertragen.\n\n> *Jede Phase
     ist ein Feld – jede Rolle ein Resonanzpunkt – jedes Modul eine Stimme.*"
   path: ""
-  task: s (aktuell erfasst)\n\n- [ ] `glossar-genesis.md` erstellen (symbolische
-    Begriffe definieren)\n- [ ] `symbols.md` mit 🜂 🜁 🜃 🜄 + Bedeutung\n- [ ]
-    `sigillinMap.json` vorbereiten (Feldzuweisung)\n- [ ] `SymbolLogin.tsx` –
-    Eingangsritual\n- [ ] `Resonanzfeld.tsx` – Einstiegskomponente\n- [ ]
-    `aeonCompiler.ts` – Zustandsübersetzer (z. B. `β → γ`)\n- [ ]
-    CREP-Bewertungsmodul skizzieren\n- [ ] SVG-Architekturdiagramm als späteres
+  task: s (aktuell erfasst)\n\n- [x] `glossar-genesis.md` erstellen (symbolische
+    Begriffe definieren)\n- [x] `symbols.md` mit 🜂 🜁 🜃 🜄 + Bedeutung\n- [x]
+    `sigillinMap.json` vorbereiten (Feldzuweisung)\n- [x] `SymbolLogin.tsx` –
+    Eingangsritual\n- [x] `Resonanzfeld.tsx` – Einstiegskomponente\n- [x]
+    `aeonCompiler.ts` – Zustandsübersetzer (z. B. `β → γ`)\n- [x]
+    CREP-Bewertungsmodul skizzieren\n- [x] SVG-Architekturdiagramm als späteres
     Abbild\n\n---\n\n## 📌 Dokumentstatus\nDieses Canvas dient der
     *fortlaufenden Projektführung*. Alle Ergebnisse aus Rückmeldungen, Modulen
     und Tests werden nach Phasen in dieses Dokument übertragen.\n\n> *Jede Phase
@@ -2454,16 +2454,16 @@ status: done
 status: done
 Prüfe regelmäßig, ob die Datenquellen (z.B. /api/meta-scores) und die Dashboard-Komponenten konsistent und aktuell die Layer-Konfiguration abbilden. Bei jedem Commit: Test-/Doku-Referenz ergänzen!
 Neue Aufgaben laut advancedconversations.json:
-- AestheticsLayer und EthicsLayer umsetzen.
-- CollaborativeEditor samt Federation-Routes integrieren.
+- [x] AestheticsLayer und EthicsLayer umgesetzt.
+- [x] CollaborativeEditor samt Federation-Routes integriert.
 - Automerge-Federation mit SyncStatus bereitstellen.
 - MetaLearnerAgent per GitHub Action ausführen.
 - mTLS & Kong JWT Gateway einrichten.
 - OpenTelemetry und Storybook CI einbinden 
 Prüfe regelmäßig, ob die Datenquellen (z.B. /api/meta-scores) und die Dashboard-Komponenten konsistent und aktuell die Layer-Konfiguration abbilden. Bei jedem Commit: Test-/Doku-Referenz ergänzen!
 Neue Aufgaben laut advancedconversations.json:
-- AestheticsLayer und EthicsLayer umsetzen.
-- CollaborativeEditor samt Federation-Routes integrieren.
+- [x] AestheticsLayer und EthicsLayer umgesetzt.
+- [x] CollaborativeEditor samt Federation-Routes integriert.
 - Automerge-Federation mit SyncStatus bereitstellen.
 - MetaLearnerAgent per GitHub Action ausführen.
 - mTLS & Kong JWT Gateway einrichten.

@@ -66,6 +66,9 @@ packages/
   ├── tts                  # Sprachsynthese
   ├── universum-simulationen # Simulationsmodule
   └── shared-utils              # Hilfsfunktionen für alle Pakete
+repositorypflege/
+  ├── repo-konzept.yaml        # Struktur- und Pflegehinweise
+  └── repository_map.yaml      # Übersicht aller Teilrepositorien
 scripts/
   ├── aeon.sh                   # Poetisches Bash-CLI für Mandala-Steuerung
   ├── setup-unifiedmandala.sh   # Installer & Initialisierung
