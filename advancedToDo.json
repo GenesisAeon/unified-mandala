@@ -1,59 +1,5 @@
 [
   {
-    "commit": "Add MetaScore API and UI",
-    "path": "apps/sharedream-interface",
-    "task": "Provide /api/meta-scores endpoint and display component",
-    "test": "apps/sharedream-interface/hooks/useMetaScores.test.ts"
-  },
-  {
-    "commit": "Add MetaScoreDisplay story",
-    "path": "apps/sharedream-interface/components",
-    "task": "Storybook entry for MetaScoreDisplay",
-    "test": "apps/sharedream-interface/hooks/useMetaScores.test.ts"
-  },
-  {
-    "commit": "Add MetaScoreChart",
-    "path": "apps/sharedream-interface/components",
-    "task": "Visualize meta scores via Recharts",
-    "test": "apps/sharedream-interface/components/MetaScoreChart.test.tsx"
-  },
-  {
-    "commit": "Self-Check meta score layer",
-    "path": "apps/sharedream-interface",
-    "task": "Verify UI, API and tests in sync",
-    "test": "apps/sharedream-interface/components/MetaScoreChart.test.tsx"
-  },
-  {
-    "commit": "Add meta-scores API test",
-    "path": "apps/sharedream-interface/pages/api",
-    "task": "Ensure meta-scores endpoint returns correct data",
-    "test": "apps/sharedream-interface/pages/api/meta-scores.test.ts"
-  },
-  {
-    "commit": "Handle fetch errors in useMetaScores",
-    "path": "apps/sharedream-interface/hooks",
-    "task": "Return error state when meta-score fetch fails and update components",
-    "test": "apps/sharedream-interface/hooks/useMetaScores.test.ts"
-  },
-  {
-    "commit": "Add meta score layer self-check",
-    "path": "scripts",
-    "task": "Verify meta score layer files and endpoint",
-    "test": "scripts/check-meta-score-layer.js"
-  },
-  {
-    "commit": "Parse advanced conversations",
-    "path": "scripts",
-    "task": "Use jsonFragmenter to extract tasks from docs/sigils/advancedconversations.json",
-    "test": "packages/shared-utils/jsonFragmenter.test.ts"
-  },
-  {
-    "commit": "Add progress update script",
-    "path": "scripts",
-    "task": "Automate advancedprogress.json updates",
-    "test": "scripts/update-advancedprogress.js"
-  },
-  {
     "commit": "- und Progress-Dateien mit diesem Stand.",
     "path": "",
     "task": "- und Progress-Dateien mit diesem Stand.",
