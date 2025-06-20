@@ -72,6 +72,8 @@ Dieses Handbuch gibt einen Überblick über die wichtigsten Module und Funktione
 - `AestheticsLayer` – Kontrast/Luminanz-Berechnung für Themes.
 - `EthicsLayer` – Filter für unethische Eingaben.
 
+- `SymbolzeitSync` – Verbindung CREPGameEngine ↔ SymbolzeitManager.
+- `RitualCompiler` – Kompiliert Rituale in CREP-FSMs.
 ### tts
 - `AeonOrakelTTS` – Einfache Sprachsynthese.
 

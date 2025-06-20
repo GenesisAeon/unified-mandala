@@ -40,6 +40,8 @@ narrative Interfaces und adaptive Bewusstseinsräume.
 - 📊 **CREPWirkungstracker** – misst den Effekt aus CREP-Daten
 - ⚖️ **KarmaBalance** – verwaltet Karma-Punkte
 - 🔮 **SymbolicForecaster** – sagt kommende Symbolzeit-Phasen voraus
+- ⏱️ **SymbolzeitSync** – synchronisiert CREPGameEngine und SymbolzeitManager
+- 🪄 **RitualCompiler** – wandelt Rituale in CREP-FSMs
 
 ## 📦 Paketstruktur
 
