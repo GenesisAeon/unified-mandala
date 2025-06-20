@@ -50,8 +50,14 @@ export function extractTodosFromConversations(filePath: string): string[] {
       if (!msg) continue;
       const parts = msg.content?.parts || [];
       for (const part of parts) {
-        const m = regex.exec(part);
-        if (m) todos.push(m[1].trim());
+        if (typeof part !== 'string') continue;
+        for (const line of part.split(/\n+/)) {
+          const m = regex.exec(line);
+          if (m) {
+            const text = m[1].split(/[\n\.]/)[0].trim();
+            if (text) todos.push(text);
+          }
+        }
       }
     }
   }
