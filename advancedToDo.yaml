@@ -60,6 +60,7 @@
   path: ""
   task: call your REST/gRPC client
   test: ""
+  status: done
 - commit: implement
   path: ""
   task: implement

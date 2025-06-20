@@ -15,3 +15,4 @@ export * from './symbolzeitModulator';
 export * from './loadSymbolphasen';
 export * from './conversationAnalyzer';
 export * from './advancedConversation';
+export * from './RestClient';
