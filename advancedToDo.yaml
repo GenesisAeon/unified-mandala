@@ -2437,6 +2437,10 @@
   task: Speichert erledigte Tasks in mandala-chronik.yaml und stellt useAeonMemory
     bereit
   test: packages/core/AeonMemory.test.ts
+- commit: Implement CollaborativeEditor
+  path: packages/collab-editor
+  task: Texteditor mit Federation-Routes für Sync
+  test: packages/collab-editor/CollaborativeEditor.test.ts
 Prüfe regelmäßig, ob die Datenquellen (z.B. /api/meta-scores) und die Dashboard-Komponenten konsistent und aktuell die Layer-Konfiguration abbilden. Bei jedem Commit: Test-/Doku-Referenz ergänzen!
 Neue Aufgaben laut advancedconversations.json:
 - AestheticsLayer und EthicsLayer umsetzen.
