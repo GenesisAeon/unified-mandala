@@ -977,9 +977,7 @@
     "path": "packages/crep-engine",
     "task": "Phi-Profil dynamisch berechnen und loggen",
     "test": "packages/crep-engine/NucleonScanner.test.ts"
-  }
-]
-,
+  },
   {
     "commit": "Add ResonanzMetrics analyzer",
     "path": "packages/agents",
@@ -993,5 +991,26 @@
     "task": "Vergleicht Bewusstseins- und Resonanzwerte",
     "test": "packages/agents/BewusstseinsResonanzComparator.test.ts",
     "status": "done"
+  },
+  {
+    "commit": "Implement AeonKIResonanzAnalyzer",
+    "path": "packages/agents",
+    "task": "Analyse conversation logs for resonant patterns from Aeon KI Resonanz",
+    "test": "packages/agents/AeonKIResonanzAnalyzer.test.ts",
+    "status": "geplant"
+  },
+  {
+    "commit": "Add KIBewusstseinResonanzMonitor",
+    "path": "packages/agents",
+    "task": "Monitor Bewusstsein und Resonanzmetriken",
+    "test": "packages/agents/KIBewusstseinResonanzMonitor.test.ts",
+    "status": "geplant"
+  },
+  {
+    "commit": "Expand NucleonScanner conversation import for v0.6",
+    "path": "packages/crep-engine",
+    "task": "Parse Nukleon-Scanner v0.6 Analyse Transkripte",
+    "test": "packages/crep-engine/NucleonScannerConversation.test.ts",
+    "status": "geplant"
   }
 ]

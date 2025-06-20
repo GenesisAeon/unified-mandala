@@ -233,3 +233,4 @@ gespeichert. Nutzen Sie die Helferskripte aus `packages/shared-utils`
 
 Nutze `node scripts/parse-advanced-conversations.js` um Gesprächs-TODOs aus dem Datensatz zu filtern.
 
+\nDie komplette Ordnerstruktur samt Modulen, Utils und Skripten ist in [repositorypflege/repository_map.yaml](repositorypflege/repository_map.yaml) dokumentiert.
