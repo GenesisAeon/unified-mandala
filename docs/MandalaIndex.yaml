@@ -1,0 +1,8 @@
+components:
+  aeon-genesisos: packages/aeon-genesisos
+  crep-engine: packages/crep-engine
+  gpt-bridges: packages/gpt-bridges
+  unifiedmandala-ui: packages/unifiedmandala-ui
+  cli-tools: packages/cli-tools
+  event-bus: packages/event-bus
+  genesis-sigillin-core: packages/genesis-sigillin-core
