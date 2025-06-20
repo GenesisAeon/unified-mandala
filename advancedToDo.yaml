@@ -2399,15 +2399,15 @@
 - commit: Implement komplexe Analyse und Kontextverarbeitung
   path: packages/aeon-genesisos
   task: Navigator-Modul erweitern, Archetypenlogik integrieren
-  test: TODO
+  test: packages/aeon-genesisos/ResonanzNavigator.test.ts
 - commit: Integriere CREPManager History
   path: packages/crep-engine
   task: History aus CREPManager.getCREPHistory() laden
-  test: TODO
+  test: packages/crep-engine/CREPManager.test.ts
 - commit: Aktivitätsdaten via Dispatcher laden
   path: packages/aeon-genesisos
   task: Daten aus Dispatcher/Registry für ActivityPanel verwenden
-  test: TODO
+  test: packages/aeon-genesisos/ActivityDataLoader.test.ts
 - commit: Dispatch Befehl nutzt REST/gRPC Client
   path: apps/cli-tools
   task: dispatchCmd ruft REST/gRPC Client für Task-Dispatch auf
