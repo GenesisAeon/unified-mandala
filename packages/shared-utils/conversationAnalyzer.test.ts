@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import { analyzeConversations, extractTodosFromConversations } from './conversationAnalyzer';
+import { analyzeConversations, extractTodosFromConversations, extractImplicitTodosFromConversations } from './conversationAnalyzer';
 
 describe('conversationAnalyzer', () => {
   const sample = path.join(__dirname, 'sample-conv.json');
@@ -27,5 +27,23 @@ describe('conversationAnalyzer', () => {
   it('extracts TODOs', () => {
     const todos = extractTodosFromConversations(sample);
     expect(todos).toEqual(['teste']);
+  });
+
+  it('extracts implicit todos', () => {
+    const file = path.join(__dirname, 'implicit.json');
+    const data = [
+      {
+        id: 'b',
+        mapping: {
+          root: {
+            message: { id: 'm2', author: { role: 'user' }, content: { parts: ['Wir sollten mehr Tests schreiben.'] } }
+          }
+        }
+      }
+    ];
+    fs.writeFileSync(file, JSON.stringify(data), 'utf8');
+    const todos = extractImplicitTodosFromConversations(file);
+    expect(todos).toEqual(['mehr Tests schreiben']);
+    fs.unlinkSync(file);
   });
 });
