@@ -11,6 +11,13 @@ UnifiedMandala verbindet symbolische KI-Module mit adaptiver CREP-Logik zu einer
 UnifiedMandala vereint maschinelle Zustandslogik (CREP), poetisch-symbolische Interaktion (Sigillin),
 und narrative KI-Module zu einer ethisch fundierten Infrastruktur für gemeinwohlorientierte Anwendungen,
 narrative Interfaces und adaptive Bewusstseinsräume.
+> **Neu im Mandala?**
+> 1. Lies [scripts/onboarding-ritual.md](scripts/onboarding-ritual.md)
+> 2. Starte `./scripts/aeon.sh onboarding`
+> 3. Erkunde das [CHRONOPOEM.md](CHRONOPOEM.md)
+
+Schau auch ins [Glossar](docs/glossar-genesis.md) für Begriffe.
+
 
 ## 🚀 Features
 
@@ -110,28 +117,51 @@ npm run dev   # oder: yarn dev
 
 ## 🌀 Mandala-Poesie und Automation
 
-```bash
-chmod +x scripts/aeon.sh
-./scripts/aeon.sh help             # Übersicht aller poetischen & technischen Befehle
-./scripts/aeon.sh cycle_start      # startet lokalen Mandala-Zyklus
-./scripts/aeon.sh sigil_invoke     # exportiert Sigillin & CREP-Dokumentation
-./scripts/aeon.sh chronopoem       # erzeugt CHRONOPOEM.md
-./scripts/aeon.sh onboarding       # zeigt Onboarding-Ritus + aktuellen Chronopoem
-node packages/cli-tools/sigillin-cli.js convert beispiel.yaml # YAML ↔ JSON-Konvertierung
-node packages/cli-tools/sigillin-cli.js todo-sigil           # aktualisiert todo-sigil.yaml
-node scripts/generate-todo-sigil.js      # todo-sigil ohne Abhängigkeiten erzeugen
-node scripts/update-todo-sigil.js        # Status im todo-sigil.yaml aktualisieren
-node scripts/split-conversations.js 50   # zerlegt conversations.json in 50er-Stücke
-node packages/cli-tools/sigillin-cli.js grep-conversations TODO # filtert conversations.json nach Keyword
-node scripts/extract-snippets.js          # extrahiert Code-Snippets aus conversations.json
-node scripts/self-analyze.js          # zeigt Repository-Statistiken
-node scripts/check-todo-sigil.js      # prüft erledigte Aufgaben
-node scripts/mark-fragment.js ID      # zeichnet bearbeitete Conversation-Fragmente
-node scripts/analyze-conversations.js # wertet conversations.json aus
-node scripts/generate-todo-from-convos.js # erzeugt todo-from-convos.yaml aus advancedconversations.json
-node scripts/repotool-convo.js       # schnelle Auswertung und Progress-Update
-node scripts/update-advancedprogress.js dokumentiert # Fortschrittsdatei aktualisieren
-```
+| Befehl/Skript | Funktion |
+|---------------|----------|
+| `./scripts/aeon.sh help` | Übersicht aller poetischen & technischen Befehle |
+| `./scripts/aeon.sh cycle_start` | Startet lokalen Mandala-Zyklus |
+| `./scripts/aeon.sh sigil_invoke` | Exportiert Sigillin & CREP-Dokumentation |
+| `./scripts/aeon.sh chronopoem` | Erstellt `CHRONOPOEM.md` |
+| `./scripts/aeon.sh onboarding` | Zeigt Onboarding-Ritus |
+| `pnpm dev` | Startet Dev-Server (UI & API) |
+| `pnpm docs:auto` | Generiert TypeDoc-API-Docs |
+| `pnpm lint` | Führt statische Typprüfung aus |
+| `pnpm test` | Führe Unit- & UI-Tests aus |
+| `node scripts/refresh-handbook.js` | Synchronisiert Handbuch |
+| `node scripts/setup-unifiedmandala.sh` | Installer & Initialisierung |
+| `./scripts/repair-repo.sh` | Repariert Repository-Verbindungen |
+| `node scripts/generate-api-docs.js` | Erstellt API-Dokumentation |
+| `node scripts/generate-chronopoem.js` | Generiert neues Chronopoem |
+| `node scripts/generate-todo-sigil.js` | Erzeugt `todo-sigil.yaml` |
+| `node scripts/update-todo-sigil.js` | Aktualisiert todo-Sigil-Status |
+| `node scripts/split-conversations.js` | Zerlegt `conversations.json` |
+| `node scripts/filter-conversations.js` | Filtert `conversations.json` |
+| `node scripts/parse-advanced-conversations.js` | Parst `advancedconversations.json` |
+| `node scripts/analyze-conversations.js` | Analysiert Gespräche |
+| `node scripts/generate-todo-from-convos.js` | Erstellt ToDo-Datei aus Convos |
+| `node scripts/export-crep-docs.js` | Exportiert CREP-Daten |
+| `node scripts/update-advanced-todo.js` | Aktualisiert Advanced-ToDo-Liste |
+| `node scripts/update-advancedprogress.js` | Dokumentiert Fortschritt |
+| `node scripts/update-kontext.js` | Passt Kontext-Datei an |
+| `node scripts/extract-snippets.js` | Extrahiert Code-Snippets |
+| `node scripts/extract_new_ai_fragments.js` | Extrahiert neue KI-Fragmente |
+| `node scripts/check-todo-sigil.js` | Prüft erledigte Aufgaben |
+| `node scripts/check-meta-score-layer.js` | Prüft Meta-Score-Layer |
+| `node scripts/mark-fragment.js` | Markiert bearbeitete Fragmente |
+| `node scripts/self-analyze.js` | Zeigt Repository-Statistiken |
+| `node scripts/scan-todo-comments.js` | Scannt TODO-Kommentare |
+| `node scripts/repotool-convo.js` | Schnelle Auswertung & Progress-Update |
+| `node scripts/website-to-yaml.js` | Wandelt Webseite in YAML um |
+| `node scripts/symbolzeit-runner.js` | Läuft Symbolzeit-Cronjob |
+| `node packages/cli-tools/sigillin-cli.js convert beispiel.yaml` | YAML ↔ JSON-Konvertierung |
+| `node packages/cli-tools/sigillin-cli.js todo-sigil` | Erzeugt todo-sigil aus Aufgabenlisten |
+| `node packages/cli-tools/sigillin-cli.js grep-conversations TODO` | Filtert Conversations nach Keyword |
+| `node packages/cli-tools/export-doc.js` | CREP-Historie als Markdown |
+| `node packages/cli-tools/sigillin-archive.js` | Archiviert Sigillin-Dateien |
+| `node packages/cli-tools/dispatchCmd.ts` | Dispatcher für diverse Befehle |
+
+
 
 Weitere Beispiele und GIF-Demos findest du im [Wiki](https://github.com/GenesisAeon/unified-mandala/wiki).
 Ein SVG-Beispiel liegt unter [`docs/assets/unified-mandala.svg`](docs/assets/unified-mandala.svg).
@@ -167,6 +197,11 @@ Deine Idee, deine Story, dein Sigillin sind willkommen! Jeder Pull Request ist e
 
 
 ## 🛠 Repository-Reparatur
+### Häufige Probleme
+- `pnpm dev` startet nicht → Node-Version prüfen, `pnpm install` erneut ausführen.
+- Symbolzeit stimmt nicht → Zeitzonen/Locale-Check, `symbolzeit.ts` debuggen.
+
+
 Falls GitHub Desktop keine Verbindung zum `main`-Branch herstellen kann, starte `scripts/repair-repo.sh` im Projektverzeichnis.
 
 
