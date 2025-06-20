@@ -199,6 +199,9 @@ packages/
   ├── shared-utils              # Hilfsfunktionen für alle Pakete
   │   └── RestClient.ts         # einfacher REST-Helper
   └── codex-navigator-agent     # Parser für Codex-Instruktionen
+codex/                    # Codex-Workflows und Sigillin-Dateien
+codexbuild/               # Build-Skripte und Deploy-Hilfen
+repositorypflege/         # Pflegekonzepte und Repository-Mapping
 apps/
   └── sharedream-interface      # Web-Schnittstelle & Sync
 scripts/

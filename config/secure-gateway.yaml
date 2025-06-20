@@ -1,0 +1,9 @@
+# Basic mTLS and Kong JWT Gateway config
+api_gateway:
+  mtls:
+    enabled: true
+    cert_file: server.crt
+    key_file: server.key
+  jwt:
+    issuer: unified-mandala
+    secret: changeme

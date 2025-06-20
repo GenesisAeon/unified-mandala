@@ -1,0 +1,11 @@
+name: MetaLearnerAgent
+on:
+  schedule:
+    - cron: '0 6 * * *'
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: pnpm install
+      - run: pnpm ts-node packages/agents/MetaLearnerAgent.ts
