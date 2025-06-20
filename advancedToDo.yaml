@@ -2437,3 +2437,24 @@
   task: Speichert erledigte Tasks in mandala-chronik.yaml und stellt useAeonMemory
     bereit
   test: packages/core/AeonMemory.test.ts
+Prüfe regelmäßig, ob die Datenquellen (z.B. /api/meta-scores) und die Dashboard-Komponenten konsistent und aktuell die Layer-Konfiguration abbilden. Bei jedem Commit: Test-/Doku-Referenz ergänzen!
+Neue Aufgaben laut advancedconversations.json:
+- AestheticsLayer und EthicsLayer umsetzen.
+- CollaborativeEditor samt Federation-Routes integrieren.
+- Automerge-Federation mit SyncStatus bereitstellen.
+- MetaLearnerAgent per GitHub Action ausführen.
+- mTLS & Kong JWT Gateway einrichten.
+- OpenTelemetry und Storybook CI einbinden 
+Prüfe regelmäßig, ob die Datenquellen (z.B. /api/meta-scores) und die Dashboard-Komponenten konsistent und aktuell die Layer-Konfiguration abbilden. Bei jedem Commit: Test-/Doku-Referenz ergänzen!
+Neue Aufgaben laut advancedconversations.json:
+- AestheticsLayer und EthicsLayer umsetzen.
+- CollaborativeEditor samt Federation-Routes integrieren.
+- Automerge-Federation mit SyncStatus bereitstellen.
+- MetaLearnerAgent per GitHub Action ausführen.
+- mTLS & Kong JWT Gateway einrichten.
+- OpenTelemetry und Storybook CI einbinden.
+Zyklische Review mit advancedprogress.json
+9. Commits je Sprint als Topic-Branch anlegen
+10. Self-Check-Tasks nach jedem Merge (Validierung, Tests, Storybook-Preview)
+11. Sigil unifiedmandala-advanced in CodexStartRoutine integrieren
+12. Finalstatus im GenesisBlueprint.md dokumentieren
