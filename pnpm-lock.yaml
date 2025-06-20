@@ -106,6 +106,8 @@ importers:
         specifier: ^5.4.0
         version: 5.8.3
 
+  packages/codex-navigator-agent: {}
+
 packages:
 
   '@adobe/css-tools@4.4.3':

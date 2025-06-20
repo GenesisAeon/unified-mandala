@@ -13,4 +13,5 @@ packages:
   - 'packages/sharedream-interface'
   - 'packages/conversation-analysis'
   - 'packages/collab-editor'
+  - 'packages/codex-navigator-agent'
   - 'apps/*'
