@@ -1,7 +1,7 @@
 import fs from 'fs';
 
-test('secure gateway config contains tls and jwt', () => {
-  const content = fs.readFileSync('config/secure-gateway.yaml', 'utf-8');
-  expect(content).toContain('mtls');
-  expect(content).toContain('jwt');
+test('gateway config contains mTLS and JWT', () => {
+  const raw = fs.readFileSync('config/mtls-kong-gateway.yaml', 'utf8');
+  expect(raw).toContain('jwt_sign_key');
+  expect(raw).toContain('cert');
 });

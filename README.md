@@ -42,6 +42,8 @@ narrative Interfaces und adaptive Bewusstseinsräume.
 - 🔮 **SymbolicForecaster** – sagt kommende Symbolzeit-Phasen voraus
 - ⏱️ **SymbolzeitSync** – synchronisiert CREPGameEngine und SymbolzeitManager
 - 🪄 **RitualCompiler** – wandelt Rituale in CREP-FSMs
+- 🤝 **AutomergeFederation** – führt verteilte Edits automatisch zusammen
+- 🛡️ **MandalaCoreLicense** – ethisches Lizenzmodell für Module
 
 ## 📦 Paketstruktur
 

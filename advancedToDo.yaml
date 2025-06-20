@@ -2519,3 +2519,8 @@ status: done
   task: Periodischer Lern-Agent per Action ausfuehren
   test: .github/workflows/MetaLearnerAgent.test.ts
   status: done
+- commit: Implement MandalaCoreLicense
+  path: packages/shared-utils
+  task: Lizenzmodell verwalten
+  test: packages/shared-utils/MandalaCoreLicense.test.ts
+  status: done

@@ -62,6 +62,7 @@ console.log(sigil.id); // hello
 - `KarmaBalance` – Einfache Punktesammlung.
 - `SymbolicForecaster` – Berechnet die nächste Symbolzeitphase.
 - `CREPWirkungstracker` – Protokolliert Effekte von CREP-Einträgen.
+- `MandalaCoreLicense` – Verwaltet Lizenzhinweise für Module.
 - `loadSymbolphasen` – liest die Symbolphasen-Definition aus `config/symbolphasen.yaml`.
 - `RestClient` – einfacher HTTP/HTTPS-Client für Tests und Skripte.
 
@@ -75,6 +76,7 @@ console.log(sigil.id); // hello
 
 ### collab-editor
 - `CollaborativeEditor` – Federated Texteditor mit Remote-Sync.
+- `AutomergeFederation` – Verbindet lokale und entfernte Änderungen.
 
 ### event-bus
 - `NatsEventBus` – Layer für NATS Nachrichtenkommunikation.
@@ -173,6 +175,8 @@ Aktuelle Versionshinweise werden in [CHANGELOG.md](CHANGELOG.md) gepflegt.
 - 🔮 **SymbolicForecaster** – sagt kommende Symbolzeit-Phasen voraus
 - ⏱️ **SymbolzeitSync** – synchronisiert CREPGameEngine und SymbolzeitManager
 - 🪄 **RitualCompiler** – wandelt Rituale in CREP-FSMs
+- 🤝 **AutomergeFederation** – führt verteilte Edits automatisch zusammen
+- 🛡️ **MandalaCoreLicense** – ethisches Lizenzmodell für Module
 
 ## 📦 Paketstruktur
 
