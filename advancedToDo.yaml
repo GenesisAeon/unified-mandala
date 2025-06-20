@@ -2478,3 +2478,14 @@ Zyklische Review mit advancedprogress.json
   task: GPT-Orchestrierung vorbereiten und SigillinNodes erweitern
   test: packages/gpt-bridges/aeon-gpt-synapse.test.ts
 status: done
+
+- commit: Add CodexNavigatorAgent module
+  path: packages/codex-navigator-agent
+  task: Grundgeruest mit Parsern fuer codexinstructions.yaml und AGENTS.md
+  test: packages/codex-navigator-agent/CodexNavigatorAgent.test.ts
+  status: todo
+- commit: Extend NucleonScanner with phi profile
+  path: packages/crep-engine
+  task: Normiertes Phi-Profil und dynamische Profilgenerierung, WeightHistory Logging
+  test: packages/crep-engine/NucleonScanner.test.ts
+  status: todo

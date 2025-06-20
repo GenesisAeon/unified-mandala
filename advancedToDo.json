@@ -899,12 +899,23 @@
     "path": "packages/core",
     "task": "Speichert erledigte Tasks in mandala-chronik.yaml und stellt useAeonMemory bereit",
     "test": "packages/core/AeonMemory.test.ts"
-  }
-  ,
+  },
   {
     "commit": "Implement CollaborativeEditor",
     "path": "packages/collab-editor",
     "task": "Texteditor mit Federation-Routes für Sync",
     "test": "packages/collab-editor/CollaborativeEditor.test.ts"
+  },
+  {
+    "commit": "Add CodexNavigatorAgent module",
+    "path": "packages/codex-navigator-agent",
+    "task": "Grundgeruest mit Parsern fuer codexinstructions.yaml und AGENTS.md",
+    "test": "packages/codex-navigator-agent/CodexNavigatorAgent.test.ts"
+  },
+  {
+    "commit": "Extend NucleonScanner with phi profile",
+    "path": "packages/crep-engine",
+    "task": "Normiertes Phi-Profil und dynamische Profilgenerierung, WeightHistory Logging",
+    "test": "packages/crep-engine/NucleonScanner.test.ts"
   }
 ]
