@@ -843,60 +843,60 @@
     "commit": "Implement komplexe Analyse und Kontextverarbeitung",
     "path": "packages/aeon-genesisos",
     "task": "Navigator-Modul erweitern, Archetypenlogik integrieren",
-    "test": "TODO"
+    "test": "packages/aeon-genesisos/ResonanzNavigator.test.ts"
   },
   {
     "commit": "Integriere CREPManager History",
     "path": "packages/crep-engine",
     "task": "History aus CREPManager.getCREPHistory() laden",
-    "test": "TODO"
+    "test": "packages/crep-engine/CREPManager.test.ts"
   },
   {
     "commit": "Aktivitätsdaten via Dispatcher laden",
     "path": "packages/aeon-genesisos",
     "task": "Daten aus Dispatcher/Registry für ActivityPanel verwenden",
-    "test": "TODO"
+    "test": "packages/aeon-genesisos/ActivityDataLoader.test.ts"
   },
   {
     "commit": "Dispatch Befehl nutzt REST/gRPC Client",
     "path": "apps/cli-tools",
     "task": "dispatchCmd ruft REST/gRPC Client für Task-Dispatch auf",
-    "test": "TODO"
+    "test": "packages/cli-tools/dispatchCmd.test.ts"
   },
   {
     "commit": "Implement SigillinParser",
     "path": "packages/genesis-sigillin-core",
     "task": "YAML-Header aus ZIP-Mem lesen und Sigillin-Signatur erzeugen",
-    "test": "TODO"
+    "test": "packages/genesis-sigillin-core/SigillinParser.test.ts"
   },
   {
     "commit": "Implement ResonanzNavigator",
     "path": "packages/aeon-genesisos",
     "task": "Zustände anhand Sigillin-Signatur aktualisieren",
-    "test": "TODO"
+    "test": "packages/aeon-genesisos/ResonanzNavigator.test.ts"
   },
   {
     "commit": "Add TriggerArchive utilities",
     "path": "packages/core",
     "task": "TriggerArchive und useTriggerArchive hook bereitstellen",
-    "test": "TODO"
+    "test": "packages/core/TriggerArchive.test.ts"
   },
   {
     "commit": "Add PoeticReactorAgent",
     "path": "packages/agents",
     "task": "Agent generiert Haikus bei hohen CREP-Werten",
-    "test": "TODO"
+    "test": "packages/agents/PoeticReactorAgent.test.ts"
   },
   {
     "commit": "Create AgentHeatmap dashboard",
     "path": "packages/unifiedmandala-ui",
     "task": "useAgentActivity Hook und AgentHeatmap Komponente implementieren",
-    "test": "TODO"
+    "test": "packages/unifiedmandala-ui/components/AgentHeatmap.test.tsx"
   },
   {
     "commit": "Introduce AeonMemory",
     "path": "packages/core",
     "task": "Speichert erledigte Tasks in mandala-chronik.yaml und stellt useAeonMemory bereit",
-    "test": "TODO"
+    "test": "packages/core/AeonMemory.test.ts"
   }
 ]
