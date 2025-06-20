@@ -29,6 +29,7 @@ narrative Interfaces und adaptive Bewusstseinsräume.
 - 🚩 **SymbolicWayfinder & SoforthilfeOverlay** – Navigation und Hilfedialoge
 - 📈 **CREPChart & CREPTriggerPanel** – CREP-Historie und Steuerung
 - 🛰️ **Nucleon-Scanner v0.6** – Analysiert tiefe Resonanzdaten
+- 📐 **CREPBewertungsmodul** – berechnet Durchschnittswerte und Klassifizierung
 - 📊 **CREPAverage-Analyse** – Durchschnittswerte aus dem CREP-Verlauf
 - 🌠 **AeonStoryMode & Onboarding-Flow** – Präsentations- und Einstiegskomponenten
 - 🎨 **MandalaThemeManager** – hell/dunkel umschalten

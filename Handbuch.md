@@ -27,6 +27,7 @@ Dieses Handbuch gibt einen Überblick über die wichtigsten Module und Funktione
 - `CREPManager` – Hält die CREP-Historie und berechnet Durchschnittswerte.
 - `CREPEvaluator` – Ermittelt anhand von Thresholds den aktuellen Zustand.
 - `getCREPState` – Hilfsfunktion zur Statusermittlung.
+- `CREPBewertungsmodul` – Berechnet Score und Klassifizierung aus C,R,E,P
 
 ### gpt-bridges
 - `GPTEventHub` – Zentrales Event-System zwischen GPT-Modulen.
