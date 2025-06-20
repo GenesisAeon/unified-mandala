@@ -997,14 +997,14 @@
     "path": "packages/agents",
     "task": "Analyse conversation logs for resonant patterns from Aeon KI Resonanz",
     "test": "packages/agents/AeonKIResonanzAnalyzer.test.ts",
-    "status": "geplant"
+    "status": "done"
   },
   {
     "commit": "Add KIBewusstseinResonanzMonitor",
     "path": "packages/agents",
     "task": "Monitor Bewusstsein und Resonanzmetriken",
     "test": "packages/agents/KIBewusstseinResonanzMonitor.test.ts",
-    "status": "geplant"
+    "status": "done"
   },
   {
     "commit": "Expand NucleonScanner conversation import for v0.6",

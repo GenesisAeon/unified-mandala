@@ -6,6 +6,7 @@ React-Komponenten für das Mandala-Frontend.
 - **MandalaNetworkView** – D3-Netzwerk aller Sigillin-Knoten
 - **CREPChart** – Visualisierung der CREP-Historie
 - **CREPTriggerPanel** – Anzeige und Steuerung von CREP-Events
+- **CREPInfoModal** – Erklärungsdialog für CREP-Werte
 - **SigillinLoader** – Laden und Filtern von Sigillin-Dateien
 - **SigillinViewer** – Darstellung einzelner Sigillin-Daten
 - **SigillinMap** – Übersicht aller bekannten Sigillin

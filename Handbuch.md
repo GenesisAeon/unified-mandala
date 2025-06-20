@@ -281,6 +281,7 @@ codex/                    # Codex-Workflows und Sigillin-Dateien
 codexbuild/               # Build-Skripte und Deploy-Hilfen
 ci/                      # Test- und Pipeline-Konfigurationen
 config/                  # Zentrale YAML- und Env-Dateien
+  └── interfaces.yaml       # API-Endpunkte der Plattform
 repositorypflege/         # Pflegekonzepte und Repository-Mapping
 apps/
   └── sharedream-interface      # Web-Schnittstelle & Sync
