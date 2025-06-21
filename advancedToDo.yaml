@@ -2759,3 +2759,23 @@ status: done
   task: MobileOptimization for responsive design
   test: packages/unifiedmandala-ui/hooks/useBreakpoint.test.ts
   status: done
+- commit: Add CREPFeedbackLoop module
+  path: packages/crep-automation/CREPFeedbackLoop.ts
+  task: Generate micro-feedback tasks from snapshots
+  test: packages/crep-automation/CREPFeedbackLoop.test.ts
+  status: done
+- commit: Add SigillinOnDemandGenerator CLI
+  path: packages/cli-tools/SigillinOnDemandGenerator.ts
+  task: Generate sigillin templates via CLI
+  test: packages/cli-tools/SigillinOnDemandGenerator.test.ts
+  status: done
+- commit: Add CREPToDoPrioritizer
+  path: packages/crep-automation/CREPToDoPrioritizer.ts
+  task: Prioritize todos using CREP trends
+  test: packages/crep-automation/CREPToDoPrioritizer.test.ts
+  status: done
+- commit: Add CREPConvoHeatmap component
+  path: apps/sharedream-interface/components/CREPConvoHeatmap.tsx
+  task: Visualize CREP fluctuations as heatmap
+  test: apps/sharedream-interface/components/CREPConvoHeatmap.test.tsx
+  status: done
