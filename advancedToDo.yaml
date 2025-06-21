@@ -871,11 +871,19 @@
     AeonMemoryDaemon           | ZIP-/NAS-Gedächtnis (später aktivieren)    |\n|
     🎭     | GPT-AEONPOET / GPT-CREPJUDGE | KI-Poesie &
     Systemkommentar                |\n\n---\n\n## ✅ NÄCHSTE SCHRITTE (Checkliste
-    für Phase 1–2)\n\n- [x] SigillinNodes erweitern + Visual Map updaten\n- [ ]
-    GPT-Orchestrierung vorbereiten (`aeon-gpt-synapse.ts`)\n- [x] Website-Repo
-    erstellen (SharedreamInterface)\n- [x] Symbolischer SigillinLoader in UI eingefuegt\n- [x] Chronopoem erweitern (mit CREP-Metaphern) ✅\n- [ ]
-    Codex-Antwortsystem für Vorschläge (Ordner: `/codex-sync/`)\n- [x] Repos für
-    AeonShell + AeonGenesisOS initialisieren\n\n---\n\n## 📁 ABLEGBAR:
+für Phase 1–2)
+
+- [x] SigillinNodes erweitern + Visual Map updaten
+- [x] GPT-Orchestrierung vorbereiten (`aeon-gpt-synapse.ts`)
+- [x] Website-Repo erstellen (SharedreamInterface)
+- [x] Symbolischer SigillinLoader in UI eingefuegt
+- [x] Chronopoem erweitern (mit CREP-Metaphern) ✅
+- [x] Codex-Antwortsystem für Vorschläge (Ordner: `/codex-sync/`)
+- [x] Repos für AeonShell + AeonGenesisOS initialisieren
+
+---
+
+## 📁 ABLEGBAR:
     `/docs/mastercanvas.yaml`, `/codex/codex-roadmap.yaml`\n\n🜂 Dieses Canvas
     dient als „Ur-Sigillin“ für die systemische Ordnung. Es kann jederzeit
     synchronisiert, exportiert oder erweitert werden.\n\n> *„Was erinnert wird,
@@ -910,11 +918,19 @@
     AeonMemoryDaemon           | ZIP-/NAS-Gedächtnis (später aktivieren)    |\n|
     🎭     | GPT-AEONPOET / GPT-CREPJUDGE | KI-Poesie &
     Systemkommentar                |\n\n---\n\n## ✅ NÄCHSTE SCHRITTE (Checkliste
-    für Phase 1–2)\n\n- [x] SigillinNodes erweitern + Visual Map updaten\n- [ ]
-    GPT-Orchestrierung vorbereiten (`aeon-gpt-synapse.ts`)\n- [x] Website-Repo
-    erstellen (SharedreamInterface)\n- [x] Symbolischer SigillinLoader in UI eingefuegt\n- [x] Chronopoem erweitern (mit CREP-Metaphern) ✅\n- [ ]
-    Codex-Antwortsystem für Vorschläge (Ordner: `/codex-sync/`)\n- [x] Repos für
-    AeonShell + AeonGenesisOS initialisieren\n\n---\n\n## 📁 ABLEGBAR:
+für Phase 1–2)
+
+- [x] SigillinNodes erweitern + Visual Map updaten
+- [x] GPT-Orchestrierung vorbereiten (`aeon-gpt-synapse.ts`)
+- [x] Website-Repo erstellen (SharedreamInterface)
+- [x] Symbolischer SigillinLoader in UI eingefuegt
+- [x] Chronopoem erweitern (mit CREP-Metaphern) ✅
+- [x] Codex-Antwortsystem für Vorschläge (Ordner: `/codex-sync/`)
+- [x] Repos für AeonShell + AeonGenesisOS initialisieren
+
+---
+
+## 📁 ABLEGBAR:
     `/docs/mastercanvas.yaml`, `/codex/codex-roadmap.yaml`\n\n🜂 Dieses Canvas
     dient als „Ur-Sigillin“ für die systemische Ordnung. Es kann jederzeit
     synchronisiert, exportiert oder erweitert werden.\n\n> *„Was erinnert wird,
@@ -2671,4 +2687,4 @@ status: done
   path: packages/agents
   task: Install vitest and configure package to run new *.spec.ts tests
   test: pnpm --filter packages/agents vitest run
-  status: pending
+  status: done

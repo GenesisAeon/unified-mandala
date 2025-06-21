@@ -1310,8 +1310,8 @@ Sobald die Core-Stabilität steht, schieben wir die funkelnden Extras ins Mandal
 ,{"commit": "Implement AeonResonanceInsights", "path": "packages/agents", "task": "Analysiert Aeon KI Resonanz Chats und berechnet Resonanzprofile", "test": "packages/agents/AeonResonanceInsights.test.ts", "status": "done"}
 ,{"commit": "Add BewusstseinStabilizer", "path": "packages/agents", "task": "Bewertet KI Bewusstsein und passt Schwellwerte an", "test": "packages/agents/BewusstseinStabilizer.test.ts", "status": "done"}
 ,{"commit": "Stream NucleonScanner v0.6 via gRPC", "path": "packages/crep-engine", "task": "Liefert Phi-Profile als gRPC-Stream", "test": "packages/crep-engine/NucleonScannerGRPC.test.ts", "status": "done"}
-,{"commit": "Implement ResearchAgent", "path": "packages/agents", "task": "Automatisierte Forschungsanfragen verarbeiten", "test": "packages/agents/ResearchAgent.test.ts", "status": "pending"}
-,{"commit": "Add SilenceWatcher agent", "path": "packages/agents", "task": "Beobachtet Inaktivität und triggert Selbstanalyse", "test": "packages/agents/SilenceWatcher.test.ts", "status": "pending"}
-,{"commit": "Expose layer control API", "path": "go-agent", "task": "Go-Interface zum Aktivieren von Layers", "test": "go-agent/test/layer_control_test.go", "status": "pending"}
-,{"commit": "Add vitest setup for agents tests", "path": "packages/agents", "task": "Install vitest and configure package to run new *.spec.ts tests", "test": "pnpm --filter packages/agents vitest run", "status": "pending"}
+,{"commit": "Implement ResearchAgent", "path": "packages/agents", "task": "Automatisierte Forschungsanfragen verarbeiten", "test": "packages/agents/ResearchAgent.test.ts", "status": "done"}
+,{"commit": "Add SilenceWatcher agent", "path": "packages/agents", "task": "Beobachtet Inaktivität und triggert Selbstanalyse", "test": "packages/agents/SilenceWatcher.test.ts", "status": "done"}
+,{"commit": "Expose layer control API", "path": "go-agent", "task": "Go-Interface zum Aktivieren von Layers", "test": "go-agent/test/layer_control_test.go", "status": "done"}
+,{"commit": "Add vitest setup for agents tests", "path": "packages/agents", "task": "Install vitest and configure package to run new *.spec.ts tests", "test": "pnpm --filter packages/agents vitest run", "status": "done"}
 ]

@@ -171,6 +171,7 @@ Weitere Module sind in Arbeit.
 | `pnpm docs:auto` | Generiert TypeDoc-API-Docs |
 | `pnpm lint` | Führt statische Typprüfung aus |
 | `pnpm test` | Führe Unit- & UI-Tests aus |
+| `pnpm vitest run` | Läuft Agenten-Spezialtests |
 | `node scripts/refresh-handbook.js` | Synchronisiert Handbuch |
 | `node scripts/setup-unifiedmandala.sh` | Installer & Initialisierung |
 | `./scripts/repair-repo.sh` | Repariert Repository-Verbindungen |
@@ -347,6 +348,7 @@ npm run dev   # oder: yarn dev
 | `pnpm docs:auto` | Generiert TypeDoc-API-Docs |
 | `pnpm lint` | Führt statische Typprüfung aus |
 | `pnpm test` | Führe Unit- & UI-Tests aus |
+| `pnpm vitest run` | Läuft Agenten-Spezialtests |
 | `node scripts/refresh-handbook.js` | Synchronisiert Handbuch |
 | `node scripts/setup-unifiedmandala.sh` | Installer & Initialisierung |
 | `./scripts/repair-repo.sh` | Repariert Repository-Verbindungen |
