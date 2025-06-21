@@ -96,6 +96,7 @@ console.log(sigil.id); // hello
 - `MetaScoreComposer` – Aggregiert mehrere Score-Layer.
 - `GoAgent` – Liest advancedToDo-Dateien und listet offene Tasks (Node).
 - `Go-Agent (Golang)` – Autonomer Daemon für parallele Task-Ausführung.
+- `HexaAgentSystem` – Kombiniert sechs Agenten für Resonanz- und Bewusstseinsauswertung.
 - `go-bridge` – Golang-Client für REST/gRPC/NATS Kommunikation.
 
 ### collab-editor

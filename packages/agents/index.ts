@@ -15,3 +15,6 @@ export * from './KIBewusstseinResonanzMonitor';
 export * from './ConversationTodoExtractor';
 export * from './MetaScoreComposer';
 export * from './GoAgent';
+export * from './AeonResonanceInsights';
+export * from './BewusstseinStabilizer';
+export * from './HexaAgentSystem';

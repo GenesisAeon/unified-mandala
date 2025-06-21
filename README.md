@@ -60,6 +60,7 @@ Schau auch ins [Glossar](docs/glossar-genesis.md) für Begriffe.
 - 🕹️ **GoAgent** – liest advancedToDo-Dateien und listet offene Tasks (Node)
 - 🛠️ **Go-Agent (Golang)** – eigenständiger Daemon für Task-Verarbeitung
 - 📊 **MetaScoreChart** & **SyncStatus** – UI für MetaScores und Sync-Stände
+- 🔗 **Hexa-AgentSystem** – verbindet sechs Agenten für Resonanz- und Bewusstseinsanalyse
 
 ## 📦 Paketstruktur
 
