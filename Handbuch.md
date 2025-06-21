@@ -6,6 +6,7 @@ Dieses Handbuch gibt einen Überblick über die wichtigsten Module und Funktione
 > 1. Lies [scripts/onboarding-ritual.md](scripts/onboarding-ritual.md)
 > 2. Starte `./scripts/aeon.sh onboarding`
 > 3. Erkunde das [CHRONOPOEM.md](CHRONOPOEM.md)
+> 4. Lies den [Community Onboarding Guide](docs/CommunityOnboarding.md)
 
 Schau auch ins [Glossar](docs/glossar-genesis.md) für Begriffe.
 Das Pendant zum Genesis ZIPMEM ist die Datei `advancedconversations.json`.

@@ -2951,10 +2951,6 @@ status: done
   path: docs/api/friendship-socialgood.yaml
   task: "Write OpenAPI schema for region and socialgood endpoints"
   test: "openapi-validate"
-- commit: "Write Community Onboarding Guide"
-  path: docs/CommunityOnboarding.md
-  task: "Provide quickstart steps and CLI usage"
-  test: "markdownlint"
 - commit: "Create MobileImpactDashboard for React Native"
   path: apps/socialgood-mobile/MobileImpactDashboard.tsx
   task: "Implement mobile friendly dashboard component"
