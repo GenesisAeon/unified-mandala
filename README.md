@@ -105,7 +105,9 @@ packages/
   ├── shared-utils              # Hilfsfunktionen für alle Pakete
   │   └── RestClient.ts         # einfacher REST-Helper
   ├── go-bridge             # Go-Client für REST, gRPC und NATS
-  └── go-agent              # Autonomer Go-Daemon für Tasks
+  ├── go-agent              # Autonomer Go-Daemon für Tasks
+  │   ├── pkg/policy        # Policy Enforcement Stubs
+  │   └── pkg/hooks         # Event Hook Publisher
   └── codex-navigator-agent     # Parser für Codex-Instruktionen
 codex/                    # Codex-Workflows und Sigillin-Dateien
 codexbuild/               # Build-Skripte und Deploy-Hilfen
@@ -195,6 +197,7 @@ npm run dev   # oder: yarn dev
 | `node packages/cli-tools/export-doc.js` | CREP-Historie als Markdown |
 | `node packages/cli-tools/sigillin-archive.js` | Archiviert Sigillin-Dateien |
 | `node packages/cli-tools/dispatchCmd.ts` | Dispatcher für diverse Befehle |
+| `go run scripts/mock-data.go` | Gibt Beispiel-Mockdaten mit eventHook und fractalHash aus |
 
 
 

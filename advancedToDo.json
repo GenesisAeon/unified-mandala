@@ -1393,29 +1393,33 @@
     "test": ""
   },
   {
-    "commit": "Add policy enforcement stub",
-    "path": "pkg/policy/enforcer.go",
-    "task": "Load policy.yaml and check consent",
-    "test": ""
-  },
-  {
-    "commit": "Add event hook publisher",
-    "path": "pkg/hooks/publisher.go",
-    "task": "Publish NATS events from payload template",
-    "test": ""
-  },
-  {
-    "commit": "Add event hook workflow test",
-    "path": "test/event_hook_test.go",
-    "task": "Test NATS publish via event hooks",
-    "test": ""
-  },
-  {
-    "commit": "Update mock data generator",
-    "path": "scripts/mock-data.go",
-    "task": "Generate new fields eventHook and fractalHash",
-    "test": ""
-  },
+  "commit": "Add policy enforcement stub",
+  "path": "pkg/policy/enforcer.go",
+  "task": "Load policy.yaml and check consent",
+  "test": "",
+  "status": "done"
+},
+{
+  "commit": "Add event hook publisher",
+  "path": "pkg/hooks/publisher.go",
+  "task": "Publish NATS events from payload template",
+  "test": "",
+  "status": "done"
+},
+{
+  "commit": "Add event hook workflow test",
+  "path": "test/event_hook_test.go",
+  "task": "Test NATS publish via event hooks",
+  "test": "",
+  "status": "done"
+},
+{
+  "commit": "Update mock data generator",
+  "path": "scripts/mock-data.go",
+  "task": "Generate new fields eventHook and fractalHash",
+  "test": "",
+  "status": "done"
+},
   {
     "commit": "Update shared schema utilities",
     "path": "shared-utils/schema",
