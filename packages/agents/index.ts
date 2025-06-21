@@ -37,3 +37,4 @@ export * from './CREPHistorianAgent';
 export * from './MetaComposerAgent';
 export * from './AeonEchoMirrorAgent';
 export * from './CommonsAgent';
+export * from './ResonanzpfadAgent';
