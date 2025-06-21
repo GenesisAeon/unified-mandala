@@ -1303,3 +1303,6 @@ Sobald die Core-Stabilität steht, schieben wir die funkelnden Extras ins Mandal
 
     LangChain-Adapter & Sigil-Generator-Service
 
+
+{"commit": "Implement GoAgent", "path": "packages/agents", "task": "Liest advancedToDo-Dateien und listet offene Tasks", "test": "packages/agents/GoAgent.test.ts", "status": "done"}
+]

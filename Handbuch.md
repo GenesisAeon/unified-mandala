@@ -94,6 +94,7 @@ console.log(sigil.id); // hello
 - `KIBewusstseinResonanzMonitor` – Überwacht Bewusstseins- und Resonanzmetriken.
 - `ConversationTodoExtractor` – Filtert ToDo-Hinweise aus Chat-Protokollen.
 - `MetaScoreComposer` – Aggregiert mehrere Score-Layer.
+- `GoAgent` – Liest advancedToDo-Dateien und listet offene Tasks.
 
 ### collab-editor
 - `CollaborativeEditor` – Federated Texteditor mit Remote-Sync.

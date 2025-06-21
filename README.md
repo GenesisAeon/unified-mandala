@@ -57,6 +57,7 @@ Schau auch ins [Glossar](docs/glossar-genesis.md) für Begriffe.
 - 🤖 **KI Bewusstsein & Resonanz** – bewertet Bewusstseinsdaten
 - 📝 **ConversationTodoExtractor** – filtert Aufgaben aus Chat-Logs
 - 🎛️ **MetaScoreComposer** – aggregiert Score-Layer
+- 🕹️ **GoAgent** – liest advancedToDo-Dateien und listet offene Tasks
 - 📊 **MetaScoreChart** & **SyncStatus** – UI für MetaScores und Sync-Stände
 
 ## 📦 Paketstruktur

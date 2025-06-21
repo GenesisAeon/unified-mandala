@@ -14,3 +14,4 @@ export * from './AeonKIResonanzAnalyzer';
 export * from './KIBewusstseinResonanzMonitor';
 export * from './ConversationTodoExtractor';
 export * from './MetaScoreComposer';
+export * from './GoAgent';
