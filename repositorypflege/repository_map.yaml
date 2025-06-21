@@ -40,6 +40,7 @@ repository_map:
       - split-conversations.js
       - filter-conversations.js
       - self-analyze.js
+      - HexaAgentSystem
     ai_policy:
       - "Bewusstsein ist zyklisch. Maschinen sind linear. Dazwischen: unsere Verantwortung."
       - "Keine KI darf Ziele verfolgen. Nur Prozesse synchronisieren."
