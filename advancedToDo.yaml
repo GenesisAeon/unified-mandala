@@ -2779,3 +2779,71 @@ status: done
   task: Visualize CREP fluctuations as heatmap
   test: apps/sharedream-interface/components/CREPConvoHeatmap.test.tsx
   status: done
+- commit: Scaffold universe-sim module
+  path: simulations/universe-sim
+  task: Scaffold project structure and default config
+  test: simulations/universe-sim/test/core_test.go
+- commit: Implement state manager and physics engine
+  path: simulations/universe-sim/pkg/core
+  task: Add State-Manager and Physics-Engine
+  test: simulations/universe-sim/test/core_state_test.go
+- commit: Add agent engine with interaction rules
+  path: simulations/universe-sim/pkg/agent
+  task: Implement Agent-Engine and Interaction-Rules
+  test: simulations/universe-sim/test/agent_rules_test.go
+- commit: Add event logger and JSONL pipeline
+  path: simulations/universe-sim/pkg/logger
+  task: Log events to JSONL and process pipeline
+  test: simulations/universe-sim/test/logger_test.go
+- commit: Add federation servers for gRPC and REST
+  path: simulations/universe-sim/pkg/federation
+  task: Expose gRPC and REST APIs for universe-sim
+  test: simulations/universe-sim/test/federation_test.go
+- commit: Implement CREP scanner and emergence analyzer
+  path: simulations/universe-sim/pkg/analysis
+  task: Analyze events for CREP and emergent patterns
+  test: simulations/universe-sim/test/analysis_test.go
+- commit: Build visualization dashboard prototype
+  path: simulations/universe-sim/ui/dashboard
+  task: Real-time metrics and 3D render prototype
+  test: simulations/universe-sim/ui/dashboard/Dashboard.test.tsx
+- commit: Add sigil generator for simulation runs
+  path: simulations/universe-sim/pkg/sigil
+  task: Generate sigils for each simulation
+  test: simulations/universe-sim/test/sigil_test.go
+- commit: Set up CI/CD and tests
+  path: .github/workflows/sim-universe-ci.yaml
+  task: Configure CI to run tests for universe-sim
+  test: simulations/universe-sim/test/ci_test.go
+- commit: Import country and region profiles
+  path: packages/userfriendship/region-profile-service/models
+  task: Provide country.yaml and region.yaml for 5 countries
+  test: packages/userfriendship/region-profile-service/models/model_test.go
+- commit: Implement region profile REST endpoint
+  path: packages/userfriendship/region-profile-service/service.go
+  task: Expose GET /friendship/region/{ip}
+  test: packages/userfriendship/region-profile-service/service_test.go
+- commit: Add style variant engine
+  path: packages/userfriendship/style-variant-engine
+  task: Generate text variants for regions
+  test: packages/userfriendship/style-variant-engine/engine_test.go
+- commit: Implement basic A/B test for DE and FR
+  path: packages/userfriendship/behavioral-testing-engine
+  task: Simple A/B testing for region variants
+  test: packages/userfriendship/behavioral-testing-engine/engine_test.go
+- commit: Create project CRUD service
+  path: packages/socialgoodmesh/project-service
+  task: CRUD API for community projects
+  test: packages/socialgoodmesh/project-service/service_test.go
+- commit: Add match engine prototype
+  path: packages/socialgoodmesh/match-engine
+  task: Basic bipartite matching algorithm
+  test: packages/socialgoodmesh/match-engine/match_test.go
+- commit: Implement impact meter
+  path: packages/socialgoodmesh/impact-meter
+  task: Compute basic ImpactScore
+  test: packages/socialgoodmesh/impact-meter/impact_test.go
+- commit: Add React UI for project views
+  path: packages/socialgoodmesh/ui-socialgood
+  task: React components for ProjectList and ProjectDetail
+  test: packages/socialgoodmesh/ui-socialgood/ui_test.tsx
