@@ -5,3 +5,4 @@ Prüfe regelmäßig, ob die Datenquellen (z.B. /api/meta-scores) und die Dashboa
 Weitere Hinweise:
 - Nutze **codex-sigil.yaml** als zentralen Arbeitsanker.
 - Folge dem Ablauf in **fraktal-zyklus.md** bei der Umsetzung deiner Aufgaben.
+- Feedback siehe feedbackcodex.json
