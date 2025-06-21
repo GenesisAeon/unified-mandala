@@ -73,6 +73,10 @@ Schau auch ins [Glossar](docs/glossar-genesis.md) für Begriffe.
 - 🔗 **Hexa-AgentSystem** – verbindet sechs Agenten für Resonanz- und Bewusstseinsanalyse
 - 🧠 **AdvancedHexaAgent** – erweitert das Hexa-System um Research- und SilenceWatcher-Agenten
 - 📱 **useBreakpoint Hook** – erkennt mobile Ansichten für responsive UI
+- 🔁 **CREPFeedbackLoop** – erstellt Micro-Feedback-Aufgaben aus CREP-Snapshots (`packages/crep-automation/CREPFeedbackLoop.ts`)
+- 🌀 **SigillinOnDemandGenerator** – generiert Sigillin-Templates per CLI (`packages/cli-tools/SigillinOnDemandGenerator.ts`)
+- 📊 **CREPToDoPrioritizer** – priorisiert ToDos nach aktueller Emergenz (`packages/crep-automation/CREPToDoPrioritizer.ts`)
+- 🔥 **CREPConvoHeatmap** – zeigt Schwankungen im CREP-Verlauf (`apps/sharedream-interface/components/CREPConvoHeatmap.tsx`)
 
 ## 📦 Paketstruktur
 

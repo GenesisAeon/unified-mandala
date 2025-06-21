@@ -159,6 +159,10 @@ GPTEventHub.emit('orakel:says', { content: 'Hallo Welt' });
 - `SelfAuditModul` – Zeigt Kennzahlen aus `selfAnalyzer`.
 - `useSymbolzeit` – liest Symbolphasen aus der YAML und steuert Farben dynamisch.
 - `useBreakpoint` – erkennt mobile Ansichten für responsive Layouts.
+- `CREPFeedbackLoop` – erzeugt automatische Feedback-Aufgaben aus Snapshot-Daten.
+- `SigillinOnDemandGenerator` – CLI-Modul für spontane Sigillin-Templates.
+- `CREPToDoPrioritizer` – stuft Aufgaben nach Emergenz ein.
+- `CREPConvoHeatmap` – React-Komponente zur Visualisierung von CREP-Schwankungen.
 
 
 Weitere Module sind in Arbeit.
