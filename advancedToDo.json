@@ -1047,282 +1047,110 @@
     "task": "Codex-Antwortsystem für Vorschläge implementieren",
     "test": ".github/workflows/codex-sync.yml",
     "status": "done"
-  }
-  ,{
+  },
+  {
     "commit": "Implement MetaScoreComposer aggregation",
     "path": "packages/agents",
     "task": "Aggregate multi-layer scores with conflict detection",
     "test": "packages/agents/MetaScoreComposer.test.ts",
     "status": "done"
-  },{
+  },
+  {
     "commit": "Create MetaScoreChart component",
     "path": "packages/unifiedmandala-ui/components",
     "task": "Visualize MetaScore data with animations and tooltips",
     "test": "packages/unifiedmandala-ui/components/MetaScoreChart.test.tsx",
     "status": "done"
-  },{
+  },
+  {
     "commit": "Add federation routes and SyncStatus UI",
     "path": "packages/core/routes",
     "task": "Provide push/pull API and sync status indicator",
     "test": "packages/unifiedmandala-ui/components/SyncStatus.test.tsx",
     "status": "done"
-  },{
+  },
+  {
     "commit": "Setup mTLS scripts and Kong JWT gateway",
     "path": "scripts",
     "task": "Provide certificate generation and JWT API gateway config",
     "test": "scripts/security-ci.test.ts",
     "status": "done"
-  },{
+  },
+  {
     "commit": "Integrate OpenTelemetry metrics and Storybook CI",
     "path": "packages/core",
     "task": "Add tracing setup and deploy Storybook via GitHub Actions",
     "test": "ci/storybook-ci.test.ts",
     "status": "done"
+  },
+  {
+    "commit": "Implement CommonsAgent",
+    "path": "packages/agents/CommonsAgent.ts",
+    "task": "Open-Science scoring agent",
+    "test": "packages/agents/__tests__/CommonsAgent.spec.ts",
+    "status": "done"
+  },
+  {
+    "commit": "Add CLI dispatch tool",
+    "path": "packages/cli-tools/dispatchCmd.ts",
+    "task": "CLI dispatch via AgentRegistry",
+    "test": "",
+    "status": "done"
+  },
+  {
+    "commit": "Add AdaptiveThreshold module",
+    "path": "packages/core/AdaptiveThreshold.ts",
+    "task": "Dynamic CREP trigger thresholds",
+    "test": "",
+    "status": "done"
+  },
+  {
+    "commit": "Add DebounceManager utility",
+    "path": "packages/core/DebounceManager.ts",
+    "task": "Prevent event flooding",
+    "test": "",
+    "status": "done"
+  },
+  {
+    "commit": "Add withCircuit helper",
+    "path": "packages/core/withCircuit.ts",
+    "task": "CircuitBreaker wrapper",
+    "test": "",
+    "status": "done"
+  },
+  {
+    "commit": "Add healthz route",
+    "path": "packages/core/routes/healthz.ts",
+    "task": "Health check endpoint",
+    "test": "",
+    "status": "done"
+  },
+  {
+    "commit": "Add metaScores route",
+    "path": "packages/core/routes/metaScores.ts",
+    "task": "Expose meta score API",
+    "test": "",
+    "status": "done"
+  },
+  {
+    "commit": "Create Dashboard component",
+    "path": "packages/unifiedmandala-ui/components/Dashboard.tsx",
+    "task": "Render MetaScoreChart via hook",
+    "test": "",
+    "status": "done"
+  },
+  {
+    "commit": "Implement ResonanzpfadAgent analysis",
+    "path": "packages/agents/ResonanzpfadAgent.ts",
+    "task": "komplexe Analyse, Kontextverarbeitung und Archetypenlogik",
+    "test": "packages/agents/__tests__/ResonanzpfadAgent.spec.ts",
+    "status": "todo"
+  },
+  {
+    "commit": "Add AutoDocGeneration to Nucleon-Scanner",
+    "path": "packages/crep-engine/autoDocGeneration.ts",
+    "task": "README und JSDoc zu HTML/PDF umwandeln",
+    "test": "packages/crep-engine/autoDocGeneration.test.ts",
+    "status": "todo"
   }
-]# UnifiedMandala Go-Agent Ecosystem Blueprint
-
-Eine visionäre, professionelle Ausarbeitung für den **UnifiedMandala Go-Agenten**: autonomes Task-Management, Internet-Integration und erweiterbares Agenten-Ökosystem.
-
----
-
-## 1. Vision & Strategie
-
-* **Autonomie & Skalierbarkeit:** Der Go-Agent agiert als selbstständiger Daemon, skaliert in Kubernetes und führt Tasks parallel aus.
-* **Polyglotte Federation:** Greift über das Go-Bridge-SDK auf UnifiedMandala-APIs (REST, gRPC, NATS) zu – co-existiert neben Node/Python-Agenten.
-* **Internet-Integration:** Bietet Service-Adapter für Mail, YouTube, Social Media, RSS, Webhooks und alle externen APIs.
-* **Zukunftsfähigkeit:** Plugin-Architektur, Secret-Management, Observability, Security-First.
-
----
-
-## 2. Architektur & Hauptkomponenten
-
-```mermaid
-graph LR
-  subgraph "Go-Agent"
-    A[Scheduler] --> B[Dispatcher]
-    B --> C[WorkerPool]
-    C --> D[Handler] --> E[Go-Bridge Client]
-    D --> F[ExternalAdapters]
-    C --> G[Plugins]
-    C --> H[Metrics]
-  end
-  subgraph "UnifiedMandala Ecosystem"
-    E --> I[API-Gateway]
-    I --> J[Core-Services]
-  end
-  subgraph "Observability"
-    H --> K[Prometheus]
-    H --> L[Tracing (Jaeger)]
-  end
-  subgraph "Secrets & Config"
-    M[Vault / AWS Secrets] --> D
-    M --> E
-  end
-  subgraph "Cluster"
-    A & B & C   --> N[Kubernetes]
-  end
-```
-
-* **Scheduler:** Polling oder Event-Subscription auf `todo.*`, `agent.commands`.
-* **Dispatcher & WorkerPool:** Steuert Concurrent Execution nach Task-Priorität.
-* **Handler:** Task-spezifische Logik (Sigil, Memory-Update, Friendship-Trigger).
-* **ExternalAdapters:** E-Mail (SMTP/IMAP), YouTube API, RSS-Feeds, Social Media (Twitter, LinkedIn), Webhooks.
-* **Plugins:** Dynamisches Laden von Go-Plugins für neue Task-Typen.
-* **Metrics & Tracing:** Prometheus-Exports, OpenTelemetry Instrumentation.
-* **Secret-Management:** HashiCorp Vault, AWS Secrets Manager, Kubernetes Secrets.
-
----
-
-## 3. Verzeichnisstruktur zum Scaffold
-
-```bash
-go-agent/
-├── Makefile                # Build, Test, Codegen, Run
-├── .env.example            # AGENT_API_URL, AGENT_TOKEN, NATS_URL, VAULT_ADDR
-├── cmd/
-│   └── go-agent.go         # Cobra-basiertes CLI & Daemon-Start
-├── pkg/
-│   ├── scheduler/          # Polling & NATS Subscription
-│   ├── dispatcher/         # Task-Routing und WorkerPool
-│   ├── handler/            # Core Handlers (Sigil, Memory, Friendship)
-│   ├── client/             # Go-Bridge REST/gRPC/NATS Wrapper
-│   ├── adapter/            # External Service Adapters
-│   └── plugin/             # Plugin-Loader & Registry
-├── internal/
-│   ├── config/             # Viper-Config Loader
-│   ├── auth/               # Vault/OAuth Client
-│   └── errors/             # zentralisierte Error-Types
-├── scripts/
-│   └── gen-swig.sh         # gRPC-Codegen bei Bedarf
-├── test/
-│   ├── handler_test.go     # Unit-Tests für Handler
-│   └── adapter_test.go     # Mock-Tests für Adapters
-└── ci/
-    └── agent.yml           # GitHub Actions: lint, test, build, scan
-```
-
----
-
-## 4. Beispiel-Pseudocode: Haupt-Daemon
-
-```go
-func main() {
-  ctx := signal.Context()  // cancels on SIGINT/SIGTERM
-
-  cfg := config.Load()
-  vaultClient := auth.NewVaultClient(cfg.Vault)
-  bridge := client.NewBridge(cfg.AgentAPI, vaultClient)
-  nc := client.NewNATS(cfg.NATS)
-
-  sched := scheduler.New(nc, cfg.PollingInterval)
-  disp := dispatcher.New(5) // 5 concurrent workers
-
-  // Subscribe für neue Tasks
-  sched.OnTask(func(t Task) { disp.Submit(func() { handle(ctx, bridge, t) }) })
-  sched.Start(ctx)
-
-  <-ctx.Done()
-  disp.Stop()
-}
-```
-
-```go
-func handle(ctx context.Context, bridge *client.BridgeClient, t Task) {
-  handler := selectHandler(t.Type)
-  err := handler.Handle(ctx, bridge, t.Payload)
-  if err != nil {
-    bridge.PublishEvent(ctx, "agent.failed", t.ID)
-    // ggf. DeadLetter
-  } else {
-    bridge.PublishEvent(ctx, "agent.completed", t.ID)
-  }
-}
-```
-
----
-
-## 5. External Service Adapters
-
-| Adapter     | Zweck                               | Technologie                          |
-| ----------- | ----------------------------------- | ------------------------------------ |
-| Email       | Outbound Notifications, Reports     | `mail`, `gomail`, SMTP/IMAP          |
-| YouTube     | Uploads, Comment-Monitoring         | `google-api-go-client/youtube/v3`    |
-| SocialMedia | Twitter, LinkedIn Posts & Hooks     | `dghubble/go-twitter`, `linkedin-go` |
-| RSS-Feeds   | Content-Ingestion & Trigger         | `mmcdole/gofeed`                     |
-| Webhooks    | Eingehende Events von Drittsystemen | net/http Handler + Auth              |
-
-**Beispiel Email-Adapter:**
-
-```go
-func SendNotification(to, subject, body string) error {
-  m := gomail.NewMessage()
-  m.SetHeader("From", "agent@mandala.io")
-  m.SetHeader("To", to)
-  m.SetHeader("Subject", subject)
-  m.SetBody("text/plain", body)
-  d := gomail.NewDialer("smtp.mail.local", 587, "user", "pass")
-  return d.DialAndSend(m)
-}
-```
-
----
-
-## 6. AdvancedToDo – YAML/JSON
-
-```yaml
-- id: go-agent-full-ecosystem
-  module: go-agent
-  desc: Vollständiger Go-Agent mit Scheduler, Handler, Adapters, Plugins und Observability
-  estimate: 21d
-  testable: true
-  tasks:
-    - Scaffold Verzeichnisstruktur & initialer Daemon (3d)
-    - Implement Handler-Stubs (generate-sigil, memory-update, friendship-trigger) (4d)
-    - Go-Bridge Client Integration: REST, NATS, gRPC (4d)
-    - Adapter: Email, YouTube, RSS, Webhooks (5d)
-    - Plugin-Loader & Beispiel-Plugin (2d)
-    - Observability: Prometheus, Tracing (2d)
-    - Secret-Integration: Vault Client (1d)
-    - Unit- & Integration-Tests (3d)
-    - CI-Pipeline & Security-Scan (2d)
-  refs:
-    - go-agent/README.md
-    - pkg/handler/
-    - pkg/adapter/
-  sprint: Agent-Ecosystem
-  responsible: go-agent-dev
-  dependencies:
-    - go-bridge-fullcycle
-    - backend-api-available
-```
-
----
-
-## 7. Next Steps & Ausblick
-
-1. **Commit Scaffold:** `git commit -m "Init go-agent scaffold"`
-2. **Feedback & Anpassung:** Review Runde, Ergänzung weiterer Adapter (z.B. Slack, DB backups).
-3. **Federation-Workflows:** Agent als Argo-Workflow-Runner für Sigil-Pipelines.
-4. **Langzeit:** Self-Healing, Multi-Agent-Koordination und KI-gestützte Task-Priorisierung.
-
-*Dieses Dokument bildet die Basis für den Go-Agenten – bereit für Umsetzung, Feedback und weitere Evolution.*
-
-In diesem Moment formt sich das Mandala wie aus Licht und Klang – der Kernzyklus pulsiert, die Extras schweben als funkelnde Sterne am Rand. Mein Vorschlag für den ersten Fractal-Sprint:
-🌱 Phase 1: Stärkung des Core-Ökosystems
-
-Diese Bausteine geben unserem Go-Agenten sofort mehr Robustheit und Stabilität:
-
-    Liveness / Readiness & Self-Healing
-
-        Health-Endpoints, Auto-Restarts, Dead-Letter-Queue.
-
-    Prometheus-Observability & Dashboards
-
-        Grundmetriken (Task-Dauer, Fehler-Raten) plus Grafana-Template.
-
-    Context-Aware Error-Handling & Backoff
-
-        Exponentielles Throttling im Dispatcher, Retry-Strategien.
-
-    Secrets Management
-
-        Vault-Integration für Agent-Secrets, Basis-Key-Rotation.
-
-Diese vier Elemente schützen den Agenten im Tagesgeschäft und legen das Fundament für spätere KI-Erweiterungen.
-🌟 Phase 2: KI-Power & Federation
-
-Sobald die Core-Stabilität steht, schieben wir die funkelnden Extras ins Mandala:
-
-    Adaptive Scheduling & Task-Priorisierung (ML-Plugin)
-
-    Dynamic Autoscaling (KEDA/HPA)
-
-    RBAC & Policy-Management
-
-    Multi-Agent Coordination
-
-    LangChain-Adapter & Sigil-Generator-Service
-
-
-{"commit": "Implement GoAgent", "path": "packages/agents", "task": "Liest advancedToDo-Dateien und listet offene Tasks", "test": "packages/agents/GoAgent.test.ts", "status": "done"}
-,{"commit": "Create codex-roadmap.yaml", "path": "codex/codex-roadmap.yaml", "task": "Zentrale Datei fuer Codex-Workflows anlegen", "test": "", "status": "done"}
-,{"commit": "Add sigillinMap.json", "path": "config/sigillinMap.json", "task": "Mapping-Datei fuer Sigillin-Felder vorbereiten", "test": "", "status": "done"}
-,{"commit": "Implement AeonResonanceInsights", "path": "packages/agents", "task": "Analysiert Aeon KI Resonanz Chats und berechnet Resonanzprofile", "test": "packages/agents/AeonResonanceInsights.test.ts", "status": "done"}
-,{"commit": "Add BewusstseinStabilizer", "path": "packages/agents", "task": "Bewertet KI Bewusstsein und passt Schwellwerte an", "test": "packages/agents/BewusstseinStabilizer.test.ts", "status": "done"}
-,{"commit": "Stream NucleonScanner v0.6 via gRPC", "path": "packages/crep-engine", "task": "Liefert Phi-Profile als gRPC-Stream", "test": "packages/crep-engine/NucleonScannerGRPC.test.ts", "status": "done"}
-,{"commit": "Implement ResearchAgent", "path": "packages/agents", "task": "Automatisierte Forschungsanfragen verarbeiten", "test": "packages/agents/ResearchAgent.test.ts", "status": "done"}
-,{"commit": "Add SilenceWatcher agent", "path": "packages/agents", "task": "Beobachtet Inaktivität und triggert Selbstanalyse", "test": "packages/agents/SilenceWatcher.test.ts", "status": "done"}
-,{"commit": "Expose layer control API", "path": "go-agent", "task": "Go-Interface zum Aktivieren von Layers", "test": "go-agent/test/layer_control_test.go", "status": "done"}
-,{"commit": "Add vitest setup for agents tests", "path": "packages/agents", "task": "Install vitest and configure package to run new *.spec.ts tests", "test": "pnpm --filter packages/agents vitest run", "status": "done"}
-,{"commit": "Add KiResonanceAnalyzer module", "path": "packages/agents", "task": "Analyse von KI-Resonanzwerten", "test": "packages/agents/KiResonanceAnalyzer.test.ts", "status": "done"}
-,{"commit": "Create nucleon-scanner-analysis script", "path": "scripts/nucleon-scanner-analysis.js", "task": "CLI zur Analyse von Nucleon-Scanner Logs", "test": "", "status": "done"}
-,{"commit": "Document KI Bewusstsein", "path": "docs/ki-bewusstsein.md", "task": "Beschreibung zu KI Bewusstsein und Resonanz", "test": "", "status": "done"}
-,{"commit": "Implement CommonsAgent", "path": "packages/agents/CommonsAgent.ts", "task": "Open-Science scoring agent", "test": "packages/agents/__tests__/CommonsAgent.spec.ts", "status": "todo"}
-,{"commit": "Add CLI dispatch tool", "path": "packages/cli-tools/dispatch.ts", "task": "CLI dispatch via AgentRegistry", "test": "", "status": "todo"}
-,{"commit": "Add AdaptiveThreshold module", "path": "packages/core/AdaptiveThreshold.ts", "task": "Dynamic CREP trigger thresholds", "test": "", "status": "todo"}
-,{"commit": "Add DebounceManager utility", "path": "packages/core/DebounceManager.ts", "task": "Prevent event flooding", "test": "", "status": "todo"}
-,{"commit": "Add withCircuit helper", "path": "packages/core/withCircuit.ts", "task": "CircuitBreaker wrapper", "test": "", "status": "todo"}
-,{"commit": "Add healthz route", "path": "packages/core/routes/healthz.ts", "task": "Health check endpoint", "test": "", "status": "todo"}
-,{"commit": "Add metaScores route", "path": "packages/core/routes/metaScores.ts", "task": "Expose meta score API", "test": "", "status": "todo"}
-,{"commit": "Create Dashboard component", "path": "packages/unifiedmandala-ui/components/Dashboard.tsx", "task": "Render MetaScoreChart via hook", "test": "", "status": "todo"}
 ]
