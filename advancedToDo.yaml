@@ -65,7 +65,7 @@
   path: packages/agents
   task: Extract tasks from conversation logs based on key phrases
   test: packages/agents/ConversationTodoExtractor.test.ts
-  status: geplant
+  status: done
 - commit: Link CREP scores with todo priority
   path: packages/crep-engine
   task: Prioritize extracted ToDos via CREP evaluation
@@ -2590,26 +2590,26 @@ status: done
 - commit: Implement MetaScoreComposer aggregation
   path: packages/agents
   task: Aggregate multi-layer scores with conflict detection
-  test: packages/agents/__tests__/MetaScoreComposer.spec.ts
-  status: geplant
+  test: packages/agents/MetaScoreComposer.test.ts
+  status: done
 - commit: Create MetaScoreChart component
   path: packages/unifiedmandala-ui/components
   task: Visualize MetaScore data with animations and tooltips
-  test: packages/unifiedmandala-ui/__tests__/MetaScoreChart.test.tsx
-  status: geplant
+  test: packages/unifiedmandala-ui/components/MetaScoreChart.test.tsx
+  status: done
 - commit: Add federation routes and SyncStatus UI
   path: packages/core/routes
   task: Provide push/pull API and sync status indicator
-  test: packages/unifiedmandala-ui/__tests__/SyncStatus.test.tsx
-  status: geplant
+  test: packages/unifiedmandala-ui/components/SyncStatus.test.tsx
+  status: done
 - commit: Setup mTLS scripts and Kong JWT gateway
   path: scripts
   task: Provide certificate generation and JWT API gateway config
   test: scripts/security-ci.test.ts
-  status: geplant
+  status: done
 - commit: Integrate OpenTelemetry metrics and Storybook CI
   path: packages/core
   task: Add tracing setup and deploy Storybook via GitHub Actions
   test: ci/storybook-ci.test.ts
-  status: geplant
+  status: done
 Highprior: Pläne für Implementierung GO-Agent aus advancedToDo.json Repokonform ausarbeiten und implementiern

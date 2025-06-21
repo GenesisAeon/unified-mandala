@@ -93,6 +93,7 @@ console.log(sigil.id); // hello
 - `AeonKIResonanzAnalyzer` – Analysiert Resonanzmuster in Gesprächen.
 - `KIBewusstseinResonanzMonitor` – Überwacht Bewusstseins- und Resonanzmetriken.
 - `ConversationTodoExtractor` – Filtert ToDo-Hinweise aus Chat-Protokollen.
+- `MetaScoreComposer` – Aggregiert mehrere Score-Layer.
 
 ### collab-editor
 - `CollaborativeEditor` – Federated Texteditor mit Remote-Sync.
@@ -129,6 +130,7 @@ GPTEventHub.emit('orakel:says', { content: 'Hallo Welt' });
 - `MetaScoreChart` – Zeigt Bewertungsdaten aus `/api/meta-scores`.
 - `useMetaScores` – Hook zum Abruf der Scores.
 - `AdminMetrics` – Übersicht für CREP-Durchschnitt und offene ToDos.
+- `SyncStatus` – Zeigt den aktuellen Sync-Status.
 
 ### universum-simulationen
 - Module für narrative KI-Simulationen.
@@ -188,6 +190,8 @@ Weitere Module sind in Arbeit.
 | `node scripts/repotool-convo.js` | Schnelle Auswertung & Progress-Update |
 | `node scripts/website-to-yaml.js` | Wandelt Webseite in YAML um |
 | `node scripts/symbolzeit-runner.js` | Läuft Symbolzeit-Cronjob |
+| `./scripts/setup-mtls.sh` | Erstellt Testzertifikate |
+| `./scripts/setup-kong-jwt.sh` | Konfiguriert JWT Gateway |
 | `node packages/cli-tools/sigillin-cli.js convert beispiel.yaml` | YAML ↔ JSON-Konvertierung |
 | `node packages/cli-tools/sigillin-cli.js todo-sigil` | Erzeugt todo-sigil aus Aufgabenlisten |
 | `node packages/cli-tools/sigillin-cli.js grep-conversations TODO` | Filtert Conversations nach Keyword |
