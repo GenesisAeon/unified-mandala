@@ -2847,3 +2847,95 @@ status: done
   path: packages/socialgoodmesh/ui-socialgood
   task: React components for ProjectList and ProjectDetail
   test: packages/socialgoodmesh/ui-socialgood/ui_test.tsx
+- commit: Add liveness and readiness endpoints
+  path: go-agent/cmd/go-agent.go
+  task: Implement /healthz/live and /healthz/ready probes
+  test: test/health_test.go
+- commit: Add self-healing and dead letter queue
+  path: go-agent/pkg/dispatcher
+  task: Move failed tasks to todo.failed and auto restart
+  test: test/dispatcher_retry_test.go
+- commit: Expose Prometheus metrics
+  path: go-agent/pkg/metrics
+  task: Export task duration and queue length metrics
+  test: ""
+- commit: Create Grafana dashboard template
+  path: ci/monitoring/grafana
+  task: Provide JSON template for task overview
+  test: ""
+- commit: Implement dispatcher backoff and retry logic
+  path: go-agent/pkg/dispatcher
+  task: Use exponential backoff and dead letter on exhaustion
+  test: ""
+- commit: Configure Vault integration
+  path: internal/config
+  task: Load secrets via Vault provider with auto rotation
+  test: ""
+- commit: Add ML based task prioritization plugin
+  path: pkg/plugin
+  task: Integrate LightGBM/XGBoost service
+  test: test/plugin_test.go
+- commit: Add KEDA and HPA scaling
+  path: deployment/keda
+  task: Trigger scaling based on NATS queue length
+  test: ""
+- commit: Implement RBAC and policy management
+  path: internal/auth
+  task: Enforce YAML policies for handlers
+  test: test/policy_test.go
+- commit: Implement multi agent coordination handler
+  path: pkg/handler/coordination.go
+  task: Add correlationId and traceId support
+  test: ""
+- commit: Create LangChain adapter and sigil generator service
+  path: services/sigil-generator
+  task: Provide POST /sigil/generate with markdown output
+  test: ""
+- commit: Extend GitHub Actions for extras
+  path: ci/agent.yml
+  task: Add ML plugin build and policy linter steps
+  test: ""
+- commit: Write documentation and examples for extras
+  path: docs/go-agent
+  task: Add ml-prioritization and policy guide docs
+  test: ""
+- commit: Add append only chat writer
+  path: services/chat-writer/writer.go
+  task: Store messages.json logs and optional eventHook
+  test: ""
+- commit: Add schema validation hook script
+  path: scripts/validate-schemas.sh
+  task: Validate JSON and YAML files in CI
+  test: ""
+- commit: Add sigil trigger script
+  path: services/sigil-trigger/trigger.sh
+  task: Watch files and generate sigils on change
+  test: ""
+- commit: Add vector indexer service
+  path: services/vector-indexer/indexer.go
+  task: Create embeddings and push to external DB
+  test: ""
+- commit: Add policy enforcement stub
+  path: pkg/policy/enforcer.go
+  task: Load policy.yaml and check consent
+  test: ""
+- commit: Add event hook publisher
+  path: pkg/hooks/publisher.go
+  task: Publish NATS events from payload template
+  test: ""
+- commit: Add event hook workflow test
+  path: test/event_hook_test.go
+  task: Test NATS publish via event hooks
+  test: ""
+- commit: Update mock data generator
+  path: scripts/mock-data.go
+  task: Generate new fields eventHook and fractalHash
+  test: ""
+- commit: Update shared schema utilities
+  path: shared-utils/schema
+  task: Support new metadata and consent fields
+  test: ""
+- commit: Extend CI pipeline for schema and vector tests
+  path: ci/agent.yml
+  task: Run schema validation and vector index tests
+  test: ""
