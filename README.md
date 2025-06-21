@@ -67,8 +67,8 @@ Schau auch ins [Glossar](docs/glossar-genesis.md) für Begriffe.
 - 🛡️ **withCircuit** – CircuitBreaker Wrapper für Agenten-Calls
 - 🩺 **healthz.ts** & **metaScores.ts** – API-Routen
 - 🖥️ **Dashboard** – zeigt MetaScoreChart per Hook
-- 🌀 **ResonanzpfadAgent** – komplexe Analyse & Archetypenlogik
-- 📚 **AutoDocGeneration** – wandelt README & JSDoc in HTML/PDF
+- 🌀 **ResonanzpfadAgent** – komplexe Analyse & Archetypenlogik (`packages/agents/ResonanzpfadAgent.ts`)
+- 📚 **AutoDocGeneration** – wandelt README & JSDoc in HTML/PDF (`packages/crep-engine/autoDocGeneration.ts`)
 - 🔗 **Hexa-AgentSystem** – verbindet sechs Agenten für Resonanz- und Bewusstseinsanalyse
 - 🧠 **AdvancedHexaAgent** – erweitert das Hexa-System um Research- und SilenceWatcher-Agenten
 

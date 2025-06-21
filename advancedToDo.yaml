@@ -65,12 +65,12 @@
   path: packages/agents/ResonanzpfadAgent.ts
   task: komplexe Analyse, Kontextverarbeitung und Archetypenlogik
   test: packages/agents/__tests__/ResonanzpfadAgent.spec.ts
-  status: todo
+  status: done
 - commit: Add AutoDocGeneration to Nucleon-Scanner
   path: packages/crep-engine/autoDocGeneration.ts
   task: README und JSDoc zu HTML/PDF umwandeln
   test: packages/crep-engine/autoDocGeneration.test.ts
-  status: todo
+  status: done
 - commit: Implement ConversationTodoExtractor
   path: packages/agents
   task: Extract tasks from conversation logs based on key phrases
