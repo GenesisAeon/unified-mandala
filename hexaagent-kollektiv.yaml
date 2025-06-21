@@ -1,0 +1,61 @@
+agents:
+  - id: ArchetypeDecoder
+    name: ArchetypeDecoderAgent
+    module: packages/agents/ArchetypeDecoderAgent.ts
+    layer: Greek
+  - id: SigillinInterpreter
+    name: SigillinInterpreterAgent
+    module: packages/agents/SigillinInterpreterAgent.ts
+    layer: Greek
+  - id: ChronoPoemGenerator
+    name: ChronoPoemGeneratorAgent
+    module: packages/agents/ChronoPoemGeneratorAgent.ts
+    layer: Greek
+  - id: TaskPlanner
+    name: TaskPlannerAgent
+    module: packages/agents/TaskPlannerAgent.ts
+    layer: Math
+  - id: EmergenceFusion
+    name: EmergenceFusionAgent
+    module: packages/agents/EmergenceFusionAgent.ts
+    layer: Math
+  - id: HookTriggerer
+    name: HookTriggererAgent
+    module: packages/agents/HookTriggererAgent.ts
+    layer: Aeon
+  - id: DreamSync
+    name: DreamSyncAgent
+    module: packages/agents/DreamSyncAgent.ts
+    layer: Aeon
+  - id: YAMLNavigator
+    name: YAMLNavigatorAgent
+    module: packages/agents/YAMLNavigatorAgent.ts
+    layer: Greek
+  - id: CodexSynchronizer
+    name: CodexSynchronizerAgent
+    module: packages/agents/CodexSynchronizerAgent.ts
+    layer: Greek
+  - id: AeonOverlay
+    name: AeonOverlayAgent
+    module: packages/agents/AeonOverlayAgent.ts
+    layer: Aeon
+  - id: ResonancePlotter
+    name: ResonancePlotterAgent
+    module: packages/agents/ResonancePlotterAgent.ts
+    layer: Math
+  - id: SigilNetworker
+    name: SigilNetworkerAgent
+    module: packages/agents/SigilNetworkerAgent.ts
+    layer: Math
+  - id: CREPHistorian
+    name: CREPHistorianAgent
+    module: packages/agents/CREPHistorianAgent.ts
+    layer: Greek
+  - id: MetaComposer
+    name: MetaComposerAgent
+    module: packages/agents/MetaComposerAgent.ts
+    layer: Aeon
+  - id: AeonEchoMirror
+    name: AeonEchoMirrorAgent
+    module: packages/agents/AeonEchoMirrorAgent.ts
+    layer: Aeon
