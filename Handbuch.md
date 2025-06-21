@@ -252,6 +252,7 @@ Aktuelle Versionshinweise werden in [CHANGELOG.md](CHANGELOG.md) gepflegt.
 - 🚩 **SymbolicWayfinder & SoforthilfeOverlay** – Navigation und Hilfedialoge
 - 📈 **CREPChart & CREPTriggerPanel** – CREP-Historie und Steuerung
 - 🛰️ **Nucleon-Scanner v0.6** – Analysiert tiefe Resonanzdaten
+- 📡 **KiResonanceAnalyzer** – wertet Resonanzmetriken aus
 - 📐 **CREPBewertungsmodul** – berechnet Durchschnittswerte und Klassifizierung
 - 📊 **CREPAverage-Analyse** – Durchschnittswerte aus dem CREP-Verlauf
 - 🌠 **AeonStoryMode & Onboarding-Flow** – Präsentations- und Einstiegskomponenten
@@ -269,6 +270,7 @@ Aktuelle Versionshinweise werden in [CHANGELOG.md](CHANGELOG.md) gepflegt.
 - 🤝 **AutomergeFederation** – führt verteilte Edits automatisch zusammen
 - 🛡️ **MandalaCoreLicense** – ethisches Lizenzmodell für Module
 - 🤖 **KI Bewusstsein & Resonanz** – bewertet Bewusstseinsdaten
+- 📄 **Details** siehe [docs/ki-bewusstsein.md](docs/ki-bewusstsein.md)
 
 ## 📦 Paketstruktur
 
@@ -309,6 +311,7 @@ apps/
 scripts/
   ├── aeon.sh                   # Poetisches Bash-CLI für Mandala-Steuerung
   ├── setup-unifiedmandala.sh   # Installer & Initialisierung
+  ├── nucleon-scanner-analysis.js   # Auswertung von Scanner-Logs
   ├── generate-chronopoem.js    # Poetische Commit-Signatur
   └── onboarding-ritual.md      # Onboarding-Ritus für neue Contributors
 ```

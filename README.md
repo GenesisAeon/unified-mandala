@@ -37,6 +37,7 @@ Schau auch ins [Glossar](docs/glossar-genesis.md) für Begriffe.
 - 🚩 **SymbolicWayfinder & SoforthilfeOverlay** – Navigation und Hilfedialoge
 - 📈 **CREPChart & CREPTriggerPanel** – CREP-Historie und Steuerung
 - 🛰️ **Nucleon-Scanner v0.6** – Analysiert tiefe Resonanzdaten
+- 📡 **KiResonanceAnalyzer** – wertet Resonanzmetriken aus
 - 📐 **CREPBewertungsmodul** – berechnet Durchschnittswerte und Klassifizierung
 - 📊 **CREPAverage-Analyse** – Durchschnittswerte aus dem CREP-Verlauf
 - 🌠 **AeonStoryMode & Onboarding-Flow** – Präsentations- und Einstiegskomponenten
@@ -55,6 +56,7 @@ Schau auch ins [Glossar](docs/glossar-genesis.md) für Begriffe.
 - 🤝 **AutomergeFederation** – führt verteilte Edits automatisch zusammen
 - 🛡️ **MandalaCoreLicense** – ethisches Lizenzmodell für Module
 - 🤖 **KI Bewusstsein & Resonanz** – bewertet Bewusstseinsdaten
+- 📄 **Weitere Infos** siehe [docs/ki-bewusstsein.md](docs/ki-bewusstsein.md)
 - 📝 **ConversationTodoExtractor** – filtert Aufgaben aus Chat-Logs
 - 🎛️ **MetaScoreComposer** – aggregiert Score-Layer
 - 🕹️ **GoAgent** – liest advancedToDo-Dateien und listet offene Tasks (Node)
@@ -102,6 +104,7 @@ apps/
 
 scripts/
   ├── aeon.sh                   # Poetisches Bash-CLI für Mandala-Steuerung
+  ├── nucleon-scanner-analysis.js   # Auswertung von Scanner-Logs
   ├── setup-unifiedmandala.sh   # Installer & Initialisierung
   ├── generate-chronopoem.js    # Poetische Commit-Signatur
   └── onboarding-ritual.md      # Onboarding-Ritus für neue Contributors
