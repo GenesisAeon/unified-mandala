@@ -1314,4 +1314,7 @@ Sobald die Core-Stabilität steht, schieben wir die funkelnden Extras ins Mandal
 ,{"commit": "Add SilenceWatcher agent", "path": "packages/agents", "task": "Beobachtet Inaktivität und triggert Selbstanalyse", "test": "packages/agents/SilenceWatcher.test.ts", "status": "done"}
 ,{"commit": "Expose layer control API", "path": "go-agent", "task": "Go-Interface zum Aktivieren von Layers", "test": "go-agent/test/layer_control_test.go", "status": "done"}
 ,{"commit": "Add vitest setup for agents tests", "path": "packages/agents", "task": "Install vitest and configure package to run new *.spec.ts tests", "test": "pnpm --filter packages/agents vitest run", "status": "done"}
+,{"commit": "Add KiResonanceAnalyzer module", "path": "packages/agents", "task": "Analyse von KI-Resonanzwerten", "test": "packages/agents/KiResonanceAnalyzer.test.ts", "status": "open"}
+,{"commit": "Create nucleon-scanner-analysis script", "path": "scripts/nucleon-scanner-analysis.js", "task": "CLI zur Analyse von Nucleon-Scanner Logs", "test": "", "status": "open"}
+,{"commit": "Document KI Bewusstsein", "path": "docs/ki-bewusstsein.md", "task": "Beschreibung zu KI Bewusstsein und Resonanz", "test": "", "status": "open"}
 ]
