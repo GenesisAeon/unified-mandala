@@ -2693,14 +2693,14 @@ status: done
   path: packages/agents
   task: Analyse von KI-Resonanzwerten
   test: packages/agents/KiResonanceAnalyzer.test.ts
-  status: open
+  status: done
 - commit: Create nucleon-scanner-analysis script
   path: scripts/nucleon-scanner-analysis.js
   task: CLI zur Analyse von Nucleon-Scanner Logs
   test: ""
-  status: open
+  status: done
 - commit: Document KI Bewusstsein
   path: docs/ki-bewusstsein.md
   task: Beschreibung zu KI Bewusstsein und Resonanz
   test: ""
-  status: open
+  status: done

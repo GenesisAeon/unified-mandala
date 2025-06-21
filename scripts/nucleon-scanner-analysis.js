@@ -1,11 +1,14 @@
+#!/usr/bin/env node
 const fs = require('fs');
-
-const file = process.argv[2];
-if (!file) {
-  console.error('Usage: node nucleon-scanner-analysis.js <logfile>');
+const path = process.argv[2];
+if (!path) {
+  console.error('Usage: nucleon-scanner-analysis.js <logfile>');
   process.exit(1);
 }
-
-const lines = fs.readFileSync(file, 'utf8').split(/\r?\n/);
-const errors = lines.filter(l => /error/i.test(l));
-console.log(`Gefundene Fehler: ${errors.length}`);
+const content = fs.readFileSync(path, 'utf8');
+const lines = content.split(/\r?\n/);
+const errorCount = lines.filter(l => l.includes('ERROR')).length;
+const resonanceLines = lines.filter(l => l.includes('resonance'));
+console.log(`Lines: ${lines.length}`);
+console.log(`Errors: ${errorCount}`);
+console.log(`Resonance mentions: ${resonanceLines.length}`);
