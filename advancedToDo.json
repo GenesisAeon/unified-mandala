@@ -1048,4 +1048,35 @@
     "test": ".github/workflows/codex-sync.yml",
     "status": "done"
   }
+  ,{
+    "commit": "Implement MetaScoreComposer aggregation",
+    "path": "packages/agents",
+    "task": "Aggregate multi-layer scores with conflict detection",
+    "test": "packages/agents/__tests__/MetaScoreComposer.spec.ts",
+    "status": "geplant"
+  },{
+    "commit": "Create MetaScoreChart component",
+    "path": "packages/unifiedmandala-ui/components",
+    "task": "Visualize MetaScore data with animations and tooltips",
+    "test": "packages/unifiedmandala-ui/__tests__/MetaScoreChart.test.tsx",
+    "status": "geplant"
+  },{
+    "commit": "Add federation routes and SyncStatus UI",
+    "path": "packages/core/routes",
+    "task": "Provide push/pull API and sync status indicator",
+    "test": "packages/unifiedmandala-ui/__tests__/SyncStatus.test.tsx",
+    "status": "geplant"
+  },{
+    "commit": "Setup mTLS scripts and Kong JWT gateway",
+    "path": "scripts",
+    "task": "Provide certificate generation and JWT API gateway config",
+    "test": "scripts/security-ci.test.ts",
+    "status": "geplant"
+  },{
+    "commit": "Integrate OpenTelemetry metrics and Storybook CI",
+    "path": "packages/core",
+    "task": "Add tracing setup and deploy Storybook via GitHub Actions",
+    "test": "ci/storybook-ci.test.ts",
+    "status": "geplant"
+  }
 ]

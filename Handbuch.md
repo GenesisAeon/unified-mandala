@@ -374,4 +374,7 @@ Weitere Beispiele und GIF-Demos findest du im [Wiki](https://github.com/GenesisA
 Ein SVG-Beispiel liegt unter [`docs/assets/unified-mandala.svg`](docs/assets/unified-mandala.svg).
 
 Das `CHRONOPOEM.md` entsteht automatisch – und kann bei jedem Commit erneuert werden.
+- **Module**: liegen unter `packages/` nach Funktion sortiert
+- **Utils**: gebündelt in `packages/shared-utils/`
+- **Scripts**: hilfreiche Automationen unter `scripts/`
 \nDie detaillierte Struktur aller Module, Utilities und Skripte findest du in [repositorypflege/repository_map.yaml](repositorypflege/repository_map.yaml).
