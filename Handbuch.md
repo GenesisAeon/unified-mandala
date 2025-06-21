@@ -96,6 +96,11 @@ console.log(sigil.id); // hello
 - `MetaScoreComposer` – Aggregiert mehrere Score-Layer.
 - `GoAgent` – Liest advancedToDo-Dateien und listet offene Tasks (Node).
 - `Go-Agent (Golang)` – Autonomer Daemon für parallele Task-Ausführung.
+- `CommonsAgent` – Bewertet Open-Science-Aspekte.
+- `AdaptiveThreshold` und `DebounceManager` – steuern CREP-Trigger.
+- `withCircuit` – CircuitBreaker-Helfer für Agenten.
+- `healthz.ts` & `metaScores.ts` – API-Routen.
+- `Dashboard` – Anzeige der MetaScore-Daten.
 - `HexaAgentSystem` – Kombiniert sechs Agenten für Resonanz- und Bewusstseinsauswertung.
 - `ResearchAgent` – Automatisierte Forschungsanfragen.
 - `SilenceWatcher` – Beobachtet Inaktivität und triggert Selbstanalyse.

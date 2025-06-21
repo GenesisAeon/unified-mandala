@@ -2704,3 +2704,43 @@ status: done
   task: Beschreibung zu KI Bewusstsein und Resonanz
   test: ""
   status: done
+- commit: Implement CommonsAgent
+  path: packages/agents/CommonsAgent.ts
+  task: Open-Science scoring agent
+  test: packages/agents/__tests__/CommonsAgent.spec.ts
+  status: todo
+- commit: Add CLI dispatch tool
+  path: packages/cli-tools/dispatch.ts
+  task: CLI dispatch via AgentRegistry
+  test: ""
+  status: todo
+- commit: Add AdaptiveThreshold module
+  path: packages/core/AdaptiveThreshold.ts
+  task: Dynamic CREP trigger thresholds
+  test: ""
+  status: todo
+- commit: Add DebounceManager utility
+  path: packages/core/DebounceManager.ts
+  task: Prevent event flooding
+  test: ""
+  status: todo
+- commit: Add withCircuit helper
+  path: packages/core/withCircuit.ts
+  task: CircuitBreaker wrapper
+  test: ""
+  status: todo
+- commit: Add healthz route
+  path: packages/core/routes/healthz.ts
+  task: Health check endpoint
+  test: ""
+  status: todo
+- commit: Add metaScores route
+  path: packages/core/routes/metaScores.ts
+  task: Expose meta score API
+  test: ""
+  status: todo
+- commit: Create Dashboard component
+  path: packages/unifiedmandala-ui/components/Dashboard.tsx
+  task: Render MetaScoreChart via hook
+  test: ""
+  status: todo

@@ -62,6 +62,11 @@ Schau auch ins [Glossar](docs/glossar-genesis.md) für Begriffe.
 - 🕹️ **GoAgent** – liest advancedToDo-Dateien und listet offene Tasks (Node)
 - 🛠️ **Go-Agent (Golang)** – eigenständiger Daemon für Task-Verarbeitung
 - 📊 **MetaScoreChart** & **SyncStatus** – UI für MetaScores und Sync-Stände
+- 🧑‍🔬 **CommonsAgent** – Open‑Science Scoring
+- 🌀 **AdaptiveThreshold** & **DebounceManager** – steuern CREP Trigger-Logik
+- 🛡️ **withCircuit** – CircuitBreaker Wrapper für Agenten-Calls
+- 🩺 **healthz.ts** & **metaScores.ts** – API-Routen
+- 🖥️ **Dashboard** – zeigt MetaScoreChart per Hook
 - 🔗 **Hexa-AgentSystem** – verbindet sechs Agenten für Resonanz- und Bewusstseinsanalyse
 - 🧠 **AdvancedHexaAgent** – erweitert das Hexa-System um Research- und SilenceWatcher-Agenten
 
