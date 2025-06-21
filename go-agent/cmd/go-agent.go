@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"net/http"
 	"os"
 	"os/signal"
 	"syscall"
@@ -30,5 +31,18 @@ func run() {
 
 	go sched.Start(ctx)
 
+	http.HandleFunc("/healthz/live", func(w http.ResponseWriter, r *http.Request) {
+		w.WriteHeader(http.StatusOK)
+		w.Write([]byte("ok"))
+	})
+	http.HandleFunc("/healthz/ready", func(w http.ResponseWriter, r *http.Request) {
+		w.WriteHeader(http.StatusOK)
+		w.Write([]byte("ready"))
+	})
+
+	srv := &http.Server{Addr: ":8080"}
+	go srv.ListenAndServe()
+
 	<-ctx.Done()
+	srv.Shutdown(context.Background())
 }
