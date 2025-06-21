@@ -2627,3 +2627,13 @@ status: done
   task: Mapping-Datei fuer Sigillin-Felder vorbereiten
   test: ""
   status: done
+- commit: Init go-agent scaffold
+  path: go-agent
+  task: Scaffold Verzeichnisstruktur & initialer Daemon
+  test: go-agent/test/handler_test.go
+  status: done
+- commit: Add handler stubs
+  path: go-agent/pkg/handler
+  task: Implement Handler-Stubs (generate-sigil, memory-update, friendship-trigger)
+  test: go-agent/test/handler_test.go
+  status: done

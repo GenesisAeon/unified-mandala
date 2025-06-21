@@ -57,7 +57,8 @@ Schau auch ins [Glossar](docs/glossar-genesis.md) für Begriffe.
 - 🤖 **KI Bewusstsein & Resonanz** – bewertet Bewusstseinsdaten
 - 📝 **ConversationTodoExtractor** – filtert Aufgaben aus Chat-Logs
 - 🎛️ **MetaScoreComposer** – aggregiert Score-Layer
-- 🕹️ **GoAgent** – liest advancedToDo-Dateien und listet offene Tasks
+- 🕹️ **GoAgent** – liest advancedToDo-Dateien und listet offene Tasks (Node)
+- 🛠️ **Go-Agent (Golang)** – eigenständiger Daemon für Task-Verarbeitung
 - 📊 **MetaScoreChart** & **SyncStatus** – UI für MetaScores und Sync-Stände
 
 ## 📦 Paketstruktur
@@ -84,6 +85,8 @@ packages/
   ├── universum-simulationen # Simulationsmodule
   ├── shared-utils              # Hilfsfunktionen für alle Pakete
   │   └── RestClient.ts         # einfacher REST-Helper
+  ├── go-bridge             # Go-Client für REST, gRPC und NATS
+  └── go-agent              # Autonomer Go-Daemon für Tasks
   └── codex-navigator-agent     # Parser für Codex-Instruktionen
 codex/                    # Codex-Workflows und Sigillin-Dateien
 codexbuild/               # Build-Skripte und Deploy-Hilfen
