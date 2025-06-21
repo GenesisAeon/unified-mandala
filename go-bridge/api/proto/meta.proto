@@ -1,0 +1,18 @@
+syntax = "proto3";
+package proto;
+option go_package = "github.com/GenesisAeon/unifiedmandala-go/api/proto;proto";
+
+message MetaScoreRequest {}
+
+message MetaScore {
+  string entry_id = 1;
+  double combined_score = 2;
+}
+
+message MetaScoreList {
+  repeated MetaScore scores = 1;
+}
+
+service MetaScoreService {
+  rpc ListMetaScores(MetaScoreRequest) returns (MetaScoreList);
+}
