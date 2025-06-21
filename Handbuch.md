@@ -10,6 +10,7 @@ Dieses Handbuch gibt einen Überblick über die wichtigsten Module und Funktione
 
 Schau auch ins [Glossar](docs/glossar-genesis.md) für Begriffe.
 Das Pendant zum Genesis ZIPMEM ist die Datei `advancedconversations.json`.
+Pitch-Beispiele für Events sind unter `docs/pitch/` abgelegt.
 
 > **TL;DR**
 > - Installation: `./scripts/setup-unifiedmandala.sh`
@@ -309,6 +310,8 @@ packages/
   ├── crep-automation      # CREP-bezogene Automationen
   ├── tts                  # Sprachsynthese
   ├── universum-simulationen # Simulationsmodule
+  ├── sim-domain          # Domänenspezifische Simulationen
+  ├── art                 # Sonification & AI-Art
   ├── shared-utils              # Hilfsfunktionen für alle Pakete
   │   └── RestClient.ts         # einfacher REST-Helper
   └── codex-navigator-agent     # Parser für Codex-Instruktionen

@@ -1451,23 +1451,5 @@
     "path": "apps/socialgood-mobile/MobileImpactDashboard.tsx",
     "task": "Implement mobile friendly dashboard component",
     "test": "jest"
-  },
-  {
-    "commit": "Scaffold domain simulation modules (bio, chem, phys, dna, mind)",
-    "path": "packages/sim-domain",
-    "task": "Add initial structure for specialized simulation engines",
-    "test": "tsc"
-  },
-  {
-    "commit": "Implement sonifier and image generation art modules",
-    "path": "packages/art",
-    "task": "Create modules for CREP sonification and AI image gallery",
-    "test": "tsc"
-  },
-  {
-    "commit": "Compose English pitch for art and science events",
-    "path": "docs/pitch/EnglishPitch.md",
-    "task": "Draft pitch text highlighting platform features",
-    "test": "markdownlint"
   }
 ]
