@@ -8,6 +8,7 @@ Dieses Handbuch gibt einen Überblick über die wichtigsten Module und Funktione
 > 3. Erkunde das [CHRONOPOEM.md](CHRONOPOEM.md)
 
 Schau auch ins [Glossar](docs/glossar-genesis.md) für Begriffe.
+Das Pendant zum Genesis ZIPMEM ist die Datei `advancedconversations.json`.
 
 > **TL;DR**
 > - Installation: `./scripts/setup-unifiedmandala.sh`
