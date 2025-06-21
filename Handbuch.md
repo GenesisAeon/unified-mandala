@@ -101,6 +101,7 @@ console.log(sigil.id); // hello
 - `withCircuit` – CircuitBreaker-Helfer für Agenten.
 - `healthz.ts` & `metaScores.ts` – API-Routen.
 - `Dashboard` – Anzeige der MetaScore-Daten.
+- `UploadYamlForm` – wandelt hochgeladene Dateien in YAML um
 - `ResonanzpfadAgent` – komplexe Analyse & Archetypenlogik (`packages/agents/ResonanzpfadAgent.ts`).
 - `AutoDocGeneration` – wandelt README & JSDoc in HTML/PDF (`packages/crep-engine/autoDocGeneration.ts`).
 - `HexaAgentSystem` – Kombiniert sechs Agenten für Resonanz- und Bewusstseinsauswertung.
