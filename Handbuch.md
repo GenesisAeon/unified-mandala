@@ -94,7 +94,9 @@ console.log(sigil.id); // hello
 - `KIBewusstseinResonanzMonitor` – Überwacht Bewusstseins- und Resonanzmetriken.
 - `ConversationTodoExtractor` – Filtert ToDo-Hinweise aus Chat-Protokollen.
 - `MetaScoreComposer` – Aggregiert mehrere Score-Layer.
-- `GoAgent` – Liest advancedToDo-Dateien und listet offene Tasks.
+- `GoAgent` – Liest advancedToDo-Dateien und listet offene Tasks (Node).
+- `Go-Agent (Golang)` – Autonomer Daemon für parallele Task-Ausführung.
+- `go-bridge` – Golang-Client für REST/gRPC/NATS Kommunikation.
 
 ### collab-editor
 - `CollaborativeEditor` – Federated Texteditor mit Remote-Sync.
