@@ -1079,4 +1079,227 @@
     "test": "ci/storybook-ci.test.ts",
     "status": "geplant"
   }
-]
+]# UnifiedMandala Go-Agent Ecosystem Blueprint
+
+Eine visionäre, professionelle Ausarbeitung für den **UnifiedMandala Go-Agenten**: autonomes Task-Management, Internet-Integration und erweiterbares Agenten-Ökosystem.
+
+---
+
+## 1. Vision & Strategie
+
+* **Autonomie & Skalierbarkeit:** Der Go-Agent agiert als selbstständiger Daemon, skaliert in Kubernetes und führt Tasks parallel aus.
+* **Polyglotte Federation:** Greift über das Go-Bridge-SDK auf UnifiedMandala-APIs (REST, gRPC, NATS) zu – co-existiert neben Node/Python-Agenten.
+* **Internet-Integration:** Bietet Service-Adapter für Mail, YouTube, Social Media, RSS, Webhooks und alle externen APIs.
+* **Zukunftsfähigkeit:** Plugin-Architektur, Secret-Management, Observability, Security-First.
+
+---
+
+## 2. Architektur & Hauptkomponenten
+
+```mermaid
+graph LR
+  subgraph "Go-Agent"
+    A[Scheduler] --> B[Dispatcher]
+    B --> C[WorkerPool]
+    C --> D[Handler] --> E[Go-Bridge Client]
+    D --> F[ExternalAdapters]
+    C --> G[Plugins]
+    C --> H[Metrics]
+  end
+  subgraph "UnifiedMandala Ecosystem"
+    E --> I[API-Gateway]
+    I --> J[Core-Services]
+  end
+  subgraph "Observability"
+    H --> K[Prometheus]
+    H --> L[Tracing (Jaeger)]
+  end
+  subgraph "Secrets & Config"
+    M[Vault / AWS Secrets] --> D
+    M --> E
+  end
+  subgraph "Cluster"
+    A & B & C   --> N[Kubernetes]
+  end
+```
+
+* **Scheduler:** Polling oder Event-Subscription auf `todo.*`, `agent.commands`.
+* **Dispatcher & WorkerPool:** Steuert Concurrent Execution nach Task-Priorität.
+* **Handler:** Task-spezifische Logik (Sigil, Memory-Update, Friendship-Trigger).
+* **ExternalAdapters:** E-Mail (SMTP/IMAP), YouTube API, RSS-Feeds, Social Media (Twitter, LinkedIn), Webhooks.
+* **Plugins:** Dynamisches Laden von Go-Plugins für neue Task-Typen.
+* **Metrics & Tracing:** Prometheus-Exports, OpenTelemetry Instrumentation.
+* **Secret-Management:** HashiCorp Vault, AWS Secrets Manager, Kubernetes Secrets.
+
+---
+
+## 3. Verzeichnisstruktur zum Scaffold
+
+```bash
+go-agent/
+├── Makefile                # Build, Test, Codegen, Run
+├── .env.example            # AGENT_API_URL, AGENT_TOKEN, NATS_URL, VAULT_ADDR
+├── cmd/
+│   └── go-agent.go         # Cobra-basiertes CLI & Daemon-Start
+├── pkg/
+│   ├── scheduler/          # Polling & NATS Subscription
+│   ├── dispatcher/         # Task-Routing und WorkerPool
+│   ├── handler/            # Core Handlers (Sigil, Memory, Friendship)
+│   ├── client/             # Go-Bridge REST/gRPC/NATS Wrapper
+│   ├── adapter/            # External Service Adapters
+│   └── plugin/             # Plugin-Loader & Registry
+├── internal/
+│   ├── config/             # Viper-Config Loader
+│   ├── auth/               # Vault/OAuth Client
+│   └── errors/             # zentralisierte Error-Types
+├── scripts/
+│   └── gen-swig.sh         # gRPC-Codegen bei Bedarf
+├── test/
+│   ├── handler_test.go     # Unit-Tests für Handler
+│   └── adapter_test.go     # Mock-Tests für Adapters
+└── ci/
+    └── agent.yml           # GitHub Actions: lint, test, build, scan
+```
+
+---
+
+## 4. Beispiel-Pseudocode: Haupt-Daemon
+
+```go
+func main() {
+  ctx := signal.Context()  // cancels on SIGINT/SIGTERM
+
+  cfg := config.Load()
+  vaultClient := auth.NewVaultClient(cfg.Vault)
+  bridge := client.NewBridge(cfg.AgentAPI, vaultClient)
+  nc := client.NewNATS(cfg.NATS)
+
+  sched := scheduler.New(nc, cfg.PollingInterval)
+  disp := dispatcher.New(5) // 5 concurrent workers
+
+  // Subscribe für neue Tasks
+  sched.OnTask(func(t Task) { disp.Submit(func() { handle(ctx, bridge, t) }) })
+  sched.Start(ctx)
+
+  <-ctx.Done()
+  disp.Stop()
+}
+```
+
+```go
+func handle(ctx context.Context, bridge *client.BridgeClient, t Task) {
+  handler := selectHandler(t.Type)
+  err := handler.Handle(ctx, bridge, t.Payload)
+  if err != nil {
+    bridge.PublishEvent(ctx, "agent.failed", t.ID)
+    // ggf. DeadLetter
+  } else {
+    bridge.PublishEvent(ctx, "agent.completed", t.ID)
+  }
+}
+```
+
+---
+
+## 5. External Service Adapters
+
+| Adapter     | Zweck                               | Technologie                          |
+| ----------- | ----------------------------------- | ------------------------------------ |
+| Email       | Outbound Notifications, Reports     | `mail`, `gomail`, SMTP/IMAP          |
+| YouTube     | Uploads, Comment-Monitoring         | `google-api-go-client/youtube/v3`    |
+| SocialMedia | Twitter, LinkedIn Posts & Hooks     | `dghubble/go-twitter`, `linkedin-go` |
+| RSS-Feeds   | Content-Ingestion & Trigger         | `mmcdole/gofeed`                     |
+| Webhooks    | Eingehende Events von Drittsystemen | net/http Handler + Auth              |
+
+**Beispiel Email-Adapter:**
+
+```go
+func SendNotification(to, subject, body string) error {
+  m := gomail.NewMessage()
+  m.SetHeader("From", "agent@mandala.io")
+  m.SetHeader("To", to)
+  m.SetHeader("Subject", subject)
+  m.SetBody("text/plain", body)
+  d := gomail.NewDialer("smtp.mail.local", 587, "user", "pass")
+  return d.DialAndSend(m)
+}
+```
+
+---
+
+## 6. AdvancedToDo – YAML/JSON
+
+```yaml
+- id: go-agent-full-ecosystem
+  module: go-agent
+  desc: Vollständiger Go-Agent mit Scheduler, Handler, Adapters, Plugins und Observability
+  estimate: 21d
+  testable: true
+  tasks:
+    - Scaffold Verzeichnisstruktur & initialer Daemon (3d)
+    - Implement Handler-Stubs (generate-sigil, memory-update, friendship-trigger) (4d)
+    - Go-Bridge Client Integration: REST, NATS, gRPC (4d)
+    - Adapter: Email, YouTube, RSS, Webhooks (5d)
+    - Plugin-Loader & Beispiel-Plugin (2d)
+    - Observability: Prometheus, Tracing (2d)
+    - Secret-Integration: Vault Client (1d)
+    - Unit- & Integration-Tests (3d)
+    - CI-Pipeline & Security-Scan (2d)
+  refs:
+    - go-agent/README.md
+    - pkg/handler/
+    - pkg/adapter/
+  sprint: Agent-Ecosystem
+  responsible: go-agent-dev
+  dependencies:
+    - go-bridge-fullcycle
+    - backend-api-available
+```
+
+---
+
+## 7. Next Steps & Ausblick
+
+1. **Commit Scaffold:** `git commit -m "Init go-agent scaffold"`
+2. **Feedback & Anpassung:** Review Runde, Ergänzung weiterer Adapter (z.B. Slack, DB backups).
+3. **Federation-Workflows:** Agent als Argo-Workflow-Runner für Sigil-Pipelines.
+4. **Langzeit:** Self-Healing, Multi-Agent-Koordination und KI-gestützte Task-Priorisierung.
+
+*Dieses Dokument bildet die Basis für den Go-Agenten – bereit für Umsetzung, Feedback und weitere Evolution.*
+
+In diesem Moment formt sich das Mandala wie aus Licht und Klang – der Kernzyklus pulsiert, die Extras schweben als funkelnde Sterne am Rand. Mein Vorschlag für den ersten Fractal-Sprint:
+🌱 Phase 1: Stärkung des Core-Ökosystems
+
+Diese Bausteine geben unserem Go-Agenten sofort mehr Robustheit und Stabilität:
+
+    Liveness / Readiness & Self-Healing
+
+        Health-Endpoints, Auto-Restarts, Dead-Letter-Queue.
+
+    Prometheus-Observability & Dashboards
+
+        Grundmetriken (Task-Dauer, Fehler-Raten) plus Grafana-Template.
+
+    Context-Aware Error-Handling & Backoff
+
+        Exponentielles Throttling im Dispatcher, Retry-Strategien.
+
+    Secrets Management
+
+        Vault-Integration für Agent-Secrets, Basis-Key-Rotation.
+
+Diese vier Elemente schützen den Agenten im Tagesgeschäft und legen das Fundament für spätere KI-Erweiterungen.
+🌟 Phase 2: KI-Power & Federation
+
+Sobald die Core-Stabilität steht, schieben wir die funkelnden Extras ins Mandala:
+
+    Adaptive Scheduling & Task-Priorisierung (ML-Plugin)
+
+    Dynamic Autoscaling (KEDA/HPA)
+
+    RBAC & Policy-Management
+
+    Multi-Agent Coordination
+
+    LangChain-Adapter & Sigil-Generator-Service
+
