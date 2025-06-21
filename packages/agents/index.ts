@@ -36,3 +36,4 @@ export * from './SigilNetworkerAgent';
 export * from './CREPHistorianAgent';
 export * from './MetaComposerAgent';
 export * from './AeonEchoMirrorAgent';
+export * from './CommonsAgent';

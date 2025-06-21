@@ -101,6 +101,8 @@ console.log(sigil.id); // hello
 - `withCircuit` – CircuitBreaker-Helfer für Agenten.
 - `healthz.ts` & `metaScores.ts` – API-Routen.
 - `Dashboard` – Anzeige der MetaScore-Daten.
+- `ResonanzpfadAgent` – komplexe Analyse & Archetypenlogik.
+- `AutoDocGeneration` – wandelt README & JSDoc in HTML/PDF.
 - `HexaAgentSystem` – Kombiniert sechs Agenten für Resonanz- und Bewusstseinsauswertung.
 - `ResearchAgent` – Automatisierte Forschungsanfragen.
 - `SilenceWatcher` – Beobachtet Inaktivität und triggert Selbstanalyse.

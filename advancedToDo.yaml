@@ -61,6 +61,16 @@
   task: call your REST/gRPC client
   test: ""
   status: done
+- commit: Implement ResonanzpfadAgent analysis
+  path: packages/agents/ResonanzpfadAgent.ts
+  task: komplexe Analyse, Kontextverarbeitung und Archetypenlogik
+  test: packages/agents/__tests__/ResonanzpfadAgent.spec.ts
+  status: todo
+- commit: Add AutoDocGeneration to Nucleon-Scanner
+  path: packages/crep-engine/autoDocGeneration.ts
+  task: README und JSDoc zu HTML/PDF umwandeln
+  test: packages/crep-engine/autoDocGeneration.test.ts
+  status: todo
 - commit: Implement ConversationTodoExtractor
   path: packages/agents
   task: Extract tasks from conversation logs based on key phrases
@@ -2708,39 +2718,39 @@ status: done
   path: packages/agents/CommonsAgent.ts
   task: Open-Science scoring agent
   test: packages/agents/__tests__/CommonsAgent.spec.ts
-  status: todo
+  status: done
 - commit: Add CLI dispatch tool
-  path: packages/cli-tools/dispatch.ts
+  path: packages/cli-tools/dispatchCmd.ts
   task: CLI dispatch via AgentRegistry
   test: ""
-  status: todo
+  status: done
 - commit: Add AdaptiveThreshold module
   path: packages/core/AdaptiveThreshold.ts
   task: Dynamic CREP trigger thresholds
   test: ""
-  status: todo
+  status: done
 - commit: Add DebounceManager utility
   path: packages/core/DebounceManager.ts
   task: Prevent event flooding
   test: ""
-  status: todo
+  status: done
 - commit: Add withCircuit helper
   path: packages/core/withCircuit.ts
   task: CircuitBreaker wrapper
   test: ""
-  status: todo
+  status: done
 - commit: Add healthz route
   path: packages/core/routes/healthz.ts
   task: Health check endpoint
   test: ""
-  status: todo
+  status: done
 - commit: Add metaScores route
   path: packages/core/routes/metaScores.ts
   task: Expose meta score API
   test: ""
-  status: todo
+  status: done
 - commit: Create Dashboard component
   path: packages/unifiedmandala-ui/components/Dashboard.tsx
   task: Render MetaScoreChart via hook
   test: ""
-  status: todo
+  status: done
