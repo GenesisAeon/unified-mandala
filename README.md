@@ -61,6 +61,7 @@ Schau auch ins [Glossar](docs/glossar-genesis.md) für Begriffe.
 - 🛠️ **Go-Agent (Golang)** – eigenständiger Daemon für Task-Verarbeitung
 - 📊 **MetaScoreChart** & **SyncStatus** – UI für MetaScores und Sync-Stände
 - 🔗 **Hexa-AgentSystem** – verbindet sechs Agenten für Resonanz- und Bewusstseinsanalyse
+- 🧠 **AdvancedHexaAgent** – erweitert das Hexa-System um Research- und SilenceWatcher-Agenten
 
 ## 📦 Paketstruktur
 

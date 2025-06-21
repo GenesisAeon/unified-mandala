@@ -2656,14 +2656,14 @@ status: done
   path: packages/agents
   task: Automatisierte Forschungsanfragen verarbeiten
   test: packages/agents/ResearchAgent.test.ts
-  status: pending
+  status: done
 - commit: Add SilenceWatcher agent
   path: packages/agents
   task: Beobachtet Inaktivität und triggert Selbstanalyse
   test: packages/agents/SilenceWatcher.test.ts
-  status: pending
+  status: done
 - commit: Expose layer control API
   path: go-agent
   task: Go-Interface zum Aktivieren von Layers
   test: go-agent/test/layer_control_test.go
-  status: pending
+  status: done
