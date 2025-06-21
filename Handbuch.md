@@ -200,6 +200,7 @@ Weitere Module sind in Arbeit.
 | `node scripts/parse-advanced-conversations.js` | Parst `advancedconversations.json` |
 | `node scripts/analyze-conversations.js` | Analysiert Gespräche |
 | `node scripts/generate-todo-from-convos.js` | Erstellt ToDo-Datei aus Convos |
+| `node tools/PoeticToDoSynth.ts` | Extrahiert poetische Aufgaben aus Symbolfluss |
 | `node scripts/export-crep-docs.js` | Exportiert CREP-Daten |
 | `node scripts/update-advanced-todo.js` | Aktualisiert Advanced-ToDo-Liste |
 | `node scripts/update-advancedprogress.js` | Dokumentiert Fortschritt |
@@ -211,6 +212,7 @@ Weitere Module sind in Arbeit.
 | `node scripts/mark-fragment.js` | Markiert bearbeitete Fragmente |
 | `node scripts/self-analyze.js` | Zeigt Repository-Statistiken |
 | `node scripts/scan-todo-comments.js` | Scannt TODO-Kommentare |
+| `./scripts/validate-schemas.sh` | Validiert JSON- und YAML-Dateien |
 | `node scripts/repotool-convo.js` | Schnelle Auswertung & Progress-Update |
 | `node scripts/website-to-yaml.js` | Wandelt Webseite in YAML um |
 | `node scripts/symbolzeit-runner.js` | Läuft Symbolzeit-Cronjob |
@@ -339,6 +341,7 @@ scripts/
 
 Jeder Unterordner kann eine eigene README enthalten – siehe die Links in den jeweiligen Verzeichnissen.
 Utilities liegen in `packages/shared-utils/`, weitere Module findest du ebenfalls unter `packages/`.
+Kleine Hilfsskripte liegen unter `tools/`.
 
 ## 💻 Schnellstart
 
@@ -385,6 +388,7 @@ npm run dev   # oder: yarn dev
 | `node scripts/parse-advanced-conversations.js` | Parst `advancedconversations.json` |
 | `node scripts/analyze-conversations.js` | Analysiert Gespräche |
 | `node scripts/generate-todo-from-convos.js` | Erstellt ToDo-Datei aus Convos |
+| `node tools/PoeticToDoSynth.ts` | Extrahiert poetische Aufgaben aus Symbolfluss |
 | `node scripts/export-crep-docs.js` | Exportiert CREP-Daten |
 | `node scripts/update-advanced-todo.js` | Aktualisiert Advanced-ToDo-Liste |
 | `node scripts/update-advancedprogress.js` | Dokumentiert Fortschritt |
@@ -396,6 +400,7 @@ npm run dev   # oder: yarn dev
 | `node scripts/mark-fragment.js` | Markiert bearbeitete Fragmente |
 | `node scripts/self-analyze.js` | Zeigt Repository-Statistiken |
 | `node scripts/scan-todo-comments.js` | Scannt TODO-Kommentare |
+| `./scripts/validate-schemas.sh` | Validiert JSON- und YAML-Dateien |
 | `node scripts/repotool-convo.js` | Schnelle Auswertung & Progress-Update |
 | `node scripts/website-to-yaml.js` | Wandelt Webseite in YAML um |
 | `node scripts/symbolzeit-runner.js` | Läuft Symbolzeit-Cronjob |

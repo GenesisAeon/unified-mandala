@@ -549,12 +549,14 @@
   path: ""
   task: s, `README.md`, `Dockerfile`, Handbuch, etc.),
   test: ""
+  status: done
 - commit: Synth.ts**        | GPT-basiertes ToDo-Generieren aus
     Symbolfluss          | `./tools/PoeticToDoSynth.ts` |
   path: ""
   task: Synth.ts**        | GPT-basiertes ToDo-Generieren aus
     Symbolfluss          | `./tools/PoeticToDoSynth.ts` |
   test: ""
+  status: done
 - commit: "- & Dashboard-Komponenten"
   path: ""
   task: "- & Dashboard-Komponenten"
@@ -2907,6 +2909,7 @@ status: done
   path: scripts/validate-schemas.sh
   task: Validate JSON and YAML files in CI
   test: ""
+  status: done
 - commit: Add sigil trigger script
   path: services/sigil-trigger/trigger.sh
   task: Watch files and generate sigils on change

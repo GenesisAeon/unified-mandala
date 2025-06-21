@@ -315,8 +315,9 @@
   {
     "commit": "Synth.ts**        | GPT-basiertes ToDo-Generieren aus Symbolfluss          | `./tools/PoeticToDoSynth.ts` |",
     "path": "",
-    "task": "Synth.ts**        | GPT-basiertes ToDo-Generieren aus Symbolfluss          | `./tools/PoeticToDoSynth.ts` |",
-    "test": ""
+  "task": "Synth.ts**        | GPT-basiertes ToDo-Generieren aus Symbolfluss          | `./tools/PoeticToDoSynth.ts` |",
+  "test": "",
+  "status": "done"
   },
   {
     "commit": "- & Dashboard-Komponenten",
@@ -1378,7 +1379,8 @@
     "commit": "Add schema validation hook script",
     "path": "scripts/validate-schemas.sh",
     "task": "Validate JSON and YAML files in CI",
-    "test": ""
+    "test": "",
+    "status": "done"
   },
   {
     "commit": "Add sigil trigger script",
