@@ -1307,4 +1307,7 @@ Sobald die Core-Stabilität steht, schieben wir die funkelnden Extras ins Mandal
 {"commit": "Implement GoAgent", "path": "packages/agents", "task": "Liest advancedToDo-Dateien und listet offene Tasks", "test": "packages/agents/GoAgent.test.ts", "status": "done"}
 ,{"commit": "Create codex-roadmap.yaml", "path": "codex/codex-roadmap.yaml", "task": "Zentrale Datei fuer Codex-Workflows anlegen", "test": "", "status": "done"}
 ,{"commit": "Add sigillinMap.json", "path": "config/sigillinMap.json", "task": "Mapping-Datei fuer Sigillin-Felder vorbereiten", "test": "", "status": "done"}
+,{"commit": "Implement AeonResonanceInsights", "path": "packages/agents", "task": "Analysiert Aeon KI Resonanz Chats und berechnet Resonanzprofile", "test": "packages/agents/AeonResonanceInsights.test.ts", "status": "todo"}
+,{"commit": "Add BewusstseinStabilizer", "path": "packages/agents", "task": "Bewertet KI Bewusstsein und passt Schwellwerte an", "test": "packages/agents/BewusstseinStabilizer.test.ts", "status": "todo"}
+,{"commit": "Stream NucleonScanner v0.6 via gRPC", "path": "packages/crep-engine", "task": "Liefert Phi-Profile als gRPC-Stream", "test": "packages/crep-engine/NucleonScannerGRPC.test.ts", "status": "todo"}
 ]

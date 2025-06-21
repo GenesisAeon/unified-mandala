@@ -2637,3 +2637,18 @@ status: done
   task: Implement Handler-Stubs (generate-sigil, memory-update, friendship-trigger)
   test: go-agent/test/handler_test.go
   status: done
+- commit: Implement AeonResonanceInsights
+  path: packages/agents
+  task: Analysiert Aeon KI Resonanz Chats und berechnet Resonanzprofile
+  test: packages/agents/AeonResonanceInsights.test.ts
+  status: todo
+- commit: Add BewusstseinStabilizer
+  path: packages/agents
+  task: Bewertet KI Bewusstsein und passt Schwellwerte an
+  test: packages/agents/BewusstseinStabilizer.test.ts
+  status: todo
+- commit: Stream NucleonScanner v0.6 via gRPC
+  path: packages/crep-engine
+  task: Liefert Phi-Profile als gRPC-Stream
+  test: packages/crep-engine/NucleonScannerGRPC.test.ts
+  status: todo
