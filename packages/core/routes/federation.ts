@@ -1,17 +1,15 @@
 import mitt from 'mitt';
 
 const bus = mitt();
+let last: any;
 
 export function push(data: any) {
+  last = data;
   bus.emit('push', data);
 }
 
 export function pull() {
-  let result: any;
-  bus.on('push', (d) => {
-    result = d;
-  });
-  return result;
+  return last;
 }
 
 export default { push, pull };

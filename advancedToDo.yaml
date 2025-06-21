@@ -2617,3 +2617,13 @@ status: done
   task: Liest advancedToDo-Dateien und listet offene Tasks
   test: packages/agents/GoAgent.test.ts
   status: done
+- commit: Create codex-roadmap.yaml
+  path: codex/codex-roadmap.yaml
+  task: Zentrale Datei fuer Codex-Workflows anlegen
+  test: ""
+  status: done
+- commit: Add sigillinMap.json
+  path: config/sigillinMap.json
+  task: Mapping-Datei fuer Sigillin-Felder vorbereiten
+  test: ""
+  status: done
