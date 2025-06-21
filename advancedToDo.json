@@ -1040,5 +1040,12 @@
     "task": "Display average CREP, Sigillin adoption, open high priority todos",
     "test": "apps/sharedream-interface/AdminMetrics.test.ts",
     "status": "geplant"
+  },
+  {
+    "commit": "Add codex-sync answer script and workflow",
+    "path": "codex-sync",
+    "task": "Codex-Antwortsystem für Vorschläge implementieren",
+    "test": ".github/workflows/codex-sync.yml",
+    "status": "done"
   }
 ]
