@@ -1,0 +1,13 @@
+name: Codex Sync
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  run-sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: pnpm install
+      - run: node codex-sync/answer-suggestions.js
