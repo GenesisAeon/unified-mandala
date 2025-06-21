@@ -2967,3 +2967,39 @@ status: done
   path: docs/pitch/EnglishPitch.md
   task: "Draft pitch text highlighting platform features"
   test: "markdownlint"
+- commit: "Add MemoryMesh RegionArchive service"
+  path: services/memorymesh/region
+  task: "Implement geo-based conversation archive with MongoDB and REST endpoints"
+  test: "jest"
+- commit: "Add MemoryMesh UserMemory service"
+  path: services/memorymesh/memory
+  task: "Store user traits and vector embeddings via Couchbase and Pinecone"
+  test: "jest"
+- commit: "Add MemoryMesh UserProfile service"
+  path: services/memorymesh/profile
+  task: "Manage social graphs in Neo4j with RBAC"
+  test: "jest"
+- commit: "Add ReflectionEngine microservice"
+  path: services/memorymesh/reflection
+  task: "Generate Koan summaries with Node.js and OpenAI"
+  test: "jest"
+- commit: "Add SocialPsychology engine"
+  path: services/memorymesh/psychology
+  task: "Compute psychological scores using FastAPI"
+  test: "pytest"
+- commit: "Add Adaptation service pipeline"
+  path: services/memorymesh/adaptation
+  task: "Consume events from Kafka and train TensorFlow models"
+  test: "pytest"
+- commit: "Add BehavioralTesting engine"
+  path: services/memorymesh/testing
+  task: "Run A/B tests with region-specific variants"
+  test: "pytest"
+- commit: "Add Personalization engine"
+  path: services/memorymesh/personalization
+  task: "Rank responses via RLlib"
+  test: "pytest"
+- commit: "Add RelationshipMeter metrics"
+  path: services/memorymesh/relationship
+  task: "Expose Prometheus metrics and Grafana dashboards"
+  test: "jest"
