@@ -72,6 +72,7 @@ Schau auch ins [Glossar](docs/glossar-genesis.md) für Begriffe.
 - 📚 **AutoDocGeneration** – wandelt README & JSDoc in HTML/PDF (`packages/crep-engine/autoDocGeneration.ts`)
 - 🔗 **Hexa-AgentSystem** – verbindet sechs Agenten für Resonanz- und Bewusstseinsanalyse
 - 🧠 **AdvancedHexaAgent** – erweitert das Hexa-System um Research- und SilenceWatcher-Agenten
+- 📱 **useBreakpoint Hook** – erkennt mobile Ansichten für responsive UI
 
 ## 📦 Paketstruktur
 

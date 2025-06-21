@@ -157,6 +157,7 @@ GPTEventHub.emit('orakel:says', { content: 'Hallo Welt' });
 - `SigillinLoader` – Lädt Sigillin-Dateien und filtert Einträge.
 - `SelfAuditModul` – Zeigt Kennzahlen aus `selfAnalyzer`.
 - `useSymbolzeit` – liest Symbolphasen aus der YAML und steuert Farben dynamisch.
+- `useBreakpoint` – erkennt mobile Ansichten für responsive Layouts.
 
 
 Weitere Module sind in Arbeit.
