@@ -2939,3 +2939,35 @@ status: done
   path: ci/agent.yml
   task: Run schema validation and vector index tests
   test: ""
+- commit: "Implement ImpactDashboard component with MandalaNetworkView"
+  path: apps/socialgood-ui/src/components/ImpactDashboard.tsx
+  task: "Create React component for Impact Dashboard and heatmap"
+  test: "jest"
+- commit: "Add ProjectListView and CustomRegionGallery components"
+  path: apps/socialgood-ui/src/components
+  task: "Build UI for project list and custom region gallery"
+  test: "jest"
+- commit: "Add Friendship & SocialGood API Swagger spec"
+  path: docs/api/friendship-socialgood.yaml
+  task: "Write OpenAPI schema for region and socialgood endpoints"
+  test: "openapi-validate"
+- commit: "Write Community Onboarding Guide"
+  path: docs/CommunityOnboarding.md
+  task: "Provide quickstart steps and CLI usage"
+  test: "markdownlint"
+- commit: "Create MobileImpactDashboard for React Native"
+  path: apps/socialgood-mobile/MobileImpactDashboard.tsx
+  task: "Implement mobile friendly dashboard component"
+  test: "jest"
+- commit: "Scaffold domain simulation modules (bio, chem, phys, dna, mind)"
+  path: packages/sim-domain
+  task: "Add initial structure for specialized simulation engines"
+  test: "tsc"
+- commit: "Implement sonifier and image generation art modules"
+  path: packages/art
+  task: "Create modules for CREP sonification and AI image gallery"
+  test: "tsc"
+- commit: "Compose English pitch for art and science events"
+  path: docs/pitch/EnglishPitch.md
+  task: "Draft pitch text highlighting platform features"
+  test: "markdownlint"
