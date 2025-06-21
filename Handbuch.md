@@ -294,6 +294,7 @@ packages/
 codex/                    # Codex-Workflows und Sigillin-Dateien
 codexbuild/               # Build-Skripte und Deploy-Hilfen
 codex-sync/              # Antwortsystem für Vorschläge
+go-agent/               # Go-Daemon zur Layer-Steuerung
 ci/                      # Test- und Pipeline-Konfigurationen
 config/                  # Zentrale YAML- und Env-Dateien
   └── interfaces.yaml       # API-Endpunkte der Plattform
