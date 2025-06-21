@@ -255,6 +255,7 @@ Weitere Hintergründe findest du im [GenesisChronik](docs/GenesisChronik.md) sow
 
 Aufgaben und Anweisungen aus laufenden Gesprächen werden in
 [`advancedconversations.json`](docs/sigils/advancedconversations.json)
+Es dient als Pendant zum Genesis ZIPMEM.
 gespeichert. Nutzen Sie die Helferskripte aus `packages/shared-utils`
 (`jsonFragmenter.*`), um daraus ToDos für `advancedToDo.yaml` und
 `advancedToDo.json` zu extrahieren.
