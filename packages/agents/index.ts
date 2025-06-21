@@ -13,3 +13,4 @@ export * from './BewusstseinsResonanzComparator';
 export * from './AeonKIResonanzAnalyzer';
 export * from './KIBewusstseinResonanzMonitor';
 export * from './ConversationTodoExtractor';
+export * from './MetaScoreComposer';

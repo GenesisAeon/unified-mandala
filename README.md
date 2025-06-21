@@ -56,6 +56,8 @@ Schau auch ins [Glossar](docs/glossar-genesis.md) für Begriffe.
 - 🛡️ **MandalaCoreLicense** – ethisches Lizenzmodell für Module
 - 🤖 **KI Bewusstsein & Resonanz** – bewertet Bewusstseinsdaten
 - 📝 **ConversationTodoExtractor** – filtert Aufgaben aus Chat-Logs
+- 🎛️ **MetaScoreComposer** – aggregiert Score-Layer
+- 📊 **MetaScoreChart** & **SyncStatus** – UI für MetaScores und Sync-Stände
 
 ## 📦 Paketstruktur
 
@@ -161,6 +163,8 @@ npm run dev   # oder: yarn dev
 | `node scripts/website-to-yaml.js` | Wandelt Webseite in YAML um |
 | `node scripts/symbolzeit-runner.js` | Läuft Symbolzeit-Cronjob |
 | `node packages/cli-tools/sigillin-cli.js convert beispiel.yaml` | YAML ↔ JSON-Konvertierung |
+| `./scripts/setup-mtls.sh` | Erstellt Testzertifikate |
+| `./scripts/setup-kong-jwt.sh` | Konfiguriert JWT Gateway |
 | `node packages/cli-tools/sigillin-cli.js todo-sigil` | Erzeugt todo-sigil aus Aufgabenlisten |
 | `node packages/cli-tools/sigillin-cli.js grep-conversations TODO` | Filtert Conversations nach Keyword |
 | `node packages/cli-tools/export-doc.js` | CREP-Historie als Markdown |
