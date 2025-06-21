@@ -1,4 +1,4 @@
-import { renderHook } from '@testing-library/react';
+import { renderHook, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { useMetaScores } from './useMetaScores';
 
@@ -9,7 +9,7 @@ beforeEach(() => {
 });
 
 test('fetches meta scores', async () => {
-  const { result, waitForNextUpdate } = renderHook(() => useMetaScores('/test'));
-  await waitForNextUpdate();
+  const { result } = renderHook(() => useMetaScores('/test'));
+  await waitFor(() => expect(result.current.length).toBeGreaterThan(0));
   expect(result.current[0].layer).toBe('x');
 });

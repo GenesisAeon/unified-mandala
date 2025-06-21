@@ -383,3 +383,4 @@ Das `CHRONOPOEM.md` entsteht automatisch – und kann bei jedem Commit erneuert 
 - **Utils**: gebündelt in `packages/shared-utils/`
 - **Scripts**: hilfreiche Automationen unter `scripts/`
 \nDie detaillierte Struktur aller Module, Utilities und Skripte findest du in [repositorypflege/repository_map.yaml](repositorypflege/repository_map.yaml).
+Einen Ausblick auf kommende Schritte liefert [codex/codex-roadmap.yaml](codex/codex-roadmap.yaml).
