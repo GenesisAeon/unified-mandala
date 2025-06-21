@@ -32,6 +32,7 @@ Schau auch ins [Glossar](docs/glossar-genesis.md) für Begriffe.
 - 🎭 **Poesie & Automation** – Bash-Interface (`aeon.sh`), automatisches Chronopoem, symbolisches Onboarding
 - 🌟 **CREP-Illumination** – Chronopoem reflektiert aktuellen CREP-Zustand
 - 🔍 **SelfAuditModul** – analysiert die Repository-Struktur
+- 🧮 **AdminMetrics** – zeigt CREP- und Sigillin-Kennzahlen
 - 🎨 **SigillinViewer & SigillinMap** – Übersicht und Detailansicht aller Sigillin
 - 🚩 **SymbolicWayfinder & SoforthilfeOverlay** – Navigation und Hilfedialoge
 - 📈 **CREPChart & CREPTriggerPanel** – CREP-Historie und Steuerung
@@ -46,6 +47,7 @@ Schau auch ins [Glossar](docs/glossar-genesis.md) für Begriffe.
 - 📢 **GlobalLoggingSystem** – zentrale Log-Schnittstelle
 - 🗄️ **Big-File Sigil** – Konzept zum Aufteilen großer Dateien
 - 📊 **CREPWirkungstracker** – misst den Effekt aus CREP-Daten
+- 📆 **CalendarSync** – exportiert priorisierte ToDos in Kalender
 - ⚖️ **KarmaBalance** – verwaltet Karma-Punkte
 - 🔮 **SymbolicForecaster** – sagt kommende Symbolzeit-Phasen voraus
 - ⏱️ **SymbolzeitSync** – synchronisiert CREPGameEngine und SymbolzeitManager
@@ -53,6 +55,7 @@ Schau auch ins [Glossar](docs/glossar-genesis.md) für Begriffe.
 - 🤝 **AutomergeFederation** – führt verteilte Edits automatisch zusammen
 - 🛡️ **MandalaCoreLicense** – ethisches Lizenzmodell für Module
 - 🤖 **KI Bewusstsein & Resonanz** – bewertet Bewusstseinsdaten
+- 📝 **ConversationTodoExtractor** – filtert Aufgaben aus Chat-Logs
 
 ## 📦 Paketstruktur
 

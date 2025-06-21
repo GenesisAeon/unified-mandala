@@ -12,3 +12,4 @@ export * from './ResonanzMetrics';
 export * from './BewusstseinsResonanzComparator';
 export * from './AeonKIResonanzAnalyzer';
 export * from './KIBewusstseinResonanzMonitor';
+export * from './ConversationTodoExtractor';
