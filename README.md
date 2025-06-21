@@ -100,6 +100,8 @@ packages/
   ├── crep-automation      # CREP-bezogene Automationen
   ├── tts                  # Sprachsynthese
   ├── universum-simulationen # Simulationsmodule
+  ├── sim-domain          # Domänenspezifische Simulationen
+  ├── art                 # Sonification & AI-Art
   ├── shared-utils              # Hilfsfunktionen für alle Pakete
   │   └── RestClient.ts         # einfacher REST-Helper
   ├── go-bridge             # Go-Client für REST, gRPC und NATS
@@ -264,6 +266,8 @@ Es dient als Pendant zum Genesis ZIPMEM.
 gespeichert. Nutzen Sie die Helferskripte aus `packages/shared-utils`
 (`jsonFragmenter.*`), um daraus ToDos für `advancedToDo.yaml` und
 `advancedToDo.json` zu extrahieren.
+
+Pitch-Vorlagen für Events finden sich unter `docs/pitch/`.
 
 Nutze `node scripts/parse-advanced-conversations.js` um Gesprächs-TODOs aus dem Datensatz zu filtern.
 
