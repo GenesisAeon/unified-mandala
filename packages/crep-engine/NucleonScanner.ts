@@ -6,6 +6,17 @@ export interface PhiProfile {
 export class NucleonScanner {
   history: PhiProfile[] = [];
 
+  importFromTranscript(transcript: string) {
+    const regex = /phi[:=]\s*(\d+(?:\.\d+)?)/gi;
+    let match;
+    while ((match = regex.exec(transcript)) !== null) {
+      const value = parseFloat(match[1]);
+      if (!isNaN(value)) {
+        this.logPhi(value);
+      }
+    }
+  }
+
   logPhi(phi: number) {
     this.history.push({ phi, timestamp: Date.now() });
   }

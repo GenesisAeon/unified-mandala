@@ -61,6 +61,26 @@
   task: call your REST/gRPC client
   test: ""
   status: done
+- commit: Implement ConversationTodoExtractor
+  path: packages/agents
+  task: Extract tasks from conversation logs based on key phrases
+  test: packages/agents/ConversationTodoExtractor.test.ts
+  status: geplant
+- commit: Link CREP scores with todo priority
+  path: packages/crep-engine
+  task: Prioritize extracted ToDos via CREP evaluation
+  test: packages/crep-engine/TodoPriority.test.ts
+  status: geplant
+- commit: Calendar integration for high priority todos
+  path: packages/crep-engine
+  task: Export high priority ToDos to calendar via CREPCalendarSync
+  test: packages/crep-engine/CalendarSync.test.ts
+  status: geplant
+- commit: Admin metrics dashboard
+  path: apps/sharedream-interface
+  task: Display average CREP, Sigillin adoption, open high priority todos
+  test: apps/sharedream-interface/AdminMetrics.test.ts
+  status: geplant
 - commit: implement
   path: ""
   task: implement
@@ -2561,4 +2581,4 @@ status: done
   path: packages/crep-engine
   task: Parse Nukleon-Scanner v0.6 Analyse Transkripte
   test: packages/crep-engine/NucleonScannerConversation.test.ts
-  status: geplant
+  status: done
