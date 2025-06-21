@@ -97,6 +97,9 @@ console.log(sigil.id); // hello
 - `GoAgent` – Liest advancedToDo-Dateien und listet offene Tasks (Node).
 - `Go-Agent (Golang)` – Autonomer Daemon für parallele Task-Ausführung.
 - `HexaAgentSystem` – Kombiniert sechs Agenten für Resonanz- und Bewusstseinsauswertung.
+- `ResearchAgent` – Automatisierte Forschungsanfragen.
+- `SilenceWatcher` – Beobachtet Inaktivität und triggert Selbstanalyse.
+- `AdvancedHexaAgent` – Erweiterte Analyse mit Research- und SilenceWatcher-Agenten.
 - `go-bridge` – Golang-Client für REST/gRPC/NATS Kommunikation.
 
 ### collab-editor
