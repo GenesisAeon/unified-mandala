@@ -35,6 +35,8 @@ Schau auch ins [Glossar](docs/glossar-genesis.md) für Begriffe.
 - `CREPEvaluator` – Ermittelt anhand von Thresholds den aktuellen Zustand.
 - `getCREPState` – Hilfsfunktion zur Statusermittlung.
 - `CREPBewertungsmodul` – Berechnet Score und Klassifizierung aus C,R,E,P
+- `TodoPriority` – Verknüpft Aufgaben mit CREP-Scores.
+- `CalendarSync` – Exportiert priorisierte ToDos als Kalenderereignisse.
 
 ### gpt-bridges
 - `GPTEventHub` – Zentrales Event-System zwischen GPT-Modulen.
@@ -88,6 +90,9 @@ console.log(sigil.id); // hello
 - `CodexProjectInitAgent` – Initialisiert neue Projektpfade.
 - `ResonanzMetrics` – Berechnet Durchschnitts- und Maximalwerte aus Resonanzdaten.
 - `BewusstseinsResonanzComparator` – Vergleicht Bewusstseins- und Resonanzwerte.
+- `AeonKIResonanzAnalyzer` – Analysiert Resonanzmuster in Gesprächen.
+- `KIBewusstseinResonanzMonitor` – Überwacht Bewusstseins- und Resonanzmetriken.
+- `ConversationTodoExtractor` – Filtert ToDo-Hinweise aus Chat-Protokollen.
 
 ### collab-editor
 - `CollaborativeEditor` – Federated Texteditor mit Remote-Sync.
@@ -123,6 +128,7 @@ GPTEventHub.emit('orakel:says', { content: 'Hallo Welt' });
 ### sharedream-interface
 - `MetaScoreChart` – Zeigt Bewertungsdaten aus `/api/meta-scores`.
 - `useMetaScores` – Hook zum Abruf der Scores.
+- `AdminMetrics` – Übersicht für CREP-Durchschnitt und offene ToDos.
 
 ### universum-simulationen
 - Module für narrative KI-Simulationen.

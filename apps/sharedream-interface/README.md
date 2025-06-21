@@ -5,5 +5,6 @@ React-Frontend mit GPT-Anbindung. Siehe [GenesisMandala](https://example.com) f�
 Dieses Interface nutzt nun ein /api/meta-scores Endpoint f체r Metadaten.
 Eine Storybook-Story f체r MetaScoreDisplay findet sich unter components/MetaScoreDisplay.stories.tsx.
 Eine Story f체r MetaScoreChart befindet sich unter components/MetaScoreChart.stories.tsx.
+Neue Kennzahlen zeigt die Komponente `AdminMetrics`.
 Tests f체r Hooks und API liegen unter `apps/sharedream-interface/hooks` und `pages/api`.
 Die Hook `useMetaScores` liefert nun einen Fehlerstatus, falls der API-Aufruf fehlschl채gt.
