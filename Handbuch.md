@@ -222,6 +222,7 @@ Weitere Module sind in Arbeit.
 | `node packages/cli-tools/export-doc.js` | CREP-Historie als Markdown |
 | `node packages/cli-tools/sigillin-archive.js` | Archiviert Sigillin-Dateien |
 | `node packages/cli-tools/dispatchCmd.ts` | Dispatcher für diverse Befehle |
+| `go run scripts/mock-data.go` | Gibt Beispiel-Mockdaten mit eventHook und fractalHash aus |
 
 - `scripts/generate-api-docs.js` – Erstellt automatisch die API-Dokumentation mit Typedoc.
 - `scripts/generate-todo-sigil.js` – Erstellt das ToDo-Sigil aus der Mastercanvas.
@@ -319,6 +320,8 @@ codex/                    # Codex-Workflows und Sigillin-Dateien
 codexbuild/               # Build-Skripte und Deploy-Hilfen
 codex-sync/              # Antwortsystem für Vorschläge
 go-agent/               # Go-Daemon zur Layer-Steuerung
+  ├── pkg/policy        # Policy Enforcement Stubs
+  └── pkg/hooks         # Event Hook Publisher
 ci/                      # Test- und Pipeline-Konfigurationen
 config/                  # Zentrale YAML- und Env-Dateien
   └── interfaces.yaml       # API-Endpunkte der Plattform
