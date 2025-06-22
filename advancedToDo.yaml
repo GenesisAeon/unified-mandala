@@ -3034,3 +3034,15 @@ status: done
   task: Validate sigil files via Ajv
   test: ''
   status: done
+- commit: "Add CodeAgent scaffolding"
+  path: pkg/codeagent
+  task: Skeleton for language agents and CLI
+  test: ''
+- commit: "Add C-Tutor skeleton"
+  path: apps/c-tutor
+  task: Interactive C learning tool placeholder
+  test: ''
+- commit: "Add JavaHamster AI skeleton"
+  path: apps/java-hamster-ai
+  task: Gamified C learning pendant
+  test: ''

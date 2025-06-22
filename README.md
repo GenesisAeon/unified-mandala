@@ -115,6 +115,7 @@ packages/
   ├── pkg/chem             # Reaction kinetics simulation
   ├── pkg/mind             # Hybrid symbolic & neural agents
   ├── pkg/sonifier         # CREP-to-MIDI music generator
+  ├── pkg/codeagent        # Language-specific code agents
   ├── art                 # Sonification & AI-Art
   ├── shared-utils              # Hilfsfunktionen für alle Pakete
   │   └── RestClient.ts         # einfacher REST-Helper
