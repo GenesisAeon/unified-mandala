@@ -39,13 +39,15 @@
     "commit": "komplexe Analyse, Kontextverarbeitung, Archetypenlogik",
     "path": "",
     "task": "komplexe Analyse, Kontextverarbeitung, Archetypenlogik",
-    "test": ""
+    "test": "",
+    "status": "done"
   },
   {
     "commit": "komplexe Analyse, Kontextverarbeitung, Archetypenlogik\\n    return {\\n      task,\\n      antwort: `Resonanz aus Phase ${this.state.phase}`\\n    };\\n  }\\n\\n  private logResult(result: { task: any; antwort: string }): void {\\n    console.log(`\\uD83C\\uDF00 ${JSON.stringify(result.task)} \\u2192 ${result.antwort}`);\\n  }\\n}\"",
     "path": "",
     "task": "komplexe Analyse, Kontextverarbeitung, Archetypenlogik\\n    return {\\n      task,\\n      antwort: `Resonanz aus Phase ${this.state.phase}`\\n    };\\n  }\\n\\n  private logResult(result: { task: any; antwort: string }): void {\\n    console.log(`\\uD83C\\uDF00 ${JSON.stringify(result.task)} \\u2192 ${result.antwort}`);\\n  }\\n}\"",
-    "test": ""
+    "test": "",
+    "status": "done"
   },
   {
     "commit": "komplexe Analyse, Kontextverarbeitung, Archetypenlogik\\n    return {\\n      task,\\n      antwort: `Resonanz aus Phase ${this.state.phase}`\\n    };\\n  }\\n\\n  private logResult(result: { task: any; antwort: string }): void {\\n    console.log(`🌀 ${JSON.stringify(result.task)} → ${result.antwort}`);\\n  }\\n}\"}]}",
@@ -304,13 +306,15 @@
     "commit": "ReadMe Dockerfile Handbuch usw Pflege!? Was sagst du dazu?",
     "path": "",
     "task": "ReadMe Dockerfile Handbuch usw Pflege!? Was sagst du dazu?",
-    "test": ""
+    "test": "",
+    "status": "done"
   },
   {
     "commit": "s, `README.md`, `Dockerfile`, Handbuch, etc.),",
     "path": "",
     "task": "s, `README.md`, `Dockerfile`, Handbuch, etc.),",
-    "test": ""
+    "test": "",
+    "status": "done"
   },
   {
     "commit": "Synth.ts**        | GPT-basiertes ToDo-Generieren aus Symbolfluss          | `./tools/PoeticToDoSynth.ts` |",
@@ -1615,11 +1619,35 @@
     "path": "packages/crep-engine/CREPMusicGenerator.ts",
     "task": "Generate BPM from CREP",
     "test": "packages/crep-engine/CREPMusicGenerator.test.ts"
+  },
+  {
+    "commit": "Add Go-Agent watcher",
+    "path": "go-agent/internal/watchers/advancedtodo.go",
+    "task": "Monitor advancedToDo via NATS or polling",
+    "test": "go-agent/test/advancedtodo_test.go"
+  },
+  {
+    "commit": "Add POC Run Guide",
+    "path": "docs/demo/POC-Run-Guide.md",
+    "task": "Document POC run with GIF storyboard",
+    "test": ""
+  },
+  {
+    "commit": "Validate Swagger Docs",
+    "path": "docs/swagger/README.md",
+    "task": "API endpoint validation",
+    "test": ""
+  },
+  {
+    "commit": "Implement ResonanzPoetik module",
+    "path": "packages/codex-navigator/resonanzPoetik.ts",
+    "task": "Generate haikus and compile YAML chronik",
+    "test": "packages/codex-navigator/resonanzPoetik.test.ts"
+  },
+  {
+    "commit": "Aeon transition sigil workflow",
+    "path": "docs/sigils/advancedconversations.json",
+    "task": "Sync ToDo files before major commits and create new sigils per cycle",
+    "test": ""
   }
-,
-  {"commit": "Add Go-Agent watcher", "path": "go-agent/internal/watchers/advancedtodo.go", "task": "Monitor advancedToDo via NATS or polling", "test": "go-agent/test/advancedtodo_test.go"},
-  {"commit": "Add POC Run Guide", "path": "docs/demo/POC-Run-Guide.md", "task": "Document POC run with GIF storyboard", "test": ""},
-  {"commit": "Validate Swagger Docs", "path": "docs/swagger/README.md", "task": "API endpoint validation", "test": ""}
-, {"commit": "Implement ResonanzPoetik module", "path": "packages/codex-navigator/resonanzPoetik.ts", "task": "Generate haikus and compile YAML chronik", "test": "packages/codex-navigator/resonanzPoetik.test.ts"}
-, {"commit": "Aeon transition sigil workflow", "path": "docs/sigils/advancedconversations.json", "task": "Sync ToDo files before major commits and create new sigils per cycle", "test": ""}
 ]
