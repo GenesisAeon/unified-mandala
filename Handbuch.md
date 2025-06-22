@@ -225,6 +225,7 @@ Weitere Module sind in Arbeit.
 | `node scripts/repotool-convo.js` | Schnelle Auswertung & Progress-Update |
 | `node scripts/website-to-yaml.js` | Wandelt Webseite in YAML um |
 | `node scripts/symbolzeit-runner.js` | Läuft Symbolzeit-Cronjob |
+| `node scripts/generate-next-sigil.js` | Erstellt Folgesigil nach Zyklus |
 | `./scripts/setup-mtls.sh` | Erstellt Testzertifikate |
 | `./scripts/setup-kong-jwt.sh` | Konfiguriert JWT Gateway |
 | `node packages/cli-tools/sigillin-cli.js convert beispiel.yaml` | YAML ↔ JSON-Konvertierung |

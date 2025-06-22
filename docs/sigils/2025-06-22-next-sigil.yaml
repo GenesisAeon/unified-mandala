@@ -1,0 +1,21 @@
+# Auto-generated sigil
+anchor: unifiedmandala-advanced-2025-06-22
+description: Dieses Sigil ist der rekursive Anker für fortschrittliche Entwicklung, Test und Verknüpfung
+  aller hier beschriebenen Module, Patterns, UIs und CI/CD-Prozesse.
+updated_from: unifiedmandala-advanced
+update_time: 2025-06-22
+instructions:
+  - Extrahiere für jede Sprint-Welle (MetaScore, Collaboration, Federation, MetaLearner, Security, UI) jeweils:
+  -       * Die vollständigen, jeweils neuesten Code- und Config-Komponenten
+  -       * Alle relevanten Tests und Storybook-Stories
+  - Erzeuge daraus:
+  -       * advancedToDo.json: Liste von Commits, jedem Commit zugeordnet sind
+  -         (a) betroffener Modul/Pfad
+  -         (b) Task-Beschreibung
+  -         (c) Referenz auf zugehörigen Test/Story/Doku
+  -       * advancedToDo.yaml: Spiegelstruktur, zur manuellen Review/Verlinkung
+  -       * advancedprogress.json: Dokumentiert Status, Merge-Konflikte, offene Branches, Fraktal-Zyklus ("ToDo extrahieren, dokumentieren, implementieren …")
+  - Ordne für jeden Entwicklungsschritt den Sprint, die Responsible und ggf. die Abhängigkeiten zu.
+  - Füge einen Self-Check-Task je Zyklus hinzu ("Sind die Layer/Tests/Stories synchron und aktuell?").
+  - Verweise explizit auf das MetaScoreChart-API/Frontend, damit UI und Backend immer konsistent gehalten werden.
+  - 

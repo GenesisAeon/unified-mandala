@@ -2999,3 +2999,8 @@ status: done
   task: Simulate emergent pulse steps
   test: jest
   status: done
+- commit: "Add next-sigil generation script"
+  path: scripts/generate-next-sigil.js
+  task: Create follow-up sigil file after each cycle
+  test: ""
+  status: todo
