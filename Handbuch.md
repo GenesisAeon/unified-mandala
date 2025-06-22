@@ -250,6 +250,7 @@ Eine Pipeline-Demonstration findest du in [docs/demo/POC-Run-Guide.md](docs/demo
 | `node scripts/website-to-yaml.js` | Wandelt Webseite in YAML um |
 | `node scripts/symbolzeit-runner.js` | Läuft Symbolzeit-Cronjob |
 | `node scripts/generate-next-sigil.js` | Erstellt Folgesigil nach Zyklus |
+| `node scripts/aeon-transition-workflow.js` | Sync & erzeugt Übergabe-Sigil |
 | `./scripts/setup-mtls.sh` | Erstellt Testzertifikate |
 | `./scripts/setup-kong-jwt.sh` | Konfiguriert JWT Gateway |
 | `node packages/cli-tools/SigillinValidator.ts <file>` | Validiert eine Sigillin-Datei |

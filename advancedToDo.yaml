@@ -3098,6 +3098,7 @@ status: done
   path: docs/sigils/advancedconversations.json
   task: Sync ToDo files before major commits and create new sigils per cycle
   test: ""
+  status: done
 - commit: MemoryMesh architecture sketch
   path: docs/architecture/memory-mesh.md
   task: Diagram for MemoryMesh layers (Speicher, Reflexion, Adaption)

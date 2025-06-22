@@ -21,7 +21,8 @@
     "update:advanced-todo": "node scripts/update-advanced-todo.js",
     "export:crep-docs": "node scripts/export-crep-docs.js",
     "symbolzeit:run": "node scripts/symbolzeit-runner.js",
-    "generate:next-sigil": "node scripts/generate-next-sigil.js"
+    "generate:next-sigil": "node scripts/generate-next-sigil.js",
+    "aeon:transition": "node scripts/aeon-transition-workflow.js"
   },
   "dependencies": {
     "ajv": "^8.0.0",
