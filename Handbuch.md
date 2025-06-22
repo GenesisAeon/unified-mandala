@@ -189,7 +189,7 @@ GPTEventHub.emit('orakel:says', { content: 'Hallo Welt' });
 
 Weitere Module sind in Arbeit.
 
-Eine Pipeline-Demonstration findest du in [docs/POC-run-guide.md](docs/POC-run-guide.md).
+Eine Pipeline-Demonstration findest du in [docs/demo/POC-Run-Guide.md](docs/demo/POC-Run-Guide.md).
 ## Tools und Skripte
 ### Häufige Probleme
 - `pnpm dev` startet nicht → Node-Version prüfen, `pnpm install` erneut ausführen.
