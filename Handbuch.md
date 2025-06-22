@@ -378,6 +378,7 @@ scripts/
 Jeder Unterordner kann eine eigene README enthalten – siehe die Links in den jeweiligen Verzeichnissen.
 Utilities liegen in `packages/shared-utils/`, weitere Module findest du ebenfalls unter `packages/`.
 Kleine Hilfsskripte liegen unter `tools/`.
+Die komplette Ordnerstruktur samt Modulen, Utils und Skripten ist in [repositorypflege/repository_map.yaml](repositorypflege/repository_map.yaml) dokumentiert.
 
 ## 💻 Schnellstart
 
