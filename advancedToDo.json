@@ -1661,7 +1661,8 @@
     "commit": "MemoryMesh region POC",
     "path": "packages/crep-engine/memoryMesh.berlin.json",
     "task": "Prototype archive for region Europe/Berlin",
-    "test": ""
+    "test": "",
+    "status": "done"
   },
   {
     "commit": "Transition sigil update",

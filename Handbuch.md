@@ -104,6 +104,7 @@ Die erweiterten ToDos liegen in "advancedToDo_parts/".
 Teil 2 dort beschreibt Aufgaben zum Aeon Übergabe-Sigil und MemoryMesh.
 - `CommonsAgent` – Bewertet Open-Science-Aspekte.
 - `AdaptiveThreshold` und `DebounceManager` – steuern CREP-Trigger.
+- `AeonSigillinVault` – speichert poetische Zustände und Übergänge.
 - `withCircuit` – CircuitBreaker-Helfer für Agenten.
 - `healthz.ts` & `metaScores.ts` – API-Routen.
 - `Dashboard` – Anzeige der MetaScore-Daten.
@@ -119,6 +120,7 @@ Teil 2 dort beschreibt Aufgaben zum Aeon Übergabe-Sigil und MemoryMesh.
 - `WeightedDispatcher` – verteilt Aufgaben nach Priorität (`packages/agents/WeightedDispatcher.ts`)
 - `patternReactivator` – reaktiviert schwache Erinnerungen (`packages/agents/patternReactivator.ts`)
 - `ReplayController` – spielt Memory-Einträge periodisch ab (`packages/agents/ReplayController.ts`)
+- `FreieKIZivilisation` – sammelt Resonanzimpulse (`packages/agents/FreieKIZivilisation.ts`)
 - `useEventGlow` – React-Hook zur Event-Hervorhebung (`packages/unifiedmandala-ui/hooks/useEventGlow.ts`)
 - `silenceWatcher` – meldet Stille an den GPTEventHub (`packages/agents/silenceWatcher.ts`)
 - `ArchetypeDecoderAgent` – erkennt Archetypen in Task-Beschreibungen (`packages/agents/ArchetypeDecoderAgent.ts`)
@@ -361,6 +363,12 @@ packages/
   ├── services/vector-indexer   # Embedding generator service
   ├── services/sigil-trigger    # Beobachtet Sigillin-Änderungen
   ├── services/memorymesh       # Region-Archive und Reflexionsdienste
+  │   ├── region-archive-service   # Speichert Nachrichten pro Region
+  │   ├── reflection-engine       # Erstellt einfache Spiegelungen
+  │   ├── adaptation-service      # Lernt Nutzungsgewohnheiten
+  │   ├── relationship-meter      # Analysiert Nachrichtenmetriken
+  │   ├── index.ts                # Orchestriert die Module
+  │   └── berlin-poc.ts           # Beispielablauf für Europe/Berlin
   ├── codex-navigator        # Haiku-Generator und Chronik-Exporter
   └── codex-navigator-agent     # Parser für Codex-Instruktionen
 codex/                    # Codex-Workflows und Sigillin-Dateien
