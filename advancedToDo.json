@@ -1620,4 +1620,6 @@
   {"commit": "Add Go-Agent watcher", "path": "go-agent/internal/watchers/advancedtodo.go", "task": "Monitor advancedToDo via NATS or polling", "test": "go-agent/test/advancedtodo_test.go"},
   {"commit": "Add POC Run Guide", "path": "docs/demo/POC-Run-Guide.md", "task": "Document POC run with GIF storyboard", "test": ""},
   {"commit": "Validate Swagger Docs", "path": "docs/swagger/README.md", "task": "API endpoint validation", "test": ""}
+, {"commit": "Implement ResonanzPoetik module", "path": "packages/codex-navigator/resonanzPoetik.ts", "task": "Generate haikus and compile YAML chronik", "test": "packages/codex-navigator/resonanzPoetik.test.ts"}
+, {"commit": "Aeon transition sigil workflow", "path": "docs/sigils/advancedconversations.json", "task": "Sync ToDo files before major commits and create new sigils per cycle", "test": ""}
 ]

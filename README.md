@@ -94,6 +94,7 @@ Schau auch ins [Glossar](docs/glossar-genesis.md) für Begriffe.
 - 🔥 **ArchetypeDecoderAgent** – extrahiert Archetypen aus Beschreibungen (`packages/agents/ArchetypeDecoderAgent.ts`)
 - 🔮 **SigillinInterpreterAgent** – erkennt Sigillin-Symbole (`packages/agents/SigillinInterpreterAgent.ts`)
 - 📝 **ChronoPoemGeneratorAgent** – generiert poetische Zeilen (`packages/agents/ChronoPoemGeneratorAgent.ts`)
+- 🎴 **ResonanzPoetik** – erstellt Haikus aus Tasks (`packages/codex-navigator/resonanzPoetik.ts`)
 - 🎚️ **aggregateCREP** – mittelt CREP-Werte (`packages/crep-engine/aggregateCREP.ts`)
 - 🎵 **CREPMusicGenerator** – erzeugt BPM aus CREP (`packages/crep-engine/CREPMusicGenerator.ts`)
 ## 📦 Paketstruktur
@@ -137,6 +138,7 @@ packages/
   ├── services/vector-indexer # Embedding generator service
   ├── services/sigil-trigger  # Beobachtet Sigillin-Änderungen
   ├── services/memorymesh     # Region-Archive und Reflexionsdienste
+  ├── codex-navigator        # Haiku-Generator und Chronik-Exporter
   └── codex-navigator-agent     # Parser für Codex-Instruktionen
 tools/                    # Kleine Helferskripte & Generatoren
 codex/                    # Codex-Workflows und Sigillin-Dateien

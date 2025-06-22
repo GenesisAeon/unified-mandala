@@ -3086,3 +3086,11 @@ status: done
   path: docs/swagger/README.md
   task: API endpoint validation
   test: ""
+- commit: Implement ResonanzPoetik module
+  path: packages/codex-navigator/resonanzPoetik.ts
+  task: Generate haikus and compile YAML chronik
+  test: packages/codex-navigator/resonanzPoetik.test.ts
+- commit: Aeon transition sigil workflow
+  path: docs/sigils/advancedconversations.json
+  task: Sync ToDo files before major commits and create new sigils per cycle
+  test: ""
