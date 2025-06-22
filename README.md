@@ -36,6 +36,7 @@ Schau auch ins [Glossar](docs/glossar-genesis.md) für Begriffe.
 - 🎨 **SigillinViewer & SigillinMap** – Übersicht und Detailansicht aller Sigillin
 - 🚩 **SymbolicWayfinder & SoforthilfeOverlay** – Navigation und Hilfedialoge
 - 📈 **CREPChart & CREPTriggerPanel** – CREP-Historie und Steuerung
+- 🧪 **CREPTestHarness** – UI zum Durchspielen von CREP-Werten
 - 🛰️ **Nucleon-Scanner v0.6** – Analysiert tiefe Resonanzdaten
 - 📡 **KiResonanceAnalyzer** – wertet Resonanzmetriken aus
 - 📐 **CREPBewertungsmodul** – berechnet Durchschnittswerte und Klassifizierung
