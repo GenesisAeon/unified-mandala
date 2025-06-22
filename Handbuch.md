@@ -165,6 +165,10 @@ GPTEventHub.emit('orakel:says', { content: 'Hallo Welt' });
 - `SigillinOnDemandGenerator` – CLI-Modul für spontane Sigillin-Templates.
 - `CREPToDoPrioritizer` – stuft Aufgaben nach Emergenz ein.
 - `CREPConvoHeatmap` – React-Komponente zur Visualisierung von CREP-Schwankungen.
+- `ImpactDashboard` – Dashboard mit MandalaNetworkView und AgentHeatmap.
+- `CustomRegionGallery` – Galerieansicht für Regionen.
+- `ProjectListView` – Listenansicht für Social-Good-Projekte.
+- `MobileImpactDashboard` – mobile Variante auf Basis von React Native.
 
 
 Weitere Module sind in Arbeit.
@@ -353,6 +357,7 @@ cd unified-mandala
 pnpm dev
 ```
 Die generierte API-Dokumentation findest du danach unter `docs/api`.
+Die OpenAPI-Spezifikation für Friendship & SocialGood liegt unter `docs/api/friendship-socialgood.yaml`.
 
 Für `npm` oder `yarn` nutze alternativ:
 

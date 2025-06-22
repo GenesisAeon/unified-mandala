@@ -1,0 +1,17 @@
+openapi: 3.0.0
+info:
+  title: Friendship & SocialGood API
+  version: 1.0.0
+paths:
+  /regions:
+    get:
+      summary: List regions
+      responses:
+        '200':
+          description: List of regions
+  /socialgood:
+    get:
+      summary: List social good projects
+      responses:
+        '200':
+          description: List of projects

@@ -68,6 +68,9 @@ Schau auch ins [Glossar](docs/glossar-genesis.md) für Begriffe.
 - 🩺 **healthz.ts** & **metaScores.ts** – API-Routen
 - 🖥️ **Dashboard** – zeigt MetaScoreChart per Hook
 - 📄 **UploadYamlForm** – wandelt hochgeladene Dateien in YAML um
+- 📊 **ImpactDashboard** – kombiniert MandalaNetworkView und AgentHeatmap
+- 📱 **MobileImpactDashboard** – mobile Variante des Dashboards
+- 📑 **Friendship & SocialGood API** – siehe `docs/api/friendship-socialgood.yaml`
 - 🌀 **ResonanzpfadAgent** – komplexe Analyse & Archetypenlogik (`packages/agents/ResonanzpfadAgent.ts`)
 - 📚 **AutoDocGeneration** – wandelt README & JSDoc in HTML/PDF (`packages/crep-engine/autoDocGeneration.ts`)
 - 🔗 **Hexa-AgentSystem** – verbindet sechs Agenten für Resonanz- und Bewusstseinsanalyse
