@@ -1,0 +1,30 @@
+{
+  "id": "learning-module-launch",
+  "modules": [
+    "codeagent-python",
+    "codeagent-go",
+    "c-tutor",
+    "java-hamster-ai"
+  ],
+  "workflows": [
+    {
+      "name": "C-Tutor Progress",
+      "steps": [
+        "Start at beginner",
+        "Solve exercises, receive Sigil per milestone",
+        "Level up to intermediate and expert",
+        "Export learning Sigil for portfolio"
+      ]
+    },
+    {
+      "name": "JavaHamster AI Flow",
+      "steps": [
+        "Select Level",
+        "Write & run Hamster code",
+        "AI coach gives hints",
+        "Sigil for completed levels"
+      ]
+    }
+  ],
+  "tutorial": "Hands-on: Use our AI & Sigil to solve, document and share learning journeys."
+}

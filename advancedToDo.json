@@ -1667,5 +1667,23 @@
     "path": "scripts/generate-next-sigil.js",
     "task": "Add update_time and Responsible to MemoryMesh cycle",
     "test": ""
+  },
+  {
+    "commit": "Add agent registry YAML",
+    "path": "agents.yaml",
+    "task": "Store all agent types centrally",
+    "test": ""
+  },
+  {
+    "commit": "Gamification API routes",
+    "path": "apps/sharedream-interface/pages/api/gamify",
+    "task": "Provide badges and leaderboard",
+    "test": "apps/sharedream-interface/pages/api/gamify/badges.test.ts"
+  },
+  {
+    "commit": "Sigil Story component",
+    "path": "packages/unifiedmandala-ui/components/SigilStory.tsx",
+    "task": "Visualize learning progress",
+    "test": "packages/unifiedmandala-ui/components/SigilStory.test.tsx"
   }
 ]

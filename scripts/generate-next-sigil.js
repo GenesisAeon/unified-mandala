@@ -18,6 +18,7 @@ const nextSigil = {
   description,
   updated_from: baseAnchor,
   update_time: timestamp,
+  responsible: process.env.USER || 'unknown',
   instructions,
 };
 
