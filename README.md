@@ -321,6 +321,7 @@ gespeichert. Nutzen Sie die Helferskripte aus `packages/shared-utils`
 
 Pitch-Vorlagen für Events finden sich unter `docs/pitch/`.
 Die ToDo-Liste wurde für mehr Übersicht in "advancedToDo_parts/" aufgeteilt.
+Teil 2 in advancedToDo_parts beinhaltet Aufgaben zum Aeon Übergabe-Sigil und MemoryMesh.
 
 Nutze `node scripts/parse-advanced-conversations.js` um Gesprächs-TODOs aus dem Datensatz zu filtern.
 
