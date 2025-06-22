@@ -114,6 +114,13 @@ console.log(sigil.id); // hello
 - `AdvancedHexaAgent` – Erweiterte Analyse mit Research- und SilenceWatcher-Agenten.
 - `go-bridge` – Golang-Client für REST/gRPC/NATS Kommunikation.
 
+- `WeightedDispatcher` – verteilt Aufgaben nach Priorität (`packages/agents/WeightedDispatcher.ts`)
+- `patternReactivator` – reaktiviert schwache Erinnerungen (`packages/agents/patternReactivator.ts`)
+- `ReplayController` – spielt Memory-Einträge periodisch ab (`packages/agents/ReplayController.ts`)
+- `useEventGlow` – React-Hook zur Event-Hervorhebung (`packages/unifiedmandala-ui/hooks/useEventGlow.ts`)
+- `silenceWatcher` – meldet Stille an den GPTEventHub (`packages/agents/silenceWatcher.ts`)
+- `aggregateCREP` – berechnet Durchschnittswerte (`packages/crep-engine/aggregateCREP.ts`)
+- `CREPMusicGenerator` – generiert BPM aus CREP (`packages/crep-engine/CREPMusicGenerator.ts`)
 ### collab-editor
 - `CollaborativeEditor` – Federated Texteditor mit Remote-Sync.
 - `AutomergeFederation` – Verbindet lokale und entfernte Änderungen.

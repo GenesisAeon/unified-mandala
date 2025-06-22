@@ -1,14 +1,10 @@
 export class DebounceManager {
-  private timers: Map<string, NodeJS.Timeout> = new Map();
-  constructor(private delay = 300) {}
-  run(key: string, fn: () => void) {
-    if (this.timers.has(key)) clearTimeout(this.timers.get(key));
-    this.timers.set(
-      key,
-      setTimeout(() => {
-        this.timers.delete(key);
-        fn();
-      }, this.delay)
-    );
+  private last: number = 0;
+  constructor(private waitMs = 300) {}
+  canFire(): boolean {
+    const now = Date.now();
+    if (now - this.last < this.waitMs) return false;
+    this.last = now;
+    return true;
   }
 }

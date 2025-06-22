@@ -3046,3 +3046,31 @@ status: done
   path: apps/java-hamster-ai
   task: Gamified C learning pendant
   test: ''
+- commit: Add WeightedDispatcher
+  path: packages/agents/WeightedDispatcher.ts
+  task: Priority based dispatching
+  test: packages/agents/WeightedDispatcher.test.ts
+- commit: Add patternReactivator
+  path: packages/agents/patternReactivator.ts
+  task: Reactivate low CREP patterns
+  test: packages/agents/patternReactivator.test.ts
+- commit: Add ReplayController
+  path: packages/agents/ReplayController.ts
+  task: Replay memory entries
+  test: packages/agents/ReplayController.test.ts
+- commit: Add useEventGlow hook
+  path: packages/unifiedmandala-ui/hooks/useEventGlow.ts
+  task: UI glow effect for events
+  test: packages/unifiedmandala-ui/hooks/useEventGlow.test.ts
+- commit: Add silenceWatcher util
+  path: packages/agents/silenceWatcher.ts
+  task: Emit message on inactivity
+  test: packages/agents/silenceWatcher.test.ts
+- commit: Add aggregateCREP util
+  path: packages/crep-engine/aggregateCREP.ts
+  task: Average CREP entries
+  test: packages/crep-engine/aggregateCREP.test.ts
+- commit: Add CREPMusicGenerator
+  path: packages/crep-engine/CREPMusicGenerator.ts
+  task: Generate BPM from CREP
+  test: packages/crep-engine/CREPMusicGenerator.test.ts
