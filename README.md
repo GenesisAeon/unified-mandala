@@ -193,6 +193,7 @@ git clone https://github.com/GenesisAeon/unified-mandala.git
 cd unified-mandala
 ./scripts/setup-unifiedmandala.sh
 pnpm dev
+./scripts/run-demo.sh # Docker-Compose Quickstart
 ```
 Die generierte API-Dokumentation findest du danach unter `docs/api`.
 
@@ -214,6 +215,7 @@ npm run dev   # oder: yarn dev
 | `./scripts/aeon.sh chronopoem` | Erstellt `CHRONOPOEM.md` |
 | `./scripts/aeon.sh onboarding` | Zeigt Onboarding-Ritus |
 | `pnpm dev` | Startet Dev-Server (UI & API) |
+./scripts/run-demo.sh # Docker-Compose Quickstart
 | `pnpm docs:auto` | Generiert TypeDoc-API-Docs |
 | `pnpm lint` | Führt statische Typprüfung aus |
 | `pnpm test` | Führe Unit- & UI-Tests aus |
@@ -258,6 +260,7 @@ npm run dev   # oder: yarn dev
 | `node packages/cli-tools/sigillin-archive.js` | Archiviert Sigillin-Dateien |
 | `node packages/cli-tools/dispatchCmd.ts` | Dispatcher für diverse Befehle |
 | `go run scripts/mock-data.go` | Gibt Beispiel-Mockdaten mit eventHook und fractalHash aus |
+| `./scripts/run-demo.sh` | Startet Docker-Compose Umgebung |
 
 
 
@@ -299,6 +302,7 @@ Deine Idee, deine Story, dein Sigillin sind willkommen! Jeder Pull Request ist e
 ## 🛠 Repository-Reparatur
 ### Häufige Probleme
 - `pnpm dev` startet nicht → Node-Version prüfen, `pnpm install` erneut ausführen.
+./scripts/run-demo.sh # Docker-Compose Quickstart
 - Symbolzeit stimmt nicht → Zeitzonen/Locale-Check, `symbolzeit.ts` debuggen.
 
 

@@ -206,6 +206,7 @@ Eine Pipeline-Demonstration findest du in [docs/demo/POC-Run-Guide.md](docs/demo
 ## Tools und Skripte
 ### Häufige Probleme
 - `pnpm dev` startet nicht → Node-Version prüfen, `pnpm install` erneut ausführen.
+./scripts/run-demo.sh # Docker-Compose Quickstart
 - Symbolzeit stimmt nicht → Zeitzonen/Locale-Check, `symbolzeit.ts` debuggen.
 
 
@@ -218,6 +219,7 @@ Eine Pipeline-Demonstration findest du in [docs/demo/POC-Run-Guide.md](docs/demo
 | `./scripts/aeon.sh chronopoem` | Erstellt `CHRONOPOEM.md` |
 | `./scripts/aeon.sh onboarding` | Zeigt Onboarding-Ritus |
 | `pnpm dev` | Startet Dev-Server (UI & API) |
+./scripts/run-demo.sh # Docker-Compose Quickstart
 | `pnpm docs:auto` | Generiert TypeDoc-API-Docs |
 | `pnpm lint` | Führt statische Typprüfung aus |
 | `pnpm test` | Führe Unit- & UI-Tests aus |
@@ -263,6 +265,7 @@ Eine Pipeline-Demonstration findest du in [docs/demo/POC-Run-Guide.md](docs/demo
 | `node packages/cli-tools/sigillin-archive.js` | Archiviert Sigillin-Dateien |
 | `node packages/cli-tools/dispatchCmd.ts` | Dispatcher für diverse Befehle |
 | `go run scripts/mock-data.go` | Gibt Beispiel-Mockdaten mit eventHook und fractalHash aus |
+| `./scripts/run-demo.sh` | Startet Docker-Compose Umgebung |
 
 - `scripts/generate-api-docs.js` – Erstellt automatisch die API-Dokumentation mit Typedoc.
 - `scripts/generate-todo-sigil.js` – Erstellt das ToDo-Sigil aus der Mastercanvas.
@@ -411,6 +414,7 @@ git clone https://github.com/GenesisAeon/unified-mandala.git
 cd unified-mandala
 ./scripts/setup-unifiedmandala.sh
 pnpm dev
+./scripts/run-demo.sh # Docker-Compose Quickstart
 ```
 Die generierte API-Dokumentation findest du danach unter `docs/api`.
 Die OpenAPI-Spezifikation für Friendship & SocialGood liegt unter `docs/api/friendship-socialgood.yaml`.
@@ -433,6 +437,7 @@ npm run dev   # oder: yarn dev
 | `./scripts/aeon.sh chronopoem` | Erstellt `CHRONOPOEM.md` |
 | `./scripts/aeon.sh onboarding` | Zeigt Onboarding-Ritus |
 | `pnpm dev` | Startet Dev-Server (UI & API) |
+./scripts/run-demo.sh # Docker-Compose Quickstart
 | `pnpm docs:auto` | Generiert TypeDoc-API-Docs |
 | `pnpm lint` | Führt statische Typprüfung aus |
 | `pnpm test` | Führe Unit- & UI-Tests aus |
