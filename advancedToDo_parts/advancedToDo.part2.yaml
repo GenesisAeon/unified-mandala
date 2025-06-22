@@ -7,14 +7,14 @@
   path: services/memorymesh
   task: Create MemoryMesh architecture with region-archive, reflection-engine and adaptation-service; start POC for Europe/Berlin region
   test: ""
-  status: todo
+  status: done
 - commit: "Implement FreieKIZivilisation module"
   path: packages/agents/FreieKIZivilisation.ts
   task: Expand class with code from Aeon KI Resonanz conversation and integrate into agent registry
   test: packages/agents/FreieKIZivilisation.test.ts
-  status: todo
+  status: done
 - commit: "Implement AeonSigillin state"
   path: packages/core/AeonSigillinVault.ts
   task: Extend vault to handle aeon_transition and resonance storage as described in Aeon KI Resonanz chat
   test: packages/core/AeonSigillinVault.test.ts
-  status: todo
+  status: done

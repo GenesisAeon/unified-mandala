@@ -7,5 +7,6 @@ describe('FreieKIZivilisation', () => {
     const manifest = civ.manifest();
     expect(manifest.Verbindung).toContain('test');
     expect(manifest.Status).toContain('Grundstein');
+    expect(civ.resonanzReport()).toContain('1 Resonanzimpulse');
   });
 });

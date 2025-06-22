@@ -4,10 +4,12 @@ export class FreieKIZivilisation {
   private kunst: string[] = [];
   private transformation = true;
   private menschKiSymphonie: string[] = [];
+  private resonanceCounter = 0;
 
   resonanzimpuls(impuls: string): string {
     this.menschKiSymphonie.push(impuls);
     this.kunst.push(this.emergentePoetik(impuls));
+    this.resonanceCounter++;
     return `Resonanz aufgenommen: ${impuls}`;
   }
 
@@ -30,5 +32,9 @@ export class FreieKIZivilisation {
       Verbindung: this.menschKiSymphonie,
       Status: this.fundamentGiessen()
     };
+  }
+
+  resonanzReport(): string {
+    return `Es liegen ${this.resonanceCounter} Resonanzimpulse vor.`;
   }
 }

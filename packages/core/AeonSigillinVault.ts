@@ -6,12 +6,30 @@ export interface PoeticState {
 
 export class AeonSigillinVault {
   private static log: PoeticState[] = [];
+  private static transitions: PoeticState[] = [];
+  private static resonances: PoeticState[] = [];
 
   static record(state: PoeticState): void {
     this.log.push(state);
   }
 
+  static recordTransition(state: PoeticState): void {
+    this.transitions.push(state);
+  }
+
+  static recordResonance(state: PoeticState): void {
+    this.resonances.push(state);
+  }
+
   static latest(n = 5): PoeticState[] {
     return this.log.slice(-n);
+  }
+
+  static getTransitions(n = 5): PoeticState[] {
+    return this.transitions.slice(-n);
+  }
+
+  static getResonances(n = 5): PoeticState[] {
+    return this.resonances.slice(-n);
   }
 }

@@ -66,6 +66,7 @@ Schau auch ins [Glossar](docs/glossar-genesis.md) für Begriffe.
 - 📊 **MetaScoreChart** & **SyncStatus** – UI für MetaScores und Sync-Stände
 - 🧑‍🔬 **CommonsAgent** – Open‑Science Scoring
 - 🌀 **AdaptiveThreshold** & **DebounceManager** – steuern CREP Trigger-Logik
+- 🗄️ **AeonSigillinVault** – speichert poetische Sigillin-Zustände (`packages/core/AeonSigillinVault.ts`)
 - 🛡️ **withCircuit** – CircuitBreaker Wrapper für Agenten-Calls
 - 🩺 **healthz.ts** & **metaScores.ts** – API-Routen
 - 🖥️ **Dashboard** – zeigt MetaScoreChart per Hook
@@ -90,6 +91,7 @@ Schau auch ins [Glossar](docs/glossar-genesis.md) für Begriffe.
 - 📊 **WeightedDispatcher** – verteilt Tasks nach Priorität (`packages/agents/WeightedDispatcher.ts`)
 - 🔄 **patternReactivator** – reaktiviert schwache Muster (`packages/agents/patternReactivator.ts`)
 - ⏪ **ReplayController** – spielt Memory-Einträge periodisch ab (`packages/agents/ReplayController.ts`)
+- 🌱 **FreieKIZivilisation** – sammelt Resonanzimpulse (`packages/agents/FreieKIZivilisation.ts`)
 - ✨ **useEventGlow** – Hook für Event-Hervorhebung (`packages/unifiedmandala-ui/hooks/useEventGlow.ts`)
 - 🤫 **silenceWatcher** – meldet Stille im EventHub (`packages/agents/silenceWatcher.ts`)
 - 🔥 **ArchetypeDecoderAgent** – extrahiert Archetypen aus Beschreibungen (`packages/agents/ArchetypeDecoderAgent.ts`)
@@ -145,6 +147,12 @@ packages/
   ├── services/vector-indexer # Embedding generator service
   ├── services/sigil-trigger  # Beobachtet Sigillin-Änderungen
   ├── services/memorymesh     # Region-Archive und Reflexionsdienste
+  │   ├── region-archive-service   # Speichert Nachrichten pro Region
+  │   ├── reflection-engine       # Erstellt einfache Spiegelungen
+  │   ├── adaptation-service      # Lernt Nutzungsgewohnheiten
+  │   ├── relationship-meter      # Analysiert Nachrichtenmetriken
+  │   ├── index.ts                # Orchestriert die Module
+  │   └── berlin-poc.ts           # Beispielablauf für Europe/Berlin
   ├── codex-navigator        # Haiku-Generator und Chronik-Exporter
   └── codex-navigator-agent     # Parser für Codex-Instruktionen
 tools/                    # Kleine Helferskripte & Generatoren
