@@ -190,6 +190,7 @@ npm run dev   # oder: yarn dev
 | `node scripts/export-crep-docs.js` | Exportiert CREP-Daten |
 | `node scripts/update-advanced-todo.js` | Aktualisiert Advanced-ToDo-Liste |
 | `node scripts/update-advancedprogress.js` | Dokumentiert Fortschritt |
+| `node scripts/sync-todo-progress.js` | Aktualisiert ToDo- & Progress-Dateien |
 | `node scripts/update-kontext.js` | Passt Kontext-Datei an |
 | `node scripts/extract-snippets.js` | Extrahiert Code-Snippets |
 | `node scripts/extract_new_ai_fragments.js` | Extrahiert neue KI-Fragmente |

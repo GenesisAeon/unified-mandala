@@ -1469,6 +1469,14 @@
     "commit": "Add Go-Bridge scaffold with CLI and REST client",
     "path": "go-bridge/",
     "task": "Initial Go interface scaffold, models and docs",
-    "test": "go test ./..."
+    "test": "go test ./...",
+    "status": "done"
+  },
+  {
+    "commit": "Add sync-todo-progress script",
+    "path": "scripts/sync-todo-progress.js",
+    "task": "Combine advancedToDo and progress update",
+    "test": "",
+    "status": "done"
   }
 ]
