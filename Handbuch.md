@@ -21,6 +21,7 @@ Pitch-Beispiele für Events sind unter `docs/pitch/` abgelegt.
 ## Packages
 
 ### aeon-shell
+  ├── SymbolzeitOrchestrator.ts    # Ereignissteuerung für Symbolzeit
 - `index.ts` – Exportiert den Paketnamen.
 - `symbolzeit.ts` – Liefert die aktuelle Symbolzeit-Phase.
 

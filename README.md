@@ -96,6 +96,7 @@ packages/
   ├── gpt-bridges               # Mitt-basierter EventHub für GPT-Module
   ├── cli-tools                 # CLI: sigillin-cli, export-doc, Archivierung
   ├── aeon-shell                # Symbolzeit & CLI-Trigger
+  ├── SymbolzeitOrchestrator.ts    # Ereignissteuerung für Symbolzeit
   ├── aeon-genesisos            # Basis-Engine & CREP-Matrix
   ├── aeon-fraktalurs           # GPT-Kontextarchiv
   ├── aeon-resoecho             # CREP-Zeitlinienarchiv
