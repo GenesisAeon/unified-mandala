@@ -1,0 +1,9 @@
+agents:
+  - id: codeagent-python
+    description: "Generiert Python-Code-Snippets via GPT"
+    endpoint: "/codeagent/python/generate"
+    example: "curl -X POST /codeagent/python/generate -d '{\"description\":\"print Hello\"}'"
+  - id: codeagent-go
+    description: "Generiert Go-Code-Snippets via GPT"
+    endpoint: "/codeagent/go/generate"
+    example: "curl -X POST /codeagent/go/generate -d '{\"description\":\"hello\"}'"
