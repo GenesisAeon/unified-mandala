@@ -384,6 +384,7 @@ Jeder Unterordner kann eine eigene README enthalten – siehe die Links in den j
 Utilities liegen in `packages/shared-utils/`, weitere Module findest du ebenfalls unter `packages/`.
 Kleine Hilfsskripte liegen unter `tools/`.
 Die komplette Ordnerstruktur samt Modulen, Utils und Skripten ist in [repositorypflege/repository_map.yaml](repositorypflege/repository_map.yaml) dokumentiert.
+Weitere Hinweise zum strukturellen Konzept findest du in [repositorypflege/repo-konzept.yaml](repositorypflege/repo-konzept.yaml).
 
 ## 💻 Schnellstart
 
@@ -464,4 +465,5 @@ Das `CHRONOPOEM.md` entsteht automatisch – und kann bei jedem Commit erneuert 
 - **Utils**: gebündelt in `packages/shared-utils/`
 - **Scripts**: hilfreiche Automationen unter `scripts/`
 \nDie detaillierte Struktur aller Module, Utilities und Skripte findest du in [repositorypflege/repository_map.yaml](repositorypflege/repository_map.yaml).
+Ergänzende Konzeptinfos liefert [repositorypflege/repo-konzept.yaml](repositorypflege/repo-konzept.yaml).
 Einen Ausblick auf kommende Schritte liefert [codex/codex-roadmap.yaml](codex/codex-roadmap.yaml).
