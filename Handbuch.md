@@ -119,6 +119,9 @@ console.log(sigil.id); // hello
 - `ReplayController` – spielt Memory-Einträge periodisch ab (`packages/agents/ReplayController.ts`)
 - `useEventGlow` – React-Hook zur Event-Hervorhebung (`packages/unifiedmandala-ui/hooks/useEventGlow.ts`)
 - `silenceWatcher` – meldet Stille an den GPTEventHub (`packages/agents/silenceWatcher.ts`)
+- `ArchetypeDecoderAgent` – erkennt Archetypen in Task-Beschreibungen (`packages/agents/ArchetypeDecoderAgent.ts`)
+- `SigillinInterpreterAgent` – extrahiert Sigillin aus Text (`packages/agents/SigillinInterpreterAgent.ts`)
+- `ChronoPoemGeneratorAgent` – erzeugt poetische Chrono-Zeilen (`packages/agents/ChronoPoemGeneratorAgent.ts`)
 - `aggregateCREP` – berechnet Durchschnittswerte (`packages/crep-engine/aggregateCREP.ts`)
 - `CREPMusicGenerator` – generiert BPM aus CREP (`packages/crep-engine/CREPMusicGenerator.ts`)
 ### collab-editor

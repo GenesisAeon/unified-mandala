@@ -1616,4 +1616,8 @@
     "task": "Generate BPM from CREP",
     "test": "packages/crep-engine/CREPMusicGenerator.test.ts"
   }
+,
+  {"commit": "Add Go-Agent watcher", "path": "go-agent/internal/watchers/advancedtodo.go", "task": "Monitor advancedToDo via NATS or polling", "test": "go-agent/test/advancedtodo_test.go"},
+  {"commit": "Add POC Run Guide", "path": "docs/demo/POC-Run-Guide.md", "task": "Document POC run with GIF storyboard", "test": ""},
+  {"commit": "Validate Swagger Docs", "path": "docs/swagger/README.md", "task": "API endpoint validation", "test": ""}
 ]
