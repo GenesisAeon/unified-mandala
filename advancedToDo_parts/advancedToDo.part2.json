@@ -4,7 +4,7 @@
     "path": "docs/sigils/advancedconversations.json",
     "task": "Reference aeon-transition sigil in new chats and sync ToDo/progress files before major commits; generate new sigil with update_time after each cycle",
     "test": "",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "MemoryMesh region POC",
