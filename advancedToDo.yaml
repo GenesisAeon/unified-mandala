@@ -3029,3 +3029,8 @@ status: done
   task: Emit phaseChange events based on symbolzeit
   test: packages/aeon-shell/SymbolzeitOrchestrator.test.ts
   status: done
+- commit: Add SigillinValidator CLI
+  path: packages/cli-tools/SigillinValidator.ts
+  task: Validate sigil files via Ajv
+  test: ''
+  status: done

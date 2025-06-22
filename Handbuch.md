@@ -178,6 +178,7 @@ GPTEventHub.emit('orakel:says', { content: 'Hallo Welt' });
 
 Weitere Module sind in Arbeit.
 
+Eine Pipeline-Demonstration findest du in [docs/POC-run-guide.md](docs/POC-run-guide.md).
 ## Tools und Skripte
 ### Häufige Probleme
 - `pnpm dev` startet nicht → Node-Version prüfen, `pnpm install` erneut ausführen.
@@ -229,6 +230,7 @@ Weitere Module sind in Arbeit.
 | `node scripts/generate-next-sigil.js` | Erstellt Folgesigil nach Zyklus |
 | `./scripts/setup-mtls.sh` | Erstellt Testzertifikate |
 | `./scripts/setup-kong-jwt.sh` | Konfiguriert JWT Gateway |
+| `node packages/cli-tools/SigillinValidator.ts <file>` | Validiert eine Sigillin-Datei |
 | `node packages/cli-tools/sigillin-cli.js convert beispiel.yaml` | YAML ↔ JSON-Konvertierung |
 | `node packages/cli-tools/sigillin-cli.js todo-sigil` | Erzeugt todo-sigil aus Aufgabenlisten |
 | `node packages/cli-tools/sigillin-cli.js grep-conversations TODO` | Filtert Conversations nach Keyword |
@@ -328,6 +330,9 @@ packages/
   ├── nukleon-scanner        # Extrahiert Gesprächsstrukturen
   ├── nukleon-sonifier       # Sonifiziert Memory-Zustände
   ├── sim-domain          # Domänenspezifische Simulationen
+  ├── pkg/chem             # Reaction kinetics simulation
+  ├── pkg/mind             # Hybrid symbolic & neural agents
+  ├── pkg/sonifier         # CREP-to-MIDI music generator
   ├── art                 # Sonification & AI-Art
   ├── shared-utils              # Hilfsfunktionen für alle Pakete
   │   └── RestClient.ts         # einfacher REST-Helper
