@@ -122,6 +122,7 @@ console.log(sigil.id); // hello
 - `ArchetypeDecoderAgent` – erkennt Archetypen in Task-Beschreibungen (`packages/agents/ArchetypeDecoderAgent.ts`)
 - `SigillinInterpreterAgent` – extrahiert Sigillin aus Text (`packages/agents/SigillinInterpreterAgent.ts`)
 - `ChronoPoemGeneratorAgent` – erzeugt poetische Chrono-Zeilen (`packages/agents/ChronoPoemGeneratorAgent.ts`)
+- `ResonanzPoetik` – erzeugt Haikus und YAML-Chroniken (`packages/codex-navigator/resonanzPoetik.ts`)
 - `aggregateCREP` – berechnet Durchschnittswerte (`packages/crep-engine/aggregateCREP.ts`)
 - `CREPMusicGenerator` – generiert BPM aus CREP (`packages/crep-engine/CREPMusicGenerator.ts`)
 ### collab-editor
@@ -350,6 +351,7 @@ packages/
   ├── services/vector-indexer   # Embedding generator service
   ├── services/sigil-trigger    # Beobachtet Sigillin-Änderungen
   ├── services/memorymesh       # Region-Archive und Reflexionsdienste
+  ├── codex-navigator        # Haiku-Generator und Chronik-Exporter
   └── codex-navigator-agent     # Parser für Codex-Instruktionen
 codex/                    # Codex-Workflows und Sigillin-Dateien
 codexbuild/               # Build-Skripte und Deploy-Hilfen
