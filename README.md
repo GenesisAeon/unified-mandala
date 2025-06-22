@@ -130,6 +130,10 @@ scripts/
 
 Jeder Unterordner kann eine eigene README enthalten – siehe die Links in den jeweiligen Verzeichnissen.
 Utilities liegen in `packages/shared-utils/`, weitere Module findest du ebenfalls unter `packages/`.
+### 🟦 Go-Bridge (go-bridge/)
+- Polyglottes Interface zu UnifiedMandala für Go (REST, NATS, gRPC, CLI)
+- Ermöglicht Entwicklung externer Tools und Agents in Go
+- [go-bridge/README.md](go-bridge/README.md) enthält Setup & Beispiele
 Kleine Hilfsskripte liegen unter `tools/`.
 
 ## 💻 Schnellstart
