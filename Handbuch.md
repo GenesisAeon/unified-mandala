@@ -337,6 +337,7 @@ codexbuild/               # Build-Skripte und Deploy-Hilfen
 codex-sync/              # Antwortsystem für Vorschläge
 go-agent/               # Go-Daemon zur Layer-Steuerung
   ├── pkg/policy        # Policy Enforcement Stubs
+  ├── pkg/handler       # Task handlers (CoordinationHandler)
   └── pkg/hooks         # Event Hook Publisher
 ci/                      # Test- und Pipeline-Konfigurationen
 config/                  # Zentrale YAML- und Env-Dateien

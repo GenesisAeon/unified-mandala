@@ -117,6 +117,7 @@ packages/
   ├── go-bridge             # Go-Client für REST, gRPC und NATS
   ├── go-agent              # Autonomer Go-Daemon für Tasks
   │   ├── pkg/policy        # Policy Enforcement Stubs
+  │   ├── pkg/handler       # Task handlers (CoordinationHandler)
   │   └── pkg/hooks         # Event Hook Publisher
   ├── services/vector-indexer # Embedding generator service
   ├── services/sigil-trigger  # Beobachtet Sigillin-Änderungen
