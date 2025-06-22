@@ -19,7 +19,7 @@ export * from './AeonResonanceInsights';
 export * from './BewusstseinStabilizer';
 export * from './HexaAgentSystem';
 export * from './ResearchAgent';
-export * from './SilenceWatcher';
+export * from './silenceWatcher';
 export * from './AdvancedHexaAgent';
 export * from './ArchetypeDecoderAgent';
 export * from './SigillinInterpreterAgent';
