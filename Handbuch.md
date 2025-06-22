@@ -172,6 +172,7 @@ GPTEventHub.emit('orakel:says', { content: 'Hallo Welt' });
 ### unifiedmandala-ui (Auswahl)
 - `MandalaNetworkView` – Visualisierung der Sigillin-Knoten als D3-Graph.
 - `CREPChart` – Linienchart für CREP-Werte.
+- `CREPTimeline` – zeigt historische CREP-Einträge als Liste.
 - `CREPTriggerPanel` – Buttons zum Auslösen von CREP-Ereignissen.
 - `LiveCREPPanel` – Kombiniert Trigger und Chart für Live-Daten.
 - `SigillinLoader` – Lädt Sigillin-Dateien und filtert Einträge.
@@ -308,6 +309,7 @@ Aktuelle Versionshinweise werden in [CHANGELOG.md](CHANGELOG.md) gepflegt.
 - 🎨 **MandalaThemeManager** – hell/dunkel umschalten
 - ✨ **SigillinActivationManager & MetaSignatur** – Aktivierung & Signatur von Sigillin
 - 📜 **SigillinTimeline & InviteBanner** – Verlauf und Einladungsbanner
+- 📈 **CREPTimeline** – chronologische Auflistung der CREP-Ereignisse
 - 💾 **BackupManager** – einfache Dateisicherungen
 - 📢 **GlobalLoggingSystem** – zentrale Log-Schnittstelle
 - 🗄️ **Big-File Sigil** – Konzept zum Aufteilen großer Dateien

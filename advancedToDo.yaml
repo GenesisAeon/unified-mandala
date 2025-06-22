@@ -472,9 +472,10 @@
   task: "-Sensitivität („bei Unsicherheit: explizit rückfragen“)"
   test: ""
 - commit: Implement Live CREP Timeline Visualization
-  path: ""
+  path: packages/unifiedmandala-ui/components/CREPTimeline.tsx
   task: Implement Live CREP Timeline Visualization
-  test: ""
+  test: packages/unifiedmandala-ui/components/CREPTimeline.test.tsx
+  status: done
 - commit: '-from-convos.ts**: now enhanced with CREP+Emotion+Priority\n\n---\n\n##
     📈 CREP-Automation & Handlungsschichten\n\n- **CREPToDoLinker.ts**
     (Temperatur-Regel: R↑, E↓ → Kaffeepause)\n- **CREPCalendarSync.ts**:

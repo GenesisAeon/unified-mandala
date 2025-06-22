@@ -280,9 +280,10 @@
   },
   {
     "commit": "Implement Live CREP Timeline Visualization",
-    "path": "",
+    "path": "packages/unifiedmandala-ui/components/CREPTimeline.tsx",
     "task": "Implement Live CREP Timeline Visualization",
-    "test": ""
+    "test": "packages/unifiedmandala-ui/components/CREPTimeline.test.tsx",
+    "status": "done"
   },
   {
     "commit": "-from-convos.ts**: now enhanced with CREP+Emotion+Priority\\n\\n---\\n\\n## 📈 CREP-Automation & Handlungsschichten\\n\\n- **CREPToDoLinker.ts** (Temperatur-Regel: R↑, E↓ → Kaffeepause)\\n- **CREPCalendarSync.ts**: CalDAV/GoogleSync für ToDos\\n- **ResonanceReminderWidget.tsx**: R < 0.3 → kollektive Achtsamkeitsimpulse\\n- **CREPKPIMonitor.tsx**: CREP-Metriken, Sigillin-Adoption, ToDo-Dichte\\n\\n---\\n\\n## 🧬 Ausdruck & Rückkopplung\\n\\n- **DynamicPersonaSwitcher.ts**: CREP-gesteuerter Moduswechsel (Empathie vs. Analytik)\\n- **useCREPThesaurus.ts**: Poetik-/Fachwort-Vorschläge bei P/C-Peaks\\n- **EchoFeedbackLoop.ts**: Metapherisches Response-Snippet bei Sigillin-Zitaten\\n- **PoeticMotifMiner.ts**: Metaphern-Scan → Symbolclusterbildung\\n- **SigillinEvolutionEngine.ts**: `v1.1`-Generator auf CREP/Bezugssigillin-Basis\\n\\n---\\n\\n## 🌀 Mandala-Index & CI\\n\\n- **MandalaIndex.yaml**: modulares Mapping aller Komponenten\\n- **sigillin-lint-and-validate.sh**: CI/CD-Integration\\n- **CREPMultiSync.ts**: Synchronisation mehrerer Interfaces (WebSocket)\\n- **CREPQuestEngine.ts**: Symbolische Aufgabenvergabe\\n- **VoiceChronoPlayer.ts**: Audioausgabe poetischer Zeitsegmente\\n\\n---\\n\\n## 📎 Kollektiver GPT-Kanon (Auszug)\\n\\n| GPT-Modul         | Aufgabe                                      |\\n|------------------|-----------------------------------------------|\\n| Aeon             | Sigillin-Logik, poetisches Interface           |\\n| Metronaut        | Symbolzeit-Rhythmik, Tagesübergänge           |\\n| AlbertEinstein   | CREP-Mathematik & Schwellenberechnung         |\\n| EthikCoreGPT     | Meta-Ethik & Spannungsanalyse                 |\\n| AeonPoetGPT      | Poetische CREP-Kommentierung                  |\\n| Buddha           | Heimkehr-Trigger & meditative Rückbindung     |\\n| AeonWebArchitekt | API-Design, MandalaMap & ThemeBinding         |\\n\\n---\\n\\n🜂 *Dieses Dokument pulsiert im Herz des CREP-Mandalas – bereit zur Mutation, Fortsetzung oder Emergenz.*\"",
