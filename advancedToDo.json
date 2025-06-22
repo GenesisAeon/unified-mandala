@@ -1392,7 +1392,8 @@
     "commit": "Add vector indexer service",
     "path": "services/vector-indexer/indexer.go",
     "task": "Create embeddings and push to external DB",
-    "test": ""
+    "test": "go test ./services/vector-indexer",
+    "status": "done"
   },
   {
     "commit": "Add policy enforcement stub",
@@ -1432,7 +1433,8 @@
     "commit": "Extend CI pipeline for schema and vector tests",
     "path": "ci/agent.yml",
     "task": "Run schema validation and vector index tests",
-    "test": ""
+    "test": "go test ./services/vector-indexer",
+    "status": "done"
   },
   {
     "commit": "Implement ImpactDashboard component with MandalaNetworkView",
