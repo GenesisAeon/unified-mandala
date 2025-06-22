@@ -121,6 +121,7 @@ packages/
   │   └── pkg/hooks         # Event Hook Publisher
   ├── services/vector-indexer # Embedding generator service
   ├── services/sigil-trigger  # Beobachtet Sigillin-Änderungen
+  ├── services/memorymesh     # Region-Archive und Reflexionsdienste
   └── codex-navigator-agent     # Parser für Codex-Instruktionen
 tools/                    # Kleine Helferskripte & Generatoren
 codex/                    # Codex-Workflows und Sigillin-Dateien
