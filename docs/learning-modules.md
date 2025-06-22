@@ -1,16 +1,12 @@
 # Learning Modules
 
-This document outlines the experimental learning workflows referenced in `advancedconversations_snippet.json`.
+The learning modules defined in `advancedconversations_snippet.json` provide simple
+workflows to introduce interactive coding with Sigil rewards.
 
 ## C-Tutor Progress
-- Begin at the *beginner* level.
-- Solve exercises and receive a Sigil for each milestone.
-- Progress through intermediate to expert levels.
-- Export the earned learning Sigil for portfolio use.
+Refer to `packages/tutorials/C-Tutor` for a minimal progress tracker granting a
+Sigil after all milestones.
 
 ## JavaHamster AI Flow
-- Select your desired difficulty level.
-- Write and run Hamster code with inline AI coaching.
-- Complete each level to earn a dedicated Sigil.
-
-These modules integrate with future packages under `packages/tutorials/`.
+`packages/tutorials/JavaHamsterAI` demonstrates gamified hamster coding. A Sigil
+is awarded when all levels are solved.
