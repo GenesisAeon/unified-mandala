@@ -2962,3 +2962,7 @@ status: done
   path: apps/socialgood-mobile/MobileImpactDashboard.tsx
   task: "Implement mobile friendly dashboard component"
   test: "jest"
+- commit: "Add Go-Bridge scaffold with CLI and REST client"
+  path: go-bridge/
+  task: Initial Go interface scaffold, models and docs
+  test: go test ./...
