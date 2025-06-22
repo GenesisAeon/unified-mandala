@@ -332,6 +332,7 @@ packages/
   │   └── RestClient.ts         # einfacher REST-Helper
   ├── services/vector-indexer   # Embedding generator service
   ├── services/sigil-trigger    # Beobachtet Sigillin-Änderungen
+  ├── services/memorymesh       # Region-Archive und Reflexionsdienste
   └── codex-navigator-agent     # Parser für Codex-Instruktionen
 codex/                    # Codex-Workflows und Sigillin-Dateien
 codexbuild/               # Build-Skripte und Deploy-Hilfen

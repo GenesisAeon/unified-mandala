@@ -3003,4 +3003,24 @@ status: done
   path: scripts/generate-next-sigil.js
   task: Create follow-up sigil file after each cycle
   test: ""
-  status: todo
+  status: done
+- commit: "Add MemoryMesh region archive service"
+  path: services/memorymesh/region-archive-service/index.ts
+  task: Scaffold in-memory archive per region
+  test: services/memorymesh/region-archive-service/index.test.ts
+  status: done
+- commit: "Add ReflectionEngine stub"
+  path: services/memorymesh/reflection-engine/index.ts
+  task: Implement basic reflection generator
+  test: services/memorymesh/reflection-engine/index.test.ts
+  status: done
+- commit: "Add AdaptationService skeleton"
+  path: services/memorymesh/adaptation-service/index.ts
+  task: Track conversation habits
+  test: services/memorymesh/adaptation-service/index.test.ts
+  status: done
+- commit: "Add RelationshipMeter utility"
+  path: services/memorymesh/relationship-meter/index.ts
+  task: Compute relationship metrics
+  test: services/memorymesh/relationship-meter/index.test.ts
+  status: done
