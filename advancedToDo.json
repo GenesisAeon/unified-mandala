@@ -1478,5 +1478,33 @@
     "task": "Combine advancedToDo and progress update",
     "test": "",
     "status": "done"
+  },
+  {
+    "commit": "Add ConvoMemoryBridge module",
+    "path": "packages/nukleon-scanner/ConvoMemoryBridge.ts",
+    "task": "Extract conversation structure and CREP signatures",
+    "test": "jest",
+    "status": "done"
+  },
+  {
+    "commit": "Add MemorySonifier utility",
+    "path": "packages/nukleon-sonifier/MemorySonifier.ts",
+    "task": "Map memory weights to tone labels",
+    "test": "jest",
+    "status": "done"
+  },
+  {
+    "commit": "Add ToDoWeaver CLI",
+    "path": "packages/cli-tools/ToDoWeaver.ts",
+    "task": "Generate todo.yaml from CREP clusters",
+    "test": "jest",
+    "status": "done"
+  },
+  {
+    "commit": "Add UniversePulseSimulator",
+    "path": "packages/universum-simulationen/UniversePulseSimulator.ts",
+    "task": "Simulate emergent pulse steps",
+    "test": "jest",
+    "status": "done"
   }
 ]

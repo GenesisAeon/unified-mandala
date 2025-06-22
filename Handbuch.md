@@ -169,6 +169,10 @@ GPTEventHub.emit('orakel:says', { content: 'Hallo Welt' });
 - `CustomRegionGallery` – Galerieansicht für Regionen.
 - `ProjectListView` – Listenansicht für Social-Good-Projekte.
 - `MobileImpactDashboard` – mobile Variante auf Basis von React Native.
+- `ConvoMemoryBridge` – extrahiert Gesprächsstrukturen und CREP-Signaturen.
+- `MemorySonifier` – übersetzt Memory-Zustände in Klänge.
+- `UniversePulseSimulator` – simuliert emergente Zustände.
+- `ToDoWeaver` – erzeugt YAML-Aufgaben aus CREP-Clustern.
 
 
 Weitere Module sind in Arbeit.
@@ -319,6 +323,8 @@ packages/
   ├── crep-automation      # CREP-bezogene Automationen
   ├── tts                  # Sprachsynthese
   ├── universum-simulationen # Simulationsmodule
+  ├── nukleon-scanner        # Extrahiert Gesprächsstrukturen
+  ├── nukleon-sonifier       # Sonifiziert Memory-Zustände
   ├── sim-domain          # Domänenspezifische Simulationen
   ├── art                 # Sonification & AI-Art
   ├── shared-utils              # Hilfsfunktionen für alle Pakete
