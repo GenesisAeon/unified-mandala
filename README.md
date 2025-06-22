@@ -101,6 +101,7 @@ Schau auch ins [Glossar](docs/glossar-genesis.md) für Begriffe.
 - 🗺️ **MemoryMesh** – regionale Archiv-Prototypen (`docs/architecture/memory-mesh.md`)
 - 🕸️ **Agent-Registry** – zentrale Übersicht aller Agents (`agents.yaml`)
 - 🌀 **SigilStory** – Mandala-Lern-Lebenslauf für C-Tutor & JavaHamster
+- 🎓 **Learning Modules** – interactive C-Tutor and JavaHamster workflows (`packages/tutorials/*`)
 - 🎮 **Gamification API** – Endpunkte `/gamify/badges` & `/gamify/leaderboard`
 - 🔗 **Share your Sigil** & **Remix my Solution** – Community-Features
 ## 📦 Paketstruktur
@@ -319,6 +320,7 @@ gespeichert. Nutzen Sie die Helferskripte aus `packages/shared-utils`
 `advancedToDo.json` zu extrahieren.
 
 Pitch-Vorlagen für Events finden sich unter `docs/pitch/`.
+Die ToDo-Liste wurde für mehr Übersicht in "advancedToDo_parts/" aufgeteilt.
 
 Nutze `node scripts/parse-advanced-conversations.js` um Gesprächs-TODOs aus dem Datensatz zu filtern.
 

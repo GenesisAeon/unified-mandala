@@ -100,6 +100,7 @@ console.log(sigil.id); // hello
 - `MetaScoreComposer` – Aggregiert mehrere Score-Layer.
 - `GoAgent` – Liest advancedToDo-Dateien und listet offene Tasks (Node).
 - `Go-Agent (Golang)` – Autonomer Daemon für parallele Task-Ausführung.
+Die erweiterten ToDos liegen in "advancedToDo_parts/".
 - `CommonsAgent` – Bewertet Open-Science-Aspekte.
 - `AdaptiveThreshold` und `DebounceManager` – steuern CREP-Trigger.
 - `withCircuit` – CircuitBreaker-Helfer für Agenten.
@@ -129,6 +130,7 @@ console.log(sigil.id); // hello
 - `Agent-Registry` – zentrale YAML-Liste aller Agents (`agents.yaml`)
 - `SigilStory` – Mandala-Diagramm für Lernpfade
 - `Gamification API` – Endpunkte `/gamify/badges` und `/gamify/leaderboard`
+- `Learning Modules` – C-Tutor und JavaHamster unter `packages/tutorials`
 - `Share your Sigil` & `Remix my Solution` – Community-Buttons
 ### collab-editor
 - `CollaborativeEditor` – Federated Texteditor mit Remote-Sync.
