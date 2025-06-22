@@ -1,18 +1,17 @@
 export class AdaptiveThreshold {
-  private value: number;
-  private readonly min: number;
-  private readonly max: number;
-  constructor(initial = 0.5, min = 0.1, max = 0.9) {
-    this.value = initial;
-    this.min = min;
-    this.max = max;
+  constructor(private windowSize = 10, private k = 1.0) {}
+  private history: number[] = [];
+
+  push(value: number) {
+    this.history.push(value);
+    if (this.history.length > this.windowSize) this.history.shift();
   }
-  update(feedback: number) {
-    this.value += feedback;
-    if (this.value > this.max) this.value = this.max;
-    if (this.value < this.min) this.value = this.min;
-  }
-  get threshold() {
-    return this.value;
+
+  getThreshold(): number {
+    const vals = [...this.history];
+    const mean = vals.reduce((a, b) => a + b, 0) / vals.length;
+    const variance = vals.reduce((a, b) => a + (b - mean) ** 2, 0) / vals.length;
+    const std = Math.sqrt(variance);
+    return mean + std * this.k;
   }
 }

@@ -38,3 +38,7 @@ export * from './MetaComposerAgent';
 export * from './AeonEchoMirrorAgent';
 export * from './CommonsAgent';
 export * from './ResonanzpfadAgent';
+export * from './WeightedDispatcher';
+export * from './patternReactivator';
+export * from './ReplayController';
+export * from './silenceWatcher';

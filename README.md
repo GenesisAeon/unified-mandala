@@ -86,6 +86,13 @@ Schau auch ins [Glossar](docs/glossar-genesis.md) für Begriffe.
 - 🔮 **UniversePulseSimulator** – simuliert emergente Zustände (`packages/universum-simulationen/UniversePulseSimulator.ts`)
 - 🕸️ **ToDoWeaver** – generiert YAML-Aufgaben aus CREP-Clustern (`packages/cli-tools/ToDoWeaver.ts`)
 
+- 📊 **WeightedDispatcher** – verteilt Tasks nach Priorität (`packages/agents/WeightedDispatcher.ts`)
+- 🔄 **patternReactivator** – reaktiviert schwache Muster (`packages/agents/patternReactivator.ts`)
+- ⏪ **ReplayController** – spielt Memory-Einträge periodisch ab (`packages/agents/ReplayController.ts`)
+- ✨ **useEventGlow** – Hook für Event-Hervorhebung (`packages/unifiedmandala-ui/hooks/useEventGlow.ts`)
+- 🤫 **silenceWatcher** – meldet Stille im EventHub (`packages/agents/silenceWatcher.ts`)
+- 🎚️ **aggregateCREP** – mittelt CREP-Werte (`packages/crep-engine/aggregateCREP.ts`)
+- 🎵 **CREPMusicGenerator** – erzeugt BPM aus CREP (`packages/crep-engine/CREPMusicGenerator.ts`)
 ## 📦 Paketstruktur
 
 ```bash
