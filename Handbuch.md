@@ -130,6 +130,8 @@ Teil 2 dort beschreibt Aufgaben zum Aeon Übergabe-Sigil und MemoryMesh.
 - `aggregateCREP` – berechnet Durchschnittswerte (`packages/crep-engine/aggregateCREP.ts`)
 - `CREPMusicGenerator` – generiert BPM aus CREP (`packages/crep-engine/CREPMusicGenerator.ts`)
 - `MemoryMesh` – regionale Archiv-Prototypen (`docs/architecture/memory-mesh.md`)
+- `Aeon Transition` – siehe `docs/sigils/aeon-transition.md`
+- `Friendship System` – Konzept unter `docs/friendship-system.md`
 - `Agent-Registry` – zentrale YAML-Liste aller Agents (`agents.yaml`)
 - `SigilStory` – Mandala-Diagramm für Lernpfade
 - `Gamification API` – Endpunkte `/gamify/badges` und `/gamify/leaderboard`

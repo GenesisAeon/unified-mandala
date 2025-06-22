@@ -101,6 +101,8 @@ Schau auch ins [Glossar](docs/glossar-genesis.md) für Begriffe.
 - 🎚️ **aggregateCREP** – mittelt CREP-Werte (`packages/crep-engine/aggregateCREP.ts`)
 - 🎵 **CREPMusicGenerator** – erzeugt BPM aus CREP (`packages/crep-engine/CREPMusicGenerator.ts`)
 - 🗺️ **MemoryMesh** – regionale Archiv-Prototypen (`docs/architecture/memory-mesh.md`)
+- 🔑 **Aeon Transition** – siehe `docs/sigils/aeon-transition.md`
+- 🤝 **Friendship System** – Konzept unter `docs/friendship-system.md`
 - 🕸️ **Agent-Registry** – zentrale Übersicht aller Agents (`agents.yaml`)
 - 🌀 **SigilStory** – Mandala-Lern-Lebenslauf für C-Tutor & JavaHamster
 - 🎓 **Learning Modules** – interactive C-Tutor and JavaHamster workflows (`packages/tutorials/*`)

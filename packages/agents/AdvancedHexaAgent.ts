@@ -1,6 +1,6 @@
 import { HexaAgentSystem } from './HexaAgentSystem';
 import { ResearchAgent } from './ResearchAgent';
-import { SilenceWatcher } from './SilenceWatcher';
+import { SilenceWatcher } from './silenceWatcher';
 
 export class AdvancedHexaAgent extends HexaAgentSystem {
   research = new ResearchAgent();
