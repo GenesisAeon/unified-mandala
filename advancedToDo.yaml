@@ -2914,6 +2914,7 @@ status: done
   path: services/sigil-trigger/trigger.sh
   task: Watch files and generate sigils on change
   test: ""
+  status: done
 - commit: Add vector indexer service
   path: services/vector-indexer/indexer.go
   task: Create embeddings and push to external DB

@@ -1386,7 +1386,8 @@
     "commit": "Add sigil trigger script",
     "path": "services/sigil-trigger/trigger.sh",
     "task": "Watch files and generate sigils on change",
-    "test": ""
+    "test": "",
+    "status": "done"
   },
   {
     "commit": "Add vector indexer service",
