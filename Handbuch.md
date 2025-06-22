@@ -125,6 +125,7 @@ console.log(sigil.id); // hello
 - `ResonanzPoetik` – erzeugt Haikus und YAML-Chroniken (`packages/codex-navigator/resonanzPoetik.ts`)
 - `aggregateCREP` – berechnet Durchschnittswerte (`packages/crep-engine/aggregateCREP.ts`)
 - `CREPMusicGenerator` – generiert BPM aus CREP (`packages/crep-engine/CREPMusicGenerator.ts`)
+- `MemoryMesh` – regionale Archiv-Prototypen (`docs/architecture/memory-mesh.md`)
 ### collab-editor
 - `CollaborativeEditor` – Federated Texteditor mit Remote-Sync.
 - `AutomergeFederation` – Verbindet lokale und entfernte Änderungen.

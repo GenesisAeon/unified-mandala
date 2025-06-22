@@ -3096,3 +3096,15 @@ status: done
   path: docs/sigils/advancedconversations.json
   task: Sync ToDo files before major commits and create new sigils per cycle
   test: ""
+- commit: MemoryMesh architecture sketch
+  path: docs/architecture/memory-mesh.md
+  task: Diagram for MemoryMesh layers (Speicher, Reflexion, Adaption)
+  test: ""
+- commit: MemoryMesh region POC
+  path: packages/crep-engine/memoryMesh.berlin.json
+  task: Prototype archive for region Europe/Berlin
+  test: ""
+- commit: Transition sigil update
+  path: scripts/generate-next-sigil.js
+  task: Add update_time and Responsible to MemoryMesh cycle
+  test: ""
