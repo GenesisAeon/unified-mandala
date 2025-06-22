@@ -322,6 +322,7 @@ packages/
   ├── shared-utils              # Hilfsfunktionen für alle Pakete
   │   └── RestClient.ts         # einfacher REST-Helper
   ├── services/vector-indexer   # Embedding generator service
+  ├── services/sigil-trigger    # Beobachtet Sigillin-Änderungen
   └── codex-navigator-agent     # Parser für Codex-Instruktionen
 codex/                    # Codex-Workflows und Sigillin-Dateien
 codexbuild/               # Build-Skripte und Deploy-Hilfen
