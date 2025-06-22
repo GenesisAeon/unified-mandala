@@ -111,6 +111,7 @@ packages/
   ├── go-agent              # Autonomer Go-Daemon für Tasks
   │   ├── pkg/policy        # Policy Enforcement Stubs
   │   └── pkg/hooks         # Event Hook Publisher
+  ├── services/vector-indexer # Embedding generator service
   └── codex-navigator-agent     # Parser für Codex-Instruktionen
 tools/                    # Kleine Helferskripte & Generatoren
 codex/                    # Codex-Workflows und Sigillin-Dateien

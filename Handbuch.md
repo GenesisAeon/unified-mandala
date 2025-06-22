@@ -321,6 +321,7 @@ packages/
   ├── art                 # Sonification & AI-Art
   ├── shared-utils              # Hilfsfunktionen für alle Pakete
   │   └── RestClient.ts         # einfacher REST-Helper
+  ├── services/vector-indexer   # Embedding generator service
   └── codex-navigator-agent     # Parser für Codex-Instruktionen
 codex/                    # Codex-Workflows und Sigillin-Dateien
 codexbuild/               # Build-Skripte und Deploy-Hilfen
