@@ -7,3 +7,4 @@ Sammlung von Befehlen zur Arbeit mit Sigillin- und CREP-Daten.
 - **sigillin-archive.js** – Erstellt poetisches Archiv aller Sigillin-Dateien
 - **sigillin-cli.js todo-sigil** – erzeugt `docs/sigils/todo-sigil.yaml` aus Aufgabenlisten
 
+- **SigillinValidator.ts** – Prüft eine Sigillin-Datei gegen das Schema
