@@ -81,6 +81,10 @@ Schau auch ins [Glossar](docs/glossar-genesis.md) für Begriffe.
 - 🌀 **SigillinOnDemandGenerator** – generiert Sigillin-Templates per CLI (`packages/cli-tools/SigillinOnDemandGenerator.ts`)
 - 📊 **CREPToDoPrioritizer** – priorisiert ToDos nach aktueller Emergenz (`packages/crep-automation/CREPToDoPrioritizer.ts`)
 - 🔥 **CREPConvoHeatmap** – zeigt Schwankungen im CREP-Verlauf (`apps/sharedream-interface/components/CREPConvoHeatmap.tsx`)
+- 🛰️ **ConvoMemoryBridge** – extrahiert Gesprächsstruktur & CREP-Signaturen (`packages/nukleon-scanner/ConvoMemoryBridge.ts`)
+- 🎶 **MemorySonifier** – übersetzt Memory-Zustände in Klänge (`packages/nukleon-sonifier/MemorySonifier.ts`)
+- 🔮 **UniversePulseSimulator** – simuliert emergente Zustände (`packages/universum-simulationen/UniversePulseSimulator.ts`)
+- 🕸️ **ToDoWeaver** – generiert YAML-Aufgaben aus CREP-Clustern (`packages/cli-tools/ToDoWeaver.ts`)
 
 ## 📦 Paketstruktur
 
@@ -104,6 +108,8 @@ packages/
   ├── crep-automation      # CREP-bezogene Automationen
   ├── tts                  # Sprachsynthese
   ├── universum-simulationen # Simulationsmodule
+  ├── nukleon-scanner        # Extrahiert Gesprächsstrukturen
+  ├── nukleon-sonifier       # Sonifiziert Memory-Zustände
   ├── sim-domain          # Domänenspezifische Simulationen
   ├── art                 # Sonification & AI-Art
   ├── shared-utils              # Hilfsfunktionen für alle Pakete
