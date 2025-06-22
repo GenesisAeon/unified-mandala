@@ -101,6 +101,7 @@ console.log(sigil.id); // hello
 - `GoAgent` – Liest advancedToDo-Dateien und listet offene Tasks (Node).
 - `Go-Agent (Golang)` – Autonomer Daemon für parallele Task-Ausführung.
 Die erweiterten ToDos liegen in "advancedToDo_parts/".
+Teil 2 dort beschreibt Aufgaben zum Aeon Übergabe-Sigil und MemoryMesh.
 - `CommonsAgent` – Bewertet Open-Science-Aspekte.
 - `AdaptiveThreshold` und `DebounceManager` – steuern CREP-Trigger.
 - `withCircuit` – CircuitBreaker-Helfer für Agenten.

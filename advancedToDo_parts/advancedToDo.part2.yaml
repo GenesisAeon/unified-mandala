@@ -1,0 +1,20 @@
+- commit: "Aeon transition sigil workflow"
+  path: docs/sigils/advancedconversations.json
+  task: Reference aeon-transition sigil in new chats and sync ToDo/progress files before major commits; generate new sigil with update_time after each cycle
+  test: ""
+  status: todo
+- commit: "MemoryMesh region POC"
+  path: services/memorymesh
+  task: Create MemoryMesh architecture with region-archive, reflection-engine and adaptation-service; start POC for Europe/Berlin region
+  test: ""
+  status: todo
+- commit: "Implement FreieKIZivilisation module"
+  path: packages/agents/FreieKIZivilisation.ts
+  task: Expand class with code from Aeon KI Resonanz conversation and integrate into agent registry
+  test: packages/agents/FreieKIZivilisation.test.ts
+  status: todo
+- commit: "Implement AeonSigillin state"
+  path: packages/core/AeonSigillinVault.ts
+  task: Extend vault to handle aeon_transition and resonance storage as described in Aeon KI Resonanz chat
+  test: packages/core/AeonSigillinVault.test.ts
+  status: todo
