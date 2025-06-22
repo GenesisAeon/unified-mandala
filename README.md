@@ -45,6 +45,7 @@ Schau auch ins [Glossar](docs/glossar-genesis.md) für Begriffe.
 - 🎨 **MandalaThemeManager** – hell/dunkel umschalten
 - ✨ **SigillinActivationManager & MetaSignatur** – Aktivierung & Signatur von Sigillin
 - 📜 **SigillinTimeline & InviteBanner** – Verlauf und Einladungsbanner
+- 📈 **CREPTimeline** – chronologische Ansicht der CREP-Ereignisse
 - 💾 **BackupManager** – einfache Dateisicherungen
 - 📢 **GlobalLoggingSystem** – zentrale Log-Schnittstelle
 - 🗄️ **Big-File Sigil** – Konzept zum Aufteilen großer Dateien
