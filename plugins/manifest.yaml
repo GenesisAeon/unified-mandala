@@ -1,0 +1,6 @@
+plugins:
+  - name: MetaScoreChart
+    version: "1.0.0"
+    component: "../apps/sharedream-interface/components/MetaScoreChart"
+    dataHook: "../apps/sharedream-interface/hooks/useMetaScores"
+    story: "../apps/sharedream-interface/components/MetaScoreChart.stories.tsx"
