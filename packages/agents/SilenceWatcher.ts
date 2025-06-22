@@ -1,12 +1,11 @@
-export class SilenceWatcher {
-  private last: number;
-  constructor(private thresholdMs = 60000, private now: () => number = () => Date.now()) {
-    this.last = this.now();
-  }
-  record() {
-    this.last = this.now();
-  }
-  shouldAnalyze(): boolean {
-    return this.now() - this.last > this.thresholdMs;
-  }
+import { GPTEventHub } from '../gpt-bridges/GPTEventHub';
+
+export function silenceWatcher(thresholdMs = 15000) {
+  let last = Date.now();
+  GPTEventHub.on("*", () => { last = Date.now(); });
+  setInterval(() => {
+    if (Date.now() - last > thresholdMs) {
+      GPTEventHub.emit('orakel:says', { text: '… Stille spricht lauter als Worte.' });
+    }
+  }, thresholdMs / 2);
 }

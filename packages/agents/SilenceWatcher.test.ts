@@ -1,9 +1,13 @@
-import { SilenceWatcher } from './SilenceWatcher';
+import { silenceWatcher } from './silenceWatcher';
+import { GPTEventHub } from '../gpt-bridges/GPTEventHub';
 
-test('detects inactivity', () => {
-  let now = 0;
-  const watcher = new SilenceWatcher(1000, () => now);
-  expect(watcher.shouldAnalyze()).toBe(false);
-  now = 1500;
-  expect(watcher.shouldAnalyze()).toBe(true);
+test('emits orakel message on silence', () => {
+  jest.useFakeTimers();
+  const spy = jest.fn();
+  GPTEventHub.on('orakel:says', spy);
+  silenceWatcher(1000);
+  jest.advanceTimersByTime(1500);
+  expect(spy).toHaveBeenCalled();
+  jest.useRealTimers();
+  GPTEventHub.off('orakel:says', spy);
 });
