@@ -243,7 +243,7 @@ npm run dev   # oder: yarn dev
 
 
 Weitere Beispiele und GIF-Demos findest du im [Wiki](https://github.com/GenesisAeon/unified-mandala/wiki).
-Weitere Infos zur Pipeline findest du in [docs/POC-run-guide.md](docs/POC-run-guide.md).
+Weitere Infos zur Pipeline findest du in [docs/demo/POC-Run-Guide.md](docs/demo/POC-Run-Guide.md).
 Ein SVG-Beispiel liegt unter [`docs/assets/unified-mandala.svg`](docs/assets/unified-mandala.svg).
 
 Das `CHRONOPOEM.md` entsteht automatisch – und kann bei jedem Commit erneuert werden.
