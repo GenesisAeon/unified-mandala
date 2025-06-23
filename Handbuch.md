@@ -322,6 +322,7 @@ Aktuelle Versionshinweise werden in [CHANGELOG.md](CHANGELOG.md) gepflegt.
 - 🎨 **MandalaThemeManager** – hell/dunkel umschalten
 - ✨ **SigillinActivationManager & MetaSignatur** – Aktivierung & Signatur von Sigillin
 - 🌈 **ThemeProvider & useResponsiveTheme** – reagiert auf CREP
+- 🧩 **useAdaptiveLayout** – passt Gridbereiche an den CREP-Status an
 - 📜 **SigillinTimeline & InviteBanner** – Verlauf und Einladungsbanner
 - 📈 **CREPTimeline** – chronologische Auflistung der CREP-Ereignisse
 - 💾 **BackupManager** – einfache Dateisicherungen
