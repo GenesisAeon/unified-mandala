@@ -102,6 +102,7 @@ Schau auch ins [Glossar](docs/glossar-genesis.md) für Begriffe.
 - 🌱 **FreieKIZivilisation** – sammelt Resonanzimpulse (`packages/agents/FreieKIZivilisation.ts`)
 - ✨ **useEventGlow** – Hook für Event-Hervorhebung (`packages/unifiedmandala-ui/hooks/useEventGlow.ts`)
 - 🤫 **silenceWatcher** – meldet Stille im EventHub (`packages/agents/silenceWatcher.ts`)
+- 📂 **FeedbackAgent** – beobachtet neue Dateien und ruft MemoryManager auf (`packages/agents/feedback`)
 - 👍 **FeedbackButtons** – zeichnet Nutzerfeedback als Sigil-Ereignis auf (`packages/unifiedmandala-ui/components/FeedbackButtons.tsx`)
 - 💬 **ChatPanel** – einfacher GPT-gestützter Chat mit CREP-Logging
 - 🔥 **ArchetypeDecoderAgent** – extrahiert Archetypen aus Beschreibungen (`packages/agents/ArchetypeDecoderAgent.ts`)
@@ -163,6 +164,7 @@ packages/
   ├── services/vector-indexer # Embedding generator service
   ├── services/sigil-trigger  # Beobachtet Sigillin-Änderungen
   ├── services/memorymesh     # Region-Archive und Reflexionsdienste
+  ├── services/memory-manager # Simple scheduler for short-term memories
   │   ├── region-archive-service   # Speichert Nachrichten pro Region
   │   ├── reflection-engine       # Erstellt einfache Spiegelungen
   │   ├── adaptation-service      # Lernt Nutzungsgewohnheiten
@@ -178,6 +180,7 @@ codex-sync/              # Antwortsystem für Vorschläge
 ci/                      # Test- und Pipeline-Konfigurationen
 config/                  # Zentrale YAML- und Env-Dateien
   └── interfaces.yaml       # API-Endpunkte der Plattform
+  ├── memory-manager.yaml  # Cleanup-Interval Konfiguration
 repositorypflege/         # Pflegekonzepte und Repository-Mapping
 apps/
   └── sharedream-interface      # Web-Schnittstelle & Sync

@@ -1,0 +1,3 @@
+schema_version: 1.0
+description: Scheduler settings for MemoryManager
+cleanup_interval: 86400000 # 24h in ms
