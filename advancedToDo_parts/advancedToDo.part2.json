@@ -26,5 +26,23 @@
     "task": "Extend vault to handle aeon_transition and resonance storage as described in Aeon KI Resonanz chat",
     "test": "packages/core/AeonSigillinVault.test.ts",
     "status": "done"
+  },
+  {
+    "commit": "Implement MemoryManager service",
+    "path": "services/memory-manager",
+    "task": "Implement MemoryManager service with cleanup scheduler and Feedback Agents integration",
+    "test": "services/memory-manager/test.ts"
+  },
+  {
+    "commit": "Add parsing & SocialGood workflow trigger",
+    "path": "scripts",
+    "task": "Provide command or UI to start Parsing and SocialGood-Matching",
+    "test": ""
+  },
+  {
+    "commit": "Generate memory-job config templates",
+    "path": "config",
+    "task": "Provide YAML job configuration templates for MemoryManager",
+    "test": ""
   }
 ]

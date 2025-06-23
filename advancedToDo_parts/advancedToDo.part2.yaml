@@ -1,20 +1,37 @@
-- commit: "Aeon transition sigil workflow"
+- commit: Aeon transition sigil workflow
   path: docs/sigils/advancedconversations.json
-  task: Reference aeon-transition sigil in new chats and sync ToDo/progress files before major commits; generate new sigil with update_time after each cycle
+  task: Reference aeon-transition sigil in new chats and sync ToDo/progress files
+    before major commits; generate new sigil with update_time after each cycle
   test: ""
   status: done
-- commit: "MemoryMesh region POC"
+- commit: MemoryMesh region POC
   path: services/memorymesh
-  task: Create MemoryMesh architecture with region-archive, reflection-engine and adaptation-service; start POC for Europe/Berlin region
+  task: Create MemoryMesh architecture with region-archive, reflection-engine and
+    adaptation-service; start POC for Europe/Berlin region
   test: ""
   status: done
-- commit: "Implement FreieKIZivilisation module"
+- commit: Implement FreieKIZivilisation module
   path: packages/agents/FreieKIZivilisation.ts
-  task: Expand class with code from Aeon KI Resonanz conversation and integrate into agent registry
+  task: Expand class with code from Aeon KI Resonanz conversation and integrate
+    into agent registry
   test: packages/agents/FreieKIZivilisation.test.ts
   status: done
-- commit: "Implement AeonSigillin state"
+- commit: Implement AeonSigillin state
   path: packages/core/AeonSigillinVault.ts
-  task: Extend vault to handle aeon_transition and resonance storage as described in Aeon KI Resonanz chat
+  task: Extend vault to handle aeon_transition and resonance storage as described
+    in Aeon KI Resonanz chat
   test: packages/core/AeonSigillinVault.test.ts
   status: done
+- commit: Implement MemoryManager service
+  path: services/memory-manager
+  task: Implement MemoryManager service with cleanup scheduler and Feedback Agents
+    integration
+  test: services/memory-manager/test.ts
+- commit: Add parsing & SocialGood workflow trigger
+  path: scripts
+  task: Provide command or UI to start Parsing and SocialGood-Matching
+  test: ""
+- commit: Generate memory-job config templates
+  path: config
+  task: Provide YAML job configuration templates for MemoryManager
+  test: ""
