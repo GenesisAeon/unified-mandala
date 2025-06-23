@@ -1728,20 +1728,23 @@
     "commit": "Add FeedbackButtons component",
     "path": "packages/unifiedmandala-ui/components/FeedbackButtons.tsx",
     "task": "Capture like/dislike feedback and log Sigil event",
-    "test": "packages/unifiedmandala-ui/components/FeedbackButtons.test.tsx"
+    "test": "packages/unifiedmandala-ui/components/FeedbackButtons.test.tsx",
+    "status": "done"
   }
-  },
+  ,
   {
     "commit": "Add bio sensor hooks and HapticService",
     "path": "packages/bio",
     "task": "Provide usePulse hook with dummy values and stub HapticService",
-    "test": "packages/bio/__tests__/usePulse.test.tsx"
+    "test": "packages/bio/__tests__/usePulse.test.tsx",
+    "status": "done"
   },
   {
     "commit": "Add useABLayout hook",
     "path": "packages/unifiedmandala-ui/hooks/useABLayout.ts",
     "task": "Render random A/B layout and send metric event",
-    "test": "packages/unifiedmandala-ui/hooks/useABLayout.test.tsx"
+    "test": "packages/unifiedmandala-ui/hooks/useABLayout.test.tsx",
+    "status": "done"
   }
   ,
   {
@@ -1757,17 +1760,19 @@
     "task": "Stub GAN overlay generator",
     "test": "packages/art/__tests__/generativeOverlay.test.ts",
     "status": "done"
-  }
+  },
   {
     "commit": "Add PoeticSigillin module",
     "path": "packages/genesis-sigillin-core/PoeticSigillin.ts",
     "task": "Generate poetic sigils from verse snippets",
-    "test": "packages/genesis-sigillin-core/__tests__/PoeticSigillin.test.ts"
+    "test": "packages/genesis-sigillin-core/__tests__/PoeticSigillin.test.ts",
+    "status": "done"
   },
   {
     "commit": "Add ResonanzMandala visualization",
     "path": "packages/visuals/ResonanzMandala.ts",
     "task": "Render archetype dialogue topology",
-    "test": "packages/visuals/__tests__/ResonanzMandala.test.ts"
+    "test": "packages/visuals/__tests__/ResonanzMandala.test.ts",
+    "status": "done"
   }
 ]

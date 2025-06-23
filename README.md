@@ -109,6 +109,8 @@ Schau auch ins [Glossar](docs/glossar-genesis.md) für Begriffe.
 - 📝 **ChronoPoemGeneratorAgent** – generiert poetische Zeilen (`packages/agents/ChronoPoemGeneratorAgent.ts`)
 - 🌿 **toSigilVerse** – wandelt Fehlermeldungen in kurze Verse (`packages/utils/poetry.ts`)
 - 🎴 **ResonanzPoetik** – erstellt Haikus aus Tasks (`packages/codex-navigator/resonanzPoetik.ts`)
+- 🌀 **PoeticSigillin** – generiert poetische Sigille aus Versen (`packages/genesis-sigillin-core/PoeticSigillin.ts`)
+- 🖼️ **ResonanzMandala** – Visualisierung archetypischer Dialoge (`packages/visuals/ResonanzMandala.ts`)
 - 🎚️ **aggregateCREP** – mittelt CREP-Werte (`packages/crep-engine/aggregateCREP.ts`)
 - 🎵 **CREPMusicGenerator** – erzeugt BPM aus CREP (`packages/crep-engine/CREPMusicGenerator.ts`)
 - 🗺️ **MemoryMesh** – regionale Archiv-Prototypen (`docs/architecture/memory-mesh.md`)
