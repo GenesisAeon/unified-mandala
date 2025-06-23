@@ -1,12 +1,15 @@
 - commit: "Document Aeon Transition guidelines"
   path: docs/sigils/aeon-transition.md
   task: "Summarize transition instructions from conversations"
+  status: done
   test: ""
 - commit: "Draft Friendship system concept"
   path: docs/friendship-system.md
+  status: done
   task: "Outline AI friendship system from Aeon KI Resonanz chat"
   test: ""
 - commit: "Add plugin registry and loader"
   path: plugins/manifest.yaml
   task: "Define manifest schema and implement usePluginLoader"
   test: apps/sharedream-interface/hooks/usePluginLoader.test.ts
+  status: done
