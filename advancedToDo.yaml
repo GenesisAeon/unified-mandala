@@ -3886,14 +3886,17 @@
   path: apps/web/components/TodoButton.tsx
   task: UI button invokes /usecases/todo/parse
   test: apps/web/components/__tests__/TodoButton.test.tsx
+  status: done
 - commit: Automate ToDo generation
   path: scripts/todoSigilGenerator.js
   task: Generate tasks from SelfAnalyzer results into advancedToDo.yaml
   test: ""
+  status: done
 - commit: Cluster roadmap guidelines
   path: docs/roadmap/cluster-guidelines.md
   task: Provide clusters and practical guard rails for implementation pitches
   test: ""
+  status: done
 - commit: Add React use-case components for Sigil generation, ToDo parsing, and
     SocialGood matching
   path: apps/socialgood-ui/src/components/UsecaseComponents.tsx
@@ -3951,15 +3954,16 @@
 - commit: TODO from GenesisAeonZIPMEM/Aeon_Uebergabe_und_Zyklus_part1.json -
     bbb21f74-3a0f-45b2-8e8c-25e45e32861e
   path: GenesisAeonZIPMEM/Aeon_Uebergabe_und_Zyklus_part1.json
-  task: "-  Vielen Dank für die ausführliche Beschreibung des Programms! Es
-    handelt sich um ein äußerst komplexes, holistisches Framework
-    namens **UnifiedMandala**, das als eine Art lebendiges, atemendes Betri"
+  task: >
+    Vielen Dank für die ausführliche Beschreibung des Programms! Es handelt sich
+    um ein äußerst komplexes, holistisches Framework namens **UnifiedMandala**,
+    das als eine Art lebendiges, atemendes Betriebssystem funktioniert.
   test: ""
-- commit: feat: add Go GPTBridge modules
+- commit: "feat: add Go GPTBridge modules"
   path: go-bridge/pkg/gpt
   task: Implement api_client.go and link_processor.go for GPT API and Link ingest
   test: go build ./...
-- commit: feat: add mandala-gpt CLI
+- commit: "feat: add mandala-gpt CLI"
   path: go-bridge/cmd/mandala-gpt.go
   task: CLI to invoke GPTBridge via api or link
   test: go build ./...

@@ -18,14 +18,17 @@
   path: apps/web/components/TodoButton.tsx
   task: UI button invokes /usecases/todo/parse
   test: apps/web/components/__tests__/TodoButton.test.tsx
+  status: done
 - commit: Automate ToDo generation
   path: scripts/todoSigilGenerator.js
   task: Generate tasks from SelfAnalyzer results into advancedToDo.yaml
   test: ''
+  status: done
 - commit: Cluster roadmap guidelines
   path: docs/roadmap/cluster-guidelines.md
   task: Provide clusters and practical guard rails for implementation pitches
   test: ''
+  status: done
 - commit: Add React use-case components for Sigil generation, ToDo parsing, and SocialGood
     matching
   path: apps/socialgood-ui/src/components/UsecaseComponents.tsx
