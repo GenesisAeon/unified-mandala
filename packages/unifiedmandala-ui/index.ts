@@ -4,3 +4,4 @@ export { default as UploadYamlForm } from './components/UploadYamlForm';
 export { default as CREPTestHarness } from './components/CREPTestHarness';
 export { default as CREPPlayEngine } from './components/CREPPlayEngine';
 export { default as CREPTimeline } from './components/CREPTimeline';
+export { default as ChatPanel } from './components/ChatPanel';
