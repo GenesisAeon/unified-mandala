@@ -10,6 +10,7 @@ Dieses Handbuch gibt einen Überblick über die wichtigsten Module und Funktione
 
 Schau auch ins [Glossar](docs/glossar-genesis.md) für Begriffe.
 Das Pendant zum Genesis ZIPMEM ist die Datei `advancedconversations.json`.
+Ergänzende Ausschnitte landen unter `GenesisAeonZIPMEM/<Chat>`.
 Pitch-Beispiele für Events sind unter `docs/pitch/` abgelegt.
 
 > **TL;DR**

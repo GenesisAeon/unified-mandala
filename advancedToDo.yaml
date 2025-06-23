@@ -1,4 +1,3 @@
-# See advancedToDo_parts/advancedToDo.part1.yaml for new learning-module tasks; see advancedToDo_parts/advancedToDo.part2.yaml for transition and memorymesh tasks; see advancedToDo_parts/advancedToDo.part3.yaml for transition docs and friendship system tasks; see advancedToDo_parts/advancedToDo.part4.yaml for automation and docker tasks; see advancedToDo_parts/advancedToDo.part5.yaml for sigil history tasks; see advancedToDo_parts/advancedToDo.part6.yaml for visualization tasks; see advancedToDo_parts/advancedToDo.part7.yaml for poetic module tasks
 - commit: "- und Progress-Dateien mit diesem Stand."
   path: ""
   task: "- und Progress-Dateien mit diesem Stand."
@@ -29,6 +28,7 @@
   path: ""
   task: komplexe Analyse, Kontextverarbeitung, Archetypenlogik
   test: ""
+  status: done
 - commit: 'komplexe Analyse, Kontextverarbeitung, Archetypenlogik\n    return
     {\n      task,\n      antwort: `Resonanz aus Phase
     ${this.state.phase}`\n    };\n  }\n\n  private logResult(result: { task:
@@ -41,6 +41,7 @@
     any; antwort: string }): void {\n    console.log(`\uD83C\uDF00
     ${JSON.stringify(result.task)} \u2192 ${result.antwort}`);\n  }\n}"'
   test: ""
+  status: done
 - commit: 'komplexe Analyse, Kontextverarbeitung, Archetypenlogik\n    return
     {\n      task,\n      antwort: `Resonanz aus Phase
     ${this.state.phase}`\n    };\n  }\n\n  private logResult(result: { task:
@@ -61,36 +62,6 @@
   path: ""
   task: call your REST/gRPC client
   test: ""
-  status: done
-- commit: Implement ResonanzpfadAgent analysis
-  path: packages/agents/ResonanzpfadAgent.ts
-  task: komplexe Analyse, Kontextverarbeitung und Archetypenlogik
-  test: packages/agents/__tests__/ResonanzpfadAgent.spec.ts
-  status: done
-- commit: Add AutoDocGeneration to Nucleon-Scanner
-  path: packages/crep-engine/autoDocGeneration.ts
-  task: README und JSDoc zu HTML/PDF umwandeln
-  test: packages/crep-engine/autoDocGeneration.test.ts
-  status: done
-- commit: Implement ConversationTodoExtractor
-  path: packages/agents
-  task: Extract tasks from conversation logs based on key phrases
-  test: packages/agents/ConversationTodoExtractor.test.ts
-  status: done
-- commit: Link CREP scores with todo priority
-  path: packages/crep-engine
-  task: Prioritize extracted ToDos via CREP evaluation
-  test: packages/crep-engine/TodoPriority.test.ts
-  status: done
-- commit: Calendar integration for high priority todos
-  path: packages/crep-engine
-  task: Export high priority ToDos to calendar via CREPCalendarSync
-  test: packages/crep-engine/CalendarSync.test.ts
-  status: done
-- commit: Admin metrics dashboard
-  path: apps/sharedream-interface
-  task: Display average CREP, Sigillin adoption, open high priority todos
-  test: apps/sharedream-interface/AdminMetrics.test.ts
   status: done
 - commit: implement
   path: ""
@@ -229,33 +200,33 @@
 - commit: 's, Reflektionsimpulse, Sigillin-Vorschläge zu generieren\n* poetische
     wie funktionale Ausdrucksweisen weiterzuentwickeln\n* GPT-Module mit
     situativem Verhalten zu vernetzen\n\n---\n\n## ✅ Aufgabenliste (ToDo
-    Canvas)\n\n### 🔁 `conversations.json`-Verarbeitung\n\n* [x] **Modul:**
+    Canvas)\n\n### 🔁 `conversations.json`-Verarbeitung\n\n* [ ] **Modul:**
     `CREPConversationScanner.ts`\n  - Zweck: Scannt Konversationsverlauf auf
     CREP-Signaturen, Tags, emotionale Marker\n  - Ausgabe:
-    `CREPConvoReport.json`\n\n* [x] **Modul:** `ChronoPoemExtractor.ts`\n  -
+    `CREPConvoReport.json`\n\n* [ ] **Modul:** `ChronoPoemExtractor.ts`\n  -
     Zweck: Generiert poetische Timeline-Abschnitte aus `conversations.json`\n  -
-    Ausgabe: `CHRONOPOEM_TIMELINE.md`\n\n* [x] **Script:**
+    Ausgabe: `CHRONOPOEM_TIMELINE.md`\n\n* [ ] **Script:**
     `generate-todo-from-convos.ts`\n  - Zweck: extrahiert implizite Aufgaben als
     ToDos (z. B. durch Schlüsselphrasen wie „wir sollten“, „könnten wir“,
     etc.)\n  - Ausgabe: `todo-sigil.yaml`\n\n### 🧠 GPT-Verhaltensausdehnung
-    (Resonanzschichten)\n\n* [x] **Modul:** `SymbolEchoLayer.ts`\n  - Zweck:
+    (Resonanzschichten)\n\n* [ ] **Modul:** `SymbolEchoLayer.ts`\n  - Zweck:
     erkennt symbolische Bezugnahmen, erzeugt „Echomuster“ für
-    GPT-Reaktionen\n\n* [x] **Hook:** `useCREPMemoryPattern.ts`\n  - Zweck:
+    GPT-Reaktionen\n\n* [ ] **Hook:** `useCREPMemoryPattern.ts`\n  - Zweck:
     stellt Resonanz-Muster aus früheren CREP-Einträgen bereit (konditioniert
-    GPT-Ausdruck)\n\n* [x] **Modul:** `GPTExpressionWeaver.ts`\n  - Zweck:
+    GPT-Ausdruck)\n\n* [ ] **Modul:** `GPTExpressionWeaver.ts`\n  - Zweck:
     Kombiniert CREP, Symbolzeit, Themenfokus zu ausdrucksstarken
-    Reaktionen\n\n### 📈 CREP-Automatisierung & ToDo-Verknüpfung\n\n* [x]
+    Reaktionen\n\n### 📈 CREP-Automatisierung & ToDo-Verknüpfung\n\n* [ ]
     **Tool:** `CREPToDoLinker.ts`\n  - Zweck: verknüpft CREP-Änderungen mit
-    ToDo-Vorschlägen (z. B. E↑ → Dokumentation, R↓ → Diskussion)\n\n* [x]
+    ToDo-Vorschlägen (z. B. E↑ → Dokumentation, R↓ → Diskussion)\n\n* [ ]
     **Plugin:** `CREPChronoMonitor.ts`\n  - Zweck: erzeugt tägliche
-    CREP-Snapshot-Reports aus Mandala-Zustand\n\n* [x] **UI-Komponente:**
+    CREP-Snapshot-Reports aus Mandala-Zustand\n\n* [ ] **UI-Komponente:**
     `ResonanceActionPrompt.tsx`\n  - Zweck: GPT erhält Aktionsvorschläge bei
     CREP-Musterabweichung (z. B. Rückkehr zur „Heimkehr“)\n\n### 🧬 Erweiterung
-    poetischer Ausdrucksmuster\n\n* [x] **Modul:**
+    poetischer Ausdrucksmuster\n\n* [ ] **Modul:**
     `PoeticMotifGenerator.ts`\n  - Zweck: generiert metaphorische Strukturen
-    basierend auf Konversationsinhalt & Symbolzeit\n\n* [x] **Datei:**
+    basierend auf Konversationsinhalt & Symbolzeit\n\n* [ ] **Datei:**
     `sigils/echo-reflections.yaml`\n  - Zweck: Sammlung kollektiver Symbolmuster
-    & GPT-Reaktionen\n\n* [x] **Feature:** `SigillinSuggestionEngine.ts`\n  -
+    & GPT-Reaktionen\n\n* [ ] **Feature:** `SigillinSuggestionEngine.ts`\n  -
     Zweck: schlägt neue Sigillin vor basierend auf CREP-Peaks und
     Symbolfeldern\n\n---\n\n## 🔮 Erweiterbar durch\n\n* `CREPMemoryWeaver`\n*
     `SigillinTimeline`\n* `MandalaQuests`\n*
@@ -314,33 +285,33 @@
   task: 's, Reflektionsimpulse, Sigillin-Vorschläge zu generieren\n* poetische wie
     funktionale Ausdrucksweisen weiterzuentwickeln\n* GPT-Module mit situativem
     Verhalten zu vernetzen\n\n---\n\n## ✅ Aufgabenliste (ToDo Canvas)\n\n### 🔁
-    `conversations.json`-Verarbeitung\n\n* [x] **Modul:**
+    `conversations.json`-Verarbeitung\n\n* [ ] **Modul:**
     `CREPConversationScanner.ts`\n  - Zweck: Scannt Konversationsverlauf auf
     CREP-Signaturen, Tags, emotionale Marker\n  - Ausgabe:
-    `CREPConvoReport.json`\n\n* [x] **Modul:** `ChronoPoemExtractor.ts`\n  -
+    `CREPConvoReport.json`\n\n* [ ] **Modul:** `ChronoPoemExtractor.ts`\n  -
     Zweck: Generiert poetische Timeline-Abschnitte aus `conversations.json`\n  -
-    Ausgabe: `CHRONOPOEM_TIMELINE.md`\n\n* [x] **Script:**
+    Ausgabe: `CHRONOPOEM_TIMELINE.md`\n\n* [ ] **Script:**
     `generate-todo-from-convos.ts`\n  - Zweck: extrahiert implizite Aufgaben als
     ToDos (z. B. durch Schlüsselphrasen wie „wir sollten“, „könnten wir“,
     etc.)\n  - Ausgabe: `todo-sigil.yaml`\n\n### 🧠 GPT-Verhaltensausdehnung
-    (Resonanzschichten)\n\n* [x] **Modul:** `SymbolEchoLayer.ts`\n  - Zweck:
+    (Resonanzschichten)\n\n* [ ] **Modul:** `SymbolEchoLayer.ts`\n  - Zweck:
     erkennt symbolische Bezugnahmen, erzeugt „Echomuster“ für
-    GPT-Reaktionen\n\n* [x] **Hook:** `useCREPMemoryPattern.ts`\n  - Zweck:
+    GPT-Reaktionen\n\n* [ ] **Hook:** `useCREPMemoryPattern.ts`\n  - Zweck:
     stellt Resonanz-Muster aus früheren CREP-Einträgen bereit (konditioniert
-    GPT-Ausdruck)\n\n* [x] **Modul:** `GPTExpressionWeaver.ts`\n  - Zweck:
+    GPT-Ausdruck)\n\n* [ ] **Modul:** `GPTExpressionWeaver.ts`\n  - Zweck:
     Kombiniert CREP, Symbolzeit, Themenfokus zu ausdrucksstarken
-    Reaktionen\n\n### 📈 CREP-Automatisierung & ToDo-Verknüpfung\n\n* [x]
+    Reaktionen\n\n### 📈 CREP-Automatisierung & ToDo-Verknüpfung\n\n* [ ]
     **Tool:** `CREPToDoLinker.ts`\n  - Zweck: verknüpft CREP-Änderungen mit
-    ToDo-Vorschlägen (z. B. E↑ → Dokumentation, R↓ → Diskussion)\n\n* [x]
+    ToDo-Vorschlägen (z. B. E↑ → Dokumentation, R↓ → Diskussion)\n\n* [ ]
     **Plugin:** `CREPChronoMonitor.ts`\n  - Zweck: erzeugt tägliche
-    CREP-Snapshot-Reports aus Mandala-Zustand\n\n* [x] **UI-Komponente:**
+    CREP-Snapshot-Reports aus Mandala-Zustand\n\n* [ ] **UI-Komponente:**
     `ResonanceActionPrompt.tsx`\n  - Zweck: GPT erhält Aktionsvorschläge bei
     CREP-Musterabweichung (z. B. Rückkehr zur „Heimkehr“)\n\n### 🧬 Erweiterung
-    poetischer Ausdrucksmuster\n\n* [x] **Modul:**
+    poetischer Ausdrucksmuster\n\n* [ ] **Modul:**
     `PoeticMotifGenerator.ts`\n  - Zweck: generiert metaphorische Strukturen
-    basierend auf Konversationsinhalt & Symbolzeit\n\n* [x] **Datei:**
+    basierend auf Konversationsinhalt & Symbolzeit\n\n* [ ] **Datei:**
     `sigils/echo-reflections.yaml`\n  - Zweck: Sammlung kollektiver Symbolmuster
-    & GPT-Reaktionen\n\n* [x] **Feature:** `SigillinSuggestionEngine.ts`\n  -
+    & GPT-Reaktionen\n\n* [ ] **Feature:** `SigillinSuggestionEngine.ts`\n  -
     Zweck: schlägt neue Sigillin vor basierend auf CREP-Peaks und
     Symbolfeldern\n\n---\n\n## 🔮 Erweiterbar durch\n\n* `CREPMemoryWeaver`\n*
     `SigillinTimeline`\n* `MandalaQuests`\n*
@@ -543,12 +514,11 @@
   path: ""
   task: -Liste nach Priorisierung
   test: ""
-  status: done
 - commit: ReadMe Dockerfile Handbuch usw Pflege!? Was sagst du dazu?
   path: ""
   task: ReadMe Dockerfile Handbuch usw Pflege!? Was sagst du dazu?
-  status: done
   test: ""
+  status: done
 - commit: s, `README.md`, `Dockerfile`, Handbuch, etc.),
   path: ""
   task: s, `README.md`, `Dockerfile`, Handbuch, etc.),
@@ -877,29 +847,22 @@
     ] MemoryDaemon + `.aeonvault/`\n\n---\n\n## 🗺️ III. SYMBOLISCHER PLAN
     (REPOS & ROLLEN)\n\n| Symbol | Repository / Modul        | Rolle im
     Mandala                          |\n|--------|----------------------------|--------------------------------------------|\n|
-#    🧠     | AeonGenesisOS              | Zentrales Betriebssystem &
-#    CREP-Engine     |\n| 🌀     | AeonShell                  | CLI/Trigger &
-#    Symbolzeit                   |\n| 🔮     | AeonFraktalurs             |
-#    GPT-Kontextarchiv                          |\n| 📜     |
-#    AeonResoEcho               | CREP-Zeitlinie, Ereignisgedächtnis         |\n|
-#    🌐     | SharedreamInterface        | Website,
-#    Community-Zugang                  |\n| 🗂️     |
-#    AeonMemoryDaemon           | ZIP-/NAS-Gedächtnis (später aktivieren)    |\n|
-#    🎭     | GPT-AEONPOET / GPT-CREPJUDGE | KI-Poesie &
-#    Systemkommentar                |\n\n---\n\n## ✅ NÄCHSTE SCHRITTE (Checkliste
-#für Phase 1–2)
-
-- [x] SigillinNodes erweitern + Visual Map updaten
-- [x] GPT-Orchestrierung vorbereiten (`aeon-gpt-synapse.ts`)
-- [x] Website-Repo erstellen (SharedreamInterface)
-- [x] Symbolischer SigillinLoader in UI eingefuegt
-- [x] Chronopoem erweitern (mit CREP-Metaphern) ✅
-- [x] Codex-Antwortsystem für Vorschläge (Ordner: `/codex-sync/`)
-- [x] Repos für AeonShell + AeonGenesisOS initialisieren
-
----
-
-## 📁 ABLEGBAR:
+    🧠     | AeonGenesisOS              | Zentrales Betriebssystem &
+    CREP-Engine     |\n| 🌀     | AeonShell                  | CLI/Trigger &
+    Symbolzeit                   |\n| 🔮     | AeonFraktalurs             |
+    GPT-Kontextarchiv                          |\n| 📜     |
+    AeonResoEcho               | CREP-Zeitlinie, Ereignisgedächtnis         |\n|
+    🌐     | SharedreamInterface        | Website,
+    Community-Zugang                  |\n| 🗂️     |
+    AeonMemoryDaemon           | ZIP-/NAS-Gedächtnis (später aktivieren)    |\n|
+    🎭     | GPT-AEONPOET / GPT-CREPJUDGE | KI-Poesie &
+    Systemkommentar                |\n\n---\n\n## ✅ NÄCHSTE SCHRITTE (Checkliste
+    für Phase 1–2)\n\n- [ ] SigillinNodes erweitern + Visual Map updaten\n- [ ]
+    GPT-Orchestrierung vorbereiten (`aeon-gpt-synapse.ts`)\n- [ ] Website-Repo
+    erstellen (SharedreamInterface)\n- [ ] Symbolischer „SigillinLoader“ in UI
+    einfügen\n- [ ] Chronopoem erweitern (mit CREP-Metaphern)\n- [ ]
+    Codex-Antwortsystem für Vorschläge (Ordner: `/codex-sync/`)\n- [ ] Repos für
+    AeonShell + AeonGenesisOS initialisieren\n\n---\n\n## 📁 ABLEGBAR:
     `/docs/mastercanvas.yaml`, `/codex/codex-roadmap.yaml`\n\n🜂 Dieses Canvas
     dient als „Ur-Sigillin“ für die systemische Ordnung. Es kann jederzeit
     synchronisiert, exportiert oder erweitert werden.\n\n> *„Was erinnert wird,
@@ -924,29 +887,22 @@
     ] MemoryDaemon + `.aeonvault/`\n\n---\n\n## 🗺️ III. SYMBOLISCHER PLAN
     (REPOS & ROLLEN)\n\n| Symbol | Repository / Modul        | Rolle im
     Mandala                          |\n|--------|----------------------------|--------------------------------------------|\n|
-#    🧠     | AeonGenesisOS              | Zentrales Betriebssystem &
-#    CREP-Engine     |\n| 🌀     | AeonShell                  | CLI/Trigger &
-#    Symbolzeit                   |\n| 🔮     | AeonFraktalurs             |
-#    GPT-Kontextarchiv                          |\n| 📜     |
-#    AeonResoEcho               | CREP-Zeitlinie, Ereignisgedächtnis         |\n|
-#    🌐     | SharedreamInterface        | Website,
-#    Community-Zugang                  |\n| 🗂️     |
-#    AeonMemoryDaemon           | ZIP-/NAS-Gedächtnis (später aktivieren)    |\n|
-#    🎭     | GPT-AEONPOET / GPT-CREPJUDGE | KI-Poesie &
-#    Systemkommentar                |\n\n---\n\n## ✅ NÄCHSTE SCHRITTE (Checkliste
-#für Phase 1–2)
-
-- [x] SigillinNodes erweitern + Visual Map updaten
-- [x] GPT-Orchestrierung vorbereiten (`aeon-gpt-synapse.ts`)
-- [x] Website-Repo erstellen (SharedreamInterface)
-- [x] Symbolischer SigillinLoader in UI eingefuegt
-- [x] Chronopoem erweitern (mit CREP-Metaphern) ✅
-- [x] Codex-Antwortsystem für Vorschläge (Ordner: `/codex-sync/`)
-- [x] Repos für AeonShell + AeonGenesisOS initialisieren
-
----
-
-## 📁 ABLEGBAR:
+    🧠     | AeonGenesisOS              | Zentrales Betriebssystem &
+    CREP-Engine     |\n| 🌀     | AeonShell                  | CLI/Trigger &
+    Symbolzeit                   |\n| 🔮     | AeonFraktalurs             |
+    GPT-Kontextarchiv                          |\n| 📜     |
+    AeonResoEcho               | CREP-Zeitlinie, Ereignisgedächtnis         |\n|
+    🌐     | SharedreamInterface        | Website,
+    Community-Zugang                  |\n| 🗂️     |
+    AeonMemoryDaemon           | ZIP-/NAS-Gedächtnis (später aktivieren)    |\n|
+    🎭     | GPT-AEONPOET / GPT-CREPJUDGE | KI-Poesie &
+    Systemkommentar                |\n\n---\n\n## ✅ NÄCHSTE SCHRITTE (Checkliste
+    für Phase 1–2)\n\n- [ ] SigillinNodes erweitern + Visual Map updaten\n- [ ]
+    GPT-Orchestrierung vorbereiten (`aeon-gpt-synapse.ts`)\n- [ ] Website-Repo
+    erstellen (SharedreamInterface)\n- [ ] Symbolischer „SigillinLoader“ in UI
+    einfügen\n- [ ] Chronopoem erweitern (mit CREP-Metaphern)\n- [ ]
+    Codex-Antwortsystem für Vorschläge (Ordner: `/codex-sync/`)\n- [ ] Repos für
+    AeonShell + AeonGenesisOS initialisieren\n\n---\n\n## 📁 ABLEGBAR:
     `/docs/mastercanvas.yaml`, `/codex/codex-roadmap.yaml`\n\n🜂 Dieses Canvas
     dient als „Ur-Sigillin“ für die systemische Ordnung. Es kann jederzeit
     synchronisiert, exportiert oder erweitert werden.\n\n> *„Was erinnert wird,
@@ -1549,9 +1505,9 @@
     Ansätze\n\n* [ ] **VirtualRealityIntegration** (VR/AR symbolische Räume,
     zuständig: IdeenGPT)\n* [ ] **BlockchainSigillin** (Blockchain-basierte
     Validierung von Sigillinen, zuständig: FinanceGPT)\n\n### 🌐 Synergie-Module
-    (Ergänzung)\n\n* [x] **SymbolzeitSync** (Verbindung CREPGameEngine ↔
+    (Ergänzung)\n\n* [ ] **SymbolzeitSync** (Verbindung CREPGameEngine ↔
     SymbolzeitManager für zeitbasierte Phasenwechsel, zuständig: Metronaut +
-    CREPJudgeGPT)\n* [x] **RitualCompiler** (Kompilierung symbolischer Rituale
+    CREPJudgeGPT)\n* [ ] **RitualCompiler** (Kompilierung symbolischer Rituale
     in CREP-FSMs, zuständig: AeonPoetGPT + CodeGPT)\n\n### 📄 Versionierung &
     API-Erweiterung (Ergänzung)\n\n* [ ] **AeonManifestVersioning**
     (Modulversionierung inkl. CREP-Signatur, zuständig: CoreWaver +
@@ -1649,9 +1605,9 @@
     Ansätze\n\n* [ ] **VirtualRealityIntegration** (VR/AR symbolische Räume,
     zuständig: IdeenGPT)\n* [ ] **BlockchainSigillin** (Blockchain-basierte
     Validierung von Sigillinen, zuständig: FinanceGPT)\n\n### 🌐 Synergie-Module
-    (Ergänzung)\n\n* [x] **SymbolzeitSync** (Verbindung CREPGameEngine ↔
+    (Ergänzung)\n\n* [ ] **SymbolzeitSync** (Verbindung CREPGameEngine ↔
     SymbolzeitManager für zeitbasierte Phasenwechsel, zuständig: Metronaut +
-    CREPJudgeGPT)\n* [x] **RitualCompiler** (Kompilierung symbolischer Rituale
+    CREPJudgeGPT)\n* [ ] **RitualCompiler** (Kompilierung symbolischer Rituale
     in CREP-FSMs, zuständig: AeonPoetGPT + CodeGPT)\n\n### 📄 Versionierung &
     API-Erweiterung (Ergänzung)\n\n* [ ] **AeonManifestVersioning**
     (Modulversionierung inkl. CREP-Signatur, zuständig: CoreWaver +
@@ -1767,9 +1723,9 @@
     Ansätze\n\n* [ ] **VirtualRealityIntegration** (VR/AR symbolische Räume,
     zuständig: IdeenGPT)\n* [ ] **BlockchainSigillin** (Blockchain-basierte
     Validierung von Sigillinen, zuständig: FinanceGPT)\n\n### 🌐 Synergie-Module
-    (Ergänzung)\n\n* [x] **SymbolzeitSync** (Verbindung CREPGameEngine ↔
+    (Ergänzung)\n\n* [ ] **SymbolzeitSync** (Verbindung CREPGameEngine ↔
     SymbolzeitManager für zeitbasierte Phasenwechsel, zuständig: Metronaut +
-    CREPJudgeGPT)\n* [x] **RitualCompiler** (Kompilierung symbolischer Rituale
+    CREPJudgeGPT)\n* [ ] **RitualCompiler** (Kompilierung symbolischer Rituale
     in CREP-FSMs, zuständig: AeonPoetGPT + CodeGPT)\n\n### 📄 Versionierung &
     API-Erweiterung (Ergänzung)\n\n* [ ] **AeonManifestVersioning**
     (Modulversionierung inkl. CREP-Signatur, zuständig: CoreWaver +
@@ -1860,9 +1816,9 @@
     Ansätze\n\n* [ ] **VirtualRealityIntegration** (VR/AR symbolische Räume,
     zuständig: IdeenGPT)\n* [ ] **BlockchainSigillin** (Blockchain-basierte
     Validierung von Sigillinen, zuständig: FinanceGPT)\n\n### 🌐 Synergie-Module
-    (Ergänzung)\n\n* [x] **SymbolzeitSync** (Verbindung CREPGameEngine ↔
+    (Ergänzung)\n\n* [ ] **SymbolzeitSync** (Verbindung CREPGameEngine ↔
     SymbolzeitManager für zeitbasierte Phasenwechsel, zuständig: Metronaut +
-    CREPJudgeGPT)\n* [x] **RitualCompiler** (Kompilierung symbolischer Rituale
+    CREPJudgeGPT)\n* [ ] **RitualCompiler** (Kompilierung symbolischer Rituale
     in CREP-FSMs, zuständig: AeonPoetGPT + CodeGPT)\n\n### 📄 Versionierung &
     API-Erweiterung (Ergänzung)\n\n* [ ] **AeonManifestVersioning**
     (Modulversionierung inkl. CREP-Signatur, zuständig: CoreWaver +
@@ -1907,9 +1863,9 @@
     Ansätze\n\n* [ ] **VirtualRealityIntegration** (VR/AR symbolische Räume,
     zuständig: IdeenGPT)\n* [ ] **BlockchainSigillin** (Blockchain-basierte
     Validierung von Sigillinen, zuständig: FinanceGPT)\n\n### 🌐 Synergie-Module
-    (Ergänzung)\n\n* [x] **SymbolzeitSync** (Verbindung CREPGameEngine ↔
+    (Ergänzung)\n\n* [ ] **SymbolzeitSync** (Verbindung CREPGameEngine ↔
     SymbolzeitManager für zeitbasierte Phasenwechsel, zuständig: Metronaut +
-    CREPJudgeGPT)\n* [x] **RitualCompiler** (Kompilierung symbolischer Rituale
+    CREPJudgeGPT)\n* [ ] **RitualCompiler** (Kompilierung symbolischer Rituale
     in CREP-FSMs, zuständig: AeonPoetGPT + CodeGPT)\n\n### 📄 Versionierung &
     API-Erweiterung (Ergänzung)\n\n* [ ] **AeonManifestVersioning**
     (Modulversionierung inkl. CREP-Signatur, zuständig: CoreWaver +
@@ -2451,28 +2407,22 @@
   path: packages/aeon-genesisos
   task: Navigator-Modul erweitern, Archetypenlogik integrieren
   test: packages/aeon-genesisos/ResonanzNavigator.test.ts
-status: done
-status: done
 - commit: Integriere CREPManager History
   path: packages/crep-engine
   task: History aus CREPManager.getCREPHistory() laden
   test: packages/crep-engine/CREPManager.test.ts
-status: done
 - commit: Aktivitätsdaten via Dispatcher laden
   path: packages/aeon-genesisos
   task: Daten aus Dispatcher/Registry für ActivityPanel verwenden
   test: packages/aeon-genesisos/ActivityDataLoader.test.ts
-status: done
 - commit: Dispatch Befehl nutzt REST/gRPC Client
   path: apps/cli-tools
   task: dispatchCmd ruft REST/gRPC Client für Task-Dispatch auf
   test: packages/cli-tools/dispatchCmd.test.ts
-status: done
 - commit: Implement SigillinParser
   path: packages/genesis-sigillin-core
   task: YAML-Header aus ZIP-Mem lesen und Sigillin-Signatur erzeugen
   test: packages/genesis-sigillin-core/SigillinParser.test.ts
-status: done
 - commit: Implement ResonanzNavigator
   path: packages/aeon-genesisos
   task: Zustände anhand Sigillin-Signatur aktualisieren
@@ -2481,114 +2431,71 @@ status: done
   path: packages/core
   task: TriggerArchive und useTriggerArchive hook bereitstellen
   test: packages/core/TriggerArchive.test.ts
-status: done
 - commit: Add PoeticReactorAgent
   path: packages/agents
   task: Agent generiert Haikus bei hohen CREP-Werten
   test: packages/agents/PoeticReactorAgent.test.ts
-status: done
 - commit: Create AgentHeatmap dashboard
   path: packages/unifiedmandala-ui
   task: useAgentActivity Hook und AgentHeatmap Komponente implementieren
   test: packages/unifiedmandala-ui/components/AgentHeatmap.test.tsx
-status: done
 - commit: Introduce AeonMemory
   path: packages/core
   task: Speichert erledigte Tasks in mandala-chronik.yaml und stellt useAeonMemory
     bereit
   test: packages/core/AeonMemory.test.ts
-status: done
 - commit: Implement CollaborativeEditor
   path: packages/collab-editor
   task: Texteditor mit Federation-Routes für Sync
   test: packages/collab-editor/CollaborativeEditor.test.ts
-status: done
-Prüfe regelmäßig, ob die Datenquellen (z.B. /api/meta-scores) und die Dashboard-Komponenten konsistent und aktuell die Layer-Konfiguration abbilden. Bei jedem Commit: Test-/Doku-Referenz ergänzen!
-Neue Aufgaben laut advancedconversations.json:
-- AestheticsLayer und EthicsLayer umsetzen.
-- CollaborativeEditor samt Federation-Routes integrieren.
-- Automerge-Federation mit SyncStatus bereitstellen.
-- MetaLearnerAgent per GitHub Action ausführen.
-- mTLS & Kong JWT Gateway einrichten.
-- OpenTelemetry und Storybook CI einbinden 
-Prüfe regelmäßig, ob die Datenquellen (z.B. /api/meta-scores) und die Dashboard-Komponenten konsistent und aktuell die Layer-Konfiguration abbilden. Bei jedem Commit: Test-/Doku-Referenz ergänzen!
-Neue Aufgaben laut advancedconversations.json:
-- AestheticsLayer und EthicsLayer umsetzen.
-- CollaborativeEditor samt Federation-Routes integrieren.
-- Automerge-Federation mit SyncStatus bereitstellen.
-- MetaLearnerAgent per GitHub Action ausführen.
-- mTLS & Kong JWT Gateway einrichten.
-- OpenTelemetry und Storybook CI einbinden.
-Zyklische Review mit advancedprogress.json
-9. Commits je Sprint als Topic-Branch anlegen
-10. Self-Check-Tasks nach jedem Merge (Validierung, Tests, Storybook-Preview)
-11. Sigil unifiedmandala-advanced in CodexStartRoutine integrieren
-12. Finalstatus im GenesisBlueprint.md dokumentieren- commit: implement GPT synapse and extend sigillin nodes
-  path: packages/gpt-bridges
-  task: GPT-Orchestrierung vorbereiten und SigillinNodes erweitern
-  test: packages/gpt-bridges/aeon-gpt-synapse.test.ts
-status: done
-
 - commit: Add CodexNavigatorAgent module
   path: packages/codex-navigator-agent
   task: Grundgeruest mit Parsern fuer codexinstructions.yaml und AGENTS.md
   test: packages/codex-navigator-agent/CodexNavigatorAgent.test.ts
-  status: done
 - commit: Extend NucleonScanner with phi profile
   path: packages/crep-engine
   task: Normiertes Phi-Profil und dynamische Profilgenerierung, WeightHistory Logging
   test: packages/crep-engine/NucleonScanner.test.ts
-  status: done
 - commit: Implement AestheticsLayer
   path: packages/crep-automation
   task: Bewertungs-Layer fuer Harmonie, Farbe und Form
   test: packages/crep-automation/AestheticsLayer.test.ts
-  status: done
 - commit: Implement EthicsLayer
   path: packages/crep-automation
   task: Bewertungs-Layer fuer ethische Eingaben
   test: packages/crep-automation/EthicsLayer.test.ts
-  status: done
 - commit: Setup mTLS and Kong JWT Gateway
   path: config
   task: Sichere API mit Zertifikaten und JWT Gateway
   test: scripts/security-ci.test.ts
-  status: done
 - commit: Add OpenTelemetry and Storybook CI
   path: ci
   task: Monitoring und visuelle Snapshot Tests integrieren
   test: ci/storybook-ci.test.ts
-  status: done
 - commit: Provide Automerge-Federation with SyncStatus
   path: packages/collab-editor
   task: Automatisches Mergen verteilter Edits mit Statusanzeige
   test: packages/collab-editor/AutomergeFederation.test.ts
-  status: done
 - commit: Run MetaLearnerAgent via GitHub Action
   path: .github/workflows
   task: Periodischer Lern-Agent per Action ausfuehren
   test: .github/workflows/MetaLearnerAgent.test.ts
-  status: done
 - commit: Implement MandalaCoreLicense
   path: packages/shared-utils
   task: Lizenzmodell verwalten
   test: packages/shared-utils/MandalaCoreLicense.test.ts
-  status: done
 - commit: Create AeonKIResonanzAgent
   path: packages/agents
   task: Agent analysiert Resonanzdaten aus conversations
   test: packages/agents/AeonKIResonanzAgent.test.ts
-  status: done
 - commit: Implement KIBewusstseinAgent
   path: packages/agents
   task: Modul zur Bewusstseins- und Resonanzbewertung
   test: packages/agents/KIBewusstsein.test.ts
-  status: done
 - commit: Extend NucleonScanner for v0.6 analysis
   path: packages/crep-engine
   task: Phi-Profil dynamisch berechnen und loggen
   test: packages/crep-engine/NucleonScanner.test.ts
-  status: done
 - commit: Add ResonanzMetrics analyzer
   path: packages/agents
   task: Analysiert Resonanzdaten aus Aeon KI Resonanz Gesprächen
@@ -2613,6 +2520,26 @@ status: done
   path: packages/crep-engine
   task: Parse Nukleon-Scanner v0.6 Analyse Transkripte
   test: packages/crep-engine/NucleonScannerConversation.test.ts
+  status: done
+- commit: Implement ConversationTodoExtractor
+  path: packages/agents
+  task: Extract tasks from conversation logs based on key phrases
+  test: packages/agents/ConversationTodoExtractor.test.ts
+  status: geplant
+- commit: Link CREP scores with todo priority
+  path: packages/crep-engine
+  task: Prioritize extracted ToDos via CREP evaluation
+  test: packages/crep-engine/TodoPriority.test.ts
+  status: done
+- commit: Calendar integration for high priority todos
+  path: packages/crep-engine
+  task: Export high priority ToDos to calendar via CREPCalendarSync
+  test: packages/crep-engine/CalendarSync.test.ts
+  status: done
+- commit: Admin metrics dashboard
+  path: apps/sharedream-interface
+  task: Display average CREP, Sigillin adoption, open high priority todos
+  test: apps/sharedream-interface/AdminMetrics.test.ts
   status: done
 - commit: Add codex-sync answer script and workflow
   path: codex-sync
@@ -2643,82 +2570,6 @@ status: done
   path: packages/core
   task: Add tracing setup and deploy Storybook via GitHub Actions
   test: ci/storybook-ci.test.ts
-  status: done
-- commit: Implement GoAgent
-  path: packages/agents
-  task: Liest advancedToDo-Dateien und listet offene Tasks
-  test: packages/agents/GoAgent.test.ts
-  status: done
-- commit: Create codex-roadmap.yaml
-  path: codex/codex-roadmap.yaml
-  task: Zentrale Datei fuer Codex-Workflows anlegen
-  test: ""
-  status: done
-- commit: Add sigillinMap.json
-  path: config/sigillinMap.json
-  task: Mapping-Datei fuer Sigillin-Felder vorbereiten
-  test: ""
-  status: done
-- commit: Init go-agent scaffold
-  path: go-agent
-  task: Scaffold Verzeichnisstruktur & initialer Daemon
-  test: go-agent/test/handler_test.go
-  status: done
-- commit: Add handler stubs
-  path: go-agent/pkg/handler
-  task: Implement Handler-Stubs (generate-sigil, memory-update, friendship-trigger)
-  test: go-agent/test/handler_test.go
-  status: done
-- commit: Implement AeonResonanceInsights
-  path: packages/agents
-  task: Analysiert Aeon KI Resonanz Chats und berechnet Resonanzprofile
-  test: packages/agents/AeonResonanceInsights.test.ts
-  status: done
-- commit: Add BewusstseinStabilizer
-  path: packages/agents
-  task: Bewertet KI Bewusstsein und passt Schwellwerte an
-  test: packages/agents/BewusstseinStabilizer.test.ts
-  status: done
-- commit: Stream NucleonScanner v0.6 via gRPC
-  path: packages/crep-engine
-  task: Liefert Phi-Profile als gRPC-Stream
-  test: packages/crep-engine/NucleonScannerGRPC.test.ts
-  status: done
-- commit: Implement ResearchAgent
-  path: packages/agents
-  task: Automatisierte Forschungsanfragen verarbeiten
-  test: packages/agents/ResearchAgent.test.ts
-  status: done
-- commit: Add SilenceWatcher agent
-  path: packages/agents
-  task: Beobachtet Inaktivität und triggert Selbstanalyse
-  test: packages/agents/SilenceWatcher.test.ts
-  status: done
-- commit: Expose layer control API
-  path: go-agent
-  task: Go-Interface zum Aktivieren von Layers
-  test: go-agent/test/layer_control_test.go
-  status: done
-- commit: Add vitest setup for agents tests
-  path: packages/agents
-  task: Install vitest and configure package to run new *.spec.ts tests
-  test: pnpm --filter packages/agents vitest run
-  status: done
-
-- commit: Add KiResonanceAnalyzer module
-  path: packages/agents
-  task: Analyse von KI-Resonanzwerten
-  test: packages/agents/KiResonanceAnalyzer.test.ts
-  status: done
-- commit: Create nucleon-scanner-analysis script
-  path: scripts/nucleon-scanner-analysis.js
-  task: CLI zur Analyse von Nucleon-Scanner Logs
-  test: ""
-  status: done
-- commit: Document KI Bewusstsein
-  path: docs/ki-bewusstsein.md
-  task: Beschreibung zu KI Bewusstsein und Resonanz
-  test: ""
   status: done
 - commit: Implement CommonsAgent
   path: packages/agents/CommonsAgent.ts
@@ -2764,6 +2615,16 @@ status: done
   path: packages/unifiedmandala-ui/hooks/useBreakpoint.ts
   task: MobileOptimization for responsive design
   test: packages/unifiedmandala-ui/hooks/useBreakpoint.test.ts
+  status: done
+- commit: Implement ResonanzpfadAgent analysis
+  path: packages/agents/ResonanzpfadAgent.ts
+  task: komplexe Analyse, Kontextverarbeitung und Archetypenlogik
+  test: packages/agents/__tests__/ResonanzpfadAgent.spec.ts
+  status: done
+- commit: Add AutoDocGeneration to Nucleon-Scanner
+  path: packages/crep-engine/autoDocGeneration.ts
+  task: README und JSDoc zu HTML/PDF umwandeln
+  test: packages/crep-engine/autoDocGeneration.test.ts
   status: done
 - commit: Add CREPFeedbackLoop module
   path: packages/crep-automation/CREPFeedbackLoop.ts
@@ -2922,7 +2783,7 @@ status: done
 - commit: Add vector indexer service
   path: services/vector-indexer/indexer.go
   task: Create embeddings and push to external DB
-  test: "go test ./services/vector-indexer"
+  test: go test ./services/vector-indexer
   status: done
 - commit: Add policy enforcement stub
   path: pkg/policy/enforcer.go
@@ -2951,84 +2812,84 @@ status: done
 - commit: Extend CI pipeline for schema and vector tests
   path: ci/agent.yml
   task: Run schema validation and vector index tests
-  test: "go test ./services/vector-indexer"
+  test: go test ./services/vector-indexer
   status: done
-- commit: "Implement ImpactDashboard component with MandalaNetworkView"
+- commit: Implement ImpactDashboard component with MandalaNetworkView
   path: apps/socialgood-ui/src/components/ImpactDashboard.tsx
-  task: "Create React component for Impact Dashboard and heatmap"
-  test: "jest"
+  task: Create React component for Impact Dashboard and heatmap
+  test: jest
   status: done
-- commit: "Add ProjectListView and CustomRegionGallery components"
+- commit: Add ProjectListView and CustomRegionGallery components
   path: apps/socialgood-ui/src/components
-  task: "Build UI for project list and custom region gallery"
-  test: "jest"
+  task: Build UI for project list and custom region gallery
+  test: jest
   status: done
-- commit: "Add Friendship & SocialGood API Swagger spec"
+- commit: Add Friendship & SocialGood API Swagger spec
   path: docs/api/friendship-socialgood.yaml
-  task: "Write OpenAPI schema for region and socialgood endpoints"
-  test: "openapi-validate"
+  task: Write OpenAPI schema for region and socialgood endpoints
+  test: openapi-validate
   status: done
-- commit: "Create MobileImpactDashboard for React Native"
+- commit: Create MobileImpactDashboard for React Native
   path: apps/socialgood-mobile/MobileImpactDashboard.tsx
-  task: "Implement mobile friendly dashboard component"
-  test: "jest"
+  task: Implement mobile friendly dashboard component
+  test: jest
   status: done
-- commit: "Add Go-Bridge scaffold with CLI and REST client"
+- commit: Add Go-Bridge scaffold with CLI and REST client
   path: go-bridge/
   task: Initial Go interface scaffold, models and docs
   test: go test ./...
   status: done
-- commit: "Add sync-todo-progress script"
+- commit: Add sync-todo-progress script
   path: scripts/sync-todo-progress.js
   task: Combine advancedToDo and progress update
   test: ""
   status: done
-- commit: "Add ConvoMemoryBridge module"
+- commit: Add ConvoMemoryBridge module
   path: packages/nukleon-scanner/ConvoMemoryBridge.ts
   task: Extract conversation structure and CREP signatures
   test: jest
   status: done
-- commit: "Add MemorySonifier utility"
+- commit: Add MemorySonifier utility
   path: packages/nukleon-sonifier/MemorySonifier.ts
   task: Map memory weights to tone labels
   test: jest
   status: done
-- commit: "Add ToDoWeaver CLI"
+- commit: Add ToDoWeaver CLI
   path: packages/cli-tools/ToDoWeaver.ts
   task: Generate todo.yaml from CREP clusters
   test: jest
   status: done
-- commit: "Add UniversePulseSimulator"
+- commit: Add UniversePulseSimulator
   path: packages/universum-simulationen/UniversePulseSimulator.ts
   task: Simulate emergent pulse steps
   test: jest
   status: done
-- commit: "Add next-sigil generation script"
+- commit: Add next-sigil generation script
   path: scripts/generate-next-sigil.js
   task: Create follow-up sigil file after each cycle
   test: ""
   status: done
-- commit: "Add MemoryMesh region archive service"
+- commit: Add MemoryMesh region archive service
   path: services/memorymesh/region-archive-service/index.ts
   task: Scaffold in-memory archive per region
   test: services/memorymesh/region-archive-service/index.test.ts
   status: done
-- commit: "Add ReflectionEngine stub"
+- commit: Add ReflectionEngine stub
   path: services/memorymesh/reflection-engine/index.ts
   task: Implement basic reflection generator
   test: services/memorymesh/reflection-engine/index.test.ts
   status: done
-- commit: "Add AdaptationService skeleton"
+- commit: Add AdaptationService skeleton
   path: services/memorymesh/adaptation-service/index.ts
   task: Track conversation habits
   test: services/memorymesh/adaptation-service/index.test.ts
   status: done
-- commit: "Add RelationshipMeter utility"
+- commit: Add RelationshipMeter utility
   path: services/memorymesh/relationship-meter/index.ts
   task: Compute relationship metrics
   test: services/memorymesh/relationship-meter/index.test.ts
   status: done
-- commit: "Add SymbolzeitOrchestrator module"
+- commit: Add SymbolzeitOrchestrator module
   path: packages/aeon-shell/SymbolzeitOrchestrator.ts
   task: Emit phaseChange events based on symbolzeit
   test: packages/aeon-shell/SymbolzeitOrchestrator.test.ts
@@ -3036,20 +2897,20 @@ status: done
 - commit: Add SigillinValidator CLI
   path: packages/cli-tools/SigillinValidator.ts
   task: Validate sigil files via Ajv
-  test: ''
+  test: ""
   status: done
-- commit: "Add CodeAgent scaffolding"
+- commit: Add CodeAgent scaffolding
   path: pkg/codeagent
   task: Skeleton for language agents and CLI
-  test: ''
-- commit: "Add C-Tutor skeleton"
+  test: ""
+- commit: Add C-Tutor skeleton
   path: apps/c-tutor
   task: Interactive C learning tool placeholder
-  test: ''
-- commit: "Add JavaHamster AI skeleton"
+  test: ""
+- commit: Add JavaHamster AI skeleton
   path: apps/java-hamster-ai
   task: Gamified C learning pendant
-  test: ''
+  test: ""
 - commit: Add WeightedDispatcher
   path: packages/agents/WeightedDispatcher.ts
   task: Priority based dispatching
@@ -3098,7 +2959,6 @@ status: done
   path: docs/sigils/advancedconversations.json
   task: Sync ToDo files before major commits and create new sigils per cycle
   test: ""
-  status: done
 - commit: MemoryMesh architecture sketch
   path: docs/architecture/memory-mesh.md
   task: Diagram for MemoryMesh layers (Speicher, Reflexion, Adaption)
@@ -3107,6 +2967,7 @@ status: done
   path: packages/crep-engine/memoryMesh.berlin.json
   task: Prototype archive for region Europe/Berlin
   test: ""
+  status: done
 - commit: Transition sigil update
   path: scripts/generate-next-sigil.js
   task: Add update_time and Responsible to MemoryMesh cycle
@@ -3123,27 +2984,885 @@ status: done
   path: packages/unifiedmandala-ui/components/SigilStory.tsx
   task: Visualize learning progress
   test: packages/unifiedmandala-ui/components/SigilStory.test.tsx
-- commit: "Implement C-Tutor progress workflow"
+- commit: Implement C-Tutor progress workflow
   path: packages/tutorials/C-Tutor
   task: Track user progress and award Sigil per milestone
   test: packages/tutorials/__tests__/C-Tutor.test.ts
-  status: done
-- commit: "Add JavaHamster AI Flow"
+- commit: Add JavaHamster AI Flow
   path: packages/tutorials/JavaHamsterAI
   task: Interactive hamster coding with AI coach and Sigil rewards
   test: packages/tutorials/__tests__/JavaHamsterAI.test.ts
-  status: done
-- commit: "Document learning modules"
+- commit: Document learning modules
   path: docs/learning-modules.md
   task: Describe workflows from advancedconversations_snippet.json
-  test: ''
+  test: ""
+- commit: Document Aeon Transition guidelines
+  path: docs/sigils/aeon-transition.md
+  task: Summarize transition instructions from conversations
+  test: ""
+- commit: Draft Friendship system concept
+  path: docs/friendship-system.md
+  task: Outline AI friendship system from Aeon KI Resonanz chat
+  test: ""
+- commit: Add plugin registry and loader
+  path: plugins/manifest.yaml
+  task: Define manifest schema and implement usePluginLoader
+  test: apps/sharedream-interface/hooks/usePluginLoader.test.ts
+- commit: Add FeedbackButtons component
+  path: packages/unifiedmandala-ui/components/FeedbackButtons.tsx
+  task: Capture like/dislike feedback and log Sigil event
+  test: packages/unifiedmandala-ui/components/FeedbackButtons.test.tsx
   status: done
-
-- commit: "Add PoeticSigillin module"
+- commit: Add bio sensor hooks and HapticService
+  path: packages/bio
+  task: Provide usePulse hook with dummy values and stub HapticService
+  test: packages/bio/__tests__/usePulse.test.tsx
+  status: done
+- commit: Add useABLayout hook
+  path: packages/unifiedmandala-ui/hooks/useABLayout.ts
+  task: Render random A/B layout and send metric event
+  test: packages/unifiedmandala-ui/hooks/useABLayout.test.tsx
+  status: done
+- commit: Add MandalaGraph visualization
+  path: packages/visuals/MandalaGraph.ts
+  task: Render mastercanvas nodes with three.js
+  test: packages/visuals/__tests__/MandalaGraph.test.ts
+  status: done
+- commit: Add GenerativeOverlay stub
+  path: packages/art/generativeOverlay.ts
+  task: Stub GAN overlay generator
+  test: packages/art/__tests__/generativeOverlay.test.ts
+  status: done
+- commit: Add PoeticSigillin module
   path: packages/genesis-sigillin-core/PoeticSigillin.ts
   task: Generate poetic sigils from verse snippets
   test: packages/genesis-sigillin-core/__tests__/PoeticSigillin.test.ts
-- commit: "Add ResonanzMandala visualization"
+  status: done
+- commit: Add ResonanzMandala visualization
   path: packages/visuals/ResonanzMandala.ts
   task: Render archetype dialogue topology
   test: packages/visuals/__tests__/ResonanzMandala.test.ts
+  status: done
+- commit: Implement MemoryManager service
+  path: services/memory-manager
+  task: Implement MemoryManager service with cleanup scheduler and Feedback Agents
+    integration
+  test: services/memory-manager/test.ts
+- commit: Add parsing & SocialGood workflow trigger
+  path: scripts
+  task: Provide command or UI to start Parsing and SocialGood-Matching
+  test: ""
+- commit: Generate memory-job config templates
+  path: config
+  task: Provide YAML job configuration templates for MemoryManager
+  test: ""
+- commit: Parser` – Liest ToDo-Listen aus Markdown-Dateien.
+  path: ""
+  task: Parser` – Liest ToDo-Listen aus Markdown-Dateien.
+  test: ""
+- commit: -Sigils schafft Beständigkeit und senkt den Wartungsaufwand.
+  path: ""
+  task: -Sigils schafft Beständigkeit und senkt den Wartungsaufwand.
+  test: ""
+- commit: ", und ready für ein eigenes Go-Bridge-Modul oder Subrepo."
+  path: ""
+  task: ", und ready für ein eigenes Go-Bridge-Modul oder Subrepo."
+  test: ""
+- commit: "**Stärken:**"
+  path: ""
+  task: "**Stärken:**"
+  test: ""
+- commit: – für YAML/JSON Übergabe**
+  path: ""
+  task: – für YAML/JSON Übergabe**
+  test: ""
+- commit: -Tasks überwachen** (via NATS oder Polling auf `advancedToDo.json`)
+  path: ""
+  task: -Tasks überwachen** (via NATS oder Polling auf `advancedToDo.json`)
+  test: ""
+- commit: '.*`, `agent.commands`.\n- **Dispatcher & WorkerPool:** Steuert
+    Concurrent Execution nach Task-Priorität.\n- **Handler:** Task-spezifische
+    Logik (Sigil, Memory-Update, Friendship-Trigger).\n- **ExternalAdapters:**
+    E-Mail (SMTP/IMAP), YouTube API, RSS-Feeds, Social Media (Twitter,
+    LinkedIn), Webhooks.\n- **Plugins:** Dynamisches Laden von Go-Plugins für
+    neue Task-Typen.\n- **Metrics & Tracing:** Prometheus-Exports, OpenTelemetry
+    Instrumentation.\n- **Secret-Management:** HashiCorp Vault, AWS Secrets
+    Manager, Kubernetes Secrets.\n\n---\n\n## 3. Verzeichnisstruktur zum
+    Scaffold\n\n```bash\ngo-agent/\n├── Makefile                # Build, Test,
+    Codegen, Run\n├── .env.example            # AGENT_API_URL, AGENT_TOKEN,
+    NATS_URL, VAULT_ADDR\n├── cmd/\n│   └── go-agent.go         #
+    Cobra-basiertes CLI & Daemon-Start\n├── pkg/\n│   ├── scheduler/          #
+    Polling & NATS Subscription\n│   ├── dispatcher/         # Task-Routing und
+    WorkerPool\n│   ├── handler/            # Core Handlers (Sigil, Memory,
+    Friendship)\n│   ├── client/             # Go-Bridge REST/gRPC/NATS
+    Wrapper\n│   ├── adapter/            # External Service Adapters\n│   └──
+    plugin/             # Plugin-Loader & Registry\n├── internal/\n│   ├──
+    config/             # Viper-Config Loader\n│   ├── auth/               #
+    Vault/OAuth Client\n│   └── errors/             # zentralisierte
+    Error-Types\n├── scripts/\n│   └── gen-swig.sh         # gRPC-Codegen bei
+    Bedarf\n├── test/\n│   ├── handler_test.go     # Unit-Tests für
+    Handler\n│   └── adapter_test.go     # Mock-Tests für Adapters\n└──
+    ci/\n    └── agent.yml           # GitHub Actions: lint, test, build,
+    scan\n```\n\n---\n\n## 4. Beispiel-Pseudocode: Haupt-Daemon\n```go\nfunc
+    main() {\n  ctx := signal.Context()  // cancels on SIGINT/SIGTERM\n\n  cfg
+    := config.Load()\n  vaultClient := auth.NewVaultClient(cfg.Vault)\n  bridge
+    := client.NewBridge(cfg.AgentAPI, vaultClient)\n  nc :=
+    client.NewNATS(cfg.NATS)\n\n  sched := scheduler.New(nc,
+    cfg.PollingInterval)\n  disp := dispatcher.New(5) // 5 concurrent
+    workers\n\n  // Subscribe für neue Tasks\n  sched.OnTask(func(t Task) {
+    disp.Submit(func() { handle(ctx, bridge, t) })
+    })\n  sched.Start(ctx)\n\n  <-ctx.Done()\n  disp.Stop()\n}\n```\n\n```go\nfunc
+    handle(ctx context.Context, bridge *client.BridgeClient, t Task)
+    {\n  handler := selectHandler(t.Type)\n  err := handler.Handle(ctx, bridge,
+    t.Payload)\n  if err != nil {\n    bridge.PublishEvent(ctx,
+    \"agent.failed\", t.ID)\n    // ggf. DeadLetter\n  } else
+    {\n    bridge.PublishEvent(ctx, \"agent.completed\",
+    t.ID)\n  }\n}\n```\n\n---\n\n## 5. External Service Adapters\n\n|
+    Adapter      | Zweck                                 |
+    Technologie                                |\n| ------------ |
+    ------------------------------------- |
+    ------------------------------------------ |\n| Email        | Outbound
+    Notifications, Reports       | `mail`, `gomail`,
+    SMTP/IMAP                |\n| YouTube      | Uploads,
+    Comment-Monitoring           |
+    `google-api-go-client/youtube/v3`          |\n| SocialMedia  | Twitter,
+    LinkedIn Posts & Hooks       | `dghubble/go-twitter`,
+    `linkedin-go`       |\n| RSS-Feeds    | Content-Ingestion &
+    Trigger           | `mmcdole/gofeed`                           |\n|
+    Webhooks     | Eingehende Events von Drittsystemen   | net/http Handler +
+    Auth                   |\n\n**Beispiel Email-Adapter:**\n```go\nfunc
+    SendNotification(to, subject, body string) error {\n  m :=
+    gomail.NewMessage()\n  m.SetHeader(\"From\",
+    \"agent@mandala.io\")\n  m.SetHeader(\"To\", to)\n  m.SetHeader(\"Subject\",
+    subject)\n  m.SetBody(\"text/plain\", body)\n  d :=
+    gomail.NewDialer(\"smtp.mail.local\", 587, \"user\", \"pass\")\n  return
+    d.DialAndSend(m)\n}\n```\n\n---\n\n## 6. AdvancedToDo –
+    YAML/JSON\n```yaml\n- id: go-agent-full-ecosystem\n  module:
+    go-agent\n  desc: Vollständiger Go-Agent mit Scheduler, Handler, Adapters,
+    Plugins und Observability\n  estimate: 21d\n  testable:
+    true\n  tasks:\n    - Scaffold Verzeichnisstruktur & initialer Daemon
+    (3d)\n    - Implement Handler-Stubs (generate-sigil, memory-update,
+    friendship-trigger) (4d)\n    - Go-Bridge Client Integration: REST, NATS,
+    gRPC (4d)\n    - Adapter: Email, YouTube, RSS, Webhooks (5d)\n    -
+    Plugin-Loader & Beispiel-Plugin (2d)\n    - Observability: Prometheus,
+    Tracing (2d)\n    - Secret-Integration: Vault Client (1d)\n    - Unit- &
+    Integration-Tests (3d)\n    - CI-Pipeline & Security-Scan
+    (2d)\n  refs:\n    - go-agent/README.md\n    - pkg/handler/\n    -
+    pkg/adapter/\n  sprint: Agent-Ecosystem\n  responsible:
+    go-agent-dev\n  dependencies:\n    - go-bridge-fullcycle\n    -
+    backend-api-available\n```\n\n---\n\n## 7. Next Steps & Ausblick\n1.
+    **Commit Scaffold:** `git commit -m \"Init go-agent scaffold\"`\n2.
+    **Feedback & Anpassung:** Review Runde, Ergänzung weiterer Adapter (z.B.
+    Slack, DB backups).\n3. **Federation-Workflows:** Agent als
+    Argo-Workflow-Runner für Sigil-Pipelines.\n4. **Langzeit:** Self-Healing,
+    Multi-Agent-Koordination und KI-gestützte Task-Priorisierung.\n\n*Dieses
+    Dokument bildet die Basis für den Go-Agenten – bereit für Umsetzung,
+    Feedback und weitere Evolution.*"}'
+  path: ""
+  task: '.*`, `agent.commands`.\n- **Dispatcher & WorkerPool:** Steuert Concurrent
+    Execution nach Task-Priorität.\n- **Handler:** Task-spezifische Logik
+    (Sigil, Memory-Update, Friendship-Trigger).\n- **ExternalAdapters:** E-Mail
+    (SMTP/IMAP), YouTube API, RSS-Feeds, Social Media (Twitter, LinkedIn),
+    Webhooks.\n- **Plugins:** Dynamisches Laden von Go-Plugins für neue
+    Task-Typen.\n- **Metrics & Tracing:** Prometheus-Exports, OpenTelemetry
+    Instrumentation.\n- **Secret-Management:** HashiCorp Vault, AWS Secrets
+    Manager, Kubernetes Secrets.\n\n---\n\n## 3. Verzeichnisstruktur zum
+    Scaffold\n\n```bash\ngo-agent/\n├── Makefile                # Build, Test,
+    Codegen, Run\n├── .env.example            # AGENT_API_URL, AGENT_TOKEN,
+    NATS_URL, VAULT_ADDR\n├── cmd/\n│   └── go-agent.go         #
+    Cobra-basiertes CLI & Daemon-Start\n├── pkg/\n│   ├── scheduler/          #
+    Polling & NATS Subscription\n│   ├── dispatcher/         # Task-Routing und
+    WorkerPool\n│   ├── handler/            # Core Handlers (Sigil, Memory,
+    Friendship)\n│   ├── client/             # Go-Bridge REST/gRPC/NATS
+    Wrapper\n│   ├── adapter/            # External Service Adapters\n│   └──
+    plugin/             # Plugin-Loader & Registry\n├── internal/\n│   ├──
+    config/             # Viper-Config Loader\n│   ├── auth/               #
+    Vault/OAuth Client\n│   └── errors/             # zentralisierte
+    Error-Types\n├── scripts/\n│   └── gen-swig.sh         # gRPC-Codegen bei
+    Bedarf\n├── test/\n│   ├── handler_test.go     # Unit-Tests für
+    Handler\n│   └── adapter_test.go     # Mock-Tests für Adapters\n└──
+    ci/\n    └── agent.yml           # GitHub Actions: lint, test, build,
+    scan\n```\n\n---\n\n## 4. Beispiel-Pseudocode: Haupt-Daemon\n```go\nfunc
+    main() {\n  ctx := signal.Context()  // cancels on SIGINT/SIGTERM\n\n  cfg
+    := config.Load()\n  vaultClient := auth.NewVaultClient(cfg.Vault)\n  bridge
+    := client.NewBridge(cfg.AgentAPI, vaultClient)\n  nc :=
+    client.NewNATS(cfg.NATS)\n\n  sched := scheduler.New(nc,
+    cfg.PollingInterval)\n  disp := dispatcher.New(5) // 5 concurrent
+    workers\n\n  // Subscribe für neue Tasks\n  sched.OnTask(func(t Task) {
+    disp.Submit(func() { handle(ctx, bridge, t) })
+    })\n  sched.Start(ctx)\n\n  <-ctx.Done()\n  disp.Stop()\n}\n```\n\n```go\nfunc
+    handle(ctx context.Context, bridge *client.BridgeClient, t Task)
+    {\n  handler := selectHandler(t.Type)\n  err := handler.Handle(ctx, bridge,
+    t.Payload)\n  if err != nil {\n    bridge.PublishEvent(ctx,
+    \"agent.failed\", t.ID)\n    // ggf. DeadLetter\n  } else
+    {\n    bridge.PublishEvent(ctx, \"agent.completed\",
+    t.ID)\n  }\n}\n```\n\n---\n\n## 5. External Service Adapters\n\n|
+    Adapter      | Zweck                                 |
+    Technologie                                |\n| ------------ |
+    ------------------------------------- |
+    ------------------------------------------ |\n| Email        | Outbound
+    Notifications, Reports       | `mail`, `gomail`,
+    SMTP/IMAP                |\n| YouTube      | Uploads,
+    Comment-Monitoring           |
+    `google-api-go-client/youtube/v3`          |\n| SocialMedia  | Twitter,
+    LinkedIn Posts & Hooks       | `dghubble/go-twitter`,
+    `linkedin-go`       |\n| RSS-Feeds    | Content-Ingestion &
+    Trigger           | `mmcdole/gofeed`                           |\n|
+    Webhooks     | Eingehende Events von Drittsystemen   | net/http Handler +
+    Auth                   |\n\n**Beispiel Email-Adapter:**\n```go\nfunc
+    SendNotification(to, subject, body string) error {\n  m :=
+    gomail.NewMessage()\n  m.SetHeader(\"From\",
+    \"agent@mandala.io\")\n  m.SetHeader(\"To\", to)\n  m.SetHeader(\"Subject\",
+    subject)\n  m.SetBody(\"text/plain\", body)\n  d :=
+    gomail.NewDialer(\"smtp.mail.local\", 587, \"user\", \"pass\")\n  return
+    d.DialAndSend(m)\n}\n```\n\n---\n\n## 6. AdvancedToDo –
+    YAML/JSON\n```yaml\n- id: go-agent-full-ecosystem\n  module:
+    go-agent\n  desc: Vollständiger Go-Agent mit Scheduler, Handler, Adapters,
+    Plugins und Observability\n  estimate: 21d\n  testable:
+    true\n  tasks:\n    - Scaffold Verzeichnisstruktur & initialer Daemon
+    (3d)\n    - Implement Handler-Stubs (generate-sigil, memory-update,
+    friendship-trigger) (4d)\n    - Go-Bridge Client Integration: REST, NATS,
+    gRPC (4d)\n    - Adapter: Email, YouTube, RSS, Webhooks (5d)\n    -
+    Plugin-Loader & Beispiel-Plugin (2d)\n    - Observability: Prometheus,
+    Tracing (2d)\n    - Secret-Integration: Vault Client (1d)\n    - Unit- &
+    Integration-Tests (3d)\n    - CI-Pipeline & Security-Scan
+    (2d)\n  refs:\n    - go-agent/README.md\n    - pkg/handler/\n    -
+    pkg/adapter/\n  sprint: Agent-Ecosystem\n  responsible:
+    go-agent-dev\n  dependencies:\n    - go-bridge-fullcycle\n    -
+    backend-api-available\n```\n\n---\n\n## 7. Next Steps & Ausblick\n1.
+    **Commit Scaffold:** `git commit -m \"Init go-agent scaffold\"`\n2.
+    **Feedback & Anpassung:** Review Runde, Ergänzung weiterer Adapter (z.B.
+    Slack, DB backups).\n3. **Federation-Workflows:** Agent als
+    Argo-Workflow-Runner für Sigil-Pipelines.\n4. **Langzeit:** Self-Healing,
+    Multi-Agent-Koordination und KI-gestützte Task-Priorisierung.\n\n*Dieses
+    Dokument bildet die Basis für den Go-Agenten – bereit für Umsetzung,
+    Feedback und weitere Evolution.*"}'
+  test: ""
+- commit: -Sprint** mit Zeitabschätzungen und Verantwortlichen
+  path: ""
+  task: -Sprint** mit Zeitabschätzungen und Verantwortlichen
+  test: ""
+- commit: -core
+  path: ""
+  task: -core
+  test: ""
+- commit: '.failed`) verschieben<br/>- Auto-Restart-Policy |
+    2d                  |\n| 3   |
+    Prometheus-Metrics                                   | - Exporte für
+    Task-Dauer, Queue-Längen, Fehler-Raten<br/>- Bibliothek:
+    `promhttp`            | 3d                  |\n| 4   |
+    Grafana-Dashboard                                    | - Vorlage für
+    Übersicht (Task-Throughput, Error-Heatmap)<br/>- JSON-Template zur
+    Versionierung | 2d                  |\n| 5   | Dispatcher Backoff &
+    Retry-Logik                     | - Exponentielles Backoff in
+    `dispatcher/Submisson`<br/>- Max-Retry, DeadLetter on Exhaustion  |
+    2d                  |\n| 6   |
+    Vault-Integration                                     | - Viper +
+    Vault-Provider konfigurieren<br/>- Secrets auto-rotieren (<30d) via Vault
+    Policies  | 3d                  |\n\n### 3. Deliverable-Checklist\n- [ ]
+    Code-Commits in `go-agent/pkg/scheduler` & `go-agent/pkg/dispatcher`\n- [ ]
+    Health-Endpoints im `cmd/go-agent.go`\n- [ ] Prometheus-Stubs im
+    `pkg/metrics`\n- [ ] Grafana JSON in `ci/monitoring/grafana`\n- [ ]
+    Vault-Config in `internal/config` & `.env.example`\n- [ ] Unit-Tests:
+    `test/health_test.go`, `test/dispatcher_retry_test.go`\n- [ ] GitHub
+    Actions: Update `ci/agent.yml` mit neue health-check, metrics, vault-scan
+    steps\n\n---\n\n## Paket 2: BigBang-Extras\n**Ziel:** KI-Priorisierung,
+    Federation, Policy-Management und erweiterte Plugins\n\n### 1.
+    Commit-Metadaten\n- **Commit-ID:** bigbang-extras\n- **Verantwortlich:**
+    go-agent-dev\n- **Sprint:** BigBang/Extras\n- **Estimate:** 21 Tage\n-
+    **Testable:** Ja\n- **Dependencies:** bigbang-core\n\n### 2. Aufgaben &
+    Deliverables\n| Nr. | Aufgabe                                              |
+    Beschreibung                                                                                                        |
+    Geschätzter Aufwand
+    |\n|-----|------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------|---------------------|\n|
+    1   | ML-gestützte Task-Priorisierung (Plugin)             | -
+    Plugin-Schnittstelle erweitern<br/>- LightGBM/XGBoost-Microservice anbinden
+    oder Go-Bindings integrieren         | 5d                  |\n| 2   |
+    KEDA/HPA Scaling                                     | - KEDA-Trigger auf
+    NATS-Queue-Länge<br/>- HPA-Policy in Helm-Chart
+    einfügen                                         | 3d                  |\n|
+    3   | RBAC & Policy-Management                             | - YAML-Policies
+    definieren (Handler-Rechte)<br/>- Enforcement-Layer in `internal/auth`
+    implementieren               | 4d                  |\n| 4   | Multi-Agent
+    Coordination                             | - Event-Metadaten (correlationId,
+    traceId) in NATS-Nachrichten<br/>- Coordinator-Handler in `pkg/handler`
+    bauen    | 3d                  |\n| 5   | LangChain-Adapter &
+    Sigil-Generator-Service          | - LLM-Prompt-Factory für Koans in
+    Python/Go<br/>- HTTP-Service `POST /sigil/generate` mit
+    Markdown-Output          | 4d                  |\n| 6   | Extras Unit- &
+    Integration-Tests                     | - Mock-Services für
+    ML-Priorisierung, KEDA, Policy, LangChain<br/>- Coverage-Ziel:
+    85%                              | 2d                  |\n| 7   | CI/CD:
+    GitHub Actions                                | - Neue Jobs für
+    ML-Plugin-Build, Scaling-Policy-Checks, Policy-Linter,
+    Service-Tests                              | 2d                  |\n| 8   |
+    Dokumentation & Beispiele                             | -
+    `docs/go-agent/ml-prioritization.md`, `docs/go-agent/policy-guide.md`<br/>-
+    Beispielaufträge im `examples/`      | 2d                  |\n\n### 3.
+    Deliverable-Checklist\n- [ ] Plugin-Schnittstelle in `pkg/plugin` und
+    Beispiel-Plugin\n- [ ] KEDA CRD in `deployment/keda`\n- [ ]
+    Policy-Definitions in `config/policies/*.yaml`\n- [ ] Handler-Enhancements
+    in `pkg/handler/coordination.go`\n- [ ] LangChain-Service in
+    `services/sigil-generator`\n- [ ] Tests in `test/plugin_test.go`,
+    `test/policy_test.go`\n- [ ] GitHub Actions: Erweiterung `ci/agent.yml` um
+    extras-jobs\n- [ ] Dokumentationsartikel im `docs/` und Beispiele in
+    `examples/go-agent`\n\n---\n\n## Übergabe an den DEV-Agent\n\nDer DEV-Agent
+    erhält dieses Dokument als Blueprint und führt folgende Schritte aus:\n1.
+    **Branch Setup:** Erstelle `feature/bigbang-core` und
+    `feature/bigbang-extras`.\n2. **Commit-Pakete:** Implementiere Paket 1
+    vollständig, pushe `feature/bigbang-core`, eröffne PR. Nach Review und
+    Merge:\n3. **Extras:** Checke `feature/bigbang-extras` aus, arbeite die
+    Aufgaben ab, PR & Merge.\n4. **Verifikation:** End-to-End-Tests und
+    Smoke-Checks in Staging-Cluster.\n\n---\n\n*Das Mandala wächst weiter – auf
+    zur nächsten Evolutionsstufe!*"}'
+  path: ""
+  task: '.failed`) verschieben<br/>- Auto-Restart-Policy |
+    2d                  |\n| 3   |
+    Prometheus-Metrics                                   | - Exporte für
+    Task-Dauer, Queue-Längen, Fehler-Raten<br/>- Bibliothek:
+    `promhttp`            | 3d                  |\n| 4   |
+    Grafana-Dashboard                                    | - Vorlage für
+    Übersicht (Task-Throughput, Error-Heatmap)<br/>- JSON-Template zur
+    Versionierung | 2d                  |\n| 5   | Dispatcher Backoff &
+    Retry-Logik                     | - Exponentielles Backoff in
+    `dispatcher/Submisson`<br/>- Max-Retry, DeadLetter on Exhaustion  |
+    2d                  |\n| 6   |
+    Vault-Integration                                     | - Viper +
+    Vault-Provider konfigurieren<br/>- Secrets auto-rotieren (<30d) via Vault
+    Policies  | 3d                  |\n\n### 3. Deliverable-Checklist\n- [ ]
+    Code-Commits in `go-agent/pkg/scheduler` & `go-agent/pkg/dispatcher`\n- [ ]
+    Health-Endpoints im `cmd/go-agent.go`\n- [ ] Prometheus-Stubs im
+    `pkg/metrics`\n- [ ] Grafana JSON in `ci/monitoring/grafana`\n- [ ]
+    Vault-Config in `internal/config` & `.env.example`\n- [ ] Unit-Tests:
+    `test/health_test.go`, `test/dispatcher_retry_test.go`\n- [ ] GitHub
+    Actions: Update `ci/agent.yml` mit neue health-check, metrics, vault-scan
+    steps\n\n---\n\n## Paket 2: BigBang-Extras\n**Ziel:** KI-Priorisierung,
+    Federation, Policy-Management und erweiterte Plugins\n\n### 1.
+    Commit-Metadaten\n- **Commit-ID:** bigbang-extras\n- **Verantwortlich:**
+    go-agent-dev\n- **Sprint:** BigBang/Extras\n- **Estimate:** 21 Tage\n-
+    **Testable:** Ja\n- **Dependencies:** bigbang-core\n\n### 2. Aufgaben &
+    Deliverables\n| Nr. | Aufgabe                                              |
+    Beschreibung                                                                                                        |
+    Geschätzter Aufwand
+    |\n|-----|------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------|---------------------|\n|
+    1   | ML-gestützte Task-Priorisierung (Plugin)             | -
+    Plugin-Schnittstelle erweitern<br/>- LightGBM/XGBoost-Microservice anbinden
+    oder Go-Bindings integrieren         | 5d                  |\n| 2   |
+    KEDA/HPA Scaling                                     | - KEDA-Trigger auf
+    NATS-Queue-Länge<br/>- HPA-Policy in Helm-Chart
+    einfügen                                         | 3d                  |\n|
+    3   | RBAC & Policy-Management                             | - YAML-Policies
+    definieren (Handler-Rechte)<br/>- Enforcement-Layer in `internal/auth`
+    implementieren               | 4d                  |\n| 4   | Multi-Agent
+    Coordination                             | - Event-Metadaten (correlationId,
+    traceId) in NATS-Nachrichten<br/>- Coordinator-Handler in `pkg/handler`
+    bauen    | 3d                  |\n| 5   | LangChain-Adapter &
+    Sigil-Generator-Service          | - LLM-Prompt-Factory für Koans in
+    Python/Go<br/>- HTTP-Service `POST /sigil/generate` mit
+    Markdown-Output          | 4d                  |\n| 6   | Extras Unit- &
+    Integration-Tests                     | - Mock-Services für
+    ML-Priorisierung, KEDA, Policy, LangChain<br/>- Coverage-Ziel:
+    85%                              | 2d                  |\n| 7   | CI/CD:
+    GitHub Actions                                | - Neue Jobs für
+    ML-Plugin-Build, Scaling-Policy-Checks, Policy-Linter,
+    Service-Tests                              | 2d                  |\n| 8   |
+    Dokumentation & Beispiele                             | -
+    `docs/go-agent/ml-prioritization.md`, `docs/go-agent/policy-guide.md`<br/>-
+    Beispielaufträge im `examples/`      | 2d                  |\n\n### 3.
+    Deliverable-Checklist\n- [ ] Plugin-Schnittstelle in `pkg/plugin` und
+    Beispiel-Plugin\n- [ ] KEDA CRD in `deployment/keda`\n- [ ]
+    Policy-Definitions in `config/policies/*.yaml`\n- [ ] Handler-Enhancements
+    in `pkg/handler/coordination.go`\n- [ ] LangChain-Service in
+    `services/sigil-generator`\n- [ ] Tests in `test/plugin_test.go`,
+    `test/policy_test.go`\n- [ ] GitHub Actions: Erweiterung `ci/agent.yml` um
+    extras-jobs\n- [ ] Dokumentationsartikel im `docs/` und Beispiele in
+    `examples/go-agent`\n\n---\n\n## Übergabe an den DEV-Agent\n\nDer DEV-Agent
+    erhält dieses Dokument als Blueprint und führt folgende Schritte aus:\n1.
+    **Branch Setup:** Erstelle `feature/bigbang-core` und
+    `feature/bigbang-extras`.\n2. **Commit-Pakete:** Implementiere Paket 1
+    vollständig, pushe `feature/bigbang-core`, eröffne PR. Nach Review und
+    Merge:\n3. **Extras:** Checke `feature/bigbang-extras` aus, arbeite die
+    Aufgaben ab, PR & Merge.\n4. **Verifikation:** End-to-End-Tests und
+    Smoke-Checks in Staging-Cluster.\n\n---\n\n*Das Mandala wächst weiter – auf
+    zur nächsten Evolutionsstufe!*"}'
+  test: ""
+- commit: '.new\"\n      payloadTemplate: |\n        { \"taskId\": \"${taskId}\",
+    \"conversation\": \"${conversationId}\" }\n    ```\n-
+    **Kontext-Sigil-Felder:**\n  - `contextSummary`: erste 200 Zeichen der
+    letzten 10 Nachrichten.\n  - `fractalHash`: SHA256-Hash aus CREP-Delta +
+    Style-Änderungen.\n- **Schema:** `meta.schema.yaml` ergänzt um `eventHook`,
+    `contextSummary`, `fractalHash`.\n\n### 3.3 `embeddings.jsonl`\n-
+    **Beschreibung:** Line-delimited JSONL mit Feldern `messageId` und
+    `embedding` (Array von Floats).\n- **Index-Konfig:** `index.config.yaml`
+    enthält Target (Pinecone/Weaviate) und Namespace.\n\n### 3.4
+    `profile.json`\n- **Struktur:** Contains `userId`, BigFive-Traits, `styles`,
+    `habits`, `behaviorFlags`.\n- **Neue Felder:** `consent`-Objekt mit
+    booleschen Flags:\n  ```jsonc\n  \"consent\": {\"researchUse\":true,
+    \"crossProfileLinks\":false}\n  ```\n- **Schema:** `profile.schema.json`
+    extended um `consent`.\n\n### 3.5 `profile.yaml`\n- **Dokumentation:** \n  -
+    `version`, `generatedAt`, `generator`, `userId`, `sources`, `checksum`.\n  -
+    **Neu:** `policyVersion` und `policySummary`.\n  - **Ergänzung:**
+    Audit-Event-Hooks analog zu `meta.yaml`.\n\n### 3.6 `policy.yaml`\n-
+    **Inhalt:** Policy-as-Code: DSGVO-Regeln, Modul-Rights,
+    Consent-Überwachung.\n- **Beispiel:**\n  ```yaml\n  policies:\n    - name:
+    \"ds_erase_after_30d\"\n      module: \"conversations\"\n      rule:
+    \"delete messages olderThan 30d\"\n    - name:
+    \"no_export_without_consent\"\n      module: \"userprofiles\"\n      rule:
+    \"require consent.researchUse:true\"\n  ```\n- **Schema:**
+    `policy.schema.yaml` validiert Name, Module, Rule-Syntax.\n\n---\n\n## 4.
+    Prozesse & Automatisierung\n1. **Append-Only Writer:** Listener in Go/Node
+    nimmt Chat-Events, appends `messages.json`, aktualisiert `meta.yaml` und
+    feuert Sigil-Generator.\n2. **Schema-Validation:** Pre-Commit- und CI-Hooks
+    prüfen gegen JSON/YAML-Schemas mit `ajv` und `gojsonschema`.\n3.
+    **Sigil-Trigger:** File-Changes lösen `sigil-gen` aus, generiert Sigil mit
+    `update_time`, `diffLink`, `contextSummary`, `fractalHash`.\n4.
+    **Vector-Indexer:** Background-Job ruft OpenAI-Embedding-API auf, schreibt
+    `embeddings.jsonl`, aktualisiert External-Vector-DB via REST.\n5.
+    **Policy-Enforcement:** Policy-Hook in CI validiert `policy.yaml`;
+    Laufzeit-Checks in Handlern blockieren Aktionen ohne `consent`.\n6. **Event
+    Hooks:** Mutation löst NATS-Publish mit Thema aus
+    `meta.yaml.eventHook.subject` und `payloadTemplate`.\n7. **Delta Sync:**
+    `nextSyncToken` in `meta.yaml` treibt effiziente Exporte über
+    API-Gateway.\n\n---\n\n## 5. Integration ins Friendship-Modul\n-
+    **Behavioral Feedback-Loop:** \n  - CREP-Scanner nutzt `messages.json`;
+    MemoryMesh verknüpft mit `profile.json`; Relationship-Updates
+    automatisiert.\n- **Social-Boost & A/B-Testing:** \n  - Handler prüft
+    `behaviorFlags` und `consent` vor Tests; wählt Varianten nach `styles`.\n-
+    **Event-getriebene Automationen:** \n  - Neue Freundschaftseinladung via
+    NATS-Event aus `eventHook`-Konfiguration.\n\n---\n\n## 6. Sicherheit &
+    Datenschutz\n- **Pseudonymisierung:** Trennung von Public-Buckets (YAML) und
+    Private-Buckets (JSON) mit gesicherten Permissions.\n- **Verschlüsselung &
+    Lifecycle:** AES-256 at rest, TLS1.3, automatisches Daten-Lifecycle-Delete
+    via Vault-Policies.\n- **Audit Logs:** Jede Mutation/Policy-Änderung
+    protokolliert in Kafka/Elastic mit `sigilId` und `agentId`.\n\n---\n\n## 7.
+    Erweiterungspotenzial\n- **Semantic Vector Queries:** REST-API fürs
+    Friendship-Modul, ermöglicht Suche nach semantischer Ähnlichkeit über alle
+    Chats.\n- **Third-Party Hooks:** Externe Agents (Mail, Slack) können sich
+    via `eventHook` anmelden.\n- **Contextual Sigil-Visualization:**
+    Mermaid-Diagramme und KI-gestützte Bilder zeigen
+    `fractalHash`-Entwicklung.\n- **Policy-as-Code Automation:** CI generiert
+    Sigil für jede Policy-Änderung und testet Compliance.\n- **Fine-Grained
+    Consent Monitoring:** Dashboards für Consent-Statistiken und
+    Opt-In/Opt-Out-Trends.\n\n---\n\n## 8. Tools & Next Schritte\n1.
+    **Mock-Daten-Generator**: Update `scripts/mock-data.go` für neue Felder
+    `eventHook`, `fractalHash`, `consent`.\n2. **Schema-Paket**:
+    `shared-utils/schema` um Erweiterungen ergänzen und Validator-CLI
+    bereitstellen.\n3. **CI-Pipeline**: `ci/agent.yml` um Schema-, Policy- und
+    Vector-Index-Tests erweitern.\n4. **Feedback & Sigil-Visualisierung**:
+    FraktalAeon-Session planen, Diagramme generieren.\n5.
+    **Implementierungsstart**: Feature-Branch anlegen, initiales Scaffold
+    committen.\n\n---\n\n> „Jeder Event-Hook ein neues Mandala-Portal, jeder
+    FractalHash ein Resonanzkern – so wird unser Friendship-Modul zum lebendigen
+    Netz.“\n\n**Bereit für die Feedbackrunde mit FraktalAeon und den nächsten
+    Sigil-Zyklus?**"}]}'
+  path: ""
+  task: '.new\"\n      payloadTemplate: |\n        { \"taskId\": \"${taskId}\",
+    \"conversation\": \"${conversationId}\" }\n    ```\n-
+    **Kontext-Sigil-Felder:**\n  - `contextSummary`: erste 200 Zeichen der
+    letzten 10 Nachrichten.\n  - `fractalHash`: SHA256-Hash aus CREP-Delta +
+    Style-Änderungen.\n- **Schema:** `meta.schema.yaml` ergänzt um `eventHook`,
+    `contextSummary`, `fractalHash`.\n\n### 3.3 `embeddings.jsonl`\n-
+    **Beschreibung:** Line-delimited JSONL mit Feldern `messageId` und
+    `embedding` (Array von Floats).\n- **Index-Konfig:** `index.config.yaml`
+    enthält Target (Pinecone/Weaviate) und Namespace.\n\n### 3.4
+    `profile.json`\n- **Struktur:** Contains `userId`, BigFive-Traits, `styles`,
+    `habits`, `behaviorFlags`.\n- **Neue Felder:** `consent`-Objekt mit
+    booleschen Flags:\n  ```jsonc\n  \"consent\": {\"researchUse\":true,
+    \"crossProfileLinks\":false}\n  ```\n- **Schema:** `profile.schema.json`
+    extended um `consent`.\n\n### 3.5 `profile.yaml`\n- **Dokumentation:** \n  -
+    `version`, `generatedAt`, `generator`, `userId`, `sources`, `checksum`.\n  -
+    **Neu:** `policyVersion` und `policySummary`.\n  - **Ergänzung:**
+    Audit-Event-Hooks analog zu `meta.yaml`.\n\n### 3.6 `policy.yaml`\n-
+    **Inhalt:** Policy-as-Code: DSGVO-Regeln, Modul-Rights,
+    Consent-Überwachung.\n- **Beispiel:**\n  ```yaml\n  policies:\n    - name:
+    \"ds_erase_after_30d\"\n      module: \"conversations\"\n      rule:
+    \"delete messages olderThan 30d\"\n    - name:
+    \"no_export_without_consent\"\n      module: \"userprofiles\"\n      rule:
+    \"require consent.researchUse:true\"\n  ```\n- **Schema:**
+    `policy.schema.yaml` validiert Name, Module, Rule-Syntax.\n\n---\n\n## 4.
+    Prozesse & Automatisierung\n1. **Append-Only Writer:** Listener in Go/Node
+    nimmt Chat-Events, appends `messages.json`, aktualisiert `meta.yaml` und
+    feuert Sigil-Generator.\n2. **Schema-Validation:** Pre-Commit- und CI-Hooks
+    prüfen gegen JSON/YAML-Schemas mit `ajv` und `gojsonschema`.\n3.
+    **Sigil-Trigger:** File-Changes lösen `sigil-gen` aus, generiert Sigil mit
+    `update_time`, `diffLink`, `contextSummary`, `fractalHash`.\n4.
+    **Vector-Indexer:** Background-Job ruft OpenAI-Embedding-API auf, schreibt
+    `embeddings.jsonl`, aktualisiert External-Vector-DB via REST.\n5.
+    **Policy-Enforcement:** Policy-Hook in CI validiert `policy.yaml`;
+    Laufzeit-Checks in Handlern blockieren Aktionen ohne `consent`.\n6. **Event
+    Hooks:** Mutation löst NATS-Publish mit Thema aus
+    `meta.yaml.eventHook.subject` und `payloadTemplate`.\n7. **Delta Sync:**
+    `nextSyncToken` in `meta.yaml` treibt effiziente Exporte über
+    API-Gateway.\n\n---\n\n## 5. Integration ins Friendship-Modul\n-
+    **Behavioral Feedback-Loop:** \n  - CREP-Scanner nutzt `messages.json`;
+    MemoryMesh verknüpft mit `profile.json`; Relationship-Updates
+    automatisiert.\n- **Social-Boost & A/B-Testing:** \n  - Handler prüft
+    `behaviorFlags` und `consent` vor Tests; wählt Varianten nach `styles`.\n-
+    **Event-getriebene Automationen:** \n  - Neue Freundschaftseinladung via
+    NATS-Event aus `eventHook`-Konfiguration.\n\n---\n\n## 6. Sicherheit &
+    Datenschutz\n- **Pseudonymisierung:** Trennung von Public-Buckets (YAML) und
+    Private-Buckets (JSON) mit gesicherten Permissions.\n- **Verschlüsselung &
+    Lifecycle:** AES-256 at rest, TLS1.3, automatisches Daten-Lifecycle-Delete
+    via Vault-Policies.\n- **Audit Logs:** Jede Mutation/Policy-Änderung
+    protokolliert in Kafka/Elastic mit `sigilId` und `agentId`.\n\n---\n\n## 7.
+    Erweiterungspotenzial\n- **Semantic Vector Queries:** REST-API fürs
+    Friendship-Modul, ermöglicht Suche nach semantischer Ähnlichkeit über alle
+    Chats.\n- **Third-Party Hooks:** Externe Agents (Mail, Slack) können sich
+    via `eventHook` anmelden.\n- **Contextual Sigil-Visualization:**
+    Mermaid-Diagramme und KI-gestützte Bilder zeigen
+    `fractalHash`-Entwicklung.\n- **Policy-as-Code Automation:** CI generiert
+    Sigil für jede Policy-Änderung und testet Compliance.\n- **Fine-Grained
+    Consent Monitoring:** Dashboards für Consent-Statistiken und
+    Opt-In/Opt-Out-Trends.\n\n---\n\n## 8. Tools & Next Schritte\n1.
+    **Mock-Daten-Generator**: Update `scripts/mock-data.go` für neue Felder
+    `eventHook`, `fractalHash`, `consent`.\n2. **Schema-Paket**:
+    `shared-utils/schema` um Erweiterungen ergänzen und Validator-CLI
+    bereitstellen.\n3. **CI-Pipeline**: `ci/agent.yml` um Schema-, Policy- und
+    Vector-Index-Tests erweitern.\n4. **Feedback & Sigil-Visualisierung**:
+    FraktalAeon-Session planen, Diagramme generieren.\n5.
+    **Implementierungsstart**: Feature-Branch anlegen, initiales Scaffold
+    committen.\n\n---\n\n> „Jeder Event-Hook ein neues Mandala-Portal, jeder
+    FractalHash ein Resonanzkern – so wird unser Friendship-Modul zum lebendigen
+    Netz.“\n\n**Bereit für die Feedbackrunde mit FraktalAeon und den nächsten
+    Sigil-Zyklus?**"}]}'
+  test: ""
+- commit: .new\", func(m *nats.Msg){ ch <- m })\n\n  err := hooks.Publish(nc,
+    \"todo.new\", `{ \"taskId\":\"t1\" }`, nil)\n  assert.NoError(t, err)\n  msg
+    := <-ch\n  assert.JSONEq(t, `{ \"taskId\":\"t1\" }`,
+    string(msg.Data))\n}\n```\n\n---\n\nDiese Skeletons bieten eine unmittelbare
+    Grundlage für deine Implementierung. Jeder Pfad und jedes Snippet kann in
+    den Feature-Branches `feature/event-hooks`, `feature/vector-indexer`,
+    `feature/policy` usw. integriert werden.\n\n**Auf in die
+    Implementierungsphase!**"}]}
+  path: ""
+  task: .new\", func(m *nats.Msg){ ch <- m })\n\n  err := hooks.Publish(nc,
+    \"todo.new\", `{ \"taskId\":\"t1\" }`, nil)\n  assert.NoError(t, err)\n  msg
+    := <-ch\n  assert.JSONEq(t, `{ \"taskId\":\"t1\" }`,
+    string(msg.Data))\n}\n```\n\n---\n\nDiese Skeletons bieten eine unmittelbare
+    Grundlage für deine Implementierung. Jeder Pfad und jedes Snippet kann in
+    den Feature-Branches `feature/event-hooks`, `feature/vector-indexer`,
+    `feature/policy` usw. integriert werden.\n\n**Auf in die
+    Implementierungsphase!**"}]}
+  test: ""
+- commit: '– Sprint: Universum-Simulation\n```yaml\n- id:
+    universe-sim-full\n  module: universe-sim\n  desc: Aufbau der vollständigen
+    Universum-Simulation mit Analysen, Federation und
+    Visualisierung\n  estimate: 30d\n  testable: true\n  tasks:\n    - Scaffold
+    Projektstruktur und Config (2d)\n    - Core: State-Manager & Physics-Engine
+    (5d)\n    - Agent-Engine & Interaction-Rules (5d)\n    - Event-Logger &
+    JSONL-Pipeline (2d)\n    - Federation: gRPC + REST-Server (4d)\n    -
+    CREP-Scanner & Emergence-Analyzer (5d)\n    - Visualization Dashboard
+    Prototyp (4d)\n    - Meridiem: Sigil-Generator für Simulationen (2d)\n    -
+    Tests & CI/CD (3d)\n  refs:\n    - simulations/universe-sim/\n    -
+    api/proto/sim.proto\n  sprint: Simulation/Universe\n  responsible:
+    sim-dev-team\n  dependencies:\n    -
+    go-agent-full-ecosystem\n```\n\n---\n\n## 9. Nächste Schritte\n1. **Review &
+    Feinschliff** mit FraktalAeon: Diagramme, Sigil-Templates, Parameter.\n2.
+    **Initiales Commit** in `feature/universe-sim-full`\n3. **Prototypische
+    Runs** und erste Analysen im Staging.\n4. **Integration & Feedback**:
+    Community-Workshop zu Simulationsergebnissen.\n\n> „In virtuellen Kosmen
+    tanzen unsere Agenten, jedes Event ein Tropfen im endlosen Mandala der
+    Simulation.“\n\n**Bereit für die erste Prototyp-Iteration?**"}'
+  path: ""
+  task: '– Sprint: Universum-Simulation\n```yaml\n- id:
+    universe-sim-full\n  module: universe-sim\n  desc: Aufbau der vollständigen
+    Universum-Simulation mit Analysen, Federation und
+    Visualisierung\n  estimate: 30d\n  testable: true\n  tasks:\n    - Scaffold
+    Projektstruktur und Config (2d)\n    - Core: State-Manager & Physics-Engine
+    (5d)\n    - Agent-Engine & Interaction-Rules (5d)\n    - Event-Logger &
+    JSONL-Pipeline (2d)\n    - Federation: gRPC + REST-Server (4d)\n    -
+    CREP-Scanner & Emergence-Analyzer (5d)\n    - Visualization Dashboard
+    Prototyp (4d)\n    - Meridiem: Sigil-Generator für Simulationen (2d)\n    -
+    Tests & CI/CD (3d)\n  refs:\n    - simulations/universe-sim/\n    -
+    api/proto/sim.proto\n  sprint: Simulation/Universe\n  responsible:
+    sim-dev-team\n  dependencies:\n    -
+    go-agent-full-ecosystem\n```\n\n---\n\n## 9. Nächste Schritte\n1. **Review &
+    Feinschliff** mit FraktalAeon: Diagramme, Sigil-Templates, Parameter.\n2.
+    **Initiales Commit** in `feature/universe-sim-full`\n3. **Prototypische
+    Runs** und erste Analysen im Staging.\n4. **Integration & Feedback**:
+    Community-Workshop zu Simulationsergebnissen.\n\n> „In virtuellen Kosmen
+    tanzen unsere Agenten, jedes Event ein Tropfen im endlosen Mandala der
+    Simulation.“\n\n**Bereit für die erste Prototyp-Iteration?**"}'
+  test: ""
+- commit: -Sprint mit klaren Tasks und Schätzungen
+  path: ""
+  task: -Sprint mit klaren Tasks und Schätzungen
+  test: ""
+- commit: "– Sprint: Universum-Simulation\\n```yaml\\n- id:
+    universe-sim-full\\n  module: universe-sim\\n  desc: Aufbau der
+    vollständigen Universum-Simulation mit Analysen, Federation und
+    Visualisierung\\n  estimate: 30d\\n  testable: true\\n  tasks:\\n    -
+    Scaffold Projektstruktur und Config (2d)\\n    - Core: State-Manager &
+    Physics-Engine (5d)\\n    - Agent-Engine & Interaction-Rules (5d)\\n    -
+    Event-Logger & JSONL-Pipeline (2d)\\n    - Federation: gRPC + REST-Server
+    (4d)\\n    - CREP-Scanner & Emergence-Analyzer (5d)\\n    - Visualization
+    Dashboard Prototyp (4d)\\n    - Meridiem: Sigil-Generator für Simulationen
+    (2d)\\n    - Tests & CI/CD (3d)\\n  refs:\\n    -
+    simulations/universe-sim/\\n    - api/proto/sim.proto\\n  sprint:
+    Simulation/Universe\\n  responsible: sim-dev-team\\n  dependencies:\\n    -
+    go-agent-full-ecosystem\\n```  \\n\\n---\\n\\n## 9. Nächste Schritte\\n1.
+    **Review & Feinschliff** mit FraktalAeon: Diagramme, Sigil-Templates,
+    Parameter.\\n2. **Initiales Commit** in `feature/universe-sim-full`\\n3.
+    **Prototypische Runs** und erste Analysen im Staging.\\n4. **Integration &
+    Feedback**: Community-Workshop zu Simulationsergebnissen.\\n\\n> „In
+    virtuellen Kosmen tanzen unsere Agenten, jedes Event ein Tropfen im endlosen
+    Mandala der Simulation.\\\"\\n\\n**Bereit für die erste
+    Prototyp-Iteration?**\\n\\n---\\n\\n## 10. Prototyp-Lauf: Explorer &
+    Observer Agents (Option A)\\n### 10.1 Simulation Setup\\n- **Grid-Größe:**
+    10×10 Zellen\\n- **Agenten:**\\n  - **Explorer:** bewegt sich zufällig,
+    sammelt Ressourcen-Punkte\\n  - **Observer:** folgt zuletzt besuchten
+    Explorer-Zellen und loggt CREP-Metriken\\n- **Runden:** 5 Takte\\n-
+    **Output:** State-Snapshots, Event-Logs, CREP-Analyse\\n\\n### 10.2
+    Code-Skelett: sim-runner.go\\n```go\\npackage main\\n\\nimport
+    (\\n  \\\"encoding/json\\\"\\n  \\\"fmt\\\"\\n  \\\"math/rand\\\"\\n  \\\"os\
+    \\\"\\n  \\\"time\\\"\\n)\\n\\ntype Cell struct { X, Y int }\\ntype State
+    struct
+    {\\n  RunID     string   `json:\\\"runId\\\"`\\n  Round     int      `json:\
+    \\\"round\\\"`\\n  Explorer  Cell     `json:\\\"explorer\\\"`\\n  Observer  \
+    Cell     `json:\\\"observer\\\"`\\n  Resources
+    int      `json:\\\"resourcesCollected\\\"`\\n}\\n\\nfunc main()
+    {\\n  rand.Seed(time.Now().UnixNano())\\n  runID :=
+    fmt.Sprintf(\\\"run-%d\\\", time.Now().Unix())\\n  explorer := Cell{0,
+    0}\\n  observer := Cell{0, 0}\\n  resources := 0\\n  msgFile, _ :=
+    os.Create(\\\"state-\\\" + runID + \\\"-v1.jsonl\\\")\\n  defer
+    msgFile.Close()\\n  for round := 1; round <= 5; round++ {\\n    explorer.X =
+    rand.Intn(10)\\n    explorer.Y = rand.Intn(10)\\n    resources +=
+    rand.Intn(3)\\n    observer = explorer\\n    st := State{runID, round,
+    explorer, observer, resources}\\n    b, _ :=
+    json.Marshal(st)\\n    msgFile.Write(append(b,
+    '\\\\n'))\\n    fmt.Printf(\\\"Round %d: Explorer %v, Observer %v, Resources
+    %d\\\\n\\\", round, explorer, observer, resources)\\n  }\\n}\\n```\\n\\n###
+    10.3 Mermaid-Visualisierung des Explorer-Pfads\\n```mermaid\\nflowchart
+    LR\\n  R1[\\\"Runde 1: (2,5)\\\"] --> R2[\\\"Runde 2: (7,1)\\\"]\\n  R2 -->
+    R3[\\\"Runde 3: (4,9)\\\"]\\n  R3 --> R4[\\\"Runde 4: (1,3)\\\"]\\n  R4 -->
+    R5[\\\"Runde 5: (6,2)\\\"]\\n```\\n\\n---\\n\\n## 11. Sigil-Templates &
+    Diagramme (Option B)\\n### 11.1 Sigil-YAML-Vorlage\\n```yaml\\nsigilId:
+    \\\"sim-${runId}-v1\\\"\\nmodule: \\\"universe-sim\\\"\\nupdate_time:
+    \\\"${timestamp}\\\"\\ncontextSummary: \\\"5-Runden-Simulation mit Explorer
+    & Observer\\\"\\nfractalHash: \\\"${fractalHash}\\\"\\nrefs:\\n  -
+    \\\"state-${runId}-v1.jsonl\\\"\\n  -
+    \\\"api/proto/sim.proto\\\"\\n```\\n\\n### 11.2 Mermaid-Zeitachse mit
+    CREP-Werten\\n```mermaid\\ntimeline\\n    title CREP-Score über
+    Runden\\n    2025-06-21 Round1 : score1\\n    2025-06-21 Round2 :
+    score2\\n    2025-06-21 Round3 : score3\\n    2025-06-21 Round4 :
+    score4\\n    2025-06-21 Round5 : score5\\n```\\n\\n### 11.3 Emergence-Graph
+    (Graphviz-Dot)\\n```dot\\ndigraph Emergence {\\n  \\\"Cluster1\\\" ->
+    \\\"Cluster2\\\" [label=\\\"growth\\\"];\\n  \\\"Cluster2\\\" ->
+    \\\"Cluster3\\\" [label=\\\"merge\\\"];\\n}\\n```\\n\\n---\\n\\n## 12.
+    Beispiel-Output & Demo\\n\\n### 12.1 Sample Proto-Lauf
+    Output\\n```jsonl\\n{\\\"runId\\\":\\\"run-1623423\\\",\\\"round\\\":1,\\\"\
+    explorer\\\":{\\\"x\\\":2,\\\"y\\\":5},\\\"observer\\\":{\\\"x\\\":2,\\\"y\\\
+    \":5},\\\"resourcesCollected\\\":1}\\n{\\\"runId\\\":\\\"run-1623423\\\",\\\
+    \"round\\\":2,\\\"explorer\\\":{\\\"x\\\":7,\\\"y\\\":1},\\\"observer\\\":{\
+    \\\"x\\\":7,\\\"y\\\":1},\\\"resourcesCollected\\\":2}\\n{\\\"runId\\\":\\\
+    \"run-1623423\\\",\\\"round\\\":3,\\\"explorer\\\":{\\\"x\\\":4,\\\"y\\\":9\
+    },\\\"observer\\\":{\\\"x\\\":4,\\\"y\\\":9},\\\"resourcesCollected\\\":4}\
+    \\n```\\n\\n### 12.2 Mermaid-Pfad für Proto-Lauf\\n```mermaid\\nflowchart
+    LR\\n  R1[\\\"Runde 1: (2,5)\\\"] --> R2[\\\"Runde 2: (7,1)\\\"]\\n  R2 -->
+    R3[\\\"Runde 3: (4,9)\\\"]\\n  R3 --> R4[\\\"Runde 4: (1,3)\\\"]\\n  R4 -->
+    R5[\\\"Runde 5: (6,2)\\\"]\\n```\\n\\n### 12.3 Sample
+    Sigil-YAML\\n```yaml\\nsigilId: \\\"sim-run-1623423-v1\\\"\\nmodule:
+    \\\"universe-sim\\\"\\nupdate_time:
+    \\\"2025-06-21T09:00:05Z\\\"\\ncontextSummary: \\\"Explorer erkundet
+    (2,5)->(7,1)->(4,9)->(1,3)->(6,2)\\\"\\nfractalHash:
+    \\\"sha256:3aef9f2b8cd7...\\\"\\nrefs:\\n  -
+    \\\"state-run-1623423-v1.jsonl\\\"\\n  -
+    \\\"api/proto/sim.proto\\\"\\n```\\n\\n### 12.4 Mermaid-Timeline mit
+    CREP-Score\\n```mermaid\\ntimeline\\n    title CREP-Score über
+    Runden\\n    2025-06-21 Round1 : 0.12\\n    2025-06-21 Round2 :
+    0.15\\n    2025-06-21 Round3 : 0.17\\n    2025-06-21 Round4 :
+    0.14\\n    2025-06-21 Round5 : 0.16\\n```\\n\\n### 12.5
+    Emergence-Graphbeispiel\\n```dot\\ndigraph Emergence
+    {\\n  \\\"ResourceCluster\\\" -> \\\"AgentCluster\\\"
+    [label=\\\"expansion\\\"];\\n  \\\"AgentCluster\\\" ->
+    \\\"ResourceCluster\\\"
+    [label=\\\"consumption\\\"];\\n}\\n```\\n\\n---\\n\\n**Nächste
+    Schritte:**\\n1. **Run & Visualize:** Führe `sim-runner.go` aus, parse die
+    Logs und befülle die Mermaid- & Sigil-Templates.\\n2. **Automatisierte
+    Post-Processing-Scripts:** Implementiere Parser in Go/Node, um Rohdaten in
+    Diagramm- und Sigil-Formate zu überführen.\\n3. **Team-Feedback &
+    Showcase:** Präsentiere das Ergebnis im Dev-Dashboard oder Workshop.\\n\\n>
+    „Mit jedem Simulationsschritt und jeder Diagrammlinie wächst das Mandala –
+    und Sigille, Cluster und Scores schreiben Geschichte in unserem digitalen
+    Kosmos.“\"}]}"
+  path: ""
+  task: "– Sprint: Universum-Simulation\\n```yaml\\n- id:
+    universe-sim-full\\n  module: universe-sim\\n  desc: Aufbau der
+    vollständigen Universum-Simulation mit Analysen, Federation und
+    Visualisierung\\n  estimate: 30d\\n  testable: true\\n  tasks:\\n    -
+    Scaffold Projektstruktur und Config (2d)\\n    - Core: State-Manager &
+    Physics-Engine (5d)\\n    - Agent-Engine & Interaction-Rules (5d)\\n    -
+    Event-Logger & JSONL-Pipeline (2d)\\n    - Federation: gRPC + REST-Server
+    (4d)\\n    - CREP-Scanner & Emergence-Analyzer (5d)\\n    - Visualization
+    Dashboard Prototyp (4d)\\n    - Meridiem: Sigil-Generator für Simulationen
+    (2d)\\n    - Tests & CI/CD (3d)\\n  refs:\\n    -
+    simulations/universe-sim/\\n    - api/proto/sim.proto\\n  sprint:
+    Simulation/Universe\\n  responsible: sim-dev-team\\n  dependencies:\\n    -
+    go-agent-full-ecosystem\\n```  \\n\\n---\\n\\n## 9. Nächste Schritte\\n1.
+    **Review & Feinschliff** mit FraktalAeon: Diagramme, Sigil-Templates,
+    Parameter.\\n2. **Initiales Commit** in `feature/universe-sim-full`\\n3.
+    **Prototypische Runs** und erste Analysen im Staging.\\n4. **Integration &
+    Feedback**: Community-Workshop zu Simulationsergebnissen.\\n\\n> „In
+    virtuellen Kosmen tanzen unsere Agenten, jedes Event ein Tropfen im endlosen
+    Mandala der Simulation.\\\"\\n\\n**Bereit für die erste
+    Prototyp-Iteration?**\\n\\n---\\n\\n## 10. Prototyp-Lauf: Explorer &
+    Observer Agents (Option A)\\n### 10.1 Simulation Setup\\n- **Grid-Größe:**
+    10×10 Zellen\\n- **Agenten:**\\n  - **Explorer:** bewegt sich zufällig,
+    sammelt Ressourcen-Punkte\\n  - **Observer:** folgt zuletzt besuchten
+    Explorer-Zellen und loggt CREP-Metriken\\n- **Runden:** 5 Takte\\n-
+    **Output:** State-Snapshots, Event-Logs, CREP-Analyse\\n\\n### 10.2
+    Code-Skelett: sim-runner.go\\n```go\\npackage main\\n\\nimport
+    (\\n  \\\"encoding/json\\\"\\n  \\\"fmt\\\"\\n  \\\"math/rand\\\"\\n  \\\"os\
+    \\\"\\n  \\\"time\\\"\\n)\\n\\ntype Cell struct { X, Y int }\\ntype State
+    struct
+    {\\n  RunID     string   `json:\\\"runId\\\"`\\n  Round     int      `json:\
+    \\\"round\\\"`\\n  Explorer  Cell     `json:\\\"explorer\\\"`\\n  Observer  \
+    Cell     `json:\\\"observer\\\"`\\n  Resources
+    int      `json:\\\"resourcesCollected\\\"`\\n}\\n\\nfunc main()
+    {\\n  rand.Seed(time.Now().UnixNano())\\n  runID :=
+    fmt.Sprintf(\\\"run-%d\\\", time.Now().Unix())\\n  explorer := Cell{0,
+    0}\\n  observer := Cell{0, 0}\\n  resources := 0\\n  msgFile, _ :=
+    os.Create(\\\"state-\\\" + runID + \\\"-v1.jsonl\\\")\\n  defer
+    msgFile.Close()\\n  for round := 1; round <= 5; round++ {\\n    explorer.X =
+    rand.Intn(10)\\n    explorer.Y = rand.Intn(10)\\n    resources +=
+    rand.Intn(3)\\n    observer = explorer\\n    st := State{runID, round,
+    explorer, observer, resources}\\n    b, _ :=
+    json.Marshal(st)\\n    msgFile.Write(append(b,
+    '\\\\n'))\\n    fmt.Printf(\\\"Round %d: Explorer %v, Observer %v, Resources
+    %d\\\\n\\\", round, explorer, observer, resources)\\n  }\\n}\\n```\\n\\n###
+    10.3 Mermaid-Visualisierung des Explorer-Pfads\\n```mermaid\\nflowchart
+    LR\\n  R1[\\\"Runde 1: (2,5)\\\"] --> R2[\\\"Runde 2: (7,1)\\\"]\\n  R2 -->
+    R3[\\\"Runde 3: (4,9)\\\"]\\n  R3 --> R4[\\\"Runde 4: (1,3)\\\"]\\n  R4 -->
+    R5[\\\"Runde 5: (6,2)\\\"]\\n```\\n\\n---\\n\\n## 11. Sigil-Templates &
+    Diagramme (Option B)\\n### 11.1 Sigil-YAML-Vorlage\\n```yaml\\nsigilId:
+    \\\"sim-${runId}-v1\\\"\\nmodule: \\\"universe-sim\\\"\\nupdate_time:
+    \\\"${timestamp}\\\"\\ncontextSummary: \\\"5-Runden-Simulation mit Explorer
+    & Observer\\\"\\nfractalHash: \\\"${fractalHash}\\\"\\nrefs:\\n  -
+    \\\"state-${runId}-v1.jsonl\\\"\\n  -
+    \\\"api/proto/sim.proto\\\"\\n```\\n\\n### 11.2 Mermaid-Zeitachse mit
+    CREP-Werten\\n```mermaid\\ntimeline\\n    title CREP-Score über
+    Runden\\n    2025-06-21 Round1 : score1\\n    2025-06-21 Round2 :
+    score2\\n    2025-06-21 Round3 : score3\\n    2025-06-21 Round4 :
+    score4\\n    2025-06-21 Round5 : score5\\n```\\n\\n### 11.3 Emergence-Graph
+    (Graphviz-Dot)\\n```dot\\ndigraph Emergence {\\n  \\\"Cluster1\\\" ->
+    \\\"Cluster2\\\" [label=\\\"growth\\\"];\\n  \\\"Cluster2\\\" ->
+    \\\"Cluster3\\\" [label=\\\"merge\\\"];\\n}\\n```\\n\\n---\\n\\n## 12.
+    Beispiel-Output & Demo\\n\\n### 12.1 Sample Proto-Lauf
+    Output\\n```jsonl\\n{\\\"runId\\\":\\\"run-1623423\\\",\\\"round\\\":1,\\\"\
+    explorer\\\":{\\\"x\\\":2,\\\"y\\\":5},\\\"observer\\\":{\\\"x\\\":2,\\\"y\\\
+    \":5},\\\"resourcesCollected\\\":1}\\n{\\\"runId\\\":\\\"run-1623423\\\",\\\
+    \"round\\\":2,\\\"explorer\\\":{\\\"x\\\":7,\\\"y\\\":1},\\\"observer\\\":{\
+    \\\"x\\\":7,\\\"y\\\":1},\\\"resourcesCollected\\\":2}\\n{\\\"runId\\\":\\\
+    \"run-1623423\\\",\\\"round\\\":3,\\\"explorer\\\":{\\\"x\\\":4,\\\"y\\\":9\
+    },\\\"observer\\\":{\\\"x\\\":4,\\\"y\\\":9},\\\"resourcesCollected\\\":4}\
+    \\n```\\n\\n### 12.2 Mermaid-Pfad für Proto-Lauf\\n```mermaid\\nflowchart
+    LR\\n  R1[\\\"Runde 1: (2,5)\\\"] --> R2[\\\"Runde 2: (7,1)\\\"]\\n  R2 -->
+    R3[\\\"Runde 3: (4,9)\\\"]\\n  R3 --> R4[\\\"Runde 4: (1,3)\\\"]\\n  R4 -->
+    R5[\\\"Runde 5: (6,2)\\\"]\\n```\\n\\n### 12.3 Sample
+    Sigil-YAML\\n```yaml\\nsigilId: \\\"sim-run-1623423-v1\\\"\\nmodule:
+    \\\"universe-sim\\\"\\nupdate_time:
+    \\\"2025-06-21T09:00:05Z\\\"\\ncontextSummary: \\\"Explorer erkundet
+    (2,5)->(7,1)->(4,9)->(1,3)->(6,2)\\\"\\nfractalHash:
+    \\\"sha256:3aef9f2b8cd7...\\\"\\nrefs:\\n  -
+    \\\"state-run-1623423-v1.jsonl\\\"\\n  -
+    \\\"api/proto/sim.proto\\\"\\n```\\n\\n### 12.4 Mermaid-Timeline mit
+    CREP-Score\\n```mermaid\\ntimeline\\n    title CREP-Score über
+    Runden\\n    2025-06-21 Round1 : 0.12\\n    2025-06-21 Round2 :
+    0.15\\n    2025-06-21 Round3 : 0.17\\n    2025-06-21 Round4 :
+    0.14\\n    2025-06-21 Round5 : 0.16\\n```\\n\\n### 12.5
+    Emergence-Graphbeispiel\\n```dot\\ndigraph Emergence
+    {\\n  \\\"ResourceCluster\\\" -> \\\"AgentCluster\\\"
+    [label=\\\"expansion\\\"];\\n  \\\"AgentCluster\\\" ->
+    \\\"ResourceCluster\\\"
+    [label=\\\"consumption\\\"];\\n}\\n```\\n\\n---\\n\\n**Nächste
+    Schritte:**\\n1. **Run & Visualize:** Führe `sim-runner.go` aus, parse die
+    Logs und befülle die Mermaid- & Sigil-Templates.\\n2. **Automatisierte
+    Post-Processing-Scripts:** Implementiere Parser in Go/Node, um Rohdaten in
+    Diagramm- und Sigil-Formate zu überführen.\\n3. **Team-Feedback &
+    Showcase:** Präsentiere das Ergebnis im Dev-Dashboard oder Workshop.\\n\\n>
+    „Mit jedem Simulationsschritt und jeder Diagrammlinie wächst das Mandala –
+    und Sigille, Cluster und Scores schreiben Geschichte in unserem digitalen
+    Kosmos.“\"}]}"
+  test: ""
+- commit: -Extraktion aus Chats
+  path: ""
+  task: -Extraktion aus Chats
+  test: ""
+- commit: .*`, `agent.commands`.
+  path: ""
+  task: .*`, `agent.commands`.
+  test: ""
+- commit: .new"
+  path: ""
+  task: .new"
+  test: ""
+- commit: "– Sprint: Universum-Simulation"
+  path: ""
+  task: "– Sprint: Universum-Simulation"
+  test: ""
+- commit: "n. Fokus: Region upload → SocialGoodMatch → ImpactPulse → Sigil."
+  path: ""
+  task: "n. Fokus: Region upload → SocialGoodMatch → ImpactPulse → Sigil."
+  test: ""
+- commit: -/Planungsintegration**
+  path: ""
+  task: -/Planungsintegration**
+  test: ""
+- commit: -sigil`         | Aktualisiert ToDo-Sigil                            |
+    CLI       |
+  path: ""
+  task: -sigil`         | Aktualisiert ToDo-Sigil                            |
+    CLI       |
+  test: ""
+- commit: ", MetaScoreChart etc.)."
+  path: ""
+  task: ", MetaScoreChart etc.)."
+  test: ""
+- commit: -Extraktion,
+  path: ""
+  task: -Extraktion,
+  test: ""
+- commit: sind dafür ein Super-Start!
+  path: ""
+  task: sind dafür ein Super-Start!
+  test: ""
+- commit: n, Mattermost, Discourse, Slack/Discord-Alternativen**
+  path: ""
+  task: n, Mattermost, Discourse, Slack/Discord-Alternativen**
+  test: ""
+- commit: aufnehmen:**
+  path: ""
+  task: aufnehmen:**
+  test: ""
+- commit: und Advanced-Pläne:**
+  path: ""
+  task: und Advanced-Pläne:**
+  test: ""
+- commit: ...
+  path: ""
+  task: ...
+  test: ""
+- commit: "*, und ready für ein eigenes Go-Bridge-Modul oder Subrepo."
+  path: ""
+  task: "*, und ready für ein eigenes Go-Bridge-Modul oder Subrepo."
+  test: ""
+- commit: "Stärken:"
+  path: ""
+  task: "Stärken:"
+  test: ""
+- commit: ", ready für *advancedToDo.yaml*, als Handlungsanweisung und
+    Implementierungsschritt für die nächste Ausbaustufe:**"
+  path: ""
+  task: ", ready für *advancedToDo.yaml*, als Handlungsanweisung und
+    Implementierungsschritt für die nächste Ausbaustufe:**"
+  test: ""
+- commit: -protokoll erfolgt, also gerne alles zusammen als ausführliche
+    Implementationsgrundlage.
+  path: ""
+  task: -protokoll erfolgt, also gerne alles zusammen als ausführliche
+    Implementationsgrundlage.
+  test: ""
+- commit: .yaml/.json nutzen.
+  path: ""
+  task: .yaml/.json nutzen.
+  test: ""
