@@ -2107,5 +2107,11 @@
     "path": "go-bridge/cmd/mandala-gpt.go",
     "task": "CLI to invoke GPTBridge via api or link",
     "test": "go build ./..."
+  },
+  {
+    "commit": "Add Markdown ToDo parser",
+    "path": "scripts/parse-md-todo.js",
+    "task": "Parse Markdown task lists and append to advancedToDo files",
+    "test": "scripts/__tests__/parse-md-todo.test.ts"
   }
 ]
