@@ -103,6 +103,7 @@ Schau auch ins [Glossar](docs/glossar-genesis.md) für Begriffe.
 - ✨ **useEventGlow** – Hook für Event-Hervorhebung (`packages/unifiedmandala-ui/hooks/useEventGlow.ts`)
 - 🤫 **silenceWatcher** – meldet Stille im EventHub (`packages/agents/silenceWatcher.ts`)
 - 📂 **FeedbackAgent** – beobachtet neue Dateien und ruft MemoryManager auf (`packages/agents/feedback`)
+- 📈 **SelfAnalyzerAgent** – generiert automatische ToDos (`packages/agents/self-analyzer`)
 - 👍 **FeedbackButtons** – zeichnet Nutzerfeedback als Sigil-Ereignis auf (`packages/unifiedmandala-ui/components/FeedbackButtons.tsx`)
 - 💬 **ChatPanel** – einfacher GPT-gestützter Chat mit CREP-Logging
 - 🔥 **ArchetypeDecoderAgent** – extrahiert Archetypen aus Beschreibungen (`packages/agents/ArchetypeDecoderAgent.ts`)
@@ -172,6 +173,7 @@ packages/
   │   ├── relationship-meter      # Analysiert Nachrichtenmetriken
   │   ├── index.ts                # Orchestriert die Module
   │   └── berlin-poc.ts           # Beispielablauf für Europe/Berlin
+  ├── services/repair-tickets  # Verfolgt automatische Repair-Tickets
   ├── codex-navigator        # Haiku-Generator und Chronik-Exporter
   └── codex-navigator-agent     # Parser für Codex-Instruktionen
 tools/                    # Kleine Helferskripte & Generatoren
