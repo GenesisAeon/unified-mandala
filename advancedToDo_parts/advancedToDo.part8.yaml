@@ -2,14 +2,17 @@
   path: services/memory-manager
   task: "Manage daily, weekly and longterm categories with scheduler; integrate with fragment_and_package_conversations.js and extract_code_fragments.js"
   test: services/memory-manager/test.ts
+  status: done
 - commit: "Add Feedback Agents for new files"
   path: packages/agents/feedback
   task: "Agents monitor new files and trigger MemoryManager hooks"
   test: packages/agents/__tests__/feedback.test.ts
+  status: done
 - commit: "Create todo_parser Go component"
   path: go-bridge/pkg/codeagent/todo_parser.go
   task: "Parse TODO markers and expose /usecases/todo/parse endpoint"
   test: go-bridge/pkg/codeagent/todo_parser_test.go
+  status: done
 - commit: "Add Parse TODOs button"
   path: apps/web/components/TodoButton.tsx
   task: "UI button invokes /usecases/todo/parse"

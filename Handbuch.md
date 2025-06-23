@@ -126,6 +126,7 @@ Teil 5 ergänzt die Sigil-Historie.
 - `FreieKIZivilisation` – sammelt Resonanzimpulse (`packages/agents/FreieKIZivilisation.ts`)
 - `useEventGlow` – React-Hook zur Event-Hervorhebung (`packages/unifiedmandala-ui/hooks/useEventGlow.ts`)
 - `silenceWatcher` – meldet Stille an den GPTEventHub (`packages/agents/silenceWatcher.ts`)
+- `FeedbackAgent` – beobachtet neue Dateien und ruft den MemoryManager auf (`packages/agents/feedback`)
 - `FeedbackButtons` – einfache Like/Dislike-Komponente, speichert Sigil-Ereignisse (`packages/unifiedmandala-ui/components/FeedbackButtons.tsx`)
 - `ChatPanel` – GPT-gestütztes Panel mit CREP-Logging (`packages/unifiedmandala-ui/components/ChatPanel.tsx`)
 - `ArchetypeDecoderAgent` – erkennt Archetypen in Task-Beschreibungen (`packages/agents/ArchetypeDecoderAgent.ts`)
@@ -388,6 +389,7 @@ packages/
   ├── services/vector-indexer   # Embedding generator service
   ├── services/sigil-trigger    # Beobachtet Sigillin-Änderungen
   ├── services/memorymesh       # Region-Archive und Reflexionsdienste
+  ├── services/memory-manager    # Scheduler-basierte Kurzzeitablage
   │   ├── region-archive-service   # Speichert Nachrichten pro Region
   │   ├── reflection-engine       # Erstellt einfache Spiegelungen
   │   ├── adaptation-service      # Lernt Nutzungsgewohnheiten
@@ -406,6 +408,7 @@ go-agent/               # Go-Daemon zur Layer-Steuerung
 ci/                      # Test- und Pipeline-Konfigurationen
 config/                  # Zentrale YAML- und Env-Dateien
   └── interfaces.yaml       # API-Endpunkte der Plattform
+  ├── memory-manager.yaml  # Cleanup-Interval Konfiguration
 repositorypflege/         # Pflegekonzepte und Repository-Mapping
 apps/
   └── sharedream-interface      # Web-Schnittstelle & Sync
