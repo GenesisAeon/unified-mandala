@@ -353,6 +353,7 @@ Die ToDo-Liste wurde für mehr Übersicht in "advancedToDo_parts/" aufgeteilt.
 Teil 2 in advancedToDo_parts beinhaltet Aufgaben zum Aeon Übergabe-Sigil und MemoryMesh.
 Teil 5 enthält Aufgaben zur Sigil-Historie.
 
+Teil 7 listet Aufgaben zu poetischen Sigill- und Mandala-Modulen.
 Nutze `node scripts/parse-advanced-conversations.js` um Gesprächs-TODOs aus dem Datensatz zu filtern.
 
 - **Module**: unter `packages/` gegliedert in Agents, Core und mehr

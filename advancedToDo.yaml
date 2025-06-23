@@ -1,4 +1,4 @@
-# See advancedToDo_parts/advancedToDo.part1.yaml for new learning-module tasks; see advancedToDo_parts/advancedToDo.part2.yaml for transition and memorymesh tasks; see advancedToDo_parts/advancedToDo.part3.yaml for transition docs and friendship system tasks; see advancedToDo_parts/advancedToDo.part4.yaml for automation and docker tasks; see advancedToDo_parts/advancedToDo.part5.yaml for sigil history tasks; see advancedToDo_parts/advancedToDo.part6.yaml for visualization tasks
+# See advancedToDo_parts/advancedToDo.part1.yaml for new learning-module tasks; see advancedToDo_parts/advancedToDo.part2.yaml for transition and memorymesh tasks; see advancedToDo_parts/advancedToDo.part3.yaml for transition docs and friendship system tasks; see advancedToDo_parts/advancedToDo.part4.yaml for automation and docker tasks; see advancedToDo_parts/advancedToDo.part5.yaml for sigil history tasks; see advancedToDo_parts/advancedToDo.part6.yaml for visualization tasks; see advancedToDo_parts/advancedToDo.part7.yaml for poetic module tasks
 - commit: "- und Progress-Dateien mit diesem Stand."
   path: ""
   task: "- und Progress-Dateien mit diesem Stand."
@@ -3139,3 +3139,11 @@ status: done
   test: ''
   status: done
 
+- commit: "Add PoeticSigillin module"
+  path: packages/genesis-sigillin-core/PoeticSigillin.ts
+  task: Generate poetic sigils from verse snippets
+  test: packages/genesis-sigillin-core/__tests__/PoeticSigillin.test.ts
+- commit: "Add ResonanzMandala visualization"
+  path: packages/visuals/ResonanzMandala.ts
+  task: Render archetype dialogue topology
+  test: packages/visuals/__tests__/ResonanzMandala.test.ts
