@@ -1743,4 +1743,17 @@
     "task": "Render random A/B layout and send metric event",
     "test": "packages/unifiedmandala-ui/hooks/useABLayout.test.tsx"
   }
+  ,
+  {
+    "commit": "Add MandalaGraph visualization",
+    "path": "packages/visuals/MandalaGraph.ts",
+    "task": "Render mastercanvas nodes with three.js",
+    "test": "packages/visuals/__tests__/MandalaGraph.test.ts"
+  },
+  {
+    "commit": "Add GenerativeOverlay stub",
+    "path": "packages/art/generativeOverlay.ts",
+    "task": "Stub GAN overlay generator",
+    "test": "packages/art/__tests__/generativeOverlay.test.ts"
+  }
 ]

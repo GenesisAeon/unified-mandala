@@ -91,6 +91,8 @@ Schau auch ins [Glossar](docs/glossar-genesis.md) für Begriffe.
 - 🔥 **CREPConvoHeatmap** – zeigt Schwankungen im CREP-Verlauf (`apps/sharedream-interface/components/CREPConvoHeatmap.tsx`)
 - 🛰️ **ConvoMemoryBridge** – extrahiert Gesprächsstruktur & CREP-Signaturen (`packages/nukleon-scanner/ConvoMemoryBridge.ts`)
 - 🎶 **MemorySonifier** – übersetzt Memory-Zustände in Klänge (`packages/nukleon-sonifier/MemorySonifier.ts`)
+- 🌐 **MandalaGraph** – einfache 3D-Visualisierung der MasterCanvas-Knoten (`packages/visuals/MandalaGraph.ts`)
+- 🖼️ **GenerativeOverlay** – GAN-Überlagerung für Live-Daten (`packages/art/generativeOverlay.ts`)
 - 🔮 **UniversePulseSimulator** – simuliert emergente Zustände (`packages/universum-simulationen/UniversePulseSimulator.ts`)
 - 🕸️ **ToDoWeaver** – generiert YAML-Aufgaben aus CREP-Clustern (`packages/cli-tools/ToDoWeaver.ts`)
 

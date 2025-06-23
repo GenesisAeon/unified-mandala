@@ -200,6 +200,8 @@ GPTEventHub.emit('orakel:says', { content: 'Hallo Welt' });
 - `MobileImpactDashboard` – mobile Variante auf Basis von React Native.
 - `ConvoMemoryBridge` – extrahiert Gesprächsstrukturen und CREP-Signaturen.
 - `MemorySonifier` – übersetzt Memory-Zustände in Klänge.
+- `MandalaGraph` – einfache 3D-Ansicht aus `docs/mastercanvas.yaml`.
+- `GenerativeOverlay` – stub für GAN-Überlagerungen.
 - `UniversePulseSimulator` – simuliert emergente Zustände.
 - `ToDoWeaver` – erzeugt YAML-Aufgaben aus CREP-Clustern.
 
