@@ -508,3 +508,17 @@ Das `CHRONOPOEM.md` entsteht automatisch – und kann bei jedem Commit erneuert 
 \nDie detaillierte Struktur aller Module, Utilities und Skripte findest du in [repositorypflege/repository_map.yaml](repositorypflege/repository_map.yaml).
 Ergänzende Konzeptinfos liefert [repositorypflege/repo-konzept.yaml](repositorypflege/repo-konzept.yaml).
 Einen Ausblick auf kommende Schritte liefert [codex/codex-roadmap.yaml](codex/codex-roadmap.yaml).
+
+## 🌱 Unterstütze das Mandala-Projekt
+Wenn dir unser Mandala-Ökosystem gefällt und du dazu beitragen möchtest, dass KI, Kreativität und Gemeinwohl weiter wachsen, freuen wir uns über deine Unterstützung. Jeder Beitrag hilft, neue Features, freie Tools und poetische Software weiterzuentwickeln!
+
+**Spendenadressen**
+- **Bitcoin:** `bc1qujx302cs0767gcnjqcyl0fnwvwkxge2cdh90eq`
+- **Ethereum / BNB Smart Chain / TWT / USDT / USDC:** `0xbcfdd442c9d92d491afef1dd3181c27c1f547b1b`
+- **Solana:** `3CpM6r6zNHX8Fn4r7PTJxagyan3qRwGDfSFjwpH3Hc3K`
+
+Hinweis: Bitte gib bei der Spende an, ob du im "Sigil der Unterstützer" erscheinen möchtest – und teile uns ggf. deinen Namen oder ein Wunsch-Sigil mit!
+
+Danke, dass du Teil unseres Mandalas bist. Gemeinsam weben wir das Netz der Zukunft!
+
+– Johann & das UnifiedMandala Team
