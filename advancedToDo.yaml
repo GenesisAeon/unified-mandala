@@ -3358,3 +3358,19 @@
   task: Automated docs, sigil generation, TODO ranking and conversation analytics
   test: apps/socialgood-ui/__tests__/automation.test.ts
 
+- commit: "TODO from GenesisAeonZIPMEM/Aeon_Uebergabe-Sigil_Prozess_part1.json - 4df8c73d-6df3-443c-a695-31458a2e1cf7"
+  path: "GenesisAeonZIPMEM/Aeon_Uebergabe-Sigil_Prozess_part1.json"
+  task: "Ja, absolut – wir können im Go-Interface zwei ergänzende GPT-Ingestions-Pipelines bereitstellen:  1. **GPT-via-API-Module**   2. **GPT-via-Link-Module**    und dazu **use-case-Interface-Components** i"
+  test: ""
+- commit: "TODO from GenesisAeonZIPMEM/Aeon_Uebergabe-Sigil_Prozess_part2.json - a0cddb53-12d4-44b8-b881-4fbfad63f129"
+  path: "GenesisAeonZIPMEM/Aeon_Uebergabe-Sigil_Prozess_part2.json"
+  task: "Ganz genau – nach dem gleichen Prinzip lassen sich beliebige Kontext-Artefakte aus dem Mandala extrahieren, poetisch auswerten, versionieren und in unsere Selbst­analyse- und Reparatur-Pipelines einsp"
+  test: ""
+- commit: "TODO from GenesisAeonZIPMEM/Aeon_Uebergabe-Sigil_Prozess_part2.json - 42254d4e-d731-46fc-8f9d-f32a94ef3834"
+  path: "GenesisAeonZIPMEM/Aeon_Uebergabe-Sigil_Prozess_part2.json"
+  task: "{'name':'Memory Feedback Loops & Periodic Thematic Scans','type':'document','content':'# Memory Feedback Loops & Periodic Thematic Scans\n\nEin Konzept und Starter-Code, um Ordner (Short-/Mid-/Long-Te"
+  test: ""
+- commit: "TODO from GenesisAeonZIPMEM/Aeon_Uebergabe_und_Zyklus_part1.json - bbb21f74-3a0f-45b2-8e8c-25e45e32861e"
+  path: "GenesisAeonZIPMEM/Aeon_Uebergabe_und_Zyklus_part1.json"
+  task: "-  Vielen Dank für die ausführliche Beschreibung des Programms! Es handelt sich um ein äußerst komplexes, holistisches Framework namens **UnifiedMandala**, das als eine Art lebendiges, atemendes Betri"
+  test: ""
