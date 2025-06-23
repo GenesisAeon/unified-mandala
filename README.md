@@ -47,6 +47,7 @@ Schau auch ins [Glossar](docs/glossar-genesis.md) für Begriffe.
 - 🎨 **MandalaThemeManager** – hell/dunkel umschalten
 - ✨ **SigillinActivationManager & MetaSignatur** – Aktivierung & Signatur von Sigillin
 - 🌈 **ThemeProvider & useResponsiveTheme** – CREP-basierte Farbwahl
+- 🧩 **useAdaptiveLayout** – reagiert auf CREP-Status
 - 📜 **SigillinTimeline & InviteBanner** – Verlauf und Einladungsbanner
 - 📈 **CREPTimeline** – chronologische Ansicht der CREP-Ereignisse
 - 💾 **BackupManager** – einfache Dateisicherungen
