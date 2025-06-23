@@ -128,6 +128,7 @@ Teil 5 ergänzt die Sigil-Historie.
 - `ArchetypeDecoderAgent` – erkennt Archetypen in Task-Beschreibungen (`packages/agents/ArchetypeDecoderAgent.ts`)
 - `SigillinInterpreterAgent` – extrahiert Sigillin aus Text (`packages/agents/SigillinInterpreterAgent.ts`)
 - `ChronoPoemGeneratorAgent` – erzeugt poetische Chrono-Zeilen (`packages/agents/ChronoPoemGeneratorAgent.ts`)
+- `toSigilVerse` – verwandelt Fehlermeldungen in kurze Verse (`packages/utils/poetry.ts`)
 - `ResonanzPoetik` – erzeugt Haikus und YAML-Chroniken (`packages/codex-navigator/resonanzPoetik.ts`)
 - `aggregateCREP` – berechnet Durchschnittswerte (`packages/crep-engine/aggregateCREP.ts`)
 - `CREPMusicGenerator` – generiert BPM aus CREP (`packages/crep-engine/CREPMusicGenerator.ts`)
