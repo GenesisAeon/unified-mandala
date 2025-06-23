@@ -127,6 +127,7 @@ Teil 5 ergänzt die Sigil-Historie.
 - `useEventGlow` – React-Hook zur Event-Hervorhebung (`packages/unifiedmandala-ui/hooks/useEventGlow.ts`)
 - `silenceWatcher` – meldet Stille an den GPTEventHub (`packages/agents/silenceWatcher.ts`)
 - `FeedbackAgent` – beobachtet neue Dateien und ruft den MemoryManager auf (`packages/agents/feedback`)
+- `SelfAnalyzerAgent` – generiert automatisch ToDos (`packages/agents/self-analyzer`)
 - `FeedbackButtons` – einfache Like/Dislike-Komponente, speichert Sigil-Ereignisse (`packages/unifiedmandala-ui/components/FeedbackButtons.tsx`)
 - `ChatPanel` – GPT-gestütztes Panel mit CREP-Logging (`packages/unifiedmandala-ui/components/ChatPanel.tsx`)
 - `ArchetypeDecoderAgent` – erkennt Archetypen in Task-Beschreibungen (`packages/agents/ArchetypeDecoderAgent.ts`)
@@ -397,6 +398,7 @@ packages/
   │   ├── relationship-meter      # Analysiert Nachrichtenmetriken
   │   ├── index.ts                # Orchestriert die Module
   │   └── berlin-poc.ts           # Beispielablauf für Europe/Berlin
+  ├── services/repair-tickets    # Verwaltung automatischer Repair-Tickets
   ├── codex-navigator        # Haiku-Generator und Chronik-Exporter
   └── codex-navigator-agent     # Parser für Codex-Instruktionen
 codex/                    # Codex-Workflows und Sigillin-Dateien

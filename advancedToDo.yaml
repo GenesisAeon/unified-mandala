@@ -3912,10 +3912,12 @@
   path: packages/agents/self-analyzer
   task: Generate TODO items and feed them to todoSigilGenerator for advancedToDo.yaml
   test: packages/agents/__tests__/self-analyzer.test.ts
+  status: done
 - commit: Implement repair ticket automation
   path: services/repair-tickets
   task: Create pipeline for automatic TODO creation and repair tracking
   test: services/__tests__/repair-tickets.test.ts
+  status: done
 - commit: Automate documentation, sigil generation, and TODO prioritization
   path: apps/socialgood-ui
   task: Automated docs, sigil generation, TODO ranking and conversation analytics
