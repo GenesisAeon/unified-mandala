@@ -104,6 +104,7 @@ Schau auch ins [Glossar](docs/glossar-genesis.md) für Begriffe.
 - 🔥 **ArchetypeDecoderAgent** – extrahiert Archetypen aus Beschreibungen (`packages/agents/ArchetypeDecoderAgent.ts`)
 - 🔮 **SigillinInterpreterAgent** – erkennt Sigillin-Symbole (`packages/agents/SigillinInterpreterAgent.ts`)
 - 📝 **ChronoPoemGeneratorAgent** – generiert poetische Zeilen (`packages/agents/ChronoPoemGeneratorAgent.ts`)
+- 🌿 **toSigilVerse** – wandelt Fehlermeldungen in kurze Verse (`packages/utils/poetry.ts`)
 - 🎴 **ResonanzPoetik** – erstellt Haikus aus Tasks (`packages/codex-navigator/resonanzPoetik.ts`)
 - 🎚️ **aggregateCREP** – mittelt CREP-Werte (`packages/crep-engine/aggregateCREP.ts`)
 - 🎵 **CREPMusicGenerator** – erzeugt BPM aus CREP (`packages/crep-engine/CREPMusicGenerator.ts`)
