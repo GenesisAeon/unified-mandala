@@ -132,6 +132,8 @@ Teil 5 ergänzt die Sigil-Historie.
 - `ChronoPoemGeneratorAgent` – erzeugt poetische Chrono-Zeilen (`packages/agents/ChronoPoemGeneratorAgent.ts`)
 - `toSigilVerse` – verwandelt Fehlermeldungen in kurze Verse (`packages/utils/poetry.ts`)
 - `ResonanzPoetik` – erzeugt Haikus und YAML-Chroniken (`packages/codex-navigator/resonanzPoetik.ts`)
+- `PoeticSigillin` – generiert poetische Sigille aus Versen (`packages/genesis-sigillin-core/PoeticSigillin.ts`)
+- `ResonanzMandala` – Visualisierung archetypischer Dialoge (`packages/visuals/ResonanzMandala.ts`)
 - `aggregateCREP` – berechnet Durchschnittswerte (`packages/crep-engine/aggregateCREP.ts`)
 - `CREPMusicGenerator` – generiert BPM aus CREP (`packages/crep-engine/CREPMusicGenerator.ts`)
 - `MemoryMesh` – regionale Archiv-Prototypen (`docs/architecture/memory-mesh.md`)
