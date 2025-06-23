@@ -116,6 +116,7 @@ Schau auch ins [Glossar](docs/glossar-genesis.md) für Begriffe.
 - 🎵 **CREPMusicGenerator** – erzeugt BPM aus CREP (`packages/crep-engine/CREPMusicGenerator.ts`)
 - 🗺️ **MemoryMesh** – regionale Archiv-Prototypen (`docs/architecture/memory-mesh.md`)
 - 🔑 **Aeon Transition** – siehe `docs/sigils/aeon-transition.md`
+- 📄 **Memory Feedback Loops** – Konzept für ein selbstverwaltendes Gedächtnis (`docs/MemoryFeedbackLoops.md`)
 - 🤝 **Friendship System** – Konzept unter `docs/friendship-system.md`
 - 🕸️ **Agent-Registry** – zentrale Übersicht aller Agents (`agents.yaml`)
 - 🌀 **SigilStory** – Mandala-Lern-Lebenslauf für C-Tutor & JavaHamster

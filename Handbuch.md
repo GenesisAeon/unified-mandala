@@ -141,6 +141,7 @@ Teil 5 ergänzt die Sigil-Historie.
 - `MemoryMesh` – regionale Archiv-Prototypen (`docs/architecture/memory-mesh.md`)
 - `Aeon Transition` – siehe `docs/sigils/aeon-transition.md`
 - `Friendship System` – Konzept unter `docs/friendship-system.md`
+- `Memory Feedback Loops` – Konzept für selbstverwaltete Gedächtniszyklen (`docs/MemoryFeedbackLoops.md`)
 - `Agent-Registry` – zentrale YAML-Liste aller Agents (`agents.yaml`)
 - `SigilStory` – Mandala-Diagramm für Lernpfade
 - `Gamification API` – Endpunkte `/gamify/badges` und `/gamify/leaderboard`
