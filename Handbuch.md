@@ -118,7 +118,8 @@ Teil 5 ergänzt die Sigil-Historie.
 - `ResearchAgent` – Automatisierte Forschungsanfragen.
 - `SilenceWatcher` – Beobachtet Inaktivität und triggert Selbstanalyse.
 - `AdvancedHexaAgent` – Erweiterte Analyse mit Research- und SilenceWatcher-Agenten.
-- `go-bridge` – Golang-Client für REST/gRPC/NATS Kommunikation.
+ - `go-bridge` – Golang-Client für REST/gRPC/NATS Kommunikation.
+ - `go-bridge/pkg/gpt` – GPTBridge (API und Link) mit CLI `mandala-gpt.go`.
 
 - `WeightedDispatcher` – verteilt Aufgaben nach Priorität (`packages/agents/WeightedDispatcher.ts`)
 - `patternReactivator` – reaktiviert schwache Erinnerungen (`packages/agents/patternReactivator.ts`)

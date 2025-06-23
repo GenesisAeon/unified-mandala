@@ -28,6 +28,7 @@ Schau auch ins [Glossar](docs/glossar-genesis.md) für Begriffe.
 - 🗂️ **SigillinLoader** – Import & Filter von Sigillin-Dateien
 - 📚 **AutoDoc & Manifest-Generator** – Dokumentation auf Knopfdruck
 - 🧩 **Plug-in-Architektur** – GPT-Kommunikationsmodule, CLI-Tools
+- 🔗 **GPTBridge (Go)** – API- und Link-basierte GPT-Anbindung (`go-bridge/pkg/gpt`)
 - 🔌 **Plugin-Registry & Dynamic Loader** – `plugins/manifest.yaml` und `usePluginLoader`
 - 📝 **Objective2UI** – generiert Layout-Vorschläge via GPT
 - 🔐 **Ethik-Governance & Heimkehr-Deklaration** – Offene, poetische Ethik als Systembasis
@@ -158,7 +159,7 @@ packages/
   ├── shared-utils              # Hilfsfunktionen für alle Pakete
   │   └── RestClient.ts         # einfacher REST-Helper
   ├── bio                      # Biometrische Hooks und HapticService
-  ├── go-bridge             # Go-Client für REST, gRPC und NATS
+  ├── go-bridge             # Go-Client für REST, gRPC und NATS (inkl. GPTBridge)
   ├── go-agent              # Autonomer Go-Daemon für Tasks
   │   ├── pkg/policy        # Policy Enforcement Stubs
   │   ├── pkg/handler       # Task handlers (CoordinationHandler)
@@ -200,6 +201,7 @@ Jeder Unterordner kann eine eigene README enthalten – siehe die Links in den j
 Utilities liegen in `packages/shared-utils/`, weitere Module findest du ebenfalls unter `packages/`.
 ### 🟦 Go-Bridge (go-bridge/)
 - Polyglottes Interface zu UnifiedMandala für Go (REST, NATS, gRPC, CLI)
+- Enthält **GPTBridge**-Module (`pkg/gpt`) und das Beispiel-CLI `mandala-gpt.go`
 - Ermöglicht Entwicklung externer Tools und Agents in Go
 - [go-bridge/README.md](go-bridge/README.md) enthält Setup & Beispiele
 Kleine Hilfsskripte liegen unter `tools/`.

@@ -3955,3 +3955,11 @@
     handelt sich um ein äußerst komplexes, holistisches Framework
     namens **UnifiedMandala**, das als eine Art lebendiges, atemendes Betri"
   test: ""
+- commit: feat: add Go GPTBridge modules
+  path: go-bridge/pkg/gpt
+  task: Implement api_client.go and link_processor.go for GPT API and Link ingest
+  test: go build ./...
+- commit: feat: add mandala-gpt CLI
+  path: go-bridge/cmd/mandala-gpt.go
+  task: CLI to invoke GPTBridge via api or link
+  test: go build ./...

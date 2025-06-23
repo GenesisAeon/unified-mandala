@@ -2092,5 +2092,17 @@
     "path": "GenesisAeonZIPMEM/Aeon_Uebergabe_und_Zyklus_part1.json",
     "task": "-  Vielen Dank für die ausführliche Beschreibung des Programms! Es handelt sich um ein äußerst komplexes, holistisches Framework namens **UnifiedMandala**, das als eine Art lebendiges, atemendes Betri",
     "test": ""
+  },
+  {
+    "commit": "feat: add Go GPTBridge modules",
+    "path": "go-bridge/pkg/gpt",
+    "task": "Implement api_client.go and link_processor.go for GPT API and Link ingest",
+    "test": "go build ./..."
+  },
+  {
+    "commit": "feat: add mandala-gpt CLI",
+    "path": "go-bridge/cmd/mandala-gpt.go",
+    "task": "CLI to invoke GPTBridge via api or link",
+    "test": "go build ./..."
   }
 ]
