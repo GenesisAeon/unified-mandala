@@ -13,3 +13,7 @@
   task: "Define manifest schema and implement usePluginLoader"
   test: apps/sharedream-interface/hooks/usePluginLoader.test.ts
   status: done
+- commit: "Implement Objective2UI service"
+  path: services/objective2ui.ts
+  task: "Generate layout YAML via GPT and store suggestion in plugin manifest"
+  test: services/objective2ui.test.ts

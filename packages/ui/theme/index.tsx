@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { useCREPContext } from '../unifiedmandala-ui/contexts/CREPContext';
+import { useCREPContext } from '../../unifiedmandala-ui/contexts/CREPContext';
 
 export type Mood = 'neutral' | 'positive' | 'critical';
 export type Style = 'light' | 'dark';

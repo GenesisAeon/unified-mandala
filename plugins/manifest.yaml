@@ -4,3 +4,5 @@ plugins:
     component: "../apps/sharedream-interface/components/MetaScoreChart"
     dataHook: "../apps/sharedream-interface/hooks/useMetaScores"
     story: "../apps/sharedream-interface/components/MetaScoreChart.stories.tsx"
+    layoutSuggestion: |
+      layout: default

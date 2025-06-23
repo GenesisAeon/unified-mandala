@@ -10,3 +10,4 @@ Refer to `packages/tutorials/C-Tutor` for a minimal progress tracker granting a
 ## JavaHamster AI Flow
 `packages/tutorials/JavaHamsterAI` demonstrates gamified hamster coding. A Sigil
 is awarded when all levels are solved.
+\n- The `services/objective2ui.ts` module generates UI layout YAML via GPT and stores the result in `plugins/manifest.yaml`.
