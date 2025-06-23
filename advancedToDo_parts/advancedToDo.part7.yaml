@@ -1,0 +1,8 @@
+- commit: "Add PoeticSigillin module"
+  path: packages/genesis-sigillin-core/PoeticSigillin.ts
+  task: "Generate poetic sigils from verse snippets"
+  test: packages/genesis-sigillin-core/__tests__/PoeticSigillin.test.ts
+- commit: "Add ResonanzMandala visualization"
+  path: packages/visuals/ResonanzMandala.ts
+  task: "Render archetype dialogue topology"
+  test: packages/visuals/__tests__/ResonanzMandala.test.ts

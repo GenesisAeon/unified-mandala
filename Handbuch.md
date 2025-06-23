@@ -103,6 +103,7 @@ console.log(sigil.id); // hello
 Die erweiterten ToDos liegen in "advancedToDo_parts/".
 Teil 2 dort beschreibt Aufgaben zum Aeon Übergabe-Sigil und MemoryMesh.
 - `CommonsAgent` – Bewertet Open-Science-Aspekte.
+Teil 7 sammelt poetische Sigill- und Mandala-Aufgaben.
 Teil 5 ergänzt die Sigil-Historie.
 - `AdaptiveThreshold` und `DebounceManager` – steuern CREP-Trigger.
 - `AeonSigillinVault` – speichert poetische Zustände und Übergänge.
