@@ -22,3 +22,11 @@
   path: packages/unifiedmandala-ui/components/FeedbackButtons.tsx
   task: "Capture like/dislike feedback and log Sigil event"
   test: packages/unifiedmandala-ui/components/FeedbackButtons.test.tsx
+- commit: "Add bio sensor hooks and HapticService"
+  path: packages/bio
+  task: "Provide usePulse hook with dummy values and stub HapticService"
+  test: packages/bio/__tests__/usePulse.test.tsx
+- commit: "Add useABLayout hook"
+  path: packages/unifiedmandala-ui/hooks/useABLayout.ts
+  task: "Render random A/B layout and send metric event"
+  test: packages/unifiedmandala-ui/hooks/useABLayout.test.tsx
