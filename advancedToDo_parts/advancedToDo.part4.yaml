@@ -2,11 +2,14 @@
   path: .husky/pre-commit
   task: "Synchronize advanced ToDo and progress files before each commit"
   test: "node scripts/sync-todo-progress.js"
+  status: done
 - commit: "Provide Docker Compose setup"
   path: docker-compose.yml
   task: "Quickstart all services via Docker"
   test: ""
+  status: done
 - commit: "Add run-demo script"
   path: scripts/run-demo.sh
   task: "Start Docker Compose and local dev server"
   test: ""
+  status: done

@@ -6,3 +6,11 @@ plugins:
     story: "../apps/sharedream-interface/components/MetaScoreChart.stories.tsx"
     layoutSuggestion: |
       layout: default
+  - name: AdminMetrics
+    version: "1.0.0"
+    component: "../apps/sharedream-interface/components/AdminMetrics"
+    dataHook: "../apps/sharedream-interface/hooks/useAdminMetrics"
+    story: "../apps/sharedream-interface/components/AdminMetrics.stories.tsx"
+    crepCondition: ">=0.7"
+    layoutSuggestion: |
+      layout: admin
