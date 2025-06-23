@@ -324,6 +324,8 @@ Aktuelle Versionshinweise werden in [CHANGELOG.md](CHANGELOG.md) gepflegt.
 - ✨ **SigillinActivationManager & MetaSignatur** – Aktivierung & Signatur von Sigillin
 - 🌈 **ThemeProvider & useResponsiveTheme** – reagiert auf CREP
 - 🧩 **useAdaptiveLayout** – passt Gridbereiche an den CREP-Status an
+- 🧪 **useABLayout** – zufälliger Layouttest mit CREP-Metrik
+- 💓 **usePulse & HapticService** – simulierte Biosensoren und haptisches Feedback
 - 📜 **SigillinTimeline & InviteBanner** – Verlauf und Einladungsbanner
 - 📈 **CREPTimeline** – chronologische Auflistung der CREP-Ereignisse
 - 💾 **BackupManager** – einfache Dateisicherungen
@@ -371,6 +373,7 @@ packages/
   ├── art                 # Sonification & AI-Art
   ├── shared-utils              # Hilfsfunktionen für alle Pakete
   │   └── RestClient.ts         # einfacher REST-Helper
+  ├── bio                      # Biometrische Hooks und HapticService
   ├── services/vector-indexer   # Embedding generator service
   ├── services/sigil-trigger    # Beobachtet Sigillin-Änderungen
   ├── services/memorymesh       # Region-Archive und Reflexionsdienste

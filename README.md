@@ -48,6 +48,8 @@ Schau auch ins [Glossar](docs/glossar-genesis.md) für Begriffe.
 - ✨ **SigillinActivationManager & MetaSignatur** – Aktivierung & Signatur von Sigillin
 - 🌈 **ThemeProvider & useResponsiveTheme** – CREP-basierte Farbwahl
 - 🧩 **useAdaptiveLayout** – reagiert auf CREP-Status
+- 🧪 **useABLayout** – A/B-Tests mit CREP-Metrik
+- 💓 **usePulse & HapticService** – simulierte Biosensoren und haptisches Feedback
 - 📜 **SigillinTimeline & InviteBanner** – Verlauf und Einladungsbanner
 - 📈 **CREPTimeline** – chronologische Ansicht der CREP-Ereignisse
 - 💾 **BackupManager** – einfache Dateisicherungen
@@ -146,6 +148,7 @@ packages/
   ├── art                 # Sonification & AI-Art
   ├── shared-utils              # Hilfsfunktionen für alle Pakete
   │   └── RestClient.ts         # einfacher REST-Helper
+  ├── bio                      # Biometrische Hooks und HapticService
   ├── go-bridge             # Go-Client für REST, gRPC und NATS
   ├── go-agent              # Autonomer Go-Daemon für Tasks
   │   ├── pkg/policy        # Policy Enforcement Stubs
