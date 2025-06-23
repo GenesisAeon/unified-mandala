@@ -7,6 +7,7 @@ try {
   ({ updateAdvancedTodo } = require('../packages/shared-utils/advancedTodoUpdater'));
 }
 const { updateProgress } = require('./update-advancedprogress.js');
+const { addTransitionHistory } = require('./add-transition-history.js');
 
 const convFile = path.join(__dirname, '../docs/sigils/advancedconversations.json');
 const yamlFile = path.join(__dirname, '../advancedToDo.yaml');
@@ -27,6 +28,7 @@ function run() {
   updateAdvancedTodo(convFile, yamlFile, jsonFile);
   updateProgress('aeon-transition');
   createTransitionSigil();
+  addTransitionHistory(sigilOut);
   console.log('Aeon transition workflow completed');
 }
 
