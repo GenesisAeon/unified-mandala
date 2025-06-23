@@ -101,6 +101,7 @@ Schau auch ins [Glossar](docs/glossar-genesis.md) für Begriffe.
 - ✨ **useEventGlow** – Hook für Event-Hervorhebung (`packages/unifiedmandala-ui/hooks/useEventGlow.ts`)
 - 🤫 **silenceWatcher** – meldet Stille im EventHub (`packages/agents/silenceWatcher.ts`)
 - 👍 **FeedbackButtons** – zeichnet Nutzerfeedback als Sigil-Ereignis auf (`packages/unifiedmandala-ui/components/FeedbackButtons.tsx`)
+- 💬 **ChatPanel** – einfacher GPT-gestützter Chat mit CREP-Logging
 - 🔥 **ArchetypeDecoderAgent** – extrahiert Archetypen aus Beschreibungen (`packages/agents/ArchetypeDecoderAgent.ts`)
 - 🔮 **SigillinInterpreterAgent** – erkennt Sigillin-Symbole (`packages/agents/SigillinInterpreterAgent.ts`)
 - 📝 **ChronoPoemGeneratorAgent** – generiert poetische Zeilen (`packages/agents/ChronoPoemGeneratorAgent.ts`)
