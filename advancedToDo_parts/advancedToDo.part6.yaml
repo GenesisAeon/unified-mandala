@@ -2,7 +2,9 @@
   path: packages/visuals/MandalaGraph.ts
   task: "Render mastercanvas nodes with three.js"
   test: packages/visuals/__tests__/MandalaGraph.test.ts
+  status: done
 - commit: "Add GenerativeOverlay stub"
   path: packages/art/generativeOverlay.ts
   task: "Stub GAN overlay generator"
   test: packages/art/__tests__/generativeOverlay.test.ts
+  status: done
