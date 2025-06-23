@@ -98,3 +98,24 @@ export function extractCodeSnippetsFromFile(filePath: string, destDir: string): 
   });
   return snippets;
 }
+
+/**
+ * Merges all JSON array chunk files in a directory into a single output file.
+ * The chunks must each contain a JSON array. Files are merged in lexicographical order.
+ */
+export function mergeJsonChunks(dir: string, outFile: string) {
+  if (!fs.existsSync(dir)) throw new Error(`Directory not found: ${dir}`);
+  const files = fs
+    .readdirSync(dir)
+    .filter(f => f.endsWith('.json'))
+    .sort();
+  const merged: any[] = [];
+  for (const f of files) {
+    const data = JSON.parse(fs.readFileSync(`${dir}/${f}`, 'utf8'));
+    if (!Array.isArray(data)) {
+      throw new Error(`Chunk ${f} is not a JSON array`);
+    }
+    merged.push(...data);
+  }
+  fs.writeFileSync(outFile, JSON.stringify(merged, null, 2), 'utf8');
+}

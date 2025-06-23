@@ -3,7 +3,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.extractCodeSnippetsFromFile = exports.grepJsonArrayFile = exports.writeJsonChunks = exports.splitJsonArrayFile = exports.splitJsonArray = void 0;
+exports.splitJsonArray = splitJsonArray;
+exports.splitJsonArrayFile = splitJsonArrayFile;
+exports.writeJsonChunks = writeJsonChunks;
+exports.grepJsonArrayFile = grepJsonArrayFile;
+exports.extractCodeSnippetsFromFile = extractCodeSnippetsFromFile;
+exports.mergeJsonChunks = mergeJsonChunks;
 const fs_1 = __importDefault(require("fs"));
 /**
  * Splits an array into chunks of the given size.
@@ -17,7 +22,6 @@ function splitJsonArray(items, chunkSize) {
     }
     return chunks;
 }
-exports.splitJsonArray = splitJsonArray;
 /**
  * Reads a JSON array file and splits its content into chunks.
  * @param filePath Path to JSON array file.
@@ -31,7 +35,6 @@ function splitJsonArrayFile(filePath, chunkSize) {
     }
     return splitJsonArray(data, chunkSize);
 }
-exports.splitJsonArrayFile = splitJsonArrayFile;
 /**
  * Writes chunks of a JSON array file into separate files.
  * Resulting files are named <basename>-<index>.json in destDir.
@@ -49,7 +52,6 @@ function writeJsonChunks(filePath, destDir, chunkSize) {
         fs_1.default.writeFileSync(outPath, JSON.stringify(chunk, null, 2), 'utf8');
     });
 }
-exports.writeJsonChunks = writeJsonChunks;
 /**
  * Filters a JSON array file by a regex applied to each item's stringified form.
  * Matching items are written to <basename>-grep.json in destDir.
@@ -71,7 +73,6 @@ function grepJsonArrayFile(filePath, destDir, pattern) {
     fs_1.default.writeFileSync(outPath, JSON.stringify(matches, null, 2), 'utf8');
     return matches;
 }
-exports.grepJsonArrayFile = grepJsonArrayFile;
 /**
  * Extracts code snippets (```code```) from a JSON array file and writes them to individual files.
  * @param filePath Path to JSON array file.
@@ -108,4 +109,24 @@ function extractCodeSnippetsFromFile(filePath, destDir) {
     });
     return snippets;
 }
-exports.extractCodeSnippetsFromFile = extractCodeSnippetsFromFile;
+/**
+ * Merges all JSON array chunk files in a directory into a single output file.
+ * The chunks must each contain a JSON array. Files are merged in lexicographical order.
+ */
+function mergeJsonChunks(dir, outFile) {
+    if (!fs_1.default.existsSync(dir))
+        throw new Error(`Directory not found: ${dir}`);
+    const files = fs_1.default
+        .readdirSync(dir)
+        .filter(f => f.endsWith('.json'))
+        .sort();
+    const merged = [];
+    for (const f of files) {
+        const data = JSON.parse(fs_1.default.readFileSync(`${dir}/${f}`, 'utf8'));
+        if (!Array.isArray(data)) {
+            throw new Error(`Chunk ${f} is not a JSON array`);
+        }
+        merged.push(...data);
+    }
+    fs_1.default.writeFileSync(outFile, JSON.stringify(merged, null, 2), 'utf8');
+}

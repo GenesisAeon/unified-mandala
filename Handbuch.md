@@ -235,6 +235,7 @@ Eine Pipeline-Demonstration findest du in [docs/demo/POC-Run-Guide.md](docs/demo
 | `node scripts/generate-todo-sigil.js` | Erzeugt `todo-sigil.yaml` |
 | `node scripts/update-todo-sigil.js` | Aktualisiert todo-Sigil-Status |
 | `node scripts/split-conversations.js` | Zerlegt `conversations.json` |
+| `node scripts/merge-conversations.js` | Fügt gesplittete Conversations wieder zusammen |
 | `node scripts/filter-conversations.js` | Filtert `conversations.json` |
 | `node scripts/parse-advanced-conversations.js` | Parst `advancedconversations.json` |
 | `node scripts/analyze-conversations.js` | Analysiert Gespräche |
@@ -460,6 +461,7 @@ npm run dev   # oder: yarn dev
 | `node scripts/generate-todo-sigil.js` | Erzeugt `todo-sigil.yaml` |
 | `node scripts/update-todo-sigil.js` | Aktualisiert todo-Sigil-Status |
 | `node scripts/split-conversations.js` | Zerlegt `conversations.json` |
+| `node scripts/merge-conversations.js` | Fügt gesplittete Conversations wieder zusammen |
 | `node scripts/filter-conversations.js` | Filtert `conversations.json` |
 | `node scripts/parse-advanced-conversations.js` | Parst `advancedconversations.json` |
 | `node scripts/analyze-conversations.js` | Analysiert Gespräche |
