@@ -187,13 +187,15 @@ config/                  # Zentrale YAML- und Env-Dateien
   ├── memory-manager.yaml  # Cleanup-Interval Konfiguration
 repositorypflege/         # Pflegekonzepte und Repository-Mapping
 apps/
-  └── sharedream-interface      # Web-Schnittstelle & Sync
+  ├── sharedream-interface      # Web-Schnittstelle & Sync
+  └── web                      # Sammelkomponenten (z.B. TodoButton)
 
 scripts/
   ├── aeon.sh                   # Poetisches Bash-CLI für Mandala-Steuerung
   ├── nucleon-scanner-analysis.js   # Auswertung von Scanner-Logs
   ├── setup-unifiedmandala.sh   # Installer & Initialisierung
   ├── generate-chronopoem.js    # Poetische Commit-Signatur
+  ├── todoSigilGenerator.js     # Automatisches ToDo-Sigil aus Repo-Analyse
   └── onboarding-ritual.md      # Onboarding-Ritus für neue Contributors
 ```
 
