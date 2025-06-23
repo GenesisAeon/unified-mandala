@@ -320,6 +320,7 @@ Aktuelle Versionshinweise werden in [CHANGELOG.md](CHANGELOG.md) gepflegt.
 - 🌠 **AeonStoryMode & Onboarding-Flow** – Präsentations- und Einstiegskomponenten
 - 🎨 **MandalaThemeManager** – hell/dunkel umschalten
 - ✨ **SigillinActivationManager & MetaSignatur** – Aktivierung & Signatur von Sigillin
+- 🌈 **ThemeProvider & useResponsiveTheme** – reagiert auf CREP
 - 📜 **SigillinTimeline & InviteBanner** – Verlauf und Einladungsbanner
 - 📈 **CREPTimeline** – chronologische Auflistung der CREP-Ereignisse
 - 💾 **BackupManager** – einfache Dateisicherungen

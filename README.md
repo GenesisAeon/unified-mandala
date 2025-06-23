@@ -45,6 +45,7 @@ Schau auch ins [Glossar](docs/glossar-genesis.md) für Begriffe.
 - 🌠 **AeonStoryMode & Onboarding-Flow** – Präsentations- und Einstiegskomponenten
 - 🎨 **MandalaThemeManager** – hell/dunkel umschalten
 - ✨ **SigillinActivationManager & MetaSignatur** – Aktivierung & Signatur von Sigillin
+- 🌈 **ThemeProvider & useResponsiveTheme** – CREP-basierte Farbwahl
 - 📜 **SigillinTimeline & InviteBanner** – Verlauf und Einladungsbanner
 - 📈 **CREPTimeline** – chronologische Ansicht der CREP-Ereignisse
 - 💾 **BackupManager** – einfache Dateisicherungen
