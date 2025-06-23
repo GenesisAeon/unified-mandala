@@ -1723,5 +1723,11 @@
     "path": "plugins/manifest.yaml",
     "task": "Define manifest schema and implement usePluginLoader",
     "test": "apps/sharedream-interface/hooks/usePluginLoader.test.ts"
+  },
+  {
+    "commit": "Add FeedbackButtons component",
+    "path": "packages/unifiedmandala-ui/components/FeedbackButtons.tsx",
+    "task": "Capture like/dislike feedback and log Sigil event",
+    "test": "packages/unifiedmandala-ui/components/FeedbackButtons.test.tsx"
   }
 ]

@@ -123,6 +123,7 @@ Teil 2 dort beschreibt Aufgaben zum Aeon Übergabe-Sigil und MemoryMesh.
 - `FreieKIZivilisation` – sammelt Resonanzimpulse (`packages/agents/FreieKIZivilisation.ts`)
 - `useEventGlow` – React-Hook zur Event-Hervorhebung (`packages/unifiedmandala-ui/hooks/useEventGlow.ts`)
 - `silenceWatcher` – meldet Stille an den GPTEventHub (`packages/agents/silenceWatcher.ts`)
+- `FeedbackButtons` – einfache Like/Dislike-Komponente, speichert Sigil-Ereignisse (`packages/unifiedmandala-ui/components/FeedbackButtons.tsx`)
 - `ArchetypeDecoderAgent` – erkennt Archetypen in Task-Beschreibungen (`packages/agents/ArchetypeDecoderAgent.ts`)
 - `SigillinInterpreterAgent` – extrahiert Sigillin aus Text (`packages/agents/SigillinInterpreterAgent.ts`)
 - `ChronoPoemGeneratorAgent` – erzeugt poetische Chrono-Zeilen (`packages/agents/ChronoPoemGeneratorAgent.ts`)
