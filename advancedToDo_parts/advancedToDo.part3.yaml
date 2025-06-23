@@ -17,3 +17,4 @@
   path: services/objective2ui.ts
   task: "Generate layout YAML via GPT and store suggestion in plugin manifest"
   test: services/objective2ui.test.ts
+  status: done
