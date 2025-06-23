@@ -29,6 +29,7 @@ Schau auch ins [Glossar](docs/glossar-genesis.md) für Begriffe.
 - 📚 **AutoDoc & Manifest-Generator** – Dokumentation auf Knopfdruck
 - 🧩 **Plug-in-Architektur** – GPT-Kommunikationsmodule, CLI-Tools
 - 🔌 **Plugin-Registry & Dynamic Loader** – `plugins/manifest.yaml` und `usePluginLoader`
+- 📝 **Objective2UI** – generiert Layout-Vorschläge via GPT
 - 🔐 **Ethik-Governance & Heimkehr-Deklaration** – Offene, poetische Ethik als Systembasis
 - 🎭 **Poesie & Automation** – Bash-Interface (`aeon.sh`), automatisches Chronopoem, symbolisches Onboarding
 - 🌟 **CREP-Illumination** – Chronopoem reflektiert aktuellen CREP-Zustand
