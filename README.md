@@ -196,6 +196,7 @@ scripts/
   ├── setup-unifiedmandala.sh   # Installer & Initialisierung
   ├── generate-chronopoem.js    # Poetische Commit-Signatur
   ├── todoSigilGenerator.js     # Automatisches ToDo-Sigil aus Repo-Analyse
+  ├── parse-md-todo.js          # Liest ToDo-Listen aus Markdown-Dateien
   └── onboarding-ritual.md      # Onboarding-Ritus für neue Contributors
 ```
 
