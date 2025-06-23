@@ -258,6 +258,7 @@ npm run dev   # oder: yarn dev
 | `node scripts/symbolzeit-runner.js` | Läuft Symbolzeit-Cronjob |
 | `node scripts/generate-next-sigil.js` | Erstellt Folgesigil nach Zyklus |
 | `node scripts/aeon-transition-workflow.js` | Sync & erzeugt Übergabe-Sigil |
+| `node scripts/add-transition-history.js` | Fügt Übergabe-Sigil zur Progress-Historie hinzu |
 | `node packages/cli-tools/sigillin-cli.js convert beispiel.yaml` | YAML ↔ JSON-Konvertierung |
 | `./scripts/setup-mtls.sh` | Erstellt Testzertifikate |
 | `./scripts/setup-kong-jwt.sh` | Konfiguriert JWT Gateway |
@@ -345,6 +346,7 @@ gespeichert. Nutzen Sie die Helferskripte aus `packages/shared-utils`
 Pitch-Vorlagen für Events finden sich unter `docs/pitch/`.
 Die ToDo-Liste wurde für mehr Übersicht in "advancedToDo_parts/" aufgeteilt.
 Teil 2 in advancedToDo_parts beinhaltet Aufgaben zum Aeon Übergabe-Sigil und MemoryMesh.
+Teil 5 enthält Aufgaben zur Sigil-Historie.
 
 Nutze `node scripts/parse-advanced-conversations.js` um Gesprächs-TODOs aus dem Datensatz zu filtern.
 

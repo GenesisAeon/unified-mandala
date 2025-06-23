@@ -103,6 +103,7 @@ console.log(sigil.id); // hello
 Die erweiterten ToDos liegen in "advancedToDo_parts/".
 Teil 2 dort beschreibt Aufgaben zum Aeon Übergabe-Sigil und MemoryMesh.
 - `CommonsAgent` – Bewertet Open-Science-Aspekte.
+Teil 5 ergänzt die Sigil-Historie.
 - `AdaptiveThreshold` und `DebounceManager` – steuern CREP-Trigger.
 - `AeonSigillinVault` – speichert poetische Zustände und Übergänge.
 - `withCircuit` – CircuitBreaker-Helfer für Agenten.
@@ -256,6 +257,7 @@ Eine Pipeline-Demonstration findest du in [docs/demo/POC-Run-Guide.md](docs/demo
 | `node scripts/symbolzeit-runner.js` | Läuft Symbolzeit-Cronjob |
 | `node scripts/generate-next-sigil.js` | Erstellt Folgesigil nach Zyklus |
 | `node scripts/aeon-transition-workflow.js` | Sync & erzeugt Übergabe-Sigil |
+| `node scripts/add-transition-history.js` | Fügt Übergabe-Sigil zur Progress-Historie hinzu |
 | `./scripts/setup-mtls.sh` | Erstellt Testzertifikate |
 | `./scripts/setup-kong-jwt.sh` | Konfiguriert JWT Gateway |
 | `node packages/cli-tools/SigillinValidator.ts <file>` | Validiert eine Sigillin-Datei |
