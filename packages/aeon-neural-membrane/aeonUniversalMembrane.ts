@@ -110,4 +110,15 @@ export class AeonUniversalMembrane {
       return { energy, tone };
     });
   }
+
+  /**
+   * Provides a detailed resonance map with the layer index included.
+   */
+  resonanceMap() {
+    return this.mem.getNetworks().map((net, idx) => {
+      const energy = scanEnergy(net);
+      const tone = memoryToTone(energy / 10);
+      return { layer: idx, energy, tone };
+    });
+  }
 }

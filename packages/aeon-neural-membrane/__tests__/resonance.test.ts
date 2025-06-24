@@ -7,3 +7,11 @@ test('scanResonance lists energy for each reflection', () => {
   expect(res[0]).toHaveProperty('energy');
   expect(res[0]).toHaveProperty('tone');
 });
+
+test('resonanceMap includes layer index', () => {
+  const mem = new AeonUniversalMembrane(3);
+  const map = mem.resonanceMap();
+  expect(map.length).toBe(mem.depth);
+  expect(map[0]).toHaveProperty('layer');
+  expect(map[1].layer).toBe(1);
+});
