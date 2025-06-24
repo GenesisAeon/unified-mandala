@@ -13,6 +13,7 @@ export interface CompileOptions {
   visited?: Set<string>;
   macros?: Record<string, string[]>;
   currentMacro?: string | null;
+  contextStack?: string[];
 }
 
 export function compile(source: string, options: CompileOptions = {}): CompileResult {
@@ -22,6 +23,7 @@ export function compile(source: string, options: CompileOptions = {}): CompileRe
   const visited = options.visited || new Set<string>();
   const macros = options.macros || {};
   let currentMacro = options.currentMacro || null;
+  let contextStack = options.contextStack || [];
 
   const lines = source.split(/\n+/);
   lines.forEach((line, idx) => {
@@ -46,21 +48,25 @@ export function compile(source: string, options: CompileOptions = {}): CompileRe
     } else if (cmd.toUpperCase() === 'CALL') {
       const macroLines = macros[content];
       if (macroLines) {
-        const child = compile(macroLines.join('\n'), { baseDir, visited, macros });
+        const child = compile(macroLines.join('\n'), { baseDir, visited, macros, contextStack });
         tasks.push(...child.tasks);
       }
     } else if (cmd.toUpperCase() === 'REM') {
       AeonMemory.record(content);
     } else if (cmd.toUpperCase() === 'SIG' || cmd.toUpperCase() === 'SIGILLIN') {
       AeonSigillinVault.record({ id: `${idx}`, timestamp: new Date().toISOString(), content });
+    } else if (cmd.toUpperCase() === 'WITH') {
+      contextStack = [...contextStack, content];
+    } else if (cmd.toUpperCase() === 'ENDWITH') {
+      contextStack.pop();
     } else if (cmd.toUpperCase() === 'TASK') {
-      tasks.push({ id: `${idx}`, description: content });
+      tasks.push({ id: `${idx}`, description: content, context: contextStack.join('/') });
     } else if (cmd.toUpperCase() === 'INCLUDE') {
       const filePath = path.resolve(baseDir, content);
       if (!visited.has(filePath) && fs.existsSync(filePath)) {
         visited.add(filePath);
         const childSource = fs.readFileSync(filePath, 'utf-8');
-        const child = compile(childSource, { baseDir: path.dirname(filePath), visited, macros });
+        const child = compile(childSource, { baseDir: path.dirname(filePath), visited, macros, contextStack });
         tasks.push(...child.tasks);
       }
     }
