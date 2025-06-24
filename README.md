@@ -247,6 +247,7 @@ aus. Der Testlauf sollte mit `ok`-Zeilen für jedes Paket enden.
 # Node.js ≥ 18 & pnpm installiert
 git clone https://github.com/GenesisAeon/unified-mandala.git
 cd unified-mandala
+pnpm install
 ./scripts/setup-unifiedmandala.sh
 pnpm dev
 ./scripts/run-demo.sh # Docker-Compose Quickstart
