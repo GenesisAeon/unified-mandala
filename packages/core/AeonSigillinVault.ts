@@ -8,6 +8,7 @@ export class AeonSigillinVault {
   private static log: PoeticState[] = [];
   private static transitions: PoeticState[] = [];
   private static resonances: PoeticState[] = [];
+  private static guards: PoeticState[] = [];
 
   static record(state: PoeticState): void {
     this.log.push(state);
@@ -19,6 +20,14 @@ export class AeonSigillinVault {
 
   static recordResonance(state: PoeticState): void {
     this.resonances.push(state);
+  }
+
+  static recordGuard(state: PoeticState): void {
+    this.guards.push(state);
+  }
+
+  static getGuards(n = 5): PoeticState[] {
+    return this.guards.slice(-n);
   }
 
   static latest(n = 5): PoeticState[] {

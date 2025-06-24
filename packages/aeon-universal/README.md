@@ -14,6 +14,10 @@ anzugeben. Alle darin enthaltenen `TASK`s erhalten einen zusammengesetzten
 `context`-Pfad, der später zur Auswertung dient. Ein `ENDWITH` beendet den
 aktuellen Kontext.
 
+Seit **0.6** existiert der Befehl **GUARD**. Er protokolliert Schutz-
+ oder Sicherheitsnotizen im `AeonSigillinVault` und dient der
+dialogischen Selbstabsicherung des Systems.
+
 ## Beispiel
 ```aeon
 TASK Hallo Welt
@@ -26,5 +30,6 @@ END
 CALL begrüßung
 WITH ProjektX
   TASK Schritt1
+GUARD Nur intern verwenden
 ENDWITH
 ```
