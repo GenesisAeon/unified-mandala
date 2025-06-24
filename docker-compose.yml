@@ -1,7 +1,9 @@
 version: '3.8'
 services:
   ui:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
     command: pnpm dev
     ports:
       - "3000:3000"
