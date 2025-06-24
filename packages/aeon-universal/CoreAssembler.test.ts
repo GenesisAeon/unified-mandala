@@ -25,4 +25,13 @@ describe('AeonCoreAssembler', () => {
     await assembler.processSource('TASK Demo');
     expect(agent.received.length).toBe(0);
   });
+
+  it('routes tasks to matching agent only', async () => {
+    const assembler = new AeonCoreAssembler();
+    const agent = new MockAgent();
+    assembler.register(agent);
+    await assembler.processSource('ROUTE Mock\nTASK Demo\nENDROUTE');
+    expect(agent.received.length).toBe(1);
+    expect(agent.received[0].description).toBe('Demo');
+  });
 });
