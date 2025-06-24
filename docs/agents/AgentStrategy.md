@@ -16,3 +16,4 @@ UnifiedMandala versteht sich als symbiotisches System, in dem jeder Agent einen 
 2. Agenten über `SyncRunner` regelmäßig synchronisieren.
 3. Erweiterungen über `GenesisAeonNavigator` phasengerecht einbinden.
 4. Visionen zentral über den VisionContextIntegrator abstimmen.
+5. Agentenübersicht via StrategicAgentCoordinator generieren.
