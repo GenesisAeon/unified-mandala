@@ -18,6 +18,7 @@ narrative Interfaces und adaptive Bewusstseinsräume.
 
 Schau auch ins [Glossar](docs/glossar-genesis.md) für Begriffe.
 Einen Überblick über die Agenten bietet [docs/architecture/agent-system.md](docs/architecture/agent-system.md).
+Strategische Leitlinien stehen in [docs/agents/AgentStrategy.md](docs/agents/AgentStrategy.md).
 
 
 ## 🚀 Features

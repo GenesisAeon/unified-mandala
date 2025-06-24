@@ -90,6 +90,22 @@ Dieses Dokument wird bei jedem Codex-Start ausgelesen. Jeder Agent manifestiert 
   - Oder wenn `CREP.event == "bundleReady"`
   - roles_allowed: [admin]
   - Dokumentation: docs/agents/DepthBundleExporter.md
+
+## 🔄 Agent: PatternReactivator
+- **Startmodul**: `pattern-reactivator.ts`
+- **Funktion**:
+  - Reaktiviert ruhende Aufgabenketten bei niedrigem CREP-Score
+  - Durchsucht `patternStore` nach passenden Mustern
+  - roles_allowed: [dev]
+  - Dokumentation: docs/agents/PatternReactivator.md
+
+## 🌌 Agent: GenesisAeonNavigator
+- **Startmodul**: `genesis-aeon-navigator.ts`
+- **Funktion**:
+  - Steuert Phasenwechsel im Genesis-Aeon
+  - Protokolliert Übergänge in `genesis.log`
+  - roles_allowed: [admin, dev]
+  - Dokumentation: docs/agents/GenesisAeonNavigator.md
 ---
 ## 🔑 Special Instructions
 ```yaml
