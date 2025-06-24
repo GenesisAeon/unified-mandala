@@ -199,3 +199,12 @@ export function transpileToRust(result: CompileResult): string {
   lines.push("];");
   return lines.join("\n") + "\n";
 }
+
+export function transpileToJS(result: CompileResult): string {
+  const data = result.tasks.map((t) => ({
+    id: t.id,
+    description: t.description,
+    context: t.context,
+  }));
+  return `export const aeonTasks = ${JSON.stringify(data, null, 2)};\n`;
+}

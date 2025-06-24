@@ -5,6 +5,7 @@ import {
   transpileToTS,
   transpileToPython,
   transpileToGo,
+  transpileToJS,
 } from "./compiler";
 import { AeonSigillinVault } from "../core/AeonSigillinVault";
 
@@ -92,5 +93,12 @@ describe("AeonUniversal compile", () => {
     const go = transpileToGo(res);
     expect(go).toContain("package aeon");
     expect(go).toContain("Demo");
+  });
+
+  it("transpiles tasks to JS", () => {
+    const res = compile("TASK Demo");
+    const js = transpileToJS(res);
+    expect(js).toContain("aeonTasks");
+    expect(js).toContain("Demo");
   });
 });

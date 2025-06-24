@@ -24,6 +24,9 @@ Kompilat über `transpileToTS()` in TypeScript, `transpileToPython()` in Python,
 Ab **0.8** akzeptieren Makros optionale Parameter. Definiert mit `DEFINE name param`, können Platzhalter
 `$param` innerhalb des Blocks verwendet und bei `CALL name value` ersetzt werden.
 
+Ab **0.9** kann Aeon Universal direkt nach JavaScript transpiliert werden. Die Funktion
+`transpileToJS()` erzeugt ein simples ES-Modul mit `aeonTasks`-Array.
+
 ## Beispiel
 
 ```aeon
