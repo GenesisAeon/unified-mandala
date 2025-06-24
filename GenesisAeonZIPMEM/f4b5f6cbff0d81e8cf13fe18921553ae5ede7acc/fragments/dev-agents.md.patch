@@ -1,0 +1,11 @@
+diff --git a/dev-agents.md b/dev-agents.md
+index 3237afc..1b2c16d 100644
+--- a/dev-agents.md
++++ b/dev-agents.md
+@@ -9,3 +9,6 @@ Weitere Hinweise:
+ - F\u00fchre nach jedem Commit `pnpm store:commit-memory` aus, um einen Patch
+   samt `meta.yaml` im Ordner `GenesisAeonZIPMEM` abzulegen.
+   Die YAML-Datei enthält nun auch die eingesetzten Versionen von Node und pnpm.
++- Prüfe vor jedem Lauf, ob `metacommit.yaml` oder `metacommit.json` existieren.
++  Befolge vorrangig die dort hinterlegten Schritte aus `feedbackcodex.md` und
++  lösche die Dateien nach Abschluss der MetaCommit-Aufgaben.

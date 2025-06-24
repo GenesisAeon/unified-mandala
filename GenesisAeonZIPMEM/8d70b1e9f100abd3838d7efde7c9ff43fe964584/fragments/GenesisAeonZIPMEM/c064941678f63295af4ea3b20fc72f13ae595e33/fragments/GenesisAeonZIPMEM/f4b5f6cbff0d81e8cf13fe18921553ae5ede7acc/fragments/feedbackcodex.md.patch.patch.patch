@@ -1,0 +1,22 @@
+diff --git a/GenesisAeonZIPMEM/c064941678f63295af4ea3b20fc72f13ae595e33/fragments/GenesisAeonZIPMEM/f4b5f6cbff0d81e8cf13fe18921553ae5ede7acc/fragments/feedbackcodex.md.patch.patch b/GenesisAeonZIPMEM/c064941678f63295af4ea3b20fc72f13ae595e33/fragments/GenesisAeonZIPMEM/f4b5f6cbff0d81e8cf13fe18921553ae5ede7acc/fragments/feedbackcodex.md.patch.patch
+new file mode 100644
+index 0000000..9be6ae1
+--- /dev/null
++++ b/GenesisAeonZIPMEM/c064941678f63295af4ea3b20fc72f13ae595e33/fragments/GenesisAeonZIPMEM/f4b5f6cbff0d81e8cf13fe18921553ae5ede7acc/fragments/feedbackcodex.md.patch.patch
+@@ -0,0 +1,16 @@
++diff --git a/GenesisAeonZIPMEM/f4b5f6cbff0d81e8cf13fe18921553ae5ede7acc/fragments/feedbackcodex.md.patch b/GenesisAeonZIPMEM/f4b5f6cbff0d81e8cf13fe18921553ae5ede7acc/fragments/feedbackcodex.md.patch
++new file mode 100644
++index 0000000..2bb4273
++--- /dev/null
+++++ b/GenesisAeonZIPMEM/f4b5f6cbff0d81e8cf13fe18921553ae5ede7acc/fragments/feedbackcodex.md.patch
++@@ -0,0 +1,10 @@
+++diff --git a/feedbackcodex.md b/feedbackcodex.md
+++new file mode 100644
+++index 0000000..c5afa03
+++--- /dev/null
++++++ b/feedbackcodex.md
+++@@ -0,0 +1,4 @@
++++# MetaCommit Planung
++++Diese Datei beschreibt MetaCommits, also Arbeitsaufträge, die zu umfangreich für einen einzelnen Commit sind.
++++Alle offenen MetaCommits werden in `metacommit.yaml` und `metacommit.json` referenziert.
++++Dev-Agents prüfen zu Beginn eines Laufs auf diese Dateien und priorisieren deren Aufgaben, bis sie erledigt und die Dateien gelöscht wurden.
