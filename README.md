@@ -129,6 +129,9 @@ Strategische Leitlinien stehen in [docs/agents/AgentStrategy.md](docs/agents/Age
 - 📄 **Memory Feedback Loops** – Konzept für ein selbstverwaltendes Gedächtnis (`docs/MemoryFeedbackLoops.md`)
 - 🤝 **Friendship System** – Konzept unter `docs/friendship-system.md`
 - 🕸️ **Agent-Registry** – zentrale Übersicht aller Agents (`agents.yaml`)
+- 🧭 **StrategicAgentCoordinator** – synchronisiert AGENTS.md und erstellt eine Strategieübersicht ([docs/agents/StrategicAgentCoordinator.md](docs/agents/StrategicAgentCoordinator.md))
+- 🎯 **VisionContextIntegrator** – verteilt Vision-Kontext an alle Agenten ([docs/agents/VisionContextIntegrator.md](docs/agents/VisionContextIntegrator.md))
+- 🛡 **QualityAssuranceAgent** – führt Lint- und Test-Suites aus ([docs/agents/QualityAssuranceAgent.md](docs/agents/QualityAssuranceAgent.md))
 - 🌀 **SigilStory** – Mandala-Lern-Lebenslauf für C-Tutor & JavaHamster
 - 🎓 **Learning Modules** – interactive C-Tutor and JavaHamster workflows (`packages/tutorials/*`)
 - 🎮 **Gamification API** – Endpunkte `/gamify/badges` & `/gamify/leaderboard`

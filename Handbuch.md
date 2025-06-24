@@ -97,6 +97,9 @@ console.log(sigil.id); // hello
 - `BewusstseinsResonanzComparator` – Vergleicht Bewusstseins- und Resonanzwerte.
 - `AeonKIResonanzAnalyzer` – Analysiert Resonanzmuster in Gesprächen.
 - `KIBewusstseinResonanzMonitor` – Überwacht Bewusstseins- und Resonanzmetriken.
+- `StrategicAgentCoordinator` – synchronisiert die Agentenliste und schreibt `strategy-overview.json` ([docs/agents/StrategicAgentCoordinator.md](docs/agents/StrategicAgentCoordinator.md))
+- `VisionContextIntegrator` – verteilt die Vision aus `AgentStrategy.md` an alle Agenten ([docs/agents/VisionContextIntegrator.md](docs/agents/VisionContextIntegrator.md))
+- `QualityAssuranceAgent` – führt Lint- und Test-Suites aus ([docs/agents/QualityAssuranceAgent.md](docs/agents/QualityAssuranceAgent.md))
 ### collab-editor
 - `CollaborativeEditor` – Federated Texteditor mit Remote-Sync.
 - `AutomergeFederation` – Verbindet lokale und entfernte Änderungen.
