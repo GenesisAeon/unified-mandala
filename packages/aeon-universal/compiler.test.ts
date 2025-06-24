@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { compile } from './compiler';
+import { AeonSigillinVault } from '../core/AeonSigillinVault';
 
 const CHRONIK = path.resolve('mandala-chronik.yaml');
 
@@ -14,5 +15,11 @@ describe('AeonUniversal compile', () => {
     expect(result.tasks[0].description).toBe('Demo');
     const content = fs.readFileSync(CHRONIK, 'utf-8');
     expect(content).toContain('Erinnerung');
+  });
+
+  it('records sigillin states', () => {
+    const spy = jest.spyOn(AeonSigillinVault, 'record');
+    compile('SIG Hallo');
+    expect(spy).toHaveBeenCalled();
   });
 });
