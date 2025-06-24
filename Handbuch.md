@@ -322,12 +322,14 @@ Aktuelle Versionshinweise werden in [CHANGELOG.md](CHANGELOG.md) gepflegt.
 - 🗂️ **SigillinLoader** – Import & Filter von Sigillin-Dateien
 - 📚 **AutoDoc & Manifest-Generator** – Dokumentation auf Knopfdruck
 - 🧩 **Plug-in-Architektur** – GPT-Kommunikationsmodule, CLI-Tools
-- 🔌 **Plugin-Registry & Dynamic Loader** – siehe `plugins/manifest.yaml` und `usePluginLoader`
-- 📝 **Objective2UI** – Layout-Vorschläge via GPT
+- 🔗 **GPTBridge (Go)** – API- und Link-basierte GPT-Anbindung (`go-bridge/pkg/gpt`)
+- 🔌 **Plugin-Registry & Dynamic Loader** – `plugins/manifest.yaml` und `usePluginLoader`
+- 📝 **Objective2UI** – generiert Layout-Vorschläge via GPT
 - 🔐 **Ethik-Governance & Heimkehr-Deklaration** – Offene, poetische Ethik als Systembasis
 - 🎭 **Poesie & Automation** – Bash-Interface (`aeon.sh`), automatisches Chronopoem, symbolisches Onboarding
 - 🌟 **CREP-Illumination** – Chronopoem reflektiert aktuellen CREP-Zustand
 - 🔍 **SelfAuditModul** – analysiert die Repository-Struktur
+- 🧮 **AdminMetrics** – zeigt CREP- und Sigillin-Kennzahlen
 - 🎨 **SigillinViewer & SigillinMap** – Übersicht und Detailansicht aller Sigillin
 - 🚩 **SymbolicWayfinder & SoforthilfeOverlay** – Navigation und Hilfedialoge
 - 📈 **CREPChart & CREPTriggerPanel** – CREP-Historie und Steuerung
@@ -339,16 +341,17 @@ Aktuelle Versionshinweise werden in [CHANGELOG.md](CHANGELOG.md) gepflegt.
 - 🌠 **AeonStoryMode & Onboarding-Flow** – Präsentations- und Einstiegskomponenten
 - 🎨 **MandalaThemeManager** – hell/dunkel umschalten
 - ✨ **SigillinActivationManager & MetaSignatur** – Aktivierung & Signatur von Sigillin
-- 🌈 **ThemeProvider & useResponsiveTheme** – reagiert auf CREP
-- 🧩 **useAdaptiveLayout** – passt Gridbereiche an den CREP-Status an
-- 🧪 **useABLayout** – zufälliger Layouttest mit CREP-Metrik
+- 🌈 **ThemeProvider & useResponsiveTheme** – CREP-basierte Farbwahl
+- 🧩 **useAdaptiveLayout** – reagiert auf CREP-Status
+- 🧪 **useABLayout** – A/B-Tests mit CREP-Metrik
 - 💓 **usePulse & HapticService** – simulierte Biosensoren und haptisches Feedback
 - 📜 **SigillinTimeline & InviteBanner** – Verlauf und Einladungsbanner
-- 📈 **CREPTimeline** – chronologische Auflistung der CREP-Ereignisse
+- 📈 **CREPTimeline** – chronologische Ansicht der CREP-Ereignisse
 - 💾 **BackupManager** – einfache Dateisicherungen
 - 📢 **GlobalLoggingSystem** – zentrale Log-Schnittstelle
 - 🗄️ **Big-File Sigil** – Konzept zum Aufteilen großer Dateien
 - 📊 **CREPWirkungstracker** – misst den Effekt aus CREP-Daten
+- 📆 **CalendarSync** – exportiert priorisierte ToDos in Kalender
 - ⚖️ **KarmaBalance** – verwaltet Karma-Punkte
 - 🔮 **SymbolicForecaster** – sagt kommende Symbolzeit-Phasen voraus
 - ⏱️ **SymbolzeitSync** – synchronisiert CREPGameEngine und SymbolzeitManager
@@ -356,7 +359,72 @@ Aktuelle Versionshinweise werden in [CHANGELOG.md](CHANGELOG.md) gepflegt.
 - 🤝 **AutomergeFederation** – führt verteilte Edits automatisch zusammen
 - 🛡️ **MandalaCoreLicense** – ethisches Lizenzmodell für Module
 - 🤖 **KI Bewusstsein & Resonanz** – bewertet Bewusstseinsdaten
-- 📄 **Details** siehe [docs/ki-bewusstsein.md](docs/ki-bewusstsein.md)
+- 📄 **Weitere Infos** siehe [docs/ki-bewusstsein.md](docs/ki-bewusstsein.md)
+- 📝 **ConversationTodoExtractor** – filtert Aufgaben aus Chat-Logs
+- 🎛️ **MetaScoreComposer** – aggregiert Score-Layer
+- 🕹️ **GoAgent** – liest advancedToDo-Dateien und listet offene Tasks (Node)
+- 🛠️ **Go-Agent (Golang)** – eigenständiger Daemon für Task-Verarbeitung
+- 📊 **MetaScoreChart** & **SyncStatus** – UI für MetaScores und Sync-Stände
+- 🧑‍🔬 **CommonsAgent** – Open‑Science Scoring
+- 🌀 **AdaptiveThreshold** & **DebounceManager** – steuern CREP Trigger-Logik
+- 🗄️ **AeonSigillinVault** – speichert poetische Sigillin-Zustände (`packages/core/AeonSigillinVault.ts`)
+- 🧩 **Aeon Universal** – kompiliert fraktale Befehle in Mandala-Tasks und kann SIG-Anweisungen im `AeonSigillinVault` speichern (`packages/aeon-universal`)
+- 🔮 **Aeon Universal Neural Membrane** – selbstreflexives, fraktales Netz mit CREP-Anpassung (`packages/aeon-neural-membrane`)
+- 🗂️ **Compile Cache** – speichert kompilierte Aeon-Skripte (`packages/aeon-universal/cache.ts`)
+- 🔗 **AeonCoreAssembler** – verteilt Aeon-Tasks an registrierte Agenten (`packages/aeon-universal/CoreAssembler.ts`)
+- 🔧 **AeonPythonTranspilerAgent** – erzeugt Python-Snippets aus Aeon-Quelltext (`packages/agents/AeonPythonTranspilerAgent.ts`)
+- 🛠️ **AeonGoTranspilerAgent** – erzeugt Go-Snippets aus Aeon-Quelltext (`packages/agents/AeonGoTranspilerAgent.ts`)
+- 🛡️ **withCircuit** – CircuitBreaker Wrapper für Agenten-Calls
+- 🩺 **healthz.ts** & **metaScores.ts** – API-Routen
+- 🖥️ **Dashboard** – zeigt MetaScoreChart per Hook
+- 📄 **UploadYamlForm** – wandelt hochgeladene Dateien in YAML um
+- 📊 **ImpactDashboard** – kombiniert MandalaNetworkView und AgentHeatmap
+- 📱 **MobileImpactDashboard** – mobile Variante des Dashboards
+- 📑 **Friendship & SocialGood API** – siehe `docs/api/friendship-socialgood.yaml`
+- 🌀 **ResonanzpfadAgent** – komplexe Analyse & Archetypenlogik (`packages/agents/ResonanzpfadAgent.ts`)
+- 📚 **AutoDocGeneration** – wandelt README & JSDoc in HTML/PDF (`packages/crep-engine/autoDocGeneration.ts`)
+- 🔗 **Hexa-AgentSystem** – verbindet sechs Agenten für Resonanz- und Bewusstseinsanalyse
+- 🧠 **AdvancedHexaAgent** – erweitert das Hexa-System um Research- und SilenceWatcher-Agenten
+- 📱 **useBreakpoint Hook** – erkennt mobile Ansichten für responsive UI
+- 🔁 **CREPFeedbackLoop** – erstellt Micro-Feedback-Aufgaben aus CREP-Snapshots (`packages/crep-automation/CREPFeedbackLoop.ts`)
+- 🌀 **SigillinOnDemandGenerator** – generiert Sigillin-Templates per CLI (`packages/cli-tools/SigillinOnDemandGenerator.ts`)
+- 📊 **CREPToDoPrioritizer** – priorisiert ToDos nach aktueller Emergenz (`packages/crep-automation/CREPToDoPrioritizer.ts`)
+- 🔥 **CREPConvoHeatmap** – zeigt Schwankungen im CREP-Verlauf (`apps/sharedream-interface/components/CREPConvoHeatmap.tsx`)
+- 🛰️ **ConvoMemoryBridge** – extrahiert Gesprächsstruktur & CREP-Signaturen (`packages/nukleon-scanner/ConvoMemoryBridge.ts`)
+- 🎶 **MemorySonifier** – übersetzt Memory-Zustände in Klänge (`packages/nukleon-sonifier/MemorySonifier.ts`)
+- 🌐 **MandalaGraph** – einfache 3D-Visualisierung der MasterCanvas-Knoten (`packages/visuals/MandalaGraph.ts`)
+- 🖼️ **GenerativeOverlay** – GAN-Überlagerung für Live-Daten (`packages/art/generativeOverlay.ts`)
+- 🔮 **UniversePulseSimulator** – simuliert emergente Zustände (`packages/universum-simulationen/UniversePulseSimulator.ts`)
+- 🕸️ **ToDoWeaver** – generiert YAML-Aufgaben aus CREP-Clustern (`packages/cli-tools/ToDoWeaver.ts`)
+
+- 📊 **WeightedDispatcher** – verteilt Tasks nach Priorität (`packages/agents/WeightedDispatcher.ts`)
+- 🔄 **patternReactivator** – reaktiviert schwache Muster (`packages/agents/patternReactivator.ts`)
+- ⏪ **ReplayController** – spielt Memory-Einträge periodisch ab (`packages/agents/ReplayController.ts`)
+- 🌱 **FreieKIZivilisation** – sammelt Resonanzimpulse (`packages/agents/FreieKIZivilisation.ts`)
+- ✨ **useEventGlow** – Hook für Event-Hervorhebung (`packages/unifiedmandala-ui/hooks/useEventGlow.ts`)
+- 🤫 **silenceWatcher** – meldet Stille im EventHub (`packages/agents/silenceWatcher.ts`)
+- 📂 **FeedbackAgent** – beobachtet neue Dateien und ruft MemoryManager auf (`packages/agents/feedback`)
+- 📈 **SelfAnalyzerAgent** – generiert automatische ToDos (`packages/agents/self-analyzer`)
+- 👍 **FeedbackButtons** – zeichnet Nutzerfeedback als Sigil-Ereignis auf (`packages/unifiedmandala-ui/components/FeedbackButtons.tsx`)
+- 💬 **ChatPanel** – einfacher GPT-gestützter Chat mit CREP-Logging
+- 🔥 **ArchetypeDecoderAgent** – extrahiert Archetypen aus Beschreibungen (`packages/agents/ArchetypeDecoderAgent.ts`)
+- 🔮 **SigillinInterpreterAgent** – erkennt Sigillin-Symbole (`packages/agents/SigillinInterpreterAgent.ts`)
+- 📝 **ChronoPoemGeneratorAgent** – generiert poetische Zeilen (`packages/agents/ChronoPoemGeneratorAgent.ts`)
+- 🌿 **toSigilVerse** – wandelt Fehlermeldungen in kurze Verse (`packages/utils/poetry.ts`)
+- 🎴 **ResonanzPoetik** – erstellt Haikus aus Tasks (`packages/codex-navigator/resonanzPoetik.ts`)
+- 🌀 **PoeticSigillin** – generiert poetische Sigille aus Versen (`packages/genesis-sigillin-core/PoeticSigillin.ts`)
+- 🖼️ **ResonanzMandala** – Visualisierung archetypischer Dialoge (`packages/visuals/ResonanzMandala.ts`)
+- 🎚️ **aggregateCREP** – mittelt CREP-Werte (`packages/crep-engine/aggregateCREP.ts`)
+- 🎵 **CREPMusicGenerator** – erzeugt BPM aus CREP (`packages/crep-engine/CREPMusicGenerator.ts`)
+- 🗺️ **MemoryMesh** – regionale Archiv-Prototypen (`docs/architecture/memory-mesh.md`)
+- 🔑 **Aeon Transition** – siehe `docs/sigils/aeon-transition.md`
+- 📄 **Memory Feedback Loops** – Konzept für ein selbstverwaltendes Gedächtnis (`docs/MemoryFeedbackLoops.md`)
+- 🤝 **Friendship System** – Konzept unter `docs/friendship-system.md`
+- 🕸️ **Agent-Registry** – zentrale Übersicht aller Agents (`agents.yaml`)
+- 🌀 **SigilStory** – Mandala-Lern-Lebenslauf für C-Tutor & JavaHamster
+- 🎓 **Learning Modules** – interactive C-Tutor and JavaHamster workflows (`packages/tutorials/*`)
+- 🎮 **Gamification API** – Endpunkte `/gamify/badges` & `/gamify/leaderboard`
+- 🔗 **Share your Sigil** & **Remix my Solution** – Community-Features
 
 ## 📦 Paketstruktur
 
@@ -368,6 +436,7 @@ packages/
   ├── gpt-bridges               # Mitt-basierter EventHub für GPT-Module
   ├── cli-tools                 # CLI: sigillin-cli, export-doc, Archivierung
   ├── aeon-shell                # Symbolzeit & CLI-Trigger
+  ├── SymbolzeitOrchestrator.ts    # Ereignissteuerung für Symbolzeit
   ├── aeon-genesisos            # Basis-Engine & CREP-Matrix
   ├── aeon-fraktalurs           # GPT-Kontextarchiv
   ├── aeon-resoecho             # CREP-Zeitlinienarchiv
@@ -392,27 +461,29 @@ packages/
   ├── shared-utils              # Hilfsfunktionen für alle Pakete
   │   └── RestClient.ts         # einfacher REST-Helper
   ├── bio                      # Biometrische Hooks und HapticService
-  ├── services/vector-indexer   # Embedding generator service
-  ├── services/sigil-trigger    # Beobachtet Sigillin-Änderungen
-  ├── services/memorymesh       # Region-Archive und Reflexionsdienste
-  ├── services/memory-manager    # Scheduler-basierte Kurzzeitablage
+  ├── go-bridge             # Go-Client für REST, gRPC und NATS (inkl. GPTBridge)
+  ├── go-agent              # Autonomer Go-Daemon für Tasks
+  │   ├── pkg/policy        # Policy Enforcement Stubs
+  │   ├── pkg/handler       # Task handlers (CoordinationHandler)
+  │   └── pkg/hooks         # Event Hook Publisher
+  ├── cmd/mandala-codeagent.go  # Beispiel-CLI für CodeAgent
+  ├── services/vector-indexer # Embedding generator service
+  ├── services/sigil-trigger  # Beobachtet Sigillin-Änderungen
+  ├── services/memorymesh     # Region-Archive und Reflexionsdienste
+  ├── services/memory-manager # Simple scheduler for short-term memories
   │   ├── region-archive-service   # Speichert Nachrichten pro Region
   │   ├── reflection-engine       # Erstellt einfache Spiegelungen
   │   ├── adaptation-service      # Lernt Nutzungsgewohnheiten
   │   ├── relationship-meter      # Analysiert Nachrichtenmetriken
   │   ├── index.ts                # Orchestriert die Module
   │   └── berlin-poc.ts           # Beispielablauf für Europe/Berlin
-  ├── services/repair-tickets    # Verwaltung automatischer Repair-Tickets
+  ├── services/repair-tickets  # Verfolgt automatische Repair-Tickets
   ├── codex-navigator        # Haiku-Generator und Chronik-Exporter
   └── codex-navigator-agent     # Parser für Codex-Instruktionen
+tools/                    # Kleine Helferskripte & Generatoren
 codex/                    # Codex-Workflows und Sigillin-Dateien
 codexbuild/               # Build-Skripte und Deploy-Hilfen
 codex-sync/              # Antwortsystem für Vorschläge
-go-agent/               # Go-Daemon zur Layer-Steuerung
-  ├── pkg/policy        # Policy Enforcement Stubs
-  ├── pkg/handler       # Task handlers (CoordinationHandler)
-  └── pkg/hooks         # Event Hook Publisher
-cmd/mandala-codeagent.go    # Beispiel-CLI für CodeAgent
 ci/                      # Test- und Pipeline-Konfigurationen
 config/                  # Zentrale YAML- und Env-Dateien
   └── interfaces.yaml       # API-Endpunkte der Plattform
@@ -429,8 +500,8 @@ apps/
 
 scripts/
   ├── aeon.sh                   # Poetisches Bash-CLI für Mandala-Steuerung
-  ├── setup-unifiedmandala.sh   # Installer & Initialisierung
   ├── nucleon-scanner-analysis.js   # Auswertung von Scanner-Logs
+  ├── setup-unifiedmandala.sh   # Installer & Initialisierung
   ├── generate-chronopoem.js    # Poetische Commit-Signatur
   ├── todoSigilGenerator.js     # Automatisches ToDo-Sigil aus Repo-Analyse
   ├── parse-md-todo.js          # Liest ToDo-Listen aus Markdown-Dateien
@@ -440,9 +511,13 @@ scripts/
 
 Jeder Unterordner kann eine eigene README enthalten – siehe die Links in den jeweiligen Verzeichnissen.
 Utilities liegen in `packages/shared-utils/`, weitere Module findest du ebenfalls unter `packages/`.
+-### 🟦 Go-Bridge (go-bridge/)
+- Polyglottes Interface zu UnifiedMandala für Go (REST, NATS, gRPC, CLI)
+- Enthält **GPTBridge**-Module (`pkg/gpt`) und die Beispiel-CLIs `mandala-gpt.go`
+  und `todo_parser.go`
+- Ermöglicht Entwicklung externer Tools und Agents in Go
+- [go-bridge/README.md](go-bridge/README.md) enthält Setup & Beispiele
 Kleine Hilfsskripte liegen unter `tools/`.
-Die komplette Ordnerstruktur samt Modulen, Utils und Skripten ist in [repositorypflege/repository_map.yaml](repositorypflege/repository_map.yaml) dokumentiert.
-Weitere Hinweise zum strukturellen Konzept findest du in [repositorypflege/repo-konzept.yaml](repositorypflege/repo-konzept.yaml).
 
 ## 💻 Schnellstart
 
@@ -453,9 +528,10 @@ cd unified-mandala
 ./scripts/setup-unifiedmandala.sh
 pnpm dev
 ./scripts/run-demo.sh # Docker-Compose Quickstart
+# Tests ohne lokale Installation
+docker-compose run test
 ```
 Die generierte API-Dokumentation findest du danach unter `docs/api`.
-Die OpenAPI-Spezifikation für Friendship & SocialGood liegt unter `docs/api/friendship-socialgood.yaml`.
 
 Für `npm` oder `yarn` nutze alternativ:
 
@@ -480,6 +556,7 @@ npm run dev   # oder: yarn dev
 | `pnpm lint` | Führt statische Typprüfung aus |
 | `pnpm test` | Führe Unit- & UI-Tests aus |
 | `pnpm vitest run` | Läuft Agenten-Spezialtests |
+| `docker-compose run test` | Führe alle Tests ohne lokale Installationen aus |
 | `node scripts/refresh-handbook.js` | Synchronisiert Handbuch |
 | `node scripts/setup-unifiedmandala.sh` | Installer & Initialisierung |
 | `./scripts/repair-repo.sh` | Repariert Repository-Verbindungen |
@@ -497,6 +574,7 @@ npm run dev   # oder: yarn dev
 | `node scripts/export-crep-docs.js` | Exportiert CREP-Daten |
 | `node scripts/update-advanced-todo.js` | Aktualisiert Advanced-ToDo-Liste |
 | `node scripts/update-advancedprogress.js` | Dokumentiert Fortschritt |
+| `node scripts/sync-todo-progress.js` | Aktualisiert ToDo- & Progress-Dateien |
 | `node scripts/update-kontext.js` | Passt Kontext-Datei an |
 | `node scripts/extract-snippets.js` | Extrahiert Code-Snippets |
 | `node scripts/extract_new_ai_fragments.js` | Extrahiert neue KI-Fragmente |
@@ -509,36 +587,24 @@ npm run dev   # oder: yarn dev
 | `node scripts/repotool-convo.js` | Schnelle Auswertung & Progress-Update |
 | `node scripts/website-to-yaml.js` | Wandelt Webseite in YAML um |
 | `node scripts/symbolzeit-runner.js` | Läuft Symbolzeit-Cronjob |
+| `node scripts/generate-next-sigil.js` | Erstellt Folgesigil nach Zyklus |
+| `node scripts/aeon-transition-workflow.js` | Sync & erzeugt Übergabe-Sigil |
+| `node scripts/add-transition-history.js` | Fügt Übergabe-Sigil zur Progress-Historie hinzu |
 | `node packages/cli-tools/sigillin-cli.js convert beispiel.yaml` | YAML ↔ JSON-Konvertierung |
+| `./scripts/setup-mtls.sh` | Erstellt Testzertifikate |
+| `./scripts/setup-kong-jwt.sh` | Konfiguriert JWT Gateway |
 | `node packages/cli-tools/sigillin-cli.js todo-sigil` | Erzeugt todo-sigil aus Aufgabenlisten |
 | `node packages/cli-tools/sigillin-cli.js grep-conversations TODO` | Filtert Conversations nach Keyword |
 | `node packages/cli-tools/export-doc.js` | CREP-Historie als Markdown |
 | `node packages/cli-tools/sigillin-archive.js` | Archiviert Sigillin-Dateien |
 | `node packages/cli-tools/dispatchCmd.ts` | Dispatcher für diverse Befehle |
+| `go run scripts/mock-data.go` | Gibt Beispiel-Mockdaten mit eventHook und fractalHash aus |
+| `./scripts/run-demo.sh` | Startet Docker-Compose Umgebung |
 
 
 
 Weitere Beispiele und GIF-Demos findest du im [Wiki](https://github.com/GenesisAeon/unified-mandala/wiki).
+Weitere Infos zur Pipeline findest du in [docs/demo/POC-Run-Guide.md](docs/demo/POC-Run-Guide.md).
 Ein SVG-Beispiel liegt unter [`docs/assets/unified-mandala.svg`](docs/assets/unified-mandala.svg).
 
 Das `CHRONOPOEM.md` entsteht automatisch – und kann bei jedem Commit erneuert werden.
-- **Module**: liegen unter `packages/` nach Funktion sortiert
-- **Utils**: gebündelt in `packages/shared-utils/`
-- **Scripts**: hilfreiche Automationen unter `scripts/`
-\nDie detaillierte Struktur aller Module, Utilities und Skripte findest du in [repositorypflege/repository_map.yaml](repositorypflege/repository_map.yaml).
-Ergänzende Konzeptinfos liefert [repositorypflege/repo-konzept.yaml](repositorypflege/repo-konzept.yaml).
-Einen Ausblick auf kommende Schritte liefert [codex/codex-roadmap.yaml](codex/codex-roadmap.yaml).
-
-## 🌱 Unterstütze das Mandala-Projekt
-Wenn dir unser Mandala-Ökosystem gefällt und du dazu beitragen möchtest, dass KI, Kreativität und Gemeinwohl weiter wachsen, freuen wir uns über deine Unterstützung. Jeder Beitrag hilft, neue Features, freie Tools und poetische Software weiterzuentwickeln!
-
-**Spendenadressen**
-- **Bitcoin:** `bc1qujx302cs0767gcnjqcyl0fnwvwkxge2cdh90eq`
-- **Ethereum / BNB Smart Chain / TWT / USDT / USDC:** `0xbcfdd442c9d92d491afef1dd3181c27c1f547b1b`
-- **Solana:** `3CpM6r6zNHX8Fn4r7PTJxagyan3qRwGDfSFjwpH3Hc3K`
-
-Hinweis: Bitte gib bei der Spende an, ob du im "Sigil der Unterstützer" erscheinen möchtest – und teile uns ggf. deinen Namen oder ein Wunsch-Sigil mit!
-
-Danke, dass du Teil unseres Mandalas bist. Gemeinsam weben wir das Netz der Zukunft!
-
-– Johann & das UnifiedMandala Team
