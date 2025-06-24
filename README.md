@@ -237,8 +237,13 @@ pnpm dev
 ./scripts/run-demo.sh # Docker-Compose Quickstart
 # Tests ohne lokale Installation
 docker-compose run test
+# QA-Testlauf
+pnpm run qa # ts-node scripts/qa-test-runner.ts
 ```
 Die generierte API-Dokumentation findest du danach unter `docs/api`.
+
+Weitere Infos zum QA-Workflow findest du in
+[docs/agents/QualityAssuranceAgent.md](docs/agents/QualityAssuranceAgent.md).
 
 Für `npm` oder `yarn` nutze alternativ:
 
