@@ -1,0 +1,7 @@
+diff --git a/packages/aeon-universal/index.ts b/packages/aeon-universal/index.ts
+index b2a5775..f4d5c4e 100644
+--- a/packages/aeon-universal/index.ts
++++ b/packages/aeon-universal/index.ts
+@@ -1 +1,2 @@
+ export * from './compiler';
++export * from './CoreAssembler';
