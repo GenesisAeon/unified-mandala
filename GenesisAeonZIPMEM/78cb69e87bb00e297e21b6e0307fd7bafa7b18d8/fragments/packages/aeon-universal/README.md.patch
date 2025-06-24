@@ -1,0 +1,23 @@
+diff --git a/packages/aeon-universal/README.md b/packages/aeon-universal/README.md
+index d258555..c0c6120 100644
+--- a/packages/aeon-universal/README.md
++++ b/packages/aeon-universal/README.md
+@@ -18,6 +18,9 @@ Seit **0.6** existiert der Befehl **GUARD**. Er protokolliert Schutz-
+  oder Sicherheitsnotizen im `AeonSigillinVault` und dient der
+ dialogischen Selbstabsicherung des Systems.
+ 
++Ab **0.7** steht ein **REPEAT**-Block zur Verfügung, um Aufgaben mehrmals auszuführen. Zudem kann das
++Kompilat über `transpileToTS()` in TypeScript exportiert werden.
++
+ ## Beispiel
+ ```aeon
+ TASK Hallo Welt
+@@ -31,5 +34,8 @@ CALL begrüßung
+ WITH ProjektX
+   TASK Schritt1
+ GUARD Nur intern verwenden
++REPEAT 2
++  TASK Wiederholt
++ENDREPEAT
+ ENDWITH
+ ```

@@ -14,6 +14,7 @@ export interface CompileOptions {
   macros?: Record<string, string[]>;
   currentMacro?: string | null;
   contextStack?: string[];
+  repeatStack?: { count: number; buffer: string[] }[];
 }
 
 export function compile(source: string, options: CompileOptions = {}): CompileResult {
@@ -24,6 +25,7 @@ export function compile(source: string, options: CompileOptions = {}): CompileRe
   const macros = options.macros || {};
   let currentMacro = options.currentMacro || null;
   let contextStack = options.contextStack || [];
+  let repeatStack = options.repeatStack || [];
 
   const lines = source.split(/\n+/);
   lines.forEach((line, idx) => {
@@ -31,6 +33,21 @@ export function compile(source: string, options: CompileOptions = {}): CompileRe
     if (!trimmed) return;
     const [cmd, ...rest] = trimmed.split(' ');
     const content = rest.join(' ');
+
+    // handle repeat blocks
+    if (repeatStack.length > 0) {
+      const current = repeatStack[repeatStack.length - 1];
+      if (cmd.toUpperCase() === 'ENDREPEAT') {
+        repeatStack.pop();
+        for (let i = 0; i < current.count; i++) {
+          const child = compile(current.buffer.join('\n'), { baseDir, visited, macros, contextStack, repeatStack });
+          tasks.push(...child.tasks);
+        }
+      } else {
+        current.buffer.push(trimmed);
+      }
+      return;
+    }
 
     // handle macro definition blocks
     if (currentMacro) {
@@ -61,6 +78,11 @@ export function compile(source: string, options: CompileOptions = {}): CompileRe
       contextStack = [...contextStack, content];
     } else if (cmd.toUpperCase() === 'ENDWITH') {
       contextStack.pop();
+    } else if (cmd.toUpperCase() === 'REPEAT') {
+      const count = parseInt(content, 10);
+      if (!isNaN(count)) {
+        repeatStack.push({ count, buffer: [] });
+      }
     } else if (cmd.toUpperCase() === 'TASK') {
       tasks.push({ id: `${idx}`, description: content, context: contextStack.join('/') });
     } else if (cmd.toUpperCase() === 'INCLUDE') {
@@ -75,4 +97,9 @@ export function compile(source: string, options: CompileOptions = {}): CompileRe
   });
 
   return { tasks };
+}
+
+export function transpileToTS(result: CompileResult): string {
+  const data = result.tasks.map(t => ({ id: t.id, description: t.description, context: t.context }));
+  return `export const aeonTasks = ${JSON.stringify(data, null, 2)};\n`;
 }

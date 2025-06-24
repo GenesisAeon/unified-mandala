@@ -1,0 +1,26 @@
+diff --git a/packages/agents/AeonTranspilerAgent.test.ts b/packages/agents/AeonTranspilerAgent.test.ts
+new file mode 100644
+index 0000000..37eeafe
+--- /dev/null
++++ b/packages/agents/AeonTranspilerAgent.test.ts
+@@ -0,0 +1,20 @@
++import fs from 'fs';
++import path from 'path';
++import { AeonTranspilerAgent } from './AeonTranspilerAgent';
++
++describe('AeonTranspilerAgent', () => {
++  const output = 'tmp-aeon.ts';
++
++  afterEach(() => {
++    if (fs.existsSync(output)) fs.unlinkSync(output);
++  });
++
++  it('transpiles aeon source to TS file', async () => {
++    const agent = new AeonTranspilerAgent(output);
++    const task = { id: '1', description: 'TASK Demo' } as any;
++    await agent.handle(task);
++    const content = fs.readFileSync(path.resolve(output), 'utf-8');
++    expect(content).toContain('Demo');
++    expect(content).toContain('aeonTasks');
++  });
++});
