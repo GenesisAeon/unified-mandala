@@ -122,6 +122,14 @@ Dieses Dokument wird bei jedem Codex-Start ausgelesen. Jeder Agent manifestiert 
   - roles_allowed: [admin, dev]
   - Dokumentation: docs/agents/StrategicAgentCoordinator.md
 
+## 🛡 Agent: QualityAssuranceAgent
+- **Startmodul**: `qa-test-runner.ts`
+- **Funktion**:
+  - Führt Lint- und Test-Suites aus
+  - Protokolliert Ergebnisse in `qa-report.log`
+  - roles_allowed: [dev]
+  - Dokumentation: docs/agents/QualityAssuranceAgent.md
+
 ---
 ## 🔑 Special Instructions
 ```yaml

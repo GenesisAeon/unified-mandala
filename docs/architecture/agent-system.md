@@ -17,7 +17,8 @@ graph TD
 
 Weitere Agenten wie `PatternReactivator` und `GenesisAeonNavigator` arbeiten parallel zur Kette und
 - **StrategicAgentCoordinator** synchronisiert die Agentenliste.
-überwachen CREP-Scores sowie Phasenwechsel.
+  überwachen CREP-Scores sowie Phasenwechsel.
+- **QualityAssuranceAgent** prüft Codequalität durch Linting und Tests.
 
 - **FragmentMapper** sammelt Gesprächsfragmente und erzeugt Aufgaben.
 - **CodexAuditAgent** bewertet Tiefe und weist Sigillin zu.
