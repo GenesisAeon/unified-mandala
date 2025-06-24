@@ -1,0 +1,11 @@
+commit: 05a1cc50b1af8326ab8ed8e5cd676e3302671976
+message: "feat(agent): add AeonUniversalAgent"
+patch: changes.patch
+fragments: fragments
+files:
+  - packages/agents/AeonUniversalAgent.test.ts
+  - packages/agents/AeonUniversalAgent.ts
+environment:
+  node: v22.16.0
+  pnpm: 10.5.2
+instructions: Apply patch with git apply or review for reference.
