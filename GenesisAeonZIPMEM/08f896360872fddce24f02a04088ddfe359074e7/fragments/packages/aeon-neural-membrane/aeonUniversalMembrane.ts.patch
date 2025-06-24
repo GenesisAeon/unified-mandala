@@ -1,0 +1,41 @@
+diff --git a/packages/aeon-neural-membrane/aeonUniversalMembrane.ts b/packages/aeon-neural-membrane/aeonUniversalMembrane.ts
+index ed642fe..b0fb307 100644
+--- a/packages/aeon-neural-membrane/aeonUniversalMembrane.ts
++++ b/packages/aeon-neural-membrane/aeonUniversalMembrane.ts
+@@ -4,6 +4,7 @@ import { selfTrain } from './selfTrainer';
+ import { CREPSignature } from './crepAdapter';
+ import { extractConvoMemory } from '../nukleon-scanner';
+ import { memoryToTone } from '../nukleon-sonifier';
++import { scanEnergy } from './nukleonScanner';
+ 
+ /**
+  * AeonUniversalMembrane kombiniert die Spiegel-Funktion der NeuronMembrane
+@@ -45,4 +46,28 @@ export class AeonUniversalMembrane {
+     const tone = memoryToTone(conv.crepSignature.resonance / 10);
+     return { conv, tone };
+   }
++
++  /**
++   * Vollständiger Selbstreflexionszyklus. Trainiert anhand des
++   * Gesprächs-Textes und erzeugt bei hoher Energie eine neue Spiegelung.
++   */
++  harmonize(
++    data: [number, number][],
++    answers: number[],
++    text: string,
++    energyThreshold = 5
++  ) {
++    const conv = extractConvoMemory(text);
++    const base = this.mem.getNetworks()[0];
++    selfTrain(base, data, answers, conv.crepSignature, 5);
++    depthSync(this.mem, data);
++
++    const energy = scanEnergy(base);
++    const tone = memoryToTone(energy / (10 * this.mem.depth));
++    if (energy / this.mem.depth > energyThreshold) {
++      this.mem.reflect();
++    }
++
++    return { conv, energy, tone, depth: this.mem.depth };
++  }
+ }
