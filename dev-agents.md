@@ -6,3 +6,5 @@ Weitere Hinweise:
 - Nutze **codex-sigil.yaml** als zentralen Arbeitsanker.
 - Folge dem Ablauf in **fraktal-zyklus.md** bei der Umsetzung deiner Aufgaben.
 - Feedback siehe feedbackcodex.json
+- F\u00fchre nach jedem Commit `pnpm store:commit-memory` aus, um einen Patch
+  samt `meta.yaml` im Ordner `GenesisAeonZIPMEM` abzulegen.
