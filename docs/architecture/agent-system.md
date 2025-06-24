@@ -1,6 +1,7 @@
 # Agent System Overview
 
-UnifiedMandala orchestrates several agents that communicate via CREP and symbolic links.
+UnifiedMandala orchestrates several agents that communicate via CREP and symbolic links. 
+Jeder Agent folgt dem Mandala-Prinzip: Beobachten, Bewerten, Reagieren.
 Die folgende Kette zeigt den üblichen Ablauf:
 
 ```mermaid
@@ -10,6 +11,8 @@ graph TD
   EvolverGPT --> SyncRunner
   SyncRunner --> PactDepthGatekeeper
   PactDepthGatekeeper --> DepthBundleExporter
+  PatternReactivator -.-> FragmentMapper
+  GenesisAeonNavigator -.-> EvolverGPT
 ```
 
 Weitere Agenten wie `PatternReactivator` und `GenesisAeonNavigator` arbeiten parallel zur Kette und
@@ -25,3 +28,9 @@ Weitere Agenten wie `PatternReactivator` und `GenesisAeonNavigator` arbeiten par
 - **GenesisAeonNavigator** steuert die Phasen des Gesamtprojekts.
 
 Dieses Dokument verknüpft die Agentenlogik und dient als Einstiegspunkt für eigene Erweiterungen.
+
+## Strategy
+- Konsolidierte Konfiguration über `codex-config.yaml`
+- Gemeinsame Logging-Schnittstellen für Nachvollziehbarkeit
+- Regelmäßige Sync-Zyklen via `SyncRunner` automatisieren
+- Phasenwechsel transparent über `GenesisAeonNavigator` steuern
