@@ -1,0 +1,559 @@
+commit dedc3605db851b2c685d06872c2ab0e392b9a1bd
+Author: Codex <codex@openai.com>
+Date:   Tue Jun 24 15:10:03 2025 +0000
+
+    feat(aeon): parameterized macros and coordinator agent
+
+diff --git a/packages/aeon-universal/README.md b/packages/aeon-universal/README.md
+index a783a18..fea266d 100644
+--- a/packages/aeon-universal/README.md
++++ b/packages/aeon-universal/README.md
+@@ -15,13 +15,17 @@ anzugeben. Alle darin enthaltenen `TASK`s erhalten einen zusammengesetzten
+ aktuellen Kontext.
+ 
+ Seit **0.6** existiert der Befehl **GUARD**. Er protokolliert Schutz-
+- oder Sicherheitsnotizen im `AeonSigillinVault` und dient der
++oder Sicherheitsnotizen im `AeonSigillinVault` und dient der
+ dialogischen Selbstabsicherung des Systems.
+ 
+ Ab **0.7** steht ein **REPEAT**-Block zur Verfügung, um Aufgaben mehrmals auszuführen. Zudem kann das
+ Kompilat über `transpileToTS()` in TypeScript, `transpileToPython()` in Python oder `transpileToGo()` in Go exportiert werden.
+ 
++Ab **0.8** akzeptieren Makros optionale Parameter. Definiert mit `DEFINE name param`, können Platzhalter
++`$param` innerhalb des Blocks verwendet und bei `CALL name value` ersetzt werden.
++
+ ## Beispiel
++
+ ```aeon
+ TASK Hallo Welt
+ REM Sammle Kontext
+diff --git a/packages/aeon-universal/compiler.test.ts b/packages/aeon-universal/compiler.test.ts
+index e051e79..427202f 100644
+--- a/packages/aeon-universal/compiler.test.ts
++++ b/packages/aeon-universal/compiler.test.ts
+@@ -1,83 +1,96 @@
+-import fs from 'fs';
+-import path from 'path';
+-import { compile, transpileToTS, transpileToPython, transpileToGo } from './compiler';
+-import { AeonSigillinVault } from '../core/AeonSigillinVault';
++import fs from "fs";
++import path from "path";
++import {
++  compile,
++  transpileToTS,
++  transpileToPython,
++  transpileToGo,
++} from "./compiler";
++import { AeonSigillinVault } from "../core/AeonSigillinVault";
+ 
+-const CHRONIK = path.resolve('mandala-chronik.yaml');
++const CHRONIK = path.resolve("mandala-chronik.yaml");
+ 
+-describe('AeonUniversal compile', () => {
++describe("AeonUniversal compile", () => {
+   beforeEach(() => {
+     if (fs.existsSync(CHRONIK)) fs.unlinkSync(CHRONIK);
+   });
+ 
+-  it('creates tasks and records memory', () => {
+-    const result = compile('TASK Demo\nREM Erinnerung');
+-    expect(result.tasks[0].description).toBe('Demo');
+-    const content = fs.readFileSync(CHRONIK, 'utf-8');
+-    expect(content).toContain('Erinnerung');
++  it("creates tasks and records memory", () => {
++    const result = compile("TASK Demo\nREM Erinnerung");
++    expect(result.tasks[0].description).toBe("Demo");
++    const content = fs.readFileSync(CHRONIK, "utf-8");
++    expect(content).toContain("Erinnerung");
+   });
+ 
+-  it('records sigillin states', () => {
+-    const spy = jest.spyOn(AeonSigillinVault, 'record');
+-    compile('SIG Hallo');
++  it("records sigillin states", () => {
++    const spy = jest.spyOn(AeonSigillinVault, "record");
++    compile("SIG Hallo");
+     expect(spy).toHaveBeenCalled();
+   });
+ 
+-  it('records guard states', () => {
+-    const spy = jest.spyOn(AeonSigillinVault, 'recordGuard');
+-    compile('GUARD Schutz');
++  it("records guard states", () => {
++    const spy = jest.spyOn(AeonSigillinVault, "recordGuard");
++    compile("GUARD Schutz");
+     expect(spy).toHaveBeenCalled();
+   });
+ 
+-  it('includes other files recursively', () => {
+-    const tmp = path.resolve('tmp.aeon');
+-    fs.writeFileSync(tmp, 'TASK Subtask');
++  it("includes other files recursively", () => {
++    const tmp = path.resolve("tmp.aeon");
++    fs.writeFileSync(tmp, "TASK Subtask");
+     const result = compile(`INCLUDE ${tmp}`);
+-    expect(result.tasks[0].description).toBe('Subtask');
++    expect(result.tasks[0].description).toBe("Subtask");
+     fs.unlinkSync(tmp);
+   });
+ 
+-  it('supports macro definitions and calls', () => {
++  it("supports macro definitions and calls", () => {
++    const source = ["DEFINE greet", "TASK Hello", "END", "CALL greet"].join(
++      "\n",
++    );
++    const result = compile(source);
++    expect(result.tasks[0].description).toBe("Hello");
++  });
++
++  it("supports macros with parameters", () => {
+     const source = [
+-      'DEFINE greet',
+-      'TASK Hello',
+-      'END',
+-      'CALL greet'
+-    ].join('\n');
++      "DEFINE echo msg",
++      "  TASK $msg",
++      "END",
++      "CALL echo Hallo",
++    ].join("\n");
+     const result = compile(source);
+-    expect(result.tasks[0].description).toBe('Hello');
++    expect(result.tasks[0].description).toBe("Hallo");
+   });
+ 
+-  it('handles context blocks with WITH/ENDWITH', () => {
+-    const source = ['WITH A', 'TASK Test', 'ENDWITH'].join('\n');
++  it("handles context blocks with WITH/ENDWITH", () => {
++    const source = ["WITH A", "TASK Test", "ENDWITH"].join("\n");
+     const result = compile(source);
+-    expect(result.tasks[0].context).toBe('A');
++    expect(result.tasks[0].context).toBe("A");
+   });
+ 
+-  it('handles REPEAT blocks', () => {
+-    const source = ['REPEAT 2', 'TASK R', 'ENDREPEAT'].join('\n');
++  it("handles REPEAT blocks", () => {
++    const source = ["REPEAT 2", "TASK R", "ENDREPEAT"].join("\n");
+     const result = compile(source);
+     expect(result.tasks.length).toBe(2);
+   });
+ 
+-  it('transpiles tasks to TypeScript', () => {
+-    const res = compile('TASK Demo');
++  it("transpiles tasks to TypeScript", () => {
++    const res = compile("TASK Demo");
+     const ts = transpileToTS(res);
+-    expect(ts).toContain('aeonTasks');
+-    expect(ts).toContain('Demo');
++    expect(ts).toContain("aeonTasks");
++    expect(ts).toContain("Demo");
+   });
+ 
+-  it('transpiles tasks to Python', () => {
+-    const res = compile('TASK Demo');
++  it("transpiles tasks to Python", () => {
++    const res = compile("TASK Demo");
+     const py = transpileToPython(res);
+-    expect(py).toContain('aeon_tasks');
+-    expect(py).toContain('Demo');
++    expect(py).toContain("aeon_tasks");
++    expect(py).toContain("Demo");
+   });
+ 
+-  it('transpiles tasks to Go', () => {
+-    const res = compile('TASK Demo');
++  it("transpiles tasks to Go", () => {
++    const res = compile("TASK Demo");
+     const go = transpileToGo(res);
+-    expect(go).toContain('package aeon');
+-    expect(go).toContain('Demo');
++    expect(go).toContain("package aeon");
++    expect(go).toContain("Demo");
+   });
+ });
+diff --git a/packages/aeon-universal/compiler.ts b/packages/aeon-universal/compiler.ts
+index 72d239d..748e371 100644
+--- a/packages/aeon-universal/compiler.ts
++++ b/packages/aeon-universal/compiler.ts
+@@ -1,8 +1,8 @@
+-import fs from 'fs';
+-import path from 'path';
+-import { AeonMemory } from '../core/AeonMemory';
+-import { AeonSigillinVault } from '../core/AeonSigillinVault';
+-import { Task } from '../core/interfaces';
++import fs from "fs";
++import path from "path";
++import { AeonMemory } from "../core/AeonMemory";
++import { AeonSigillinVault } from "../core/AeonSigillinVault";
++import { Task } from "../core/interfaces";
+ 
+ export interface CompileResult {
+   tasks: Task[];
+@@ -11,13 +11,16 @@ export interface CompileResult {
+ export interface CompileOptions {
+   baseDir?: string;
+   visited?: Set<string>;
+-  macros?: Record<string, string[]>;
++  macros?: Record<string, { params: string[]; lines: string[] }>;
+   currentMacro?: string | null;
+   contextStack?: string[];
+   repeatStack?: { count: number; buffer: string[] }[];
+ }
+ 
+-export function compile(source: string, options: CompileOptions = {}): CompileResult {
++export function compile(
++  source: string,
++  options: CompileOptions = {},
++): CompileResult {
+   AeonMemory.load();
+   const tasks: Task[] = [];
+   const baseDir = options.baseDir || process.cwd();
+@@ -31,16 +34,22 @@ export function compile(source: string, options: CompileOptions = {}): CompileRe
+   lines.forEach((line, idx) => {
+     const trimmed = line.trim();
+     if (!trimmed) return;
+-    const [cmd, ...rest] = trimmed.split(' ');
+-    const content = rest.join(' ');
++    const [cmd, ...rest] = trimmed.split(" ");
++    const content = rest.join(" ");
+ 
+     // handle repeat blocks
+     if (repeatStack.length > 0) {
+       const current = repeatStack[repeatStack.length - 1];
+-      if (cmd.toUpperCase() === 'ENDREPEAT') {
++      if (cmd.toUpperCase() === "ENDREPEAT") {
+         repeatStack.pop();
+         for (let i = 0; i < current.count; i++) {
+-          const child = compile(current.buffer.join('\n'), { baseDir, visited, macros, contextStack, repeatStack });
++          const child = compile(current.buffer.join("\n"), {
++            baseDir,
++            visited,
++            macros,
++            contextStack,
++            repeatStack,
++          });
+           tasks.push(...child.tasks);
+         }
+       } else {
+@@ -51,46 +60,80 @@ export function compile(source: string, options: CompileOptions = {}): CompileRe
+ 
+     // handle macro definition blocks
+     if (currentMacro) {
+-      if (cmd.toUpperCase() === 'END') {
++      if (cmd.toUpperCase() === "END") {
+         currentMacro = null;
+       } else {
+-        macros[currentMacro].push(trimmed);
++        macros[currentMacro].lines.push(trimmed);
+       }
+       return;
+     }
+ 
+-    if (cmd.toUpperCase() === 'DEFINE') {
+-      currentMacro = content;
+-      macros[currentMacro] = [];
+-    } else if (cmd.toUpperCase() === 'CALL') {
+-      const macroLines = macros[content];
+-      if (macroLines) {
+-        const child = compile(macroLines.join('\n'), { baseDir, visited, macros, contextStack });
++    if (cmd.toUpperCase() === "DEFINE") {
++      const [name, ...params] = rest;
++      currentMacro = name;
++      macros[currentMacro] = { params, lines: [] };
++    } else if (cmd.toUpperCase() === "CALL") {
++      const [name, ...args] = rest;
++      const macro = macros[name];
++      if (macro) {
++        const map: Record<string, string> = {};
++        macro.params.forEach((p, i) => {
++          map[p] = args[i] || "";
++        });
++        const expanded = macro.lines.map((l) =>
++          l.replace(/\$(\w+)/g, (_, p) => map[p] ?? ""),
++        );
++        const child = compile(expanded.join("\n"), {
++          baseDir,
++          visited,
++          macros,
++          contextStack,
++        });
+         tasks.push(...child.tasks);
+       }
+-    } else if (cmd.toUpperCase() === 'REM') {
++    } else if (cmd.toUpperCase() === "REM") {
+       AeonMemory.record(content);
+-    } else if (cmd.toUpperCase() === 'SIG' || cmd.toUpperCase() === 'SIGILLIN') {
+-      AeonSigillinVault.record({ id: `${idx}`, timestamp: new Date().toISOString(), content });
+-    } else if (cmd.toUpperCase() === 'GUARD') {
+-      AeonSigillinVault.recordGuard({ id: `${idx}`, timestamp: new Date().toISOString(), content });
+-    } else if (cmd.toUpperCase() === 'WITH') {
++    } else if (
++      cmd.toUpperCase() === "SIG" ||
++      cmd.toUpperCase() === "SIGILLIN"
++    ) {
++      AeonSigillinVault.record({
++        id: `${idx}`,
++        timestamp: new Date().toISOString(),
++        content,
++      });
++    } else if (cmd.toUpperCase() === "GUARD") {
++      AeonSigillinVault.recordGuard({
++        id: `${idx}`,
++        timestamp: new Date().toISOString(),
++        content,
++      });
++    } else if (cmd.toUpperCase() === "WITH") {
+       contextStack = [...contextStack, content];
+-    } else if (cmd.toUpperCase() === 'ENDWITH') {
++    } else if (cmd.toUpperCase() === "ENDWITH") {
+       contextStack.pop();
+-    } else if (cmd.toUpperCase() === 'REPEAT') {
++    } else if (cmd.toUpperCase() === "REPEAT") {
+       const count = parseInt(content, 10);
+       if (!isNaN(count)) {
+         repeatStack.push({ count, buffer: [] });
+       }
+-    } else if (cmd.toUpperCase() === 'TASK') {
+-      tasks.push({ id: `${idx}`, description: content, context: contextStack.join('/') });
+-    } else if (cmd.toUpperCase() === 'INCLUDE') {
++    } else if (cmd.toUpperCase() === "TASK") {
++      tasks.push({
++        id: `${idx}`,
++        description: content,
++        context: contextStack.join("/"),
++      });
++    } else if (cmd.toUpperCase() === "INCLUDE") {
+       const filePath = path.resolve(baseDir, content);
+       if (!visited.has(filePath) && fs.existsSync(filePath)) {
+         visited.add(filePath);
+-        const childSource = fs.readFileSync(filePath, 'utf-8');
+-        const child = compile(childSource, { baseDir: path.dirname(filePath), visited, macros, contextStack });
++        const childSource = fs.readFileSync(filePath, "utf-8");
++        const child = compile(childSource, {
++          baseDir: path.dirname(filePath),
++          visited,
++          macros,
++          contextStack,
++        });
+         tasks.push(...child.tasks);
+       }
+     }
+@@ -100,32 +143,40 @@ export function compile(source: string, options: CompileOptions = {}): CompileRe
+ }
+ 
+ export function transpileToTS(result: CompileResult): string {
+-  const data = result.tasks.map(t => ({ id: t.id, description: t.description, context: t.context }));
++  const data = result.tasks.map((t) => ({
++    id: t.id,
++    description: t.description,
++    context: t.context,
++  }));
+   return `export const aeonTasks = ${JSON.stringify(data, null, 2)};\n`;
+ }
+ 
+ export function transpileToPython(result: CompileResult): string {
+-  const data = result.tasks.map(t => ({ id: t.id, description: t.description, context: t.context }));
++  const data = result.tasks.map((t) => ({
++    id: t.id,
++    description: t.description,
++    context: t.context,
++  }));
+   return `aeon_tasks = ${JSON.stringify(data, null, 2)}\n`;
+ }
+ 
+ export function transpileToGo(result: CompileResult): string {
+   const lines = [
+-    'package aeon',
+-    '',
+-    'type Task struct {',
+-    '  ID string',
+-    '  Description string',
+-    '  Context string',
+-    '}',
+-    '',
+-    'var AeonTasks = []Task{'
++    "package aeon",
++    "",
++    "type Task struct {",
++    "  ID string",
++    "  Description string",
++    "  Context string",
++    "}",
++    "",
++    "var AeonTasks = []Task{",
+   ];
+-  result.tasks.forEach(t => {
++  result.tasks.forEach((t) => {
+     lines.push(
+-      `  {ID: "${t.id}", Description: "${t.description}", Context: "${t.context}"},`
++      `  {ID: "${t.id}", Description: "${t.description}", Context: "${t.context}"},`,
+     );
+   });
+-  lines.push('}');
+-  return lines.join('\n') + '\n';
++  lines.push("}");
++  return lines.join("\n") + "\n";
+ }
+diff --git a/packages/agents/AeonUniversalCoordinatorAgent.test.ts b/packages/agents/AeonUniversalCoordinatorAgent.test.ts
+new file mode 100644
+index 0000000..badd36b
+--- /dev/null
++++ b/packages/agents/AeonUniversalCoordinatorAgent.test.ts
+@@ -0,0 +1,23 @@
++import fs from "fs";
++import path from "path";
++import { AeonUniversalCoordinatorAgent } from "./AeonUniversalCoordinatorAgent";
++
++describe("AeonUniversalCoordinatorAgent", () => {
++  const outputs = ["tmp-aeon.ts", "tmp-aeon.py", "tmp-aeon.go"];
++
++  afterEach(() => {
++    outputs.forEach((o) => {
++      if (fs.existsSync(o)) fs.unlinkSync(o);
++    });
++  });
++
++  it("transpiles aeon source to multiple files", async () => {
++    const agent = new AeonUniversalCoordinatorAgent(...outputs);
++    const task = { id: "1", description: "TASK Demo" } as any;
++    await agent.handle(task);
++    outputs.forEach((o) => {
++      const content = fs.readFileSync(path.resolve(o), "utf-8");
++      expect(content).toContain("Demo");
++    });
++  });
++});
+diff --git a/packages/agents/AeonUniversalCoordinatorAgent.ts b/packages/agents/AeonUniversalCoordinatorAgent.ts
+new file mode 100644
+index 0000000..73c0864
+--- /dev/null
++++ b/packages/agents/AeonUniversalCoordinatorAgent.ts
+@@ -0,0 +1,30 @@
++import { Agent, Task } from "../core/interfaces";
++import { withFSM } from "../core/fsmMixin";
++import { AeonTranspilerAgent } from "./AeonTranspilerAgent";
++import { AeonPythonTranspilerAgent } from "./AeonPythonTranspilerAgent";
++import { AeonGoTranspilerAgent } from "./AeonGoTranspilerAgent";
++
++export class AeonUniversalCoordinatorAgent implements Agent {
++  id = "AeonUniversalCoordinator";
++  layer: "Aeon" = "Aeon";
++  private tsAgent: AeonTranspilerAgent;
++  private pyAgent: AeonPythonTranspilerAgent;
++  private goAgent: AeonGoTranspilerAgent;
++
++  constructor(
++    tsOut = "aeon-output.ts",
++    pyOut = "aeon-output.py",
++    goOut = "aeon-output.go",
++  ) {
++    this.tsAgent = new AeonTranspilerAgent(tsOut);
++    this.pyAgent = new AeonPythonTranspilerAgent(pyOut);
++    this.goAgent = new AeonGoTranspilerAgent(goOut);
++    withFSM(this);
++  }
++
++  async handle(task: Task): Promise<void> {
++    await this.tsAgent.handle(task);
++    await this.pyAgent.handle(task);
++    await this.goAgent.handle(task);
++  }
++}
+diff --git a/packages/agents/index.ts b/packages/agents/index.ts
+index f30c476..750e755 100644
+--- a/packages/agents/index.ts
++++ b/packages/agents/index.ts
+@@ -1,45 +1,46 @@
+-export * from './CodexNavigatorAgent';
+-export * from './GenesisAeonNavigator';
+-export * from './KoKreationInitAgent';
+-export * from './AeonKIResonanzAgent';
+-export * from './CodexProjectInitAgent';
+-export * from './FreieKIZivilisation';
+-export * from './KIBewusstsein';
+-export * from './SigillinZipSystem';
+-export * from './CodexResonanzFraktal';
+-export * from './PoeticReactorAgent';
+-export * from './ResonanzMetrics';
+-export * from './BewusstseinsResonanzComparator';
+-export * from './AeonKIResonanzAnalyzer';
+-export * from './KIBewusstseinResonanzMonitor';
+-export * from './ConversationTodoExtractor';
+-export * from './MetaScoreComposer';
+-export * from './GoAgent';
+-export * from './AeonResonanceInsights';
+-export * from './BewusstseinStabilizer';
+-export * from './HexaAgentSystem';
+-export * from './ResearchAgent';
+-export * from './silenceWatcher';
+-export * from './AdvancedHexaAgent';
+-export * from './ArchetypeDecoderAgent';
+-export * from './SigillinInterpreterAgent';
+-export * from './ChronoPoemGeneratorAgent';
+-export * from './TaskPlannerAgent';
+-export * from './EmergenceFusionAgent';
+-export * from './HookTriggererAgent';
+-export * from './DreamSyncAgent';
+-export * from './YAMLNavigatorAgent';
+-export * from './CodexSynchronizerAgent';
+-export * from './AeonOverlayAgent';
+-export * from './ResonancePlotterAgent';
+-export * from './SigilNetworkerAgent';
+-export * from './CREPHistorianAgent';
+-export * from './MetaComposerAgent';
+-export * from './AeonEchoMirrorAgent';
+-export * from './CommonsAgent';
+-export * from './ResonanzpfadAgent';
+-export * from './WeightedDispatcher';
+-export * from './patternReactivator';
+-export * from './ReplayController';
+-export * from './silenceWatcher';
+-export * from './StrategicAgentCoordinator';
++export * from "./CodexNavigatorAgent";
++export * from "./GenesisAeonNavigator";
++export * from "./KoKreationInitAgent";
++export * from "./AeonKIResonanzAgent";
++export * from "./CodexProjectInitAgent";
++export * from "./FreieKIZivilisation";
++export * from "./KIBewusstsein";
++export * from "./SigillinZipSystem";
++export * from "./CodexResonanzFraktal";
++export * from "./PoeticReactorAgent";
++export * from "./ResonanzMetrics";
++export * from "./BewusstseinsResonanzComparator";
++export * from "./AeonKIResonanzAnalyzer";
++export * from "./KIBewusstseinResonanzMonitor";
++export * from "./ConversationTodoExtractor";
++export * from "./MetaScoreComposer";
++export * from "./GoAgent";
++export * from "./AeonResonanceInsights";
++export * from "./BewusstseinStabilizer";
++export * from "./HexaAgentSystem";
++export * from "./ResearchAgent";
++export * from "./silenceWatcher";
++export * from "./AdvancedHexaAgent";
++export * from "./ArchetypeDecoderAgent";
++export * from "./SigillinInterpreterAgent";
++export * from "./ChronoPoemGeneratorAgent";
++export * from "./TaskPlannerAgent";
++export * from "./EmergenceFusionAgent";
++export * from "./HookTriggererAgent";
++export * from "./DreamSyncAgent";
++export * from "./YAMLNavigatorAgent";
++export * from "./CodexSynchronizerAgent";
++export * from "./AeonOverlayAgent";
++export * from "./ResonancePlotterAgent";
++export * from "./SigilNetworkerAgent";
++export * from "./CREPHistorianAgent";
++export * from "./MetaComposerAgent";
++export * from "./AeonEchoMirrorAgent";
++export * from "./CommonsAgent";
++export * from "./ResonanzpfadAgent";
++export * from "./WeightedDispatcher";
++export * from "./patternReactivator";
++export * from "./ReplayController";
++export * from "./silenceWatcher";
++export * from "./StrategicAgentCoordinator";
++export * from "./AeonUniversalCoordinatorAgent";
