@@ -1,8 +1,14 @@
 const fs = require('fs');
 
 function loadConversations(filePath) {
-  const raw = fs.readFileSync(filePath, 'utf8');
-  return JSON.parse(raw);
+  const raw = fs.readFileSync(filePath, 'utf8').trim();
+  if (raw.startsWith('[')) {
+    return JSON.parse(raw);
+  }
+  return raw
+    .split(/\r?\n/)
+    .filter(Boolean)
+    .map((line) => JSON.parse(line));
 }
 
 function analyzeConversations(filePath) {
