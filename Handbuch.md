@@ -119,7 +119,8 @@ Teil 5 ergänzt die Sigil-Historie.
 - `SilenceWatcher` – Beobachtet Inaktivität und triggert Selbstanalyse.
 - `AdvancedHexaAgent` – Erweiterte Analyse mit Research- und SilenceWatcher-Agenten.
  - `go-bridge` – Golang-Client für REST/gRPC/NATS Kommunikation.
- - `go-bridge/pkg/gpt` – GPTBridge (API und Link) mit CLI `mandala-gpt.go`.
+ - `go-bridge/pkg/gpt` – GPTBridge (API und Link) mit CLIs `mandala-gpt.go` und
+   `todo_parser.go`.
 
 - `WeightedDispatcher` – verteilt Aufgaben nach Priorität (`packages/agents/WeightedDispatcher.ts`)
 - `patternReactivator` – reaktiviert schwache Erinnerungen (`packages/agents/patternReactivator.ts`)
@@ -281,6 +282,7 @@ Eine Pipeline-Demonstration findest du in [docs/demo/POC-Run-Guide.md](docs/demo
 | `node packages/cli-tools/sigillin-archive.js` | Archiviert Sigillin-Dateien |
 | `node packages/cli-tools/dispatchCmd.ts` | Dispatcher für diverse Befehle |
 | `go run scripts/mock-data.go` | Gibt Beispiel-Mockdaten mit eventHook und fractalHash aus |
+| `go run go-bridge/cmd/todo_parser.go` | Startet einfachen TODO-Parser-Server |
 | `./scripts/run-demo.sh` | Startet Docker-Compose Umgebung |
 
 - `scripts/generate-api-docs.js` – Erstellt automatisch die API-Dokumentation mit Typedoc.

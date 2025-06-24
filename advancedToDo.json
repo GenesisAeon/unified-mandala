@@ -2044,13 +2044,15 @@
     "commit": "Create Go todo_parser module",
     "path": "cmd/todo_parser.go",
     "task": "Parse TODO blocks and expose them via REST endpoint /usecases/todo/parse",
-    "test": "cmd/todo_parser_test.go"
+    "test": "cmd/todo_parser_test.go",
+    "status": "done"
   },
   {
     "commit": "Add handleTodo action and button",
     "path": "apps/socialgood-ui/src/components/TodoButton.tsx",
     "task": "Invoke /usecases/todo/parse from UI and display parsed TODOs",
-    "test": "apps/socialgood-ui/src/components/__tests__/TodoButton.test.tsx"
+    "test": "apps/socialgood-ui/src/components/__tests__/TodoButton.test.tsx",
+    "status": "done"
   },
   {
     "commit": "Auto-generate tasks from SelfAnalyzer results",
@@ -2097,21 +2099,24 @@
     "test": ""
   },
   {
-    "commit": "feat: add Go GPTBridge modules",
-    "path": "go-bridge/pkg/gpt",
-    "task": "Implement api_client.go and link_processor.go for GPT API and Link ingest",
-    "test": "go build ./..."
-  },
-  {
-    "commit": "feat: add mandala-gpt CLI",
-    "path": "go-bridge/cmd/mandala-gpt.go",
-    "task": "CLI to invoke GPTBridge via api or link",
-    "test": "go build ./..."
-  },
-  {
-    "commit": "Add Markdown ToDo parser",
-    "path": "scripts/parse-md-todo.js",
-    "task": "Parse Markdown task lists and append to advancedToDo files",
-    "test": "scripts/__tests__/parse-md-todo.test.ts"
-  }
+  "commit": "feat: add Go GPTBridge modules",
+  "path": "go-bridge/pkg/gpt",
+  "task": "Implement api_client.go and link_processor.go for GPT API and Link ingest",
+  "test": "go build ./...",
+  "status": "done"
+},
+{
+  "commit": "feat: add mandala-gpt CLI",
+  "path": "go-bridge/cmd/mandala-gpt.go",
+  "task": "CLI to invoke GPTBridge via api or link",
+  "test": "go build ./...",
+  "status": "done"
+},
+{
+  "commit": "Add Markdown ToDo parser",
+  "path": "scripts/parse-md-todo.js",
+  "task": "Parse Markdown task lists and append to advancedToDo files",
+  "test": "scripts/__tests__/parse-md-todo.test.ts",
+  "status": "done"
+}
 ]
