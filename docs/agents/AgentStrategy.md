@@ -15,3 +15,4 @@ UnifiedMandala versteht sich als symbiotisches System, in dem jeder Agent einen 
 1. Konsolidierte Konfiguration in `codex-config.yaml` bereitstellen.
 2. Agenten über `SyncRunner` regelmäßig synchronisieren.
 3. Erweiterungen über `GenesisAeonNavigator` phasengerecht einbinden.
+4. Visionen zentral über den VisionContextIntegrator abstimmen.

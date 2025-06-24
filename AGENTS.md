@@ -106,6 +106,14 @@ Dieses Dokument wird bei jedem Codex-Start ausgelesen. Jeder Agent manifestiert 
   - Protokolliert Übergänge in `genesis.log`
   - roles_allowed: [admin, dev]
   - Dokumentation: docs/agents/GenesisAeonNavigator.md
+## 🎯 Agent: VisionContextIntegrator
+- **Startmodul**: `vision-context-integrator.ts`
+- **Funktion**:
+  - Liest Vision und Strategie aus `AgentStrategy.md`
+  - Verteilt Kontext an alle Agenten
+  - roles_allowed: [admin, dev]
+  - Dokumentation: docs/agents/VisionContextIntegrator.md
+
 ---
 ## 🔑 Special Instructions
 ```yaml
