@@ -1,5 +1,4 @@
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const express = require('express');
+import express from 'express';
 const router = express.Router();
 
 router.get('/healthz', async (_req: any, res: any) => {
