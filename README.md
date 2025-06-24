@@ -17,6 +17,7 @@ narrative Interfaces und adaptive Bewusstseinsräume.
 > 3. Erkunde das [CHRONOPOEM.md](CHRONOPOEM.md)
 
 Schau auch ins [Glossar](docs/glossar-genesis.md) für Begriffe.
+Einen Überblick über die Agenten bietet [docs/architecture/agent-system.md](docs/architecture/agent-system.md).
 
 
 ## 🚀 Features
