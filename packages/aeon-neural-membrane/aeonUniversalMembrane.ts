@@ -99,4 +99,15 @@ export class AeonUniversalMembrane {
     }
     return last;
   }
+
+  /**
+   * Liefert f\u00fcr jede Netzebene die aktuelle Energie und den zugeh\u00f6rigen Ton.
+   */
+  scanResonance() {
+    return this.mem.getNetworks().map(net => {
+      const energy = scanEnergy(net);
+      const tone = memoryToTone(energy / 10);
+      return { energy, tone };
+    });
+  }
 }
