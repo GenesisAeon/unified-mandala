@@ -5,6 +5,7 @@ import { AeonSigillinVault } from "../core/AeonSigillinVault";
 import { Task } from "../core/interfaces";
 import { AeonDiagnostics, Diagnostic } from "./diagnostics";
 import { HookManager, ASTNode } from "./hooks";
+import { compileCache, hashSource } from './cache';
 
 export interface CompileResult {
   tasks: Task[];
@@ -21,6 +22,7 @@ export interface CompileOptions {
   routeStack?: string[];
   hookManager?: HookManager;
   diagnostics?: AeonDiagnostics;
+  disableCache?: boolean;
 }
 
 export function compile(
@@ -28,6 +30,13 @@ export function compile(
   options: CompileOptions = {},
 ): CompileResult {
   AeonMemory.load();
+  const hash = hashSource(source);
+  if (!options.disableCache) {
+    const cached = compileCache.get(hash);
+    if (cached) {
+      return cached;
+    }
+  }
   const tasks: Task[] = [];
   const baseDir = options.baseDir || process.cwd();
   const visited = options.visited || new Set<string>();
@@ -226,7 +235,11 @@ export function compile(
   }
   });
 
-  return { tasks, diagnostics: diagnostics.getAll() };
+  const result = { tasks, diagnostics: diagnostics.getAll() };
+  if (!options.disableCache) {
+    compileCache.set(hash, result);
+  }
+  return result;
 }
 
 export function transpileToTS(result: CompileResult): string {
