@@ -45,3 +45,9 @@ sichtbar machen.
 `selfReflectCycle` wiederholt den Harmonize-Vorgang und hält jeden Durchlauf
 in einer Verlaufsliste fest. So lässt sich die Entwicklung der Energiewerte und
 der Membrantiefe Schritt für Schritt nachvollziehen.
+
+### Resonanz-Scan
+Die Methode `scanResonance()` liefert f\u00fcr jede Fraktalebene die aktuelle
+Energie sowie den durch den Sonifier abgeleiteten Ton. So kann das Mandala
+ein Resonanzprofil \u00fcber alle Spiegelungen hinweg erstellen und gezielt auf
+energetische Anomalien reagieren.
