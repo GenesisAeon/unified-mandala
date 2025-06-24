@@ -12,7 +12,7 @@ function run() {
     return;
   }
   fs.mkdirSync(memoryDir, { recursive: true });
-  const patch = execSync(`git show ${commit}`).toString();
+  const patch = execSync(`git show ${commit} -- . ':(exclude)GenesisAeonZIPMEM'`).toString();
   fs.writeFileSync(path.join(memoryDir, 'changes.patch'), patch, 'utf8');
   const fragmentsDir = path.join(memoryDir, 'fragments');
   fs.mkdirSync(fragmentsDir, { recursive: true });
@@ -20,7 +20,8 @@ function run() {
     .toString()
     .trim()
     .split('\n')
-    .filter(Boolean);
+    .filter(Boolean)
+    .filter((f) => !f.startsWith('GenesisAeonZIPMEM/'));
   const nodeVersion = process.version;
   let pnpmVersion = 'unknown';
   try {
