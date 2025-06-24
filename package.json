@@ -11,7 +11,7 @@
     "lint": "tsc -p tsconfig.json --noEmit",
     "test": "jest",
     "test:agents": "vitest run",
-    "dev": "echo 'dev script placeholder'",
+    "dev": "ts-node scripts/dev-server.ts",
     "docs:build": "typedoc",
     "docs:auto": "node scripts/generate-api-docs.js",
     "prepare": "husky install",
