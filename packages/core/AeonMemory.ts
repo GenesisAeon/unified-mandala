@@ -12,6 +12,9 @@ export interface MemoryEntry {
   description: string;
   task?: Task;
   crepScore?: number;
+  energy?: number;
+  depth?: number;
+  tone?: string;
 }
 
 export class AeonMemory {

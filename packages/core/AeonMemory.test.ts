@@ -11,11 +11,12 @@ describe('AeonMemory', () => {
   });
 
   it('records tasks to yaml file', () => {
-    const entry = AeonMemory.record('test-task');
+    const entry = AeonMemory.record('test-task', { energy: 1.2, depth: 1, tone: 'mid' });
     expect(fs.existsSync(CHRONIK)).toBe(true);
     const content = fs.readFileSync(CHRONIK, 'utf-8');
     expect(content).toContain('test-task');
     expect(entry.description).toBe('test-task');
+    expect(entry.energy).toBe(1.2);
   });
 
   it('useAeonMemory hook adds entry', () => {

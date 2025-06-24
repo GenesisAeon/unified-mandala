@@ -1,0 +1,42 @@
+diff --git a/packages/agents/AeonMembraneAgent.ts b/packages/agents/AeonMembraneAgent.ts
+index 1fcb984..00c2184 100644
+--- a/packages/agents/AeonMembraneAgent.ts
++++ b/packages/agents/AeonMembraneAgent.ts
+@@ -1,14 +1,18 @@
+ import { Agent, Task } from '../core/interfaces';
+ import { withFSM } from '../core/fsmMixin';
+ import { AeonUniversalMembrane } from '../aeon-neural-membrane';
++import { AeonMemory } from '../core/AeonMemory';
++import { AeonKIResonanzAgent } from './AeonKIResonanzAgent';
+ 
+ export class AeonMembraneAgent implements Agent {
+   id = 'AeonMembrane';
+   layer: 'Aeon' = 'Aeon';
+   private mem: AeonUniversalMembrane;
++  private kiAgent?: AeonKIResonanzAgent;
+ 
+-  constructor(reflections = 1) {
++  constructor(reflections = 1, kiAgent?: AeonKIResonanzAgent) {
+     this.mem = new AeonUniversalMembrane(reflections);
++    this.kiAgent = kiAgent;
+     withFSM(this);
+   }
+ 
+@@ -23,6 +27,17 @@ export class AeonMembraneAgent implements Agent {
+     }
+     const answers = pairs.map(() => 1);
+     const res = this.mem.harmonize(pairs, answers, task.description, 2);
++    const sig = res.conv.crepSignature;
++    const crepScore =
++      (sig.coherence + sig.resonance + sig.emergence + sig.poetics) / 40;
++    AeonMemory.record(task.description, {
++      task,
++      crepScore,
++      energy: res.energy,
++      depth: res.depth,
++      tone: res.tone
++    });
++    if (this.kiAgent) this.kiAgent.resonate(res.tone);
+     console.log(
+       `🧠 AeonMembraneAgent → energy ${res.energy.toFixed(2)} depth ${res.depth}`
+     );
