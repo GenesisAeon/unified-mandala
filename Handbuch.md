@@ -156,6 +156,8 @@ Teil 5 ergänzt die Sigil-Historie.
 
 ### event-bus
 - `NatsEventBus` – Layer für NATS Nachrichtenkommunikation.
+  Siehe [packages/event-bus/README.md](packages/event-bus/README.md) für
+  verfügbare Subjects und Integration.
 
 ### conversation-analysis
 - `CREPConversationScanner` – scannt Gesprächslogs nach CREP-Phrasen.
