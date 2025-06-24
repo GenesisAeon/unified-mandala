@@ -78,6 +78,7 @@ Strategische Leitlinien stehen in [docs/agents/AgentStrategy.md](docs/agents/Age
 - 🗄️ **AeonSigillinVault** – speichert poetische Sigillin-Zustände (`packages/core/AeonSigillinVault.ts`)
 - 🧩 **Aeon Universal** – kompiliert fraktale Befehle in Mandala-Tasks und kann SIG-Anweisungen im `AeonSigillinVault` speichern (`packages/aeon-universal`)
 - 🔧 **AeonPythonTranspilerAgent** – erzeugt Python-Snippets aus Aeon-Quelltext (`packages/agents/AeonPythonTranspilerAgent.ts`)
+- 🛠️ **AeonGoTranspilerAgent** – erzeugt Go-Snippets aus Aeon-Quelltext (`packages/agents/AeonGoTranspilerAgent.ts`)
 - 🛡️ **withCircuit** – CircuitBreaker Wrapper für Agenten-Calls
 - 🩺 **healthz.ts** & **metaScores.ts** – API-Routen
 - 🖥️ **Dashboard** – zeigt MetaScoreChart per Hook
