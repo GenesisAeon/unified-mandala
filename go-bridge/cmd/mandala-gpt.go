@@ -5,7 +5,7 @@ import (
 	"flag"
 	"fmt"
 
-	"github.com/GenesisAeon/unified-mandala/go-bridge/pkg/gpt"
+	"github.com/GenesisAeon/unifiedmandala-go/pkg/gpt"
 )
 
 // Simple CLI to demonstrate GPT via API or link
