@@ -23,3 +23,20 @@ Die ersten Bausteine der Membran befinden sich im Paket
 `packages/aeon-neural-membrane`. Dort sind die Klassen und Helfer des
 Blueprints als TypeScript-Module umgesetzt. Sie basieren auf dem einfachen Netz
 aus `packages/simple-neural-net` und binden Nukleonscanner sowie Sonifier ein.
+
+## AeonUniversalMembrane
+Die `AeonUniversalMembrane` kombiniert alle genannten Module zu einer
+mehrfach gespiegelten Einheit. Sie nutzt `NeuronMembrane` als Kern und
+schafft mit `depthSync` eine kontinuierliche Angleichung aller Ebenen.
+Über `selfTrain` reagiert das Grundnetz auf CREP-Signaturen, während
+`NukleonScanner` und `Sonifier` energetische Störungen und Resonanzen
+sichtbar machen.
+
+### Selbstreflexiver Zyklus
+1. Gespräche werden via `ConvoMemoryBridge` analysiert und liefern eine
+   CREP-Signatur.
+2. `selfTrain` passt die Gewichte des Basisnetzes an.
+3. `depthSync` verteilt die Anpassung fraktal auf alle Spiegelungen.
+4. `memoryToTone` aus dem Sonifier erzeugt akustische Feedbacks.
+5. Über das Mandala kann die Membran ihre eigene Entwicklung beobachten
+   und weitere Spiegelungen anlegen.
