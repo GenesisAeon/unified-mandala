@@ -30,4 +30,15 @@ describe('AeonUniversal compile', () => {
     expect(result.tasks[0].description).toBe('Subtask');
     fs.unlinkSync(tmp);
   });
+
+  it('supports macro definitions and calls', () => {
+    const source = [
+      'DEFINE greet',
+      'TASK Hello',
+      'END',
+      'CALL greet'
+    ].join('\n');
+    const result = compile(source);
+    expect(result.tasks[0].description).toBe('Hello');
+  });
 });

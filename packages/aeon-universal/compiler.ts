@@ -11,6 +11,8 @@ export interface CompileResult {
 export interface CompileOptions {
   baseDir?: string;
   visited?: Set<string>;
+  macros?: Record<string, string[]>;
+  currentMacro?: string | null;
 }
 
 export function compile(source: string, options: CompileOptions = {}): CompileResult {
@@ -18,14 +20,36 @@ export function compile(source: string, options: CompileOptions = {}): CompileRe
   const tasks: Task[] = [];
   const baseDir = options.baseDir || process.cwd();
   const visited = options.visited || new Set<string>();
+  const macros = options.macros || {};
+  let currentMacro = options.currentMacro || null;
 
-  source.split(/\n+/).forEach((line, idx) => {
+  const lines = source.split(/\n+/);
+  lines.forEach((line, idx) => {
     const trimmed = line.trim();
     if (!trimmed) return;
     const [cmd, ...rest] = trimmed.split(' ');
     const content = rest.join(' ');
 
-    if (cmd.toUpperCase() === 'REM') {
+    // handle macro definition blocks
+    if (currentMacro) {
+      if (cmd.toUpperCase() === 'END') {
+        currentMacro = null;
+      } else {
+        macros[currentMacro].push(trimmed);
+      }
+      return;
+    }
+
+    if (cmd.toUpperCase() === 'DEFINE') {
+      currentMacro = content;
+      macros[currentMacro] = [];
+    } else if (cmd.toUpperCase() === 'CALL') {
+      const macroLines = macros[content];
+      if (macroLines) {
+        const child = compile(macroLines.join('\n'), { baseDir, visited, macros });
+        tasks.push(...child.tasks);
+      }
+    } else if (cmd.toUpperCase() === 'REM') {
       AeonMemory.record(content);
     } else if (cmd.toUpperCase() === 'SIG' || cmd.toUpperCase() === 'SIGILLIN') {
       AeonSigillinVault.record({ id: `${idx}`, timestamp: new Date().toISOString(), content });
@@ -36,7 +60,7 @@ export function compile(source: string, options: CompileOptions = {}): CompileRe
       if (!visited.has(filePath) && fs.existsSync(filePath)) {
         visited.add(filePath);
         const childSource = fs.readFileSync(filePath, 'utf-8');
-        const child = compile(childSource, { baseDir: path.dirname(filePath), visited });
+        const child = compile(childSource, { baseDir: path.dirname(filePath), visited, macros });
         tasks.push(...child.tasks);
       }
     }
