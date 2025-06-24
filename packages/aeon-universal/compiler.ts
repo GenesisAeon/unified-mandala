@@ -3,9 +3,12 @@ import path from "path";
 import { AeonMemory } from "../core/AeonMemory";
 import { AeonSigillinVault } from "../core/AeonSigillinVault";
 import { Task } from "../core/interfaces";
+import { AeonDiagnostics, Diagnostic } from "./diagnostics";
+import { HookManager, ASTNode } from "./hooks";
 
 export interface CompileResult {
   tasks: Task[];
+  diagnostics: Diagnostic[];
 }
 
 export interface CompileOptions {
@@ -16,6 +19,8 @@ export interface CompileOptions {
   contextStack?: string[];
   repeatStack?: { count: number; buffer: string[] }[];
   routeStack?: string[];
+  hookManager?: HookManager;
+  diagnostics?: AeonDiagnostics;
 }
 
 export function compile(
@@ -31,9 +36,14 @@ export function compile(
   let contextStack = options.contextStack || [];
   let repeatStack = options.repeatStack || [];
   let routeStack = options.routeStack || [];
+  const hookManager = options.hookManager;
+  const diagnostics = options.diagnostics || new AeonDiagnostics();
+
+  hookManager?.invoke('beforeCompile', { ast: { type: 'Script' }, diagnostics });
 
   const lines = source.split(/\n+/);
   lines.forEach((line, idx) => {
+    try {
     const trimmed = line.trim();
     if (!trimmed) return;
     const [cmd, ...rest] = trimmed.split(" ");
@@ -52,6 +62,8 @@ export function compile(
             contextStack,
             repeatStack,
             routeStack,
+            hookManager,
+            diagnostics,
           });
           tasks.push(...child.tasks);
         }
@@ -92,6 +104,8 @@ export function compile(
           macros,
           contextStack,
           routeStack,
+          hookManager,
+          diagnostics,
         });
         tasks.push(...child.tasks);
       }
@@ -105,6 +119,10 @@ export function compile(
         id: `${idx}`,
         timestamp: new Date().toISOString(),
         content,
+      });
+      hookManager?.invoke('afterEmitSigil', {
+        ast: { type: 'EmitSigil', value: content } as ASTNode,
+        diagnostics,
       });
     } else if (cmd.toUpperCase() === "GUARD") {
       AeonSigillinVault.recordGuard({
@@ -143,13 +161,36 @@ export function compile(
           macros,
           contextStack,
           routeStack,
+          hookManager,
+          diagnostics,
         });
         tasks.push(...child.tasks);
       }
+    } else {
+      diagnostics.report({
+        line: idx + 1,
+        column: 1,
+        message: `Unknown command: ${cmd}`,
+        code: "UNKNOWN_CMD",
+        severity: "warning",
+      });
     }
+  } catch (err) {
+    diagnostics.report({
+      line: idx + 1,
+      column: 1,
+      message: (err as Error).message,
+      code: 'COMPILE_ERROR',
+      severity: 'error',
+    });
+    hookManager?.invoke('onError', {
+      ast: { type: 'Error', error: err } as ASTNode,
+      diagnostics,
+    });
+  }
   });
 
-  return { tasks };
+  return { tasks, diagnostics: diagnostics.getAll() };
 }
 
 export function transpileToTS(result: CompileResult): string {
