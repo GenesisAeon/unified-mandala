@@ -4,6 +4,7 @@ import { AeonTranspilerAgent } from "./AeonTranspilerAgent";
 import { AeonPythonTranspilerAgent } from "./AeonPythonTranspilerAgent";
 import { AeonGoTranspilerAgent } from "./AeonGoTranspilerAgent";
 import { AeonRustTranspilerAgent } from "./AeonRustTranspilerAgent";
+import { AeonJsTranspilerAgent } from "./AeonJsTranspilerAgent";
 
 export class AeonUniversalCoordinatorAgent implements Agent {
   id = "AeonUniversalCoordinator";
@@ -12,17 +13,20 @@ export class AeonUniversalCoordinatorAgent implements Agent {
   private pyAgent: AeonPythonTranspilerAgent;
   private goAgent: AeonGoTranspilerAgent;
   private rsAgent: AeonRustTranspilerAgent;
+  private jsAgent: AeonJsTranspilerAgent;
 
   constructor(
     tsOut = "aeon-output.ts",
     pyOut = "aeon-output.py",
     goOut = "aeon-output.go",
     rsOut = "aeon-output.rs",
+    jsOut = "aeon-output.js",
   ) {
     this.tsAgent = new AeonTranspilerAgent(tsOut);
     this.pyAgent = new AeonPythonTranspilerAgent(pyOut);
     this.goAgent = new AeonGoTranspilerAgent(goOut);
     this.rsAgent = new AeonRustTranspilerAgent(rsOut);
+    this.jsAgent = new AeonJsTranspilerAgent(jsOut);
     withFSM(this);
   }
 
@@ -31,5 +35,6 @@ export class AeonUniversalCoordinatorAgent implements Agent {
     await this.pyAgent.handle(task);
     await this.goAgent.handle(task);
     await this.rsAgent.handle(task);
+    await this.jsAgent.handle(task);
   }
 }
