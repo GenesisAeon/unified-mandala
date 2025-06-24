@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import { describe, it, expect, afterEach } from 'vitest';
 import { generateAdvancedTodos } from '../self-analyzer';
 
 describe('self-analyzer agent', () => {
