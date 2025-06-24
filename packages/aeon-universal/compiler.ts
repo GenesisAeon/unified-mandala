@@ -103,3 +103,8 @@ export function transpileToTS(result: CompileResult): string {
   const data = result.tasks.map(t => ({ id: t.id, description: t.description, context: t.context }));
   return `export const aeonTasks = ${JSON.stringify(data, null, 2)};\n`;
 }
+
+export function transpileToPython(result: CompileResult): string {
+  const data = result.tasks.map(t => ({ id: t.id, description: t.description, context: t.context }));
+  return `aeon_tasks = ${JSON.stringify(data, null, 2)}\n`;
+}
