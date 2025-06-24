@@ -148,6 +148,7 @@ packages/
   ├── crep-automation      # CREP-bezogene Automationen
   ├── tts                  # Sprachsynthese
   ├── universum-simulationen # Simulationsmodule
+  │   └── universe-sim       # Beispiel-Simulation mit Go
   ├── nukleon-scanner        # Extrahiert Gesprächsstrukturen
   ├── nukleon-sonifier       # Sonifiziert Memory-Zustände
   ├── sim-domain          # Domänenspezifische Simulationen
@@ -164,6 +165,7 @@ packages/
   │   ├── pkg/policy        # Policy Enforcement Stubs
   │   ├── pkg/handler       # Task handlers (CoordinationHandler)
   │   └── pkg/hooks         # Event Hook Publisher
+  ├── cmd/mandala-codeagent.go  # Beispiel-CLI für CodeAgent
   ├── services/vector-indexer # Embedding generator service
   ├── services/sigil-trigger  # Beobachtet Sigillin-Änderungen
   ├── services/memorymesh     # Region-Archive und Reflexionsdienste
@@ -185,6 +187,7 @@ ci/                      # Test- und Pipeline-Konfigurationen
 config/                  # Zentrale YAML- und Env-Dateien
   └── interfaces.yaml       # API-Endpunkte der Plattform
   ├── memory-manager.yaml  # Cleanup-Interval Konfiguration
+  ├── memory-job-example.yaml # Vorlage für MemoryManager-Jobs
 repositorypflege/         # Pflegekonzepte und Repository-Mapping
 apps/
   ├── sharedream-interface      # Web-Schnittstelle & Sync
