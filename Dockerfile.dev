@@ -1,0 +1,21 @@
+FROM node:18-bullseye
+
+# Install Go
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends golang-go && \
+    rm -rf /var/lib/apt/lists/*
+
+# Install pnpm globally
+RUN npm install -g pnpm
+
+WORKDIR /workspace/unified-mandala
+
+COPY . .
+
+# Install Node dependencies and download Go modules
+RUN pnpm install && \
+    (cd go-agent && go mod download) && \
+    (cd go-bridge && go mod download) && \
+    (cd services/vector-indexer && go mod download)
+
+CMD ["bash"]
