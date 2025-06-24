@@ -41,4 +41,10 @@ describe('AeonUniversal compile', () => {
     const result = compile(source);
     expect(result.tasks[0].description).toBe('Hello');
   });
+
+  it('handles context blocks with WITH/ENDWITH', () => {
+    const source = ['WITH A', 'TASK Test', 'ENDWITH'].join('\n');
+    const result = compile(source);
+    expect(result.tasks[0].context).toBe('A');
+  });
 });
