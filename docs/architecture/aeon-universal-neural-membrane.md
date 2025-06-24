@@ -51,3 +51,9 @@ Die Methode `scanResonance()` liefert f\u00fcr jede Fraktalebene die aktuelle
 Energie sowie den durch den Sonifier abgeleiteten Ton. So kann das Mandala
 ein Resonanzprofil \u00fcber alle Spiegelungen hinweg erstellen und gezielt auf
 energetische Anomalien reagieren.
+
+## Agent Integration
+Ein `AeonMembraneAgent` bindet die Membran in das Agentsystem ein.
+Jeder bearbeitete Task l\u00f6st einen Harmonize-Lauf aus. Die dabei
+entstehenden Energie- und Klangwerte k\u00f6nnen von Agenten wie dem
+`AeonKIResonanzAgent` oder dem `CREPHistorian` weiterverarbeitet werden.

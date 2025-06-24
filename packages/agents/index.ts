@@ -47,3 +47,4 @@ export * from "./AeonUniversalCoordinatorAgent";
 export * from "./AeonRustTranspilerAgent";
 export * from "./AeonJsTranspilerAgent";
 export * from './AeonAuraAgent';
+export * from './AeonMembraneAgent';
