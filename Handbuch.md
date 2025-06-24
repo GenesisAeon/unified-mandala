@@ -533,6 +533,8 @@ docker-compose run test
 ```
 Die generierte API-Dokumentation findest du danach unter `docs/api`.
 
+Einen kompakten Ablauf findest du auch im [README-Abschnitt "Systemstart"](README.md#-systemstart).
+
 Für `npm` oder `yarn` nutze alternativ:
 
 ```bash

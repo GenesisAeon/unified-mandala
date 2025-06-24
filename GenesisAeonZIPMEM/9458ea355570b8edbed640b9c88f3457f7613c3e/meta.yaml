@@ -1,0 +1,11 @@
+commit: 9458ea355570b8edbed640b9c88f3457f7613c3e
+message: "docs: add system launch overview"
+patch: changes.patch
+fragments: fragments
+files:
+  - Handbuch.md
+  - README.md
+environment:
+  node: v22.16.0
+  pnpm: 10.5.2
+instructions: Apply patch with git apply or review for reference.
