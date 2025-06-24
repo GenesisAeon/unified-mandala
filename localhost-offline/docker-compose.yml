@@ -1,0 +1,35 @@
+version: '3.8'
+services:
+  nats:
+    image: nats:latest
+    ports:
+      - '4222:4222'
+
+  api:
+    build: ./services/api
+    env_file: .env
+    ports:
+      - '3000:3000'
+    depends_on:
+      - nats
+
+  aeon-universal:
+    build: ./services/aeon-universal
+    ports:
+      - '4000:4000'
+    depends_on:
+      - api
+
+  offline-gpt:
+    build: ./services/offline-gpt
+    ports:
+      - '5000:5000'
+
+  web:
+    build: ./services/web
+    ports:
+      - '8080:80'
+    depends_on:
+      - api
+      - aeon-universal
+      - offline-gpt
