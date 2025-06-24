@@ -3,7 +3,7 @@ import path from "path";
 import { AeonUniversalCoordinatorAgent } from "./AeonUniversalCoordinatorAgent";
 
 describe("AeonUniversalCoordinatorAgent", () => {
-  const outputs = ["tmp-aeon.ts", "tmp-aeon.py", "tmp-aeon.go"];
+  const outputs = ["tmp-aeon.ts", "tmp-aeon.py", "tmp-aeon.go", "tmp-aeon.rs"];
 
   afterEach(() => {
     outputs.forEach((o) => {

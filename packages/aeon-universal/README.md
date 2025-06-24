@@ -19,7 +19,7 @@ oder Sicherheitsnotizen im `AeonSigillinVault` und dient der
 dialogischen Selbstabsicherung des Systems.
 
 Ab **0.7** steht ein **REPEAT**-Block zur Verfügung, um Aufgaben mehrmals auszuführen. Zudem kann das
-Kompilat über `transpileToTS()` in TypeScript, `transpileToPython()` in Python oder `transpileToGo()` in Go exportiert werden.
+Kompilat über `transpileToTS()` in TypeScript, `transpileToPython()` in Python, `transpileToGo()` in Go oder `transpileToRust()` in Rust exportiert werden.
 
 Ab **0.8** akzeptieren Makros optionale Parameter. Definiert mit `DEFINE name param`, können Platzhalter
 `$param` innerhalb des Blocks verwendet und bei `CALL name value` ersetzt werden.

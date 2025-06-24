@@ -180,3 +180,22 @@ export function transpileToGo(result: CompileResult): string {
   lines.push("}");
   return lines.join("\n") + "\n";
 }
+
+export function transpileToRust(result: CompileResult): string {
+  const lines = [
+    "pub struct Task {",
+    "    pub id: &'static str,",
+    "    pub description: &'static str,",
+    "    pub context: &'static str,",
+    "}",
+    "",
+    "pub static AEON_TASKS: &[Task] = &[",
+  ];
+  result.tasks.forEach((t) => {
+    lines.push(
+      `    Task { id: \"${t.id}\", description: \"${t.description}\", context: \"${t.context}\" },`,
+    );
+  });
+  lines.push("];");
+  return lines.join("\n") + "\n";
+}

@@ -44,3 +44,4 @@ export * from "./ReplayController";
 export * from "./silenceWatcher";
 export * from "./StrategicAgentCoordinator";
 export * from "./AeonUniversalCoordinatorAgent";
+export * from "./AeonRustTranspilerAgent";
