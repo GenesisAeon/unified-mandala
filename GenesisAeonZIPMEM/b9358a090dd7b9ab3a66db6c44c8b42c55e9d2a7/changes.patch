@@ -1,0 +1,156 @@
+commit b9358a090dd7b9ab3a66db6c44c8b42c55e9d2a7
+Author: Codex <codex@openai.com>
+Date:   Tue Jun 24 15:00:54 2025 +0000
+
+    feat(aeon): add Go transpiler
+
+diff --git a/README.md b/README.md
+index 96fa976..ca7e6a1 100644
+--- a/README.md
++++ b/README.md
+@@ -78,6 +78,7 @@ Strategische Leitlinien stehen in [docs/agents/AgentStrategy.md](docs/agents/Age
+ - 🗄️ **AeonSigillinVault** – speichert poetische Sigillin-Zustände (`packages/core/AeonSigillinVault.ts`)
+ - 🧩 **Aeon Universal** – kompiliert fraktale Befehle in Mandala-Tasks und kann SIG-Anweisungen im `AeonSigillinVault` speichern (`packages/aeon-universal`)
+ - 🔧 **AeonPythonTranspilerAgent** – erzeugt Python-Snippets aus Aeon-Quelltext (`packages/agents/AeonPythonTranspilerAgent.ts`)
++- 🛠️ **AeonGoTranspilerAgent** – erzeugt Go-Snippets aus Aeon-Quelltext (`packages/agents/AeonGoTranspilerAgent.ts`)
+ - 🛡️ **withCircuit** – CircuitBreaker Wrapper für Agenten-Calls
+ - 🩺 **healthz.ts** & **metaScores.ts** – API-Routen
+ - 🖥️ **Dashboard** – zeigt MetaScoreChart per Hook
+diff --git a/docs/agents/AeonGoTranspilerAgent.md b/docs/agents/AeonGoTranspilerAgent.md
+new file mode 100644
+index 0000000..4e4e49b
+--- /dev/null
++++ b/docs/agents/AeonGoTranspilerAgent.md
+@@ -0,0 +1,12 @@
++# AeonGoTranspilerAgent
++
++## Responsibilities
++- Wandelt Aeon-Quelltext in ein Go-Snippet um.
++- Nutzt `transpileToGo()` aus `aeon-universal`.
++- Speichert das Ergebnis in einer Datei (Standard: `aeon-output.go`).
++
++## Example usage
++```ts
++const agent = new AeonGoTranspilerAgent('out.go');
++await agent.handle({ id: '1', description: 'TASK Demo' });
++```
+diff --git a/packages/aeon-universal/README.md b/packages/aeon-universal/README.md
+index fc8947d..a783a18 100644
+--- a/packages/aeon-universal/README.md
++++ b/packages/aeon-universal/README.md
+@@ -19,7 +19,7 @@ Seit **0.6** existiert der Befehl **GUARD**. Er protokolliert Schutz-
+ dialogischen Selbstabsicherung des Systems.
+ 
+ Ab **0.7** steht ein **REPEAT**-Block zur Verfügung, um Aufgaben mehrmals auszuführen. Zudem kann das
+-Kompilat über `transpileToTS()` in TypeScript oder `transpileToPython()` in Python exportiert werden.
++Kompilat über `transpileToTS()` in TypeScript, `transpileToPython()` in Python oder `transpileToGo()` in Go exportiert werden.
+ 
+ ## Beispiel
+ ```aeon
+diff --git a/packages/aeon-universal/compiler.test.ts b/packages/aeon-universal/compiler.test.ts
+index d187aa9..e051e79 100644
+--- a/packages/aeon-universal/compiler.test.ts
++++ b/packages/aeon-universal/compiler.test.ts
+@@ -1,6 +1,6 @@
+ import fs from 'fs';
+ import path from 'path';
+-import { compile, transpileToTS, transpileToPython } from './compiler';
++import { compile, transpileToTS, transpileToPython, transpileToGo } from './compiler';
+ import { AeonSigillinVault } from '../core/AeonSigillinVault';
+ 
+ const CHRONIK = path.resolve('mandala-chronik.yaml');
+@@ -73,4 +73,11 @@ describe('AeonUniversal compile', () => {
+     expect(py).toContain('aeon_tasks');
+     expect(py).toContain('Demo');
+   });
++
++  it('transpiles tasks to Go', () => {
++    const res = compile('TASK Demo');
++    const go = transpileToGo(res);
++    expect(go).toContain('package aeon');
++    expect(go).toContain('Demo');
++  });
+ });
+diff --git a/packages/aeon-universal/compiler.ts b/packages/aeon-universal/compiler.ts
+index 91fd608..72d239d 100644
+--- a/packages/aeon-universal/compiler.ts
++++ b/packages/aeon-universal/compiler.ts
+@@ -108,3 +108,24 @@ export function transpileToPython(result: CompileResult): string {
+   const data = result.tasks.map(t => ({ id: t.id, description: t.description, context: t.context }));
+   return `aeon_tasks = ${JSON.stringify(data, null, 2)}\n`;
+ }
++
++export function transpileToGo(result: CompileResult): string {
++  const lines = [
++    'package aeon',
++    '',
++    'type Task struct {',
++    '  ID string',
++    '  Description string',
++    '  Context string',
++    '}',
++    '',
++    'var AeonTasks = []Task{'
++  ];
++  result.tasks.forEach(t => {
++    lines.push(
++      `  {ID: "${t.id}", Description: "${t.description}", Context: "${t.context}"},`
++    );
++  });
++  lines.push('}');
++  return lines.join('\n') + '\n';
++}
+diff --git a/packages/agents/AeonGoTranspilerAgent.test.ts b/packages/agents/AeonGoTranspilerAgent.test.ts
+new file mode 100644
+index 0000000..847b934
+--- /dev/null
++++ b/packages/agents/AeonGoTranspilerAgent.test.ts
+@@ -0,0 +1,20 @@
++import fs from 'fs';
++import path from 'path';
++import { AeonGoTranspilerAgent } from './AeonGoTranspilerAgent';
++
++describe('AeonGoTranspilerAgent', () => {
++  const output = 'tmp-aeon.go';
++
++  afterEach(() => {
++    if (fs.existsSync(output)) fs.unlinkSync(output);
++  });
++
++  it('transpiles aeon source to Go file', async () => {
++    const agent = new AeonGoTranspilerAgent(output);
++    const task = { id: '1', description: 'TASK Demo' } as any;
++    await agent.handle(task);
++    const content = fs.readFileSync(path.resolve(output), 'utf-8');
++    expect(content).toContain('package aeon');
++    expect(content).toContain('Demo');
++  });
++});
+diff --git a/packages/agents/AeonGoTranspilerAgent.ts b/packages/agents/AeonGoTranspilerAgent.ts
+new file mode 100644
+index 0000000..c7f0cb3
+--- /dev/null
++++ b/packages/agents/AeonGoTranspilerAgent.ts
+@@ -0,0 +1,22 @@
++import fs from 'fs';
++import path from 'path';
++import { Agent, Task } from '../core/interfaces';
++import { withFSM } from '../core/fsmMixin';
++import { compile, transpileToGo } from '../aeon-universal';
++
++export class AeonGoTranspilerAgent implements Agent {
++  id = 'AeonGoTranspiler';
++  layer: 'Aeon' = 'Aeon';
++  output: string;
++  constructor(output = 'aeon-output.go') {
++    this.output = output;
++    withFSM(this);
++  }
++
++  async handle(task: Task): Promise<void> {
++    const result = compile(task.description);
++    const code = transpileToGo(result);
++    fs.writeFileSync(path.resolve(this.output), code, 'utf-8');
++    console.log(`🛠️ AeonGoTranspilerAgent → wrote ${this.output}`);
++  }
++}
