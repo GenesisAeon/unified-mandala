@@ -22,4 +22,12 @@ describe('AeonUniversal compile', () => {
     compile('SIG Hallo');
     expect(spy).toHaveBeenCalled();
   });
+
+  it('includes other files recursively', () => {
+    const tmp = path.resolve('tmp.aeon');
+    fs.writeFileSync(tmp, 'TASK Subtask');
+    const result = compile(`INCLUDE ${tmp}`);
+    expect(result.tasks[0].description).toBe('Subtask');
+    fs.unlinkSync(tmp);
+  });
 });
