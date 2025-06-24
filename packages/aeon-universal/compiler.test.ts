@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import { compile, transpileToTS } from './compiler';
+import { compile, transpileToTS, transpileToPython } from './compiler';
 import { AeonSigillinVault } from '../core/AeonSigillinVault';
 
 const CHRONIK = path.resolve('mandala-chronik.yaml');
@@ -65,5 +65,12 @@ describe('AeonUniversal compile', () => {
     const ts = transpileToTS(res);
     expect(ts).toContain('aeonTasks');
     expect(ts).toContain('Demo');
+  });
+
+  it('transpiles tasks to Python', () => {
+    const res = compile('TASK Demo');
+    const py = transpileToPython(res);
+    expect(py).toContain('aeon_tasks');
+    expect(py).toContain('Demo');
   });
 });

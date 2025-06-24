@@ -19,7 +19,7 @@ Seit **0.6** existiert der Befehl **GUARD**. Er protokolliert Schutz-
 dialogischen Selbstabsicherung des Systems.
 
 Ab **0.7** steht ein **REPEAT**-Block zur Verfügung, um Aufgaben mehrmals auszuführen. Zudem kann das
-Kompilat über `transpileToTS()` in TypeScript exportiert werden.
+Kompilat über `transpileToTS()` in TypeScript oder `transpileToPython()` in Python exportiert werden.
 
 ## Beispiel
 ```aeon
