@@ -1,0 +1,26 @@
+diff --git a/packages/cli-tools/sigillin-cli.js b/packages/cli-tools/sigillin-cli.js
+index bfaf09b..5cb050b 100644
+--- a/packages/cli-tools/sigillin-cli.js
++++ b/packages/cli-tools/sigillin-cli.js
+@@ -48,8 +48,8 @@ program
+   .command('list')
+   .description('Listet vorhandene *.sigil.json Dateien im Projekt')
+   .action(() => {
+-    const glob = require('glob');
+-    const files = glob.sync('**/*.sigil.json', { ignore: 'node_modules/**' });
++    const { globSync } = require('glob');
++    const files = globSync('**/*.sigil.json', { ignore: 'node_modules/**' });
+     console.log('Gefundene Sigillin-Dateien:');
+     files.forEach(f => console.log(' -', f));
+   });
+@@ -78,8 +78,8 @@ program
+   .description('Erzeugt eine Mermaid-Datei aller Sigillin-Verkn\xFCpfungen')
+   .option('--json', 'JSON-Ausgabe statt Mermaid')
+   .action((opts) => {
+-    const glob = require('glob');
+-    const sigilFiles = glob.sync('**/*.sigil.json', { ignore: 'node_modules/**' });
++    const { globSync } = require('glob');
++    const sigilFiles = globSync('**/*.sigil.json', { ignore: 'node_modules/**' });
+     const sigils = sigilFiles.map(f => JSON.parse(fs.readFileSync(f, 'utf8')));
+     if (opts.json) {
+       fs.writeFileSync('sigillin-graph.json', JSON.stringify(sigils, null, 2));
