@@ -216,6 +216,10 @@ GPTEventHub.emit('orakel:says', { content: 'Hallo Welt' });
 
 
 Weitere Module sind in Arbeit.
+Kurze Paketbeschreibungen liegen in den READMEs der Verzeichnisse
+`bio`, `codex-navigator`, `collab-editor`, `core`, `crep-automation`,
+`event-bus`, `nukleon-scanner`, `nukleon-sonifier`, `sharedream-interface`,
+`tts`, `tutorials`, `ui`, `utils` und `visuals`.
 
 Eine Pipeline-Demonstration findest du in [docs/demo/POC-Run-Guide.md](docs/demo/POC-Run-Guide.md).
 ## Tools und Skripte

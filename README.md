@@ -218,6 +218,10 @@ scripts/
 
 Jeder Unterordner kann eine eigene README enthalten – siehe die Links in den jeweiligen Verzeichnissen.
 Utilities liegen in `packages/shared-utils/`, weitere Module findest du ebenfalls unter `packages/`.
+Kurze Beschreibungen findest du nun direkt in den READMEs der Pakete
+`bio`, `codex-navigator`, `collab-editor`, `core`, `crep-automation`,
+`event-bus`, `nukleon-scanner`, `nukleon-sonifier`, `sharedream-interface`,
+`tts`, `tutorials`, `ui`, `utils` und `visuals`.
 -### 🟦 Go-Bridge (go-bridge/)
 - Polyglottes Interface zu UnifiedMandala für Go (REST, NATS, gRPC, CLI)
 - Enthält **GPTBridge**-Module (`pkg/gpt`) und die Beispiel-CLIs `mandala-gpt.go`
