@@ -48,9 +48,10 @@ der Membrantiefe Schritt für Schritt nachvollziehen.
 
 ### Resonanz-Scan
 Die Methode `scanResonance()` liefert f\u00fcr jede Fraktalebene die aktuelle
-Energie sowie den durch den Sonifier abgeleiteten Ton. So kann das Mandala
-ein Resonanzprofil \u00fcber alle Spiegelungen hinweg erstellen und gezielt auf
-energetische Anomalien reagieren.
+Energie sowie den durch den Sonifier abgeleiteten Ton. 
+Erg\u00e4nzend dazu erstellt `resonanceMap()` eine Liste mit Layer-Index, damit
+das Mandala ein detailliertes Resonanzprofil \u00fcber alle Spiegelungen
+hinweg erstellen und gezielt auf energetische Anomalien reagieren kann.
 
 ## Agent Integration
 Ein `AeonMembraneAgent` bindet die Membran in das Agentsystem ein.

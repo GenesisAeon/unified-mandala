@@ -1,0 +1,12 @@
+commit: a14c797448cada0168e948017e7e94dd67890cd0
+message: "feat(membrane): add resonance map"
+patch: changes.patch
+fragments: fragments
+files:
+  - docs/architecture/aeon-universal-neural-membrane.md
+  - packages/aeon-neural-membrane/__tests__/resonance.test.ts
+  - packages/aeon-neural-membrane/aeonUniversalMembrane.ts
+environment:
+  node: v22.16.0
+  pnpm: 10.5.2
+instructions: Apply patch with git apply or review for reference.

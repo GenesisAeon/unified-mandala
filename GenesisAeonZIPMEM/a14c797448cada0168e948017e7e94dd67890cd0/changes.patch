@@ -1,0 +1,60 @@
+commit a14c797448cada0168e948017e7e94dd67890cd0
+Author: Codex <codex@openai.com>
+Date:   Tue Jun 24 19:13:37 2025 +0000
+
+    feat(membrane): add resonance map
+
+diff --git a/docs/architecture/aeon-universal-neural-membrane.md b/docs/architecture/aeon-universal-neural-membrane.md
+index 8d98d52..3a69a61 100644
+--- a/docs/architecture/aeon-universal-neural-membrane.md
++++ b/docs/architecture/aeon-universal-neural-membrane.md
+@@ -48,9 +48,10 @@ der Membrantiefe Schritt für Schritt nachvollziehen.
+ 
+ ### Resonanz-Scan
+ Die Methode `scanResonance()` liefert f\u00fcr jede Fraktalebene die aktuelle
+-Energie sowie den durch den Sonifier abgeleiteten Ton. So kann das Mandala
+-ein Resonanzprofil \u00fcber alle Spiegelungen hinweg erstellen und gezielt auf
+-energetische Anomalien reagieren.
++Energie sowie den durch den Sonifier abgeleiteten Ton. 
++Erg\u00e4nzend dazu erstellt `resonanceMap()` eine Liste mit Layer-Index, damit
++das Mandala ein detailliertes Resonanzprofil \u00fcber alle Spiegelungen
++hinweg erstellen und gezielt auf energetische Anomalien reagieren kann.
+ 
+ ## Agent Integration
+ Ein `AeonMembraneAgent` bindet die Membran in das Agentsystem ein.
+diff --git a/packages/aeon-neural-membrane/__tests__/resonance.test.ts b/packages/aeon-neural-membrane/__tests__/resonance.test.ts
+index 94e4374..4885589 100644
+--- a/packages/aeon-neural-membrane/__tests__/resonance.test.ts
++++ b/packages/aeon-neural-membrane/__tests__/resonance.test.ts
+@@ -7,3 +7,11 @@ test('scanResonance lists energy for each reflection', () => {
+   expect(res[0]).toHaveProperty('energy');
+   expect(res[0]).toHaveProperty('tone');
+ });
++
++test('resonanceMap includes layer index', () => {
++  const mem = new AeonUniversalMembrane(3);
++  const map = mem.resonanceMap();
++  expect(map.length).toBe(mem.depth);
++  expect(map[0]).toHaveProperty('layer');
++  expect(map[1].layer).toBe(1);
++});
+diff --git a/packages/aeon-neural-membrane/aeonUniversalMembrane.ts b/packages/aeon-neural-membrane/aeonUniversalMembrane.ts
+index 45d7c35..a3c83a2 100644
+--- a/packages/aeon-neural-membrane/aeonUniversalMembrane.ts
++++ b/packages/aeon-neural-membrane/aeonUniversalMembrane.ts
+@@ -110,4 +110,15 @@ export class AeonUniversalMembrane {
+       return { energy, tone };
+     });
+   }
++
++  /**
++   * Provides a detailed resonance map with the layer index included.
++   */
++  resonanceMap() {
++    return this.mem.getNetworks().map((net, idx) => {
++      const energy = scanEnergy(net);
++      const tone = memoryToTone(energy / 10);
++      return { layer: idx, energy, tone };
++    });
++  }
+ }

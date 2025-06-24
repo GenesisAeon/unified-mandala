@@ -1,0 +1,9 @@
+commit: 0db705e90cd2d00aa3213cc4e24e8d50bd0598b5
+message: "chore(memory): store additional fragment"
+patch: changes.patch
+fragments: fragments
+files: []
+environment:
+  node: v22.16.0
+  pnpm: 10.5.2
+instructions: Apply patch with git apply or review for reference.
