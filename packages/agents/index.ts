@@ -42,3 +42,4 @@ export * from './WeightedDispatcher';
 export * from './patternReactivator';
 export * from './ReplayController';
 export * from './silenceWatcher';
+export * from './StrategicAgentCoordinator';

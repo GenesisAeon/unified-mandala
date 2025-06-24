@@ -16,6 +16,7 @@ graph TD
 ```
 
 Weitere Agenten wie `PatternReactivator` und `GenesisAeonNavigator` arbeiten parallel zur Kette und
+- **StrategicAgentCoordinator** synchronisiert die Agentenliste.
 überwachen CREP-Scores sowie Phasenwechsel.
 
 - **FragmentMapper** sammelt Gesprächsfragmente und erzeugt Aufgaben.
@@ -26,6 +27,7 @@ Weitere Agenten wie `PatternReactivator` und `GenesisAeonNavigator` arbeiten par
 - **DepthBundleExporter** erstellt Visualisierungen der Tiefendaten.
 - **PatternReactivator** weckt ruhende Aufgabenketten bei niedrigen Scores.
 - **GenesisAeonNavigator** steuert die Phasen des Gesamtprojekts.
+- **StrategicAgentCoordinator** synchronisiert die Agentenliste.
 
 Dieses Dokument verknüpft die Agentenlogik und dient als Einstiegspunkt für eigene Erweiterungen.
 

@@ -114,6 +114,14 @@ Dieses Dokument wird bei jedem Codex-Start ausgelesen. Jeder Agent manifestiert 
   - roles_allowed: [admin, dev]
   - Dokumentation: docs/agents/VisionContextIntegrator.md
 
+## 🧭 Agent: StrategicAgentCoordinator
+- **Startmodul**: `strategic-agent-coordinator.ts`
+- **Funktion**:
+  - Liest Agentenliste aus `AGENTS.md`
+  - Schreibt `strategy-overview.json`
+  - roles_allowed: [admin, dev]
+  - Dokumentation: docs/agents/StrategicAgentCoordinator.md
+
 ---
 ## 🔑 Special Instructions
 ```yaml
