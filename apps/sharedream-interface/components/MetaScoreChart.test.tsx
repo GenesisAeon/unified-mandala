@@ -10,6 +10,8 @@ jest.mock('../hooks/useMetaScores', () => ({
       { id: 'b', value: 0.7 },
     ],
     error: null,
+    loading: false,
+    retry: jest.fn(),
   }),
 }));
 
