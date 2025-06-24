@@ -4,3 +4,4 @@ export * from './nukleonScanner';
 export * from './sonifierBridge';
 export * from './depthSync';
 export * from './selfTrainer';
+export * from './aeonUniversalMembrane';
