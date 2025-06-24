@@ -1,0 +1,250 @@
+diff --git a/GenesisAeonZIPMEM/c064941678f63295af4ea3b20fc72f13ae595e33/changes.patch b/GenesisAeonZIPMEM/c064941678f63295af4ea3b20fc72f13ae595e33/changes.patch
+new file mode 100644
+index 0000000..a7cc9e3
+--- /dev/null
++++ b/GenesisAeonZIPMEM/c064941678f63295af4ea3b20fc72f13ae595e33/changes.patch
+@@ -0,0 +1,244 @@
++commit c064941678f63295af4ea3b20fc72f13ae595e33
++Author: Codex <codex@openai.com>
++Date:   Tue Jun 24 13:26:12 2025 +0000
++
++    chore: update commit memory
++
++diff --git a/GenesisAeonZIPMEM/f4b5f6cbff0d81e8cf13fe18921553ae5ede7acc/changes.patch b/GenesisAeonZIPMEM/f4b5f6cbff0d81e8cf13fe18921553ae5ede7acc/changes.patch
++new file mode 100644
++index 0000000..ff54a5b
++--- /dev/null
+++++ b/GenesisAeonZIPMEM/f4b5f6cbff0d81e8cf13fe18921553ae5ede7acc/changes.patch
++@@ -0,0 +1,64 @@
+++commit f4b5f6cbff0d81e8cf13fe18921553ae5ede7acc
+++Author: Codex <codex@openai.com>
+++Date:   Tue Jun 24 13:24:17 2025 +0000
+++
+++    docs: add MetaCommit planning
+++
+++diff --git a/dev-agents.md b/dev-agents.md
+++index 3237afc..1b2c16d 100644
+++--- a/dev-agents.md
++++++ b/dev-agents.md
+++@@ -9,3 +9,6 @@ Weitere Hinweise:
+++ - F\u00fchre nach jedem Commit `pnpm store:commit-memory` aus, um einen Patch
+++   samt `meta.yaml` im Ordner `GenesisAeonZIPMEM` abzulegen.
+++   Die YAML-Datei enthält nun auch die eingesetzten Versionen von Node und pnpm.
++++- Prüfe vor jedem Lauf, ob `metacommit.yaml` oder `metacommit.json` existieren.
++++  Befolge vorrangig die dort hinterlegten Schritte aus `feedbackcodex.md` und
++++  lösche die Dateien nach Abschluss der MetaCommit-Aufgaben.
+++diff --git a/feedbackcodex.md b/feedbackcodex.md
+++new file mode 100644
+++index 0000000..c5afa03
+++--- /dev/null
++++++ b/feedbackcodex.md
+++@@ -0,0 +1,4 @@
++++# MetaCommit Planung
++++Diese Datei beschreibt MetaCommits, also Arbeitsaufträge, die zu umfangreich für einen einzelnen Commit sind.
++++Alle offenen MetaCommits werden in `metacommit.yaml` und `metacommit.json` referenziert.
++++Dev-Agents prüfen zu Beginn eines Laufs auf diese Dateien und priorisieren deren Aufgaben, bis sie erledigt und die Dateien gelöscht wurden.
+++diff --git a/metacommit.json b/metacommit.json
+++new file mode 100644
+++index 0000000..abf7f12
+++--- /dev/null
++++++ b/metacommit.json
+++@@ -0,0 +1,13 @@
++++{
++++  "meta": {
++++    "title": "Initial MetaCommit Plan",
++++    "description": "Automatisches Commit-Memory und MetaCommit-Verwaltung für dev-agents.",
++++    "instructions": "feedbackcodex.md",
++++    "active": true,
++++    "created": "2024-06-25",
++++    "tasks": [
++++      {"id": 1, "description": "Nach jedem Commit `pnpm store:commit-memory` ausführen"},
++++      {"id": 2, "description": "MetaCommit-Dateien beim Start prüfen und priorisiert abarbeiten"}
++++    ]
++++  }
++++}
+++diff --git a/metacommit.yaml b/metacommit.yaml
+++new file mode 100644
+++index 0000000..fc37e01
+++--- /dev/null
++++++ b/metacommit.yaml
+++@@ -0,0 +1,12 @@
++++meta:
++++  title: "Initial MetaCommit Plan"
++++  description: >
++++    Automatisches Commit-Memory und MetaCommit-Verwaltung für dev-agents.
++++  instructions: feedbackcodex.md
++++  active: true
++++  created: 2024-06-25
++++  tasks:
++++    - id: 1
++++      description: "Nach jedem Commit `pnpm store:commit-memory` ausführen"
++++    - id: 2
++++      description: "MetaCommit-Dateien beim Start prüfen und priorisiert abarbeiten"
++diff --git a/GenesisAeonZIPMEM/f4b5f6cbff0d81e8cf13fe18921553ae5ede7acc/fragments/dev-agents.md.patch b/GenesisAeonZIPMEM/f4b5f6cbff0d81e8cf13fe18921553ae5ede7acc/fragments/dev-agents.md.patch
++new file mode 100644
++index 0000000..16352ff
++--- /dev/null
+++++ b/GenesisAeonZIPMEM/f4b5f6cbff0d81e8cf13fe18921553ae5ede7acc/fragments/dev-agents.md.patch
++@@ -0,0 +1,11 @@
+++diff --git a/dev-agents.md b/dev-agents.md
+++index 3237afc..1b2c16d 100644
+++--- a/dev-agents.md
++++++ b/dev-agents.md
+++@@ -9,3 +9,6 @@ Weitere Hinweise:
+++ - F\u00fchre nach jedem Commit `pnpm store:commit-memory` aus, um einen Patch
+++   samt `meta.yaml` im Ordner `GenesisAeonZIPMEM` abzulegen.
+++   Die YAML-Datei enthält nun auch die eingesetzten Versionen von Node und pnpm.
++++- Prüfe vor jedem Lauf, ob `metacommit.yaml` oder `metacommit.json` existieren.
++++  Befolge vorrangig die dort hinterlegten Schritte aus `feedbackcodex.md` und
++++  lösche die Dateien nach Abschluss der MetaCommit-Aufgaben.
++diff --git a/GenesisAeonZIPMEM/f4b5f6cbff0d81e8cf13fe18921553ae5ede7acc/fragments/feedbackcodex.md.patch b/GenesisAeonZIPMEM/f4b5f6cbff0d81e8cf13fe18921553ae5ede7acc/fragments/feedbackcodex.md.patch
++new file mode 100644
++index 0000000..2bb4273
++--- /dev/null
+++++ b/GenesisAeonZIPMEM/f4b5f6cbff0d81e8cf13fe18921553ae5ede7acc/fragments/feedbackcodex.md.patch
++@@ -0,0 +1,10 @@
+++diff --git a/feedbackcodex.md b/feedbackcodex.md
+++new file mode 100644
+++index 0000000..c5afa03
+++--- /dev/null
++++++ b/feedbackcodex.md
+++@@ -0,0 +1,4 @@
++++# MetaCommit Planung
++++Diese Datei beschreibt MetaCommits, also Arbeitsaufträge, die zu umfangreich für einen einzelnen Commit sind.
++++Alle offenen MetaCommits werden in `metacommit.yaml` und `metacommit.json` referenziert.
++++Dev-Agents prüfen zu Beginn eines Laufs auf diese Dateien und priorisieren deren Aufgaben, bis sie erledigt und die Dateien gelöscht wurden.
++diff --git a/GenesisAeonZIPMEM/f4b5f6cbff0d81e8cf13fe18921553ae5ede7acc/fragments/metacommit.json.patch b/GenesisAeonZIPMEM/f4b5f6cbff0d81e8cf13fe18921553ae5ede7acc/fragments/metacommit.json.patch
++new file mode 100644
++index 0000000..aeed1f9
++--- /dev/null
+++++ b/GenesisAeonZIPMEM/f4b5f6cbff0d81e8cf13fe18921553ae5ede7acc/fragments/metacommit.json.patch
++@@ -0,0 +1,19 @@
+++diff --git a/metacommit.json b/metacommit.json
+++new file mode 100644
+++index 0000000..abf7f12
+++--- /dev/null
++++++ b/metacommit.json
+++@@ -0,0 +1,13 @@
++++{
++++  "meta": {
++++    "title": "Initial MetaCommit Plan",
++++    "description": "Automatisches Commit-Memory und MetaCommit-Verwaltung für dev-agents.",
++++    "instructions": "feedbackcodex.md",
++++    "active": true,
++++    "created": "2024-06-25",
++++    "tasks": [
++++      {"id": 1, "description": "Nach jedem Commit `pnpm store:commit-memory` ausführen"},
++++      {"id": 2, "description": "MetaCommit-Dateien beim Start prüfen und priorisiert abarbeiten"}
++++    ]
++++  }
++++}
++diff --git a/GenesisAeonZIPMEM/f4b5f6cbff0d81e8cf13fe18921553ae5ede7acc/fragments/metacommit.yaml.patch b/GenesisAeonZIPMEM/f4b5f6cbff0d81e8cf13fe18921553ae5ede7acc/fragments/metacommit.yaml.patch
++new file mode 100644
++index 0000000..7ed28d7
++--- /dev/null
+++++ b/GenesisAeonZIPMEM/f4b5f6cbff0d81e8cf13fe18921553ae5ede7acc/fragments/metacommit.yaml.patch
++@@ -0,0 +1,18 @@
+++diff --git a/metacommit.yaml b/metacommit.yaml
+++new file mode 100644
+++index 0000000..fc37e01
+++--- /dev/null
++++++ b/metacommit.yaml
+++@@ -0,0 +1,12 @@
++++meta:
++++  title: "Initial MetaCommit Plan"
++++  description: >
++++    Automatisches Commit-Memory und MetaCommit-Verwaltung für dev-agents.
++++  instructions: feedbackcodex.md
++++  active: true
++++  created: 2024-06-25
++++  tasks:
++++    - id: 1
++++      description: "Nach jedem Commit `pnpm store:commit-memory` ausführen"
++++    - id: 2
++++      description: "MetaCommit-Dateien beim Start prüfen und priorisiert abarbeiten"
++diff --git a/GenesisAeonZIPMEM/f4b5f6cbff0d81e8cf13fe18921553ae5ede7acc/meta.yaml b/GenesisAeonZIPMEM/f4b5f6cbff0d81e8cf13fe18921553ae5ede7acc/meta.yaml
++new file mode 100644
++index 0000000..850356f
++--- /dev/null
+++++ b/GenesisAeonZIPMEM/f4b5f6cbff0d81e8cf13fe18921553ae5ede7acc/meta.yaml
++@@ -0,0 +1,13 @@
+++commit: f4b5f6cbff0d81e8cf13fe18921553ae5ede7acc
+++message: "docs: add MetaCommit planning"
+++patch: changes.patch
+++fragments: fragments
+++files:
+++  - dev-agents.md
+++  - feedbackcodex.md
+++  - metacommit.json
+++  - metacommit.yaml
+++environment:
+++  node: v22.16.0
+++  pnpm: 10.5.2
+++instructions: Apply patch with git apply or review for reference.
++diff --git a/advancedToDo.json b/advancedToDo.json
++index 754c618..67f3798 100644
++--- a/advancedToDo.json
+++++ b/advancedToDo.json
++@@ -2099,24 +2099,24 @@
++     "test": ""
++   },
++   {
++-  "commit": "feat: add Go GPTBridge modules",
++-  "path": "go-bridge/pkg/gpt",
++-  "task": "Implement api_client.go and link_processor.go for GPT API and Link ingest",
++-  "test": "go build ./...",
++-  "status": "done"
++-},
++-{
++-  "commit": "feat: add mandala-gpt CLI",
++-  "path": "go-bridge/cmd/mandala-gpt.go",
++-  "task": "CLI to invoke GPTBridge via api or link",
++-  "test": "go build ./...",
++-  "status": "done"
++-},
++-{
++-  "commit": "Add Markdown ToDo parser",
++-  "path": "scripts/parse-md-todo.js",
++-  "task": "Parse Markdown task lists and append to advancedToDo files",
++-  "test": "scripts/__tests__/parse-md-todo.test.ts",
++-  "status": "done"
++-}
++-]
+++    "commit": "feat: add Go GPTBridge modules",
+++    "path": "go-bridge/pkg/gpt",
+++    "task": "Implement api_client.go and link_processor.go for GPT API and Link ingest",
+++    "test": "go build ./...",
+++    "status": "done"
+++  },
+++  {
+++    "commit": "feat: add mandala-gpt CLI",
+++    "path": "go-bridge/cmd/mandala-gpt.go",
+++    "task": "CLI to invoke GPTBridge via api or link",
+++    "test": "go build ./...",
+++    "status": "done"
+++  },
+++  {
+++    "commit": "Add Markdown ToDo parser",
+++    "path": "scripts/parse-md-todo.js",
+++    "task": "Parse Markdown task lists and append to advancedToDo files",
+++    "test": "scripts/__tests__/parse-md-todo.test.ts",
+++    "status": "done"
+++  }
+++]
++\ No newline at end of file
++diff --git a/advancedprogress.json b/advancedprogress.json
++index 42b15df..bb24f54 100644
++--- a/advancedprogress.json
+++++ b/advancedprogress.json
++@@ -1,8 +1,8 @@
++ {
++-  "lastCommit": "feat: go todo parser server",
+++  "lastCommit": "Merge pull request #262 from GenesisAeon/codex/implementiere-automatismus-für-dev-agent-systeme",
++   "fractalStep": "sync",
++   "openBranches": [
++     "work"
++   ],
++   "mergeConflicts": []
++-}
+++}
++\ No newline at end of file

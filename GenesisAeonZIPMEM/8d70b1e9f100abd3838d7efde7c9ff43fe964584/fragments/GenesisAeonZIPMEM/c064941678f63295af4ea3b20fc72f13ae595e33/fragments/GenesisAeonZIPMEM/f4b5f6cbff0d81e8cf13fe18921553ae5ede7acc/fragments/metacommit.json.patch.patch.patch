@@ -1,0 +1,31 @@
+diff --git a/GenesisAeonZIPMEM/c064941678f63295af4ea3b20fc72f13ae595e33/fragments/GenesisAeonZIPMEM/f4b5f6cbff0d81e8cf13fe18921553ae5ede7acc/fragments/metacommit.json.patch.patch b/GenesisAeonZIPMEM/c064941678f63295af4ea3b20fc72f13ae595e33/fragments/GenesisAeonZIPMEM/f4b5f6cbff0d81e8cf13fe18921553ae5ede7acc/fragments/metacommit.json.patch.patch
+new file mode 100644
+index 0000000..13488ae
+--- /dev/null
++++ b/GenesisAeonZIPMEM/c064941678f63295af4ea3b20fc72f13ae595e33/fragments/GenesisAeonZIPMEM/f4b5f6cbff0d81e8cf13fe18921553ae5ede7acc/fragments/metacommit.json.patch.patch
+@@ -0,0 +1,25 @@
++diff --git a/GenesisAeonZIPMEM/f4b5f6cbff0d81e8cf13fe18921553ae5ede7acc/fragments/metacommit.json.patch b/GenesisAeonZIPMEM/f4b5f6cbff0d81e8cf13fe18921553ae5ede7acc/fragments/metacommit.json.patch
++new file mode 100644
++index 0000000..aeed1f9
++--- /dev/null
+++++ b/GenesisAeonZIPMEM/f4b5f6cbff0d81e8cf13fe18921553ae5ede7acc/fragments/metacommit.json.patch
++@@ -0,0 +1,19 @@
+++diff --git a/metacommit.json b/metacommit.json
+++new file mode 100644
+++index 0000000..abf7f12
+++--- /dev/null
++++++ b/metacommit.json
+++@@ -0,0 +1,13 @@
++++{
++++  "meta": {
++++    "title": "Initial MetaCommit Plan",
++++    "description": "Automatisches Commit-Memory und MetaCommit-Verwaltung für dev-agents.",
++++    "instructions": "feedbackcodex.md",
++++    "active": true,
++++    "created": "2024-06-25",
++++    "tasks": [
++++      {"id": 1, "description": "Nach jedem Commit `pnpm store:commit-memory` ausführen"},
++++      {"id": 2, "description": "MetaCommit-Dateien beim Start prüfen und priorisiert abarbeiten"}
++++    ]
++++  }
++++}

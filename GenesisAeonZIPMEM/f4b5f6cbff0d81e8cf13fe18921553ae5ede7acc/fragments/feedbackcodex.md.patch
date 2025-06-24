@@ -1,0 +1,10 @@
+diff --git a/feedbackcodex.md b/feedbackcodex.md
+new file mode 100644
+index 0000000..c5afa03
+--- /dev/null
++++ b/feedbackcodex.md
+@@ -0,0 +1,4 @@
++# MetaCommit Planung
++Diese Datei beschreibt MetaCommits, also Arbeitsaufträge, die zu umfangreich für einen einzelnen Commit sind.
++Alle offenen MetaCommits werden in `metacommit.yaml` und `metacommit.json` referenziert.
++Dev-Agents prüfen zu Beginn eines Laufs auf diese Dateien und priorisieren deren Aufgaben, bis sie erledigt und die Dateien gelöscht wurden.

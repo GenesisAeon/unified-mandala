@@ -1,0 +1,23 @@
+diff --git a/GenesisAeonZIPMEM/c064941678f63295af4ea3b20fc72f13ae595e33/meta.yaml b/GenesisAeonZIPMEM/c064941678f63295af4ea3b20fc72f13ae595e33/meta.yaml
+new file mode 100644
+index 0000000..ff6b5e5
+--- /dev/null
++++ b/GenesisAeonZIPMEM/c064941678f63295af4ea3b20fc72f13ae595e33/meta.yaml
+@@ -0,0 +1,17 @@
++commit: c064941678f63295af4ea3b20fc72f13ae595e33
++message: "chore: update commit memory"
++patch: changes.patch
++fragments: fragments
++files:
++  - GenesisAeonZIPMEM/f4b5f6cbff0d81e8cf13fe18921553ae5ede7acc/changes.patch
++  - GenesisAeonZIPMEM/f4b5f6cbff0d81e8cf13fe18921553ae5ede7acc/fragments/dev-agents.md.patch
++  - GenesisAeonZIPMEM/f4b5f6cbff0d81e8cf13fe18921553ae5ede7acc/fragments/feedbackcodex.md.patch
++  - GenesisAeonZIPMEM/f4b5f6cbff0d81e8cf13fe18921553ae5ede7acc/fragments/metacommit.json.patch
++  - GenesisAeonZIPMEM/f4b5f6cbff0d81e8cf13fe18921553ae5ede7acc/fragments/metacommit.yaml.patch
++  - GenesisAeonZIPMEM/f4b5f6cbff0d81e8cf13fe18921553ae5ede7acc/meta.yaml
++  - advancedToDo.json
++  - advancedprogress.json
++environment:
++  node: v22.16.0
++  pnpm: 10.5.2
++instructions: Apply patch with git apply or review for reference.
