@@ -15,13 +15,17 @@ anzugeben. Alle darin enthaltenen `TASK`s erhalten einen zusammengesetzten
 aktuellen Kontext.
 
 Seit **0.6** existiert der Befehl **GUARD**. Er protokolliert Schutz-
- oder Sicherheitsnotizen im `AeonSigillinVault` und dient der
+oder Sicherheitsnotizen im `AeonSigillinVault` und dient der
 dialogischen Selbstabsicherung des Systems.
 
 Ab **0.7** steht ein **REPEAT**-Block zur Verfügung, um Aufgaben mehrmals auszuführen. Zudem kann das
 Kompilat über `transpileToTS()` in TypeScript, `transpileToPython()` in Python oder `transpileToGo()` in Go exportiert werden.
 
+Ab **0.8** akzeptieren Makros optionale Parameter. Definiert mit `DEFINE name param`, können Platzhalter
+`$param` innerhalb des Blocks verwendet und bei `CALL name value` ersetzt werden.
+
 ## Beispiel
+
 ```aeon
 TASK Hallo Welt
 REM Sammle Kontext
