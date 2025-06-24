@@ -19,8 +19,14 @@ interface Conversation {
 }
 
 export function loadConversations(filePath: string): Conversation[] {
-  const raw = fs.readFileSync(filePath, 'utf8');
-  return JSON.parse(raw) as Conversation[];
+  const raw = fs.readFileSync(filePath, 'utf8').trim();
+  if (raw.startsWith('[')) {
+    return JSON.parse(raw) as Conversation[];
+  }
+  return raw
+    .split(/\r?\n/)
+    .filter(Boolean)
+    .map((line) => JSON.parse(line) as Conversation);
 }
 
 export function analyzeConversations(filePath: string): ConversationStats {
