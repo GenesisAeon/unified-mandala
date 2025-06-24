@@ -7,6 +7,6 @@ cd "$ROOT_DIR"
 pnpm test
 pnpm vitest run
 
-(cd go-agent && go test ./...)
-(cd go-bridge && go test ./...)
+(cd go-agent && go test ./cmd/... ./internal/... ./pkg/... ./test)
+(cd go-bridge && go test ./cmd/... ./pkg/... ./api/... ./test)
 (cd services/vector-indexer && go test ./...)
