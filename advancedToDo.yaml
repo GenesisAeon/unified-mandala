@@ -3057,6 +3057,7 @@
   path: config
   task: Provide YAML job configuration templates for MemoryManager
   test: ""
+  status: done
 - commit: Parser` – Liest ToDo-Listen aus Markdown-Dateien.
   path: ""
   task: Parser` – Liest ToDo-Listen aus Markdown-Dateien.
