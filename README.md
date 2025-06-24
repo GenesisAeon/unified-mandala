@@ -188,6 +188,10 @@ config/                  # Zentrale YAML- und Env-Dateien
   └── interfaces.yaml       # API-Endpunkte der Plattform
   ├── memory-manager.yaml  # Cleanup-Interval Konfiguration
   ├── memory-job-example.yaml # Vorlage für MemoryManager-Jobs
+  └── memory-jobs/            # Weitere Job-Templates
+      ├── daily.yaml
+      ├── weekly.yaml
+      └── longterm.yaml
 repositorypflege/         # Pflegekonzepte und Repository-Mapping
 apps/
   ├── sharedream-interface      # Web-Schnittstelle & Sync
@@ -200,6 +204,7 @@ scripts/
   ├── generate-chronopoem.js    # Poetische Commit-Signatur
   ├── todoSigilGenerator.js     # Automatisches ToDo-Sigil aus Repo-Analyse
   ├── parse-md-todo.js          # Liest ToDo-Listen aus Markdown-Dateien
+  ├── trigger-socialgood-workflow.js # Startet Parsing- und SocialGood-Matching
   └── onboarding-ritual.md      # Onboarding-Ritus für neue Contributors
 ```
 

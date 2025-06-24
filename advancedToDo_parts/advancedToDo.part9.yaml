@@ -35,6 +35,7 @@
   task: Implement reusable UI components that trigger sigil generation, parse TODOs,
     and match SocialGood tags
   test: apps/socialgood-ui/src/components/__tests__/UsecaseComponents.test.tsx
+  status: done
 - commit: Create Go todo_parser module
   path: cmd/todo_parser.go
   task: Parse TODO blocks and expose them via REST endpoint /usecases/todo/parse
