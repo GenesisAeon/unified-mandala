@@ -5,7 +5,7 @@ import { objectiveToLayout, storeLayoutSuggestion } from './objective2ui';
 import { sendToGPT } from '../packages/gpt-bridges/aeon-gpt-synapse';
 
 jest.mock('../packages/gpt-bridges/aeon-gpt-synapse', () => ({
-  sendToGPT: jest.fn(() => Promise.resolve('layout: sample')),
+  sendToGPT: jest.fn(),
   GPTRole: { AEON: 'aeon' }
 }));
 
@@ -16,9 +16,15 @@ function readManifest() {
 }
 
 test('objectiveToLayout calls sendToGPT', async () => {
+  (sendToGPT as jest.Mock).mockResolvedValueOnce('layout: sample');
   const yaml = await objectiveToLayout('show metrics');
   expect(sendToGPT).toHaveBeenCalled();
   expect(yaml).toBe('layout: sample');
+});
+
+test('objectiveToLayout rejects when sendToGPT fails', async () => {
+  (sendToGPT as jest.Mock).mockRejectedValueOnce(new Error('GPT fail'));
+  await expect(objectiveToLayout('error objective')).rejects.toThrow('GPT fail');
 });
 
 test('storeLayoutSuggestion writes manifest', () => {
@@ -28,4 +34,10 @@ test('storeLayoutSuggestion writes manifest', () => {
   const updated = readManifest();
   expect(updated.plugins[0].layoutSuggestion).toBe('layout: sample');
   fs.writeFileSync(manifestPath, orig); // restore
+});
+
+test('storeLayoutSuggestion throws for missing plugin', () => {
+  expect(() =>
+    storeLayoutSuggestion('MissingPlugin', 'layout: none', manifestPath)
+  ).toThrow('Plugin MissingPlugin not found');
 });
