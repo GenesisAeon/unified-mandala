@@ -1,7 +1,7 @@
 import { Network } from '../Network';
 
 test('trains towards sample data', () => {
-  const data = [
+  const data: [number, number][] = [
     [115, 66],
     [175, 78],
     [205, 72],
