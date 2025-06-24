@@ -1,0 +1,32 @@
+diff --git a/scripts/commit-memory.js b/scripts/commit-memory.js
+index 1ac6483..06fc104 100644
+--- a/scripts/commit-memory.js
++++ b/scripts/commit-memory.js
+@@ -14,11 +14,19 @@ function run() {
+   fs.mkdirSync(memoryDir, { recursive: true });
+   const patch = execSync(`git show ${commit}`).toString();
+   fs.writeFileSync(path.join(memoryDir, 'changes.patch'), patch, 'utf8');
++  const fragmentsDir = path.join(memoryDir, 'fragments');
++  fs.mkdirSync(fragmentsDir, { recursive: true });
+   const files = execSync(`git diff-tree --no-commit-id --name-only -r ${commit}`)
+     .toString()
+     .trim()
+     .split('\n')
+     .filter(Boolean);
++  for (const file of files) {
++    const fileDir = path.join(fragmentsDir, path.dirname(file));
++    fs.mkdirSync(fileDir, { recursive: true });
++    const fragmentPatch = execSync(`git diff ${commit}^ ${commit} -- ${file}`).toString();
++    fs.writeFileSync(path.join(fragmentsDir, `${file}.patch`), fragmentPatch, 'utf8');
++  }
+   const message = execSync(`git log -1 --pretty=%B ${commit}`)
+     .toString()
+     .trim();
+@@ -26,6 +34,7 @@ function run() {
+     commit,
+     message,
+     patch: 'changes.patch',
++    fragments: 'fragments',
+     files,
+     instructions: 'Apply patch with git apply or review for reference.'
+   };

@@ -1,0 +1,76 @@
+commit 6111f01e2d5dd3decba49324bc0db391430d5e25
+Author: Codex <codex@openai.com>
+Date:   Tue Jun 24 12:59:14 2025 +0000
+
+    chore: automate commit memory
+
+diff --git a/.husky/post-commit b/.husky/post-commit
+index 9f7df4c..8e86106 100755
+--- a/.husky/post-commit
++++ b/.husky/post-commit
+@@ -1,3 +1,4 @@
+ #!/bin/sh
+ . "$(dirname "$0")/_/husky.sh"
+ node scripts/generate-chronopoem.js
++pnpm store:commit-memory
+diff --git a/README.md b/README.md
+index 4edacc1..cb27aa6 100644
+--- a/README.md
++++ b/README.md
+@@ -373,8 +373,8 @@ Aufgaben und Anweisungen aus laufenden Gesprächen werden in
+ [`advancedconversations.json`](docs/sigils/advancedconversations.json)
+ Es dient als Pendant zum Genesis ZIPMEM.
+ Neue Fragmente werden im Ordner `GenesisAeonZIPMEM/` abgelegt, sortiert nach Chatnamen.
+-F\u00fcr jeden Commit kann `pnpm store:commit-memory` ausgef\u00fchrt werden, um \u00c4nderungen
+-als Patch und `meta.yaml` unter `GenesisAeonZIPMEM/<commit>/` zu speichern.
++Nach jedem Commit wird `pnpm store:commit-memory` automatisch ausgef\u00fchrt (Husky `post-commit`),
++um die \u00c4nderungen als Patch und `meta.yaml` unter `GenesisAeonZIPMEM/<commit>/` abzulegen.
+ gespeichert. Nutzen Sie die Helferskripte aus `packages/shared-utils`
+ (`jsonFragmenter.*`), um daraus ToDos für `advancedToDo.yaml` und
+ `advancedToDo.json` zu extrahieren.
+diff --git a/scripts/__tests__/commit-memory.test.ts b/scripts/__tests__/commit-memory.test.ts
+index 0191b88..dd65149 100644
+--- a/scripts/__tests__/commit-memory.test.ts
++++ b/scripts/__tests__/commit-memory.test.ts
+@@ -10,7 +10,9 @@ test('commit-memory writes meta and patch', () => {
+   run();
+   const meta = path.join(dir, 'meta.yaml');
+   const patch = path.join(dir, 'changes.patch');
++  const fragmentDir = path.join(dir, 'fragments');
+   expect(fs.existsSync(meta)).toBe(true);
+   expect(fs.existsSync(patch)).toBe(true);
++  expect(fs.existsSync(fragmentDir)).toBe(true);
+   fs.rmSync(dir, { recursive: true, force: true });
+ });
+diff --git a/scripts/commit-memory.js b/scripts/commit-memory.js
+index 1ac6483..06fc104 100644
+--- a/scripts/commit-memory.js
++++ b/scripts/commit-memory.js
+@@ -14,11 +14,19 @@ function run() {
+   fs.mkdirSync(memoryDir, { recursive: true });
+   const patch = execSync(`git show ${commit}`).toString();
+   fs.writeFileSync(path.join(memoryDir, 'changes.patch'), patch, 'utf8');
++  const fragmentsDir = path.join(memoryDir, 'fragments');
++  fs.mkdirSync(fragmentsDir, { recursive: true });
+   const files = execSync(`git diff-tree --no-commit-id --name-only -r ${commit}`)
+     .toString()
+     .trim()
+     .split('\n')
+     .filter(Boolean);
++  for (const file of files) {
++    const fileDir = path.join(fragmentsDir, path.dirname(file));
++    fs.mkdirSync(fileDir, { recursive: true });
++    const fragmentPatch = execSync(`git diff ${commit}^ ${commit} -- ${file}`).toString();
++    fs.writeFileSync(path.join(fragmentsDir, `${file}.patch`), fragmentPatch, 'utf8');
++  }
+   const message = execSync(`git log -1 --pretty=%B ${commit}`)
+     .toString()
+     .trim();
+@@ -26,6 +34,7 @@ function run() {
+     commit,
+     message,
+     patch: 'changes.patch',
++    fragments: 'fragments',
+     files,
+     instructions: 'Apply patch with git apply or review for reference.'
+   };

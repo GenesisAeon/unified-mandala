@@ -1,0 +1,15 @@
+diff --git a/README.md b/README.md
+index 4edacc1..cb27aa6 100644
+--- a/README.md
++++ b/README.md
+@@ -373,8 +373,8 @@ Aufgaben und Anweisungen aus laufenden Gesprächen werden in
+ [`advancedconversations.json`](docs/sigils/advancedconversations.json)
+ Es dient als Pendant zum Genesis ZIPMEM.
+ Neue Fragmente werden im Ordner `GenesisAeonZIPMEM/` abgelegt, sortiert nach Chatnamen.
+-F\u00fcr jeden Commit kann `pnpm store:commit-memory` ausgef\u00fchrt werden, um \u00c4nderungen
+-als Patch und `meta.yaml` unter `GenesisAeonZIPMEM/<commit>/` zu speichern.
++Nach jedem Commit wird `pnpm store:commit-memory` automatisch ausgef\u00fchrt (Husky `post-commit`),
++um die \u00c4nderungen als Patch und `meta.yaml` unter `GenesisAeonZIPMEM/<commit>/` abzulegen.
+ gespeichert. Nutzen Sie die Helferskripte aus `packages/shared-utils`
+ (`jsonFragmenter.*`), um daraus ToDos für `advancedToDo.yaml` und
+ `advancedToDo.json` zu extrahieren.

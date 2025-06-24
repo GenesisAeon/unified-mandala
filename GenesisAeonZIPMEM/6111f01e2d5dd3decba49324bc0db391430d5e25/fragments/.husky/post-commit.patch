@@ -1,0 +1,9 @@
+diff --git a/.husky/post-commit b/.husky/post-commit
+index 9f7df4c..8e86106 100755
+--- a/.husky/post-commit
++++ b/.husky/post-commit
+@@ -1,3 +1,4 @@
+ #!/bin/sh
+ . "$(dirname "$0")/_/husky.sh"
+ node scripts/generate-chronopoem.js
++pnpm store:commit-memory

@@ -1,0 +1,14 @@
+diff --git a/scripts/__tests__/commit-memory.test.ts b/scripts/__tests__/commit-memory.test.ts
+index 0191b88..dd65149 100644
+--- a/scripts/__tests__/commit-memory.test.ts
++++ b/scripts/__tests__/commit-memory.test.ts
+@@ -10,7 +10,9 @@ test('commit-memory writes meta and patch', () => {
+   run();
+   const meta = path.join(dir, 'meta.yaml');
+   const patch = path.join(dir, 'changes.patch');
++  const fragmentDir = path.join(dir, 'fragments');
+   expect(fs.existsSync(meta)).toBe(true);
+   expect(fs.existsSync(patch)).toBe(true);
++  expect(fs.existsSync(fragmentDir)).toBe(true);
+   fs.rmSync(dir, { recursive: true, force: true });
+ });
