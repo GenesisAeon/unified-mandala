@@ -335,8 +335,10 @@ Verwende `./scripts/aeon.sh <command>` für alle CLI-Aufrufe.
 | `node packages/cli-tools/sigillin-cli.js grep-conversations TODO` | Filtert Conversations nach Keyword |
 | `node packages/cli-tools/export-doc.js` | CREP-Historie als Markdown |
 | `node packages/cli-tools/sigillin-archive.js` | Archiviert Sigillin-Dateien |
+| `node packages/cli-tools/SigillinValidator.ts <file>` | Validiert eine Sigillin-Datei |
 | `node packages/cli-tools/dispatchCmd.ts` | Dispatcher für diverse Befehle |
 | `go run scripts/mock-data.go` | Gibt Beispiel-Mockdaten mit eventHook und fractalHash aus |
+| `go run go-bridge/cmd/todo_parser.go` | Startet einfachen TODO-Parser-Server |
 | `./scripts/run-demo.sh` | Startet Docker-Compose Umgebung |
 
 
