@@ -222,6 +222,8 @@ Kurze Beschreibungen findest du nun direkt in den READMEs der Pakete
 `bio`, `codex-navigator`, `collab-editor`, `core`, `crep-automation`,
 `event-bus`, `nukleon-scanner`, `nukleon-sonifier`, `sharedream-interface`,
 `tts`, `tutorials`, `ui`, `utils` und `visuals`.
+Eine Übersicht zur NATS-basierten Kommunikation bietet das
+[packages/event-bus/README.md](packages/event-bus/README.md).
 -### 🟦 Go-Bridge (go-bridge/)
 - Polyglottes Interface zu UnifiedMandala für Go (REST, NATS, gRPC, CLI)
 - Enthält **GPTBridge**-Module (`pkg/gpt`) und die Beispiel-CLIs `mandala-gpt.go`
