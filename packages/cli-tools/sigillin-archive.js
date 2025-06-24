@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 const fs = require('fs');
-const glob = require('glob');
+const { globSync } = require('glob');
 const path = require('path');
 
 function poeticNote(type) {
@@ -14,7 +14,7 @@ function poeticNote(type) {
   }
 }
 
-const files = glob.sync(path.join(__dirname, '../../**/*.sigil.json'));
+const files = globSync(path.join(__dirname, '../../**/*.sigil.json'));
 let archive = ['# Sigillin-Archiv', ''];
 
 files.forEach(file => {

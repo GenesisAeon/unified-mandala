@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import glob from 'glob';
+import { globSync } from 'glob';
 
 export interface TodoComment {
   file: string;
@@ -15,7 +15,7 @@ export interface TodoComment {
 export function scanTodoComments(dir: string): TodoComment[] {
   const patterns = ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'];
   const files = patterns.flatMap(p =>
-    glob.sync(p, {
+    globSync(p, {
       cwd: dir,
       absolute: true,
       ignore: ['node_modules/**', 'dist/**', '**/*.test.*']
