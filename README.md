@@ -253,6 +253,8 @@ cd unified-mandala
 pnpm install
 ./scripts/setup-unifiedmandala.sh
 pnpm dev
+docker-compose build ui   # installiert Node-Abh\u00e4ngigkeiten
+docker-compose up ui      # startet Dev-Server
 ./scripts/run-demo.sh # Docker-Compose Quickstart
 # Tests ohne lokale Installation
 docker-compose run test
