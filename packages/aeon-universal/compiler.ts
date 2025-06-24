@@ -55,6 +55,8 @@ export function compile(source: string, options: CompileOptions = {}): CompileRe
       AeonMemory.record(content);
     } else if (cmd.toUpperCase() === 'SIG' || cmd.toUpperCase() === 'SIGILLIN') {
       AeonSigillinVault.record({ id: `${idx}`, timestamp: new Date().toISOString(), content });
+    } else if (cmd.toUpperCase() === 'GUARD') {
+      AeonSigillinVault.recordGuard({ id: `${idx}`, timestamp: new Date().toISOString(), content });
     } else if (cmd.toUpperCase() === 'WITH') {
       contextStack = [...contextStack, content];
     } else if (cmd.toUpperCase() === 'ENDWITH') {

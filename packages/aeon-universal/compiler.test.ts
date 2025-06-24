@@ -23,6 +23,12 @@ describe('AeonUniversal compile', () => {
     expect(spy).toHaveBeenCalled();
   });
 
+  it('records guard states', () => {
+    const spy = jest.spyOn(AeonSigillinVault, 'recordGuard');
+    compile('GUARD Schutz');
+    expect(spy).toHaveBeenCalled();
+  });
+
   it('includes other files recursively', () => {
     const tmp = path.resolve('tmp.aeon');
     fs.writeFileSync(tmp, 'TASK Subtask');

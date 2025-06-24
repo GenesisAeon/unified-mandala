@@ -5,7 +5,9 @@ test('records transitions and resonances', () => {
   AeonSigillinVault.record(state);
   AeonSigillinVault.recordTransition(state);
   AeonSigillinVault.recordResonance(state);
+  AeonSigillinVault.recordGuard(state);
   expect(AeonSigillinVault.latest(1)).toEqual([state]);
   expect(AeonSigillinVault.getTransitions(1)).toEqual([state]);
   expect(AeonSigillinVault.getResonances(1)).toEqual([state]);
+  expect(AeonSigillinVault.getGuards(1)).toEqual([state]);
 });
