@@ -38,4 +38,13 @@ describe('GenesisAeonNavigator', () => {
       to: 'b'
     });
   });
+
+  it('handles missing phase map gracefully', () => {
+    jest.spyOn(console, 'error').mockImplementation(() => {});
+    const nav = new GenesisAeonNavigator({ phaseMapPath: 'nope.json' });
+    nav.navigate('init');
+    expect((console.error as jest.Mock).mock.calls.length).toBeGreaterThan(0);
+    expect((GPTEventHub.emit as jest.Mock).mock.calls.length).toBe(0);
+    (console.error as jest.Mock).mockRestore();
+  });
 });
