@@ -226,6 +226,15 @@ Utilities liegen in `packages/shared-utils/`, weitere Module findest du ebenfall
 - [go-bridge/README.md](go-bridge/README.md) enthält Setup & Beispiele
 Kleine Hilfsskripte liegen unter `tools/`.
 
+### Go-Tests
+Um die Go-Komponenten (`go-bridge` und `go-agent`) auszuführen, benötigst du eine installierte Go-Toolchain (mindestens Go 1.20). Wechsle in das jeweilige Modulverzeichnis und führe
+
+```bash
+go test ./...
+```
+
+aus. Der Testlauf sollte mit `ok`-Zeilen für jedes Paket enden.
+
 ## 💻 Schnellstart
 
 ```bash
