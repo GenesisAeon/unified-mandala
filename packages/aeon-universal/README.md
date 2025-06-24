@@ -18,6 +18,10 @@ Seit **0.6** existiert der Befehl **GUARD**. Er protokolliert Schutz-
 oder Sicherheitsnotizen im `AeonSigillinVault` und dient der
 dialogischen Selbstabsicherung des Systems.
 
+Ab **1.2** steht **emitSigil("name","category", key:value)** bereit. Damit
+können Sigillin-Einträge samt Kategorie und optionalen Parametern strukturiert
+gespeichert werden.
+
 Ab **0.7** steht ein **REPEAT**-Block zur Verfügung, um Aufgaben mehrmals auszuführen. Zudem kann das
 Kompilat über `transpileToTS()` in TypeScript, `transpileToPython()` in Python, `transpileToGo()` in Go oder `transpileToRust()` in Rust exportiert werden.
 
