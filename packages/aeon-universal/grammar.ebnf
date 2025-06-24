@@ -1,0 +1,14 @@
+AeonScript      = { Statement } ;
+Statement       = EmitSigil | TaskDecl | IfStmt | LoopStmt | HookStmt ;
+EmitSigil       = "emitSigil" "(" StringLiteral "," StringLiteral "," OptParams ")" ";" ;
+TaskDecl        = "task" Identifier "{" { Statement } "}" ;
+IfStmt          = "if" "(" Expression ")" "{" { Statement } "}" [ "else" "{" { Statement } "}" ] ;
+LoopStmt        = ("while" | "for") LoopHeader "{" { Statement } "}" ;
+HookStmt        = "hook" "on" Identifier "->" Identifier ";" ;
+Expression      = /* bool, comparison, arithmetic */ ;
+OptParams       = [ ParamList ] ;
+ParamList       = Param { "," Param } ;
+Param           = Identifier ":" (StringLiteral | Number) ;
+Identifier      = Letter { Letter | Digit | "_" } ;
+StringLiteral   = '"' { AnyCharExcept('"') } '"' ;
+Number          = Digit { Digit } [ "." Digit { Digit } ] ;
