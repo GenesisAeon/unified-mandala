@@ -255,6 +255,8 @@ npm run dev   # oder: yarn dev
 
 ## 🌀 Mandala-Poesie und Automation
 
+Verwende `./scripts/aeon.sh <command>` für alle CLI-Aufrufe.
+
 | Befehl/Skript | Funktion |
 |---------------|----------|
 | `./scripts/aeon.sh help` | Übersicht aller poetischen & technischen Befehle |
