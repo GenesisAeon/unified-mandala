@@ -1,0 +1,84 @@
+commit f17816ca1fce50ad2d39ec784f6295a39892cd58
+Author: Codex <codex@openai.com>
+Date:   Tue Jun 24 16:04:43 2025 +0000
+
+    feat(agents): add AeonAuraAgent for visual/audio mapping
+
+diff --git a/packages/agents/AeonAuraAgent.test.ts b/packages/agents/AeonAuraAgent.test.ts
+new file mode 100644
+index 0000000..224b5e7
+--- /dev/null
++++ b/packages/agents/AeonAuraAgent.test.ts
+@@ -0,0 +1,22 @@
++import fs from 'fs';
++import path from 'path';
++import { AeonAuraAgent } from './AeonAuraAgent';
++
++const OUTPUT = 'tmp-aura.json';
++
++describe('AeonAuraAgent', () => {
++  afterEach(() => {
++    if (fs.existsSync(OUTPUT)) fs.unlinkSync(OUTPUT);
++  });
++
++  it('writes aura log with color and tone', async () => {
++    const agent = new AeonAuraAgent(OUTPUT);
++    const task = { id: '1', description: 'Hello' } as any;
++    await agent.handle(task);
++    const content = fs.readFileSync(path.resolve(OUTPUT), 'utf-8');
++    const data = JSON.parse(content);
++    expect(data[0].description).toBe('Hello');
++    expect(data[0].color).toMatch(/hsl\(/);
++    expect(typeof data[0].tone).toBe('number');
++  });
++});
+diff --git a/packages/agents/AeonAuraAgent.ts b/packages/agents/AeonAuraAgent.ts
+new file mode 100644
+index 0000000..ef2951a
+--- /dev/null
++++ b/packages/agents/AeonAuraAgent.ts
+@@ -0,0 +1,35 @@
++import fs from 'fs';
++import path from 'path';
++import { Agent, Task } from '../core/interfaces';
++import { withFSM } from '../core/fsmMixin';
++
++interface AuraEvent {
++  id: string;
++  description: string;
++  color: string;
++  tone: number;
++}
++
++export class AeonAuraAgent implements Agent {
++  id = 'AeonAura';
++  layer: 'Aura' = 'Aura';
++  private log: AuraEvent[] = [];
++  constructor(private output = 'aeon-aura.json') {
++    withFSM(this);
++  }
++
++  async handle(task: Task): Promise<void> {
++    const aura = this.mapToAura(task.description);
++    const event: AuraEvent = { id: task.id, description: task.description, ...aura };
++    this.log.push(event);
++    fs.writeFileSync(path.resolve(this.output), JSON.stringify(this.log, null, 2));
++    console.log(`\uD83C\uDF0C AeonAuraAgent \u2192 logged ${task.id}`);
++  }
++
++  private mapToAura(desc: string): { color: string; tone: number } {
++    const hash = Array.from(desc).reduce((acc, ch) => acc + ch.charCodeAt(0), 0);
++    const hue = hash % 360;
++    const tone = 200 + (hash % 400);
++    return { color: `hsl(${hue}, 70%, 50%)`, tone };
++  }
++}
+diff --git a/packages/agents/index.ts b/packages/agents/index.ts
+index c29aec7..462a40a 100644
+--- a/packages/agents/index.ts
++++ b/packages/agents/index.ts
+@@ -46,3 +46,4 @@ export * from "./StrategicAgentCoordinator";
+ export * from "./AeonUniversalCoordinatorAgent";
+ export * from "./AeonRustTranspilerAgent";
+ export * from "./AeonJsTranspilerAgent";
++export * from './AeonAuraAgent';

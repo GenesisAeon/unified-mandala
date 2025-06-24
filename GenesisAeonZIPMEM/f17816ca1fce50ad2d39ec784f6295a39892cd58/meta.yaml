@@ -1,0 +1,12 @@
+commit: f17816ca1fce50ad2d39ec784f6295a39892cd58
+message: "feat(agents): add AeonAuraAgent for visual/audio mapping"
+patch: changes.patch
+fragments: fragments
+files:
+  - packages/agents/AeonAuraAgent.test.ts
+  - packages/agents/AeonAuraAgent.ts
+  - packages/agents/index.ts
+environment:
+  node: v22.16.0
+  pnpm: 10.5.2
+instructions: Apply patch with git apply or review for reference.
