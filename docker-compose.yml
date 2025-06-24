@@ -7,3 +7,10 @@ services:
       - "3000:3000"
     volumes:
       - .:/workspace/unified-mandala
+  test:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - .:/workspace/unified-mandala
+    command: ./scripts/run-all-tests.sh

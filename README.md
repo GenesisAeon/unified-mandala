@@ -227,6 +227,8 @@ cd unified-mandala
 ./scripts/setup-unifiedmandala.sh
 pnpm dev
 ./scripts/run-demo.sh # Docker-Compose Quickstart
+# Tests ohne lokale Installation
+docker-compose run test
 ```
 Die generierte API-Dokumentation findest du danach unter `docs/api`.
 
@@ -253,6 +255,7 @@ npm run dev   # oder: yarn dev
 | `pnpm lint` | Führt statische Typprüfung aus |
 | `pnpm test` | Führe Unit- & UI-Tests aus |
 | `pnpm vitest run` | Läuft Agenten-Spezialtests |
+| `docker-compose run test` | Führe alle Tests ohne lokale Installationen aus |
 | `node scripts/refresh-handbook.js` | Synchronisiert Handbuch |
 | `node scripts/setup-unifiedmandala.sh` | Installer & Initialisierung |
 | `./scripts/repair-repo.sh` | Repariert Repository-Verbindungen |
