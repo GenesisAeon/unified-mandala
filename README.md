@@ -32,7 +32,7 @@ Strategische Leitlinien stehen in [docs/agents/AgentStrategy.md](docs/agents/Age
 - 🧩 **Plug-in-Architektur** – GPT-Kommunikationsmodule, CLI-Tools
 - 🔗 **GPTBridge (Go)** – API- und Link-basierte GPT-Anbindung (`go-bridge/pkg/gpt`)
 - 🔌 **Plugin-Registry & Dynamic Loader** – `plugins/manifest.yaml` und `usePluginLoader`
-- 📝 **Objective2UI** – generiert Layout-Vorschläge via GPT
+- 📝 **Objective2UI** – generiert Layout-Vorschläge via GPT (`packages/unifiedmandala-ui/components/ObjectiveLayoutSuggester.tsx`)
 - 🔐 **Ethik-Governance & Heimkehr-Deklaration** – Offene, poetische Ethik als Systembasis
 - 🎭 **Poesie & Automation** – Bash-Interface (`aeon.sh`), automatisches Chronopoem, symbolisches Onboarding
 - 🌟 **CREP-Illumination** – Chronopoem reflektiert aktuellen CREP-Zustand
