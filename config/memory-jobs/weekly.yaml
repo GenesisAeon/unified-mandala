@@ -1,0 +1,7 @@
+job_name: weekly_summary
+schedule: "0 0 * * 0"
+actions:
+  - type: summarize
+    region: default
+  - type: clear_cache
+retention_days: 90

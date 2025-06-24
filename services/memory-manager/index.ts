@@ -1,3 +1,5 @@
+import fs from 'fs';
+
 export type MemoryCategory = 'daily' | 'weekly' | 'longterm';
 
 interface Entry {
@@ -12,10 +14,17 @@ export class MemoryManager {
     longterm: []
   };
 
-  private timer: ReturnType<typeof setInterval>;
-
-  constructor(private cleanupMs = 24 * 60 * 60 * 1000) {
-    this.timer = setInterval(() => this.cleanup(), this.cleanupMs);
+  private timers: Partial<Record<MemoryCategory, ReturnType<typeof setInterval>>> = {};
+  constructor(
+    private cleanupConfig: Record<MemoryCategory, number> = {
+      daily: 24 * 60 * 60 * 1000,
+      weekly: 7 * 24 * 60 * 60 * 1000,
+      longterm: 30 * 24 * 60 * 60 * 1000
+    }
+  ) {
+    (Object.keys(this.cleanupConfig) as MemoryCategory[]).forEach((cat) => {
+      this.timers[cat] = setInterval(() => this.cleanup(cat), this.cleanupConfig[cat]);
+    });
   }
 
   add(category: MemoryCategory, text: string) {
@@ -26,8 +35,21 @@ export class MemoryManager {
     return this.store[category].map(e => e.text);
   }
 
-  private cleanup() {
-    const cutoff = Date.now() - this.cleanupMs;
-    this.store.daily = this.store.daily.filter(e => e.timestamp >= cutoff);
+  ingestFragments(files: string[]) {
+    files.forEach((f) => {
+      if (fs.existsSync(f)) {
+        const lines = fs.readFileSync(f, 'utf8').split('\n').filter(Boolean);
+        lines.forEach((line) => this.add('daily', line));
+      }
+    });
+  }
+
+  private cleanup(category: MemoryCategory) {
+    const cutoff = Date.now() - this.cleanupConfig[category];
+    this.store[category] = this.store[category].filter((e) => e.timestamp >= cutoff);
+  }
+
+  stop() {
+    Object.values(this.timers).forEach((t) => t && clearInterval(t));
   }
 }

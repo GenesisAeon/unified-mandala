@@ -27,11 +27,14 @@
   task: Implement MemoryManager service with cleanup scheduler and Feedback Agents
     integration
   test: services/memory-manager/test.ts
+  status: done
 - commit: Add parsing & SocialGood workflow trigger
   path: scripts
   task: Provide command or UI to start Parsing and SocialGood-Matching
   test: ""
+  status: done
 - commit: Generate memory-job config templates
   path: config
   task: Provide YAML job configuration templates for MemoryManager
   test: ""
+  status: done
