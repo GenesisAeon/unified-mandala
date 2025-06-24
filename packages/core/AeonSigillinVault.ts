@@ -2,6 +2,8 @@ export interface PoeticState {
   id: string;
   timestamp: string;
   content: string;
+  category?: string;
+  params?: Record<string, string | number>;
 }
 
 export class AeonSigillinVault {

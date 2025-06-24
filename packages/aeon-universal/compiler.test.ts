@@ -29,6 +29,14 @@ describe("AeonUniversal compile", () => {
     expect(spy).toHaveBeenCalled();
   });
 
+  it("parses emitSigil with params", () => {
+    const spy = jest.spyOn(AeonSigillinVault, "record");
+    compile('emitSigil("Hi","intro", level:1);');
+    expect(spy).toHaveBeenCalledWith(
+      expect.objectContaining({ content: "Hi", category: "intro", params: { level: 1 } })
+    );
+  });
+
   it("records guard states", () => {
     const spy = jest.spyOn(AeonSigillinVault, "recordGuard");
     compile("GUARD Schutz");
