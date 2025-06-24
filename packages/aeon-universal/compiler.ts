@@ -1,4 +1,5 @@
 import { AeonMemory } from '../core/AeonMemory';
+import { AeonSigillinVault } from '../core/AeonSigillinVault';
 import { Task } from '../core/interfaces';
 
 export interface CompileResult {
@@ -15,6 +16,8 @@ export function compile(source: string): CompileResult {
     const content = rest.join(' ');
     if (cmd.toUpperCase() === 'REM') {
       AeonMemory.record(content);
+    } else if (cmd.toUpperCase() === 'SIG' || cmd.toUpperCase() === 'SIGILLIN') {
+      AeonSigillinVault.record({ id: `${idx}`, timestamp: new Date().toISOString(), content });
     } else if (cmd.toUpperCase() === 'TASK') {
       tasks.push({ id: `${idx}`, description: content });
     }

@@ -76,7 +76,7 @@ Strategische Leitlinien stehen in [docs/agents/AgentStrategy.md](docs/agents/Age
 - 🧑‍🔬 **CommonsAgent** – Open‑Science Scoring
 - 🌀 **AdaptiveThreshold** & **DebounceManager** – steuern CREP Trigger-Logik
 - 🗄️ **AeonSigillinVault** – speichert poetische Sigillin-Zustände (`packages/core/AeonSigillinVault.ts`)
-- 🧩 **Aeon Universal** – kompiliert fraktale Befehle in Mandala-Tasks (`packages/aeon-universal`)
+- 🧩 **Aeon Universal** – kompiliert fraktale Befehle in Mandala-Tasks und kann SIG-Anweisungen im `AeonSigillinVault` speichern (`packages/aeon-universal`)
 - 🛡️ **withCircuit** – CircuitBreaker Wrapper für Agenten-Calls
 - 🩺 **healthz.ts** & **metaScores.ts** – API-Routen
 - 🖥️ **Dashboard** – zeigt MetaScoreChart per Hook
