@@ -1,0 +1,13 @@
+commit: e909c991871bd21d29ff1e47bd662c607b788c0e
+message: "chore: enrich commit memory with environment"
+patch: changes.patch
+fragments: fragments
+files:
+  - README.md
+  - dev-agents.md
+  - scripts/__tests__/commit-memory.test.ts
+  - scripts/commit-memory.js
+environment:
+  node: v22.16.0
+  pnpm: 10.5.2
+instructions: Apply patch with git apply or review for reference.

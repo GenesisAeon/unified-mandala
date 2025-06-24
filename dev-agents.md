@@ -8,3 +8,4 @@ Weitere Hinweise:
 - Feedback siehe feedbackcodex.json
 - F\u00fchre nach jedem Commit `pnpm store:commit-memory` aus, um einen Patch
   samt `meta.yaml` im Ordner `GenesisAeonZIPMEM` abzulegen.
+  Die YAML-Datei enthält nun auch die eingesetzten Versionen von Node und pnpm.

@@ -1,0 +1,9 @@
+diff --git a/dev-agents.md b/dev-agents.md
+index 132dcb8..3237afc 100644
+--- a/dev-agents.md
++++ b/dev-agents.md
+@@ -8,3 +8,4 @@ Weitere Hinweise:
+ - Feedback siehe feedbackcodex.json
+ - F\u00fchre nach jedem Commit `pnpm store:commit-memory` aus, um einen Patch
+   samt `meta.yaml` im Ordner `GenesisAeonZIPMEM` abzulegen.
++  Die YAML-Datei enthält nun auch die eingesetzten Versionen von Node und pnpm.
