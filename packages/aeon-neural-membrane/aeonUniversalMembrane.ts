@@ -12,6 +12,7 @@ import { scanEnergy } from './nukleonScanner';
  */
 export class AeonUniversalMembrane {
   private mem: NeuronMembrane;
+  private history: { energy: number; tone: string; depth: number }[] = [];
 
   constructor(reflections = 1) {
     this.mem = new NeuronMembrane();
@@ -21,6 +22,11 @@ export class AeonUniversalMembrane {
   /** Aktuelle Tiefe der Membran */
   get depth() {
     return this.mem.depth;
+  }
+
+  /** Verlauf der Harmonize-Ergebnisse */
+  getHistory() {
+    return this.history;
   }
 
   /** Mittelt Vorhersagen aller Spiegelungen */
@@ -67,7 +73,30 @@ export class AeonUniversalMembrane {
     if (energy / this.mem.depth > energyThreshold) {
       this.mem.reflect();
     }
+    const result = { conv, energy, tone, depth: this.mem.depth };
+    this.history.push({ energy, tone, depth: this.mem.depth });
+    return result;
+  }
 
-    return { conv, energy, tone, depth: this.mem.depth };
+  /**
+   * Führt mehrere Harmonize-Zyklen aus und speichert die Ergebnisse.
+   */
+  selfReflectCycle(
+    iterations: number,
+    data: [number, number][],
+    answers: number[],
+    text: string,
+    energyThreshold = 5,
+  ) {
+    let last = undefined as unknown as {
+      conv: ReturnType<typeof extractConvoMemory>;
+      energy: number;
+      tone: string;
+      depth: number;
+    };
+    for (let i = 0; i < iterations; i++) {
+      last = this.harmonize(data, answers, text, energyThreshold);
+    }
+    return last;
   }
 }

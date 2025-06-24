@@ -77,6 +77,7 @@ Strategische Leitlinien stehen in [docs/agents/AgentStrategy.md](docs/agents/Age
 - 🌀 **AdaptiveThreshold** & **DebounceManager** – steuern CREP Trigger-Logik
 - 🗄️ **AeonSigillinVault** – speichert poetische Sigillin-Zustände (`packages/core/AeonSigillinVault.ts`)
 - 🧩 **Aeon Universal** – kompiliert fraktale Befehle in Mandala-Tasks und kann SIG-Anweisungen im `AeonSigillinVault` speichern (`packages/aeon-universal`)
+- 🔮 **Aeon Universal Neural Membrane** – selbstreflexives, fraktales Netz mit CREP-Anpassung (`packages/aeon-neural-membrane`)
 - 🗂️ **Compile Cache** – speichert kompilierte Aeon-Skripte (`packages/aeon-universal/cache.ts`)
 - 🔗 **AeonCoreAssembler** – verteilt Aeon-Tasks an registrierte Agenten (`packages/aeon-universal/CoreAssembler.ts`)
 - 🔧 **AeonPythonTranspilerAgent** – erzeugt Python-Snippets aus Aeon-Quelltext (`packages/agents/AeonPythonTranspilerAgent.ts`)
