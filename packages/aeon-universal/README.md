@@ -27,6 +27,8 @@ Ab **0.8** akzeptieren Makros optionale Parameter. Definiert mit `DEFINE name pa
 Ab **0.9** kann Aeon Universal direkt nach JavaScript transpiliert werden. Die Funktion
 `transpileToJS()` erzeugt ein simples ES-Modul mit `aeonTasks`-Array.
 
+Ab **1.0** koordiniert der **AeonCoreAssembler** registrierte Agents. Er kompiliert Aeon-Quelltext und verteilt die entstehenden Tasks fraktal an spezialisierte Agenten. Eine optionale `allowedAgents`-Liste ermöglicht eine einfache Autorisierung.
+
 ## Beispiel
 
 ```aeon
