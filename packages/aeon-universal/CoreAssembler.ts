@@ -21,6 +21,7 @@ export class AeonCoreAssembler {
 
   private async dispatch(task: Task): Promise<void> {
     for (const agent of this.agents) {
+      if (task.route && task.route !== agent.id) continue;
       await agent.handle(task);
     }
   }

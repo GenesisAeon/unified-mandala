@@ -74,6 +74,12 @@ describe("AeonUniversal compile", () => {
     expect(result.tasks.length).toBe(2);
   });
 
+  it("handles ROUTE blocks", () => {
+    const source = ["ROUTE AeonTranspiler", "TASK X", "ENDROUTE"].join("\n");
+    const result = compile(source);
+    expect(result.tasks[0].route).toBe("AeonTranspiler");
+  });
+
   it("transpiles tasks to TypeScript", () => {
     const res = compile("TASK Demo");
     const ts = transpileToTS(res);

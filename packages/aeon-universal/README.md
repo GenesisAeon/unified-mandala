@@ -29,6 +29,10 @@ Ab **0.9** kann Aeon Universal direkt nach JavaScript transpiliert werden. Die F
 
 Ab **1.0** koordiniert der **AeonCoreAssembler** registrierte Agents. Er kompiliert Aeon-Quelltext und verteilt die entstehenden Tasks fraktal an spezialisierte Agenten. Eine optionale `allowedAgents`-Liste ermöglicht eine einfache Autorisierung.
 
+Ab **1.1** kann ein **ROUTE**-Block verwendet werden, um Tasks gezielt an einen
+bestimmten Agenten zu senden. Alle darin definierten `TASK`s erhalten ein
+`route`-Feld. Ein `ENDROUTE` beendet den Block.
+
 ## Beispiel
 
 ```aeon
