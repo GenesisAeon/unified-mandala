@@ -40,3 +40,8 @@ sichtbar machen.
 4. `memoryToTone` aus dem Sonifier erzeugt akustische Feedbacks.
 5. Über das Mandala kann die Membran ihre eigene Entwicklung beobachten
    und weitere Spiegelungen anlegen.
+
+### Zyklische Selbstreflexion
+`selfReflectCycle` wiederholt den Harmonize-Vorgang und hält jeden Durchlauf
+in einer Verlaufsliste fest. So lässt sich die Entwicklung der Energiewerte und
+der Membrantiefe Schritt für Schritt nachvollziehen.
