@@ -23,6 +23,7 @@ export interface CompileOptions {
   hookManager?: HookManager;
   diagnostics?: AeonDiagnostics;
   disableCache?: boolean;
+  persistentCache?: boolean;
 }
 
 export function compile(
@@ -31,6 +32,8 @@ export function compile(
 ): CompileResult {
   AeonMemory.load();
   const hash = hashSource(source);
+  const persist = options.persistentCache ?? process.env.AEON_PERSIST_CACHE === '1';
+  compileCache.setPersistent(persist);
   if (!options.disableCache) {
     const cached = compileCache.get(hash);
     if (cached) {
