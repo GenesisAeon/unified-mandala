@@ -6,6 +6,7 @@ from typing import List
 from aeon_processor import fraktal_feedback
 from performance_monitor import monitor_performance
 from memory_store import store_result, load_results
+from sigil_loader import load_sigil
 from trikaya import trikaya_state
 
 
@@ -33,6 +34,11 @@ def main(argv: List[str] | None = None) -> None:
         help="Display stored memory results and exit (requires --memory)",
     )
     parser.add_argument(
+        "--sigil",
+        type=Path,
+        help="Path to a sigil JSON file to include in the output",
+    )
+    parser.add_argument(
         "--perf",
         action="store_true",
         help="Measure performance of the fractal feedback run",
@@ -52,8 +58,14 @@ def main(argv: List[str] | None = None) -> None:
         if text:
             values.extend(float(t) for t in text.split())
 
+    sigil_data = None
+    if args.sigil:
+        sigil_data = load_sigil(args.sigil)
+
     if args.perf:
         result = monitor_performance(values, depth=args.depth)
+        if sigil_data is not None:
+            result["sigil"] = sigil_data
     else:
         symbolic, score = fraktal_feedback(values, depth=args.depth)
         result = {
@@ -61,6 +73,8 @@ def main(argv: List[str] | None = None) -> None:
             "crep_score": score,
             "trikaya_state": trikaya_state(score),
         }
+        if sigil_data is not None:
+            result["sigil"] = sigil_data
 
     if args.output:
         args.output.write_text(json.dumps(result, indent=2))
