@@ -11,7 +11,15 @@ from trikaya import trikaya_state
 
 def main(argv: List[str] | None = None) -> None:
     parser = argparse.ArgumentParser(description="Run Aeon fractal feedback")
-    parser.add_argument("values", nargs="*", type=float, help="Numeric input values")
+    parser.add_argument(
+        "values", nargs="*", type=float, help="Numeric input values"
+    )
+    parser.add_argument(
+        "-i",
+        "--input",
+        type=Path,
+        help="Path to file containing whitespace separated numeric values",
+    )
     parser.add_argument("-d", "--depth", type=int, default=3, help="Fractal depth")
     parser.add_argument("-o", "--output", type=Path, help="Output file for JSON result")
     parser.add_argument(
@@ -26,10 +34,16 @@ def main(argv: List[str] | None = None) -> None:
     )
     args = parser.parse_args(argv)
 
+    values = list(args.values)
+    if args.input:
+        text = args.input.read_text().strip()
+        if text:
+            values.extend(float(t) for t in text.split())
+
     if args.perf:
-        result = monitor_performance(args.values, depth=args.depth)
+        result = monitor_performance(values, depth=args.depth)
     else:
-        symbolic, score = fraktal_feedback(args.values, depth=args.depth)
+        symbolic, score = fraktal_feedback(values, depth=args.depth)
         result = {
             "symbolic": symbolic,
             "crep_score": score,
