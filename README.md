@@ -137,6 +137,7 @@ Strategische Leitlinien stehen in [docs/agents/AgentStrategy.md](docs/agents/Age
 - [**Learning Modules**](packages/tutorials) – interactive C-Tutor and JavaHamster workflows
 - [**Gamification API**](docs/api/friendship-socialgood.yaml) – Endpunkte `/gamify/badges` & `/gamify/leaderboard`
 - [**Share your Sigil** & **Remix my Solution**](docs/CommunityOnboarding.md) – Community-Features
+- [**NumericToSymbolicAdapter**](GenesisAeonAdvancedAi/aeon_processor.py) – übersetzt Tensorwerte in Klang- und Farbcodes
 ## 📦 Paketstruktur
 
 ```bash
