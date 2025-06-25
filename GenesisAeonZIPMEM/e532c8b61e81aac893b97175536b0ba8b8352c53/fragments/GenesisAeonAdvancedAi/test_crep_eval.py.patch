@@ -1,0 +1,20 @@
+diff --git a/GenesisAeonAdvancedAi/test_crep_eval.py b/GenesisAeonAdvancedAi/test_crep_eval.py
+new file mode 100644
+index 0000000..4d75042
+--- /dev/null
++++ b/GenesisAeonAdvancedAi/test_crep_eval.py
+@@ -0,0 +1,14 @@
++import unittest
++
++from GenesisAeonAdvancedAi.crep_eval import evaluate_crep
++
++
++class TestCrepEval(unittest.TestCase):
++    def test_keys_present(self):
++        metrics = evaluate_crep("data")
++        for key in ["coherence", "resonance", "emergence", "presence"]:
++            self.assertIn(key, metrics)
++
++
++if __name__ == "__main__":
++    unittest.main()
