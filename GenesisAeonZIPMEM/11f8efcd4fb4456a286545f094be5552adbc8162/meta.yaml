@@ -1,0 +1,10 @@
+commit: 11f8efcd4fb4456a286545f094be5552adbc8162
+message: "chore: add final commit memory"
+patch: changes.patch
+fragments: fragments
+files:
+  - advancedprogress.json
+environment:
+  node: v22.16.0
+  pnpm: 10.5.2
+instructions: Apply patch with git apply or review for reference.
