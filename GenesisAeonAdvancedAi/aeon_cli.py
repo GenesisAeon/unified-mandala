@@ -2,6 +2,7 @@ import argparse
 import json
 from pathlib import Path
 from typing import List
+import yaml
 
 from aeon_processor import fraktal_feedback
 from performance_monitor import monitor_performance
@@ -22,7 +23,8 @@ def main(argv: List[str] | None = None) -> None:
         help="Path to file containing whitespace separated numeric values",
     )
     parser.add_argument("-d", "--depth", type=int, default=3, help="Fractal depth")
-    parser.add_argument("-o", "--output", type=Path, help="Output file for JSON result")
+    parser.add_argument("-o", "--output", type=Path, help="Output file for result")
+    parser.add_argument("--yaml", action="store_true", help="Output result as YAML")
     parser.add_argument(
         "--memory",
         type=Path,
@@ -76,10 +78,15 @@ def main(argv: List[str] | None = None) -> None:
         if sigil_data is not None:
             result["sigil"] = sigil_data
 
-    if args.output:
-        args.output.write_text(json.dumps(result, indent=2))
+    if args.yaml:
+        text_output = yaml.safe_dump(result, allow_unicode=True, sort_keys=False)
     else:
-        print(json.dumps(result, indent=2))
+        text_output = json.dumps(result, indent=2)
+
+    if args.output:
+        args.output.write_text(text_output)
+    else:
+        print(text_output)
 
     if args.memory:
         store_result(result, args.memory)
