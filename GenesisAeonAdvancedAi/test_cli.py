@@ -82,6 +82,19 @@ class TestAeonCLI(unittest.TestCase):
             data = json.loads(result.stdout)
             self.assertIn("metrics", data)
 
+    def test_haiku_flag(self):
+        with tempfile.TemporaryDirectory() as tmpdir:
+            input_path = Path(tmpdir) / "vals.txt"
+            input_path.write_text("0.8")
+            result = subprocess.run(
+                [sys.executable, "-m", "GenesisAeonAdvancedAi.aeon_cli", "--input", str(input_path), "--haiku"],
+                capture_output=True,
+                text=True,
+                check=True,
+            )
+            data = json.loads(result.stdout)
+            self.assertIn("haiku", data)
+
     def test_yaml_fallback_warning(self):
         import io
         from unittest import mock

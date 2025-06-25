@@ -10,6 +10,7 @@ except Exception:  # pragma: no cover - optional dependency
     _HAS_YAML = False
 
 from .aeon_processor import fraktal_feedback, fraktal_feedback_metrics
+from .aeon_processor import generate_haiku
 from .performance_monitor import monitor_performance
 from .memory_store import store_result, load_results
 from .sigil_loader import load_sigil, load_start_sigil
@@ -64,6 +65,11 @@ def main(argv: List[str] | None = None) -> None:
         help="Measure performance of the fractal feedback run",
     )
     parser.add_argument(
+        "--haiku",
+        action="store_true",
+        help="Generate a haiku describing the symbolic output",
+    )
+    parser.add_argument(
         "--metrics",
         action="store_true",
         help="Include CREP metrics in the output",
@@ -93,6 +99,10 @@ def main(argv: List[str] | None = None) -> None:
         result = monitor_performance(values, depth=args.depth)
         if sigil_data is not None:
             result["sigil"] = sigil_data
+        if args.haiku:
+            # monitor_performance returns (symbolic, score) as "result"
+            symbolic, _ = result.get("result", ({}, 0))
+            result["haiku"] = generate_haiku(symbolic)
     else:
         if args.metrics:
             symbolic, score, metrics = fraktal_feedback_metrics(
@@ -113,6 +123,8 @@ def main(argv: List[str] | None = None) -> None:
             }
         if sigil_data is not None:
             result["sigil"] = sigil_data
+        if args.haiku:
+            result["haiku"] = generate_haiku(symbolic)
 
     if args.yaml:
         text_output = dump_yaml(result)
