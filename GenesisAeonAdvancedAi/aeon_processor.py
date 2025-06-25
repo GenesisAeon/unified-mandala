@@ -173,3 +173,23 @@ def fraktal_feedback_graph(data: Iterable[float], depth: int = 3) -> Dict[str, A
             break
 
     return {"nodes": nodes, "edges": edges}
+
+
+def generate_haiku(symbolic_data: Dict[str, Any]) -> str:
+    """Generate a simple haiku description for the symbolic output.
+
+    This function maps the assigned symbol to a short three line poem.
+    The haiku texts are intentionally minimal and deterministic so that
+    tests can assert on the exact output without relying on randomness
+    or external APIs.
+    """
+
+    symbol = symbolic_data.get("symbol")
+    if symbol == "\u2600":  # ☀️
+        return "golden light rises\nseeds awaken to the day\nclarity unfolds"
+    if symbol == "\U0001F331":  # 🌱
+        return "tender shoots emerge\nsoil carries silent promise\nnew roots find their depth"
+    if symbol == "\U0001F4A7":  # 💧
+        return "raindrops softly fall\npooling into quiet streams\nchange flows ever on"
+    # default case for ⚫ or unknown symbol
+    return "stillness all around\nshadows weave an empty path\nnight consumes the sound"
