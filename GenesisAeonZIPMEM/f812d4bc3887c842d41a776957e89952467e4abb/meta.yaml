@@ -1,0 +1,10 @@
+commit: f812d4bc3887c842d41a776957e89952467e4abb
+message: "chore: update progress metadata"
+patch: changes.patch
+fragments: fragments
+files:
+  - advancedprogress.json
+environment:
+  node: v22.16.0
+  pnpm: 10.5.2
+instructions: Apply patch with git apply or review for reference.
