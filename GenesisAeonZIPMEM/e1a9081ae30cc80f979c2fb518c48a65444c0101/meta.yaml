@@ -1,0 +1,13 @@
+commit: e1a9081ae30cc80f979c2fb518c48a65444c0101
+message: "feat(aeon): add advanced agent with YAML logging"
+patch: changes.patch
+fragments: fragments
+files:
+  - GenesisAeonAdvancedAi/__init__.py
+  - GenesisAeonAdvancedAi/advanced_agent.py
+  - GenesisAeonAdvancedAi/feedback.md
+  - GenesisAeonAdvancedAi/test_advanced_agent.py
+environment:
+  node: v22.16.0
+  pnpm: 10.5.2
+instructions: Apply patch with git apply or review for reference.
