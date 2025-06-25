@@ -2,6 +2,21 @@ from typing import Iterable, Dict, Any, List
 from statistics import variance, mean
 
 
+def pearson_corr(xs: List[float], ys: List[float]) -> float:
+    """Return Pearson correlation coefficient for two equal-length lists."""
+    n = len(xs)
+    if n != len(ys) or n == 0:
+        return 0.0
+    mean_x = sum(xs) / n
+    mean_y = sum(ys) / n
+    num = sum((x - mean_x) * (y - mean_y) for x, y in zip(xs, ys))
+    den_x = sum((x - mean_x) ** 2 for x in xs) ** 0.5
+    den_y = sum((y - mean_y) ** 2 for y in ys) ** 0.5
+    if den_x == 0 or den_y == 0:
+        return 0.0
+    return num / (den_x * den_y)
+
+
 def sonify(values: Iterable[float]) -> list[float]:
     """Map numeric values to simple tone frequencies."""
     return [440.0 + v * 40.0 for v in values]
@@ -76,13 +91,10 @@ def advanced_crep_eval(
 
     resonance = 0.0
     if prev_states:
-        prev = prev_states[-1].get("klang", [])
+        prev = [float(f) for f in prev_states[-1].get("klang", [])]
         m = min(len(prev), len(klang))
         if m:
-            prev_avg = mean(prev[:m])
-            curr_avg = mean(klang[:m])
-            denom = max(abs(prev_avg), abs(curr_avg), 1)
-            resonance = 1.0 - abs(curr_avg - prev_avg) / denom
+            resonance = pearson_corr(prev[:m], klang[:m])
 
     emergence = (
         mean(abs(klang[i] - klang[i - 1]) for i in range(1, len(klang)))

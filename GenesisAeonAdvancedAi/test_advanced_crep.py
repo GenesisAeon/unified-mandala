@@ -16,5 +16,17 @@ class TestAdvancedCREP(unittest.TestCase):
         self.assertIsInstance(metrics, dict)
         self.assertIn("präsenz", metrics)
 
+    def test_resonance_correlation(self):
+        prev = translate_numeric_to_symbolic([0.1, 0.2, 0.3])
+        curr = translate_numeric_to_symbolic([0.1, 0.2, 0.3])
+        metrics = advanced_crep_eval(curr, [prev])
+        self.assertAlmostEqual(metrics["resonanz"], 1.0, places=5)
+
+    def test_resonance_negative(self):
+        prev = translate_numeric_to_symbolic([0.1, 0.2, 0.3])
+        curr = translate_numeric_to_symbolic([0.3, 0.2, 0.1])
+        metrics = advanced_crep_eval(curr, [prev])
+        self.assertAlmostEqual(round(metrics["resonanz"], 5), -1.0)
+
 if __name__ == "__main__":
     unittest.main()
