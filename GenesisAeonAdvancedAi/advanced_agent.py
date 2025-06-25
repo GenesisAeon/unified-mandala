@@ -1,8 +1,22 @@
 import argparse
 from datetime import datetime
 from typing import Any, Dict, List, Optional
-
 import yaml
+
+
+def generate_basic_haiku(symbol: str) -> str:
+    """Return a deterministic haiku for the given symbol."""
+    if symbol == "\u0394":
+        return (
+            "change weaves its path\n"
+            "memory traces interlace\n"
+            "delta guides the flow"
+        )
+    return (
+        "nested loops unfold\n"
+        "reflections echo the core\n"
+        "nabla draws us in"
+    )
 
 
 class AdvancedAeonAgent:
@@ -67,6 +81,7 @@ def main(argv: Optional[List[str]] = None) -> None:
     parser.add_argument("--input", help="Eingabewert für den Agenten")
     parser.add_argument("--log-file", help="Pfad für YAML-Logdatei")
     parser.add_argument("--state-file", help="Pfad für YAML-State-Datei")
+    parser.add_argument("--haiku", action="store_true", help="Gibt ein Haiku zum Ergebnis aus")
     args = parser.parse_args(argv)
 
     agent = AdvancedAeonAgent(
@@ -77,6 +92,8 @@ def main(argv: Optional[List[str]] = None) -> None:
     )
     result = agent.act(args.input)
     dump_yaml(agent)
+    if args.haiku:
+        print(generate_basic_haiku(result["symbol"]))
     print("Aktion ausgeführt:", result)
 
 

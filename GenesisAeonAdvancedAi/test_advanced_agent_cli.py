@@ -27,5 +27,21 @@ class TestAdvancedAgentCLI(unittest.TestCase):
             self.assertTrue(log_file.exists())
             self.assertTrue(state_file.exists())
 
+    def test_haiku_output(self):
+        result = subprocess.run(
+            [
+                sys.executable,
+                "-m",
+                "GenesisAeonAdvancedAi.advanced_agent",
+                "--input",
+                "data",
+                "--haiku",
+            ],
+            check=True,
+            capture_output=True,
+            text=True,
+        )
+        self.assertIn("\n", result.stdout)
+
 if __name__ == "__main__":
     unittest.main()
