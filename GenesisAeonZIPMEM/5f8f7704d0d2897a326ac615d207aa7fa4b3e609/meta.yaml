@@ -1,0 +1,9 @@
+commit: 5f8f7704d0d2897a326ac615d207aa7fa4b3e609
+message: Add commit memory files
+patch: changes.patch
+fragments: fragments
+files: []
+environment:
+  node: v22.16.0
+  pnpm: 10.5.2
+instructions: Apply patch with git apply or review for reference.

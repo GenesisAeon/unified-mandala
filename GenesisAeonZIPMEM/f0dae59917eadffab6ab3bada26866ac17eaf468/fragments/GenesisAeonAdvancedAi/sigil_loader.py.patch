@@ -1,0 +1,29 @@
+diff --git a/GenesisAeonAdvancedAi/sigil_loader.py b/GenesisAeonAdvancedAi/sigil_loader.py
+index ec9f217..bfd8338 100644
+--- a/GenesisAeonAdvancedAi/sigil_loader.py
++++ b/GenesisAeonAdvancedAi/sigil_loader.py
+@@ -1,6 +1,7 @@
+ from __future__ import annotations
+ 
+ import json
++from importlib import resources
+ from pathlib import Path
+ from typing import Any, Dict
+ 
+@@ -21,3 +22,16 @@ def load_sigil(path: Path) -> Dict[str, Any]:
+         return json.loads(text)
+     except json.JSONDecodeError as e:
+         raise ValueError(f"Invalid sigil JSON: {e}")
++
++
++def load_start_sigil() -> Dict[str, Any]:
++    """Load the packaged ``StartSigil.json`` file.
++
++    This helper allows tools like :mod:`~GenesisAeonAdvancedAi.aeon_cli` to
++    easily include the project\'s default sigil without requiring an explicit
++    file path.
++    """
++    with resources.files(__package__).joinpath("StartSigil.json").open(
++        "r", encoding="utf-8"
++    ) as f:
++        return json.load(f)
