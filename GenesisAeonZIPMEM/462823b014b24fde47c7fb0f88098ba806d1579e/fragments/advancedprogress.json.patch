@@ -1,0 +1,11 @@
+diff --git a/advancedprogress.json b/advancedprogress.json
+index 29d7c17..b182416 100644
+--- a/advancedprogress.json
++++ b/advancedprogress.json
+@@ -1,5 +1,5 @@
+ {
+-  "lastCommit": "Merge pull request #332 from GenesisAeon/codex/implementiere-die-ai-gemäß-konzeptplan",
++  "lastCommit": "feat(genesis): add aeon CLI and update docs",
+   "fractalStep": "sync",
+   "openBranches": [
+     "work"

@@ -1,0 +1,10 @@
+commit: 462823b014b24fde47c7fb0f88098ba806d1579e
+message: "chore(genesis): add commit memory"
+patch: changes.patch
+fragments: fragments
+files:
+  - advancedprogress.json
+environment:
+  node: v22.16.0
+  pnpm: 10.5.2
+instructions: Apply patch with git apply or review for reference.

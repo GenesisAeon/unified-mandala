@@ -1,0 +1,12 @@
+diff --git a/README.md b/README.md
+index 49ce994..f89ac15 100644
+--- a/README.md
++++ b/README.md
+@@ -138,6 +138,7 @@ Strategische Leitlinien stehen in [docs/agents/AgentStrategy.md](docs/agents/Age
+ - [**Gamification API**](docs/api/friendship-socialgood.yaml) – Endpunkte `/gamify/badges` & `/gamify/leaderboard`
+ - [**Share your Sigil** & **Remix my Solution**](docs/CommunityOnboarding.md) – Community-Features
+ - [**NumericToSymbolicAdapter**](GenesisAeonAdvancedAi/aeon_processor.py) – übersetzt Tensorwerte in Klang- und Farbcodes
++- [**Aeon CLI**](GenesisAeonAdvancedAi/aeon_cli.py) – erzeugt symbolische Ergebnisse aus Zahlenfolgen
+ ## 📦 Paketstruktur
+ 
+ ```bash
