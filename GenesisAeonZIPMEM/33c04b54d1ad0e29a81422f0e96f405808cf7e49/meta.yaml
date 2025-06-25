@@ -1,0 +1,11 @@
+commit: 33c04b54d1ad0e29a81422f0e96f405808cf7e49
+message: "chore: rename AeonMembraneBluePrind doc"
+patch: changes.patch
+fragments: fragments
+files:
+  - GenesisAeonAdvancedAi/AeonMembraneBluePrind.md
+  - GenesisAeonAdvancedAi/AeonMembraneBlueprint.md
+environment:
+  node: v22.16.0
+  pnpm: 10.5.2
+instructions: Apply patch with git apply or review for reference.
