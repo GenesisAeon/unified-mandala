@@ -9,11 +9,11 @@ except Exception:  # pragma: no cover - optional dependency
     yaml = None
     _HAS_YAML = False
 
-from aeon_processor import fraktal_feedback, fraktal_feedback_metrics
-from performance_monitor import monitor_performance
-from memory_store import store_result, load_results
-from sigil_loader import load_sigil
-from trikaya import trikaya_state
+from .aeon_processor import fraktal_feedback, fraktal_feedback_metrics
+from .performance_monitor import monitor_performance
+from .memory_store import store_result, load_results
+from .sigil_loader import load_sigil
+from .trikaya import trikaya_state
 
 
 def dump_yaml(data: dict) -> str:

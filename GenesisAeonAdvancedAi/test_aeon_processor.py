@@ -1,6 +1,6 @@
 import unittest
 
-from aeon_processor import assign_symbol
+from GenesisAeonAdvancedAi.aeon_processor import assign_symbol
 
 
 class TestAssignSymbol(unittest.TestCase):

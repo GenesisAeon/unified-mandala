@@ -1,11 +1,8 @@
 import unittest
 import json
 import pathlib
-import sys
 
-sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
-
-from memory_store import store_result, load_results
+from GenesisAeonAdvancedAi.memory_store import store_result, load_results
 
 
 class TestMemoryStore(unittest.TestCase):

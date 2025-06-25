@@ -3,7 +3,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from sigil_loader import load_sigil
+from GenesisAeonAdvancedAi.sigil_loader import load_sigil
 
 
 class TestSigilLoader(unittest.TestCase):

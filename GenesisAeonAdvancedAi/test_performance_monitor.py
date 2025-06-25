@@ -1,10 +1,6 @@
 import unittest
-import pathlib
-import sys
 
-sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
-
-from performance_monitor import monitor_performance
+from GenesisAeonAdvancedAi.performance_monitor import monitor_performance
 
 class TestPerformanceMonitor(unittest.TestCase):
     def test_monitor_returns_metrics(self):

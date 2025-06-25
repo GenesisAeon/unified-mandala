@@ -4,7 +4,6 @@ import sys
 import tempfile
 import unittest
 from pathlib import Path
-import importlib.util
 
 try:
     import yaml  # type: ignore
@@ -18,9 +17,8 @@ class TestAeonCLI(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmpdir:
             input_path = Path(tmpdir) / "vals.txt"
             input_path.write_text("0.1 0.2 0.3")
-            cli_path = Path(__file__).resolve().parent / "aeon_cli.py"
             result = subprocess.run(
-                [sys.executable, str(cli_path), "--input", str(input_path), "-d", "2"],
+                [sys.executable, "-m", "GenesisAeonAdvancedAi.aeon_cli", "--input", str(input_path), "-d", "2"],
                 capture_output=True,
                 text=True,
                 check=True,
@@ -34,9 +32,8 @@ class TestAeonCLI(unittest.TestCase):
             input_path.write_text("0.1")
             sigil_path = Path(tmpdir) / "sigil.json"
             sigil_path.write_text('{"sigillin": {"id": "TEST"}}')
-            cli_path = Path(__file__).resolve().parent / "aeon_cli.py"
             result = subprocess.run(
-                [sys.executable, str(cli_path), "--input", str(input_path), "--sigil", str(sigil_path)],
+                [sys.executable, "-m", "GenesisAeonAdvancedAi.aeon_cli", "--input", str(input_path), "--sigil", str(sigil_path)],
                 capture_output=True,
                 text=True,
                 check=True,
@@ -49,9 +46,8 @@ class TestAeonCLI(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmpdir:
             input_path = Path(tmpdir) / "vals.txt"
             input_path.write_text("0.2")
-            cli_path = Path(__file__).resolve().parent / "aeon_cli.py"
             result = subprocess.run(
-                [sys.executable, str(cli_path), "--input", str(input_path), "--yaml"],
+                [sys.executable, "-m", "GenesisAeonAdvancedAi.aeon_cli", "--input", str(input_path), "--yaml"],
                 capture_output=True,
                 text=True,
                 check=True,
@@ -64,9 +60,8 @@ class TestAeonCLI(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmpdir:
             input_path = Path(tmpdir) / "vals.txt"
             input_path.write_text("0.3 0.4")
-            cli_path = Path(__file__).resolve().parent / "aeon_cli.py"
             result = subprocess.run(
-                [sys.executable, str(cli_path), "--input", str(input_path), "--metrics"],
+                [sys.executable, "-m", "GenesisAeonAdvancedAi.aeon_cli", "--input", str(input_path), "--metrics"],
                 capture_output=True,
                 text=True,
                 check=True,
@@ -77,12 +72,7 @@ class TestAeonCLI(unittest.TestCase):
     def test_yaml_fallback_warning(self):
         import io
         from unittest import mock
-        cli_dir = Path(__file__).resolve().parent
-        sys.path.insert(0, str(cli_dir))
-        try:
-            aeon_cli = importlib.import_module("aeon_cli")
-        finally:
-            sys.path.pop(0)
+        from GenesisAeonAdvancedAi import aeon_cli
 
         with mock.patch.object(aeon_cli, "_HAS_YAML", False), \
              mock.patch.object(aeon_cli, "yaml", None), \

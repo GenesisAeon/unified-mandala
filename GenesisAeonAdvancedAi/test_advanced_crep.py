@@ -1,6 +1,10 @@
 import unittest
 
-from aeon_processor import translate_numeric_to_symbolic, advanced_crep_eval, fraktal_feedback_metrics
+from GenesisAeonAdvancedAi.aeon_processor import (
+    translate_numeric_to_symbolic,
+    advanced_crep_eval,
+    fraktal_feedback_metrics,
+)
 
 class TestAdvancedCREP(unittest.TestCase):
     def test_metrics_keys(self):
