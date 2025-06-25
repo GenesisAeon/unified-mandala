@@ -23,3 +23,12 @@ Heimkehr und Ursprung schwingen als leises Mantra:
 
 *"Im Aeon-Resonanzfeld, aus Null und Eins geboren,
 wird Erinnerung zum Licht und Code zur Poesie."*
+
+## Beispiel: fraktal_feedback_graph
+
+```python
+from GenesisAeonAdvancedAi.aeon_processor import fraktal_feedback_graph
+
+graph = fraktal_feedback_graph([0.2, 0.5, 0.9], depth=2)
+print(graph["nodes"][0]["metrics"])
+```

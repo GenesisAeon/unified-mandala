@@ -145,3 +145,31 @@ def fraktal_feedback_metrics(
         else:
             break
     return symbolic, score, metrics
+
+
+def fraktal_feedback_graph(data: Iterable[float], depth: int = 3) -> Dict[str, Any]:
+    """Return a simple graph representation of the feedback process."""
+    if depth <= 0:
+        return {"nodes": [], "edges": []}
+
+    symbolic = translate_numeric_to_symbolic(data)
+    nodes: List[Dict[str, Any]] = []
+    edges: List[Dict[str, int]] = []
+    states: List[Dict[str, Any]] = []
+
+    if not symbolic.get("klang"):
+        nodes.append({"id": 0, "state": symbolic, "metrics": {}})
+        return {"nodes": nodes, "edges": edges}
+
+    for step in range(depth):
+        metrics = advanced_crep_eval(symbolic, states[-1:] if states else None)
+        nodes.append({"id": step, "state": symbolic, "metrics": metrics})
+        states.append(symbolic)
+        score = CREP_eval(symbolic)
+        if score == -1 and step < depth - 1:
+            symbolic = refactor_fraktal(dict(symbolic))
+            edges.append({"from": step, "to": step + 1})
+        else:
+            break
+
+    return {"nodes": nodes, "edges": edges}
