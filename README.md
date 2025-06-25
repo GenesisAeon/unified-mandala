@@ -263,6 +263,8 @@ docker-compose run test
 pnpm run qa # fuehrt Linting und Tests aus und erzeugt qa-report.log
 ```
 
+> **Hinweis:** Führe vor allen Lint-, Test- oder QA-Befehlen stets `pnpm install` aus, damit `node_modules` vorhanden sind.
+
 ## 🔄 Systemstart
 
 - Abhängigkeiten installieren: `pnpm install`
