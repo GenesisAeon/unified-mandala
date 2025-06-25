@@ -260,14 +260,14 @@ docker-compose up ui      # startet Dev-Server
 # Tests ohne lokale Installation
 docker-compose run test
 # QA-Testlauf
-pnpm run qa # ts-node scripts/qa-test-runner.ts
+pnpm run qa # fuehrt Linting und Tests aus und erzeugt qa-report.log
 ```
 
 ## 🔄 Systemstart
 
 - Abhängigkeiten installieren: `pnpm install`
 - Zyklus starten: `./scripts/aeon.sh cycle_start` oder `docker-compose up`
-- QA-Läufe: `npm run qa` führt Linting und Tests aus
+- QA-Läufe: `pnpm run qa` führt Linting und Tests aus und erzeugt `qa-report.log` im Projektroot
 
 Ausführlichere Hinweise findest du im [Handbuch-Schnellstart](Handbuch.md#-schnellstart) und im Abschnitt [Mandala-Poesie und Automation](Handbuch.md#-mandala-poesie-und-automation).
 Weitere nützliche Befehle stehen unter [Tools und Skripte](Handbuch.md#tools-und-skripte).
