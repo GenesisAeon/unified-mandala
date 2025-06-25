@@ -5,6 +5,12 @@ import tempfile
 import unittest
 from pathlib import Path
 
+try:
+    import yaml  # noqa: F401
+    YAML_AVAILABLE = True
+except ModuleNotFoundError:  # pragma: no cover - optional dependency
+    YAML_AVAILABLE = False
+
 
 class TestAeonCLI(unittest.TestCase):
     def test_input_file(self):
@@ -37,6 +43,7 @@ class TestAeonCLI(unittest.TestCase):
             data = json.loads(result.stdout)
             self.assertIn("sigil", data)
 
+    @unittest.skipUnless(YAML_AVAILABLE, "pyyaml not installed")
     def test_yaml_output(self):
         with tempfile.TemporaryDirectory() as tmpdir:
             input_path = Path(tmpdir) / "vals.txt"
@@ -48,7 +55,6 @@ class TestAeonCLI(unittest.TestCase):
                 text=True,
                 check=True,
             )
-            import yaml
             data = yaml.safe_load(result.stdout)
             self.assertTrue("symbolic" in data or "result" in data)
 

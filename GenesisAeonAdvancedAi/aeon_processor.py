@@ -145,3 +145,40 @@ def fraktal_feedback_metrics(
         else:
             break
     return symbolic, score, metrics
+
+
+def fraktal_feedback_graph(
+    data: Iterable[float], depth: int = 3
+) -> Dict[str, Any]:
+    """Return a graph representation of the fractal feedback process.
+
+    Parameters
+    ----------
+    data:
+        Iterable of numeric input values.
+    depth:
+        Maximum recursion depth for the feedback loop.
+
+    Returns
+    -------
+    Dict[str, Any]
+        Dictionary containing ``states`` and ``edges`` lists describing the
+        processed symbolic states and their transitions.
+    """
+
+    symbolic = translate_numeric_to_symbolic(data)
+    states: List[Dict[str, Any]] = []
+
+    for i in range(depth):
+        score = CREP_eval(symbolic)
+        states.append({"id": i, "symbolic": symbolic, "crep_score": score})
+        if score == -1:
+            symbolic = refactor_fraktal(dict(symbolic))
+        else:
+            break
+
+    edges = [
+        {"from": i, "to": i + 1}
+        for i in range(len(states) - 1)
+    ]
+    return {"states": states, "edges": edges}
