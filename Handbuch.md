@@ -328,6 +328,9 @@ npm run build # oder: yarn build
 npm run dev   # oder: yarn dev
 ```
 
+## QA-Workflow
+Führe `pnpm run qa` aus, um Linting und Tests zu starten. Das Skript `scripts/qa-test-runner.ts` erstellt im Projektstamm die Datei `qa-report.log`.
+
 
 
 
