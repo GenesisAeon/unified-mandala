@@ -13,5 +13,9 @@ export function generateSigillin(phrase: string): SigillinTemplate {
 }
 
 export function saveSigillin(template: SigillinTemplate, file: string): void {
-  fs.writeFileSync(file, JSON.stringify(template, null, 2), 'utf-8');
+  try {
+    fs.writeFileSync(file, JSON.stringify(template, null, 2), 'utf-8');
+  } catch (err: any) {
+    throw new Error(`Failed to write sigillin file ${file}: ${err.message}`);
+  }
 }
