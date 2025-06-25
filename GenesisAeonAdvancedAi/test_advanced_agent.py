@@ -38,6 +38,21 @@ class TestAdvancedAeonAgent(unittest.TestCase):
             finally:
                 os.chdir(cwd)
 
+    def test_save_symbol_memory(self):
+        with tempfile.TemporaryDirectory() as tmpdir:
+            cwd = os.getcwd()
+            os.chdir(tmpdir)
+            try:
+                agent = AdvancedAeonAgent("test_agent", {})
+                agent.act("data")
+                mem_file = Path("symbols.yaml")
+                agent.save_symbol_memory(str(mem_file))
+                self.assertTrue(mem_file.exists())
+                data = yaml.safe_load(mem_file.read_text())
+                self.assertIn("\u2207", data)
+            finally:
+                os.chdir(cwd)
+
 
 if __name__ == "__main__":
     unittest.main()
