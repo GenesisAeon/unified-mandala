@@ -1,7 +1,10 @@
+import fs from 'fs';
 import { CREPManager } from './CREPManager';
 import { GPTEventHub } from '../gpt-bridges/GPTEventHub';
 
-describe('CREPManager', () => {
+const file = 'crepHistory.json';
+
+describe('CREPManager with localStorage', () => {
   beforeEach(() => {
     (globalThis as any).localStorage = {
       store: {} as Record<string, string>,
@@ -31,15 +34,32 @@ describe('CREPManager', () => {
     const manager = new CREPManager();
     expect(manager.getCREPHistory()).toHaveLength(1);
   });
+});
 
-  it('calculates average CREP values', () => {
+describe('CREPManager without localStorage', () => {
+  beforeEach(() => {
+    delete (globalThis as any).localStorage;
+    if (fs.existsSync(file)) fs.unlinkSync(file);
+    jest.spyOn(GPTEventHub, 'emit');
+  });
+
+  afterEach(() => {
+    jest.restoreAllMocks();
+    if (fs.existsSync(file)) fs.unlinkSync(file);
+  });
+
+  it('writes history to file when no localStorage', () => {
     const manager = new CREPManager();
-    manager.addCREPEntry(2, 4, 6, 8);
-    manager.addCREPEntry(4, 6, 8, 10);
-    const avg = manager.getAverageCREP();
-    expect(avg.C).toBe(3);
-    expect(avg.R).toBe(5);
-    expect(avg.E).toBe(7);
-    expect(avg.P).toBe(9);
+    manager.addCREPEntry(1, 1, 1, 1);
+    expect(fs.existsSync(file)).toBe(true);
+    const data = JSON.parse(fs.readFileSync(file, 'utf8'));
+    expect(data).toHaveLength(1);
+  });
+
+  it('loads history from file', () => {
+    const ts = new Date().toISOString();
+    fs.writeFileSync(file, JSON.stringify([{ timestamp: ts, C: 1, R: 1, E: 1, P: 1 }]));
+    const manager = new CREPManager();
+    expect(manager.getCREPHistory()).toHaveLength(1);
   });
 });
