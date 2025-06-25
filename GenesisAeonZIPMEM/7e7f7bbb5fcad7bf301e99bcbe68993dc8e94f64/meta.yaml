@@ -1,0 +1,10 @@
+commit: 7e7f7bbb5fcad7bf301e99bcbe68993dc8e94f64
+message: "chore: finalize commit memory"
+patch: changes.patch
+fragments: fragments
+files:
+  - advancedprogress.json
+environment:
+  node: v22.16.0
+  pnpm: 10.5.2
+instructions: Apply patch with git apply or review for reference.
