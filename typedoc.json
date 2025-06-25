@@ -4,5 +4,11 @@
   "exclude": ["**/*.test.ts", "**/*.test.tsx", "**/*.stories.tsx"],
   "entryPointStrategy": "expand",
   "tsconfig": "tsconfig.json",
-  "includeVersion": true
+  "includeVersion": true,
+  "excludeInternal": true,
+  "readme": "none",
+  "validation": {
+    "invalidLink": false,
+    "notExported": false
+  }
 }
