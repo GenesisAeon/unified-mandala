@@ -8,11 +8,20 @@ import yaml
 class AdvancedAeonAgent:
     """Agent with YAML persistence and simple symbol reflection."""
 
-    def __init__(self, name: str, state: Optional[Dict[str, Any]] = None, symbol_memory: Optional[Dict[str, Any]] = None) -> None:
+    def __init__(
+        self,
+        name: str,
+        state: Optional[Dict[str, Any]] = None,
+        symbol_memory: Optional[Dict[str, Any]] = None,
+        log_path: Optional[str] = None,
+        state_path: Optional[str] = None,
+    ) -> None:
         self.name = name
         self.state: Dict[str, Any] = state or {}
         self.symbol_memory: Dict[str, Any] = symbol_memory or {}
         self.history: List[Dict[str, Any]] = []
+        self.log_path = log_path or f"{self.name}_log.yaml"
+        self.state_path = state_path or f"{self.name}_state.yaml"
 
     def act(self, input_data: Any) -> Dict[str, Any]:
         decision = self.process_input(input_data)
@@ -44,21 +53,28 @@ class AdvancedAeonAgent:
             "decision": decision,
         }
         self.history.append(log_entry)
-        with open(f"{self.name}_log.yaml", "a", encoding="utf-8") as f:
+        with open(self.log_path, "a", encoding="utf-8") as f:
             yaml.safe_dump([log_entry], f, allow_unicode=True)
 
 
 def dump_yaml(agent: AdvancedAeonAgent) -> None:
-    with open(f"{agent.name}_state.yaml", "w", encoding="utf-8") as f:
+    with open(agent.state_path, "w", encoding="utf-8") as f:
         yaml.safe_dump(agent.state, f, allow_unicode=True)
 
 
 def main(argv: Optional[List[str]] = None) -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--input", help="Eingabewert für den Agenten")
+    parser.add_argument("--log-file", help="Pfad für YAML-Logdatei")
+    parser.add_argument("--state-file", help="Pfad für YAML-State-Datei")
     args = parser.parse_args(argv)
 
-    agent = AdvancedAeonAgent("aeon_proto", {})
+    agent = AdvancedAeonAgent(
+        "aeon_proto",
+        {},
+        log_path=args.log_file,
+        state_path=args.state_file,
+    )
     result = agent.act(args.input)
     dump_yaml(agent)
     print("Aktion ausgeführt:", result)
