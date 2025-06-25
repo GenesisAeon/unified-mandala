@@ -2,13 +2,26 @@ import argparse
 import json
 from pathlib import Path
 from typing import List
-import yaml
+try:
+    import yaml
+    _HAS_YAML = True
+except Exception:  # pragma: no cover - optional dependency
+    yaml = None
+    _HAS_YAML = False
 
 from aeon_processor import fraktal_feedback, fraktal_feedback_metrics
 from performance_monitor import monitor_performance
 from memory_store import store_result, load_results
 from sigil_loader import load_sigil
 from trikaya import trikaya_state
+
+
+def dump_yaml(data: dict) -> str:
+    """Return YAML if available or JSON as fallback with a warning."""
+    if not _HAS_YAML:
+        print("PyYAML not installed; using JSON")
+        return json.dumps(data, indent=2)
+    return yaml.safe_dump(data, allow_unicode=True, sort_keys=False)
 
 
 def main(argv: List[str] | None = None) -> None:
@@ -95,7 +108,7 @@ def main(argv: List[str] | None = None) -> None:
             result["sigil"] = sigil_data
 
     if args.yaml:
-        text_output = yaml.safe_dump(result, allow_unicode=True, sort_keys=False)
+        text_output = dump_yaml(result)
     else:
         text_output = json.dumps(result, indent=2)
 
