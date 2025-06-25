@@ -1,0 +1,14 @@
+project: GenesisAeonAdvancedAI
+version: 1.0.0
+structure:
+  - core:
+      - numeric_engine
+      - symbolic_interface
+  - modules:
+      - AeonMembraneLayer
+      - VRModule
+      - MandalaUI
+  - agents:
+      - CoreAgent
+      - MembraneAgent
+      - AuditAgent

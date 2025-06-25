@@ -1,0 +1,18 @@
+- task: Initial Setup
+  due: Q1 2026
+  items:
+    - create_repo
+    - implement_numeric_engine
+    - implement_symbolic_interface
+
+- task: ProtoDeploy
+  due: Q1 2026
+  items:
+    - AeonMembraneLayer
+    - MandalaUI Basic
+
+- task: AlphaDeploy
+  due: Q4 2026
+  items:
+    - full AeonMembrane integration
+    - VRModule implementation
