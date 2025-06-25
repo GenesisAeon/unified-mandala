@@ -6,15 +6,15 @@ export interface GenesisNavigatorOptions {
 }
 
 export class GenesisAeonNavigator {
-  private phaseMap: any;
+  private phaseMap: Record<string, string>;
   constructor(private options: GenesisNavigatorOptions) {
     this.phaseMap = this.loadPhaseMap(options.phaseMapPath);
   }
 
-  private loadPhaseMap(file: string): any {
+  private loadPhaseMap(file: string): Record<string, string> {
     try {
       const data = require('fs').readFileSync(file, 'utf-8');
-      return JSON.parse(data);
+      return JSON.parse(data) as Record<string, string>;
     } catch (err) {
       console.error('Failed to load phase map', err);
       return {};
@@ -25,7 +25,7 @@ export class GenesisAeonNavigator {
     this.log('GenesisAeonNavigator start');
   }
 
-  public updatePhaseMap(map: any): void {
+  public updatePhaseMap(map: Record<string, string>): void {
     this.phaseMap = map;
   }
 
