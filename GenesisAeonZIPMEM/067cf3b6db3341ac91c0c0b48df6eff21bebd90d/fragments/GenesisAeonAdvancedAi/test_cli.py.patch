@@ -1,0 +1,29 @@
+diff --git a/GenesisAeonAdvancedAi/test_cli.py b/GenesisAeonAdvancedAi/test_cli.py
+index 62e8c5c..8c73564 100644
+--- a/GenesisAeonAdvancedAi/test_cli.py
++++ b/GenesisAeonAdvancedAi/test_cli.py
+@@ -110,3 +110,24 @@ class TestAeonCLI(unittest.TestCase):
+         lines = output.splitlines()
+         data = json.loads("\n".join(lines[1:]))
+         self.assertTrue("symbolic" in data or "result" in data)
++
++    def test_graph_flag(self):
++        with tempfile.TemporaryDirectory() as tmpdir:
++            input_path = Path(tmpdir) / "vals.txt"
++            input_path.write_text("0.1 0.2 0.3")
++            result = subprocess.run(
++                [
++                    sys.executable,
++                    "-m",
++                    "GenesisAeonAdvancedAi.aeon_cli",
++                    "--input",
++                    str(input_path),
++                    "--graph",
++                ],
++                capture_output=True,
++                text=True,
++                check=True,
++            )
++            data = json.loads(result.stdout)
++            self.assertIn("graph", data)
++            self.assertIn("nodes", data["graph"])

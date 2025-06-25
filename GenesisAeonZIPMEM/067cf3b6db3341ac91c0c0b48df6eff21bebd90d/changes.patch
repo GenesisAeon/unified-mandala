@@ -1,0 +1,103 @@
+commit 067cf3b6db3341ac91c0c0b48df6eff21bebd90d
+Author: Codex <codex@openai.com>
+Date:   Wed Jun 25 21:13:37 2025 +0000
+
+    feat(cli): add graph output option
+
+diff --git a/GenesisAeonAdvancedAi/aeon_cli.py b/GenesisAeonAdvancedAi/aeon_cli.py
+index 79a71d7..f944892 100644
+--- a/GenesisAeonAdvancedAi/aeon_cli.py
++++ b/GenesisAeonAdvancedAi/aeon_cli.py
+@@ -9,7 +9,11 @@ except Exception:  # pragma: no cover - optional dependency
+     yaml = None
+     _HAS_YAML = False
+ 
+-from .aeon_processor import fraktal_feedback, fraktal_feedback_metrics
++from .aeon_processor import (
++    fraktal_feedback,
++    fraktal_feedback_metrics,
++    fraktal_feedback_graph,
++)
+ from .aeon_processor import generate_haiku
+ from .performance_monitor import monitor_performance
+ from .memory_store import store_result, load_results
+@@ -74,6 +78,11 @@ def main(argv: List[str] | None = None) -> None:
+         action="store_true",
+         help="Include CREP metrics in the output",
+     )
++    parser.add_argument(
++        "--graph",
++        action="store_true",
++        help="Include a fractal feedback graph in the output",
++    )
+     args = parser.parse_args(argv)
+ 
+     if args.show_memory:
+@@ -103,6 +112,8 @@ def main(argv: List[str] | None = None) -> None:
+             # monitor_performance returns (symbolic, score) as "result"
+             symbolic, _ = result.get("result", ({}, 0))
+             result["haiku"] = generate_haiku(symbolic)
++        if args.graph:
++            result["graph"] = fraktal_feedback_graph(values, depth=args.depth)
+     else:
+         if args.metrics:
+             symbolic, score, metrics = fraktal_feedback_metrics(
+@@ -125,6 +136,8 @@ def main(argv: List[str] | None = None) -> None:
+             result["sigil"] = sigil_data
+         if args.haiku:
+             result["haiku"] = generate_haiku(symbolic)
++        if args.graph:
++            result["graph"] = fraktal_feedback_graph(values, depth=args.depth)
+ 
+     if args.yaml:
+         text_output = dump_yaml(result)
+diff --git a/GenesisAeonAdvancedAi/feedback.md b/GenesisAeonAdvancedAi/feedback.md
+index 856e6e9..7c7bf2b 100644
+--- a/GenesisAeonAdvancedAi/feedback.md
++++ b/GenesisAeonAdvancedAi/feedback.md
+@@ -1,2 +1,2 @@
+ ## Feedback
+-Implemented a simple CLI tool for Aeon processor.
++Erweiterung: Aeon CLI unterstuetzt jetzt das Flag `--graph`, um einen Fraktal-Feedback-Graphen auszugeben. Tests und Dokumentation wurden aktualisiert.
+diff --git a/GenesisAeonAdvancedAi/test_cli.py b/GenesisAeonAdvancedAi/test_cli.py
+index 62e8c5c..8c73564 100644
+--- a/GenesisAeonAdvancedAi/test_cli.py
++++ b/GenesisAeonAdvancedAi/test_cli.py
+@@ -110,3 +110,24 @@ class TestAeonCLI(unittest.TestCase):
+         lines = output.splitlines()
+         data = json.loads("\n".join(lines[1:]))
+         self.assertTrue("symbolic" in data or "result" in data)
++
++    def test_graph_flag(self):
++        with tempfile.TemporaryDirectory() as tmpdir:
++            input_path = Path(tmpdir) / "vals.txt"
++            input_path.write_text("0.1 0.2 0.3")
++            result = subprocess.run(
++                [
++                    sys.executable,
++                    "-m",
++                    "GenesisAeonAdvancedAi.aeon_cli",
++                    "--input",
++                    str(input_path),
++                    "--graph",
++                ],
++                capture_output=True,
++                text=True,
++                check=True,
++            )
++            data = json.loads(result.stdout)
++            self.assertIn("graph", data)
++            self.assertIn("nodes", data["graph"])
+diff --git a/README.md b/README.md
+index 03300c6..71eecbc 100644
+--- a/README.md
++++ b/README.md
+@@ -139,7 +139,7 @@ Strategische Leitlinien stehen in [docs/agents/AgentStrategy.md](docs/agents/Age
+ - [**Share your Sigil** & **Remix my Solution**](docs/CommunityOnboarding.md) – Community-Features
+ - [**NumericToSymbolicAdapter**](GenesisAeonAdvancedAi/aeon_processor.py) – übersetzt Tensorwerte in Klang- und Farbcodes
+ - [**fraktal_feedback_graph**](GenesisAeonAdvancedAi/aeon_processor.py) – erstellt einen einfachen Graphen der Fraktal-Feedback-Schritte
+-- [**Aeon CLI**](GenesisAeonAdvancedAi/aeon_cli.py) – erzeugt symbolische Ergebnisse aus Zahlenfolgen, kann Leistungsdaten und nun auch CREP-Metriken ausgeben. Fehlt PyYAML, gibt die CLI stattdessen JSON aus und weist per Warnung darauf hin.
++- [**Aeon CLI**](GenesisAeonAdvancedAi/aeon_cli.py) – erzeugt symbolische Ergebnisse aus Zahlenfolgen, kann Leistungsdaten, CREP-Metriken und nun auch einen Fraktal-Graphen (``--graph``) ausgeben. Fehlt PyYAML, gibt die CLI stattdessen JSON aus und weist per Warnung darauf hin.
+ ## 📦 Paketstruktur
+ 
+ ```bash
