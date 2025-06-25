@@ -138,7 +138,7 @@ Strategische Leitlinien stehen in [docs/agents/AgentStrategy.md](docs/agents/Age
 - [**Gamification API**](docs/api/friendship-socialgood.yaml) – Endpunkte `/gamify/badges` & `/gamify/leaderboard`
 - [**Share your Sigil** & **Remix my Solution**](docs/CommunityOnboarding.md) – Community-Features
 - [**NumericToSymbolicAdapter**](GenesisAeonAdvancedAi/aeon_processor.py) – übersetzt Tensorwerte in Klang- und Farbcodes
-- [**Aeon CLI**](GenesisAeonAdvancedAi/aeon_cli.py) – erzeugt symbolische Ergebnisse aus Zahlenfolgen
+- [**Aeon CLI**](GenesisAeonAdvancedAi/aeon_cli.py) – erzeugt symbolische Ergebnisse aus Zahlenfolgen und kann optional Leistungsdaten ausgeben
 ## 📦 Paketstruktur
 
 ```bash

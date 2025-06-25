@@ -1,0 +1,104 @@
+commit 8eaca901a8163ceb7d748beeda9d38fe5ddc9664
+Author: Codex <codex@openai.com>
+Date:   Wed Jun 25 17:27:41 2025 +0000
+
+    feat(genesis): add performance monitor
+
+diff --git a/GenesisAeonAdvancedAi/aeon_cli.py b/GenesisAeonAdvancedAi/aeon_cli.py
+index 99d39bb..a45be8c 100644
+--- a/GenesisAeonAdvancedAi/aeon_cli.py
++++ b/GenesisAeonAdvancedAi/aeon_cli.py
+@@ -4,6 +4,7 @@ from pathlib import Path
+ from typing import List
+ 
+ from aeon_processor import fraktal_feedback
++from performance_monitor import monitor_performance
+ 
+ 
+ def main(argv: List[str] | None = None) -> None:
+@@ -11,10 +12,18 @@ def main(argv: List[str] | None = None) -> None:
+     parser.add_argument("values", nargs="*", type=float, help="Numeric input values")
+     parser.add_argument("-d", "--depth", type=int, default=3, help="Fractal depth")
+     parser.add_argument("-o", "--output", type=Path, help="Output file for JSON result")
++    parser.add_argument(
++        "--perf",
++        action="store_true",
++        help="Measure performance of the fractal feedback run",
++    )
+     args = parser.parse_args(argv)
+ 
+-    symbolic, score = fraktal_feedback(args.values, depth=args.depth)
+-    result = {"symbolic": symbolic, "crep_score": score}
++    if args.perf:
++        result = monitor_performance(args.values, depth=args.depth)
++    else:
++        symbolic, score = fraktal_feedback(args.values, depth=args.depth)
++        result = {"symbolic": symbolic, "crep_score": score}
+ 
+     if args.output:
+         args.output.write_text(json.dumps(result, indent=2))
+diff --git a/GenesisAeonAdvancedAi/performance_monitor.py b/GenesisAeonAdvancedAi/performance_monitor.py
+new file mode 100644
+index 0000000..d0423aa
+--- /dev/null
++++ b/GenesisAeonAdvancedAi/performance_monitor.py
+@@ -0,0 +1,20 @@
++import time
++import tracemalloc
++from typing import Iterable, Dict, Any, Tuple
++
++from aeon_processor import fraktal_feedback
++
++
++def monitor_performance(data: Iterable[float], depth: int = 3) -> Dict[str, Any]:
++    """Run fraktal_feedback and measure execution metrics."""
++    tracemalloc.start()
++    start = time.perf_counter()
++    result = fraktal_feedback(data, depth)
++    duration = time.perf_counter() - start
++    _, peak = tracemalloc.get_traced_memory()
++    tracemalloc.stop()
++    return {
++        "result": result,
++        "duration": duration,
++        "peak_memory": peak,
++    }
+diff --git a/GenesisAeonAdvancedAi/test_performance_monitor.py b/GenesisAeonAdvancedAi/test_performance_monitor.py
+new file mode 100644
+index 0000000..d0a89a1
+--- /dev/null
++++ b/GenesisAeonAdvancedAi/test_performance_monitor.py
+@@ -0,0 +1,20 @@
++import unittest
++import pathlib
++import sys
++
++sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
++
++from performance_monitor import monitor_performance
++
++class TestPerformanceMonitor(unittest.TestCase):
++    def test_monitor_returns_metrics(self):
++        metrics = monitor_performance([0.1, 0.5, 0.9], depth=2)
++        self.assertIn("result", metrics)
++        self.assertIn("duration", metrics)
++        self.assertIn("peak_memory", metrics)
++        symbolic, score = metrics["result"]
++        self.assertIsInstance(symbolic, dict)
++        self.assertIsInstance(score, int)
++
++if __name__ == "__main__":
++    unittest.main()
+diff --git a/README.md b/README.md
+index f89ac15..250a47a 100644
+--- a/README.md
++++ b/README.md
+@@ -138,7 +138,7 @@ Strategische Leitlinien stehen in [docs/agents/AgentStrategy.md](docs/agents/Age
+ - [**Gamification API**](docs/api/friendship-socialgood.yaml) – Endpunkte `/gamify/badges` & `/gamify/leaderboard`
+ - [**Share your Sigil** & **Remix my Solution**](docs/CommunityOnboarding.md) – Community-Features
+ - [**NumericToSymbolicAdapter**](GenesisAeonAdvancedAi/aeon_processor.py) – übersetzt Tensorwerte in Klang- und Farbcodes
+-- [**Aeon CLI**](GenesisAeonAdvancedAi/aeon_cli.py) – erzeugt symbolische Ergebnisse aus Zahlenfolgen
++- [**Aeon CLI**](GenesisAeonAdvancedAi/aeon_cli.py) – erzeugt symbolische Ergebnisse aus Zahlenfolgen und kann optional Leistungsdaten ausgeben
+ ## 📦 Paketstruktur
+ 
+ ```bash
