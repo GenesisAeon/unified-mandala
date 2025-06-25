@@ -1,0 +1,25 @@
+diff --git a/GenesisAeonAdvancedAi/test_symbol_tools.py b/GenesisAeonAdvancedAi/test_symbol_tools.py
+new file mode 100644
+index 0000000..a9e47ee
+--- /dev/null
++++ b/GenesisAeonAdvancedAi/test_symbol_tools.py
+@@ -0,0 +1,19 @@
++import unittest
++
++from GenesisAeonAdvancedAi.symbol_tools import assign_color, transform_to_symbol
++
++
++class TestSymbolTools(unittest.TestCase):
++    def test_assign_color(self):
++        self.assertEqual(assign_color(0.9), "gold")
++        self.assertEqual(assign_color(0.6), "blue")
++        self.assertEqual(assign_color(0.1), "grey")
++
++    def test_transform_to_symbol(self):
++        self.assertEqual(transform_to_symbol({}), "\u0394")
++        self.assertEqual(transform_to_symbol("x"), "\u03C8")
++        self.assertEqual(transform_to_symbol(123), "\u25CF")
++
++
++if __name__ == "__main__":
++    unittest.main()
