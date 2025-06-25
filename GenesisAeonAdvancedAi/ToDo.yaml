@@ -16,3 +16,8 @@
   items:
     - full AeonMembrane integration
     - VRModule implementation
+
+- task: CLI Tools
+  due: Q2 2025
+  items:
+    - aeon_cli for symbolic output

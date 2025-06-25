@@ -1,0 +1,13 @@
+commit: 12d28a08bc60ff8abe89ad1c17983bedbce8c867
+message: "feat(genesis): add aeon CLI and update docs"
+patch: changes.patch
+fragments: fragments
+files:
+  - GenesisAeonAdvancedAi/ToDo.yaml
+  - GenesisAeonAdvancedAi/aeon_cli.py
+  - GenesisAeonAdvancedAi/feedback.md
+  - README.md
+environment:
+  node: v22.16.0
+  pnpm: 10.5.2
+instructions: Apply patch with git apply or review for reference.
