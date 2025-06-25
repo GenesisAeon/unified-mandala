@@ -1,5 +1,5 @@
 import unittest
-from trikaya import trikaya_state
+from GenesisAeonAdvancedAi.trikaya import trikaya_state
 
 
 class TestTrikaya(unittest.TestCase):

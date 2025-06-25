@@ -3,9 +3,9 @@ from __future__ import annotations
 from pathlib import Path
 from typing import Iterable, Dict, Any, List
 
-from aeon_processor import fraktal_feedback_metrics
-from trikaya import trikaya_state
-from memory_store import store_result
+from .aeon_processor import fraktal_feedback_metrics
+from .trikaya import trikaya_state
+from .memory_store import store_result
 
 
 class AeonAgent:

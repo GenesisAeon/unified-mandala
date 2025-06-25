@@ -1,7 +1,7 @@
 import unittest
 import pathlib
 
-from aeon_agent import AeonAgent
+from GenesisAeonAdvancedAi.aeon_agent import AeonAgent
 
 
 class TestAeonAgent(unittest.TestCase):

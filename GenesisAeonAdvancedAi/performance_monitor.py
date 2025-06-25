@@ -2,7 +2,7 @@ import time
 import tracemalloc
 from typing import Iterable, Dict, Any, Tuple
 
-from aeon_processor import fraktal_feedback
+from .aeon_processor import fraktal_feedback
 
 
 def monitor_performance(data: Iterable[float], depth: int = 3) -> Dict[str, Any]:
