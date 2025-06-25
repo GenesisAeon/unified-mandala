@@ -36,3 +36,18 @@ class TestAeonCLI(unittest.TestCase):
             )
             data = json.loads(result.stdout)
             self.assertIn("sigil", data)
+
+    def test_yaml_output(self):
+        with tempfile.TemporaryDirectory() as tmpdir:
+            input_path = Path(tmpdir) / "vals.txt"
+            input_path.write_text("0.2")
+            cli_path = Path(__file__).resolve().parent / "aeon_cli.py"
+            result = subprocess.run(
+                [sys.executable, str(cli_path), "--input", str(input_path), "--yaml"],
+                capture_output=True,
+                text=True,
+                check=True,
+            )
+            import yaml
+            data = yaml.safe_load(result.stdout)
+            self.assertTrue("symbolic" in data or "result" in data)
