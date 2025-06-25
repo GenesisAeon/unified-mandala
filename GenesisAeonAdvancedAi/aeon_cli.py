@@ -5,7 +5,7 @@ from typing import List
 
 from aeon_processor import fraktal_feedback
 from performance_monitor import monitor_performance
-from memory_store import store_result
+from memory_store import store_result, load_results
 from trikaya import trikaya_state
 
 
@@ -28,11 +28,23 @@ def main(argv: List[str] | None = None) -> None:
         help="Append result to a persistent memory JSON file",
     )
     parser.add_argument(
+        "--show-memory",
+        action="store_true",
+        help="Display stored memory results and exit (requires --memory)",
+    )
+    parser.add_argument(
         "--perf",
         action="store_true",
         help="Measure performance of the fractal feedback run",
     )
     args = parser.parse_args(argv)
+
+    if args.show_memory:
+        if not args.memory:
+            parser.error("--show-memory requires --memory")
+        results = load_results(args.memory)
+        print(json.dumps(results, indent=2))
+        return
 
     values = list(args.values)
     if args.input:

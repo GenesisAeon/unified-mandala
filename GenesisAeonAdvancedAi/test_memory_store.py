@@ -5,7 +5,7 @@ import sys
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 
-from memory_store import store_result
+from memory_store import store_result, load_results
 
 
 class TestMemoryStore(unittest.TestCase):
@@ -20,6 +20,17 @@ class TestMemoryStore(unittest.TestCase):
         store_result({'b': 2}, path)
         data = json.loads(path.read_text())
         self.assertEqual(len(data), 2)
+        path.unlink()
+
+    def test_load_results(self):
+        path = pathlib.Path('temp_mem.json')
+        if path.exists():
+            path.unlink()
+        store_result({'x': 1}, path)
+        store_result({'y': 2}, path)
+        results = load_results(path)
+        self.assertEqual(len(results), 2)
+        self.assertIsInstance(results[0], dict)
         path.unlink()
 
 
