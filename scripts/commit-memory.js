@@ -1,22 +1,34 @@
-const fs = require('fs');
+const fs = require('fs/promises');
 const path = require('path');
-const { execSync } = require('child_process');
+const { exec } = require('child_process');
+const { promisify } = require('util');
 const YAML = require('yaml');
 
-function run() {
+const execAsync = promisify(exec);
+
+async function run() {
   const repoRoot = path.resolve(__dirname, '..');
-  const commit = execSync('git rev-parse HEAD').toString().trim();
+  const { stdout: commitStdout } = await execAsync('git rev-parse HEAD');
+  const commit = commitStdout.trim();
   const memoryDir = path.join(repoRoot, 'GenesisAeonZIPMEM', commit);
-  if (fs.existsSync(memoryDir)) {
+  try {
+    await fs.access(memoryDir);
     console.log('Memory for this commit already exists.');
     return;
+  } catch {
+    // directory does not exist
   }
-  fs.mkdirSync(memoryDir, { recursive: true });
-  const patch = execSync(`git show ${commit} -- . ':(exclude)GenesisAeonZIPMEM'`).toString();
-  fs.writeFileSync(path.join(memoryDir, 'changes.patch'), patch, 'utf8');
+  await fs.mkdir(memoryDir, { recursive: true });
+  const { stdout: patchStdout } = await execAsync(
+    `git show ${commit} -- . ':(exclude)GenesisAeonZIPMEM'`
+  );
+  await fs.writeFile(path.join(memoryDir, 'changes.patch'), patchStdout, 'utf8');
   const fragmentsDir = path.join(memoryDir, 'fragments');
-  fs.mkdirSync(fragmentsDir, { recursive: true });
-  const files = execSync(`git diff-tree --no-commit-id --name-only -r ${commit}`)
+  await fs.mkdir(fragmentsDir, { recursive: true });
+  const { stdout: filesStdout } = await execAsync(
+    `git diff-tree --no-commit-id --name-only -r ${commit}`
+  );
+  const files = filesStdout
     .toString()
     .trim()
     .split('\n')
@@ -25,19 +37,27 @@ function run() {
   const nodeVersion = process.version;
   let pnpmVersion = 'unknown';
   try {
-    pnpmVersion = execSync('pnpm --version').toString().trim();
-  } catch (err) {
+    const { stdout } = await execAsync('pnpm --version');
+    pnpmVersion = stdout.trim();
+  } catch {
     console.warn('pnpm not found');
   }
   for (const file of files) {
     const fileDir = path.join(fragmentsDir, path.dirname(file));
-    fs.mkdirSync(fileDir, { recursive: true });
-    const fragmentPatch = execSync(`git diff ${commit}^ ${commit} -- ${file}`).toString();
-    fs.writeFileSync(path.join(fragmentsDir, `${file}.patch`), fragmentPatch, 'utf8');
+    await fs.mkdir(fileDir, { recursive: true });
+    const { stdout: fragmentPatch } = await execAsync(
+      `git diff ${commit}^ ${commit} -- ${file}`
+    );
+    await fs.writeFile(
+      path.join(fragmentsDir, `${file}.patch`),
+      fragmentPatch,
+      'utf8'
+    );
   }
-  const message = execSync(`git log -1 --pretty=%B ${commit}`)
-    .toString()
-    .trim();
+  const { stdout: messageStdout } = await execAsync(
+    `git log -1 --pretty=%B ${commit}`
+  );
+  const message = messageStdout.toString().trim();
   const meta = {
     commit,
     message,
@@ -47,7 +67,7 @@ function run() {
     environment: { node: nodeVersion, pnpm: pnpmVersion },
     instructions: 'Apply patch with git apply or review for reference.'
   };
-  fs.writeFileSync(
+  await fs.writeFile(
     path.join(memoryDir, 'meta.yaml'),
     YAML.stringify(meta),
     'utf8'

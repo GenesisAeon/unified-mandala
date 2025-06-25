@@ -3,11 +3,11 @@ import path from 'path';
 import { execSync } from 'child_process';
 const { run } = require('../commit-memory');
 
-test('commit-memory writes meta and patch', () => {
+test('commit-memory writes meta and patch', async () => {
   const commit = execSync('git rev-parse HEAD').toString().trim();
   const dir = path.join(__dirname, '../../GenesisAeonZIPMEM', commit);
   if (fs.existsSync(dir)) fs.rmSync(dir, { recursive: true, force: true });
-  run();
+  await run();
   const meta = path.join(dir, 'meta.yaml');
   const patch = path.join(dir, 'changes.patch');
   const fragmentDir = path.join(dir, 'fragments');
