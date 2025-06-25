@@ -1,0 +1,24 @@
+diff --git a/GenesisAeonAdvancedAi/test_sigil_loader.py b/GenesisAeonAdvancedAi/test_sigil_loader.py
+index cf8e946..f7ab0c8 100644
+--- a/GenesisAeonAdvancedAi/test_sigil_loader.py
++++ b/GenesisAeonAdvancedAi/test_sigil_loader.py
+@@ -3,7 +3,7 @@ import tempfile
+ import unittest
+ from pathlib import Path
+ 
+-from GenesisAeonAdvancedAi.sigil_loader import load_sigil
++from GenesisAeonAdvancedAi.sigil_loader import load_sigil, load_start_sigil
+ 
+ 
+ class TestSigilLoader(unittest.TestCase):
+@@ -25,6 +25,10 @@ class TestSigilLoader(unittest.TestCase):
+             with self.assertRaises(ValueError):
+                 load_sigil(path)
+ 
++    def test_load_start_sigil(self):
++        data = load_start_sigil()
++        self.assertIn("sigillin", data)
++
+ 
+ if __name__ == "__main__":
+     unittest.main()

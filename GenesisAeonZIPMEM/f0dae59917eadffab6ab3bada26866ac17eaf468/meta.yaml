@@ -1,0 +1,13 @@
+commit: f0dae59917eadffab6ab3bada26866ac17eaf468
+message: Add start sigil loader and CLI flag
+patch: changes.patch
+fragments: fragments
+files:
+  - GenesisAeonAdvancedAi/aeon_cli.py
+  - GenesisAeonAdvancedAi/sigil_loader.py
+  - GenesisAeonAdvancedAi/test_cli.py
+  - GenesisAeonAdvancedAi/test_sigil_loader.py
+environment:
+  node: v22.16.0
+  pnpm: 10.5.2
+instructions: Apply patch with git apply or review for reference.

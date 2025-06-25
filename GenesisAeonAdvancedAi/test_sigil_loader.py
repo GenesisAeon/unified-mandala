@@ -3,7 +3,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from GenesisAeonAdvancedAi.sigil_loader import load_sigil
+from GenesisAeonAdvancedAi.sigil_loader import load_sigil, load_start_sigil
 
 
 class TestSigilLoader(unittest.TestCase):
@@ -24,6 +24,10 @@ class TestSigilLoader(unittest.TestCase):
             path.write_text('{invalid}')
             with self.assertRaises(ValueError):
                 load_sigil(path)
+
+    def test_load_start_sigil(self):
+        data = load_start_sigil()
+        self.assertIn("sigillin", data)
 
 
 if __name__ == "__main__":

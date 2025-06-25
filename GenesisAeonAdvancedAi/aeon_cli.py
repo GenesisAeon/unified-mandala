@@ -12,7 +12,7 @@ except Exception:  # pragma: no cover - optional dependency
 from .aeon_processor import fraktal_feedback, fraktal_feedback_metrics
 from .performance_monitor import monitor_performance
 from .memory_store import store_result, load_results
-from .sigil_loader import load_sigil
+from .sigil_loader import load_sigil, load_start_sigil
 from .trikaya import trikaya_state
 
 
@@ -54,6 +54,11 @@ def main(argv: List[str] | None = None) -> None:
         help="Path to a sigil JSON file to include in the output",
     )
     parser.add_argument(
+        "--start-sigil",
+        action="store_true",
+        help="Include the packaged StartSigil.json in the output",
+    )
+    parser.add_argument(
         "--perf",
         action="store_true",
         help="Measure performance of the fractal feedback run",
@@ -81,6 +86,8 @@ def main(argv: List[str] | None = None) -> None:
     sigil_data = None
     if args.sigil:
         sigil_data = load_sigil(args.sigil)
+    elif args.start_sigil:
+        sigil_data = load_start_sigil()
 
     if args.perf:
         result = monitor_performance(values, depth=args.depth)
