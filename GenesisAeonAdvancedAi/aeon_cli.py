@@ -6,6 +6,7 @@ from typing import List
 from aeon_processor import fraktal_feedback
 from performance_monitor import monitor_performance
 from memory_store import store_result
+from trikaya import trikaya_state
 
 
 def main(argv: List[str] | None = None) -> None:
@@ -29,7 +30,11 @@ def main(argv: List[str] | None = None) -> None:
         result = monitor_performance(args.values, depth=args.depth)
     else:
         symbolic, score = fraktal_feedback(args.values, depth=args.depth)
-        result = {"symbolic": symbolic, "crep_score": score}
+        result = {
+            "symbolic": symbolic,
+            "crep_score": score,
+            "trikaya_state": trikaya_state(score),
+        }
 
     if args.output:
         args.output.write_text(json.dumps(result, indent=2))
