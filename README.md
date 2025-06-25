@@ -139,7 +139,7 @@ Strategische Leitlinien stehen in [docs/agents/AgentStrategy.md](docs/agents/Age
 - [**Share your Sigil** & **Remix my Solution**](docs/CommunityOnboarding.md) – Community-Features
 - [**NumericToSymbolicAdapter**](GenesisAeonAdvancedAi/aeon_processor.py) – übersetzt Tensorwerte in Klang- und Farbcodes
 - [**fraktal_feedback_graph**](GenesisAeonAdvancedAi/aeon_processor.py) – erstellt einen einfachen Graphen der Fraktal-Feedback-Schritte
-- [**Aeon CLI**](GenesisAeonAdvancedAi/aeon_cli.py) – erzeugt symbolische Ergebnisse aus Zahlenfolgen, kann Leistungsdaten und nun auch CREP-Metriken ausgeben. Fehlt PyYAML, gibt die CLI stattdessen JSON aus und weist per Warnung darauf hin.
+- [**Aeon CLI**](GenesisAeonAdvancedAi/aeon_cli.py) – erzeugt symbolische Ergebnisse aus Zahlenfolgen, kann Leistungsdaten, CREP-Metriken und nun auch einen Fraktal-Graphen (``--graph``) ausgeben. Fehlt PyYAML, gibt die CLI stattdessen JSON aus und weist per Warnung darauf hin.
 ## 📦 Paketstruktur
 
 ```bash

@@ -1,0 +1,9 @@
+commit: 93b4018bd9cd142fdfc94b92c04a657b73c229d2
+message: "chore(memory): store patch for graph flag"
+patch: changes.patch
+fragments: fragments
+files: []
+environment:
+  node: v22.16.0
+  pnpm: 10.5.2
+instructions: Apply patch with git apply or review for reference.
