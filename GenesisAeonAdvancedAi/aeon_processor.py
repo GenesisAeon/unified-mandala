@@ -1,4 +1,5 @@
-from typing import Iterable, Dict, Any
+from typing import Iterable, Dict, Any, List
+from statistics import variance, mean
 
 
 def sonify(values: Iterable[float]) -> list[float]:
@@ -56,6 +57,47 @@ def CREP_eval(symbolic_data: Dict[str, Any]) -> int:
     return 0
 
 
+def advanced_crep_eval(
+    symbolic_data: Dict[str, Any], prev_states: List[Dict[str, Any]] | None = None
+) -> Dict[str, float]:
+    """Calculate basic CREP metrics.
+
+    Parameters
+    ----------
+    symbolic_data:
+        Dictionary containing at least "klang" list.
+    prev_states:
+        Optional list of previous symbolic states to compute resonance.
+    """
+
+    klang = [float(f) for f in symbolic_data.get("klang", [])]
+    coherence = variance(klang) if len(klang) > 1 else 0.0
+    presence = mean(klang) if klang else 0.0
+
+    resonance = 0.0
+    if prev_states:
+        prev = prev_states[-1].get("klang", [])
+        m = min(len(prev), len(klang))
+        if m:
+            prev_avg = mean(prev[:m])
+            curr_avg = mean(klang[:m])
+            denom = max(abs(prev_avg), abs(curr_avg), 1)
+            resonance = 1.0 - abs(curr_avg - prev_avg) / denom
+
+    emergence = (
+        mean(abs(klang[i] - klang[i - 1]) for i in range(1, len(klang)))
+        if len(klang) > 1
+        else 0.0
+    )
+
+    return {
+        "kohärenz": coherence,
+        "resonanz": resonance,
+        "emergenz": emergence,
+        "präsenz": presence,
+    }
+
+
 def refactor_fraktal(symbolic_data: Dict[str, Any]) -> Dict[str, Any]:
     """Simple refactoring: invert frequencies."""
     symbolic_data["klang"] = [440 - (f - 440) for f in symbolic_data["klang"]]
@@ -72,3 +114,22 @@ def fraktal_feedback(data: Iterable[float], depth: int = 3):
         else:
             break
     return symbolic, score
+
+
+def fraktal_feedback_metrics(
+    data: Iterable[float],
+    depth: int = 3,
+    prev_states: List[Dict[str, Any]] | None = None,
+) -> tuple[Dict[str, Any], int, Dict[str, float]]:
+    """Fractal feedback that also returns CREP metric dictionary."""
+    symbolic = translate_numeric_to_symbolic(data)
+    states = list(prev_states or [])
+    for _ in range(depth):
+        score = CREP_eval(symbolic)
+        metrics = advanced_crep_eval(symbolic, states[-1:] if states else None)
+        states.append(symbolic)
+        if score == -1:
+            symbolic = refactor_fraktal(symbolic)
+        else:
+            break
+    return symbolic, score, metrics
