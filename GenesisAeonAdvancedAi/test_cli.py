@@ -51,3 +51,17 @@ class TestAeonCLI(unittest.TestCase):
             import yaml
             data = yaml.safe_load(result.stdout)
             self.assertTrue("symbolic" in data or "result" in data)
+
+    def test_metrics_flag(self):
+        with tempfile.TemporaryDirectory() as tmpdir:
+            input_path = Path(tmpdir) / "vals.txt"
+            input_path.write_text("0.3 0.4")
+            cli_path = Path(__file__).resolve().parent / "aeon_cli.py"
+            result = subprocess.run(
+                [sys.executable, str(cli_path), "--input", str(input_path), "--metrics"],
+                capture_output=True,
+                text=True,
+                check=True,
+            )
+            data = json.loads(result.stdout)
+            self.assertIn("metrics", data)

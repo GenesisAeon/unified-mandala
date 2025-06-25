@@ -4,7 +4,7 @@ from pathlib import Path
 from typing import List
 import yaml
 
-from aeon_processor import fraktal_feedback
+from aeon_processor import fraktal_feedback, fraktal_feedback_metrics
 from performance_monitor import monitor_performance
 from memory_store import store_result, load_results
 from sigil_loader import load_sigil
@@ -45,6 +45,11 @@ def main(argv: List[str] | None = None) -> None:
         action="store_true",
         help="Measure performance of the fractal feedback run",
     )
+    parser.add_argument(
+        "--metrics",
+        action="store_true",
+        help="Include CREP metrics in the output",
+    )
     args = parser.parse_args(argv)
 
     if args.show_memory:
@@ -69,12 +74,23 @@ def main(argv: List[str] | None = None) -> None:
         if sigil_data is not None:
             result["sigil"] = sigil_data
     else:
-        symbolic, score = fraktal_feedback(values, depth=args.depth)
-        result = {
-            "symbolic": symbolic,
-            "crep_score": score,
-            "trikaya_state": trikaya_state(score),
-        }
+        if args.metrics:
+            symbolic, score, metrics = fraktal_feedback_metrics(
+                values, depth=args.depth
+            )
+            result = {
+                "symbolic": symbolic,
+                "crep_score": score,
+                "metrics": metrics,
+                "trikaya_state": trikaya_state(score),
+            }
+        else:
+            symbolic, score = fraktal_feedback(values, depth=args.depth)
+            result = {
+                "symbolic": symbolic,
+                "crep_score": score,
+                "trikaya_state": trikaya_state(score),
+            }
         if sigil_data is not None:
             result["sigil"] = sigil_data
 
