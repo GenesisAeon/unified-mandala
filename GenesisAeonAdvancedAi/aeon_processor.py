@@ -16,10 +16,24 @@ def visualize_light(values: Iterable[float]) -> list[str]:
 
 
 def assign_symbol(values: Iterable[float]) -> str:
-    """Assign a symbolic marker based on the average value."""
+    """Assign a symbolic marker based on the average value.
+
+    Mapping inspired by project guidelines:
+    - avg > 0.8 → sun symbol (☀️)
+    - avg > 0.5 → growth symbol (🌱)
+    - avg > 0.2 → fluid symbol (💧)
+    - otherwise → void symbol (⚫)
+    """
     vals = list(values)
     avg = sum(vals) / len(vals) if vals else 0
-    return "\u2605" if avg > 0.5 else "\u25CF"
+    if avg > 0.8:
+        return "\u2600"  # ☀️
+    elif avg > 0.5:
+        return "\U0001F331"  # 🌱
+    elif avg > 0.2:
+        return "\U0001F4A7"  # 💧
+    else:
+        return "\u26AB"  # ⚫
 
 
 def translate_numeric_to_symbolic(tensor: Iterable[float]) -> Dict[str, Any]:
