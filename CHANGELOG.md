@@ -4,3 +4,7 @@ Alle relevanten Änderungen dieses Projekts werden in diesem Dokument festgehalt
 
 ## [0.1.0] - 2024-04-10
 - Initiale Struktur mit Mandala-Komponenten.
+
+## [Unreleased]
+- Verfeinerte Symbolzuordnung in `aeon_processor.assign_symbol`
+  für differenziertere Ausgabe.
