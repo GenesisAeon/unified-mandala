@@ -20,8 +20,13 @@ from .aeon_processor import (
     advanced_crep_eval,
 )
 from .performance_monitor import monitor_performance
-from .memory_store import store_result, load_results, summarize_memory
-from .memory_store import tail_results
+from .memory_store import (
+    store_result,
+    load_results,
+    summarize_memory,
+    tail_results,
+    trend_metric,
+)
 from .sigil_loader import load_sigil, load_start_sigil
 from .trikaya import trikaya_state
 from .archetype_tools import get_symbol
@@ -69,6 +74,17 @@ def main(argv: List[str] | None = None) -> None:
         type=int,
         metavar="N",
         help="Display the last N memory entries (requires --memory)",
+    )
+    parser.add_argument(
+        "--trend-key",
+        help="Compute average change for given numeric key in memory and exit",
+    )
+    parser.add_argument(
+        "--trend-window",
+        type=int,
+        default=5,
+        metavar="N",
+        help="Number of recent entries to consider for --trend-key",
     )
     parser.add_argument(
         "--sigil",
@@ -136,6 +152,13 @@ def main(argv: List[str] | None = None) -> None:
             parser.error("--tail requires --memory")
         entries = tail_results(args.memory, args.tail)
         print(json.dumps(entries, indent=2))
+        return
+
+    if args.trend_key:
+        if not args.memory:
+            parser.error("--trend-key requires --memory")
+        trend = trend_metric(args.memory, args.trend_key, args.trend_window)
+        print(json.dumps({"trend": trend}, indent=2))
         return
 
     values = list(args.values)

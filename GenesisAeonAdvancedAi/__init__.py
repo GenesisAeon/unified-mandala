@@ -14,6 +14,7 @@ from .memory_store import (
     summarize_memory,
     summarize_entries,
     tail_results,
+    trend_metric,
 )
 
 __all__ = [
@@ -34,5 +35,6 @@ __all__ = [
     "summarize_memory",
     "summarize_entries",
     "tail_results",
+    "trend_metric",
 ]
 

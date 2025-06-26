@@ -8,6 +8,7 @@ from GenesisAeonAdvancedAi.memory_store import (
     summarize_memory,
     summarize_entries,
     tail_results,
+    trend_metric,
 )
 
 
@@ -65,6 +66,16 @@ class TestMemoryStore(unittest.TestCase):
         self.assertEqual(len(tail), 2)
         self.assertEqual(tail[0]["idx"], 3)
         self.assertEqual(tail[1]["idx"], 4)
+        path.unlink()
+
+    def test_trend_metric(self):
+        path = pathlib.Path("temp_mem.json")
+        if path.exists():
+            path.unlink()
+        store_result({"score": -1}, path)
+        store_result({"score": 1}, path)
+        trend = trend_metric(path, "score", 2)
+        self.assertAlmostEqual(trend, 2.0)
         path.unlink()
 
 

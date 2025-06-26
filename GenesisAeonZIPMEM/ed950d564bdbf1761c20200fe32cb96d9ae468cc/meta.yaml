@@ -1,0 +1,15 @@
+commit: ed950d564bdbf1761c20200fe32cb96d9ae468cc
+message: "feat(ai): add trend analysis utilities"
+patch: changes.patch
+fragments: fragments
+files:
+  - GenesisAeonAdvancedAi/__init__.py
+  - GenesisAeonAdvancedAi/aeon_cli.py
+  - GenesisAeonAdvancedAi/feedback.md
+  - GenesisAeonAdvancedAi/memory_store.py
+  - GenesisAeonAdvancedAi/test_cli.py
+  - GenesisAeonAdvancedAi/test_memory_store.py
+environment:
+  node: v22.16.0
+  pnpm: 10.5.2
+instructions: Apply patch with git apply or review for reference.
