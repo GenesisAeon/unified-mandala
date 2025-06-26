@@ -6,3 +6,4 @@ Erweiterung: Aeon CLI unterstuetzt jetzt das Flag `--graph`, um einen Fraktal-Fe
 \n- Advanced agent now persists symbol memory via `--symbol-memory-file`.
 \n- Advanced agent persists action history via `--memory-file`.
 
+- Adaptive CREP threshold helper `auto_adapt_crep_threshold` implemented.
