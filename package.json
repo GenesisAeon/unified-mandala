@@ -18,6 +18,7 @@
     "split:conversations": "node scripts/split-conversations.js",
     "grep:conversations": "node scripts/filter-conversations.js",
     "analyze:conversations": "node scripts/analyze-conversations.js",
+    "parse:newconversations": "node scripts/parse-newadvanced-conversations.js",
     "update:advanced-todo": "node scripts/update-advanced-todo.js",
     "export:crep-docs": "node scripts/export-crep-docs.js",
     "symbolzeit:run": "node scripts/symbolzeit-runner.js",
