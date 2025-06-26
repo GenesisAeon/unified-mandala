@@ -7,6 +7,7 @@ from .aeon_processor import symbolic_manifestation
 from .adaptive_threshold import auto_adapt_crep_threshold
 from .mandala_visualizer import plot_crep_mandala
 from .plugin_loader import load_plugin_manifest, load_plugins
+from .archetype_tools import get_symbol
 
 __all__ = [
     "AeonAgent",
@@ -20,4 +21,5 @@ __all__ = [
     "auto_adapt_crep_threshold",
     "load_plugin_manifest",
     "load_plugins",
+    "get_symbol",
 ]
