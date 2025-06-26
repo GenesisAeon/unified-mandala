@@ -3,7 +3,7 @@ from __future__ import annotations
 import json
 import time
 from pathlib import Path
-from typing import Any, Dict, List
+from typing import Any, Dict, List, Iterable
 
 
 def store_result(result: Dict[str, Any], path: Path) -> None:
@@ -32,12 +32,8 @@ def load_results(path: Path) -> List[Dict[str, Any]]:
     return []
 
 
-def summarize_memory(path: Path) -> Dict[str, float]:
-    """Return simple averages for numeric fields in stored results."""
-    results = load_results(path)
-    if not results:
-        return {}
-
+def summarize_entries(results: Iterable[Dict[str, Any]]) -> Dict[str, float]:
+    """Return average values for numeric fields in ``results``."""
     sums: Dict[str, List[float]] = {}
     for entry in results:
         for key, value in entry.items():
@@ -45,4 +41,13 @@ def summarize_memory(path: Path) -> Dict[str, float]:
                 sums.setdefault(key, []).append(float(value))
 
     return {k: sum(v) / len(v) for k, v in sums.items() if v}
+
+
+def summarize_memory(path: Path) -> Dict[str, float]:
+    """Return simple averages for numeric fields in stored results."""
+    results = load_results(path)
+    if not results:
+        return {}
+
+    return summarize_entries(results)
 
