@@ -20,6 +20,16 @@ class TestAeonWeb(unittest.TestCase):
             data = res.get_json()
             self.assertIsInstance(data, dict)
 
+    def test_tail_endpoint(self):
+        with app.test_client() as client:
+            client.post('/aeon/act', json={'input': [0.3]})
+            client.post('/aeon/act', json={'input': [0.4]})
+            res = client.get('/aeon/tail?n=1')
+            self.assertEqual(res.status_code, 200)
+            data = res.get_json()
+            self.assertIsInstance(data, list)
+            self.assertEqual(len(data), 1)
+
 
 if __name__ == '__main__':
     unittest.main()
