@@ -19,3 +19,11 @@ class DynamicTaskAllocator:
         if avg_crep > 0.7:
             return ["ClusterExpand", "CommunitySync"]
         return ["StandardReview", "CREPMonitor"]
+
+    def schedule_tasks(self, memory: List[Dict[str, Any]]):
+        """Yield tasks with priority and deadline information."""
+        for task in self.allocate(memory):
+            if "ClusterExpand" in task:
+                yield {"task": task, "priority": 10, "deadline": "soon"}
+            else:
+                yield {"task": task, "priority": 5, "deadline": "anytime"}

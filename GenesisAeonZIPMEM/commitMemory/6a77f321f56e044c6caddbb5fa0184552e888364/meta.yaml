@@ -1,0 +1,9 @@
+commit: 6a77f321f56e044c6caddbb5fa0184552e888364
+message: "feat(zipmem): add snapshot utils and task scheduler"
+patch: changes.patch
+fragments: fragments
+files: []
+environment:
+  node: v22.16.0
+  pnpm: 10.5.2
+instructions: Apply patch with git apply or review for reference.

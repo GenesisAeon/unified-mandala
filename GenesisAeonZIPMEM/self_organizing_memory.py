@@ -25,6 +25,21 @@ class SelfOrganizingMemory:
     def __init__(self) -> None:
         self.entries: List[MemoryEntry] = []
 
+    def export_snapshot(self, path: str) -> None:
+        """Export memory entries to a YAML snapshot."""
+        import yaml
+
+        with open(path, "w", encoding="utf8") as f:
+            yaml.dump([e.__dict__ for e in self.entries], f)
+
+    def import_snapshot(self, path: str) -> None:
+        """Load memory entries from a YAML snapshot."""
+        import yaml
+
+        with open(path, "r", encoding="utf8") as f:
+            data = yaml.safe_load(f) or []
+        self.entries = [MemoryEntry(**entry) for entry in data]
+
     def add(self, entry: Dict[str, Any]) -> None:
         """Add a memory entry and trigger review every 10 items."""
         complete = MemoryEntry(time=entry.get("time", datetime.now().isoformat()),
