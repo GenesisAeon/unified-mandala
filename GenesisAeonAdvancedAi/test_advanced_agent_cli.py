@@ -11,6 +11,7 @@ class TestAdvancedAgentCLI(unittest.TestCase):
             log_file = Path(tmpdir) / "custom_log.yaml"
             state_file = Path(tmpdir) / "custom_state.yaml"
             symbol_file = Path(tmpdir) / "symbols.yaml"
+            mem_file = Path(tmpdir) / "mem.json"
             subprocess.run(
                 [
                     sys.executable,
@@ -24,12 +25,15 @@ class TestAdvancedAgentCLI(unittest.TestCase):
                     str(state_file),
                     "--symbol-memory-file",
                     str(symbol_file),
+                    "--memory-file",
+                    str(mem_file),
                 ],
                 check=True,
             )
             self.assertTrue(log_file.exists())
             self.assertTrue(state_file.exists())
             self.assertTrue(symbol_file.exists())
+            self.assertTrue(mem_file.exists())
             import yaml
             data = yaml.safe_load(symbol_file.read_text())
             self.assertIsInstance(data, dict)

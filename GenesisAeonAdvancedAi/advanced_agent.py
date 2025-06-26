@@ -1,7 +1,10 @@
 import argparse
 from datetime import datetime
+from pathlib import Path
 from typing import Any, Dict, List, Optional
 import yaml
+
+from .memory_store import store_result
 
 
 def generate_basic_haiku(symbol: str) -> str:
@@ -30,6 +33,7 @@ class AdvancedAeonAgent:
         log_path: Optional[str] = None,
         state_path: Optional[str] = None,
         symbol_memory_path: Optional[str] = None,
+        memory_path: Optional[str] = None,
     ) -> None:
         self.name = name
         self.state: Dict[str, Any] = state or {}
@@ -38,6 +42,7 @@ class AdvancedAeonAgent:
         self.log_path = log_path or f"{self.name}_log.yaml"
         self.state_path = state_path or f"{self.name}_state.yaml"
         self.symbol_memory_path = symbol_memory_path or f"{self.name}_symbols.yaml"
+        self.memory_path = memory_path
 
     def act(self, input_data: Any) -> Dict[str, Any]:
         decision = self.process_input(input_data)
@@ -72,6 +77,8 @@ class AdvancedAeonAgent:
         self.history.append(log_entry)
         with open(self.log_path, "a", encoding="utf-8") as f:
             yaml.safe_dump([log_entry], f, allow_unicode=True)
+        if self.memory_path:
+            store_result(log_entry, Path(self.memory_path))
 
     def save_symbol_memory(self, path: Optional[str] = None) -> None:
         """Persist symbol memory to a YAML file."""
@@ -96,6 +103,10 @@ def main(argv: Optional[List[str]] = None) -> None:
         "--symbol-memory-file",
         help="Pfad für YAML-Datei zum Speichern des Symbolspeichers",
     )
+    parser.add_argument(
+        "--memory-file",
+        help="Pfad für JSON-Datei zum Persistieren aller Aktionen",
+    )
     parser.add_argument("--haiku", action="store_true", help="Gibt ein Haiku zum Ergebnis aus")
     args = parser.parse_args(argv)
 
@@ -105,6 +116,7 @@ def main(argv: Optional[List[str]] = None) -> None:
         log_path=args.log_file,
         state_path=args.state_file,
         symbol_memory_path=args.symbol_memory_file,
+        memory_path=args.memory_file,
     )
     result = agent.act(args.input)
     dump_yaml(agent)
