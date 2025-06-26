@@ -2,7 +2,11 @@ import unittest
 import json
 import pathlib
 
-from GenesisAeonAdvancedAi.memory_store import store_result, load_results
+from GenesisAeonAdvancedAi.memory_store import (
+    store_result,
+    load_results,
+    summarize_memory,
+)
 
 
 class TestMemoryStore(unittest.TestCase):
@@ -30,6 +34,17 @@ class TestMemoryStore(unittest.TestCase):
         self.assertIsInstance(results[0], dict)
         path.unlink()
 
+    def test_summarize_memory(self):
+        path = pathlib.Path('temp_mem.json')
+        if path.exists():
+            path.unlink()
+        store_result({'crep_score': 1}, path)
+        store_result({'crep_score': 0}, path)
+        summary = summarize_memory(path)
+        self.assertAlmostEqual(summary.get('crep_score'), 0.5)
+        path.unlink()
+
 
 if __name__ == '__main__':
     unittest.main()
+

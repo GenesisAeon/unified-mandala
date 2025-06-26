@@ -20,7 +20,7 @@ from .aeon_processor import (
     advanced_crep_eval,
 )
 from .performance_monitor import monitor_performance
-from .memory_store import store_result, load_results
+from .memory_store import store_result, load_results, summarize_memory
 from .sigil_loader import load_sigil, load_start_sigil
 from .trikaya import trikaya_state
 
@@ -56,6 +56,11 @@ def main(argv: List[str] | None = None) -> None:
         "--show-memory",
         action="store_true",
         help="Display stored memory results and exit (requires --memory)",
+    )
+    parser.add_argument(
+        "--summary",
+        action="store_true",
+        help="Print numeric averages of stored memory entries (requires --memory)",
     )
     parser.add_argument(
         "--sigil",
@@ -99,6 +104,13 @@ def main(argv: List[str] | None = None) -> None:
             parser.error("--show-memory requires --memory")
         results = load_results(args.memory)
         print(json.dumps(results, indent=2))
+        return
+
+    if args.summary:
+        if not args.memory:
+            parser.error("--summary requires --memory")
+        summary = summarize_memory(args.memory)
+        print(json.dumps(summary, indent=2))
         return
 
     values = list(args.values)
@@ -167,3 +179,4 @@ def main(argv: List[str] | None = None) -> None:
 
 if __name__ == "__main__":
     main()
+
