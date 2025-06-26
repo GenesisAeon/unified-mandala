@@ -17,3 +17,4 @@ Erweiterung: Aeon CLI unterstuetzt jetzt das Flag `--graph`, um einen Fraktal-Fe
   average change for a numeric field.
 \n- Plugin loader accepts JSON manifests in addition to YAML.
 \n- Memory statistics via `summarize_stats` and `summarize_stats_memory` with `--stats` CLI flag.
+- Volatility analysis via `volatility_metric_memory` with CLI flag `--volatility`.

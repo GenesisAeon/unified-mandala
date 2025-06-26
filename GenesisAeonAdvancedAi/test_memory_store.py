@@ -10,6 +10,8 @@ from GenesisAeonAdvancedAi.memory_store import (
     summarize_stats,
     tail_results,
     trend_metric,
+    volatility_metric,
+    volatility_metric_memory,
 )
 
 
@@ -87,6 +89,26 @@ class TestMemoryStore(unittest.TestCase):
         store_result({"score": 1}, path)
         trend = trend_metric(path, "score", 2)
         self.assertAlmostEqual(trend, 2.0)
+        path.unlink()
+
+    def test_volatility_metric(self):
+        entries = [
+            {"a": 1},
+            {"a": 3},
+            {"a": 5},
+        ]
+        vol = volatility_metric(entries)
+        self.assertAlmostEqual(vol["a"], 1.63299, places=5)
+
+    def test_volatility_metric_memory(self):
+        path = pathlib.Path("temp_mem.json")
+        if path.exists():
+            path.unlink()
+        store_result({"val": 1}, path)
+        store_result({"val": 5}, path)
+        vol = volatility_metric_memory(path)
+        self.assertIn("val", vol)
+        self.assertGreater(vol["val"], 0)
         path.unlink()
 
 

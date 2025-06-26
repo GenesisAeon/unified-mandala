@@ -303,3 +303,34 @@ class TestAeonCLI(unittest.TestCase):
             self.assertIn("crep_score", data)
             self.assertIn("mean", data["crep_score"])
 
+    def test_volatility_flag(self):
+        with tempfile.TemporaryDirectory() as tmpdir:
+            mem_file = Path(tmpdir) / "mem.json"
+            subprocess.run([
+                sys.executable,
+                "-m",
+                "GenesisAeonAdvancedAi.aeon_cli",
+                "1",
+                "--memory",
+                str(mem_file),
+            ], check=True)
+            subprocess.run([
+                sys.executable,
+                "-m",
+                "GenesisAeonAdvancedAi.aeon_cli",
+                "3",
+                "--memory",
+                str(mem_file),
+            ], check=True)
+            result = subprocess.run([
+                sys.executable,
+                "-m",
+                "GenesisAeonAdvancedAi.aeon_cli",
+                "--volatility",
+                "--memory",
+                str(mem_file),
+            ], capture_output=True, text=True, check=True)
+            data = json.loads(result.stdout)
+            self.assertIn("crep_score", data)
+            self.assertGreater(data["crep_score"], 0)
+

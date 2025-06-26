@@ -27,6 +27,7 @@ from .memory_store import (
     summarize_stats_memory,
     tail_results,
     trend_metric,
+    volatility_metric_memory,
 )
 from .sigil_loader import load_sigil, load_start_sigil
 from .trikaya import trikaya_state
@@ -91,6 +92,11 @@ def main(argv: List[str] | None = None) -> None:
         "--stats",
         action="store_true",
         help="Print mean and median statistics for numeric fields in memory (requires --memory)",
+    )
+    parser.add_argument(
+        "--volatility",
+        action="store_true",
+        help="Print standard deviation for numeric fields in memory (requires --memory)",
     )
     parser.add_argument(
         "--sigil",
@@ -172,6 +178,13 @@ def main(argv: List[str] | None = None) -> None:
             parser.error("--stats requires --memory")
         stats = summarize_stats_memory(args.memory)
         print(json.dumps(stats, indent=2))
+        return
+
+    if args.volatility:
+        if not args.memory:
+            parser.error("--volatility requires --memory")
+        volatility = volatility_metric_memory(args.memory)
+        print(json.dumps(volatility, indent=2))
         return
 
     values = list(args.values)
