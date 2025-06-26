@@ -1,9 +1,0 @@
-diff --git a/packages/agents/index.ts b/packages/agents/index.ts
-index c29aec7..462a40a 100644
---- a/packages/agents/index.ts
-+++ b/packages/agents/index.ts
-@@ -46,3 +46,4 @@ export * from "./StrategicAgentCoordinator";
- export * from "./AeonUniversalCoordinatorAgent";
- export * from "./AeonRustTranspilerAgent";
- export * from "./AeonJsTranspilerAgent";
-+export * from './AeonAuraAgent';

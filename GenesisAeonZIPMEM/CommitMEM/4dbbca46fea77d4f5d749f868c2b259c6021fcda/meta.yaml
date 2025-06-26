@@ -1,0 +1,12 @@
+commit: 4dbbca46fea77d4f5d749f868c2b259c6021fcda
+message: "docs: note pnpm install before qa"
+patch: changes.patch
+fragments: fragments
+files:
+  - Handbuch.md
+  - README.md
+  - scripts/qa-test-runner.ts
+environment:
+  node: v22.16.0
+  pnpm: 10.5.2
+instructions: Apply patch with git apply or review for reference.

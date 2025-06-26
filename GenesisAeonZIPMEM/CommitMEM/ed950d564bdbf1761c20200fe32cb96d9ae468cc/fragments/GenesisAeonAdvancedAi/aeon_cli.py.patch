@@ -1,0 +1,52 @@
+diff --git a/GenesisAeonAdvancedAi/aeon_cli.py b/GenesisAeonAdvancedAi/aeon_cli.py
+index 3a6ebc2..007c0ab 100644
+--- a/GenesisAeonAdvancedAi/aeon_cli.py
++++ b/GenesisAeonAdvancedAi/aeon_cli.py
+@@ -20,8 +20,13 @@ from .aeon_processor import (
+     advanced_crep_eval,
+ )
+ from .performance_monitor import monitor_performance
+-from .memory_store import store_result, load_results, summarize_memory
+-from .memory_store import tail_results
++from .memory_store import (
++    store_result,
++    load_results,
++    summarize_memory,
++    tail_results,
++    trend_metric,
++)
+ from .sigil_loader import load_sigil, load_start_sigil
+ from .trikaya import trikaya_state
+ from .archetype_tools import get_symbol
+@@ -70,6 +75,17 @@ def main(argv: List[str] | None = None) -> None:
+         metavar="N",
+         help="Display the last N memory entries (requires --memory)",
+     )
++    parser.add_argument(
++        "--trend-key",
++        help="Compute average change for given numeric key in memory and exit",
++    )
++    parser.add_argument(
++        "--trend-window",
++        type=int,
++        default=5,
++        metavar="N",
++        help="Number of recent entries to consider for --trend-key",
++    )
+     parser.add_argument(
+         "--sigil",
+         type=Path,
+@@ -138,6 +154,13 @@ def main(argv: List[str] | None = None) -> None:
+         print(json.dumps(entries, indent=2))
+         return
+ 
++    if args.trend_key:
++        if not args.memory:
++            parser.error("--trend-key requires --memory")
++        trend = trend_metric(args.memory, args.trend_key, args.trend_window)
++        print(json.dumps({"trend": trend}, indent=2))
++        return
++
+     values = list(args.values)
+     if args.input:
+         text = args.input.read_text().strip()

@@ -1,9 +1,0 @@
-commit: a561d3d445fcbbe71a76439b18f4ead711e1cd31
-message: "chore: store commit memory"
-patch: changes.patch
-fragments: fragments
-files: []
-environment:
-  node: v22.16.0
-  pnpm: 10.5.2
-instructions: Apply patch with git apply or review for reference.

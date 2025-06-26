@@ -1,0 +1,24 @@
+diff --git a/packages/aeon-universal/compiler.test.ts b/packages/aeon-universal/compiler.test.ts
+index 0c3a0e6..d187aa9 100644
+--- a/packages/aeon-universal/compiler.test.ts
++++ b/packages/aeon-universal/compiler.test.ts
+@@ -1,6 +1,6 @@
+ import fs from 'fs';
+ import path from 'path';
+-import { compile, transpileToTS } from './compiler';
++import { compile, transpileToTS, transpileToPython } from './compiler';
+ import { AeonSigillinVault } from '../core/AeonSigillinVault';
+ 
+ const CHRONIK = path.resolve('mandala-chronik.yaml');
+@@ -66,4 +66,11 @@ describe('AeonUniversal compile', () => {
+     expect(ts).toContain('aeonTasks');
+     expect(ts).toContain('Demo');
+   });
++
++  it('transpiles tasks to Python', () => {
++    const res = compile('TASK Demo');
++    const py = transpileToPython(res);
++    expect(py).toContain('aeon_tasks');
++    expect(py).toContain('Demo');
++  });
+ });

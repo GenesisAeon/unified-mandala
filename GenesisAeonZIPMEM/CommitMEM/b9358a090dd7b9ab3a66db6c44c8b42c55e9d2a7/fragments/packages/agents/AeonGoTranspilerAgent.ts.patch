@@ -1,0 +1,28 @@
+diff --git a/packages/agents/AeonGoTranspilerAgent.ts b/packages/agents/AeonGoTranspilerAgent.ts
+new file mode 100644
+index 0000000..c7f0cb3
+--- /dev/null
++++ b/packages/agents/AeonGoTranspilerAgent.ts
+@@ -0,0 +1,22 @@
++import fs from 'fs';
++import path from 'path';
++import { Agent, Task } from '../core/interfaces';
++import { withFSM } from '../core/fsmMixin';
++import { compile, transpileToGo } from '../aeon-universal';
++
++export class AeonGoTranspilerAgent implements Agent {
++  id = 'AeonGoTranspiler';
++  layer: 'Aeon' = 'Aeon';
++  output: string;
++  constructor(output = 'aeon-output.go') {
++    this.output = output;
++    withFSM(this);
++  }
++
++  async handle(task: Task): Promise<void> {
++    const result = compile(task.description);
++    const code = transpileToGo(result);
++    fs.writeFileSync(path.resolve(this.output), code, 'utf-8');
++    console.log(`🛠️ AeonGoTranspilerAgent → wrote ${this.output}`);
++  }
++}

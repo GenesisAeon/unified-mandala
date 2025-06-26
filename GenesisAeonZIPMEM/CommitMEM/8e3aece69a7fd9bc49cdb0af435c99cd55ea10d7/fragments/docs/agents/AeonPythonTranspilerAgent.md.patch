@@ -1,0 +1,18 @@
+diff --git a/docs/agents/AeonPythonTranspilerAgent.md b/docs/agents/AeonPythonTranspilerAgent.md
+new file mode 100644
+index 0000000..d3d1854
+--- /dev/null
++++ b/docs/agents/AeonPythonTranspilerAgent.md
+@@ -0,0 +1,12 @@
++# AeonPythonTranspilerAgent
++
++## Responsibilities
++- Wandelt Aeon-Quelltext in ein Python-Snippet um.
++- Nutzt `transpileToPython()` aus `aeon-universal`.
++- Speichert das Ergebnis in einer Datei (Standard: `aeon-output.py`).
++
++## Example usage
++```ts
++const agent = new AeonPythonTranspilerAgent('out.py');
++await agent.handle({ id: '1', description: 'TASK Demo' });
++```

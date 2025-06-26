@@ -1,0 +1,20 @@
+commit: e532c8b61e81aac893b97175536b0ba8b8352c53
+message: "feat: add Aeon symbol and logging modules"
+patch: changes.patch
+fragments: fragments
+files:
+  - GenesisAeonAdvancedAi/__init__.py
+  - GenesisAeonAdvancedAi/aeon_logger.py
+  - GenesisAeonAdvancedAi/aeon_ui.html
+  - GenesisAeonAdvancedAi/aeon_web.py
+  - GenesisAeonAdvancedAi/config.yaml
+  - GenesisAeonAdvancedAi/crep_eval.py
+  - GenesisAeonAdvancedAi/symbol_tools.py
+  - GenesisAeonAdvancedAi/test_aeon_logger.py
+  - GenesisAeonAdvancedAi/test_aeon_web.py
+  - GenesisAeonAdvancedAi/test_crep_eval.py
+  - GenesisAeonAdvancedAi/test_symbol_tools.py
+environment:
+  node: v22.16.0
+  pnpm: 10.5.2
+instructions: Apply patch with git apply or review for reference.

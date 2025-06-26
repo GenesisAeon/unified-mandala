@@ -1,0 +1,9 @@
+commit: 3d26c054e318e9d6aa74553c4b75c992380b379b
+message: Store commit memory
+patch: changes.patch
+fragments: fragments
+files: []
+environment:
+  node: v22.16.0
+  pnpm: 10.5.2
+instructions: Apply patch with git apply or review for reference.

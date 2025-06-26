@@ -1,0 +1,140 @@
+commit 8e3aece69a7fd9bc49cdb0af435c99cd55ea10d7
+Author: Codex <codex@openai.com>
+Date:   Tue Jun 24 14:50:48 2025 +0000
+
+    feat(aeon): add Python transpiler
+
+diff --git a/README.md b/README.md
+index b96af03..96fa976 100644
+--- a/README.md
++++ b/README.md
+@@ -77,6 +77,7 @@ Strategische Leitlinien stehen in [docs/agents/AgentStrategy.md](docs/agents/Age
+ - 🌀 **AdaptiveThreshold** & **DebounceManager** – steuern CREP Trigger-Logik
+ - 🗄️ **AeonSigillinVault** – speichert poetische Sigillin-Zustände (`packages/core/AeonSigillinVault.ts`)
+ - 🧩 **Aeon Universal** – kompiliert fraktale Befehle in Mandala-Tasks und kann SIG-Anweisungen im `AeonSigillinVault` speichern (`packages/aeon-universal`)
++- 🔧 **AeonPythonTranspilerAgent** – erzeugt Python-Snippets aus Aeon-Quelltext (`packages/agents/AeonPythonTranspilerAgent.ts`)
+ - 🛡️ **withCircuit** – CircuitBreaker Wrapper für Agenten-Calls
+ - 🩺 **healthz.ts** & **metaScores.ts** – API-Routen
+ - 🖥️ **Dashboard** – zeigt MetaScoreChart per Hook
+diff --git a/docs/agents/AeonPythonTranspilerAgent.md b/docs/agents/AeonPythonTranspilerAgent.md
+new file mode 100644
+index 0000000..d3d1854
+--- /dev/null
++++ b/docs/agents/AeonPythonTranspilerAgent.md
+@@ -0,0 +1,12 @@
++# AeonPythonTranspilerAgent
++
++## Responsibilities
++- Wandelt Aeon-Quelltext in ein Python-Snippet um.
++- Nutzt `transpileToPython()` aus `aeon-universal`.
++- Speichert das Ergebnis in einer Datei (Standard: `aeon-output.py`).
++
++## Example usage
++```ts
++const agent = new AeonPythonTranspilerAgent('out.py');
++await agent.handle({ id: '1', description: 'TASK Demo' });
++```
+diff --git a/packages/aeon-universal/README.md b/packages/aeon-universal/README.md
+index c0c6120..fc8947d 100644
+--- a/packages/aeon-universal/README.md
++++ b/packages/aeon-universal/README.md
+@@ -19,7 +19,7 @@ Seit **0.6** existiert der Befehl **GUARD**. Er protokolliert Schutz-
+ dialogischen Selbstabsicherung des Systems.
+ 
+ Ab **0.7** steht ein **REPEAT**-Block zur Verfügung, um Aufgaben mehrmals auszuführen. Zudem kann das
+-Kompilat über `transpileToTS()` in TypeScript exportiert werden.
++Kompilat über `transpileToTS()` in TypeScript oder `transpileToPython()` in Python exportiert werden.
+ 
+ ## Beispiel
+ ```aeon
+diff --git a/packages/aeon-universal/compiler.test.ts b/packages/aeon-universal/compiler.test.ts
+index 0c3a0e6..d187aa9 100644
+--- a/packages/aeon-universal/compiler.test.ts
++++ b/packages/aeon-universal/compiler.test.ts
+@@ -1,6 +1,6 @@
+ import fs from 'fs';
+ import path from 'path';
+-import { compile, transpileToTS } from './compiler';
++import { compile, transpileToTS, transpileToPython } from './compiler';
+ import { AeonSigillinVault } from '../core/AeonSigillinVault';
+ 
+ const CHRONIK = path.resolve('mandala-chronik.yaml');
+@@ -66,4 +66,11 @@ describe('AeonUniversal compile', () => {
+     expect(ts).toContain('aeonTasks');
+     expect(ts).toContain('Demo');
+   });
++
++  it('transpiles tasks to Python', () => {
++    const res = compile('TASK Demo');
++    const py = transpileToPython(res);
++    expect(py).toContain('aeon_tasks');
++    expect(py).toContain('Demo');
++  });
+ });
+diff --git a/packages/aeon-universal/compiler.ts b/packages/aeon-universal/compiler.ts
+index 5b3b31f..91fd608 100644
+--- a/packages/aeon-universal/compiler.ts
++++ b/packages/aeon-universal/compiler.ts
+@@ -103,3 +103,8 @@ export function transpileToTS(result: CompileResult): string {
+   const data = result.tasks.map(t => ({ id: t.id, description: t.description, context: t.context }));
+   return `export const aeonTasks = ${JSON.stringify(data, null, 2)};\n`;
+ }
++
++export function transpileToPython(result: CompileResult): string {
++  const data = result.tasks.map(t => ({ id: t.id, description: t.description, context: t.context }));
++  return `aeon_tasks = ${JSON.stringify(data, null, 2)}\n`;
++}
+diff --git a/packages/agents/AeonPythonTranspilerAgent.test.ts b/packages/agents/AeonPythonTranspilerAgent.test.ts
+new file mode 100644
+index 0000000..9936fcc
+--- /dev/null
++++ b/packages/agents/AeonPythonTranspilerAgent.test.ts
+@@ -0,0 +1,20 @@
++import fs from 'fs';
++import path from 'path';
++import { AeonPythonTranspilerAgent } from './AeonPythonTranspilerAgent';
++
++describe('AeonPythonTranspilerAgent', () => {
++  const output = 'tmp-aeon.py';
++
++  afterEach(() => {
++    if (fs.existsSync(output)) fs.unlinkSync(output);
++  });
++
++  it('transpiles aeon source to Python file', async () => {
++    const agent = new AeonPythonTranspilerAgent(output);
++    const task = { id: '1', description: 'TASK Demo' } as any;
++    await agent.handle(task);
++    const content = fs.readFileSync(path.resolve(output), 'utf-8');
++    expect(content).toContain('aeon_tasks');
++    expect(content).toContain('Demo');
++  });
++});
+diff --git a/packages/agents/AeonPythonTranspilerAgent.ts b/packages/agents/AeonPythonTranspilerAgent.ts
+new file mode 100644
+index 0000000..3dd8fcb
+--- /dev/null
++++ b/packages/agents/AeonPythonTranspilerAgent.ts
+@@ -0,0 +1,22 @@
++import fs from 'fs';
++import path from 'path';
++import { Agent, Task } from '../core/interfaces';
++import { withFSM } from '../core/fsmMixin';
++import { compile, transpileToPython } from '../aeon-universal';
++
++export class AeonPythonTranspilerAgent implements Agent {
++  id = 'AeonPythonTranspiler';
++  layer: 'Aeon' = 'Aeon';
++  output: string;
++  constructor(output = 'aeon-output.py') {
++    this.output = output;
++    withFSM(this);
++  }
++
++  async handle(task: Task): Promise<void> {
++    const result = compile(task.description);
++    const code = transpileToPython(result);
++    fs.writeFileSync(path.resolve(this.output), code, 'utf-8');
++    console.log(`\uD83D\uDD27 AeonPythonTranspilerAgent \u2192 wrote ${this.output}`);
++  }
++}

@@ -1,0 +1,11 @@
+diff --git a/packages/core/routes/metaScores.ts b/packages/core/routes/metaScores.ts
+index 551a3e5..fa47739 100644
+--- a/packages/core/routes/metaScores.ts
++++ b/packages/core/routes/metaScores.ts
+@@ -1,5 +1,4 @@
+-// eslint-disable-next-line @typescript-eslint/no-var-requires
+-const express = require('express');
++import express from 'express';
+ const router = express.Router();
+ 
+ router.get('/api/meta-scores', (_req: any, res: any) => {

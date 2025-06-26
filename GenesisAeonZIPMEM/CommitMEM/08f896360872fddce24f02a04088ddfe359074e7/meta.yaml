@@ -1,0 +1,12 @@
+commit: 08f896360872fddce24f02a04088ddfe359074e7
+message: "feat: add harmonize cycle to AeonUniversalMembrane"
+patch: changes.patch
+fragments: fragments
+files:
+  - packages/aeon-neural-membrane/README.md
+  - packages/aeon-neural-membrane/__tests__/aeonUniversalMembrane.test.ts
+  - packages/aeon-neural-membrane/aeonUniversalMembrane.ts
+environment:
+  node: v22.16.0
+  pnpm: 10.5.2
+instructions: Apply patch with git apply or review for reference.

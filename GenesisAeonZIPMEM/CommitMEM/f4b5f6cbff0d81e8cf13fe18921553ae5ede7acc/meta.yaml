@@ -1,0 +1,13 @@
+commit: f4b5f6cbff0d81e8cf13fe18921553ae5ede7acc
+message: "docs: add MetaCommit planning"
+patch: changes.patch
+fragments: fragments
+files:
+  - dev-agents.md
+  - feedbackcodex.md
+  - metacommit.json
+  - metacommit.yaml
+environment:
+  node: v22.16.0
+  pnpm: 10.5.2
+instructions: Apply patch with git apply or review for reference.

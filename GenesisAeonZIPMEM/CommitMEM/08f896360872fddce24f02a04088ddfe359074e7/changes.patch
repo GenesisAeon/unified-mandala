@@ -1,0 +1,82 @@
+commit 08f896360872fddce24f02a04088ddfe359074e7
+Author: Codex <codex@openai.com>
+Date:   Tue Jun 24 18:26:41 2025 +0000
+
+    feat: add harmonize cycle to AeonUniversalMembrane
+
+diff --git a/packages/aeon-neural-membrane/README.md b/packages/aeon-neural-membrane/README.md
+index 6bc1c98..2404c22 100644
+--- a/packages/aeon-neural-membrane/README.md
++++ b/packages/aeon-neural-membrane/README.md
+@@ -4,3 +4,9 @@ Dieses Modul erweitert das einfache neuronale Netz zu einer fraktalen Membran.
+ Es integriert CREP, den Nukleonscanner und den Sonifier, um kontinuierliche
+ Selbstreflexion zu erreichen. Die Implementierung folgt dem Blueprint in
+ `docs/architecture/aeon-universal-neural-membrane.md`.
++
++## Neue Funktionen
++
++- **harmonize()** – kombiniert Training, Tiefensynchronisation und Energiescan
++  in einem Schritt. Bei hoher Energie wird automatisch eine weitere
++  Spiegelung der Membran erzeugt.
+diff --git a/packages/aeon-neural-membrane/__tests__/aeonUniversalMembrane.test.ts b/packages/aeon-neural-membrane/__tests__/aeonUniversalMembrane.test.ts
+index 014127c..d99dc53 100644
+--- a/packages/aeon-neural-membrane/__tests__/aeonUniversalMembrane.test.ts
++++ b/packages/aeon-neural-membrane/__tests__/aeonUniversalMembrane.test.ts
+@@ -15,3 +15,16 @@ test('train and predict through universal membrane', () => {
+   expect(mem.depth).toBeGreaterThan(1);
+ });
+ 
++test('harmonize reflects on high energy', () => {
++  const mem = new AeonUniversalMembrane(0);
++  const data: [number, number][] = [
++    [115, 66],
++    [175, 78]
++  ];
++  const answers = [1, 0];
++  const res = mem.harmonize(data, answers, 'hello world', 0);
++  expect(res.energy).toBeGreaterThan(0);
++  expect(typeof res.tone).toBe('string');
++  expect(mem.depth).toBeGreaterThan(0); // increased due to threshold 0
++});
++
+diff --git a/packages/aeon-neural-membrane/aeonUniversalMembrane.ts b/packages/aeon-neural-membrane/aeonUniversalMembrane.ts
+index ed642fe..b0fb307 100644
+--- a/packages/aeon-neural-membrane/aeonUniversalMembrane.ts
++++ b/packages/aeon-neural-membrane/aeonUniversalMembrane.ts
+@@ -4,6 +4,7 @@ import { selfTrain } from './selfTrainer';
+ import { CREPSignature } from './crepAdapter';
+ import { extractConvoMemory } from '../nukleon-scanner';
+ import { memoryToTone } from '../nukleon-sonifier';
++import { scanEnergy } from './nukleonScanner';
+ 
+ /**
+  * AeonUniversalMembrane kombiniert die Spiegel-Funktion der NeuronMembrane
+@@ -45,4 +46,28 @@ export class AeonUniversalMembrane {
+     const tone = memoryToTone(conv.crepSignature.resonance / 10);
+     return { conv, tone };
+   }
++
++  /**
++   * Vollständiger Selbstreflexionszyklus. Trainiert anhand des
++   * Gesprächs-Textes und erzeugt bei hoher Energie eine neue Spiegelung.
++   */
++  harmonize(
++    data: [number, number][],
++    answers: number[],
++    text: string,
++    energyThreshold = 5
++  ) {
++    const conv = extractConvoMemory(text);
++    const base = this.mem.getNetworks()[0];
++    selfTrain(base, data, answers, conv.crepSignature, 5);
++    depthSync(this.mem, data);
++
++    const energy = scanEnergy(base);
++    const tone = memoryToTone(energy / (10 * this.mem.depth));
++    if (energy / this.mem.depth > energyThreshold) {
++      this.mem.reflect();
++    }
++
++    return { conv, energy, tone, depth: this.mem.depth };
++  }
+ }

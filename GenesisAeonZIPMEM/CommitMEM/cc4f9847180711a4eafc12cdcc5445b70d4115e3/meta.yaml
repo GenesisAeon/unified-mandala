@@ -1,0 +1,14 @@
+commit: cc4f9847180711a4eafc12cdcc5445b70d4115e3
+message: "chore: update deps and lockfile"
+patch: changes.patch
+fragments: fragments
+files:
+  - package.json
+  - packages/cli-tools/sigillin-archive.js
+  - packages/cli-tools/sigillin-cli.js
+  - packages/shared-utils/todoCommentScanner.ts
+  - pnpm-lock.yaml
+environment:
+  node: v22.16.0
+  pnpm: 10.5.2
+instructions: Apply patch with git apply or review for reference.

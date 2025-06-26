@@ -1,0 +1,14 @@
+commit: 27118b43c07f06b497df7c3fcc1e4f4254c87586
+message: >-
+  Merge pull request #276 from
+  GenesisAeon/codex/optimiere-aeonuniversal-mit-agentensystemen
+
+
+  Add ROUTE directive to Aeon Universal
+patch: changes.patch
+fragments: fragments
+files: []
+environment:
+  node: v22.16.0
+  pnpm: 10.5.2
+instructions: Apply patch with git apply or review for reference.

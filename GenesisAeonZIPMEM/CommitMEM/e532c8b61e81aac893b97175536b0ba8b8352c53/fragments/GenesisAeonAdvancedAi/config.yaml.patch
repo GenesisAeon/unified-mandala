@@ -1,0 +1,9 @@
+diff --git a/GenesisAeonAdvancedAi/config.yaml b/GenesisAeonAdvancedAi/config.yaml
+new file mode 100644
+index 0000000..5760e23
+--- /dev/null
++++ b/GenesisAeonAdvancedAi/config.yaml
+@@ -0,0 +1,3 @@
++agent_name: "aeon_proto"
++default_input: "INIT"
++log_path: "./logs"

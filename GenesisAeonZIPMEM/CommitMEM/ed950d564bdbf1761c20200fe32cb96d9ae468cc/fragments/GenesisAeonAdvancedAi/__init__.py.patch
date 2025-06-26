@@ -1,0 +1,19 @@
+diff --git a/GenesisAeonAdvancedAi/__init__.py b/GenesisAeonAdvancedAi/__init__.py
+index b0204cb..3d0b8eb 100644
+--- a/GenesisAeonAdvancedAi/__init__.py
++++ b/GenesisAeonAdvancedAi/__init__.py
+@@ -14,6 +14,7 @@ from .memory_store import (
+     summarize_memory,
+     summarize_entries,
+     tail_results,
++    trend_metric,
+ )
+ 
+ __all__ = [
+@@ -34,5 +35,6 @@ __all__ = [
+     "summarize_memory",
+     "summarize_entries",
+     "tail_results",
++    "trend_metric",
+ ]
+ 

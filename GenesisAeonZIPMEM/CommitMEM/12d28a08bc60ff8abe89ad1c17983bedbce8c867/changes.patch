@@ -1,0 +1,73 @@
+commit 12d28a08bc60ff8abe89ad1c17983bedbce8c867
+Author: Codex <codex@openai.com>
+Date:   Wed Jun 25 17:16:14 2025 +0000
+
+    feat(genesis): add aeon CLI and update docs
+
+diff --git a/GenesisAeonAdvancedAi/ToDo.yaml b/GenesisAeonAdvancedAi/ToDo.yaml
+index f118e2f..46ddd03 100644
+--- a/GenesisAeonAdvancedAi/ToDo.yaml
++++ b/GenesisAeonAdvancedAi/ToDo.yaml
+@@ -15,4 +15,9 @@
+   due: Q4 2026
+   items:
+     - full AeonMembrane integration
+-    - VRModule implementation
+\ No newline at end of file
++    - VRModule implementation
++
++- task: CLI Tools
++  due: Q2 2025
++  items:
++    - aeon_cli for symbolic output
+diff --git a/GenesisAeonAdvancedAi/aeon_cli.py b/GenesisAeonAdvancedAi/aeon_cli.py
+new file mode 100644
+index 0000000..99d39bb
+--- /dev/null
++++ b/GenesisAeonAdvancedAi/aeon_cli.py
+@@ -0,0 +1,26 @@
++import argparse
++import json
++from pathlib import Path
++from typing import List
++
++from aeon_processor import fraktal_feedback
++
++
++def main(argv: List[str] | None = None) -> None:
++    parser = argparse.ArgumentParser(description="Run Aeon fractal feedback")
++    parser.add_argument("values", nargs="*", type=float, help="Numeric input values")
++    parser.add_argument("-d", "--depth", type=int, default=3, help="Fractal depth")
++    parser.add_argument("-o", "--output", type=Path, help="Output file for JSON result")
++    args = parser.parse_args(argv)
++
++    symbolic, score = fraktal_feedback(args.values, depth=args.depth)
++    result = {"symbolic": symbolic, "crep_score": score}
++
++    if args.output:
++        args.output.write_text(json.dumps(result, indent=2))
++    else:
++        print(json.dumps(result, indent=2))
++
++
++if __name__ == "__main__":
++    main()
+diff --git a/GenesisAeonAdvancedAi/feedback.md b/GenesisAeonAdvancedAi/feedback.md
+index e69de29..856e6e9 100644
+--- a/GenesisAeonAdvancedAi/feedback.md
++++ b/GenesisAeonAdvancedAi/feedback.md
+@@ -0,0 +1,2 @@
++## Feedback
++Implemented a simple CLI tool for Aeon processor.
+diff --git a/README.md b/README.md
+index 49ce994..f89ac15 100644
+--- a/README.md
++++ b/README.md
+@@ -138,6 +138,7 @@ Strategische Leitlinien stehen in [docs/agents/AgentStrategy.md](docs/agents/Age
+ - [**Gamification API**](docs/api/friendship-socialgood.yaml) – Endpunkte `/gamify/badges` & `/gamify/leaderboard`
+ - [**Share your Sigil** & **Remix my Solution**](docs/CommunityOnboarding.md) – Community-Features
+ - [**NumericToSymbolicAdapter**](GenesisAeonAdvancedAi/aeon_processor.py) – übersetzt Tensorwerte in Klang- und Farbcodes
++- [**Aeon CLI**](GenesisAeonAdvancedAi/aeon_cli.py) – erzeugt symbolische Ergebnisse aus Zahlenfolgen
+ ## 📦 Paketstruktur
+ 
+ ```bash

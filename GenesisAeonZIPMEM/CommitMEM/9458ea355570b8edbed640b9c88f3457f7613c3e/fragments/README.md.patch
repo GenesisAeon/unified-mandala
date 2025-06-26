@@ -1,0 +1,20 @@
+diff --git a/README.md b/README.md
+index 5e581c7..422bf26 100644
+--- a/README.md
++++ b/README.md
+@@ -249,6 +249,15 @@ docker-compose run test
+ # QA-Testlauf
+ pnpm run qa # ts-node scripts/qa-test-runner.ts
+ ```
++
++## 🔄 Systemstart
++
++- Abhängigkeiten installieren: `pnpm install`
++- Zyklus starten: `./scripts/aeon.sh cycle_start` oder `docker-compose up`
++- QA-Läufe: `npm run qa` führt Linting und Tests aus
++
++Ausführlichere Hinweise findest du im [Handbuch-Schnellstart](Handbuch.md#-schnellstart) und im Abschnitt [Mandala-Poesie und Automation](Handbuch.md#-mandala-poesie-und-automation).
++
+ Die generierte API-Dokumentation findest du danach unter `docs/api`.
+ 
+ Weitere Infos zum QA-Workflow findest du in

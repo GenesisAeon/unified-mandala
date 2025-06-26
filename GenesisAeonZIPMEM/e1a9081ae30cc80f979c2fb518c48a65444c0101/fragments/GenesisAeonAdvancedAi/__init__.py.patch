@@ -1,9 +1,0 @@
-diff --git a/GenesisAeonAdvancedAi/__init__.py b/GenesisAeonAdvancedAi/__init__.py
-index e69de29..1f6f098 100644
---- a/GenesisAeonAdvancedAi/__init__.py
-+++ b/GenesisAeonAdvancedAi/__init__.py
-@@ -0,0 +1,4 @@
-+from .aeon_agent import AeonAgent
-+from .advanced_agent import AdvancedAeonAgent
-+
-+__all__ = ["AeonAgent", "AdvancedAeonAgent"]

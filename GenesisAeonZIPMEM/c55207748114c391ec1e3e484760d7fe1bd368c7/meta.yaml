@@ -1,9 +1,0 @@
-commit: c55207748114c391ec1e3e484760d7fe1bd368c7
-message: "chore: update progress"
-patch: changes.patch
-fragments: fragments
-files: []
-environment:
-  node: v22.16.0
-  pnpm: 10.5.2
-instructions: Apply patch with git apply or review for reference.

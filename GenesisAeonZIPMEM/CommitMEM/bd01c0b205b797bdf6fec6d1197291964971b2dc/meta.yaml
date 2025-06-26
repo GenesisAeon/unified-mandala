@@ -1,0 +1,10 @@
+commit: bd01c0b205b797bdf6fec6d1197291964971b2dc
+message: "chore: add progress patch"
+patch: changes.patch
+fragments: fragments
+files:
+  - advancedprogress.json
+environment:
+  node: v22.16.0
+  pnpm: 10.5.2
+instructions: Apply patch with git apply or review for reference.

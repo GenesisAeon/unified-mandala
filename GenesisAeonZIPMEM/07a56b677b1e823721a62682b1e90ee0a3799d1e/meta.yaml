@@ -1,9 +1,0 @@
-commit: 07a56b677b1e823721a62682b1e90ee0a3799d1e
-message: "chore(memory): final fragment"
-patch: changes.patch
-fragments: fragments
-files: []
-environment:
-  node: v22.16.0
-  pnpm: 10.5.2
-instructions: Apply patch with git apply or review for reference.

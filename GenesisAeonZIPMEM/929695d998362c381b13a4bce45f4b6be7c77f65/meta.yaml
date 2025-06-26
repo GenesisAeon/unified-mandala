@@ -1,9 +1,0 @@
-commit: 929695d998362c381b13a4bce45f4b6be7c77f65
-message: "chore(memory): store commit snapshot"
-patch: changes.patch
-fragments: fragments
-files: []
-environment:
-  node: v22.16.0
-  pnpm: 10.5.2
-instructions: Apply patch with git apply or review for reference.

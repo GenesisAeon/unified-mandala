@@ -1,8 +1,0 @@
-diff --git a/GenesisAeonAdvancedAi/feedback.md b/GenesisAeonAdvancedAi/feedback.md
-index 856e6e9..7c7bf2b 100644
---- a/GenesisAeonAdvancedAi/feedback.md
-+++ b/GenesisAeonAdvancedAi/feedback.md
-@@ -1,2 +1,2 @@
- ## Feedback
--Implemented a simple CLI tool for Aeon processor.
-+Erweiterung: Aeon CLI unterstuetzt jetzt das Flag `--graph`, um einen Fraktal-Feedback-Graphen auszugeben. Tests und Dokumentation wurden aktualisiert.

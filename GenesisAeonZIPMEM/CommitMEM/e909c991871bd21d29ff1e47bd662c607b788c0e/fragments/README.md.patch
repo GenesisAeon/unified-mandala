@@ -1,0 +1,12 @@
+diff --git a/README.md b/README.md
+index cb27aa6..b96af03 100644
+--- a/README.md
++++ b/README.md
+@@ -375,6 +375,7 @@ Es dient als Pendant zum Genesis ZIPMEM.
+ Neue Fragmente werden im Ordner `GenesisAeonZIPMEM/` abgelegt, sortiert nach Chatnamen.
+ Nach jedem Commit wird `pnpm store:commit-memory` automatisch ausgef\u00fchrt (Husky `post-commit`),
+ um die \u00c4nderungen als Patch und `meta.yaml` unter `GenesisAeonZIPMEM/<commit>/` abzulegen.
++Die `meta.yaml` speichert nun auch Node- und pnpm-Versionen, um Abläufe leichter reproduzierbar zu machen.
+ gespeichert. Nutzen Sie die Helferskripte aus `packages/shared-utils`
+ (`jsonFragmenter.*`), um daraus ToDos für `advancedToDo.yaml` und
+ `advancedToDo.json` zu extrahieren.
