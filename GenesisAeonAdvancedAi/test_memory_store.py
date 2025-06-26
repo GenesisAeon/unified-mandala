@@ -7,6 +7,7 @@ from GenesisAeonAdvancedAi.memory_store import (
     load_results,
     summarize_memory,
     summarize_entries,
+    tail_results,
 )
 
 
@@ -53,6 +54,18 @@ class TestMemoryStore(unittest.TestCase):
         result = summarize_entries(entries)
         self.assertEqual(result["a"], 2.0)
         self.assertEqual(result["b"], 3.0)
+
+    def test_tail_results(self):
+        path = pathlib.Path("temp_mem.json")
+        if path.exists():
+            path.unlink()
+        for i in range(5):
+            store_result({"idx": i}, path)
+        tail = tail_results(path, 2)
+        self.assertEqual(len(tail), 2)
+        self.assertEqual(tail[0]["idx"], 3)
+        self.assertEqual(tail[1]["idx"], 4)
+        path.unlink()
 
 
 if __name__ == '__main__':

@@ -51,3 +51,19 @@ def summarize_memory(path: Path) -> Dict[str, float]:
 
     return summarize_entries(results)
 
+
+def tail_results(path: Path, n: int = 10) -> List[Dict[str, Any]]:
+    """Return the last ``n`` stored results.
+
+    Parameters
+    ----------
+    path:
+        Path to the JSON memory file.
+    n:
+        Number of entries to retrieve from the end of the file.
+    """
+    results = load_results(path)
+    if not results:
+        return []
+    return results[-n:]
+
