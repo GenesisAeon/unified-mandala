@@ -7,7 +7,7 @@ test('commit-memory writes meta and patch', async () => {
   const commit = execSync('git rev-parse HEAD').toString().trim();
   const dir = path.join(
     __dirname,
-    '../../GenesisAeonZIPMEM/commitMemory',
+    '../../GenesisAeonZIPMEM/commitMemory/aeonCodexCommits',
     commit
   );
   const flag = path.join(__dirname, '../../.zipmem_session');
