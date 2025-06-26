@@ -1,0 +1,11 @@
+{
+  "version": "1.0",
+  "events": {
+    "onEmergence": "crep:emergence",
+    "onThresholdCrossed": "crep:threshold"
+  },
+  "handlers": {
+    "crep:emergence": "handleEmergence",
+    "crep:threshold": "handleThreshold"
+  }
+}

@@ -1,0 +1,17 @@
+diff --git a/packages/unifiedmandala-ui/components/AeonTrigger.tsx b/packages/unifiedmandala-ui/components/AeonTrigger.tsx
+new file mode 100644
+index 0000000..8d729a8
+--- /dev/null
++++ b/packages/unifiedmandala-ui/components/AeonTrigger.tsx
+@@ -0,0 +1,11 @@
++import React from 'react';
++
++interface AeonTriggerProps {
++  onActivate: () => void;
++}
++
++const AeonTrigger: React.FC<AeonTriggerProps> = ({ onActivate }) => (
++  <button onClick={onActivate}>Aeon Trigger</button>
++);
++
++export default AeonTrigger;

@@ -1,0 +1,13 @@
+diff --git a/packages/unifiedmandala-ui/components/CREPKollektivModul.tsx b/packages/unifiedmandala-ui/components/CREPKollektivModul.tsx
+new file mode 100644
+index 0000000..8dc4e25
+--- /dev/null
++++ b/packages/unifiedmandala-ui/components/CREPKollektivModul.tsx
+@@ -0,0 +1,7 @@
++import React from 'react';
++
++const CREPKollektivModul: React.FC = () => {
++  return <div>CREPKollektivModul placeholder</div>;
++};
++
++export default CREPKollektivModul;

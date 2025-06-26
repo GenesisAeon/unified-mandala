@@ -1,0 +1,21 @@
+diff --git a/packages/unifiedmandala-ui/hooks/useCREPHistory.ts b/packages/unifiedmandala-ui/hooks/useCREPHistory.ts
+new file mode 100644
+index 0000000..b4a88a3
+--- /dev/null
++++ b/packages/unifiedmandala-ui/hooks/useCREPHistory.ts
+@@ -0,0 +1,15 @@
++import { useState, useEffect } from 'react';
++import { CREPManager } from '../../crep-engine/CREPManager';
++
++export const useCREPHistory = (manager: CREPManager) => {
++  const [history, setHistory] = useState(manager.getCREPHistory());
++
++  useEffect(() => {
++    const id = setInterval(() => {
++      setHistory([...manager.getCREPHistory()]);
++    }, 1000);
++    return () => clearInterval(id);
++  }, [manager]);
++
++  return history;
++};

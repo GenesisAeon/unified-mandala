@@ -1,0 +1,13 @@
+diff --git a/packages/unifiedmandala-ui/components/MandalaGalaxyView.tsx b/packages/unifiedmandala-ui/components/MandalaGalaxyView.tsx
+new file mode 100644
+index 0000000..9e9378e
+--- /dev/null
++++ b/packages/unifiedmandala-ui/components/MandalaGalaxyView.tsx
+@@ -0,0 +1,7 @@
++import React from 'react';
++
++const MandalaGalaxyView: React.FC = () => {
++  return <div>MandalaGalaxyView placeholder</div>;
++};
++
++export default MandalaGalaxyView;

@@ -1,0 +1,312 @@
+commit 6fda7203c74a9a64fec570f954f4e0a335c49b7d
+Author: Codex <codex@openai.com>
+Date:   Thu Jun 26 21:36:07 2025 +0000
+
+    Add missing module stubs and manifest
+
+diff --git a/packages/aeon-shell/AeonShellBridge.ts b/packages/aeon-shell/AeonShellBridge.ts
+new file mode 100644
+index 0000000..aa41a1f
+--- /dev/null
++++ b/packages/aeon-shell/AeonShellBridge.ts
+@@ -0,0 +1,13 @@
++import { exec } from 'child_process';
++
++export function runCommand(command: string): Promise<{ stdout: string; stderr: string }> {
++  return new Promise((resolve, reject) => {
++    exec(command, (error, stdout, stderr) => {
++      if (error) {
++        reject(error);
++      } else {
++        resolve({ stdout, stderr });
++      }
++    });
++  });
++}
+diff --git a/packages/aeon-shell/SymbolzeitManager.ts b/packages/aeon-shell/SymbolzeitManager.ts
+new file mode 100644
+index 0000000..8a0df7e
+--- /dev/null
++++ b/packages/aeon-shell/SymbolzeitManager.ts
+@@ -0,0 +1,32 @@
++import mitt from 'mitt';
++import { getSymbolzeitPhase } from '../shared-utils/symbolzeitModulator';
++
++export type SymbolzeitManagerEvents = {
++  phase: string;
++};
++
++export class SymbolzeitManager {
++  private emitter = mitt<SymbolzeitManagerEvents>();
++  private current = getSymbolzeitPhase();
++  private timer?: NodeJS.Timeout;
++
++  constructor(private intervalMs = 60000) {}
++
++  start() {
++    this.timer = setInterval(() => {
++      const phase = getSymbolzeitPhase();
++      if (phase !== this.current) {
++        this.current = phase;
++        this.emitter.emit('phase', phase);
++      }
++    }, this.intervalMs);
++  }
++
++  stop() {
++    if (this.timer) clearInterval(this.timer);
++  }
++
++  on(handler: (phase: string) => void) {
++    this.emitter.on('phase', handler);
++  }
++}
+diff --git a/packages/aeon-shell/index.ts b/packages/aeon-shell/index.ts
+index ced011d..1984499 100644
+--- a/packages/aeon-shell/index.ts
++++ b/packages/aeon-shell/index.ts
+@@ -1,3 +1,5 @@
+ export const name = 'aeon-shell';
+ export { SYMBOLZEIT } from './symbolzeit';
+ export { SymbolzeitOrchestrator } from './SymbolzeitOrchestrator';
++export { SymbolzeitManager } from './SymbolzeitManager';
++export { runCommand as AeonShellBridge } from './AeonShellBridge';
+diff --git a/packages/crep-engine/CREPExporter.ts b/packages/crep-engine/CREPExporter.ts
+new file mode 100644
+index 0000000..6219e2a
+--- /dev/null
++++ b/packages/crep-engine/CREPExporter.ts
+@@ -0,0 +1,6 @@
++import fs from 'fs';
++import { CREPEntry } from './types';
++
++export function exportCREP(history: CREPEntry[], file: string) {
++  fs.writeFileSync(file, JSON.stringify(history, null, 2), 'utf8');
++}
+diff --git a/packages/genesis-sigillin-core/index.ts b/packages/genesis-sigillin-core/index.ts
+new file mode 100644
+index 0000000..fd325b9
+--- /dev/null
++++ b/packages/genesis-sigillin-core/index.ts
+@@ -0,0 +1,5 @@
++export * from './SigillinGenerator';
++export * from './SigillinParser';
++export * from './SigillinActivationManager';
++export * from './SigillinSuggestionEngine';
++export * from './SigillinSyncManager';
+diff --git a/packages/genesis-sigillin-core/package.json b/packages/genesis-sigillin-core/package.json
+new file mode 100644
+index 0000000..088e465
+--- /dev/null
++++ b/packages/genesis-sigillin-core/package.json
+@@ -0,0 +1,18 @@
++{
++  "name": "genesis-sigillin-core",
++  "version": "1.0.0",
++  "main": "dist/index.js",
++  "types": "dist/index.d.ts",
++  "files": ["dist"],
++  "bin": {
++    "sigillin-cli": "./sigillin-cli.js"
++  },
++  "scripts": {
++    "build": "tsc -p ../../tsconfig.json --outDir dist packages/genesis-sigillin-core",
++    "validate": "ts-node sigillin-validator.ts"
++  },
++  "dependencies": {
++    "ajv": "^8.0.0",
++    "ajv-formats": "^3.0.1"
++  }
++}
+diff --git a/packages/genesis-sigillin-core/sigillin-cli.js b/packages/genesis-sigillin-core/sigillin-cli.js
+new file mode 100755
+index 0000000..4406eba
+--- /dev/null
++++ b/packages/genesis-sigillin-core/sigillin-cli.js
+@@ -0,0 +1,14 @@
++#!/usr/bin/env node
++const { validateSigillin } = require('./dist/sigillin-validator');
++
++const file = process.argv[2];
++if (!file) {
++  console.error('Usage: sigillin-cli <file>');
++  process.exit(1);
++}
++
++if (validateSigillin(file)) {
++  console.log('Valid sigillin');
++} else {
++  process.exit(1);
++}
+diff --git a/packages/genesis-sigillin-core/sigillin-validator.ts b/packages/genesis-sigillin-core/sigillin-validator.ts
+new file mode 100644
+index 0000000..f4cb7c1
+--- /dev/null
++++ b/packages/genesis-sigillin-core/sigillin-validator.ts
+@@ -0,0 +1,28 @@
++import { readFileSync } from 'fs';
++import Ajv from 'ajv';
++import addFormats from 'ajv-formats';
++import path from 'path';
++
++const ajv = addFormats(new Ajv());
++const schema = JSON.parse(readFileSync(path.join(__dirname, 'schemas/sigillin.schema.json'), 'utf8'));
++const validate = ajv.compile(schema);
++
++export function validateSigillin(filePath: string): boolean {
++  const data = JSON.parse(readFileSync(filePath, 'utf8'));
++  const valid = validate(data);
++  if (!valid) console.error(validate.errors);
++  return Boolean(valid);
++}
++
++if (require.main === module) {
++  const target = process.argv[2];
++  if (!target) {
++    console.error('Usage: sigillin-validator <file>');
++    process.exit(1);
++  }
++  if (validateSigillin(target)) {
++    console.log('Valid sigillin');
++  } else {
++    process.exit(1);
++  }
++}
+diff --git a/packages/unifiedmandala-ui/components/AeonTrigger.tsx b/packages/unifiedmandala-ui/components/AeonTrigger.tsx
+new file mode 100644
+index 0000000..8d729a8
+--- /dev/null
++++ b/packages/unifiedmandala-ui/components/AeonTrigger.tsx
+@@ -0,0 +1,11 @@
++import React from 'react';
++
++interface AeonTriggerProps {
++  onActivate: () => void;
++}
++
++const AeonTrigger: React.FC<AeonTriggerProps> = ({ onActivate }) => (
++  <button onClick={onActivate}>Aeon Trigger</button>
++);
++
++export default AeonTrigger;
+diff --git a/packages/unifiedmandala-ui/components/CREPKollektivModul.tsx b/packages/unifiedmandala-ui/components/CREPKollektivModul.tsx
+new file mode 100644
+index 0000000..8dc4e25
+--- /dev/null
++++ b/packages/unifiedmandala-ui/components/CREPKollektivModul.tsx
+@@ -0,0 +1,7 @@
++import React from 'react';
++
++const CREPKollektivModul: React.FC = () => {
++  return <div>CREPKollektivModul placeholder</div>;
++};
++
++export default CREPKollektivModul;
+diff --git a/packages/unifiedmandala-ui/components/LogbuchPanel.tsx b/packages/unifiedmandala-ui/components/LogbuchPanel.tsx
+new file mode 100644
+index 0000000..444c253
+--- /dev/null
++++ b/packages/unifiedmandala-ui/components/LogbuchPanel.tsx
+@@ -0,0 +1,7 @@
++import React from 'react';
++
++const LogbuchPanel: React.FC = () => {
++  return <div>LogbuchPanel placeholder</div>;
++};
++
++export default LogbuchPanel;
+diff --git a/packages/unifiedmandala-ui/components/MandalaGalaxyView.tsx b/packages/unifiedmandala-ui/components/MandalaGalaxyView.tsx
+new file mode 100644
+index 0000000..9e9378e
+--- /dev/null
++++ b/packages/unifiedmandala-ui/components/MandalaGalaxyView.tsx
+@@ -0,0 +1,7 @@
++import React from 'react';
++
++const MandalaGalaxyView: React.FC = () => {
++  return <div>MandalaGalaxyView placeholder</div>;
++};
++
++export default MandalaGalaxyView;
+diff --git a/packages/unifiedmandala-ui/components/RitualStart.tsx b/packages/unifiedmandala-ui/components/RitualStart.tsx
+new file mode 100644
+index 0000000..87ea77e
+--- /dev/null
++++ b/packages/unifiedmandala-ui/components/RitualStart.tsx
+@@ -0,0 +1,7 @@
++import React from 'react';
++
++const RitualStart: React.FC = () => {
++  return <div>RitualStart placeholder</div>;
++};
++
++export default RitualStart;
+diff --git a/packages/unifiedmandala-ui/components/SigillinOverlay.tsx b/packages/unifiedmandala-ui/components/SigillinOverlay.tsx
+new file mode 100644
+index 0000000..71b3d4b
+--- /dev/null
++++ b/packages/unifiedmandala-ui/components/SigillinOverlay.tsx
+@@ -0,0 +1,12 @@
++import React from 'react';
++
++interface SigillinOverlayProps {
++  visible: boolean;
++}
++
++const SigillinOverlay: React.FC<SigillinOverlayProps> = ({ visible }) => {
++  if (!visible) return null;
++  return <div className="sigillin-overlay">SigillinOverlay</div>;
++};
++
++export default SigillinOverlay;
+diff --git a/packages/unifiedmandala-ui/hooks/useCREPHistory.ts b/packages/unifiedmandala-ui/hooks/useCREPHistory.ts
+new file mode 100644
+index 0000000..b4a88a3
+--- /dev/null
++++ b/packages/unifiedmandala-ui/hooks/useCREPHistory.ts
+@@ -0,0 +1,15 @@
++import { useState, useEffect } from 'react';
++import { CREPManager } from '../../crep-engine/CREPManager';
++
++export const useCREPHistory = (manager: CREPManager) => {
++  const [history, setHistory] = useState(manager.getCREPHistory());
++
++  useEffect(() => {
++    const id = setInterval(() => {
++      setHistory([...manager.getCREPHistory()]);
++    }, 1000);
++    return () => clearInterval(id);
++  }, [manager]);
++
++  return history;
++};
+diff --git a/packages/unifiedmandala-ui/hooks/useCREPManager.ts b/packages/unifiedmandala-ui/hooks/useCREPManager.ts
+new file mode 100644
+index 0000000..2eca780
+--- /dev/null
++++ b/packages/unifiedmandala-ui/hooks/useCREPManager.ts
+@@ -0,0 +1,6 @@
++import { useMemo } from 'react';
++import { CREPManager } from '../../crep-engine/CREPManager';
++
++export const useCREPManager = () => {
++  return useMemo(() => new CREPManager(), []);
++};
+diff --git a/packages/unifiedmandala-ui/index.ts b/packages/unifiedmandala-ui/index.ts
+index bc78d4b..bbfabbf 100644
+--- a/packages/unifiedmandala-ui/index.ts
++++ b/packages/unifiedmandala-ui/index.ts
+@@ -6,3 +6,13 @@ export { default as CREPPlayEngine } from './components/CREPPlayEngine';
+ export { default as CREPTimeline } from './components/CREPTimeline';
+ export { default as ChatPanel } from './components/ChatPanel';
+ export { default as ObjectiveLayoutSuggester } from './components/ObjectiveLayoutSuggester';
++export { default as CREPKollektivModul } from './components/CREPKollektivModul';
++export { default as RitualStart } from './components/RitualStart';
++export { default as AeonTrigger } from './components/AeonTrigger';
++export { default as MandalaGalaxyView } from './components/MandalaGalaxyView';
++export { default as LogbuchPanel } from './components/LogbuchPanel';
++export { default as SigillinOverlay } from './components/SigillinOverlay';
++export * from './hooks/useCREPManager';
++export * from './hooks/useCREPHistory';
++export { SymbolzeitManager } from '../aeon-shell/SymbolzeitManager';
++export { runCommand as AeonShellBridge } from '../aeon-shell/AeonShellBridge';

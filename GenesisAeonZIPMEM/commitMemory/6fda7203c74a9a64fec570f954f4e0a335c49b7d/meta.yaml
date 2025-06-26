@@ -1,0 +1,26 @@
+commit: 6fda7203c74a9a64fec570f954f4e0a335c49b7d
+message: Add missing module stubs and manifest
+patch: changes.patch
+fragments: fragments
+files:
+  - packages/aeon-shell/AeonShellBridge.ts
+  - packages/aeon-shell/SymbolzeitManager.ts
+  - packages/aeon-shell/index.ts
+  - packages/crep-engine/CREPExporter.ts
+  - packages/genesis-sigillin-core/index.ts
+  - packages/genesis-sigillin-core/package.json
+  - packages/genesis-sigillin-core/sigillin-cli.js
+  - packages/genesis-sigillin-core/sigillin-validator.ts
+  - packages/unifiedmandala-ui/components/AeonTrigger.tsx
+  - packages/unifiedmandala-ui/components/CREPKollektivModul.tsx
+  - packages/unifiedmandala-ui/components/LogbuchPanel.tsx
+  - packages/unifiedmandala-ui/components/MandalaGalaxyView.tsx
+  - packages/unifiedmandala-ui/components/RitualStart.tsx
+  - packages/unifiedmandala-ui/components/SigillinOverlay.tsx
+  - packages/unifiedmandala-ui/hooks/useCREPHistory.ts
+  - packages/unifiedmandala-ui/hooks/useCREPManager.ts
+  - packages/unifiedmandala-ui/index.ts
+environment:
+  node: v22.16.0
+  pnpm: 10.5.2
+instructions: Apply patch with git apply or review for reference.

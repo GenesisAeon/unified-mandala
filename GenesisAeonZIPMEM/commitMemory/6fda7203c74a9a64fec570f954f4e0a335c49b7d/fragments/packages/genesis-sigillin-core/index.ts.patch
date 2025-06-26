@@ -1,0 +1,11 @@
+diff --git a/packages/genesis-sigillin-core/index.ts b/packages/genesis-sigillin-core/index.ts
+new file mode 100644
+index 0000000..fd325b9
+--- /dev/null
++++ b/packages/genesis-sigillin-core/index.ts
+@@ -0,0 +1,5 @@
++export * from './SigillinGenerator';
++export * from './SigillinParser';
++export * from './SigillinActivationManager';
++export * from './SigillinSuggestionEngine';
++export * from './SigillinSyncManager';

@@ -1,0 +1,19 @@
+diff --git a/packages/aeon-shell/AeonShellBridge.ts b/packages/aeon-shell/AeonShellBridge.ts
+new file mode 100644
+index 0000000..aa41a1f
+--- /dev/null
++++ b/packages/aeon-shell/AeonShellBridge.ts
+@@ -0,0 +1,13 @@
++import { exec } from 'child_process';
++
++export function runCommand(command: string): Promise<{ stdout: string; stderr: string }> {
++  return new Promise((resolve, reject) => {
++    exec(command, (error, stdout, stderr) => {
++      if (error) {
++        reject(error);
++      } else {
++        resolve({ stdout, stderr });
++      }
++    });
++  });
++}
