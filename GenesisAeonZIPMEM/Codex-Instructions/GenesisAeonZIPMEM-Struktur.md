@@ -8,7 +8,7 @@ GenesisAeonZIPMEM/
 │   └── ...
 │
 ├── 📁 commitMemory/
-│   ├── aeonCodexCommits/
+│   ├── <commit-hash>/        # gespeicherte Commits
 │   ├── metaCommitPattern/
 │   └── crepRefactors/
 │
