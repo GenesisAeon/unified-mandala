@@ -1,0 +1,16 @@
+name: ZIPMEM CI
+on: [push, pull_request]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.10'
+      - name: Install dependencies
+        run: |
+          pip install pytest pyyaml sklearn numpy
+      - name: Run tests
+        run: pytest GenesisAeonZIPMEM/tests --maxfail=1 --disable-warnings -q
