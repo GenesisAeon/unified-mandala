@@ -5,5 +5,5 @@ Erweiterung: Aeon CLI unterstuetzt jetzt das Flag `--graph`, um einen Fraktal-Fe
 \n- Advanced agent outputs a deterministic haiku when invoked with `--haiku`.
 \n- Advanced agent now persists symbol memory via `--symbol-memory-file`.
 \n- Advanced agent persists action history via `--memory-file`.
-
 - Adaptive CREP threshold helper `auto_adapt_crep_threshold` implemented.
+\n- Archetype lookup utility `get_symbol` added with tests.
