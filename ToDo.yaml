@@ -76,7 +76,7 @@ todos:
     status: offen
   - id: todo-26
     beschreibung: "sigillin-validator.ts zur Prüfung von Sigillin-Dateien gemäß Schema erstellen"
-    status: offen
+    status: erledigt
   - id: todo-27
     beschreibung: "generate-readmes.ts zur automatischen Erstellung von Modul-Readmes implementieren"
     status: offen
@@ -190,7 +190,7 @@ todos:
     status: offen
   - id: todo-64
     beschreibung: "Dokumentationslinks je Agent in Agents.md ergänzen"
-    status: offen
+    status: erledigt
   - id: todo-65
     beschreibung: "depth-sigil-generator.ts zur Erstellung von Sigillin-Dateien aus Tiefenwerten entwickeln"
     status: offen
