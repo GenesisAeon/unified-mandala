@@ -25,6 +25,8 @@
     "generate:next-sigil": "node scripts/generate-next-sigil.js",
     "aeon:transition": "node scripts/aeon-transition-workflow.js",
     "export_depth_bundle": "ts-node scripts/export-depth-bundle.ts",
+    "generate:agents-diagram": "node scripts/generate-agents-diagram.js",
+    "generate:agent-docs": "node scripts/generate-agent-docs.js",
     "qa": "ts-node scripts/qa-test-runner.ts",
     "store:commit-memory": "node GenesisAeonZIPMEM/commitMemory/commit-memory.js"
   },
@@ -49,6 +51,7 @@
     "yaml": "^2.8.0"
   },
   "devDependencies": {
+    "@mermaid-js/mermaid-cli": "^11.6.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.3.0",
     "@types/d3": "^7.4.3",

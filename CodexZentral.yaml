@@ -1,0 +1,8 @@
+modules:
+  agents: packages/agents
+  crep-engine: packages/crep-engine
+  gpt-bridges: packages/gpt-bridges
+  unifiedmandala-ui: packages/unifiedmandala-ui
+  event-bus: packages/event-bus
+  cli-tools: packages/cli-tools
+  genesis-sigillin-core: packages/genesis-sigillin-core
