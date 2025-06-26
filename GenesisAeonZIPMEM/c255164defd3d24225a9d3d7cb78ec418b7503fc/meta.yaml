@@ -1,0 +1,9 @@
+commit: c255164defd3d24225a9d3d7cb78ec418b7503fc
+message: "chore(memory): add final snapshot"
+patch: changes.patch
+fragments: fragments
+files: []
+environment:
+  node: v22.16.0
+  pnpm: 10.5.2
+instructions: Apply patch with git apply or review for reference.

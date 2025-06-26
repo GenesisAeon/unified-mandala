@@ -67,3 +67,23 @@ def tail_results(path: Path, n: int = 10) -> List[Dict[str, Any]]:
         return []
     return results[-n:]
 
+
+def trend_metric(path: Path, key: str, n: int = 5) -> float | None:
+    """Return average stepwise change for ``key`` in the last ``n`` entries.
+
+    Parameters
+    ----------
+    path:
+        Path to the JSON memory file.
+    key:
+        Numeric field to analyze.
+    n:
+        Number of recent entries to evaluate.
+    """
+    entries = tail_results(path, n)
+    values = [e.get(key) for e in entries if isinstance(e.get(key), (int, float))]
+    if len(values) < 2:
+        return None
+    diffs = [values[i] - values[i - 1] for i in range(1, len(values))]
+    return sum(diffs) / len(diffs)
+
