@@ -113,3 +113,30 @@ def trend_metric(path: Path, key: str, n: int = 5) -> float | None:
     diffs = [values[i] - values[i - 1] for i in range(1, len(values))]
     return sum(diffs) / len(diffs)
 
+
+def volatility_metric(results: Iterable[Dict[str, Any]]) -> Dict[str, float]:
+    """Return standard deviation for numeric fields in ``results``."""
+    values: Dict[str, List[float]] = {}
+    for entry in results:
+        for key, value in entry.items():
+            if isinstance(value, (int, float)):
+                values.setdefault(key, []).append(float(value))
+
+    volatilities: Dict[str, float] = {}
+    for key, vals in values.items():
+        if len(vals) > 1:
+            mean_val = sum(vals) / len(vals)
+            var = sum((v - mean_val) ** 2 for v in vals) / len(vals)
+            volatilities[key] = var ** 0.5
+        else:
+            volatilities[key] = 0.0
+    return volatilities
+
+
+def volatility_metric_memory(path: Path) -> Dict[str, float]:
+    """Return :func:`volatility_metric` for JSON data stored in ``path``."""
+    results = load_results(path)
+    if not results:
+        return {}
+    return volatility_metric(results)
+

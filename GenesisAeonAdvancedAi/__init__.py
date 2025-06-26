@@ -17,6 +17,8 @@ from .memory_store import (
     summarize_stats_memory,
     tail_results,
     trend_metric,
+    volatility_metric,
+    volatility_metric_memory,
 )
 
 __all__ = [
@@ -40,5 +42,7 @@ __all__ = [
     "summarize_stats_memory",
     "tail_results",
     "trend_metric",
+    "volatility_metric",
+    "volatility_metric_memory",
 ]
 
