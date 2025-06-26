@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { execSync } from 'child_process';
-const { run } = require('../commit-memory');
+const { run } = require('../../GenesisAeonZIPMEM/commitMemory/commit-memory');
 
 test('commit-memory writes meta and patch', async () => {
   const commit = execSync('git rev-parse HEAD').toString().trim();

@@ -7,7 +7,7 @@ const YAML = require('yaml');
 const execAsync = promisify(exec);
 
 async function run() {
-  const repoRoot = path.resolve(__dirname, '..');
+  const repoRoot = path.resolve(__dirname, '..', '..');
   const sessionFlag = path.join(repoRoot, '.zipmem_session');
   try {
     await fs.access(sessionFlag);
