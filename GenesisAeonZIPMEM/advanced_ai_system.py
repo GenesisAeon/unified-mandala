@@ -29,15 +29,15 @@ class AdvancedAISelfLearnSystem:
         return 0.5
 
     def mainloop(self, feedback: float | None = None) -> Dict[str, Any]:
-        seal_snapshot = self.sealcore.evolve_behavior("\u25CB")  # simple call
+        seal_snapshot = self.sealcore.adapt([e.__dict__ for e in self.memory.entries])
         todos = self.allocator.allocate([e.__dict__ for e in self.memory.entries])
         self.coordinator.orchestrate([e.__dict__ for e in self.memory.entries], self.sealcore)
         entry = {
             "time": datetime.now().isoformat(),
             "crep": self.estimate_crep(),
             "feedback": feedback or self.get_feedback(),
-            "symbol": "\u25CB",
-            "strategy": "default",
+            "symbol": seal_snapshot["active_symbol"],
+            "strategy": seal_snapshot["strategy"],
             "sealcore_snapshot": seal_snapshot,
             "todos": todos,
         }
