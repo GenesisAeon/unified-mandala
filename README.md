@@ -424,9 +424,10 @@ Aufgaben und Anweisungen aus laufenden Gesprächen werden in
 [`advancedconversations.json`](docs/sigils/advancedconversations.json)
 Es dient als Pendant zum Genesis ZIPMEM.
 Neue Fragmente werden im Ordner `GenesisAeonZIPMEM/` abgelegt, sortiert nach Chatnamen.
-Nach jedem Commit wird `pnpm store:commit-memory` automatisch ausgef\u00fchrt (Husky `post-commit`),
-um die \u00c4nderungen als Patch und `meta.yaml` unter `GenesisAeonZIPMEM/<commit>/` abzulegen.
-Die `meta.yaml` speichert nun auch Node- und pnpm-Versionen, um Abläufe leichter reproduzierbar zu machen.
+Beim **ersten** Commit einer Sitzung f\u00fchrt Husky `pnpm store:commit-memory` aus.
+Das Skript legt Patch und `meta.yaml` unter `GenesisAeonZIPMEM/<commit>/` an und erstellt eine Markerdatei `.zipmem_session`.
+Solange diese Datei existiert, wird das Skript bei weiteren Commits \u00fcbersprungen.
+Die `meta.yaml` enth\u00e4lt auch Node- und pnpm-Versionen, um Abläufe leichter reproduzierbar zu machen.
 gespeichert. Nutzen Sie die Helferskripte aus `packages/shared-utils`
 (`jsonFragmenter.*`), um daraus ToDos für `advancedToDo.yaml` und
 `advancedToDo.json` zu extrahieren.

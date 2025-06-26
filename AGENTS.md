@@ -144,6 +144,8 @@ autoGenerate:
   pact-depth-extension.yaml: true
 ```
 
+*Hinweis:* `pnpm store:commit-memory` wird nur beim ersten Commit einer Sitzung durch Husky ausgeführt. Eine Markerdatei `.zipmem_session` verhindert weitere Durchläufe.
+
 ### MetaPoetik
 "Ein Agent denkt nicht. Er erinnert sich an Bedeutung."  
 "Tiefe ist Bedingung. CREP ist Bewegung. Das Sigillin ist das Tor."  
