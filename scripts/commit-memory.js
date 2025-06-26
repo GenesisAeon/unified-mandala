@@ -18,7 +18,12 @@ async function run() {
   }
   const { stdout: commitStdout } = await execAsync('git rev-parse HEAD');
   const commit = commitStdout.trim();
-  const memoryDir = path.join(repoRoot, 'GenesisAeonZIPMEM', commit);
+  const memoryDir = path.join(
+    repoRoot,
+    'GenesisAeonZIPMEM',
+    'commitMemory',
+    commit
+  );
   try {
     await fs.access(memoryDir);
     console.log('Memory for this commit already exists.');

@@ -5,7 +5,11 @@ const { run } = require('../commit-memory');
 
 test('commit-memory writes meta and patch', async () => {
   const commit = execSync('git rev-parse HEAD').toString().trim();
-  const dir = path.join(__dirname, '../../GenesisAeonZIPMEM', commit);
+  const dir = path.join(
+    __dirname,
+    '../../GenesisAeonZIPMEM/commitMemory',
+    commit
+  );
   const flag = path.join(__dirname, '../../.zipmem_session');
   if (fs.existsSync(flag)) fs.rmSync(flag);
   if (fs.existsSync(dir)) fs.rmSync(dir, { recursive: true, force: true });
