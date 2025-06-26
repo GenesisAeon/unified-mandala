@@ -12,9 +12,10 @@ def test_review_calculates_average():
 
 def test_snapshot_roundtrip(tmp_path):
     mem = SelfOrganizingMemory()
-    mem.add({"crep": 0.2, "symbol": "\u2605"})
+    mem.add({"crep": 0.2, "symbol": "\u2605", "haiku": "test"})
     path = tmp_path / "snap.yaml"
     mem.export_snapshot(str(path))
     new_mem = SelfOrganizingMemory()
     new_mem.import_snapshot(str(path))
     assert new_mem.entries[0].symbol == "\u2605"
+    assert new_mem.entries[0].haiku == "test"

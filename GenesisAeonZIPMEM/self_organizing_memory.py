@@ -16,6 +16,7 @@ class MemoryEntry:
     strategy: str | None = None
     sealcore_snapshot: Dict[str, Any] | None = None
     todos: List[str] | None = None
+    haiku: str | None = None
     meta: Dict[str, Any] | None = None
 
 
@@ -49,6 +50,7 @@ class SelfOrganizingMemory:
                               strategy=entry.get("strategy"),
                               sealcore_snapshot=entry.get("sealcore_snapshot"),
                               todos=entry.get("todos"),
+                              haiku=entry.get("haiku"),
                               meta=entry.get("meta"))
         self.entries.append(complete)
         if len(self.entries) % 10 == 0:
