@@ -1,0 +1,13 @@
+diff --git a/packages/unifiedmandala-ui/components/LogbuchPanel.tsx b/packages/unifiedmandala-ui/components/LogbuchPanel.tsx
+new file mode 100644
+index 0000000..444c253
+--- /dev/null
++++ b/packages/unifiedmandala-ui/components/LogbuchPanel.tsx
+@@ -0,0 +1,7 @@
++import React from 'react';
++
++const LogbuchPanel: React.FC = () => {
++  return <div>LogbuchPanel placeholder</div>;
++};
++
++export default LogbuchPanel;

@@ -1,0 +1,12 @@
+diff --git a/packages/crep-engine/CREPExporter.ts b/packages/crep-engine/CREPExporter.ts
+new file mode 100644
+index 0000000..6219e2a
+--- /dev/null
++++ b/packages/crep-engine/CREPExporter.ts
+@@ -0,0 +1,6 @@
++import fs from 'fs';
++import { CREPEntry } from './types';
++
++export function exportCREP(history: CREPEntry[], file: string) {
++  fs.writeFileSync(file, JSON.stringify(history, null, 2), 'utf8');
++}

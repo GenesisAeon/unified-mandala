@@ -1,0 +1,18 @@
+diff --git a/packages/unifiedmandala-ui/components/SigillinOverlay.tsx b/packages/unifiedmandala-ui/components/SigillinOverlay.tsx
+new file mode 100644
+index 0000000..71b3d4b
+--- /dev/null
++++ b/packages/unifiedmandala-ui/components/SigillinOverlay.tsx
+@@ -0,0 +1,12 @@
++import React from 'react';
++
++interface SigillinOverlayProps {
++  visible: boolean;
++}
++
++const SigillinOverlay: React.FC<SigillinOverlayProps> = ({ visible }) => {
++  if (!visible) return null;
++  return <div className="sigillin-overlay">SigillinOverlay</div>;
++};
++
++export default SigillinOverlay;

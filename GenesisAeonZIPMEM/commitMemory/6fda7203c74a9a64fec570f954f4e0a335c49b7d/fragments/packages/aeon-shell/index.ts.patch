@@ -1,0 +1,10 @@
+diff --git a/packages/aeon-shell/index.ts b/packages/aeon-shell/index.ts
+index ced011d..1984499 100644
+--- a/packages/aeon-shell/index.ts
++++ b/packages/aeon-shell/index.ts
+@@ -1,3 +1,5 @@
+ export const name = 'aeon-shell';
+ export { SYMBOLZEIT } from './symbolzeit';
+ export { SymbolzeitOrchestrator } from './SymbolzeitOrchestrator';
++export { SymbolzeitManager } from './SymbolzeitManager';
++export { runCommand as AeonShellBridge } from './AeonShellBridge';
