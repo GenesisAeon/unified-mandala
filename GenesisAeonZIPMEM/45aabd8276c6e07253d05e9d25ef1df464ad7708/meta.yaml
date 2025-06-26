@@ -1,0 +1,13 @@
+commit: 45aabd8276c6e07253d05e9d25ef1df464ad7708
+message: "feat: add symbolic manifestation utility"
+patch: changes.patch
+fragments: fragments
+files:
+  - GenesisAeonAdvancedAi/__init__.py
+  - GenesisAeonAdvancedAi/aeon_processor.py
+  - GenesisAeonAdvancedAi/feedback.json
+  - GenesisAeonAdvancedAi/test_symbolic_manifestation.py
+environment:
+  node: v22.16.0
+  pnpm: 10.5.2
+instructions: Apply patch with git apply or review for reference.
