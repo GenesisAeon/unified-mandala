@@ -4,6 +4,7 @@ import json
 import time
 from pathlib import Path
 from typing import Any, Dict, List, Iterable
+import statistics
 
 
 def store_result(result: Dict[str, Any], path: Path) -> None:
@@ -41,6 +42,31 @@ def summarize_entries(results: Iterable[Dict[str, Any]]) -> Dict[str, float]:
                 sums.setdefault(key, []).append(float(value))
 
     return {k: sum(v) / len(v) for k, v in sums.items() if v}
+
+
+def summarize_stats(results: Iterable[Dict[str, Any]]) -> Dict[str, Dict[str, float]]:
+    """Return mean and median for numeric fields in ``results``."""
+    values: Dict[str, List[float]] = {}
+    for entry in results:
+        for key, value in entry.items():
+            if isinstance(value, (int, float)):
+                values.setdefault(key, []).append(float(value))
+
+    stats = {}
+    for key, vals in values.items():
+        if vals:
+            mean = sum(vals) / len(vals)
+            med = statistics.median(vals)
+            stats[key] = {"mean": mean, "median": med}
+    return stats
+
+
+def summarize_stats_memory(path: Path) -> Dict[str, Dict[str, float]]:
+    """Return mean and median statistics for numeric fields stored in ``path``."""
+    results = load_results(path)
+    if not results:
+        return {}
+    return summarize_stats(results)
 
 
 def summarize_memory(path: Path) -> Dict[str, float]:
