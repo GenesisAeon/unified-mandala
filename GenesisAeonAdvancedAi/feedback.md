@@ -10,3 +10,4 @@ Erweiterung: Aeon CLI unterstuetzt jetzt das Flag `--graph`, um einen Fraktal-Fe
 - Memory summarization utility `summarize_memory` and `--summary` CLI flag implemented.
 
 - Web API exposes `/aeon/summary` for memory summaries using new `summarize_entries` helper.
+- Fraktal-Graph-Nodes enthalten jetzt Trikaya-Zustand.

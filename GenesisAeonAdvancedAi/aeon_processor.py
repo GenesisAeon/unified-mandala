@@ -2,6 +2,7 @@ from typing import Iterable, Dict, Any, List
 from statistics import variance, mean
 
 from .symbol_tools import assign_color
+from .trikaya import trikaya_state
 
 
 def pearson_corr(xs: List[float], ys: List[float]) -> float:
@@ -160,14 +161,19 @@ def fraktal_feedback_graph(data: Iterable[float], depth: int = 3) -> Dict[str, A
     states: List[Dict[str, Any]] = []
 
     if not symbolic.get("klang"):
-        nodes.append({"id": 0, "state": symbolic, "metrics": {}})
+        nodes.append({"id": 0, "state": symbolic, "metrics": {}, "trikaya_state": trikaya_state(0)})
         return {"nodes": nodes, "edges": edges}
 
     for step in range(depth):
         metrics = advanced_crep_eval(symbolic, states[-1:] if states else None)
-        nodes.append({"id": step, "state": symbolic, "metrics": metrics})
-        states.append(symbolic)
         score = CREP_eval(symbolic)
+        nodes.append({
+            "id": step,
+            "state": symbolic,
+            "metrics": metrics,
+            "trikaya_state": trikaya_state(score),
+        })
+        states.append(symbolic)
         if score == -1 and step < depth - 1:
             symbolic = refactor_fraktal(dict(symbolic))
             edges.append({"from": step, "to": step + 1})

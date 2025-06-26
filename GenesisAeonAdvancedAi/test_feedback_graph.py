@@ -9,6 +9,7 @@ class TestFraktalFeedbackGraph(unittest.TestCase):
         self.assertIn("nodes", graph)
         self.assertIn("edges", graph)
         self.assertGreaterEqual(len(graph["nodes"]), 1)
+        self.assertIn("trikaya_state", graph["nodes"][0])
 
     def test_deep_recursion_limit(self):
         graph = fraktal_feedback_graph([0.1] * 5, depth=5)
@@ -19,6 +20,7 @@ class TestFraktalFeedbackGraph(unittest.TestCase):
     def test_empty_input(self):
         graph = fraktal_feedback_graph([], depth=2)
         self.assertEqual(len(graph["nodes"]), 1)
+        self.assertIn("trikaya_state", graph["nodes"][0])
 
     def test_zero_depth(self):
         graph = fraktal_feedback_graph([0.1], depth=0)
