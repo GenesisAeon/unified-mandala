@@ -12,3 +12,4 @@ Erweiterung: Aeon CLI unterstuetzt jetzt das Flag `--graph`, um einen Fraktal-Fe
 - Web API exposes `/aeon/summary` for memory summaries using new `summarize_entries` helper.
 - Fraktal-Graph-Nodes enthalten jetzt Trikaya-Zustand.
 - Tail utility `tail_results` added with corresponding `--tail` CLI flag and tests.
+- Aeon CLI supports `--archetype-context` to display matching archetype symbols.
