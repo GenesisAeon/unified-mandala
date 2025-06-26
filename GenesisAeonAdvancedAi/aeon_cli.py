@@ -24,6 +24,7 @@ from .memory_store import (
     store_result,
     load_results,
     summarize_memory,
+    summarize_stats_memory,
     tail_results,
     trend_metric,
 )
@@ -85,6 +86,11 @@ def main(argv: List[str] | None = None) -> None:
         default=5,
         metavar="N",
         help="Number of recent entries to consider for --trend-key",
+    )
+    parser.add_argument(
+        "--stats",
+        action="store_true",
+        help="Print mean and median statistics for numeric fields in memory (requires --memory)",
     )
     parser.add_argument(
         "--sigil",
@@ -159,6 +165,13 @@ def main(argv: List[str] | None = None) -> None:
             parser.error("--trend-key requires --memory")
         trend = trend_metric(args.memory, args.trend_key, args.trend_window)
         print(json.dumps({"trend": trend}, indent=2))
+        return
+
+    if args.stats:
+        if not args.memory:
+            parser.error("--stats requires --memory")
+        stats = summarize_stats_memory(args.memory)
+        print(json.dumps(stats, indent=2))
         return
 
     values = list(args.values)
