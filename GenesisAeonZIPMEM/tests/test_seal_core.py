@@ -29,3 +29,9 @@ def test_adapt_changes_strategy():
     snap = core.adapt(memory)
     assert snap["strategy"] == "growth"
     assert snap["active_symbol"] == "\U0001F331"
+
+
+def test_load_config_reads_meta():
+    path = "GenesisAeonZIPMEM/Codex-Instructions/SealCore.yaml"
+    core = SealCore(config_path=path)
+    assert core.meta.get("id") == "seal-core-alpha"

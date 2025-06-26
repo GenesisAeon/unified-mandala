@@ -12,7 +12,7 @@ from .agents import symbol_mapper, crep_bridge
 class SealCore:
     """Core loop for AeonSealAI."""
 
-    def __init__(self, input_queue: Queue | None = None) -> None:
+    def __init__(self, input_queue: Queue | None = None, config_path: str | None = None) -> None:
         self.input_queue: Queue[Any] = input_queue or Queue()
         self.logger = logging.getLogger("SealCore")
         if not self.logger.handlers:
@@ -23,11 +23,35 @@ class SealCore:
         self.strategy = "default"
         self.symbol_map: Dict[str, str] = {"default": "\u25CB", "current": "\u25CB"}
         self.thresholds: Dict[str, float] = {"crep_low": 0.2, "crep_high": 0.8}
+        self.meta: Dict[str, Any] = {}
+        if config_path:
+            self.load_config(config_path)
 
     def monitor_input(self) -> Any:
         """Retrieve next item from the input queue."""
         data = self.input_queue.get()
         return data
+
+    def load_config(self, path: str) -> None:
+        """Load configuration from a YAML file."""
+        import yaml
+
+        with open(path, "r", encoding="utf8") as f:
+            data = yaml.safe_load(f)
+        cfg = data.get("SealCore", data)
+        self.meta.update({k: cfg.get(k) for k in ["id", "version", "type", "description"] if k in cfg})
+        if "thresholds" in cfg:
+            self.thresholds.update(cfg["thresholds"])
+        if "symbol_map" in cfg:
+            self.symbol_map.update(cfg["symbol_map"])
+        if "strategy" in cfg:
+            self.strategy = cfg["strategy"]
+
+    @classmethod
+    def from_config(cls, path: str, input_queue: Queue | None = None) -> "SealCore":
+        """Instantiate SealCore from YAML config."""
+        obj = cls(input_queue=input_queue, config_path=path)
+        return obj
 
     def parse_to_symbols(self, data: Any) -> Any:
         """Convert input data to symbolic representation."""
