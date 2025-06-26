@@ -24,6 +24,7 @@
     "symbolzeit:run": "node scripts/symbolzeit-runner.js",
     "generate:next-sigil": "node scripts/generate-next-sigil.js",
     "aeon:transition": "node scripts/aeon-transition-workflow.js",
+    "export_depth_bundle": "ts-node scripts/export-depth-bundle.ts",
     "qa": "ts-node scripts/qa-test-runner.ts",
     "store:commit-memory": "node GenesisAeonZIPMEM/commitMemory/commit-memory.js"
   },

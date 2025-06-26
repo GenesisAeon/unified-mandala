@@ -10,5 +10,5 @@
 
 ## Example usage
 ```bash
-node export-depth-bundle.ts --out ./exports
+pnpm export_depth_bundle ./exports
 ```
