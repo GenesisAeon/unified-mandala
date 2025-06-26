@@ -97,7 +97,7 @@ todos:
     status: offen
   - id: todo-33
     beschreibung: "conversations_parser.ts entwickeln, um Gespräche in modulare Fragmente zu zerlegen"
-    status: offen
+    status: erledigt
   - id: todo-34
     beschreibung: "crep-flow-synchronizer.ts implementieren für CREP-Datenabgleich zwischen Repositories"
     status: offen
@@ -235,4 +235,7 @@ todos:
     status: offen
   - id: todo-79
     beschreibung: "codex_sync_manifest.yaml vorbereiten und erste Platzhalter-Dateien erzeugen"
+    status: offen
+  - id: todo-80
+    beschreibung: "ZIPMEM-Fragment-Generator in CI integrieren"
     status: offen
