@@ -151,3 +151,29 @@ class TestAeonCLI(unittest.TestCase):
             )
             data = json.loads(result.stdout)
             self.assertIn("poetry", data)
+
+    def test_summary_flag(self):
+        with tempfile.TemporaryDirectory() as tmpdir:
+            input_path = Path(tmpdir) / "vals.txt"
+            input_path.write_text("0.1")
+            mem_file = Path(tmpdir) / "mem.json"
+            subprocess.run([
+                sys.executable,
+                "-m",
+                "GenesisAeonAdvancedAi.aeon_cli",
+                "--input",
+                str(input_path),
+                "--memory",
+                str(mem_file),
+            ], check=True)
+            result = subprocess.run([
+                sys.executable,
+                "-m",
+                "GenesisAeonAdvancedAi.aeon_cli",
+                "--summary",
+                "--memory",
+                str(mem_file),
+            ], capture_output=True, text=True, check=True)
+            data = json.loads(result.stdout)
+            self.assertIn("crep_score", data)
+

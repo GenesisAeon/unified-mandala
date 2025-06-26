@@ -30,3 +30,19 @@ def load_results(path: Path) -> List[Dict[str, Any]]:
         except json.JSONDecodeError:
             return []
     return []
+
+
+def summarize_memory(path: Path) -> Dict[str, float]:
+    """Return simple averages for numeric fields in stored results."""
+    results = load_results(path)
+    if not results:
+        return {}
+
+    sums: Dict[str, List[float]] = {}
+    for entry in results:
+        for key, value in entry.items():
+            if isinstance(value, (int, float)):
+                sums.setdefault(key, []).append(float(value))
+
+    return {k: sum(v) / len(v) for k, v in sums.items() if v}
+
