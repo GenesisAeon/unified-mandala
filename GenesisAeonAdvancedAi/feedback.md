@@ -15,3 +15,4 @@ Erweiterung: Aeon CLI unterstuetzt jetzt das Flag `--graph`, um einen Fraktal-Fe
 - Aeon CLI supports `--archetype-context` to display matching archetype symbols.
 - Trend analysis via `trend_metric` added. CLI option `--trend-key` computes
   average change for a numeric field.
+\n- Plugin loader accepts JSON manifests in addition to YAML.

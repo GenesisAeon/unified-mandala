@@ -23,6 +23,17 @@ entry: main.py
             self.assertEqual(data["type"], "agent")
             self.assertEqual(data["entry"], "main.py")
 
+    def test_load_manifest_json(self):
+        with tempfile.TemporaryDirectory() as tmpdir:
+            path = Path(tmpdir) / "manifest.json"
+            path.write_text(
+                '{"id": "test", "type": "agent", "entry": "main.py"}'
+            )
+            data = load_plugin_manifest(path)
+            self.assertEqual(data["id"], "test")
+            self.assertEqual(data["type"], "agent")
+            self.assertEqual(data["entry"], "main.py")
+
     def test_missing_required_field(self):
         with tempfile.TemporaryDirectory() as tmpdir:
             path = Path(tmpdir) / "manifest.yaml"
@@ -34,8 +45,8 @@ entry: main.py
         with tempfile.TemporaryDirectory() as tmpdir:
             p1 = Path(tmpdir) / "a.yaml"
             p1.write_text("id: a\ntype: agent\nentry: a.py")
-            p2 = Path(tmpdir) / "b.yaml"
-            p2.write_text("id: b\ntype: tool\nentry: b.py")
+            p2 = Path(tmpdir) / "b.json"
+            p2.write_text('{"id": "b", "type": "tool", "entry": "b.py"}')
             plugins = load_plugins(Path(tmpdir))
             self.assertEqual(set(plugins.keys()), {"a", "b"})
 
