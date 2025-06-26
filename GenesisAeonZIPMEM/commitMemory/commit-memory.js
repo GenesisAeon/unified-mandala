@@ -22,7 +22,6 @@ async function run() {
     repoRoot,
     'GenesisAeonZIPMEM',
     'commitMemory',
-    'aeonCodexCommits',
     commit
   );
   try {
