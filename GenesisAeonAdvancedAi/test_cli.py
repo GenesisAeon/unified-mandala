@@ -213,3 +213,31 @@ class TestAeonCLI(unittest.TestCase):
             data = json.loads(result.stdout)
             self.assertEqual(len(data), 1)
 
+    def test_archetype_context_flag(self):
+        with tempfile.TemporaryDirectory() as tmpdir:
+            input_path = Path(tmpdir) / "vals.txt"
+            input_path.write_text("0.8")
+            config_path = Path(tmpdir) / "arch.yaml"
+            config_path.write_text(
+                """- context: test
+  crep_min: 0.0
+  crep_max: 0.0
+  symbol: X
+  meaning: Y
+"""
+            )
+            result = subprocess.run([
+                sys.executable,
+                "-m",
+                "GenesisAeonAdvancedAi.aeon_cli",
+                "--input",
+                str(input_path),
+                "--archetype-context",
+                "test",
+                "--archetype-config",
+                str(config_path),
+            ], capture_output=True, text=True, check=True)
+            data = json.loads(result.stdout)
+            self.assertIn("archetype", data)
+            self.assertEqual(data["archetype"].get("symbol"), "X")
+

@@ -24,6 +24,7 @@ from .memory_store import store_result, load_results, summarize_memory
 from .memory_store import tail_results
 from .sigil_loader import load_sigil, load_start_sigil
 from .trikaya import trikaya_state
+from .archetype_tools import get_symbol
 
 
 def dump_yaml(data: dict) -> str:
@@ -104,6 +105,16 @@ def main(argv: List[str] | None = None) -> None:
         action="store_true",
         help="Include a fractal feedback graph in the output",
     )
+    parser.add_argument(
+        "--archetype-context",
+        help="Lookup archetype symbol for the resulting CREP score using the given context",
+    )
+    parser.add_argument(
+        "--archetype-config",
+        type=Path,
+        default=Path("archetypes.yaml"),
+        help="Path to archetype config YAML file",
+    )
     args = parser.parse_args(argv)
 
     if args.show_memory:
@@ -176,6 +187,18 @@ def main(argv: List[str] | None = None) -> None:
             result["poetry"] = generate_poetic_commentary(metrics)
         if args.graph:
             result["graph"] = fraktal_feedback_graph(values, depth=args.depth)
+
+    crep_score = None
+    if args.perf:
+        _, crep_score = result.get("result", ({}, 0))
+    else:
+        crep_score = result.get("crep_score")
+
+    if args.archetype_context and crep_score is not None:
+        symbol, meaning = get_symbol(
+            float(crep_score), args.archetype_context, args.archetype_config
+        )
+        result["archetype"] = {"symbol": symbol, "meaning": meaning}
 
     if args.yaml:
         text_output = dump_yaml(result)
