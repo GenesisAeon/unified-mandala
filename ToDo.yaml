@@ -61,16 +61,16 @@ todos:
     status: offen
   - id: todo-21
     beschreibung: "Mermaid-Diagramm agents_chain.mmd und SVG-Export erstellen"
-    status: offen
+    status: erledigt
   - id: todo-22
     beschreibung: "Dokumentationsordner docs/agents/ mit Agentenbeschreibungen generieren"
-    status: offen
+    status: erledigt
   - id: todo-23
     beschreibung: "GitHub Action agents_ci.yaml einrichten, die runDryAgent.ts ausführt"
     status: offen
   - id: todo-24
     beschreibung: "CodexZentral.yaml als Masterindex aller Module anlegen"
-    status: offen
+    status: erledigt
   - id: todo-25
     beschreibung: "Skript codex-sync.sh mit CREP-Checks und Sigillin-Hashing entwickeln"
     status: offen
