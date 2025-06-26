@@ -14,13 +14,18 @@ class TestAdvancedAeonAgent(unittest.TestCase):
             cwd = os.getcwd()
             os.chdir(tmpdir)
             try:
-                agent = AdvancedAeonAgent("test_agent", {})
+                mem_path = Path("mem.json")
+                agent = AdvancedAeonAgent("test_agent", {}, memory_path=str(mem_path))
                 result = agent.act("data")
                 self.assertIn("symbol", result)
                 log_file = Path("test_agent_log.yaml")
                 self.assertTrue(log_file.exists())
                 data = list(yaml.safe_load_all(log_file.read_text()))
                 self.assertGreaterEqual(len(data), 1)
+                self.assertTrue(mem_path.exists())
+                import json
+                mem_data = json.loads(mem_path.read_text())
+                self.assertGreaterEqual(len(mem_data), 1)
             finally:
                 os.chdir(cwd)
 
