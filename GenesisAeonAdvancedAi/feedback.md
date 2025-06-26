@@ -9,3 +9,4 @@ Erweiterung: Aeon CLI unterstuetzt jetzt das Flag `--graph`, um einen Fraktal-Fe
 \n- Archetype lookup utility `get_symbol` added with tests.
 - Memory summarization utility `summarize_memory` and `--summary` CLI flag implemented.
 
+- Web API exposes `/aeon/summary` for memory summaries using new `summarize_entries` helper.

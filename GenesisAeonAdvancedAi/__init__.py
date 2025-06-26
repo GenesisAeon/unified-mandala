@@ -8,7 +8,12 @@ from .adaptive_threshold import auto_adapt_crep_threshold
 from .mandala_visualizer import plot_crep_mandala
 from .plugin_loader import load_plugin_manifest, load_plugins
 from .archetype_tools import get_symbol
-from .memory_store import store_result, load_results, summarize_memory
+from .memory_store import (
+    store_result,
+    load_results,
+    summarize_memory,
+    summarize_entries,
+)
 
 __all__ = [
     "AeonAgent",
@@ -26,5 +31,6 @@ __all__ = [
     "store_result",
     "load_results",
     "summarize_memory",
+    "summarize_entries",
 ]
 

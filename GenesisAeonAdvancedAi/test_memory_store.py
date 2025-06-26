@@ -6,6 +6,7 @@ from GenesisAeonAdvancedAi.memory_store import (
     store_result,
     load_results,
     summarize_memory,
+    summarize_entries,
 )
 
 
@@ -43,6 +44,15 @@ class TestMemoryStore(unittest.TestCase):
         summary = summarize_memory(path)
         self.assertAlmostEqual(summary.get('crep_score'), 0.5)
         path.unlink()
+
+    def test_summarize_entries(self):
+        entries = [
+            {"a": 1, "b": 2.0},
+            {"a": 3, "b": 4.0},
+        ]
+        result = summarize_entries(entries)
+        self.assertEqual(result["a"], 2.0)
+        self.assertEqual(result["b"], 3.0)
 
 
 if __name__ == '__main__':
