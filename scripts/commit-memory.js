@@ -8,6 +8,14 @@ const execAsync = promisify(exec);
 
 async function run() {
   const repoRoot = path.resolve(__dirname, '..');
+  const sessionFlag = path.join(repoRoot, '.zipmem_session');
+  try {
+    await fs.access(sessionFlag);
+    console.log('GenesisAeonZIPMEM already initialized for this session.');
+    return;
+  } catch {
+    // session flag absent -> first run
+  }
   const { stdout: commitStdout } = await execAsync('git rev-parse HEAD');
   const commit = commitStdout.trim();
   const memoryDir = path.join(repoRoot, 'GenesisAeonZIPMEM', commit);
@@ -72,6 +80,7 @@ async function run() {
     YAML.stringify(meta),
     'utf8'
   );
+  await fs.writeFile(sessionFlag, commit, 'utf8');
   console.log(`Commit memory stored in ${memoryDir}`);
 }
 
