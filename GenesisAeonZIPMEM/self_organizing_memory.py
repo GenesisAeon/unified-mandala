@@ -49,4 +49,10 @@ class SelfOrganizingMemory:
         for e in window:
             sym = e.symbol or "\u25CB"
             symbol_counts[sym] = symbol_counts.get(sym, 0) + 1
+        if avg_crep < 0.5:
+            self.trigger_adaptation()
         return {"avg_crep": avg_crep, "symbol_counts": symbol_counts}
+
+    def trigger_adaptation(self) -> None:
+        """Placeholder for adaptation trigger."""
+        print("Adapting strategy due to low CREP...")

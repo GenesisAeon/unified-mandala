@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import logging
 from queue import Queue
-from typing import Any
+from typing import Any, Dict, List
 
 from .agents import symbol_mapper, crep_bridge
 
@@ -19,6 +19,10 @@ class SealCore:
             handler = logging.StreamHandler()
             self.logger.addHandler(handler)
         self.logger.setLevel(logging.INFO)
+
+        self.strategy = "default"
+        self.symbol_map: Dict[str, str] = {"default": "\u25CB", "current": "\u25CB"}
+        self.thresholds: Dict[str, float] = {"crep_low": 0.2, "crep_high": 0.8}
 
     def monitor_input(self) -> Any:
         """Retrieve next item from the input queue."""
@@ -36,6 +40,41 @@ class SealCore:
     def generate_resonance(self, symbols: Any) -> Any:
         """Generate resonance response based on symbols."""
         return {"resonance": symbols}
+
+    def adapt(self, memory: List[Dict[str, Any]]) -> Dict[str, Any]:
+        """Adapt strategy and active symbol based on recent memory."""
+        window = memory[-10:]
+        if window:
+            avg_crep = sum(e.get("crep", 0.0) for e in window) / len(window)
+        else:
+            avg_crep = 0.0
+        if avg_crep < self.thresholds["crep_low"]:
+            self.strategy = "growth"
+            self.symbol_map["current"] = "\U0001F331"  # 🌱
+        elif avg_crep > self.thresholds["crep_high"]:
+            self.strategy = "alert"
+            self.symbol_map["current"] = "\U0001F525"  # 🔥
+        else:
+            self.strategy = "default"
+            self.symbol_map["current"] = self.symbol_map.get("default", "\u25CB")
+        snapshot = {
+            "active_symbol": self.symbol_map["current"],
+            "strategy": self.strategy,
+            "feedback_score": avg_crep,
+        }
+        return snapshot
+
+    def to_yaml(self) -> str:
+        """Return YAML representation of core state."""
+        import yaml
+
+        return yaml.dump(
+            {
+                "strategy": self.strategy,
+                "symbol_map": self.symbol_map,
+                "thresholds": self.thresholds,
+            }
+        )
 
     def evolve_behavior(self, symbols: Any) -> Any:
         """Adapt symbols using CREP evaluation."""
