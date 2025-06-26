@@ -9,3 +9,5 @@
 Weitere Hinweise:
 - Siehe **codex-sigil.yaml** für grundlegende Richtlinien.
 - Ergänzende Checks stehen in **dev-agents.md**.
+
+Aktueller Schritt: cycle-start (2025-06-26)
