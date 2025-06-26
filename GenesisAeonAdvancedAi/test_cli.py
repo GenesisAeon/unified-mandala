@@ -177,3 +177,39 @@ class TestAeonCLI(unittest.TestCase):
             data = json.loads(result.stdout)
             self.assertIn("crep_score", data)
 
+    def test_tail_flag(self):
+        with tempfile.TemporaryDirectory() as tmpdir:
+            input_path = Path(tmpdir) / "vals.txt"
+            input_path.write_text("0.1 0.2")
+            mem_file = Path(tmpdir) / "mem.json"
+            # store two entries
+            subprocess.run([
+                sys.executable,
+                "-m",
+                "GenesisAeonAdvancedAi.aeon_cli",
+                "--input",
+                str(input_path),
+                "--memory",
+                str(mem_file),
+            ], check=True)
+            subprocess.run([
+                sys.executable,
+                "-m",
+                "GenesisAeonAdvancedAi.aeon_cli",
+                "--input",
+                str(input_path),
+                "--memory",
+                str(mem_file),
+            ], check=True)
+            result = subprocess.run([
+                sys.executable,
+                "-m",
+                "GenesisAeonAdvancedAi.aeon_cli",
+                "--tail",
+                "1",
+                "--memory",
+                str(mem_file),
+            ], capture_output=True, text=True, check=True)
+            data = json.loads(result.stdout)
+            self.assertEqual(len(data), 1)
+

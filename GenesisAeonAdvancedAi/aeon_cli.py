@@ -21,6 +21,7 @@ from .aeon_processor import (
 )
 from .performance_monitor import monitor_performance
 from .memory_store import store_result, load_results, summarize_memory
+from .memory_store import tail_results
 from .sigil_loader import load_sigil, load_start_sigil
 from .trikaya import trikaya_state
 
@@ -61,6 +62,12 @@ def main(argv: List[str] | None = None) -> None:
         "--summary",
         action="store_true",
         help="Print numeric averages of stored memory entries (requires --memory)",
+    )
+    parser.add_argument(
+        "--tail",
+        type=int,
+        metavar="N",
+        help="Display the last N memory entries (requires --memory)",
     )
     parser.add_argument(
         "--sigil",
@@ -111,6 +118,13 @@ def main(argv: List[str] | None = None) -> None:
             parser.error("--summary requires --memory")
         summary = summarize_memory(args.memory)
         print(json.dumps(summary, indent=2))
+        return
+
+    if args.tail is not None:
+        if not args.memory:
+            parser.error("--tail requires --memory")
+        entries = tail_results(args.memory, args.tail)
+        print(json.dumps(entries, indent=2))
         return
 
     values = list(args.values)
