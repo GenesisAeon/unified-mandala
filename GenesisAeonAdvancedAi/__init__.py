@@ -4,6 +4,7 @@ from .symbol_tools import assign_color, transform_to_symbol
 from .crep_eval import evaluate_crep
 from .aeon_logger import log_event
 from .aeon_processor import symbolic_manifestation
+from .adaptive_threshold import auto_adapt_crep_threshold
 from .mandala_visualizer import plot_crep_mandala
 
 __all__ = [
@@ -15,4 +16,5 @@ __all__ = [
     "log_event",
     "symbolic_manifestation",
     "plot_crep_mandala",
+    "auto_adapt_crep_threshold",
 ]
