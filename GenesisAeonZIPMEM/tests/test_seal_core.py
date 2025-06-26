@@ -35,3 +35,13 @@ def test_load_config_reads_meta():
     path = "GenesisAeonZIPMEM/Codex-Instructions/SealCore.yaml"
     core = SealCore(config_path=path)
     assert core.meta.get("id") == "seal-core-alpha"
+
+
+def test_update_from_feedback_modifies_thresholds():
+    core = SealCore()
+    high_before = core.thresholds["crep_high"]
+    core.update_from_feedback(0.9)
+    assert core.thresholds["crep_high"] > high_before
+    low_before = core.thresholds["crep_low"]
+    core.update_from_feedback(0.1)
+    assert core.thresholds["crep_low"] < low_before

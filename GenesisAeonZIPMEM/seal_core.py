@@ -88,6 +88,13 @@ class SealCore:
         }
         return snapshot
 
+    def update_from_feedback(self, feedback_score: float) -> None:
+        """Adjust thresholds based on sustained feedback."""
+        if feedback_score > 0.8:
+            self.thresholds["crep_high"] = min(1.0, self.thresholds["crep_high"] + 0.01)
+        elif feedback_score < 0.2:
+            self.thresholds["crep_low"] = max(0.0, self.thresholds["crep_low"] - 0.01)
+
     def to_yaml(self) -> str:
         """Return YAML representation of core state."""
         import yaml
