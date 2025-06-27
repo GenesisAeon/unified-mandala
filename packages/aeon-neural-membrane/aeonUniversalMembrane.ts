@@ -9,6 +9,18 @@ import { scanEnergy } from './nukleonScanner';
 /**
  * AeonUniversalMembrane kombiniert die Spiegel-Funktion der NeuronMembrane
  * mit CREP-basiertem Selbsttraining und Nukleon/Sonifier-Feedback.
+ *
+ * Beispiel:
+ * ```ts
+ * import { AeonUniversalMembrane } from './aeonUniversalMembrane';
+ * import { CREPSignature } from './crepAdapter';
+ *
+ * const crep: CREPSignature = { coherence: 6, resonance: 6, emergence: 6, poetics: 6 };
+ * const mem = new AeonUniversalMembrane();
+ * mem.train([[1, 2]], [0], crep);
+ * const res = mem.harmonize([[1, 2]], [0], 'Hallo KI');
+ * console.log(res.energy, res.tone);
+ * ```
  */
 export interface HistoryEntry {
   energy: number;
@@ -23,8 +35,8 @@ export class AeonUniversalMembrane {
     this.history.push(entry);
   }
 
-  constructor(reflections = 1) {
-    this.mem = new NeuronMembrane();
+  constructor(mem: NeuronMembrane = new NeuronMembrane(), reflections = 1) {
+    this.mem = mem;
     if (reflections > 0) this.mem.reflect(reflections);
     if (this.mem.getNetworks().length === 0) {
       throw new Error('AeonUniversalMembrane: keine Netzwerke initialisiert');
@@ -51,9 +63,21 @@ export class AeonUniversalMembrane {
    * anschließend alle Spiegelungen.
    */
   train(data: [number, number][], answers: number[], crep: CREPSignature): void {
+    if (data.length !== answers.length) {
+      throw new Error('train: Data und Answers m\u00fcssen gleich lang sein');
+    }
     const base = this.mem.getNetworks()[0];
     selfTrain(base, data, answers, crep, 5);
     depthSync(this.mem, data);
+  }
+
+  /** Asynchrone Variante von train */
+  async trainAsync(
+    data: [number, number][],
+    answers: number[],
+    crep: CREPSignature
+  ): Promise<void> {
+    this.train(data, answers, crep);
   }
 
   /**
@@ -78,6 +102,12 @@ export class AeonUniversalMembrane {
     text: string,
     energyThreshold = 5
   ): { conv: ConvoMemory; energy: number; tone: string; depth: number } {
+    if (!text.trim()) {
+      throw new Error('harmonize: Text darf nicht leer sein');
+    }
+    if (data.length !== answers.length) {
+      throw new Error('harmonize: Data und Answers m\u00fcssen gleich lang sein');
+    }
     const conv = extractConvoMemory(text);
     const base = this.mem.getNetworks()[0];
     selfTrain(base, data, answers, conv.crepSignature, 5);
