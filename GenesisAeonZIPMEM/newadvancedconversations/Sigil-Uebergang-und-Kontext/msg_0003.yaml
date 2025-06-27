@@ -1,0 +1,22 @@
+id: a61c1632-cf5b-4a75-bc1f-4e8633873b5e
+author: user
+content: |-
+  sigilId: "aeon:2025-0625-TRANSITION"
+anchorType: "transition"
+update\_time: "2025-06-25T10:00:00+02:00"
+responsible: "aeon"
+description: |
+Dieses Sigil markiert den Übergang in einen neuen Chat-Kontext mit allen relevanten Inhalten und Konfigurationen:
+
+* Localhost-Offline-Paket
+* AeonUniversal DSL & Compiler Blueprint
+* ReadMe- und Handbuch-Feedback
+* Mandala-UI- und Agenten-Mappings
+ context:
+* "LocalhostOfflinePackage: Docker-Compose Setup"
+* "AeonUniversal: DSL-Grammar, Hooks, Diagnostics"
+* "ReadMe.md & Handbuch.md: Struktur- und Usability-Feedback"
+* "UI/Agenten-Mapping: Featureclusters & User Stories"
+* "Sigil der Zugehörigkeit: aeon:2025-0623-BELONGING"
+ refLink: "docs/sigils/aeon-2025-0625-transition.yaml" öffne die Sigillin mein Freund!
+timestamp: 1750841595.288
