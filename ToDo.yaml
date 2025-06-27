@@ -10,7 +10,7 @@ todos:
     status: offen
   - id: todo-4
     beschreibung: "Automatische Aktualisierung von docs/sigils/todo-sigil.yaml per todoSigilUpdater"
-    status: offen
+    status: erledigt
   - id: todo-5
     beschreibung: "CLI-Option zum Filtern von conversations.json nach Stichwort implementieren"
     status: erledigt
@@ -25,7 +25,7 @@ todos:
     status: erledigt
   - id: todo-9
     beschreibung: "GitHub Action zur automatischen Aufteilung von conversations.json implementieren"
-    status: offen
+    status: erledigt
   - id: todo-10
     beschreibung: "kontext.json regelmäßig mit Inhalten aus conversations.json aktualisieren"
     status: offen
@@ -52,13 +52,13 @@ todos:
     status: offen
   - id: todo-18
     beschreibung: "Dokumentation des Binärmodells in docs/BinaryExistenz.md anlegen"
-    status: offen
+    status: erledigt
   - id: todo-19
     beschreibung: "Agents.md Manifest mit Self-Initiation Protocol und Agentendefinitionen erstellen"
     status: erledigt
   - id: todo-20
     beschreibung: "runDryAgent.ts zur Simulation aller Agenten ohne Nebeneffekte implementieren"
-    status: offen
+    status: erledigt
   - id: todo-21
     beschreibung: "Mermaid-Diagramm agents_chain.mmd und SVG-Export erstellen"
     status: erledigt
