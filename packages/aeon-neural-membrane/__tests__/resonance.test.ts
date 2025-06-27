@@ -15,3 +15,12 @@ test('resonanceMap includes layer index', () => {
   expect(map[0]).toHaveProperty('layer');
   expect(map[1].layer).toBe(1);
 });
+
+test('resonance lengths adjust after reflection', () => {
+  const mem = new AeonUniversalMembrane(undefined, 1);
+  mem.harmonize({ data: [[1, 2]], answers: [0], text: 'x', energyThreshold: 0 });
+  const scan = mem.scanResonance();
+  const map = mem.resonanceMap();
+  expect(scan.length).toBe(mem.depth);
+  expect(map.length).toBe(mem.depth);
+});

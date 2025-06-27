@@ -1,3 +1,4 @@
+import fs from 'fs';
 import { NeuronMembrane } from './neuronMembrane';
 import { depthSync } from './depthSync';
 import { selfTrain } from './selfTrainer';
@@ -27,16 +28,58 @@ export interface HistoryEntry {
   tone: string;
   depth: number;
 }
+
+export interface HarmonizeOptions {
+  data: [number, number][];
+  answers: number[];
+  text: string;
+  energyThreshold?: number;
+}
+
+export interface HarmonyResult {
+  conv: ConvoMemory;
+  energy: number;
+  tone: string;
+  depth: number;
+}
+
+export interface AeonUniversalOptions {
+  persistHistory?: boolean;
+  historyPath?: string;
+  maxDepth?: number;
+}
+
+const DEFAULT_OPTIONS: Required<AeonUniversalOptions> = {
+  persistHistory: false,
+  historyPath: 'aeon-history.json',
+  maxDepth: 10
+};
 export class AeonUniversalMembrane {
   private mem: NeuronMembrane;
   private history: HistoryEntry[] = [];
+  private opts: Required<AeonUniversalOptions>;
 
   private logHistory(entry: HistoryEntry) {
     this.history.push(entry);
+    if (this.opts.persistHistory) {
+      this.saveHistoryToFile();
+    }
   }
 
-  constructor(mem: NeuronMembrane = new NeuronMembrane(), reflections = 1) {
+  private saveHistoryToFile() {
+    fs.writeFileSync(
+      this.opts.historyPath,
+      JSON.stringify(this.history, null, 2)
+    );
+  }
+
+  constructor(
+    mem: NeuronMembrane = new NeuronMembrane(),
+    reflections = 1,
+    options: AeonUniversalOptions = {}
+  ) {
     this.mem = mem;
+    this.opts = { ...DEFAULT_OPTIONS, ...options };
     if (reflections > 0) this.mem.reflect(reflections);
     if (this.mem.getNetworks().length === 0) {
       throw new Error('AeonUniversalMembrane: keine Netzwerke initialisiert');
@@ -77,7 +120,22 @@ export class AeonUniversalMembrane {
     answers: number[],
     crep: CREPSignature
   ): Promise<void> {
-    this.train(data, answers, crep);
+    if (data.length !== answers.length) {
+      throw new Error('trainAsync: Data und Answers m\u00fcssen gleich lang sein');
+    }
+    const base = this.mem.getNetworks()[0];
+    await new Promise<void>(resolve =>
+      setTimeout(() => {
+        selfTrain(base, data, answers, crep, 5);
+        resolve();
+      }, 0)
+    );
+    await new Promise<void>(resolve =>
+      setTimeout(() => {
+        depthSync(this.mem, data);
+        resolve();
+      }, 0)
+    );
   }
 
   /**
@@ -96,32 +154,33 @@ export class AeonUniversalMembrane {
    * Vollständiger Selbstreflexionszyklus. Trainiert anhand des
    * Gesprächs-Textes und erzeugt bei hoher Energie eine neue Spiegelung.
    */
-  harmonize(
-    data: [number, number][],
-    answers: number[],
-    text: string,
-    energyThreshold = 5
-  ): { conv: ConvoMemory; energy: number; tone: string; depth: number } {
-    if (!text.trim()) {
-      throw new Error('harmonize: Text darf nicht leer sein');
-    }
-    if (data.length !== answers.length) {
-      throw new Error('harmonize: Data und Answers m\u00fcssen gleich lang sein');
-    }
-    const conv = extractConvoMemory(text);
-    const base = this.mem.getNetworks()[0];
-    selfTrain(base, data, answers, conv.crepSignature, 5);
-    depthSync(this.mem, data);
+  harmonize(options: HarmonizeOptions): HarmonyResult {
+    const { data, answers, text, energyThreshold = 5 } = options;
+    try {
+      if (!text.trim()) {
+        throw new Error('harmonize: Text darf nicht leer sein');
+      }
+      if (data.length !== answers.length) {
+        throw new Error('harmonize: Data und Answers m\u00fcssen gleich lang sein');
+      }
+      const conv = extractConvoMemory(text);
+      const base = this.mem.getNetworks()[0];
+      selfTrain(base, data, answers, conv.crepSignature, 5);
+      depthSync(this.mem, data);
 
-    const energy = scanEnergy(base);
-    const depthFactor = this.mem.depth || 1;
-    const tone = memoryToTone(energy / (10 * depthFactor));
-    if (energy / depthFactor > energyThreshold) {
-      this.mem.reflect();
+      const energy = scanEnergy(base);
+      const depthFactor = this.mem.depth || 1;
+      const tone = memoryToTone(energy / (10 * depthFactor));
+      if (this.mem.depth < this.opts.maxDepth && energy / depthFactor > energyThreshold) {
+        this.mem.reflect();
+      }
+      const result = { conv, energy, tone, depth: this.mem.depth };
+      this.logHistory({ energy, tone, depth: this.mem.depth });
+      return result;
+    } catch (err) {
+      console.error('harmonize failed', err);
+      throw err;
     }
-    const result = { conv, energy, tone, depth: this.mem.depth };
-    this.logHistory({ energy, tone, depth: this.mem.depth });
-    return result;
   }
 
   /**
@@ -129,19 +188,11 @@ export class AeonUniversalMembrane {
    */
   selfReflectCycle(
     iterations: number,
-    data: [number, number][],
-    answers: number[],
-    text: string,
-    energyThreshold = 5,
-  ): { conv: ConvoMemory; energy: number; tone: string; depth: number } {
-    let last = undefined as unknown as {
-      conv: ConvoMemory;
-      energy: number;
-      tone: string;
-      depth: number;
-    };
+    options: HarmonizeOptions
+  ): HarmonyResult {
+    let last = undefined as unknown as HarmonyResult;
     for (let i = 0; i < iterations; i++) {
-      last = this.harmonize(data, answers, text, energyThreshold);
+      last = this.harmonize(options);
     }
     return last;
   }
