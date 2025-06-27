@@ -2,7 +2,7 @@ import { NeuronMembrane } from './neuronMembrane';
 import { depthSync } from './depthSync';
 import { selfTrain } from './selfTrainer';
 import { CREPSignature } from './crepAdapter';
-import { extractConvoMemory } from '../nukleon-scanner';
+import { extractConvoMemory, type ConvoMemory } from '../nukleon-scanner';
 import { memoryToTone } from '../nukleon-sonifier';
 import { scanEnergy } from './nukleonScanner';
 
@@ -10,22 +10,34 @@ import { scanEnergy } from './nukleonScanner';
  * AeonUniversalMembrane kombiniert die Spiegel-Funktion der NeuronMembrane
  * mit CREP-basiertem Selbsttraining und Nukleon/Sonifier-Feedback.
  */
+export interface HistoryEntry {
+  energy: number;
+  tone: string;
+  depth: number;
+}
 export class AeonUniversalMembrane {
   private mem: NeuronMembrane;
-  private history: { energy: number; tone: string; depth: number }[] = [];
+  private history: HistoryEntry[] = [];
+
+  private logHistory(entry: HistoryEntry) {
+    this.history.push(entry);
+  }
 
   constructor(reflections = 1) {
     this.mem = new NeuronMembrane();
     if (reflections > 0) this.mem.reflect(reflections);
+    if (this.mem.getNetworks().length === 0) {
+      throw new Error('AeonUniversalMembrane: keine Netzwerke initialisiert');
+    }
   }
 
   /** Aktuelle Tiefe der Membran */
-  get depth() {
+  get depth(): number {
     return this.mem.depth;
   }
 
   /** Verlauf der Harmonize-Ergebnisse */
-  getHistory() {
+  getHistory(): HistoryEntry[] {
     return this.history;
   }
 
@@ -38,7 +50,7 @@ export class AeonUniversalMembrane {
    * Trainiert das Grundnetz mit einem CREP-Faktor und synchronisiert
    * anschließend alle Spiegelungen.
    */
-  train(data: [number, number][], answers: number[], crep: CREPSignature) {
+  train(data: [number, number][], answers: number[], crep: CREPSignature): void {
     const base = this.mem.getNetworks()[0];
     selfTrain(base, data, answers, crep, 5);
     depthSync(this.mem, data);
@@ -47,8 +59,11 @@ export class AeonUniversalMembrane {
   /**
    * Analysiert einen Gesprächstext, um daraus CREP-Werte und einen Ton abzuleiten.
    */
-  analyzeConversation(text: string) {
+  analyzeConversation(text: string): { conv: ConvoMemory; tone: string } {
     const conv = extractConvoMemory(text);
+    if (!conv.crepSignature) {
+      throw new Error('analyzeConversation: fehlende CREP-Signatur');
+    }
     const tone = memoryToTone(conv.crepSignature.resonance / 10);
     return { conv, tone };
   }
@@ -62,19 +77,20 @@ export class AeonUniversalMembrane {
     answers: number[],
     text: string,
     energyThreshold = 5
-  ) {
+  ): { conv: ConvoMemory; energy: number; tone: string; depth: number } {
     const conv = extractConvoMemory(text);
     const base = this.mem.getNetworks()[0];
     selfTrain(base, data, answers, conv.crepSignature, 5);
     depthSync(this.mem, data);
 
     const energy = scanEnergy(base);
-    const tone = memoryToTone(energy / (10 * this.mem.depth));
-    if (energy / this.mem.depth > energyThreshold) {
+    const depthFactor = this.mem.depth || 1;
+    const tone = memoryToTone(energy / (10 * depthFactor));
+    if (energy / depthFactor > energyThreshold) {
       this.mem.reflect();
     }
     const result = { conv, energy, tone, depth: this.mem.depth };
-    this.history.push({ energy, tone, depth: this.mem.depth });
+    this.logHistory({ energy, tone, depth: this.mem.depth });
     return result;
   }
 
@@ -87,9 +103,9 @@ export class AeonUniversalMembrane {
     answers: number[],
     text: string,
     energyThreshold = 5,
-  ) {
+  ): { conv: ConvoMemory; energy: number; tone: string; depth: number } {
     let last = undefined as unknown as {
-      conv: ReturnType<typeof extractConvoMemory>;
+      conv: ConvoMemory;
       energy: number;
       tone: string;
       depth: number;
@@ -103,7 +119,7 @@ export class AeonUniversalMembrane {
   /**
    * Liefert f\u00fcr jede Netzebene die aktuelle Energie und den zugeh\u00f6rigen Ton.
    */
-  scanResonance() {
+  scanResonance(): { energy: number; tone: string }[] {
     return this.mem.getNetworks().map(net => {
       const energy = scanEnergy(net);
       const tone = memoryToTone(energy / 10);
@@ -114,7 +130,7 @@ export class AeonUniversalMembrane {
   /**
    * Provides a detailed resonance map with the layer index included.
    */
-  resonanceMap() {
+  resonanceMap(): { layer: number; energy: number; tone: string }[] {
     return this.mem.getNetworks().map((net, idx) => {
       const energy = scanEnergy(net);
       const tone = memoryToTone(energy / 10);
