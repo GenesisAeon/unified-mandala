@@ -11,7 +11,7 @@ export class AeonMembraneAgent implements Agent {
   private kiAgent?: AeonKIResonanzAgent;
 
   constructor(reflections = 1, kiAgent?: AeonKIResonanzAgent) {
-    this.mem = new AeonUniversalMembrane(reflections);
+    this.mem = new AeonUniversalMembrane(undefined, reflections);
     this.kiAgent = kiAgent;
     withFSM(this);
   }
