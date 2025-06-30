@@ -2136,7 +2136,7 @@
     "path": "services/ghost-shell/cluster.ts",
     "task": "Start Node.js cluster of GhostShellAgent workers using `cluster` API",
     "test": "services/ghost-shell/cluster.test.ts",
-    "status": "done"
+    "status": "todo"
   },
   {
     "commit": "Add WebSocket JWT middleware",
