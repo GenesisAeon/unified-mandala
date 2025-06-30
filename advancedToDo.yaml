@@ -4073,4 +4073,17 @@
   task: Keep npm and Docker dependencies up to date
   test: ""
   status: done
+- commit: Add NPM scripts for GhostShell start
+  path: package.json
+  task: Provide ghost-shell:cluster and ghost-shell:server commands
+  test: ""
+  status: done
+- commit: Edge deploy GhostShellAgent
+  path: aws/lambda-edge
+  task: Deploy GhostShellAgent as Lambda@Edge for global availability
+  test: ""
+- commit: Blockchain-based plugin trust
+  path: services/ghost-shell/blockchain-trust.ts
+  task: Verify plugin manifest signatures via blockchain ledger
+  test: ""
 

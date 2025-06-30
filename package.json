@@ -28,6 +28,8 @@
     "generate:agents-diagram": "node scripts/generate-agents-diagram.js",
     "generate:agent-docs": "node scripts/generate-agent-docs.js",
     "qa": "ts-node scripts/qa-test-runner.ts",
+    "ghost-shell:cluster": "ts-node services/ghost-shell/cluster.ts",
+    "ghost-shell:server": "ts-node services/ghost-shell/server.ts",
     "store:commit-memory": "node GenesisAeonZIPMEM/commitMemory/commit-memory.js",
     "generate:changelog": "node scripts/generate-changelog.js"
   },
