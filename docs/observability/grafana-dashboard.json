@@ -1,0 +1,13 @@
+{
+  "title": "UnifiedMandala Metrics",
+  "panels": [
+    {
+      "type": "graph",
+      "title": "CPU Usage",
+      "targets": [{
+        "expr": "process_cpu_user_seconds_total",
+        "interval": "1m"
+      }]
+    }
+  ]
+}
