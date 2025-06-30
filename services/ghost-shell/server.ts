@@ -5,7 +5,7 @@ import { socketAuth } from './auth';
 import * as ws from 'ws';
 import { register } from 'prom-client';
 import { RateLimiterMemory } from 'rate-limiter-flexible';
-import pino from 'pino';
+import { logger } from './logger';
 import { listPlugins, getPlugin } from '../plugin-loader';
 import { metricsMiddleware, metricsEndpoint } from '../../packages/core/middleware/metrics';
 import path from 'path';
@@ -15,7 +15,6 @@ import { joinRoom, sendRoomMessage, leaveAll } from './rooms';
 
 export function startServer(port = 3000, secret = 'ghost-secret', enableSocket: boolean = true) {
   const app = express();
-  const logger = pino({ level: 'info' });
   const wsLimiter = new RateLimiterMemory({ points: 10, duration: 60 });
 
   app.use(metricsMiddleware);

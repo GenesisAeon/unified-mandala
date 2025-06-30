@@ -2242,5 +2242,17 @@
     "path": ".github/dependabot.yml",
     "task": "Keep npm and Docker dependencies up to date",
     "test": ""
+  },
+  {
+    "commit": "Add VR integration",
+    "path": "public/vr",
+    "task": "Implement immersive ritual environment using A-Frame/WebXR",
+    "test": ""
+  },
+  {
+    "commit": "Implement blockchain manifest verification",
+    "path": "services/plugin-verification",
+    "task": "Verify plugin manifests via blockchain ledger",
+    "test": ""
   }
 ]
