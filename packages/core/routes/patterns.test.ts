@@ -5,17 +5,21 @@ import request from 'supertest';
 import express from 'express';
 import jwt from 'jsonwebtoken';
 import patternRoutes from './patterns';
+import metricsRoutes from './metrics';
+import { register } from '../../../services/metrics';
 import fs from 'fs';
 
 const SECRET = 'test-secret';
 const token = jwt.sign({ id: 'u1' }, SECRET);
 const app = express();
+app.use(metricsRoutes);
 app.use('/patterns', patternRoutes(SECRET));
 
 beforeEach(() => {
   if (fs.existsSync('plugins/mandalaHaiku/customPatterns.json')) {
     fs.writeFileSync('plugins/mandalaHaiku/customPatterns.json', '[]');
   }
+  register.resetMetrics();
 });
 
 describe('Community-Pattern API', () => {
@@ -32,5 +36,14 @@ describe('Community-Pattern API', () => {
       .send({ pattern: 'Ein neuer poetischer Kreis erwacht im Licht.' });
     expect(res.status).toBe(201);
     expect(res.body.message).toBe('Pattern added');
+  });
+
+  it('increments patterns_created_total metric', async () => {
+    await request(app)
+      .post('/patterns')
+      .set('Authorization', `Bearer ${token}`)
+      .send({ pattern: 'Ein neuer poetischer Kreis erwacht im Licht.' });
+    const res = await request(app).get('/metrics');
+    expect(res.text).toContain('patterns_created_total 1');
   });
 });

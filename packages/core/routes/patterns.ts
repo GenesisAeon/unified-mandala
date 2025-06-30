@@ -3,6 +3,7 @@ import fs from 'fs';
 import path from 'path';
 import rateLimit from 'express-rate-limit';
 import jwt from 'jsonwebtoken';
+import { patternCreateCounter } from '../../../services/metrics';
 
 export interface JwtUser {
   id: string;
@@ -46,6 +47,7 @@ export default function patternRoutes(secret: string) {
       : [];
     list.push(pattern);
     fs.writeFileSync(PATTERN_FILE, JSON.stringify(list, null, 2), 'utf8');
+    patternCreateCounter.inc();
     res.status(201).json({ message: 'Pattern added' });
   });
 
