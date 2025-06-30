@@ -4025,3 +4025,35 @@
   path: services/ghost-shell/rooms.ts
   task: Manage join_room and room_message events for collaborative sessions
   test: services/ghost-shell/rooms.test.ts
+- commit: Add multi-stage Dockerfiles
+  path: Dockerfile
+  task: Build optimized containers for API, socket server and frontend using multi-stage builds
+  test: ""
+- commit: Create Kubernetes Helm chart
+  path: charts/ghostshell/Chart.yaml
+  task: Provide Deployment, Service and Ingress with TLS and HPA
+  test: ci/helm/helm.test.sh
+- commit: Add CI pipeline
+  path: .github/workflows/ci.yaml
+  task: Run lint, build, tests and deploy Helm chart via GitHub Actions
+  test: ""
+- commit: Automate release tagging
+  path: .github/workflows/release.yaml
+  task: Tag new version when merging into main
+  test: ""
+- commit: Add changelog generator
+  path: scripts/generate-changelog.js
+  task: Generate CHANGELOG.md from commit messages
+  test: ""
+- commit: Implement plugin registry admin panel
+  path: apps/plugin-registry
+  task: Manage plugin review, blacklist and version lock
+  test: ""
+- commit: Setup backup script
+  path: scripts/backup.sh
+  task: Backup patterns, votes and sessions to S3 or Minio
+  test: ""
+- commit: Configure Dependabot
+  path: .github/dependabot.yml
+  task: Keep npm and Docker dependencies up to date
+  test: ""
