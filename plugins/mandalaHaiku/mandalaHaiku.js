@@ -1,23 +1,71 @@
+/**
+ * mandalaHaiku Plugin
+ * Generiert poetische Haikus aus CREP-Alerts.
+ * Exports: initialize(context) für GhostShellAgent.
+ * @api ghostshell.plugin ^1.1
+ */
 module.exports = {
-  initialize({ io, logger }) {
-    logger && logger('mandalaHaiku initialized');
-    io.on('connection', (socket) => {
-      socket.on('sigil_alert', (alert) => {
-        if (alert.id === 'aeon:2025-0626-HIGH-ENERGY') {
-          const haiku = generateHaiku(alert.crep);
-          socket.emit('haiku_response', { haiku });
-          logger && logger(`Emitted haiku: ${haiku}`);
+  initialize: function ({ io, logger, getPlugin }) {
+    const manifest = pluginMeta;
+    logger && logger(`🔮 [MandalaHaiku] Initializing ${manifest.name}@${manifest.version}`);
+
+    // Option: Community-Pattern laden (wenn Registry vorhanden)
+    let customPatterns = [];
+    try {
+      customPatterns = require('./customPatterns.json'); // Optional, von Community pflegbar!
+    } catch {
+      /* ignore if missing */
+    }
+
+    io.on('connection', socket => {
+      // Session-Identifikation für Community-Features möglich
+      socket.on('sigil_alert', async (alert) => {
+        if (alert.id.startsWith('aeon:2025-0626-HIGH-ENERGY')) {
+          const haiku = generateHaiku(alert.crep, alert.symbol, socket.id);
+          socket.emit('haiku_response', { haiku, sigil: alert.id });
+          logger && logger(`[MandalaHaiku] To ${socket.id} – CREP:${alert.crep}: ${haiku}`);
         }
       });
     });
-    function generateHaiku() {
-      const templates = [
-        'Leuchtendes Sigil – / Träger von Klang und Tiefen / Mandala erwacht',
-        'Im Resonanzfeld / tanzt das Echo stiller Kraft / Haiku verweht nie',
-        'Dreifach-Welle ruft / Poetik in Codes geschrieben / Herz findet Klang'
-      ];
-      const idx = Math.floor(Math.random() * templates.length);
-      return templates[idx];
+
+    /**
+     * Dynamisch generiert Haiku nach CREP-Status und Symbolik.
+     */
+    function generateHaiku(crep, symbol = '🌱', sessionId = '') {
+      // CREP-abhängige Zeilen, Community-Pattern bevorzugt
+      let t = (customPatterns.length > 0) ? customPatterns : templates;
+      if (crep > 0.8) {
+        t = t.filter(line => /Licht|Leuchten|Erwachen|Flut|Kraft/.test(line));
+      } else if (crep < 0.3) {
+        t = t.filter(line => /Stille|Tiefe|Nacht|Verharren|Raum/.test(line));
+      }
+      // Notfall: fallback auf alles
+      if (t.length === 0) t = templates;
+      // Optional: Session-Seed für deterministische Variation
+      const idx = Math.abs(hashCode(sessionId + symbol + crep)) % t.length;
+      return t[idx];
+    }
+
+    // Poetische Grund-Templates
+    const templates = [
+      "Leuchtendes Sigil – / Träger von Klang und Tiefen / Mandala erwacht",
+      "Im Resonanzfeld / tanzt das Echo stiller Kraft / Haiku verweht nie",
+      "Dreifach-Welle ruft / Poetik in Codes geschrieben / Herz findet Klang",
+      "Tiefe zieht vorbei / Das Mandala hält den Raum / Still wächst Resonanz",
+      "Lichtflut im Kreis / Symbol wird zur Melodie / Mandala pulsiert",
+      "Stille am Morgen / Sigil ruht in Dunkelheit / Ein Kreis erwartet",
+      "Wellen schlagen an / CREP tanzt im neuen Zyklus / Erkenntnis erwacht"
+    ];
+
+    function hashCode(str) {
+      // Primitive Session-Hash (nicht sicher, aber praktisch)
+      var hash = 0, i, chr;
+      for (i = 0; i < str.length; i++) {
+        chr = str.charCodeAt(i);
+        hash = ((hash << 5) - hash) + chr;
+        hash |= 0;
+      }
+      return hash;
     }
   }
 };
