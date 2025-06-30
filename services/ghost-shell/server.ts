@@ -10,8 +10,15 @@ import { listPlugins, getPlugin } from '../plugin-loader';
 import { metricsMiddleware, metricsEndpoint } from '../../packages/core/middleware/metrics';
 import path from 'path';
 import { addSession, getSession, removeSession } from './session-store';
+import { runSelfLearn } from './runSelfLearn';
+import { watchConversations } from './watchers/chokidar';
 
-export function startServer(port = 3000, secret = 'ghost-secret', enableSocket: boolean = true) {
+export function startServer(
+  port = 3000,
+  secret = 'ghost-secret',
+  enableSocket: boolean = true,
+  watchDir?: string
+) {
   const app = express();
   const logger = pino({ level: 'info' });
   const wsLimiter = new RateLimiterMemory({ points: 10, duration: 60 });
@@ -76,6 +83,10 @@ export function startServer(port = 3000, secret = 'ghost-secret', enableSocket: 
   server.listen(port, () => {
     logger.info(`GhostShellAgent listening on ${port}`);
   });
+
+  if (watchDir) {
+    watchConversations(watchDir, runSelfLearn);
+  }
 
   return { app, io, server };
 }

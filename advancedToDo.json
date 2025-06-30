@@ -2165,7 +2165,8 @@
     "commit": "Add fragment watcher",
     "path": "services/ghost-shell/watchers/chokidar.ts",
     "task": "Trigger runSelfLearn when new conversation fragments arrive",
-    "test": "services/ghost-shell/watchers/chokidar.test.ts"
+    "test": "services/ghost-shell/watchers/chokidar.test.ts",
+    "status": "done"
   },
   {
     "commit": "Implement adaptive scheduler",
