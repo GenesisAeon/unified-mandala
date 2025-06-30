@@ -5,5 +5,7 @@ Diese Komponente stellt einen skalierbaren WebSocket-Dienst bereit. Sie nutzt da
 ## Features
 * Clusterbetrieb mittels `cluster`-API
 * JWT-Authentifizierung für Socket.io
+* Ratenbegrenzung über `rate-limiter-flexible`
+* Strukturierte Logs mit `pino`
 * Prometheus-Metriken unter `/metrics`
 * Beispielhafter Echo-Channel

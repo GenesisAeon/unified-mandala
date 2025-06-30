@@ -2,14 +2,19 @@ import express from 'express';
 import http from 'http';
 import { Server } from 'socket.io';
 import { socketAuth } from './auth';
-import * as ws from "ws";
+import * as ws from 'ws';
 import { register } from 'prom-client';
+import { RateLimiterMemory } from 'rate-limiter-flexible';
+import pino from 'pino';
 import { listPlugins, getPlugin } from '../plugin-loader';
 import { metricsMiddleware, metricsEndpoint } from '../../packages/core/middleware/metrics';
 import path from 'path';
 
 export function startServer(port = 3000, secret = 'ghost-secret', enableSocket: boolean = true) {
   const app = express();
+  const logger = pino({ level: 'info' });
+  const wsLimiter = new RateLimiterMemory({ points: 10, duration: 60 });
+
   app.use(metricsMiddleware);
 
   app.use(express.static(path.join(__dirname, '..', 'public')));
@@ -31,9 +36,10 @@ export function startServer(port = 3000, secret = 'ghost-secret', enableSocket: 
       if (!plugin || typeof plugin.initialize !== 'function') {
         throw new Error('Invalid plugin');
       }
-      plugin.initialize({ io, logger: console.log, getPlugin });
+      plugin.initialize({ io, logger: (msg: string) => logger.info(msg), getPlugin });
       res.sendStatus(204);
     } catch (e: any) {
+      logger.error(e);
       res.status(400).json({ error: e.message });
     }
   });
@@ -43,13 +49,21 @@ export function startServer(port = 3000, secret = 'ghost-secret', enableSocket: 
   if (enableSocket) {
     io = new Server(server, { cors: { origin: "*" }, wsEngine: ws.Server });
     io.use(socketAuth(secret));
+    io.use(async (_socket, next) => {
+      try {
+        await wsLimiter.consume(_socket.handshake.address);
+        next();
+      } catch {
+        next(new Error('Too many requests'));
+      }
+    });
     io.on("connection", (socket) => {
       socket.on("echo", (msg) => socket.emit("echo", msg));
     });
   }
 
   server.listen(port, () => {
-    console.log(`GhostShellAgent listening on ${port}`);
+    logger.info(`GhostShellAgent listening on ${port}`);
   });
 
   return { app, io, server };
