@@ -1,11 +1,10 @@
 import cluster from 'cluster';
 import os from 'os';
 import { startServer } from './server';
-import pino from 'pino';
+import { logger } from './logger';
 
 const basePort = process.env.PORT ? parseInt(process.env.PORT, 10) : 3000;
 const secret = process.env.SECRET || 'ghost-secret';
-const logger = pino({ level: 'info' });
 
 if (cluster.isPrimary) {
   const cpus = os.cpus().length;
