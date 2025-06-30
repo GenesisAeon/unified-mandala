@@ -4062,7 +4062,9 @@
   path: scripts/backup.sh
   task: Backup patterns, votes and sessions to S3 or Minio
   test: ""
+  status: done
 - commit: Configure Dependabot
   path: .github/dependabot.yml
   task: Keep npm and Docker dependencies up to date
   test: ""
+  status: done

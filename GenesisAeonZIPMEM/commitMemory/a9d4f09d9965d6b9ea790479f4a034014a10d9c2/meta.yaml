@@ -1,0 +1,13 @@
+commit: a9d4f09d9965d6b9ea790479f4a034014a10d9c2
+message: Add backup script and Dependabot config
+patch: changes.patch
+fragments: fragments
+files:
+  - .github/dependabot.yml
+  - advancedToDo.json
+  - advancedToDo.yaml
+  - scripts/backup.sh
+environment:
+  node: v22.16.0
+  pnpm: 10.5.2
+instructions: Apply patch with git apply or review for reference.

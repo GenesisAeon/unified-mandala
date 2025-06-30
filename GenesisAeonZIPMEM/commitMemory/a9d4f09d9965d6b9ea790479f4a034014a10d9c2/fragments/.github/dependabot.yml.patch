@@ -1,0 +1,24 @@
+diff --git a/.github/dependabot.yml b/.github/dependabot.yml
+new file mode 100644
+index 0000000..c5258fa
+--- /dev/null
++++ b/.github/dependabot.yml
+@@ -0,0 +1,18 @@
++version: 2
++updates:
++  - package-ecosystem: "npm"
++    directory: "/"
++    schedule:
++      interval: "weekly"
++  - package-ecosystem: "npm"
++    directory: "/packages"
++    schedule:
++      interval: "weekly"
++  - package-ecosystem: "npm"
++    directory: "/services"
++    schedule:
++      interval: "weekly"
++  - package-ecosystem: "docker"
++    directory: "/"
++    schedule:
++      interval: "weekly"
