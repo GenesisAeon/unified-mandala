@@ -1,0 +1,20 @@
+{
+  "title": "MandalaHaiku Metrics",
+  "time": {
+    "from": "now-1h",
+    "to": "now"
+  },
+  "panels": [
+    {
+      "type": "graph",
+      "title": "Haikus Generated",
+      "datasource": "Prometheus",
+      "targets": [
+        {
+          "expr": "mandala_haiku_generated_total",
+          "legendFormat": "haikus"
+        }
+      ]
+    }
+  ]
+}
