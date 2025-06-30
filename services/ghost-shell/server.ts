@@ -3,9 +3,8 @@ import http from 'http';
 import { Server } from 'socket.io';
 import { socketAuth } from './auth';
 import * as ws from 'ws';
-import { register } from 'prom-client';
-import { RateLimiterMemory } from 'rate-limiter-flexible';
-import pino from 'pino';
+import { rateLimit } from './ratelimit';
+import { logger } from './logger';
 import { listPlugins, getPlugin } from '../plugin-loader';
 import { metricsMiddleware, metricsEndpoint } from '../../packages/core/middleware/metrics';
 import path from 'path';
@@ -15,8 +14,6 @@ import { joinRoom, sendRoomMessage, leaveAll } from './rooms';
 
 export function startServer(port = 3000, secret = 'ghost-secret', enableSocket: boolean = true) {
   const app = express();
-  const logger = pino({ level: 'info' });
-  const wsLimiter = new RateLimiterMemory({ points: 10, duration: 60 });
 
   app.use(metricsMiddleware);
 
@@ -52,14 +49,7 @@ export function startServer(port = 3000, secret = 'ghost-secret', enableSocket: 
   if (enableSocket) {
     io = new Server(server, { cors: { origin: "*" }, wsEngine: ws.Server });
     io.use(socketAuth(secret));
-    io.use(async (_socket, next) => {
-      try {
-        await wsLimiter.consume(_socket.handshake.address);
-        next();
-      } catch {
-        next(new Error('Too many requests'));
-      }
-    });
+    io.use(rateLimit);
     io.on("connection", (socket) => {
       addSession(socket.id);
       recordConnection();
