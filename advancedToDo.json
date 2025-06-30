@@ -2165,25 +2165,29 @@
     "commit": "Add fragment watcher",
     "path": "services/ghost-shell/watchers/chokidar.ts",
     "task": "Trigger runSelfLearn when new conversation fragments arrive",
-    "test": "services/ghost-shell/watchers/chokidar.test.ts"
+    "test": "services/ghost-shell/watchers/chokidar.test.ts",
+    "status": "done"
   },
   {
     "commit": "Implement adaptive scheduler",
     "path": "services/ghost-shell/scheduler.ts",
     "task": "Adjust self learning interval by fragment count",
-    "test": "services/ghost-shell/scheduler.test.ts"
+    "test": "services/ghost-shell/scheduler.test.ts",
+    "status": "done"
   },
   {
     "commit": "Emit sigil alerts",
     "path": "services/ghost-shell/sigil-alerts.ts",
     "task": "Emit websocket event when energy threshold exceeded",
-    "test": "services/ghost-shell/sigil-alerts.test.ts"
+    "test": "services/ghost-shell/sigil-alerts.test.ts",
+    "status": "done"
   },
   {
     "commit": "Client handler for sigil alerts",
     "path": "public/js/sigil-alert-handler.js",
     "task": "Display pulsating sigil overlay on alert events",
-    "test": ""
+    "test": "",
+    "status": "done"
   },
   {
     "commit": "Add GhostShell room support",
