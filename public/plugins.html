@@ -1,0 +1,20 @@
+<div id="plugin-list"></div>
+<script>
+  fetch('/api/plugins')
+    .then(r => r.json())
+    .then(list => {
+      const container = document.getElementById('plugin-list');
+      list.forEach(m => {
+        const btn = document.createElement('button');
+        btn.textContent = `${m.name} (${m.version}) – ${m.type}`;
+        btn.onclick = () => {
+          fetch('/api/plugin/activate', {
+            method: 'POST',
+            body: JSON.stringify({ name: m.name }),
+            headers: { 'Content-Type': 'application/json' }
+          });
+        };
+        container.appendChild(btn);
+      });
+    });
+</script>
