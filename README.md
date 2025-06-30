@@ -58,6 +58,7 @@ Strategische Leitlinien stehen in [docs/agents/AgentStrategy.md](docs/agents/Age
 - [**CREPTimeline**](packages/unifiedmandala-ui/components/CREPTimeline.tsx) – chronologische Ansicht der CREP-Ereignisse
 - [**BackupManager**](packages/cli-tools/BackupManager.ts) – einfache Dateisicherungen
 - [**GlobalLoggingSystem**](packages/shared-utils/GlobalLoggingSystem.ts) – zentrale Log-Schnittstelle
+- [**Prometheus Metrics & Grafana Dashboard**](observability/README.md) – Haiku-Monitoring und Systemmetriken
 - [**Big-File Sigil**](docs/big-file-sigil.md) – Konzept zum Aufteilen großer Dateien
 - [**CREPWirkungstracker**](packages/shared-utils/CREPWirkungstracker.ts) – misst den Effekt aus CREP-Daten
 - [**CalendarSync**](packages/shared-utils/CalendarSync.ts) – exportiert priorisierte ToDos in Kalender
