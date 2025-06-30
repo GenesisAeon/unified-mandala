@@ -31,7 +31,7 @@ function loadPlugin(name: string) {
   manifests.set(name, manifest);
   const entryPath = path.join(PLUGIN_DIR, name, manifest.entry);
   const code = fs.readFileSync(entryPath, 'utf8');
-  const sandbox: any = { module: { exports: {} }, exports: {}, require, console };
+  const sandbox: any = { module: { exports: {} }, exports: {}, require, console, pluginMeta: manifest };
   vm.createContext(sandbox);
   vm.runInContext(code, sandbox, { filename: entryPath });
   modules.set(name, sandbox.module.exports || sandbox.exports);

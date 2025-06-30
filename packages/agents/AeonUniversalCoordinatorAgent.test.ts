@@ -4,11 +4,11 @@ import { AeonUniversalCoordinatorAgent } from "./AeonUniversalCoordinatorAgent";
 
 describe("AeonUniversalCoordinatorAgent", () => {
   const outputs = [
-    "tmp-aeon.ts",
-    "tmp-aeon.py",
-    "tmp-aeon.go",
-    "tmp-aeon.rs",
-    "tmp-aeon.js",
+    "tmp-aeon-all.ts",
+    "tmp-aeon-all.py",
+    "tmp-aeon-all.go",
+    "tmp-aeon-all.rs",
+    "tmp-aeon-all.js",
   ];
 
   afterEach(() => {
