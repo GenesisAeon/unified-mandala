@@ -1,0 +1,21 @@
+{
+  "dashboard": {
+    "uid": "mandala-metrics",
+    "title": "Mandala Metrics",
+    "panels": [
+      {
+        "type": "graph",
+        "title": "HTTP Requests",
+        "targets": [
+          {
+            "expr": "sum(rate(http_requests_total[1m])) by (route)",
+            "legendFormat": "{{route}}"
+          }
+        ],
+        "datasource": "Prometheus"
+      }
+    ],
+    "schemaVersion": 30,
+    "version": 1
+  }
+}

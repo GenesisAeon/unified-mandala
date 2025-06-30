@@ -3,13 +3,14 @@ import http from 'http';
 import { Server } from 'socket.io';
 import { socketAuth } from './auth';
 import * as ws from "ws";
-import { collectDefaultMetrics, register } from 'prom-client';
+import { register } from 'prom-client';
 import { listPlugins, getPlugin } from '../plugin-loader';
+import { metricsMiddleware, metricsEndpoint } from '../../packages/core/middleware/metrics';
 import path from 'path';
 
 export function startServer(port = 3000, secret = 'ghost-secret', enableSocket: boolean = true) {
-  collectDefaultMetrics();
   const app = express();
+  app.use(metricsMiddleware);
 
   app.use(express.static(path.join(__dirname, '..', 'public')));
 
@@ -17,10 +18,7 @@ export function startServer(port = 3000, secret = 'ghost-secret', enableSocket: 
     res.json({ ok: true });
   });
 
-  app.get('/metrics', async (_req, res) => {
-    res.set('Content-Type', register.contentType);
-    res.end(await register.metrics());
-  });
+  app.get('/metrics', metricsEndpoint);
 
   app.get('/api/plugins', (_req, res) => {
     res.json(listPlugins());
