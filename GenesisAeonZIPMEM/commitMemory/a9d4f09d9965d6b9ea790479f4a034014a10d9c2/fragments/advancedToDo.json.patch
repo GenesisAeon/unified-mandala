@@ -1,0 +1,21 @@
+diff --git a/advancedToDo.json b/advancedToDo.json
+index 6f95b69..7666f37 100644
+--- a/advancedToDo.json
++++ b/advancedToDo.json
+@@ -2240,12 +2240,14 @@
+     "commit": "Setup backup script",
+     "path": "scripts/backup.sh",
+     "task": "Backup patterns, votes and sessions to S3 or Minio",
+-    "test": ""
++    "test": "",
++    "status": "done"
+   },
+   {
+     "commit": "Configure Dependabot",
+     "path": ".github/dependabot.yml",
+     "task": "Keep npm and Docker dependencies up to date",
+-    "test": ""
++    "test": "",
++    "status": "done"
+   }
+ ]
