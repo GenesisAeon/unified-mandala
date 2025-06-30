@@ -14,9 +14,10 @@ describe('mandalaHaiku plugin', () => {
 
     socket.on('haiku_response', (data: any) => {
       expect(typeof data.haiku).toBe('string');
+      expect(data.sigil).toBe('aeon:2025-0626-HIGH-ENERGY');
       done();
     });
 
-    socket.emit('sigil_alert', { id: 'aeon:2025-0626-HIGH-ENERGY', crep: {} });
+    socket.emit('sigil_alert', { id: 'aeon:2025-0626-HIGH-ENERGY', crep: 0.9, symbol: '\ud83c\udf1f' });
   });
 });
