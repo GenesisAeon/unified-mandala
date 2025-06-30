@@ -3985,3 +3985,43 @@
   path: services/ghost-shell/session-store.ts
   task: Track WebSocket message history per client
   test: services/ghost-shell/session-store.test.ts
+- commit: Add GhostShell cluster manager
+  path: services/ghost-shell/cluster.js
+  task: Start Node.js cluster of GhostShellAgent workers using `cluster` API
+  test: services/ghost-shell/cluster.test.ts
+- commit: Add WebSocket JWT middleware
+  path: services/ghost-shell/auth.ts
+  task: Verify tokens on websocket connections
+  test: services/ghost-shell/auth.test.ts
+- commit: Add GhostShell rate limiter
+  path: services/ghost-shell/ratelimit.ts
+  task: Limit incoming socket events with rate-limiter-flexible
+  test: services/ghost-shell/ratelimit.test.ts
+- commit: Expose GhostShell Prometheus metrics
+  path: services/ghost-shell/metrics.ts
+  task: Export connection counter and latency gauge
+  test: services/ghost-shell/metrics.test.ts
+- commit: Integrate Pino logger
+  path: services/ghost-shell/logger.ts
+  task: Provide structured logging for GhostShellAgent
+  test: services/ghost-shell/logger.test.ts
+- commit: Add fragment watcher
+  path: services/ghost-shell/watchers/chokidar.ts
+  task: Trigger runSelfLearn when new conversation fragments arrive
+  test: services/ghost-shell/watchers/chokidar.test.ts
+- commit: Implement adaptive scheduler
+  path: services/ghost-shell/scheduler.ts
+  task: Adjust self learning interval by fragment count
+  test: services/ghost-shell/scheduler.test.ts
+- commit: Emit sigil alerts
+  path: services/ghost-shell/sigil-alerts.ts
+  task: Emit websocket event when energy threshold exceeded
+  test: services/ghost-shell/sigil-alerts.test.ts
+- commit: Client handler for sigil alerts
+  path: public/js/sigil-alert-handler.js
+  task: Display pulsating sigil overlay on alert events
+  test: ""
+- commit: Add GhostShell room support
+  path: services/ghost-shell/rooms.ts
+  task: Manage join_room and room_message events for collaborative sessions
+  test: services/ghost-shell/rooms.test.ts
