@@ -10,6 +10,8 @@ import { listPlugins, getPlugin } from '../plugin-loader';
 import { metricsMiddleware, metricsEndpoint } from '../../packages/core/middleware/metrics';
 import path from 'path';
 import { addSession, getSession, removeSession } from './session-store';
+import { recordConnection, recordLatency } from './metrics';
+import { joinRoom, sendRoomMessage, leaveAll } from './rooms';
 
 export function startServer(port = 3000, secret = 'ghost-secret', enableSocket: boolean = true) {
   const app = express();
@@ -60,15 +62,29 @@ export function startServer(port = 3000, secret = 'ghost-secret', enableSocket: 
     });
     io.on("connection", (socket) => {
       addSession(socket.id);
+      recordConnection();
+
+      socket.on("join_room", (roomId: string) => {
+        joinRoom(socket, roomId);
+      });
+
+      socket.on("room_message", ({ roomId, msg }) => {
+        sendRoomMessage(io!, roomId, msg);
+      });
+
       socket.on("user_message", (msg) => {
+        const start = Date.now();
         const session = getSession(socket.id);
         if (session) {
           session.history.push(msg);
         }
         socket.emit("echo", msg);
+        recordLatency(Date.now() - start);
       });
+
       socket.on("disconnect", () => {
         removeSession(socket.id);
+        leaveAll(socket);
       });
     });
   }
