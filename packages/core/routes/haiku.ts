@@ -1,6 +1,7 @@
 import express from 'express';
 import rateLimit from 'express-rate-limit';
 import jwt from 'jsonwebtoken';
+import { haikuVoteCounter } from '../../../services/metrics';
 
 interface JwtUser {
   id: string;
@@ -30,6 +31,7 @@ export default function haikuRoutes(secret: string) {
   router.post('/vote', auth(secret), limiter, express.json(), (req, res) => {
     const { haiku, delta } = req.body;
     store.push({ haiku, delta, ts: Date.now() });
+    haikuVoteCounter.inc();
     res.sendStatus(204);
   });
 
