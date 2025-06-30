@@ -9,6 +9,7 @@ import pino from 'pino';
 import { listPlugins, getPlugin } from '../plugin-loader';
 import { metricsMiddleware, metricsEndpoint } from '../../packages/core/middleware/metrics';
 import path from 'path';
+import { addSession, getSession, removeSession } from './session-store';
 
 export function startServer(port = 3000, secret = 'ghost-secret', enableSocket: boolean = true) {
   const app = express();
@@ -58,7 +59,17 @@ export function startServer(port = 3000, secret = 'ghost-secret', enableSocket: 
       }
     });
     io.on("connection", (socket) => {
-      socket.on("echo", (msg) => socket.emit("echo", msg));
+      addSession(socket.id);
+      socket.on("user_message", (msg) => {
+        const session = getSession(socket.id);
+        if (session) {
+          session.history.push(msg);
+        }
+        socket.emit("echo", msg);
+      });
+      socket.on("disconnect", () => {
+        removeSession(socket.id);
+      });
     });
   }
 
