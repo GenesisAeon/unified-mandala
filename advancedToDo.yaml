@@ -4034,10 +4034,13 @@
   path: services/ghost-shell/rooms.ts
   task: Manage join_room and room_message events for collaborative sessions
   test: services/ghost-shell/rooms.test.ts
+  status: done
 - commit: Add multi-stage Dockerfiles
   path: Dockerfile
-  task: Build optimized containers for API, socket server and frontend using multi-stage builds
+  task: Build optimized containers for API, socket server and frontend using
+    multi-stage builds
   test: ""
+  status: done
 - commit: Create Kubernetes Helm chart
   path: charts/ghostshell/Chart.yaml
   task: Provide Deployment, Service and Ingress with TLS and HPA
@@ -4046,6 +4049,7 @@
   path: .github/workflows/ci.yaml
   task: Run lint, build, tests and deploy Helm chart via GitHub Actions
   test: ""
+  status: done
 - commit: Automate release tagging
   path: .github/workflows/release.yaml
   task: Tag new version when merging into main
@@ -4054,6 +4058,7 @@
   path: scripts/generate-changelog.js
   task: Generate CHANGELOG.md from commit messages
   test: ""
+  status: done
 - commit: Implement plugin registry admin panel
   path: apps/plugin-registry
   task: Manage plugin review, blacklist and version lock
@@ -4068,3 +4073,4 @@
   task: Keep npm and Docker dependencies up to date
   test: ""
   status: done
+

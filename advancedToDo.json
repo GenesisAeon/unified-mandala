@@ -2198,13 +2198,15 @@
     "commit": "Add GhostShell room support",
     "path": "services/ghost-shell/rooms.ts",
     "task": "Manage join_room and room_message events for collaborative sessions",
-    "test": "services/ghost-shell/rooms.test.ts"
+    "test": "services/ghost-shell/rooms.test.ts",
+    "status": "done"
   },
   {
     "commit": "Add multi-stage Dockerfiles",
     "path": "Dockerfile",
     "task": "Build optimized containers for API, socket server and frontend using multi-stage builds",
-    "test": ""
+    "test": "",
+    "status": "done"
   },
   {
     "commit": "Create Kubernetes Helm chart",
@@ -2216,7 +2218,8 @@
     "commit": "Add CI pipeline",
     "path": ".github/workflows/ci.yaml",
     "task": "Run lint, build, tests and deploy Helm chart via GitHub Actions",
-    "test": ""
+    "test": "",
+    "status": "done"
   },
   {
     "commit": "Automate release tagging",
@@ -2228,7 +2231,8 @@
     "commit": "Add changelog generator",
     "path": "scripts/generate-changelog.js",
     "task": "Generate CHANGELOG.md from commit messages",
-    "test": ""
+    "test": "",
+    "status": "done"
   },
   {
     "commit": "Implement plugin registry admin panel",
