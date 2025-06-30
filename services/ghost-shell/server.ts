@@ -11,6 +11,11 @@ import path from 'path';
 import { addSession, getSession, removeSession } from './session-store';
 import { recordConnection, recordLatency } from './metrics';
 import { joinRoom, sendRoomMessage, leaveAll } from './rooms';
+import { watchFragments } from './watchers/chokidar';
+import { scheduleAdaptive } from './scheduler';
+import { runSelfLearn } from '../../scripts/self-learn';
+import { emitSigilAlert } from './sigil-alerts';
+import { glob } from 'glob';
 
 export function startServer(port = 3000, secret = 'ghost-secret', enableSocket: boolean = true) {
   const app = express();
@@ -69,6 +74,7 @@ export function startServer(port = 3000, secret = 'ghost-secret', enableSocket: 
           session.history.push(msg);
         }
         socket.emit("echo", msg);
+        emitSigilAlert(socket, { energy: Math.random() });
         recordLatency(Date.now() - start);
       });
 
@@ -82,6 +88,21 @@ export function startServer(port = 3000, secret = 'ghost-secret', enableSocket: 
   server.listen(port, () => {
     logger.info(`GhostShellAgent listening on ${port}`);
   });
+
+  const fragmentsPattern = path.join(
+    __dirname,
+    '..',
+    '..',
+    'GenesisAeonZIPMEM',
+    'newadvancedconversations',
+    '**',
+    '*.yaml'
+  );
+  watchFragments(fragmentsPattern);
+  scheduleAdaptive(
+    () => glob(fragmentsPattern).then((files) => files.length),
+    runSelfLearn
+  );
 
   return { app, io, server };
 }
