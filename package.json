@@ -28,7 +28,8 @@
     "generate:agents-diagram": "node scripts/generate-agents-diagram.js",
     "generate:agent-docs": "node scripts/generate-agent-docs.js",
     "qa": "ts-node scripts/qa-test-runner.ts",
-    "store:commit-memory": "node GenesisAeonZIPMEM/commitMemory/commit-memory.js"
+    "store:commit-memory": "node GenesisAeonZIPMEM/commitMemory/commit-memory.js",
+    "generate:changelog": "node scripts/generate-changelog.js"
   },
   "dependencies": {
     "ajv": "^8.0.0",
