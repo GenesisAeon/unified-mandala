@@ -1,0 +1,10 @@
+name: "mandalaHaiku"
+type: "agent"
+description: "Generiert poetische Haikus bei High-Energy-Sigil-Alerts."
+version: "1.0.0"
+author: "AeonDev"
+entry: "mandalaHaiku.js"
+apiVersion: "1.0"
+permissions:
+  - "listen:sigil_alert"
+  - "emit:haiku_response"
