@@ -26,7 +26,12 @@ export class AeonMembraneAgent implements Agent {
       pairs.push([task.description.length, task.id.length]);
     }
     const answers = pairs.map(() => 1);
-    const res = this.mem.harmonize(pairs, answers, task.description, 2);
+    const res = this.mem.harmonize({
+      data: pairs,
+      answers,
+      text: task.description,
+      energyThreshold: 2
+    });
     const sig = res.conv.crepSignature;
     const crepScore =
       (sig.coherence + sig.resonance + sig.emergence + sig.poetics) / 40;

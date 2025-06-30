@@ -44,7 +44,9 @@
     "mitt": "^3.0.0",
     "nats": "^2.29.3",
     "node-fetch": "2",
+    "pino": "^9.7.0",
     "prom-client": "^15.1.0",
+    "rate-limiter-flexible": "^7.1.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-tooltip": "^5.18.0",
@@ -52,8 +54,8 @@
     "socket.io": "^4.7.5",
     "socket.io-client": "^4.7.5",
     "three": "^0.161.0",
-    "yaml": "^2.8.0",
-    "ws": "^8.17.0"
+    "ws": "^8.17.0",
+    "yaml": "^2.8.0"
   },
   "devDependencies": {
     "@mermaid-js/mermaid-cli": "^11.6.0",
@@ -70,8 +72,10 @@
     "@types/react": "^18.2.21",
     "@types/react-dom": "^18.2.7",
     "@types/react-tooltip": "^4.2.4",
+    "@types/socket.io": "^3.0.2",
     "@types/supertest": "^6.0.3",
     "@types/three": "^0.164.0",
+    "@types/ws": "^8.5.10",
     "husky": "^9.0.0",
     "jest": "^30.0.2",
     "jest-environment-jsdom": "30.0.0-beta.3",
@@ -81,8 +85,6 @@
     "ts-node": "^10.9.2",
     "typedoc": "^0.28.5",
     "typescript": "^5.4.0",
-    "vitest": "^3.2.4",
-    "@types/socket.io": "^3.0.2",
-    "@types/ws": "^8.5.10"
+    "vitest": "^3.2.4"
   }
 }
