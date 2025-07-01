@@ -2212,7 +2212,8 @@
     "commit": "Create Kubernetes Helm chart",
     "path": "charts/ghostshell/Chart.yaml",
     "task": "Provide Deployment, Service and Ingress with TLS and HPA",
-    "test": "ci/helm/helm.test.sh"
+    "test": "ci/helm/helm.test.sh",
+    "status": "done"
   },
   {
     "commit": "Add CI pipeline",
@@ -2271,6 +2272,7 @@
     "commit": "Blockchain-based plugin trust",
     "path": "services/ghost-shell/blockchain-trust.ts",
     "task": "Verify plugin manifest signatures via blockchain ledger",
-    "test": ""
+    "test": "",
+    "status": "done"
   }
 ]

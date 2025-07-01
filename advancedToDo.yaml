@@ -4045,6 +4045,7 @@
   path: charts/ghostshell/Chart.yaml
   task: Provide Deployment, Service and Ingress with TLS and HPA
   test: ci/helm/helm.test.sh
+  status: done
 - commit: Add CI pipeline
   path: .github/workflows/ci.yaml
   task: Run lint, build, tests and deploy Helm chart via GitHub Actions
@@ -4086,4 +4087,5 @@
   path: services/ghost-shell/blockchain-trust.ts
   task: Verify plugin manifest signatures via blockchain ledger
   test: ""
+  status: done
 
