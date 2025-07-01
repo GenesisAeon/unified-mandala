@@ -9,3 +9,14 @@ Diese Komponente stellt einen skalierbaren WebSocket-Dienst bereit. Sie nutzt da
 * Strukturierte Logs mit `pino`
 * Prometheus-Metriken unter `/metrics`
 * Beispielhafter Echo-Channel
+
+## Konfigurationsvariablen
+
+Das mitgelieferte `ghostshell.conf` verwendet Platzhalter, die zur Laufzeit 
+mit Umgebungsvariablen ersetzt werden können.
+
+| Variable   | Beschreibung                                             | Standard |
+|-----------|-----------------------------------------------------------|----------|
+| `PORT_BASE` | Port des ersten Node.js-Workers im Upstream              | `3000`   |
+| `PORT_NEXT` | Port des zweiten Node.js-Workers im Upstream             | `3001`   |
+
