@@ -18,4 +18,11 @@ describe('ghost-shell server', () => {
     expect(res.status).toBe(200);
     expect(res.body).toEqual({ ok: true });
   });
+
+  it('rejects invalid plugin manifest', async () => {
+    const res = await request(`http://localhost:${PORT}`)
+      .post('/api/plugin/activate')
+      .send({ name: 'mandalaHaiku' });
+    expect(res.status).toBe(400);
+  });
 });
