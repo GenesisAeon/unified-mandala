@@ -1,0 +1,11 @@
+replicaCount: 1
+image:
+  repository: ghostshell/agent
+  tag: latest
+service:
+  type: ClusterIP
+  port: 80
+ingress:
+  enabled: true
+  host: ghostshell.local
+  tls: true
