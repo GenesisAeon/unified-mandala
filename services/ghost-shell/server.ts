@@ -6,6 +6,7 @@ import * as ws from 'ws';
 import { rateLimit } from './ratelimit';
 import { logger } from './logger';
 import { listPlugins, getPlugin } from '../plugin-loader';
+import { verifyPluginManifest } from './blockchain-trust';
 import { metricsMiddleware, metricsEndpoint } from '../../packages/core/middleware/metrics';
 import path from 'path';
 import { addSession, getSession, removeSession } from './session-store';
@@ -38,8 +39,12 @@ export function startServer(port = 3000, secret = 'ghost-secret', enableSocket: 
     const { name } = req.body;
     try {
       const plugin = getPlugin(name);
-      if (!plugin || typeof plugin.initialize !== 'function') {
+      const manifest = listPlugins().find((p) => p.name === name) as any;
+      if (!plugin || typeof plugin.initialize !== 'function' || !manifest) {
         throw new Error('Invalid plugin');
+      }
+      if (!verifyPluginManifest(manifest)) {
+        throw new Error('Manifest verification failed');
       }
       plugin.initialize({ io, logger: (msg: string) => logger.info(msg), getPlugin });
       res.sendStatus(204);
