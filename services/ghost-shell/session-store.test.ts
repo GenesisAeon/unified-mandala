@@ -1,15 +1,32 @@
-import { addSession, getSession, removeSession } from './session-store';
+import {
+  addSession,
+  addHistory,
+  configureSessionStore,
+  getSession,
+  pruneSessions,
+  removeSession,
+} from './session-store';
+
+jest.useFakeTimers();
 
 describe('session store', () => {
-  it('tracks sessions and history', () => {
+  beforeEach(() => {
+    configureSessionStore({ ttlMs: 1000, maxHistory: 2 });
+  });
+
+  it('tracks sessions and prunes history', () => {
     addSession('1');
-    const session = getSession('1');
-    expect(session).toBeDefined();
-    if (session) {
-      session.history.push('hello');
-    }
-    expect(getSession('1')?.history).toEqual(['hello']);
+    addHistory('1', 'a');
+    addHistory('1', 'b');
+    addHistory('1', 'c');
+    expect(getSession('1')?.history).toEqual(['b', 'c']);
     removeSession('1');
-    expect(getSession('1')).toBeUndefined();
+  });
+
+  it('expires sessions after ttl', () => {
+    addSession('2');
+    jest.advanceTimersByTime(1500);
+    pruneSessions();
+    expect(getSession('2')).toBeUndefined();
   });
 });
