@@ -21,6 +21,26 @@ const manifests = new Map<string, PluginManifest>();
 const modules = new Map<string, any>();
 const emitter = new EventEmitter();
 
+const ALLOWED_MODULES = new Set([
+  'fs',
+  'path',
+  'events',
+  'prom-client'
+]);
+
+function createSandboxRequire(pluginDir: string) {
+  return function sandboxRequire(mod: string) {
+    if (mod.startsWith('./') || mod.startsWith('../')) {
+      const resolved = require.resolve(path.join(pluginDir, mod));
+      return require(resolved);
+    }
+    if (!ALLOWED_MODULES.has(mod)) {
+      throw new Error(`Module ${mod} is not allowed in plugin sandbox`);
+    }
+    return require(mod);
+  };
+}
+
 function loadPlugin(name: string) {
   const manifestPath = path.join(PLUGIN_DIR, name, 'manifest.yaml');
   const content = fs.readFileSync(manifestPath, 'utf8');
@@ -29,9 +49,11 @@ function loadPlugin(name: string) {
     throw new Error(`Plugin ${name} expects API ${manifest.apiVersion}, core is ${CORE_API_VERSION}`);
   }
   manifests.set(name, manifest);
-  const entryPath = path.join(PLUGIN_DIR, name, manifest.entry);
+  const pluginDir = path.join(PLUGIN_DIR, name);
+  const entryPath = path.join(pluginDir, manifest.entry);
   const code = fs.readFileSync(entryPath, 'utf8');
-  const sandbox: any = { module: { exports: {} }, exports: {}, require, console, pluginMeta: manifest };
+  const sandboxRequire = createSandboxRequire(pluginDir);
+  const sandbox: any = { module: { exports: {} }, exports: {}, require: sandboxRequire, console, pluginMeta: manifest };
   vm.createContext(sandbox);
   vm.runInContext(code, sandbox, { filename: entryPath });
   modules.set(name, sandbox.module.exports || sandbox.exports);
