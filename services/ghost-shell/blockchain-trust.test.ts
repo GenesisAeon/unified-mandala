@@ -1,5 +1,7 @@
+/* @jest-environment node */
 import fs from "fs";
 import path from "path";
+import crypto from "crypto";
 import { verifyPluginManifest } from "./blockchain-trust";
 
 const ledgerPath = path.resolve(
@@ -11,9 +13,15 @@ describe("blockchain trust", () => {
   const original = fs.existsSync(ledgerPath)
     ? fs.readFileSync(ledgerPath, "utf8")
     : null;
+  let privateKey: crypto.KeyObject;
 
   beforeAll(() => {
-    fs.writeFileSync(ledgerPath, JSON.stringify(["test-sig"]));
+    const { publicKey, privateKey: priv } = crypto.generateKeyPairSync("rsa", {
+      modulusLength: 2048,
+    });
+    privateKey = priv;
+    const pubPem = publicKey.export({ type: "pkcs1", format: "pem" }).toString();
+    fs.writeFileSync(ledgerPath, JSON.stringify([pubPem]));
   });
 
   afterAll(() => {
@@ -25,12 +33,21 @@ describe("blockchain trust", () => {
   });
 
   it("verifies manifest signature", () => {
-    const manifest = { name: "p", signature: "test-sig" };
+    const sign = crypto.createSign("SHA256");
+    sign.update("p");
+    sign.end();
+    const signature = sign.sign(privateKey, "base64");
+    const manifest = { name: "p", signature };
     expect(verifyPluginManifest(manifest)).toBe(true);
   });
 
   it("rejects unknown signature", () => {
-    const manifest = { name: "p", signature: "bad" };
+    const other = crypto.generateKeyPairSync("rsa", { modulusLength: 2048 });
+    const sign = crypto.createSign("SHA256");
+    sign.update("p");
+    sign.end();
+    const bad = sign.sign(other.privateKey, "base64");
+    const manifest = { name: "p", signature: bad };
     expect(verifyPluginManifest(manifest)).toBe(false);
   });
 });
