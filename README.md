@@ -291,6 +291,20 @@ npm run build # oder: yarn build
 npm run dev   # oder: yarn dev
 ```
 
+## 🌐 Nginx Reverse Proxy
+
+Für den Clusterbetrieb liegt eine Beispielkonfiguration unter
+`config/nginx/ghostshell.conf`. Der `upstream`-Block listet die lokalen Worker-
+Ports und die Proxy-Location übergibt automatisch WebSocket-Header.
+
+1. Datei nach `/etc/nginx/conf.d/ghostshell.conf` kopieren.
+2. Variablen `PORT_BASE` und `PORT_NEXT` (bzw. `WORKER_COUNT` oder `PORT_RANGE`)
+   anpassen oder `pnpm generate:ghostshell-nginx` verwenden.
+3. Nginx neu laden: `sudo nginx -t && sudo systemctl reload nginx`.
+
+Damit werden mehrere Node.js-Worker über Port 80 erreichbar und WebSocket-
+Verbindungen durchgereicht.
+
 ## 🌀 Mandala-Poesie und Automation
 
 Verwende `./scripts/aeon.sh <command>` für alle CLI-Aufrufe.
