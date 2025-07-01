@@ -19,4 +19,10 @@ mit Umgebungsvariablen ersetzt werden können.
 |-----------|-----------------------------------------------------------|----------|
 | `PORT_BASE` | Port des ersten Node.js-Workers im Upstream              | `3000`   |
 | `PORT_NEXT` | Port des zweiten Node.js-Workers im Upstream             | `3001`   |
+| `WORKER_COUNT` | Anzahl der Worker-Prozesse bei automatischer Generierung | CPUs |
+| `PORT_RANGE` | Portbereich aller Worker, z. B. `3000-3007`              | - |
+
+Die Nginx-Konfiguration kann mit `pnpm generate:ghostshell-nginx` aus diesen
+Variablen erzeugt werden. Dabei wird für jeden Worker-Port ein Eintrag im
+Upstream-Block generiert.
 

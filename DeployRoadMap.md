@@ -74,6 +74,12 @@ server {
 sudo ln -s /etc/nginx/sites-available/mandala.conf /etc/nginx/sites-enabled/
 sudo nginx -t && sudo systemctl reload nginx
 
+Bei einem GhostShellAgent im Cluster-Modus musst du alle Worker-Ports an Nginx
+weiterleiten. Erzeuge die Upstream-Datei mit
+`pnpm generate:ghostshell-nginx` (Variablen `PORT_BASE` und `WORKER_COUNT` oder
+`PORT_RANGE` setzen) und binde sie anschließend unter
+`/etc/nginx/conf.d/ghostshell.conf` ein.
+
 SSL aktivieren (Let’s Encrypt):
 
     sudo apt install certbot python3-certbot-nginx
