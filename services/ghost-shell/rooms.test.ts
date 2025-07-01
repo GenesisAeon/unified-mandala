@@ -1,4 +1,4 @@
-import { joinRoom, sendRoomMessage, leaveAll, getRoomMembers } from './rooms';
+import { joinRoom, sendRoomMessage, leaveAll, leaveRoom, getRoomMembers } from './rooms';
 
 describe('rooms', () => {
   it('handles join and messaging', () => {
@@ -16,5 +16,20 @@ describe('rooms', () => {
 
     leaveAll(socket);
     expect(getRoomMembers('r1')).toEqual([]);
+  });
+
+  it('removes a socket from a single room', () => {
+    const socket: any = { id: 's2', join: jest.fn(), leave: jest.fn() };
+
+    joinRoom(socket, 'roomA');
+    joinRoom(socket, 'roomB');
+
+    leaveRoom(socket, 'roomA');
+
+    expect(socket.leave).toHaveBeenCalledWith('roomA');
+    expect(getRoomMembers('roomA')).toEqual([]);
+    expect(getRoomMembers('roomB')).toEqual(['s2']);
+
+    leaveAll(socket);
   });
 });

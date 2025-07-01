@@ -11,7 +11,7 @@ import { metricsMiddleware, metricsEndpoint } from '../../packages/core/middlewa
 import path from 'path';
 import { addSession, getSession, removeSession } from './session-store';
 import { recordConnection, recordLatency } from './metrics';
-import { joinRoom, sendRoomMessage, leaveAll } from './rooms';
+import { joinRoom, sendRoomMessage, leaveAll, leaveRoom } from './rooms';
 import { watchFragments } from './watchers/chokidar';
 import { scheduleAdaptive } from './scheduler';
 import { runSelfLearn } from '../../scripts/self-learn';
@@ -71,6 +71,10 @@ export function startServer(port = 3000, secret = 'ghost-secret', enableSocket: 
 
       socket.on("join_room", (roomId: string) => {
         joinRoom(socket, roomId);
+      });
+
+      socket.on("leave_room", (roomId: string) => {
+        leaveRoom(socket, roomId);
       });
 
       socket.on("room_message", ({ roomId, msg }) => {
