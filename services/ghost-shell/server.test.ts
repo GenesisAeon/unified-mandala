@@ -19,6 +19,12 @@ describe('ghost-shell server', () => {
     expect(res.body).toEqual({ ok: true });
   });
 
+  it('responds to readyz', async () => {
+    const res = await request(`http://localhost:${PORT}`).get('/readyz');
+    expect(res.status).toBe(200);
+    expect(res.body).toEqual({ ready: true });
+  });
+
   it('rejects invalid plugin manifest', async () => {
     const res = await request(`http://localhost:${PORT}`)
       .post('/api/plugin/activate')
