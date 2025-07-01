@@ -20,6 +20,7 @@ import { glob } from 'glob';
 
 export function startServer(port = 3000, secret = 'ghost-secret', enableSocket: boolean = true) {
   const app = express();
+  let ready = false;
 
   app.use(metricsMiddleware);
 
@@ -27,6 +28,10 @@ export function startServer(port = 3000, secret = 'ghost-secret', enableSocket: 
 
   app.get('/healthz', (_req, res) => {
     res.json({ ok: true });
+  });
+
+  app.get('/readyz', (_req, res) => {
+    res.json({ ready });
   });
 
   app.get('/metrics', metricsEndpoint);
@@ -91,6 +96,7 @@ export function startServer(port = 3000, secret = 'ghost-secret', enableSocket: 
   }
 
   server.listen(port, () => {
+    ready = true;
     logger.info(`GhostShellAgent listening on ${port}`);
   });
 
