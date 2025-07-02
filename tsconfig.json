@@ -15,6 +15,7 @@
     "packages/**/*",
     "services/**/*",
     "scripts/**/*.ts",
-    "aws/**/*"
+    "aws/**/*",
+    "types/**/*.d.ts"
   ]
 }

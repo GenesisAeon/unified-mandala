@@ -3288,6 +3288,7 @@
   {
     "commit": "feat: add GenesisGPTGateway",
     "path": "packages/agents/GenesisGPTGateway.ts",
+    "status": "done",
     "task": "Invoke specialized GPT modules via share links",
     "test": "packages/agents/GenesisGPTGateway.test.ts"
   },
