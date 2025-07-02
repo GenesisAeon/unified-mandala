@@ -845,6 +845,7 @@
   path: apps/plugin-registry
   task: Manage plugin review, blacklist and version lock
   test: ''
+  status: done
 - commit: Setup backup script
   path: scripts/backup.sh
   task: Backup patterns, votes and sessions to S3 or Minio
