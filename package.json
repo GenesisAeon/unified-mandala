@@ -60,7 +60,8 @@
     "socket.io-client": "^4.7.5",
     "three": "^0.161.0",
     "ws": "^8.17.0",
-    "yaml": "^2.8.0"
+    "yaml": "^2.8.0",
+    "@grpc/grpc-js": "^1.9.10"
   },
   "devDependencies": {
     "@mermaid-js/mermaid-cli": "^11.6.0",
