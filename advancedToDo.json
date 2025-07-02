@@ -2966,5 +2966,17 @@
     "path": "packages/universum-simulationen/modules/DarkMatterWhiteMatterBalancer.ts",
     "task": "Balance cold dark matter and hot white matter dynamics",
     "test": "packages/universum-simulationen/__tests__/DarkMatterWhiteMatterBalancer.test.ts"
+  },
+  {
+    "commit": "feat: add NachtAtmo simulation module",
+    "path": "packages/universum-simulationen/NachtAtmo.ts",
+    "task": "Render layered starfield with parallax for Resonarium night scenes",
+    "test": "packages/universum-simulationen/NachtAtmo.test.ts"
+  },
+  {
+    "commit": "feat: add RaumzeitLichtmodell module",
+    "path": "packages/universum-simulationen/RaumzeitLichtmodell.ts",
+    "task": "Model overlapping light paths to explore local spacetime effects",
+    "test": "packages/universum-simulationen/RaumzeitLichtmodell.test.ts"
   }
 ]
