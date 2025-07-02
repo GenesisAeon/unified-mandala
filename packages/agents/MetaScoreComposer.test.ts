@@ -1,3 +1,4 @@
+import { describe, it, test, expect, beforeEach, afterEach, vi } from 'vitest';
 import { MetaScoreComposer, MetaScore } from './MetaScoreComposer';
 
 const composer = new MetaScoreComposer();

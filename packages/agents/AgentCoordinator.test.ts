@@ -1,3 +1,4 @@
+import { describe, it, test, expect, beforeEach, afterEach, vi } from 'vitest';
 import { AgentCoordinator, CoordinatedAgent } from './AgentCoordinator';
 
 test('runs agents in priority order when crep high', async () => {

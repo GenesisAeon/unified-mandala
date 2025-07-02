@@ -1,3 +1,4 @@
+import { describe, it, test, expect, beforeAll, afterAll, beforeEach, afterEach, vi } from 'vitest';
 import fs from 'fs';
 import path from 'path';
 import { GenesisAeonNavigator } from './GenesisAeonNavigator';
@@ -14,10 +15,10 @@ describe('GenesisAeonNavigator', () => {
   });
 
   beforeEach(() => {
-    jest.spyOn(GPTEventHub, 'emit');
+    vi.spyOn(GPTEventHub, 'emit');
   });
   afterEach(() => {
-    jest.restoreAllMocks();
+    vi.restoreAllMocks();
   });
 
   it('navigates and emits event', () => {
@@ -40,7 +41,7 @@ describe('GenesisAeonNavigator', () => {
   });
 
   it('handles missing phase map gracefully', () => {
-    jest.spyOn(console, 'error').mockImplementation(() => {});
+    vi.spyOn(console, 'error').mockImplementation(() => {});
     const nav = new GenesisAeonNavigator({ phaseMapPath: 'nope.json' });
     nav.navigate('init');
     expect((console.error as jest.Mock).mock.calls.length).toBeGreaterThan(0);
