@@ -2576,5 +2576,23 @@
     "path": "packages/agents/FutureTechFramework.ts",
     "task": "Launch Genesis FutureTech systems with orchestration",
     "test": "packages/agents/__tests__/FutureTechFramework.test.ts"
+  },
+  {
+    "commit": "feat: add BinaryExistenceMatrix simulation",
+    "path": "packages/universum-simulationen/binary_existence_matrix.py",
+    "task": "Simulate binäre Existenzstruktur with nullmembrane matrix",
+    "test": "packages/universum-simulationen/binary_existence_matrix.test.py"
+  },
+  {
+    "commit": "chore: scaffold WVH simulation modules",
+    "path": "packages/universum-simulationen/modules",
+    "task": "Create modular simulation files like S01_Weissloch_Entstehung.py",
+    "test": "packages/universum-simulationen/__tests__/modules.test.ts"
+  },
+  {
+    "commit": "feat: add OvernightWorkerAgent",
+    "path": "packages/agents/OvernightWorkerAgent.ts",
+    "task": "Maintain nightly analysis and orchestrate progress",
+    "test": "packages/agents/__tests__/OvernightWorkerAgent.test.ts"
   }
 ]
