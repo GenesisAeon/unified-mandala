@@ -14,3 +14,5 @@ jobs:
       - name: Run Go tests
         run: |
           go test ./services/vector-indexer
+      - name: Package Lambda@Edge
+        run: ./scripts/package-lambda-edge.sh
