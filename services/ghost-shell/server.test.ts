@@ -33,4 +33,10 @@ describe('ghost-shell server', () => {
       .send({ name: 'mandalaHaiku' });
     expect(res.status).toBe(400);
   });
+
+  it('exposes prometheus metrics', async () => {
+    const res = await request(`http://localhost:${PORT}`).get('/metrics');
+    expect(res.status).toBe(200);
+    expect(res.text).toContain('ghost_connections_total');
+  });
 });
