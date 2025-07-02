@@ -4506,3 +4506,23 @@
   path: packages/unifiedmandala-ui/components/SoforthilfeOverlay.tsx
   task: Implement emergency overlay with focus trap and keyboard handling
   test: packages/unifiedmandala-ui/components/__tests__/SoforthilfeOverlay.test.tsx
+- commit: "feat: add SimHostCore for universe simulations"
+  path: packages/universum-simulationen/SimHostCore.ts
+  task: Provide base class to register and run simulation modules
+  test: packages/universum-simulationen/SimHostCore.test.ts
+- commit: "feat: add sound resonance module"
+  path: packages/universum-simulationen/SoundResonanceModule.ts
+  task: Generate wave-based resonance data
+  test: packages/universum-simulationen/SoundResonanceModule.test.ts
+- commit: "feat: add pyramid node simulation"
+  path: packages/universum-simulationen/PyramidNodeSimulation.ts
+  task: Energy log modelling for AEON pyramid simulation
+  test: packages/universum-simulationen/PyramidNodeSimulation.test.ts
+- commit: "feat: add SimHostOrchestrator agent"
+  path: packages/agents/SimHostOrchestrator.ts
+  task: Orchestrate simulation modules via SimHostCore
+  test: packages/agents/SimHostOrchestrator.test.ts
+- commit: "feat: implement Sigil formula engine"
+  path: packages/genesis-sigillin-core/SigilFormulaEngine.ts
+  task: Extract keywords from invocation formulas
+  test: packages/genesis-sigillin-core/SigilFormulaEngine.test.ts
