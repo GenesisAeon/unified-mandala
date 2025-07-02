@@ -2690,5 +2690,71 @@
     "path": "packages/universum-visualization/3D_Universumsstruktur.py",
     "task": "Render 3D universe structure from simulation output",
     "test": "packages/universum-visualization/__tests__/3D_Universumsstruktur.test.py"
+  },
+  {
+    "commit": "feat: add NullmembranDynamics module",
+    "path": "packages/universum-simulationen/modules/NullmembranDynamics.py",
+    "task": "Simulate dynamic interactions between 0- and 1-states",
+    "test": "packages/universum-simulationen/__tests__/NullmembranDynamics.test.py"
+  },
+  {
+    "commit": "feat: add DarkMatterFieldModel module",
+    "path": "packages/universum-simulationen/modules/DarkMatterFieldModel.py",
+    "task": "Model dark matter effects from Nullmembran interactions",
+    "test": "packages/universum-simulationen/__tests__/DarkMatterFieldModel.test.py"
+  },
+  {
+    "commit": "feat: add TheoryDatabase service",
+    "path": "packages/universum-simulationen/modules/TheoryDatabase.ts",
+    "task": "Store and retrieve scientific theories for simulations",
+    "test": "packages/universum-simulationen/__tests__/TheoryDatabase.test.ts"
+  },
+  {
+    "commit": "feat: add SimulationScenarioRunner module",
+    "path": "packages/universum-simulationen/modules/SimulationScenarioRunner.py",
+    "task": "Run modular universe scenarios and export results",
+    "test": "packages/universum-simulationen/__tests__/SimulationScenarioRunner.test.py"
+  },
+  {
+    "commit": "feat: add BehavioralDiffViewer analytics module",
+    "path": "packages/analytics/BehavioralDiffViewer.ts",
+    "task": "Compare GPT responses and visualize diffs",
+    "test": "packages/analytics/__tests__/BehavioralDiffViewer.test.ts"
+  },
+  {
+    "commit": "feat: add PatternMapperGPT agent",
+    "path": "packages/agents/PatternMapperGPT.ts",
+    "task": "Analyze conversation patterns and suggest prompts",
+    "test": "packages/agents/__tests__/PatternMapperGPT.test.ts"
+  },
+  {
+    "commit": "feat: add TunerGPT agent",
+    "path": "packages/agents/TunerGPT.ts",
+    "task": "Adjust GPT prompts based on PatternMapper output",
+    "test": "packages/agents/__tests__/TunerGPT.test.ts"
+  },
+  {
+    "commit": "feat: add ZipMemSigillinManager module",
+    "path": "packages/genesis-sigillin-core/ZipMemSigillinManager.ts",
+    "task": "Manage sigillin archives and metadata",
+    "test": "packages/genesis-sigillin-core/__tests__/ZipMemSigillinManager.test.ts"
+  },
+  {
+    "commit": "feat: add SigillinGenesisExplainer module",
+    "path": "packages/genesis-sigillin-core/SigillinGenesisExplainer.ts",
+    "task": "Generate documentation for genesis sigills",
+    "test": "packages/genesis-sigillin-core/__tests__/SigillinGenesisExplainer.test.ts"
+  },
+  {
+    "commit": "feat: add AeonUpdateTicketGenerator",
+    "path": "packages/aeon-shell/AeonUpdateTicketGenerator.ts",
+    "task": "Create update ticket templates for Aeon cycles",
+    "test": "packages/aeon-shell/__tests__/AeonUpdateTicketGenerator.test.ts"
+  },
+  {
+    "commit": "feat: add PathkeeperGPT agent",
+    "path": "packages/agents/PathkeeperGPT.ts",
+    "task": "Maintain publication strategy and update docs",
+    "test": "packages/agents/__tests__/PathkeeperGPT.test.ts"
   }
 ]
