@@ -302,18 +302,22 @@
   path: packages/socialgoodmesh/project-service
   task: CRUD API for community projects
   test: packages/socialgoodmesh/project-service/service_test.go
+  status: done
 - commit: Add match engine prototype
   path: packages/socialgoodmesh/match-engine
   task: Basic bipartite matching algorithm
   test: packages/socialgoodmesh/match-engine/match_test.go
+  status: done
 - commit: Implement impact meter
   path: packages/socialgoodmesh/impact-meter
   task: Compute basic ImpactScore
   test: packages/socialgoodmesh/impact-meter/impact_test.go
+  status: done
 - commit: Add React UI for project views
   path: packages/socialgoodmesh/ui-socialgood
   task: React components for ProjectList and ProjectDetail
   test: packages/socialgoodmesh/ui-socialgood/ui_test.tsx
+  status: done
 - commit: Add liveness and readiness endpoints
   path: go-agent/cmd/go-agent.go
   task: Implement /healthz/live and /healthz/ready probes
