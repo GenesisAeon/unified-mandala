@@ -6,7 +6,50 @@ export interface Session {
 let ttlMs = 60 * 60 * 1000; // 1 hour default
 let maxHistory = 50;
 
+import fs from 'fs';
+import path from 'path';
+
+const SESSIONS_FILE = path.join(__dirname, 'sessions.json');
+
 const sessions = new Map<string, Session>();
+
+function loadSessions() {
+  if (fs.existsSync(SESSIONS_FILE)) {
+    try {
+      const data = JSON.parse(fs.readFileSync(SESSIONS_FILE, 'utf8')) as Record<string, Session>;
+      for (const [id, session] of Object.entries(data)) {
+        sessions.set(id, session);
+      }
+    } catch {
+      // ignore corrupted files
+    }
+  }
+}
+
+function saveSessions() {
+  const obj: Record<string, Session> = {};
+  for (const [id, session] of sessions.entries()) {
+    obj[id] = session;
+  }
+  fs.writeFileSync(SESSIONS_FILE, JSON.stringify(obj));
+}
+
+let persistenceTimer: NodeJS.Timeout | null = null;
+
+export function startSessionPersistence(intervalMs = 30000) {
+  if (persistenceTimer) return;
+  persistenceTimer = setInterval(saveSessions, intervalMs);
+}
+
+export function stopSessionPersistence() {
+  if (persistenceTimer) {
+    clearInterval(persistenceTimer);
+    persistenceTimer = null;
+  }
+}
+
+loadSessions();
+startSessionPersistence();
 
 export function configureSessionStore(options: {
   ttlMs?: number;

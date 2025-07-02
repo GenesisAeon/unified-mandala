@@ -9,7 +9,7 @@ ARCHIVE="$DEST/backup-$TIMESTAMP.tar.gz"
 FILES=()
 [ -f plugins/mandalaHaiku/customPatterns.json ] && FILES+=("plugins/mandalaHaiku/customPatterns.json")
 [ -f data/haikuVotes.json ] && FILES+=("data/haikuVotes.json")
-[ -f services/ghost-shell/sessions.json ] && FILES+=("services/ghost-shell/sessions.json")
+[ -f services/ghost-shell/sessions.json ] && FILES+=("services/ghost-shell/sessions.json") # session persistence
 
 if [ ${#FILES[@]} -eq 0 ]; then
   echo "Nothing to backup" >&2
