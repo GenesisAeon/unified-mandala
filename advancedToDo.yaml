@@ -4563,3 +4563,27 @@
   path: packages/universum-simulationen/RaumzeitLichtmodell.ts
   task: Model overlapping light paths to explore local spacetime effects
   test: packages/universum-simulationen/RaumzeitLichtmodell.test.ts
+- commit: "feat: extend Gamification API spec"
+  path: docs/api/friendship-socialgood.yaml
+  task: Add /gamify/badges and /gamify/leaderboard endpoints
+  test: docs/api/__tests__/friendship-socialgood.test.ts
+- commit: "feat: create CREPValidation module"
+  path: packages/crep-engine/CREPValidation.ts
+  task: Implement validation profiles with golden ratio constant
+  test: packages/crep-engine/CREPValidation.test.ts
+- commit: "feat: add SoundResonanceVR module"
+  path: packages/universum-simulationen/SoundResonanceVR.ts
+  task: Extend sound resonance module with VR/3D sketches
+  test: packages/universum-simulationen/SoundResonanceVR.test.ts
+- commit: "feat: add LearningModuleOrchestrator agent"
+  path: packages/tutorials/LearningModuleOrchestrator.ts
+  task: Coordinate C-Tutor and JavaHamster AI flows
+  test: packages/tutorials/__tests__/LearningModuleOrchestrator.test.ts
+- commit: "docs: create Sigillin Ritualbuch"
+  path: docs/SigilRitualbuch.md
+  task: Document Sigillin usage and trigger phrases
+  test: ""
+- commit: "docs: add Genesis-System scientific paper"
+  path: docs/GenesisSystemScientific.md
+  task: Outline CREP axioms and project status
+  test: ""
