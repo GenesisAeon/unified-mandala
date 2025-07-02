@@ -743,79 +743,92 @@
     "commit": "Add WeightedDispatcher",
     "path": "packages/agents/WeightedDispatcher.ts",
     "task": "Priority based dispatching",
-    "test": "packages/agents/WeightedDispatcher.test.ts"
+    "test": "packages/agents/WeightedDispatcher.test.ts",
+    "status": "done"
   },
   {
     "commit": "Add patternReactivator",
     "path": "packages/agents/patternReactivator.ts",
     "task": "Reactivate low CREP patterns",
-    "test": "packages/agents/patternReactivator.test.ts"
+    "test": "packages/agents/patternReactivator.test.ts",
+    "status": "done"
   },
   {
     "commit": "Add ReplayController",
     "path": "packages/agents/ReplayController.ts",
     "task": "Replay memory entries",
-    "test": "packages/agents/ReplayController.test.ts"
+    "test": "packages/agents/ReplayController.test.ts",
+    "status": "done"
   },
   {
     "commit": "Add useEventGlow hook",
     "path": "packages/unifiedmandala-ui/hooks/useEventGlow.ts",
     "task": "UI glow effect for events",
-    "test": "packages/unifiedmandala-ui/hooks/useEventGlow.test.ts"
+    "test": "packages/unifiedmandala-ui/hooks/useEventGlow.test.ts",
+    "status": "done"
   },
   {
     "commit": "Add silenceWatcher util",
     "path": "packages/agents/silenceWatcher.ts",
     "task": "Emit message on inactivity",
-    "test": "packages/agents/silenceWatcher.test.ts"
+    "test": "packages/agents/silenceWatcher.test.ts",
+    "status": "done"
   },
   {
     "commit": "Add aggregateCREP util",
     "path": "packages/crep-engine/aggregateCREP.ts",
     "task": "Average CREP entries",
-    "test": "packages/crep-engine/aggregateCREP.test.ts"
+    "test": "packages/crep-engine/aggregateCREP.test.ts",
+    "status": "done"
   },
   {
     "commit": "Add CREPMusicGenerator",
     "path": "packages/crep-engine/CREPMusicGenerator.ts",
     "task": "Generate BPM from CREP",
-    "test": "packages/crep-engine/CREPMusicGenerator.test.ts"
+    "test": "packages/crep-engine/CREPMusicGenerator.test.ts",
+    "status": "done"
   },
   {
     "commit": "Add Go-Agent watcher",
     "path": "go-agent/internal/watchers/advancedtodo.go",
     "task": "Monitor advancedToDo via NATS or polling",
-    "test": "go-agent/test/advancedtodo_test.go"
+    "test": "go-agent/test/advancedtodo_test.go",
+    "status": "done"
   },
   {
     "commit": "Add POC Run Guide",
     "path": "docs/demo/POC-Run-Guide.md",
     "task": "Document POC run with GIF storyboard",
-    "test": ""
+    "test": "",
+    "status": "done"
   },
   {
     "commit": "Validate Swagger Docs",
     "path": "docs/swagger/README.md",
     "task": "API endpoint validation",
-    "test": ""
+    "test": "",
+    "status": "done"
   },
   {
     "commit": "Implement ResonanzPoetik module",
     "path": "packages/codex-navigator/resonanzPoetik.ts",
     "task": "Generate haikus and compile YAML chronik",
-    "test": "packages/codex-navigator/resonanzPoetik.test.ts"
+    "test": "packages/codex-navigator/resonanzPoetik.test.ts",
+    "status": "done"
   },
   {
     "commit": "Aeon transition sigil workflow",
     "path": "docs/sigils/advancedconversations.json",
     "task": "Sync ToDo files before major commits and create new sigils per cycle",
-    "test": ""
+    "test": "",
+    "status": "done"
   },
   {
     "commit": "MemoryMesh architecture sketch",
     "path": "docs/architecture/memory-mesh.md",
     "task": "Diagram for MemoryMesh layers (Speicher, Reflexion, Adaption)",
-    "test": ""
+    "test": "",
+    "status": "done"
   },
   {
     "commit": "MemoryMesh region POC",
@@ -828,7 +841,8 @@
     "commit": "Transition sigil update",
     "path": "scripts/generate-next-sigil.js",
     "task": "Add update_time and Responsible to MemoryMesh cycle",
-    "test": ""
+    "test": "",
+    "status": "done"
   },
   {
     "commit": "Add agent registry YAML",
@@ -840,13 +854,15 @@
     "commit": "Gamification API routes",
     "path": "apps/sharedream-interface/pages/api/gamify",
     "task": "Provide badges and leaderboard",
-    "test": "apps/sharedream-interface/pages/api/gamify/badges.test.ts"
+    "test": "apps/sharedream-interface/pages/api/gamify/badges.test.ts",
+    "status": "done"
   },
   {
     "commit": "Sigil Story component",
     "path": "packages/unifiedmandala-ui/components/SigilStory.tsx",
     "task": "Visualize learning progress",
-    "test": "packages/unifiedmandala-ui/components/SigilStory.test.tsx"
+    "test": "packages/unifiedmandala-ui/components/SigilStory.test.tsx",
+    "status": "done"
   },
   {
     "commit": "Implement C-Tutor progress workflow",
@@ -1422,13 +1438,15 @@
     "commit": "Create GuidedOnboardingTour",
     "path": "packages/unifiedmandala-ui/components/GuidedOnboardingTour.tsx",
     "task": "Interactive tour for new users",
-    "test": "packages/unifiedmandala-ui/components/GuidedOnboardingTour.test.tsx"
+    "test": "packages/unifiedmandala-ui/components/GuidedOnboardingTour.test.tsx",
+    "status": "done"
   },
   {
     "commit": "Add AdaptiveUILayout component",
     "path": "packages/unifiedmandala-ui/components/AdaptiveUILayout.tsx",
     "task": "Adjust layout dynamically based on user behavior",
-    "test": "packages/unifiedmandala-ui/components/AdaptiveUILayout.test.tsx"
+    "test": "packages/unifiedmandala-ui/components/AdaptiveUILayout.test.tsx",
+    "status": "done"
   },
   {
     "commit": "Upgrade Node version to 20",
