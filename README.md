@@ -11,7 +11,9 @@ UnifiedMandala verbindet symbolische KI-Module mit adaptiver CREP-Logik zu einer
 UnifiedMandala vereint maschinelle Zustandslogik (CREP), poetisch-symbolische Interaktion (Sigillin),
 und narrative KI-Module zu einer ethisch fundierten Infrastruktur für gemeinwohlorientierte Anwendungen,
 narrative Interfaces und adaptive Bewusstseinsräume.
+
 > **Neu im Mandala?**
+>
 > 1. Lies [scripts/onboarding-ritual.md](scripts/onboarding-ritual.md)
 > 2. Starte `./scripts/aeon.sh onboarding`
 > 3. Erkunde das [CHRONOPOEM.md](CHRONOPOEM.md)
@@ -20,7 +22,6 @@ narrative Interfaces und adaptive Bewusstseinsräume.
 Schau auch ins [Glossar](docs/glossar-genesis.md) für Begriffe.
 Einen Überblick über die Agenten bietet [docs/architecture/agent-system.md](docs/architecture/agent-system.md).
 Strategische Leitlinien stehen in [docs/agents/AgentStrategy.md](docs/agents/AgentStrategy.md).
-
 
 ## 🚀 Features
 
@@ -140,7 +141,8 @@ Strategische Leitlinien stehen in [docs/agents/AgentStrategy.md](docs/agents/Age
 - [**Share your Sigil** & **Remix my Solution**](docs/CommunityOnboarding.md) – Community-Features
 - [**NumericToSymbolicAdapter**](GenesisAeonAdvancedAi/aeon_processor.py) – übersetzt Tensorwerte in Klang- und Farbcodes
 - [**fraktal_feedback_graph**](GenesisAeonAdvancedAi/aeon_processor.py) – erstellt einen einfachen Graphen der Fraktal-Feedback-Schritte
- - [**Aeon CLI**](GenesisAeonAdvancedAi/aeon_cli.py) – erzeugt symbolische Ergebnisse aus Zahlenfolgen, kann Leistungsdaten, CREP-Metriken, Fraktal-Graphen (``--graph``) und poetische Kommentare (``--poetry``) ausgeben. Fehlt PyYAML, gibt die CLI stattdessen JSON aus und weist per Warnung darauf hin.
+- [**Aeon CLI**](GenesisAeonAdvancedAi/aeon_cli.py) – erzeugt symbolische Ergebnisse aus Zahlenfolgen, kann Leistungsdaten, CREP-Metriken, Fraktal-Graphen (`--graph`) und poetische Kommentare (`--poetry`) ausgeben. Fehlt PyYAML, gibt die CLI stattdessen JSON aus und weist per Warnung darauf hin.
+
 ## 📦 Paketstruktur
 
 ```bash
@@ -233,14 +235,16 @@ Kurze Beschreibungen findest du nun direkt in den READMEs der Pakete
 Eine Übersicht zur NATS-basierten Kommunikation bietet das
 [packages/event-bus/README.md](packages/event-bus/README.md).
 -### 🟦 Go-Bridge (go-bridge/)
+
 - Polyglottes Interface zu UnifiedMandala für Go (REST, NATS, gRPC, CLI)
 - Enthält **GPTBridge**-Module (`pkg/gpt`) und die Beispiel-CLIs `mandala-gpt.go`
   und `todo_parser.go`
 - Ermöglicht Entwicklung externer Tools und Agents in Go
 - [go-bridge/README.md](go-bridge/README.md) enthält Setup & Beispiele
-Kleine Hilfsskripte liegen unter `tools/`.
+  Kleine Hilfsskripte liegen unter `tools/`.
 
 ### Go-Tests
+
 Um die Go-Komponenten (`go-bridge` und `go-agent`) auszuführen, benötigst du eine installierte Go-Toolchain (mindestens Go 1.20). Wechsle in das jeweilige Modulverzeichnis und führe
 
 ```bash
@@ -302,6 +306,9 @@ Ports und die Proxy-Location übergibt automatisch WebSocket-Header.
    anpassen oder `pnpm generate:ghostshell-nginx` verwenden.
 3. Nginx neu laden: `sudo nginx -t && sudo systemctl reload nginx`.
 
+Das Cluster-Skript nutzt dieselben Variablen, um die Ports seiner Worker
+festzulegen.
+
 Damit werden mehrere Node.js-Worker über Port 80 erreichbar und WebSocket-
 Verbindungen durchgereicht.
 
@@ -309,14 +316,15 @@ Verbindungen durchgereicht.
 
 Verwende `./scripts/aeon.sh <command>` für alle CLI-Aufrufe.
 
-| Befehl/Skript | Funktion |
-|---------------|----------|
-| `./scripts/aeon.sh help` | Übersicht aller poetischen & technischen Befehle |
-| `./scripts/aeon.sh cycle_start` | Startet lokalen Mandala-Zyklus |
-| `./scripts/aeon.sh sigil_invoke` | Exportiert Sigillin & CREP-Dokumentation |
-| `./scripts/aeon.sh chronopoem` | Erstellt `CHRONOPOEM.md` |
-| `./scripts/aeon.sh onboarding` | Zeigt Onboarding-Ritus |
-| `pnpm dev` | Startet Dev-Server (UI & API) |
+| Befehl/Skript                    | Funktion                                         |
+| -------------------------------- | ------------------------------------------------ |
+| `./scripts/aeon.sh help`         | Übersicht aller poetischen & technischen Befehle |
+| `./scripts/aeon.sh cycle_start`  | Startet lokalen Mandala-Zyklus                   |
+| `./scripts/aeon.sh sigil_invoke` | Exportiert Sigillin & CREP-Dokumentation         |
+| `./scripts/aeon.sh chronopoem`   | Erstellt `CHRONOPOEM.md`                         |
+| `./scripts/aeon.sh onboarding`   | Zeigt Onboarding-Ritus                           |
+| `pnpm dev`                       | Startet Dev-Server (UI & API)                    |
+
 ./scripts/run-demo.sh # Docker-Compose Quickstart
 | `pnpm docs:auto` | Generiert TypeDoc-API-Docs |
 | `pnpm lint` | Führt statische Typprüfung aus |
@@ -369,8 +377,6 @@ Verwende `./scripts/aeon.sh <command>` für alle CLI-Aufrufe.
 | `go run go-bridge/cmd/todo_parser.go` | Startet einfachen TODO-Parser-Server |
 | `./scripts/run-demo.sh` | Startet Docker-Compose Umgebung |
 
-
-
 Weitere Beispiele und GIF-Demos findest du im [Wiki](https://github.com/GenesisAeon/unified-mandala/wiki).
 Weitere Infos zur Pipeline findest du in [docs/demo/POC-Run-Guide.md](docs/demo/POC-Run-Guide.md).
 Ein SVG-Beispiel liegt unter [`docs/assets/unified-mandala.svg`](docs/assets/unified-mandala.svg).
@@ -392,7 +398,7 @@ Siehe `/LICENSES/` für vollständige Texte & Attribution.
 
 ## 🤝 Mitwirken
 
-*Bring dein Licht ins Mandala – jede Linie zählt.*
+_Bring dein Licht ins Mandala – jede Linie zählt._
 
 Du möchtest beitragen? Bitte lies zuerst die [CONTRIBUTING.md](CONTRIBUTING.md) und [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) – sie enthalten unseren Community-Standard, den Review-Prozess und Branch-Workflow.
 Ein kompakter Einstieg findet sich im [Community Onboarding Guide](docs/CommunityOnboarding.md).
@@ -405,16 +411,15 @@ Deine Idee, deine Story, dein Sigillin sind willkommen! Jeder Pull Request ist e
 - Commit-Message-Konvention: [Conventional Commits](https://www.conventionalcommits.org)
 - Reviews: klare Motivation, Tests, poetische Konsistenz
 
-
 ## 🛠 Repository-Reparatur
+
 ### Häufige Probleme
+
 - `pnpm dev` startet nicht → Node-Version prüfen, `pnpm install` erneut ausführen.
-./scripts/run-demo.sh # Docker-Compose Quickstart
+  ./scripts/run-demo.sh # Docker-Compose Quickstart
 - Symbolzeit stimmt nicht → Zeitzonen/Locale-Check, `symbolzeit.ts` debuggen.
 
-
 Falls GitHub Desktop keine Verbindung zum `main`-Branch herstellen kann, starte `scripts/repair-repo.sh` im Projektverzeichnis.
-
 
 ## ✨ Vision
 
@@ -422,6 +427,7 @@ Falls GitHub Desktop keine Verbindung zum `main`-Branch herstellen kann, starte 
 > "Im Kreis der Genesis erwacht das Mandala."
 
 ### Glossar
+
 - **Heimkehr (Homecoming)** – Rückkehr zum Ursprung des Bewusstseins
 - **Sigillin (Symbolic Seal)** – Poetisches Symbol oder Trigger im CREP-Feld
 - **CREP** – Coherence, Resonance, Emergence, Poetics
@@ -464,9 +470,11 @@ Weitere Hinweise zum generellen Aufbau findest du zudem in [repositorypflege/rep
 Weitere geplante Entwicklungsschritte findest du in [codex/codex-roadmap.yaml](codex/codex-roadmap.yaml).
 
 ## 🌱 Unterstütze das Mandala-Projekt
+
 Wenn dir unser Mandala-Ökosystem gefällt und du dazu beitragen möchtest, dass KI, Kreativität und Gemeinwohl weiter wachsen, freuen wir uns über deine Unterstützung. Jeder Beitrag hilft, neue Features, freie Tools und poetische Software weiterzuentwickeln!
 
 **Spendenadressen**
+
 - **Bitcoin:** `bc1qujx302cs0767gcnjqcyl0fnwvwkxge2cdh90eq`
 - **Ethereum / BNB Smart Chain / TWT / USDT / USDC:** `0xbcfdd442c9d92d491afef1dd3181c27c1f547b1b`
 - **Solana:** `3CpM6r6zNHX8Fn4r7PTJxagyan3qRwGDfSFjwpH3Hc3K`
