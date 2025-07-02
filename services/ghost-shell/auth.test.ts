@@ -33,4 +33,15 @@ describe('ghost-shell auth', () => {
 
     expect(next).toHaveBeenCalledWith(expect.any(Error));
   });
+
+  it('calls next with error when token missing', () => {
+    verify.mockImplementation(() => { throw new Error('missing'); });
+
+    const socket: any = { handshake: { auth: {} } };
+    const next = jest.fn();
+
+    socketAuth('secret')(socket, next);
+
+    expect(next).toHaveBeenCalledWith(expect.any(Error));
+  });
 });
