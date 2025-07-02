@@ -4474,3 +4474,35 @@
   path: packages/agents/GPTOrchestrationLayer.ts
   task: Manage specialized GPT modules and orchestration
   test: packages/agents/__tests__/GPTOrchestrationLayer.test.ts
+- commit: "feat: add HypothesisGPT agent"
+  path: packages/agents/HypothesisGPT.ts
+  task: Generate hypotheses from CREP history and Sigillin networks
+  test: packages/agents/__tests__/HypothesisGPT.test.ts
+- commit: "feat: add DocGPT agent"
+  path: packages/agents/DocGPT.ts
+  task: Generate technical documentation from code annotations
+  test: packages/agents/__tests__/DocGPT.test.ts
+- commit: "feat: add VisGPT agent"
+  path: packages/agents/VisGPT.ts
+  task: Create diagrams and visualizations from data frames
+  test: packages/agents/__tests__/VisGPT.test.ts
+- commit: "feat: add PublicGenesisGPT agent"
+  path: packages/agents/PublicGenesisGPT.ts
+  task: Interact with external users and answer project FAQs
+  test: packages/agents/__tests__/PublicGenesisGPT.test.ts
+- commit: "feat: add EmergenzChannel orchestrator"
+  path: packages/agents/EmergenzChannel.ts
+  task: Coordinate feedback between HypothesisGPT, AeonPoetGPT and CREPJudgeGPT
+  test: packages/agents/__tests__/EmergenzChannel.test.ts
+- commit: "feat: add GreekMath library"
+  path: packages/universum-simulationen/modules/GreekMath.py
+  task: Provide golden-ratio and fractal formulas for resonance models
+  test: packages/universum-simulationen/__tests__/GreekMath.test.py
+- commit: "feat: add CREPPhaseMatrix mapping"
+  path: packages/universum-simulationen/CREPPhaseMatrix.yaml
+  task: Map Symbolzeit values to CREP stages with unit tests
+  test: packages/universum-simulationen/__tests__/CREPPhaseMatrix.test.ts
+- commit: "feat: add SoforthilfeOverlay component"
+  path: packages/unifiedmandala-ui/components/SoforthilfeOverlay.tsx
+  task: Implement emergency overlay with focus trap and keyboard handling
+  test: packages/unifiedmandala-ui/components/__tests__/SoforthilfeOverlay.test.tsx
