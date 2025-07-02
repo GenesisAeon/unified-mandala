@@ -4338,3 +4338,11 @@
   path: packages/agents/FutureKIAgent.ts
   task: Integrate predictions from Zukunft von KI conversation
   test: packages/agents/__tests__/FutureKIAgent.test.ts
+- commit: "feat: add DocumentGenerator agent"
+  path: packages/agents/DocumentGenerator.ts
+  task: Compile nightly scientific reports from conversation data
+  test: packages/agents/__tests__/DocumentGenerator.test.ts
+- commit: "feat: add TeamboardManager module"
+  path: packages/agents/TeamboardManager.ts
+  task: Manage specialized GPT teams and persistent teamboard docs
+  test: packages/agents/__tests__/TeamboardManager.test.ts
