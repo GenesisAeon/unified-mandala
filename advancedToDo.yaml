@@ -835,6 +835,7 @@
   path: .github/workflows/release.yaml
   task: Tag new version when merging into main
   test: ''
+  status: done
 - commit: Add changelog generator
   path: scripts/generate-changelog.js
   task: Generate CHANGELOG.md from commit messages
