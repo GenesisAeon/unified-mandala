@@ -1,0 +1,13 @@
+diff --git a/advancedToDo.yaml b/advancedToDo.yaml
+index e75651b..4b2ddc2 100644
+--- a/advancedToDo.yaml
++++ b/advancedToDo.yaml
+@@ -123,7 +123,7 @@
+   test: packages/crep-engine/NucleonScannerConversation.test.ts
+ - commit: Implement ConversationTodoExtractor
+   path: packages/agents
+-  status: geplant
++  status: done
+   task: Extract tasks from conversation logs based on key phrases
+   test: packages/agents/ConversationTodoExtractor.test.ts
+ - commit: Link CREP scores with todo priority
