@@ -1,3 +1,4 @@
+import { describe, it, test, expect, beforeEach, afterEach, vi } from 'vitest';
 import { WeightedDispatcher } from './WeightedDispatcher';
 import { Agent, Task } from '../core/interfaces';
 

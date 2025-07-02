@@ -1,13 +1,14 @@
+import { describe, it, test, expect, beforeEach, afterEach, vi } from 'vitest';
 import { AeonKIResonanzAgent } from './AeonKIResonanzAgent';
 import { GPTEventHub } from '../gpt-bridges/GPTEventHub';
 
 describe('AeonKIResonanzAgent', () => {
   beforeEach(() => {
-    jest.spyOn(GPTEventHub, 'emit');
+    vi.spyOn(GPTEventHub, 'emit');
   });
 
   afterEach(() => {
-    jest.restoreAllMocks();
+    vi.restoreAllMocks();
   });
   it('logs messages and emits event', () => {
     const events: any[] = [];

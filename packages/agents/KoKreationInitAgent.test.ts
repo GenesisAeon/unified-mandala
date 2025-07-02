@@ -1,13 +1,14 @@
+import { describe, it, test, expect, beforeEach, afterEach, vi } from 'vitest';
 import { KoKreationInitAgent } from './KoKreationInitAgent';
 import { GPTEventHub } from '../gpt-bridges/GPTEventHub';
 
 describe('KoKreationInitAgent', () => {
   beforeEach(() => {
-    jest.spyOn(GPTEventHub, 'emit');
+    vi.spyOn(GPTEventHub, 'emit');
   });
 
   afterEach(() => {
-    jest.restoreAllMocks();
+    vi.restoreAllMocks();
   });
 
   it('initializes and logs message', () => {

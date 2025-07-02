@@ -1,3 +1,4 @@
+import { describe, it, test, expect, beforeEach, afterEach, vi } from 'vitest';
 import { VisionContextIntegrator } from './VisionContextIntegrator';
 
 test('summarize provides short vision snippet', () => {

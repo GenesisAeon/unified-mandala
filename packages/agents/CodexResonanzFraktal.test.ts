@@ -1,12 +1,13 @@
+import { describe, it, test, expect, beforeEach, afterEach, vi } from 'vitest';
 import { CodexResonanzFraktal } from './CodexResonanzFraktal';
 import { GPTEventHub } from '../gpt-bridges/GPTEventHub';
 
 describe('CodexResonanzFraktal', () => {
   beforeEach(() => {
-    jest.spyOn(GPTEventHub, 'emit');
+    vi.spyOn(GPTEventHub, 'emit');
   });
   afterEach(() => {
-    jest.restoreAllMocks();
+    vi.restoreAllMocks();
   });
   it('fractalizes input and emits event', () => {
     const fraktal = new CodexResonanzFraktal();

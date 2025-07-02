@@ -1,3 +1,4 @@
+import { describe, it, test, expect, beforeEach, afterEach, vi } from 'vitest';
 import { HexaAgentSystem } from './HexaAgentSystem';
 
 test('processLogs aggregates agents', () => {

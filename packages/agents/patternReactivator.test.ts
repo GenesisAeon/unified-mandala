@@ -1,3 +1,4 @@
+import { describe, it, test, expect, beforeEach, afterEach, vi } from 'vitest';
 import fs from 'fs';
 import path from 'path';
 import { patternReactivator } from './patternReactivator';
@@ -12,7 +13,7 @@ beforeEach(() => {
 });
 
 test('emits reactivate for low crep score', () => {
-  const spy = jest.fn();
+  const spy = vi.fn();
   GPTEventHub.on('task:reactivate', spy);
   AeonMemory.record('t', { crepScore: 0.2, task: { id: '1', description: 'd' } });
   patternReactivator();
@@ -21,7 +22,7 @@ test('emits reactivate for low crep score', () => {
 });
 
 test('does not emit for high score or missing task', () => {
-  const spy = jest.fn();
+  const spy = vi.fn();
   GPTEventHub.on('task:reactivate', spy);
   AeonMemory.record('t1', { crepScore: 0.8, task: { id: '2', description: 'x' } });
   AeonMemory.record('t2', { crepScore: 0.1 });

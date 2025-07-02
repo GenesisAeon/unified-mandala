@@ -1,3 +1,4 @@
+import { describe, it, test, expect, beforeEach, afterEach, vi } from 'vitest';
 import { EmergencePredictorAgent } from './EmergencePredictorAgent';
 
 test('predict returns average of history', () => {

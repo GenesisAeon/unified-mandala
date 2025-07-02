@@ -1,3 +1,4 @@
+import { describe, it, test, expect, beforeEach, afterEach, vi } from 'vitest';
 import { SimHostOrchestrator } from './SimHostOrchestrator';
 import { SimulationModule } from '../universum-simulationen/SimHostCore';
 
