@@ -1,0 +1,13 @@
+diff --git a/advancedToDo.json b/advancedToDo.json
+index 8f809a2..4bdb98c 100644
+--- a/advancedToDo.json
++++ b/advancedToDo.json
+@@ -182,7 +182,7 @@
+   {
+     "commit": "Implement ConversationTodoExtractor",
+     "path": "packages/agents",
+-    "status": "geplant",
++    "status": "done",
+     "task": "Extract tasks from conversation logs based on key phrases",
+     "test": "packages/agents/ConversationTodoExtractor.test.ts"
+   },

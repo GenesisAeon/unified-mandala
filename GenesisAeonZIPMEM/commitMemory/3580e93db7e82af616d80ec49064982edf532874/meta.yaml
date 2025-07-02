@@ -1,0 +1,13 @@
+commit: 3580e93db7e82af616d80ec49064982edf532874
+message: "docs: mark conversation todo extractor done"
+patch: changes.patch
+fragments: fragments
+files:
+  - advancedToDo.json
+  - advancedToDo.yaml
+  - deploymentready.json
+  - deploymentready.yaml
+environment:
+  node: v22.16.0
+  pnpm: 10.5.2
+instructions: Apply patch with git apply or review for reference.

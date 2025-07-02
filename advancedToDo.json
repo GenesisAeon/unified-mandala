@@ -182,7 +182,7 @@
   {
     "commit": "Implement ConversationTodoExtractor",
     "path": "packages/agents",
-    "status": "geplant",
+    "status": "done",
     "task": "Extract tasks from conversation logs based on key phrases",
     "test": "packages/agents/ConversationTodoExtractor.test.ts"
   },
