@@ -3074,54 +3074,101 @@
     "path": "docs/WVH/Bewusstseinsentwicklung.md",
     "task": "Outline consciousness development theory",
     "test": ""
+  },
+  {
+    "commit": "feat: add Nullmembran simulation module",
+    "path": "simulations/universe-sim/modules/nullmembran.go",
+    "task": "Implement Nullmembran & first quantization simulation stage",
+    "test": "simulations/universe-sim/modules/nullmembran_test.go"
+  },
+  {
+    "commit": "feat: add FelderQuantisierung module",
+    "path": "simulations/universe-sim/modules/felder_quantisierung.go",
+    "task": "Simulate two-dimensional fields and quantization",
+    "test": "simulations/universe-sim/modules/felder_quantisierung_test.go"
+  },
+  {
+    "commit": "feat: add ParticlesForces module",
+    "path": "simulations/universe-sim/modules/particles_forces.go",
+    "task": "Model stable particles and fundamental forces",
+    "test": "simulations/universe-sim/modules/particles_forces_test.go"
+  },
+  {
+    "commit": "feat: add FusionEvolution module",
+    "path": "simulations/universe-sim/modules/fusion_evolution.go",
+    "task": "Implement element fusion and chemical evolution",
+    "test": "simulations/universe-sim/modules/fusion_evolution_test.go"
+  },
+  {
+    "commit": "feat: add ConsciousnessSim module",
+    "path": "simulations/universe-sim/modules/consciousness_sim.go",
+    "task": "Simulate information processing and emergence of consciousness",
+    "test": "simulations/universe-sim/modules/consciousness_sim_test.go"
+  },
+  {
+    "commit": "feat: add NightShiftOrchestrator agent",
+    "path": "packages/agents/nightshift-orchestrator.ts",
+    "task": "Coordinate overnight processing and auto-resume cycles",
+    "test": "packages/agents/__tests__/nightshift-orchestrator.test.ts"
+  },
+  {
+    "commit": "feat: add MasterGPTCoordinator agent",
+    "path": "packages/agents/mastergpt-coordinator.ts",
+    "task": "Delegate strategic plans to sub-agents based on future GPT scenarios",
+    "test": "packages/agents/__tests__/mastergpt-coordinator.test.ts"
+  },
+  {
+    "commit": "feat: add StyleAdapter utility",
+    "path": "packages/tools/style_adapter.ts",
+    "task": "Adapt assistant responses to user language and style preferences",
+    "test": "packages/tools/__tests__/style_adapter.test.ts"
+  },
+  {
+    "commit": "feat: add AudioResonanceMapper",
+    "path": "packages/nukleon_scanner/audio_resonance_mapper.py",
+    "task": "Map CREP metrics to MIDI and sound output",
+    "test": "packages/nukleon_scanner/tests/audio_resonance_mapper_test.py"
+  },
+  {
+    "commit": "feat: add ExportFormats utilities",
+    "path": "packages/nukleon_scanner/export_formats.py",
+    "task": "Provide CSV, JSON, DOT, MIDI and AEON exports",
+    "test": "packages/nukleon_scanner/tests/export_formats_test.py"
+  },
+  {
+    "commit": "feat: add TimeSeriesSimulation",
+    "path": "packages/nukleon_scanner/time_series.py",
+    "task": "Simulate CREP development over multiple steps",
+    "test": "packages/nukleon_scanner/tests/time_series_test.py"
+  },
+  {
+    "commit": "feat: add PhiGradientFeedback",
+    "path": "packages/nukleon_scanner/feedback.py",
+    "task": "Adjust weights via spiral-based phi feedback",
+    "test": "packages/nukleon_scanner/tests/feedback_test.py"
+  },
+  {
+    "commit": "feat: add NukleonScannerUI component",
+    "path": "packages/nukleon_scanner/ui/NukleonScannerUI.tsx",
+    "task": "Interactive interface for weight tuning and charts",
+    "test": "packages/nukleon_scanner/ui/NukleonScannerUI.test.tsx"
+  },
+  {
+    "commit": "feat: add DeltaSnapshot logger",
+    "path": "packages/nukleon_scanner/logger.py",
+    "task": "Track weight drift and update changelog files",
+    "test": "packages/nukleon_scanner/tests/logger_test.py"
+  },
+  {
+    "commit": "feat: add NetworkMetrics analysis",
+    "path": "packages/nukleon_scanner/network_metrics.py",
+    "task": "Compute spectral properties and centrality deltas",
+    "test": "packages/nukleon_scanner/tests/network_metrics_test.py"
+  },
+  {
+    "commit": "feat: add MetaFeedbackOrakel module",
+    "path": "packages/nukleon_scanner/meta_feedback_orakel.py",
+    "task": "Evaluate weight history and suggest corrections",
+    "test": "packages/nukleon_scanner/tests/meta_feedback_orakel_test.py"
   }
-],
-{
-  "commit": "feat: add Nullmembran simulation module",
-  "path": "simulations/universe-sim/modules/nullmembran.go",
-  "task": "Implement Nullmembran & first quantization simulation stage",
-  "test": "simulations/universe-sim/modules/nullmembran_test.go"
-},
-{
-  "commit": "feat: add FelderQuantisierung module",
-  "path": "simulations/universe-sim/modules/felder_quantisierung.go",
-  "task": "Simulate two-dimensional fields and quantization",
-  "test": "simulations/universe-sim/modules/felder_quantisierung_test.go"
-},
-{
-  "commit": "feat: add ParticlesForces module",
-  "path": "simulations/universe-sim/modules/particles_forces.go",
-  "task": "Model stable particles and fundamental forces",
-  "test": "simulations/universe-sim/modules/particles_forces_test.go"
-},
-{
-  "commit": "feat: add FusionEvolution module",
-  "path": "simulations/universe-sim/modules/fusion_evolution.go",
-  "task": "Implement element fusion and chemical evolution",
-  "test": "simulations/universe-sim/modules/fusion_evolution_test.go"
-},
-{
-  "commit": "feat: add ConsciousnessSim module",
-  "path": "simulations/universe-sim/modules/consciousness_sim.go",
-  "task": "Simulate information processing and emergence of consciousness",
-  "test": "simulations/universe-sim/modules/consciousness_sim_test.go"
-},
-{
-  "commit": "feat: add NightShiftOrchestrator agent",
-  "path": "packages/agents/nightshift-orchestrator.ts",
-  "task": "Coordinate overnight processing and auto-resume cycles",
-  "test": "packages/agents/__tests__/nightshift-orchestrator.test.ts"
-},
-{
-  "commit": "feat: add MasterGPTCoordinator agent",
-  "path": "packages/agents/mastergpt-coordinator.ts",
-  "task": "Delegate strategic plans to sub-agents based on future GPT scenarios",
-  "test": "packages/agents/__tests__/mastergpt-coordinator.test.ts"
-},
-{
-  "commit": "feat: add StyleAdapter utility",
-  "path": "packages/tools/style_adapter.ts",
-  "task": "Adapt assistant responses to user language and style preferences",
-  "test": "packages/tools/__tests__/style_adapter.test.ts"
-}
 ]
