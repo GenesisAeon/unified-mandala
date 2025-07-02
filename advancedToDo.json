@@ -1202,6 +1202,7 @@
     "path": "apps/plugin-registry",
     "task": "Manage plugin review, blacklist and version lock",
     "test": ""
+    "status": "done"
   },
   {
     "commit": "Setup backup script",
