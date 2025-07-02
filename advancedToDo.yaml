@@ -4768,6 +4768,7 @@
   test: docs/future/FutureAI_Vision.test.ts
 - commit: "feat: add GenesisGPTGateway"
   path: packages/agents/GenesisGPTGateway.ts
+  status: done
   task: Invoke specialized GPT modules via share links
   test: packages/agents/GenesisGPTGateway.test.ts
 - commit: "docs: add SocietyGPT Teamboard blueprint"
