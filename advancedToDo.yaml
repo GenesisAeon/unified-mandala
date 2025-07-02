@@ -1012,10 +1012,12 @@
   path: Dockerfile
   task: Update Node base image and runtime to Node 20
   test: ci/node-version.test.ts
+  status: done
 - commit: Add ESLint configuration
   path: .eslintrc.js
   task: Set up ESLint with recommended TypeScript rules
   test: tests/eslint-config.test.ts
+  status: done
 - commit: Convert agent tests to ESM
   path: packages/agents/__tests__
   task: Rewrite test imports to use ESM for Vitest
@@ -1024,14 +1026,17 @@
   path: jest.config.js
   task: Configure coverage collection and update CI
   test: ci/coverage.test.ts
+  status: done
 - commit: Introduce dotenv configuration loader
   path: packages/core/config.ts
   task: Load environment variables from .env files
   test: packages/core/config.test.ts
+  status: done
 - commit: Add package level tsconfig
   path: packages/*/tsconfig.json
   task: Use project references for incremental builds
   test: scripts/tsconfig-check.test.ts
+  status: done
 - commit: "- und Progress-Dateien mit diesem Stand."
   path: ""
   task: "- und Progress-Dateien mit diesem Stand."
