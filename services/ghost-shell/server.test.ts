@@ -7,10 +7,12 @@ const PORT = 4010;
 const SECRET = 'test-secret';
 
 describe('ghost-shell server', () => {
-  const { server } = startServer(PORT, SECRET, false);
+  const { server, watcher, scheduler } = startServer(PORT, SECRET, false, false);
 
   afterAll(() => {
     server.close();
+    watcher?.close();
+    scheduler?.cancel();
   });
 
   it('responds to healthz', async () => {
