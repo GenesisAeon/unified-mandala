@@ -1,0 +1,69 @@
+commit 3580e93db7e82af616d80ec49064982edf532874
+Author: Codex <codex@openai.com>
+Date:   Wed Jul 2 10:20:05 2025 +0000
+
+    docs: mark conversation todo extractor done
+
+diff --git a/advancedToDo.json b/advancedToDo.json
+index 8f809a2..4bdb98c 100644
+--- a/advancedToDo.json
++++ b/advancedToDo.json
+@@ -182,7 +182,7 @@
+   {
+     "commit": "Implement ConversationTodoExtractor",
+     "path": "packages/agents",
+-    "status": "geplant",
++    "status": "done",
+     "task": "Extract tasks from conversation logs based on key phrases",
+     "test": "packages/agents/ConversationTodoExtractor.test.ts"
+   },
+diff --git a/advancedToDo.yaml b/advancedToDo.yaml
+index e75651b..4b2ddc2 100644
+--- a/advancedToDo.yaml
++++ b/advancedToDo.yaml
+@@ -123,7 +123,7 @@
+   test: packages/crep-engine/NucleonScannerConversation.test.ts
+ - commit: Implement ConversationTodoExtractor
+   path: packages/agents
+-  status: geplant
++  status: done
+   task: Extract tasks from conversation logs based on key phrases
+   test: packages/agents/ConversationTodoExtractor.test.ts
+ - commit: Link CREP scores with todo priority
+diff --git a/deploymentready.json b/deploymentready.json
+index 9e78943..9da0f43 100644
+--- a/deploymentready.json
++++ b/deploymentready.json
+@@ -1,6 +1,6 @@
+ {
+-  "analysisDate": "2024-04-30",
++  "analysisDate": "2025-07-02",
+   "analysedAreas": ["Dockerfile", "packages/agents", "ci workflows", "core config", "tests"],
+-  "newTodosAdded": ["Upgrade Node version to 20", "Add ESLint configuration", "Convert agent tests to ESM", "Enable jest coverage in CI", "Introduce dotenv configuration loader", "Add package level tsconfig"],
+-  "nextStep": "Review new tasks and prioritize for implementation"
++  "newTodosAdded": [],
++  "nextStep": "All recent tasks implemented"
+ }
+diff --git a/deploymentready.yaml b/deploymentready.yaml
+index 67cad94..c4f2ef1 100644
+--- a/deploymentready.yaml
++++ b/deploymentready.yaml
+@@ -1,4 +1,4 @@
+-analysisDate: "2024-04-30"
++analysisDate: "2025-07-02"
+ analysedAreas:
+   - Dockerfile
+   - packages/agents
+@@ -6,10 +6,5 @@ analysedAreas:
+   - core config
+   - tests
+ newTodosAdded:
+-  - Upgrade Node version to 20
+-  - Add ESLint configuration
+-  - Convert agent tests to ESM
+-  - Enable jest coverage in CI
+-  - Introduce dotenv configuration loader
+-  - Add package level tsconfig
+-nextStep: "Review new tasks and prioritize for implementation"
++  []
++nextStep: "All recent tasks implemented"
