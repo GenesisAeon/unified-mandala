@@ -412,25 +412,29 @@
     "commit": "Import country and region profiles",
     "path": "packages/userfriendship/region-profile-service/models",
     "task": "Provide country.yaml and region.yaml for 5 countries",
-    "test": "packages/userfriendship/region-profile-service/models/model_test.go"
+    "test": "packages/userfriendship/region-profile-service/models/model_test.go",
+    "status": "done"
   },
   {
     "commit": "Implement region profile REST endpoint",
     "path": "packages/userfriendship/region-profile-service/service.go",
     "task": "Expose GET /friendship/region/{ip}",
-    "test": "packages/userfriendship/region-profile-service/service_test.go"
+    "test": "packages/userfriendship/region-profile-service/service_test.go",
+    "status": "done"
   },
   {
     "commit": "Add style variant engine",
     "path": "packages/userfriendship/style-variant-engine",
     "task": "Generate text variants for regions",
-    "test": "packages/userfriendship/style-variant-engine/engine_test.go"
+    "test": "packages/userfriendship/style-variant-engine/engine_test.go",
+    "status": "done"
   },
   {
     "commit": "Implement basic A/B test for DE and FR",
     "path": "packages/userfriendship/behavioral-testing-engine",
     "task": "Simple A/B testing for region variants",
-    "test": "packages/userfriendship/behavioral-testing-engine/engine_test.go"
+    "test": "packages/userfriendship/behavioral-testing-engine/engine_test.go",
+    "status": "done"
   },
   {
     "commit": "Create project CRUD service",
