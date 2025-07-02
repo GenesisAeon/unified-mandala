@@ -18,7 +18,12 @@ import { runSelfLearn } from '../../scripts/self-learn';
 import { emitSigilAlert } from './sigil-alerts';
 import { glob } from 'glob';
 
-export function startServer(port = 3000, secret = 'ghost-secret', enableSocket: boolean = true) {
+export function startServer(
+  port = 3000,
+  secret = 'ghost-secret',
+  enableSocket: boolean = true,
+  enableBackground: boolean = true
+) {
   const app = express();
   let ready = false;
 
@@ -104,20 +109,24 @@ export function startServer(port = 3000, secret = 'ghost-secret', enableSocket: 
     logger.info(`GhostShellAgent listening on ${port}`);
   });
 
-  const fragmentsPattern = path.join(
-    __dirname,
-    '..',
-    '..',
-    'GenesisAeonZIPMEM',
-    'newadvancedconversations',
-    '**',
-    '*.yaml'
-  );
-  watchFragments(fragmentsPattern);
-  scheduleAdaptive(
-    () => glob(fragmentsPattern).then((files) => files.length),
-    runSelfLearn
-  );
+  let watcher: ReturnType<typeof watchFragments> | undefined;
+  let scheduler: ReturnType<typeof scheduleAdaptive> | undefined;
+  if (enableBackground) {
+    const fragmentsPattern = path.join(
+      __dirname,
+      '..',
+      '..',
+      'GenesisAeonZIPMEM',
+      'newadvancedconversations',
+      '**',
+      '*.yaml'
+    );
+    watcher = watchFragments(fragmentsPattern);
+    scheduler = scheduleAdaptive(
+      () => glob(fragmentsPattern).then((files) => files.length),
+      runSelfLearn
+    );
+  }
 
-  return { app, io, server };
+  return { app, io, server, watcher, scheduler };
 }
