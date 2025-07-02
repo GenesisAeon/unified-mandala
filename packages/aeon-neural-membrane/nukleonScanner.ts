@@ -4,7 +4,7 @@ import { Network } from '../simple-neural-net';
  * Summiert absolute Gewichte aller Neuronen als einfache Energie-Messung.
  */
 export function scanEnergy(net: Network): number {
-  const neurons = (net as any).neurons as any[];
+  const neurons = net.neurons as any[];
   let sum = 0;
   for (const n of neurons) {
     sum += Math.abs(n.weight1);
