@@ -4526,3 +4526,35 @@
   path: packages/genesis-sigillin-core/SigilFormulaEngine.ts
   task: Extract keywords from invocation formulas
   test: packages/genesis-sigillin-core/SigilFormulaEngine.test.ts
+- commit: Add LanguageStyleAdapter agent
+  path: packages/agents/LanguageStyleAdapter.ts
+  task: Adapt agent language style to user preferences
+  test: packages/agents/LanguageStyleAdapter.test.ts
+- commit: Implement NullmembranModule
+  path: packages/universum-simulationen/NullmembranModule.ts
+  task: Simulate initial state from Nullmembran concept
+  test: packages/universum-simulationen/NullmembranModule.test.ts
+- commit: Implement FieldQuantizationModule
+  path: packages/universum-simulationen/FieldQuantizationModule.ts
+  task: Handle 2D field quantization
+  test: packages/universum-simulationen/FieldQuantizationModule.test.ts
+- commit: Implement ParticleForcesModule
+  path: packages/universum-simulationen/ParticleForcesModule.ts
+  task: Simulate particle forces with E=mc^2
+  test: packages/universum-simulationen/ParticleForcesModule.test.ts
+- commit: Implement FusionChemicalEvolutionModule
+  path: packages/universum-simulationen/FusionChemicalEvolutionModule.ts
+  task: Model fusion processes for heavy elements
+  test: packages/universum-simulationen/FusionChemicalEvolutionModule.test.ts
+- commit: Implement ConsciousnessProcessorModule
+  path: packages/universum-simulationen/ConsciousnessProcessorModule.ts
+  task: Simulate emergent consciousness via neural network
+  test: packages/universum-simulationen/ConsciousnessProcessorModule.test.ts
+- commit: Add OverNightWorkCoordinator agent
+  path: packages/agents/OverNightWorkCoordinator.ts
+  task: Manage asynchronous tasks for overnight runs
+  test: packages/agents/OverNightWorkCoordinator.test.ts
+- commit: Add FutureGPTPlanner agent
+  path: packages/agents/FutureGPTPlanner.ts
+  task: Analyze GPT trends and orchestrate integration
+  test: packages/agents/FutureGPTPlanner.test.ts
