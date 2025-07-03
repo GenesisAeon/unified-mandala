@@ -3300,13 +3300,15 @@
     "commit": "feat: add NightWorkScheduler agent",
     "path": "packages/agents/NightWorkScheduler.ts",
     "task": "Schedule overnight agent operations",
-    "test": "packages/agents/NightWorkScheduler.test.ts"
+    "test": "packages/agents/NightWorkScheduler.test.ts",
+    "status": "done"
   },
   {
     "commit": "docs: add FutureAI Vision paper",
     "path": "docs/future/FutureAI_Vision.md",
     "task": "Collect insights on the future of AI from conversations",
-    "test": "docs/future/FutureAI_Vision.test.ts"
+    "test": "docs/future/FutureAI_Vision.test.ts",
+    "status": "done"
   },
   {
     "commit": "feat: add GenesisGPTGateway",
@@ -3319,7 +3321,8 @@
     "commit": "docs: add SocietyGPT Teamboard blueprint",
     "path": "docs/teamboards/SocietyGPT_Teamboard.md",
     "task": "Outline roles and milestones for societal narrative agents",
-    "test": "docs/teamboards/SocietyGPT_Teamboard.test.ts"
+    "test": "docs/teamboards/SocietyGPT_Teamboard.test.ts",
+    "status": "done"
   },
   {
     "commit": "feat: implement LegasthenieHelper",
@@ -3337,6 +3340,7 @@
     "commit": "docs: add Genesis_Veröffentlichungsstrategie",
     "path": "docs/public/Genesis_Veröffentlichungsstrategie.md",
     "task": "Outline publication strategy and required modules",
-    "test": "docs/public/Genesis_Veröffentlichungsstrategie.test.ts"
+    "test": "docs/public/Genesis_Veröffentlichungsstrategie.test.ts",
+    "status": "done"
   }
 ]

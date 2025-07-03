@@ -1,0 +1,6 @@
+import fs from 'fs';
+
+test('Genesis Veröffentlichung paper exists', () => {
+  const text = fs.readFileSync('docs/public/Genesis_Veröffentlichungsstrategie.md', 'utf8');
+  expect(text).toMatch(/Genesis Veröffentlichung/);
+});
