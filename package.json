@@ -36,6 +36,8 @@
     "generate:changelog": "node scripts/generate-changelog.js"
   },
   "dependencies": {
+    "@grpc/grpc-js": "^1.9.10",
+    "@react-three/fiber": "^9.1.4",
     "ajv": "^8.0.0",
     "ajv-formats": "^3.0.1",
     "chokidar": "^3.5.3",
@@ -61,8 +63,7 @@
     "socket.io-client": "^4.7.5",
     "three": "^0.161.0",
     "ws": "^8.17.0",
-    "yaml": "^2.8.0",
-    "@grpc/grpc-js": "^1.9.10"
+    "yaml": "^2.8.0"
   },
   "devDependencies": {
     "@mermaid-js/mermaid-cli": "^11.6.0",
