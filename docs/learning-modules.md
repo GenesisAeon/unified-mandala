@@ -1,13 +1,26 @@
 # Learning Modules
 
-The learning modules defined in `advancedconversations_snippet.json` provide simple
-workflows to introduce interactive coding with Sigil rewards.
+This document explains the learning workflows referenced in `docs/sigils/advancedconversations_snippet.json`. Each module rewards progress with Sigils that can be added to a portfolio.
 
-- The `packages/ui/theme` module provides a `ThemeProvider` and `useResponsiveTheme` hook for mood-aware styling.
-## C-Tutor Progress
-Refer to `packages/tutorials/C-Tutor` for a minimal progress tracker granting a
+## Modules
 
-## JavaHamster AI Flow
-`packages/tutorials/JavaHamsterAI` demonstrates gamified hamster coding. A Sigil
-is awarded when all levels are solved.
-\n- The `services/objective2ui.ts` module generates UI layout YAML via GPT and stores the result in `plugins/manifest.yaml`.
+- `codeagent-python`
+- `codeagent-go`
+- `c-tutor`
+- `java-hamster-ai`
+
+## Workflows
+
+### C-Tutor Progress
+1. Start at beginner level.
+2. Solve exercises and receive a Sigil at each milestone.
+3. Level up to intermediate and expert.
+4. Export your learning Sigil for your portfolio.
+
+### JavaHamster AI Flow
+1. Select a level.
+2. Write and run Hamster code.
+3. An AI coach provides hints during challenges.
+4. Earn a Sigil once all levels are completed.
+
+Additional tools like `services/objective2ui.ts` can generate UI layout YAML via GPT and store the result in `plugins/manifest.yaml`.
