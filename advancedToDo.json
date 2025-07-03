@@ -3557,4 +3557,23 @@
     "task": "c & Manifest-Generator – Dokumentation auf Knopfdruck",
     "test": ""
   }
+,
+  {
+    "commit": "Implement PyramidConfig and loader",
+    "path": "packages/unifiedmandala-ui/pyramid/PyramidConfig.ts",
+    "task": "Provide configuration interface for pyramid layers and loader with AJV validation",
+    "test": "packages/unifiedmandala-ui/pyramid/PyramidConfig.test.ts"
+  },
+  {
+    "commit": "Implement interactive PyramidView component",
+    "path": "packages/unifiedmandala-ui/components/PyramidView.tsx",
+    "task": "Interactive 3D pyramid visualization using react-three-fiber",
+    "test": "packages/unifiedmandala-ui/components/PyramidView.test.tsx"
+  },
+  {
+    "commit": "Integrate Web Audio pyramid sonification",
+    "path": "packages/unifiedmandala-ui/hooks/usePyramidAudio.ts",
+    "task": "Generate phi/pi tones based on layer weights",
+    "test": "packages/unifiedmandala-ui/hooks/usePyramidAudio.test.ts"
+  }
 ]
