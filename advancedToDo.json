@@ -911,7 +911,7 @@
     "commit": "Document learning modules",
     "path": "docs/learning-modules.md",
     "task": "Describe workflows from advancedconversations_snippet.json",
-    "test": ""
+    "test": "",
     "status": "done"
   },
   {
@@ -3556,8 +3556,7 @@
     "path": "",
     "task": "c & Manifest-Generator – Dokumentation auf Knopfdruck",
     "test": ""
-  }
-,
+  },
   {
     "commit": "Implement PyramidConfig and loader",
     "path": "packages/unifiedmandala-ui/pyramid/PyramidConfig.ts",
@@ -3575,5 +3574,11 @@
     "path": "packages/unifiedmandala-ui/hooks/usePyramidAudio.ts",
     "task": "Generate phi/pi tones based on layer weights",
     "test": "packages/unifiedmandala-ui/hooks/usePyramidAudio.test.ts"
+  },
+  {
+    "commit": "Add PyramidInit CLI and config generator",
+    "path": "packages/cli-tools/PyramidInit.ts",
+    "task": "Generate default pyramid config via CLI",
+    "test": "packages/cli-tools/PyramidInit.test.ts"
   }
 ]
