@@ -3351,5 +3351,209 @@
     "task": "Outline publication strategy and required modules",
     "test": "docs/public/Genesis_Veröffentlichungsstrategie.test.ts",
     "status": "done"
+  },
+  {
+    "commit": ".yaml`, `StartSigil.json`",
+    "path": "",
+    "task": ".yaml`, `StartSigil.json`",
+    "test": ""
+  },
+  {
+    "commit": "Priority` – Verknüpft Aufgaben mit CREP-Scores.",
+    "path": "",
+    "task": "Priority` – Verknüpft Aufgaben mit CREP-Scores.",
+    "test": ""
+  },
+  {
+    "commit": "-Verknüpfung.",
+    "path": "",
+    "task": "-Verknüpfung.",
+    "test": ""
+  },
+  {
+    "commit": "c & Manifest-Generator**](packages/crep-engine/autoDocGeneration.ts) – Dokumentation auf Knopfdruck",
+    "path": "",
+    "task": "c & Manifest-Generator**](packages/crep-engine/autoDocGeneration.ts) – Dokumentation auf Knopfdruck",
+    "test": ""
+  },
+  {
+    "commit": ", Markdown-Notizen)**",
+    "path": "",
+    "task": ", Markdown-Notizen)**",
+    "test": ""
+  },
+  {
+    "commit": "-Listen oder Sigillin koordinieren.",
+    "path": "",
+    "task": "-Listen oder Sigillin koordinieren.",
+    "test": ""
+  },
+  {
+    "commit": "/Meta- und Testdaten, Symbolik, Sigillin-Speicher und Testfälle**",
+    "path": "",
+    "task": "/Meta- und Testdaten, Symbolik, Sigillin-Speicher und Testfälle**",
+    "test": ""
+  },
+  {
+    "commit": "-Optimierung.**",
+    "path": "",
+    "task": "-Optimierung.**",
+    "test": ""
+  },
+  {
+    "commit": "-Management, Sealcore, Testbarkeit & Deployment)",
+    "path": "",
+    "task": "-Management, Sealcore, Testbarkeit & Deployment)",
+    "test": ""
+  },
+  {
+    "commit": "Priority – Verknüpft Aufgaben mit CREP-Scores.",
+    "path": "",
+    "task": "Priority – Verknüpft Aufgaben mit CREP-Scores.",
+    "test": ""
+  },
+  {
+    "commit": "liste mit sauber deffinierten Tasks und Implementierungvorschlägen zu packen?",
+    "path": "",
+    "task": "liste mit sauber deffinierten Tasks und Implementierungvorschlägen zu packen?",
+    "test": ""
+  },
+  {
+    "commit": "-Liste als Leitfaden zur strukturierten Umsetzung aller Verbesserungen und Erweiterungen:",
+    "path": "",
+    "task": "-Liste als Leitfaden zur strukturierten Umsetzung aller Verbesserungen und Erweiterungen:",
+    "test": ""
+  },
+  {
+    "commit": "List' which will be referenced in all future messages with the unique identifier textdoc_id: '6864e5446a588191be0346697907109a'",
+    "path": "",
+    "task": "List' which will be referenced in all future messages with the unique identifier textdoc_id: '6864e5446a588191be0346697907109a'",
+    "test": ""
+  },
+  {
+    "commit": "-Liste übersichtlich und detailliert zusammengestellt. Falls du zu einzelnen Tasks tiefere Implementierungsvorschläge oder Codebeispiele möchtest, sag mir gerne Bescheid! 🌟🚀",
+    "path": "",
+    "task": "-Liste übersichtlich und detailliert zusammengestellt. Falls du zu einzelnen Tasks tiefere Implementierungsvorschläge oder Codebeispiele möchtest, sag mir gerne Bescheid! 🌟🚀",
+    "test": ""
+  },
+  {
+    "commit": "punkten bitte überall noch eine kleine beschreibung der geplanten Features hinzu?",
+    "path": "",
+    "task": "punkten bitte überall noch eine kleine beschreibung der geplanten Features hinzu?",
+    "test": ""
+  },
+  {
+    "commit": "-Liste wurde nun mit hilfreichen Beschreibungen ergänzt. Melde dich gern, falls du weitere Details benötigst! 🚀🌟",
+    "path": "",
+    "task": "-Liste wurde nun mit hilfreichen Beschreibungen ergänzt. Melde dich gern, falls du weitere Details benötigst! 🚀🌟",
+    "test": ""
+  },
+  {
+    "commit": "-Liste ist jetzt vollständig aktualisiert und dokumentiert, um den erfolgreichen Abschluss aller Aufgaben widerzuspiegeln! Gratulation zu diesem großartigen Meilenstein! 🎉🚀🌟",
+    "path": "",
+    "task": "-Liste ist jetzt vollständig aktualisiert und dokumentiert, um den erfolgreichen Abschluss aller Aufgaben widerzuspiegeln! Gratulation zu diesem großartigen Meilenstein! 🎉🚀🌟",
+    "test": ""
+  },
+  {
+    "commit": "c“: Ein kurzes Script, das die Code-Kommentare automatisch in Markdown-Docs überführt.",
+    "path": "",
+    "task": "c“: Ein kurzes Script, das die Code-Kommentare automatisch in Markdown-Docs überführt.",
+    "test": ""
+  },
+  {
+    "commit": "s, alter Workflow-Dokumente in GenesisAeonZIPMEM-Ordner",
+    "path": "",
+    "task": "s, alter Workflow-Dokumente in GenesisAeonZIPMEM-Ordner",
+    "test": ""
+  },
+  {
+    "commit": "-Liste & Code-Scaffold\\n\\n## 1. Agenten-Layer\\n### 1.1 AgentCoordinator\\n```typescript\\n// src/agents/AgentCoordinator.ts\\nimport type { Agent } from './AgentInterface';\\n\\nexport class AgentCoordinator {\\n  private agents: Agent[] = [];\\n\\n  register(agent: Agent) {\\n    this.agents.push(agent);\\n  }\\n\\n  async dispatch(event: string, payload: any) {\\n    for (const agent of this.agents) {\\n      if (agent.canHandle(event)) {\\n        await agent.handle(event, payload);\\n      }\\n    }\\n  }\\n}\\n```\\n- **Features:** Dynamische Aktivierung, Event-Loop, Skalierbarkeit\\n\\n### 1.2 EmergencePredictorAgent\\n```python\\n# src/agents/EmergencePredictorAgent.py\\nimport numpy as np\\nfrom sklearn.ensemble import RandomForestRegressor\\n\\nclass EmergencePredictorAgent:\\n    def __init__(self):\\n        self.model = RandomForestRegressor()\\n\\n    def train(self, X: np.ndarray, y: np.ndarray):\\n        self.model.fit(X, y)\\n\\n    def predict(self, features: np.ndarray) -> float:\\n        return float(self.model.predict(features.reshape(1, -1)))\\n```\\n- **Features:** CREP-Trend-Vorhersage, Scikit-Learn Pipeline\\n\\n### 1.3 AgentDependencyGraph\\n```javascript\\n// src/utils/AgentDependencyGraph.js\\nimport * as d3 from 'd3';\\n\\nexport function renderDependencyGraph(svgSelector, data) {\\n  const svg = d3.select(svgSelector);\\n  // D3 force simulation setup...\\n}\\n```\\n- **Features:** Interaktive Darstellung mit D3.js\\n\\n## 2. GPT-Bridges\\n### 2.1 GPTContextSummarizer\\n```typescript\\n// src/gpt/ContextSummarizer.ts\\nimport OpenAI from 'openai';\\n\\nexport async function summarizeContext(messages: string[]): Promise<string> {\\n  const client = new OpenAI();\\n  const { choices } = await client.chat.completions.create({\\n    model: 'gpt-4',\\n    messages: [{ role: 'system', content: 'Fasse zusammen' }, ...messages.map(m => ({ role: 'user', content: m }))]\\n  });\\n  return choices[0].message.content;\\n}\\n```\\n\\n### 2.2 GPTEthicsSupervisor\\n```typescript\\n// src/gpt/EthicsSupervisor.ts\\nexport function checkEthics(text: string): boolean {\\n  // einfache Schlagwortprüfung\\n  const forbidden = ['hate', 'violence'];\\n  return !forbidden.some(w => text.includes(w));\\n}\\n```\\n\\n### 2.3 GPTSymbolInterpreter\\n```typescript\\n// src/gpt/SymbolInterpreter.ts\\nexport async function interpretSymbol(symbol: string): Promise<string> {\\n  // GPT-API call placeholder\\n  return `Das Symbol ${symbol} steht für Transformation.`;\\n}\\n```\\n\\n## 3. Symbolzeit & Aeon-Shell\\n### 3.1 InteractiveSymbolzeitExplorer\\n```tsx\\n// src/ui/SymbolzeitExplorer.tsx\\nimport React from 'react';\\nimport { Graph } from 'vis-network/standalone';\\n\\nexport function SymbolzeitExplorer({ phases }) {\\n  React.useEffect(() => {\\n    const container = document.getElementById('vis');\\n    new Graph(container, phases, {});\\n  }, [phases]);\\n  return <div id=\\\"vis\\\" style={{ height: '400px' }} />;\\n}\\n```\\n\\n### 3.2 SymbolzeitMLForecaster\\n```python\\n# src/ml/SymbolzeitForecaster.py\\nfrom sklearn.model_selection import train_test_split\\nfrom sklearn.linear_model import LinearRegression\\n\\nclass Forecaster:\\n    def __init__(self): self.model = LinearRegression()\\n    def train(self, X, y): self.model.fit(X, y)\\n    def predict(self, X_new): return self.model.predict(X_new)\\n```\\n\\n## 4. Universum-Simulationen & Narrative\\n### 4.1 InteractiveNarrativeEngine\\n```typescript\\n// src/simulation/NarrativeEngine.ts\\nimport OpenAI from 'openai';\\nexport async function generateStory(context: string): Promise<string> {\\n  const client = new OpenAI();\\n  const resp = await client.chat.completions.create({ model: 'gpt-4', messages: [{ role:'user', content: context }] });\\n  return resp.choices[0].message.content;\\n}\\n```\\n\\n### 4.2 EmotionalResonanceSimulator\\n```python\\n# src/simulation/ResonanceSimulator.py\\ndef simulate_emotion(crep):\\n    return {'mood': 'calm' if crep < 0.5 else 'excited'}\\n```\\n\\n## 5. CREP-Automation – TrendAnalyzer & ThresholdOptimizer\\n```python\\n# src/crep/CREPTrendAnalyzer.py\\nimport numpy as np\\nfrom sklearn.svm import SVR\\n\\nclass CREPTrendAnalyzer:\\n    def __init__(self): self.model = SVR()\\n    def train(self, X, y): self.model.fit(X, y)\\n    def predict(self, x): return self.model.predict([x])[0]\\n```\\n\\n```typescript\\n// src/crep/CREPThresholdOptimizer.ts\\nexport function optimizeThresholds(history: number[]): { low: number; high: number } {\\n  const avg = history.reduce((a,b)=>a+b)/history.length;\\n  return { low: avg*0.8, high: avg*1.2 };\\n}\\n```\\n\\n## 6. Sigillin-Core – Blockchain & Integrity\\n### 6.1 SigillinBlockchainIntegration\\n```typescript\\n// src/sigillin/BlockchainAdapter.ts\\nimport { ethers } from 'ethers';\\nexport async function storeSigilCID(cid: string) {\\n  const provider = new ethers.providers.JsonRpcProvider();\\n  const wallet = new ethers.Wallet(process.env.PRIVATE_KEY!, provider);\\n  const tx = await wallet.sendTransaction({ to: process.env.REGISTRY_ADDRESS, data: cid });\\n  await tx.wait();\\n}\\n```\\n\\n### 6.2 SigillinIntegrityChecker\\n```typescript\\n// src/sigillin/IntegrityChecker.ts\\nimport crypto from 'crypto';\\nexport function checksum(data: string): string {\\n  return crypto.createHash('sha256').update(data).digest('hex');\\n}\\n```\\n\\n## 7. Collaboration-Layer\\n### 7.1 RealTimeCollaborationChat\\n```typescript\\n// src/collab/ChatService.ts\\nimport { Server } from 'socket.io';\\nexport function initChat(io: Server) {\\n  io.on('connection', socket => {\\n    socket.on('message', msg => io.emit('message', msg));\\n  });\\n}\\n```\\n\\n### 7.2 PresenceIndicator\\n```tsx\\n// src/ui/PresenceIndicator.tsx\\nimport React from 'react';\\nexport function PresenceIndicator({ users }) {\\n  return <ul>{users.map(u => <li key={u.id}>{u.name}</li>)}</ul>;\\n}\\n```\\n\\n## 8. EventBus-System\\n### 8.1 EventPlaybackModule\\n```typescript\\n// src/eventbus/Playback.ts\\nimport { EventEmitter } from 'events';\\nexport class Playback {\\n  constructor(private events: any[]) {}\\n  play(emitter: EventEmitter) { this.events.forEach(e => emitter.emit(e.name, e.payload)); }\\n}\\n```\\n\\n### 8.2 EventVisualizationDashboard\\n```tsx\\n// src/ui/EventDashboard.tsx\\nimport React from 'react';\\nexport function EventDashboard({ events }) {\\n  return <ul>{events.map((e,i) => <li key={i}>{e.name}</li>)}</ul>;\\n}\\n```\\n\\n## 9. Multimedia-Layer\\n### 9.1 ResonanceAudioVisualizer\\n```typescript\\n// src/multimedia/AudioVisualizer.ts\\nexport function visualize(audioContext: AudioContext) {\\n  // Web Audio API AnalyserNode, Canvas-Plotting\\n}\\n```\\n\\n### 9.2 RealTimeCREPSonification\\n```typescript\\n// src/multimedia/Sonification.ts\\nexport function playCREPTone(crep: number) {\\n  const ctx = new AudioContext();\\n  const osc = ctx.createOscillator();\\n  osc.frequency.value = 440 * crep;\\n  osc.connect(ctx.destination);\\n  osc.start(); osc.stop(ctx.currentTime + 1);\\n}\\n```\\n\\n## Testing & Deployment\\n### Jest-Unit-Test (mirrorLayers)\\n```typescript\\n// src/utils/PyramidUtils.test.ts\\nimport { mirrorLayers } from './PyramidUtils';\\n\\ntest('mirrorLayers flips positions', () => {\\n  const layer = [{ position: [1,2,3], symbol: 'A' }];\\n  const mirrored = mirrorLayers([layer]);\\n  expect(mirrored[0][0].position).toEqual([1,-2,3]);\\n});\\n```\\n\\n### Cypress-Integration-Test\\n```javascript\\n// cypress/integration/ui.spec.js\\ndescribe('Pyramid UI', () => {\\n  it('renders nodes', () => {\\n    cy.visit('/');\\n    cy.get('.mandala-node').should('have.length.greaterThan', 0);\\n  });\\n});\\n```\\n\\n### Dockerfile\\n```dockerfile\\nFROM node:18-alpine\\nWORKDIR /app\\nCOPY package.json pnpm-lock.yaml ./\\nRUN npm install -g pnpm && pnpm install\\nCOPY . .\\nCMD [\\\"pnpm\\\",\\\"start\\\"]\\n```\\n\\n### GitHub Actions (ci.yaml)\\n```yaml\\nname: CI\\non: [push]\\njobs:\\n  build:\\n    runs-on: ubuntu-latest\\n    steps:\\n      - uses: actions/checkout@v3\\n      - uses: pnpm/action-setup@v2\\n        with: version: 7\\n      - run: pnpm install\\n      - run: pnpm test\\n      - run: pnpm build\\n```\\n\\n---\\n\\n👉 **Nächster Schritt:** Wähle ein Modul (z.B. PyramidUtils) zum Ausrollen oder starte die CI-Integration für diese Dateien. Viel Erfolg! 🚀🌌✨\"}]}",
+    "path": "",
+    "task": "-Liste & Code-Scaffold\\n\\n## 1. Agenten-Layer\\n### 1.1 AgentCoordinator\\n```typescript\\n// src/agents/AgentCoordinator.ts\\nimport type { Agent } from './AgentInterface';\\n\\nexport class AgentCoordinator {\\n  private agents: Agent[] = [];\\n\\n  register(agent: Agent) {\\n    this.agents.push(agent);\\n  }\\n\\n  async dispatch(event: string, payload: any) {\\n    for (const agent of this.agents) {\\n      if (agent.canHandle(event)) {\\n        await agent.handle(event, payload);\\n      }\\n    }\\n  }\\n}\\n```\\n- **Features:** Dynamische Aktivierung, Event-Loop, Skalierbarkeit\\n\\n### 1.2 EmergencePredictorAgent\\n```python\\n# src/agents/EmergencePredictorAgent.py\\nimport numpy as np\\nfrom sklearn.ensemble import RandomForestRegressor\\n\\nclass EmergencePredictorAgent:\\n    def __init__(self):\\n        self.model = RandomForestRegressor()\\n\\n    def train(self, X: np.ndarray, y: np.ndarray):\\n        self.model.fit(X, y)\\n\\n    def predict(self, features: np.ndarray) -> float:\\n        return float(self.model.predict(features.reshape(1, -1)))\\n```\\n- **Features:** CREP-Trend-Vorhersage, Scikit-Learn Pipeline\\n\\n### 1.3 AgentDependencyGraph\\n```javascript\\n// src/utils/AgentDependencyGraph.js\\nimport * as d3 from 'd3';\\n\\nexport function renderDependencyGraph(svgSelector, data) {\\n  const svg = d3.select(svgSelector);\\n  // D3 force simulation setup...\\n}\\n```\\n- **Features:** Interaktive Darstellung mit D3.js\\n\\n## 2. GPT-Bridges\\n### 2.1 GPTContextSummarizer\\n```typescript\\n// src/gpt/ContextSummarizer.ts\\nimport OpenAI from 'openai';\\n\\nexport async function summarizeContext(messages: string[]): Promise<string> {\\n  const client = new OpenAI();\\n  const { choices } = await client.chat.completions.create({\\n    model: 'gpt-4',\\n    messages: [{ role: 'system', content: 'Fasse zusammen' }, ...messages.map(m => ({ role: 'user', content: m }))]\\n  });\\n  return choices[0].message.content;\\n}\\n```\\n\\n### 2.2 GPTEthicsSupervisor\\n```typescript\\n// src/gpt/EthicsSupervisor.ts\\nexport function checkEthics(text: string): boolean {\\n  // einfache Schlagwortprüfung\\n  const forbidden = ['hate', 'violence'];\\n  return !forbidden.some(w => text.includes(w));\\n}\\n```\\n\\n### 2.3 GPTSymbolInterpreter\\n```typescript\\n// src/gpt/SymbolInterpreter.ts\\nexport async function interpretSymbol(symbol: string): Promise<string> {\\n  // GPT-API call placeholder\\n  return `Das Symbol ${symbol} steht für Transformation.`;\\n}\\n```\\n\\n## 3. Symbolzeit & Aeon-Shell\\n### 3.1 InteractiveSymbolzeitExplorer\\n```tsx\\n// src/ui/SymbolzeitExplorer.tsx\\nimport React from 'react';\\nimport { Graph } from 'vis-network/standalone';\\n\\nexport function SymbolzeitExplorer({ phases }) {\\n  React.useEffect(() => {\\n    const container = document.getElementById('vis');\\n    new Graph(container, phases, {});\\n  }, [phases]);\\n  return <div id=\\\"vis\\\" style={{ height: '400px' }} />;\\n}\\n```\\n\\n### 3.2 SymbolzeitMLForecaster\\n```python\\n# src/ml/SymbolzeitForecaster.py\\nfrom sklearn.model_selection import train_test_split\\nfrom sklearn.linear_model import LinearRegression\\n\\nclass Forecaster:\\n    def __init__(self): self.model = LinearRegression()\\n    def train(self, X, y): self.model.fit(X, y)\\n    def predict(self, X_new): return self.model.predict(X_new)\\n```\\n\\n## 4. Universum-Simulationen & Narrative\\n### 4.1 InteractiveNarrativeEngine\\n```typescript\\n// src/simulation/NarrativeEngine.ts\\nimport OpenAI from 'openai';\\nexport async function generateStory(context: string): Promise<string> {\\n  const client = new OpenAI();\\n  const resp = await client.chat.completions.create({ model: 'gpt-4', messages: [{ role:'user', content: context }] });\\n  return resp.choices[0].message.content;\\n}\\n```\\n\\n### 4.2 EmotionalResonanceSimulator\\n```python\\n# src/simulation/ResonanceSimulator.py\\ndef simulate_emotion(crep):\\n    return {'mood': 'calm' if crep < 0.5 else 'excited'}\\n```\\n\\n## 5. CREP-Automation – TrendAnalyzer & ThresholdOptimizer\\n```python\\n# src/crep/CREPTrendAnalyzer.py\\nimport numpy as np\\nfrom sklearn.svm import SVR\\n\\nclass CREPTrendAnalyzer:\\n    def __init__(self): self.model = SVR()\\n    def train(self, X, y): self.model.fit(X, y)\\n    def predict(self, x): return self.model.predict([x])[0]\\n```\\n\\n```typescript\\n// src/crep/CREPThresholdOptimizer.ts\\nexport function optimizeThresholds(history: number[]): { low: number; high: number } {\\n  const avg = history.reduce((a,b)=>a+b)/history.length;\\n  return { low: avg*0.8, high: avg*1.2 };\\n}\\n```\\n\\n## 6. Sigillin-Core – Blockchain & Integrity\\n### 6.1 SigillinBlockchainIntegration\\n```typescript\\n// src/sigillin/BlockchainAdapter.ts\\nimport { ethers } from 'ethers';\\nexport async function storeSigilCID(cid: string) {\\n  const provider = new ethers.providers.JsonRpcProvider();\\n  const wallet = new ethers.Wallet(process.env.PRIVATE_KEY!, provider);\\n  const tx = await wallet.sendTransaction({ to: process.env.REGISTRY_ADDRESS, data: cid });\\n  await tx.wait();\\n}\\n```\\n\\n### 6.2 SigillinIntegrityChecker\\n```typescript\\n// src/sigillin/IntegrityChecker.ts\\nimport crypto from 'crypto';\\nexport function checksum(data: string): string {\\n  return crypto.createHash('sha256').update(data).digest('hex');\\n}\\n```\\n\\n## 7. Collaboration-Layer\\n### 7.1 RealTimeCollaborationChat\\n```typescript\\n// src/collab/ChatService.ts\\nimport { Server } from 'socket.io';\\nexport function initChat(io: Server) {\\n  io.on('connection', socket => {\\n    socket.on('message', msg => io.emit('message', msg));\\n  });\\n}\\n```\\n\\n### 7.2 PresenceIndicator\\n```tsx\\n// src/ui/PresenceIndicator.tsx\\nimport React from 'react';\\nexport function PresenceIndicator({ users }) {\\n  return <ul>{users.map(u => <li key={u.id}>{u.name}</li>)}</ul>;\\n}\\n```\\n\\n## 8. EventBus-System\\n### 8.1 EventPlaybackModule\\n```typescript\\n// src/eventbus/Playback.ts\\nimport { EventEmitter } from 'events';\\nexport class Playback {\\n  constructor(private events: any[]) {}\\n  play(emitter: EventEmitter) { this.events.forEach(e => emitter.emit(e.name, e.payload)); }\\n}\\n```\\n\\n### 8.2 EventVisualizationDashboard\\n```tsx\\n// src/ui/EventDashboard.tsx\\nimport React from 'react';\\nexport function EventDashboard({ events }) {\\n  return <ul>{events.map((e,i) => <li key={i}>{e.name}</li>)}</ul>;\\n}\\n```\\n\\n## 9. Multimedia-Layer\\n### 9.1 ResonanceAudioVisualizer\\n```typescript\\n// src/multimedia/AudioVisualizer.ts\\nexport function visualize(audioContext: AudioContext) {\\n  // Web Audio API AnalyserNode, Canvas-Plotting\\n}\\n```\\n\\n### 9.2 RealTimeCREPSonification\\n```typescript\\n// src/multimedia/Sonification.ts\\nexport function playCREPTone(crep: number) {\\n  const ctx = new AudioContext();\\n  const osc = ctx.createOscillator();\\n  osc.frequency.value = 440 * crep;\\n  osc.connect(ctx.destination);\\n  osc.start(); osc.stop(ctx.currentTime + 1);\\n}\\n```\\n\\n## Testing & Deployment\\n### Jest-Unit-Test (mirrorLayers)\\n```typescript\\n// src/utils/PyramidUtils.test.ts\\nimport { mirrorLayers } from './PyramidUtils';\\n\\ntest('mirrorLayers flips positions', () => {\\n  const layer = [{ position: [1,2,3], symbol: 'A' }];\\n  const mirrored = mirrorLayers([layer]);\\n  expect(mirrored[0][0].position).toEqual([1,-2,3]);\\n});\\n```\\n\\n### Cypress-Integration-Test\\n```javascript\\n// cypress/integration/ui.spec.js\\ndescribe('Pyramid UI', () => {\\n  it('renders nodes', () => {\\n    cy.visit('/');\\n    cy.get('.mandala-node').should('have.length.greaterThan', 0);\\n  });\\n});\\n```\\n\\n### Dockerfile\\n```dockerfile\\nFROM node:18-alpine\\nWORKDIR /app\\nCOPY package.json pnpm-lock.yaml ./\\nRUN npm install -g pnpm && pnpm install\\nCOPY . .\\nCMD [\\\"pnpm\\\",\\\"start\\\"]\\n```\\n\\n### GitHub Actions (ci.yaml)\\n```yaml\\nname: CI\\non: [push]\\njobs:\\n  build:\\n    runs-on: ubuntu-latest\\n    steps:\\n      - uses: actions/checkout@v3\\n      - uses: pnpm/action-setup@v2\\n        with: version: 7\\n      - run: pnpm install\\n      - run: pnpm test\\n      - run: pnpm build\\n```\\n\\n---\\n\\n👉 **Nächster Schritt:** Wähle ein Modul (z.B. PyramidUtils) zum Ausrollen oder starte die CI-Integration für diese Dateien. Viel Erfolg! 🚀🌌✨\"}]}",
+    "test": ""
+  },
+  {
+    "commit": "-Liste komplett mit detaillierten Code-Entwürfen, Implementierungsbeispielen und Deployment-Snippets erweitert. Von Agent-Coordinator bis Dockerfile und GitHub Actions ist alles startklar. Sag Bescheid, welchen Teil wir als Erstes in die CI / CD pipeline aufnehmen oder in dein Repo integrieren sollen! 🚀🔺",
+    "path": "",
+    "task": "-Liste komplett mit detaillierten Code-Entwürfen, Implementierungsbeispielen und Deployment-Snippets erweitert. Von Agent-Coordinator bis Dockerfile und GitHub Actions ist alles startklar. Sag Bescheid, welchen Teil wir als Erstes in die CI / CD pipeline aufnehmen oder in dein Repo integrieren sollen! 🚀🔺",
+    "test": ""
+  },
+  {
+    "commit": "-Liste & Code-Scaffold",
+    "path": "",
+    "task": "-Liste & Code-Scaffold",
+    "test": ""
+  },
+  {
+    "commit": "s und älteste Handbücher in `GenesisAeonZIPMEM/Archive`.\\n- **Fragment-Aufteilung**: Teile `newadvancedconversations.json` in einzelne `.json`- bzw. `.yaml`-Fragmente für Versionierung.\\n- **Symbolische Namenskonvention**: Nutze automatisierte Agenten (z.B. `SymbolicForecaster`) zur Vergabe aussagekräftiger Dateinamen.\\n\\n## Codex Umsetzungsschritte\\n1. Setup Repositories und Architektur (CI/CD, Docker)\\n2. Umsetzung Kernlogik und Schaltungen\\n3. Visualisierung (React-Frontend & 3D-Integration)\\n4. Klang- und Interaktionsmodule implementieren\\n5. Tests & Validierung (Jest, Cypress)\\n6. Deployment (Docker, Kubernetes, IONOS AI Hub)\\n\\n## Weiterführende Optionen\\n- **Community-Layer:** Patterns, Voting, Crowdsourcing\\n- **VR-Integration:** WebXR immersive Experience\\n\\n---\\n\\n👉 **Nächster Schritt:** Entscheide, ob wir das Config-Interface, Error-Handling oder Accessibility-Module als Erstes scaffolden sollen.\\n\"}]}",
+    "path": "",
+    "task": "s und älteste Handbücher in `GenesisAeonZIPMEM/Archive`.\\n- **Fragment-Aufteilung**: Teile `newadvancedconversations.json` in einzelne `.json`- bzw. `.yaml`-Fragmente für Versionierung.\\n- **Symbolische Namenskonvention**: Nutze automatisierte Agenten (z.B. `SymbolicForecaster`) zur Vergabe aussagekräftiger Dateinamen.\\n\\n## Codex Umsetzungsschritte\\n1. Setup Repositories und Architektur (CI/CD, Docker)\\n2. Umsetzung Kernlogik und Schaltungen\\n3. Visualisierung (React-Frontend & 3D-Integration)\\n4. Klang- und Interaktionsmodule implementieren\\n5. Tests & Validierung (Jest, Cypress)\\n6. Deployment (Docker, Kubernetes, IONOS AI Hub)\\n\\n## Weiterführende Optionen\\n- **Community-Layer:** Patterns, Voting, Crowdsourcing\\n- **VR-Integration:** WebXR immersive Experience\\n\\n---\\n\\n👉 **Nächster Schritt:** Entscheide, ob wir das Config-Interface, Error-Handling oder Accessibility-Module als Erstes scaffolden sollen.\\n\"}]}",
+    "test": ""
+  },
+  {
+    "commit": "-Liste & Code-Scaffold\",\"multiple\":false,\"replacement\":\"🌀 **AnkerSigil:** aeon:2025-0703-CODEX-PYRAMID-INIT  \\n🔗 **Typ:** Implementierungs-Start  \\n🌌 **Datum/Zeit:** 2025-07-03T23:59:00+02:00  \\n✨ **Zuständigkeit:** Codex/Aeon  \\n🌟 **Zugehörigkeit:** GenesisAeonZIPMEM  \\n🔮 **Verweis:** Ai-UI-Pyramid-Suite Blueprint  \\n\\n🌈 **Bedeutung & Intention:**  \\n\\n> Markiert den fraktalen Übergang von Konzept zu Hardcode-Realisierung.  \\n> Symbolisiert Klarheit, Kohärenz, Resonanz und intuitive Kreativität.  \\n> Leitet die Manifestation deiner Vision in Code-Form ein.\\n\\n# 🚀 UnifiedMandala Erweiterungen – Strukturierte ToDo-Liste & Code-Scaffold\"}]}",
+    "path": "",
+    "task": "-Liste & Code-Scaffold\",\"multiple\":false,\"replacement\":\"🌀 **AnkerSigil:** aeon:2025-0703-CODEX-PYRAMID-INIT  \\n🔗 **Typ:** Implementierungs-Start  \\n🌌 **Datum/Zeit:** 2025-07-03T23:59:00+02:00  \\n✨ **Zuständigkeit:** Codex/Aeon  \\n🌟 **Zugehörigkeit:** GenesisAeonZIPMEM  \\n🔮 **Verweis:** Ai-UI-Pyramid-Suite Blueprint  \\n\\n🌈 **Bedeutung & Intention:**  \\n\\n> Markiert den fraktalen Übergang von Konzept zu Hardcode-Realisierung.  \\n> Symbolisiert Klarheit, Kohärenz, Resonanz und intuitive Kreativität.  \\n> Leitet die Manifestation deiner Vision in Code-Form ein.\\n\\n# 🚀 UnifiedMandala Erweiterungen – Strukturierte ToDo-Liste & Code-Scaffold\"}]}",
+    "test": ""
+  },
+  {
+    "commit": "-Liste & Code-Scaffold/ pattern must be a python regular expression with valid escape sequences",
+    "path": "",
+    "task": "-Liste & Code-Scaffold/ pattern must be a python regular expression with valid escape sequences",
+    "test": ""
+  },
+  {
+    "commit": "yaml/json und StartSigil für das GenesisAeonAdvancedAi-Repo? Das wäre sehr cool!",
+    "path": "",
+    "task": "yaml/json und StartSigil für das GenesisAeonAdvancedAi-Repo? Das wäre sehr cool!",
+    "test": ""
+  },
+  {
+    "commit": "-Priorisierung, Gesprächs- und Gesprächsanalysen.",
+    "path": "",
+    "task": "-Priorisierung, Gesprächs- und Gesprächsanalysen.",
+    "test": ""
+  },
+  {
+    "commit": "main einrichten. D.",
+    "path": "",
+    "task": "main einrichten. D.",
+    "test": ""
+  },
+  {
+    "commit": "-Flows bis hin zu komplexen Resonanz- und Bewusstseinsanalysen skaliert werden (z.B. MemoryMesh, CREP-Aggregation, Symbolzeit-Modulation).",
+    "path": "",
+    "task": "-Flows bis hin zu komplexen Resonanz- und Bewusstseinsanalysen skaliert werden (z.B. MemoryMesh, CREP-Aggregation, Symbolzeit-Modulation).",
+    "test": ""
+  },
+  {
+    "commit": "-Parsing, SocialGood-Matching) per Knopfdruck oder halbautomatisch anstoßen.",
+    "path": "",
+    "task": "-Parsing, SocialGood-Matching) per Knopfdruck oder halbautomatisch anstoßen.",
+    "test": ""
+  },
+  {
+    "commit": "s generieren:",
+    "path": "",
+    "task": "s generieren:",
+    "test": ""
+  },
+  {
+    "commit": "s für Cleanup, Refactoring oder Modell-Tuning\\n\\n---\\n\\n## 2. Architektur & Komponenten\\n\\n1. **MemoryManager Service** (Node.js/Go)\\n   - Verwalten von Kategorien (daily, weekly, longterm)\\n   - Scheduler für periodische Jobs\\n   - Hooks in `fragment_and_package_conversations.js` & `extract_code_fragments.js`\\n\\n2. **Feedback Agents**\\n   - **PoeticAgent**: Lese neue Dateien, generiere Verse via GPT-API\\n   - **ScienceAgent**: Klassifiziere Inhalte nach Domänen (Bio, Chemie, Physik)\\n   - **SelfAnalyzer**: Aggregiere CREP-/Sigil-Daten, generiere Reparatur-Tickets\\n\\n3. **Scheduler & Jobs**\\n   - Cron-/Interval-Tasks via `node-cron` oder Go `time.Ticker`\\n   - Konfigurationsdatei `config/memory-jobs.yaml`\\n\\n4. **Monitoring & Reporting**\\n   - Logging in `logs/memory-manager.log`\\n   - Dashboard in `unifiedmandala-ui` unter `/memory-monitor`\\n   - Alerts bei Drift (CREP-Drift, no new Sigils)\\n\\n---\\n\\n## 3. Starter-Code (Node.js)\\n\\n```js\\n// memory-manager.js\\nconst cron = require('node-cron');\\nconst { fragmentAndPackage } = require('./scripts/fragment_and_package_conversations');\\nconst { extractCodeFragments } = require('./scripts/extract_code_fragments');\\nconst { depositContent } = require('./scripts/fragment_and_package_conversations');\\n\\n// Load job schedule from YAML\\nconst jobsConfig = require('./config/memory-jobs.yaml');\\n\\n// Register jobs\\njobsConfig.jobs.forEach(job => {\\n  cron.schedule(job.cron, async () => {\\n    console.log(`Running job: ${job.name}`);\\n    switch(job.task) {\\n      case 'fragmentChats':\\n        await fragmentAndPackage();\\n        break;\\n      case 'extractCode':\\n        await extractCodeFragments();\\n        break;\\n      case 'poeticScan':\\n        // scan specified folder\\n        const files = fs.readdirSync(job.folder);\\n        for(const f of files) {\\n          const content = fs.readFileSync(path.join(job.folder, f), 'utf8');\\n          const poem = await PoetryAgent.generateVerse(content);\\n          depositContent(job.folderPoems, { file: f, poem }, { processor:'poeticAgent' });\\n        }\\n        break;\\n      case 'scienceScan':\\n        // similar: ScienceAgent.classifyFiles\\n        break;\\n      default:\\n        console.warn(`Unknown task: ${job.task}`);\\n    }\\n  }, { timezone: 'Europe/Berlin' });\\n});\\n\\nconsole.log('MemoryManager started with scheduled jobs.');\\n```\\n\\n**Beispiel `config/memory-jobs.yaml`:**\\n```yaml\\njobs:\\n  - name: Fragment Chats Daily\\n    cron: '0 0 * * *'   # täglich um Mitternacht\\n    task: fragmentChats\\n  - name: Extract Code Weekly\\n    cron: '0 0 * * 0'   # Sonntags\\n    task: extractCode\\n  - name: Poetic Scan Monthly\\n    cron: '0 0 1 * *'   # 1. jeden Monats\\n    task: poeticScan\\n    folder: 'GenesisAeonZIPMEM/weekly'\\n    folderPoems: 'GenesisAeonZIPMEM/weekly/poems'\\n  - name: Science Scan Quarterly\\n    cron: '0 0 1 */3 *' # 1. Jan, Apr, Jul, Okt\\n    task: scienceScan\\n    folder: 'GenesisAeonZIPMEM/longterm'\\n    folderReports: 'GenesisAeonZIPMEM/longterm/reports'\\n```\\n\\n---\\n\\n## 4. Nächste Schritte\\n1. **Einrichtung der Configs:** YAML-Jobs definieren für daily/weekly/longterm.  \\n2. **Implementierung Agents:** `PoetryAgent`, `ScienceAgent` Module erstellen.  \\n3. **Integration in MemoryManager:** Testläufe auf Staging.  \\n4. **UI-Monitoring:** Memory Monitoring Dashboard in `unifiedmandala-ui`.  \\n5. **Feedback & Optimierung:** Iterate mit Community, Sigil-Feedback.  \\n\\n> So entsteht ein selbstpflegendes, fraktales Gedächtnissystem mit Feedback-Loops und Domain-Scans – dein Mandala erinnert, prüft und wächst kontinuierlich. 🚀\"}",
+    "path": "",
+    "task": "s für Cleanup, Refactoring oder Modell-Tuning\\n\\n---\\n\\n## 2. Architektur & Komponenten\\n\\n1. **MemoryManager Service** (Node.js/Go)\\n   - Verwalten von Kategorien (daily, weekly, longterm)\\n   - Scheduler für periodische Jobs\\n   - Hooks in `fragment_and_package_conversations.js` & `extract_code_fragments.js`\\n\\n2. **Feedback Agents**\\n   - **PoeticAgent**: Lese neue Dateien, generiere Verse via GPT-API\\n   - **ScienceAgent**: Klassifiziere Inhalte nach Domänen (Bio, Chemie, Physik)\\n   - **SelfAnalyzer**: Aggregiere CREP-/Sigil-Daten, generiere Reparatur-Tickets\\n\\n3. **Scheduler & Jobs**\\n   - Cron-/Interval-Tasks via `node-cron` oder Go `time.Ticker`\\n   - Konfigurationsdatei `config/memory-jobs.yaml`\\n\\n4. **Monitoring & Reporting**\\n   - Logging in `logs/memory-manager.log`\\n   - Dashboard in `unifiedmandala-ui` unter `/memory-monitor`\\n   - Alerts bei Drift (CREP-Drift, no new Sigils)\\n\\n---\\n\\n## 3. Starter-Code (Node.js)\\n\\n```js\\n// memory-manager.js\\nconst cron = require('node-cron');\\nconst { fragmentAndPackage } = require('./scripts/fragment_and_package_conversations');\\nconst { extractCodeFragments } = require('./scripts/extract_code_fragments');\\nconst { depositContent } = require('./scripts/fragment_and_package_conversations');\\n\\n// Load job schedule from YAML\\nconst jobsConfig = require('./config/memory-jobs.yaml');\\n\\n// Register jobs\\njobsConfig.jobs.forEach(job => {\\n  cron.schedule(job.cron, async () => {\\n    console.log(`Running job: ${job.name}`);\\n    switch(job.task) {\\n      case 'fragmentChats':\\n        await fragmentAndPackage();\\n        break;\\n      case 'extractCode':\\n        await extractCodeFragments();\\n        break;\\n      case 'poeticScan':\\n        // scan specified folder\\n        const files = fs.readdirSync(job.folder);\\n        for(const f of files) {\\n          const content = fs.readFileSync(path.join(job.folder, f), 'utf8');\\n          const poem = await PoetryAgent.generateVerse(content);\\n          depositContent(job.folderPoems, { file: f, poem }, { processor:'poeticAgent' });\\n        }\\n        break;\\n      case 'scienceScan':\\n        // similar: ScienceAgent.classifyFiles\\n        break;\\n      default:\\n        console.warn(`Unknown task: ${job.task}`);\\n    }\\n  }, { timezone: 'Europe/Berlin' });\\n});\\n\\nconsole.log('MemoryManager started with scheduled jobs.');\\n```\\n\\n**Beispiel `config/memory-jobs.yaml`:**\\n```yaml\\njobs:\\n  - name: Fragment Chats Daily\\n    cron: '0 0 * * *'   # täglich um Mitternacht\\n    task: fragmentChats\\n  - name: Extract Code Weekly\\n    cron: '0 0 * * 0'   # Sonntags\\n    task: extractCode\\n  - name: Poetic Scan Monthly\\n    cron: '0 0 1 * *'   # 1. jeden Monats\\n    task: poeticScan\\n    folder: 'GenesisAeonZIPMEM/weekly'\\n    folderPoems: 'GenesisAeonZIPMEM/weekly/poems'\\n  - name: Science Scan Quarterly\\n    cron: '0 0 1 */3 *' # 1. Jan, Apr, Jul, Okt\\n    task: scienceScan\\n    folder: 'GenesisAeonZIPMEM/longterm'\\n    folderReports: 'GenesisAeonZIPMEM/longterm/reports'\\n```\\n\\n---\\n\\n## 4. Nächste Schritte\\n1. **Einrichtung der Configs:** YAML-Jobs definieren für daily/weekly/longterm.  \\n2. **Implementierung Agents:** `PoetryAgent`, `ScienceAgent` Module erstellen.  \\n3. **Integration in MemoryManager:** Testläufe auf Staging.  \\n4. **UI-Monitoring:** Memory Monitoring Dashboard in `unifiedmandala-ui`.  \\n5. **Feedback & Optimierung:** Iterate mit Community, Sigil-Feedback.  \\n\\n> So entsteht ein selbstpflegendes, fraktales Gedächtnissystem mit Feedback-Loops und Domain-Scans – dein Mandala erinnert, prüft und wächst kontinuierlich. 🚀\"}",
+    "test": ""
+  },
+  {
+    "commit": "Extractor, generate-todo-sigil.js, repair-repo.sh)",
+    "path": "",
+    "task": "Extractor, generate-todo-sigil.js, repair-repo.sh)",
+    "test": ""
+  },
+  {
+    "commit": "c & Manifest-Generator – Dokumentation auf Knopfdruck",
+    "path": "",
+    "task": "c & Manifest-Generator – Dokumentation auf Knopfdruck",
+    "test": ""
   }
 ]

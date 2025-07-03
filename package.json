@@ -20,6 +20,7 @@
     "analyze:conversations": "node scripts/analyze-conversations.js",
     "parse:newconversations": "node scripts/parse-newadvanced-conversations.js",
     "update:advanced-todo": "node scripts/update-advanced-todo.js",
+    "update:newadvanced-todo": "node scripts/update-newadvanced-todo.js",
     "export:crep-docs": "node scripts/export-crep-docs.js",
     "symbolzeit:run": "node scripts/symbolzeit-runner.js",
     "generate:next-sigil": "node scripts/generate-next-sigil.js",
