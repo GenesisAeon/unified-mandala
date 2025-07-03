@@ -1,3 +1,4 @@
+/// <reference types="vitest" />
 import { describe, it, test, expect, beforeEach, afterEach, vi } from 'vitest';
 import { ReplayController } from './ReplayController';
 import { AeonMemory } from '../core/AeonMemory';
@@ -9,6 +10,6 @@ test('logs replay message', () => {
   const c = new ReplayController(1000);
   c.start();
   vi.advanceTimersByTime(1000);
-  expect((console.log as vi.Mock).mock.calls[0][0]).toContain('t1');
+  expect((console.log as ReturnType<typeof vi.fn>).mock.calls[0][0]).toContain('t1');
   vi.useRealTimers();
 });
