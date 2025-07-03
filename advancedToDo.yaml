@@ -4806,10 +4806,12 @@
   path: packages/helpers/LegasthenieHelper.ts
   task: Adaptive text formatter for users with dyslexia
   test: packages/helpers/LegasthenieHelper.test.ts
+  status: done
 - commit: "feat: add OvernightProgressReporter"
   path: packages/agents/OvernightProgressReporter.ts
   task: Summarize nightly agent activity for next-day review
   test: packages/agents/OvernightProgressReporter.test.ts
+  status: done
 - commit: "docs: add Genesis_Veröffentlichungsstrategie"
   path: docs/public/Genesis_Veröffentlichungsstrategie.md
   task: Outline publication strategy and required modules
