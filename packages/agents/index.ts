@@ -42,6 +42,7 @@ export * from "./WeightedDispatcher";
 export * from "./patternReactivator";
 export * from "./ReplayController";
 export * from "./silenceWatcher";
+export * from "./NightWorkScheduler";
 export * from "./StrategicAgentCoordinator";
 export * from "./AeonUniversalCoordinatorAgent";
 export * from "./AeonRustTranspilerAgent";
