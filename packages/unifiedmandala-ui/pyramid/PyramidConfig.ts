@@ -8,6 +8,17 @@ export interface PyramidLayer {
 
 export interface PyramidConfig {
   layers: PyramidLayer[];
+  /** total number of layers in the pyramid */
+  totalLayers?: number;
+  /** number of nodes per layer */
+  nodesPerLayer?: number;
+  /** weight factors used for CREP based computations */
+  weightFactors?: {
+    coherence: number;
+    resonance: number;
+    emergence: number;
+    poetics: number;
+  };
 }
 
 const schema = {
@@ -25,6 +36,19 @@ const schema = {
         required: ['name', 'weight'],
         additionalProperties: false
       }
+    },
+    totalLayers: { type: 'number' },
+    nodesPerLayer: { type: 'number' },
+    weightFactors: {
+      type: 'object',
+      properties: {
+        coherence: { type: 'number' },
+        resonance: { type: 'number' },
+        emergence: { type: 'number' },
+        poetics: { type: 'number' }
+      },
+      required: ['coherence', 'resonance', 'emergence', 'poetics'],
+      additionalProperties: false
     }
   },
   required: ['layers'],
