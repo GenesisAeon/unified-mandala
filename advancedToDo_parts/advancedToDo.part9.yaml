@@ -40,10 +40,12 @@
   path: cmd/todo_parser.go
   task: Parse TODO blocks and expose them via REST endpoint /usecases/todo/parse
   test: cmd/todo_parser_test.go
+  status: done
 - commit: Add handleTodo action and button
   path: apps/socialgood-ui/src/components/TodoButton.tsx
   task: Invoke /usecases/todo/parse from UI and display parsed TODOs
   test: apps/socialgood-ui/src/components/__tests__/TodoButton.test.tsx
+  status: done
 - commit: Auto-generate tasks from SelfAnalyzer results
   path: packages/agents/self-analyzer
   task: Generate TODO items and feed them to todoSigilGenerator for advancedToDo.yaml
@@ -58,3 +60,4 @@
   path: apps/socialgood-ui
   task: Automated docs, sigil generation, TODO ranking and conversation analytics
   test: apps/socialgood-ui/__tests__/automation.test.ts
+  status: done
