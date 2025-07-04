@@ -3607,5 +3607,26 @@
     "task": "Provide playCREPTone function using Web Audio API",
     "test": "packages/visuals/__tests__/Sonification.test.ts",
     "status": "todo"
+  },
+  {
+    "commit": "Implement weighted node generation",
+    "path": "packages/unifiedmandala-ui/utils/PyramidUtils.ts",
+    "task": "Calculate node weights using phi, pi and e constants",
+    "test": "packages/unifiedmandala-ui/utils/PyramidUtils.test.ts",
+    "status": "todo"
+  },
+  {
+    "commit": "Add ARIA labels for PyramidView",
+    "path": "packages/unifiedmandala-ui/components/PyramidView.tsx",
+    "task": "Improve accessibility by adding ARIA labels and color contrast checks",
+    "test": "packages/unifiedmandala-ui/components/PyramidView.a11y.test.tsx",
+    "status": "todo"
+  },
+  {
+    "commit": "Add fallback audio and error markers",
+    "path": "packages/visuals/Sonification.ts",
+    "task": "Provide fallback synthesizer and visual markers on audio errors",
+    "test": "packages/visuals/__tests__/Sonification.test.ts",
+    "status": "todo"
   }
 ]
