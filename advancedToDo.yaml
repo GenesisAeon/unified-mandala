@@ -5417,24 +5417,35 @@
   path: ""
   task: Extractor, generate-todo-sigil.js, repair-repo.sh)
   test: ""
+  status: done
 - commit: c & Manifest-Generator – Dokumentation auf Knopfdruck
   path: ""
   task: c & Manifest-Generator – Dokumentation auf Knopfdruck
   test: ""
+  status: done
 - commit: Implement PyramidConfig and loader
   path: packages/unifiedmandala-ui/pyramid/PyramidConfig.ts
   task: Provide configuration interface for pyramid layers and loader with AJV
     validation
   test: packages/unifiedmandala-ui/pyramid/PyramidConfig.test.ts
+  status: done
 - commit: Implement interactive PyramidView component
   path: packages/unifiedmandala-ui/components/PyramidView.tsx
   task: Interactive 3D pyramid visualization using react-three-fiber
   test: packages/unifiedmandala-ui/components/PyramidView.test.tsx
+  status: done
 - commit: Integrate Web Audio pyramid sonification
   path: packages/unifiedmandala-ui/hooks/usePyramidAudio.ts
   task: Generate phi/pi tones based on layer weights
   test: packages/unifiedmandala-ui/hooks/usePyramidAudio.test.ts
+  status: done
 - commit: Add PyramidInit CLI and config generator
   path: packages/cli-tools/PyramidInit.ts
   task: Generate default pyramid config via CLI
   test: packages/cli-tools/PyramidInit.test.ts
+  status: done
+- commit: Finalize AI-UI Pyramid Suite blueprint
+  path: docs/sigils/newadvancedconversations.json
+  task: Implement final planning instructions for Pyramid Suite
+  test: packages/cli-tools/PyramidInit.test.ts
+  status: open
