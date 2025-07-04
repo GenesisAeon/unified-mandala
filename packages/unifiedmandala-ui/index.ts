@@ -16,3 +16,4 @@ export * from './hooks/useCREPManager';
 export * from './hooks/useCREPHistory';
 export { SymbolzeitManager } from '../aeon-shell/SymbolzeitManager';
 export { runCommand as AeonShellBridge } from '../aeon-shell/AeonShellBridge';
+export * from './utils/PyramidUtils';
