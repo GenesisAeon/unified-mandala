@@ -1,0 +1,7 @@
+name: codex-sync
+version: 1
+description: Placeholder manifest for codex sync tasks
+pipelines:
+  - name: sigillin-sync
+    steps:
+      - run: node codex-sync/answer-suggestions.js
