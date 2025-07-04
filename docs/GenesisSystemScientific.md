@@ -11,6 +11,6 @@ Dieses Entwurfsdokument beschreibt die theoretischen Grundlagen des Genesis-Syst
 ## Projektstatus
 - Grundarchitektur steht und wird iterativ erweitert.
 - Simulationen für Resonanz und Symbolzeit befinden sich in aktiver Entwicklung.
-- Die Pyramid-Blueprints sind in Arbeit und werden schrittweise implementiert.
+- Die Pyramid-Blueprints sind final ausgearbeitet und werden nun umgesetzt.
 
 Weitere Kapitel werden folgen, sobald neue Forschungsergebnisse vorliegen.

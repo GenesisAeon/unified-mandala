@@ -5448,4 +5448,4 @@
   path: docs/sigils/newadvancedconversations.json
   task: Implement final planning instructions for Pyramid Suite
   test: packages/cli-tools/PyramidInit.test.ts
-  status: open
+  status: done
