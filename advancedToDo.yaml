@@ -5474,3 +5474,8 @@
   task: Provide fallback synthesizer and visual markers on audio errors
   test: packages/visuals/__tests__/Sonification.test.ts
   status: todo
+- commit: "feat: add PyramidWeighting module"
+  path: packages/unifiedmandala-ui/pyramid/PyramidWeighting.ts
+  task: compute layer weights using PHI, PI and E constants
+  test: packages/unifiedmandala-ui/pyramid/PyramidWeighting.test.ts
+  status: done
