@@ -3593,5 +3593,12 @@
     "task": "Implement final planning instructions for Pyramid Suite",
     "test": "packages/cli-tools/PyramidInit.test.ts",
     "status": "done"
+  },
+  {
+    "commit": "Integrate CODEX Pyramid Init Sigil",
+    "path": "docs/sigils/newadvancedconversations.json",
+    "task": "Register CODEX-PYRAMID-INIT anchor and update planning meta",
+    "test": "packages/cli-tools/PyramidInit.test.ts",
+    "status": "todo"
   }
 ]
