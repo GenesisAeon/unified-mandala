@@ -3600,5 +3600,12 @@
     "task": "Register CODEX-PYRAMID-INIT anchor and update planning meta",
     "test": "packages/cli-tools/PyramidInit.test.ts",
     "status": "todo"
+  },
+  {
+    "commit": "Add Sonification module",
+    "path": "packages/visuals/Sonification.ts",
+    "task": "Provide playCREPTone function using Web Audio API",
+    "test": "packages/visuals/__tests__/Sonification.test.ts",
+    "status": "todo"
   }
 ]
