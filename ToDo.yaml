@@ -232,10 +232,10 @@ todos:
     status: offen
   - id: todo-78
     beschreibung: "compile_agents_manifest Script zur Generierung von Agents.md aus fragments/agents/ entwickeln"
-    status: offen
+    status: erledigt
   - id: todo-79
     beschreibung: "codex_sync_manifest.yaml vorbereiten und erste Platzhalter-Dateien erzeugen"
-    status: offen
+    status: erledigt
   - id: todo-80
     beschreibung: "ZIPMEM-Fragment-Generator in CI integrieren"
     status: offen

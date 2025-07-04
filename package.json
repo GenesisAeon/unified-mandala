@@ -33,7 +33,8 @@
     "ghost-shell:server": "ts-node services/ghost-shell/server.ts",
     "generate:ghostshell-nginx": "ts-node scripts/generate-ghostshell-nginx.ts",
     "store:commit-memory": "node GenesisAeonZIPMEM/commitMemory/commit-memory.js",
-    "generate:changelog": "node scripts/generate-changelog.js"
+    "generate:changelog": "node scripts/generate-changelog.js",
+    "compile:agents-manifest": "node scripts/compile_agents_manifest.js"
   },
   "dependencies": {
     "@grpc/grpc-js": "^1.9.10",
