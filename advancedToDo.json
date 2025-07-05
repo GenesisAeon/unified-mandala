@@ -3957,5 +3957,19 @@
     "task": "Provide minimal HTTP/HTTPS client for tests and scripts",
     "test": "packages/shared-utils/RestClient.test.ts",
     "status": "todo"
+  },
+  {
+    "commit": "Implement MetaRunner script for fractal tasks",
+    "path": "scripts/metaRunner.ts",
+    "task": "Run tasks recursively using fractal anchor reference",
+    "test": "scripts/__tests__/metaRunner.test.ts",
+    "status": "todo"
+  },
+  {
+    "commit": "Add MetaRunner blueprint YAML",
+    "path": "docs/sigils/metaRunnerBlueprint.yaml",
+    "task": "Outline structure for fractal task pipelines referenced by anchor",
+    "test": "",
+    "status": "todo"
   }
 ]
