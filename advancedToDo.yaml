@@ -6008,7 +6008,8 @@
   status: todo
 - commit: Organize GenesisAeonZIPMEM
   path: scripts/organize-zipmem.js
-  task: Split newadvancedconversations.json into chat fragments and maintain commit memory directories
+  task: Split newadvancedconversations.json into chat fragments and maintain
+    commit memory directories
   test: scripts/__tests__/organize-zipmem.test.ts
   status: todo
 - commit: Implement ZIPMEMManagementAgent
@@ -6023,7 +6024,8 @@
   status: todo
 - commit: Expand pyramid blueprint docs
   path: docs/blueprints/aeon-ui-pyramid.md
-  task: Add error management, performance, accessibility, config schema, testing and deployment sections
+  task: Add error management, performance, accessibility, config schema, testing
+    and deployment sections
   test: ""
   status: todo
 - commit: Add autodoc generator script
