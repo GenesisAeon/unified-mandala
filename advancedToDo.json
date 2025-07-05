@@ -3703,5 +3703,71 @@
       "Security"
     ],
     "self_check": true
+  },
+  {
+    "sprint": "ProtoDeploy",
+    "commit": "feat: setup ProtoDeploy Docker Compose environment",
+    "path": "docker-compose.yml; scripts/protodeploy",
+    "description": "Create containerized AeonCore with CREPmetrix and SigillinBundle",
+    "test_or_story": "protodeploy-ci.yml",
+    "responsible": "DevOps Team",
+    "dependencies": [],
+    "self_check": true
+  },
+  {
+    "sprint": "ProtoDeploy",
+    "commit": "feat: implement AeonUniversal DSL blueprint",
+    "path": "packages/aeonuniversal",
+    "description": "Provide grammar, hooks and compiler scaffold for ProtoDeploy",
+    "test_or_story": "aeonuniversal.spec.ts",
+    "responsible": "AE Team",
+    "dependencies": [],
+    "self_check": true
+  },
+  {
+    "sprint": "ProtoDeploy",
+    "commit": "feat: minimal Mandala UI with agent mapping",
+    "path": "packages/mandala-ui",
+    "description": "Initial UI with Sigil cards and agent mapping view",
+    "test_or_story": "mandala-ui.story.tsx",
+    "responsible": "UI Team",
+    "dependencies": [
+      "ProtoDeploy"
+    ],
+    "self_check": true
+  },
+  {
+    "sprint": "ProtoDeploy",
+    "commit": "feat: sigil card export and import mechanism",
+    "path": "packages/sigillin-tools",
+    "description": "Allow exporting and importing Sigillin bundles for ProtoDeploy",
+    "test_or_story": "sigil-export.test.ts",
+    "responsible": "Tools Team",
+    "dependencies": [
+      "ProtoDeploy"
+    ],
+    "self_check": true
+  },
+  {
+    "sprint": "ProtoDeploy",
+    "commit": "feat: AeonProtoLogbuch with resonant dataset export",
+    "path": "docs/protodeploy/logbuch.md",
+    "description": "Document ProtoDeploy interactions and gather training datasets",
+    "test_or_story": "N/A",
+    "responsible": "Documentation Team",
+    "dependencies": [],
+    "self_check": true
+  },
+  {
+    "sprint": "ProtoDeploy",
+    "commit": "chore: update README and Handbuch with infrastructure guide",
+    "path": "README.md; Handbuch.md",
+    "description": "Integrate ProtoDeploy setup instructions and feedback loops",
+    "test_or_story": "docs-review.test",
+    "responsible": "Docs Team",
+    "dependencies": [
+      "ProtoDeploy"
+    ],
+    "self_check": true
   }
 ]
