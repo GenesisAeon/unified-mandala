@@ -5946,3 +5946,38 @@
   task: Generate markdown docs from TypeScript comments
   test: scripts/__tests__/autodoc-comments.test.ts
   status: todo
+- commit: Setup configuration schema with AJV
+  path: packages/unifiedmandala-core/configSchema.ts
+  task: Build JSON schema and integrate AJV validation
+  test: packages/unifiedmandala-core/configSchema.test.ts
+  status: todo
+- commit: Implement composite core framework
+  path: packages/unifiedmandala-core/composite.ts
+  task: Create core layer using Composite Pattern
+  test: packages/unifiedmandala-core/composite.test.ts
+  status: todo
+- commit: Add React Three-Fiber skeleton
+  path: packages/unifiedmandala-ui/ThreeFiberSkeleton.tsx
+  task: Build base UI skeleton with React and Three-Fiber
+  test: packages/unifiedmandala-ui/ThreeFiberSkeleton.test.tsx
+  status: todo
+- commit: Build audio engine with WebAudio
+  path: packages/unifiedmandala-audio/engine.ts
+  task: Implement PhiTone, useCREPTone and Mandala soundscape modules
+  test: packages/unifiedmandala-audio/engine.test.ts
+  status: todo
+- commit: Connect CosmicTheoryAgent UI bridge
+  path: packages/unifiedmandala-ui/api/cosmicBridge.ts
+  task: Create REST and WebSocket endpoints with hooks
+  test: packages/unifiedmandala-ui/api/cosmicBridge.test.ts
+  status: todo
+- commit: Integrate OpenTelemetry instrumentation
+  path: packages/unifiedmandala-observability/opentelemetry.ts
+  task: Add telemetry hooks for agents and dashboard
+  test: packages/unifiedmandala-observability/opentelemetry.test.ts
+  status: todo
+- commit: Setup CI tests and deployment
+  path: deployment/fractal-ci
+  task: Configure Jest, Cypress and K8s manifests
+  test: tests/fractal-ci.test.ts
+  status: todo
