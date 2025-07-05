@@ -3635,5 +3635,73 @@
     "task": "compute layer weights using PHI, PI and E constants",
     "test": "packages/unifiedmandala-ui/pyramid/PyramidWeighting.test.ts",
     "status": "done"
+  },
+  {
+    "sprint": "MetaScore",
+    "commit": "feat: implement AestheticsLayer and EthicsLayer modules",
+    "path": "packages/layers/",
+    "description": "Add AestheticsLayer.ts and EthicsLayer.ts to compute and emit layer scores",
+    "test_or_story": "packages/agents/__tests__/MetaScoreComposer.spec.ts; MetaScoreHeatmap.stories.tsx",
+    "responsible": "Core Team",
+    "dependencies": [],
+    "self_check": true
+  },
+  {
+    "sprint": "Collaboration",
+    "commit": "feat: add CollaborativeEditor and federation routes",
+    "path": "packages/unifiedmandala-ui/components/; packages/core/routes/federation.ts",
+    "description": "Implement collaborative markdown editor with Automerge and federation API endpoints",
+    "test_or_story": "CollaborativeEditor.story.tsx; SyncStatus component",
+    "responsible": "UI Team",
+    "dependencies": [
+      "MetaScore"
+    ],
+    "self_check": true
+  },
+  {
+    "sprint": "Federation",
+    "commit": "feat: implement Automerge-based federation and SyncStatus UI",
+    "path": "packages/core/routes/federation.ts; packages/unifiedmandala-ui/components/SyncStatus.tsx",
+    "description": "Add federation push/pull API and sync status indicator",
+    "test_or_story": "SyncStatus.story.tsx",
+    "responsible": "Integration Team",
+    "dependencies": [
+      "Collaboration"
+    ],
+    "self_check": true
+  },
+  {
+    "sprint": "MetaLearner",
+    "commit": "feat: add MetaLearnerAgent and scheduled GitHub Action",
+    "path": "packages/agents/MetaLearnerAgent.ts; .github/workflows/meta-learner.yml",
+    "description": "Implement agent to suggest layer weight optimizations and schedule periodic runs",
+    "test_or_story": "MetaLearnerAgent.spec.ts",
+    "responsible": "AI Team",
+    "dependencies": [
+      "MetaScore"
+    ],
+    "self_check": true
+  },
+  {
+    "sprint": "Security",
+    "commit": "chore: setup mTLS scripts and Kong JWT gateway",
+    "path": "scripts/gen-certs.sh; config/kong.yml",
+    "description": "Provide certificate generation and API gateway JWT configuration",
+    "test_or_story": "N/A",
+    "responsible": "DevOps Team",
+    "dependencies": [],
+    "self_check": true
+  },
+  {
+    "sprint": "UI",
+    "commit": "feat: integrate OpenTelemetry metrics and Storybook CI",
+    "path": "packages/core/tracing.ts; .github/workflows/storybook-deploy.yml",
+    "description": "Add tracing setup and deploy Storybook via GitHub Actions",
+    "test_or_story": "Tracing.story.tsx",
+    "responsible": "Ops Team",
+    "dependencies": [
+      "Security"
+    ],
+    "self_check": true
   }
 ]
