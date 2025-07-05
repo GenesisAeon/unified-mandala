@@ -1,4 +1,4 @@
-import { generateLayer, mirrorLayers } from './PyramidUtils';
+import { generateLayer, mirrorLayers, generateWeightedLayer } from './PyramidUtils';
 
 test('generateLayer creates nodes', () => {
   const layer = generateLayer(3, 'X');
@@ -10,4 +10,10 @@ test('mirrorLayers flips y position', () => {
   const layer = [{ position: [1, 2, 3] as [number, number, number], symbol: 'A' }];
   const mirrored = mirrorLayers([layer]);
   expect(mirrored[0][0].position).toEqual([1, -2, 3]);
+});
+
+test('generateWeightedLayer adds weights', () => {
+  const nodes = generateWeightedLayer(2, 'Z', 1);
+  expect(nodes[0]).toHaveProperty('weight');
+  expect(nodes[1].weight).toBeGreaterThan(nodes[0].weight);
 });

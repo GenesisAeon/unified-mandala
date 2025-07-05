@@ -20,3 +20,17 @@ export function mirrorLayers(layers: PyramidLayerNodes[]): PyramidLayerNodes[] {
     }))
   );
 }
+
+export function generateWeightedLayer(
+  size: number,
+  symbol: string,
+  index: number
+): (PyramidNode & { weight: number })[] {
+  const base = Math.PI * Math.E;
+  const weightFactor = Math.pow((1 + Math.sqrt(5)) / 2, index) / base;
+  return Array.from({ length: size }, (_, i) => ({
+    position: [i, i, 0],
+    symbol,
+    weight: Number(((i + 1) * weightFactor).toFixed(6)),
+  }));
+}
