@@ -16,7 +16,7 @@ test('uses fallback when AudioContext fails', () => {
   globalThis.AudioContext = function () {
     throw new Error('fail');
   } as any;
-  const spy = vi.fn();
+  const spy = jest.fn();
   global.console = { ...console, warn: spy, log: spy } as any;
   playCREPTone(0.5);
   expect(spy).toHaveBeenCalled();

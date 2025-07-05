@@ -5985,38 +5985,38 @@
   path: scripts/autoDocManifest.ts
   task: Generate docs and manifest from code comments
   test: scripts/__tests__/autoDocManifest.test.ts
-  status: todo
+  status: done
 - commit: Split advanced conversations into fragments
   path: scripts/split-advanced-conversations.js
   task: Split newadvancedconversations.json into conversation fragments
   test: scripts/__tests__/split-advanced-conversations.test.ts
-  status: todo
+  status: done
 - commit: Archive outdated tasks
   path: GenesisAeonZIPMEM/archived-todos
   task: Move solved TODOs and workflow docs to ZIPMEM archive
   test: ""
-  status: todo
+  status: done
 - commit: Create Sigilcards UI prototype
   path: packages/unifiedmandala-ui/components/SigilCard.tsx
   task: Render first Sigilcard for deployment planning
   test: packages/unifiedmandala-ui/components/SigilCard.test.tsx
-  status: todo
+  status: done
 - commit: Draft dev-agent system blueprint
   path: docs/agents/dev-agent-blueprint.md
   task: Describe dev-agent architecture and update codexwork.yaml
   test: ""
-  status: todo
+  status: done
 - commit: Organize GenesisAeonZIPMEM
   path: scripts/organize-zipmem.js
   task: Split newadvancedconversations.json into chat fragments and maintain
     commit memory directories
   test: scripts/__tests__/organize-zipmem.test.ts
-  status: todo
+  status: done
 - commit: Implement ZIPMEMManagementAgent
   path: packages/agents/ZIPMEMManagementAgent.ts
   task: Map conversation fragments, detect links, and reorganize GenesisAeonZIPMEM
   test: packages/agents/ZIPMEMManagementAgent.test.ts
-  status: todo
+  status: done
 - commit: Add AeonSealAI integration blueprint
   path: docs/aeon-seal-ai/blueprint.md
   task: Outline SelfLearnAI Seal integration with GenesisAeon system
