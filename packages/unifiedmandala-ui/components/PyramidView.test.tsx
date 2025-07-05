@@ -7,6 +7,7 @@ jest.mock('@react-three/fiber', () => ({ Canvas: ({ children }: any) => <div>{ch
 
 test('renders layers', () => {
   const config: PyramidConfig = { layers: [{ name: 'a', weight: 1 }] };
-  const { container } = render(<PyramidView config={config} />);
-  expect(container.textContent).toBe('');
+  const { getByLabelText } = render(<PyramidView config={config} />);
+  expect(getByLabelText('Pyramid visualization')).toBeInTheDocument();
+  expect(getByLabelText('layer-0')).toBeInTheDocument();
 });
