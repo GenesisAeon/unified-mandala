@@ -1,3 +1,8 @@
+# Install type checker
+pip install pyright
+# Install dependencies
+poetry install --with test
+pnpm install
 # 📘 AEON-CODEX – AGENTS
 schema_version: "1.1"
 description: >
