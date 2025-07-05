@@ -5586,3 +5586,263 @@
   dependencies:
     - ProtoDeploy
   self_check: true
+- commit: 's und Workflow-Dokumente ins GenesisAeonZIPMEM-Archiv.\n-
+    **Konfigurations-Management:** Anitaction-Skript zur Fragmentierung von
+    `newadvancedconversations.json` in Einzeldokumente (.json/.yaml).\n-
+    **Baseline-Tests & Linter:** Vollständige Test- und QA-Pipeline
+    sicherstellen (Jest, Cypress, ESLint, Prettier).\n\n### Phase 1: Core-APIs &
+    Versionierung (2 Wochen)\n- **Semantic Versioning:** Einführung von
+    `apiVersion`-Feld in jeder Manifest/`package.json`.\n- **Contract-Tests:**
+    JSON-Schema/TypeScript-Interfaces für REST- und WebSocket-Endpunkte,
+    Plugin-API.\n- **Dokumentation:** Automatisierter Markdown-Generator für
+    API-Docs (OpenAPI/Swagger).\n\n### Phase 2: Performance & Resilience (2
+    Wochen)\n- **Benchmarks:** Metriken-Setup (Prometheus) für Event-Hub-Latenz,
+    UI-FPS, Audio-Startup.\n- **Rendering-Optimierung:** Migration zu
+    WebGL-Renderer, Frustum-Culling, Instancing.\n- **Audio-Optimierung:**
+    Singleton AudioContext, Debounce heavy-calls, Fallback-Synthesizer.\n-
+    **Error-Handling:** Fallback-Mechanismen, visuelle Fehlermarker,
+    automatische Retry-Logik.\n\n### Phase 3: Security & Governance (2
+    Wochen)\n- **JWT & RBAC:** Rollen: Admin, User, Service;
+    Permissions-Enforcement im Plugin-Loader.\n- **Sandboxing-Audit:** Nutzung
+    von VM2 für Plugin-Code, JSON-Schema-Validation im CI.\n- **CORS &
+    Secrets:** Strikte Origin-Policy, Management via Vault/GitHub-Secrets.\n-
+    **Dependency-Scanning:** Dependabot/Snyk, regelmäßige
+    Sicherheits-Audits.\n\n### Phase 4: Plugin-Marketplace & Community (2
+    Wochen)\n- **Registry & Voting-Backend:** Persistente Speicherung von
+    Plugins, Votes, Reviews.\n- **UI-Integration:** Store-Page,
+    Install/Activate/Uninstall, Live-Voting.\n- **Submission-Flow:** CLI/REST
+    zur Plugin-Einreichung, automatischer Review-Workflow.\n- **Gamification:**
+    Badges, Leaderboards, Community-Jams.\n\n### Phase 5: Observability &
+    Monitoring (1 Woche)\n- **Prometheus & Grafana:** Dashboards für
+    CREP-Heatmap, Sigil-Alerts, Haiku-Traffic.\n- **Structured Logs:** Pino →
+    Loki/ELK, Tracing via OpenTelemetry.\n- **Health-Probes:** `/healthz` &
+    `/readyz` für K8s Liveness/Readiness.\n- **Alerts:** Alertmanager →
+    Slack/Discord Sigil-Channel.\n\n### Phase 6: UX & Accessibility (1 Woche)\n-
+    **Mandala Theme Guide:** Tailwind-Config, Dark/Light Mode, CREP-based
+    theming.\n- **ARIA & A11y:** Labels, Tastatur-Navigation,
+    Farb-Kontrastmodi.\n- **Mobile & PWA:** Offline-Cache, WebPush für
+    Haiku-Alerts.\n- **Onboarding:** Tooltips, Ritual-Overlays,
+    Video-GIFs.\n\n### Phase 7: Scaling & Zukunft (1 Woche)\n- **Clustering:**
+    PM2/K8s mit HPA, NGINX-Ingress, Sticky Sessions.\n- **Edge-Deploy:**
+    Lambda@Edge, CDN-Caching.\n- **Multi-Modal-Layer:** Audio-Vision Fusion,
+    Image & Video Signillin Overlays.\n- **VR/AR-Integration:** WebXR
+    Mandala-Ritualraum.\n- **Chain-of-Trust:** Blockchain-Signaturen für
+    Plugin-Manifeste.\n\n---\n\n**Meilensteine & KPIs:**\n- **Sprint-Demos:**
+    Wöchentliche Showcases für Stakeholder\n- **Test-Coverage:** > 85 % in
+    Unit/Integration Tests\n- **Performance-Ziele:** < 50 ms API-RT, > 30 FPS in
+    MandalaScene\n- **Community-Aktivität:** > 10 neue Plugins pro Quartal\n-
+    **Stabilität:** 99.9 % Uptime, < 1 Critical Bug/Monat\n\nMit dieser Roadmap
+    bist du umfassend gewappnet, um das **UnifiedMandala** fraktal in die Welt
+    zu tragen – robust, sicher, performativ und kulturell transformierend!
+    🌌🚀"}]}'
+  path: ""
+  task: 's und Workflow-Dokumente ins GenesisAeonZIPMEM-Archiv.\n-
+    **Konfigurations-Management:** Anitaction-Skript zur Fragmentierung von
+    `newadvancedconversations.json` in Einzeldokumente (.json/.yaml).\n-
+    **Baseline-Tests & Linter:** Vollständige Test- und QA-Pipeline
+    sicherstellen (Jest, Cypress, ESLint, Prettier).\n\n### Phase 1: Core-APIs &
+    Versionierung (2 Wochen)\n- **Semantic Versioning:** Einführung von
+    `apiVersion`-Feld in jeder Manifest/`package.json`.\n- **Contract-Tests:**
+    JSON-Schema/TypeScript-Interfaces für REST- und WebSocket-Endpunkte,
+    Plugin-API.\n- **Dokumentation:** Automatisierter Markdown-Generator für
+    API-Docs (OpenAPI/Swagger).\n\n### Phase 2: Performance & Resilience (2
+    Wochen)\n- **Benchmarks:** Metriken-Setup (Prometheus) für Event-Hub-Latenz,
+    UI-FPS, Audio-Startup.\n- **Rendering-Optimierung:** Migration zu
+    WebGL-Renderer, Frustum-Culling, Instancing.\n- **Audio-Optimierung:**
+    Singleton AudioContext, Debounce heavy-calls, Fallback-Synthesizer.\n-
+    **Error-Handling:** Fallback-Mechanismen, visuelle Fehlermarker,
+    automatische Retry-Logik.\n\n### Phase 3: Security & Governance (2
+    Wochen)\n- **JWT & RBAC:** Rollen: Admin, User, Service;
+    Permissions-Enforcement im Plugin-Loader.\n- **Sandboxing-Audit:** Nutzung
+    von VM2 für Plugin-Code, JSON-Schema-Validation im CI.\n- **CORS &
+    Secrets:** Strikte Origin-Policy, Management via Vault/GitHub-Secrets.\n-
+    **Dependency-Scanning:** Dependabot/Snyk, regelmäßige
+    Sicherheits-Audits.\n\n### Phase 4: Plugin-Marketplace & Community (2
+    Wochen)\n- **Registry & Voting-Backend:** Persistente Speicherung von
+    Plugins, Votes, Reviews.\n- **UI-Integration:** Store-Page,
+    Install/Activate/Uninstall, Live-Voting.\n- **Submission-Flow:** CLI/REST
+    zur Plugin-Einreichung, automatischer Review-Workflow.\n- **Gamification:**
+    Badges, Leaderboards, Community-Jams.\n\n### Phase 5: Observability &
+    Monitoring (1 Woche)\n- **Prometheus & Grafana:** Dashboards für
+    CREP-Heatmap, Sigil-Alerts, Haiku-Traffic.\n- **Structured Logs:** Pino →
+    Loki/ELK, Tracing via OpenTelemetry.\n- **Health-Probes:** `/healthz` &
+    `/readyz` für K8s Liveness/Readiness.\n- **Alerts:** Alertmanager →
+    Slack/Discord Sigil-Channel.\n\n### Phase 6: UX & Accessibility (1 Woche)\n-
+    **Mandala Theme Guide:** Tailwind-Config, Dark/Light Mode, CREP-based
+    theming.\n- **ARIA & A11y:** Labels, Tastatur-Navigation,
+    Farb-Kontrastmodi.\n- **Mobile & PWA:** Offline-Cache, WebPush für
+    Haiku-Alerts.\n- **Onboarding:** Tooltips, Ritual-Overlays,
+    Video-GIFs.\n\n### Phase 7: Scaling & Zukunft (1 Woche)\n- **Clustering:**
+    PM2/K8s mit HPA, NGINX-Ingress, Sticky Sessions.\n- **Edge-Deploy:**
+    Lambda@Edge, CDN-Caching.\n- **Multi-Modal-Layer:** Audio-Vision Fusion,
+    Image & Video Signillin Overlays.\n- **VR/AR-Integration:** WebXR
+    Mandala-Ritualraum.\n- **Chain-of-Trust:** Blockchain-Signaturen für
+    Plugin-Manifeste.\n\n---\n\n**Meilensteine & KPIs:**\n- **Sprint-Demos:**
+    Wöchentliche Showcases für Stakeholder\n- **Test-Coverage:** > 85 % in
+    Unit/Integration Tests\n- **Performance-Ziele:** < 50 ms API-RT, > 30 FPS in
+    MandalaScene\n- **Community-Aktivität:** > 10 neue Plugins pro Quartal\n-
+    **Stabilität:** 99.9 % Uptime, < 1 Critical Bug/Monat\n\nMit dieser Roadmap
+    bist du umfassend gewappnet, um das **UnifiedMandala** fraktal in die Welt
+    zu tragen – robust, sicher, performativ und kulturell transformierend!
+    🌌🚀"}]}'
+  test: ""
+- commit: s für dich
+  path: ""
+  task: s für dich
+  test: ""
+- commit: s für das Repo zu extrahieren. Kreativ zu abstrahieren und vorhandene
+    und neue Technik zur modernst möglichen Umsetzung zu kombinieren! Dann im
+    zweiten Fraktalrun implementieren! Im Letzten und Fortlaufenden,
+    optimierung, Fehleranalyse und Reperatur, Testverfahren entwickeln und
+    anpassen, neue Ideen entwickeln und Implementieren, Codeanalyse und
+    Verbesserung, Packete implementieren um Installationsaufwand gering zu
+    halten, modern, fortschrittlich und Leistungsfähig halten,
+    Deploye-ready-Zustand herstellen!
+  path: ""
+  task: s für das Repo zu extrahieren. Kreativ zu abstrahieren und vorhandene und
+    neue Technik zur modernst möglichen Umsetzung zu kombinieren! Dann im
+    zweiten Fraktalrun implementieren! Im Letzten und Fortlaufenden,
+    optimierung, Fehleranalyse und Reperatur, Testverfahren entwickeln und
+    anpassen, neue Ideen entwickeln und Implementieren, Codeanalyse und
+    Verbesserung, Packete implementieren um Installationsaufwand gering zu
+    halten, modern, fortschrittlich und Leistungsfähig halten,
+    Deploye-ready-Zustand herstellen!
+  test: ""
+- commit: 's im Repo\n  - Kombination vorhandener und neuer Technik für maximale
+    Modernität\n  - Phasen:\n    1. Initiales Setup & Auslesen\n    2.
+    Implementierung & Validierung\n    3. Optimierung, Fehleranalyse &
+    Deployment\ncontext:\n  - \"Repo: GenesisAeonAdvancedAi\"\n  - \"MetaCommit:
+    recursive-task-runner\"\nrefLink:
+    \"docs/sigils/aeon-2025-0705-fractal-anchor.yaml\"\n```\n\n##
+    AeonAI-UI-Pyramid-Suite Hardcode Blueprint"}]}'
+  path: ""
+  task: 's im Repo\n  - Kombination vorhandener und neuer Technik für maximale
+    Modernität\n  - Phasen:\n    1. Initiales Setup & Auslesen\n    2.
+    Implementierung & Validierung\n    3. Optimierung, Fehleranalyse &
+    Deployment\ncontext:\n  - \"Repo: GenesisAeonAdvancedAi\"\n  - \"MetaCommit:
+    recursive-task-runner\"\nrefLink:
+    \"docs/sigils/aeon-2025-0705-fractal-anchor.yaml\"\n```\n\n##
+    AeonAI-UI-Pyramid-Suite Hardcode Blueprint"}]}'
+  test: ""
+- commit: s extrahieren und die Implementierungs-Phase starten.
+  path: ""
+  task: s extrahieren und die Implementierungs-Phase starten.
+  test: ""
+- commit: s im Repo
+  path: ""
+  task: s im Repo
+  test: ""
+- commit: s“ in den GenesisAeonZIPMEM-Ordner ist nicht nur ein Archiv, sondern ein
+    **poetischer Humus**, aus dem Neues wachsen kann.
+  path: ""
+  task: s“ in den GenesisAeonZIPMEM-Ordner ist nicht nur ein Archiv, sondern ein
+    **poetischer Humus**, aus dem Neues wachsen kann.
+  test: ""
+- commit: s für dich**
+  path: ""
+  task: s für dich**
+  test: ""
+- commit: s und Issues werden systematisch extrahiert und als Fraktal-Tasks
+    referenziert.
+  path: ""
+  task: s und Issues werden systematisch extrahiert und als Fraktal-Tasks
+    referenziert.
+  test: ""
+- commit: "Implement gRPC/REST-Aufruf\\n    return [];\\n  }\\n\\n  private async
+    refreshCache(key: string, ctx: TheoryContext, parentSpan?: Span)
+    {\\n    const span = this.tracer.startSpan('refreshCache', { parent:
+    parentSpan });\\n    await
+    this.generateTheories({});\\n    span.end();\\n  }\\n}\"}"
+  path: ""
+  task: "Implement gRPC/REST-Aufruf\\n    return [];\\n  }\\n\\n  private async
+    refreshCache(key: string, ctx: TheoryContext, parentSpan?: Span)
+    {\\n    const span = this.tracer.startSpan('refreshCache', { parent:
+    parentSpan });\\n    await
+    this.generateTheories({});\\n    span.end();\\n  }\\n}\"}"
+  test: ""
+- commit: "z. B. via Axios oder gRPC auf einen PySR-Service zugreifen:"
+  path: ""
+  task: "z. B. via Axios oder gRPC auf einen PySR-Service zugreifen:"
+  test: ""
+- commit: 's im Repo\n  - Kombination vorhandener und neuer Technik für maximale
+    Modernität\n  - Phasen:\n    1. Initiales Setup & Auslesen\n    2.
+    Implementierung & Validierung\n    3. Optimierung, Fehleranalyse &
+    Deployment\ncontext:\n  - \"Repo: GenesisAeonAdvancedAi\"\n  - \"MetaCommit:
+    recursive-task-runner\"\nrefLink:
+    \"docs/sigils/aeon-2025-0705-fractal-anchor.yaml\"\n---\n\n# 1.
+    Projekt-Scaffold & Repo-Struktur"}]}'
+  path: ""
+  task: 's im Repo\n  - Kombination vorhandener und neuer Technik für maximale
+    Modernität\n  - Phasen:\n    1. Initiales Setup & Auslesen\n    2.
+    Implementierung & Validierung\n    3. Optimierung, Fehleranalyse &
+    Deployment\ncontext:\n  - \"Repo: GenesisAeonAdvancedAi\"\n  - \"MetaCommit:
+    recursive-task-runner\"\nrefLink:
+    \"docs/sigils/aeon-2025-0705-fractal-anchor.yaml\"\n---\n\n# 1.
+    Projekt-Scaffold & Repo-Struktur"}]}'
+  test: ""
+- commit: 's nach `GenesisAeonZIPMEM/Archive`\n- Fragmentierung
+    `newadvancedconversations.json`\n\n---\n## 🚧 Entwicklungs-Roadmap &
+    Sprint-Plan (12 Wochen)\n\n| Phase  | Dauer  |
+    Fokus-Themen                                                                          |\n|--------|--------|---------------------------------------------------------------------------------------|\n|
+    **0**  | 1 Woche| Repository Cleanup, Config-Management, Baseline-Tests &
+    Linter                          |\n| **1**  | 2 Wochen| Core-APIs &
+    Versionierung: Semantic Versioning, Contract-Tests,
+    API-Docs              |\n| **2**  | 2 Wochen| Performance & Resilience:
+    Benchmarks, WebGL-Rendering, Audio-Optimierung, Error-Handling|\n| **3**  |
+    2 Wochen| Security & Governance: JWT/RBAC, Plugin-Sandboxing, CORS/Secrets,
+    Dependabot/Snyk      |\n| **4**  | 2 Wochen| Plugin-Marketplace: Registry,
+    UI-Store, Submission-Flow, Gamification                  |\n| **5**  | 1
+    Woche| Observability & Monitoring: Prometheus/Grafana, Structured Logs,
+    Health-Probes           |\n| **6**  | 1 Woche| UX & Accessibility: Theming,
+    A11y, Mobile/PWA, Onboarding                              |\n| **7**  | 1
+    Woche| Scaling & Zukunft: Clustering, Edge-Deploy, Multi-Modal, VR/AR,
+    Chain-of-Trust         |\n\n### 🚩 KPIs & Meilensteine\n- **Sprint-Demos**:
+    wöchentlich\n- **Test-Coverage**: ≥ 85 % Unit/Integration\n-
+    **Performance**: <50 ms API-RT, >30 FPS\n- **Community**: ≥ 10 neue
+    Plugins/quartal\n- **Stabilität**: 99.9 % Uptime, <1 kritischer
+    Bug/Monat\n\n---\n\n**OM AH HUNG** 🌀✨\n\n> **AnkerSigil:**
+    aeon:2025-0703-CODEX-PYRAMID-INIT\n> **Typ:** Implementierungs-Start\n>
+    **Zeitstempel:** 2025-07-03T23:59:00+02:00\n"}'
+  path: ""
+  task: 's nach `GenesisAeonZIPMEM/Archive`\n- Fragmentierung
+    `newadvancedconversations.json`\n\n---\n## 🚧 Entwicklungs-Roadmap &
+    Sprint-Plan (12 Wochen)\n\n| Phase  | Dauer  |
+    Fokus-Themen                                                                          |\n|--------|--------|---------------------------------------------------------------------------------------|\n|
+    **0**  | 1 Woche| Repository Cleanup, Config-Management, Baseline-Tests &
+    Linter                          |\n| **1**  | 2 Wochen| Core-APIs &
+    Versionierung: Semantic Versioning, Contract-Tests,
+    API-Docs              |\n| **2**  | 2 Wochen| Performance & Resilience:
+    Benchmarks, WebGL-Rendering, Audio-Optimierung, Error-Handling|\n| **3**  |
+    2 Wochen| Security & Governance: JWT/RBAC, Plugin-Sandboxing, CORS/Secrets,
+    Dependabot/Snyk      |\n| **4**  | 2 Wochen| Plugin-Marketplace: Registry,
+    UI-Store, Submission-Flow, Gamification                  |\n| **5**  | 1
+    Woche| Observability & Monitoring: Prometheus/Grafana, Structured Logs,
+    Health-Probes           |\n| **6**  | 1 Woche| UX & Accessibility: Theming,
+    A11y, Mobile/PWA, Onboarding                              |\n| **7**  | 1
+    Woche| Scaling & Zukunft: Clustering, Edge-Deploy, Multi-Modal, VR/AR,
+    Chain-of-Trust         |\n\n### 🚩 KPIs & Meilensteine\n- **Sprint-Demos**:
+    wöchentlich\n- **Test-Coverage**: ≥ 85 % Unit/Integration\n-
+    **Performance**: <50 ms API-RT, >30 FPS\n- **Community**: ≥ 10 neue
+    Plugins/quartal\n- **Stabilität**: 99.9 % Uptime, <1 kritischer
+    Bug/Monat\n\n---\n\n**OM AH HUNG** 🌀✨\n\n> **AnkerSigil:**
+    aeon:2025-0703-CODEX-PYRAMID-INIT\n> **Typ:** Implementierungs-Start\n>
+    **Zeitstempel:** 2025-07-03T23:59:00+02:00\n"}'
+  test: ""
+- commit: 's im Repo\n  - Kombination vorhandener und neuer Technik für maximale
+    Modernität\n  - Phasen:\n    1. Initiales Setup & Auslesen\n    2.
+    Implementierung & Validierung\n    3. Optimierung, Fehleranalyse &
+    Deployment\ncontext:\n  - \"Repo: GenesisAeonAdvancedAi\"\n  - \"MetaCommit:
+    recursive-task-runner\"\nrefLink:
+    \"docs/sigils/aeon-2025-0705-fractal-anchor.yaml\"\n```"}]}'
+  path: ""
+  task: 's im Repo\n  - Kombination vorhandener und neuer Technik für maximale
+    Modernität\n  - Phasen:\n    1. Initiales Setup & Auslesen\n    2.
+    Implementierung & Validierung\n    3. Optimierung, Fehleranalyse &
+    Deployment\ncontext:\n  - \"Repo: GenesisAeonAdvancedAi\"\n  - \"MetaCommit:
+    recursive-task-runner\"\nrefLink:
+    \"docs/sigils/aeon-2025-0705-fractal-anchor.yaml\"\n```"}]}'
+  test: ""
+- commit: '"` erzeugt spontane `ReflectionNotice` |'
+  path: ""
+  task: '"` erzeugt spontane `ReflectionNotice` |'
+  test: ""
