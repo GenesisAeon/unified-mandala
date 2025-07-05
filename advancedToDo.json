@@ -3971,5 +3971,82 @@
     "task": "Outline structure for fractal task pipelines referenced by anchor",
     "test": "",
     "status": "todo"
+  },
+  {
+    "commit": "Create ZIPMEM manifest structure",
+    "path": "GenesisAeonZIPMEM/ZIPMEM_manifest.yaml",
+    "task": "Define folder structure for conversation fragments and commit memory",
+    "test": "",
+    "status": "todo"
+  },
+  {
+    "commit": "Implement ArchivAeon symbolic archive agent",
+    "path": "packages/agents/ArchivAeon.ts",
+    "task": "Organize conversation fragments and commit logs in GenesisAeonZIPMEM",
+    "test": "packages/agents/ArchivAeon.test.ts",
+    "status": "todo"
+  },
+  {
+    "commit": "Add newadvancedconvo_splitter script",
+    "path": "scripts/newadvancedconvo_splitter.ts",
+    "task": "Split newadvancedconversations.json into YAML/JSON fragments in ZIPMEM",
+    "test": "scripts/__tests__/newadvancedconvo_splitter.test.ts",
+    "status": "todo"
+  },
+  {
+    "commit": "Add SealCore integration interface",
+    "path": "packages/seal-core/SealCore.ts",
+    "task": "Bridge SelflearnAI with GenesisAeon system via SealCore membrane",
+    "test": "packages/seal-core/SealCore.test.ts",
+    "status": "todo"
+  },
+  {
+    "commit": "Implement PyramidConfig interface and loader",
+    "path": "packages/aeon-ui-pyramid/config.ts",
+    "task": "Provide JSON schema and TypeScript interface for pyramid layers",
+    "test": "packages/aeon-ui-pyramid/config.test.ts",
+    "status": "todo"
+  },
+  {
+    "commit": "Add pyramid utils unit tests",
+    "path": "packages/aeon-ui-pyramid/__tests__/PyramidUtils.test.ts",
+    "task": "Test mirrorLayers and playCREPTone functions with Jest",
+    "test": "packages/aeon-ui-pyramid/__tests__/PyramidUtils.test.ts",
+    "status": "todo"
+  },
+  {
+    "commit": "Add deployment snippets for Pyramid UI",
+    "path": "deployment/pyramid-ui",
+    "task": "Provide Dockerfile, k8s manifest and GitHub Actions workflow",
+    "test": "",
+    "status": "todo"
+  },
+  {
+    "commit": "Add pyramid error and state management",
+    "path": "packages/aeon-ui-pyramid/errorHandling.ts",
+    "task": "Fallback synthesizer and visual error markers",
+    "test": "packages/aeon-ui-pyramid/errorHandling.test.ts",
+    "status": "todo"
+  },
+  {
+    "commit": "Optimize pyramid rendering performance",
+    "path": "packages/aeon-ui-pyramid/performance.ts",
+    "task": "Cache layer rendering and reuse AudioContext",
+    "test": "packages/aeon-ui-pyramid/performance.test.ts",
+    "status": "todo"
+  },
+  {
+    "commit": "Add accessibility helpers",
+    "path": "packages/aeon-ui-pyramid/accessibility.ts",
+    "task": "ARIA labels and alternative visuals for color-blind users",
+    "test": "packages/aeon-ui-pyramid/accessibility.test.ts",
+    "status": "todo"
+  },
+  {
+    "commit": "Create AutoDoc comment extractor",
+    "path": "scripts/autodoc-comments.ts",
+    "task": "Generate markdown docs from TypeScript comments",
+    "test": "scripts/__tests__/autodoc-comments.test.ts",
+    "status": "todo"
   }
 ]
