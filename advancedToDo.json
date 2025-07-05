@@ -4132,5 +4132,40 @@
     "task": "Describe dev-agent architecture and update codexwork.yaml",
     "test": "",
     "status": "todo"
+  },
+  {
+    "commit": "Organize GenesisAeonZIPMEM",
+    "path": "scripts/organize-zipmem.js",
+    "task": "Split newadvancedconversations.json into chat fragments and maintain commit memory directories",
+    "test": "scripts/__tests__/organize-zipmem.test.ts",
+    "status": "todo"
+  },
+  {
+    "commit": "Implement ZIPMEMManagementAgent",
+    "path": "packages/agents/ZIPMEMManagementAgent.ts",
+    "task": "Map conversation fragments, detect links, and reorganize GenesisAeonZIPMEM",
+    "test": "packages/agents/ZIPMEMManagementAgent.test.ts",
+    "status": "todo"
+  },
+  {
+    "commit": "Add AeonSealAI integration blueprint",
+    "path": "docs/aeon-seal-ai/blueprint.md",
+    "task": "Outline SelfLearnAI Seal integration with GenesisAeon system",
+    "test": "",
+    "status": "todo"
+  },
+  {
+    "commit": "Expand pyramid blueprint docs",
+    "path": "docs/blueprints/aeon-ui-pyramid.md",
+    "task": "Add error management, performance, accessibility, config schema, testing and deployment sections",
+    "test": "",
+    "status": "todo"
+  },
+  {
+    "commit": "Add autodoc generator script",
+    "path": "scripts/autodoc-generator.js",
+    "task": "Convert code comments to Markdown docs",
+    "test": "scripts/__tests__/autodoc-generator.test.ts",
+    "status": "todo"
   }
 ]
