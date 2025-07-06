@@ -913,7 +913,7 @@
   status: done
 - commit: Add NPM scripts for GhostShell start
   path: package.json
-  task: Provide ghost-shell:cluster and ghost-shell:server commands
+  task: "Provide ghost-shell:cluster and ghost-shell:server commands"
   test: ""
   status: done
 - commit: Edge deploy GhostShellAgent
@@ -6122,4 +6122,39 @@
   path: docs/analysis/AeonNeuroNetzComparison.md
   task: Compare AeonNeuroNetz with state-of-the-art neural nets
   test: ""
+  status: todo
+- commit: TODO from newadvancedconversations.json - AgentCoordinator
+  path: docs/sigils/newadvancedconversations.json
+  task: AgentCoordinator implementieren, Steuerungslogik und Schnittstellen bereitstellen
+  test: ""
+  status: todo
+- commit: TODO from newadvancedconversations.json - EmergencePredictorAgent
+  path: docs/sigils/newadvancedconversations.json
+  task: EmergencePredictorAgent entwickeln, CREP-Vorhersage KI-Modell
+  test: ""
+  status: todo
+- commit: TODO from newadvancedconversations.json - GPTContextSummarizer
+  path: docs/sigils/newadvancedconversations.json
+  task: GPTContextSummarizer erstellen, Prompt-Optimierung
+  test: ""
+  status: todo
+- commit: TODO from newadvancedconversations.json - SigillinBlockchainIntegration
+  path: docs/sigils/newadvancedconversations.json
+  task: SigillinBlockchainIntegration implementieren
+  test: ""
+  status: todo
+- commit: TODO from newadvancedconversations.json - PrivacyComplianceAgent
+  path: docs/sigils/newadvancedconversations.json
+  task: PrivacyComplianceAgent für DSGVO-Prüfung automatisieren
+  test: ""
+  status: todo
+- commit: TODO from CosmicTheoryAgent conversation - implement gRPC call
+  path: docs/sigils/newadvancedconversations.json
+  task: "CosmicTheoryAgent TODO: Implement gRPC/REST-Aufruf"
+  test: packages/agents/CosmicTheoryAgent.test.ts
+  status: todo
+- commit: TODO from CosmicTheoryAgent conversation - Python service access
+  path: docs/sigils/newadvancedconversations.json
+  task: "CosmicTheoryAgent TODO: Zugriff auf PySR-Service via Axios/gRPC"
+  test: packages/agents/CosmicTheoryAgent.test.ts
   status: todo
