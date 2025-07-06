@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import { test, expect } from 'vitest';
 import { ZIPMEMManagementAgent, Fragment } from './ZIPMEMManagementAgent';
 
 test('organize writes fragments', () => {
