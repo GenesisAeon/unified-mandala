@@ -6280,3 +6280,103 @@
   task: Use fraktal_feedback_metrics and save haiku output
   test: GenesisAeonAdvancedAi/test_advanced_agent.py
   status: todo
+- commit: Add SigilManager for CosmicTheoryAgent
+  path: packages/agents/SigilManager.ts
+  task: Manage sigil YAML and log state transitions
+  test: packages/agents/SigilManager.test.ts
+  status: todo
+- commit: Integrate sigillin in CosmicTheoryAgent
+  path: packages/agents/CosmicTheoryAgent.ts
+  task: Load sigil on startup and write updates on sigil_alert
+  test: packages/agents/CosmicTheoryAgent.test.ts
+  status: todo
+- commit: Implement Python service call
+  path: packages/agents/CosmicTheoryAgent.ts
+  task: call PySR microservice via Axios or gRPC
+  test: packages/agents/CosmicTheoryAgent.test.ts
+  status: todo
+- commit: Optimize CosmicTheoryAgent architecture
+  path: packages/agents/CosmicTheoryAgent.ts
+  task: Improve caching and error handling for sigil integration
+  test: packages/agents/CosmicTheoryAgent.test.ts
+  status: todo
+- commit: Automate ToDo archive transfer
+  path: scripts/archive-todos.ts
+  task: Move completed ToDos to GenesisAeonZIPMEM
+  test: scripts/archive-todos.test.ts
+  status: todo
+- commit: Create React starter for Pyramid UI
+  path: apps/pyramid-ui/
+  task: Scaffold Vite, Tailwind and shadcn/ui with component skeletons
+  test: apps/pyramid-ui/src/App.test.tsx
+  status: todo
+- commit: Build ThreeDPyramid component
+  path: apps/pyramid-ui/src/components/ThreeDPyramid.tsx
+  task: Render interactive pyramid via react-three-fiber
+  test: apps/pyramid-ui/src/components/ThreeDPyramid.test.tsx
+  status: todo
+- commit: Add Tone.js playground
+  path: apps/pyramid-ui/src/audio/TonePlayground.ts
+  task: Experiment with Phi scale and error sounds
+  test: apps/pyramid-ui/src/audio/TonePlayground.test.ts
+  status: todo
+- commit: Implement MetricsStore interface
+  path: packages/metrics-store/index.ts
+  task: Expose CREP metrics via OpenTelemetry
+  test: packages/metrics-store/index.test.ts
+  status: todo
+- commit: Integrate SigilManager via Electron
+  path: apps/pyramid-ui-electron/main.ts
+  task: Load SigilManager in Node and bridge to renderer
+  test: apps/pyramid-ui-electron/main.test.ts
+  status: todo
+- commit: Add todoParser utility
+  path: packages/shared-utils/todoParser.ts
+  task: Parse markdown ToDo lists
+  test: packages/shared-utils/todoParser.test.ts
+  status: todo
+- commit: Add todoSigilGenerator
+  path: packages/shared-utils/todoSigilGenerator.ts
+  task: Generate ToDo sigil YAML files
+  test: packages/shared-utils/todoSigilGenerator.test.ts
+  status: todo
+- commit: Add todoSigilUpdater
+  path: packages/shared-utils/todoSigilUpdater.ts
+  task: Update status in ToDo sigil
+  test: packages/shared-utils/todoSigilUpdater.test.ts
+  status: todo
+- commit: Add todoCommentScanner
+  path: scripts/scan-todo-comments.js
+  task: Find TODO comments in source code
+  test: scripts/scan-todo-comments.test.js
+  status: todo
+- commit: Add conversationProgress tracker
+  path: packages/shared-utils/conversationProgress.ts
+  task: Mark processed conversation fragments
+  test: packages/shared-utils/conversationProgress.test.ts
+  status: todo
+- commit: Implement AgentCoordinator
+  path: packages/agents/AgentCoordinator.ts
+  task: Dispatch events to registered agents
+  test: packages/agents/AgentCoordinator.test.ts
+  status: todo
+- commit: Create D3 dependency graph
+  path: packages/analytics/DependencyGraph.ts
+  task: Visualize module dependencies with D3
+  test: packages/analytics/DependencyGraph.test.ts
+  status: todo
+- commit: Implement GPTContextSummarizer
+  path: packages/gpt/ContextSummarizer.ts
+  task: Summarize conversation context using OpenAI API
+  test: packages/gpt/ContextSummarizer.test.ts
+  status: todo
+- commit: Implement SymbolzeitMLForecaster
+  path: packages/ml/SymbolzeitForecaster.py
+  task: Predict symbol phases via linear regression
+  test: packages/ml/SymbolzeitForecaster.test.py
+  status: todo
+- commit: Implement InteractiveNarrativeEngine
+  path: packages/simulation/NarrativeEngine.ts
+  task: Generate stories with OpenAI based on context
+  test: packages/simulation/NarrativeEngine.test.ts
+  status: todo
