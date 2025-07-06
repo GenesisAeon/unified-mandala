@@ -312,6 +312,18 @@ festzulegen.
 Damit werden mehrere Node.js-Worker über Port 80 erreichbar und WebSocket-
 Verbindungen durchgereicht.
 
+## 📴 Offline Setup
+
+Eine kompakte Docker-Compose-Datei für Offline-Tests findest du unter `docs/offline/docker-compose.yml`. Damit lassen sich UI und Agent ohne Netzwerkzugriff starten.
+
+```bash
+cd docs/offline
+docker compose up
+```
+
+UI läuft danach auf http://localhost:3000, der Agent auf http://localhost:4000.
+
+
 ## 🌀 Mandala-Poesie und Automation
 
 Verwende `./scripts/aeon.sh <command>` für alle CLI-Aufrufe.

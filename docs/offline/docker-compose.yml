@@ -1,0 +1,22 @@
+version: '3.8'
+services:
+  ui:
+    build:
+      context: ../../
+      dockerfile: Dockerfile.dev
+    command: pnpm dev
+    ports:
+      - "3000:3000"
+    volumes:
+      - ../../:/workspace/unified-mandala
+  agent:
+    build:
+      context: ../../
+      dockerfile: Dockerfile.dev
+    command: pnpm dev
+    environment:
+      - PORT=4000
+    ports:
+      - "4000:4000"
+    volumes:
+      - ../../:/workspace/unified-mandala
