@@ -6290,3 +6290,48 @@
   task: Stellt Task-Cluster als DNA-ähnliche Struktur dar
   test: packages/unifiedmandala-ui/components/TaskDNA.test.tsx
   status: todo
+- commit: TODO from AeonAI Pyramid UI conversation - SigilCrudPanel component
+  path: packages/unifiedmandala-ui/components/SigilCrudPanel.tsx
+  task: CRUD-UI für Sigil-Dateien (YAML/JSON) mit SigilManager
+  test: packages/unifiedmandala-ui/components/SigilCrudPanel.test.tsx
+  status: todo
+- commit: TODO from AeonAI Pyramid UI conversation - CREPVisualizer component
+  path: packages/unifiedmandala-ui/components/CREPVisualizer.tsx
+  task: Graphische Darstellung der C,R,E,P Werte als Farben und Formen
+  test: packages/unifiedmandala-ui/components/CREPVisualizer.test.tsx
+  status: todo
+- commit: TODO from AeonAI Pyramid UI conversation - NumericDashboard component
+  path: packages/unifiedmandala-ui/components/NumericDashboard.tsx
+  task: Tabellen und Histogramme für CREP- und Sigil-Daten
+  test: packages/unifiedmandala-ui/components/NumericDashboard.test.tsx
+  status: todo
+- commit: TODO from AeonAI Pyramid UI conversation - ThreeDPyramid component
+  path: packages/unifiedmandala-ui/components/ThreeDPyramid.tsx
+  task: React-Three-Fiber Pyramide mit animierten Layern
+  test: packages/unifiedmandala-ui/components/ThreeDPyramid.test.tsx
+  status: todo
+- commit: TODO from AeonAI Pyramid UI conversation - AudioEngine module
+  path: packages/unifiedmandala-ui/lib/AudioEngine.ts
+  task: Tone.js Integration für Phi-Skala und Fehlerklänge
+  test: packages/unifiedmandala-ui/lib/AudioEngine.test.ts
+  status: todo
+- commit: TODO from AeonAI Pyramid UI conversation - ResonanceOverlay component
+  path: packages/unifiedmandala-ui/components/ResonanceOverlay.tsx
+  task: Partikeleffekte bei hoher Poetik und Resonanz
+  test: packages/unifiedmandala-ui/components/ResonanceOverlay.test.tsx
+  status: todo
+- commit: TODO from AeonAI Pyramid UI conversation - ErrorEmergence component
+  path: packages/unifiedmandala-ui/components/ErrorEmergence.tsx
+  task: Heatmap-Logging und visuelle Kristalle bei Fehlern
+  test: packages/unifiedmandala-ui/components/ErrorEmergence.test.tsx
+  status: todo
+- commit: TODO from AeonAI Pyramid UI conversation - VRPortal component
+  path: packages/unifiedmandala-ui/components/VRPortal.tsx
+  task: WebXR-Modus für begehbares Mandala
+  test: packages/unifiedmandala-ui/components/VRPortal.test.tsx
+  status: todo
+- commit: TODO from AeonAI Pyramid UI conversation - UIPyramidPrototype
+  path: apps/pyramid-ui/pages/index.tsx
+  task: React-Starter mit SigilSelector und ThreeDPyramid Platzhaltern
+  test: apps/pyramid-ui/__tests__/index.test.tsx
+  status: todo
