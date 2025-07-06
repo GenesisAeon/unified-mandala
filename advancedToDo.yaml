@@ -6205,3 +6205,28 @@
   task: Implement WebXR immersive experience for Pyramid UI
   test: packages/unifiedmandala-ui/pyramid/PyramidVRView.test.tsx
   status: todo
+- commit: Setup Proto-Deploy infrastructure
+  path: infrastructure/protodeploy
+  task: Docker Compose config for local Aeon system
+  test: scripts/protodeploy.test.ts
+  status: todo
+- commit: Validate TheoryAgentConfig with AJV
+  path: packages/agents/TheoryAgentConfig.ts
+  task: Add AJV schema & config validation logic
+  test: packages/agents/TheoryAgentConfig.test.ts
+  status: todo
+- commit: Add SigilAlert integration
+  path: packages/unifiedmandala-ui/components/SigilAlert.tsx
+  task: Integrate SigilAlert UI component into main layout
+  test: packages/unifiedmandala-ui/__tests__/SigilAlert.test.tsx
+  status: todo
+- commit: Setup CI pipeline with OTel Collector
+  path: .github/workflows/ci.yml
+  task: Add Docker and OTel pipeline for CosmicTheoryAgent
+  test: ci/ci-pipeline.test.ts
+  status: todo
+- commit: Add Cypress E2E tests for SigilAlert
+  path: packages/unifiedmandala-ui/tests/e2e
+  task: Cypress flow for SigilAlert UI
+  test: packages/unifiedmandala-ui/tests/e2e/sigilAlert.spec.ts
+  status: todo
