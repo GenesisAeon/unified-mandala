@@ -4461,5 +4461,33 @@
     "task": "Implement WebXR immersive experience for Pyramid UI",
     "test": "packages/unifiedmandala-ui/pyramid/PyramidVRView.test.tsx",
     "status": "todo"
+  },
+  {
+    "commit": "Add symbol explanation with LLM",
+    "path": "GenesisAeonAdvancedAi/aeon_processor.py",
+    "task": "Explain assigned symbols using a small LLM wrapper",
+    "test": "GenesisAeonAdvancedAi/test_symbol_explainer.py",
+    "status": "todo"
+  },
+  {
+    "commit": "Visualize fractal feedback graph",
+    "path": "GenesisAeonAdvancedAi/visualize_feedback.py",
+    "task": "Create Matplotlib visualization of fractal feedback",
+    "test": "GenesisAeonAdvancedAi/test_visualize_feedback.py",
+    "status": "todo"
+  },
+  {
+    "commit": "Add episodic memory storage",
+    "path": "GenesisAeonAdvancedAi/memory_store.py",
+    "task": "Store entries as linked episodes with metadata",
+    "test": "GenesisAeonAdvancedAi/test_memory_store.py",
+    "status": "todo"
+  },
+  {
+    "commit": "Create Streamlit dashboard",
+    "path": "GenesisAeonAdvancedAi/aeon_dashboard.py",
+    "task": "Interactive visualization of agent state with Streamlit",
+    "test": "GenesisAeonAdvancedAi/test_aeon_dashboard.py",
+    "status": "todo"
   }
 ]
