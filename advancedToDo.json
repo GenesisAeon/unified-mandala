@@ -4566,5 +4566,19 @@
     "task": "Use fraktal_feedback_metrics and save haiku output",
     "test": "GenesisAeonAdvancedAi/test_advanced_agent.py",
     "status": "todo"
+  },
+  {
+    "commit": "TODO from CosmicTheoryAgent conversation - CREPWaves component",
+    "path": "packages/unifiedmandala-ui/components/CREPWaves.tsx",
+    "task": "Visualisiert CREP-Historie als Wellenform",
+    "test": "packages/unifiedmandala-ui/components/CREPWaves.test.tsx",
+    "status": "todo"
+  },
+  {
+    "commit": "TODO from CosmicTheoryAgent conversation - TaskDNA component",
+    "path": "packages/unifiedmandala-ui/components/TaskDNA.tsx",
+    "task": "Stellt Task-Cluster als DNA-ähnliche Struktur dar",
+    "test": "packages/unifiedmandala-ui/components/TaskDNA.test.tsx",
+    "status": "todo"
   }
 ]
