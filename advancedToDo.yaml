@@ -913,7 +913,7 @@
   status: done
 - commit: Add NPM scripts for GhostShell start
   path: package.json
-  task: "Provide ghost-shell:cluster and ghost-shell:server commands"
+  task: Provide ghost-shell:cluster and ghost-shell:server commands
   test: ""
   status: done
 - commit: Edge deploy GhostShellAgent
@@ -6125,7 +6125,8 @@
   status: todo
 - commit: TODO from newadvancedconversations.json - AgentCoordinator
   path: docs/sigils/newadvancedconversations.json
-  task: AgentCoordinator implementieren, Steuerungslogik und Schnittstellen bereitstellen
+  task: AgentCoordinator implementieren, Steuerungslogik und Schnittstellen
+    bereitstellen
   test: ""
   status: todo
 - commit: TODO from newadvancedconversations.json - EmergencePredictorAgent
