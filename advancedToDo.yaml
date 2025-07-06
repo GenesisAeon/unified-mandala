@@ -6087,7 +6087,7 @@
   path: docs/sigils/fractal-anchor.yaml
   task: Include fractal-entry sigil details across docs
   test: ""
-  status: todo
+  status: done
 - commit: Extend CosmicTheoryAgent with SigilManager
   path: packages/agents/CosmicTheoryAgent.ts
   task: Load sigil map via SigilManager and update event tracing
@@ -6107,7 +6107,7 @@
   path: docs/sigils/cosmic-theory-agent.sigil.yaml
   task: Provide dedicated sigil file for CosmicTheoryAgent
   test: packages/agents/CosmicTheoryAgentSigil.test.ts
-  status: todo
+  status: done
 - commit: Integrate Sigillin hooks in CosmicTheoryAgent
   path: packages/agents/CosmicTheoryAgent.ts
   task: Load and store sigil states via SigilManager hooks
