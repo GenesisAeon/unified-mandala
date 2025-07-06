@@ -6259,7 +6259,7 @@
   path: docs/offline/docker-compose.yml
   task: Provide local stack for Aeon services
   test: ""
-  status: todo
+  status: done
 - commit: Draft AeonUniversal DSL grammar
   path: docs/AeonUniversalDSL.md
   task: Document DSL syntax and compiler hooks
