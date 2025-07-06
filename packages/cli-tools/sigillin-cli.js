@@ -144,6 +144,27 @@ program
   });
 
 program
+  .command('list-open-tasks [file]')
+  .description('Listet offene Tasks aus advancedToDo.yaml')
+  .action((file = '../../advancedToDo.yaml') => {
+    const path = require('path');
+    let getOpenTasks;
+    try {
+      ({ getOpenTasks } = require('../../dist/cli-tools/OpenTaskLister.js'));
+    } catch {
+      ({ getOpenTasks } = require('./OpenTaskLister'));
+    }
+    const todos = getOpenTasks(path.join(__dirname, file));
+    if (todos.length === 0) {
+      console.log('Keine offenen Aufgaben gefunden.');
+      return;
+    }
+    todos.forEach(t => {
+      console.log(`- ${t.task} (${t.path})`);
+    });
+  });
+
+program
   .command('grep-conversations <keyword>')
   .option('-o, --output <dir>', 'Zielordner', '../../docs/sigils/conversations')
   .description('Filtert conversations.json nach Stichwort')
