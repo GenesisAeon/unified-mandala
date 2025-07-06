@@ -6033,3 +6033,48 @@
   task: Convert code comments to Markdown docs
   test: scripts/__tests__/autodoc-generator.test.ts
   status: done
+- commit: Add RL weight adjustment for CosmicTheoryAgent
+  path: packages/agents/CosmicTheoryAgent.ts
+  task: Implement reinforcement learning policy update
+  test: packages/agents/CosmicTheoryAgent.test.ts
+  status: todo
+- commit: Add mutation crossover for CosmicTheoryAgent
+  path: packages/agents/CosmicTheoryAgent.ts
+  task: Evolve weighting formulas via mutation and crossover
+  test: packages/agents/CosmicTheoryAgent.test.ts
+  status: todo
+- commit: Add trace context events
+  path: packages/agents/CosmicTheoryAgentEvents.ts
+  task: Define events with trace metadata for cosmic agent
+  test: packages/agents/CosmicTheoryAgentEvents.test.ts
+  status: todo
+- commit: Add live sigil alert bridge
+  path: packages/unifiedmandala-ui/api/cosmicBridge.ts
+  task: Send live sigil alerts to UI via WebSocket
+  test: packages/unifiedmandala-ui/api/cosmicBridge.test.ts
+  status: todo
+- commit: Create interactive PyramidView
+  path: packages/unifiedmandala-ui/components/PyramidView.tsx
+  task: Build 3D pyramid visualization with react-three-fiber
+  test: packages/unifiedmandala-ui/components/PyramidView.test.tsx
+  status: todo
+- commit: Add phi pi audio integration
+  path: packages/unifiedmandala-ui/audio/PhiPiAudio.ts
+  task: Integrate Web Audio tones for phi and pi ratios
+  test: packages/unifiedmandala-ui/audio/PhiPiAudio.test.ts
+  status: todo
+- commit: Add accessibility helpers
+  path: packages/unifiedmandala-ui/utils/a11y.ts
+  task: Provide ARIA labels, colorblind modes and subtitles
+  test: packages/unifiedmandala-ui/utils/a11y.test.ts
+  status: todo
+- commit: Optimize layer caching
+  path: packages/unifiedmandala-ui/performance/Optimizations.ts
+  task: Reuse audio contexts and cache pyramid layers
+  test: packages/unifiedmandala-ui/performance/Optimizations.test.ts
+  status: todo
+- commit: Add Cypress integration tests
+  path: tests/pyramid-ui.cy.ts
+  task: End-to-end tests for Pyramid UI features
+  test: tests/pyramid-ui.cy.ts
+  status: todo
