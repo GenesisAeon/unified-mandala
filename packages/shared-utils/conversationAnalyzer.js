@@ -64,6 +64,8 @@ function extractImplicitTodosFromConversations(filePath) {
         continue;
       const parts = msg.content?.parts || [];
       for (const part of parts) {
+        if (typeof part !== 'string')
+          continue;
         for (const line of part.split(/\n+/)) {
           for (const re of patterns) {
             const m = re.exec(line);
