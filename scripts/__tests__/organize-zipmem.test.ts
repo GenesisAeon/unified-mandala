@@ -23,6 +23,7 @@ test('organize writes conversations to directories', () => {
   fs.writeFileSync(src, JSON.stringify([{ title: 'Test', id: '1', mapping: {} }]));
   process.env.ZIP_SRC = src;
   process.env.ZIP_DEST = dest;
+  const { organize } = require('../organize-zipmem');
   organize();
   const exists = fs.existsSync(path.join(dest, 'Test', 'conversation.json'));
   expect(exists).toBe(true);

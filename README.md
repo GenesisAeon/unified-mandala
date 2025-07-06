@@ -331,6 +331,7 @@ Verwende `./scripts/aeon.sh <command>` für alle CLI-Aufrufe.
 | `pnpm test` | Führe Unit- & UI-Tests aus |
 | `pnpm vitest run` | Läuft Agenten-Spezialtests |
 | `docker-compose run test` | Führe alle Tests ohne lokale Installationen aus |
+| `./scripts/run-pnpm-tests.sh` | Führt pnpm test aus |
 | `node scripts/refresh-handbook.js` | Synchronisiert Handbuch |
 | `node scripts/setup-unifiedmandala.sh` | Installer & Initialisierung |
 | `./scripts/repair-repo.sh` | Repariert Repository-Verbindungen |
