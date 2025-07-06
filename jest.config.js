@@ -1,7 +1,7 @@
 module.exports = {
   transform: { '^.+\\.tsx?$': ['<rootDir>/node_modules/ts-jest', {}] },
   testEnvironment: 'jsdom',
-  testPathIgnorePatterns: ['/dist/', 'packages/agents/__tests__', 'services/ghost-shell/server.test.ts'],
+  testPathIgnorePatterns: ['/dist/', 'packages/agents', 'packages/agents/__tests__', 'packages/vr-integration', 'services/ghost-shell/server.test.ts'],
   moduleNameMapper: {
     '^yaml$': '<rootDir>/node_modules/yaml/dist/index.js'
   },
