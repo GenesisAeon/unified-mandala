@@ -6335,3 +6335,33 @@
   task: React-Starter mit SigilSelector und ThreeDPyramid Platzhaltern
   test: apps/pyramid-ui/__tests__/index.test.tsx
   status: todo
+- commit: Improve assign_symbol with archetypes
+  path: GenesisAeonAdvancedAi/aeon_processor.py
+  task: Map value ranges to archetype emojis via assign_symbol
+  test: GenesisAeonAdvancedAi/test_assign_symbol.py
+  status: todo
+- commit: Add multi-metric CREP evaluation
+  path: GenesisAeonAdvancedAi/aeon_processor.py
+  task: Evaluate coherence variance, resonance correlation and emergence clusters
+  test: GenesisAeonAdvancedAi/test_advanced_crep_eval.py
+  status: todo
+- commit: Integrate LLM commentary service
+  path: services/llm-commentary/index.py
+  task: Generate textual explanations for symbolic outputs
+  test: services/llm-commentary/test_commentary.py
+  status: todo
+- commit: Add fractal feedback graph visualization
+  path: GenesisAeonAdvancedAi/feedback_graph.py
+  task: Visualize feedback loops as directed graph
+  test: GenesisAeonAdvancedAi/test_feedback_graph.py
+  status: todo
+- commit: Build Streamlit demo interface
+  path: apps/aeon-demo/app.py
+  task: Showcase Aeon features in Streamlit web app
+  test: apps/aeon-demo/test_app.py
+  status: todo
+- commit: Extend memory store with mood and archetype metadata
+  path: GenesisAeonAdvancedAi/memory_store.py
+  task: Save mood and archetype info per memory entry
+  test: GenesisAeonAdvancedAi/test_memory_store.py
+  status: todo
