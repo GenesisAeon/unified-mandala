@@ -4342,5 +4342,117 @@
     "task": "CosmicTheoryAgent TODO: Zugriff auf PySR-Service via Axios/gRPC",
     "test": "packages/agents/CosmicTheoryAgent.test.ts",
     "status": "todo"
+  },
+  {
+    "commit": "TODO from CosmicTheoryAgent conversation - React Starter setup",
+    "path": "packages/unifiedmandala-ui",
+    "task": "React-Starter (Vite + Tailwind + shadcn/ui) mit Skeleton-Komponenten aufsetzen",
+    "test": "packages/unifiedmandala-ui/__tests__/ReactStarter.test.tsx",
+    "status": "todo"
+  },
+  {
+    "commit": "TODO from CosmicTheoryAgent conversation - 3D canvas sketch",
+    "path": "packages/unifiedmandala-ui",
+    "task": "3D-Canvas Sketch mit react-three-fiber entwerfen",
+    "test": "packages/unifiedmandala-ui/__tests__/NestedCanvas.test.tsx",
+    "status": "todo"
+  },
+  {
+    "commit": "TODO from CosmicTheoryAgent conversation - Tone.js playground",
+    "path": "packages/unifiedmandala-ui",
+    "task": "Tone.js Playground für Phi-Skalen und Fehlerklänge implementieren",
+    "test": "packages/unifiedmandala-ui/__tests__/TonePlayground.test.ts",
+    "status": "todo"
+  },
+  {
+    "commit": "TODO from CosmicTheoryAgent conversation - MetricsStore interface",
+    "path": "packages/crep-engine",
+    "task": "MetricsStore-Schnittstelle mit OpenTelemetry für Live-CREP-Metriken umsetzen",
+    "test": "packages/crep-engine/MetricsStore.test.ts",
+    "status": "todo"
+  },
+  {
+    "commit": "TODO from AeonAI Pyramid-UI conversation - generate nested layers",
+    "path": "packages/unifiedmandala-ui",
+    "task": "generateNestedLayers Funktion gemäß Blueprint implementieren",
+    "test": "packages/unifiedmandala-ui/__tests__/generateNestedLayers.test.ts",
+    "status": "todo"
+  },
+  {
+    "commit": "TODO from AeonAI Pyramid-UI conversation - NestedPyramid component",
+    "path": "packages/unifiedmandala-ui",
+    "task": "NestedPyramid React-Komponente mit @react-three/fiber erstellen",
+    "test": "packages/unifiedmandala-ui/__tests__/NestedPyramid.test.tsx",
+    "status": "todo"
+  },
+  {
+    "commit": "TODO from AeonAI Pyramid-UI conversation - Sigillin initialization",
+    "path": "packages/unifiedmandala-ui",
+    "task": "Sigillin-Initialisierung für neue Komponenten integrieren",
+    "test": "packages/unifiedmandala-ui/__tests__/SigillinInit.test.ts",
+    "status": "todo"
+  },
+  {
+    "commit": "TODO from AeonAI Pyramid-UI conversation - CREP tuning",
+    "path": "packages/unifiedmandala-ui",
+    "task": "CREP-Scores zur Gewichtung von Farben und Soundeffekten nutzen",
+    "test": "packages/unifiedmandala-ui/__tests__/CREPTuning.test.ts",
+    "status": "todo"
+  },
+  {
+    "commit": "TODO from CosmicTheoryAgent conversation - React Starter setup",
+    "path": "packages/unifiedmandala-ui",
+    "task": "React-Starter (Vite + Tailwind + shadcn/ui) mit Skeleton-Komponenten aufsetzen",
+    "test": "packages/unifiedmandala-ui/__tests__/ReactStarter.test.tsx",
+    "status": "todo"
+  },
+  {
+    "commit": "TODO from CosmicTheoryAgent conversation - 3D canvas sketch",
+    "path": "packages/unifiedmandala-ui",
+    "task": "3D-Canvas Sketch mit react-three-fiber entwerfen",
+    "test": "packages/unifiedmandala-ui/__tests__/NestedCanvas.test.tsx",
+    "status": "todo"
+  },
+  {
+    "commit": "TODO from CosmicTheoryAgent conversation - Tone.js playground",
+    "path": "packages/unifiedmandala-ui",
+    "task": "Tone.js Playground für Phi-Skalen und Fehlerklänge implementieren",
+    "test": "packages/unifiedmandala-ui/__tests__/TonePlayground.test.ts",
+    "status": "todo"
+  },
+  {
+    "commit": "TODO from CosmicTheoryAgent conversation - MetricsStore interface",
+    "path": "packages/crep-engine",
+    "task": "MetricsStore-Schnittstelle mit OpenTelemetry für Live-CREP-Metriken umsetzen",
+    "test": "packages/crep-engine/MetricsStore.test.ts",
+    "status": "todo"
+  },
+  {
+    "commit": "TODO from AeonAI Pyramid-UI conversation - generate nested layers",
+    "path": "packages/unifiedmandala-ui",
+    "task": "generateNestedLayers Funktion gemäß Blueprint implementieren",
+    "test": "packages/unifiedmandala-ui/__tests__/generateNestedLayers.test.ts",
+    "status": "todo"
+  },
+  {
+    "commit": "TODO from AeonAI Pyramid-UI conversation - NestedPyramid component",
+    "path": "packages/unifiedmandala-ui",
+    "task": "NestedPyramid React-Komponente mit @react-three/fiber erstellen",
+    "test": "packages/unifiedmandala-ui/__tests__/NestedPyramid.test.tsx",
+    "status": "todo"
+  },
+  {
+    "commit": "TODO from AeonAI Pyramid-UI conversation - Sigillin initialization",
+    "path": "packages/unifiedmandala-ui",
+    "task": "Sigillin-Initialisierung für neue Komponenten integrieren",
+    "test": "packages/unifiedmandala-ui/__tests__/SigillinInit.test.ts",
+    "status": "todo"
+  },
+  {
+    "commit": "TODO from AeonAI Pyramid-UI conversation - CREP tuning",
+    "path": "packages/unifiedmandala-ui",
+    "task": "CREP-Scores zur Gewichtung von Farben und Soundeffekten nutzen",
+    "test": "packages/unifiedmandala-ui/__tests__/CREPTuning.test.ts",
+    "status": "todo"
   }
 ]
