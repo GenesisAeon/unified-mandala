@@ -49,3 +49,4 @@ export * from "./AeonRustTranspilerAgent";
 export * from "./AeonJsTranspilerAgent";
 export * from './AeonAuraAgent';
 export * from './AeonMembraneAgent';
+export * from './CosmicTheoryAgent';
