@@ -1,0 +1,12 @@
+sigil_id: "aeon:2025-0705-COSMIC-THEORY"
+title: "CosmicTheoryAgent Core Sigil"
+type: "agent-sigil"
+date_created: "2025-07-05"
+created_by: "GenesisAeon"
+description: >
+  Dieses Sigil bündelt die kosmischen Analysefähigkeiten des CosmicTheoryAgent.
+  Es dient als Identifikator für sämtliche Module und Hooks des Agents im
+  UnifiedMandala Projekt.
+metadata:
+  related_agent: "CosmicTheoryAgent"
+  version: "1.0"
