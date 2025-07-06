@@ -6078,3 +6078,23 @@
   task: End-to-end tests for Pyramid UI features
   test: tests/pyramid-ui.cy.ts
   status: todo
+- commit: Setup ProtoTyp deployment environment
+  path: scripts/prototype-deploy.sh
+  task: Create prototype deployment script for Aeon services
+  test: ""
+  status: todo
+- commit: Add fractal anchor metadata
+  path: docs/sigils/fractal-anchor.yaml
+  task: Include fractal-entry sigil details across docs
+  test: ""
+  status: todo
+- commit: Extend CosmicTheoryAgent with SigilManager
+  path: packages/agents/CosmicTheoryAgent.ts
+  task: Load sigil map via SigilManager and update event tracing
+  test: packages/agents/CosmicTheoryAgent.test.ts
+  status: todo
+- commit: Implement AeonAI Pyramid UI blueprint
+  path: packages/unifiedmandala-ui/components/PyramidBlueprint.tsx
+  task: Render dual-layer pyramid with weight nodes
+  test: packages/unifiedmandala-ui/components/PyramidBlueprint.test.tsx
+  status: todo
