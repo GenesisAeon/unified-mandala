@@ -3599,14 +3599,14 @@
     "path": "docs/sigils/newadvancedconversations.json",
     "task": "Register CODEX-PYRAMID-INIT anchor and update planning meta",
     "test": "packages/cli-tools/PyramidInit.test.ts",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "Add Sonification module",
     "path": "packages/visuals/Sonification.ts",
     "task": "Provide playCREPTone function using Web Audio API",
     "test": "packages/visuals/__tests__/Sonification.test.ts",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "Implement weighted node generation",
@@ -4705,7 +4705,7 @@
     "path": "packages/agents/CosmicTheoryAgentEvents.ts",
     "task": "Define event types and tracing metadata for CosmicTheoryAgent",
     "test": "packages/agents/CosmicTheoryAgentEvents.test.ts",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "Create CosmicTheoryPanel component",
