@@ -4258,5 +4258,40 @@
     "task": "Render dual-layer pyramid with weight nodes",
     "test": "packages/unifiedmandala-ui/components/PyramidBlueprint.test.tsx",
     "status": "todo"
+  },
+{
+    "commit": "Create LocalhostOffline Docker setup",
+    "path": "localhost-offline/docker-compose.yml",
+    "task": "Provide offline Docker Compose environment",
+    "test": "",
+    "status": "todo"
+  },
+  {
+    "commit": "Generate Sigillin for CosmicTheoryAgent",
+    "path": "docs/sigils/cosmic-theory-agent.sigil.yaml",
+    "task": "Provide dedicated sigil file for CosmicTheoryAgent",
+    "test": "packages/agents/CosmicTheoryAgentSigil.test.ts",
+    "status": "todo"
+  },
+  {
+    "commit": "Integrate Sigillin hooks in CosmicTheoryAgent",
+    "path": "packages/agents/CosmicTheoryAgent.ts",
+    "task": "Load and store sigil states via SigilManager hooks",
+    "test": "packages/agents/CosmicTheoryAgent.test.ts",
+    "status": "todo"
+  },
+  {
+    "commit": "Add UI Agent mapping matrix",
+    "path": "docs/mapping/ui-agent-matrix.yaml",
+    "task": "Document feature mapping between UI and agents",
+    "test": "",
+    "status": "todo"
+  },
+  {
+    "commit": "Add AeonNeuroNetz comparison docs",
+    "path": "docs/analysis/AeonNeuroNetzComparison.md",
+    "task": "Compare AeonNeuroNetz with state-of-the-art neural nets",
+    "test": "",
+    "status": "todo"
   }
 ]
