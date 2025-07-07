@@ -1,3 +1,4 @@
+import { test, expect } from 'vitest';
 import { CosmicTheoryEventHub } from './CosmicTheoryAgentEvents';
 
 test('emit and receive events', () => {

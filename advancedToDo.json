@@ -4740,14 +4740,14 @@
     "path": "packages/agents/CosmicTheoryAgent.ts",
     "task": "Add fractal decomposition and SymbolicRegression modules",
     "test": "packages/agents/__tests__/CosmicTheoryAgent.spec.ts",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "Add MandalaCREPCircle component",
     "path": "packages/unifiedmandala-ui/components/MandalaCREPCircle.tsx",
     "task": "Visualize CREP values as circular arc chart",
     "test": "packages/unifiedmandala-ui/components/MandalaCREPCircle.test.tsx",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "Add MetricsDashboard component",
