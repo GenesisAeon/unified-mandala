@@ -1,4 +1,4 @@
-import { playCREPTone, fallbackTone } from '../Sonification';
+import { playCREPTone, fallbackTone, showErrorMarker } from '../Sonification';
 
 test('plays tone without throwing', () => {
   globalThis.AudioContext = function () {
@@ -21,4 +21,11 @@ test('uses fallback when AudioContext fails', () => {
   playCREPTone(0.5);
   expect(spy).toHaveBeenCalled();
   globalThis.AudioContext = orig;
+});
+
+test('showErrorMarker adds element', () => {
+  document.body.innerHTML = '';
+  showErrorMarker();
+  const el = document.getElementById('sonification-error');
+  expect(el).not.toBeNull();
 });

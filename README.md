@@ -22,6 +22,9 @@ narrative Interfaces und adaptive Bewusstseinsräume.
 Schau auch ins [Glossar](docs/glossar-genesis.md) für Begriffe.
 Einen Überblick über die Agenten bietet [docs/architecture/agent-system.md](docs/architecture/agent-system.md).
 Strategische Leitlinien stehen in [docs/agents/AgentStrategy.md](docs/agents/AgentStrategy.md).
+Weitere Hinweise aus dem „Sigil Übergang“:
+- Lokales Offline-Paket in [localhost-offline](localhost-offline)
+- Blueprint für UI/Agenten-Mapping siehe [AgentMappingBlueprint](docs/architecture/AgentMappingBlueprint.md)
 
 ## 🚀 Features
 

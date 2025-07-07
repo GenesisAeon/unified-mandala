@@ -12,6 +12,9 @@ Schau auch ins [Glossar](docs/glossar-genesis.md) für Begriffe.
 Das Pendant zum Genesis ZIPMEM ist die Datei `advancedconversations.json`.
 Ergänzende Ausschnitte landen unter `GenesisAeonZIPMEM/<Chat>`.
 Pitch-Beispiele für Events sind unter `docs/pitch/` abgelegt.
+Weitere Hinweise aus dem „Sigil Übergang“:
+- Offline-Nutzung über [localhost-offline](localhost-offline)
+- Siehe Agenten-Mapping-Blueprint in [docs/architecture/AgentMappingBlueprint.md](docs/architecture/AgentMappingBlueprint.md)
 
 > **TL;DR**
 > - Installation: `./scripts/setup-unifiedmandala.sh`
