@@ -4715,19 +4715,19 @@
     "status": "done"
   },
   {
-    "commit": "Add AgentMapping blueprint",
-    "path": "docs/architecture/AgentMappingBlueprint.md",
-    "task": "Document UI and agent relationships from transition chat",
-    "test": "",
-    "status": "todo"
-  },
-  {
-    "commit": "Apply README and Handbuch feedback",
-    "path": "README.md; Handbuch.md",
-    "task": "Integrate structure and usability updates from Sigil Übergang chat",
-    "test": "",
-    "status": "todo"
-  },
+  "commit": "Add AgentMapping blueprint",
+  "path": "docs/architecture/AgentMappingBlueprint.md",
+  "task": "Document UI and agent relationships from transition chat",
+  "test": "",
+  "status": "done"
+},
+{
+  "commit": "Apply README and Handbuch feedback",
+  "path": "README.md; Handbuch.md",
+  "task": "Integrate structure and usability updates from Sigil Übergang chat",
+  "test": "",
+  "status": "done"
+},
   {
     "commit": "Create ZIP analysis script",
     "path": "scripts/analyze_zip.py",

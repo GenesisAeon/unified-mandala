@@ -15,6 +15,8 @@ Pitch-Beispiele für Events sind unter `docs/pitch/` abgelegt.
 Weitere Hinweise aus dem „Sigil Übergang“:
 - Offline-Nutzung über [localhost-offline](localhost-offline)
 - Siehe Agenten-Mapping-Blueprint in [docs/architecture/AgentMappingBlueprint.md](docs/architecture/AgentMappingBlueprint.md)
+- Lokaler Test-Stack unter `docs/offline/docker-compose.yml`
+- ToDo-Dateien vor größeren Commits mit `scripts/sync-todo-progress.js` abgleichen
 
 > **TL;DR**
 > - Installation: `./scripts/setup-unifiedmandala.sh`

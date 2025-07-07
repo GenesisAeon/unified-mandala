@@ -25,6 +25,10 @@ Strategische Leitlinien stehen in [docs/agents/AgentStrategy.md](docs/agents/Age
 Weitere Hinweise aus dem „Sigil Übergang“:
 - Lokales Offline-Paket in [localhost-offline](localhost-offline)
 - Blueprint für UI/Agenten-Mapping siehe [AgentMappingBlueprint](docs/architecture/AgentMappingBlueprint.md)
+- Offline-Workflow und Sigil-Zyklen:
+  Nutze `docs/offline/docker-compose.yml` für lokale Tests und
+  synchronisiere ToDo-Dateien vor großen Commits mit
+  `scripts/sync-todo-progress.js`.
 
 ## 🚀 Features
 
