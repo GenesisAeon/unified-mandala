@@ -4180,7 +4180,7 @@
     "path": "packages/agents/CosmicTheoryAgent.ts",
     "task": "Evolve weighting formulas via mutation and crossover",
     "test": "packages/agents/CosmicTheoryAgent.test.ts",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "Add trace context events",
@@ -4750,18 +4750,18 @@
     "status": "done"
   },
   {
-  "commit": "Add MetricsDashboard component",
-  "path": "packages/unifiedmandala-ui/components/MetricsDashboard.tsx",
-  "task": "Recharts dashboard showing CREP metrics",
-  "test": "packages/unifiedmandala-ui/components/MetricsDashboard.test.tsx",
-  "status": "done"
+    "commit": "Add MetricsDashboard component",
+    "path": "packages/unifiedmandala-ui/components/MetricsDashboard.tsx",
+    "task": "Recharts dashboard showing CREP metrics",
+    "test": "packages/unifiedmandala-ui/components/MetricsDashboard.test.tsx",
+    "status": "done"
   },
   {
-  "commit": "Add auto archive script",
-  "path": "scripts/autoArchiveTodos.py",
-  "task": "Move completed ToDos to GenesisAeonZIPMEM",
-  "test": "scripts/__tests__/autoArchiveTodos_test.py",
-  "status": "done"
+    "commit": "Add auto archive script",
+    "path": "scripts/autoArchiveTodos.py",
+    "task": "Move completed ToDos to GenesisAeonZIPMEM",
+    "test": "scripts/__tests__/autoArchiveTodos_test.py",
+    "status": "done"
   },
   {
     "commit": "Add FourierLayer plugin",
