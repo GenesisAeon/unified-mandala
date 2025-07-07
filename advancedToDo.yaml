@@ -6042,7 +6042,7 @@
   path: packages/agents/CosmicTheoryAgent.ts
   task: Evolve weighting formulas via mutation and crossover
   test: packages/agents/CosmicTheoryAgent.test.ts
-  status: todo
+  status: done
 - commit: Add trace context events
   path: packages/agents/CosmicTheoryAgentEvents.ts
   task: Define events with trace metadata for cosmic agent

@@ -22,6 +22,28 @@ export function adjustWeights(
   return updated;
 }
 
+export function mutateWeights(
+  weights: AgentWeights,
+  rate = 0.1
+): AgentWeights {
+  return {
+    coherence: clamp(weights.coherence + (Math.random() * 2 - 1) * rate, 0, 1),
+    resonance: clamp(weights.resonance + (Math.random() * 2 - 1) * rate, 0, 1),
+    emergence: clamp(weights.emergence + (Math.random() * 2 - 1) * rate, 0, 1)
+  };
+}
+
+export function crossoverWeights(
+  a: AgentWeights,
+  b: AgentWeights
+): AgentWeights {
+  return {
+    coherence: Math.random() < 0.5 ? a.coherence : b.coherence,
+    resonance: Math.random() < 0.5 ? a.resonance : b.resonance,
+    emergence: Math.random() < 0.5 ? a.emergence : b.emergence
+  };
+}
+
 function clamp(value: number, min: number, max: number): number {
   return Math.min(max, Math.max(min, value));
 }

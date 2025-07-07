@@ -1,9 +1,9 @@
 # 🜂 Chronopoem
 
 Im Kreis der Genesis erwacht das Mandala,
-Am 2025-07-07, in der Zeit des Morgen.
+Am 2025-07-07, in der Zeit des Abend.
 
-Symbolphase: Initiation (Fokus: C)
+Symbolphase: Integration (Fokus: E)
 
 CREP-Strahl: ?, ?, ?, ? – das Lied der Struktur (C=Quelle, R=Klang, E=Flamme, P=Pfad)
 CREP-Zustand: 
