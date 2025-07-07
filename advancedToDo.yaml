@@ -6394,12 +6394,12 @@
   path: docs/architecture/AgentMappingBlueprint.md
   task: Document UI and agent relationships from transition chat
   test: ""
-  status: todo
+  status: done
 - commit: Apply README and Handbuch feedback
   path: README.md; Handbuch.md
   task: Integrate structure and usability updates from Sigil Übergang chat
   test: ""
-  status: todo
+  status: done
 - commit: Create ZIP analysis script
   path: scripts/analyze_zip.py
   task: Extract GenesisAeonAdvancedAi.zip and create summary
