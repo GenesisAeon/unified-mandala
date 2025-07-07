@@ -29,6 +29,26 @@ class TestMemoryStore(unittest.TestCase):
         self.assertEqual(len(data), 2)
         path.unlink()
 
+    def test_metadata_defaults(self):
+        path = pathlib.Path('temp_meta.json')
+        if path.exists():
+            path.unlink()
+        store_result({'x': 42}, path)
+        data = load_results(path)
+        self.assertEqual(data[0]['mood'], 'neutral')
+        self.assertEqual(data[0]['archetype'], 'unknown')
+        path.unlink()
+
+    def test_metadata_custom(self):
+        path = pathlib.Path('temp_meta.json')
+        if path.exists():
+            path.unlink()
+        store_result({'x': 1, 'mood': 'happy', 'archetype': 'hero'}, path)
+        data = load_results(path)
+        self.assertEqual(data[0]['mood'], 'happy')
+        self.assertEqual(data[0]['archetype'], 'hero')
+        path.unlink()
+
     def test_load_results(self):
         path = pathlib.Path('temp_mem.json')
         if path.exists():
