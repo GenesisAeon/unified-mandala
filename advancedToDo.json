@@ -4757,11 +4757,11 @@
   "status": "done"
   },
   {
-    "commit": "Add auto archive script",
-    "path": "scripts/autoArchiveTodos.py",
-    "task": "Move completed ToDos to GenesisAeonZIPMEM",
-    "test": "scripts/__tests__/autoArchiveTodos_test.py",
-    "status": "todo"
+  "commit": "Add auto archive script",
+  "path": "scripts/autoArchiveTodos.py",
+  "task": "Move completed ToDos to GenesisAeonZIPMEM",
+  "test": "scripts/__tests__/autoArchiveTodos_test.py",
+  "status": "done"
   },
   {
     "commit": "Add FourierLayer plugin",

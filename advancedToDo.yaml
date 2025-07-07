@@ -6424,7 +6424,7 @@
   path: scripts/autoArchiveTodos.py
   task: Move completed ToDos to GenesisAeonZIPMEM
   test: scripts/__tests__/autoArchiveTodos_test.py
-  status: todo
+  status: done
 - commit: Add FourierLayer plugin
   path: packages/analysis/FourierLayer.ts
   task: Implement Fourier-based emergence analyzer
