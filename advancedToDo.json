@@ -4750,11 +4750,11 @@
     "status": "done"
   },
   {
-    "commit": "Add MetricsDashboard component",
-    "path": "packages/unifiedmandala-ui/components/MetricsDashboard.tsx",
-    "task": "Recharts dashboard showing CREP metrics",
-    "test": "packages/unifiedmandala-ui/components/MetricsDashboard.test.tsx",
-    "status": "todo"
+  "commit": "Add MetricsDashboard component",
+  "path": "packages/unifiedmandala-ui/components/MetricsDashboard.tsx",
+  "task": "Recharts dashboard showing CREP metrics",
+  "test": "packages/unifiedmandala-ui/components/MetricsDashboard.test.tsx",
+  "status": "done"
   },
   {
     "commit": "Add auto archive script",

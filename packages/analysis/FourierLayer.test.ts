@@ -1,4 +1,3 @@
-import { describe, it, expect } from 'vitest';
 import { FourierLayer } from './FourierLayer';
 
 describe('FourierLayer', () => {
