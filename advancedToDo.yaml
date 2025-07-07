@@ -5453,7 +5453,7 @@
   path: docs/sigils/newadvancedconversations.json
   task: Register CODEX-PYRAMID-INIT anchor and update planning meta
   test: packages/cli-tools/PyramidInit.test.ts
-  status: todo
+  status: done
 - commit: Add Sonification module
   path: packages/visuals/Sonification.ts
   task: Provide playCREPTone function using Web Audio API
@@ -6369,17 +6369,17 @@
   path: packages/data/CosmicDataLoader.ts
   task: Provide functions to load CMB maps and neutrino flux data
   test: packages/data/CosmicDataLoader.test.ts
-  status: todo
+  status: done
 - commit: Add FractalAnalyzer utilities
   path: packages/analysis/FractalAnalyzer.ts
   task: Implement fractalDecompose and metric helpers
   test: packages/analysis/FractalAnalyzer.test.ts
-  status: todo
+  status: done
 - commit: Implement SymbolicRegression module
   path: packages/analysis/SymbolicRegression.ts
   task: Generate candidate formulas via symbolic regression
   test: packages/analysis/SymbolicRegression.test.ts
-  status: todo
+  status: done
 - commit: Add CosmicTheoryAgentEvents definitions
   path: packages/agents/CosmicTheoryAgentEvents.ts
   task: Define event types and tracing metadata for CosmicTheoryAgent
@@ -6389,7 +6389,7 @@
   path: packages/unifiedmandala-ui/components/CosmicTheoryPanel.tsx
   task: Display generated cosmic formulas in UI panel
   test: packages/unifiedmandala-ui/components/CosmicTheoryPanel.test.tsx
-  status: todo
+  status: done
 - commit: Add AgentMapping blueprint
   path: docs/architecture/AgentMappingBlueprint.md
   task: Document UI and agent relationships from transition chat
