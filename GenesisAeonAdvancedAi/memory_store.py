@@ -8,7 +8,10 @@ import statistics
 
 
 def store_result(result: Dict[str, Any], path: Path) -> None:
-    """Append result to a JSON list stored at path."""
+    """Append result to a JSON list stored at path.
+
+    Ensures ``mood`` and ``archetype`` metadata are present.
+    """
     if path.exists():
         try:
             data = json.loads(path.read_text())
@@ -19,6 +22,8 @@ def store_result(result: Dict[str, Any], path: Path) -> None:
 
     entry = dict(result)
     entry.setdefault("timestamp", time.time())
+    entry.setdefault("mood", "neutral")
+    entry.setdefault("archetype", "unknown")
     data.append(entry)
     path.write_text(json.dumps(data, indent=2))
 

@@ -1398,13 +1398,15 @@
     "commit": "Create ResonanceAudioVisualizer",
     "path": "packages/visuals/ResonanceAudioVisualizer.ts",
     "task": "Map resonance data to audiovisual output",
-    "test": "packages/visuals/ResonanceAudioVisualizer.test.ts"
+    "test": "packages/visuals/ResonanceAudioVisualizer.test.ts",
+    "status": "done"
   },
   {
     "commit": "Add RealTimeCREPSonification",
     "path": "packages/visuals/RealTimeCREPSonification.ts",
     "task": "Sonify CREP values in real time",
-    "test": "packages/visuals/RealTimeCREPSonification.test.ts"
+    "test": "packages/visuals/RealTimeCREPSonification.test.ts",
+    "status": "done"
   },
   {
     "commit": "Introduce CREPInsightDashboard",
@@ -3627,7 +3629,7 @@
     "path": "packages/visuals/Sonification.ts",
     "task": "Provide fallback synthesizer and visual markers on audio errors",
     "test": "packages/visuals/__tests__/Sonification.test.ts",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "feat: add PyramidWeighting module",
@@ -4719,14 +4721,14 @@
     "path": "docs/architecture/AgentMappingBlueprint.md",
     "task": "Document UI and agent relationships from transition chat",
     "test": "",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "Apply README and Handbuch feedback",
     "path": "README.md; Handbuch.md",
     "task": "Integrate structure and usability updates from Sigil Übergang chat",
     "test": "",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "Create ZIP analysis script",
