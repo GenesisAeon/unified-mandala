@@ -14,6 +14,7 @@ export { default as LogbuchPanel } from './components/LogbuchPanel';
 export { default as SigillinOverlay } from './components/SigillinOverlay';
 export * from './hooks/useCREPManager';
 export * from './hooks/useCREPHistory';
+export { default as MandalaCREPCircle } from './components/MandalaCREPCircle';
 export { SymbolzeitManager } from '../aeon-shell/SymbolzeitManager';
 export { runCommand as AeonShellBridge } from '../aeon-shell/AeonShellBridge';
 export * from './utils/PyramidUtils';

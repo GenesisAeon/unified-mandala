@@ -1,6 +1,6 @@
-import { describe, it, expect, vi } from 'vitest';
+import { describe, it, expect, vi, test } from 'vitest';
 import axios from 'axios';
-import { fetchCosmicData } from '../CosmicTheoryAgent';
+import { fetchCosmicData, analyzeCosmicData } from '../CosmicTheoryAgent';
 
 vi.mock('axios');
 
@@ -9,5 +9,10 @@ describe('fetchCosmicData', () => {
     (axios.get as any).mockRejectedValueOnce(new Error('Network Error'));
     await expect(fetchCosmicData('http://example.com')).rejects.toThrow('Network Error');
   });
+});
+
+test('analyzes cosmic values', () => {
+  const result = analyzeCosmicData([4]);
+  expect(result).toBe('y = 2.0');
 });
 
