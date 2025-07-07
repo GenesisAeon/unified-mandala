@@ -3865,98 +3865,98 @@
     "path": "packages/shared-utils/todoSigilUpdater.ts",
     "task": "Update status in ToDo Sigil files",
     "test": "packages/shared-utils/todoSigilUpdater.test.ts",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "Add todoCommentScanner tool",
     "path": "packages/shared-utils/todoCommentScanner.ts",
     "task": "Scan repository for TODO comments and produce summary",
     "test": "packages/shared-utils/todoCommentScanner.test.ts",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "Add conversationProgress tracker",
-    "path": "packages/agents/conversationProgress.ts",
+    "path": "packages/shared-utils/conversationProgress.ts",
     "task": "Mark processed conversation fragments to avoid duplication",
-    "test": "packages/agents/__tests__/conversationProgress.test.ts",
-    "status": "todo"
+    "test": "packages/shared-utils/conversationProgress.test.ts",
+    "status": "done"
   },
   {
     "commit": "Extend selfAnalyzer module",
     "path": "packages/shared-utils/selfAnalyzer.ts",
     "task": "Provide repository statistics like file counts and test coverage",
     "test": "packages/shared-utils/selfAnalyzer.test.ts",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "Create GespraechsfallGenerator utility",
     "path": "packages/shared-utils/GespraechsfallGenerator.ts",
     "task": "Generate conversation protocols from transcripts",
     "test": "packages/shared-utils/GespraechsfallGenerator.test.ts",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "Implement loadSymbolphasen helper",
     "path": "config/loadSymbolphasen.ts",
     "task": "Read symbolphasen.yaml and expose phase data",
     "test": "config/loadSymbolphasen.test.ts",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "Add simple RestClient module",
     "path": "packages/shared-utils/RestClient.ts",
     "task": "Provide minimal HTTP/HTTPS client for tests and scripts",
     "test": "packages/shared-utils/RestClient.test.ts",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "Add todoSigilUpdater module",
     "path": "packages/shared-utils/todoSigilUpdater.ts",
     "task": "Update status in ToDo Sigil files",
     "test": "packages/shared-utils/todoSigilUpdater.test.ts",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "Add todoCommentScanner tool",
     "path": "packages/shared-utils/todoCommentScanner.ts",
     "task": "Scan repository for TODO comments and produce summary",
     "test": "packages/shared-utils/todoCommentScanner.test.ts",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "Add conversationProgress tracker",
-    "path": "packages/agents/conversationProgress.ts",
+    "path": "packages/shared-utils/conversationProgress.ts",
     "task": "Mark processed conversation fragments to avoid duplication",
-    "test": "packages/agents/__tests__/conversationProgress.test.ts",
-    "status": "todo"
+    "test": "packages/shared-utils/conversationProgress.test.ts",
+    "status": "done"
   },
   {
     "commit": "Extend selfAnalyzer module",
     "path": "packages/shared-utils/selfAnalyzer.ts",
     "task": "Provide repository statistics like file counts and test coverage",
     "test": "packages/shared-utils/selfAnalyzer.test.ts",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "Create GespraechsfallGenerator utility",
     "path": "packages/shared-utils/GespraechsfallGenerator.ts",
     "task": "Generate conversation protocols from transcripts",
     "test": "packages/shared-utils/GespraechsfallGenerator.test.ts",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "Implement loadSymbolphasen helper",
     "path": "config/loadSymbolphasen.ts",
     "task": "Read symbolphasen.yaml and expose phase data",
     "test": "config/loadSymbolphasen.test.ts",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "Add simple RestClient module",
     "path": "packages/shared-utils/RestClient.ts",
     "task": "Provide minimal HTTP/HTTPS client for tests and scripts",
     "test": "packages/shared-utils/RestClient.test.ts",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "Implement MetaRunner script for fractal tasks",
