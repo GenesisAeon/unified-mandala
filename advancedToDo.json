@@ -3613,14 +3613,14 @@
     "path": "packages/unifiedmandala-ui/utils/PyramidUtils.ts",
     "task": "Calculate node weights using phi, pi and e constants",
     "test": "packages/unifiedmandala-ui/utils/PyramidUtils.test.ts",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "Add ARIA labels for PyramidView",
     "path": "packages/unifiedmandala-ui/components/PyramidView.tsx",
     "task": "Improve accessibility by adding ARIA labels and color contrast checks",
     "test": "packages/unifiedmandala-ui/components/PyramidView.a11y.test.tsx",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "Add fallback audio and error markers",
@@ -4684,21 +4684,21 @@
     "path": "packages/data/CosmicDataLoader.ts",
     "task": "Provide functions to load CMB maps and neutrino flux data",
     "test": "packages/data/CosmicDataLoader.test.ts",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "Add FractalAnalyzer utilities",
     "path": "packages/analysis/FractalAnalyzer.ts",
     "task": "Implement fractalDecompose and metric helpers",
     "test": "packages/analysis/FractalAnalyzer.test.ts",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "Implement SymbolicRegression module",
     "path": "packages/analysis/SymbolicRegression.ts",
     "task": "Generate candidate formulas via symbolic regression",
     "test": "packages/analysis/SymbolicRegression.test.ts",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "Add CosmicTheoryAgentEvents definitions",
@@ -4712,7 +4712,7 @@
     "path": "packages/unifiedmandala-ui/components/CosmicTheoryPanel.tsx",
     "task": "Display generated cosmic formulas in UI panel",
     "test": "packages/unifiedmandala-ui/components/CosmicTheoryPanel.test.tsx",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "Add AgentMapping blueprint",
