@@ -4741,5 +4741,26 @@
     "task": "Add fractal decomposition and SymbolicRegression modules",
     "test": "packages/agents/__tests__/CosmicTheoryAgent.spec.ts",
     "status": "todo"
+  },
+  {
+    "commit": "Add MandalaCREPCircle component",
+    "path": "packages/unifiedmandala-ui/components/MandalaCREPCircle.tsx",
+    "task": "Visualize CREP values as circular arc chart",
+    "test": "packages/unifiedmandala-ui/components/MandalaCREPCircle.test.tsx",
+    "status": "todo"
+  },
+  {
+    "commit": "Add MetricsDashboard component",
+    "path": "packages/unifiedmandala-ui/components/MetricsDashboard.tsx",
+    "task": "Recharts dashboard showing CREP metrics",
+    "test": "packages/unifiedmandala-ui/components/MetricsDashboard.test.tsx",
+    "status": "todo"
+  },
+  {
+    "commit": "Add auto archive script",
+    "path": "scripts/autoArchiveTodos.py",
+    "task": "Move completed ToDos to GenesisAeonZIPMEM",
+    "test": "scripts/__tests__/autoArchiveTodos_test.py",
+    "status": "todo"
   }
 ]
