@@ -6425,3 +6425,18 @@
   task: Move completed ToDos to GenesisAeonZIPMEM
   test: scripts/__tests__/autoArchiveTodos_test.py
   status: todo
+- commit: Add FourierLayer plugin
+  path: packages/analysis/FourierLayer.ts
+  task: Implement Fourier-based emergence analyzer
+  test: packages/analysis/FourierLayer.test.ts
+  status: done
+- commit: Add FourierLayerConfig schema
+  path: packages/analysis/fourier-layer-config.json
+  task: JSON schema for FourierLayer configuration
+  test: packages/analysis/FourierLayer.test.ts
+  status: done
+- commit: Add createFourierLayerTree utility
+  path: packages/analysis/createFourierLayerTree.ts
+  task: Build FourierLayer tree from inputs
+  test: packages/analysis/createFourierLayerTree.test.ts
+  status: done

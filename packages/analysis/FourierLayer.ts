@@ -1,0 +1,49 @@
+export interface FourierLayerConfig {
+  depth: number;
+  threshold?: number;
+}
+
+export interface EmergenceMetrics {
+  maxAmplitude: number;
+  avgAmplitude: number;
+}
+
+export class FourierLayer {
+  id: string;
+  level: number;
+  weight: number;
+  private threshold: number;
+  private data: number[];
+
+  constructor(id: string, level: number, data: number[], config: FourierLayerConfig) {
+    this.id = id;
+    this.level = level;
+    this.threshold = config.threshold ?? 0.1;
+    this.weight = data.length / (config.depth || 1);
+    this.data = data;
+  }
+
+  private dft(): [number, number][] {
+    const N = this.data.length;
+    const result: [number, number][] = [];
+    for (let k = 0; k < N; k++) {
+      let real = 0;
+      let imag = 0;
+      for (let n = 0; n < N; n++) {
+        const angle = (2 * Math.PI * k * n) / N;
+        real += this.data[n] * Math.cos(angle);
+        imag -= this.data[n] * Math.sin(angle);
+      }
+      result.push([real, imag]);
+    }
+    return result;
+  }
+
+  analyze(): EmergenceMetrics {
+    const phasors = this.dft();
+    const amps = phasors.map(([re, im]) => Math.hypot(re, im));
+    const maxAmplitude = Math.max(...amps);
+    const avgAmplitude = amps.reduce((a, b) => a + b, 0) / amps.length;
+    return { maxAmplitude, avgAmplitude };
+  }
+}
