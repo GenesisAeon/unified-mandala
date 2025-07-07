@@ -6419,7 +6419,7 @@
   path: packages/unifiedmandala-ui/components/MetricsDashboard.tsx
   task: Recharts dashboard showing CREP metrics
   test: packages/unifiedmandala-ui/components/MetricsDashboard.test.tsx
-  status: todo
+  status: done
 - commit: Add auto archive script
   path: scripts/autoArchiveTodos.py
   task: Move completed ToDos to GenesisAeonZIPMEM
