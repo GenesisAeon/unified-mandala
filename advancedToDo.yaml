@@ -6321,7 +6321,7 @@
   path: packages/unifiedmandala-ui/components/ThreeDPyramid.tsx
   task: React-Three-Fiber Pyramide mit animierten Layern
   test: packages/unifiedmandala-ui/components/ThreeDPyramid.test.tsx
-  status: todo
+  status: done
 - commit: TODO from AeonAI Pyramid UI conversation - AudioEngine module
   path: packages/unifiedmandala-ui/lib/AudioEngine.ts
   task: Tone.js Integration für Phi-Skala und Fehlerklänge
