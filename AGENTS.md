@@ -4,7 +4,7 @@ pip install pyright
 poetry install --with test
 pnpm install
 ## Entwicklungsumgebung
-Zur Einrichtung kann das Skript `scripts/setup-dev-env.sh` verwendet werden:
+Zur Einrichtung das Skript `scripts/setup-dev-env.sh` verwenden:
 
 ```bash
 ./scripts/setup-dev-env.sh
