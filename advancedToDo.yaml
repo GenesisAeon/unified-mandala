@@ -1069,6 +1069,7 @@
   path: packages/agents/__tests__
   task: Rewrite test imports to use ESM for Vitest
   test: packages/agents/__tests__/AeonMembraneAgent.spec.ts
+  status: done
 - commit: Enable jest coverage in CI
   path: jest.config.js
   task: Configure coverage collection and update CI
