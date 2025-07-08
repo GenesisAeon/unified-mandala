@@ -4091,7 +4091,7 @@
     "path": "packages/unifiedmandala-observability/opentelemetry.ts",
     "task": "Add telemetry hooks for agents and dashboard",
     "test": "packages/unifiedmandala-observability/opentelemetry.test.ts",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "Setup CI tests and deployment",
@@ -4834,5 +4834,4 @@
     "task": "Split newadvancedconversations.json into numbered YAML/JSON fragments",
     "test": "scripts/__tests__/newadvancedconvo_splitter.test.ts",
     "status": "done"
-  }
-]
+  }]
