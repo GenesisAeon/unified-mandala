@@ -5946,7 +5946,7 @@
   path: scripts/autodoc-comments.ts
   task: Generate markdown docs from TypeScript comments
   test: scripts/__tests__/autodoc-comments.test.ts
-  status: todo
+  status: done
 - commit: Setup configuration schema with AJV
   path: packages/unifiedmandala-core/configSchema.ts
   task: Build JSON schema and integrate AJV validation

@@ -3627,7 +3627,7 @@
     "path": "packages/visuals/Sonification.ts",
     "task": "Provide fallback synthesizer and visual markers on audio errors",
     "test": "packages/visuals/__tests__/Sonification.test.ts",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "feat: add PyramidWeighting module",
@@ -3999,7 +3999,7 @@
     "path": "packages/seal-core/SealCore.ts",
     "task": "Bridge SelflearnAI with GenesisAeon system via SealCore membrane",
     "test": "packages/seal-core/SealCore.test.ts",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "Implement PyramidConfig interface and loader",
@@ -4048,7 +4048,7 @@
     "path": "scripts/autodoc-comments.ts",
     "task": "Generate markdown docs from TypeScript comments",
     "test": "scripts/__tests__/autodoc-comments.test.ts",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "Setup configuration schema with AJV",
