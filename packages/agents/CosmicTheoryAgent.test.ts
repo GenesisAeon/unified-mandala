@@ -73,3 +73,18 @@ describe('performRemoteAnalysis', () => {
     expect(res).toEqual([42]);
   });
 });
+
+describe('callPySRService', () => {
+  it('calls PySR REST service', async () => {
+    vi.spyOn(axios, 'post').mockResolvedValue({ data: { equation: 'y=x' } });
+    const eq = await callPySRService([1,2], 'http://localhost/pysr');
+    expect(eq).toBe('y=x');
+  });
+
+  it('calls PySR gRPC service', async () => {
+    const makeUnaryRequest = vi.fn((path, ser, des, arg, cb) => cb(null, { equation: 'y=x^2' }));
+    vi.spyOn(Client.prototype, 'makeUnaryRequest').mockImplementation(makeUnaryRequest as any);
+    const eq = await callPySRService([1,2], 'localhost:6000', 'grpc');
+    expect(eq).toBe('y=x^2');
+  });
+});

@@ -39,6 +39,10 @@ Weitere Hinweise aus dem „Sigil Übergang“:
 - [**SigillinLoader**](packages/unifiedmandala-ui/components/SigillinLoader.tsx) – Import & Filter von Sigillin-Dateien
 - [**AutoDoc & Manifest-Generator**](packages/crep-engine/autoDocGeneration.ts) – Dokumentation auf Knopfdruck
 - [**FourierLayer Analyse**](packages/analysis/FourierLayer.ts) – Frequenzbasierte Emergenzbewertung
+- [**EventBridge**](packages/unifiedmandala-ui/events/EventBridge.ts) – verbindet CosmicTheoryAgent mit der Pyramid UI
+- [**PySR Service Client**](packages/agents/CosmicTheoryAgent.ts) – Regression via REST/gRPC
+- [**Sigil Archive Service**](services/sigil-archive/index.ts) – speichert Sigille und CREP-Fragmente
+- [**CREPVisualizer**](packages/unifiedmandala-ui/components/CREPVisualizer.tsx) – animierte Timeline der Mandala-Kristalle
 - [**Plug-in-Architektur**](plugins/manifest.yaml) – GPT-Kommunikationsmodule, CLI-Tools
 - 🔗 [**GPTBridge (Go)**](go-bridge/pkg/gpt) – API- und Link-basierte GPT-Anbindung
 - [**Plugin-Registry & Dynamic Loader**](plugins/manifest.yaml) – `usePluginLoader` lädt jetzt YAML- und JSON-Manifeste

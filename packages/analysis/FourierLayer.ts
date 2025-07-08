@@ -8,6 +8,10 @@ export interface EmergenceMetrics {
   avgAmplitude: number;
 }
 
+import { EventEmitter } from 'events';
+
+export const FourierLayerEvents = new EventEmitter();
+
 export class FourierLayer {
   id: string;
   level: number;
@@ -44,6 +48,14 @@ export class FourierLayer {
     const amps = phasors.map(([re, im]) => Math.hypot(re, im));
     const maxAmplitude = Math.max(...amps);
     const avgAmplitude = amps.reduce((a, b) => a + b, 0) / amps.length;
-    return { maxAmplitude, avgAmplitude };
+    const metrics = { maxAmplitude, avgAmplitude };
+    FourierLayerEvents.emit('metrics', { id: this.id, metrics });
+    return metrics;
   }
+}
+
+export function metricsToSVG(metrics: EmergenceMetrics): string {
+  const h = metrics.maxAmplitude.toFixed(2);
+  const w = metrics.avgAmplitude.toFixed(2);
+  return `<svg width="100" height="50"><rect width="${w}" height="10" fill="blue"/><rect y="20" width="${h}" height="10" fill="red"/></svg>`;
 }
