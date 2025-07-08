@@ -2,12 +2,14 @@ package main
 
 import (
 	"context"
+	"log"
 	"net/http"
 	"os"
 	"os/signal"
 	"syscall"
 
 	"github.com/spf13/cobra"
+	"github.com/unified-mandala/go-agent/internal/auth"
 	"github.com/unified-mandala/go-agent/internal/config"
 	"github.com/unified-mandala/go-agent/pkg/scheduler"
 )
@@ -27,6 +29,9 @@ func run() {
 	defer stop()
 
 	cfg := config.Load()
+	if _, err := auth.NewVaultClient(cfg.Vault); err != nil {
+		log.Printf("vault: %v", err)
+	}
 	sched := scheduler.New(cfg.NATSURL, cfg.PollInterval)
 
 	go sched.Start(ctx)
