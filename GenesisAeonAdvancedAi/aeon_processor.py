@@ -3,6 +3,8 @@ from statistics import variance, mean
 
 from .symbol_tools import assign_color
 from .trikaya import trikaya_state
+from .archetype_tools import get_symbol
+from pathlib import Path
 
 
 def pearson_corr(xs: List[float], ys: List[float]) -> float:
@@ -34,10 +36,13 @@ def visualize_light(values: Iterable[float]) -> list[str]:
     return colors
 
 
-def assign_symbol(values: Iterable[float]) -> str:
+def assign_symbol(values: Iterable[float], context: str | None = None) -> str:
     """Assign a symbolic marker based on the average value.
 
-    Mapping inspired by project guidelines:
+    If ``context`` is provided, ``archetypes.yaml`` is consulted to map the
+    value to an archetype specific symbol. When no archetype matches, the
+    default mapping from the project guidelines is used:
+
     - avg > 0.8 -> sun symbol (☀)
     - avg > 0.6 -> fire archetype (🔥)
     - avg > 0.4 -> growth symbol (🌱)
@@ -46,6 +51,13 @@ def assign_symbol(values: Iterable[float]) -> str:
     """
     vals = list(values)
     avg = sum(vals) / len(vals) if vals else 0
+
+    if context:
+        cfg = Path(__file__).with_name("archetypes.yaml")
+        symbol, _ = get_symbol(avg, context, cfg)
+        if symbol != "⚫":
+            return symbol
+
     if avg > 0.8:
         return "\u2600"  # sun
     elif avg > 0.6:
@@ -108,10 +120,17 @@ def advanced_crep_eval(
         else 0.0
     )
 
+    emergence_clusters = 0
+    if len(klang) > 1:
+        emergence_clusters = sum(
+            1 for i in range(1, len(klang)) if abs(klang[i] - klang[i - 1]) > 0.5
+        )
+
     return {
         "kohärenz": coherence,
         "resonanz": resonance,
         "emergenz": emergence,
+        "emergenz_cluster": float(emergence_clusters),
         "präsenz": presence,
     }
 

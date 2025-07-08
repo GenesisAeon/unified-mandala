@@ -6340,17 +6340,17 @@
   path: GenesisAeonAdvancedAi/aeon_processor.py
   task: Map value ranges to archetype emojis via assign_symbol
   test: GenesisAeonAdvancedAi/test_assign_symbol.py
-  status: todo
+  status: done
 - commit: Add multi-metric CREP evaluation
   path: GenesisAeonAdvancedAi/aeon_processor.py
   task: Evaluate coherence variance, resonance correlation and emergence clusters
   test: GenesisAeonAdvancedAi/test_advanced_crep_eval.py
-  status: todo
+  status: done
 - commit: Integrate LLM commentary service
   path: services/llm-commentary/index.py
   task: Generate textual explanations for symbolic outputs
   test: services/llm-commentary/test_commentary.py
-  status: todo
+  status: done
 - commit: Add fractal feedback graph visualization
   path: GenesisAeonAdvancedAi/feedback_graph.py
   task: Visualize feedback loops as directed graph
@@ -6365,7 +6365,7 @@
   path: GenesisAeonAdvancedAi/memory_store.py
   task: Save mood and archetype info per memory entry
   test: GenesisAeonAdvancedAi/test_memory_store.py
-  status: todo
+  status: done
 - commit: Add CosmicDataLoader module
   path: packages/data/CosmicDataLoader.ts
   task: Provide functions to load CMB maps and neutrino flux data
