@@ -4671,7 +4671,7 @@
     "path": "apps/aeon-demo/app.py",
     "task": "Showcase Aeon features in Streamlit web app",
     "test": "apps/aeon-demo/test_app.py",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "Extend memory store with mood and archetype metadata",
