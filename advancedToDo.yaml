@@ -6118,12 +6118,12 @@
   path: docs/mapping/ui-agent-matrix.yaml
   task: Document feature mapping between UI and agents
   test: ""
-  status: todo
+  status: done
 - commit: Add AeonNeuroNetz comparison docs
   path: docs/analysis/AeonNeuroNetzComparison.md
   task: Compare AeonNeuroNetz with state-of-the-art neural nets
   test: ""
-  status: todo
+  status: done
 - commit: TODO from newadvancedconversations.json - AgentCoordinator
   path: docs/sigils/newadvancedconversations.json
   task: AgentCoordinator implementieren, Steuerungslogik und Schnittstellen
@@ -6185,12 +6185,12 @@
   path: packages/unifiedmandala-ui
   task: "generateNestedLayers Funktion gemÃ¤Ã Blueprint implementieren"
   test: packages/unifiedmandala-ui/__tests__/generateNestedLayers.test.ts
-  status: todo
+  status: done
 - commit: TODO from AeonAI Pyramid-UI conversation - NestedPyramid component
   path: packages/unifiedmandala-ui
   task: NestedPyramid React-Komponente mit @react-three/fiber erstellen
   test: packages/unifiedmandala-ui/__tests__/NestedPyramid.test.tsx
-  status: todo
+  status: done
 - commit: TODO from AeonAI Pyramid-UI conversation - Sigillin initialization
   path: packages/unifiedmandala-ui
   task: Sigillin-Initialisierung fÃ¼r neue Komponenten integrieren
@@ -6250,12 +6250,12 @@
   path: packages/unifiedmandala-ui/pyramid/generateNestedLayers.ts
   task: Generate layered pyramid structure with weights
   test: packages/unifiedmandala-ui/pyramid/generateNestedLayers.test.ts
-  status: todo
+  status: done
 - commit: Create NestedPyramid component
   path: packages/unifiedmandala-ui/components/NestedPyramid.tsx
   task: Visualize nested pyramid layers with react-three-fiber
   test: packages/unifiedmandala-ui/components/NestedPyramid.test.tsx
-  status: todo
+  status: done
 - commit: Add offline Docker Compose setup
   path: docs/offline/docker-compose.yml
   task: Provide local stack for Aeon services
