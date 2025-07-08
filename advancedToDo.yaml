@@ -6471,9 +6471,9 @@
   path: services/fourier-metrics/index.ts
   task: Provide WebSocket and REST endpoints for FourierLayer metrics
   test: services/fourier-metrics/index.test.ts
-  status: todo
+  status: done
 - commit: Split newadvancedconversations into fragments
   path: scripts/newadvancedconvo_splitter.ts
   task: Split newadvancedconversations.json into numbered YAML/JSON fragments
   test: scripts/__tests__/newadvancedconvo_splitter.test.ts
-  status: todo
+  status: done
