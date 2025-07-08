@@ -47,6 +47,7 @@ Weitere Hinweise aus dem „Sigil Übergang“:
 - `CREPBewertungsmodul` – Berechnet Score und Klassifizierung aus C,R,E,P
 - `TodoPriority` – Verknüpft Aufgaben mit CREP-Scores.
 - `CalendarSync` – Exportiert priorisierte ToDos als Kalenderereignisse.
+- `FourierLayer` – Bewertet Emergenz via Diskreter Fourier-Analyse.
 
 ### gpt-bridges
 - `GPTEventHub` – Zentrales Event-System zwischen GPT-Modulen.
@@ -332,6 +333,10 @@ npm install   # oder: yarn install
 npm run build # oder: yarn build
 npm run dev   # oder: yarn dev
 ```
+## 🐳 ProtoDeploy
+Nutze `scripts/protodeploy.sh up` für einen lokalen Docker-Start.
+Die Compose-Datei findet sich unter `infrastructure/protodeploy/docker-compose.yml`.
+
 
 ## QA-Workflow
 Führe `pnpm run qa` aus, um Linting und Tests zu starten. Das Skript `scripts/qa-test-runner.ts` erstellt im Projektstamm die Datei `qa-report.log`.

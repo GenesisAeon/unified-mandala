@@ -38,6 +38,7 @@ Weitere Hinweise aus dem „Sigil Übergang“:
 - [**MandalaNetworkView**](packages/unifiedmandala-ui/components/MandalaNetworkView.tsx) – Visualisierung aller Sigillin-Knoten und CREP-Felder
 - [**SigillinLoader**](packages/unifiedmandala-ui/components/SigillinLoader.tsx) – Import & Filter von Sigillin-Dateien
 - [**AutoDoc & Manifest-Generator**](packages/crep-engine/autoDocGeneration.ts) – Dokumentation auf Knopfdruck
+- [**FourierLayer Analyse**](packages/analysis/FourierLayer.ts) – Frequenzbasierte Emergenzbewertung
 - [**Plug-in-Architektur**](plugins/manifest.yaml) – GPT-Kommunikationsmodule, CLI-Tools
 - 🔗 [**GPTBridge (Go)**](go-bridge/pkg/gpt) – API- und Link-basierte GPT-Anbindung
 - [**Plugin-Registry & Dynamic Loader**](plugins/manifest.yaml) – `usePluginLoader` lädt jetzt YAML- und JSON-Manifeste
@@ -484,6 +485,10 @@ Nutze `node scripts/parse-advanced-conversations.js` um Gesprächs-TODOs aus dem
 - **Module**: unter `packages/` gegliedert in Agents, Core und mehr
 - **Utils**: zentrale Helfer liegen in `packages/shared-utils/`
 - **Scripts**: Automatisierungs- und CI-Skripte finden sich im `scripts/` Verzeichnis
+
+## 🐳 ProtoDeploy
+Nutze `scripts/protodeploy.sh` um eine lokale Docker-Umgebung zu starten.
+Der Compose-Stack liegt unter [infrastructure/protodeploy](infrastructure/protodeploy).
 
 \nDie komplette Ordnerstruktur samt Modulen, Utils und Skripten ist in [repositorypflege/repository_map.yaml](repositorypflege/repository_map.yaml) dokumentiert.
 Weitere Hinweise zum generellen Aufbau findest du zudem in [repositorypflege/repo-konzept.yaml](repositorypflege/repo-konzept.yaml).

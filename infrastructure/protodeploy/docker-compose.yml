@@ -1,0 +1,11 @@
+version: '3.8'
+services:
+  aeon-core:
+    build:
+      context: ../..
+      dockerfile: Dockerfile.dev
+    command: pnpm dev
+    volumes:
+      - ../..:/workspace/unified-mandala
+    ports:
+      - "4000:3000"
