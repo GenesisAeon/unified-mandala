@@ -12,12 +12,17 @@ export interface AdvancedTodoEntry {
 
 export function updateAdvancedTodo(convFile: string, yamlFile: string, jsonFile: string): AdvancedTodoEntry[] {
   const todos = extractTodosFromConversations(convFile);
-  const entries: AdvancedTodoEntry[] = Array.from(new Set(todos)).map(t => ({
-    commit: t,
-    path: '',
-    task: t,
-    test: ''
-  }));
+
+  const isValid = (t: string) => /[a-zA-Z0-9]{3}/.test(t);
+
+  const entries: AdvancedTodoEntry[] = Array.from(new Set(todos))
+    .filter(isValid)
+    .map((t) => ({
+      commit: t,
+      path: '',
+      task: t,
+      test: ''
+    }));
 
   const loadYaml = (f: string): AdvancedTodoEntry[] => {
     if (fs.existsSync(f)) {
