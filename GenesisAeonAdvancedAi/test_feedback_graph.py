@@ -1,6 +1,8 @@
 import unittest
 
 from GenesisAeonAdvancedAi.aeon_processor import fraktal_feedback_graph
+from GenesisAeonAdvancedAi.feedback_graph import visualize_feedback_graph
+import plotly.graph_objs as go
 
 
 class TestFraktalFeedbackGraph(unittest.TestCase):
@@ -26,6 +28,12 @@ class TestFraktalFeedbackGraph(unittest.TestCase):
         graph = fraktal_feedback_graph([0.1], depth=0)
         self.assertEqual(graph["nodes"], [])
         self.assertEqual(graph["edges"], [])
+
+    def test_visualization(self):
+        graph = fraktal_feedback_graph([0.2, 0.3], depth=2)
+        fig = visualize_feedback_graph(graph)
+        self.assertIsInstance(fig, go.Figure)
+        self.assertGreaterEqual(len(fig.data), 1)
 
 
 if __name__ == "__main__":
