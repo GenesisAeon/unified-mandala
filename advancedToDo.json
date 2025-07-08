@@ -3959,39 +3959,39 @@
     "status": "done"
   },
   {
-    "commit": "Implement MetaRunner script for fractal tasks",
-    "path": "scripts/metaRunner.ts",
-    "task": "Run tasks recursively using fractal anchor reference",
-    "test": "scripts/__tests__/metaRunner.test.ts",
-    "status": "todo"
-  },
-  {
-    "commit": "Add MetaRunner blueprint YAML",
-    "path": "docs/sigils/metaRunnerBlueprint.yaml",
-    "task": "Outline structure for fractal task pipelines referenced by anchor",
-    "test": "",
-    "status": "todo"
-  },
-  {
-    "commit": "Create ZIPMEM manifest structure",
-    "path": "GenesisAeonZIPMEM/ZIPMEM_manifest.yaml",
-    "task": "Define folder structure for conversation fragments and commit memory",
-    "test": "",
-    "status": "todo"
-  },
-  {
-    "commit": "Implement ArchivAeon symbolic archive agent",
-    "path": "packages/agents/ArchivAeon.ts",
-    "task": "Organize conversation fragments and commit logs in GenesisAeonZIPMEM",
-    "test": "packages/agents/ArchivAeon.test.ts",
-    "status": "todo"
-  },
-  {
-    "commit": "Add newadvancedconvo_splitter script",
-    "path": "scripts/newadvancedconvo_splitter.ts",
-    "task": "Split newadvancedconversations.json into YAML/JSON fragments in ZIPMEM",
-    "test": "scripts/__tests__/newadvancedconvo_splitter.test.ts",
-    "status": "todo"
+  "commit": "Implement MetaRunner script for fractal tasks",
+  "path": "scripts/metaRunner.ts",
+  "task": "Run tasks recursively using fractal anchor reference",
+  "test": "scripts/__tests__/metaRunner.test.ts",
+  "status": "done"
+},
+{
+  "commit": "Add MetaRunner blueprint YAML",
+  "path": "docs/sigils/metaRunnerBlueprint.yaml",
+  "task": "Outline structure for fractal task pipelines referenced by anchor",
+  "test": "",
+  "status": "done"
+},
+{
+  "commit": "Create ZIPMEM manifest structure",
+  "path": "GenesisAeonZIPMEM/ZIPMEM_manifest.yaml",
+  "task": "Define folder structure for conversation fragments and commit memory",
+  "test": "",
+  "status": "done"
+},
+{
+  "commit": "Implement ArchivAeon symbolic archive agent",
+  "path": "packages/agents/ArchivAeon.ts",
+  "task": "Organize conversation fragments and commit logs in GenesisAeonZIPMEM",
+  "test": "packages/agents/ArchivAeon.test.ts",
+  "status": "done"
+},
+{
+  "commit": "Add newadvancedconvo_splitter script",
+  "path": "scripts/newadvancedconvo_splitter.ts",
+  "task": "Split newadvancedconversations.json into YAML/JSON fragments in ZIPMEM",
+  "test": "scripts/__tests__/newadvancedconvo_splitter.test.ts",
+  "status": "done"
   },
   {
     "commit": "Add SealCore integration interface",

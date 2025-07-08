@@ -1,8 +1,7 @@
-fractal_anchor: aeon:2025-0705-FRACTAL-ANCHOR
-steps:
-  - id: scan-todos
-    desc: "scan repository and update ToDos"
-  - id: run-validators
-    desc: "execute lint and test steps"
-  - id: deploy-phase
-    desc: "deploy artifacts and update progress"
+sigillin_id: aeon:meta-runner-blueprint
+anchorType: fractal-blueprint
+description: |
+  Blueprint for recursive MetaRunner task pipelines referenced by fractal anchors.
+tasks:
+  - command: echo "prepare"
+  - command: echo "execute"
