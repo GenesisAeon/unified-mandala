@@ -6114,7 +6114,7 @@
   path: localhost-offline/docker-compose.yml
   task: Provide offline Docker Compose environment
   test: ""
-  status: todo
+  status: done
 - commit: Generate Sigillin for CosmicTheoryAgent
   path: docs/sigils/cosmic-theory-agent.sigil.yaml
   task: Provide dedicated sigil file for CosmicTheoryAgent
@@ -6486,4 +6486,9 @@
   path: scripts/newadvancedconvo_splitter.ts
   task: Split newadvancedconversations.json into numbered YAML/JSON fragments
   test: scripts/__tests__/newadvancedconvo_splitter.test.ts
+  status: done
+- commit: Update Pyramid UI Spec blueprint
+  path: docs/PyramidSuiteBlueprint.md
+  task: Add Hardcode Blueprint section after Next Steps
+  test: ""
   status: done
