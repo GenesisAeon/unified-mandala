@@ -1498,7 +1498,8 @@
     "commit": "Convert agent tests to ESM",
     "path": "packages/agents/__tests__",
     "task": "Rewrite test imports to use ESM for Vitest",
-    "test": "packages/agents/__tests__/AeonMembraneAgent.spec.ts"
+    "test": "packages/agents/__tests__/AeonMembraneAgent.spec.ts",
+    "status": "done"
   },
   {
     "commit": "Enable jest coverage in CI",
