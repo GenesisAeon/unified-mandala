@@ -6232,10 +6232,10 @@
   test: packages/unifiedmandala-ui/tests/e2e/sigilAlert.spec.ts
   status: todo
 - commit: Add SigilManager module
-  path: src/sigil/SigilManager.ts
+  path: packages/shared-utils/SigilManager.ts
   task: Load Sigil YAML and log events
-  test: src/sigil/__tests__/SigilManager.test.ts
-  status: todo
+  test: packages/shared-utils/SigilManager.test.ts
+  status: done
 - commit: Integrate SigilManager into CosmicTheoryAgent
   path: src/agents/CosmicTheoryAgent.ts
   task: Load Sigil on startup, record sigil_alerts
@@ -6295,7 +6295,7 @@
   path: packages/unifiedmandala-ui/components/SigilCrudPanel.tsx
   task: CRUD-UI für Sigil-Dateien (YAML/JSON) mit SigilManager
   test: packages/unifiedmandala-ui/components/SigilCrudPanel.test.tsx
-  status: todo
+  status: done
 - commit: TODO from AeonAI Pyramid UI conversation - CREPVisualizer component
   path: packages/unifiedmandala-ui/components/CREPVisualizer.tsx
   task: Graphische Darstellung der C,R,E,P Werte als Farben und Formen
