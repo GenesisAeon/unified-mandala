@@ -5977,7 +5977,7 @@
   path: packages/unifiedmandala-observability/opentelemetry.ts
   task: Add telemetry hooks for agents and dashboard
   test: packages/unifiedmandala-observability/opentelemetry.test.ts
-  status: todo
+  status: done
 - commit: Setup CI tests and deployment
   path: deployment/fractal-ci
   task: Configure Jest, Cypress and K8s manifests
