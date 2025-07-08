@@ -4041,7 +4041,7 @@
     "path": "packages/aeon-ui-pyramid/accessibility.ts",
     "task": "ARIA labels and alternative visuals for color-blind users",
     "test": "packages/aeon-ui-pyramid/accessibility.test.ts",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "Create AutoDoc comment extractor",
@@ -4083,7 +4083,7 @@
     "path": "packages/unifiedmandala-ui/api/cosmicBridge.ts",
     "task": "Create REST and WebSocket endpoints with hooks",
     "test": "packages/unifiedmandala-ui/api/cosmicBridge.test.ts",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "Integrate OpenTelemetry instrumentation",
@@ -4195,35 +4195,35 @@
     "path": "packages/unifiedmandala-ui/api/cosmicBridge.ts",
     "task": "Send live sigil alerts to UI via WebSocket",
     "test": "packages/unifiedmandala-ui/api/cosmicBridge.test.ts",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "Create interactive PyramidView",
     "path": "packages/unifiedmandala-ui/components/PyramidView.tsx",
     "task": "Build 3D pyramid visualization with react-three-fiber",
     "test": "packages/unifiedmandala-ui/components/PyramidView.test.tsx",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "Add phi pi audio integration",
     "path": "packages/unifiedmandala-ui/audio/PhiPiAudio.ts",
     "task": "Integrate Web Audio tones for phi and pi ratios",
     "test": "packages/unifiedmandala-ui/audio/PhiPiAudio.test.ts",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "Add accessibility helpers",
     "path": "packages/unifiedmandala-ui/utils/a11y.ts",
     "task": "Provide ARIA labels, colorblind modes and subtitles",
     "test": "packages/unifiedmandala-ui/utils/a11y.test.ts",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "Optimize layer caching",
     "path": "packages/unifiedmandala-ui/performance/Optimizations.ts",
     "task": "Reuse audio contexts and cache pyramid layers",
     "test": "packages/unifiedmandala-ui/performance/Optimizations.test.ts",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "Add Cypress integration tests",
