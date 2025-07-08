@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest';
-import { adjustWeights, mutateWeights, crossoverWeights, AgentWeights } from './CosmicTheoryAgent';
+import { adjustWeights, mutateWeights, crossoverWeights, AgentWeights, loadSigil, sigilManager } from './CosmicTheoryAgent';
+import { CosmicTheoryEventHub } from './CosmicTheoryAgentEvents';
 
 describe('adjustWeights', () => {
   it('increases weights with positive reward', () => {
@@ -33,5 +34,15 @@ describe('mutation and crossover', () => {
     expect([a.coherence, b.coherence]).toContain(child.coherence);
     expect([a.resonance, b.resonance]).toContain(child.resonance);
     expect([a.emergence, b.emergence]).toContain(child.emergence);
+  });
+});
+
+describe('sigil integration', () => {
+  it('emits event when loading sigil', () => {
+    const events: any[] = [];
+    CosmicTheoryEventHub.on('sigil:generated', e => events.push(e));
+    loadSigil('alpha', '{"f":1}');
+    expect(sigilManager.list()[0].id).toBe('alpha');
+    expect(events[0].sigilId).toBe('alpha');
   });
 });

@@ -1,6 +1,18 @@
 import axios from 'axios';
 import { fractalDecompose, computeFractalMetric } from '../analysis/FractalAnalyzer';
 import { symbolicRegression } from '../analysis/SymbolicRegression';
+import { SigilManager } from '../shared-utils/SigilManager';
+import { CosmicTheoryEventHub } from './CosmicTheoryAgentEvents';
+
+export const sigilManager = new SigilManager();
+
+export function loadSigil(id: string, text: string): void {
+  const entry = sigilManager.loadFromString(id, text);
+  CosmicTheoryEventHub.emit('sigil:generated', {
+    sigilId: entry.id,
+    formula: JSON.stringify(entry.data)
+  });
+}
 
 export interface AgentWeights {
   coherence: number;

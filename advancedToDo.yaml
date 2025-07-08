@@ -6093,7 +6093,7 @@
   path: packages/agents/CosmicTheoryAgent.ts
   task: Load sigil map via SigilManager and update event tracing
   test: packages/agents/CosmicTheoryAgent.test.ts
-  status: todo
+  status: done
 - commit: Implement AeonAI Pyramid UI blueprint
   path: packages/unifiedmandala-ui/components/PyramidBlueprint.tsx
   task: Render dual-layer pyramid with weight nodes
@@ -6113,7 +6113,7 @@
   path: packages/agents/CosmicTheoryAgent.ts
   task: Load and store sigil states via SigilManager hooks
   test: packages/agents/CosmicTheoryAgent.test.ts
-  status: todo
+  status: done
 - commit: Add UI Agent mapping matrix
   path: docs/mapping/ui-agent-matrix.yaml
   task: Document feature mapping between UI and agents
@@ -6220,7 +6220,7 @@
   path: packages/unifiedmandala-ui/components/SigilAlert.tsx
   task: Integrate SigilAlert UI component into main layout
   test: packages/unifiedmandala-ui/__tests__/SigilAlert.test.tsx
-  status: todo
+  status: done
 - commit: Setup CI pipeline with OTel Collector
   path: .github/workflows/ci.yml
   task: Add Docker and OTel pipeline for CosmicTheoryAgent
@@ -6237,10 +6237,10 @@
   test: packages/shared-utils/SigilManager.test.ts
   status: done
 - commit: Integrate SigilManager into CosmicTheoryAgent
-  path: src/agents/CosmicTheoryAgent.ts
+  path: packages/agents/CosmicTheoryAgent.ts
   task: Load Sigil on startup, record sigil_alerts
-  test: src/agents/__tests__/CosmicTheoryAgent.integration.test.ts
-  status: todo
+  test: packages/agents/CosmicTheoryAgent.test.ts
+  status: done
 - commit: Add FractalSigilGenerator
   path: src/sigil/FractalSigilGenerator.ts
   task: Convert theory formulas to fractal sigil SVG
