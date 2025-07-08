@@ -6,6 +6,7 @@ from pathlib import Path
 import yaml
 
 from GenesisAeonAdvancedAi.advanced_agent import AdvancedAeonAgent, dump_yaml
+from GenesisAeonAdvancedAi.aeon_processor import translate_numeric_to_symbolic
 
 
 class TestAdvancedAeonAgent(unittest.TestCase):
@@ -57,6 +58,11 @@ class TestAdvancedAeonAgent(unittest.TestCase):
                 self.assertIn("\u2207", data)
             finally:
                 os.chdir(cwd)
+
+    def test_act_with_metrics(self):
+        agent = AdvancedAeonAgent("test", {})
+        out = agent.act_with_metrics(0.5)
+        self.assertIn("metrics", out)
 
 
 if __name__ == "__main__":

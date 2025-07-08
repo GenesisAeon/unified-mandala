@@ -5,6 +5,7 @@ from typing import Any, Dict, List, Optional
 import yaml
 
 from .memory_store import store_result
+from .aeon_processor import fraktal_feedback_metrics
 
 
 def generate_basic_haiku(symbol: str) -> str:
@@ -79,6 +80,17 @@ class AdvancedAeonAgent:
             yaml.safe_dump([log_entry], f, allow_unicode=True)
         if self.memory_path:
             store_result(log_entry, Path(self.memory_path))
+
+    def act_with_metrics(self, data: Any) -> Dict[str, Any]:
+        """Process input and also return CREP metrics via fraktal feedback."""
+        symbolic, score, metrics = fraktal_feedback_metrics([float(data)])
+        decision = {
+            "symbolic": symbolic,
+            "crep_score": score,
+            "metrics": metrics,
+        }
+        self.persist(data, decision)
+        return decision
 
     def save_symbol_memory(self, path: Optional[str] = None) -> None:
         """Persist symbol memory to a YAML file."""

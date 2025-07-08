@@ -14,6 +14,10 @@ class TestAssignSymbol(unittest.TestCase):
         self.assertEqual(assign_symbol([0.3]), "\U0001F4A7")
         self.assertEqual(assign_symbol([0.1]), "\u26AB")
 
+    def test_archetype_context(self):
+        sym = assign_symbol([0.1], context="stress")
+        self.assertEqual(sym, "🕳️")
+
     def test_generate_haiku(self):
         symbolic = {"symbol": "\u2600"}
         haiku = generate_haiku(symbolic)
