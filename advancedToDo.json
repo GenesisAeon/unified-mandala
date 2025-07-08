@@ -4251,7 +4251,7 @@
     "path": "packages/agents/CosmicTheoryAgent.ts",
     "task": "Load sigil map via SigilManager and update event tracing",
     "test": "packages/agents/CosmicTheoryAgent.test.ts",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "Implement AeonAI Pyramid UI blueprint",
@@ -4482,7 +4482,7 @@
     "path": "packages/unifiedmandala-ui/components/SigilAlert.tsx",
     "task": "Integrate SigilAlert UI component into main layout",
     "test": "packages/unifiedmandala-ui/__tests__/SigilAlert.test.tsx",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "Setup CI pipeline with OTel Collector",
@@ -4507,10 +4507,10 @@
   },
   {
     "commit": "Integrate SigilManager into CosmicTheoryAgent",
-    "path": "src/agents/CosmicTheoryAgent.ts",
+    "path": "packages/agents/CosmicTheoryAgent.ts",
     "task": "Load Sigil on startup, record sigil_alerts",
-    "test": "src/agents/__tests__/CosmicTheoryAgent.integration.test.ts",
-    "status": "todo"
+    "test": "packages/agents/CosmicTheoryAgent.test.ts",
+    "status": "done"
   },
   {
     "commit": "Add FractalSigilGenerator",
@@ -4583,12 +4583,12 @@
     "status": "todo"
   },
   {
-  "commit": "TODO from AeonAI Pyramid UI conversation - SigilCrudPanel component",
-  "path": "packages/unifiedmandala-ui/components/SigilCrudPanel.tsx",
-  "task": "CRUD-UI für Sigil-Dateien (YAML/JSON) mit SigilManager",
-  "test": "packages/unifiedmandala-ui/components/SigilCrudPanel.test.tsx",
-  "status": "done"
-},
+    "commit": "TODO from AeonAI Pyramid UI conversation - SigilCrudPanel component",
+    "path": "packages/unifiedmandala-ui/components/SigilCrudPanel.tsx",
+    "task": "CRUD-UI für Sigil-Dateien (YAML/JSON) mit SigilManager",
+    "test": "packages/unifiedmandala-ui/components/SigilCrudPanel.test.tsx",
+    "status": "done"
+  },
   {
     "commit": "TODO from AeonAI Pyramid UI conversation - CREPVisualizer component",
     "path": "packages/unifiedmandala-ui/components/CREPVisualizer.tsx",
