@@ -6271,12 +6271,12 @@
   path: README.md
   task: Add overview of Sigil transition and offline workflow
   test: ""
-  status: todo
+  status: done
 - commit: Extend advanced_crep_eval with resonance correlation
   path: GenesisAeonAdvancedAi/aeon_processor.py
   task: Calculate resonance via pearson correlation of states
   test: GenesisAeonAdvancedAi/test_advanced_crep.py
-  status: todo
+  status: done
 - commit: Add AeonAgent example using advanced_crep_eval
   path: GenesisAeonAdvancedAi/advanced_agent.py
   task: Use fraktal_feedback_metrics and save haiku output

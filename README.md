@@ -335,6 +335,14 @@ docker compose up
 
 UI läuft danach auf http://localhost:3000, der Agent auf http://localhost:4000.
 
+## 🔄 Sigil Transition Workflow
+
+Beim Wechsel zwischen Entwicklungszyklen werden Sigillin-Dateien und ToDos
+synchronisiert. Nutze `scripts/sync-todo-progress.js`, bevor du größere
+Commits erstellst. Über `scripts/generate-next-sigil.js` wird anschließend ein
+neues Sigil mit aktualisiertem Zeitstempel erzeugt. Die Offline-Compose-Datei
+ermöglicht Tests dieser Schritte ohne Internetverbindung.
+
 
 ## 🌀 Mandala-Poesie und Automation
 

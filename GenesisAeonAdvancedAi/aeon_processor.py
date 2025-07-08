@@ -109,10 +109,14 @@ def advanced_crep_eval(
 
     resonance = 0.0
     if prev_states:
-        prev = [float(f) for f in prev_states[-1].get("klang", [])]
-        m = min(len(prev), len(klang))
-        if m:
-            resonance = pearson_corr(prev[:m], klang[:m])
+        correlations = []
+        for state in prev_states:
+            prev = [float(f) for f in state.get("klang", [])]
+            m = min(len(prev), len(klang))
+            if m:
+                correlations.append(pearson_corr(prev[:m], klang[:m]))
+        if correlations:
+            resonance = sum(correlations) / len(correlations)
 
     emergence = (
         mean(abs(klang[i] - klang[i - 1]) for i in range(1, len(klang)))

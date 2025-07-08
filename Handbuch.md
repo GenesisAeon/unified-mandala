@@ -17,6 +17,8 @@ Weitere Hinweise aus dem „Sigil Übergang“:
 - Siehe Agenten-Mapping-Blueprint in [docs/architecture/AgentMappingBlueprint.md](docs/architecture/AgentMappingBlueprint.md)
 - Lokaler Test-Stack unter `docs/offline/docker-compose.yml`
 - ToDo-Dateien vor größeren Commits mit `scripts/sync-todo-progress.js` abgleichen
+- Über `scripts/generate-next-sigil.js` wird nach jedem Zyklus ein neues Sigil
+  mit aktuellem `update_time` erzeugt.
 
 > **TL;DR**
 > - Installation: `./scripts/setup-unifiedmandala.sh`
