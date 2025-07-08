@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fractal-ci
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fractal-ci
+  template:
+    metadata:
+      labels:
+        app: fractal-ci
+    spec:
+      containers:
+      - name: ci-runner
+        image: node:20-alpine
+        command: ['sh', '-c', 'pnpm install && pnpm test']

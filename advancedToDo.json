@@ -4021,7 +4021,7 @@
     "path": "deployment/pyramid-ui",
     "task": "Provide Dockerfile, k8s manifest and GitHub Actions workflow",
     "test": "",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "Add pyramid error and state management",
@@ -4035,7 +4035,7 @@
     "path": "packages/aeon-ui-pyramid/performance.ts",
     "task": "Cache layer rendering and reuse AudioContext",
     "test": "packages/aeon-ui-pyramid/performance.test.ts",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "Add accessibility helpers",
@@ -4063,7 +4063,7 @@
     "path": "packages/unifiedmandala-core/composite.ts",
     "task": "Create core layer using Composite Pattern",
     "test": "packages/unifiedmandala-core/composite.test.ts",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "Add React Three-Fiber skeleton",
@@ -4098,7 +4098,7 @@
     "path": "deployment/fractal-ci",
     "task": "Configure Jest, Cypress and K8s manifests",
     "test": "tests/fractal-ci.test.ts",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "Add AutoDocManifest generator script",
@@ -4231,7 +4231,7 @@
     "path": "tests/pyramid-ui.cy.ts",
     "task": "End-to-end tests for Pyramid UI features",
     "test": "tests/pyramid-ui.cy.ts",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "Setup ProtoTyp deployment environment",
