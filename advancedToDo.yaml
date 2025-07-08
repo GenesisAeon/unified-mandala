@@ -6243,10 +6243,10 @@
   test: packages/agents/CosmicTheoryAgent.test.ts
   status: done
 - commit: Add FractalSigilGenerator
-  path: src/sigil/FractalSigilGenerator.ts
+  path: packages/genesis-sigillin-core/FractalSigilGenerator.ts
   task: Convert theory formulas to fractal sigil SVG
-  test: src/sigil/__tests__/FractalSigilGenerator.test.ts
-  status: todo
+  test: packages/genesis-sigillin-core/__tests__/FractalSigilGenerator.test.ts
+  status: done
 - commit: Implement nested layer generator
   path: packages/unifiedmandala-ui/pyramid/generateNestedLayers.ts
   task: Generate layered pyramid structure with weights
