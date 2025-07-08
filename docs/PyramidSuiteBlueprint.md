@@ -27,3 +27,14 @@ This document summarizes the final planning for the UnifiedMandala AI‑UI suite
 - Develop demo notebooks and user‑flow examples.
 - Generate a feature comparison graphic.
 
+
+## Hardcode Blueprint
+This section was added following the Pyramid UI conversation. It outlines a minimal scaffold for the upcoming Pyramid UI implementation.
+
+```mermaid
+graph TD
+  App --> PyramidView --> NestedPyramid
+  PyramidView --> AudioEngine
+  PyramidView --> SigilManager
+```
+
