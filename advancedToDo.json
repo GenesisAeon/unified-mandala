@@ -4237,7 +4237,7 @@
     "commit": "Setup ProtoTyp deployment environment",
     "path": "scripts/prototype-deploy.sh",
     "task": "Create prototype deployment script for Aeon services",
-    "test": "",
+    "test": "scripts/__tests__/prototype-deploy.test.ts",
     "status": "done"
   },
   {

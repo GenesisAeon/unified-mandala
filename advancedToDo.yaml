@@ -6093,8 +6093,8 @@
 - commit: Setup ProtoTyp deployment environment
   path: scripts/prototype-deploy.sh
   task: Create prototype deployment script for Aeon services
-  test: ""
-  status: todo
+  test: scripts/__tests__/prototype-deploy.test.ts
+  status: done
 - commit: Add fractal anchor metadata
   path: docs/sigils/fractal-anchor.yaml
   task: Include fractal-entry sigil details across docs

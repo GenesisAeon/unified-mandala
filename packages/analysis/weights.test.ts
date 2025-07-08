@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest';
+// Jest provides describe and it globals in this environment
 import { combinedWeight } from './weights';
 
 describe('combinedWeight', () => {
