@@ -1,6 +1,18 @@
-import { describe, it, expect } from 'vitest';
-import { adjustWeights, mutateWeights, crossoverWeights, AgentWeights, loadSigil, sigilManager } from './CosmicTheoryAgent';
+import { describe, it, expect, vi } from 'vitest';
+import axios from 'axios';
+import { Client } from '@grpc/grpc-js';
+import {
+  adjustWeights,
+  mutateWeights,
+  crossoverWeights,
+  AgentWeights,
+  loadSigil,
+  sigilManager,
+  performRemoteAnalysis
+} from './CosmicTheoryAgent';
 import { CosmicTheoryEventHub } from './CosmicTheoryAgentEvents';
+
+vi.mock('axios');
 
 describe('adjustWeights', () => {
   it('increases weights with positive reward', () => {
@@ -44,5 +56,20 @@ describe('sigil integration', () => {
     loadSigil('alpha', '{"f":1}');
     expect(sigilManager.list()[0].id).toBe('alpha');
     expect(events[0].sigilId).toBe('alpha');
+  });
+});
+
+describe('performRemoteAnalysis', () => {
+  it('calls REST endpoint', async () => {
+    vi.spyOn(axios, 'post').mockResolvedValue({ data: { result: [1, 2, 3] } });
+    const res = await performRemoteAnalysis([1], 'http://localhost/analyze');
+    expect(res).toEqual([1, 2, 3]);
+  });
+
+  it('calls gRPC endpoint', async () => {
+    const makeUnaryRequest = vi.fn((path, ser, des, arg, cb) => cb(null, { result: [42] }));
+    vi.spyOn(Client.prototype, 'makeUnaryRequest').mockImplementation(makeUnaryRequest as any);
+    const res = await performRemoteAnalysis([1], 'localhost:50051', 'grpc');
+    expect(res).toEqual([42]);
   });
 });
