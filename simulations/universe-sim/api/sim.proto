@@ -1,0 +1,12 @@
+syntax = "proto3";
+package sim;
+option go_package = "github.com/GenesisAeon/unified-mandala/simulations/universe-sim/api;sim";
+
+message Vector { double x = 1; double y = 2; }
+message Entity { Vector position = 1; Vector velocity = 2; }
+message State { repeated Entity entities = 1; }
+message Empty {}
+
+service UniverseSim {
+  rpc GetState(Empty) returns (State);
+}
