@@ -6441,3 +6441,28 @@
   task: Build FourierLayer tree from inputs
   test: packages/analysis/createFourierLayerTree.test.ts
   status: done
+- commit: TODO from CosmicTheoryAgent conversation - PySR service client
+  path: packages/agents/CosmicTheoryAgent.ts
+  task: Call external PySR service via Axios/gRPC for regression
+  test: packages/agents/CosmicTheoryAgent.test.ts
+  status: todo
+- commit: TODO from CosmicTheoryAgent conversation - metrics visualization event
+  path: packages/analysis/FourierLayer.ts
+  task: Emit SVG export or WebSocket event for fractal metrics
+  test: packages/analysis/FourierLayer.test.ts
+  status: todo
+- commit: TODO from AeonAI Pyramid UI conversation - EventBridge integration
+  path: packages/unifiedmandala-ui/events/EventBridge.ts
+  task: Map TheoryAgent events to WebSocket/EventBridge for Pyramid UI
+  test: packages/unifiedmandala-ui/events/EventBridge.test.ts
+  status: todo
+- commit: TODO from AeonAI Pyramid UI conversation - Sigil archive service
+  path: services/sigil-archive/index.ts
+  task: Archive Sigil and CREP fragments in GenesisAeonZIPMEM
+  test: services/sigil-archive/index.test.ts
+  status: todo
+- commit: TODO from AeonAI Pyramid UI conversation - CREPVisualizer timeline
+  path: packages/unifiedmandala-ui/components/CREPVisualizer.tsx
+  task: Add animated timeline for Mandala crystal emergence
+  test: packages/unifiedmandala-ui/components/CREPVisualizer.test.tsx
+  status: todo
