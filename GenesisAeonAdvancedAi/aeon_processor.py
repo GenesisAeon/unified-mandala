@@ -38,21 +38,24 @@ def assign_symbol(values: Iterable[float]) -> str:
     """Assign a symbolic marker based on the average value.
 
     Mapping inspired by project guidelines:
-    - avg > 0.8 → sun symbol (☀️)
-    - avg > 0.5 → growth symbol (🌱)
-    - avg > 0.2 → fluid symbol (💧)
-    - otherwise → void symbol (⚫)
+    - avg > 0.8 -> sun symbol (☀)
+    - avg > 0.6 -> fire archetype (🔥)
+    - avg > 0.4 -> growth symbol (🌱)
+    - avg > 0.2 -> fluid symbol (💧)
+    - otherwise -> void symbol (⚫)
     """
     vals = list(values)
     avg = sum(vals) / len(vals) if vals else 0
     if avg > 0.8:
-        return "\u2600"  # ☀️
-    elif avg > 0.5:
-        return "\U0001F331"  # 🌱
+        return "\u2600"  # sun
+    elif avg > 0.6:
+        return "\U0001F525"  # fire
+    elif avg > 0.4:
+        return "\U0001F331"  # sprout
     elif avg > 0.2:
-        return "\U0001F4A7"  # 💧
+        return "\U0001F4A7"  # droplet
     else:
-        return "\u26AB"  # ⚫
+        return "\u26AB"  # void
 
 
 def translate_numeric_to_symbolic(tensor: Iterable[float]) -> Dict[str, Any]:

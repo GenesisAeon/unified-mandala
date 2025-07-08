@@ -4282,18 +4282,18 @@
     "status": "todo"
   },
   {
-  "commit": "Add UI Agent mapping matrix",
-  "path": "docs/mapping/ui-agent-matrix.yaml",
-  "task": "Document feature mapping between UI and agents",
-  "test": "",
-  "status": "done"
-},
-{
-  "commit": "Add AeonNeuroNetz comparison docs",
-  "path": "docs/analysis/AeonNeuroNetzComparison.md",
-  "task": "Compare AeonNeuroNetz with state-of-the-art neural nets",
-  "test": "",
-  "status": "done"
+    "commit": "Add UI Agent mapping matrix",
+    "path": "docs/mapping/ui-agent-matrix.yaml",
+    "task": "Document feature mapping between UI and agents",
+    "test": "",
+    "status": "done"
+  },
+  {
+    "commit": "Add AeonNeuroNetz comparison docs",
+    "path": "docs/analysis/AeonNeuroNetzComparison.md",
+    "task": "Compare AeonNeuroNetz with state-of-the-art neural nets",
+    "test": "",
+    "status": "done"
   },
   {
     "commit": "TODO from newadvancedconversations.json - AgentCoordinator",

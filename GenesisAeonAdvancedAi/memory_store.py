@@ -7,8 +7,12 @@ from typing import Any, Dict, List, Iterable
 import statistics
 
 
-def store_result(result: Dict[str, Any], path: Path) -> None:
-    """Append result to a JSON list stored at path."""
+def store_result(result: Dict[str, Any], path: Path, *, mood: str | None = None, archetype: str | None = None) -> None:
+    """Append result to a JSON list stored at path.
+
+    Additional metadata ``mood`` and ``archetype`` can be provided and will be
+    stored with each entry.
+    """
     if path.exists():
         try:
             data = json.loads(path.read_text())
@@ -19,6 +23,10 @@ def store_result(result: Dict[str, Any], path: Path) -> None:
 
     entry = dict(result)
     entry.setdefault("timestamp", time.time())
+    if mood is not None:
+        entry["mood"] = mood
+    if archetype is not None:
+        entry["archetype"] = archetype
     data.append(entry)
     path.write_text(json.dumps(data, indent=2))
 
