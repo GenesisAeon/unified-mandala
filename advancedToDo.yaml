@@ -5459,22 +5459,22 @@
   path: packages/visuals/Sonification.ts
   task: Provide playCREPTone function using Web Audio API
   test: packages/visuals/__tests__/Sonification.test.ts
-  status: todo
+  status: done
 - commit: Implement weighted node generation
   path: packages/unifiedmandala-ui/utils/PyramidUtils.ts
   task: Calculate node weights using phi, pi and e constants
   test: packages/unifiedmandala-ui/utils/PyramidUtils.test.ts
-  status: todo
+  status: done
 - commit: Add ARIA labels for PyramidView
   path: packages/unifiedmandala-ui/components/PyramidView.tsx
   task: Improve accessibility by adding ARIA labels and color contrast checks
   test: packages/unifiedmandala-ui/components/PyramidView.a11y.test.tsx
-  status: todo
+  status: done
 - commit: Add fallback audio and error markers
   path: packages/visuals/Sonification.ts
   task: Provide fallback synthesizer and visual markers on audio errors
   test: packages/visuals/__tests__/Sonification.test.ts
-  status: todo
+  status: done
 - commit: "feat: add PyramidWeighting module"
   path: packages/unifiedmandala-ui/pyramid/PyramidWeighting.ts
   task: compute layer weights using PHI, PI and E constants
@@ -5852,12 +5852,12 @@
   path: packages/shared-utils/todoSigilUpdater.ts
   task: Update status in ToDo Sigil files
   test: packages/shared-utils/todoSigilUpdater.test.ts
-  status: todo
+  status: done
 - commit: Add todoCommentScanner tool
   path: packages/shared-utils/todoCommentScanner.ts
   task: Scan repository for TODO comments and produce summary
   test: packages/shared-utils/todoCommentScanner.test.ts
-  status: todo
+  status: done
 - commit: Add conversationProgress tracker
   path: packages/agents/conversationProgress.ts
   task: Mark processed conversation fragments to avoid duplication
@@ -5912,7 +5912,7 @@
   path: packages/seal-core/SealCore.ts
   task: Bridge SelflearnAI with GenesisAeon system via SealCore membrane
   test: packages/seal-core/SealCore.test.ts
-  status: todo
+  status: done
 - commit: Implement PyramidConfig interface and loader
   path: packages/aeon-ui-pyramid/config.ts
   task: Provide JSON schema and TypeScript interface for pyramid layers
