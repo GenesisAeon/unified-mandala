@@ -1,6 +1,7 @@
 packages:
   - 'packages/crep-engine'
   - 'packages/unifiedmandala-ui'
+  - 'packages/unifiedmandala-core'
   - 'packages/bio'
   - 'packages/genesis-sigillin-core'
   - 'packages/gpt-bridges'

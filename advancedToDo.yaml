@@ -5952,7 +5952,7 @@
   path: packages/unifiedmandala-core/configSchema.ts
   task: Build JSON schema and integrate AJV validation
   test: packages/unifiedmandala-core/configSchema.test.ts
-  status: todo
+  status: done
 - commit: Implement composite core framework
   path: packages/unifiedmandala-core/composite.ts
   task: Create core layer using Composite Pattern
