@@ -50,3 +50,4 @@ export * from "./AeonJsTranspilerAgent";
 export * from './AeonAuraAgent';
 export * from './AeonMembraneAgent';
 export * from './CosmicTheoryAgent';
+export * from './ArchivAeon';
