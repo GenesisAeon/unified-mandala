@@ -24,9 +24,11 @@ class TestMemoryStore(unittest.TestCase):
         self.assertTrue(path.exists())
         data = json.loads(path.read_text())
         self.assertEqual(len(data), 1)
-        store_result({'b': 2}, path)
+        store_result({'b': 2}, path, mood='happy', archetype='sun')
         data = json.loads(path.read_text())
         self.assertEqual(len(data), 2)
+        self.assertEqual(data[1]['mood'], 'happy')
+        self.assertEqual(data[1]['archetype'], 'sun')
         path.unlink()
 
     def test_load_results(self):
