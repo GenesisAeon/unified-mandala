@@ -48,6 +48,10 @@ Weitere Hinweise aus dem „Sigil Übergang“:
 - `TodoPriority` – Verknüpft Aufgaben mit CREP-Scores.
 - `CalendarSync` – Exportiert priorisierte ToDos als Kalenderereignisse.
 - `FourierLayer` – Bewertet Emergenz via Diskreter Fourier-Analyse.
+- `metricsToSVG` – Erstellt einfache SVG-Grafik aus Emergenz-Metriken.
+- `EventBridge` – leitet CosmicTheoryAgent-Events an die UI weiter.
+- `archiveSigil` – schreibt Sigil-Dateien in GenesisAeonZIPMEM.
+- `CREPVisualizer` – zeigt CREP-Verlauf als animierte Timeline.
 
 ### gpt-bridges
 - `GPTEventHub` – Zentrales Event-System zwischen GPT-Modulen.
