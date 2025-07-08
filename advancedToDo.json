@@ -4007,14 +4007,14 @@
     "path": "packages/aeon-ui-pyramid/config.ts",
     "task": "Provide JSON schema and TypeScript interface for pyramid layers",
     "test": "packages/aeon-ui-pyramid/config.test.ts",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "Add pyramid utils unit tests",
     "path": "packages/aeon-ui-pyramid/__tests__/PyramidUtils.test.ts",
     "task": "Test mirrorLayers and playCREPTone functions with Jest",
     "test": "packages/aeon-ui-pyramid/__tests__/PyramidUtils.test.ts",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "Add deployment snippets for Pyramid UI",
@@ -4028,7 +4028,7 @@
     "path": "packages/aeon-ui-pyramid/errorHandling.ts",
     "task": "Fallback synthesizer and visual error markers",
     "test": "packages/aeon-ui-pyramid/errorHandling.test.ts",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "Optimize pyramid rendering performance",
