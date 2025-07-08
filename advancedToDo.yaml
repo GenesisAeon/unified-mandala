@@ -6355,7 +6355,7 @@
   path: GenesisAeonAdvancedAi/feedback_graph.py
   task: Visualize feedback loops as directed graph
   test: GenesisAeonAdvancedAi/test_feedback_graph.py
-  status: todo
+  status: done
 - commit: Build Streamlit demo interface
   path: apps/aeon-demo/app.py
   task: Showcase Aeon features in Streamlit web app
