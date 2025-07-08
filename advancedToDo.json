@@ -4475,7 +4475,7 @@
     "path": "packages/agents/TheoryAgentConfig.ts",
     "task": "Add AJV schema & config validation logic",
     "test": "packages/agents/TheoryAgentConfig.test.ts",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "Add SigilAlert integration",
