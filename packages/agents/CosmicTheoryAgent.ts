@@ -76,3 +76,29 @@ export function analyzeCosmicData(values: number[]): string {
   return symbolicRegression([metric]);
 }
 
+export async function performRemoteAnalysis(
+  data: number[],
+  endpoint: string,
+  protocol: 'rest' | 'grpc' = 'rest'
+): Promise<number[]> {
+  if (protocol === 'grpc') {
+    const { Client, credentials } = await import('@grpc/grpc-js');
+    const client = new Client(endpoint, credentials.createInsecure());
+    return new Promise((resolve, reject) => {
+      client.makeUnaryRequest(
+        '/AnalysisService/Analyze',
+        arg => Buffer.from(JSON.stringify(arg)),
+        buffer => JSON.parse(buffer.toString()),
+        { data },
+        (err, resp: any) => {
+          client.close();
+          if (err) return reject(err);
+          resolve(resp?.result ?? []);
+        }
+      );
+    });
+  }
+  const resp = await axios.post(endpoint, { data });
+  return resp.data.result;
+}
+
