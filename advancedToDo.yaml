@@ -5488,6 +5488,7 @@
   responsible: Core Team
   dependencies: []
   self_check: true
+  status: done
 - sprint: Collaboration
   commit: "feat: add CollaborativeEditor and federation routes"
   path: packages/unifiedmandala-ui/components/; packages/core/routes/federation.ts
@@ -6209,7 +6210,7 @@
   path: infrastructure/protodeploy
   task: Docker Compose config for local Aeon system
   test: scripts/protodeploy.test.ts
-  status: todo
+  status: done
 - commit: Validate TheoryAgentConfig with AJV
   path: packages/agents/TheoryAgentConfig.ts
   task: Add AJV schema & config validation logic
