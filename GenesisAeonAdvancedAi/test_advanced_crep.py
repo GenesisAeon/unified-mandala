@@ -32,6 +32,15 @@ class TestAdvancedCREP(unittest.TestCase):
         metrics = advanced_crep_eval(curr, [prev])
         self.assertAlmostEqual(round(metrics["resonanz"], 5), -1.0)
 
+    def test_resonance_multiple_states(self):
+        s1 = translate_numeric_to_symbolic([0.1, 0.2, 0.3])
+        s2 = translate_numeric_to_symbolic([0.1, 0.3, 0.5])
+        curr = translate_numeric_to_symbolic([0.1, 0.2, 0.3])
+        metrics = advanced_crep_eval(curr, [s1, s2])
+        # correlation with s1 is 1, with s2 is slightly lower
+        self.assertLess(metrics["resonanz"], 1.0)
+        self.assertGreater(metrics["resonanz"], 0.8)
+
     def test_emergence_cluster(self):
         sym = translate_numeric_to_symbolic([0.0, 1.0, 0.0, 1.0])
         metrics = advanced_crep_eval(sym)
