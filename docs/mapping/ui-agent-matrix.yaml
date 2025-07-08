@@ -1,0 +1,9 @@
+# Mapping between UI components and agents
+uiComponents:
+  PyramidView:
+    agents:
+      - ResonanzpfadAgent
+      - CosmicTheoryAgent
+  NestedPyramid:
+    agents:
+      - CosmicTheoryAgent
