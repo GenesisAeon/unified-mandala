@@ -4280,7 +4280,7 @@
     "path": "packages/agents/CosmicTheoryAgent.ts",
     "task": "Load and store sigil states via SigilManager hooks",
     "test": "packages/agents/CosmicTheoryAgent.test.ts",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "Add UI Agent mapping matrix",
@@ -4875,14 +4875,14 @@
     "path": "services/fourier-metrics/api.ts",
     "task": "Provide /api/fourier/analyze endpoint returning frequency data",
     "test": "services/fourier-metrics/api.test.ts",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "TODO from newadvancedconversations.json - FrequencyMandala component",
     "path": "packages/unifiedmandala-ui/components/FrequencyMandala.tsx",
     "task": "Render frequency flower visualization from Fourier results",
     "test": "packages/unifiedmandala-ui/components/FrequencyMandala.test.tsx",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "TODO from newadvancedconversations.json - FractalTaskRunner",
@@ -4910,14 +4910,14 @@
     "path": "services/fourier-metrics/api.ts",
     "task": "Provide /api/fourier/analyze endpoint returning frequency data",
     "test": "services/fourier-metrics/api.test.ts",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "TODO from newadvancedconversations.json - FrequencyMandala component",
     "path": "packages/unifiedmandala-ui/components/FrequencyMandala.tsx",
     "task": "Render frequency flower visualization from Fourier results",
     "test": "packages/unifiedmandala-ui/components/FrequencyMandala.test.tsx",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "TODO from newadvancedconversations.json - FractalTaskRunner",
