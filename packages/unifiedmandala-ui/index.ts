@@ -19,3 +19,5 @@ export { SymbolzeitManager } from '../aeon-shell/SymbolzeitManager';
 export { runCommand as AeonShellBridge } from '../aeon-shell/AeonShellBridge';
 export * from './utils/PyramidUtils';
 export { default as ThreeDPyramid } from './components/ThreeDPyramid';
+export { default as TaskDNA } from './components/TaskDNA';
+export { default as PyramidVRView } from './pyramid/PyramidVRView';
