@@ -4945,5 +4945,12 @@
     "path": "packages/cli-tools/FourierMetricsCLI.ts",
     "task": "CLI to output Fourier metrics for numeric list",
     "test": "packages/cli-tools/FourierMetricsCLI.test.ts",
+    "status": "done"  },
+  {
+    "commit": "Add CREPContext state manager",
+    "path": "packages/crep-engine/CREPContext.ts",
+    "task": "Centralized CREP state context with reducer pattern",
+    "test": "packages/crep-engine/CREPContext.test.ts",
     "status": "done"
-  }]
+  }
+]
