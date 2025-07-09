@@ -259,6 +259,7 @@ packages/
   ├── shared-utils              # Hilfsfunktionen für alle Pakete
   │   └── RestClient.ts         # einfacher REST-Helper
   ├── bio                      # Biometrische Hooks und HapticService
+  ├── TonePlayground.ts        # Experimentelle Tone.js-Steuerung
   ├── go-bridge             # Go-Client für REST, gRPC und NATS (inkl. GPTBridge)
   ├── go-agent              # Autonomer Go-Daemon für Tasks
   │   ├── pkg/policy        # Policy Enforcement Stubs
