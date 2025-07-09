@@ -5,7 +5,11 @@ from typing import Any, Dict, List, Optional
 import yaml
 
 from .memory_store import store_result
-from .aeon_processor import fraktal_feedback_metrics
+from .aeon_processor import (
+    fraktal_feedback_metrics,
+    advanced_crep_eval,
+    translate_numeric_to_symbolic,
+)
 
 
 def generate_basic_haiku(symbol: str) -> str:
@@ -92,6 +96,19 @@ class AdvancedAeonAgent:
         self.persist(data, decision)
         return decision
 
+    def act_with_advanced_metrics(self, values: List[float]) -> Dict[str, Any]:
+        """Process numeric list with advanced_crep_eval and emit haiku."""
+        symbolic_data = translate_numeric_to_symbolic(values)
+        metrics = advanced_crep_eval(symbolic_data)
+        haiku = generate_basic_haiku(symbolic_data.get("symbol", "\u0394"))
+        decision = {
+            "symbolic": symbolic_data,
+            "metrics": metrics,
+            "haiku": haiku,
+        }
+        self.persist(values, decision)
+        return decision
+
     def save_symbol_memory(self, path: Optional[str] = None) -> None:
         """Persist symbol memory to a YAML file."""
         file_path = path or self.symbol_memory_path
@@ -120,6 +137,10 @@ def main(argv: Optional[List[str]] = None) -> None:
         help="Pfad für JSON-Datei zum Persistieren aller Aktionen",
     )
     parser.add_argument("--haiku", action="store_true", help="Gibt ein Haiku zum Ergebnis aus")
+    parser.add_argument(
+        "--advanced-values",
+        help="Komma-separierte Zahlen für advanced CREP Analyse",
+    )
     args = parser.parse_args(argv)
 
     agent = AdvancedAeonAgent(
@@ -130,7 +151,11 @@ def main(argv: Optional[List[str]] = None) -> None:
         symbol_memory_path=args.symbol_memory_file,
         memory_path=args.memory_file,
     )
-    result = agent.act(args.input)
+    if args.advanced_values:
+        values = [float(v.strip()) for v in args.advanced_values.split(",") if v.strip()]
+        result = agent.act_with_advanced_metrics(values)
+    else:
+        result = agent.act(args.input)
     dump_yaml(agent)
     agent.save_symbol_memory(args.symbol_memory_file)
     if args.haiku:

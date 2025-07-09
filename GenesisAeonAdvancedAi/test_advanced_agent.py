@@ -64,6 +64,12 @@ class TestAdvancedAeonAgent(unittest.TestCase):
         out = agent.act_with_metrics(0.5)
         self.assertIn("metrics", out)
 
+    def test_act_with_advanced_metrics(self):
+        agent = AdvancedAeonAgent("test", {})
+        out = agent.act_with_advanced_metrics([0.1, 0.2, 0.3])
+        self.assertIn("metrics", out)
+        self.assertIn("haiku", out)
+
 
 if __name__ == "__main__":
     unittest.main()
