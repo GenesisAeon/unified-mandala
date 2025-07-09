@@ -144,6 +144,7 @@ GPTEventHub.emit('orakel:says', { content: 'Hallo Welt' });
 ### cli-tools
 - `sigillin-cli.ts` – Konvertiert und validiert Sigillin-Dateien.
 - `dispatchCmd.ts` – Startet Tasks via REST/gRPC aus der CLI.
+- `visualize_state.py` – erzeugt Fraktal-State-Charts aus CREP-Historien.
 
 ### sharedream-interface
 - `MetaScoreChart` – Zeigt Bewertungsdaten aus `/api/meta-scores`.

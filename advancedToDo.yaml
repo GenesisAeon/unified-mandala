@@ -6497,9 +6497,9 @@
   path: packages/crep-engine/EpisodicMemory.ts
   task: Store sequences of CREP states with timestamp and symbol metadata
   test: packages/crep-engine/EpisodicMemory.test.ts
-  status: todo
+  status: done
 - commit: Add CLI state visualization
   path: packages/cli-tools/visualize_state.py
   task: Provide Matplotlib-based fractal state charts from CLI
   test: packages/cli-tools/visualize_state.test.py
-  status: todo
+  status: done

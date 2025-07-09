@@ -120,6 +120,8 @@ Weitere Hinweise aus dem „Sigil Übergang“:
 - [**GenerativeOverlay**](packages/art/generativeOverlay.ts) – GAN-Überlagerung für Live-Daten
 - [**UniversePulseSimulator**](packages/universum-simulationen/UniversePulseSimulator.ts) – simuliert emergente Zustände
 - [**ToDoWeaver**](packages/cli-tools/ToDoWeaver.ts) – generiert YAML-Aufgaben aus CREP-Clustern
+- [**EpisodicMemory**](packages/crep-engine/EpisodicMemory.ts) – speichert CREP-Folgen mit Zeit- und Symbolmetadaten
+- [**visualize_state.py**](packages/cli-tools/visualize_state.py) – erzeugt Fraktal-State-Charts aus CREP-Historien
 
 - [**WeightedDispatcher**](packages/agents/WeightedDispatcher.ts) – verteilt Tasks nach Priorität
 - [**patternReactivator**](packages/agents/patternReactivator.ts) – reaktiviert schwache Muster
