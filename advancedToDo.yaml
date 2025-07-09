@@ -6503,3 +6503,28 @@
   task: Provide Matplotlib-based fractal state charts from CLI
   test: packages/cli-tools/visualize_state.test.py
   status: done
+- commit: TODO from newadvancedconversations.json - Fourier analysis REST API
+  path: services/fourier-metrics/api.ts
+  task: Provide /api/fourier/analyze endpoint returning frequency data
+  test: services/fourier-metrics/api.test.ts
+  status: todo
+- commit: TODO from newadvancedconversations.json - FrequencyMandala component
+  path: packages/unifiedmandala-ui/components/FrequencyMandala.tsx
+  task: Render frequency flower visualization from Fourier results
+  test: packages/unifiedmandala-ui/components/FrequencyMandala.test.tsx
+  status: todo
+- commit: TODO from newadvancedconversations.json - FractalTaskRunner
+  path: packages/task-runner/FractalTaskRunner.ts
+  task: Execute Fourier, CREP and Sigil plugins from YAML tasks
+  test: packages/task-runner/FractalTaskRunner.test.ts
+  status: todo
+- commit: TODO from newadvancedconversations.json - YAMLTaskGenerator UI
+  path: packages/unifiedmandala-ui/components/YAMLTaskGenerator.tsx
+  task: Generate YAML task definitions from interactive workflow design
+  test: packages/unifiedmandala-ui/components/YAMLTaskGenerator.test.tsx
+  status: todo
+- commit: TODO from newadvancedconversations.json - Fourier observability setup
+  path: services/fourier-metrics/observability.ts
+  task: Add OpenTelemetry tracing and metrics for Fourier pipeline
+  test: services/fourier-metrics/observability.test.ts
+  status: todo
