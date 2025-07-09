@@ -58,6 +58,16 @@ describe('sigil integration', () => {
     expect(sigilManager.list()[0].id).toBe('alpha');
     expect(events[0].sigilId).toBe('alpha');
   });
+
+  it('records history via SigilManager hooks', () => {
+    const events: any[] = [];
+    CosmicTheoryEventHub.on('sigil:added', e => events.push(e));
+    sigilManager.add({ id: 'beta', data: {} });
+    sigilManager.update('beta', { x: 1 });
+    sigilManager.remove('beta');
+    expect(events[0].sigilId).toBe('beta');
+    expect(sigilHistory.map(s => s.id)).toContain('beta');
+  });
 });
 
 describe('performRemoteAnalysis', () => {

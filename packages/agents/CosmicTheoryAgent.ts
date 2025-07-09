@@ -1,10 +1,25 @@
 import axios from 'axios';
 import { fractalDecompose, computeFractalMetric } from '../analysis/FractalAnalyzer';
 import { symbolicRegression } from '../analysis/SymbolicRegression';
-import { SigilManager } from '../shared-utils/SigilManager';
+import { SigilManager, SigilEntry } from '../shared-utils/SigilManager';
 import { CosmicTheoryEventHub } from './CosmicTheoryAgentEvents';
 
 export const sigilManager = new SigilManager();
+
+export const sigilHistory: SigilEntry[] = [];
+
+sigilManager.on('sigil:added', (entry: SigilEntry) => {
+  sigilHistory.push(entry);
+  CosmicTheoryEventHub.emit('sigil:added', { sigilId: entry.id });
+});
+
+sigilManager.on('sigil:updated', (entry: SigilEntry) => {
+  CosmicTheoryEventHub.emit('sigil:updated', { sigilId: entry.id });
+});
+
+sigilManager.on('sigil:removed', (id: string) => {
+  CosmicTheoryEventHub.emit('sigil:removed', { sigilId: id });
+});
 
 export function loadSigil(id: string, text: string): void {
   const entry = sigilManager.loadFromString(id, text);
