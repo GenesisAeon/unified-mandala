@@ -36,5 +36,6 @@ export function loadTheoryAgentConfig(raw: unknown): TheoryAgentConfig {
   if (!validate(raw)) {
     throw new Error('Invalid TheoryAgentConfig: ' + ajv.errorsText(validate.errors));
   }
-  return raw as TheoryAgentConfig;
+  // cast after validation
+  return raw as unknown as TheoryAgentConfig;
 }
