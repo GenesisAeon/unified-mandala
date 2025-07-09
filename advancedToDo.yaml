@@ -6194,7 +6194,7 @@
   status: todo
 - commit: TODO from AeonAI Pyramid-UI conversation - generate nested layers
   path: packages/unifiedmandala-ui
-  task: "generateNestedLayers Funktion gemÃ¤Ã Blueprint implementieren"
+  task: "generateNestedLayers Funktion gemäß Blueprint implementieren"
   test: packages/unifiedmandala-ui/__tests__/generateNestedLayers.test.ts
   status: done
 - commit: TODO from AeonAI Pyramid-UI conversation - NestedPyramid component
