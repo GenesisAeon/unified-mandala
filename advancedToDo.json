@@ -4939,5 +4939,11 @@
     "task": "Add OpenTelemetry tracing and metrics for Fourier pipeline",
     "test": "services/fourier-metrics/observability.test.ts",
     "status": "done"
-  }
-]
+  },
+  {
+    "commit": "Add FourierMetricsCLI",
+    "path": "packages/cli-tools/FourierMetricsCLI.ts",
+    "task": "CLI to output Fourier metrics for numeric list",
+    "test": "packages/cli-tools/FourierMetricsCLI.test.ts",
+    "status": "done"
+  }]
