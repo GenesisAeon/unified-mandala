@@ -6492,7 +6492,6 @@
   task: Add Hardcode Blueprint section after Next Steps
   test: ""
   status: done
-
 - commit: Add EpisodicMemory storage
   path: packages/crep-engine/EpisodicMemory.ts
   task: Store sequences of CREP states with timestamp and symbol metadata
@@ -6517,14 +6516,14 @@
   path: packages/task-runner/FractalTaskRunner.ts
   task: Execute Fourier, CREP and Sigil plugins from YAML tasks
   test: packages/task-runner/FractalTaskRunner.test.ts
-  status: todo
+  status: done
 - commit: TODO from newadvancedconversations.json - YAMLTaskGenerator UI
   path: packages/unifiedmandala-ui/components/YAMLTaskGenerator.tsx
   task: Generate YAML task definitions from interactive workflow design
   test: packages/unifiedmandala-ui/components/YAMLTaskGenerator.test.tsx
-  status: todo
+  status: done
 - commit: TODO from newadvancedconversations.json - Fourier observability setup
   path: services/fourier-metrics/observability.ts
   task: Add OpenTelemetry tracing and metrics for Fourier pipeline
   test: services/fourier-metrics/observability.test.ts
-  status: todo
+  status: done

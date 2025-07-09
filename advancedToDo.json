@@ -4301,14 +4301,14 @@
     "path": "docs/sigils/newadvancedconversations.json",
     "task": "AgentCoordinator implementieren, Steuerungslogik und Schnittstellen bereitstellen",
     "test": "",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "TODO from newadvancedconversations.json - EmergencePredictorAgent",
     "path": "docs/sigils/newadvancedconversations.json",
     "task": "EmergencePredictorAgent entwickeln, CREP-Vorhersage KI-Modell",
     "test": "",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "TODO from newadvancedconversations.json - GPTContextSummarizer",
@@ -4889,21 +4889,21 @@
     "path": "packages/task-runner/FractalTaskRunner.ts",
     "task": "Execute Fourier, CREP and Sigil plugins from YAML tasks",
     "test": "packages/task-runner/FractalTaskRunner.test.ts",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "TODO from newadvancedconversations.json - YAMLTaskGenerator UI",
     "path": "packages/unifiedmandala-ui/components/YAMLTaskGenerator.tsx",
     "task": "Generate YAML task definitions from interactive workflow design",
     "test": "packages/unifiedmandala-ui/components/YAMLTaskGenerator.test.tsx",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "TODO from newadvancedconversations.json - Fourier observability setup",
     "path": "services/fourier-metrics/observability.ts",
     "task": "Add OpenTelemetry tracing and metrics for Fourier pipeline",
     "test": "services/fourier-metrics/observability.test.ts",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "TODO from newadvancedconversations.json - Fourier analysis REST API",
@@ -4924,20 +4924,20 @@
     "path": "packages/task-runner/FractalTaskRunner.ts",
     "task": "Execute Fourier, CREP and Sigil plugins from YAML tasks",
     "test": "packages/task-runner/FractalTaskRunner.test.ts",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "TODO from newadvancedconversations.json - YAMLTaskGenerator UI",
     "path": "packages/unifiedmandala-ui/components/YAMLTaskGenerator.tsx",
     "task": "Generate YAML task definitions from interactive workflow design",
     "test": "packages/unifiedmandala-ui/components/YAMLTaskGenerator.test.tsx",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "TODO from newadvancedconversations.json - Fourier observability setup",
     "path": "services/fourier-metrics/observability.ts",
     "task": "Add OpenTelemetry tracing and metrics for Fourier pipeline",
     "test": "services/fourier-metrics/observability.test.ts",
-    "status": "todo"
+    "status": "done"
   }
 ]
