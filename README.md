@@ -157,6 +157,7 @@ Weitere Hinweise aus dem „Sigil Übergang“:
 - [**NumericToSymbolicAdapter**](GenesisAeonAdvancedAi/aeon_processor.py) – übersetzt Tensorwerte in Klang- und Farbcodes
 - [**fraktal_feedback_graph**](GenesisAeonAdvancedAi/aeon_processor.py) – erstellt einen einfachen Graphen der Fraktal-Feedback-Schritte
 - [**Aeon CLI**](GenesisAeonAdvancedAi/aeon_cli.py) – erzeugt symbolische Ergebnisse aus Zahlenfolgen, kann Leistungsdaten, CREP-Metriken, Fraktal-Graphen (`--graph`) und poetische Kommentare (`--poetry`) ausgeben. Fehlt PyYAML, gibt die CLI stattdessen JSON aus und weist per Warnung darauf hin.
+- [**AdvancedAeonAgent**](GenesisAeonAdvancedAi/advanced_agent.py) – Beispielagent für `advanced_crep_eval` über `--advanced-values`, optional mit Haiku-Ausgabe.
 
 ## 📦 Paketstruktur
 
