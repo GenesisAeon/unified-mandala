@@ -1,12 +1,22 @@
 import YAML from 'yaml';
+import { EventEmitter } from 'events';
 
 export interface SigilEntry {
   id: string;
   data: any;
 }
 
-export class SigilManager {
+export type SigilManagerEvent =
+  | { type: 'sigil:added'; entry: SigilEntry }
+  | { type: 'sigil:updated'; entry: SigilEntry }
+  | { type: 'sigil:removed'; id: string };
+
+export class SigilManager extends EventEmitter {
   private sigils: SigilEntry[] = [];
+
+  constructor() {
+    super();
+  }
 
   list(): SigilEntry[] {
     return this.sigils;
@@ -14,15 +24,20 @@ export class SigilManager {
 
   add(entry: SigilEntry): void {
     this.sigils.push(entry);
+    this.emit('sigil:added', entry);
   }
 
   update(id: string, data: any): void {
     const s = this.sigils.find(e => e.id === id);
-    if (s) s.data = data;
+    if (s) {
+      s.data = data;
+      this.emit('sigil:updated', s);
+    }
   }
 
   remove(id: string): void {
     this.sigils = this.sigils.filter(e => e.id !== id);
+    this.emit('sigil:removed', id);
   }
 
   loadFromString(id: string, text: string): SigilEntry {

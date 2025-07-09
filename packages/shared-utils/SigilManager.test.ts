@@ -16,3 +16,21 @@ test('parses YAML or JSON strings', () => {
   mgr.loadFromString('s3', 'y: 2');
   expect(mgr.list().map(s => s.id)).toEqual(['s2', 's3']);
 });
+
+test('emits events on changes', () => {
+  const mgr = new SigilManager();
+  const added: string[] = [];
+  mgr.on('sigil:added', e => added.push(e.id));
+  const updated: string[] = [];
+  mgr.on('sigil:updated', e => updated.push(e.id));
+  const removed: string[] = [];
+  mgr.on('sigil:removed', id => removed.push(id));
+
+  mgr.add({ id: 's4', data: {} });
+  mgr.update('s4', { x: 1 });
+  mgr.remove('s4');
+
+  expect(added).toEqual(['s4']);
+  expect(updated).toEqual(['s4']);
+  expect(removed).toEqual(['s4']);
+});
