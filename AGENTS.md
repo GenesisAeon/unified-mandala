@@ -1,5 +1,9 @@
-# Install type checker
-pip install pyright
+# Type checking
+# Use Node's Pyright to avoid confusion with the Python package
+# Example Python check
+npx pyright
+# Example TypeScript check
+npx tsc -p tsconfig.json
 # Install dependencies
 poetry install --with test
 pnpm install
