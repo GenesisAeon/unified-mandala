@@ -1,6 +1,7 @@
 const fs = require('fs');
 const { execSync } = require('child_process');
 const path = require('path');
+const YAML = require('yaml');
 
 function getLastCommitMessage() {
   return execSync('git log -1 --pretty=%s').toString().trim();
@@ -20,6 +21,22 @@ function getMergeConflicts() {
   }
 }
 
+function getPendingTasks() {
+  const todoFile = path.join(__dirname, '../advancedToDo.yaml');
+  if (!fs.existsSync(todoFile)) return [];
+  try {
+    const items = YAML.parse(fs.readFileSync(todoFile, 'utf8'));
+    if (Array.isArray(items)) {
+      return items
+        .filter((i) => i.status && i.status !== 'done')
+        .map((i) => ({ commit: i.commit, status: i.status }));
+    }
+  } catch (err) {
+    console.warn('Could not parse advancedToDo.yaml', err.message);
+  }
+  return [];
+}
+
 function updateProgress(step) {
   const progressFile = path.join(__dirname, '../advancedprogress.json');
   let data = {};
@@ -30,6 +47,7 @@ function updateProgress(step) {
   data.fractalStep = step || data.fractalStep || '';
   data.openBranches = getOpenBranches();
   data.mergeConflicts = getMergeConflicts();
+  data.pendingTasks = getPendingTasks();
   fs.writeFileSync(progressFile, JSON.stringify(data, null, 2));
   console.log('advancedprogress.json updated');
 }
@@ -39,4 +57,4 @@ if (require.main === module) {
   updateProgress(step);
 }
 
-module.exports = { updateProgress };
+module.exports = { updateProgress, getPendingTasks };
