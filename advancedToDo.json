@@ -4322,14 +4322,14 @@
     "path": "docs/sigils/newadvancedconversations.json",
     "task": "SigillinBlockchainIntegration implementieren",
     "test": "",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "TODO from newadvancedconversations.json - PrivacyComplianceAgent",
     "path": "docs/sigils/newadvancedconversations.json",
     "task": "PrivacyComplianceAgent für DSGVO-Prüfung automatisieren",
     "test": "",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "TODO from CosmicTheoryAgent conversation - implement gRPC call",
@@ -4343,7 +4343,7 @@
     "path": "docs/sigils/newadvancedconversations.json",
     "task": "CosmicTheoryAgent TODO: Zugriff auf PySR-Service via Axios/gRPC",
     "test": "packages/agents/CosmicTheoryAgent.test.ts",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "TODO from CosmicTheoryAgent conversation - React Starter setup",
@@ -4357,21 +4357,21 @@
     "path": "packages/unifiedmandala-ui",
     "task": "3D-Canvas Sketch mit react-three-fiber entwerfen",
     "test": "packages/unifiedmandala-ui/__tests__/NestedCanvas.test.tsx",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "TODO from CosmicTheoryAgent conversation - Tone.js playground",
     "path": "packages/unifiedmandala-ui",
     "task": "Tone.js Playground für Phi-Skalen und Fehlerklänge implementieren",
     "test": "packages/unifiedmandala-ui/__tests__/TonePlayground.test.ts",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "TODO from CosmicTheoryAgent conversation - MetricsStore interface",
     "path": "packages/crep-engine",
     "task": "MetricsStore-Schnittstelle mit OpenTelemetry für Live-CREP-Metriken umsetzen",
     "test": "packages/crep-engine/MetricsStore.test.ts",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "TODO from AeonAI Pyramid-UI conversation - generate nested layers",
@@ -4616,7 +4616,7 @@
     "path": "packages/unifiedmandala-ui/lib/AudioEngine.ts",
     "task": "Tone.js Integration für Phi-Skala und Fehlerklänge",
     "test": "packages/unifiedmandala-ui/lib/AudioEngine.test.ts",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "TODO from AeonAI Pyramid UI conversation - ResonanceOverlay component",
