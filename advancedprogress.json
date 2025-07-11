@@ -5,7 +5,7 @@
     "work"
   ],
   "mergeConflicts": [],
-  "notes": "Pending tasks: 20",
+  "notes": "Extracted new tasks from newadvancedconversations",
   "pendingTasks": [
     {
       "commit": "TODO from newadvancedconversations.json - AgentCoordinator",
@@ -98,6 +98,10 @@
     {
       "commit": "TODO from AeonAI Pyramid UI conversation - UIPyramidPrototype",
       "status": "todo"
+    },
+    {
+      "commit": "Updated advancedToDo with new advanced conversation tasks",
+      "status": "done"
     }
   ]
 }
