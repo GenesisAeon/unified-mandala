@@ -5,7 +5,7 @@
     "work"
   ],
   "mergeConflicts": [],
-  "notes": "Pending tasks: 23",
+  "notes": "Pending tasks: 22",
   "pendingTasks": [
     {
       "commit": "TODO from newadvancedconversations.json - AgentCoordinator",
@@ -69,7 +69,7 @@
     },
     {
       "commit": "Add AeonAgent example using advanced_crep_eval",
-      "status": "todo"
+      "status": "done"
     },
     {
       "commit": "TODO from AeonAI Pyramid UI conversation - CREPVisualizer component",
