@@ -5,7 +5,7 @@
     "work"
   ],
   "mergeConflicts": [],
-  "notes": "Pending tasks: 22",
+  "notes": "Pending tasks: 20",
   "pendingTasks": [
     {
       "commit": "TODO from newadvancedconversations.json - AgentCoordinator",
@@ -73,11 +73,11 @@
     },
     {
       "commit": "TODO from AeonAI Pyramid UI conversation - CREPVisualizer component",
-      "status": "todo"
+      "status": "done"
     },
     {
       "commit": "TODO from AeonAI Pyramid UI conversation - NumericDashboard component",
-      "status": "todo"
+      "status": "done"
     },
     {
       "commit": "TODO from AeonAI Pyramid UI conversation - AudioEngine module",
