@@ -109,6 +109,19 @@ class AdvancedAeonAgent:
         self.persist(values, decision)
         return decision
 
+    def act_with_fraktal_haiku(self, values: List[float]) -> Dict[str, Any]:
+        """Run fraktal feedback metrics and store haiku in the decision."""
+        symbolic, score, metrics = fraktal_feedback_metrics(values)
+        haiku = generate_basic_haiku(symbolic.get("symbol", "\u0394"))
+        decision = {
+            "symbolic": symbolic,
+            "crep_score": score,
+            "metrics": metrics,
+            "haiku": haiku,
+        }
+        self.persist(values, decision)
+        return decision
+
     def save_symbol_memory(self, path: Optional[str] = None) -> None:
         """Persist symbol memory to a YAML file."""
         file_path = path or self.symbol_memory_path
@@ -141,6 +154,10 @@ def main(argv: Optional[List[str]] = None) -> None:
         "--advanced-values",
         help="Komma-separierte Zahlen für advanced CREP Analyse",
     )
+    parser.add_argument(
+        "--fraktal-values",
+        help="Komma-separierte Zahlen für fraktal Feedback Analyse",
+    )
     args = parser.parse_args(argv)
 
     agent = AdvancedAeonAgent(
@@ -151,7 +168,10 @@ def main(argv: Optional[List[str]] = None) -> None:
         symbol_memory_path=args.symbol_memory_file,
         memory_path=args.memory_file,
     )
-    if args.advanced_values:
+    if args.fraktal_values:
+        values = [float(v.strip()) for v in args.fraktal_values.split(",") if v.strip()]
+        result = agent.act_with_fraktal_haiku(values)
+    elif args.advanced_values:
         values = [float(v.strip()) for v in args.advanced_values.split(",") if v.strip()]
         result = agent.act_with_advanced_metrics(values)
     else:

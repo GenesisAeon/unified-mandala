@@ -70,6 +70,13 @@ class TestAdvancedAeonAgent(unittest.TestCase):
         self.assertIn("metrics", out)
         self.assertIn("haiku", out)
 
+    def test_act_with_fraktal_haiku(self):
+        agent = AdvancedAeonAgent("test", {})
+        out = agent.act_with_fraktal_haiku([0.1, 0.2, 0.3])
+        self.assertIn("metrics", out)
+        self.assertIn("haiku", out)
+        self.assertIn("crep_score", out)
+
 
 if __name__ == "__main__":
     unittest.main()
