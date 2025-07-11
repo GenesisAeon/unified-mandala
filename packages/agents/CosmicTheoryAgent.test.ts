@@ -8,8 +8,9 @@ import {
   AgentWeights,
   loadSigil,
   sigilManager,
-  performRemoteAnalysis
-  ,callPySRService
+  sigilHistory,
+  performRemoteAnalysis,
+  callPySRService
 } from './CosmicTheoryAgent';
 import { CosmicTheoryEventHub } from './CosmicTheoryAgentEvents';
 
