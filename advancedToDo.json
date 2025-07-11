@@ -4595,14 +4595,14 @@
     "path": "packages/unifiedmandala-ui/components/CREPVisualizer.tsx",
     "task": "Graphische Darstellung der C,R,E,P Werte als Farben und Formen",
     "test": "packages/unifiedmandala-ui/components/CREPVisualizer.test.tsx",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "TODO from AeonAI Pyramid UI conversation - NumericDashboard component",
     "path": "packages/unifiedmandala-ui/components/NumericDashboard.tsx",
     "task": "Tabellen und Histogramme für CREP- und Sigil-Daten",
     "test": "packages/unifiedmandala-ui/components/NumericDashboard.test.tsx",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "TODO from AeonAI Pyramid UI conversation - ThreeDPyramid component",
