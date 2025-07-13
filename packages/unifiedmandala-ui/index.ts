@@ -23,3 +23,4 @@ export { default as TaskDNA } from './components/TaskDNA';
 export { default as PyramidVRView } from './pyramid/PyramidVRView';
 export { AudioEngine } from './lib/AudioEngine';
 export { SigilProvider, useSigilManager } from './contexts/SigilContext';
+export { default as ResonanceOverlay } from './components/ResonanceOverlay';
