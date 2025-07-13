@@ -25,3 +25,5 @@ export { AudioEngine } from './lib/AudioEngine';
 export { SigilProvider, useSigilManager } from './contexts/SigilContext';
 export { default as ResonanceOverlay } from './components/ResonanceOverlay';
 export { useCREPTuning } from './hooks/useCREPTuning';
+export { default as ErrorEmergence } from './components/ErrorEmergence';
+export { default as VRPortal } from './components/VRPortal';
