@@ -4395,11 +4395,11 @@
     "status": "done"
   },
   {
-  "commit": "TODO from AeonAI Pyramid-UI conversation - CREP tuning",
-  "path": "packages/unifiedmandala-ui",
-  "task": "CREP-Scores zur Gewichtung von Farben und Soundeffekten nutzen",
-  "test": "packages/unifiedmandala-ui/__tests__/CREPTuning.test.ts",
-  "status": "done"
+    "commit": "TODO from AeonAI Pyramid-UI conversation - CREP tuning",
+    "path": "packages/unifiedmandala-ui",
+    "task": "CREP-Scores zur Gewichtung von Farben und Soundeffekten nutzen",
+    "test": "packages/unifiedmandala-ui/__tests__/CREPTuning.test.ts",
+    "status": "done"
   },
   {
     "commit": "TODO from CosmicTheoryAgent conversation - React Starter setup",
@@ -4497,7 +4497,7 @@
     "path": "packages/unifiedmandala-ui/tests/e2e",
     "task": "Cypress flow for SigilAlert UI",
     "test": "packages/unifiedmandala-ui/tests/e2e/sigilAlert.spec.ts",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "Add SigilManager module",
@@ -4542,11 +4542,11 @@
     "status": "done"
   },
   {
-  "commit": "Draft AeonUniversal DSL grammar",
-  "path": "docs/AeonUniversalDSL.md",
-  "task": "Document DSL syntax and compiler hooks",
-  "test": "",
-  "status": "done"
+    "commit": "Draft AeonUniversal DSL grammar",
+    "path": "docs/AeonUniversalDSL.md",
+    "task": "Document DSL syntax and compiler hooks",
+    "test": "",
+    "status": "done"
   },
   {
     "commit": "Update README and Handbuch with transition feedback",
