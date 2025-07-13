@@ -13,3 +13,16 @@ export function getCREPPhaseColor({ C, R, E }: CREPValues): string {
   if (C >= 7 && R >= 7 && E >= 7) return 'green';
   return 'orange';
 }
+
+export function getCREPFrequency({ P }: { P: number }): number {
+  return 220 + P * 10;
+}
+
+export interface CREPTuning {
+  color: string;
+  frequency: number;
+}
+
+export function getCREPTuning(values: CREPValues & { P: number }): CREPTuning {
+  return { color: getCREPPhaseColor(values), frequency: getCREPFrequency(values) };
+}
