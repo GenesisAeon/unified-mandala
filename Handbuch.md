@@ -51,6 +51,7 @@ Weitere Hinweise aus dem „Sigil Übergang“:
 - `CalendarSync` – Exportiert priorisierte ToDos als Kalenderereignisse.
 - `FourierLayer` – Bewertet Emergenz via Diskreter Fourier-Analyse.
 - `metricsToSVG` – Erstellt einfache SVG-Grafik aus Emergenz-Metriken.
+- `FourierMetricsServer` – sendet FourierLayer-Metriken per WebSocket.
 - `EventBridge` – leitet CosmicTheoryAgent-Events an die UI weiter.
 - `archiveSigil` – schreibt Sigil-Dateien in GenesisAeonZIPMEM.
 - `CREPVisualizer` – zeigt CREP-Verlauf als animierte Timeline.
