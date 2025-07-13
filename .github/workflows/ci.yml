@@ -9,6 +9,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: Start OTel Collector
+        run: |
+          docker run -d --name otel-collector -p 4317:4317 \
+            -v ${{ github.workspace }}/.github/otel-collector-config.yaml:/etc/otelcol/config.yaml \
+            otel/opentelemetry-collector:0.92.0
       - uses: actions/setup-node@v2
         with:
           node-version: '18'
@@ -23,3 +28,8 @@ jobs:
       - run: pnpm test
       - run: sh ci/helm/helm.test.sh
       - run: pnpm run docs:build
+      - name: Stop OTel Collector
+        if: always()
+        run: |
+          docker stop otel-collector
+          docker rm otel-collector

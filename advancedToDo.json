@@ -4491,7 +4491,7 @@
     "path": ".github/workflows/ci.yml",
     "task": "Add Docker and OTel pipeline for CosmicTheoryAgent",
     "test": "ci/ci-pipeline.test.ts",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "Add Cypress E2E tests for SigilAlert",
