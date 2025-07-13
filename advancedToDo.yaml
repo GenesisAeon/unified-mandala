@@ -6331,7 +6331,7 @@
   path: packages/unifiedmandala-ui/components/ResonanceOverlay.tsx
   task: Partikeleffekte bei hoher Poetik und Resonanz
   test: packages/unifiedmandala-ui/components/ResonanceOverlay.test.tsx
-  status: todo
+  status: done
 - commit: TODO from AeonAI Pyramid UI conversation - ErrorEmergence component
   path: packages/unifiedmandala-ui/components/ErrorEmergence.tsx
   task: Heatmap-Logging und visuelle Kristalle bei Fehlern
