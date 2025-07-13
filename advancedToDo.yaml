@@ -397,6 +397,7 @@
   path: services/chat-writer/writer.go
   task: Store messages.json logs and optional eventHook
   test: ""
+  status: done
 - commit: Add schema validation hook script
   path: scripts/validate-schemas.sh
   status: done
