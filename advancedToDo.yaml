@@ -6241,7 +6241,7 @@
   path: packages/unifiedmandala-ui/tests/e2e
   task: Cypress flow for SigilAlert UI
   test: packages/unifiedmandala-ui/tests/e2e/sigilAlert.spec.ts
-  status: todo
+  status: done
 - commit: Add SigilManager module
   path: packages/shared-utils/SigilManager.ts
   task: Load Sigil YAML and log events

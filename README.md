@@ -367,6 +367,7 @@ Verwende `./scripts/aeon.sh <command>` für alle CLI-Aufrufe.
 | `pnpm lint` | Führt statische Typprüfung aus |
 | `pnpm test` | Führe Unit- & UI-Tests aus |
 | `pnpm vitest run` | Läuft Agenten-Spezialtests |
+| `pnpm cy:run` | Führt Cypress E2E-Tests aus |
 | `docker-compose run test` | Führe alle Tests ohne lokale Installationen aus |
 | `./scripts/run-pnpm-tests.sh` | Führt pnpm test aus |
 | `node scripts/refresh-handbook.js` | Synchronisiert Handbuch |

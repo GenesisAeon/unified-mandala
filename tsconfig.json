@@ -9,13 +9,19 @@
     "skipLibCheck": true,
     "resolveJsonModule": true,
     "jsx": "react-jsx",
-    "types": ["node", "jest", "vitest"]
+    "types": [
+      "node",
+      "jest",
+      "vitest",
+      "cypress"
+    ]
   },
   "include": [
     "packages/**/*",
     "services/**/*",
     "scripts/**/*.ts",
     "aws/**/*",
-    "types/**/*.d.ts"
+    "types/**/*.d.ts",
+    "cypress.d.ts"
   ]
 }
