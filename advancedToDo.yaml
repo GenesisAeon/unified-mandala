@@ -6550,6 +6550,11 @@
   path: ""
   task: SVG-Export oder WebSocket-Event für UI
   test: ""
+- commit: Add FourierMetricsServer
+  path: packages/analysis/FourierMetricsServer.ts
+  task: Broadcast FourierLayer metrics via WebSocket
+  test: packages/analysis/FourierMetricsServer.test.ts
+  status: done
 - commit: "cs**:  \\n  - Jeder Task-Run oder Composer-Änderung: `sigillin_id`,
     Steps, Metriken, Config.  \\n  - Speicherung als YAML im Repo oder DB,
     verfügbar im Composer.\\n\\n---\\n## 🔄 6. Mandala-TaskRunner &
