@@ -20,4 +20,13 @@ describe('FourierLayer', () => {
     expect(svgEvents.length).toBe(1);
     expect(svgEvents[0].id).toBe('L2');
   });
+
+  it('writes SVG when exportPath provided', () => {
+    const tmp = 'test.svg';
+    const layer = new FourierLayer('L3', 1, [1,1,1,1], { depth: 1, exportPath: tmp });
+    layer.analyze();
+    const content = require('fs').readFileSync(tmp, 'utf8');
+    expect(content.startsWith('<svg')).toBe(true);
+    require('fs').unlinkSync(tmp);
+  });
 });
