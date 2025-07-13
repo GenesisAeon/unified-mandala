@@ -4350,7 +4350,7 @@
     "path": "packages/unifiedmandala-ui",
     "task": "React-Starter (Vite + Tailwind + shadcn/ui) mit Skeleton-Komponenten aufsetzen",
     "test": "packages/unifiedmandala-ui/__tests__/ReactStarter.test.tsx",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "TODO from CosmicTheoryAgent conversation - 3D canvas sketch",
@@ -4392,7 +4392,7 @@
     "path": "packages/unifiedmandala-ui",
     "task": "Sigillin-Initialisierung für neue Komponenten integrieren",
     "test": "packages/unifiedmandala-ui/__tests__/SigillinInit.test.ts",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "TODO from AeonAI Pyramid-UI conversation - CREP tuning",
