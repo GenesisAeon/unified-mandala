@@ -50,6 +50,8 @@ export class FourierLayer {
     const avgAmplitude = amps.reduce((a, b) => a + b, 0) / amps.length;
     const metrics = { maxAmplitude, avgAmplitude };
     FourierLayerEvents.emit('metrics', { id: this.id, metrics });
+    const svg = metricsToSVG(metrics);
+    FourierLayerEvents.emit('metrics-svg', { id: this.id, svg });
     return metrics;
   }
 }

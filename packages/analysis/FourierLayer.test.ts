@@ -11,9 +11,13 @@ describe('FourierLayer', () => {
   it('emits metrics event', () => {
     const events: any[] = [];
     FourierLayerEvents.on('metrics', e => events.push(e));
+    const svgEvents: any[] = [];
+    FourierLayerEvents.on('metrics-svg', e => svgEvents.push(e));
     const layer = new FourierLayer('L2', 1, [0, 1, 0, -1], { depth: 1 });
     layer.analyze();
     expect(events.length).toBe(1);
     expect(events[0].id).toBe('L2');
+    expect(svgEvents.length).toBe(1);
+    expect(svgEvents[0].id).toBe('L2');
   });
 });
