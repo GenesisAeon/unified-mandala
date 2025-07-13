@@ -6211,7 +6211,7 @@
   path: packages/unifiedmandala-ui
   task: CREP-Scores zur Gewichtung von Farben und Soundeffekten nutzen
   test: packages/unifiedmandala-ui/__tests__/CREPTuning.test.ts
-  status: todo
+  status: done
 - commit: Add Pyramid VR mode
   path: packages/unifiedmandala-ui/pyramid/PyramidVRView.tsx
   task: Implement WebXR immersive experience for Pyramid UI

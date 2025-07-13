@@ -1,4 +1,4 @@
-import { getCREPPhaseColor } from './crepHelpers';
+import { getCREPPhaseColor, getCREPFrequency, getCREPTuning } from './crepHelpers';
 
 describe('getCREPPhaseColor', () => {
   it('returns red for critical values', () => {
@@ -9,5 +9,16 @@ describe('getCREPPhaseColor', () => {
   });
   it('returns orange otherwise', () => {
     expect(getCREPPhaseColor({ C: 5, R: 5, E: 5 })).toBe('orange');
+  });
+});
+
+describe('crep tuning helpers', () => {
+  test('getCREPFrequency returns expected value', () => {
+    expect(getCREPFrequency({ P: 5 })).toBe(270);
+  });
+
+  test('getCREPTuning returns color and frequency', () => {
+    const result = getCREPTuning({ C: 8, R: 8, E: 8, P: 5 });
+    expect(result).toEqual({ color: 'green', frequency: 270 });
   });
 });
