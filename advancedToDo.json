@@ -1375,7 +1375,8 @@
     "commit": "Create RealTimeCollaborationChat",
     "path": "packages/collab-editor/RealTimeCollaborationChat.ts",
     "task": "Provide integrated chat during collaborative editing",
-    "test": "packages/collab-editor/RealTimeCollaborationChat.test.ts"
+    "test": "packages/collab-editor/RealTimeCollaborationChat.test.ts",
+    "status": "done"
   },
   {
     "commit": "Add PresenceIndicator feature",
