@@ -9,12 +9,7 @@
     "skipLibCheck": true,
     "resolveJsonModule": true,
     "jsx": "react-jsx",
-    "types": [
-      "node",
-      "jest",
-      "vitest",
-      "cypress"
-    ]
+    "types": []
   },
   "include": [
     "packages/**/*",
