@@ -22,3 +22,4 @@ export { default as ThreeDPyramid } from './components/ThreeDPyramid';
 export { default as TaskDNA } from './components/TaskDNA';
 export { default as PyramidVRView } from './pyramid/PyramidVRView';
 export { AudioEngine } from './lib/AudioEngine';
+export { SigilProvider, useSigilManager } from './contexts/SigilContext';
