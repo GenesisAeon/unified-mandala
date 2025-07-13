@@ -1,0 +1,9 @@
+import React from 'react';
+import { render } from '@testing-library/react';
+import '@testing-library/jest-dom';
+import VRPortal from './VRPortal';
+
+test.skip('renders portal', () => {
+  const { container } = render(<VRPortal />);
+  expect(container.querySelector('canvas')).toBeInTheDocument();
+});
