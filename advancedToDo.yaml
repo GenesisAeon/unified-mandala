@@ -6206,7 +6206,7 @@
   path: packages/unifiedmandala-ui
   task: Sigillin-Initialisierung fÃ¼r neue Komponenten integrieren
   test: packages/unifiedmandala-ui/__tests__/SigillinInit.test.ts
-  status: todo
+  status: done
 - commit: TODO from AeonAI Pyramid-UI conversation - CREP tuning
   path: packages/unifiedmandala-ui
   task: CREP-Scores zur Gewichtung von Farben und Soundeffekten nutzen
@@ -6336,17 +6336,17 @@
   path: packages/unifiedmandala-ui/components/ErrorEmergence.tsx
   task: Heatmap-Logging und visuelle Kristalle bei Fehlern
   test: packages/unifiedmandala-ui/components/ErrorEmergence.test.tsx
-  status: todo
+  status: done
 - commit: TODO from AeonAI Pyramid UI conversation - VRPortal component
   path: packages/unifiedmandala-ui/components/VRPortal.tsx
   task: WebXR-Modus für begehbares Mandala
   test: packages/unifiedmandala-ui/components/VRPortal.test.tsx
-  status: todo
+  status: done
 - commit: TODO from AeonAI Pyramid UI conversation - UIPyramidPrototype
   path: apps/pyramid-ui/pages/index.tsx
   task: React-Starter mit SigilSelector und ThreeDPyramid Platzhaltern
   test: apps/pyramid-ui/__tests__/index.test.tsx
-  status: todo
+  status: done
 - commit: Improve assign_symbol with archetypes
   path: GenesisAeonAdvancedAi/aeon_processor.py
   task: Map value ranges to archetype emojis via assign_symbol
