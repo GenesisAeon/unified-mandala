@@ -569,7 +569,8 @@
     "commit": "Add append only chat writer",
     "path": "services/chat-writer/writer.go",
     "task": "Store messages.json logs and optional eventHook",
-    "test": ""
+    "test": "",
+    "status": "done"
   },
   {
     "commit": "Add schema validation hook script",
