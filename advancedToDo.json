@@ -4407,28 +4407,28 @@
     "path": "packages/unifiedmandala-ui",
     "task": "React-Starter (Vite + Tailwind + shadcn/ui) mit Skeleton-Komponenten aufsetzen",
     "test": "packages/unifiedmandala-ui/__tests__/ReactStarter.test.tsx",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "TODO from CosmicTheoryAgent conversation - 3D canvas sketch",
     "path": "packages/unifiedmandala-ui",
     "task": "3D-Canvas Sketch mit react-three-fiber entwerfen",
     "test": "packages/unifiedmandala-ui/__tests__/NestedCanvas.test.tsx",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "TODO from CosmicTheoryAgent conversation - Tone.js playground",
     "path": "packages/unifiedmandala-ui",
     "task": "Tone.js Playground für Phi-Skalen und Fehlerklänge implementieren",
     "test": "packages/unifiedmandala-ui/__tests__/TonePlayground.test.ts",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "TODO from CosmicTheoryAgent conversation - MetricsStore interface",
     "path": "packages/crep-engine",
     "task": "MetricsStore-Schnittstelle mit OpenTelemetry für Live-CREP-Metriken umsetzen",
     "test": "packages/crep-engine/MetricsStore.test.ts",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "TODO from AeonAI Pyramid-UI conversation - generate nested layers",
@@ -4456,7 +4456,7 @@
     "path": "packages/unifiedmandala-ui",
     "task": "CREP-Scores zur Gewichtung von Farben und Soundeffekten nutzen",
     "test": "packages/unifiedmandala-ui/__tests__/CREPTuning.test.ts",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "Add Pyramid VR mode",
