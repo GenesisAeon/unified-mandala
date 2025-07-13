@@ -5,7 +5,7 @@
     "work"
   ],
   "mergeConflicts": [],
-  "notes": "Extracted new tasks from newadvancedconversations",
+  "notes": "Implemented AeonUniversal DSL draft",
   "pendingTasks": [
     {
       "commit": "TODO from newadvancedconversations.json - AgentCoordinator",
@@ -65,7 +65,7 @@
     },
     {
       "commit": "Draft AeonUniversal DSL grammar",
-      "status": "todo"
+      "status": "done"
     },
     {
       "commit": "Add AeonAgent example using advanced_crep_eval",

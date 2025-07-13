@@ -4542,11 +4542,11 @@
     "status": "done"
   },
   {
-    "commit": "Draft AeonUniversal DSL grammar",
-    "path": "docs/AeonUniversalDSL.md",
-    "task": "Document DSL syntax and compiler hooks",
-    "test": "",
-    "status": "todo"
+  "commit": "Draft AeonUniversal DSL grammar",
+  "path": "docs/AeonUniversalDSL.md",
+  "task": "Document DSL syntax and compiler hooks",
+  "test": "",
+  "status": "done"
   },
   {
     "commit": "Update README and Handbuch with transition feedback",

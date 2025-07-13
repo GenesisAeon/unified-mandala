@@ -6276,7 +6276,7 @@
   path: docs/AeonUniversalDSL.md
   task: Document DSL syntax and compiler hooks
   test: ""
-  status: todo
+  status: done
 - commit: Update README and Handbuch with transition feedback
   path: README.md
   task: Add overview of Sigil transition and offline workflow
