@@ -4,7 +4,8 @@
   "type": "object",
   "properties": {
     "depth": { "type": "integer", "minimum": 1 },
-    "threshold": { "type": "number", "minimum": 0 }
+    "threshold": { "type": "number", "minimum": 0 },
+    "exportPath": { "type": "string" }
   },
   "required": ["depth"],
   "additionalProperties": false

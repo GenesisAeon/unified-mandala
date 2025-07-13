@@ -1,12 +1,15 @@
-import { MetricsStore } from './MetricsStore';
-import { metrics } from '@opentelemetry/api';
-
 const recordMock = jest.fn();
-jest.mock('@opentelemetry/api', () => ({
+jest.doMock('@opentelemetry/api', () => ({
   metrics: {
     getMeter: () => ({ createHistogram: () => ({ record: recordMock }) })
   }
 }));
+const { metrics } = require('@opentelemetry/api');
+const { MetricsStore } = require('./MetricsStore');
+
+beforeEach(() => {
+  recordMock.mockClear();
+});
 
 test('computes average', () => {
   const ms = new MetricsStore();

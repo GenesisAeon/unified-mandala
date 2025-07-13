@@ -1,6 +1,11 @@
 export interface FourierLayerConfig {
   depth: number;
   threshold?: number;
+  /**
+   * Optional path to export the generated SVG metrics. If provided,
+   * `analyze` will write the SVG output to this location.
+   */
+  exportPath?: string;
 }
 
 export interface EmergenceMetrics {
@@ -9,6 +14,7 @@ export interface EmergenceMetrics {
 }
 
 import { EventEmitter } from 'events';
+import { writeFileSync } from 'fs';
 
 export const FourierLayerEvents = new EventEmitter();
 
@@ -18,6 +24,7 @@ export class FourierLayer {
   weight: number;
   private threshold: number;
   private data: number[];
+  private config: FourierLayerConfig;
 
   constructor(id: string, level: number, data: number[], config: FourierLayerConfig) {
     this.id = id;
@@ -25,6 +32,7 @@ export class FourierLayer {
     this.threshold = config.threshold ?? 0.1;
     this.weight = data.length / (config.depth || 1);
     this.data = data;
+    this.config = config;
   }
 
   private dft(): [number, number][] {
@@ -52,6 +60,9 @@ export class FourierLayer {
     FourierLayerEvents.emit('metrics', { id: this.id, metrics });
     const svg = metricsToSVG(metrics);
     FourierLayerEvents.emit('metrics-svg', { id: this.id, svg });
+    if (this.config.exportPath) {
+      writeFileSync(this.config.exportPath, svg, 'utf8');
+    }
     return metrics;
   }
 }
