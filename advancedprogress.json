@@ -142,6 +142,10 @@
     {
       "commit": "Add impulse CREP update route",
       "status": "done"
+    },
+    {
+      "commit": "Return avg resonance via metaScores route",
+      "status": "done"
     }
   ]
 }

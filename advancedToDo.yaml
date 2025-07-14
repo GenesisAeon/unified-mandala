@@ -6698,3 +6698,8 @@
   task: Provide POST /impulse/:idx/crep to update metrics
   test: packages/agent/src/routes/impulse.test.ts
   status: done
+- commit: Return avg resonance via metaScores route
+  path: packages/core/routes/metaScores.ts
+  task: Compute average from impulseMetrics and expose via GET /api/meta-scores
+  test: packages/core/routes/metaScores.test.ts
+  status: done
