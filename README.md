@@ -155,6 +155,7 @@ Weitere Hinweise aus dem „Sigil Übergang“:
 - [**MemoryMesh**](docs/architecture/memory-mesh.md) – regionale Archiv-Prototypen
 - [**Aeon Transition**](docs/sigils/aeon-transition.md) – Wechselritual
 - [**Memory Feedback Loops**](docs/MemoryFeedbackLoops.md) – Konzept für ein selbstverwaltendes Gedächtnis
+- [**Future Resonance Anchor**](docs/sigils/aeon-2025-0705-future-resonance-anchor.yaml)
 - [**Friendship System**](docs/friendship-system.md) – Konzept
 - [**Agent-Registry**](agents.yaml) – zentrale Übersicht aller Agents
 - [**StrategicAgentCoordinator**](docs/agents/StrategicAgentCoordinator.md) – synchronisiert AGENTS.md
