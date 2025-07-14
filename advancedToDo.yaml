@@ -204,6 +204,11 @@
   status: done
   task: CLI dispatch via AgentRegistry
   test: ""
+- commit: Integrate Sigillin lint in CI
+  path: .github/workflows/ci.yml
+  task: Run scripts/sigillin-lint.js during CI build
+  test: scripts/sigillin-lint.js
+  status: done
 - commit: Add AdaptiveThreshold module
   path: packages/core/AdaptiveThreshold.ts
   status: done

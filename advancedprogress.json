@@ -130,6 +130,10 @@
     {
       "commit": "SVG-Export oder WebSocket-Event für UI",
       "status": "done"
+    },
+    {
+      "commit": "Sigillin lint added to CI",
+      "status": "done"
     }
   ]
 }

@@ -33,6 +33,7 @@
     "ghost-shell:cluster": "ts-node services/ghost-shell/cluster.ts",
     "ghost-shell:server": "ts-node services/ghost-shell/server.ts",
     "generate:ghostshell-nginx": "ts-node scripts/generate-ghostshell-nginx.ts",
+    "sigillin:lint": "node scripts/sigillin-lint.js",
     "store:commit-memory": "node GenesisAeonZIPMEM/commitMemory/commit-memory.js",
     "generate:changelog": "node scripts/generate-changelog.js",
     "compile:agents-manifest": "node scripts/compile_agents_manifest.js",
