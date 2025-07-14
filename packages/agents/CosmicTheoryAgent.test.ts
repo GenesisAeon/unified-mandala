@@ -99,4 +99,16 @@ describe('callPySRService', () => {
     const eq = await callPySRService([1,2], 'localhost:6000', 'grpc');
     expect(eq).toBe('y=x^2');
   });
+
+  it('emits start and success events', async () => {
+    const starts: any[] = [];
+    const successes: any[] = [];
+    CosmicTheoryEventHub.on('theory:start', p => starts.push(p));
+    CosmicTheoryEventHub.on('theory:regression:success', p => successes.push(p));
+    vi.spyOn(axios, 'post').mockResolvedValue({ data: { equation: 'y=2x' } });
+    const eq = await callPySRService([3,4], 'http://localhost/pysr');
+    expect(eq).toBe('y=2x');
+    expect(starts[0].dataPoints).toEqual([3,4]);
+    expect(successes[0].equation).toBe('y=2x');
+  });
 });

@@ -11,6 +11,8 @@ export interface TraceLogPayload {
 export type CosmicTheoryAgentEvents = {
   'sigil:generated': { sigilId: string; formula: string };
   'theory:updated': { formula: string; score: number };
+  'theory:start': { dataPoints: number[] };
+  'theory:regression:success': { equation: string };
   'trace:log': TraceLogPayload;
   [key: string]: any;
 };
