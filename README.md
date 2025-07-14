@@ -395,6 +395,7 @@ Verwende `./scripts/aeon.sh <command>` für alle CLI-Aufrufe.
 | `node scripts/update-advancedprogress.js` | Dokumentiert Fortschritt |
 | `node scripts/sync-todo-progress.js` | Aktualisiert ToDo- & Progress-Dateien |
 | `node scripts/update-kontext.js` | Passt Kontext-Datei an |
+| `node scripts/generate-readmes.ts` | Erstellt Modul-READMEs |
 | `node scripts/extract-snippets.js` | Extrahiert Code-Snippets |
 | `node scripts/extract_new_ai_fragments.js` | Extrahiert neue KI-Fragmente |
 | `node scripts/check-todo-sigil.js` | Prüft erledigte Aufgaben |
