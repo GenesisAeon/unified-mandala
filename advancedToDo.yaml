@@ -6552,9 +6552,10 @@
   task: "cs**:"
   test: ""
 - commit: SVG-Export oder WebSocket-Event für UI
-  path: ""
+  path: packages/unifiedmandala-ui/components/FourierMetricsViewer.tsx
   task: SVG-Export oder WebSocket-Event für UI
-  test: ""
+  test: packages/unifiedmandala-ui/components/FourierMetricsViewer.test.tsx
+  status: done
 - commit: Add FourierMetricsServer
   path: packages/analysis/FourierMetricsServer.ts
   task: Broadcast FourierLayer metrics via WebSocket

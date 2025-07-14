@@ -41,6 +41,7 @@ Weitere Hinweise aus dem „Sigil Übergang“:
 - [**FourierLayer Analyse**](packages/analysis/FourierLayer.ts) – Frequenzbasierte Emergenzbewertung
 - [**FourierLayer Docs**](docs/fourier-layer.md) – usage examples and metrics
 - [**FourierMetricsServer**](packages/analysis/FourierMetricsServer.ts) – broadcast Fourier metrics via WebSocket
+- [**FourierMetricsViewer**](packages/unifiedmandala-ui/components/FourierMetricsViewer.tsx) – displays SVG metrics from the Fourier bridge
 - [**React Starter**](packages/unifiedmandala-ui/ReactStarter.tsx) – Tailwind/Vite skeleton setup
 - [**EventBridge**](packages/unifiedmandala-ui/events/EventBridge.ts) – verbindet CosmicTheoryAgent mit der Pyramid UI
 - [**PySR Service Client**](packages/agents/CosmicTheoryAgent.ts) – Regression via REST/gRPC
