@@ -141,6 +141,8 @@ Weitere Hinweise aus dem „Sigil Übergang“:
 - [**SelfAnalyzerAgent**](packages/agents/self-analyzer) – generiert automatische ToDos
 - [**FeedbackButtons**](packages/unifiedmandala-ui/components/FeedbackButtons.tsx) – zeichnet Nutzerfeedback als Sigil-Ereignis auf
 - [**ChatPanel**](packages/unifiedmandala-ui/components/ChatPanel.tsx) – einfacher GPT-gestützter Chat mit CREP-Logging
+- [**CREPStatsCard**](packages/unifiedmandala-ui/components/CREPStatsCard.tsx) – zeigt Durchschnitts-CREP mit Mini-Chart
+- `/impulse/:idx/crep` – Route zum Aktualisieren der CREP-Metriken
 - [**ArchetypeDecoderAgent**](packages/agents/ArchetypeDecoderAgent.ts) – extrahiert Archetypen aus Beschreibungen
 - [**SigillinInterpreterAgent**](packages/agents/SigillinInterpreterAgent.ts) – erkennt Sigillin-Symbole
 - [**ChronoPoemGeneratorAgent**](packages/agents/ChronoPoemGeneratorAgent.ts) – generiert poetische Zeilen
