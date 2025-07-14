@@ -130,6 +130,18 @@
     {
       "commit": "SVG-Export oder WebSocket-Event für UI",
       "status": "done"
+    },
+    {
+      "commit": "Add parse-newadvanced-conversations test",
+      "status": "done"
+    },
+    {
+      "commit": "Implement CREPStatsCard component",
+      "status": "planned"
+    },
+    {
+      "commit": "Add impulse CREP update route",
+      "status": "planned"
     }
   ]
 }

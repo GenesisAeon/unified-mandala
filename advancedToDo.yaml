@@ -6683,3 +6683,18 @@
     automatisiert: Tests, Analysen, Visualisierung und Klang werden fraktal
     orchestriert! 🚀\"}]}"
   test: ""
+- commit: Add parse-newadvanced-conversations test
+  path: scripts/__tests__/parse-newadvanced-conversations.test.ts
+  task: Test extraction utility for newadvancedconversations dataset
+  test: scripts/__tests__/parse-newadvanced-conversations.test.ts
+  status: done
+- commit: Implement CREPStatsCard component
+  path: packages/unifiedmandala-ui/components/CREPStatsCard.tsx
+  task: Display average CREP resonance with mini chart
+  test: packages/unifiedmandala-ui/components/CREPStatsCard.test.tsx
+  status: planned
+- commit: Add impulse CREP update route
+  path: packages/agent/src/routes/impulse.ts
+  task: Provide POST /impulse/:idx/crep to update metrics
+  test: packages/agent/src/routes/impulse.test.ts
+  status: planned
