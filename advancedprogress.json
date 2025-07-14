@@ -1,5 +1,5 @@
 {
-  "lastCommit": "Merge pull request #641 from GenesisAeon/codex/integrate-todo-scanner-and-ci-step",
+  "lastCommit": "implement CREPStatsCard and impulse route",
   "fractalStep": "sync",
   "openBranches": [
     "work"
@@ -137,11 +137,11 @@
     },
     {
       "commit": "Implement CREPStatsCard component",
-      "status": "planned"
+      "status": "done"
     },
     {
       "commit": "Add impulse CREP update route",
-      "status": "planned"
+      "status": "done"
     }
   ]
 }

@@ -149,6 +149,7 @@ GPTEventHub.emit('orakel:says', { content: 'Hallo Welt' });
 ### cli-tools
 - `sigillin-cli.ts` – Konvertiert und validiert Sigillin-Dateien.
 - `dispatchCmd.ts` – Startet Tasks via REST/gRPC aus der CLI.
+- `/impulse/:idx/crep` – REST-Route zum Aktualisieren von CREP-Metriken.
 - `visualize_state.py` – erzeugt Fraktal-State-Charts aus CREP-Historien.
 
 ### sharedream-interface
@@ -162,6 +163,7 @@ GPTEventHub.emit('orakel:says', { content: 'Hallo Welt' });
 ### unifiedmandala-ui (Auswahl)
 - `MandalaNetworkView` – Visualisierung der Sigillin-Knoten als D3-Graph.
 - `CREPChart` – Linienchart für CREP-Werte.
+- `CREPStatsCard` – zeigt Durchschnitts-CREP mit kleinem Chart.
 - `CREPTimeline` – zeigt historische CREP-Einträge als Liste.
 - `CREPTriggerPanel` – Buttons zum Auslösen von CREP-Ereignissen.
 - `LiveCREPPanel` – Kombiniert Trigger und Chart für Live-Daten.

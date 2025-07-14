@@ -6692,9 +6692,9 @@
   path: packages/unifiedmandala-ui/components/CREPStatsCard.tsx
   task: Display average CREP resonance with mini chart
   test: packages/unifiedmandala-ui/components/CREPStatsCard.test.tsx
-  status: planned
+  status: done
 - commit: Add impulse CREP update route
   path: packages/agent/src/routes/impulse.ts
   task: Provide POST /impulse/:idx/crep to update metrics
   test: packages/agent/src/routes/impulse.test.ts
-  status: planned
+  status: done
