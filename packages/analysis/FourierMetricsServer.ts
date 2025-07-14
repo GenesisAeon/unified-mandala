@@ -1,8 +1,8 @@
 import { FourierLayerEvents } from './FourierLayer';
-import { Server } from 'ws';
+import { WebSocketServer } from 'ws';
 
 export function startFourierMetricsServer(port = 4010) {
-  const wss = new Server({ port });
+  const wss = new WebSocketServer({ port });
   wss.on('connection', ws => {
     const metricsListener = (data: any) => {
       ws.send(JSON.stringify({ type: 'fourier-metrics', data }));
