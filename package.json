@@ -36,7 +36,8 @@
     "store:commit-memory": "node GenesisAeonZIPMEM/commitMemory/commit-memory.js",
     "generate:changelog": "node scripts/generate-changelog.js",
     "compile:agents-manifest": "node scripts/compile_agents_manifest.js",
-    "cy:run": "cypress run"
+    "cy:run": "cypress run",
+    "socialgood:automation": "ts-node apps/socialgood-ui/scripts/autoWorkflow.ts"
   },
   "dependencies": {
     "@grpc/grpc-js": "^1.9.10",

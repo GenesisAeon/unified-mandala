@@ -932,10 +932,11 @@
     "test": ""
   },
   {
-    "commit": "Add plugin registry and loader",
-    "path": "plugins/manifest.yaml",
-    "task": "Define manifest schema and implement usePluginLoader",
-    "test": "apps/sharedream-interface/hooks/usePluginLoader.test.ts"
+  "commit": "Add plugin registry and loader",
+  "path": "plugins/manifest.yaml",
+  "task": "Define manifest schema and implement usePluginLoader",
+  "test": "apps/sharedream-interface/hooks/usePluginLoader.test.ts",
+  "status": "done"
   },
   {
     "commit": "Add FeedbackButtons component",
@@ -994,10 +995,11 @@
     "status": "done"
   },
   {
-    "commit": "Add parsing & SocialGood workflow trigger",
-    "path": "scripts",
-    "task": "Provide command or UI to start Parsing and SocialGood-Matching",
-    "test": ""
+  "commit": "Add parsing & SocialGood workflow trigger",
+  "path": "scripts",
+  "task": "Provide command or UI to start Parsing and SocialGood-Matching",
+  "test": "",
+  "status": "done"
   },
   {
     "commit": "Generate memory-job config templates",
@@ -1007,10 +1009,11 @@
     "status": "done"
   },
   {
-    "commit": "Implement MemoryManager Service",
-    "path": "services/memory-manager",
-    "task": "Manage daily, weekly and longterm categories with scheduler; integrate with fragment_and_package_conversations.js and extract_code_fragments.js",
-    "test": "services/memory-manager/test.ts"
+  "commit": "Implement MemoryManager Service",
+  "path": "services/memory-manager",
+  "task": "Manage daily, weekly and longterm categories with scheduler; integrate with fragment_and_package_conversations.js and extract_code_fragments.js",
+  "test": "services/memory-manager/test.ts",
+  "status": "done"
   },
   {
     "commit": "Add Feedback Agents for new files",
@@ -1048,10 +1051,11 @@
     "status": "done"
   },
   {
-    "commit": "Add React use-case components for Sigil generation, ToDo parsing, and SocialGood matching",
-    "path": "apps/socialgood-ui/src/components/UsecaseComponents.tsx",
-    "task": "Implement reusable UI components that trigger sigil generation, parse TODOs, and match SocialGood tags",
-    "test": "apps/socialgood-ui/src/components/__tests__/UsecaseComponents.test.tsx"
+  "commit": "Add React use-case components for Sigil generation, ToDo parsing, and SocialGood matching",
+  "path": "apps/socialgood-ui/src/components/UsecaseComponents.tsx",
+  "task": "Implement reusable UI components that trigger sigil generation, parse TODOs, and match SocialGood tags",
+  "test": "apps/socialgood-ui/src/components/__tests__/UsecaseComponents.test.tsx",
+  "status": "done"
   },
   {
     "commit": "Create Go todo_parser module",
@@ -1082,10 +1086,11 @@
     "status": "done"
   },
   {
-    "commit": "Automate documentation, sigil generation, and TODO prioritization",
-    "path": "apps/socialgood-ui",
-    "task": "Automated docs, sigil generation, TODO ranking and conversation analytics",
-    "test": "apps/socialgood-ui/__tests__/automation.test.ts"
+  "commit": "Automate documentation, sigil generation, and TODO prioritization",
+  "path": "apps/socialgood-ui",
+  "task": "Automated docs, sigil generation, TODO ranking and conversation analytics",
+  "test": "apps/socialgood-ui/__tests__/automation.test.ts",
+  "status": "done"
   },
   {
     "commit": "TODO from GenesisAeonZIPMEM/Aeon_Uebergabe-Sigil_Prozess_part1.json - 4df8c73d-6df3-443c-a695-31458a2e1cf7",
