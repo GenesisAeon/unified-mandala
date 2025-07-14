@@ -122,6 +122,7 @@ export async function callPySRService(
   endpoint: string,
   protocol: 'rest' | 'grpc' = 'rest'
 ): Promise<string> {
+  CosmicTheoryEventHub.emit('theory:start', { dataPoints: data });
   if (protocol === 'grpc') {
     const { Client, credentials } = await import('@grpc/grpc-js');
     const client = new Client(endpoint, credentials.createInsecure());
@@ -134,12 +135,15 @@ export async function callPySRService(
         (err, resp: any) => {
           client.close();
           if (err) return reject(err);
-          resolve(resp?.equation ?? '');
+          const eq = resp?.equation ?? '';
+          CosmicTheoryEventHub.emit('theory:regression:success', { equation: eq });
+          resolve(eq);
         }
       );
     });
   }
   const resp = await axios.post(endpoint, { data });
+  CosmicTheoryEventHub.emit('theory:regression:success', { equation: resp.data.equation });
   return resp.data.equation;
 }
 
