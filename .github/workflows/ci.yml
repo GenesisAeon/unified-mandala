@@ -25,6 +25,7 @@ jobs:
       - run: pnpm --filter ./packages/genesis-sigillin-core run lint test build
       - run: pnpm --filter ./packages/gpt-bridges run lint test
       - run: pnpm --filter ./packages/cli-tools run lint test
+      - run: pnpm run sigillin:lint
       - run: pnpm test
       - run: sh ci/helm/helm.test.sh
       - run: pnpm run docs:build

@@ -150,6 +150,7 @@ GPTEventHub.emit('orakel:says', { content: 'Hallo Welt' });
 - `sigillin-cli.ts` – Konvertiert und validiert Sigillin-Dateien.
 - `dispatchCmd.ts` – Startet Tasks via REST/gRPC aus der CLI.
 - `visualize_state.py` – erzeugt Fraktal-State-Charts aus CREP-Historien.
+- `sigillin-lint.js` – überprüft alle Sigil-Dateien in `docs/sigils`.
 
 ### sharedream-interface
 - `MetaScoreChart` – Zeigt Bewertungsdaten aus `/api/meta-scores`.

@@ -501,18 +501,18 @@
     "status": "done"
   },
   {
-  "commit": "Expose Prometheus metrics",
-  "path": "go-agent/pkg/metrics",
-  "task": "Export task duration and queue length metrics",
-  "test": "",
-  "status": "done"
+    "commit": "Expose Prometheus metrics",
+    "path": "go-agent/pkg/metrics",
+    "task": "Export task duration and queue length metrics",
+    "test": "",
+    "status": "done"
   },
   {
-  "commit": "Create Grafana dashboard template",
-  "path": "ci/monitoring/grafana",
-  "task": "Provide JSON template for task overview",
-  "test": "",
-  "status": "done"
+    "commit": "Create Grafana dashboard template",
+    "path": "ci/monitoring/grafana",
+    "task": "Provide JSON template for task overview",
+    "test": "",
+    "status": "done"
   },
   {
     "commit": "Implement dispatcher backoff and retry logic",
@@ -4997,5 +4997,12 @@
     "path": "",
     "task": "emit SVG or WebSocket event for UI visualization\\n    }\\n    if (task.sound) {\\n      playMandalaSoundscape([metrics]);\\n    }\\n  }\\n}\\n\\n// Entry\\nconst args = process.argv.slice(2);\\nif (!args[0]) {\\n  console.error('Usage: fractal-runner <task-file.yaml>');\\n  process.exit(1);\\n}\\nrunTask(args[0]).catch(err => {\\n  console.error('Fractal-TaskRunner Error:', err);\\n  process.exit(1);\\n});\\n```\\n\\n**Usage:**\\n```sh\\npnpm --filter agent ts-node packages/agent/src/bin/fractal-runner.ts tasks/fractal-analysis.yaml\\n```\\n\\nMit diesem Skript ist der **„Start!“**–Live-Run deines **Future Resonance Stack** vollständig automatisiert: Tests, Analysen, Visualisierung und Klang werden fraktal orchestriert! 🚀\"}]}",
     "test": ""
+  },
+  {
+    "commit": "Integrate Sigillin lint in CI",
+    "path": ".github/workflows/ci.yml",
+    "task": "Run scripts/sigillin-lint.js during CI build",
+    "test": "scripts/sigillin-lint.js",
+    "status": "done"
   }
 ]
