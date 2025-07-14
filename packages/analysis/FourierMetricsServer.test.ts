@@ -1,9 +1,9 @@
 import { startFourierMetricsServer } from './FourierMetricsServer';
-import { FourierLayer, FourierLayerEvents } from './FourierLayer';
+import { FourierLayer } from './FourierLayer';
 import WebSocket from 'ws';
 import { once } from 'events';
 
-describe('FourierMetricsServer', async () => {
+describe('FourierMetricsServer', () => {
   it('broadcasts metrics via websocket', async () => {
     const server = startFourierMetricsServer(4050);
     const ws = new WebSocket('ws://localhost:4050');
