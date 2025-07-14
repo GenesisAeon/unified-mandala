@@ -118,6 +118,14 @@
     {
       "commit": "Expose Prometheus metrics and Grafana dashboard",
       "status": "done"
+    },
+    {
+      "commit": "Add self-healing and dead letter queue",
+      "status": "done"
+    },
+    {
+      "commit": "Implement dispatcher backoff and retry logic",
+      "status": "done"
     }
   ]
 }

@@ -349,6 +349,7 @@
   path: go-agent/pkg/dispatcher
   task: Move failed tasks to todo.failed and auto restart
   test: test/dispatcher_retry_test.go
+  status: done
 - commit: Expose Prometheus metrics
   path: go-agent/pkg/metrics
   task: Export task duration and queue length metrics
@@ -363,6 +364,7 @@
   path: go-agent/pkg/dispatcher
   task: Use exponential backoff and dead letter on exhaustion
   test: ""
+  status: done
 - commit: Configure Vault integration
   path: internal/config
   task: Load secrets via Vault provider with auto rotation
