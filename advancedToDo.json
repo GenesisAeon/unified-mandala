@@ -497,7 +497,8 @@
     "commit": "Add self-healing and dead letter queue",
     "path": "go-agent/pkg/dispatcher",
     "task": "Move failed tasks to todo.failed and auto restart",
-    "test": "test/dispatcher_retry_test.go"
+    "test": "test/dispatcher_retry_test.go",
+    "status": "done"
   },
   {
   "commit": "Expose Prometheus metrics",
@@ -517,7 +518,8 @@
     "commit": "Implement dispatcher backoff and retry logic",
     "path": "go-agent/pkg/dispatcher",
     "task": "Use exponential backoff and dead letter on exhaustion",
-    "test": ""
+    "test": "",
+    "status": "done"
   },
   {
     "commit": "Configure Vault integration",
