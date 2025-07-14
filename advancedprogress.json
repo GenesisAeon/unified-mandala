@@ -126,6 +126,10 @@
     {
       "commit": "Implement dispatcher backoff and retry logic",
       "status": "done"
+    },
+    {
+      "commit": "SVG-Export oder WebSocket-Event für UI",
+      "status": "done"
     }
   ]
 }

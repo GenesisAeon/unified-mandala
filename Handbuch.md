@@ -52,6 +52,7 @@ Weitere Hinweise aus dem „Sigil Übergang“:
 - `FourierLayer` – Bewertet Emergenz via Diskreter Fourier-Analyse.
 - `metricsToSVG` – Erstellt einfache SVG-Grafik aus Emergenz-Metriken.
 - `FourierMetricsServer` – sendet FourierLayer-Metriken per WebSocket.
+- `FourierMetricsViewer` – zeigt SVG-Metriken aus dem WebSocket in der UI.
 - `EventBridge` – leitet CosmicTheoryAgent-Events an die UI weiter.
 - `archiveSigil` – schreibt Sigil-Dateien in GenesisAeonZIPMEM.
 - `CREPVisualizer` – zeigt CREP-Verlauf als animierte Timeline.
