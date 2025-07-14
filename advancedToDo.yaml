@@ -353,10 +353,12 @@
   path: go-agent/pkg/metrics
   task: Export task duration and queue length metrics
   test: ""
+  status: done
 - commit: Create Grafana dashboard template
   path: ci/monitoring/grafana
   task: Provide JSON template for task overview
   test: ""
+  status: done
 - commit: Implement dispatcher backoff and retry logic
   path: go-agent/pkg/dispatcher
   task: Use exponential backoff and dead letter on exhaustion

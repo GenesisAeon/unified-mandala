@@ -500,16 +500,18 @@
     "test": "test/dispatcher_retry_test.go"
   },
   {
-    "commit": "Expose Prometheus metrics",
-    "path": "go-agent/pkg/metrics",
-    "task": "Export task duration and queue length metrics",
-    "test": ""
+  "commit": "Expose Prometheus metrics",
+  "path": "go-agent/pkg/metrics",
+  "task": "Export task duration and queue length metrics",
+  "test": "",
+  "status": "done"
   },
   {
-    "commit": "Create Grafana dashboard template",
-    "path": "ci/monitoring/grafana",
-    "task": "Provide JSON template for task overview",
-    "test": ""
+  "commit": "Create Grafana dashboard template",
+  "path": "ci/monitoring/grafana",
+  "task": "Provide JSON template for task overview",
+  "test": "",
+  "status": "done"
   },
   {
     "commit": "Implement dispatcher backoff and retry logic",

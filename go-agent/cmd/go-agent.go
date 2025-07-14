@@ -11,6 +11,7 @@ import (
 	"github.com/spf13/cobra"
 	"github.com/unified-mandala/go-agent/internal/auth"
 	"github.com/unified-mandala/go-agent/internal/config"
+	"github.com/unified-mandala/go-agent/pkg/metrics"
 	"github.com/unified-mandala/go-agent/pkg/scheduler"
 )
 
@@ -44,6 +45,7 @@ func run() {
 		w.WriteHeader(http.StatusOK)
 		w.Write([]byte("ready"))
 	})
+	http.Handle("/metrics", metrics.Handler())
 
 	srv := &http.Server{Addr: ":8080"}
 	go srv.ListenAndServe()

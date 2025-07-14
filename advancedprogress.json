@@ -114,6 +114,10 @@
     {
       "commit": "Add FourierMetricsServer",
       "status": "done"
+    },
+    {
+      "commit": "Expose Prometheus metrics and Grafana dashboard",
+      "status": "done"
     }
   ]
 }
