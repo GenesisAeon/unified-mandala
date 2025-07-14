@@ -45,6 +45,7 @@ Weitere Hinweise aus dem „Sigil Übergang“:
 - [**FrequencyMandala**](packages/unifiedmandala-ui/components/FrequencyMandala.tsx) – visualizes Fourier frequency flowers
 - [**FourierMetricsCLI**](packages/cli-tools/FourierMetricsCLI.ts) – compute metrics from the command line
 - [**FractalTaskRunner**](packages/task-runner/FractalTaskRunner.ts) – executes YAML-defined plugin workflows
+- [**Fractal Runner CLI**](packages/agents/bin/fractal-runner.ts) – runs YAML task files with optional soundscape
 - [**React Starter**](packages/unifiedmandala-ui/ReactStarter.tsx) – Tailwind/Vite skeleton setup
 - [**EventBridge**](packages/unifiedmandala-ui/events/EventBridge.ts) – verbindet CosmicTheoryAgent mit der Pyramid UI
 - [**PySR Service Client**](packages/agents/CosmicTheoryAgent.ts) – Regression via REST/gRPC
