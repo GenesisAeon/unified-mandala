@@ -11,6 +11,7 @@ describe('Fourier API', () => {
       .post('/api/fourier/analyze')
       .send({ data: [1, 0, 1, 0] });
     expect(res.body.metrics.maxAmplitude).toBeGreaterThan(0);
+    expect(Array.isArray(res.body.amplitudes)).toBe(true);
   });
 
   it('validates payload', async () => {

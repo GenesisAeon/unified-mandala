@@ -11,8 +11,8 @@ export function createApp() {
       return res.status(400).json({ error: 'data must be array of numbers' });
     }
     const layer = new FourierLayer('api', 1, data, { depth: 1 });
-    const metrics = layer.analyze();
-    res.json({ metrics });
+    const { metrics, amplitudes } = layer.analyze();
+    res.json({ metrics, amplitudes });
   });
 
   return app;
