@@ -1,5 +1,5 @@
 {
-  "lastCommit": "add future resonance anchor",
+  "lastCommit": "add new FourierLayer tasks",
   "fractalStep": "sync",
   "openBranches": [
     "work"
@@ -146,6 +146,22 @@
     {
       "commit": "Return avg resonance via metaScores route",
       "status": "done"
+    },
+    {
+      "commit": "TODO from newadvancedconversations.json - feedback_log",
+      "status": "todo"
+    },
+    {
+      "commit": "TODO from newadvancedconversations.json - component classification",
+      "status": "todo"
+    },
+    {
+      "commit": "TODO from newadvancedconversations.json - Nullmembran SI Heatmap",
+      "status": "todo"
+    },
+    {
+      "commit": "TODO from newadvancedconversations.json - Nukleon OpenAPI",
+      "status": "todo"
     }
   ]
 }
