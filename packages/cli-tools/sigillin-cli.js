@@ -165,6 +165,23 @@ program
   });
 
 program
+  .command('bump-version <file>')
+  .description('Erhöht die Versionsnummer eines Sigillin-Dokuments')
+  .action((file) => {
+    const path = require('path');
+    const YAML = require('yaml');
+    const fp = path.resolve(file);
+    const content = require('fs').readFileSync(fp, 'utf8');
+    const isYaml = fp.endsWith('.yaml') || fp.endsWith('.yml');
+    const data = isYaml ? YAML.parse(content) : JSON.parse(content);
+    const current = data.version || 0;
+    data.version = current + 1;
+    const out = isYaml ? YAML.stringify(data) : JSON.stringify(data, null, 2);
+    require('fs').writeFileSync(fp, out);
+    console.log(`Version auf ${data.version} erhöht.`);
+  });
+
+program
   .command('grep-conversations <keyword>')
   .option('-o, --output <dir>', 'Zielordner', '../../docs/sigils/conversations')
   .description('Filtert conversations.json nach Stichwort')

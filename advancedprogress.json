@@ -1,5 +1,5 @@
 {
-  "lastCommit": "add new FourierLayer tasks",
+  "lastCommit": "implement bump-version command",
   "fractalStep": "sync",
   "openBranches": [
     "work"
@@ -161,6 +161,10 @@
     },
     {
       "commit": "TODO from newadvancedconversations.json - Nukleon OpenAPI",
+      "status": "done"
+    },
+    {
+      "commit": "Add bump-version command to sigillin-cli",
       "status": "done"
     }
   ]

@@ -5054,5 +5054,12 @@
     "task": "Expose Nukleon Scanner metrics via OpenAPI/GraphQL for integration",
     "test": "services/nukleon-scanner/openapi.test.ts",
     "status": "done"
+  },
+  {
+    "commit": "Add bump-version command to sigillin-cli",
+    "path": "packages/cli-tools/sigillin-cli.js",
+    "task": "Implement bump-version subcommand to increment sigillin version",
+    "test": "packages/cli-tools/sigillin-cli.test.ts",
+    "status": "done"
   }
 ]

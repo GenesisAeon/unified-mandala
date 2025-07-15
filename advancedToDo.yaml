@@ -3304,8 +3304,8 @@
     Templates\" },\n  { id: 10, modul: \"SigillinViewer.tsx\", status:
     \"GEPLANT\", beschreibung: \"React-Komponente zum Anzeigen und Durchblättern
     von Sigillin\" },\n\n  // === CLI & Utilities ===\n  { id: 11, modul:
-    \"sigillin-cli.js\", status: \"GEPLANT\", beschreibung: \"Kommandozeilentool
-    für create, validate, list-relations, bump-version\" },\n\n  // === Tests &
+    \"sigillin-cli.js\", status: \"done\", beschreibung: \"Kommandozeilentool
+    für create, validate, list-relations und bump-version\" },\n\n  // === Tests &
     CI/CD ===\n  { id: 12, modul: \"CREPTestHarness.tsx\", status: \"GEPLANT\",
     beschreibung: \"UI-Komponente zum Durchspielen von CREP-Wertänderungen\"
     },\n  { id: 13, modul: \"GitHub Action + npm Script\", status: \"GEPLANT\",
