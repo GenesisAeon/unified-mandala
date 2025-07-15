@@ -12,7 +12,7 @@ func TestTodoParserCLI(t *testing.T) {
 	os.WriteFile(tmp, []byte("// TODO: cli"), 0644)
 	defer os.Remove(tmp)
 
-	cmd := exec.Command("go", "run", "./cmd/todo_parser.go", "-file", tmp)
+	cmd := exec.Command("go", "run", "./todo_parser.go", "-file", tmp)
 	out, err := cmd.CombinedOutput()
 	if err != nil {
 		t.Fatalf("run: %v, %s", err, string(out))
