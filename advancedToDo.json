@@ -5055,5 +5055,12 @@
     "task": "Expose Nukleon Scanner metrics via OpenAPI/GraphQL for integration",
     "test": "services/nukleon-scanner/openapi.test.ts",
     "status": "done"
+  },
+  {
+    "commit": "Implement sigillin-cli features",
+    "path": "packages/genesis-sigillin-core/sigillin-cli.js",
+    "task": "CLI create, validate, list-relations, bump-version",
+    "test": "packages/genesis-sigillin-core/sigillin-cli.test.ts",
+    "status": "done"
   }
 ]
