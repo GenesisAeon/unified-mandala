@@ -1,5 +1,5 @@
 {
-  "lastCommit": "Implement sigillin-cli features",
+  "lastCommit": "Send cached Fourier metrics on connection",
   "fractalStep": "sync",
   "openBranches": [
     "work"
@@ -169,6 +169,10 @@
     },
     {
       "commit": "sigillin-cli features",
+      "status": "done"
+    },
+    {
+      "commit": "Send cached Fourier metrics on connection",
       "status": "done"
     }
   ]

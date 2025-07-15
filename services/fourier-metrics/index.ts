@@ -19,6 +19,11 @@ export function startServer(port = 4100) {
   const wss = new Server({ server });
 
   wss.on('connection', (socket: any) => {
+    // send the most recent metrics to new clients immediately
+    Object.entries(latestMetrics).forEach(([id, metrics]) => {
+      socket.send(JSON.stringify({ type: 'fourier-metrics', id, metrics }));
+    });
+
     const handler = (payload: any) => {
       socket.send(JSON.stringify(payload));
     };
