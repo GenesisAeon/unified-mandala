@@ -5046,7 +5046,7 @@
     "path": "packages/unifiedmandala-ui/components/NullmembranSIHeatmap.tsx",
     "task": "Visualize S_I distribution around threshold (\u0394S_I \u00b1 \u03c3) using heatmap",
     "test": "packages/unifiedmandala-ui/components/NullmembranSIHeatmap.test.tsx",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "Provide OpenAPI interface for Nukleon Scanner",

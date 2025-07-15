@@ -175,6 +175,7 @@ GPTEventHub.emit('orakel:says', { content: 'Hallo Welt' });
 - `SigillinOnDemandGenerator` – CLI-Modul für spontane Sigillin-Templates.
 - `CREPToDoPrioritizer` – stuft Aufgaben nach Emergenz ein.
 - `CREPConvoHeatmap` – React-Komponente zur Visualisierung von CREP-Schwankungen.
+- `NullmembranSIHeatmap` – zeigt die Verteilung von S_I-Werten rund um die Nullmembran.
 - `ImpactDashboard` – Dashboard mit MandalaNetworkView und AgentHeatmap.
 - `CustomRegionGallery` – Galerieansicht für Regionen.
 - `ProjectListView` – Listenansicht für Social-Good-Projekte.
