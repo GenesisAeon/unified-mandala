@@ -1,5 +1,5 @@
 {
-  "lastCommit": "Set up universe-sim CI",
+  "lastCommit": "Implement sigillin-cli features",
   "fractalStep": "sync",
   "openBranches": [
     "work"
@@ -165,6 +165,10 @@
     },
     {
       "commit": "Set up CI/CD and tests for universe-sim",
+      "status": "done"
+    },
+    {
+      "commit": "sigillin-cli features",
       "status": "done"
     }
   ]
