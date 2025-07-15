@@ -1,0 +1,32 @@
+import mitt from 'mitt';
+
+export type FourierLayerBridgeEvents = {
+  'fourier:metrics': any;
+  'fourier:metrics-svg': { id: string; svg: string };
+};
+
+const emitter = mitt<FourierLayerBridgeEvents>();
+
+export function connectFourierLayerBridge(url = 'ws://localhost:4010'): WebSocket {
+  const ws = new WebSocket(url);
+  ws.onmessage = ev => {
+    try {
+      const message = JSON.parse(ev.data);
+      if (message.type === 'fourier-metrics') {
+        emitter.emit('fourier:metrics', message.data);
+      } else if (message.type === 'fourier-metrics-svg') {
+        emitter.emit('fourier:metrics-svg', message.data);
+      }
+    } catch (e) {
+      console.error('Invalid FourierLayer message', e);
+    }
+  };
+  return ws;
+}
+
+export default {
+  on: emitter.on,
+  off: emitter.off,
+  emit: emitter.emit,
+  connect: connectFourierLayerBridge,
+};

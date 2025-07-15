@@ -3,7 +3,7 @@ import { metrics } from '@opentelemetry/api';
 import { fractalDecompose, computeFractalMetric } from '../analysis/FractalAnalyzer';
 import { symbolicRegression } from '../analysis/SymbolicRegression';
 import { SigilManager, SigilEntry } from '../shared-utils/SigilManager';
-import { CosmicTheoryEventHub } from './CosmicTheoryAgentEvents';
+import { CosmicTheoryEventHub, enterVR, exitVR } from './CosmicTheoryAgentEvents';
 import { withCircuit } from '../core/withCircuit';
 
 export const sigilManager = new SigilManager();
@@ -169,4 +169,6 @@ export async function callPySRService(
   regressionCache.set(cacheKey, equation);
   return equation;
 }
+
+export { enterVR, exitVR };
 

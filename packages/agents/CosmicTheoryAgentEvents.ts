@@ -13,6 +13,8 @@ export type CosmicTheoryAgentEvents = {
   'theory:updated': { formula: string; score: number };
   'theory:start': { dataPoints: number[] };
   'theory:regression:success': { equation: string };
+  'vr:enter': { timestamp: number };
+  'vr:exit': { timestamp: number };
   'trace:log': TraceLogPayload;
   [key: string]: any;
 };
@@ -27,4 +29,12 @@ export function logTrace(message: string): void {
     spanId: span?.spanContext().spanId,
     traceId: span?.spanContext().traceId
   });
+}
+
+export function enterVR(): void {
+  CosmicTheoryEventHub.emit('vr:enter', { timestamp: Date.now() });
+}
+
+export function exitVR(): void {
+  CosmicTheoryEventHub.emit('vr:exit', { timestamp: Date.now() });
 }
