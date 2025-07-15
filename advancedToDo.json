@@ -556,7 +556,8 @@
     "commit": "Create LangChain adapter and sigil generator service",
     "path": "services/sigil-generator",
     "task": "Provide POST /sigil/generate with markdown output",
-    "test": ""
+    "test": "",
+    "status": "done"
   },
   {
     "commit": "Extend GitHub Actions for extras",

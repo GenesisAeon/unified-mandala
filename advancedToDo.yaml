@@ -390,6 +390,7 @@
   path: services/sigil-generator
   task: Provide POST /sigil/generate with markdown output
   test: ""
+  status: done
 - commit: Extend GitHub Actions for extras
   path: ci/agent.yml
   task: Add ML plugin build and policy linter steps
