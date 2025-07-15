@@ -34,5 +34,10 @@ export function startServer(port = 4100) {
     console.log(`Fourier metrics listening on ${port}`);
   });
 
-  return { app, server, wss };
+  function stop() {
+    wss.close();
+    server.close();
+  }
+
+  return { app, server, wss, stop };
 }
