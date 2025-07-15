@@ -1,0 +1,20 @@
+name: universe-sim CI
+on:
+  push:
+    paths:
+      - 'simulations/universe-sim/**'
+      - '.github/workflows/sim-universe-ci.yaml'
+  pull_request:
+    paths:
+      - 'simulations/universe-sim/**'
+      - '.github/workflows/sim-universe-ci.yaml'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-go@v4
+        with:
+          go-version: '1.20'
+      - run: go test ./simulations/universe-sim/...

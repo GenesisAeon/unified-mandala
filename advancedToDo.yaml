@@ -305,6 +305,7 @@
   path: .github/workflows/sim-universe-ci.yaml
   task: Configure CI to run tests for universe-sim
   test: simulations/universe-sim/test/ci_test.go
+  status: done
 - commit: Import country and region profiles
   path: packages/userfriendship/region-profile-service/models
   task: Provide country.yaml and region.yaml for 5 countries
