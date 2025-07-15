@@ -5062,5 +5062,12 @@
     "task": "CLI create, validate, list-relations, bump-version",
     "test": "packages/genesis-sigillin-core/sigillin-cli.test.ts",
     "status": "done"
+  },
+  {
+    "commit": "Send cached Fourier metrics on connection",
+    "path": "services/fourier-metrics/index.ts",
+    "task": "Send cached FourierLayer metrics to new websocket clients",
+    "test": "services/fourier-metrics/index.test.ts",
+    "status": "done"
   }
 ]
