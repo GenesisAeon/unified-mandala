@@ -1,5 +1,5 @@
 {
-  "lastCommit": "Set up universe-sim CI",
+  "lastCommit": "Update schema utilities",
   "fractalStep": "sync",
   "openBranches": [
     "work"
@@ -165,6 +165,10 @@
     },
     {
       "commit": "Set up CI/CD and tests for universe-sim",
+      "status": "done"
+    },
+    {
+      "commit": "Update shared schema utilities",
       "status": "done"
     }
   ]

@@ -492,7 +492,8 @@
     "commit": "Add liveness and readiness endpoints",
     "path": "go-agent/cmd/go-agent.go",
     "task": "Implement /healthz/live and /healthz/ready probes",
-    "test": "test/health_test.go"
+    "test": "test/health_test.go",
+    "status": "done"
   },
   {
     "commit": "Add self-healing and dead letter queue",
@@ -631,7 +632,8 @@
     "commit": "Update shared schema utilities",
     "path": "shared-utils/schema",
     "task": "Support new metadata and consent fields",
-    "test": ""
+    "test": "",
+    "status": "done"
   },
   {
     "commit": "Extend CI pipeline for schema and vector tests",
@@ -1139,13 +1141,15 @@
     "commit": "Add GhostShell NGINX config",
     "path": "config/nginx/ghostshell.conf",
     "task": "Provide NGINX reverse proxy for clustered GhostShellAgent",
-    "test": ""
+    "test": "",
+    "status": "done"
   },
   {
     "commit": "Implement GhostShell session store",
     "path": "services/ghost-shell/session-store.ts",
     "task": "Track WebSocket message history per client",
-    "test": "services/ghost-shell/session-store.test.ts"
+    "test": "services/ghost-shell/session-store.test.ts",
+    "status": "done"
   },
   {
     "commit": "Add GhostShell cluster manager",
