@@ -27,5 +27,6 @@ export { default as ResonanceOverlay } from './components/ResonanceOverlay';
 export { useCREPTuning } from './hooks/useCREPTuning';
 export { default as ErrorEmergence } from './components/ErrorEmergence';
 export { default as VRPortal } from './components/VRPortal';
+export { default as PyramidVRMeetingRoom } from './components/PyramidVRMeetingRoom';
 export { default as ReactStarter } from './ReactStarter';
 export { default as NestedCanvas } from './NestedCanvas';

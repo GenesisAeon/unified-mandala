@@ -6749,11 +6749,14 @@
   path: packages/unifiedmandala-ui/events/FourierLayerBridge.ts
   task: Bridge FourierLayer metrics to Pyramid UI via WebSocket
   test: packages/unifiedmandala-ui/events/FourierLayerBridge.test.ts
+  status: done
 - commit: Extend CosmicTheoryAgent with VR hooks
   path: packages/agents/CosmicTheoryAgent.ts
   task: Add VR interaction events from Pyramid UI
   test: packages/agents/CosmicTheoryAgent.test.ts
+  status: done
 - commit: Create PyramidVRMeetingRoom component
   path: packages/unifiedmandala-ui/components/PyramidVRMeetingRoom.tsx
   task: Allow multi-avatar VR interactions in the Pyramid UI
   test: packages/unifiedmandala-ui/components/PyramidVRMeetingRoom.test.tsx
+  status: done

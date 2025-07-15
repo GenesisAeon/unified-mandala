@@ -183,5 +183,18 @@
       "commit": "Add metrics instrumentation for PySR service",
       "status": "done"
     }
+    ,
+    {
+      "commit": "Implement FourierLayerBridge for Pyramid UI integration",
+      "status": "done"
+    },
+    {
+      "commit": "Extend CosmicTheoryAgent with VR hooks",
+      "status": "done"
+    },
+    {
+      "commit": "Create PyramidVRMeetingRoom component",
+      "status": "done"
+    }
   ]
 }
