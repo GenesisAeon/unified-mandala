@@ -6707,12 +6707,12 @@
   path: packages/analysis/feedback_log.ts
   task: Log scores, profile, entropy, variance and S_I after each iteration to feedback_log.json
   test: packages/analysis/feedback_log.test.ts
-  status: todo
+  status: done
 - commit: Implement SystemComponent classification taxonomy
   path: packages/analysis/system_component_classification.ts
   task: Define taxonomy categories (natürlich, synthetisch, mental, physikalisch) and apply classification
   test: packages/analysis/system_component_classification.test.ts
-  status: todo
+  status: done
 - commit: Add Nullmembran SI Heatmap
   path: packages/unifiedmandala-ui/components/NullmembranSIHeatmap.tsx
   task: Visualize S_I distribution around threshold (ΔS_I ± σ) using heatmap
@@ -6722,4 +6722,4 @@
   path: services/nukleon-scanner/openapi.yaml
   task: Expose Nukleon Scanner metrics via OpenAPI/GraphQL for integration
   test: services/nukleon-scanner/openapi.test.ts
-  status: todo
+  status: done
