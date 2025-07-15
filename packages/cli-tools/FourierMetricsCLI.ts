@@ -13,8 +13,12 @@ function parseArgs(): number[] {
 function main() {
   const data = parseArgs();
   const layer = new FourierLayer('cli', 1, data, { depth: data.length });
-  const metrics = layer.analyze();
-  console.log(JSON.stringify(metrics, null, 2));
+  const result = layer.analyze();
+  const out = {
+    maxAmplitude: result.metrics.maxAmplitude,
+    avgAmplitude: result.metrics.avgAmplitude
+  };
+  console.log(JSON.stringify(out, null, 2));
 }
 
 main();
