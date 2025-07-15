@@ -13,6 +13,11 @@ export interface EmergenceMetrics {
   avgAmplitude: number;
 }
 
+export interface FourierResult {
+  metrics: EmergenceMetrics;
+  amplitudes: number[];
+}
+
 import { EventEmitter } from 'events';
 import { writeFileSync } from 'fs';
 
@@ -51,7 +56,7 @@ export class FourierLayer {
     return result;
   }
 
-  analyze(): EmergenceMetrics {
+  analyze(): FourierResult {
     const phasors = this.dft();
     const amps = phasors.map(([re, im]) => Math.hypot(re, im));
     const maxAmplitude = Math.max(...amps);
@@ -63,7 +68,7 @@ export class FourierLayer {
     if (this.config.exportPath) {
       writeFileSync(this.config.exportPath, svg, 'utf8');
     }
-    return metrics;
+    return { metrics, amplitudes: amps };
   }
 }
 

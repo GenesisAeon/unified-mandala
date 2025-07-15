@@ -3,9 +3,10 @@ import { FourierLayer, FourierLayerEvents } from './FourierLayer';
 describe('FourierLayer', () => {
   it('computes amplitude metrics', () => {
     const layer = new FourierLayer('L1', 1, [1, 0, -1, 0], { depth: 1 });
-    const metrics = layer.analyze();
-    expect(metrics.maxAmplitude).toBeGreaterThan(0);
-    expect(metrics.avgAmplitude).toBeGreaterThan(0);
+    const res = layer.analyze();
+    expect(res.metrics.maxAmplitude).toBeGreaterThan(0);
+    expect(res.metrics.avgAmplitude).toBeGreaterThan(0);
+    expect(res.amplitudes.length).toBeGreaterThan(0);
   });
 
   it('emits metrics event', () => {
