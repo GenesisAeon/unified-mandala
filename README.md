@@ -95,7 +95,7 @@ Weitere Hinweise aus dem „Sigil Übergang“:
 - [**ConversationTodoExtractor**](packages/cli-tools/ConversationTodoExtractor.ts) – filtert Aufgaben aus Chat-Logs
 - [**MetaScoreComposer**](packages/crep-engine/MetaScoreComposer.ts) – aggregiert Score-Layer
 - [**GoAgent**](packages/go-agent) – liest advancedToDo-Dateien und listet offene Tasks (Node)
-- [**Go-Agent (Golang)**](go-agent) – eigenständiger Daemon für Task-Verarbeitung
+ - [**Go-Agent (Golang)**](go-agent) – eigenständiger Daemon für Task-Verarbeitung mit Vault-Token-Auto-Rotation
 - [**MetaScoreChart** & **SyncStatus**](packages/sharedream-interface) – UI für MetaScores und Sync-Stände
 - [**CommonsAgent**](packages/agents/CommonsAgent.ts) – Open‑Science Scoring
 - [**AdaptiveThreshold** & **DebounceManager**](packages/crep-engine) – steuern CREP Trigger-Logik

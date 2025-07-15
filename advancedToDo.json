@@ -526,7 +526,8 @@
     "commit": "Configure Vault integration",
     "path": "internal/config",
     "task": "Load secrets via Vault provider with auto rotation",
-    "test": ""
+    "test": "",
+    "status": "done"
   },
   {
     "commit": "Add ML based task prioritization plugin",

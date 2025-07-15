@@ -269,7 +269,7 @@ packages/
   ├── bio                      # Biometrische Hooks und HapticService
   ├── TonePlayground.ts        # Experimentelle Tone.js-Steuerung
   ├── go-bridge             # Go-Client für REST, gRPC und NATS (inkl. GPTBridge)
-  ├── go-agent              # Autonomer Go-Daemon für Tasks
+  ├── go-agent              # Autonomer Go-Daemon für Tasks (inkl. Vault-Token-Rotation)
   │   ├── pkg/policy        # Policy Enforcement Stubs
   │   ├── pkg/handler       # Task handlers (CoordinationHandler)
   │   └── pkg/hooks         # Event Hook Publisher

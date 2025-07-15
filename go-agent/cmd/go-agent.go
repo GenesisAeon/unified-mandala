@@ -1,12 +1,13 @@
 package main
 
 import (
-	"context"
-	"log"
-	"net/http"
-	"os"
-	"os/signal"
-	"syscall"
+        "context"
+        "log"
+        "net/http"
+        "os"
+        "os/signal"
+        "syscall"
+        "time"
 
 	"github.com/spf13/cobra"
 	"github.com/unified-mandala/go-agent/internal/auth"
@@ -30,9 +31,11 @@ func run() {
 	defer stop()
 
 	cfg := config.Load()
-	if _, err := auth.NewVaultClient(cfg.Vault); err != nil {
-		log.Printf("vault: %v", err)
-	}
+        vc, err := auth.NewVaultClient(cfg.Vault)
+        if err != nil {
+                log.Printf("vault: %v", err)
+        }
+        auth.StartTokenRotation(ctx, vc, 30*time.Minute)
 	sched := scheduler.New(cfg.NATSURL, cfg.PollInterval)
 
 	go sched.Start(ctx)
