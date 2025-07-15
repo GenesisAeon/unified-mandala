@@ -6703,3 +6703,23 @@
   task: Compute average from impulseMetrics and expose via GET /api/meta-scores
   test: packages/core/routes/metaScores.test.ts
   status: done
+- commit: Add feedback_log for adaptive systems
+  path: packages/analysis/feedback_log.ts
+  task: Log scores, profile, entropy, variance and S_I after each iteration to feedback_log.json
+  test: packages/analysis/feedback_log.test.ts
+  status: todo
+- commit: Implement SystemComponent classification taxonomy
+  path: packages/analysis/system_component_classification.ts
+  task: Define taxonomy categories (natürlich, synthetisch, mental, physikalisch) and apply classification
+  test: packages/analysis/system_component_classification.test.ts
+  status: todo
+- commit: Add Nullmembran SI Heatmap
+  path: packages/unifiedmandala-ui/components/NullmembranSIHeatmap.tsx
+  task: Visualize S_I distribution around threshold (ΔS_I ± σ) using heatmap
+  test: packages/unifiedmandala-ui/components/NullmembranSIHeatmap.test.tsx
+  status: todo
+- commit: Provide OpenAPI interface for Nukleon Scanner
+  path: services/nukleon-scanner/openapi.yaml
+  task: Expose Nukleon Scanner metrics via OpenAPI/GraphQL for integration
+  test: services/nukleon-scanner/openapi.test.ts
+  status: todo
