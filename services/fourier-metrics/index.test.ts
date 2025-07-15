@@ -9,10 +9,10 @@ import { FourierLayerEvents } from '../../packages/analysis/FourierLayer';
 const PORT = 4110;
 
 describe('fourier metrics server', () => {
-  const { server } = startServer(PORT);
+  const { server, stop } = startServer(PORT);
 
   afterAll(() => {
-    server.close();
+    stop();
   });
 
   it('serves latest metrics via REST', async () => {
