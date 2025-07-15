@@ -5069,5 +5069,19 @@
     "task": "Send cached FourierLayer metrics to new websocket clients",
     "test": "services/fourier-metrics/index.test.ts",
     "status": "done"
+  },
+  {
+    "commit": "Add circuit breaker and caching to PySR service",
+    "path": "packages/agents/CosmicTheoryAgent.ts",
+    "task": "Wrap remote call with withCircuit and cache results",
+    "test": "packages/agents/__tests__/CosmicTheoryAgent.spec.ts",
+    "status": "done"
+  },
+  {
+    "commit": "Add metrics instrumentation for PySR service",
+    "path": "packages/agents/CosmicTheoryAgent.ts",
+    "task": "Record call duration via OpenTelemetry meter",
+    "test": "packages/agents/__tests__/CosmicTheoryAgent.spec.ts",
+    "status": "done"
   }
 ]

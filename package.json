@@ -70,7 +70,8 @@
     "socket.io-client": "^4.7.5",
     "three": "^0.161.0",
     "ws": "^8.17.0",
-    "yaml": "^2.8.0"
+    "yaml": "^2.8.0",
+    "opossum": "^9.0.0"
   },
   "devDependencies": {
     "@cypress/react": "^9.0.1",

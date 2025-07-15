@@ -1,5 +1,5 @@
 {
-  "lastCommit": "Send cached Fourier metrics on connection",
+  "lastCommit": "Add metrics instrumentation for PySR service",
   "fractalStep": "sync",
   "openBranches": [
     "work"
@@ -173,6 +173,14 @@
     },
     {
       "commit": "Send cached Fourier metrics on connection",
+      "status": "done"
+    },
+    {
+      "commit": "Add circuit breaker and caching to PySR service",
+      "status": "done"
+    },
+    {
+      "commit": "Add metrics instrumentation for PySR service",
       "status": "done"
     }
   ]

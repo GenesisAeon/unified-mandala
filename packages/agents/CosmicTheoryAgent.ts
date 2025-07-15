@@ -1,12 +1,21 @@
 import axios from 'axios';
+import { metrics } from '@opentelemetry/api';
 import { fractalDecompose, computeFractalMetric } from '../analysis/FractalAnalyzer';
 import { symbolicRegression } from '../analysis/SymbolicRegression';
 import { SigilManager, SigilEntry } from '../shared-utils/SigilManager';
 import { CosmicTheoryEventHub } from './CosmicTheoryAgentEvents';
+import { withCircuit } from '../core/withCircuit';
 
 export const sigilManager = new SigilManager();
 
 export const sigilHistory: SigilEntry[] = [];
+
+const meter = metrics.getMeter('cosmic-theory-agent');
+const regressionDuration = meter.createHistogram('pysr_call_duration_seconds', {
+  description: 'Duration of PySR service calls'
+});
+
+const regressionCache = new Map<string, string>();
 
 sigilManager.on('sigil:added', (entry: SigilEntry) => {
   sigilHistory.push(entry);
@@ -123,27 +132,41 @@ export async function callPySRService(
   protocol: 'rest' | 'grpc' = 'rest'
 ): Promise<string> {
   CosmicTheoryEventHub.emit('theory:start', { dataPoints: data });
-  if (protocol === 'grpc') {
-    const { Client, credentials } = await import('@grpc/grpc-js');
-    const client = new Client(endpoint, credentials.createInsecure());
-    return new Promise((resolve, reject) => {
-      client.makeUnaryRequest(
-        '/PySRService/Regress',
-        arg => Buffer.from(JSON.stringify(arg)),
-        buffer => JSON.parse(buffer.toString()),
-        { data },
-        (err, resp: any) => {
-          client.close();
-          if (err) return reject(err);
-          const eq = resp?.equation ?? '';
-          CosmicTheoryEventHub.emit('theory:regression:success', { equation: eq });
-          resolve(eq);
-        }
-      );
-    });
+  const cacheKey = `${endpoint}:${protocol}:${JSON.stringify(data)}`;
+  if (regressionCache.has(cacheKey)) {
+    return regressionCache.get(cacheKey)!;
   }
-  const resp = await axios.post(endpoint, { data });
-  CosmicTheoryEventHub.emit('theory:regression:success', { equation: resp.data.equation });
-  return resp.data.equation;
+
+  const run = async (): Promise<string> => {
+    if (protocol === 'grpc') {
+      const { Client, credentials } = await import('@grpc/grpc-js');
+      const client = new Client(endpoint, credentials.createInsecure());
+      return new Promise((resolve, reject) => {
+        client.makeUnaryRequest(
+          '/PySRService/Regress',
+          arg => Buffer.from(JSON.stringify(arg)),
+          buffer => JSON.parse(buffer.toString()),
+          { data },
+          (err, resp: any) => {
+            client.close();
+            if (err) return reject(err);
+            const eq = resp?.equation ?? '';
+            CosmicTheoryEventHub.emit('theory:regression:success', { equation: eq });
+            resolve(eq);
+          }
+        );
+      });
+    }
+    const resp = await axios.post(endpoint, { data });
+    CosmicTheoryEventHub.emit('theory:regression:success', { equation: resp.data.equation });
+    return resp.data.equation;
+  };
+
+  const wrapped = withCircuit(run, { timeout: 5000 });
+  const start = Date.now();
+  const equation = await wrapped();
+  regressionDuration.record((Date.now() - start) / 1000);
+  regressionCache.set(cacheKey, equation);
+  return equation;
 }
 
