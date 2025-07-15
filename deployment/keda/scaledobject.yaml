@@ -1,0 +1,16 @@
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: go-agent-queue
+spec:
+  scaleTargetRef:
+    kind: Deployment
+    name: go-agent
+  minReplicaCount: 1
+  maxReplicaCount: 5
+  triggers:
+    - type: external
+      metadata:
+        scalerAddress: nats://localhost:4222
+        subject: tasks
+        queueLength: "100"

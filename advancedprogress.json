@@ -1,5 +1,5 @@
 {
-  "lastCommit": "Send cached Fourier metrics on connection",
+  "lastCommit": "Implement KEDA scaling and ML prioritization",
   "fractalStep": "sync",
   "openBranches": [
     "work"
@@ -173,6 +173,14 @@
     },
     {
       "commit": "Send cached Fourier metrics on connection",
+      "status": "done"
+    },
+    {
+      "commit": "Add ML based task prioritization plugin",
+      "status": "done"
+    },
+    {
+      "commit": "Add KEDA and HPA scaling",
       "status": "done"
     }
   ]

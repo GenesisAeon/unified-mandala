@@ -273,34 +273,42 @@
   path: simulations/universe-sim
   task: Scaffold project structure and default config
   test: simulations/universe-sim/test/core_test.go
+  status: done
 - commit: Implement state manager and physics engine
   path: simulations/universe-sim/pkg/core
   task: Add State-Manager and Physics-Engine
   test: simulations/universe-sim/test/core_state_test.go
+  status: done
 - commit: Add agent engine with interaction rules
   path: simulations/universe-sim/pkg/agent
   task: Implement Agent-Engine and Interaction-Rules
   test: simulations/universe-sim/test/agent_rules_test.go
+  status: done
 - commit: Add event logger and JSONL pipeline
   path: simulations/universe-sim/pkg/logger
   task: Log events to JSONL and process pipeline
   test: simulations/universe-sim/test/logger_test.go
+  status: done
 - commit: Add federation servers for gRPC and REST
   path: simulations/universe-sim/pkg/federation
   task: Expose gRPC and REST APIs for universe-sim
   test: simulations/universe-sim/test/federation_test.go
+  status: done
 - commit: Implement CREP scanner and emergence analyzer
   path: simulations/universe-sim/pkg/analysis
   task: Analyze events for CREP and emergent patterns
   test: simulations/universe-sim/test/analysis_test.go
+  status: done
 - commit: Build visualization dashboard prototype
   path: simulations/universe-sim/ui/dashboard
   task: Real-time metrics and 3D render prototype
   test: simulations/universe-sim/ui/dashboard/Dashboard.test.tsx
+  status: done
 - commit: Add sigil generator for simulation runs
   path: simulations/universe-sim/pkg/sigil
   task: Generate sigils for each simulation
   test: simulations/universe-sim/test/sigil_test.go
+  status: done
 - commit: Set up CI/CD and tests
   path: .github/workflows/sim-universe-ci.yaml
   task: Configure CI to run tests for universe-sim
@@ -310,18 +318,22 @@
   path: packages/userfriendship/region-profile-service/models
   task: Provide country.yaml and region.yaml for 5 countries
   test: packages/userfriendship/region-profile-service/models/model_test.go
+  status: done
 - commit: Implement region profile REST endpoint
   path: packages/userfriendship/region-profile-service/service.go
   task: Expose GET /friendship/region/{ip}
   test: packages/userfriendship/region-profile-service/service_test.go
+  status: done
 - commit: Add style variant engine
   path: packages/userfriendship/style-variant-engine
   task: Generate text variants for regions
   test: packages/userfriendship/style-variant-engine/engine_test.go
+  status: done
 - commit: Implement basic A/B test for DE and FR
   path: packages/userfriendship/behavioral-testing-engine
   task: Simple A/B testing for region variants
   test: packages/userfriendship/behavioral-testing-engine/engine_test.go
+  status: done
 - commit: Create project CRUD service
   path: packages/socialgoodmesh/project-service
   task: CRUD API for community projects
@@ -370,14 +382,17 @@
   path: internal/config
   task: Load secrets via Vault provider with auto rotation
   test: ""
+  status: done
 - commit: Add ML based task prioritization plugin
   path: pkg/plugin
   task: Integrate LightGBM/XGBoost service
   test: test/plugin_test.go
+  status: done
 - commit: Add KEDA and HPA scaling
   path: deployment/keda
   task: Trigger scaling based on NATS queue length
   test: ""
+  status: done
 - commit: Implement RBAC and policy management
   path: internal/auth
   task: Enforce YAML policies for handlers
