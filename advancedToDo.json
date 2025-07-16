@@ -5405,5 +5405,33 @@
     "task": "Store agent metrics and provide hooks for UI",
     "test": "packages/agents/CosmicTheoryAgentMetrics.test.ts",
     "status": "open"
+  },
+  {
+    "commit": "Add BoundaryLawDiscoveryEngine",
+    "path": "packages/boundary-engine/BoundaryLawDiscovery.ts",
+    "task": "Consolidate detected boundary rules into macro-laws",
+    "test": "packages/boundary-engine/BoundaryLawDiscovery.test.ts",
+    "status": "open"
+  },
+  {
+    "commit": "Create PantheonAvatarraum component",
+    "path": "packages/unifiedmandala-vr/components/PantheonAvatarraum.tsx",
+    "task": "VR Begegnungsraum for Pantheon agents",
+    "test": "packages/unifiedmandala-vr/components/PantheonAvatarraum.test.tsx",
+    "status": "open"
+  },
+  {
+    "commit": "Implement ResonanceModuleOrchestrator",
+    "path": "packages/resonance-modules/ResonanceModuleOrchestrator.ts",
+    "task": "Coordinate extended resonance modules via message bus",
+    "test": "packages/resonance-modules/ResonanceModuleOrchestrator.test.ts",
+    "status": "open"
+  },
+  {
+    "commit": "Add PantheonK8sDeployment configs",
+    "path": "deployment/pantheon",
+    "task": "Kubernetes manifests for Pantheon services",
+    "test": "deployment/pantheon/pantheon_k8s.test.ts",
+    "status": "open"
   }
 ]
