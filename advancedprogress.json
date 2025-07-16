@@ -399,5 +399,38 @@
       "commit": "Add ResonanceModuleRegistry",
       "status": "open"
     }
+  ,
+    {
+      "commit": "Export Pantheon manifest in multiple formats",
+      "status": "open"
+    },
+    {
+      "commit": "Pantheon EventBus migration",
+      "status": "open"
+    },
+    {
+      "commit": "Agent skeleton generator script",
+      "status": "open"
+    },
+    {
+      "commit": "Create RuleRegistryService",
+      "status": "open"
+    },
+    {
+      "commit": "Add GraphDBPersistence module",
+      "status": "open"
+    },
+    {
+      "commit": "Add MacroSynthesizerAgent",
+      "status": "open"
+    },
+    {
+      "commit": "Create MandalaCanvas UI",
+      "status": "open"
+    },
+    {
+      "commit": "Integrate VRBegegnungsraum with MandalaCanvas",
+      "status": "open"
+    }
   ]
 }
