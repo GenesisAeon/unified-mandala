@@ -398,8 +398,7 @@
     {
       "commit": "Add ResonanceModuleRegistry",
       "status": "open"
-    }
-  ,
+    },
     {
       "commit": "Export Pantheon manifest in multiple formats",
       "status": "open"
@@ -430,6 +429,14 @@
     },
     {
       "commit": "Integrate VRBegegnungsraum with MandalaCanvas",
+      "status": "open"
+    },
+    {
+      "commit": "Add PantheonKnowledgeGraph service",
+      "status": "open"
+    },
+    {
+      "commit": "Add RuleExplorer UI",
       "status": "open"
     }
   ]
