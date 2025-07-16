@@ -182,8 +182,7 @@
     {
       "commit": "Add metrics instrumentation for PySR service",
       "status": "done"
-    }
-    ,
+    },
     {
       "commit": "Implement FourierLayerBridge for Pyramid UI integration",
       "status": "done"
@@ -195,6 +194,46 @@
     {
       "commit": "Create PyramidVRMeetingRoom component",
       "status": "done"
+    },
+    {
+      "commit": "Add scan-todo-comments script",
+      "status": "open"
+    },
+    {
+      "commit": "Add sigillin-cli grep-conversations command",
+      "status": "open"
+    },
+    {
+      "commit": "Implement go todo_parser server",
+      "status": "open"
+    },
+    {
+      "commit": "Implement parse-advanced-conversations script",
+      "status": "open"
+    },
+    {
+      "commit": "CosmicTheoryAgent gRPC REST access",
+      "status": "open"
+    },
+    {
+      "commit": "Add FourierLayer unit tests",
+      "status": "open"
+    },
+    {
+      "commit": "Add fourier analysis endpoint",
+      "status": "open"
+    },
+    {
+      "commit": "Create FourierVisual component",
+      "status": "open"
+    },
+    {
+      "commit": "Fetch real avgResonance in CREPStatsCard",
+      "status": "open"
+    },
+    {
+      "commit": "Add Mandala SVG export event",
+      "status": "open"
     }
   ]
 }

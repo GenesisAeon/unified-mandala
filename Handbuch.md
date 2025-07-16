@@ -19,6 +19,7 @@ Weitere Hinweise aus dem „Sigil Übergang“:
 - ToDo-Dateien vor größeren Commits mit `scripts/sync-todo-progress.js` abgleichen
 - Über `scripts/generate-next-sigil.js` wird nach jedem Zyklus ein neues Sigil
   mit aktuellem `update_time` erzeugt.
+Für neue Aufgaben aus Chat-Logs nutze `scripts/parse-advanced-conversations.js` und aktualisiere `advancedToDo.json` sowie `advancedprogress.json`.
 
 > **TL;DR**
 > - Installation: `./scripts/setup-unifiedmandala.sh`
