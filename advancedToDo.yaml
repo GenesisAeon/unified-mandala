@@ -6990,6 +6990,31 @@
   task: Coordinate extended resonance modules via message bus
   test: packages/resonance-modules/ResonanceModuleOrchestrator.test.ts
   status: open
+- commit: Add PantheonSigilExporter CLI
+  path: packages/unifiedmandala-cli/PantheonSigilExporter.ts
+  task: Export Pantheon manifest to .sigil format for orchestrator
+  test: packages/unifiedmandala-cli/PantheonSigilExporter.test.ts
+  status: open
+- commit: Add BoundaryRuleSchema and serializer
+  path: packages/boundary-engine/BoundaryRuleSchema.ts
+  task: Define YAML schema and serializer for boundary rules
+  test: packages/boundary-engine/BoundaryRuleSchema.test.ts
+  status: open
+- commit: Implement VRBegegnungsraumCollab module
+  path: packages/unifiedmandala-vr/src/core/VRBegegnungsraumCollab.ts
+  task: Support multiuser avatar sessions with FourierLayer integration
+  test: packages/unifiedmandala-vr/src/core/VRBegegnungsraumCollab.test.ts
+  status: open
+- commit: Add ResonanceModuleScaffold generator
+  path: scripts/generate-resonance-modules.js
+  task: Script to scaffold extended resonance module packages
+  test: scripts/__tests__/generate-resonance-modules.test.js
+  status: open
+- commit: Add OpenTelemetry tracing to CosmicTheoryAgent
+  path: packages/agents/CosmicTheoryAgent.ts
+  task: Integrate OpenTelemetry spans and metrics
+  test: packages/agents/CosmicTheoryAgent.tracing.test.ts
+  status: open
 - commit: Add PantheonK8sDeployment configs
   path: deployment/pantheon
   task: Kubernetes manifests for Pantheon services
