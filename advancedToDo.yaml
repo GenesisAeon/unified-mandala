@@ -7015,3 +7015,43 @@
   task: Dynamic registration and loading for extended resonance modules
   test: packages/resonance-modules/ResonanceModuleRegistry.test.ts
   status: open
+- commit: Export Pantheon manifest in multiple formats
+  path: docs/pantheon/unified_mandala_pantheon.yaml
+  task: Provide YAML, JSON and Mermaid graph export for Pantheon manifest
+  test: docs/pantheon/__tests__/pantheon_manifest_export.test.ts
+  status: open
+- commit: Pantheon EventBus migration
+  path: packages/orchestrator/src/eventBus.ts
+  task: Use Kafka/Redis as event bus for Pantheon orchestrator
+  test: packages/orchestrator/__tests__/eventBus.test.ts
+  status: open
+- commit: Agent skeleton generator script
+  path: scripts/init-agent-service.ts
+  task: Generate service skeleton for Pantheon agents
+  test: scripts/__tests__/init-agent-service.test.ts
+  status: open
+- commit: Create RuleRegistryService
+  path: packages/boundary-engine/rule_registry_service/registry_api.ts
+  task: REST API to persist boundary rules
+  test: packages/boundary-engine/__tests__/rule_registry_service.test.ts
+  status: open
+- commit: Add GraphDBPersistence module
+  path: packages/boundary-engine/GraphDBPersistence.ts
+  task: Persist boundary rules in Neo4j/GraphDB
+  test: packages/boundary-engine/GraphDBPersistence.test.ts
+  status: open
+- commit: Add MacroSynthesizerAgent
+  path: packages/boundary-engine/MacroSynthesizerAgent.py
+  task: Generate macro hypotheses from boundary rules
+  test: packages/boundary-engine/tests/test_macro_synthesizer.py
+  status: open
+- commit: Create MandalaCanvas UI
+  path: packages/unifiedmandala-ui/components/MandalaCanvas.tsx
+  task: Visualize boundary rules and Pantheon events
+  test: packages/unifiedmandala-ui/components/MandalaCanvas.test.tsx
+  status: open
+- commit: Integrate VRBegegnungsraum with MandalaCanvas
+  path: packages/unifiedmandala-vr/VRBegegnungsraum.ts
+  task: Link VR space with MandalaCanvas for interactive view
+  test: packages/unifiedmandala-vr/VRBegegnungsraumCanvas.test.ts
+  status: open
