@@ -6940,3 +6940,38 @@
   task: Skeleton for Plugin API microservice
   test: packages/crep-plugin-api/src/index.test.ts
   status: open
+- commit: Add UnifiedMandalaPantheon package
+  path: packages/unifiedmandala-pantheon/index.ts
+  task: Initialize Pantheon orchestrator and onboarding flow
+  test: packages/unifiedmandala-pantheon/index.test.ts
+  status: open
+- commit: Create BoundaryDiscoveryAgent
+  path: packages/unifiedmandala-boundary/boundary_discovery_agent.ts
+  task: Detect discontinuities and formalize boundary rules
+  test: packages/unifiedmandala-boundary/boundary_discovery_agent.test.ts
+  status: open
+- commit: Implement VRBegegnungsraum module
+  path: packages/unifiedmandala-vr/VRBegegnungsraum.ts
+  task: WebXR based meeting space with FourierLayer link
+  test: packages/unifiedmandala-vr/VRBegegnungsraum.test.ts
+  status: open
+- commit: Scaffold ResonanceModules
+  path: packages/resonance-modules
+  task: Provide 10 microservice modules for extended resonance
+  test: packages/resonance-modules/resonance_modules.test.ts
+  status: open
+- commit: CosmicTheoryAgent PySR gRPC access
+  path: packages/agents/CosmicTheoryAgent.ts
+  task: Call external PySR service via gRPC/REST
+  test: packages/agents/CosmicTheoryAgent.test.ts
+  status: open
+- commit: CosmicTheoryAgent 3D canvas and Tone.js
+  path: packages/unifiedmandala-ui/components/CosmicPlayground.tsx
+  task: Interactive 3D canvas with Tone.js integration
+  test: packages/unifiedmandala-ui/components/CosmicPlayground.test.tsx
+  status: open
+- commit: CosmicTheoryAgent MetricsStore interface
+  path: packages/agents/CosmicTheoryAgentMetrics.ts
+  task: Store agent metrics and provide hooks for UI
+  test: packages/agents/CosmicTheoryAgentMetrics.test.ts
+  status: open
