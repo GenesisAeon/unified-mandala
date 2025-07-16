@@ -1,5 +1,5 @@
 {
-  "lastCommit": "Added Pantheon orchestrator and VR module tasks",
+  "lastCommit": "Added Pantheon, Boundary, VR and CosmicTheory tasks",
   "fractalStep": "sync",
   "openBranches": [
     "work"
@@ -337,6 +337,34 @@
     },
     {
       "commit": "Add CREPPluginAPI package",
+      "status": "open"
+    },
+    {
+      "commit": "Add UnifiedMandalaPantheon package",
+      "status": "open"
+    },
+    {
+      "commit": "Create BoundaryDiscoveryAgent",
+      "status": "open"
+    },
+    {
+      "commit": "Implement VRBegegnungsraum module",
+      "status": "open"
+    },
+    {
+      "commit": "Scaffold ResonanceModules",
+      "status": "open"
+    },
+    {
+      "commit": "CosmicTheoryAgent PySR gRPC access",
+      "status": "open"
+    },
+    {
+      "commit": "CosmicTheoryAgent 3D canvas and Tone.js",
+      "status": "open"
+    },
+    {
+      "commit": "CosmicTheoryAgent MetricsStore interface",
       "status": "open"
     }
   ]
