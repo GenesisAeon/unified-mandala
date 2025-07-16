@@ -5671,5 +5671,26 @@
     "task": "Integrate VR audio loops and resonance feedback",
     "test": "packages/resonance/ExtendedResonanceVRModule.test.ts",
     "status": "open"
+  },
+  {
+    "commit": "Add FourierLayerVRConnector",
+    "path": "packages/unifiedmandala-vr/FourierLayerVRConnector.ts",
+    "task": "Connect VRBegegnungsraum to FourierLayer pipeline",
+    "test": "packages/unifiedmandala-vr/FourierLayerVRConnector.test.ts",
+    "status": "open"
+  },
+  {
+    "commit": "Add BoundaryMatrixVisualizer",
+    "path": "packages/boundary-engine/BoundaryMatrixVisualizer.tsx",
+    "task": "Visualize boundary laws via interactive matrix",
+    "test": "packages/boundary-engine/BoundaryMatrixVisualizer.test.tsx",
+    "status": "open"
+  },
+  {
+    "commit": "Extend ExtendedResonanceVRModule with Fourier",
+    "path": "packages/resonance/ExtendedResonanceVRModule.ts",
+    "task": "Add Fourier-based resonance modulation",
+    "test": "packages/resonance/ExtendedResonanceVRModule.test.ts",
+    "status": "open"
   }
 ]

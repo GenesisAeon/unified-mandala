@@ -518,6 +518,18 @@
     {
       "commit": "Add ExtendedResonanceVRModule",
       "status": "open"
+    },
+    {
+      "commit": "Add FourierLayerVRConnector",
+      "status": "open"
+    },
+    {
+      "commit": "Add BoundaryMatrixVisualizer",
+      "status": "open"
+    },
+    {
+      "commit": "Extend ExtendedResonanceVRModule with Fourier",
+      "status": "open"
     }
   ]
 }
