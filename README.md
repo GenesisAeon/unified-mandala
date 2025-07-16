@@ -42,12 +42,15 @@ Weitere Hinweise aus dem „Sigil Übergang“:
 - [**FourierLayer Docs**](docs/fourier-layer.md) – usage examples and metrics
 - [**FourierMetricsServer**](packages/analysis/FourierMetricsServer.ts) – broadcast Fourier metrics via WebSocket
 - [**FourierMetricsViewer**](packages/unifiedmandala-ui/components/FourierMetricsViewer.tsx) – displays SVG metrics from the Fourier bridge
+- [**FourierLayerBridge**](packages/unifiedmandala-ui/events/FourierLayerBridge.ts) – streams metrics to the Pyramid UI via WebSocket
 - [**FrequencyMandala**](packages/unifiedmandala-ui/components/FrequencyMandala.tsx) – visualizes Fourier frequency flowers
 - [**FourierMetricsCLI**](packages/cli-tools/FourierMetricsCLI.ts) – compute metrics from the command line
 - [**FractalTaskRunner**](packages/task-runner/FractalTaskRunner.ts) – executes YAML-defined plugin workflows
 - [**Fractal Runner CLI**](packages/agents/bin/fractal-runner.ts) – runs YAML task files with optional soundscape
 - [**React Starter**](packages/unifiedmandala-ui/ReactStarter.tsx) – Tailwind/Vite skeleton setup
 - [**EventBridge**](packages/unifiedmandala-ui/events/EventBridge.ts) – verbindet CosmicTheoryAgent mit der Pyramid UI
+- [**PyramidVRMeetingRoom**](packages/unifiedmandala-ui/components/PyramidVRMeetingRoom.tsx) – enables multi-avatar VR sessions
+- CosmicTheoryAgent now exposes **VR hooks** for immersive interactions
 - [**PySR Service Client**](packages/agents/CosmicTheoryAgent.ts) – Regression via REST/gRPC
 - [**Sigil Archive Service**](services/sigil-archive/index.ts) – speichert Sigille und CREP-Fragmente
 - [**CREPVisualizer**](packages/unifiedmandala-ui/components/CREPVisualizer.tsx) – animierte Timeline der Mandala-Kristalle
