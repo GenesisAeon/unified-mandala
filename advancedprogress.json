@@ -1,5 +1,5 @@
 {
-  "lastCommit": "Add metrics instrumentation for PySR service",
+  "lastCommit": "Added Phanteon and VR tasks",
   "fractalStep": "sync",
   "openBranches": [
     "work"
@@ -233,6 +233,22 @@
     },
     {
       "commit": "Add Mandala SVG export event",
+      "status": "open"
+    },
+    {
+      "commit": "Add PhanteonIntegration service",
+      "status": "open"
+    },
+    {
+      "commit": "Add BoundaryConditionManager",
+      "status": "open"
+    },
+    {
+      "commit": "Create VRBegegnungsraum component",
+      "status": "open"
+    },
+    {
+      "commit": "Add ExtendedResonanceModule",
       "status": "open"
     }
   ]
