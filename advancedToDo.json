@@ -5461,8 +5461,7 @@
     "task": "Dynamic registration and loading for extended resonance modules",
     "test": "packages/resonance-modules/ResonanceModuleRegistry.test.ts",
     "status": "open"
-  }
-,
+  },
   {
     "commit": "Export Pantheon manifest in multiple formats",
     "path": "docs/pantheon/unified_mandala_pantheon.yaml",
@@ -5517,6 +5516,20 @@
     "path": "packages/unifiedmandala-vr/VRBegegnungsraum.ts",
     "task": "Link VR space with MandalaCanvas for interactive view",
     "test": "packages/unifiedmandala-vr/VRBegegnungsraumCanvas.test.ts",
+    "status": "open"
+  },
+  {
+    "commit": "Add PantheonKnowledgeGraph service",
+    "path": "packages/pantheon/PantheonKnowledgeGraph.ts",
+    "task": "Store Pantheon relations in Neo4j and expose RuleExplorer API",
+    "test": "packages/pantheon/PantheonKnowledgeGraph.test.ts",
+    "status": "open"
+  },
+  {
+    "commit": "Add RuleExplorer UI",
+    "path": "packages/unifiedmandala-ui/components/RuleExplorer.tsx",
+    "task": "Interactive UI to browse Pantheon and Boundary rules",
+    "test": "packages/unifiedmandala-ui/components/RuleExplorer.test.tsx",
     "status": "open"
   }
 ]
