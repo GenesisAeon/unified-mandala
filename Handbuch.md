@@ -61,6 +61,8 @@ Für neue Aufgaben aus Chat-Logs nutze `scripts/parse-advanced-conversations.js`
 - `EventBridge` – leitet CosmicTheoryAgent-Events an die UI weiter.
 - `PyramidVRMeetingRoom` – VR-Raum für mehrere Avatare.
 - CosmicTheoryAgent liefert VR-Hooks für immersive Steuerung.
+- `AeonOrchestrator` – zentrale Steuerinstanz des Pantheon, verteilt Boundary-Regeln.
+- `UnifiedMandalaVR` – Modulpaket mit AvatarManager, EthicsGuard und FourierLayerBridge.
 - `archiveSigil` – schreibt Sigil-Dateien in GenesisAeonZIPMEM.
 - `CREPVisualizer` – zeigt CREP-Verlauf als animierte Timeline.
 

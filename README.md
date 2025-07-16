@@ -48,6 +48,8 @@ Weitere Hinweise aus dem „Sigil Übergang“:
 - [**FractalTaskRunner**](packages/task-runner/FractalTaskRunner.ts) – executes YAML-defined plugin workflows
 - [**Fractal Runner CLI**](packages/agents/bin/fractal-runner.ts) – runs YAML task files with optional soundscape
 - [**React Starter**](packages/unifiedmandala-ui/ReactStarter.tsx) – Tailwind/Vite skeleton setup
+- **Aeon Orchestrator** – koordiniert Pantheon-Agenten und streamt Boundary-Regeln
+- **VR-Begegnungsraum** – Avatar-Interaktion und Mandala-Szenen im WebXR-Modul
 - [**EventBridge**](packages/unifiedmandala-ui/events/EventBridge.ts) – verbindet CosmicTheoryAgent mit der Pyramid UI
 - [**PyramidVRMeetingRoom**](packages/unifiedmandala-ui/components/PyramidVRMeetingRoom.tsx) – enables multi-avatar VR sessions
 - CosmicTheoryAgent now exposes **VR hooks** for immersive interactions
