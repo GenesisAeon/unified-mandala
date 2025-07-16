@@ -7091,3 +7091,34 @@
   task: Engine to discover boundary rules
   test: packages/boundary-engine/BoundaryLawDiscovery.test.ts
   status: open
+
+- commit: Create documentation generator
+  path: scripts/generate-docs.ts
+  task: Generate markdown docs from source comments
+  test: scripts/__tests__/generate-docs.test.ts
+  status: open
+- commit: Archive completed ToDos to ZIPMEM
+  path: scripts/archive-todos.ts
+  task: Move solved tasks and docs into GenesisAeonZIPMEM
+  test: scripts/__tests__/archive-todos.test.ts
+  status: open
+- commit: Create VRPyramidPortal component
+  path: packages/unifiedmandala-vr/components/VRPyramidPortal.tsx
+  task: WebXR portal connecting Pyramid UI to VRBegegnungsraum
+  test: packages/unifiedmandala-vr/components/VRPyramidPortal.test.tsx
+  status: open
+- commit: Implement PantheonPortal3D
+  path: packages/unifiedmandala-ui/components/PantheonPortal3D.tsx
+  task: Interactive 3D Pantheon module explorer
+  test: packages/unifiedmandala-ui/components/PantheonPortal3D.test.tsx
+  status: open
+- commit: Add BoundaryLawDashboard
+  path: packages/boundary-engine/BoundaryLawDashboard.tsx
+  task: Dashboard visualizing boundary laws and macro-hypotheses
+  test: packages/boundary-engine/BoundaryLawDashboard.test.tsx
+  status: open
+- commit: Extend ResonanceModuleOrchestrator plugin support
+  path: packages/resonance-modules/ResonanceModuleOrchestrator.ts
+  task: Add plugin registration and event hooks
+  test: packages/resonance-modules/ResonanceModuleOrchestrator.test.ts
+  status: open

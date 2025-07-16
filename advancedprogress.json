@@ -459,5 +459,29 @@
       "commit": "Add BoundaryLawDiscoveryEngine",
       "status": "open"
     }
+    ,{
+      "commit": "Create documentation generator",
+      "status": "open"
+    },
+    {
+      "commit": "Archive completed ToDos to ZIPMEM",
+      "status": "open"
+    },
+    {
+      "commit": "Create VRPyramidPortal component",
+      "status": "open"
+    },
+    {
+      "commit": "Implement PantheonPortal3D",
+      "status": "open"
+    },
+    {
+      "commit": "Add BoundaryLawDashboard",
+      "status": "open"
+    },
+    {
+      "commit": "Extend ResonanceModuleOrchestrator plugin support",
+      "status": "open"
+    }
   ]
 }
