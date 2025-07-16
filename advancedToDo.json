@@ -5104,9 +5104,7 @@
     "task": "Allow multi-avatar VR interactions in the Pyramid UI",
     "test": "packages/unifiedmandala-ui/components/PyramidVRMeetingRoom.test.tsx",
     "status": "done"
-  }
-]
-  ,
+  },
   {
     "commit": "Add scan-todo-comments script",
     "path": "scripts/scan-todo-comments.js",
@@ -5176,5 +5174,71 @@
     "task": "Offer SVG export or WebSocket event",
     "test": "packages/unifiedmandala-ui/src/components/BlackboxMandala.test.tsx",
     "status": "open"
+  },
+  {
+    "commit": "-Dateien vor großen Commits mit",
+    "path": "",
+    "task": "-Dateien vor großen Commits mit",
+    "test": ""
+  },
+  {
+    "commit": "c & Manifest-Generator**:",
+    "path": "",
+    "task": "c & Manifest-Generator**:",
+    "test": ""
+  },
+  {
+    "commit": "Realwert vom Backend nachrüsten!",
+    "path": "",
+    "task": "Realwert vom Backend nachrüsten!",
+    "test": ""
+  },
+  {
+    "commit": "Analyse/Logik",
+    "path": "",
+    "task": "Analyse/Logik",
+    "test": ""
+  },
+  {
+    "commit": "Persistenz, Analyse, CREP-Bewertung, Forward an Dashboard",
+    "path": "",
+    "task": "Persistenz, Analyse, CREP-Bewertung, Forward an Dashboard",
+    "test": ""
+  },
+  {
+    "commit": "ku laufen synchron.",
+    "path": "",
+    "task": "ku laufen synchron.",
+    "test": ""
+  },
+  {
+    "commit": "-Mandala, Layer-UI, Composer, WebSocket, Audio, VR.",
+    "path": "",
+    "task": "-Mandala, Layer-UI, Composer, WebSocket, Audio, VR.",
+    "test": ""
+  },
+  {
+    "commit": "Mini-Chart hier einfügen */}",
+    "path": "",
+    "task": "Mini-Chart hier einfügen */}",
+    "test": ""
+  },
+  {
+    "commit": "-Sigil, YAML/JSON-Konvertierung",
+    "path": "",
+    "task": "-Sigil, YAML/JSON-Konvertierung",
+    "test": ""
+  },
+  {
+    "commit": "Mini-Chart hier einfügen */}\\n    </div>\\n  );\\n};\\n\\n// Integration:\\n// import { CREPStatsCard } from './components/CREPStatsCard';\\n// <CREPStatsCard />  // z.B. in Dashboard oder Sidebar\\n\"}",
+    "path": "",
+    "task": "Mini-Chart hier einfügen */}\\n    </div>\\n  );\\n};\\n\\n// Integration:\\n// import { CREPStatsCard } from './components/CREPStatsCard';\\n// <CREPStatsCard />  // z.B. in Dashboard oder Sidebar\\n\"}",
+    "test": ""
+  },
+  {
+    "commit": "POST /impulse/:idx/crep */}} />",
+    "path": "",
+    "task": "POST /impulse/:idx/crep */}} />",
+    "test": ""
   }
 ]

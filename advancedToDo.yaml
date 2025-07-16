@@ -6707,12 +6707,14 @@
   status: done
 - commit: Add feedback_log for adaptive systems
   path: packages/analysis/feedback_log.ts
-  task: Log scores, profile, entropy, variance and S_I after each iteration to feedback_log.json
+  task: Log scores, profile, entropy, variance and S_I after each iteration to
+    feedback_log.json
   test: packages/analysis/feedback_log.test.ts
   status: done
 - commit: Implement SystemComponent classification taxonomy
   path: packages/analysis/system_component_classification.ts
-  task: Define taxonomy categories (natürlich, synthetisch, mental, physikalisch) and apply classification
+  task: Define taxonomy categories (natürlich, synthetisch, mental, physikalisch)
+    and apply classification
   test: packages/analysis/system_component_classification.test.ts
   status: done
 - commit: Add Nullmembran SI Heatmap
@@ -6810,3 +6812,52 @@
   task: Offer SVG export or WebSocket event
   test: packages/unifiedmandala-ui/src/components/BlackboxMandala.test.tsx
   status: open
+- commit: -Dateien vor großen Commits mit
+  path: ""
+  task: -Dateien vor großen Commits mit
+  test: ""
+- commit: "c & Manifest-Generator**:"
+  path: ""
+  task: "c & Manifest-Generator**:"
+  test: ""
+- commit: Realwert vom Backend nachrüsten!
+  path: ""
+  task: Realwert vom Backend nachrüsten!
+  test: ""
+- commit: Analyse/Logik
+  path: ""
+  task: Analyse/Logik
+  test: ""
+- commit: Persistenz, Analyse, CREP-Bewertung, Forward an Dashboard
+  path: ""
+  task: Persistenz, Analyse, CREP-Bewertung, Forward an Dashboard
+  test: ""
+- commit: ku laufen synchron.
+  path: ""
+  task: ku laufen synchron.
+  test: ""
+- commit: -Mandala, Layer-UI, Composer, WebSocket, Audio, VR.
+  path: ""
+  task: -Mandala, Layer-UI, Composer, WebSocket, Audio, VR.
+  test: ""
+- commit: Mini-Chart hier einfügen */}
+  path: ""
+  task: Mini-Chart hier einfügen */}
+  test: ""
+- commit: -Sigil, YAML/JSON-Konvertierung
+  path: ""
+  task: -Sigil, YAML/JSON-Konvertierung
+  test: ""
+- commit: Mini-Chart hier einfügen */}\n    </div>\n  );\n};\n\n//
+    Integration:\n// import { CREPStatsCard } from
+    './components/CREPStatsCard';\n// <CREPStatsCard />  // z.B. in Dashboard
+    oder Sidebar\n"}
+  path: ""
+  task: Mini-Chart hier einfügen */}\n    </div>\n  );\n};\n\n// Integration:\n//
+    import { CREPStatsCard } from './components/CREPStatsCard';\n//
+    <CREPStatsCard />  // z.B. in Dashboard oder Sidebar\n"}
+  test: ""
+- commit: POST /impulse/:idx/crep */}} />
+  path: ""
+  task: POST /impulse/:idx/crep */}} />
+  test: ""
