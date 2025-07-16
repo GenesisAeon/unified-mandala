@@ -5762,5 +5762,40 @@
     "task": "Stream FourierLayer metrics via gRPC to Pyramid UI",
     "test": "packages/agents/CosmicTheoryAgent.test.ts",
     "status": "open"
+  },
+  {
+    "commit": "Add PantheonGateway service",
+    "path": "packages/unifiedmandala-pantheon/PantheonGateway.ts",
+    "task": "Central routing layer for pantheon modules",
+    "test": "packages/unifiedmandala-pantheon/PantheonGateway.test.ts",
+    "status": "open"
+  },
+  {
+    "commit": "Add BoundaryVisualDebugger",
+    "path": "packages/boundary-engine/BoundaryVisualDebugger.ts",
+    "task": "Visualize active boundaries and collisions",
+    "test": "packages/boundary-engine/BoundaryVisualDebugger.test.ts",
+    "status": "open"
+  },
+  {
+    "commit": "Create VRAvatarHub component",
+    "path": "packages/unifiedmandala-vr/components/VRAvatarHub.tsx",
+    "task": "Hub to spawn avatars and portals in VR space",
+    "test": "packages/unifiedmandala-vr/components/VRAvatarHub.test.tsx",
+    "status": "open"
+  },
+  {
+    "commit": "Implement ResonanceModuleSynth",
+    "path": "packages/resonance-modules/ResonanceModuleSynth.ts",
+    "task": "Sound synthesis layer for resonance modules",
+    "test": "packages/resonance-modules/ResonanceModuleSynth.test.ts",
+    "status": "open"
+  },
+  {
+    "commit": "Add CosmicTheoryAgent introspection logs",
+    "path": "packages/agents/CosmicTheoryAgent.ts",
+    "task": "Introspective logging of FourierLayer metrics",
+    "test": "packages/agents/CosmicTheoryAgent.test.ts",
+    "status": "open"
   }
 ]
