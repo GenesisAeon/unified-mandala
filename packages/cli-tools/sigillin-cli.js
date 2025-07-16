@@ -143,6 +143,35 @@ program
     console.log('todo-sigil.yaml Status gepr\xFCft und aktualisiert.');
   });
 
+function bumpVersion(file, level = 'patch') {
+  const path = require('path');
+  const fs = require('fs');
+  const YAML = require('yaml');
+  const filepath = path.resolve(file);
+  const content = fs.readFileSync(filepath, 'utf8');
+  const isYaml = filepath.endsWith('.yaml') || filepath.endsWith('.yml');
+  const sigil = isYaml ? YAML.parse(content) : JSON.parse(content);
+  const [major, minor, patch] = (sigil.version || '0.0.0').split('.').map(Number);
+  let m = major, n = minor, p = patch;
+  if (level === 'major') { m += 1; n = 0; p = 0; }
+  else if (level === 'minor') { n += 1; p = 0; }
+  else { p += 1; }
+  sigil.version = [m, n, p].join('.');
+  const out = isYaml ? YAML.stringify(sigil) : JSON.stringify(sigil, null, 2);
+  fs.writeFileSync(filepath, out);
+  return sigil.version;
+}
+
+program
+  .command('bump <file> [level]')
+  .description('Erh\xF6ht die Versionsnummer eines Sigillins (patch, minor, major)')
+  .action((file, level = 'patch') => {
+    const version = bumpVersion(file, level);
+    console.log(`Version auf ${version} gesetzt.`);
+  });
+
+module.exports = { bumpVersion };
+
 program
   .command('list-open-tasks [file]')
   .description('Listet offene Tasks aus advancedToDo.yaml')
@@ -183,4 +212,6 @@ program
     console.log(`Filtered ${matches.length} items containing '${keyword}'. Output: ${dest}`);
   });
 
-program.parse(process.argv);
+if (require.main === module) {
+  program.parse(process.argv);
+}
