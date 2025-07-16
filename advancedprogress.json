@@ -482,6 +482,26 @@
     {
       "commit": "Extend ResonanceModuleOrchestrator plugin support",
       "status": "open"
+    },
+    {
+      "commit": "Add PantheonSigilExporter CLI",
+      "status": "open"
+    },
+    {
+      "commit": "Add BoundaryRuleSchema and serializer",
+      "status": "open"
+    },
+    {
+      "commit": "Implement VRBegegnungsraumCollab module",
+      "status": "open"
+    },
+    {
+      "commit": "Add ResonanceModuleScaffold generator",
+      "status": "open"
+    },
+    {
+      "commit": "Add OpenTelemetry tracing to CosmicTheoryAgent",
+      "status": "open"
     }
   ]
 }
