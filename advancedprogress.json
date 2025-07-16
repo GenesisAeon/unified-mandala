@@ -570,6 +570,26 @@
     {
       "commit": "CosmicTheoryAgent FourierLayer gRPC bridge",
       "status": "open"
+    },
+    {
+      "commit": "Add PantheonGateway service",
+      "status": "open"
+    },
+    {
+      "commit": "Add BoundaryVisualDebugger",
+      "status": "open"
+    },
+    {
+      "commit": "Create VRAvatarHub component",
+      "status": "open"
+    },
+    {
+      "commit": "Implement ResonanceModuleSynth",
+      "status": "open"
+    },
+    {
+      "commit": "Add CosmicTheoryAgent introspection logs",
+      "status": "open"
     }
   ]
 }
