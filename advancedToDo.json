@@ -5566,8 +5566,8 @@
     "task": "Engine to discover boundary rules",
     "test": "packages/boundary-engine/BoundaryLawDiscovery.test.ts",
     "status": "open"
-  }
-  ,{
+  },
+  {
     "commit": "Create documentation generator",
     "path": "scripts/generate-docs.ts",
     "task": "Generate markdown docs from source comments",
@@ -5607,6 +5607,41 @@
     "path": "packages/resonance-modules/ResonanceModuleOrchestrator.ts",
     "task": "Add plugin registration and event hooks",
     "test": "packages/resonance-modules/ResonanceModuleOrchestrator.test.ts",
+    "status": "open"
+  },
+  {
+    "commit": "Add AeonKernel core",
+    "path": "packages/aeon-core/AeonKernel.ts",
+    "task": "CREP state storage with trigger-based decision engine",
+    "test": "packages/aeon-core/AeonKernel.test.ts",
+    "status": "open"
+  },
+  {
+    "commit": "Implement SigilDriver framework",
+    "path": "packages/aeon-core/SigilDriver.ts",
+    "task": "Base class for hardware drivers using Sigil metadata",
+    "test": "packages/aeon-core/SigilDriver.test.ts",
+    "status": "open"
+  },
+  {
+    "commit": "Create DeviceDiscoveryService",
+    "path": "packages/aeon-core/DeviceDiscoveryService.ts",
+    "task": "Symbolic device discovery and driver binding",
+    "test": "packages/aeon-core/DeviceDiscoveryService.test.ts",
+    "status": "open"
+  },
+  {
+    "commit": "Add ReflexDriverGPT",
+    "path": "packages/aeon-core/ReflexDriverGPT.ts",
+    "task": "Self-reflective driver using GPT for sensor analysis",
+    "test": "packages/aeon-core/ReflexDriverGPT.test.ts",
+    "status": "open"
+  },
+  {
+    "commit": "Implement MandalaInterface UI",
+    "path": "packages/unifiedmandala-ui/components/MandalaInterface.tsx",
+    "task": "State-driven interactive mandala interface for AeonKernel",
+    "test": "packages/unifiedmandala-ui/components/MandalaInterface.test.tsx",
     "status": "open"
   }
 ]
