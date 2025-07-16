@@ -9,6 +9,7 @@ import { listPlugins, getPlugin } from '../plugin-loader';
 import { verifyPluginManifest } from './blockchain-trust';
 import { metricsMiddleware, metricsEndpoint } from '../../packages/core/middleware/metrics';
 import path from 'path';
+import fs from 'fs';
 import { addSession, getSession, removeSession } from './session-store';
 import { recordConnection, recordLatency } from './metrics';
 import { joinRoom, sendRoomMessage, leaveAll, leaveRoom } from './rooms';
@@ -40,6 +41,17 @@ export function startServer(
   });
 
   app.get('/metrics', metricsEndpoint);
+
+  app.get('/api/public/todos', (_req, res) => {
+    try {
+      const todoPath = path.join(__dirname, '..', '..', 'advancedToDo.json');
+      const list = JSON.parse(fs.readFileSync(todoPath, 'utf8'));
+      const open = list.filter((t: any) => t.status !== 'done');
+      res.json({ open: open.length });
+    } catch (e: any) {
+      res.status(500).json({ error: e.message });
+    }
+  });
 
   app.get('/api/plugins', (_req, res) => {
     res.json(listPlugins());

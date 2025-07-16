@@ -39,4 +39,11 @@ describe('ghost-shell server', () => {
     expect(res.status).toBe(200);
     expect(res.text).toContain('ghost_connections_total');
   });
+
+  it('returns open todo count', async () => {
+    const res = await request(`http://localhost:${PORT}`).get('/api/public/todos');
+    expect(res.status).toBe(200);
+    expect(res.body).toHaveProperty('open');
+    expect(typeof res.body.open).toBe('number');
+  });
 });
