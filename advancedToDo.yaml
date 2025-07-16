@@ -6830,3 +6830,113 @@
   task: Advanced resonance analysis and modulation
   test: packages/resonance/ExtendedResonanceModule.test.ts
   status: open
+- commit: Add Aeon Orchestrator service
+  path: packages/orchestrator/src/index.ts
+  task: Coordinate Pantheon agents and broadcast rules via socket.io
+  test: packages/orchestrator/__tests__/index.test.ts
+  status: open
+- commit: Export unified pantheon manifest
+  path: docs/sigils/unified_mandala_pantheon.yaml
+  task: Provide Pantheon manifest as YAML for orchestrator
+  test: packages/orchestrator/__tests__/manifest.test.ts
+  status: open
+- commit: Implement BoundaryRuleDetector
+  path: packages/core/BoundaryRuleDetector.ts
+  task: Detect boundary laws and emergent phenomena
+  test: packages/core/BoundaryRuleDetector.test.ts
+  status: open
+- commit: Create AvatarManager module
+  path: packages/unifiedmandala-vr/src/core/AvatarManager.ts
+  task: Manage VR avatars in meeting room
+  test: packages/unifiedmandala-vr/src/core/AvatarManager.test.ts
+  status: open
+- commit: Create EthicsGuard module
+  path: packages/unifiedmandala-vr/src/core/EthicsGuard.ts
+  task: Filter content for hate speech and aggression
+  test: packages/unifiedmandala-vr/src/core/EthicsGuard.test.ts
+  status: open
+- commit: Create FourierLayerBridge
+  path: packages/unifiedmandala-vr/src/core/FourierLayerBridge.ts
+  task: Integrate VR space with FourierLayer
+  test: packages/unifiedmandala-vr/src/core/FourierLayerBridge.test.ts
+  status: open
+- commit: Create CREPIntegration module
+  path: packages/unifiedmandala-vr/src/core/CREPIntegration.ts
+  task: Provide real-time CREP hooks for VR room
+  test: packages/unifiedmandala-vr/src/core/CREPIntegration.test.ts
+  status: open
+- commit: Create MandalaScene component
+  path: packages/unifiedmandala-vr/src/ui/MandalaScene.ts
+  task: Render mandala environment in VR
+  test: packages/unifiedmandala-vr/src/ui/MandalaScene.test.ts
+  status: open
+- commit: Create ArtInteraction component
+  path: packages/unifiedmandala-vr/src/ui/ArtInteraction.ts
+  task: Enable collaborative art in VR
+  test: packages/unifiedmandala-vr/src/ui/ArtInteraction.test.ts
+  status: open
+- commit: Create UIControls component
+  path: packages/unifiedmandala-vr/src/ui/UIControls.ts
+  task: Provide basic VR controls
+  test: packages/unifiedmandala-vr/src/ui/UIControls.test.ts
+  status: open
+- commit: Add safety utilities
+  path: packages/unifiedmandala-vr/src/utils/safety.ts
+  task: Reusable security helpers for VR
+  test: packages/unifiedmandala-vr/src/utils/safety.test.ts
+  status: open
+- commit: Create VR package scaffold
+  path: packages/unifiedmandala-vr/package.json
+  task: Setup package for VR meeting room modules
+  test: packages/unifiedmandala-vr/__tests__/package.test.ts
+  status: open
+- commit: Add Extended Resonance module packages
+  path: packages/coherence-agent/src/index.ts
+  task: Skeleton for CoherenceAgent service
+  test: packages/coherence-agent/src/index.test.ts
+  status: open
+- commit: Add ArchetypeAnalyzer package
+  path: packages/archetype-analyzer/src/index.ts
+  task: Skeleton for ArchetypeAnalyzer service
+  test: packages/archetype-analyzer/src/index.test.ts
+  status: open
+- commit: Add EthicGuardian package
+  path: packages/ethic-guardian/src/index.ts
+  task: Skeleton for EthicGuardian microservice
+  test: packages/ethic-guardian/src/index.test.ts
+  status: open
+- commit: Add CreativeDreamer package
+  path: packages/creative-dreamer/src/index.ts
+  task: Skeleton for CreativeDreamer microservice
+  test: packages/creative-dreamer/src/index.test.ts
+  status: open
+- commit: Add MemeChronicle package
+  path: packages/meme-chronicle/src/index.ts
+  task: Skeleton for MemeChronicle microservice
+  test: packages/meme-chronicle/src/index.test.ts
+  status: open
+- commit: Add SelfReflection package
+  path: packages/self-reflection/src/index.ts
+  task: Skeleton for SelfReflection microservice
+  test: packages/self-reflection/src/index.test.ts
+  status: open
+- commit: Add Synchronizer package
+  path: packages/synchronizer/src/index.ts
+  task: Skeleton for MandalaSynchronizer microservice
+  test: packages/synchronizer/src/index.test.ts
+  status: open
+- commit: Add BioSensorGateway package
+  path: packages/biosensor-gateway/src/index.ts
+  task: Skeleton for BioSensorGateway microservice
+  test: packages/biosensor-gateway/src/index.test.ts
+  status: open
+- commit: Add FractalAuditTrail package
+  path: packages/audit-trail/src/index.ts
+  task: Skeleton for FractalAuditTrail microservice
+  test: packages/audit-trail/src/index.test.ts
+  status: open
+- commit: Add CREPPluginAPI package
+  path: packages/crep-plugin-api/src/index.ts
+  task: Skeleton for Plugin API microservice
+  test: packages/crep-plugin-api/src/index.test.ts
+  status: open
