@@ -5,7 +5,7 @@
     "work"
   ],
   "mergeConflicts": [],
-  "notes": "Added future resonance anchor",
+  "notes": "Added future resonance anchor; extracted Pantheon, Boundary and VR tasks",
   "pendingTasks": [
     {
       "commit": "TODO from newadvancedconversations.json - AgentCoordinator",
@@ -549,6 +549,26 @@
     },
     {
       "commit": "Implement Dispatcher Error-Boundary",
+      "status": "open"
+    },
+    {
+      "commit": "Add PantheonLobbyService",
+      "status": "open"
+    },
+    {
+      "commit": "Add PantheonLobbyUI",
+      "status": "open"
+    },
+    {
+      "commit": "Add BoundaryPolicyManager",
+      "status": "open"
+    },
+    {
+      "commit": "Extend ResonanceModuleOrchestrator VR integration",
+      "status": "open"
+    },
+    {
+      "commit": "CosmicTheoryAgent FourierLayer gRPC bridge",
       "status": "open"
     }
   ]
