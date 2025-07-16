@@ -1,5 +1,5 @@
 {
-  "lastCommit": "Added AeonKernel and MandalaInterface tasks",
+  "lastCommit": "Extracted Pantheon, Boundary, VR and Resonance tasks",
   "fractalStep": "sync",
   "openBranches": [
     "work"
@@ -589,6 +589,22 @@
     },
     {
       "commit": "Add CosmicTheoryAgent introspection logs",
+      "status": "open"
+    },
+    {
+      "commit": "PantheonOnboardingBlueprint",
+      "status": "open"
+    },
+    {
+      "commit": "BoundaryPrototypeScaffold",
+      "status": "open"
+    },
+    {
+      "commit": "VRBegegnungsraumProjectPlan",
+      "status": "open"
+    },
+    {
+      "commit": "ResonanceModuleScaffold",
       "status": "open"
     }
   ]
