@@ -530,6 +530,26 @@
     {
       "commit": "Extend ExtendedResonanceVRModule with Fourier",
       "status": "open"
+    },
+    {
+      "commit": "Implement PantheonFeedbackRound",
+      "status": "open"
+    },
+    {
+      "commit": "Add PoetryErrorBoundary component",
+      "status": "open"
+    },
+    {
+      "commit": "Create VRBegegnungsraumLobby",
+      "status": "open"
+    },
+    {
+      "commit": "Develop AeonResonanceModules",
+      "status": "open"
+    },
+    {
+      "commit": "Implement Dispatcher Error-Boundary",
+      "status": "open"
     }
   ]
 }

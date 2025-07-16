@@ -1,0 +1,37 @@
+[
+  {
+    "commit": "Implement PantheonFeedbackRound",
+    "path": "packages/pantheon/PantheonFeedbackService.ts",
+    "task": "Coordinate GPT feedback round with Pantheon agents",
+    "test": "packages/pantheon/PantheonFeedbackService.test.ts",
+    "status": "open"
+  },
+  {
+    "commit": "Add PoetryErrorBoundary component",
+    "path": "packages/unifiedmandala-ui/components/PoetryErrorBoundary.tsx",
+    "task": "Show ChronoPoem on errors when poetry mode active",
+    "test": "packages/unifiedmandala-ui/components/PoetryErrorBoundary.test.tsx",
+    "status": "open"
+  },
+  {
+    "commit": "Create VRBegegnungsraumLobby",
+    "path": "packages/unifiedmandala-vr/VRBegegnungsraumLobby.ts",
+    "task": "Prototype VR meeting space with WebXR and breath sync",
+    "test": "packages/unifiedmandala-vr/VRBegegnungsraumLobby.test.ts",
+    "status": "open"
+  },
+  {
+    "commit": "Develop AeonResonanceModules",
+    "path": "packages/resonance/AeonResonanceModules.ts",
+    "task": "Implement AeonMythOS and AeonSigilNet modules for advanced resonance",
+    "test": "packages/resonance/AeonResonanceModules.test.ts",
+    "status": "open"
+  },
+  {
+    "commit": "Implement Dispatcher Error-Boundary",
+    "path": "packages/core/GreekMathAeonDispatcher.ts",
+    "task": "Emit dispatcher:error event via try/catch wrapper",
+    "test": "packages/core/GreekMathAeonDispatcher.test.ts",
+    "status": "open"
+  }
+]
