@@ -5727,5 +5727,40 @@
     "task": "Emit dispatcher:error event via try/catch wrapper",
     "test": "packages/core/GreekMathAeonDispatcher.test.ts",
     "status": "open"
+  },
+  {
+    "commit": "Add PantheonLobbyService",
+    "path": "packages/pantheon/PantheonLobbyService.ts",
+    "task": "Manage session handshakes and presence for Pantheon modules",
+    "test": "packages/pantheon/PantheonLobbyService.test.ts",
+    "status": "open"
+  },
+  {
+    "commit": "Add PantheonLobbyUI",
+    "path": "packages/unifiedmandala-ui/components/PantheonLobbyUI.tsx",
+    "task": "Lobby screen to select Pantheon modules before entering VR",
+    "test": "packages/unifiedmandala-ui/components/PantheonLobbyUI.test.tsx",
+    "status": "open"
+  },
+  {
+    "commit": "Add BoundaryPolicyManager",
+    "path": "packages/boundary-engine/BoundaryPolicyManager.ts",
+    "task": "Define governance policies for boundaries",
+    "test": "packages/boundary-engine/BoundaryPolicyManager.test.ts",
+    "status": "open"
+  },
+  {
+    "commit": "Extend ResonanceModuleOrchestrator VR integration",
+    "path": "packages/resonance-modules/ResonanceModuleOrchestrator.ts",
+    "task": "Connect modules with VR audio and haptic feedback",
+    "test": "packages/resonance-modules/ResonanceModuleOrchestrator.test.ts",
+    "status": "open"
+  },
+  {
+    "commit": "CosmicTheoryAgent FourierLayer gRPC bridge",
+    "path": "packages/agents/CosmicTheoryAgent.ts",
+    "task": "Stream FourierLayer metrics via gRPC to Pyramid UI",
+    "test": "packages/agents/CosmicTheoryAgent.test.ts",
+    "status": "open"
   }
 ]
