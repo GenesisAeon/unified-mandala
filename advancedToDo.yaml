@@ -6995,3 +6995,23 @@
   task: Kubernetes manifests for Pantheon services
   test: deployment/pantheon/pantheon_k8s.test.ts
   status: open
+- commit: Add PantheonHubPortal UI
+  path: packages/unifiedmandala-ui/components/PantheonHubPortal.tsx
+  task: Central portal to explore Pantheon modules
+  test: packages/unifiedmandala-ui/components/PantheonHubPortal.test.tsx
+  status: open
+- commit: Create BoundaryLawVisualizer
+  path: packages/boundary-engine/BoundaryLawVisualizer.tsx
+  task: Visualize discovered boundary laws
+  test: packages/boundary-engine/BoundaryLawVisualizer.test.tsx
+  status: open
+- commit: Extend VRBegegnungsraum MultiAvatar support
+  path: packages/unifiedmandala-vr/VRMultiAvatar.ts
+  task: Support multi-avatar interactions with Fourier-based sound
+  test: packages/unifiedmandala-vr/VRMultiAvatar.test.ts
+  status: open
+- commit: Add ResonanceModuleRegistry
+  path: packages/resonance-modules/ResonanceModuleRegistry.ts
+  task: Dynamic registration and loading for extended resonance modules
+  test: packages/resonance-modules/ResonanceModuleRegistry.test.ts
+  status: open
