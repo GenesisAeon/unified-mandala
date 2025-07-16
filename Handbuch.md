@@ -53,10 +53,13 @@ Weitere Hinweise aus dem „Sigil Übergang“:
 - `metricsToSVG` – Erstellt einfache SVG-Grafik aus Emergenz-Metriken.
 - `FourierMetricsServer` – sendet FourierLayer-Metriken per WebSocket.
 - `FourierMetricsViewer` – zeigt SVG-Metriken aus dem WebSocket in der UI.
+- `FourierLayerBridge` – verbindet die FourierLayer-Metriken mit der Pyramid UI.
 - `FrequencyMandala` – stellt Frequenz-Blumen als SVG dar.
 - `FourierMetricsCLI` – Kommandozeilenwerkzeug für Fourier-Berechnungen.
 - `FractalTaskRunner` – führt YAML-basierte Plugin-Workflows aus.
 - `EventBridge` – leitet CosmicTheoryAgent-Events an die UI weiter.
+- `PyramidVRMeetingRoom` – VR-Raum für mehrere Avatare.
+- CosmicTheoryAgent liefert VR-Hooks für immersive Steuerung.
 - `archiveSigil` – schreibt Sigil-Dateien in GenesisAeonZIPMEM.
 - `CREPVisualizer` – zeigt CREP-Verlauf als animierte Timeline.
 
