@@ -7055,3 +7055,33 @@
   task: Link VR space with MandalaCanvas for interactive view
   test: packages/unifiedmandala-vr/VRBegegnungsraumCanvas.test.ts
   status: open
+- commit: Integrate EthicsGuard into VRBegegnungsraum
+  path: packages/unifiedmandala-vr/VRBegegnungsraum.ts
+  task: Apply EthicsGuard filters and safe chat overlay
+  test: packages/unifiedmandala-vr/VRBegegnungsraumEthics.test.ts
+  status: open
+- commit: Boot Live Avatarraum with Three.js
+  path: packages/unifiedmandala-vr/LiveAvatarraum.ts
+  task: Setup 3D environment with multi-user support
+  test: packages/unifiedmandala-vr/LiveAvatarraum.test.ts
+  status: open
+- commit: Create EventBusMonitoringDashboard
+  path: packages/unifiedmandala-ui/components/EventBusMonitoringDashboard.tsx
+  task: Visualize real-time EventBus traffic and load
+  test: packages/unifiedmandala-ui/components/EventBusMonitoringDashboard.test.tsx
+  status: open
+- commit: Create EventReplaySystem
+  path: packages/orchestrator/src/EventReplaySystem.ts
+  task: Replay stored EventBus events for debugging
+  test: packages/orchestrator/__tests__/EventReplaySystem.test.ts
+  status: open
+- commit: Add AeonMythOS Resonance module
+  path: packages/resonance-modules/AeonMythOS/index.ts
+  task: Resonance module for mythological patterns
+  test: packages/resonance-modules/__tests__/AeonMythOS.test.ts
+  status: open
+- commit: Add AeonSigilNet module
+  path: packages/resonance-modules/AeonSigilNet/index.ts
+  task: State-based sigillin memory network
+  test: packages/resonance-modules/__tests__/AeonSigilNet.test.ts
+  status: open

@@ -398,8 +398,7 @@
     {
       "commit": "Add ResonanceModuleRegistry",
       "status": "open"
-    }
-  ,
+    },
     {
       "commit": "Export Pantheon manifest in multiple formats",
       "status": "open"
@@ -430,6 +429,30 @@
     },
     {
       "commit": "Integrate VRBegegnungsraum with MandalaCanvas",
+      "status": "open"
+    },
+    {
+      "commit": "Integrate EthicsGuard into VRBegegnungsraum",
+      "status": "open"
+    },
+    {
+      "commit": "Boot Live Avatarraum with Three.js",
+      "status": "open"
+    },
+    {
+      "commit": "Create EventBusMonitoringDashboard",
+      "status": "open"
+    },
+    {
+      "commit": "Create EventReplaySystem",
+      "status": "open"
+    },
+    {
+      "commit": "Add AeonMythOS Resonance module",
+      "status": "open"
+    },
+    {
+      "commit": "Add AeonSigilNet module",
       "status": "open"
     }
   ]
