@@ -7278,3 +7278,23 @@
   task: Setup scaffold for ten advanced resonance modules
   test: packages/resonance/ResonanceModulesScaffold.test.ts
   status: done
+- commit: PantheonArchiveExporter
+  path: packages/pantheon/PantheonArchiveExporter.ts
+  task: Export Pantheon data sets as YAML, JSON and graph
+  test: packages/pantheon/PantheonArchiveExporter.test.ts
+  status: open
+- commit: BoundaryLawAnalyticsDashboard
+  path: packages/boundary-ui/BoundaryLawAnalyticsDashboard.tsx
+  task: Display analytics for boundary law discovery engine
+  test: packages/boundary-ui/BoundaryLawAnalyticsDashboard.test.tsx
+  status: open
+- commit: VRAvatarCustomization
+  path: packages/unifiedmandala-vr/VRAvatarCustomization.ts
+  task: Support custom avatars in VR Begegnungsraum
+  test: packages/unifiedmandala-vr/VRAvatarCustomization.test.ts
+  status: open
+- commit: ResonanceFeedbackModule
+  path: packages/resonance/ResonanceFeedbackModule.ts
+  task: Collect user feedback and convert to resonance metrics
+  test: packages/resonance/ResonanceFeedbackModule.test.ts
+  status: open
