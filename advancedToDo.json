@@ -5853,5 +5853,33 @@
     "task": "Collect user feedback and convert to resonance metrics",
     "test": "packages/resonance/ResonanceFeedbackModule.test.ts",
     "status": "open"
+  },
+  {
+    "commit": "Add PantheonSessionManager",
+    "path": "packages/pantheon/PantheonSessionManager.ts",
+    "task": "Manage global session lifecycle for Pantheon modules",
+    "test": "packages/pantheon/PantheonSessionManager.test.ts",
+    "status": "open"
+  },
+  {
+    "commit": "Add BoundaryLawInsightsUI",
+    "path": "packages/boundary-ui/BoundaryLawInsightsUI.tsx",
+    "task": "Display discovered boundary laws with filtering and tagging",
+    "test": "packages/boundary-ui/BoundaryLawInsightsUI.test.tsx",
+    "status": "open"
+  },
+  {
+    "commit": "Create VRSceneLoader",
+    "path": "packages/unifiedmandala-vr/VRSceneLoader.ts",
+    "task": "Load dynamic VR scenes and assets",
+    "test": "packages/unifiedmandala-vr/VRSceneLoader.test.ts",
+    "status": "open"
+  },
+  {
+    "commit": "Add ResonanceTuningKit",
+    "path": "packages/resonance/ResonanceTuningKit.ts",
+    "task": "Tools to adjust resonance parameters across modules",
+    "test": "packages/resonance/ResonanceTuningKit.test.ts",
+    "status": "open"
   }
 ]
