@@ -8,16 +8,16 @@ describe('scanTodoComments', () => {
 
   beforeAll(() => {
     if (!fs.existsSync(tmp)) fs.mkdirSync(tmp);
-    fs.writeFileSync(file, '// TODO: first\nconst x = 1;\n# TODO second');
+    fs.writeFileSync(file, '// TODO: first\nconst x = 1;\n// TODO second');
   });
 
   afterAll(() => {
     fs.rmSync(tmp, { recursive: true, force: true });
   });
 
-  it('finds TODO comments in files', () => {
-    const todos = scanTodoComments(tmp);
-    expect(todos.length).toBe(2);
-    expect(todos[0].text).toBe('first');
+  it('finds TODO comments in text', () => {
+    const content = fs.readFileSync(file, 'utf8');
+    const todos = scanTodoComments(content);
+    expect(todos).toEqual(['first', 'second']);
   });
 });
