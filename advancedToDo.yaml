@@ -7318,3 +7318,28 @@
   task: Tools to adjust resonance parameters across modules
   test: packages/resonance/ResonanceTuningKit.test.ts
   status: done
+- commit: Add FrequencyMandala3D component
+  path: packages/unifiedmandala-ui/components/FrequencyMandala3D.tsx
+  task: 3D visualization of frequency mandala
+  test: packages/unifiedmandala-ui/components/FrequencyMandala3D.test.tsx
+  status: open
+- commit: Add FourierAPI REST endpoint
+  path: packages/analysis/FourierAPI.ts
+  task: Serve Fourier metrics via Express
+  test: packages/analysis/FourierAPI.test.ts
+  status: open
+- commit: Add BoundaryLawDiscoveryEngine
+  path: packages/boundary-engine/BoundaryLawDiscovery.ts
+  task: Consolidate detected boundary rules
+  test: packages/boundary-engine/__tests__/BoundaryLawDiscovery.test.ts
+  status: open
+- commit: Create PantheonAvatarraum component
+  path: packages/unifiedmandala-vr/components/PantheonAvatarraum.tsx
+  task: VR Begegnungsraum for Pantheon agents
+  test: packages/unifiedmandala-vr/components/__tests__/PantheonAvatarraum.test.tsx
+  status: open
+- commit: Implement ResonanceModuleOrchestrator
+  path: packages/resonance-modules/ResonanceModuleOrchestrator.ts
+  task: Coordinate extended resonance modules
+  test: packages/resonance-modules/__tests__/ResonanceModuleOrchestrator.test.ts
+  status: open
