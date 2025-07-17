@@ -245,11 +245,11 @@
     },
     {
       "commit": "Create VRBegegnungsraum component",
-      "status": "open"
+      "status": "done"
     },
     {
       "commit": "Add ExtendedResonanceModule",
-      "status": "open"
+      "status": "done"
     },
     {
       "commit": "Add Aeon Orchestrator service",
@@ -349,7 +349,7 @@
     },
     {
       "commit": "Implement VRBegegnungsraum module",
-      "status": "open"
+      "status": "done"
     },
     {
       "commit": "Scaffold ResonanceModules",
@@ -517,15 +517,15 @@
     },
     {
       "commit": "Add ExtendedResonanceVRModule",
-      "status": "open"
+      "status": "done"
     },
     {
       "commit": "Add FourierLayerVRConnector",
-      "status": "open"
+      "status": "done"
     },
     {
       "commit": "Add BoundaryMatrixVisualizer",
-      "status": "open"
+      "status": "done"
     },
     {
       "commit": "Extend ExtendedResonanceVRModule with Fourier",
