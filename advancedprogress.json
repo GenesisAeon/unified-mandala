@@ -128,7 +128,7 @@
       "status": "done"
     },
     {
-      "commit": "SVG-Export oder WebSocket-Event für UI",
+      "commit": "SVG-Export oder WebSocket-Event f\u00fcr UI",
       "status": "done"
     },
     {
@@ -533,23 +533,23 @@
     },
     {
       "commit": "Implement PantheonFeedbackRound",
-      "status": "open"
+      "status": "done"
     },
     {
       "commit": "Add PoetryErrorBoundary component",
-      "status": "open"
+      "status": "done"
     },
     {
       "commit": "Create VRBegegnungsraumLobby",
-      "status": "open"
+      "status": "done"
     },
     {
       "commit": "Develop AeonResonanceModules",
-      "status": "open"
+      "status": "done"
     },
     {
       "commit": "Implement Dispatcher Error-Boundary",
-      "status": "open"
+      "status": "done"
     },
     {
       "commit": "Add PantheonLobbyService",
@@ -638,40 +638,40 @@
     {
       "commit": "Add ResonanceTuningKit",
       "status": "done"
-    }
-    ,{
+    },
+    {
       "commit": "Add VRMeetingHall3D",
       "status": "open"
-    }
-    ,{
+    },
+    {
       "commit": "Add BoundaryLawSimulator",
       "status": "open"
-    }
-    ,{
+    },
+    {
       "commit": "Add PantheonMemorySync",
       "status": "open"
-    }
-    ,{
+    },
+    {
       "commit": "Add ResonanceModuleDiagnostics",
       "status": "open"
-    }
-    ,{
+    },
+    {
       "commit": "TODO from newadvancedconversations.json - PantheonBoundaryResolver",
       "status": "open"
-    }
-    ,{
+    },
+    {
       "commit": "TODO from newadvancedconversations.json - VRPulseSynchronizer",
       "status": "open"
-    }
-    ,{
+    },
+    {
       "commit": "TODO from newadvancedconversations.json - ResonanceAutoTuner",
       "status": "open"
-    }
-    ,{
+    },
+    {
       "commit": "TODO from newadvancedconversations.json - BoundaryLawPatternGenerator",
       "status": "open"
-    }
-    ,{
+    },
+    {
       "commit": "TODO from newadvancedconversations.json - PantheonPortalAnalytics",
       "status": "open"
     }
@@ -680,21 +680,25 @@
     {
       "commit": "Implement boundary manager modules",
       "status": "done"
-    }
-    ,{
+    },
+    {
       "commit": "Extracted new Pantheon/Boundary/VR/Resonance tasks",
       "status": "done"
-    }
-    ,{
+    },
+    {
       "commit": "Added additional Pantheon/Boundary/VR/Resonance tasks",
       "status": "done"
-    }
-    ,{
+    },
+    {
       "commit": "Implemented VRPulseSynchronizer module",
       "status": "done"
-    }
-    ,{
+    },
+    {
       "commit": "Add PantheonSonicGateway and related tasks",
+      "status": "done"
+    },
+    {
+      "commit": "Implemented Gateway and Resonance modules",
       "status": "done"
     }
   ]
