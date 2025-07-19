@@ -5733,7 +5733,7 @@
     "path": "packages/pantheon/PantheonLobbyService.ts",
     "task": "Manage session handshakes and presence for Pantheon modules",
     "test": "packages/pantheon/PantheonLobbyService.test.ts",
-    "status": "done"
+    "status": "open"
   },
   {
     "commit": "Add PantheonLobbyUI",
