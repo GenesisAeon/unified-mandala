@@ -6009,4 +6009,32 @@
     "test": "packages/pantheon/PantheonPortalAnalytics.test.ts",
     "status": "open"
   }
+,{
+  "commit": "Integrate FourierLayer with PyramidUI",
+  "path": "packages/unifiedmandala-ui/pyramid/FourierLayerIntegration.ts",
+  "task": "Connect Fourier-layer analysis to interactive Pyramid UI",
+  "test": "packages/unifiedmandala-ui/pyramid/FourierLayerIntegration.test.ts",
+  "status": "open"
+},
+{
+  "commit": "Add VRMandalaRoom WebXR",
+  "path": "packages/unifiedmandala-vr/VRMandalaRoom.tsx",
+  "task": "Build VR Mandala room with WebXR and Fourier support",
+  "test": "packages/unifiedmandala-vr/VRMandalaRoom.test.tsx",
+  "status": "open"
+},
+{
+  "commit": "Scaffold ResonanceModule microservices",
+  "path": "packages/resonance-modules",
+  "task": "Setup 10 advanced resonance modules as microservices",
+  "test": "packages/resonance-modules/__tests__/modules.test.ts",
+  "status": "open"
+},
+{
+  "commit": "Document MandalaBoundaryAgentFramework",
+  "path": "docs/boundary/MandalaBoundaryAgentFramework.md",
+  "task": "Blueprint for boundary law templates and agent setup",
+  "test": "",
+  "status": "open"
+}
 ]
