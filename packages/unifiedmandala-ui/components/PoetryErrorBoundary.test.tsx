@@ -1,13 +1,35 @@
 import { render, screen } from '@testing-library/react';
-import { PoetryErrorBoundary } from './PoetryErrorBoundary';
 import React from 'react';
+import { PoetryErrorBoundary } from './PoetryErrorBoundary';
+import { PoetryModeProvider, usePoetryMode } from '../contexts/PoetryModeContext';
 
-test('shows poem on error', () => {
-  const Bomb = () => { throw new Error('boom'); };
+const Bomb = () => { throw new Error('boom'); };
+
+function EnablePoetry() {
+  const { toggle } = usePoetryMode();
+  React.useEffect(() => { toggle(); }, [toggle]);
+  return null;
+}
+
+test('shows generic error when poetry mode off', () => {
   render(
-    <PoetryErrorBoundary>
-      <Bomb />
-    </PoetryErrorBoundary>
+    <PoetryModeProvider>
+      <PoetryErrorBoundary>
+        <Bomb />
+      </PoetryErrorBoundary>
+    </PoetryModeProvider>
   );
-  expect(screen.getByText('ChronoPoem')).toBeInTheDocument();
+  expect(screen.getByText('Error')).toBeInTheDocument();
+});
+
+test('shows poem when poetry mode enabled', () => {
+  render(
+    <PoetryModeProvider>
+      <EnablePoetry />
+      <PoetryErrorBoundary>
+        <Bomb />
+      </PoetryErrorBoundary>
+    </PoetryModeProvider>
+  );
+  expect(screen.getByText(/Im Kreis der Genesis/)).toBeInTheDocument();
 });
