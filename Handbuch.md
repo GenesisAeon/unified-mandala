@@ -64,8 +64,11 @@ Für neue Aufgaben aus Chat-Logs nutze `scripts/parse-advanced-conversations.js`
 - `PyramidVRMeetingRoom` – VR-Raum für mehrere Avatare.
 - CosmicTheoryAgent liefert VR-Hooks für immersive Steuerung.
 - `AeonOrchestrator` – zentrale Steuerinstanz des Pantheon, verteilt Boundary-Regeln.
+- `PantheonPortalAnalytics` – zeichnet Portalzugriffe auf.
 - `UnifiedMandalaVR` – Modulpaket mit AvatarManager, EthicsGuard und FourierLayerBridge.
 - `archiveSigil` – schreibt Sigil-Dateien in GenesisAeonZIPMEM.
+- `DocCommentsGenerator` – erstellt Doku aus Code-Kommentaren.
+- `ArchiveOldTodos` – verschiebt alte ToDos ins GenesisAeonZIPMEM.
 - `CREPVisualizer` – zeigt CREP-Verlauf als animierte Timeline.
 
 ### gpt-bridges

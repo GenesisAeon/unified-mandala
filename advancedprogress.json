@@ -1,5 +1,5 @@
 {
-  "lastCommit": "Add boundary framework docs and integrate Fourier layer",
+  "lastCommit": "Add PantheonPortalAnalytics and doc scripts",
   "fractalStep": "sync",
   "openBranches": [
     "work"
@@ -451,6 +451,10 @@
     },
     {
       "commit": "Added FourierLayer integration and VR room tasks",
+      "status": "done"
+    },
+    {
+      "commit": "Add PantheonPortalAnalytics and doc scripts",
       "status": "done"
     }
   ]
