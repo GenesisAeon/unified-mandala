@@ -1,5 +1,5 @@
 {
-  "lastCommit": "Implement doc generation and todo archiver",
+  "lastCommit": "chore: update progress metadata",
   "fractalStep": "sync",
   "openBranches": [
     "work"
@@ -26,14 +26,6 @@
     {
       "commit": "CosmicTheoryAgent gRPC REST access",
       "status": "open"
-    },
-    {
-      "commit": "Add FourierLayer unit tests",
-      "status": "done"
-    },
-    {
-      "commit": "Add fourier analysis endpoint",
-      "status": "done"
     },
     {
       "commit": "Create FourierVisual component",
@@ -180,19 +172,7 @@
       "status": "open"
     },
     {
-      "commit": "Add PantheonHubPortal UI",
-      "status": "open"
-    },
-    {
-      "commit": "Create BoundaryLawVisualizer",
-      "status": "open"
-    },
-    {
       "commit": "Extend VRBegegnungsraum MultiAvatar support",
-      "status": "open"
-    },
-    {
-      "commit": "Add ResonanceModuleRegistry",
       "status": "open"
     },
     {
@@ -232,10 +212,6 @@
       "status": "open"
     },
     {
-      "commit": "Add RuleExplorer UI",
-      "status": "open"
-    },
-    {
       "commit": "Add FourierLayerPlugin",
       "status": "open"
     },
@@ -264,19 +240,11 @@
       "status": "open"
     },
     {
-      "commit": "Create VRPyramidPortal component",
-      "status": "open"
-    },
-    {
       "commit": "Implement PantheonPortal3D",
       "status": "open"
     },
     {
       "commit": "Add BoundaryLawDashboard",
-      "status": "open"
-    },
-    {
-      "commit": "Extend ResonanceModuleOrchestrator plugin support",
       "status": "open"
     },
     {
@@ -313,14 +281,6 @@
     },
     {
       "commit": "Extend ExtendedResonanceVRModule with Fourier",
-      "status": "open"
-    },
-    {
-      "commit": "Add PantheonLobbyService",
-      "status": "open"
-    },
-    {
-      "commit": "Add PantheonLobbyUI",
       "status": "open"
     },
     {
@@ -376,10 +336,6 @@
       "status": "open"
     },
     {
-      "commit": "Add FourierAPI REST endpoint",
-      "status": "done"
-    },
-    {
       "commit": "Add BoundaryLawDiscoveryEngine",
       "status": "open"
     },
@@ -420,7 +376,19 @@
       "status": "open"
     },
     {
-      "commit": "Add PantheonPortalAnalytics",
+      "commit": "Create MandalaCollectiveActivator service",
+      "status": "open"
+    },
+    {
+      "commit": "Add AvatarraumEncounterOrchestrator",
+      "status": "open"
+    },
+    {
+      "commit": "Create MandalaOrchestratorControl",
+      "status": "open"
+    },
+    {
+      "commit": "PantheonManifestGenerator",
       "status": "open"
     }
   ],
@@ -463,6 +431,10 @@
     },
     {
       "commit": "Implemented doc generation and todo archiver",
+      "status": "done"
+    },
+    {
+      "commit": "Added Pantheon hub portal and registry",
       "status": "done"
     }
   ]

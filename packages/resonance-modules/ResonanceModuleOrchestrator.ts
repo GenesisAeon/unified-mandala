@@ -5,12 +5,21 @@ export interface ResonanceModule {
 
 export class ResonanceModuleOrchestrator {
   private modules: ResonanceModule[] = [];
+  private plugins: Array<(result: unknown) => void> = [];
 
   register(module: ResonanceModule) {
     this.modules.push(module);
   }
 
+  addPlugin(fn: (result: unknown) => void) {
+    this.plugins.push(fn);
+  }
+
   runAll(input: unknown) {
-    return this.modules.map(m => m.process(input));
+    const results = this.modules.map(m => m.process(input));
+    for (const r of results) {
+      for (const p of this.plugins) p(r);
+    }
+    return results;
   }
 }
