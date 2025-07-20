@@ -284,6 +284,8 @@ packages/
   │   ├── pkg/policy        # Policy Enforcement Stubs
   │   ├── pkg/handler       # Task handlers (CoordinationHandler)
   │   └── pkg/hooks         # Event Hook Publisher
+  ├── mandala              # Aktiviert Mandala-Kollektive
+  ├── orchestrator         # Steuert Boundary- und Pantheon-Dienste
   ├── cmd/mandala-codeagent.go  # Beispiel-CLI für CodeAgent
   ├── services/vector-indexer # Embedding generator service
   ├── services/sigil-trigger  # Beobachtet Sigillin-Änderungen
