@@ -57,7 +57,7 @@ Für neue Aufgaben aus Chat-Logs nutze `scripts/parse-advanced-conversations.js`
 - `FourierLayerBridge` – verbindet die FourierLayer-Metriken mit der Pyramid UI.
 - `FrequencyMandala` – stellt Frequenz-Blumen als SVG dar.
 - `FrequencyMandala3D` – WebGL-Darstellung der Frequenz-Blumen.
-- `FourierAPI` – REST-Schnittstelle für Fourier-Metriken.
+ - `FourierAPI` – REST-Schnittstelle für Fourier-Metriken (`/metrics`, `/analyze`).
 - `FourierMetricsCLI` – Kommandozeilenwerkzeug für Fourier-Berechnungen.
 - `FractalTaskRunner` – führt YAML-basierte Plugin-Workflows aus.
 - `EventBridge` – leitet CosmicTheoryAgent-Events an die UI weiter.
