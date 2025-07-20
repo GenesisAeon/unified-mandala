@@ -1,5 +1,5 @@
 {
-  "lastCommit": "Add boundary framework docs and integrate Fourier layer",
+  "lastCommit": "Update todo lists and progress",
   "fractalStep": "sync",
   "openBranches": [
     "work"
@@ -421,6 +421,10 @@
     },
     {
       "commit": "Add PantheonPortalAnalytics",
+      "status": "open"
+    },
+    {
+      "commit": "Extract keyword todos from new conversations",
       "status": "open"
     }
   ],

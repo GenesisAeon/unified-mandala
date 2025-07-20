@@ -7428,3 +7428,9 @@
   task: Blueprint for boundary law templates and agent setup
   test: ""
   status: done
+- commit: Extract keyword todos from new conversations
+  path: scripts/extract-keyword-todos.js
+  task: Parse newadvancedconversations.json for Pantheon, Boundary, VR and
+    Resonanzmodule tasks
+  test: scripts/__tests__/extract-keyword-todos.test.ts
+  status: open
