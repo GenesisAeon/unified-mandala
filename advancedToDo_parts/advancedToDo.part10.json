@@ -11,7 +11,7 @@
     "path": "packages/unifiedmandala-ui/components/PoetryErrorBoundary.tsx",
     "task": "Show ChronoPoem on errors when poetry mode active",
     "test": "packages/unifiedmandala-ui/components/PoetryErrorBoundary.test.tsx",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Create VRBegegnungsraumLobby",
@@ -25,7 +25,7 @@
     "path": "packages/resonance/AeonResonanceModules.ts",
     "task": "Implement AeonMythOS and AeonSigilNet modules for advanced resonance",
     "test": "packages/resonance/AeonResonanceModules.test.ts",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Implement Dispatcher Error-Boundary",
