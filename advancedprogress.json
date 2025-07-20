@@ -1,5 +1,5 @@
 {
-  "lastCommit": "Implement Poetry boundary and resonance modules",
+  "lastCommit": "Implement doc generation and todo archiver",
   "fractalStep": "sync",
   "openBranches": [
     "work"
@@ -459,6 +459,10 @@
     },
     {
       "commit": "PoetryErrorBoundary and AeonResonanceModules implemented",
+      "status": "done"
+    },
+    {
+      "commit": "Implemented doc generation and todo archiver",
       "status": "done"
     }
   ]
