@@ -1,200 +1,12 @@
 {
-  "lastCommit": "Synced PantheonBoundaryVR todos",
-  "fractalStep": "implementation",
+  "lastCommit": "Add boundary framework docs and integrate Fourier layer",
+  "fractalStep": "sync",
   "openBranches": [
     "work"
   ],
   "mergeConflicts": [],
   "notes": "Updated Pantheon, Boundary, VR and Resonance tasks from conversations",
   "pendingTasks": [
-    {
-      "commit": "TODO from newadvancedconversations.json - AgentCoordinator",
-      "status": "done"
-    },
-    {
-      "commit": "TODO from newadvancedconversations.json - EmergencePredictorAgent",
-      "status": "done"
-    },
-    {
-      "commit": "TODO from newadvancedconversations.json - GPTContextSummarizer",
-      "status": "done"
-    },
-    {
-      "commit": "TODO from newadvancedconversations.json - SigillinBlockchainIntegration",
-      "status": "done"
-    },
-    {
-      "commit": "TODO from newadvancedconversations.json - PrivacyComplianceAgent",
-      "status": "done"
-    },
-    {
-      "commit": "TODO from CosmicTheoryAgent conversation - Python service access",
-      "status": "done"
-    },
-    {
-      "commit": "TODO from CosmicTheoryAgent conversation - React Starter setup",
-      "status": "done"
-    },
-    {
-      "commit": "TODO from CosmicTheoryAgent conversation - 3D canvas sketch",
-      "status": "done"
-    },
-    {
-      "commit": "TODO from CosmicTheoryAgent conversation - Tone.js playground",
-      "status": "done"
-    },
-    {
-      "commit": "TODO from CosmicTheoryAgent conversation - MetricsStore interface",
-      "status": "done"
-    },
-    {
-      "commit": "TODO from AeonAI Pyramid-UI conversation - Sigillin initialization",
-      "status": "done"
-    },
-    {
-      "commit": "TODO from AeonAI Pyramid-UI conversation - CREP tuning",
-      "status": "done"
-    },
-    {
-      "commit": "Setup CI pipeline with OTel Collector",
-      "status": "done"
-    },
-    {
-      "commit": "Add Cypress E2E tests for SigilAlert",
-      "status": "done"
-    },
-    {
-      "commit": "Draft AeonUniversal DSL grammar",
-      "status": "done"
-    },
-    {
-      "commit": "Add AeonAgent example using advanced_crep_eval",
-      "status": "done"
-    },
-    {
-      "commit": "TODO from AeonAI Pyramid UI conversation - CREPVisualizer component",
-      "status": "done"
-    },
-    {
-      "commit": "TODO from AeonAI Pyramid UI conversation - NumericDashboard component",
-      "status": "done"
-    },
-    {
-      "commit": "TODO from AeonAI Pyramid UI conversation - AudioEngine module",
-      "status": "done"
-    },
-    {
-      "commit": "TODO from AeonAI Pyramid UI conversation - ResonanceOverlay component",
-      "status": "done"
-    },
-    {
-      "commit": "TODO from AeonAI Pyramid UI conversation - ErrorEmergence component",
-      "status": "done"
-    },
-    {
-      "commit": "TODO from AeonAI Pyramid UI conversation - VRPortal component",
-      "status": "done"
-    },
-    {
-      "commit": "TODO from AeonAI Pyramid UI conversation - UIPyramidPrototype",
-      "status": "done"
-    },
-    {
-      "commit": "Updated advancedToDo with new advanced conversation tasks",
-      "status": "done"
-    },
-    {
-      "commit": "Add append only chat writer",
-      "status": "done"
-    },
-    {
-      "commit": "ReactStarter and NestedCanvas implemented",
-      "status": "done"
-    },
-    {
-      "commit": "Add FourierMetricsServer",
-      "status": "done"
-    },
-    {
-      "commit": "Expose Prometheus metrics and Grafana dashboard",
-      "status": "done"
-    },
-    {
-      "commit": "Add self-healing and dead letter queue",
-      "status": "done"
-    },
-    {
-      "commit": "Implement dispatcher backoff and retry logic",
-      "status": "done"
-    },
-    {
-      "commit": "SVG-Export oder WebSocket-Event f\u00fcr UI",
-      "status": "done"
-    },
-    {
-      "commit": "Add parse-newadvanced-conversations test",
-      "status": "done"
-    },
-    {
-      "commit": "Implement CREPStatsCard component",
-      "status": "done"
-    },
-    {
-      "commit": "Add impulse CREP update route",
-      "status": "done"
-    },
-    {
-      "commit": "Return avg resonance via metaScores route",
-      "status": "done"
-    },
-    {
-      "commit": "TODO from newadvancedconversations.json - feedback_log",
-      "status": "done"
-    },
-    {
-      "commit": "TODO from newadvancedconversations.json - component classification",
-      "status": "done"
-    },
-    {
-      "commit": "TODO from newadvancedconversations.json - Nullmembran SI Heatmap",
-      "status": "done"
-    },
-    {
-      "commit": "TODO from newadvancedconversations.json - Nukleon OpenAPI",
-      "status": "done"
-    },
-    {
-      "commit": "Set up CI/CD and tests for universe-sim",
-      "status": "done"
-    },
-    {
-      "commit": "sigillin-cli features",
-      "status": "done"
-    },
-    {
-      "commit": "Send cached Fourier metrics on connection",
-      "status": "done"
-    },
-    {
-      "commit": "Add circuit breaker and caching to PySR service",
-      "status": "done"
-    },
-    {
-      "commit": "Add metrics instrumentation for PySR service",
-      "status": "done"
-    },
-    {
-      "commit": "Implement FourierLayerBridge for Pyramid UI integration",
-      "status": "done"
-    },
-    {
-      "commit": "Extend CosmicTheoryAgent with VR hooks",
-      "status": "done"
-    },
-    {
-      "commit": "Create PyramidVRMeetingRoom component",
-      "status": "done"
-    },
     {
       "commit": "Add scan-todo-comments script",
       "status": "open"
@@ -242,14 +54,6 @@
     {
       "commit": "Add BoundaryConditionManager",
       "status": "open"
-    },
-    {
-      "commit": "Create VRBegegnungsraum component",
-      "status": "done"
-    },
-    {
-      "commit": "Add ExtendedResonanceModule",
-      "status": "done"
     },
     {
       "commit": "Add Aeon Orchestrator service",
@@ -345,14 +149,6 @@
     },
     {
       "commit": "Create BoundaryDiscoveryAgent",
-      "status": "open"
-    },
-    {
-      "commit": "Implement VRBegegnungsraum module",
-      "status": "done"
-    },
-    {
-      "commit": "Scaffold ResonanceModules",
       "status": "open"
     },
     {
@@ -516,40 +312,8 @@
       "status": "open"
     },
     {
-      "commit": "Add ExtendedResonanceVRModule",
-      "status": "done"
-    },
-    {
-      "commit": "Add FourierLayerVRConnector",
-      "status": "done"
-    },
-    {
-      "commit": "Add BoundaryMatrixVisualizer",
-      "status": "done"
-    },
-    {
       "commit": "Extend ExtendedResonanceVRModule with Fourier",
       "status": "open"
-    },
-    {
-      "commit": "Implement PantheonFeedbackRound",
-      "status": "done"
-    },
-    {
-      "commit": "Add PoetryErrorBoundary component",
-      "status": "done"
-    },
-    {
-      "commit": "Create VRBegegnungsraumLobby",
-      "status": "done"
-    },
-    {
-      "commit": "Develop AeonResonanceModules",
-      "status": "done"
-    },
-    {
-      "commit": "Implement Dispatcher Error-Boundary",
-      "status": "done"
     },
     {
       "commit": "Add PantheonLobbyService",
@@ -592,22 +356,6 @@
       "status": "open"
     },
     {
-      "commit": "PantheonOnboardingBlueprint",
-      "status": "done"
-    },
-    {
-      "commit": "BoundaryPrototypeScaffold",
-      "status": "done"
-    },
-    {
-      "commit": "VRBegegnungsraumProjectPlan",
-      "status": "done"
-    },
-    {
-      "commit": "ResonanceModuleScaffold",
-      "status": "done"
-    },
-    {
       "commit": "PantheonArchiveExporter",
       "status": "open"
     },
@@ -624,20 +372,24 @@
       "status": "open"
     },
     {
-      "commit": "Add PantheonSessionManager",
-      "status": "done"
+      "commit": "Add FrequencyMandala3D component",
+      "status": "open"
     },
     {
-      "commit": "Add BoundaryLawInsightsUI",
-      "status": "done"
+      "commit": "Add FourierAPI REST endpoint",
+      "status": "open"
     },
     {
-      "commit": "Create VRSceneLoader",
-      "status": "done"
+      "commit": "Add BoundaryLawDiscoveryEngine",
+      "status": "open"
     },
     {
-      "commit": "Add ResonanceTuningKit",
-      "status": "done"
+      "commit": "Create PantheonAvatarraum component",
+      "status": "open"
+    },
+    {
+      "commit": "Implement ResonanceModuleOrchestrator",
+      "status": "open"
     },
     {
       "commit": "Add VRMeetingHall3D",
@@ -656,23 +408,19 @@
       "status": "open"
     },
     {
-      "commit": "TODO from newadvancedconversations.json - PantheonBoundaryResolver",
+      "commit": "Add PantheonBoundaryResolver service",
       "status": "open"
     },
     {
-      "commit": "TODO from newadvancedconversations.json - VRPulseSynchronizer",
+      "commit": "Add ResonanceAutoTuner",
       "status": "open"
     },
     {
-      "commit": "TODO from newadvancedconversations.json - ResonanceAutoTuner",
+      "commit": "Create BoundaryLawPatternGenerator",
       "status": "open"
     },
     {
-      "commit": "TODO from newadvancedconversations.json - BoundaryLawPatternGenerator",
-      "status": "open"
-    },
-    {
-      "commit": "TODO from newadvancedconversations.json - PantheonPortalAnalytics",
+      "commit": "Add PantheonPortalAnalytics",
       "status": "open"
     }
   ],
@@ -700,10 +448,10 @@
     {
       "commit": "Implemented Gateway and Resonance modules",
       "status": "done"
+    },
+    {
+      "commit": "Added FourierLayer integration and VR room tasks",
+      "status": "done"
     }
-  ,{
-    "commit": "Added FourierLayer integration and VR room tasks",
-    "status": "open"
-  }
   ]
 }
