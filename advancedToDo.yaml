@@ -7387,7 +7387,7 @@
   path: packages/pantheon/PantheonPortalAnalytics.ts
   task: Collect analytics for Pantheon portal usage
   test: packages/pantheon/PantheonPortalAnalytics.test.ts
-  status: open
+  status: done
 - commit: Add PantheonSonicGateway
   path: packages/pantheon/PantheonSonicGateway.ts
   task: Route VR audio streams into Pantheon network
@@ -7428,3 +7428,13 @@
   task: Blueprint for boundary law templates and agent setup
   test: ""
   status: done
+- commit: Add DocCommentsGenerator script
+  path: scripts/doc-comments-generator.ts
+  task: Generate Markdown docs from code comments
+  test: scripts/__tests__/doc-comments-generator.test.ts
+  status: open
+- commit: Add archive-old-todos script
+  path: scripts/archive-old-todos.ts
+  task: Archive completed ToDos to GenesisAeonZIPMEM
+  test: scripts/__tests__/archive-old-todos.test.ts
+  status: open

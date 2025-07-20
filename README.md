@@ -51,6 +51,7 @@ Weitere Hinweise aus dem „Sigil Übergang“:
 - [**Fractal Runner CLI**](packages/agents/bin/fractal-runner.ts) – runs YAML task files with optional soundscape
 - [**React Starter**](packages/unifiedmandala-ui/ReactStarter.tsx) – Tailwind/Vite skeleton setup
 - **Aeon Orchestrator** – koordiniert Pantheon-Agenten und streamt Boundary-Regeln
+- [**PantheonPortalAnalytics**](packages/pantheon/PantheonPortalAnalytics.ts) – track portal usage
 - **VR-Begegnungsraum** – Avatar-Interaktion und Mandala-Szenen im WebXR-Modul
 - [**EventBridge**](packages/unifiedmandala-ui/events/EventBridge.ts) – verbindet CosmicTheoryAgent mit der Pyramid UI
 - [**PyramidVRMeetingRoom**](packages/unifiedmandala-ui/components/PyramidVRMeetingRoom.tsx) – enables multi-avatar VR sessions
@@ -64,6 +65,8 @@ Weitere Hinweise aus dem „Sigil Übergang“:
 - [**Objective2UI**](packages/unifiedmandala-ui/components/ObjectiveLayoutSuggester.tsx) – generiert Layout-Vorschläge via GPT
 - [**Ethik-Governance & Heimkehr-Deklaration**](docs/sigils/sigillin_heimkehr.md) – Offene, poetische Ethik als Systembasis
 - [**Poesie & Automation**](aeon.sh) – Bash-Interface, automatisches Chronopoem, symbolisches Onboarding
+- [**DocCommentsGenerator**](scripts/doc-comments-generator.ts) – erzeugt Markdown-Doku
+- [**ArchiveOldTodos**](scripts/archive-old-todos.ts) – verschiebt erledigte ToDos ins ZIPMEM
 - [**CREP-Illumination**](CHRONOPOEM.md) – Chronopoem reflektiert aktuellen CREP-Zustand
 - [**SelfAuditModul**](packages/unifiedmandala-ui/components/SelfAuditModul.tsx) – analysiert die Repository-Struktur
 - [**AdminMetrics**](packages/unifiedmandala-ui/README.md) – zeigt CREP- und Sigillin-Kennzahlen
