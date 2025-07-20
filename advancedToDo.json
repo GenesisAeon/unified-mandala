@@ -5117,7 +5117,7 @@
     "path": "packages/cli-tools/sigillin-cli.js",
     "task": "Filter conversations for TODO entries",
     "test": "packages/cli-tools/__tests__/sigillin-cli.test.ts",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Implement go todo_parser server",
@@ -6062,20 +6062,20 @@
     "path": "packages/unifiedmandala-vr/AvatarraumEncounterOrchestrator.ts",
     "task": "Coordinate avatars in VR encounter space",
     "test": "packages/unifiedmandala-vr/AvatarraumEncounterOrchestrator.test.ts",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Create MandalaOrchestratorControl",
     "path": "packages/orchestrator/MandalaOrchestratorControl.ts",
     "task": "Control unit bridging Pantheon modules and boundary engine",
     "test": "packages/orchestrator/MandalaOrchestratorControl.test.ts",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "PantheonManifestGenerator",
     "path": "docs/pantheon/generate_pantheon_manifest.ts",
     "task": "Generate pantheon manifest YAML/JSON from modules",
     "test": "docs/pantheon/__tests__/generate_pantheon_manifest.test.ts",
-    "status": "open"
+    "status": "done"
   }
 ]

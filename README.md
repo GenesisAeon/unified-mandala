@@ -114,6 +114,9 @@ Weitere Hinweise aus dem „Sigil Übergang“:
 - [**Aeon Universal Neural Membrane**](packages/aeon-neural-membrane) – selbstreflexives, fraktales Netz mit CREP-Anpassung
 - [**Compile Cache**](packages/aeon-universal/cache.ts) – speichert kompilierte Aeon-Skripte
 - [**AeonCoreAssembler**](packages/aeon-universal/CoreAssembler.ts) – verteilt Aeon-Tasks an registrierte Agenten
+- **MandalaCollectiveActivator** – initialisiert das Mandala-Kollektiv über den EventBus
+- **MandalaOrchestratorControl** – koordiniert Boundary- und Pantheon-Module
+- **AvatarraumEncounterOrchestrator** – verwaltet Teilnehmer im VR-Begegnungsraum
 - [**AeonPythonTranspilerAgent**](packages/agents/AeonPythonTranspilerAgent.ts) – erzeugt Python-Snippets aus Aeon-Quelltext
 - [**AeonGoTranspilerAgent**](packages/agents/AeonGoTranspilerAgent.ts) – erzeugt Go-Snippets aus Aeon-Quelltext
 - [**withCircuit**](packages/agents/withCircuit.ts) – CircuitBreaker Wrapper für Agenten-Calls
