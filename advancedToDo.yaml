@@ -6788,15 +6788,15 @@
   test: packages/agent/__tests__/CosmicTheoryAgent.integration.test.ts
   status: open
 - commit: Add FourierLayer unit tests
-  path: common/src/layers/__tests__/FourierLayer.test.ts
-  task: Validate FourierLayer plugin operations
-  test: common/src/layers/__tests__/FourierLayer.test.ts
-  status: open
+  path: packages/analysis/FourierLayer.test.ts
+  task: Validate FourierLayer operations and events
+  test: packages/analysis/FourierLayer.test.ts
+  status: done
 - commit: Add fourier analysis endpoint
   path: packages/agent/src/routes/fourier.ts
   task: Provide Fourier analysis endpoint
-  test: packages/agent/src/routes/__tests__/fourier.test.ts
-  status: open
+  test: packages/agent/src/routes/fourier.test.ts
+  status: done
 - commit: Create FourierVisual component
   path: packages/unifiedmandala-ui/src/components/FourierVisual.tsx
   task: Render Fourier spectrum results
@@ -7327,7 +7327,7 @@
   path: packages/analysis/FourierAPI.ts
   task: Serve Fourier metrics via Express
   test: packages/analysis/FourierAPI.test.ts
-  status: open
+  status: done
 - commit: Add BoundaryLawDiscoveryEngine
   path: packages/boundary-engine/BoundaryLawDiscovery.ts
   task: Consolidate detected boundary rules

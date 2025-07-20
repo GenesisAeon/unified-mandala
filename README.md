@@ -45,7 +45,7 @@ Weitere Hinweise aus dem „Sigil Übergang“:
 - [**FourierLayerBridge**](packages/unifiedmandala-ui/events/FourierLayerBridge.ts) – streams metrics to the Pyramid UI via WebSocket
 - [**FrequencyMandala**](packages/unifiedmandala-ui/components/FrequencyMandala.tsx) – visualizes Fourier frequency flowers
 - [**FrequencyMandala3D**](packages/unifiedmandala-ui/components/FrequencyMandala3D.tsx) – WebGL view of frequency flowers
-- [**FourierAPI**](packages/analysis/FourierAPI.ts) – exposes metrics via REST
+ - [**FourierAPI**](packages/analysis/FourierAPI.ts) – exposes metrics via REST (`/metrics`, `/analyze`)
 - [**FourierMetricsCLI**](packages/cli-tools/FourierMetricsCLI.ts) – compute metrics from the command line
 - [**FractalTaskRunner**](packages/task-runner/FractalTaskRunner.ts) – executes YAML-defined plugin workflows
 - [**Fractal Runner CLI**](packages/agents/bin/fractal-runner.ts) – runs YAML task files with optional soundscape
