@@ -5439,14 +5439,14 @@
     "path": "packages/unifiedmandala-ui/components/PantheonHubPortal.tsx",
     "task": "Central portal to explore Pantheon modules",
     "test": "packages/unifiedmandala-ui/components/PantheonHubPortal.test.tsx",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Create BoundaryLawVisualizer",
     "path": "packages/boundary-engine/BoundaryLawVisualizer.tsx",
     "task": "Visualize discovered boundary laws",
     "test": "packages/boundary-engine/BoundaryLawVisualizer.test.tsx",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Extend VRBegegnungsraum MultiAvatar support",
@@ -5460,7 +5460,7 @@
     "path": "packages/resonance-modules/ResonanceModuleRegistry.ts",
     "task": "Dynamic registration and loading for extended resonance modules",
     "test": "packages/resonance-modules/ResonanceModuleRegistry.test.ts",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Export Pantheon manifest in multiple formats",
@@ -5530,7 +5530,7 @@
     "path": "packages/unifiedmandala-ui/components/RuleExplorer.tsx",
     "task": "Interactive UI to browse Pantheon and Boundary rules",
     "test": "packages/unifiedmandala-ui/components/RuleExplorer.test.tsx",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Add FourierLayerPlugin",
@@ -5586,7 +5586,7 @@
     "path": "packages/unifiedmandala-vr/components/VRPyramidPortal.tsx",
     "task": "WebXR portal connecting Pyramid UI to VRBegegnungsraum",
     "test": "packages/unifiedmandala-vr/components/VRPyramidPortal.test.tsx",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Implement PantheonPortal3D",
@@ -5607,7 +5607,7 @@
     "path": "packages/resonance-modules/ResonanceModuleOrchestrator.ts",
     "task": "Add plugin registration and event hooks",
     "test": "packages/resonance-modules/ResonanceModuleOrchestrator.test.ts",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Add AeonKernel core",
@@ -5733,14 +5733,14 @@
     "path": "packages/pantheon/PantheonLobbyService.ts",
     "task": "Manage session handshakes and presence for Pantheon modules",
     "test": "packages/pantheon/PantheonLobbyService.test.ts",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Add PantheonLobbyUI",
     "path": "packages/unifiedmandala-ui/components/PantheonLobbyUI.tsx",
     "task": "Lobby screen to select Pantheon modules before entering VR",
     "test": "packages/unifiedmandala-ui/components/PantheonLobbyUI.test.tsx",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Add BoundaryPolicyManager",
@@ -6049,5 +6049,33 @@
     "task": "Archive completed ToDos to GenesisAeonZIPMEM",
     "test": "scripts/__tests__/archive-old-todos.test.ts",
     "status": "done"
+  },
+  {
+    "commit": "Create MandalaCollectiveActivator service",
+    "path": "packages/mandala/MandalaCollectiveActivator.ts",
+    "task": "Initialize and awaken Mandala collective via message bus",
+    "test": "packages/mandala/MandalaCollectiveActivator.test.ts",
+    "status": "open"
+  },
+  {
+    "commit": "Add AvatarraumEncounterOrchestrator",
+    "path": "packages/unifiedmandala-vr/AvatarraumEncounterOrchestrator.ts",
+    "task": "Coordinate avatars in VR encounter space",
+    "test": "packages/unifiedmandala-vr/AvatarraumEncounterOrchestrator.test.ts",
+    "status": "open"
+  },
+  {
+    "commit": "Create MandalaOrchestratorControl",
+    "path": "packages/orchestrator/MandalaOrchestratorControl.ts",
+    "task": "Control unit bridging Pantheon modules and boundary engine",
+    "test": "packages/orchestrator/MandalaOrchestratorControl.test.ts",
+    "status": "open"
+  },
+  {
+    "commit": "PantheonManifestGenerator",
+    "path": "docs/pantheon/generate_pantheon_manifest.ts",
+    "task": "Generate pantheon manifest YAML/JSON from modules",
+    "test": "docs/pantheon/__tests__/generate_pantheon_manifest.test.ts",
+    "status": "open"
   }
 ]

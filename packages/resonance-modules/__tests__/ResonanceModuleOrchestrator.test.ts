@@ -10,6 +10,16 @@ describe('ResonanceModuleOrchestrator', () => {
   it('runs all modules', () => {
     const orch = new ResonanceModuleOrchestrator();
     orch.register(new DummyModule());
-    expect(orch.runAll('x')).toEqual(['x']);
+    const results = orch.runAll('x');
+    expect(results).toEqual(['x']);
+  });
+
+  it('executes plugins', () => {
+    const orch = new ResonanceModuleOrchestrator();
+    orch.register(new DummyModule());
+    let called = 0;
+    orch.addPlugin(() => called++);
+    orch.runAll('y');
+    expect(called).toBe(1);
   });
 });

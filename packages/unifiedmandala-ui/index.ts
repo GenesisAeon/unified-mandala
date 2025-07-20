@@ -30,3 +30,6 @@ export { default as VRPortal } from './components/VRPortal';
 export { default as PyramidVRMeetingRoom } from './components/PyramidVRMeetingRoom';
 export { default as ReactStarter } from './ReactStarter';
 export { default as NestedCanvas } from './NestedCanvas';
+export { default as PantheonHubPortal } from './components/PantheonHubPortal';
+export { default as PantheonLobbyUI } from './components/PantheonLobbyUI';
+export { default as RuleExplorer } from './components/RuleExplorer';
