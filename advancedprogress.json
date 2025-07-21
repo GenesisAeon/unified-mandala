@@ -1,5 +1,5 @@
 {
-  "lastCommit": "feat: scaffold resonance modules",
+  "lastCommit": "chore: update auto-generated files",
   "fractalStep": "sync",
   "openBranches": [
     "work"
@@ -7,26 +7,6 @@
   "mergeConflicts": [],
   "notes": "Updated Pantheon, Boundary, VR and Resonance tasks from conversations",
   "pendingTasks": [
-    {
-      "commit": "Add scan-todo-comments script",
-      "status": "open"
-    },
-    {
-      "commit": "Add sigillin-cli grep-conversations command",
-      "status": "open"
-    },
-    {
-      "commit": "Implement go todo_parser server",
-      "status": "open"
-    },
-    {
-      "commit": "Implement parse-advanced-conversations script",
-      "status": "open"
-    },
-    {
-      "commit": "CosmicTheoryAgent gRPC REST access",
-      "status": "open"
-    },
     {
       "commit": "Create FourierVisual component",
       "status": "open"
@@ -93,46 +73,6 @@
     },
     {
       "commit": "Create VR package scaffold",
-      "status": "open"
-    },
-    {
-      "commit": "Add Extended Resonance module packages",
-      "status": "open"
-    },
-    {
-      "commit": "Add ArchetypeAnalyzer package",
-      "status": "open"
-    },
-    {
-      "commit": "Add EthicGuardian package",
-      "status": "open"
-    },
-    {
-      "commit": "Add CreativeDreamer package",
-      "status": "open"
-    },
-    {
-      "commit": "Add MemeChronicle package",
-      "status": "open"
-    },
-    {
-      "commit": "Add SelfReflection package",
-      "status": "open"
-    },
-    {
-      "commit": "Add Synchronizer package",
-      "status": "open"
-    },
-    {
-      "commit": "Add BioSensorGateway package",
-      "status": "open"
-    },
-    {
-      "commit": "Add FractalAuditTrail package",
-      "status": "open"
-    },
-    {
-      "commit": "Add CREPPluginAPI package",
       "status": "open"
     },
     {
@@ -365,18 +305,6 @@
     },
     {
       "commit": "Add PantheonHologramProjector",
-      "status": "open"
-    },
-    {
-      "commit": "Add BoundaryResonanceMapper",
-      "status": "open"
-    },
-    {
-      "commit": "Add VRResonanceAvatar",
-      "status": "open"
-    },
-    {
-      "commit": "Add ResonanceModulePortal",
       "status": "open"
     }
   ],

@@ -6766,27 +6766,27 @@
   path: scripts/scan-todo-comments.js
   task: Extract TODO comments across repo
   test: scripts/__tests__/scan-todo-comments.test.ts
-  status: open
+  status: done
 - commit: Add sigillin-cli grep-conversations command
   path: packages/cli-tools/sigillin-cli.js
   task: Filter conversations for TODO entries
   test: packages/cli-tools/__tests__/sigillin-cli.test.ts
-  status: open
+  status: done
 - commit: Implement go todo_parser server
   path: go-bridge/cmd/todo_parser.go
   task: Start TODO parser service for Go tasks
   test: go-bridge/cmd/todo_parser_test.go
-  status: open
+  status: done
 - commit: Implement parse-advanced-conversations script
   path: scripts/parse-advanced-conversations.js
   task: Generate advanced ToDos from conversation dataset
   test: scripts/__tests__/parse-advanced-conversations.test.ts
-  status: open
+  status: done
 - commit: CosmicTheoryAgent gRPC REST access
   path: packages/agent/src/agents/CosmicTheoryAgent.ts
   task: Access PySR service via gRPC or REST
   test: packages/agent/__tests__/CosmicTheoryAgent.integration.test.ts
-  status: open
+  status: done
 - commit: Add FourierLayer unit tests
   path: packages/analysis/FourierLayer.test.ts
   task: Validate FourierLayer operations and events
