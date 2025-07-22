@@ -6766,7 +6766,7 @@
   path: scripts/scan-todo-comments.js
   task: Extract TODO comments across repo
   test: scripts/__tests__/scan-todo-comments.test.ts
-  status: open
+  status: done
 - commit: Add sigillin-cli grep-conversations command
   path: packages/cli-tools/sigillin-cli.js
   task: Filter conversations for TODO entries
@@ -6781,7 +6781,7 @@
   path: scripts/parse-advanced-conversations.js
   task: Generate advanced ToDos from conversation dataset
   test: scripts/__tests__/parse-advanced-conversations.test.ts
-  status: open
+  status: done
 - commit: CosmicTheoryAgent gRPC REST access
   path: packages/agent/src/agents/CosmicTheoryAgent.ts
   task: Access PySR service via gRPC or REST
@@ -6798,15 +6798,15 @@
   test: packages/agent/src/routes/fourier.test.ts
   status: done
 - commit: Create FourierVisual component
-  path: packages/unifiedmandala-ui/src/components/FourierVisual.tsx
+  path: packages/unifiedmandala-ui/components/FourierVisual.tsx
   task: Render Fourier spectrum results
-  test: packages/unifiedmandala-ui/src/components/FourierVisual.test.tsx
-  status: open
+  test: packages/unifiedmandala-ui/components/FourierVisual.test.tsx
+  status: done
 - commit: Fetch real avgResonance in CREPStatsCard
-  path: packages/unifiedmandala-ui/src/components/CREPStatsCard.tsx
+  path: packages/unifiedmandala-ui/components/CREPStatsCard.tsx
   task: Load avgResonance from API and show mini chart
-  test: packages/unifiedmandala-ui/src/components/CREPStatsCard.test.tsx
-  status: open
+  test: packages/unifiedmandala-ui/components/CREPStatsCard.test.tsx
+  status: done
 - commit: Add Mandala SVG export event
   path: packages/unifiedmandala-ui/src/components/BlackboxMandala.tsx
   task: Offer SVG export or WebSocket event
@@ -7498,3 +7498,18 @@
   task: Portal to chain resonance modules
   test: packages/resonance-modules/ResonanceModulePortal.test.ts
   status: done
+- commit: Create HeatmapWidget component
+  path: packages/unifiedmandala-ui/components/HeatmapWidget.tsx
+  task: Display CREP heatmap across sessions
+  test: packages/unifiedmandala-ui/components/HeatmapWidget.test.tsx
+  status: open
+- commit: Create OnboardingModal component
+  path: packages/unifiedmandala-ui/components/OnboardingModal.tsx
+  task: Show onboarding steps for new users
+  test: packages/unifiedmandala-ui/components/OnboardingModal.test.tsx
+  status: open
+- commit: Create HaikuOverlay component
+  path: packages/unifiedmandala-ui/components/HaikuOverlay.tsx
+  task: Overlay UI with random haikus
+  test: packages/unifiedmandala-ui/components/HaikuOverlay.test.tsx
+  status: open

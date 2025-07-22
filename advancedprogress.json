@@ -9,7 +9,7 @@
   "pendingTasks": [
     {
       "commit": "Add scan-todo-comments script",
-      "status": "open"
+      "status": "done"
     },
     {
       "commit": "Add sigillin-cli grep-conversations command",
@@ -21,7 +21,7 @@
     },
     {
       "commit": "Implement parse-advanced-conversations script",
-      "status": "open"
+      "status": "done"
     },
     {
       "commit": "CosmicTheoryAgent gRPC REST access",
@@ -29,11 +29,11 @@
     },
     {
       "commit": "Create FourierVisual component",
-      "status": "open"
+      "status": "done"
     },
     {
       "commit": "Fetch real avgResonance in CREPStatsCard",
-      "status": "open"
+      "status": "done"
     },
     {
       "commit": "Add Mandala SVG export event",
@@ -439,6 +439,10 @@
     },
     {
       "commit": "Add ResonanceModuleDiagnostics",
+      "status": "done"
+    },
+    {
+      "commit": "Implement FourierVisual and CREPStatsCard hooks",
       "status": "done"
     }
   ]

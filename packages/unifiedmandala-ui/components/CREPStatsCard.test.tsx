@@ -14,3 +14,11 @@ test('renders chart when history provided', () => {
   const paths = document.querySelectorAll('path');
   expect(paths.length).toBeGreaterThan(0);
 });
+
+test('fetches resonance when no value provided', async () => {
+  (global as any).fetch = jest.fn(() =>
+    Promise.resolve({ json: () => Promise.resolve({ scores: [{ idx: '1', avgResonance: 0.4 }] }) })
+  );
+  render(<CREPStatsCard />);
+  await screen.findByText(/0\.40/);
+});
