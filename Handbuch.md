@@ -65,6 +65,7 @@ Für neue Aufgaben aus Chat-Logs nutze `scripts/parse-advanced-conversations.js`
 - CosmicTheoryAgent liefert VR-Hooks für immersive Steuerung.
 - `AeonOrchestrator` – zentrale Steuerinstanz des Pantheon, verteilt Boundary-Regeln.
 - `PantheonPortalAnalytics` – zeichnet Portalzugriffe auf.
+- `PantheonBoundaryBridge` – verknüpft Pantheon-Ereignisse mit BoundaryRuleDetector
 - `UnifiedMandalaVR` – Modulpaket mit AvatarManager, EthicsGuard und FourierLayerBridge.
 - `archiveSigil` – schreibt Sigil-Dateien in GenesisAeonZIPMEM.
 - `DocCommentsGenerator` – erstellt Doku aus Code-Kommentaren.

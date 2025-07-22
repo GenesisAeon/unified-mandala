@@ -381,7 +381,7 @@
     },
     {
       "commit": "Add PantheonBoundaryBridge",
-      "status": "open"
+      "status": "done"
     }
   ],
   "progress": [
@@ -455,6 +455,10 @@
     },
     {
       "commit": "Create OnboardingModal component",
+      "status": "done"
+    },
+    {
+      "commit": "Add PantheonBoundaryBridge",
       "status": "done"
     }
   ]
