@@ -1,11 +1,11 @@
 {
-  "lastCommit": "chore: update progress",
+  "lastCommit": "Merge pull request #768 from GenesisAeon/eyjsmq-codex/implement-features-from-advancedtodo.yaml",
   "fractalStep": "sync",
   "openBranches": [
     "work"
   ],
   "mergeConflicts": [],
-  "notes": "Improved rule detection with regex support",
+  "notes": "Improved rule detection with regex support | UnifiedMandalaPantheon initial module implemented",
   "pendingTasks": [
     {
       "commit": "Implement go todo_parser server",
@@ -61,10 +61,6 @@
     },
     {
       "commit": "Create VR package scaffold",
-      "status": "open"
-    },
-    {
-      "commit": "Add UnifiedMandalaPantheon package",
       "status": "open"
     },
     {
