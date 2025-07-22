@@ -1,11 +1,11 @@
 {
-  "lastCommit": "feat: add OnboardingModal component",
+  "lastCommit": "feat: improve BoundaryRuleDetector",
   "fractalStep": "sync",
   "openBranches": [
     "work"
   ],
   "mergeConflicts": [],
-  "notes": "Added docs todos and implemented BoundaryConditionManager",
+  "notes": "Improved rule detection with regex support",
   "pendingTasks": [
     {
       "commit": "Add scan-todo-comments script",
@@ -57,7 +57,7 @@
     },
     {
       "commit": "Implement BoundaryRuleDetector",
-      "status": "open"
+      "status": "done"
     },
     {
       "commit": "Create AvatarManager module",
@@ -377,6 +377,10 @@
     },
     {
       "commit": "Add ResonanceModulePortal",
+      "status": "open"
+    },
+    {
+      "commit": "Add PantheonBoundaryBridge",
       "status": "open"
     }
   ],
