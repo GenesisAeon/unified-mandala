@@ -1,5 +1,5 @@
 {
-  "lastCommit": "feat: enhance BoundaryConditionManager",
+  "lastCommit": "feat: add OnboardingModal component",
   "fractalStep": "sync",
   "openBranches": [
     "work"
@@ -447,6 +447,10 @@
     },
     {
       "commit": "Added Pantheon and boundary docs",
+      "status": "done"
+    },
+    {
+      "commit": "Create OnboardingModal component",
       "status": "done"
     }
   ]
