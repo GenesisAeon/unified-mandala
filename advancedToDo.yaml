@@ -7507,7 +7507,7 @@
   path: packages/unifiedmandala-ui/components/OnboardingModal.tsx
   task: Show onboarding steps for new users
   test: packages/unifiedmandala-ui/components/OnboardingModal.test.tsx
-  status: open
+  status: done
 - commit: Create HaikuOverlay component
   path: packages/unifiedmandala-ui/components/HaikuOverlay.tsx
   task: Overlay UI with random haikus

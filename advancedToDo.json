@@ -6133,5 +6133,19 @@
     "task": "Outline microservice modules for resonance expansion",
     "test": "",
     "status": "done"
+  },
+  {
+    "commit": "Create OnboardingModal component",
+    "path": "packages/unifiedmandala-ui/components/OnboardingModal.tsx",
+    "task": "Show onboarding steps for new users",
+    "test": "packages/unifiedmandala-ui/components/OnboardingModal.test.tsx",
+    "status": "done"
+  },
+  {
+    "commit": "Create HaikuOverlay component",
+    "path": "packages/unifiedmandala-ui/components/HaikuOverlay.tsx",
+    "task": "Overlay UI with random haikus",
+    "test": "packages/unifiedmandala-ui/components/HaikuOverlay.test.tsx",
+    "status": "open"
   }
 ]
