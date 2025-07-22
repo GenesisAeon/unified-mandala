@@ -212,6 +212,25 @@ program
     console.log(`Filtered ${matches.length} items containing '${keyword}'. Output: ${dest}`);
   });
 
+program
+  .command('grep-todos')
+  .option('-i, --input <file>', 'Eingabedatei', '../../docs/sigils/newadvancedconversations.json')
+  .option('-o, --output <dir>', 'Zielordner', '../../docs/sigils/todo_conversations')
+  .description('Extrahiert alle Gespr\xE4chseintr\xE4ge mit TODO-Vermerken')
+  .action((opts) => {
+    const path = require('path');
+    let grepJsonArrayFile;
+    try {
+      ({ grepJsonArrayFile } = require('../../dist/shared-utils/jsonFragmenter.js'));
+    } catch {
+      ({ grepJsonArrayFile } = require('../shared-utils/jsonFragmenter'));
+    }
+    const file = path.isAbsolute(opts.input) ? opts.input : path.join(__dirname, opts.input);
+    const dest = path.isAbsolute(opts.output) ? opts.output : path.join(__dirname, '../../', opts.output);
+    const matches = grepJsonArrayFile(file, dest, /TODO/i);
+    console.log(`Filtered ${matches.length} TODO items. Output: ${dest}`);
+  });
+
 if (require.main === module) {
   program.parse(process.argv);
 }
