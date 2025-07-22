@@ -6846,7 +6846,7 @@
   path: packages/core/BoundaryRuleDetector.ts
   task: Detect boundary laws and emergent phenomena
   test: packages/core/BoundaryRuleDetector.test.ts
-  status: open
+  status: done
 - commit: Write Boundary Law Manifest
   path: docs/boundary/BoundaryLawManifest.md
   task: Manifest der Grenzregeln und Beispiele aus Gesprächen
@@ -7512,4 +7512,9 @@
   path: packages/unifiedmandala-ui/components/HaikuOverlay.tsx
   task: Overlay UI with random haikus
   test: packages/unifiedmandala-ui/components/HaikuOverlay.test.tsx
+  status: open
+- commit: Add PantheonBoundaryBridge
+  path: packages/pantheon/PantheonBoundaryBridge.ts
+  task: Bridge Pantheon agent events to BoundaryRuleDetector
+  test: packages/pantheon/PantheonBoundaryBridge.test.ts
   status: open
