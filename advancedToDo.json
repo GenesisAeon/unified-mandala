@@ -6154,6 +6154,6 @@
     "path": "packages/pantheon/PantheonBoundaryBridge.ts",
     "task": "Bridge Pantheon agent events to BoundaryRuleDetector",
     "test": "packages/pantheon/PantheonBoundaryBridge.test.ts",
-    "status": "open"
+    "status": "done"
   }
 ]

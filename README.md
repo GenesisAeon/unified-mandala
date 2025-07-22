@@ -52,6 +52,7 @@ Weitere Hinweise aus dem „Sigil Übergang“:
 - [**React Starter**](packages/unifiedmandala-ui/ReactStarter.tsx) – Tailwind/Vite skeleton setup
 - **Aeon Orchestrator** – koordiniert Pantheon-Agenten und streamt Boundary-Regeln
 - [**PantheonPortalAnalytics**](packages/pantheon/PantheonPortalAnalytics.ts) – track portal usage
+- [**PantheonBoundaryBridge**](packages/pantheon/PantheonBoundaryBridge.ts) – verbindet Pantheon-Events mit BoundaryRuleDetector
 - **VR-Begegnungsraum** – Avatar-Interaktion und Mandala-Szenen im WebXR-Modul
 - [**EventBridge**](packages/unifiedmandala-ui/events/EventBridge.ts) – verbindet CosmicTheoryAgent mit der Pyramid UI
 - [**PyramidVRMeetingRoom**](packages/unifiedmandala-ui/components/PyramidVRMeetingRoom.tsx) – enables multi-avatar VR sessions
