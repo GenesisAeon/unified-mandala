@@ -6811,7 +6811,7 @@
   path: packages/unifiedmandala-ui/src/components/BlackboxMandala.tsx
   task: Offer SVG export or WebSocket event
   test: packages/unifiedmandala-ui/src/components/BlackboxMandala.test.tsx
-  status: open
+  status: done
 - commit: Add PhanteonIntegration service
   path: packages/phanteon/PhanteonIntegrator.ts
   task: Integrate Pantheon modules into system

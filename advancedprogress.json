@@ -17,7 +17,7 @@
     },
     {
       "commit": "Add Mandala SVG export event",
-      "status": "open"
+      "status": "done"
     },
     {
       "commit": "Add PhanteonIntegration service",
@@ -367,6 +367,10 @@
     },
     {
       "commit": "Extended Resonance VR module with Fourier",
+      "status": "done"
+    },
+    {
+      "commit": "Add Mandala SVG export event",
       "status": "done"
     }
   ]
