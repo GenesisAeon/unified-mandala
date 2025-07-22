@@ -1,5 +1,5 @@
 {
-  "lastCommit": "feat: improve BoundaryRuleDetector",
+  "lastCommit": "feat: add HeatmapWidget and HaikuOverlay",
   "fractalStep": "sync",
   "openBranches": [
     "work"
@@ -365,7 +365,7 @@
     },
     {
       "commit": "Add PantheonHologramProjector",
-      "status": "open"
+      "status": "done"
     },
     {
       "commit": "Add BoundaryResonanceMapper",
@@ -381,6 +381,14 @@
     },
     {
       "commit": "Add PantheonBoundaryBridge",
+      "status": "done"
+    },
+    {
+      "commit": "Create HeatmapWidget component",
+      "status": "done"
+    },
+    {
+      "commit": "Create HaikuOverlay component",
       "status": "done"
     }
   ],
