@@ -278,7 +278,7 @@ packages/
   ├── art                 # Sonification & AI-Art
   ├── shared-utils              # Hilfsfunktionen für alle Pakete
   │   └── RestClient.ts         # einfacher REST-Helper
-  ├── bio                      # Biometrische Hooks und HapticService
+  ├── common                # Gemeinsame Hilfsfunktionen (clamp, shuffle)
   ├── TonePlayground.ts        # Experimentelle Tone.js-Steuerung
   ├── go-bridge             # Go-Client für REST, gRPC und NATS (inkl. GPTBridge)
   ├── go-agent              # Autonomer Go-Daemon für Tasks
@@ -332,6 +332,7 @@ scripts/
 
 Jeder Unterordner kann eine eigene README enthalten – siehe die Links in den jeweiligen Verzeichnissen.
 Utilities liegen in `packages/shared-utils/`, weitere Module findest du ebenfalls unter `packages/`.
+Zusätzliche Utilities bietet `packages/common`.
 -### 🟦 Go-Bridge (go-bridge/)
 - Polyglottes Interface zu UnifiedMandala für Go (REST, NATS, gRPC, CLI)
 - Enthält **GPTBridge**-Module (`pkg/gpt`) und die Beispiel-CLIs `mandala-gpt.go`
