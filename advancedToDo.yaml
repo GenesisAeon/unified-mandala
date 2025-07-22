@@ -6766,7 +6766,7 @@
   path: scripts/scan-todo-comments.js
   task: Extract TODO comments across repo
   test: scripts/__tests__/scan-todo-comments.test.ts
-  status: open
+  status: done
 - commit: Add sigillin-cli grep-conversations command
   path: packages/cli-tools/sigillin-cli.js
   task: Filter conversations for TODO entries
@@ -7262,17 +7262,17 @@
   path: packages/boundary-engine/BoundaryVisualDebugger.ts
   task: Visualize active boundaries and collisions
   test: packages/boundary-engine/BoundaryVisualDebugger.test.ts
-  status: open
+  status: done
 - commit: Create VRAvatarHub component
   path: packages/unifiedmandala-vr/components/VRAvatarHub.tsx
   task: Hub to spawn avatars and portals in VR space
   test: packages/unifiedmandala-vr/components/VRAvatarHub.test.tsx
-  status: open
+  status: done
 - commit: Implement ResonanceModuleSynth
   path: packages/resonance-modules/ResonanceModuleSynth.ts
   task: Sound synthesis layer for resonance modules
   test: packages/resonance-modules/ResonanceModuleSynth.test.ts
-  status: open
+  status: done
 - commit: Add CosmicTheoryAgent introspection logs
   path: packages/agents/CosmicTheoryAgent.ts
   task: Introspective logging of FourierLayer metrics

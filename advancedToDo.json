@@ -5124,7 +5124,7 @@
     "path": "go-bridge/cmd/todo_parser.go",
     "task": "Start TODO parser service for Go tasks",
     "test": "go-bridge/cmd/todo_parser_test.go",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Implement parse-advanced-conversations script",
@@ -5775,21 +5775,21 @@
     "path": "packages/boundary-engine/BoundaryVisualDebugger.ts",
     "task": "Visualize active boundaries and collisions",
     "test": "packages/boundary-engine/BoundaryVisualDebugger.test.ts",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Create VRAvatarHub component",
     "path": "packages/unifiedmandala-vr/components/VRAvatarHub.tsx",
     "task": "Hub to spawn avatars and portals in VR space",
     "test": "packages/unifiedmandala-vr/components/VRAvatarHub.test.tsx",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Implement ResonanceModuleSynth",
     "path": "packages/resonance-modules/ResonanceModuleSynth.ts",
     "task": "Sound synthesis layer for resonance modules",
     "test": "packages/resonance-modules/ResonanceModuleSynth.test.ts",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Add CosmicTheoryAgent introspection logs",
