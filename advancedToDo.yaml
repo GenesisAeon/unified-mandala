@@ -6771,7 +6771,7 @@
   path: packages/cli-tools/sigillin-cli.js
   task: Filter conversations for TODO entries
   test: packages/cli-tools/__tests__/sigillin-cli.test.ts
-  status: open
+  status: done
 - commit: Implement go todo_parser server
   path: go-bridge/cmd/todo_parser.go
   task: Start TODO parser service for Go tasks
@@ -7537,4 +7537,24 @@
   path: packages/common/index.ts
   task: Provide shared types and utility functions
   test: packages/common/index.test.ts
+  status: open
+- commit: CosmicTheoryAgent blueprint documentation
+  path: docs/cosmic/CosmicTheoryAgent-Blueprint.md
+  task: Summarize code extension ideas from conversations
+  test: ""
+  status: open
+- commit: Sigillin Mandala Fraktal design doc
+  path: docs/mandala/Sigillin-Fractal-Design.md
+  task: Outline fractal sigil architecture from chat logs
+  test: ""
+  status: open
+- commit: AeonAI Pyramid-UI specification
+  path: docs/pyramid/AeonAI-Pyramid-UI-Spec.md
+  task: Document UI blueprint from planning discussion
+  test: ""
+  status: open
+- commit: Extended Resonanzmodule integration guide
+  path: docs/resonance/ExtendedResonanzmodule-Overview.md
+  task: Detail integration of advanced resonance modules
+  test: ""
   status: open

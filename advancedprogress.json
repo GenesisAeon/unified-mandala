@@ -1,5 +1,5 @@
 {
-  "lastCommit": "chore: update progress and todo",
+  "lastCommit": "chore: update progress",
   "fractalStep": "sync",
   "openBranches": [
     "work"
@@ -7,10 +7,6 @@
   "mergeConflicts": [],
   "notes": "Improved rule detection with regex support",
   "pendingTasks": [
-    {
-      "commit": "Add sigillin-cli grep-conversations command",
-      "status": "open"
-    },
     {
       "commit": "Implement go todo_parser server",
       "status": "open"
@@ -289,6 +285,22 @@
     },
     {
       "commit": "Add common utilities package",
+      "status": "open"
+    },
+    {
+      "commit": "CosmicTheoryAgent blueprint documentation",
+      "status": "open"
+    },
+    {
+      "commit": "Sigillin Mandala Fraktal design doc",
+      "status": "open"
+    },
+    {
+      "commit": "AeonAI Pyramid-UI specification",
+      "status": "open"
+    },
+    {
+      "commit": "Extended Resonanzmodule integration guide",
       "status": "open"
     }
   ],
