@@ -5453,7 +5453,7 @@
     "path": "packages/unifiedmandala-vr/VRMultiAvatar.ts",
     "task": "Support multi-avatar interactions with Fourier-based sound",
     "test": "packages/unifiedmandala-vr/VRMultiAvatar.test.ts",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Add ResonanceModuleRegistry",
@@ -5523,7 +5523,7 @@
     "path": "packages/pantheon/PantheonKnowledgeGraph.ts",
     "task": "Store Pantheon relations in Neo4j and expose RuleExplorer API",
     "test": "packages/pantheon/PantheonKnowledgeGraph.test.ts",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Add RuleExplorer UI",
@@ -5691,7 +5691,7 @@
     "path": "packages/resonance/ExtendedResonanceVRModule.ts",
     "task": "Add Fourier-based resonance modulation",
     "test": "packages/resonance/ExtendedResonanceVRModule.test.ts",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Implement PantheonFeedbackRound",
@@ -6174,6 +6174,13 @@
     "path": "docs/resonance/AdvancedResonanzModulePlan.md",
     "task": "Plan advanced resonance modules and integration points",
     "test": "",
+    "status": "open"
+  }
+  ,{
+    "commit": "Add common utilities package",
+    "path": "packages/common/index.ts",
+    "task": "Provide shared types and utility functions",
+    "test": "packages/common/index.test.ts",
     "status": "open"
   }
 ]

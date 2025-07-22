@@ -1,5 +1,5 @@
 {
-  "lastCommit": "feat: add HeatmapWidget and HaikuOverlay",
+  "lastCommit": "feat: add VRMultiAvatar and knowledge graph",
   "fractalStep": "sync",
   "openBranches": [
     "work"
@@ -173,7 +173,7 @@
     },
     {
       "commit": "Extend VRBegegnungsraum MultiAvatar support",
-      "status": "open"
+      "status": "done"
     },
     {
       "commit": "Export Pantheon manifest in multiple formats",
@@ -209,7 +209,7 @@
     },
     {
       "commit": "Add PantheonKnowledgeGraph service",
-      "status": "open"
+      "status": "done"
     },
     {
       "commit": "Add FourierLayerPlugin",
@@ -281,7 +281,7 @@
     },
     {
       "commit": "Extend ExtendedResonanceVRModule with Fourier",
-      "status": "open"
+      "status": "done"
     },
     {
       "commit": "Add BoundaryPolicyManager",
@@ -380,6 +380,10 @@
       "status": "open"
     },
     {
+      "commit": "Add common utilities package",
+      "status": "open"
+    },
+    {
       "commit": "Add PantheonBoundaryBridge",
       "status": "done"
     },
@@ -471,6 +475,18 @@
     },
     {
       "commit": "Added Boundary Prototype doc",
+      "status": "done"
+    }
+    ,{
+      "commit": "Implemented VRMultiAvatar support",
+      "status": "done"
+    }
+    ,{
+      "commit": "Implemented PantheonKnowledgeGraph",
+      "status": "done"
+    }
+    ,{
+      "commit": "Extended Resonance VR module with Fourier",
       "status": "done"
     }
   ]
