@@ -1,5 +1,5 @@
 {
-  "lastCommit": "feat: add VRMultiAvatar and knowledge graph",
+  "lastCommit": "chore: update progress and todo",
   "fractalStep": "sync",
   "openBranches": [
     "work"
@@ -7,10 +7,6 @@
   "mergeConflicts": [],
   "notes": "Improved rule detection with regex support",
   "pendingTasks": [
-    {
-      "commit": "Add scan-todo-comments script",
-      "status": "done"
-    },
     {
       "commit": "Add sigillin-cli grep-conversations command",
       "status": "open"
@@ -20,20 +16,8 @@
       "status": "open"
     },
     {
-      "commit": "Implement parse-advanced-conversations script",
-      "status": "done"
-    },
-    {
       "commit": "CosmicTheoryAgent gRPC REST access",
       "status": "open"
-    },
-    {
-      "commit": "Create FourierVisual component",
-      "status": "done"
-    },
-    {
-      "commit": "Fetch real avgResonance in CREPStatsCard",
-      "status": "done"
     },
     {
       "commit": "Add Mandala SVG export event",
@@ -44,20 +28,8 @@
       "status": "open"
     },
     {
-      "commit": "Add BoundaryConditionManager",
-      "status": "open"
-    },
-    {
       "commit": "Add Aeon Orchestrator service",
       "status": "open"
-    },
-    {
-      "commit": "Export unified pantheon manifest",
-      "status": "open"
-    },
-    {
-      "commit": "Implement BoundaryRuleDetector",
-      "status": "done"
     },
     {
       "commit": "Create AvatarManager module",
@@ -93,46 +65,6 @@
     },
     {
       "commit": "Create VR package scaffold",
-      "status": "open"
-    },
-    {
-      "commit": "Add Extended Resonance module packages",
-      "status": "open"
-    },
-    {
-      "commit": "Add ArchetypeAnalyzer package",
-      "status": "open"
-    },
-    {
-      "commit": "Add EthicGuardian package",
-      "status": "open"
-    },
-    {
-      "commit": "Add CreativeDreamer package",
-      "status": "open"
-    },
-    {
-      "commit": "Add MemeChronicle package",
-      "status": "open"
-    },
-    {
-      "commit": "Add SelfReflection package",
-      "status": "open"
-    },
-    {
-      "commit": "Add Synchronizer package",
-      "status": "open"
-    },
-    {
-      "commit": "Add BioSensorGateway package",
-      "status": "open"
-    },
-    {
-      "commit": "Add FractalAuditTrail package",
-      "status": "open"
-    },
-    {
-      "commit": "Add CREPPluginAPI package",
       "status": "open"
     },
     {
@@ -172,14 +104,6 @@
       "status": "open"
     },
     {
-      "commit": "Extend VRBegegnungsraum MultiAvatar support",
-      "status": "done"
-    },
-    {
-      "commit": "Export Pantheon manifest in multiple formats",
-      "status": "open"
-    },
-    {
       "commit": "Pantheon EventBus migration",
       "status": "open"
     },
@@ -206,10 +130,6 @@
     {
       "commit": "Integrate VRBegegnungsraum with MandalaCanvas",
       "status": "open"
-    },
-    {
-      "commit": "Add PantheonKnowledgeGraph service",
-      "status": "done"
     },
     {
       "commit": "Add FourierLayerPlugin",
@@ -278,10 +198,6 @@
     {
       "commit": "Implement BoundaryLawAgentAlgorithm",
       "status": "open"
-    },
-    {
-      "commit": "Extend ExtendedResonanceVRModule with Fourier",
-      "status": "done"
     },
     {
       "commit": "Add BoundaryPolicyManager",
@@ -364,36 +280,16 @@
       "status": "open"
     },
     {
-      "commit": "Add PantheonHologramProjector",
-      "status": "done"
-    },
-    {
-      "commit": "Add BoundaryResonanceMapper",
+      "commit": "Document VR Pantheon Begegnungsraum Concept",
       "status": "open"
     },
     {
-      "commit": "Add VRResonanceAvatar",
-      "status": "open"
-    },
-    {
-      "commit": "Add ResonanceModulePortal",
+      "commit": "Extended Resonanzmodule roadmap",
       "status": "open"
     },
     {
       "commit": "Add common utilities package",
       "status": "open"
-    },
-    {
-      "commit": "Add PantheonBoundaryBridge",
-      "status": "done"
-    },
-    {
-      "commit": "Create HeatmapWidget component",
-      "status": "done"
-    },
-    {
-      "commit": "Create HaikuOverlay component",
-      "status": "done"
     }
   ],
   "progress": [
@@ -476,16 +372,16 @@
     {
       "commit": "Added Boundary Prototype doc",
       "status": "done"
-    }
-    ,{
+    },
+    {
       "commit": "Implemented VRMultiAvatar support",
       "status": "done"
-    }
-    ,{
+    },
+    {
       "commit": "Implemented PantheonKnowledgeGraph",
       "status": "done"
-    }
-    ,{
+    },
+    {
       "commit": "Extended Resonance VR module with Fourier",
       "status": "done"
     }

@@ -6175,8 +6175,8 @@
     "task": "Plan advanced resonance modules and integration points",
     "test": "",
     "status": "open"
-  }
-  ,{
+  },
+  {
     "commit": "Add common utilities package",
     "path": "packages/common/index.ts",
     "task": "Provide shared types and utility functions",
