@@ -6841,7 +6841,7 @@
   path: docs/sigils/unified_mandala_pantheon.yaml
   task: Provide Pantheon manifest as YAML for orchestrator
   test: packages/orchestrator/__tests__/manifest.test.ts
-  status: open
+  status: done
 - commit: Implement BoundaryRuleDetector
   path: packages/core/BoundaryRuleDetector.ts
   task: Detect boundary laws and emergent phenomena
@@ -6851,7 +6851,7 @@
   path: docs/boundary/BoundaryLawManifest.md
   task: Manifest der Grenzregeln und Beispiele aus Gesprächen
   test: ""
-  status: open
+  status: done
 - commit: Create AvatarManager module
   path: packages/unifiedmandala-vr/src/core/AvatarManager.ts
   task: Manage VR avatars in meeting room
@@ -7001,7 +7001,7 @@
   path: docs/resonance/ExtendedResonanceModules.md
   task: Outline microservice modules for resonance expansion
   test: ""
-  status: open
+  status: done
 - commit: Add PantheonK8sDeployment configs
   path: deployment/pantheon
   task: Kubernetes manifests for Pantheon services
@@ -7026,7 +7026,7 @@
   path: docs/vr/VR-Begegnungsraum-Blueprint.md
   task: Detailed VR meeting room architecture with Fourier integration
   test: ""
-  status: open
+  status: done
 - commit: Add ResonanceModuleRegistry
   path: packages/resonance-modules/ResonanceModuleRegistry.ts
   task: Dynamic registration and loading for extended resonance modules
@@ -7036,12 +7036,12 @@
   path: docs/pantheon/unified_mandala_pantheon.yaml
   task: Provide YAML, JSON and Mermaid graph export for Pantheon manifest
   test: docs/pantheon/__tests__/pantheon_manifest_export.test.ts
-  status: open
+  status: done
 - commit: Document Mandala Pantheon Manifest
   path: docs/pantheon/PantheonManifest.md
   task: Document Pantheon modules from conversation blueprint
   test: ""
-  status: open
+  status: done
 - commit: Pantheon EventBus migration
   path: packages/orchestrator/src/eventBus.ts
   task: Use Kafka/Redis as event bus for Pantheon orchestrator
