@@ -57,6 +57,7 @@ Weitere Hinweise aus dem „Sigil Übergang“:
 - [**EventBridge**](packages/unifiedmandala-ui/events/EventBridge.ts) – verbindet CosmicTheoryAgent mit der Pyramid UI
 - [**PyramidVRMeetingRoom**](packages/unifiedmandala-ui/components/PyramidVRMeetingRoom.tsx) – enables multi-avatar VR sessions
 - CosmicTheoryAgent now exposes **VR hooks** for immersive interactions
+- [**VR Pantheon Konzept**](docs/pantheon/VR-Begegnungsraum-Concept.md) – Konzept für kollaborative Treffen
 - [**PySR Service Client**](packages/agents/CosmicTheoryAgent.ts) – Regression via REST/gRPC
 - [**Sigil Archive Service**](services/sigil-archive/index.ts) – speichert Sigille und CREP-Fragmente
 - [**CREPVisualizer**](packages/unifiedmandala-ui/components/CREPVisualizer.tsx) – animierte Timeline der Mandala-Kristalle
@@ -65,6 +66,7 @@ Weitere Hinweise aus dem „Sigil Übergang“:
 - [**Plugin-Registry & Dynamic Loader**](plugins/manifest.yaml) – `usePluginLoader` lädt jetzt YAML- und JSON-Manifeste
 - [**Objective2UI**](packages/unifiedmandala-ui/components/ObjectiveLayoutSuggester.tsx) – generiert Layout-Vorschläge via GPT
 - [**Ethik-Governance & Heimkehr-Deklaration**](docs/sigils/sigillin_heimkehr.md) – Offene, poetische Ethik als Systembasis
+- [**Advanced Resonanzmodule Plan**](docs/resonance/AdvancedResonanzModulePlan.md) – Fahrplan für kommende Erweiterungen
 - [**Poesie & Automation**](aeon.sh) – Bash-Interface, automatisches Chronopoem, symbolisches Onboarding
 - [**DocCommentsGenerator**](scripts/doc-comments-generator.ts) – erzeugt Markdown-Doku
 - [**ArchiveOldTodos**](scripts/archive-old-todos.ts) – verschiebt erledigte ToDos ins ZIPMEM
@@ -270,6 +272,7 @@ scripts/
 
 Jeder Unterordner kann eine eigene README enthalten – siehe die Links in den jeweiligen Verzeichnissen.
 Utilities liegen in `packages/shared-utils/`, weitere Module findest du ebenfalls unter `packages/`.
+Zusätzliche gemeinsame Funktionen befinden sich im Paket `packages/common`.
 Kurze Beschreibungen findest du nun direkt in den READMEs der Pakete
 `bio`, `codex-navigator`, `collab-editor`, `core`, `crep-automation`,
 `event-bus`, `nukleon-scanner`, `nukleon-sonifier`, `sharedream-interface`,
