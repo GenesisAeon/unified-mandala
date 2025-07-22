@@ -33,3 +33,5 @@ export { default as NestedCanvas } from './NestedCanvas';
 export { default as PantheonHubPortal } from './components/PantheonHubPortal';
 export { default as PantheonLobbyUI } from './components/PantheonLobbyUI';
 export { default as RuleExplorer } from './components/RuleExplorer';
+export { default as HeatmapWidget } from './components/HeatmapWidget';
+export { default as HaikuOverlay } from './components/HaikuOverlay';
