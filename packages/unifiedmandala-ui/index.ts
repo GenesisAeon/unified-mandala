@@ -35,3 +35,4 @@ export { default as PantheonLobbyUI } from './components/PantheonLobbyUI';
 export { default as RuleExplorer } from './components/RuleExplorer';
 export { default as HeatmapWidget } from './components/HeatmapWidget';
 export { default as HaikuOverlay } from './components/HaikuOverlay';
+export { default as BlackboxMandala } from './components/BlackboxMandala';
