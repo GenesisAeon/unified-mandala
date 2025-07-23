@@ -5135,10 +5135,10 @@
   },
   {
     "commit": "CosmicTheoryAgent gRPC REST access",
-    "path": "packages/agent/src/agents/CosmicTheoryAgent.ts",
+    "path": "packages/agents/CosmicTheoryAgent.ts",
     "task": "Access PySR service via gRPC or REST",
-    "test": "packages/agent/__tests__/CosmicTheoryAgent.integration.test.ts",
-    "status": "open"
+    "test": "packages/agents/CosmicTheoryAgent.test.ts",
+    "status": "done"
   },
   {
     "commit": "Add FourierLayer unit tests",
@@ -5404,7 +5404,7 @@
     "path": "packages/agents/CosmicTheoryAgentMetrics.ts",
     "task": "Store agent metrics and provide hooks for UI",
     "test": "packages/agents/CosmicTheoryAgentMetrics.test.ts",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Add BoundaryLawDiscoveryEngine",

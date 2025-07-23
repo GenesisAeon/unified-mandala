@@ -389,5 +389,15 @@
       "commit": "Implement go todo_parser server",
       "status": "done"
     }
+  ],
+  "completed": [
+    {
+      "commit": "CosmicTheoryAgent MetricsStore interface",
+      "status": "done"
+    },
+    {
+      "commit": "CosmicTheoryAgent gRPC REST access",
+      "status": "done"
+    }
   ]
 }
