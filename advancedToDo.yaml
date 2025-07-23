@@ -7131,12 +7131,12 @@
   path: packages/unifiedmandala-ui/components/PantheonPortal3D.tsx
   task: Interactive 3D Pantheon module explorer
   test: packages/unifiedmandala-ui/components/PantheonPortal3D.test.tsx
-  status: open
+  status: done
 - commit: Add BoundaryLawDashboard
   path: packages/boundary-engine/BoundaryLawDashboard.tsx
   task: Dashboard visualizing boundary laws and macro-hypotheses
   test: packages/boundary-engine/BoundaryLawDashboard.test.tsx
-  status: open
+  status: done
 - commit: Extend ResonanceModuleOrchestrator plugin support
   path: packages/resonance-modules/ResonanceModuleOrchestrator.ts
   task: Add plugin registration and event hooks
@@ -7262,12 +7262,12 @@
   path: packages/boundary-engine/BoundaryVisualDebugger.ts
   task: Visualize active boundaries and collisions
   test: packages/boundary-engine/BoundaryVisualDebugger.test.ts
-  status: open
+  status: done
 - commit: Create VRAvatarHub component
   path: packages/unifiedmandala-vr/components/VRAvatarHub.tsx
   task: Hub to spawn avatars and portals in VR space
   test: packages/unifiedmandala-vr/components/VRAvatarHub.test.tsx
-  status: open
+  status: done
 - commit: Implement ResonanceModuleSynth
   path: packages/resonance-modules/ResonanceModuleSynth.ts
   task: Sound synthesis layer for resonance modules

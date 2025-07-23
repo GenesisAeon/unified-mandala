@@ -1,5 +1,5 @@
 {
-  "lastCommit": "Merge pull request #771 from GenesisAeon/zrvdcv-codex/implement-features-from-advancedtodo.yaml-and-json",
+  "lastCommit": "feat: implement Pantheon portal and boundary UI",
   "fractalStep": "sync",
   "openBranches": [
     "work"
@@ -24,22 +24,6 @@
       "status": "open"
     },
     {
-      "commit": "Create AvatarManager module",
-      "status": "done"
-    },
-    {
-      "commit": "Create EthicsGuard module",
-      "status": "done"
-    },
-    {
-      "commit": "Create FourierLayerBridge",
-      "status": "done"
-    },
-    {
-      "commit": "Create CREPIntegration module",
-      "status": "done"
-    },
-    {
       "commit": "Create MandalaScene component",
       "status": "open"
     },
@@ -50,14 +34,6 @@
     {
       "commit": "Create UIControls component",
       "status": "open"
-    },
-    {
-      "commit": "Add safety utilities",
-      "status": "done"
-    },
-    {
-      "commit": "Create VR package scaffold",
-      "status": "done"
     },
     {
       "commit": "Create BoundaryDiscoveryAgent",
@@ -148,14 +124,6 @@
       "status": "open"
     },
     {
-      "commit": "Implement PantheonPortal3D",
-      "status": "open"
-    },
-    {
-      "commit": "Add BoundaryLawDashboard",
-      "status": "open"
-    },
-    {
       "commit": "Add AeonKernel core",
       "status": "open"
     },
@@ -197,14 +165,6 @@
     },
     {
       "commit": "CosmicTheoryAgent FourierLayer gRPC bridge",
-      "status": "open"
-    },
-    {
-      "commit": "Add BoundaryVisualDebugger",
-      "status": "open"
-    },
-    {
-      "commit": "Create VRAvatarHub component",
       "status": "open"
     },
     {
@@ -383,6 +343,10 @@
     },
     {
       "commit": "Create VR package scaffold",
+      "status": "done"
+    },
+    {
+      "commit": "Implemented PantheonPortal3D, BoundaryLawDashboard, VRAvatarHub and debugger",
       "status": "done"
     }
   ]
