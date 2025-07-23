@@ -9,7 +9,7 @@
   "pendingTasks": [
     {
       "commit": "Implement go todo_parser server",
-      "status": "open"
+      "status": "done"
     },
     {
       "commit": "CosmicTheoryAgent gRPC REST access",
@@ -383,6 +383,10 @@
     },
     {
       "commit": "Create VR package scaffold",
+      "status": "done"
+    },
+    {
+      "commit": "Implement go todo_parser server",
       "status": "done"
     }
   ]
