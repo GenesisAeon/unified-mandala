@@ -1,5 +1,5 @@
 {
-  "lastCommit": "Merge pull request #768 from GenesisAeon/eyjsmq-codex/implement-features-from-advancedtodo.yaml",
+  "lastCommit": "Merge pull request #771 from GenesisAeon/zrvdcv-codex/implement-features-from-advancedtodo.yaml-and-json",
   "fractalStep": "sync",
   "openBranches": [
     "work"
@@ -14,10 +14,6 @@
     {
       "commit": "CosmicTheoryAgent gRPC REST access",
       "status": "open"
-    },
-    {
-      "commit": "Add Mandala SVG export event",
-      "status": "done"
     },
     {
       "commit": "Add PhanteonIntegration service",
