@@ -5488,21 +5488,21 @@
     "path": "packages/boundary-engine/rule_registry_service/registry_api.ts",
     "task": "REST API to persist boundary rules",
     "test": "packages/boundary-engine/__tests__/rule_registry_service.test.ts",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Add GraphDBPersistence module",
     "path": "packages/boundary-engine/GraphDBPersistence.ts",
     "task": "Persist boundary rules in Neo4j/GraphDB",
     "test": "packages/boundary-engine/GraphDBPersistence.test.ts",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Add MacroSynthesizerAgent",
     "path": "packages/boundary-engine/MacroSynthesizerAgent.py",
     "task": "Generate macro hypotheses from boundary rules",
     "test": "packages/boundary-engine/tests/test_macro_synthesizer.py",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Create MandalaCanvas UI",
