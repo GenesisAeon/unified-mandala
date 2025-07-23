@@ -1,5 +1,5 @@
 {
-  "lastCommit": "Merge pull request #771 from GenesisAeon/zrvdcv-codex/implement-features-from-advancedtodo.yaml-and-json",
+  "lastCommit": "Implement RuleRegistryService and GraphDB persistence",
   "fractalStep": "sync",
   "openBranches": [
     "work"
@@ -101,15 +101,15 @@
     },
     {
       "commit": "Create RuleRegistryService",
-      "status": "open"
+      "status": "done"
     },
     {
       "commit": "Add GraphDBPersistence module",
-      "status": "open"
+      "status": "done"
     },
     {
       "commit": "Add MacroSynthesizerAgent",
-      "status": "open"
+      "status": "done"
     },
     {
       "commit": "Create MandalaCanvas UI",
