@@ -1,5 +1,5 @@
 {
-  "lastCommit": "Merge pull request #771 from GenesisAeon/zrvdcv-codex/implement-features-from-advancedtodo.yaml-and-json",
+  "lastCommit": "chore: update progress",
   "fractalStep": "sync",
   "openBranches": [
     "work"
@@ -24,22 +24,6 @@
       "status": "open"
     },
     {
-      "commit": "Create AvatarManager module",
-      "status": "done"
-    },
-    {
-      "commit": "Create EthicsGuard module",
-      "status": "done"
-    },
-    {
-      "commit": "Create FourierLayerBridge",
-      "status": "done"
-    },
-    {
-      "commit": "Create CREPIntegration module",
-      "status": "done"
-    },
-    {
       "commit": "Create MandalaScene component",
       "status": "open"
     },
@@ -50,14 +34,6 @@
     {
       "commit": "Create UIControls component",
       "status": "open"
-    },
-    {
-      "commit": "Add safety utilities",
-      "status": "done"
-    },
-    {
-      "commit": "Create VR package scaffold",
-      "status": "done"
     },
     {
       "commit": "Create BoundaryDiscoveryAgent",
@@ -93,10 +69,6 @@
     },
     {
       "commit": "Pantheon EventBus migration",
-      "status": "open"
-    },
-    {
-      "commit": "Agent skeleton generator script",
       "status": "open"
     },
     {

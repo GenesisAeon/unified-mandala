@@ -7051,7 +7051,7 @@
   path: scripts/init-agent-service.ts
   task: Generate service skeleton for Pantheon agents
   test: scripts/__tests__/init-agent-service.test.ts
-  status: open
+  status: done
 - commit: Create RuleRegistryService
   path: packages/boundary-engine/rule_registry_service/registry_api.ts
   task: REST API to persist boundary rules
