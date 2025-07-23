@@ -5124,7 +5124,7 @@
     "path": "go-bridge/cmd/todo_parser.go",
     "task": "Start TODO parser service for Go tasks",
     "test": "go-bridge/cmd/todo_parser_test.go",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Implement parse-advanced-conversations script",
@@ -6276,5 +6276,117 @@
     "path": "",
     "task": "POST /impulse/:idx/crep */}} />",
     "test": ""
+  },
+  {
+    "category": "Pantheon",
+    "commit": "Implement PhanteonIntegration service",
+    "path": "packages/pantheon/PhanteonIntegration.ts",
+    "task": "Provide integration layer for Pantheon modules",
+    "status": "open",
+    "test": "packages/pantheon/PhanteonIntegration.test.ts"
+  },
+  {
+    "category": "Pantheon",
+    "commit": "Add PantheonMemorySync",
+    "path": "packages/pantheon/PantheonMemorySync.ts",
+    "task": "Sync Pantheon state to memory store",
+    "status": "open",
+    "test": "packages/pantheon/PantheonMemorySync.test.ts"
+  },
+  {
+    "category": "Pantheon",
+    "commit": "Add PantheonBoundaryResolver service",
+    "path": "packages/pantheon/PantheonBoundaryResolver.ts",
+    "task": "Resolve conflicts between Pantheon and Boundary rules",
+    "status": "open",
+    "test": "packages/pantheon/PantheonBoundaryResolver.test.ts"
+  },
+  {
+    "category": "Pantheon",
+    "commit": "PantheonArchiveExporter",
+    "path": "packages/pantheon/PantheonArchiveExporter.ts",
+    "task": "Export Pantheon data into ZIPMEM archives",
+    "status": "open",
+    "test": "packages/pantheon/PantheonArchiveExporter.test.ts"
+  },
+  {
+    "category": "Boundary",
+    "commit": "Create BoundaryDiscoveryAgent",
+    "path": "packages/boundary-engine/BoundaryDiscoveryAgent.ts",
+    "task": "Detect discontinuities and formalize boundary rules",
+    "status": "open",
+    "test": "packages/boundary-engine/BoundaryDiscoveryAgent.test.ts"
+  },
+  {
+    "category": "Boundary",
+    "commit": "Implement BoundaryLawAgentAlgorithm",
+    "path": "packages/boundary-engine/BoundaryLawAgentAlgorithm.ts",
+    "task": "Discover boundary law patterns and suggest macro laws",
+    "status": "open",
+    "test": "packages/boundary-engine/BoundaryLawAgentAlgorithm.test.ts"
+  },
+  {
+    "category": "Boundary",
+    "commit": "Add BoundaryPolicyManager",
+    "path": "packages/boundary-engine/BoundaryPolicyManager.ts",
+    "task": "Manage policy definitions for boundary modules",
+    "status": "open",
+    "test": "packages/boundary-engine/BoundaryPolicyManager.test.ts"
+  },
+  {
+    "category": "Boundary",
+    "commit": "BoundaryLawAnalyticsDashboard",
+    "path": "packages/boundary-engine/BoundaryLawDashboard.tsx",
+    "task": "Dashboard visualizing boundary laws and macro-hypotheses",
+    "status": "open",
+    "test": "packages/boundary-engine/BoundaryLawDashboard.test.tsx"
+  },
+  {
+    "category": "VR-Begegnungsraum",
+    "commit": "Integrate VRBegegnungsraum with MandalaCanvas",
+    "path": "packages/unifiedmandala-vr/VRBegegnungsraum.ts",
+    "task": "Link VR space with MandalaCanvas for interactive view",
+    "status": "open",
+    "test": "packages/unifiedmandala-vr/VRBegegnungsraumCanvas.test.ts"
+  },
+  {
+    "category": "VR-Begegnungsraum",
+    "commit": "Add SoundResonanceVR module",
+    "path": "packages/universum-simulationen/SoundResonanceVR.ts",
+    "task": "Extend resonance module with VR/3D sound features",
+    "status": "open",
+    "test": "packages/universum-simulationen/SoundResonanceVR.test.ts"
+  },
+  {
+    "category": "VR-Begegnungsraum",
+    "commit": "Create VRAvatarHub component",
+    "path": "packages/unifiedmandala-vr/components/VRAvatarHub.tsx",
+    "task": "Manage avatar sessions and presence in VR rooms",
+    "status": "open",
+    "test": "packages/unifiedmandala-vr/components/VRAvatarHub.test.tsx"
+  },
+  {
+    "category": "Erweiterte Resonanzmodule",
+    "commit": "Implement ResonanceModuleOrchestrator",
+    "path": "packages/resonance-modules/ResonanceModuleOrchestrator.ts",
+    "task": "Coordinate extended resonance modules via message bus",
+    "status": "open",
+    "test": "packages/resonance-modules/ResonanceModuleOrchestrator.test.ts"
+  },
+  {
+    "category": "Erweiterte Resonanzmodule",
+    "commit": "Add ResonanceAutoTuner",
+    "path": "packages/resonance-modules/ResonanceAutoTuner.ts",
+    "task": "Auto adjust resonance parameters based on feedback",
+    "status": "open",
+    "test": "packages/resonance-modules/ResonanceAutoTuner.test.ts"
+  },
+  {
+    "category": "Erweiterte Resonanzmodule",
+    "commit": "ResonanceFeedbackModule",
+    "path": "packages/resonance-modules/ResonanceFeedbackModule.ts",
+    "task": "Collect user resonance feedback for analysis",
+    "status": "open",
+    "test": "packages/resonance-modules/ResonanceFeedbackModule.test.ts"
   }
 ]
