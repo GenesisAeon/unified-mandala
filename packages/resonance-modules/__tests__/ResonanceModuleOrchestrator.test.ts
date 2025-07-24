@@ -1,4 +1,3 @@
-import { describe, it, expect } from 'vitest';
 import { ResonanceModuleOrchestrator } from '../ResonanceModuleOrchestrator';
 
 class DummyModule {
@@ -21,5 +20,14 @@ describe('ResonanceModuleOrchestrator', () => {
     orch.addPlugin(() => called++);
     orch.runAll('y');
     expect(called).toBe(1);
+  });
+
+  it('emits results on the bus', () => {
+    const orch = new ResonanceModuleOrchestrator();
+    orch.register(new DummyModule());
+    const received: unknown[] = [];
+    orch.bus.on('result', r => received.push(r));
+    orch.runAll('z');
+    expect(received).toEqual(['z']);
   });
 });
