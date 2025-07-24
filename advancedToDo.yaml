@@ -7696,3 +7696,28 @@
   task: Navigate Pantheon modules based on Symbolzeit
   test: packages/pantheon/PantheonSymbolzeitNavigator.test.ts
   status: done
+- commit: Manifest-Export for sigils
+  path: docs/sigils
+  task: Export features as .sigil.yaml, .json, Mermaid graph and README
+  test: docs/sigils/manifest_export.test.ts
+  status: open
+- commit: Code service skeleton initialization
+  path: packages/agent-init
+  task: Provide service skeletons for each agent (pnpm init, uvicorn, Neo4j-node)
+  test: packages/agent-init/service_skeleton.test.ts
+  status: open
+- commit: Initialize Aeon Orchestrator
+  path: packages/aeon-orchestrator/AeonOrchestrator.ts
+  task: Central control across agent cluster via event queue & StateBus
+  test: packages/aeon-orchestrator/AeonOrchestrator.test.ts
+  status: open
+- commit: Build Avatarraum Mandala UI
+  path: packages/unifiedmandala-vr/AvatarraumUI.tsx
+  task: Interactive Mandala UI with Babylon.js or Three.js and realtime AI presence
+  test: packages/unifiedmandala-vr/AvatarraumUI.test.tsx
+  status: open
+- commit: Export Pantheon dataset
+  path: packages/pantheon/tools/PantheonExport.ts
+  task: Export Pantheon modules and features
+  test: packages/pantheon/tools/PantheonExport.test.ts
+  status: open
