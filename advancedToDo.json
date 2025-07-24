@@ -6388,5 +6388,37 @@
     "task": "Collect user resonance feedback for analysis",
     "status": "open",
     "test": "packages/resonance-modules/ResonanceFeedbackModule.test.ts"
+  },
+  {
+    "category": "Pantheon",
+    "commit": "Add PantheonRitualOrchestrator",
+    "path": "packages/pantheon/PantheonRitualOrchestrator.ts",
+    "task": "Schedule and coordinate Pantheon ritual events",
+    "status": "open",
+    "test": "packages/pantheon/PantheonRitualOrchestrator.test.ts"
+  },
+  {
+    "category": "Boundary",
+    "commit": "Add BoundaryResearchPlanner",
+    "path": "packages/boundary-engine/BoundaryResearchPlanner.ts",
+    "task": "Manage research phases for boundary exploration",
+    "status": "open",
+    "test": "packages/boundary-engine/BoundaryResearchPlanner.test.ts"
+  },
+  {
+    "category": "VR-Begegnungsraum",
+    "commit": "Implement FourierVRMeetingHall",
+    "path": "packages/unifiedmandala-vr/FourierVRMeetingHall.ts",
+    "task": "VR meeting hall with Fourier-based soundscapes",
+    "status": "open",
+    "test": "packages/unifiedmandala-vr/FourierVRMeetingHall.test.ts"
+  },
+  {
+    "category": "Erweiterte Resonanzmodule",
+    "commit": "Add ResonanceMicroserviceSkeleton",
+    "path": "packages/resonance-modules/ResonanceMicroserviceSkeleton.ts",
+    "task": "Basic microservice template for new resonance modules",
+    "status": "open",
+    "test": "packages/resonance-modules/ResonanceMicroserviceSkeleton.test.ts"
   }
 ]
