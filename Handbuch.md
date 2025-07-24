@@ -61,6 +61,7 @@ Für neue Aufgaben aus Chat-Logs nutze `scripts/parse-advanced-conversations.js`
 - `FourierMetricsCLI` – Kommandozeilenwerkzeug für Fourier-Berechnungen.
 - `FractalTaskRunner` – führt YAML-basierte Plugin-Workflows aus.
 - `EventBridge` – leitet CosmicTheoryAgent-Events an die UI weiter.
+- `CosmicPlayground` – 3D canvas mit Tone.js-Sound-Sphere.
 - `PyramidVRMeetingRoom` – VR-Raum für mehrere Avatare.
 - CosmicTheoryAgent liefert VR-Hooks für immersive Steuerung.
 - `AeonOrchestrator` – zentrale Steuerinstanz des Pantheon, verteilt Boundary-Regeln.
@@ -128,6 +129,7 @@ console.log(sigil.id); // hello
 - `KIBewusstseinResonanzMonitor` – Überwacht Bewusstseins- und Resonanzmetriken.
 - `StrategicAgentCoordinator` – synchronisiert die Agentenliste und schreibt `strategy-overview.json` ([docs/agents/StrategicAgentCoordinator.md](docs/agents/StrategicAgentCoordinator.md))
 - `VisionContextIntegrator` – verteilt die Vision aus `AgentStrategy.md` an alle Agenten ([docs/agents/VisionContextIntegrator.md](docs/agents/VisionContextIntegrator.md))
+- `ResonanceModuleOrchestrator` – orchestriert Module über EventEmitter.
 - `QualityAssuranceAgent` – führt Lint- und Test-Suites aus ([docs/agents/QualityAssuranceAgent.md](docs/agents/QualityAssuranceAgent.md))
 ### collab-editor
 - `CollaborativeEditor` – Federated Texteditor mit Remote-Sync.

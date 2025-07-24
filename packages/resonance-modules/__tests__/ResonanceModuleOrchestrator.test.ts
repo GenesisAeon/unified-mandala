@@ -22,4 +22,13 @@ describe('ResonanceModuleOrchestrator', () => {
     orch.runAll('y');
     expect(called).toBe(1);
   });
+
+  it('emits result events', () => {
+    const orch = new ResonanceModuleOrchestrator();
+    orch.register(new DummyModule());
+    let eventData: unknown;
+    orch.on('result', d => (eventData = d));
+    orch.runAll('z');
+    expect(eventData).toBe('z');
+  });
 });

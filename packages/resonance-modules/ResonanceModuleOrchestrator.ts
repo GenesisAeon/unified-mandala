@@ -3,7 +3,9 @@ export interface ResonanceModule {
   process(input: unknown): unknown;
 }
 
-export class ResonanceModuleOrchestrator {
+import { EventEmitter } from 'events';
+
+export class ResonanceModuleOrchestrator extends EventEmitter {
   private modules: ResonanceModule[] = [];
   private plugins: Array<(result: unknown) => void> = [];
 
@@ -18,6 +20,7 @@ export class ResonanceModuleOrchestrator {
   runAll(input: unknown) {
     const results = this.modules.map(m => m.process(input));
     for (const r of results) {
+      this.emit('result', r);
       for (const p of this.plugins) p(r);
     }
     return results;

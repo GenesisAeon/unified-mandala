@@ -60,6 +60,7 @@ Weitere Hinweise aus dem „Sigil Übergang“:
 - [**VR Pantheon Konzept**](docs/pantheon/VR-Begegnungsraum-Concept.md) – Konzept für kollaborative Treffen
 - [**PySR Service Client**](packages/agents/CosmicTheoryAgent.ts) – Regression via REST/gRPC
 - [**Sigil Archive Service**](services/sigil-archive/index.ts) – speichert Sigille und CREP-Fragmente
+- [**CosmicPlayground**](packages/unifiedmandala-ui/components/CosmicPlayground.tsx) – 3D canvas with Tone.js sound
 - [**CREPVisualizer**](packages/unifiedmandala-ui/components/CREPVisualizer.tsx) – animierte Timeline der Mandala-Kristalle
 - [**Plug-in-Architektur**](plugins/manifest.yaml) – GPT-Kommunikationsmodule, CLI-Tools
 - 🔗 [**GPTBridge (Go)**](go-bridge/pkg/gpt) – API- und Link-basierte GPT-Anbindung
@@ -84,6 +85,7 @@ Weitere Hinweise aus dem „Sigil Übergang“:
 - [**AeonStoryMode & Onboarding-Flow**](packages/unifiedmandala-ui/README.md) – Präsentations- und Einstiegskomponenten
 - [**MandalaThemeManager**](packages/unifiedmandala-ui/README.md) – hell/dunkel umschalten
 - [**SigillinActivationManager & MetaSignatur**](packages/genesis-sigillin-core) – Aktivierung & Signatur von Sigillin
+- [**ResonanceModuleOrchestrator**](packages/resonance-modules/ResonanceModuleOrchestrator.ts) – message bus for resonance modules
 - [**ThemeProvider & useResponsiveTheme**](packages/unifiedmandala-ui/hooks/useResponsiveTheme.ts) – CREP-basierte Farbwahl
 - [**useAdaptiveLayout**](packages/unifiedmandala-ui/hooks/useAdaptiveLayout.ts) – reagiert auf CREP-Status
 - [**useABLayout**](packages/unifiedmandala-ui/hooks/useABLayout.ts) – A/B-Tests mit CREP-Metrik

@@ -6976,7 +6976,7 @@
   path: packages/unifiedmandala-ui/components/CosmicPlayground.tsx
   task: Interactive 3D canvas with Tone.js integration
   test: packages/unifiedmandala-ui/components/CosmicPlayground.test.tsx
-  status: open
+  status: done
 - commit: CosmicTheoryAgent MetricsStore interface
   path: packages/agents/CosmicTheoryAgentMetrics.ts
   task: Store agent metrics and provide hooks for UI
@@ -6996,7 +6996,7 @@
   path: packages/resonance-modules/ResonanceModuleOrchestrator.ts
   task: Coordinate extended resonance modules via message bus
   test: packages/resonance-modules/ResonanceModuleOrchestrator.test.ts
-  status: open
+  status: done
 - commit: Scaffold Extended Resonance Modules docs
   path: docs/resonance/ExtendedResonanceModules.md
   task: Outline microservice modules for resonance expansion
