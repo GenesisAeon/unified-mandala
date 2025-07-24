@@ -5481,7 +5481,7 @@
     "path": "scripts/init-agent-service.ts",
     "task": "Generate service skeleton for Pantheon agents",
     "test": "scripts/__tests__/init-agent-service.test.ts",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Create RuleRegistryService",
@@ -5747,7 +5747,7 @@
     "path": "packages/boundary-engine/BoundaryPolicyManager.ts",
     "task": "Define governance policies for boundaries",
     "test": "packages/boundary-engine/BoundaryPolicyManager.test.ts",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Extend ResonanceModuleOrchestrator VR integration",
@@ -6330,7 +6330,7 @@
     "commit": "Add BoundaryPolicyManager",
     "path": "packages/boundary-engine/BoundaryPolicyManager.ts",
     "task": "Manage policy definitions for boundary modules",
-    "status": "open",
+    "status": "done",
     "test": "packages/boundary-engine/BoundaryPolicyManager.test.ts"
   },
   {
