@@ -1,5 +1,5 @@
 {
-  "lastCommit": "Implement RuleRegistryService and GraphDB persistence",
+  "lastCommit": "Create BoundaryDiscoveryAgent skeleton",
   "fractalStep": "sync",
   "openBranches": [
     "work"
@@ -61,7 +61,7 @@
     },
     {
       "commit": "Create BoundaryDiscoveryAgent",
-      "status": "open"
+      "status": "done"
     },
     {
       "commit": "CosmicTheoryAgent PySR gRPC access",
