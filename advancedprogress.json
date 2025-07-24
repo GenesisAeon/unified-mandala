@@ -340,7 +340,27 @@
     {
       "commit": "Create UIControls component",
       "status": "done"
-    }
+    },
+    {
+      "commit": "Manifest-Export for sigils",
+      "status": "open"
+    },
+    {
+      "commit": "Code service skeleton initialization",
+      "status": "open"
+    },
+    {
+      "commit": "Initialize Aeon Orchestrator",
+      "status": "open"
+    },
+    {
+      "commit": "Build Avatarraum Mandala UI",
+      "status": "open"
+    },
+    {
+      "commit": "Export Pantheon dataset",
+      "status": "open"
+    },
   ],
   "completed": [
     {
