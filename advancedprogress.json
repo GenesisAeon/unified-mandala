@@ -392,6 +392,22 @@
     {
       "commit": "Implemented ResonanceAutoTuner and FeedbackModule",
       "status": "done"
+    },
+    {
+      "commit": "Add Aeon Orchestrator service",
+      "status": "done"
+    },
+    {
+      "commit": "Create MandalaScene component",
+      "status": "done"
+    },
+    {
+      "commit": "Create ArtInteraction component",
+      "status": "done"
+    },
+    {
+      "commit": "Create UIControls component",
+      "status": "done"
     }
   ],
   "completed": [
