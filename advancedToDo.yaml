@@ -6956,7 +6956,7 @@
   path: packages/unifiedmandala-boundary/boundary_discovery_agent.ts
   task: Detect discontinuities and formalize boundary rules
   test: packages/unifiedmandala-boundary/boundary_discovery_agent.test.ts
-  status: open
+  status: done
 - commit: Implement VRBegegnungsraum module
   path: packages/unifiedmandala-vr/VRBegegnungsraum.ts
   task: WebXR based meeting space with FourierLayer link
@@ -7637,7 +7637,7 @@
   commit: Create BoundaryDiscoveryAgent
   path: packages/boundary-engine/BoundaryDiscoveryAgent.ts
   task: Detect discontinuities and formalize boundary rules
-  status: open
+  status: done
   test: packages/boundary-engine/BoundaryDiscoveryAgent.test.ts
 - category: Boundary
   commit: Implement BoundaryLawAgentAlgorithm
