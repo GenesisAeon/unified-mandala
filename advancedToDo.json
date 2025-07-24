@@ -5365,11 +5365,11 @@
     "status": "done"
   },
   {
-    "commit": "Create BoundaryDiscoveryAgent",
-    "path": "packages/unifiedmandala-boundary/boundary_discovery_agent.ts",
-    "task": "Detect discontinuities and formalize boundary rules",
-    "test": "packages/unifiedmandala-boundary/boundary_discovery_agent.test.ts",
-    "status": "open"
+  "commit": "Create BoundaryDiscoveryAgent",
+  "path": "packages/unifiedmandala-boundary/boundary_discovery_agent.ts",
+  "task": "Detect discontinuities and formalize boundary rules",
+  "test": "packages/unifiedmandala-boundary/boundary_discovery_agent.test.ts",
+  "status": "done"
   },
   {
     "commit": "Implement VRBegegnungsraum module",
@@ -6310,12 +6310,12 @@
     "test": "packages/pantheon/PantheonArchiveExporter.test.ts"
   },
   {
-    "category": "Boundary",
-    "commit": "Create BoundaryDiscoveryAgent",
-    "path": "packages/boundary-engine/BoundaryDiscoveryAgent.ts",
-    "task": "Detect discontinuities and formalize boundary rules",
-    "status": "open",
-    "test": "packages/boundary-engine/BoundaryDiscoveryAgent.test.ts"
+  "category": "Boundary",
+  "commit": "Create BoundaryDiscoveryAgent",
+  "path": "packages/boundary-engine/BoundaryDiscoveryAgent.ts",
+  "task": "Detect discontinuities and formalize boundary rules",
+  "status": "done",
+  "test": "packages/boundary-engine/BoundaryDiscoveryAgent.test.ts"
   },
   {
     "category": "Boundary",
