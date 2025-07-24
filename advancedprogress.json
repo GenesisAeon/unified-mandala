@@ -229,7 +229,7 @@
     },
     {
       "commit": "ResonanceFeedbackModule",
-      "status": "open"
+      "status": "done"
     },
     {
       "commit": "Add FrequencyMandala3D component",
@@ -261,7 +261,7 @@
     },
     {
       "commit": "Add ResonanceAutoTuner",
-      "status": "open"
+      "status": "done"
     },
     {
       "commit": "Create BoundaryLawPatternGenerator",
@@ -387,6 +387,10 @@
     },
     {
       "commit": "Implement go todo_parser server",
+      "status": "done"
+    },
+    {
+      "commit": "Implemented ResonanceAutoTuner and FeedbackModule",
       "status": "done"
     }
   ],
