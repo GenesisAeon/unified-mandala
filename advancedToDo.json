@@ -6378,7 +6378,7 @@
     "commit": "Add ResonanceAutoTuner",
     "path": "packages/resonance-modules/ResonanceAutoTuner.ts",
     "task": "Auto adjust resonance parameters based on feedback",
-    "status": "open",
+    "status": "done",
     "test": "packages/resonance-modules/ResonanceAutoTuner.test.ts"
   },
   {
@@ -6386,7 +6386,7 @@
     "commit": "ResonanceFeedbackModule",
     "path": "packages/resonance-modules/ResonanceFeedbackModule.ts",
     "task": "Collect user resonance feedback for analysis",
-    "status": "open",
+    "status": "done",
     "test": "packages/resonance-modules/ResonanceFeedbackModule.test.ts"
   }
 ]
