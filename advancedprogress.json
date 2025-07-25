@@ -1,5 +1,5 @@
 {
-  "lastCommit": "meta:update-progress – normalize",
+  "lastCommit": "Merge pull request #802 from GenesisAeon/fgs7in-codex/implement-features-from-advancedtodo.yaml",
   "fractalStep": "sync",
   "openBranches": [
     "work"
@@ -348,6 +348,10 @@
     {
       "commit": "Add OpenEthikDashboard component",
       "status": "done"
+    },
+    {
+      "commit": "meta:update-progress – mark memory governance done",
+      "status": "done"
     }
   ],
   "completed": [
@@ -412,12 +416,12 @@
     {
       "featureId": "memory-governance",
       "commit": "meta:extract-features – memory governance",
-      "status": "todo"
+      "status": "done"
     },
     {
       "featureId": "turing-tests",
       "commit": "meta:extract-features – turing tests",
-      "status": "todo"
+      "status": "in-progress"
     },
     {
       "featureId": "schwerewellen",
@@ -428,6 +432,11 @@
       "featureId": "anthropic-multiversum",
       "commit": "meta:extract-features – anthropic multiversum",
       "status": "todo"
+    },
+    {
+      "featureId": "memory-governance",
+      "commit": "meta:implement-features – memory governance service",
+      "status": "done"
     }
   ]
 }

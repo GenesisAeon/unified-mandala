@@ -6528,5 +6528,12 @@
     "task": "Dashboard for community ethics metrics",
     "test": "packages/unifiedmandala-ui/components/OpenEthikDashboard.test.tsx",
     "status": "done"
+  },
+  {
+    "commit": "Add MemoryGovernanceService skeleton",
+    "path": "services/memory-governance/index.ts",
+    "task": "Provide memory governance enforcement",
+    "test": "services/memory-governance/index.test.ts",
+    "status": "done"
   }
 ]
