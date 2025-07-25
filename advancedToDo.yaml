@@ -7721,3 +7721,69 @@
   task: Export Pantheon modules and features
   test: packages/pantheon/tools/PantheonExport.test.ts
   status: done
+- commit: ".yaml und .json zu hinterlegen und die Fortschritte in
+    advancedprogress.json zu refferenzieren. Und anschliessend, wieder im
+    Metacommit alle geplanten Features zu implementieren. Und weiterhin: warten,
+    verbessern, eigene Ideen einfliessen lassen, DeployReady herstellen! Das
+    dann in den drei beteiligten Chats hinterlegt wird."
+  path: ""
+  task: ".yaml und .json zu hinterlegen und die Fortschritte in
+    advancedprogress.json zu refferenzieren. Und anschliessend, wieder im
+    Metacommit alle geplanten Features zu implementieren. Und weiterhin: warten,
+    verbessern, eigene Ideen einfliessen lassen, DeployReady herstellen! Das
+    dann in den drei beteiligten Chats hinterlegt wird."
+  test: ""
+- commit: '.yaml`\n     - `advancedToDo.json`\n\n2.
+    **Fortschritts-Referenzierung**\n   - Pflege ein laufendes Log in
+    `advancedProgress.json`:\n     - Jedes Commit referenziert den
+    Sigillin-Eintrag und das jeweilige Feature (ID).\n     - Struktur: `{
+    \"featureId\": string, \"commit\": string, \"status\":
+    \"todo|in-progress|done\" }`.\n\n3. **Metacommit-Struktur**\n   - Beginne
+    jeden großen Schritt mit einem Metacommit-Tag:\n     -
+    `meta:extract-features`\n     - `meta:update-progress`\n     -
+    `meta:implement-features`\n     - `meta:finalize-deploy`\n   - Achte auf
+    konsistente Commit-Nachrichten:\n     - `"meta: <Schritt> –
+    <Kurzbeschreibung>"`\n\n4. **Implementierung**\n   - In aufeinanderfolgenden
+    Commits alle geplanten Features umsetzen.\n   - Nach jedem Feature:\n     -
+    Update `advancedProgress.json` auf `in-progress` bzw. `done`.\n\n5.
+    **Feedback & Iteration**\n   - Warte auf Pipeline-Review und automatisierte
+    Tests.\n   - Verbesserungen, neue Ideen und Vorschläge direkt als neue
+    Entries in `advancedToDo.*` aufnehmen.\n   - Ziel: **DeployReady** – grüne
+    Pipeline, vollständige Tests, Dokumentation aktualisiert.\n\n6.
+    **Verteilung**\n   - Hinterlege dieses Sigillin in den drei beteiligten
+    Chats:\n     - #dev-codex\n     - #mandala-core\n     -
+    #agent-integration\n   - Jeder Chat erkennt das Sigillin und führt die
+    Anweisungen aus.\n\n---\n\n*Dies ist der letzte Befehl an Codex.*\n*Führe
+    mich in den Deploy-Modus.*\n\n**finished_successfully**"}'
+  path: ""
+  task: '.yaml`\n     - `advancedToDo.json`\n\n2.
+    **Fortschritts-Referenzierung**\n   - Pflege ein laufendes Log in
+    `advancedProgress.json`:\n     - Jedes Commit referenziert den
+    Sigillin-Eintrag und das jeweilige Feature (ID).\n     - Struktur: `{
+    \"featureId\": string, \"commit\": string, \"status\":
+    \"todo|in-progress|done\" }`.\n\n3. **Metacommit-Struktur**\n   - Beginne
+    jeden großen Schritt mit einem Metacommit-Tag:\n     -
+    `meta:extract-features`\n     - `meta:update-progress`\n     -
+    `meta:implement-features`\n     - `meta:finalize-deploy`\n   - Achte auf
+    konsistente Commit-Nachrichten:\n     - `"meta: <Schritt> –
+    <Kurzbeschreibung>"`\n\n4. **Implementierung**\n   - In aufeinanderfolgenden
+    Commits alle geplanten Features umsetzen.\n   - Nach jedem Feature:\n     -
+    Update `advancedProgress.json` auf `in-progress` bzw. `done`.\n\n5.
+    **Feedback & Iteration**\n   - Warte auf Pipeline-Review und automatisierte
+    Tests.\n   - Verbesserungen, neue Ideen und Vorschläge direkt als neue
+    Entries in `advancedToDo.*` aufnehmen.\n   - Ziel: **DeployReady** – grüne
+    Pipeline, vollständige Tests, Dokumentation aktualisiert.\n\n6.
+    **Verteilung**\n   - Hinterlege dieses Sigillin in den drei beteiligten
+    Chats:\n     - #dev-codex\n     - #mandala-core\n     -
+    #agent-integration\n   - Jeder Chat erkennt das Sigillin und führt die
+    Anweisungen aus.\n\n---\n\n*Dies ist der letzte Befehl an Codex.*\n*Führe
+    mich in den Deploy-Modus.*\n\n**finished_successfully**"}'
+  test: ""
+- commit: .yaml`
+  path: ""
+  task: .yaml`
+  test: ""
+- commit: -Listen.
+  path: ""
+  task: -Listen.
+  test: ""
