@@ -66,6 +66,7 @@ Für neue Aufgaben aus Chat-Logs nutze `scripts/parse-advanced-conversations.js`
 - `AeonOrchestrator` – zentrale Steuerinstanz des Pantheon, verteilt Boundary-Regeln.
 - `PantheonPortalAnalytics` – zeichnet Portalzugriffe auf.
 - `PantheonBoundaryBridge` – verknüpft Pantheon-Ereignisse mit BoundaryRuleDetector
+- `PantheonExport Tool` – exportiert die vorhandenen Pantheon-Module als Datensatz
 - `UnifiedMandalaVR` – Modulpaket mit AvatarManager, EthicsGuard und FourierLayerBridge.
 - `archiveSigil` – schreibt Sigil-Dateien in GenesisAeonZIPMEM.
 - `DocCommentsGenerator` – erstellt Doku aus Code-Kommentaren.

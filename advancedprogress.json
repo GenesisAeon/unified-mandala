@@ -1,11 +1,11 @@
 {
-  "lastCommit": "chore: normalize progress file",
+  "lastCommit": "meta: implement-features – add Pantheon dataset export script",
   "fractalStep": "sync",
   "openBranches": [
     "work"
   ],
   "mergeConflicts": [],
-  "notes": "Improved rule detection with regex support | UnifiedMandalaPantheon initial module implemented",
+  "notes": "Improved rule detection with regex support | UnifiedMandalaPantheon initial module implemented | PantheonExport tool added",
   "pendingTasks": [
     {
       "commit": "CosmicTheoryAgent 3D canvas and Tone.js",
@@ -13,7 +13,7 @@
     },
     {
       "commit": "Add BoundaryLawDiscoveryEngine",
-      "status": "done"
+      "status": "open"
     },
     {
       "commit": "Create PantheonAvatarraum component",
@@ -28,19 +28,11 @@
       "status": "open"
     },
     {
-      "commit": "Agent skeleton generator script",
-      "status": "done"
-    },
-    {
       "commit": "Create MandalaCanvas UI",
       "status": "open"
     },
     {
       "commit": "Integrate VRBegegnungsraum with MandalaCanvas",
-      "status": "open"
-    },
-    {
-      "commit": "Add FourierLayerPlugin",
       "status": "open"
     },
     {
@@ -57,7 +49,7 @@
     },
     {
       "commit": "Add BoundaryLawDiscoveryEngine",
-      "status": "done"
+      "status": "open"
     },
     {
       "commit": "Create documentation generator",
@@ -104,10 +96,6 @@
       "status": "open"
     },
     {
-      "commit": "Add BoundaryPolicyManager",
-      "status": "done"
-    },
-    {
       "commit": "Extend ResonanceModuleOrchestrator VR integration",
       "status": "open"
     },
@@ -149,7 +137,7 @@
     },
     {
       "commit": "Add BoundaryLawDiscoveryEngine",
-      "status": "done"
+      "status": "open"
     },
     {
       "commit": "Create PantheonAvatarraum component",
@@ -180,10 +168,6 @@
       "status": "open"
     },
     {
-      "commit": "Add BoundaryPolicyManager",
-      "status": "done"
-    },
-    {
       "commit": "BoundaryLawAnalyticsDashboard",
       "status": "open"
     },
@@ -196,7 +180,19 @@
       "status": "open"
     },
     {
-      "commit": "Add PantheonSymbolzeitNavigator",
+      "commit": "Manifest-Export for sigils",
+      "status": "open"
+    },
+    {
+      "commit": "Code service skeleton initialization",
+      "status": "open"
+    },
+    {
+      "commit": "Initialize Aeon Orchestrator",
+      "status": "open"
+    },
+    {
+      "commit": "Build Avatarraum Mandala UI",
       "status": "open"
     }
   ],
@@ -359,7 +355,7 @@
     },
     {
       "commit": "Export Pantheon dataset",
-      "status": "open"
+      "status": "done"
     }
   ],
   "completed": [
