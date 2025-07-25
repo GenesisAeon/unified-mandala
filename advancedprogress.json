@@ -1,5 +1,5 @@
 {
-  "lastCommit": "meta:extract-features – implicit-todos",
+  "lastCommit": "meta:extract-features – codex:2025-0724-FINAL",
   "fractalStep": "sync",
   "openBranches": [
     "work"
@@ -378,6 +378,56 @@
       "featureId": "implicit-todos",
       "commit": "meta:extract-features – implicit todo extraction",
       "status": "done"
+    },
+    {
+      "featureId": "zivilisations-sandboxen",
+      "commit": "meta:extract-features – Zivilisations-Sandboxen",
+      "status": "todo"
+    },
+    {
+      "featureId": "climate-integration",
+      "commit": "meta:extract-features – climate integration",
+      "status": "todo"
+    },
+    {
+      "featureId": "keilschrift",
+      "commit": "meta:extract-features – keilschrift",
+      "status": "todo"
+    },
+    {
+      "featureId": "grok-agent",
+      "commit": "meta:extract-features – grok agent",
+      "status": "todo"
+    },
+    {
+      "featureId": "shadow-integration",
+      "commit": "meta:extract-features – shadow integration",
+      "status": "todo"
+    },
+    {
+      "featureId": "self-reflection",
+      "commit": "meta:extract-features – self reflection",
+      "status": "todo"
+    },
+    {
+      "featureId": "memory-governance",
+      "commit": "meta:extract-features – memory governance",
+      "status": "todo"
+    },
+    {
+      "featureId": "turing-tests",
+      "commit": "meta:extract-features – turing tests",
+      "status": "todo"
+    },
+    {
+      "featureId": "schwerewellen",
+      "commit": "meta:extract-features – schwerewellen",
+      "status": "todo"
+    },
+    {
+      "featureId": "anthropic-multiversum",
+      "commit": "meta:extract-features – anthropic multiversum",
+      "status": "todo"
     }
   ]
 }
