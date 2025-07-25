@@ -1,5 +1,5 @@
 {
-  "lastCommit": "Merge pull request #792 from GenesisAeon/3ig6sg-codex/implement-features-from-advancedtodo.yaml-and-.json",
+  "lastCommit": "meta: implement-features – BoundaryLawDiscoveryEngine",
   "fractalStep": "sync",
   "openBranches": [
     "work"
@@ -13,7 +13,7 @@
     },
     {
       "commit": "Add BoundaryLawDiscoveryEngine",
-      "status": "open"
+      "status": "done"
     },
     {
       "commit": "Create PantheonAvatarraum component",
@@ -49,7 +49,7 @@
     },
     {
       "commit": "Add BoundaryLawDiscoveryEngine",
-      "status": "open"
+      "status": "done"
     },
     {
       "commit": "Create documentation generator",
@@ -137,7 +137,7 @@
     },
     {
       "commit": "Add BoundaryLawDiscoveryEngine",
-      "status": "open"
+      "status": "done"
     },
     {
       "commit": "Create PantheonAvatarraum component",
@@ -355,6 +355,10 @@
     },
     {
       "commit": "Export Pantheon dataset",
+      "status": "done"
+    },
+    {
+      "commit": "Add BoundaryLawDiscoveryEngine",
       "status": "done"
     }
   ],
