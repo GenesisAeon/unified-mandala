@@ -7071,7 +7071,7 @@
   path: packages/unifiedmandala-ui/components/MandalaCanvas.tsx
   task: Visualize boundary rules and Pantheon events
   test: packages/unifiedmandala-ui/components/MandalaCanvas.test.tsx
-  status: open
+  status: done
 - commit: Integrate VRBegegnungsraum with MandalaCanvas
   path: packages/unifiedmandala-vr/VRBegegnungsraum.ts
   task: Link VR space with MandalaCanvas for interactive view

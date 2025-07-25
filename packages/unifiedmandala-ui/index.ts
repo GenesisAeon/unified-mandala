@@ -36,3 +36,4 @@ export { default as RuleExplorer } from './components/RuleExplorer';
 export { default as HeatmapWidget } from './components/HeatmapWidget';
 export { default as HaikuOverlay } from './components/HaikuOverlay';
 export { default as BlackboxMandala } from './components/BlackboxMandala';
+export { default as MandalaCanvas } from './components/MandalaCanvas';
