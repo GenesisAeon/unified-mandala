@@ -5180,7 +5180,7 @@
     "path": "packages/phanteon/PhanteonIntegrator.ts",
     "task": "Integrate Pantheon modules into system",
     "test": "packages/phanteon/PhanteonIntegrator.test.ts",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Add BoundaryConditionManager",
