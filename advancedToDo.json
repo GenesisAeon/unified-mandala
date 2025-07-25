@@ -6521,5 +6521,12 @@
   },
   {
     "feature": "Visuelle Ausgabe mit Hinweisen"
+  },
+  {
+    "commit": "Add OpenEthikDashboard component",
+    "path": "packages/unifiedmandala-ui/components/OpenEthikDashboard.tsx",
+    "task": "Dashboard for community ethics metrics",
+    "test": "packages/unifiedmandala-ui/components/OpenEthikDashboard.test.tsx",
+    "status": "done"
   }
 ]
