@@ -1,5 +1,5 @@
 {
-  "lastCommit": "meta:update-progress – feature log appended",
+  "lastCommit": "meta:extract-features – implicit-todos",
   "fractalStep": "sync",
   "openBranches": [
     "work"
@@ -373,6 +373,11 @@
       "featureId": "open-ethik-dashboard",
       "commit": "meta:extract-features – open-ethik-dashboard",
       "status": "todo"
+    },
+    {
+      "featureId": "implicit-todos",
+      "commit": "meta:extract-features – implicit todo extraction",
+      "status": "done"
     }
   ]
 }
