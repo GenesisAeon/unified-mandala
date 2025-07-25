@@ -1,5 +1,5 @@
 {
-  "lastCommit": "meta:update-progress – sync lastCommit",
+  "lastCommit": "meta:update-progress – normalize",
   "fractalStep": "sync",
   "openBranches": [
     "work"
@@ -22,10 +22,6 @@
     {
       "commit": "Pantheon EventBus migration",
       "status": "open"
-    },
-    {
-      "commit": "Create MandalaCanvas UI",
-      "status": "done"
     },
     {
       "commit": "Integrate VRBegegnungsraum with MandalaCanvas",
@@ -348,6 +344,10 @@
     {
       "commit": "Add BoundaryLawDiscoveryEngine",
       "status": "done"
+    },
+    {
+      "commit": "Add OpenEthikDashboard component",
+      "status": "done"
     }
   ],
   "completed": [
@@ -371,8 +371,8 @@
   "featureLog": [
     {
       "featureId": "open-ethik-dashboard",
-      "commit": "meta:extract-features – open-ethik-dashboard",
-      "status": "todo"
+      "commit": "meta:implement-features – open-ethik-dashboard",
+      "status": "done"
     },
     {
       "featureId": "implicit-todos",
