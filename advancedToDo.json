@@ -5408,10 +5408,10 @@
   },
   {
     "commit": "Add BoundaryLawDiscoveryEngine",
-    "path": "packages/boundary-engine/BoundaryLawDiscovery.ts",
+    "path": "packages/boundary-engine/BoundaryLawDiscoveryEngine.ts",
     "task": "Consolidate detected boundary rules into macro-laws",
-    "test": "packages/boundary-engine/BoundaryLawDiscovery.test.ts",
-    "status": "open"
+    "test": "packages/boundary-engine/BoundaryLawDiscoveryEngine.test.ts",
+    "status": "done"
   },
   {
     "commit": "Create PantheonAvatarraum component",
@@ -5562,10 +5562,10 @@
   },
   {
     "commit": "Add BoundaryLawDiscoveryEngine",
-    "path": "packages/boundary-engine/BoundaryLawDiscovery.ts",
+    "path": "packages/boundary-engine/BoundaryLawDiscoveryEngine.ts",
     "task": "Engine to discover boundary rules",
-    "test": "packages/boundary-engine/BoundaryLawDiscovery.test.ts",
-    "status": "open"
+    "test": "packages/boundary-engine/BoundaryLawDiscoveryEngine.test.ts",
+    "status": "done"
   },
   {
     "commit": "Create documentation generator",
@@ -5898,10 +5898,10 @@
   },
   {
     "commit": "Add BoundaryLawDiscoveryEngine",
-    "path": "packages/boundary-engine/BoundaryLawDiscovery.ts",
+    "path": "packages/boundary-engine/BoundaryLawDiscoveryEngine.ts",
     "task": "Consolidate detected boundary rules",
-    "test": "packages/boundary-engine/__tests__/BoundaryLawDiscovery.test.ts",
-    "status": "open"
+    "test": "packages/boundary-engine/BoundaryLawDiscoveryEngine.test.ts",
+    "status": "done"
   },
   {
     "commit": "Create PantheonAvatarraum component",
