@@ -1,5 +1,5 @@
 {
-  "lastCommit": "meta: implement-features – BoundaryLawDiscoveryEngine",
+  "lastCommit": "meta:update-progress – feature log appended",
   "fractalStep": "sync",
   "openBranches": [
     "work"
@@ -10,10 +10,6 @@
     {
       "commit": "CosmicTheoryAgent 3D canvas and Tone.js",
       "status": "open"
-    },
-    {
-      "commit": "Add BoundaryLawDiscoveryEngine",
-      "status": "done"
     },
     {
       "commit": "Create PantheonAvatarraum component",
@@ -46,10 +42,6 @@
     {
       "commit": "Add SoundResonanceVR module",
       "status": "open"
-    },
-    {
-      "commit": "Add BoundaryLawDiscoveryEngine",
-      "status": "done"
     },
     {
       "commit": "Create documentation generator",
@@ -134,10 +126,6 @@
     {
       "commit": "Add FrequencyMandala3D component",
       "status": "open"
-    },
-    {
-      "commit": "Add BoundaryLawDiscoveryEngine",
-      "status": "done"
     },
     {
       "commit": "Create PantheonAvatarraum component",
@@ -378,6 +366,13 @@
     {
       "commit": "ResonanceModuleOrchestrator bus support",
       "status": "done"
+    }
+  ],
+  "featureLog": [
+    {
+      "featureId": "open-ethik-dashboard",
+      "commit": "meta:extract-features – open-ethik-dashboard",
+      "status": "todo"
     }
   ]
 }
