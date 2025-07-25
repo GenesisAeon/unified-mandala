@@ -1,5 +1,5 @@
 {
-  "lastCommit": "meta:extract-features – codex:2025-0724-FINAL",
+  "lastCommit": "meta:extract-features – failed to parse newadvancedconversations",
   "fractalStep": "sync",
   "openBranches": [
     "work"
@@ -428,6 +428,11 @@
       "featureId": "anthropic-multiversum",
       "commit": "meta:extract-features – anthropic multiversum",
       "status": "todo"
-    }
+    },
+    {
+      "featureId": "newadvancedconversations-parsing",
+      "commit": "meta:extract-features – failed to parse features from newadvancedconversations",
+      "status": "failed"
+    },
   ]
 }
