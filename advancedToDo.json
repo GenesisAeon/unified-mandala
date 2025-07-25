@@ -5537,7 +5537,7 @@
     "path": "packages/analysis/FourierLayerPlugin.ts",
     "task": "Plugin for fractal analysis using Fourier transforms",
     "test": "packages/analysis/FourierLayerPlugin.test.ts",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Upgrade CosmicTheoryAgent",
