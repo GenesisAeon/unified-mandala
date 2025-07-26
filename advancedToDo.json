@@ -6633,5 +6633,40 @@
     "path": "packages/aeon-ui-pyramid/.github/workflows/ci.yml",
     "task": "Add Jest, Cypress and Docker build workflow",
     "status": "open"
+  },
+  {
+    "commit": "Implement GrokAgent advanced module",
+    "path": "packages/grok-agent/src/GrokAgent.ts",
+    "task": "Implement advanced GrokAgent with EthicsGuard and CREP scoring",
+    "test": "packages/grok-agent/src/GrokAgent.test.ts",
+    "status": "done"
+  },
+  {
+    "commit": "Add ShadowTagger microservice",
+    "path": "packages/shadow-service/src/ShadowTagger.ts",
+    "task": "Detect shadow keywords and expose REST endpoint",
+    "test": "packages/shadow-service/src/ShadowTagger.test.ts",
+    "status": "open"
+  },
+  {
+    "commit": "Add ShadowDashboard panel",
+    "path": "packages/unifiedmandala-ui/components/ShadowDashboard.tsx",
+    "task": "Visualize shadow tags with wordcloud and time series",
+    "test": "packages/unifiedmandala-ui/components/ShadowDashboard.test.tsx",
+    "status": "open"
+  },
+  {
+    "commit": "Add ShadowCircle VR ritual",
+    "path": "packages/unifiedmandala-vr/components/ShadowCircle.tsx",
+    "task": "VR ritual for collaborative shadow integration",
+    "test": "packages/unifiedmandala-vr/components/ShadowCircle.test.tsx",
+    "status": "open"
+  },
+  {
+    "commit": "Add HaikuFeedback module",
+    "path": "packages/unifiedmandala-ui/utils/HaikuFeedback.ts",
+    "task": "Generate Haiku feedback for impulses with shadowTags",
+    "test": "packages/unifiedmandala-ui/utils/HaikuFeedback.test.ts",
+    "status": "open"
   }
 ]

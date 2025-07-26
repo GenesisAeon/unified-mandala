@@ -1,5 +1,6 @@
-import { name } from './index';
+import { GrokAgent } from './index';
 
-test('name defined', () => {
-  expect(name).toBe('grok-agent');
+test('grok agent instance', () => {
+  const agent = new GrokAgent();
+  expect(agent).toBeInstanceOf(GrokAgent);
 });

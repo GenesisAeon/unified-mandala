@@ -1,1 +1,1 @@
-export const name = 'grok-agent';
+export * from './GrokAgent';
