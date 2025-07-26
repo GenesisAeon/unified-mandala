@@ -5600,7 +5600,7 @@
     "path": "packages/boundary-engine/BoundaryLawDashboard.tsx",
     "task": "Dashboard visualizing boundary laws and macro-hypotheses",
     "test": "packages/boundary-engine/BoundaryLawDashboard.test.tsx",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Extend ResonanceModuleOrchestrator plugin support",
@@ -6338,7 +6338,7 @@
     "commit": "BoundaryLawAnalyticsDashboard",
     "path": "packages/boundary-engine/BoundaryLawDashboard.tsx",
     "task": "Dashboard visualizing boundary laws and macro-hypotheses",
-    "status": "open",
+    "status": "done",
     "test": "packages/boundary-engine/BoundaryLawDashboard.test.tsx"
   },
   {

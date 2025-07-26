@@ -49,7 +49,7 @@
     },
     {
       "commit": "Add BoundaryLawDashboard",
-      "status": "open"
+      "status": "done"
     },
     {
       "commit": "Add AeonKernel core",
@@ -105,7 +105,7 @@
     },
     {
       "commit": "BoundaryLawAnalyticsDashboard",
-      "status": "open"
+      "status": "done"
     },
     {
       "commit": "VRAvatarCustomization",
@@ -149,7 +149,7 @@
     },
     {
       "commit": "BoundaryLawAnalyticsDashboard",
-      "status": "open"
+      "status": "done"
     },
     {
       "commit": "Integrate VRBegegnungsraum with MandalaCanvas",
@@ -387,6 +387,10 @@
     },
     {
       "commit": "add blueprints and reflection agent",
+      "status": "done"
+    },
+    {
+      "commit": "Add BoundaryLawDashboard",
       "status": "done"
     }
   ],
