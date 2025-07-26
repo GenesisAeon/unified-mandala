@@ -6540,19 +6540,19 @@
     "commit": "Draft ZivilisationsSandboxen blueprint",
     "path": "docs/blueprints/ZivilisationsSandboxen.md",
     "task": "Blueprint for ancient megabuilding sandbox design",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Draft ClimateIntegration blueprint",
     "path": "docs/blueprints/ClimateIntegration.md",
     "task": "Comprehensive climate integration plan",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Document Keilschrift tech module",
     "path": "docs/blueprints/KeilschriftTech.md",
     "task": "Outline KI-based cuneiform techniques",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Add ShadowIntegration module skeleton",
@@ -6565,26 +6565,26 @@
     "path": "packages/self-reflection/src/index.ts",
     "task": "Initial self-reflection agent implementation",
     "test": "packages/self-reflection/src/index.test.ts",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Implement TuringTest suite",
     "path": "packages/agents/TuringTestSuite.ts",
     "task": "Run basic Turing tests on agents",
     "test": "packages/agents/TuringTestSuite.test.ts",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Research Arctic gravity waves",
     "path": "docs/research/ArcticGravityWaves.md",
     "task": "Collect data on internal gravity waves in the Arctic",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Document Anthropic multiverse scenarios",
     "path": "docs/research/AnthropicMultiverse.md",
     "task": "Explore anthropic principles across multiverse models",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Setup PyramidUI monorepo scaffold",

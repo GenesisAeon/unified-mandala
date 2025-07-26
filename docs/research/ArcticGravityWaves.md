@@ -1,3 +1,7 @@
 # Arctic Gravity Waves
 
-This document collects data and references on internal gravity waves occurring in Arctic regions. Topics include measurement methods, atmospheric interactions, and potential climate impacts.
+Dieses Dokument sammelt Informationen zu internen Schwerewellen in der Arktis und deren Relevanz für Klimamodelle.
+
+- Messmethoden und Satellitenmissionen
+- Interaktion mit Ozean- und Atmosphärendynamik
+- Mögliche Kopplung an Boundary-Law-Simulationen
