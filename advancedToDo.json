@@ -5572,7 +5572,7 @@
     "path": "scripts/generate-docs.ts",
     "task": "Generate markdown docs from source comments",
     "test": "scripts/__tests__/generate-docs.test.ts",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Archive completed ToDos to ZIPMEM",
@@ -6535,5 +6535,55 @@
     "task": "Provide memory governance enforcement",
     "test": "services/memory-governance/index.test.ts",
     "status": "done"
+  },
+  {
+    "commit": "Draft ZivilisationsSandboxen blueprint",
+    "path": "docs/blueprints/ZivilisationsSandboxen.md",
+    "task": "Blueprint for ancient megabuilding sandbox design",
+    "status": "open"
+  },
+  {
+    "commit": "Draft ClimateIntegration blueprint",
+    "path": "docs/blueprints/ClimateIntegration.md",
+    "task": "Comprehensive climate integration plan",
+    "status": "open"
+  },
+  {
+    "commit": "Document Keilschrift tech module",
+    "path": "docs/blueprints/KeilschriftTech.md",
+    "task": "Outline KI-based cuneiform techniques",
+    "status": "open"
+  },
+  {
+    "commit": "Add ShadowIntegration module skeleton",
+    "path": "packages/shadow-integration/index.ts",
+    "task": "Prototype for shadow integration features",
+    "status": "open"
+  },
+  {
+    "commit": "Add SelfReflectionAgent skeleton",
+    "path": "packages/self-reflection/src/index.ts",
+    "task": "Initial self-reflection agent implementation",
+    "test": "packages/self-reflection/src/index.test.ts",
+    "status": "open"
+  },
+  {
+    "commit": "Implement TuringTest suite",
+    "path": "packages/agents/TuringTestSuite.ts",
+    "task": "Run basic Turing tests on agents",
+    "test": "packages/agents/TuringTestSuite.test.ts",
+    "status": "open"
+  },
+  {
+    "commit": "Research Arctic gravity waves",
+    "path": "docs/research/ArcticGravityWaves.md",
+    "task": "Collect data on internal gravity waves in the Arctic",
+    "status": "open"
+  },
+  {
+    "commit": "Document Anthropic multiverse scenarios",
+    "path": "docs/research/AnthropicMultiverse.md",
+    "task": "Explore anthropic principles across multiverse models",
+    "status": "open"
   }
 ]

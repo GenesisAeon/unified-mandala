@@ -1,5 +1,5 @@
 {
-  "lastCommit": "Merge pull request #802 from GenesisAeon/fgs7in-codex/implement-features-from-advancedtodo.yaml",
+  "lastCommit": "chore: sync progress",
   "fractalStep": "sync",
   "openBranches": [
     "work"
@@ -37,10 +37,6 @@
     },
     {
       "commit": "Add SoundResonanceVR module",
-      "status": "open"
-    },
-    {
-      "commit": "Create documentation generator",
       "status": "open"
     },
     {
@@ -177,6 +173,38 @@
     },
     {
       "commit": "Build Avatarraum Mandala UI",
+      "status": "open"
+    },
+    {
+      "commit": "Draft ZivilisationsSandboxen blueprint",
+      "status": "open"
+    },
+    {
+      "commit": "Draft ClimateIntegration blueprint",
+      "status": "open"
+    },
+    {
+      "commit": "Document Keilschrift tech module",
+      "status": "open"
+    },
+    {
+      "commit": "Add ShadowIntegration module skeleton",
+      "status": "open"
+    },
+    {
+      "commit": "Add SelfReflectionAgent skeleton",
+      "status": "open"
+    },
+    {
+      "commit": "Implement TuringTest suite",
+      "status": "open"
+    },
+    {
+      "commit": "Research Arctic gravity waves",
+      "status": "open"
+    },
+    {
+      "commit": "Document Anthropic multiverse scenarios",
       "status": "open"
     }
   ],
@@ -351,6 +379,10 @@
     },
     {
       "commit": "meta:update-progress – mark memory governance done",
+      "status": "done"
+    },
+    {
+      "commit": "meta:implement-doc-generator",
       "status": "done"
     }
   ],
