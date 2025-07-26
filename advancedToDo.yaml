@@ -7856,3 +7856,35 @@
   path: docs/research/AnthropicMultiverse.md
   task: Explore anthropic principles across multiverse models
   status: open
+- commit: Setup PyramidUI monorepo scaffold
+  path: packages/aeon-ui-pyramid
+  task: Create pnpm monorepo structure with agent, ui and common packages
+  status: open
+- commit: Add PyramidUI AJV config schema
+  path: packages/aeon-ui-pyramid/configSchema.ts
+  task: Define configuration schema with AJV validation
+  status: open
+- commit: Implement Pyramid CoreLayer framework
+  path: packages/aeon-ui-pyramid/core/index.ts
+  task: Composite pattern for layered pyramid architecture
+  status: open
+- commit: Create PyramidUI React Three Fiber skeleton
+  path: packages/aeon-ui-pyramid/src/App.tsx
+  task: Render basic 3D pyramid UI with react-three-fiber
+  status: open
+- commit: Add Pyramid audio engine module
+  path: packages/aeon-ui-pyramid/audio/index.ts
+  task: Integrate Web Audio API with phi and pi tones
+  status: open
+- commit: Bridge CosmicTheoryAgent with PyramidUI
+  path: packages/aeon-ui-pyramid/integration/CosmicBridge.ts
+  task: Connect CosmicTheoryAgent events to UI
+  status: open
+- commit: Setup PyramidUI observability module
+  path: packages/aeon-ui-pyramid/observability.ts
+  task: Expose metrics and traces for telemetry
+  status: open
+- commit: Configure PyramidUI tests and deployment
+  path: packages/aeon-ui-pyramid/.github/workflows/ci.yml
+  task: Add Jest, Cypress and Docker build workflow
+  status: open
