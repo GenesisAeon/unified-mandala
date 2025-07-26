@@ -7136,7 +7136,7 @@
   path: packages/boundary-engine/BoundaryLawDashboard.tsx
   task: Dashboard visualizing boundary laws and macro-hypotheses
   test: packages/boundary-engine/BoundaryLawDashboard.test.tsx
-  status: open
+  status: done
 - commit: Extend ResonanceModuleOrchestrator plugin support
   path: packages/resonance-modules/ResonanceModuleOrchestrator.ts
   task: Add plugin registration and event hooks
@@ -7307,7 +7307,7 @@
   path: packages/boundary-ui/BoundaryLawAnalyticsDashboard.tsx
   task: Display analytics for boundary law discovery engine
   test: packages/boundary-ui/BoundaryLawAnalyticsDashboard.test.tsx
-  status: open
+  status: done
 - commit: VRAvatarCustomization
   path: packages/unifiedmandala-vr/VRAvatarCustomization.ts
   task: Support custom avatars in VR Begegnungsraum
@@ -7653,7 +7653,7 @@
   commit: BoundaryLawAnalyticsDashboard
   path: packages/boundary-engine/BoundaryLawDashboard.tsx
   task: Dashboard visualizing boundary laws and macro-hypotheses
-  status: open
+  status: done
   test: packages/boundary-engine/BoundaryLawDashboard.test.tsx
 - category: VR-Begegnungsraum
   commit: Integrate VRBegegnungsraum with MandalaCanvas
