@@ -1,5 +1,9 @@
-import { name } from './index';
+import { describe, it, expect } from 'vitest';
+import { GrokAgent } from './index';
 
-test('name defined', () => {
-  expect(name).toBe('grok-agent');
+describe('GrokAgent', () => {
+  it('analyze counts four-letter words', () => {
+    const agent = new GrokAgent();
+    expect(agent.analyze('this test uses four word size')).toBe(2);
+  });
 });

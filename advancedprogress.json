@@ -1,6 +1,6 @@
 {
-  "lastCommit": "update todos",
-  "fractalStep": "todo-update",
+  "lastCommit": "chore: update lastCommit",
+  "fractalStep": "sync",
   "openBranches": [
     "work"
   ],
@@ -10,10 +10,6 @@
     {
       "commit": "CosmicTheoryAgent 3D canvas and Tone.js",
       "status": "open"
-    },
-    {
-      "commit": "Create PantheonAvatarraum component",
-      "status": "done"
     },
     {
       "commit": "Add PantheonK8sDeployment configs",
@@ -46,10 +42,6 @@
     {
       "commit": "Implement PantheonPortal3D",
       "status": "open"
-    },
-    {
-      "commit": "Add BoundaryLawDashboard",
-      "status": "done"
     },
     {
       "commit": "Add AeonKernel core",
@@ -104,10 +96,6 @@
       "status": "open"
     },
     {
-      "commit": "BoundaryLawAnalyticsDashboard",
-      "status": "done"
-    },
-    {
       "commit": "VRAvatarCustomization",
       "status": "open"
     },
@@ -121,7 +109,7 @@
     },
     {
       "commit": "Create PantheonAvatarraum component",
-      "status": "done"
+      "status": "open"
     },
     {
       "commit": "Add BoundaryLawSimulator",
@@ -148,10 +136,6 @@
       "status": "open"
     },
     {
-      "commit": "BoundaryLawAnalyticsDashboard",
-      "status": "done"
-    },
-    {
       "commit": "Integrate VRBegegnungsraum with MandalaCanvas",
       "status": "open"
     },
@@ -176,36 +160,44 @@
       "status": "open"
     },
     {
-      "commit": "Draft ZivilisationsSandboxen blueprint",
-      "status": "done"
+      "commit": "Setup PyramidUI monorepo scaffold",
+      "status": "open"
     },
     {
-      "commit": "Draft ClimateIntegration blueprint",
-      "status": "done"
+      "commit": "Add PyramidUI AJV config schema",
+      "status": "open"
     },
     {
-      "commit": "Document Keilschrift tech module",
-      "status": "done"
+      "commit": "Implement Pyramid CoreLayer framework",
+      "status": "open"
     },
     {
-      "commit": "Add ShadowIntegration module skeleton",
-      "status": "done"
+      "commit": "Create PyramidUI React Three Fiber skeleton",
+      "status": "open"
     },
     {
-      "commit": "Add SelfReflectionAgent skeleton",
-      "status": "done"
+      "commit": "Add Pyramid audio engine module",
+      "status": "open"
     },
     {
-      "commit": "Implement TuringTest suite",
-      "status": "done"
+      "commit": "Bridge CosmicTheoryAgent with PyramidUI",
+      "status": "open"
     },
     {
-      "commit": "Research Arctic gravity waves",
-      "status": "done"
+      "commit": "Setup PyramidUI observability module",
+      "status": "open"
     },
     {
-      "commit": "Document Anthropic multiverse scenarios",
-      "status": "done"
+      "commit": "Configure PyramidUI tests and deployment",
+      "status": "open"
+    },
+    {
+      "commit": "Add ZivilisationsSandbox module",
+      "status": "open"
+    },
+    {
+      "commit": "Implement MemoryGovernance module",
+      "status": "open"
     }
   ],
   "progress": [
@@ -378,7 +370,7 @@
       "status": "done"
     },
     {
-      "commit": "meta:update-progress \u2013 mark memory governance done",
+      "commit": "meta:update-progress – mark memory governance done",
       "status": "done"
     },
     {
@@ -415,67 +407,67 @@
   "featureLog": [
     {
       "featureId": "open-ethik-dashboard",
-      "commit": "meta:implement-features \u2013 open-ethik-dashboard",
+      "commit": "meta:implement-features – open-ethik-dashboard",
       "status": "done"
     },
     {
       "featureId": "implicit-todos",
-      "commit": "meta:extract-features \u2013 implicit todo extraction",
+      "commit": "meta:extract-features – implicit todo extraction",
       "status": "done"
     },
     {
       "featureId": "zivilisations-sandboxen",
-      "commit": "meta:extract-features \u2013 Zivilisations-Sandboxen",
+      "commit": "meta:extract-features – Zivilisations-Sandboxen",
       "status": "done"
     },
     {
       "featureId": "climate-integration",
-      "commit": "meta:extract-features \u2013 climate integration",
+      "commit": "meta:extract-features – climate integration",
       "status": "done"
     },
     {
       "featureId": "keilschrift",
-      "commit": "meta:extract-features \u2013 keilschrift",
+      "commit": "meta:extract-features – keilschrift",
       "status": "done"
     },
     {
       "featureId": "grok-agent",
-      "commit": "meta:implement-features \u2013 grok agent skeleton",
+      "commit": "meta:implement-features – grok agent skeleton",
       "status": "done"
     },
     {
       "featureId": "shadow-integration",
-      "commit": "meta:extract-features \u2013 shadow integration",
+      "commit": "meta:extract-features – shadow integration",
       "status": "done"
     },
     {
       "featureId": "self-reflection",
-      "commit": "meta:extract-features \u2013 self reflection",
+      "commit": "meta:extract-features – self reflection",
       "status": "done"
     },
     {
       "featureId": "memory-governance",
-      "commit": "meta:extract-features \u2013 memory governance",
+      "commit": "meta:extract-features – memory governance",
       "status": "done"
     },
     {
       "featureId": "turing-tests",
-      "commit": "meta:extract-features \u2013 turing tests",
+      "commit": "meta:extract-features – turing tests",
       "status": "done"
     },
     {
       "featureId": "schwerewellen",
-      "commit": "meta:extract-features \u2013 schwerewellen",
+      "commit": "meta:extract-features – schwerewellen",
       "status": "done"
     },
     {
       "featureId": "anthropic-multiversum",
-      "commit": "meta:extract-features \u2013 anthropic multiversum",
+      "commit": "meta:extract-features – anthropic multiversum",
       "status": "done"
     },
     {
       "featureId": "memory-governance",
-      "commit": "meta:implement-features \u2013 memory governance service",
+      "commit": "meta:implement-features – memory governance service",
       "status": "done"
     }
   ]
