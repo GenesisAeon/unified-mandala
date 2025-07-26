@@ -72,6 +72,16 @@ Für neue Aufgaben aus Chat-Logs nutze `scripts/parse-advanced-conversations.js`
 - `DocCommentsGenerator` – erstellt Doku aus Code-Kommentaren.
 - `ArchiveOldTodos` – verschiebt alte ToDos ins GenesisAeonZIPMEM.
 - `CREPVisualizer` – zeigt CREP-Verlauf als animierte Timeline.
+- `SelfReflectionAgent` – überwacht Logs und fasst Erkenntnisse zusammen.
+- `GrokAgent` – erkennt einfache Wortmuster.
+- `ShadowIntegration` – experimentelle Schnittstelle für Datentransfer.
+- `MemoryGovernance` – speichert Zustände mit Governance-Regeln.
+- `TuringOrchestrator` – führt minimale Turing-Tests aus.
+- `Climate Module` – integriert Klimadaten ins Mandala.
+- `KIKeilschrift` – Werkzeuge zur Keilschrift-Verarbeitung.
+- `ZivilisationsSandbox` – simuliert antike Megastrukturen.
+- `ArcticGravityWaves` – Analyse interner Schwerewellen.
+- `MultiverseScenario` – speichert Szenarien für Multiversum-Hypothesen.
 
 ### gpt-bridges
 - `GPTEventHub` – Zentrales Event-System zwischen GPT-Modulen.
