@@ -177,15 +177,15 @@
     },
     {
       "commit": "Draft ZivilisationsSandboxen blueprint",
-      "status": "open"
+      "status": "done"
     },
     {
       "commit": "Draft ClimateIntegration blueprint",
-      "status": "open"
+      "status": "done"
     },
     {
       "commit": "Document Keilschrift tech module",
-      "status": "open"
+      "status": "done"
     },
     {
       "commit": "Add ShadowIntegration module skeleton",
@@ -193,19 +193,19 @@
     },
     {
       "commit": "Add SelfReflectionAgent skeleton",
-      "status": "open"
+      "status": "done"
     },
     {
       "commit": "Implement TuringTest suite",
-      "status": "open"
+      "status": "done"
     },
     {
       "commit": "Research Arctic gravity waves",
-      "status": "open"
+      "status": "done"
     },
     {
       "commit": "Document Anthropic multiverse scenarios",
-      "status": "open"
+      "status": "done"
     }
   ],
   "progress": [
@@ -425,14 +425,14 @@
       "status": "done"
     },
     {
-      "featureId": "climate-integration",
-      "commit": "meta:extract-features – climate integration",
-      "status": "todo"
-    },
-    {
-      "featureId": "keilschrift",
-      "commit": "meta:extract-features – keilschrift",
-      "status": "todo"
+    "featureId": "climate-integration",
+    "commit": "meta:extract-features – climate integration",
+    "status": "done"
+  },
+  {
+    "featureId": "keilschrift",
+    "commit": "meta:extract-features – keilschrift",
+    "status": "done"
     },
     {
       "featureId": "grok-agent",
@@ -455,9 +455,9 @@
       "status": "done"
     },
     {
-      "featureId": "turing-tests",
-      "commit": "meta:extract-features – turing tests",
-      "status": "in-progress"
+    "featureId": "turing-tests",
+    "commit": "meta:extract-features – turing tests",
+    "status": "done"
     },
     {
       "featureId": "schwerewellen",

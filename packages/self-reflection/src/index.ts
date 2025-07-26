@@ -8,4 +8,11 @@ export class SelfReflectionAgent {
   reflect(): string {
     return this.logs.join('\n');
   }
+
+  summary() {
+    return {
+      entries: this.logs.length,
+      lastEntry: this.logs[this.logs.length - 1] ?? null,
+    };
+  }
 }

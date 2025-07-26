@@ -5,4 +5,7 @@ test('records and reflects messages', () => {
   agent.record('hello');
   agent.record('world');
   expect(agent.reflect()).toBe('hello\nworld');
+  const info = agent.summary();
+  expect(info.entries).toBe(2);
+  expect(info.lastEntry).toBe('world');
 });
