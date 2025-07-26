@@ -1,11 +1,11 @@
 {
-  "lastCommit": "chore: sync progress",
-  "fractalStep": "sync",
+  "lastCommit": "update todos",
+  "fractalStep": "todo-update",
   "openBranches": [
     "work"
   ],
   "mergeConflicts": [],
-  "notes": "Improved rule detection with regex support | UnifiedMandalaPantheon initial module implemented | PantheonExport tool added",
+  "notes": "Marked BoundaryRuleDetector and MandalaCanvas as done; added tasks for Pantheon, Boundary, VR space, resonance modules.",
   "pendingTasks": [
     {
       "commit": "CosmicTheoryAgent 3D canvas and Tone.js",
@@ -378,7 +378,7 @@
       "status": "done"
     },
     {
-      "commit": "meta:update-progress – mark memory governance done",
+      "commit": "meta:update-progress \u2013 mark memory governance done",
       "status": "done"
     },
     {
@@ -415,67 +415,67 @@
   "featureLog": [
     {
       "featureId": "open-ethik-dashboard",
-      "commit": "meta:implement-features – open-ethik-dashboard",
+      "commit": "meta:implement-features \u2013 open-ethik-dashboard",
       "status": "done"
     },
     {
       "featureId": "implicit-todos",
-      "commit": "meta:extract-features – implicit todo extraction",
+      "commit": "meta:extract-features \u2013 implicit todo extraction",
       "status": "done"
     },
     {
       "featureId": "zivilisations-sandboxen",
-      "commit": "meta:extract-features – Zivilisations-Sandboxen",
+      "commit": "meta:extract-features \u2013 Zivilisations-Sandboxen",
       "status": "done"
     },
     {
-    "featureId": "climate-integration",
-    "commit": "meta:extract-features – climate integration",
-    "status": "done"
-  },
-  {
-    "featureId": "keilschrift",
-    "commit": "meta:extract-features – keilschrift",
-    "status": "done"
+      "featureId": "climate-integration",
+      "commit": "meta:extract-features \u2013 climate integration",
+      "status": "done"
+    },
+    {
+      "featureId": "keilschrift",
+      "commit": "meta:extract-features \u2013 keilschrift",
+      "status": "done"
     },
     {
       "featureId": "grok-agent",
-      "commit": "meta:implement-features – grok agent skeleton",
+      "commit": "meta:implement-features \u2013 grok agent skeleton",
       "status": "done"
     },
     {
       "featureId": "shadow-integration",
-      "commit": "meta:extract-features – shadow integration",
+      "commit": "meta:extract-features \u2013 shadow integration",
       "status": "done"
     },
     {
       "featureId": "self-reflection",
-      "commit": "meta:extract-features – self reflection",
+      "commit": "meta:extract-features \u2013 self reflection",
       "status": "done"
     },
     {
       "featureId": "memory-governance",
-      "commit": "meta:extract-features – memory governance",
+      "commit": "meta:extract-features \u2013 memory governance",
       "status": "done"
     },
     {
-    "featureId": "turing-tests",
-    "commit": "meta:extract-features – turing tests",
-    "status": "done"
+      "featureId": "turing-tests",
+      "commit": "meta:extract-features \u2013 turing tests",
+      "status": "done"
     },
     {
       "featureId": "schwerewellen",
-      "commit": "meta:extract-features – schwerewellen",
+      "commit": "meta:extract-features \u2013 schwerewellen",
       "status": "done"
     },
     {
       "featureId": "anthropic-multiversum",
-      "commit": "meta:extract-features – anthropic multiversum",
+      "commit": "meta:extract-features \u2013 anthropic multiversum",
       "status": "done"
     },
     {
       "featureId": "memory-governance",
-      "commit": "meta:implement-features – memory governance service",
+      "commit": "meta:implement-features \u2013 memory governance service",
       "status": "done"
     }
   ]
