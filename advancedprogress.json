@@ -384,6 +384,10 @@
     {
       "commit": "meta:implement-doc-generator",
       "status": "done"
+    },
+    {
+      "commit": "add blueprints and reflection agent",
+      "status": "done"
     }
   ],
   "completed": [

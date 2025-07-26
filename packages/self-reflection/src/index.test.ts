@@ -1,5 +1,8 @@
-import { name } from './index';
+import { SelfReflectionAgent } from './index';
 
-test('name defined', () => {
-  expect(name).toBeDefined();
+test('records and reflects messages', () => {
+  const agent = new SelfReflectionAgent();
+  agent.record('hello');
+  agent.record('world');
+  expect(agent.reflect()).toBe('hello\nworld');
 });
