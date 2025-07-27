@@ -7302,7 +7302,7 @@
   path: packages/pantheon/PantheonArchiveExporter.ts
   task: Export Pantheon data sets as YAML, JSON and graph
   test: packages/pantheon/PantheonArchiveExporter.test.ts
-  status: open
+  status: done
 - commit: BoundaryLawAnalyticsDashboard
   path: packages/boundary-ui/BoundaryLawAnalyticsDashboard.tsx
   task: Display analytics for boundary law discovery engine
@@ -7629,7 +7629,7 @@
   commit: PantheonArchiveExporter
   path: packages/pantheon/PantheonArchiveExporter.ts
   task: Export Pantheon data into ZIPMEM archives
-  status: open
+  status: done
   test: packages/pantheon/PantheonArchiveExporter.test.ts
 - category: Boundary
   commit: Create BoundaryDiscoveryAgent
