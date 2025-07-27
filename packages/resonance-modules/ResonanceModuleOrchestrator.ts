@@ -10,6 +10,14 @@ export class ResonanceModuleOrchestrator {
   private plugins: Array<(result: unknown) => void> = [];
   readonly bus = new EventEmitter();
 
+  /**
+   * Connect a VR callback to receive module results. The callback can
+   * forward data to audio or haptic layers inside the VR room.
+   */
+  connectVR(handler: (payload: unknown) => void) {
+    this.bus.on('result', handler);
+  }
+
   register(module: ResonanceModule) {
     this.modules.push(module);
   }

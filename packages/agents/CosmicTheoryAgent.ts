@@ -184,5 +184,21 @@ export async function callPySRService(
   return equation;
 }
 
+export async function streamFourierMetricsGrpc(
+  endpoint: string,
+  onData: (metrics: any) => void
+) {
+  const { Client, credentials } = await import('@grpc/grpc-js');
+  const client = new Client(endpoint, credentials.createInsecure());
+  const call = client.makeServerStreamRequest(
+    '/FourierService/StreamMetrics',
+    () => Buffer.alloc(0),
+    buffer => JSON.parse(buffer.toString()),
+    {}
+  );
+  call.on('data', onData);
+  return () => call.cancel();
+}
+
 export { enterVR, exitVR };
 
