@@ -104,6 +104,7 @@ Weitere Hinweise aus dem „Sigil Übergang“:
 - [**useABLayout**](packages/unifiedmandala-ui/hooks/useABLayout.ts) – A/B-Tests mit CREP-Metrik
 - [**usePulse & HapticService**](packages/bio/HapticService.ts) – simulierte Biosensoren und haptisches Feedback
 - [**TonePlayground**](packages/unifiedmandala-ui/TonePlayground.ts) – experimentelle Klangsteuerung für Phi-Skalen
+- [**ResonanceModuleSynth**](packages/resonance-modules/ResonanceModuleSynth.ts) – erzeugt Audiosignale für Resonanzmodule
 - [**SigillinTimeline & InviteBanner**](packages/unifiedmandala-ui/components/SigillinTimeline.tsx) – Verlauf und Einladungsbanner
 - [**CREPTimeline**](packages/unifiedmandala-ui/components/CREPTimeline.tsx) – chronologische Ansicht der CREP-Ereignisse
 - [**BackupManager**](packages/cli-tools/BackupManager.ts) – einfache Dateisicherungen
