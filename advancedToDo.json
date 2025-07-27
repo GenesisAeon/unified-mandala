@@ -5656,7 +5656,7 @@
     "path": "docs/pantheon/avatarraum_manifest.yaml",
     "task": "Provide YAML, JSON and Mermaid exports for Avatarraum features",
     "test": "docs/pantheon/__tests__/avatarraum_manifest_export.test.ts",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Implement BoundaryLawAgentAlgorithm",
@@ -5754,14 +5754,14 @@
     "path": "packages/resonance-modules/ResonanceModuleOrchestrator.ts",
     "task": "Connect modules with VR audio and haptic feedback",
     "test": "packages/resonance-modules/ResonanceModuleOrchestrator.test.ts",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "CosmicTheoryAgent FourierLayer gRPC bridge",
     "path": "packages/agents/CosmicTheoryAgent.ts",
     "task": "Stream FourierLayer metrics via gRPC to Pyramid UI",
     "test": "packages/agents/CosmicTheoryAgent.test.ts",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Add PantheonGateway service",
