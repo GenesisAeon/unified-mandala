@@ -5474,7 +5474,7 @@
     "path": "packages/orchestrator/src/eventBus.ts",
     "task": "Use Kafka/Redis as event bus for Pantheon orchestrator",
     "test": "packages/orchestrator/__tests__/eventBus.test.ts",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Agent skeleton generator script",

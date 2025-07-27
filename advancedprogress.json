@@ -1,5 +1,5 @@
 {
-  "lastCommit": "feat: cosmic playground and pantheon k8s",
+  "lastCommit": "chore: update progress",
   "fractalStep": "sync",
   "openBranches": [
     "work"
@@ -7,18 +7,6 @@
   "mergeConflicts": [],
   "notes": "Marked BoundaryRuleDetector and MandalaCanvas as done; added tasks for Pantheon, Boundary, VR space, resonance modules.",
   "pendingTasks": [
-    {
-      "commit": "CosmicTheoryAgent 3D canvas and Tone.js",
-      "status": "done"
-    },
-    {
-      "commit": "Add PantheonK8sDeployment configs",
-      "status": "done"
-    },
-    {
-      "commit": "Pantheon EventBus migration",
-      "status": "open"
-    },
     {
       "commit": "Integrate VRBegegnungsraum with MandalaCanvas",
       "status": "open"
@@ -34,10 +22,6 @@
     {
       "commit": "Add SoundResonanceVR module",
       "status": "open"
-    },
-    {
-      "commit": "Archive completed ToDos to ZIPMEM",
-      "status": "done"
     },
     {
       "commit": "Implement PantheonPortal3D",
@@ -78,10 +62,6 @@
     {
       "commit": "CosmicTheoryAgent FourierLayer gRPC bridge",
       "status": "open"
-    },
-    {
-      "commit": "Add BoundaryVisualDebugger",
-      "status": "done"
     },
     {
       "commit": "Implement ResonanceModuleSynth",
@@ -196,8 +176,9 @@
       "status": "open"
     },
     {
-      "commit": "Implement MemoryGovernance module",
-      "status": "open"
+      "featureId": "pantheon-eventbus",
+      "commit": "meta:implement-features – pantheon eventbus",
+      "status": "done"
     }
   ],
   "progress": [
