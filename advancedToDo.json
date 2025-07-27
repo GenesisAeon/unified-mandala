@@ -5831,14 +5831,14 @@
     "path": "packages/pantheon/PantheonArchiveExporter.ts",
     "task": "Export Pantheon data sets as YAML, JSON and graph",
     "test": "packages/pantheon/PantheonArchiveExporter.test.ts",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "BoundaryLawAnalyticsDashboard",
     "path": "packages/boundary-ui/BoundaryLawAnalyticsDashboard.tsx",
     "task": "Display analytics for boundary law discovery engine",
     "test": "packages/boundary-ui/BoundaryLawAnalyticsDashboard.test.tsx",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "VRAvatarCustomization",
