@@ -1,0 +1,30 @@
+version: '3.8'
+services:
+  orchestrator:
+    build: ./orchestrator
+    ports:
+      - "9000:8000"
+  gnn_service:
+    build: ./nets/gnn_service
+    ports:
+      - "8001:8000"
+  hgnn_service:
+    build: ./nets/hgnn_service
+    ports:
+      - "8002:8000"
+  snn_service:
+    build: ./nets/snn_service
+    ports:
+      - "8003:8000"
+  liquidnet_service:
+    build: ./nets/liquidnet_service
+    ports:
+      - "8004:8000"
+  kan_service:
+    build: ./nets/kan_service
+    ports:
+      - "8005:8000"
+  npu_service:
+    build: ./nets/npu_service
+    ports:
+      - "8006:8000"

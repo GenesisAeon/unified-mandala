@@ -1,0 +1,17 @@
+sigillin_map:
+  graph_pattern:    gnn_service
+  multi_relation:   hgnn_service
+  sensor_stream:    snn_service
+  language_seq:     transformer_service
+  time_series:      liquidnet_service
+  physics_sim:      kan_service
+  on_device_task:   npu_service
+
+crep_thresholds:
+  gnn_service: 0.60
+  hgnn_service: 0.65
+  snn_service: 0.55
+  transformer_service: 0.65
+  liquidnet_service: 0.60
+  kan_service: 0.70
+  npu_service: 0.50
