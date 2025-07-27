@@ -1,5 +1,5 @@
 {
-  "lastCommit": "feat(agents): add GrokAgent skeleton and update todo",
+  "lastCommit": "chore(progress): update progress log",
   "fractalStep": "sync",
   "openBranches": [
     "work"
@@ -331,6 +331,11 @@
     },
     {
       "commit": "Implement KIKeilschrift module",
+      "status": "done"
+    },
+    {
+      "featureId": "memory-governance",
+      "commit": "add trauma detection",
       "status": "done"
     }
   ],
