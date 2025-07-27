@@ -6306,7 +6306,7 @@
     "commit": "PantheonArchiveExporter",
     "path": "packages/pantheon/PantheonArchiveExporter.ts",
     "task": "Export Pantheon data into ZIPMEM archives",
-    "status": "open",
+    "status": "done",
     "test": "packages/pantheon/PantheonArchiveExporter.test.ts"
   },
   {
