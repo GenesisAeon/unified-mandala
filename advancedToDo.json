@@ -5845,14 +5845,14 @@
     "path": "packages/unifiedmandala-vr/VRAvatarCustomization.ts",
     "task": "Support custom avatars in VR Begegnungsraum",
     "test": "packages/unifiedmandala-vr/VRAvatarCustomization.test.ts",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "ResonanceFeedbackModule",
     "path": "packages/resonance/ResonanceFeedbackModule.ts",
     "task": "Collect user feedback and convert to resonance metrics",
     "test": "packages/resonance/ResonanceFeedbackModule.test.ts",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Add PantheonSessionManager",
