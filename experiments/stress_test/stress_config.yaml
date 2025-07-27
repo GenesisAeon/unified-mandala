@@ -1,0 +1,11 @@
+target_url: http://localhost:9000/sigillin-event
+concurrency: 1000
+duration_sec: 60
+event_types:
+  - graph_pattern
+  - multi_relation
+  - sensor_stream
+  - language_seq
+  - time_series
+  - physics_sim
+  - on_device_task
