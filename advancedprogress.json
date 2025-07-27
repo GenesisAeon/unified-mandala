@@ -1,5 +1,5 @@
 {
-  "lastCommit": "Merge pull request #838 from GenesisAeon/mbp7yi-codex/implement-features-from-advancedtodo.yaml",
+  "lastCommit": "docs: add mandala orchestrator blueprint and genesis sigil",
   "fractalStep": "sync",
   "openBranches": [
     "work"
@@ -8,56 +8,12 @@
   "notes": "Marked BoundaryRuleDetector and MandalaCanvas as done; added tasks for Pantheon, Boundary, VR space, resonance modules.",
   "pendingTasks": [
     {
-      "commit": "Extend ResonanceModuleOrchestrator VR integration",
-      "status": "done"
-    },
-    {
-      "commit": "CosmicTheoryAgent FourierLayer gRPC bridge",
-      "status": "done"
-    },
-    {
-      "commit": "PantheonArchiveExporter",
-      "status": "done"
-    },
-    {
-      "commit": "VRAvatarCustomization",
-      "status": "done"
-    },
-    {
-      "commit": "ResonanceFeedbackModule",
-      "status": "done"
-    },
-    {
       "commit": "Create PantheonAvatarraum component",
-      "status": "done"
-    },
-    {
-      "commit": "Implement PhanteonIntegration service",
-      "status": "done"
+      "status": "open"
     },
     {
       "commit": "Add PantheonBoundaryResolver service",
-      "status": "done"
-    },
-    {
-      "commit": "PantheonArchiveExporter",
-      "status": "done"
-    },
-    {
-      "commit": "Manifest-Export for sigils",
-      "status": "done"
-    },
-    {
-      "commit": "Code service skeleton initialization",
-      "status": "done"
-    },
-    {
-      "commit": "Initialize Aeon Orchestrator",
-      "status": "done"
-    },
-    {
-      "commit": "Build Avatarraum Mandala UI",
-      "status": "done"
+      "status": "open"
     }
   ],
   "progress": [
@@ -272,6 +228,14 @@
     },
     {
       "commit": "Setup PyramidUI skeleton",
+      "status": "done"
+    },
+    {
+      "commit": "Add Mandala Orchestrator Control blueprint",
+      "status": "done"
+    },
+    {
+      "commit": "Capture GeburtsSigil des UnifiedMandala",
       "status": "done"
     }
   ],

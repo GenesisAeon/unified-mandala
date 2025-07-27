@@ -7943,3 +7943,13 @@
   task: Scenario planning for anthropic multiverse
   test: packages/pantheon/MultiverseScenario.test.ts
   status: done
+- commit: Create Mandala Orchestrator Control blueprint
+  path: docs/pantheon/MandalaOrchestratorControl.md
+  task: Blueprint for zentrale Kontrolleinheit des Pantheon
+  test: ""
+  status: done
+- commit: Capture GeburtsSigil des UnifiedMandala
+  path: docs/sigils/mandala-genesis-2025-07-12.yaml
+  task: Birth sigil from final conversation
+  test: ""
+  status: done
