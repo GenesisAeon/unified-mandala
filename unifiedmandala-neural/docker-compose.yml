@@ -1,0 +1,27 @@
+version: '3.8'
+services:
+  gnn_hgnn:
+    build: ./gnn_hgnn
+    volumes:
+      - ./gnn_hgnn/data:/app/data
+    command: python main.py
+    ports:
+      - "8001:8001"
+
+  snn_haptic:
+    build: ./snn_haptic
+    command: python snn_pilot.py
+    ports:
+      - "8002:8002"
+
+  liquid_net:
+    build: ./liquid_net
+    command: python liquid_train.py
+    ports:
+      - "8003:8003"
+
+  kan_physics:
+    build: ./kan_physics
+    command: python kan_simulation.py
+    ports:
+      - "8004:8004"
