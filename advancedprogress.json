@@ -45,11 +45,11 @@
     },
     {
       "commit": "VRAvatarCustomization",
-      "status": "open"
+      "status": "done"
     },
     {
       "commit": "ResonanceFeedbackModule",
-      "status": "open"
+      "status": "done"
     },
     {
       "commit": "Add FrequencyMandala3D component",
@@ -330,9 +330,17 @@
       "status": "done"
     },
     {
-      "commit": "Implement KIKeilschrift module",
-      "status": "done"
-    }
+        "commit": "Implement KIKeilschrift module",
+        "status": "done"
+      },
+    {
+        "commit": "VRAvatarCustomization",
+        "status": "done"
+      },
+    {
+        "commit": "ResonanceFeedbackModule",
+        "status": "done"
+      }
   ],
   "completed": [
     {
