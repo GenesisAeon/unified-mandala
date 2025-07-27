@@ -1,0 +1,3 @@
+from typing import Any
+class ClientSession:
+    async def get(self, url: str, *args, **kwargs) -> Any: ...

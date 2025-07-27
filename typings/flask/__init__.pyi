@@ -1,0 +1,13 @@
+from typing import Any, Callable
+
+class Flask:
+    def __init__(self, *args, **kwargs) -> None: ...
+    def route(self, path: str, methods: Any = ...) -> Callable: ...
+    def run(self, *args, **kwargs) -> None: ...
+
+class Request:
+    json: Any
+
+def jsonify(obj: Any) -> Any: ...
+
+request: Request
