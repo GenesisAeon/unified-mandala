@@ -7822,6 +7822,11 @@
   task: Provide memory governance enforcement
   test: services/memory-governance/index.test.ts
   status: done
+- commit: Add trauma detection to MemoryGovernanceService
+  path: services/memory-governance/index.ts
+  task: detectTrauma method identifies negative memory entries
+  test: services/memory-governance/index.test.ts
+  status: done
 - commit: Draft ZivilisationsSandboxen blueprint
   path: docs/blueprints/ZivilisationsSandboxen.md
   task: Blueprint for ancient megabuilding sandbox design

@@ -9,4 +9,9 @@ export class MemoryGovernanceService {
       this.manager["cleanup"](category as any);
     }
   }
+
+  detectTrauma(category: MemoryCategory): string[] {
+    const traumaRegex = /\b(angst|trauma|fear|panic|worry|sad)\b/i;
+    return this.manager.get(category).filter((t) => traumaRegex.test(t));
+  }
 }
