@@ -76,6 +76,7 @@ Für neue Aufgaben aus Chat-Logs nutze `scripts/parse-advanced-conversations.js`
 - `SelfReflectionAgent` – überwacht Logs und fasst Erkenntnisse zusammen.
 - `GrokAgent` – erkennt einfache Wortmuster.
 - `ShadowIntegration` – experimentelle Schnittstelle für Datentransfer.
+- `ResonanceModuleSynth` – erzeugt Audiosignale für Resonanzmodule.
 - `MemoryGovernance` – speichert Zustände mit Governance-Regeln.
 - `TuringOrchestrator` – führt minimale Turing-Tests aus.
 - `Climate Module` – integriert Klimadaten ins Mandala.
