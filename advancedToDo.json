@@ -6401,7 +6401,7 @@
     "path": "docs/sigils",
     "task": "Export features as .sigil.yaml, .json, Mermaid graph and README",
     "test": "docs/sigils/manifest_export.test.ts",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Code service skeleton initialization",
