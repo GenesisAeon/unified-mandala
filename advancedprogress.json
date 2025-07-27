@@ -1,5 +1,5 @@
 {
-  "lastCommit": "feat: implement sandbox and testing modules",
+  "lastCommit": "Merge pull request #838 from GenesisAeon/mbp7yi-codex/implement-features-from-advancedtodo.yaml",
   "fractalStep": "sync",
   "openBranches": [
     "work"
@@ -57,38 +57,6 @@
     },
     {
       "commit": "Build Avatarraum Mandala UI",
-      "status": "open"
-    },
-    {
-      "commit": "Setup PyramidUI monorepo scaffold",
-      "status": "open"
-    },
-    {
-      "commit": "Add PyramidUI AJV config schema",
-      "status": "open"
-    },
-    {
-      "commit": "Implement Pyramid CoreLayer framework",
-      "status": "open"
-    },
-    {
-      "commit": "Create PyramidUI React Three Fiber skeleton",
-      "status": "open"
-    },
-    {
-      "commit": "Add Pyramid audio engine module",
-      "status": "open"
-    },
-    {
-      "commit": "Bridge CosmicTheoryAgent with PyramidUI",
-      "status": "open"
-    },
-    {
-      "commit": "Setup PyramidUI observability module",
-      "status": "open"
-    },
-    {
-      "commit": "Configure PyramidUI tests and deployment",
       "status": "open"
     }
   ],
@@ -300,6 +268,10 @@
     },
     {
       "commit": "implement advanced modules",
+      "status": "done"
+    },
+    {
+      "commit": "Setup PyramidUI skeleton",
       "status": "done"
     }
   ],

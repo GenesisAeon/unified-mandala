@@ -1,0 +1,18 @@
+name: PyramidUI CI
+on:
+  push:
+    paths:
+      - 'packages/aeon-ui-pyramid/**'
+  pull_request:
+    paths:
+      - 'packages/aeon-ui-pyramid/**'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+      - run: pnpm install
+      - run: pnpm -r --filter @unifiedmandala/aeon-ui-pyramid build
