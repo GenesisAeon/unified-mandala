@@ -57,11 +57,13 @@ Für neue Aufgaben aus Chat-Logs nutze `scripts/parse-advanced-conversations.js`
 - `FourierLayerBridge` – verbindet die FourierLayer-Metriken mit der Pyramid UI.
 - `FrequencyMandala` – stellt Frequenz-Blumen als SVG dar.
 - `FrequencyMandala3D` – WebGL-Darstellung der Frequenz-Blumen.
+- `ResonanceAutoTuner` – passt Frequenzen anhand von Feedback automatisch an.
  - `FourierAPI` – REST-Schnittstelle für Fourier-Metriken (`/metrics`, `/analyze`).
 - `FourierMetricsCLI` – Kommandozeilenwerkzeug für Fourier-Berechnungen.
 - `FractalTaskRunner` – führt YAML-basierte Plugin-Workflows aus.
 - `EventBridge` – leitet CosmicTheoryAgent-Events an die UI weiter.
 - `PyramidVRMeetingRoom` – VR-Raum für mehrere Avatare.
+- `PantheonAvatarraum` – gemeinsamer VR-Raum für Pantheon-Agenten.
 - CosmicTheoryAgent liefert VR-Hooks für immersive Steuerung.
 - `AeonOrchestrator` – zentrale Steuerinstanz des Pantheon, verteilt Boundary-Regeln.
 - `PantheonPortalAnalytics` – zeichnet Portalzugriffe auf.

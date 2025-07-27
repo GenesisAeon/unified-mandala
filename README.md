@@ -45,6 +45,7 @@ Weitere Hinweise aus dem „Sigil Übergang“:
 - [**FourierLayerBridge**](packages/unifiedmandala-ui/events/FourierLayerBridge.ts) – streams metrics to the Pyramid UI via WebSocket
 - [**FrequencyMandala**](packages/unifiedmandala-ui/components/FrequencyMandala.tsx) – visualizes Fourier frequency flowers
 - [**FrequencyMandala3D**](packages/unifiedmandala-ui/components/FrequencyMandala3D.tsx) – WebGL view of frequency flowers
+- [**ResonanceAutoTuner**](packages/resonance-modules/ResonanceAutoTuner.ts) – auto-adjusts resonance via feedback
  - [**FourierAPI**](packages/analysis/FourierAPI.ts) – exposes metrics via REST (`/metrics`, `/analyze`)
 - [**SelfReflectionAgent**](packages/agents/SelfReflectionAgent.ts) – system introspection helper
 - [**GrokAgent**](packages/agents/GrokAgent.ts) – simple pattern analyzer
@@ -65,6 +66,7 @@ Weitere Hinweise aus dem „Sigil Übergang“:
 - [**PantheonBoundaryBridge**](packages/pantheon/PantheonBoundaryBridge.ts) – verbindet Pantheon-Events mit BoundaryRuleDetector
 - [**PantheonExport Tool**](packages/pantheon/tools/PantheonExport.ts) – exportiert die vorhandenen Pantheon-Module als Datensatz
 - **VR-Begegnungsraum** – Avatar-Interaktion und Mandala-Szenen im WebXR-Modul
+- [**PantheonAvatarraum**](packages/unifiedmandala-vr/components/PantheonAvatarraum.tsx) – shared VR space for Pantheon agents
 - [**EventBridge**](packages/unifiedmandala-ui/events/EventBridge.ts) – verbindet CosmicTheoryAgent mit der Pyramid UI
 - [**PyramidVRMeetingRoom**](packages/unifiedmandala-ui/components/PyramidVRMeetingRoom.tsx) – enables multi-avatar VR sessions
 - CosmicTheoryAgent now exposes **VR hooks** for immersive interactions
