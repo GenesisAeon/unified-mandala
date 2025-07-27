@@ -270,6 +270,7 @@ packages/
   ├── aeon-genesisos            # Basis-Engine & CREP-Matrix
   ├── aeon-fraktalurs           # GPT-Kontextarchiv
   ├── aeon-resoecho             # CREP-Zeitlinienarchiv
+  ├── aeon-core                # Basismodule wie AeonKernel & Treiber
   ├── sharedream-interface      # Web-Schnittstelle & Sync
   ├── agents               # Spezielle Agenten
   ├── core                 # Zentrale Utilities

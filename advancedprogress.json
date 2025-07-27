@@ -1,5 +1,5 @@
 {
-  "lastCommit": "feat: cosmic playground and pantheon k8s",
+  "lastCommit": "chore: fix progress",
   "fractalStep": "sync",
   "openBranches": [
     "work"
@@ -7,14 +7,6 @@
   "mergeConflicts": [],
   "notes": "Marked BoundaryRuleDetector and MandalaCanvas as done; added tasks for Pantheon, Boundary, VR space, resonance modules.",
   "pendingTasks": [
-    {
-      "commit": "CosmicTheoryAgent 3D canvas and Tone.js",
-      "status": "done"
-    },
-    {
-      "commit": "Add PantheonK8sDeployment configs",
-      "status": "done"
-    },
     {
       "commit": "Pantheon EventBus migration",
       "status": "open"
@@ -36,30 +28,6 @@
       "status": "open"
     },
     {
-      "commit": "Archive completed ToDos to ZIPMEM",
-      "status": "done"
-    },
-    {
-      "commit": "Implement PantheonPortal3D",
-      "status": "open"
-    },
-    {
-      "commit": "Add AeonKernel core",
-      "status": "open"
-    },
-    {
-      "commit": "Implement SigilDriver framework",
-      "status": "open"
-    },
-    {
-      "commit": "Create DeviceDiscoveryService",
-      "status": "open"
-    },
-    {
-      "commit": "Add ReflexDriverGPT",
-      "status": "open"
-    },
-    {
       "commit": "Implement MandalaInterface UI",
       "status": "open"
     },
@@ -78,10 +46,6 @@
     {
       "commit": "CosmicTheoryAgent FourierLayer gRPC bridge",
       "status": "open"
-    },
-    {
-      "commit": "Add BoundaryVisualDebugger",
-      "status": "done"
     },
     {
       "commit": "Implement ResonanceModuleSynth",
@@ -193,10 +157,6 @@
     },
     {
       "commit": "Add ZivilisationsSandbox module",
-      "status": "open"
-    },
-    {
-      "commit": "Implement MemoryGovernance module",
       "status": "open"
     }
   ],
