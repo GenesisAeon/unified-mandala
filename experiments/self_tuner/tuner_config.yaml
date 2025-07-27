@@ -1,0 +1,11 @@
+scheduler_url: http://orchestrator:8000
+services:
+  - gnn_service
+  - hgnn_service
+  - snn_service
+  - transformer_service
+  - liquidnet_service
+  - kan_service
+  - npu_service
+alpha: 0.1
+episodes: 100
