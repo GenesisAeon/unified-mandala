@@ -1,5 +1,5 @@
 {
-  "lastCommit": "chore: fix progress",
+  "lastCommit": "chore: finalize progress",
   "fractalStep": "sync",
   "openBranches": [
     "work"
@@ -9,10 +9,6 @@
   "pendingTasks": [
     {
       "commit": "Pantheon EventBus migration",
-      "status": "open"
-    },
-    {
-      "commit": "Integrate VRBegegnungsraum with MandalaCanvas",
       "status": "open"
     },
     {
@@ -97,14 +93,6 @@
     },
     {
       "commit": "PantheonArchiveExporter",
-      "status": "open"
-    },
-    {
-      "commit": "Integrate VRBegegnungsraum with MandalaCanvas",
-      "status": "open"
-    },
-    {
-      "commit": "Add SoundResonanceVR module",
       "status": "open"
     },
     {
