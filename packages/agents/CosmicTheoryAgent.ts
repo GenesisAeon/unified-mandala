@@ -11,6 +11,8 @@ import {
   TraceLogPayload
 } from './CosmicTheoryAgentEvents';
 import { withCircuit } from '../core/withCircuit';
+import { FourierLayerEvents } from "../analysis/FourierLayer";
+import { Client, credentials } from "@grpc/grpc-js";
 
 export const sigilManager = new SigilManager();
 
@@ -186,3 +188,16 @@ export async function callPySRService(
 
 export { enterVR, exitVR };
 
+let metricsClient: Client | null = null;
+export function connectFourierMetrics(addr: string) {
+  metricsClient = new Client(addr, credentials.createInsecure());
+  FourierLayerEvents.on('metrics', data => {
+    metricsClient?.makeUnaryRequest(
+      '/MetricsService/Send',
+      arg => Buffer.from(JSON.stringify(arg)),
+      buffer => JSON.parse(buffer.toString()),
+      { data },
+      () => {}
+    );
+  });
+}
