@@ -81,6 +81,7 @@ Weitere Hinweise aus dem „Sigil Übergang“:
 - [**Poesie & Automation**](aeon.sh) – Bash-Interface, automatisches Chronopoem, symbolisches Onboarding
 - [**DocCommentsGenerator**](scripts/doc-comments-generator.ts) – erzeugt Markdown-Doku
 - [**ArchiveOldTodos**](scripts/archive-old-todos.ts) – verschiebt erledigte ToDos ins ZIPMEM
+- [**ArchiveTodos**](scripts/archive-todos.ts) – verschiebt erledigte AdvancedToDos ins ZIPMEM
 - [**CREP-Illumination**](CHRONOPOEM.md) – Chronopoem reflektiert aktuellen CREP-Zustand
 - [**SelfAuditModul**](packages/unifiedmandala-ui/components/SelfAuditModul.tsx) – analysiert die Repository-Struktur
 - [**AdminMetrics**](packages/unifiedmandala-ui/README.md) – zeigt CREP- und Sigillin-Kennzahlen

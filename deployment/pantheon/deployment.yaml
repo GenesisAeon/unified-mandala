@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pantheon
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pantheon
+  template:
+    metadata:
+      labels:
+        app: pantheon
+    spec:
+      containers:
+      - name: pantheon
+        image: node:20-alpine
+        command: ['sh', '-c', 'pnpm install && pnpm start']

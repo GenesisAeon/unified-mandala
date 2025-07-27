@@ -71,6 +71,7 @@ Für neue Aufgaben aus Chat-Logs nutze `scripts/parse-advanced-conversations.js`
 - `archiveSigil` – schreibt Sigil-Dateien in GenesisAeonZIPMEM.
 - `DocCommentsGenerator` – erstellt Doku aus Code-Kommentaren.
 - `ArchiveOldTodos` – verschiebt alte ToDos ins GenesisAeonZIPMEM.
+- `ArchiveTodos` – verschiebt AdvancedToDos ins GenesisAeonZIPMEM.
 - `CREPVisualizer` – zeigt CREP-Verlauf als animierte Timeline.
 - `SelfReflectionAgent` – überwacht Logs und fasst Erkenntnisse zusammen.
 - `GrokAgent` – erkennt einfache Wortmuster.
