@@ -30,4 +30,13 @@ describe('ResonanceModuleOrchestrator', () => {
     orch.runAll('z');
     expect(received).toEqual(['z']);
   });
+
+  it('connects VR handler to bus', () => {
+    const orch = new ResonanceModuleOrchestrator();
+    orch.register(new DummyModule());
+    const vr: unknown[] = [];
+    orch.connectVR(p => vr.push(p));
+    orch.runAll('v');
+    expect(vr).toEqual(['v']);
+  });
 });

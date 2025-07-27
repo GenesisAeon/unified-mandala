@@ -1,8 +1,21 @@
 import { describe, it, expect, vi, test } from 'vitest';
 import axios from 'axios';
-import { fetchCosmicData, analyzeCosmicData, callPySRService } from '../CosmicTheoryAgent';
+import { fetchCosmicData, analyzeCosmicData, callPySRService, streamFourierMetricsGrpc } from '../CosmicTheoryAgent';
 
 vi.mock('axios');
+vi.mock('@grpc/grpc-js', () => {
+  return {
+    Client: class {
+      constructor() {}
+      makeServerStreamRequest(_p: any, _s: any, cb: any, _msg: any) {
+        const emitter = new (require('events').EventEmitter)();
+        process.nextTick(() => cb(Buffer.from('{"val":1}')));
+        return emitter;
+      }
+    },
+    credentials: { createInsecure: () => null }
+  };
+});
 
 describe('fetchCosmicData', () => {
   it('throws on network error', async () => {
@@ -30,5 +43,13 @@ describe('callPySRService', () => {
     (axios.post as any).mockRejectedValueOnce(new Error('fail'));
     await expect(callPySRService([2], 'http://pysr')).rejects.toThrow('fail');
   });
+});
+
+test('streams fourier metrics via grpc', async () => {
+  const received: any[] = [];
+  const cancel = await streamFourierMetricsGrpc('localhost:50051', m => received.push(m));
+  await new Promise(r => setTimeout(r, 10));
+  cancel();
+  expect(received).toEqual([{ val: 1 }]);
 });
 
