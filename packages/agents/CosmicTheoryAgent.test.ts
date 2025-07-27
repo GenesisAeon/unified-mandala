@@ -10,7 +10,9 @@ import {
   sigilManager,
   sigilHistory,
   performRemoteAnalysis,
-  callPySRService
+  callPySRService,
+  introspectionLogs,
+  analyzeCosmicData
 } from './CosmicTheoryAgent';
 import { CosmicTheoryEventHub } from './CosmicTheoryAgentEvents';
 
@@ -110,5 +112,14 @@ describe('callPySRService', () => {
     expect(eq).toBe('y=2x');
     expect(starts[0].dataPoints).toEqual([3,4]);
     expect(successes[0].equation).toBe('y=2x');
+  });
+
+  it('records introspection logs', async () => {
+    vi.spyOn(axios, 'post').mockResolvedValue({ data: { equation: 'y=3x' } });
+    const eq = await callPySRService([5,6], 'http://localhost/pysr');
+    expect(eq).toBe('y=3x');
+    expect(introspectionLogs.pop()).toBe('equation:y=3x');
+    analyzeCosmicData([1,2]);
+    expect(introspectionLogs.pop()).toContain('metric:');
   });
 });

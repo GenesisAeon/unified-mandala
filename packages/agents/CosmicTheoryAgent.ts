@@ -17,6 +17,8 @@ const regressionDuration = meter.createHistogram('pysr_call_duration_seconds', {
 
 const regressionCache = new Map<string, string>();
 
+export const introspectionLogs: string[] = [];
+
 sigilManager.on('sigil:added', (entry: SigilEntry) => {
   sigilHistory.push(entry);
   CosmicTheoryEventHub.emit('sigil:added', { sigilId: entry.id });
@@ -97,6 +99,7 @@ export async function fetchCosmicData(url: string): Promise<any> {
 export function analyzeCosmicData(values: number[]): string {
   const fragments = values.flatMap(v => fractalDecompose(v));
   const metric = computeFractalMetric(fragments);
+  introspectionLogs.push(`metric:${metric}`);
   return symbolicRegression([metric]);
 }
 
@@ -167,6 +170,7 @@ export async function callPySRService(
   const equation = await wrapped();
   regressionDuration.record((Date.now() - start) / 1000);
   regressionCache.set(cacheKey, equation);
+  introspectionLogs.push(`equation:${equation}`);
   return equation;
 }
 

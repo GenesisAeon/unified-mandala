@@ -1,5 +1,5 @@
 {
-  "lastCommit": "chore: fix progress",
+  "lastCommit": "Merge pull request #817 from GenesisAeon/r419nq-codex/implement-features-from-advancedtodo.yaml",
   "fractalStep": "sync",
   "openBranches": [
     "work"
@@ -9,10 +9,6 @@
   "pendingTasks": [
     {
       "commit": "Pantheon EventBus migration",
-      "status": "open"
-    },
-    {
-      "commit": "Integrate VRBegegnungsraum with MandalaCanvas",
       "status": "open"
     },
     {
@@ -97,10 +93,6 @@
     },
     {
       "commit": "PantheonArchiveExporter",
-      "status": "open"
-    },
-    {
-      "commit": "Integrate VRBegegnungsraum with MandalaCanvas",
       "status": "open"
     },
     {
@@ -361,6 +353,10 @@
     },
     {
       "commit": "ResonanceModuleOrchestrator bus support",
+      "status": "done"
+    },
+    {
+      "commit": "Integrate VRBegegnungsraum with MandalaCanvas",
       "status": "done"
     }
   ],
