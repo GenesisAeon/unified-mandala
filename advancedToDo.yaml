@@ -7262,7 +7262,7 @@
   path: packages/boundary-engine/BoundaryVisualDebugger.ts
   task: Visualize active boundaries and collisions
   test: packages/boundary-engine/BoundaryVisualDebugger.test.ts
-  status: open
+  status: done
 - commit: Create VRAvatarHub component
   path: packages/unifiedmandala-vr/components/VRAvatarHub.tsx
   task: Hub to spawn avatars and portals in VR space
