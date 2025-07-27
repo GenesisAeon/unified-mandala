@@ -72,6 +72,8 @@ Weitere Hinweise aus dem „Sigil Übergang“:
 - [**PySR Service Client**](packages/agents/CosmicTheoryAgent.ts) – Regression via REST/gRPC
 - [**Sigil Archive Service**](services/sigil-archive/index.ts) – speichert Sigille und CREP-Fragmente
 - [**CREPVisualizer**](packages/unifiedmandala-ui/components/CREPVisualizer.tsx) – animierte Timeline der Mandala-Kristalle
+- [**PantheonPortal3D**](packages/unifiedmandala-ui/components/PantheonPortal3D.tsx) – erkundet Pantheon-Module in einer 3D-Ansicht
+- **AeonKernel** – zentrales CREP-State-Management unter `packages/aeon-core`
 - [**Plug-in-Architektur**](plugins/manifest.yaml) – GPT-Kommunikationsmodule, CLI-Tools
 - 🔗 [**GPTBridge (Go)**](go-bridge/pkg/gpt) – API- und Link-basierte GPT-Anbindung
 - [**Plugin-Registry & Dynamic Loader**](plugins/manifest.yaml) – `usePluginLoader` lädt jetzt YAML- und JSON-Manifeste
