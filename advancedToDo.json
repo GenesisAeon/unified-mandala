@@ -5474,7 +5474,7 @@
     "path": "packages/orchestrator/src/eventBus.ts",
     "task": "Use Kafka/Redis as event bus for Pantheon orchestrator",
     "test": "packages/orchestrator/__tests__/eventBus.test.ts",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Agent skeleton generator script",
@@ -5551,7 +5551,7 @@
     "path": "packages/unifiedmandala-vr/components/PantheonAvatarraum.tsx",
     "task": "VR Begegnungsraum for Pantheon agents",
     "test": "packages/unifiedmandala-vr/components/PantheonAvatarraum.test.tsx",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Add SoundResonanceVR module",
