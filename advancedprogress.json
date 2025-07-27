@@ -65,7 +65,7 @@
     },
     {
       "commit": "Add BoundaryLawSimulator",
-      "status": "open"
+      "status": "done"
     },
     {
       "commit": "Add ResonanceAutoTuner",
@@ -323,6 +323,10 @@
     },
     {
       "commit": "Add BoundaryLawDashboard",
+      "status": "done"
+    },
+    {
+      "commit": "Add BoundaryLawSimulator",
       "status": "done"
     }
   ],

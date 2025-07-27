@@ -5390,7 +5390,7 @@
     "path": "packages/agents/CosmicTheoryAgent.ts",
     "task": "Call external PySR service via gRPC/REST",
     "test": "packages/agents/CosmicTheoryAgent.test.ts",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "CosmicTheoryAgent 3D canvas and Tone.js",
@@ -5957,7 +5957,7 @@
     "path": "packages/boundary-engine/BoundaryLawSimulator.ts",
     "task": "Simulate boundary rule interactions",
     "test": "packages/boundary-engine/__tests__/BoundaryLawSimulator.test.ts",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Add PantheonMemorySync",
