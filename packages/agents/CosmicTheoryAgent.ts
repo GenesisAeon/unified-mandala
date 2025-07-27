@@ -3,7 +3,13 @@ import { metrics } from '@opentelemetry/api';
 import { fractalDecompose, computeFractalMetric } from '../analysis/FractalAnalyzer';
 import { symbolicRegression } from '../analysis/SymbolicRegression';
 import { SigilManager, SigilEntry } from '../shared-utils/SigilManager';
-import { CosmicTheoryEventHub, enterVR, exitVR } from './CosmicTheoryAgentEvents';
+import {
+  CosmicTheoryEventHub,
+  enterVR,
+  exitVR,
+  logTrace,
+  TraceLogPayload
+} from './CosmicTheoryAgentEvents';
 import { withCircuit } from '../core/withCircuit';
 
 export const sigilManager = new SigilManager();
@@ -16,6 +22,9 @@ const regressionDuration = meter.createHistogram('pysr_call_duration_seconds', {
 });
 
 const regressionCache = new Map<string, string>();
+
+export const introspectionLog: TraceLogPayload[] = [];
+CosmicTheoryEventHub.on('trace:log', p => introspectionLog.push(p));
 
 sigilManager.on('sigil:added', (entry: SigilEntry) => {
   sigilHistory.push(entry);
@@ -131,9 +140,11 @@ export async function callPySRService(
   endpoint: string,
   protocol: 'rest' | 'grpc' = 'rest'
 ): Promise<string> {
+  logTrace(`callPySRService start: ${endpoint}`);
   CosmicTheoryEventHub.emit('theory:start', { dataPoints: data });
   const cacheKey = `${endpoint}:${protocol}:${JSON.stringify(data)}`;
   if (regressionCache.has(cacheKey)) {
+    logTrace(`cache hit for ${cacheKey}`);
     return regressionCache.get(cacheKey)!;
   }
 
@@ -151,6 +162,7 @@ export async function callPySRService(
             client.close();
             if (err) return reject(err);
             const eq = resp?.equation ?? '';
+            logTrace('pysr grpc success');
             CosmicTheoryEventHub.emit('theory:regression:success', { equation: eq });
             resolve(eq);
           }
@@ -158,6 +170,7 @@ export async function callPySRService(
       });
     }
     const resp = await axios.post(endpoint, { data });
+    logTrace('pysr rest success');
     CosmicTheoryEventHub.emit('theory:regression:success', { equation: resp.data.equation });
     return resp.data.equation;
   };
@@ -166,6 +179,7 @@ export async function callPySRService(
   const start = Date.now();
   const equation = await wrapped();
   regressionDuration.record((Date.now() - start) / 1000);
+  logTrace(`equation ${equation}`);
   regressionCache.set(cacheKey, equation);
   return equation;
 }

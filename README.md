@@ -47,6 +47,7 @@ Weitere Hinweise aus dem „Sigil Übergang“:
 - [**FrequencyMandala3D**](packages/unifiedmandala-ui/components/FrequencyMandala3D.tsx) – WebGL view of frequency flowers
  - [**FourierAPI**](packages/analysis/FourierAPI.ts) – exposes metrics via REST (`/metrics`, `/analyze`)
 - [**SelfReflectionAgent**](packages/agents/SelfReflectionAgent.ts) – system introspection helper
+- [**CosmicTheoryAgent introspection log**](packages/agents/CosmicTheoryAgent.ts#L1) – captures Fourier metrics
 - [**GrokAgent**](packages/agents/GrokAgent.ts) – simple pattern analyzer
 - [**ShadowIntegration**](packages/integration/ShadowIntegration.ts) – experimental data bridge
 - [**MemoryGovernance**](packages/core/MemoryGovernance.ts) – manage memory state

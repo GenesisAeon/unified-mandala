@@ -1,5 +1,5 @@
 {
-  "lastCommit": "chore: finalize progress",
+  "lastCommit": "feat: add CosmicTheoryAgent introspection logs",
   "fractalStep": "sync",
   "openBranches": [
     "work"
@@ -7,10 +7,6 @@
   "mergeConflicts": [],
   "notes": "Marked BoundaryRuleDetector and MandalaCanvas as done; added tasks for Pantheon, Boundary, VR space, resonance modules.",
   "pendingTasks": [
-    {
-      "commit": "Pantheon EventBus migration",
-      "status": "open"
-    },
     {
       "commit": "Upgrade CosmicTheoryAgent",
       "status": "open"
@@ -45,10 +41,6 @@
     },
     {
       "commit": "Implement ResonanceModuleSynth",
-      "status": "open"
-    },
-    {
-      "commit": "Add CosmicTheoryAgent introspection logs",
       "status": "open"
     },
     {
