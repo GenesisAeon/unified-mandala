@@ -15,4 +15,8 @@ export class SelfReflectionAgent {
       lastEntry: this.logs[this.logs.length - 1] ?? null,
     };
   }
+
+  clear() {
+    this.logs = [];
+  }
 }
