@@ -28,3 +28,9 @@ test('clear removes data by category', () => {
   expect(mm.get('weekly')).toEqual(['bar']);
   mm.stop();
 });
+
+test('getCategories lists all categories', () => {
+  const mm = new MemoryManager({ daily: 10, weekly: 20, longterm: 30 });
+  expect(mm.getCategories().sort()).toEqual(['daily', 'longterm', 'weekly']);
+  mm.stop();
+});

@@ -18,4 +18,8 @@ export class MemoryGovernanceService {
   clear(category?: MemoryCategory) {
     this.manager.clear(category as any);
   }
+
+  listCategories(): MemoryCategory[] {
+    return this.manager.getCategories();
+  }
 }

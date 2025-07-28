@@ -28,3 +28,9 @@ test('clear resets selected category', () => {
   expect(manager.get('daily')).toEqual([]);
   expect(manager.get('weekly')).toEqual(['two']);
 });
+
+test('listCategories returns manager categories', () => {
+  const manager = new MemoryManager({ daily: 0, weekly: 0, longterm: 0 });
+  const governance = new MemoryGovernanceService(manager);
+  expect(governance.listCategories().sort()).toEqual(['daily', 'longterm', 'weekly']);
+});
