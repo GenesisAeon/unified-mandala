@@ -73,7 +73,7 @@ Für neue Aufgaben aus Chat-Logs nutze `scripts/parse-advanced-conversations.js`
 - `ArchiveOldTodos` – verschiebt alte ToDos ins GenesisAeonZIPMEM.
 - `ArchiveTodos` – verschiebt AdvancedToDos ins GenesisAeonZIPMEM.
 - `CREPVisualizer` – zeigt CREP-Verlauf als animierte Timeline.
-- `SelfReflectionAgent` – überwacht Logs und fasst Erkenntnisse zusammen.
+ - `SelfReflectionAgent` – überwacht Logs, fasst Erkenntnisse zusammen und prüft gespeicherte Erinnerungen.
 - `GrokAgent` – erkennt einfache Wortmuster.
 - `ShadowIntegration` – experimentelle Schnittstelle für Datentransfer.
 - `ResonanceModuleSynth` – erzeugt Audiosignale für Resonanzmodule.
