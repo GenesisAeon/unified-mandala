@@ -1,5 +1,5 @@
 {
-  "lastCommit": "feat: add memory governance policy and planner",
+  "lastCommit": "self-reflection clear method",
   "fractalStep": "sync",
   "openBranches": [
     "work"
@@ -181,7 +181,7 @@
       "status": "done"
     },
     {
-      "commit": "meta:update-progress \u2013 mark memory governance done",
+      "commit": "meta:update-progress – mark memory governance done",
       "status": "done"
     },
     {
@@ -291,6 +291,10 @@
     {
       "commit": "meta:update-advancedToDo-status",
       "status": "done"
+    },
+    {
+      "commit": "self-reflection clear method",
+      "status": "done"
     }
   ],
   "completed": [
@@ -314,67 +318,67 @@
   "featureLog": [
     {
       "featureId": "open-ethik-dashboard",
-      "commit": "meta:implement-features \u2013 open-ethik-dashboard",
+      "commit": "meta:implement-features – open-ethik-dashboard",
       "status": "done"
     },
     {
       "featureId": "implicit-todos",
-      "commit": "meta:extract-features \u2013 implicit todo extraction",
+      "commit": "meta:extract-features – implicit todo extraction",
       "status": "done"
     },
     {
       "featureId": "zivilisations-sandboxen",
-      "commit": "meta:extract-features \u2013 Zivilisations-Sandboxen",
+      "commit": "meta:extract-features – Zivilisations-Sandboxen",
       "status": "done"
     },
     {
       "featureId": "climate-integration",
-      "commit": "meta:extract-features \u2013 climate integration",
+      "commit": "meta:extract-features – climate integration",
       "status": "done"
     },
     {
       "featureId": "keilschrift",
-      "commit": "meta:extract-features \u2013 keilschrift",
+      "commit": "meta:extract-features – keilschrift",
       "status": "done"
     },
     {
       "featureId": "grok-agent",
-      "commit": "meta:implement-features \u2013 grok agent skeleton",
+      "commit": "meta:implement-features – grok agent skeleton",
       "status": "done"
     },
     {
       "featureId": "shadow-integration",
-      "commit": "meta:extract-features \u2013 shadow integration",
+      "commit": "meta:extract-features – shadow integration",
       "status": "done"
     },
     {
       "featureId": "self-reflection",
-      "commit": "meta:extract-features \u2013 self reflection",
+      "commit": "meta:extract-features – self reflection",
       "status": "done"
     },
     {
       "featureId": "memory-governance",
-      "commit": "meta:extract-features \u2013 memory governance",
+      "commit": "meta:extract-features – memory governance",
       "status": "done"
     },
     {
       "featureId": "turing-tests",
-      "commit": "meta:extract-features \u2013 turing tests",
+      "commit": "meta:extract-features – turing tests",
       "status": "done"
     },
     {
       "featureId": "schwerewellen",
-      "commit": "meta:extract-features \u2013 schwerewellen",
+      "commit": "meta:extract-features – schwerewellen",
       "status": "done"
     },
     {
       "featureId": "anthropic-multiversum",
-      "commit": "meta:extract-features \u2013 anthropic multiversum",
+      "commit": "meta:extract-features – anthropic multiversum",
       "status": "done"
     },
     {
       "featureId": "memory-governance",
-      "commit": "meta:implement-features \u2013 memory governance service",
+      "commit": "meta:implement-features – memory governance service",
       "status": "done"
     },
     {
