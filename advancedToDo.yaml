@@ -7967,14 +7967,14 @@
   path: packages/unifiedmandala-vr/VRBegegnungsraum.ts
   task: Support WebXR handshake for multiuser sessions
   test: packages/unifiedmandala-vr/VRBegegnungsraum.test.ts
-  status: open
+  status: done
 - commit: Sync Pantheon boundary events
   path: packages/pantheon/PantheonBoundaryBridge.ts
   task: Emit boundary events to VR space and UI
   test: packages/pantheon/PantheonBoundaryBridge.test.ts
-  status: open
+  status: done
 - commit: Enhance ExtendedResonanceModule
   path: packages/resonance/ExtendedResonanceModule.ts
   task: Add amplitude and phase analysis
   test: packages/resonance/ExtendedResonanceModule.test.ts
-  status: open
+  status: done
