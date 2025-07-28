@@ -382,6 +382,10 @@
       "featureId": "anthropic-multiversum",
       "commit": "implemented scenario planning",
       "status": "done"
+    },
+    {
+      "commit": "implement feedback lobby and dispatcher update",
+      "status": "done"
     }
   ]
 }
