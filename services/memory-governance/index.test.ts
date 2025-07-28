@@ -18,3 +18,13 @@ test('detectTrauma filters negative entries', () => {
   const result = governance.detectTrauma('daily');
   expect(result).toEqual(['deep trauma event']);
 });
+
+test('clear resets selected category', () => {
+  const manager = new MemoryManager({ daily: 0, weekly: 0, longterm: 0 });
+  manager.add('daily', 'one');
+  manager.add('weekly', 'two');
+  const governance = new MemoryGovernanceService(manager);
+  governance.clear('daily');
+  expect(manager.get('daily')).toEqual([]);
+  expect(manager.get('weekly')).toEqual(['two']);
+});

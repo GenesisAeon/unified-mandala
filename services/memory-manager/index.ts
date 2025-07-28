@@ -35,6 +35,16 @@ export class MemoryManager {
     return this.store[category].map(e => e.text);
   }
 
+  clear(category?: MemoryCategory) {
+    if (category) {
+      this.store[category] = [];
+      return;
+    }
+    (Object.keys(this.store) as MemoryCategory[]).forEach(cat => {
+      this.store[cat] = [];
+    });
+  }
+
   ingestFragments(files: string[]) {
     files.forEach((f) => {
       if (fs.existsSync(f)) {

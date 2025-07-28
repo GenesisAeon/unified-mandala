@@ -18,3 +18,13 @@ test('ingests fragments from file', () => {
   fs.unlinkSync(tmp);
   mm.stop();
 });
+
+test('clear removes data by category', () => {
+  const mm = new MemoryManager({ daily: 10, weekly: 20, longterm: 30 });
+  mm.add('daily', 'foo');
+  mm.add('weekly', 'bar');
+  mm.clear('daily');
+  expect(mm.get('daily')).toEqual([]);
+  expect(mm.get('weekly')).toEqual(['bar']);
+  mm.stop();
+});

@@ -14,4 +14,8 @@ export class MemoryGovernanceService {
     const traumaRegex = /\b(angst|trauma|fear|panic|worry|sad)\b/i;
     return this.manager.get(category).filter((t) => traumaRegex.test(t));
   }
+
+  clear(category?: MemoryCategory) {
+    this.manager.clear(category as any);
+  }
 }
