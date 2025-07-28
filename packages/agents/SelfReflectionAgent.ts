@@ -7,6 +7,10 @@ export class SelfReflectionAgent {
     this.logs.push(message);
   }
 
+  recordWithTimestamp(message: string, timestamp: number = Date.now()) {
+    this.logs.push(`${timestamp}:${message}`);
+  }
+
   summarize(): string {
     return this.logs.join('\n');
   }
