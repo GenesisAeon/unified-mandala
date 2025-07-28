@@ -1,5 +1,5 @@
 {
-  "lastCommit": "chore: finalize progress",
+  "lastCommit": "meta:update progress logs",
   "fractalStep": "sync",
   "openBranches": [
     "work"
@@ -232,6 +232,26 @@
     {
       "commit": "extend self reflection",
       "status": "done"
+    },
+    {
+      "commit": "implement ShadowIntegration module",
+      "status": "done"
+    },
+    {
+      "commit": "enhance SelfReflectionAgent",
+      "status": "done"
+    },
+    {
+      "commit": "implement Turing test orchestrator",
+      "status": "done"
+    },
+    {
+      "commit": "document Arctic gravity waves research",
+      "status": "done"
+    },
+    {
+      "commit": "plan anthropic multiverse scenarios",
+      "status": "done"
     }
   ],
   "completed": [
@@ -316,6 +336,31 @@
     {
       "featureId": "memory-governance",
       "commit": "meta:implement-features – memory governance service",
+      "status": "done"
+    },
+    {
+      "featureId": "shadow-integration",
+      "commit": "implemented shadow integration module",
+      "status": "done"
+    },
+    {
+      "featureId": "self-reflection",
+      "commit": "extended self reflection agent",
+      "status": "done"
+    },
+    {
+      "featureId": "turing-tests",
+      "commit": "implemented turing tests",
+      "status": "done"
+    },
+    {
+      "featureId": "schwerewellen",
+      "commit": "added arctic gravity wave research",
+      "status": "done"
+    },
+    {
+      "featureId": "anthropic-multiversum",
+      "commit": "implemented scenario planning",
       "status": "done"
     }
   ]
