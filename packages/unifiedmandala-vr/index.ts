@@ -9,3 +9,4 @@ export { default as VRMeetingHall3D } from './components/VRMeetingHall3D';
 export * from './VRAvatarCustomization';
 export { default as AvatarraumUI } from './AvatarraumUI';
 export * from './VRBoundaryConductor';
+export * from './VRMeetingRoom';

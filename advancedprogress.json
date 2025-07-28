@@ -1,5 +1,5 @@
 {
-  "lastCommit": "feat: add VRMeetingRoom and sandbox tasks",
+  "lastCommit": "feat: add memory governance policy and planner",
   "fractalStep": "sync",
   "openBranches": [
     "work"
@@ -282,6 +282,10 @@
     },
     {
       "commit": "Append new advanced tasks from conversations",
+      "status": "done"
+    },
+    {
+      "commit": "implement policy, turing suite, multiverse planner and VRMeetingRoom",
       "status": "done"
     }
   ],

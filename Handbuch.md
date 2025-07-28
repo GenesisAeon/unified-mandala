@@ -62,12 +62,15 @@ Für neue Aufgaben aus Chat-Logs nutze `scripts/parse-advanced-conversations.js`
 - `FractalTaskRunner` – führt YAML-basierte Plugin-Workflows aus.
 - `EventBridge` – leitet CosmicTheoryAgent-Events an die UI weiter.
 - `PyramidVRMeetingRoom` – VR-Raum für mehrere Avatare.
+- `VRMeetingRoom` – einfacher WebXR-Treffpunkt.
 - CosmicTheoryAgent liefert VR-Hooks für immersive Steuerung.
 - `AeonOrchestrator` – zentrale Steuerinstanz des Pantheon, verteilt Boundary-Regeln.
 - `PantheonPortalAnalytics` – zeichnet Portalzugriffe auf.
 - `PantheonBoundaryBridge` – verknüpft Pantheon-Ereignisse mit BoundaryRuleDetector
 - `PantheonExport Tool` – exportiert die vorhandenen Pantheon-Module als Datensatz
 - `PantheonFeedbackService` – koordiniert Feedback-Runden der Pantheon-Agenten
+- `MultiverseScenarioPlanner` – untersucht Multiversen-Szenarien.
+- `MemoryGovernancePolicy` – definiert Aufbewahrungsgrenzen.
 - `VRBegegnungsraumLobby` – Handshake-Raum für WebXR-Sessions
 - `VRResonanceVisualizer` – farbige Darstellung der CREP-Intensität in VR
 - `PantheonAvatarHub` – verwaltet Avatare und Sessions im Pantheon-Raum

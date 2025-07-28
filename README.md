@@ -52,11 +52,15 @@ Weitere Hinweise aus dem „Sigil Übergang“:
 - [**ShadowIntegration**](packages/integration/ShadowIntegration.ts) – experimental data bridge
 - [**MemoryGovernance**](packages/core/MemoryGovernance.ts) – manage memory state
 - [**TuringOrchestrator**](packages/testing/TuringOrchestrator.ts) – run minimal Turing tests
+- [**TuringTestSuite**](packages/testing/TuringTestSuite.ts) – automated conversation Turing tests
 - [**Climate Module**](packages/unifiedmandala-climate/index.ts) – blueprint for climate data
 - [**Keilschrift Module**](packages/aeon-labs/keilschrift/index.ts) – cuneiform utilities
 - [**ZivilisationsSandbox**](packages/pantheon/ZivilisationsSandbox/index.ts) – simulate ancient builds
 - [**ArcticGravityWaves**](packages/research/ArcticGravityWaves.ts) – analyze gravity wave data
 - [**MultiverseScenario**](packages/pantheon/MultiverseScenario.ts) – scenario storage
+- [**MultiverseScenarioPlanner**](packages/simulations/MultiverseScenarioPlanner.ts) – explore multiverse variants
+- [**MemoryGovernancePolicy**](services/memory-governance/policy.ts) – governs memory retention
+- [**VRMeetingRoom**](packages/unifiedmandala-vr/VRMeetingRoom.ts) – simple WebXR meeting space
 - [**FourierMetricsCLI**](packages/cli-tools/FourierMetricsCLI.ts) – compute metrics from the command line
 - [**FractalTaskRunner**](packages/task-runner/FractalTaskRunner.ts) – executes YAML-defined plugin workflows
 - [**Fractal Runner CLI**](packages/agents/bin/fractal-runner.ts) – runs YAML task files with optional soundscape
