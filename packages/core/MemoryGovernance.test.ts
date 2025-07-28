@@ -10,4 +10,12 @@ describe('MemoryGovernance', () => {
     mg.delete('foo');
     expect(mg.has('foo')).toBe(false);
   });
+
+  it('clears all entries', () => {
+    const mg = new MemoryGovernance();
+    mg.set('a', '1');
+    mg.set('b', '2');
+    mg.clear();
+    expect(mg.entries()).toHaveLength(0);
+  });
 });

@@ -6871,5 +6871,12 @@
     "task": "Add reflectMemory method",
     "test": "packages/agents/SelfReflectionAgent.test.ts",
     "status": "done"
+  },
+  {
+    "commit": "Add clear method to MemoryGovernance",
+    "path": "packages/core/MemoryGovernance.ts",
+    "task": "Allow wiping all stored memory entries",
+    "test": "packages/core/MemoryGovernance.test.ts",
+    "status": "done"
   }
 ]
