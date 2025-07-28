@@ -10,6 +10,12 @@ describe('SelfReflectionAgent', () => {
     expect(agent.summarize()).toBe('a\nb');
   });
 
+  it('records message with timestamp', () => {
+    const agent = new SelfReflectionAgent();
+    agent.recordWithTimestamp('c', 1);
+    expect(agent.summarize()).toBe('1:c');
+  });
+
   it('flags memories matching pattern', () => {
     const gov = new MemoryGovernance();
     gov.set('m1', 'hello world');
