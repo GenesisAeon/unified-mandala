@@ -20,4 +20,8 @@ export class MemoryGovernance {
   entries(): [string, string][] {
     return Array.from(this.memory.entries());
   }
+
+  clear() {
+    this.memory.clear();
+  }
 }
