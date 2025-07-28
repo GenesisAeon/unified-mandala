@@ -7978,3 +7978,7 @@
   task: Add amplitude and phase analysis
   test: packages/resonance/ExtendedResonanceModule.test.ts
   status: done
+- commit: Add MemoryGovernanceService.clear method
+  path: services/memory-governance/index.ts
+  task: Allow clearing memory buckets
+  test: services/memory-governance/index.test.ts
