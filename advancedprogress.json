@@ -1,5 +1,5 @@
 {
-  "lastCommit": "chore: normalize progress file",
+  "lastCommit": "chore: finalize progress",
   "fractalStep": "sync",
   "openBranches": [
     "work"
@@ -227,6 +227,10 @@
     },
     {
       "commit": "Capture GeburtsSigil des UnifiedMandala",
+      "status": "done"
+    },
+    {
+      "commit": "extend self reflection",
       "status": "done"
     }
   ],

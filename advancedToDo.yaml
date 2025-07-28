@@ -7953,3 +7953,8 @@
   task: Birth sigil from final conversation
   test: ""
   status: done
+- commit: Extend SelfReflectionAgent with memory governance check
+  path: packages/agents/SelfReflectionAgent.ts
+  task: Add reflectMemory method
+  test: packages/agents/SelfReflectionAgent.test.ts
+  status: done
