@@ -6941,19 +6941,22 @@
     "commit": "Add Zivilisations-Sandbox simulation module",
     "path": "packages/simulations/zivilisations-sandbox",
     "task": "Simulate ancient megastructures",
-    "test": "packages/simulations/zivilisations-sandbox/ZivilisationSandbox.test.ts"
+    "test": "packages/simulations/zivilisations-sandbox/ZivilisationSandbox.test.ts",
+    "status": "done"
   },
   {
     "commit": "Add ClimateIntegrationBlueprint",
     "path": "packages/climate/ClimateIntegrationBlueprint.ts",
     "task": "Integrate solar forcing data for climate module",
-    "test": "packages/climate/ClimateIntegrationBlueprint.test.ts"
+    "test": "packages/climate/ClimateIntegrationBlueprint.test.ts",
+    "status": "done"
   },
   {
     "commit": "Implement Keilschrift translator",
     "path": "packages/linguistics/KeilschriftTranslator.ts",
     "task": "Translate cuneiform tablets",
-    "test": "packages/linguistics/KeilschriftTranslator.test.ts"
+    "test": "packages/linguistics/KeilschriftTranslator.test.ts",
+    "status": "done"
   },
   {
     "commit": "Create GrokAgent module",
