@@ -1,5 +1,5 @@
 {
-  "lastCommit": "chore: record commit",
+  "lastCommit": "chore: sync progress",
   "fractalStep": "sync",
   "openBranches": [
     "work"
@@ -389,6 +389,10 @@
     },
     {
       "commit": "implement feedback lobby and dispatcher update",
+      "status": "done"
+    },
+    {
+      "commit": "add getCategories methods",
       "status": "done"
     }
   ]

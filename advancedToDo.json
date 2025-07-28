@@ -6905,5 +6905,12 @@
     "path": "services/memory-governance/index.ts",
     "task": "Allow clearing memory buckets",
     "test": "services/memory-governance/index.test.ts"
+  },
+  {
+    "commit": "Add getCategories to MemoryManager and governance",
+    "path": "services/memory-manager/index.ts",
+    "task": "Expose category list and governance accessor",
+    "test": "services/memory-manager/test.ts",
+    "status": "done"
   }
 ]

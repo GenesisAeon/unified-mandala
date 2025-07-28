@@ -7822,6 +7822,11 @@
   task: Provide memory governance enforcement
   test: services/memory-governance/index.test.ts
   status: done
+- commit: Add getCategories to MemoryManager and governance
+  path: services/memory-manager/index.ts
+  task: Expose category list and governance accessor
+  test: services/memory-manager/test.ts
+  status: done
 - commit: Add trauma detection to MemoryGovernanceService
   path: services/memory-governance/index.ts
   task: detectTrauma method identifies negative memory entries

@@ -35,6 +35,10 @@ export class MemoryManager {
     return this.store[category].map(e => e.text);
   }
 
+  getCategories(): MemoryCategory[] {
+    return Object.keys(this.store) as MemoryCategory[];
+  }
+
   clear(category?: MemoryCategory) {
     if (category) {
       this.store[category] = [];
