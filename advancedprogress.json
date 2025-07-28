@@ -6,17 +6,16 @@
   ],
   "mergeConflicts": [],
   "notes": "Marked BoundaryRuleDetector and MandalaCanvas as done; added tasks for Pantheon, Boundary, VR space, resonance modules.",
-  "pendingTasks": [
+  "pendingTasks": [],
+  "progress": [
     {
       "commit": "Create PantheonAvatarraum component",
-      "status": "open"
+      "status": "done"
     },
     {
       "commit": "Add PantheonBoundaryResolver service",
-      "status": "open"
-    }
-  ],
-  "progress": [
+      "status": "done"
+    },
     {
       "commit": "Implement boundary manager modules",
       "status": "done"
