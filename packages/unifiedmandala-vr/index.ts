@@ -8,3 +8,4 @@ export { default as VRPyramidPortal } from './components/VRPyramidPortal';
 export { default as VRMeetingHall3D } from './components/VRMeetingHall3D';
 export * from './VRAvatarCustomization';
 export { default as AvatarraumUI } from './AvatarraumUI';
+export * from './VRBoundaryConductor';
