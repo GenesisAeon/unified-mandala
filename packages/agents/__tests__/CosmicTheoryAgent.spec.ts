@@ -9,7 +9,11 @@ vi.mock('@grpc/grpc-js', () => {
       constructor() {}
       makeServerStreamRequest(_p: any, _s: any, cb: any, _msg: any) {
         const emitter = new (require('events').EventEmitter)();
-        process.nextTick(() => cb(Buffer.from('{"val":1}')));
+        (emitter as any).cancel = () => {};
+        process.nextTick(() => {
+          const data = cb(Buffer.from('{"val":1}'));
+          emitter.emit('data', data);
+        });
         return emitter;
       }
     },
