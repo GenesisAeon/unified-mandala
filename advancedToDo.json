@@ -6912,5 +6912,29 @@
     "task": "Expose category list and governance accessor",
     "test": "services/memory-manager/test.ts",
     "status": "done"
+  },
+  {
+    "commit": "Add ExtendedResonanceGateway",
+    "path": "packages/resonance/ExtendedResonanceGateway.ts",
+    "task": "Bridge resonance modules with boundary events",
+    "test": "packages/resonance/ExtendedResonanceGateway.test.ts"
+  },
+  {
+    "commit": "Add PantheonAvatarHub module",
+    "path": "packages/pantheon/PantheonAvatarHub.ts",
+    "task": "Manage avatars in VR Pantheon space",
+    "test": "packages/pantheon/PantheonAvatarHub.test.ts"
+  },
+  {
+    "commit": "Add VRResonanceVisualizer component",
+    "path": "packages/unifiedmandala-vr/VRResonanceVisualizer.ts",
+    "task": "Visualize CREP resonance in VR",
+    "test": "packages/unifiedmandala-vr/VRResonanceVisualizer.test.ts"
+  },
+  {
+    "commit": "Document Pantheon-Boundary integration plan",
+    "path": "docs/boundary/PantheonBoundaryIntegration.md",
+    "task": "Summarize integration blueprint from chats",
+    "test": ""
   }
 ]

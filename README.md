@@ -88,6 +88,10 @@ Weitere Hinweise aus dem „Sigil Übergang“:
 - [**DocCommentsGenerator**](scripts/doc-comments-generator.ts) – erzeugt Markdown-Doku
 - [**ArchiveOldTodos**](scripts/archive-old-todos.ts) – verschiebt erledigte ToDos ins ZIPMEM
 - [**ArchiveTodos**](scripts/archive-todos.ts) – verschiebt erledigte AdvancedToDos ins ZIPMEM
+- [**ExtendedResonanceGateway**](packages/resonance/ExtendedResonanceGateway.ts) – verbindet Resonanzmodule mit Boundary-Events
+- [**PantheonAvatarHub**](packages/pantheon/PantheonAvatarHub.ts) – Avatarverwaltung für das VR-Pantheon
+- [**VRResonanceVisualizer**](packages/unifiedmandala-vr/VRResonanceVisualizer.ts) – zeigt CREP-Resonanz im VR-Raum an
+- [**Pantheon-Boundary Integration**](docs/boundary/PantheonBoundaryIntegration.md) – Überblick über neue Schnittstellen
 - [**CREP-Illumination**](CHRONOPOEM.md) – Chronopoem reflektiert aktuellen CREP-Zustand
 - [**SelfAuditModul**](packages/unifiedmandala-ui/components/SelfAuditModul.tsx) – analysiert die Repository-Struktur
 - [**AdminMetrics**](packages/unifiedmandala-ui/README.md) – zeigt CREP- und Sigillin-Kennzahlen
