@@ -8,4 +8,15 @@ export class GreekMathAeonDispatcher {
       }
     }
   }
+
+  dispatchWithResult<T>(fn: () => T): T | null {
+    try {
+      return fn();
+    } catch (err) {
+      if (typeof process !== 'undefined') {
+        process.emit('dispatcher:error', err);
+      }
+      return null;
+    }
+  }
 }
