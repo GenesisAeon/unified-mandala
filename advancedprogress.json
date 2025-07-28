@@ -1,21 +1,12 @@
 {
-  "lastCommit": "docs: add mandala orchestrator blueprint and genesis sigil",
+  "lastCommit": "chore: normalize progress file",
   "fractalStep": "sync",
   "openBranches": [
     "work"
   ],
   "mergeConflicts": [],
   "notes": "Marked BoundaryRuleDetector and MandalaCanvas as done; added tasks for Pantheon, Boundary, VR space, resonance modules.",
-  "pendingTasks": [
-    {
-      "commit": "Create PantheonAvatarraum component",
-      "status": "open"
-    },
-    {
-      "commit": "Add PantheonBoundaryResolver service",
-      "status": "open"
-    }
-  ],
+  "pendingTasks": [],
   "progress": [
     {
       "commit": "Implement boundary manager modules",
