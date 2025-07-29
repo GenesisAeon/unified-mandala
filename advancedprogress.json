@@ -1,12 +1,25 @@
 {
-  "lastCommit": "chore: finalize progress",
+  "lastCommit": "chore: sync progress",
   "fractalStep": "sync",
   "openBranches": [
     "work"
   ],
   "mergeConflicts": [],
   "notes": "Added CREP prioritization to generate-todo script",
-  "pendingTasks": [],
+  "pendingTasks": [
+    {
+      "commit": "Create Pantheon Manifest Schema",
+      "status": "todo"
+    },
+    {
+      "commit": "Extract Boundary Law algorithms",
+      "status": "todo"
+    },
+    {
+      "commit": "Finalize VR-Begegnungsraum blueprint",
+      "status": "todo"
+    }
+  ],
   "progress": [
     {
       "commit": "Implement boundary manager modules",
