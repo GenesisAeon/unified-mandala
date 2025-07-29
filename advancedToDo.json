@@ -7142,5 +7142,29 @@
     "task": "Summarize room structure and Fourier integration steps",
     "test": "",
     "status": "done"
+  },
+  {
+    "commit": "Create BlackboxMirrorBoard component",
+    "path": "packages/unifiedmandala-ui/components/BlackboxMirrorBoard.tsx",
+    "task": "Visualize mirrored user input and AI responses",
+    "test": "packages/unifiedmandala-ui/components/BlackboxMirrorBoard.test.tsx",
+    "status": "done"
+  },
+  {
+    "commit": "Document blackbox principle and open ethics",
+    "path": "docs/manifest/blackbox-manifest.md",
+    "task": "Outline CREP collective resonance system",
+    "test": "docs/manifest/blackbox-manifest.test.ts",
+    "status": "done"
+  },
+  {
+    "commit": "Add CREP open ethics manifesto",
+    "path": "docs/manifest/crep-open-ethik.md",
+    "task": "Describe CREP API for community feedback",
+    "test": "docs/manifest/crep-open-ethik.test.ts",
+    "status": "done"
+  },
+  {
+    "feature": "Blackbox-Resonanz-Upgrade & CREP-Kollektivsystem"
   }
 ]
