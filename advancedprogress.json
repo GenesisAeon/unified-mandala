@@ -323,6 +323,14 @@
     {
       "commit": "Add EventEmitter-based dispatcher",
       "status": "done"
+    },
+    {
+      "commit": "Add VRExperienceRoom component",
+      "status": "planned"
+    },
+    {
+      "commit": "Implement ResonanceMapping module",
+      "status": "planned"
     }
   ],
   "completed": [
