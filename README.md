@@ -197,6 +197,7 @@ Weitere Hinweise aus dem „Sigil Übergang“:
 - [**HeatmapWidget**](packages/unifiedmandala-ui/components/HeatmapWidget.tsx) – zeigt CREP-Aktivität als Heatmap
 - [**OnboardingModal**](packages/unifiedmandala-ui/components/OnboardingModal.tsx) – begrüßt neue Nutzende mit Ritualhinweisen
 - [**HaikuOverlay**](packages/unifiedmandala-ui/components/HaikuOverlay.tsx) – blendet zufällige Haikus ein
+- [**BlackboxMirrorBoard**](packages/unifiedmandala-ui/components/BlackboxMirrorBoard.tsx) – reflektiert Eingaben im Blackbox-Modus
 - `/impulse/:idx/crep` – Route zum Aktualisieren der CREP-Metriken
 - [**ArchetypeDecoderAgent**](packages/agents/ArchetypeDecoderAgent.ts) – extrahiert Archetypen aus Beschreibungen
 - [**SigillinInterpreterAgent**](packages/agents/SigillinInterpreterAgent.ts) – erkennt Sigillin-Symbole

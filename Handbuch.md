@@ -412,4 +412,18 @@ Weitere Beispiele und GIF-Demos findest du im [Wiki](https://github.com/GenesisA
 Weitere Infos zur Pipeline findest du in [docs/demo/POC-Run-Guide.md](docs/demo/POC-Run-Guide.md).
 Ein SVG-Beispiel liegt unter [`docs/assets/unified-mandala.svg`](docs/assets/unified-mandala.svg).
 
+## Blackbox Resonanz
+
+Die Blackbox-Module stellen einen experimentellen Resonanzraum bereit. Im Manifest
+[manifest/blackbox-manifest.md](manifest/blackbox-manifest.md) findest du eine
+Übersicht der Komponenten:
+
+- **BlackboxMandala** – interaktive CREP-Visualisierung
+- **BlackboxMirrorBoard** – Spiegel für Eingaben und Reflexionen
+- **CREPStatsCard** und **HeatmapWidget** – zeigen Metriken und Aktivität
+- **OnboardingModal** und **HaikuOverlay** – begleiten den Einstieg poetisch
+
+Die ethischen Leitlinien werden im Dokument
+[manifest/crep-open-ethik.md](manifest/crep-open-ethik.md) erläutert.
+
 Das `CHRONOPOEM.md` entsteht automatisch – und kann bei jedem Commit erneuert werden.
