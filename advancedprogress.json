@@ -1,5 +1,5 @@
 {
-  "lastCommit": "chore: update lastCommit",
+  "lastCommit": "chore(progress): update lastCommit",
   "fractalStep": "sync",
   "openBranches": [
     "work"
@@ -334,6 +334,10 @@
     },
     {
       "commit": "Add Arctic gravity wave module and docs",
+      "status": "done"
+    },
+    {
+      "commit": "Add ClimateDataBridge module",
       "status": "done"
     }
   ],
