@@ -8121,3 +8121,8 @@
   task: Provide blueprint for internal gravity wave modeling
   test: ""
   status: done
+- commit: Add ClimateDataBridge module
+  path: packages/unifiedmandala-climate/ClimateDataBridge.ts
+  task: Fetch or simulate temperature data for climate features
+  test: packages/unifiedmandala-climate/ClimateDataBridge.test.ts
+  status: done
