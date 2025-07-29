@@ -8111,3 +8111,13 @@
   status: done
   task: Multi-dimensional resonance mapping with Fourier transforms
   test: packages/resonance/ResonanceMapping.test.ts
+- commit: Implement ArcticGravityWaveSimulation
+  path: packages/simulations/ArcticGravityWaveSimulation.ts
+  task: Simulate internal gravity waves in Arctic environment
+  test: packages/simulations/ArcticGravityWaveSimulation.test.ts
+  status: open
+- commit: Document Arctic Gravity Waves research
+  path: docs/research/ArcticGravityWaves.md
+  task: Provide blueprint for internal gravity wave modeling
+  test: ""
+  status: open
