@@ -7162,13 +7162,13 @@
     "path": "packages/simulations/ArcticGravityWaveSimulation.ts",
     "task": "Simulate internal gravity waves in Arctic environment",
     "test": "packages/simulations/ArcticGravityWaveSimulation.test.ts",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Document Arctic Gravity Waves research",
     "path": "docs/research/ArcticGravityWaves.md",
     "task": "Provide blueprint for internal gravity wave modeling",
     "test": "",
-    "status": "open"
+    "status": "done"
   }
 ]

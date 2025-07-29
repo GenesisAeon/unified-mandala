@@ -1,21 +1,12 @@
 {
-  "lastCommit": "chore: refresh progress",
+  "lastCommit": "chore: update lastCommit",
   "fractalStep": "sync",
   "openBranches": [
     "work"
   ],
   "mergeConflicts": [],
   "notes": "Added CREP prioritization to generate-todo script",
-  "pendingTasks": [
-    {
-      "commit": "Implement ArcticGravityWaveSimulation",
-      "status": "open"
-    },
-    {
-      "commit": "Document Arctic Gravity Waves research",
-      "status": "open"
-    }
-  ],
+  "pendingTasks": [],
   "progress": [
     {
       "commit": "Implement boundary manager modules",
@@ -340,6 +331,10 @@
     {
       "commit": "Implement ResonanceMapping module",
       "status": "planned"
+    },
+    {
+      "commit": "Add Arctic gravity wave module and docs",
+      "status": "done"
     }
   ],
   "completed": [

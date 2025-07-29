@@ -96,6 +96,7 @@ Für neue Aufgaben aus Chat-Logs nutze `scripts/parse-advanced-conversations.js`
 - `KIKeilschrift` – Werkzeuge zur Keilschrift-Verarbeitung.
 - `ZivilisationsSandbox` – simuliert antike Megastrukturen.
 - `ArcticGravityWaves` – Analyse interner Schwerewellen.
+- `ArcticGravityWaveSimulation` – Simulation arktischer Schwerewellen.
 - `MultiverseScenario` – speichert Szenarien für Multiversum-Hypothesen.
 
 ### gpt-bridges
