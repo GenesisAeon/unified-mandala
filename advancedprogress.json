@@ -1,5 +1,5 @@
 {
-  "lastCommit": "chore(progress): update lastCommit",
+  "lastCommit": "docs: add blackbox manifest",
   "fractalStep": "sync",
   "openBranches": [
     "work"
@@ -339,6 +339,18 @@
     {
       "commit": "Add ClimateDataBridge module",
       "status": "done"
+    },
+    {
+      "commit": "Document Blackbox resonance modules",
+      "status": "done"
+    },
+    {
+      "commit": "Document CREP Open-Ethik guidelines",
+      "status": "done"
+    },
+    {
+      "commit": "Plan BlackboxMirrorBoard component",
+      "status": "planned"
     }
   ],
   "completed": [
