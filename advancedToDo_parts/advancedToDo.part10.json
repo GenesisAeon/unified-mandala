@@ -18,7 +18,7 @@
     "path": "packages/unifiedmandala-vr/VRBegegnungsraumLobby.ts",
     "task": "Prototype VR meeting space with WebXR and breath sync",
     "test": "packages/unifiedmandala-vr/VRBegegnungsraumLobby.test.ts",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Develop AeonResonanceModules",
@@ -32,6 +32,20 @@
     "path": "packages/core/GreekMathAeonDispatcher.ts",
     "task": "Emit dispatcher:error event via try/catch wrapper",
     "test": "packages/core/GreekMathAeonDispatcher.test.ts",
+    "status": "open"
+  },
+  {
+    "commit": "Implement BoundaryWaveFieldVisualizer",
+    "path": "packages/unifiedmandala-boundary/BoundaryWaveFieldVisualizer.ts",
+    "task": "Visualize boundary wave interference patterns",
+    "test": "packages/unifiedmandala-boundary/BoundaryWaveFieldVisualizer.test.ts",
+    "status": "open"
+  },
+  {
+    "commit": "Create VRResonanceHub",
+    "path": "packages/unifiedmandala-vr/VRResonanceHub.ts",
+    "task": "Multi-user resonance module for VR meeting spaces",
+    "test": "packages/unifiedmandala-vr/VRResonanceHub.test.ts",
     "status": "open"
   }
 ]

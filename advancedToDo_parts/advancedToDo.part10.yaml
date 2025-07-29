@@ -23,3 +23,13 @@
   task: Emit dispatcher:error event via try/catch wrapper
   test: packages/core/GreekMathAeonDispatcher.test.ts
   status: done
+- commit: Implement BoundaryWaveFieldVisualizer
+  path: packages/unifiedmandala-boundary/BoundaryWaveFieldVisualizer.ts
+  task: Visualize boundary wave interference patterns
+  test: packages/unifiedmandala-boundary/BoundaryWaveFieldVisualizer.test.ts
+  status: open
+- commit: Create VRResonanceHub
+  path: packages/unifiedmandala-vr/VRResonanceHub.ts
+  task: Multi-user resonance module for VR meeting spaces
+  test: packages/unifiedmandala-vr/VRResonanceHub.test.ts
+  status: open
