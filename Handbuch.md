@@ -215,6 +215,9 @@ GPTEventHub.emit('orakel:says', { content: 'Hallo Welt' });
 - `CREPToDoPrioritizer` – stuft Aufgaben nach Emergenz ein.
 - `CREPConvoHeatmap` – React-Komponente zur Visualisierung von CREP-Schwankungen.
 - `NullmembranSIHeatmap` – zeigt die Verteilung von S_I-Werten rund um die Nullmembran.
+- `HeatmapWidget` – zeigt CREP-Aktivität pro Tag als Heatmap
+- `OnboardingModal` – kurze Einführung beim ersten Besuch
+- `HaikuOverlay` – zufällig erscheinende Haikus zur Inspiration
 - `ImpactDashboard` – Dashboard mit MandalaNetworkView und AgentHeatmap.
 - `CustomRegionGallery` – Galerieansicht für Regionen.
 - `ProjectListView` – Listenansicht für Social-Good-Projekte.
