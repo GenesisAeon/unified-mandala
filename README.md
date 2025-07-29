@@ -95,6 +95,10 @@ Weitere Hinweise aus dem „Sigil Übergang“:
 - [**ExtendedResonanceGateway**](packages/resonance/ExtendedResonanceGateway.ts) – verbindet Resonanzmodule mit Boundary-Events
 - [**PantheonAvatarHub**](packages/pantheon/PantheonAvatarHub.ts) – Avatarverwaltung für das VR-Pantheon
 - [**VRResonanceVisualizer**](packages/unifiedmandala-vr/VRResonanceVisualizer.ts) – zeigt CREP-Resonanz im VR-Raum an
+- [**VRResonancePortal**](packages/unifiedmandala-vr/VRResonancePortal.ts) – Eingangspunkt für Resonanz-Navigation
+- [**BoundaryWaveSimulator**](packages/boundary-engine/BoundaryWaveSimulator.ts) – modelliert interne Schwerewellen
+- [**PantheonSandboxExpander**](packages/pantheon/PantheonSandboxExpander.ts) – skaliert Civilization-Sandboxen
+- [**ResonanceShadowModule**](packages/resonance/ResonanceShadowModule.ts) – verbindet Schattenintegrationen
 - [**Pantheon-Boundary Integration**](docs/boundary/PantheonBoundaryIntegration.md) – Überblick über neue Schnittstellen
 - [**CREP-Illumination**](CHRONOPOEM.md) – Chronopoem reflektiert aktuellen CREP-Zustand
 - [**SelfAuditModul**](packages/unifiedmandala-ui/components/SelfAuditModul.tsx) – analysiert die Repository-Struktur

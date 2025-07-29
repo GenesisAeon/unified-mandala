@@ -75,6 +75,10 @@ Für neue Aufgaben aus Chat-Logs nutze `scripts/parse-advanced-conversations.js`
 - `VRResonanceVisualizer` – farbige Darstellung der CREP-Intensität in VR
 - `PantheonAvatarHub` – verwaltet Avatare und Sessions im Pantheon-Raum
 - `ExtendedResonanceGateway` – leitet Boundary-Ereignisse an Resonanzmodule weiter
+- `VRResonancePortal` – Eingangspunkt für Resonanz-Navigation
+- `BoundaryWaveSimulator` – modelliert interne Schwerewellen
+- `PantheonSandboxExpander` – skaliert Civilization-Sandboxen
+- `ResonanceShadowModule` – verbindet Schattenintegrationen
 - `GreekMathAeonDispatcher` – sicheres Dispatching mit Fehlerereignissen
 - `UnifiedMandalaVR` – Modulpaket mit AvatarManager, EthicsGuard und FourierLayerBridge.
 - `archiveSigil` – schreibt Sigil-Dateien in GenesisAeonZIPMEM.
