@@ -2,7 +2,7 @@
   path: packages/pantheon/PantheonFeedbackService.ts
   task: Coordinate GPT feedback round with Pantheon agents
   test: packages/pantheon/PantheonFeedbackService.test.ts
-  status: open
+  status: done
 - commit: Add PoetryErrorBoundary component
   path: packages/unifiedmandala-ui/components/PoetryErrorBoundary.tsx
   task: Show ChronoPoem on errors when poetry mode active
@@ -22,7 +22,7 @@
   path: packages/core/GreekMathAeonDispatcher.ts
   task: Emit dispatcher:error event via try/catch wrapper
   test: packages/core/GreekMathAeonDispatcher.test.ts
-  status: open
+  status: done
 - commit: Implement BoundaryWaveFieldVisualizer
   path: packages/unifiedmandala-boundary/BoundaryWaveFieldVisualizer.ts
   task: Visualize boundary wave interference patterns

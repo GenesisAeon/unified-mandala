@@ -6,4 +6,11 @@ export class PantheonFeedbackService {
   gatherFeedback(agents: string[]): string[] {
     return agents.map(a => this.collectFeedback(a));
   }
+
+  coordinateRound(
+    agents: string[],
+    responder: (msg: string) => string
+  ): string[] {
+    return this.gatherFeedback(agents).map(responder);
+  }
 }

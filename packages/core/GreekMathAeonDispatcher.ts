@@ -1,11 +1,13 @@
+import { EventEmitter } from 'events';
+
 export class GreekMathAeonDispatcher {
+  readonly emitter = new EventEmitter();
+
   dispatch(fn: () => void) {
     try {
       fn();
     } catch (err) {
-      if (typeof process !== 'undefined') {
-        process.emit('dispatcher:error', err);
-      }
+      this.emitter.emit('dispatcher:error', err);
     }
   }
 
@@ -13,9 +15,7 @@ export class GreekMathAeonDispatcher {
     try {
       return fn();
     } catch (err) {
-      if (typeof process !== 'undefined') {
-        process.emit('dispatcher:error', err);
-      }
+      this.emitter.emit('dispatcher:error', err);
       return null;
     }
   }

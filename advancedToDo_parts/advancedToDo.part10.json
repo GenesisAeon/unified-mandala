@@ -4,7 +4,7 @@
     "path": "packages/pantheon/PantheonFeedbackService.ts",
     "task": "Coordinate GPT feedback round with Pantheon agents",
     "test": "packages/pantheon/PantheonFeedbackService.test.ts",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Add PoetryErrorBoundary component",
@@ -32,7 +32,7 @@
     "path": "packages/core/GreekMathAeonDispatcher.ts",
     "task": "Emit dispatcher:error event via try/catch wrapper",
     "test": "packages/core/GreekMathAeonDispatcher.test.ts",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Implement BoundaryWaveFieldVisualizer",
