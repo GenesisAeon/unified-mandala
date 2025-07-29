@@ -7079,41 +7079,81 @@
     "task": "Prototype VR space for agent encounters",
     "test": "packages/unifiedmandala-vr/VRMeetingRoom.test.ts",
     "status": "done"
-  }
-  ,{
+  },
+  {
     "commit": "Add PantheonSandboxExpander module",
     "path": "packages/pantheon/PantheonSandboxExpander.ts",
     "task": "Manage expansion of civilization sandboxes",
     "test": "packages/pantheon/PantheonSandboxExpander.test.ts",
     "status": "todo"
-  },{
+  },
+  {
     "commit": "Implement BoundaryWaveSimulator",
     "path": "packages/boundary-engine/BoundaryWaveSimulator.ts",
     "task": "Model internal gravity waves at boundaries",
     "test": "packages/boundary-engine/BoundaryWaveSimulator.test.ts",
     "status": "todo"
-  },{
+  },
+  {
     "commit": "Create VRResonancePortal component",
     "path": "packages/unifiedmandala-vr/VRResonancePortal.ts",
     "task": "WebXR portal for resonance-based navigation",
     "test": "packages/unifiedmandala-vr/VRResonancePortal.test.ts",
     "status": "todo"
-  },{
+  },
+  {
     "commit": "Develop ResonanceShadowModule",
     "path": "packages/resonance/ResonanceShadowModule.ts",
     "task": "Integrate shadow resonance logic",
     "test": "packages/resonance/ResonanceShadowModule.test.ts",
     "status": "todo"
-  },{
+  },
+  {
     "commit": "Extend GrokAgent with pattern library",
     "path": "packages/agents/GrokAgent.ts",
     "task": "Add modular pattern library support",
     "test": "packages/agents/GrokAgent.test.ts",
     "status": "todo"
-  },{
+  },
+  {
     "commit": "Upgrade ClimateIntegration blueprint",
     "path": "docs/blueprints/ClimateIntegration.md",
     "task": "Add comprehensive integration steps from new conversations",
+    "test": "",
+    "status": "todo"
+  },
+  {
+    "commit": "Create BlackboxMirrorBoard component",
+    "path": "packages/unifiedmandala-ui/components/BlackboxMirrorBoard.tsx",
+    "task": "Collaborative mirror board for blackbox resonance",
+    "test": "packages/unifiedmandala-ui/components/BlackboxMirrorBoard.test.tsx",
+    "status": "todo"
+  },
+  {
+    "commit": "Implement HeatmapWidget for collective resonance",
+    "path": "packages/unifiedmandala-ui/components/HeatmapWidget.tsx",
+    "task": "Visualize CREP heatmap with interactive filter",
+    "test": "packages/unifiedmandala-ui/components/HeatmapWidget.test.tsx",
+    "status": "done"
+  },
+  {
+    "commit": "Add CREPCollectiveAPI service",
+    "path": "packages/crep-engine/CREPCollectiveAPI.ts",
+    "task": "Provide CREP API endpoints for collective impulse and feedback",
+    "test": "packages/crep-engine/CREPCollectiveAPI.test.ts",
+    "status": "todo"
+  },
+  {
+    "commit": "Document Blackbox manifest",
+    "path": "manifest/blackbox-manifest.md",
+    "task": "Describe blackbox resonance workflow",
+    "test": "",
+    "status": "todo"
+  },
+  {
+    "commit": "Document CREP open-ethik guidelines",
+    "path": "manifest/crep-open-ethik.md",
+    "task": "Outline open ethics and governance for CREP feedback",
     "test": "",
     "status": "todo"
   }

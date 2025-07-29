@@ -8086,3 +8086,28 @@
   task: Add comprehensive integration steps from new conversations
   test: ""
   status: todo
+- commit: Create BlackboxMirrorBoard component
+  path: packages/unifiedmandala-ui/components/BlackboxMirrorBoard.tsx
+  task: Collaborative mirror board for blackbox resonance
+  test: packages/unifiedmandala-ui/components/BlackboxMirrorBoard.test.tsx
+  status: todo
+- commit: Implement HeatmapWidget for collective resonance
+  path: packages/unifiedmandala-ui/components/HeatmapWidget.tsx
+  task: Visualize CREP heatmap with interactive filter
+  test: packages/unifiedmandala-ui/components/HeatmapWidget.test.tsx
+  status: done
+- commit: Add CREPCollectiveAPI service
+  path: packages/crep-engine/CREPCollectiveAPI.ts
+  task: Provide CREP API endpoints for collective impulse and feedback
+  test: packages/crep-engine/CREPCollectiveAPI.test.ts
+  status: todo
+- commit: Document Blackbox manifest
+  path: manifest/blackbox-manifest.md
+  task: Describe blackbox resonance workflow
+  test: ""
+  status: todo
+- commit: Document CREP open-ethik guidelines
+  path: manifest/crep-open-ethik.md
+  task: Outline open ethics and governance for CREP feedback
+  test: ""
+  status: todo

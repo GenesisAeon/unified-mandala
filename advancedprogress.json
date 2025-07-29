@@ -1,12 +1,53 @@
 {
-  "lastCommit": "self-reflection clear method",
+  "lastCommit": "chore: regen progress",
   "fractalStep": "sync",
   "openBranches": [
     "work"
   ],
   "mergeConflicts": [],
   "notes": "Implemented VR handshake, boundary event emission and resonance analysis",
-  "pendingTasks": [],
+  "pendingTasks": [
+    {
+      "commit": "Add PantheonSandboxExpander module",
+      "status": "todo"
+    },
+    {
+      "commit": "Implement BoundaryWaveSimulator",
+      "status": "todo"
+    },
+    {
+      "commit": "Create VRResonancePortal component",
+      "status": "todo"
+    },
+    {
+      "commit": "Develop ResonanceShadowModule",
+      "status": "todo"
+    },
+    {
+      "commit": "Extend GrokAgent with pattern library",
+      "status": "todo"
+    },
+    {
+      "commit": "Upgrade ClimateIntegration blueprint",
+      "status": "todo"
+    },
+    {
+      "commit": "Create BlackboxMirrorBoard component",
+      "status": "todo"
+    },
+    {
+      "commit": "Add CREPCollectiveAPI service",
+      "status": "todo"
+    },
+    {
+      "commit": "Document Blackbox manifest",
+      "status": "todo"
+    },
+    {
+      "commit": "Document CREP open-ethik guidelines",
+      "status": "todo"
+    }
+  ],
   "progress": [
     {
       "commit": "Implement boundary manager modules",
@@ -428,6 +469,10 @@
     },
     {
       "commit": "Implement Keilschrift translator",
+      "status": "done"
+    },
+    {
+      "commit": "Extract blackbox resonance tasks",
       "status": "done"
     }
   ]
