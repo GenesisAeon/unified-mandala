@@ -57,6 +57,7 @@ Weitere Hinweise aus dem „Sigil Übergang“:
 - [**Keilschrift Module**](packages/aeon-labs/keilschrift/index.ts) – cuneiform utilities
 - [**ZivilisationsSandbox**](packages/pantheon/ZivilisationsSandbox/index.ts) – simulate ancient builds
 - [**ArcticGravityWaves**](packages/research/ArcticGravityWaves.ts) – analyze gravity wave data
+- [**ArcticGravityWaveSimulation**](packages/simulations/ArcticGravityWaveSimulation.ts) – simulate internal waves
 - [**MultiverseScenario**](packages/pantheon/MultiverseScenario.ts) – scenario storage
 - [**MultiverseScenarioPlanner**](packages/simulations/MultiverseScenarioPlanner.ts) – explore multiverse variants
 - [**MemoryGovernancePolicy**](services/memory-governance/policy.ts) – governs memory retention
