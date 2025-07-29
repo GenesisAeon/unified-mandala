@@ -447,6 +447,10 @@
       "featureId": "boundary-wave-simulator",
       "commit": "add boundary wave simulator",
       "status": "done"
+    },
+    {
+      "commit": "enhance VRBegegnungsraumLobby handshake",
+      "status": "done"
     }
   ]
 }
