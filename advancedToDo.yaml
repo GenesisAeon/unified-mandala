@@ -8086,3 +8086,18 @@
   task: Add comprehensive integration steps from new conversations
   test: ""
   status: done
+- commit: Create Pantheon Manifest Schema
+  path: docs/pantheon/manifest.yaml
+  task: Define YAML/JSON schema for Pantheon modules
+  test: ""
+  status: todo
+- commit: Extract Boundary Law algorithms
+  path: packages/boundary-engine/BoundaryLawExtractor.ts
+  task: Parse boundary rules from blueprint docs
+  test: packages/boundary-engine/BoundaryLawExtractor.test.ts
+  status: todo
+- commit: Finalize VR-Begegnungsraum blueprint
+  path: docs/blueprints/VR-Begegnungsraum.md
+  task: Summarize room structure and Fourier integration steps
+  test: ""
+  status: todo
