@@ -1,0 +1,15 @@
+modules:
+  - id: cosmic-theory-agent
+    name: CosmicTheoryAgent
+    description: Kernmodul für kosmische Analysen
+    entry: packages/agents/CosmicTheoryAgent.ts
+    depends_on:
+      - aeon-core
+      - crep-engine
+  - id: pyramid-ui
+    name: PyramidUI
+    description: React/Three.js Benutzeroberfläche
+    entry: packages/unifiedmandala-ui/index.ts
+    depends_on:
+      - aeon-core
+      - boundary-engine

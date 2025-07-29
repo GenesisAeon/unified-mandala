@@ -77,6 +77,7 @@ Weitere Hinweise aus dem „Sigil Übergang“:
 - [**PyramidVRMeetingRoom**](packages/unifiedmandala-ui/components/PyramidVRMeetingRoom.tsx) – enables multi-avatar VR sessions
 - CosmicTheoryAgent now exposes **VR hooks** for immersive interactions
 - [**VR Pantheon Konzept**](docs/pantheon/VR-Begegnungsraum-Concept.md) – Konzept für kollaborative Treffen
+- [**VR-Begegnungsraum Blueprint**](docs/blueprints/VR-Begegnungsraum.md) – Raumstruktur und Fourier-Anbindung
 - [**PySR Service Client**](packages/agents/CosmicTheoryAgent.ts) – Regression via REST/gRPC
 - [**Sigil Archive Service**](services/sigil-archive/index.ts) – speichert Sigille und CREP-Fragmente
 - [**CREPVisualizer**](packages/unifiedmandala-ui/components/CREPVisualizer.tsx) – animierte Timeline der Mandala-Kristalle
