@@ -70,8 +70,10 @@ Weitere Hinweise aus dem „Sigil Übergang“:
 - [**PantheonBoundaryBridge**](packages/pantheon/PantheonBoundaryBridge.ts) – verbindet Pantheon-Events mit BoundaryRuleDetector
 - [**PantheonExport Tool**](packages/pantheon/tools/PantheonExport.ts) – exportiert die vorhandenen Pantheon-Module als Datensatz
 - [**PantheonFeedbackService**](packages/pantheon/PantheonFeedbackService.ts) – gather feedback across agents
+- Supports `coordinateRound` to run a callback over gathered messages
 - [**VRBegegnungsraumLobby**](packages/unifiedmandala-vr/VRBegegnungsraumLobby.ts) – lobby handshake for VR sessions
 - [**GreekMathAeonDispatcher**](packages/core/GreekMathAeonDispatcher.ts) – safe dispatch with error events
+- Uses an internal `EventEmitter` to avoid global side effects
 - **VR-Begegnungsraum** – Avatar-Interaktion und Mandala-Szenen im WebXR-Modul
 - [**EventBridge**](packages/unifiedmandala-ui/events/EventBridge.ts) – verbindet CosmicTheoryAgent mit der Pyramid UI
 - [**PyramidVRMeetingRoom**](packages/unifiedmandala-ui/components/PyramidVRMeetingRoom.tsx) – enables multi-avatar VR sessions

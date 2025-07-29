@@ -1,5 +1,5 @@
 {
-  "lastCommit": "feat: add boundary law extractor and VR blueprint",
+  "lastCommit": "feat: implement feedback round and dispatcher",
   "fractalStep": "sync",
   "openBranches": [
     "work"
@@ -314,6 +314,14 @@
     },
     {
       "commit": "Create VRResonanceHub",
+      "status": "done"
+    },
+    {
+      "commit": "Implement PantheonFeedbackRound",
+      "status": "done"
+    },
+    {
+      "commit": "Add EventEmitter-based dispatcher",
       "status": "done"
     }
   ],

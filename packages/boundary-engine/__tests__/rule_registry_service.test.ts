@@ -1,3 +1,4 @@
+import { describe, it, expect } from 'vitest';
 import request from 'supertest';
 import { createRuleRegistryService } from '../rule_registry_service/registry_api';
 import { GraphDBPersistence } from '../GraphDBPersistence';
