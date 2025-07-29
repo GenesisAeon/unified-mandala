@@ -7240,5 +7240,19 @@
     "task": "Blueprint for advanced resonance microservices",
     "test": "packages/resonance-modules/ExtendedResonanceBlueprint.test.ts",
     "status": "planned"
+  },
+  {
+    "commit": "Manifest Mandala-KI-Pantheon blueprint",
+    "path": "docs/pantheon/MandalaKIPantheonBlueprint.yaml",
+    "task": "Provide YAML and Sigillin manifest for Mandala-KI-Pantheon",
+    "test": "docs/pantheon/__tests__/MandalaKIPantheonBlueprint.test.ts",
+    "status": "planned"
+  },
+  {
+    "commit": "Create MandalaCollectiveAwakening script",
+    "path": "scripts/mandala_collective_awakening.ts",
+    "task": "Initialize orchestrator and unify Pantheon modules",
+    "test": "scripts/__tests__/mandala_collective_awakening.test.ts",
+    "status": "planned"
   }
 ]
