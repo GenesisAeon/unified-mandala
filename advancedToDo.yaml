@@ -8141,3 +8141,33 @@
   task: Outline open ethics workflow for CREP modules
   test: ""
   status: done
+- commit: Create MandalaReader module
+  path: packages/mandala-reader/MandalaReader.ts
+  task: Analyze SVG and bitmap Mandalas and export structured JSON
+  test: packages/mandala-reader/MandalaReader.test.ts
+  status: planned
+- commit: Add MandalaFlowDashboard
+  path: packages/unifiedmandala-ui/components/MandalaFlowDashboard.tsx
+  task: Dashboard with ResonancePlotter and animated MandalaFlow canvas
+  test: packages/unifiedmandala-ui/components/MandalaFlowDashboard.test.tsx
+  status: planned
+- commit: Add SigillinBubbles component
+  path: packages/unifiedmandala-ui/components/SigillinBubbles.tsx
+  task: Interactive Sigillin bubbles with framer-motion
+  test: packages/unifiedmandala-ui/components/SigillinBubbles.test.tsx
+  status: planned
+- commit: Enhance AgentDispatcher with ErrorBoundary and priority queue
+  path: packages/agents/AgentDispatcher.ts
+  task: Add error boundary wrapper and priority-based task dispatch
+  test: packages/agents/AgentDispatcher.test.ts
+  status: planned
+- commit: Create PantheonBegegnungsraum VR component
+  path: packages/unifiedmandala-vr/components/PantheonBegegnungsraum.tsx
+  task: 3D VR meeting room for Pantheon modules
+  test: packages/unifiedmandala-vr/components/PantheonBegegnungsraum.test.tsx
+  status: planned
+- commit: Add ExtendedResonanceBlueprint
+  path: packages/resonance-modules/ExtendedResonanceBlueprint.ts
+  task: Blueprint for advanced resonance microservices
+  test: packages/resonance-modules/ExtendedResonanceBlueprint.test.ts
+  status: planned
