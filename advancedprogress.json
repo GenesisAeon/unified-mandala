@@ -1,25 +1,12 @@
 {
-  "lastCommit": "chore: sync progress",
+  "lastCommit": "feat: add boundary law extractor and VR blueprint",
   "fractalStep": "sync",
   "openBranches": [
     "work"
   ],
   "mergeConflicts": [],
   "notes": "Added CREP prioritization to generate-todo script",
-  "pendingTasks": [
-    {
-      "commit": "Create Pantheon Manifest Schema",
-      "status": "todo"
-    },
-    {
-      "commit": "Extract Boundary Law algorithms",
-      "status": "todo"
-    },
-    {
-      "commit": "Finalize VR-Begegnungsraum blueprint",
-      "status": "todo"
-    }
-  ],
+  "pendingTasks": [],
   "progress": [
     {
       "commit": "Implement boundary manager modules",
@@ -471,6 +458,18 @@
     },
     {
       "commit": "enhance VRBegegnungsraumLobby handshake",
+      "status": "done"
+    },
+    {
+      "commit": "Create Pantheon Manifest Schema",
+      "status": "done"
+    },
+    {
+      "commit": "Extract Boundary Law algorithms",
+      "status": "done"
+    },
+    {
+      "commit": "Finalize VR-Begegnungsraum blueprint",
       "status": "done"
     }
   ]
