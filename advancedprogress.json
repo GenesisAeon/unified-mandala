@@ -1,5 +1,5 @@
 {
-  "lastCommit": "generate todo prioritization",
+  "lastCommit": "chore: finalize progress",
   "fractalStep": "sync",
   "openBranches": [
     "work"
@@ -303,6 +303,10 @@
     {
       "commit": "generate todo priority script",
       "status": "done"
+    },
+    {
+      "commit": "implement sandbox and resonance modules",
+      "status": "done"
     }
   ],
   "completed": [
@@ -432,6 +436,16 @@
     },
     {
       "commit": "Implement Keilschrift translator",
+      "status": "done"
+    },
+    {
+      "featureId": "pantheon-sandbox-expander",
+      "commit": "add pantheon sandbox expander",
+      "status": "done"
+    },
+    {
+      "featureId": "boundary-wave-simulator",
+      "commit": "add boundary wave simulator",
       "status": "done"
     }
   ]

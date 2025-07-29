@@ -6,4 +6,10 @@ describe('GrokAgent', () => {
     const agent = new GrokAgent();
     expect(agent.analyze('hello world')).toBe('Grokking 2 words');
   });
+
+  it('matches patterns when provided', () => {
+    const agent = new GrokAgent();
+    agent.setPatternLibrary(['foo']);
+    expect(agent.analyze('foo bar')).toBe('Matched 1: foo');
+  });
 });

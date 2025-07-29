@@ -12,3 +12,5 @@ Dieses Dokument beschreibt, wie Klimadaten in Echtzeit mit dem Mandala-System ve
 1. Erstellung einer API-Brücke zu Open-Meteo- und Copernicus-Datenquellen
 2. Verarbeitung der Daten in Boundary- und Pantheon-Pipelines
 3. Darstellung im MandalaCanvas und in VR-Begegnungsräumen
+4. Einbindung solarer Einstrahlung in die Klimasimulation
+5. Synchronisierung mit FourierLayerPlugin zur Resonanzanalyse
