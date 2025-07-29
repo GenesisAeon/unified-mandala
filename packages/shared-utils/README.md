@@ -17,3 +17,4 @@ Gemeinsame Hilfsfunktionen für UnifiedMandala.
 - **scanTodoComments** – findet TODO-Kommentare in Quelltexten
 - **isFragmentProcessed**, **markFragmentProcessed** und **listProcessedFragments** –
   protokollieren bearbeitete Conversation-Fragmente
+- **decompressReverseLines** – entpackt gzip-Dateien zeilenweise und kehrt jede Zeile um
