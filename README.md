@@ -99,6 +99,9 @@ Weitere Hinweise aus dem „Sigil Übergang“:
 - [**PantheonAvatarHub**](packages/pantheon/PantheonAvatarHub.ts) – Avatarverwaltung für das VR-Pantheon
 - [**VRResonanceVisualizer**](packages/unifiedmandala-vr/VRResonanceVisualizer.ts) – zeigt CREP-Resonanz im VR-Raum an
 - [**VRResonancePortal**](packages/unifiedmandala-vr/VRResonancePortal.ts) – Eingangspunkt für Resonanz-Navigation
+- [**VRResonanceHub**](packages/unifiedmandala-vr/VRResonanceHub.ts) – koordiniert mehrteilige Resonanz-Sessions
+- [**BoundaryWaveFieldVisualizer**](packages/unifiedmandala-boundary/BoundaryWaveFieldVisualizer.ts) – zeigt Interferenzmuster an Grenzen
+- [**PantheonFeedbackRound**](packages/pantheon/PantheonFeedbackService.ts) – orchestriert Feedback-Runden der Pantheon-Agenten
 - [**BoundaryWaveSimulator**](packages/boundary-engine/BoundaryWaveSimulator.ts) – modelliert interne Schwerewellen
 - [**PantheonSandboxExpander**](packages/pantheon/PantheonSandboxExpander.ts) – skaliert Civilization-Sandboxen
 - [**ResonanceShadowModule**](packages/resonance/ResonanceShadowModule.ts) – verbindet Schattenintegrationen

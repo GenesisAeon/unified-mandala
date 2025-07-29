@@ -323,6 +323,10 @@
     {
       "commit": "Add EventEmitter-based dispatcher",
       "status": "done"
+    },
+    {
+      "commit": "docs: add VRResonanceHub and boundary visualizer",
+      "status": "done"
     }
   ],
   "completed": [

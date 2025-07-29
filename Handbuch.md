@@ -68,7 +68,6 @@ Für neue Aufgaben aus Chat-Logs nutze `scripts/parse-advanced-conversations.js`
 - `PantheonPortalAnalytics` – zeichnet Portalzugriffe auf.
 - `PantheonBoundaryBridge` – verknüpft Pantheon-Ereignisse mit BoundaryRuleDetector
 - `PantheonExport Tool` – exportiert die vorhandenen Pantheon-Module als Datensatz
-- `PantheonFeedbackService` – koordiniert Feedback-Runden der Pantheon-Agenten
 - `MultiverseScenarioPlanner` – untersucht Multiversen-Szenarien.
 - `MemoryGovernancePolicy` – definiert Aufbewahrungsgrenzen.
 - `VRBegegnungsraumLobby` – Handshake-Raum für WebXR-Sessions
@@ -76,6 +75,9 @@ Für neue Aufgaben aus Chat-Logs nutze `scripts/parse-advanced-conversations.js`
 - `PantheonAvatarHub` – verwaltet Avatare und Sessions im Pantheon-Raum
 - `ExtendedResonanceGateway` – leitet Boundary-Ereignisse an Resonanzmodule weiter
 - `VRResonancePortal` – Eingangspunkt für Resonanz-Navigation
+- `VRResonanceHub` – koordiniert mehrteilige Resonanz-Sessions
+- `BoundaryWaveFieldVisualizer` – zeigt Interferenzmuster an Grenzen
+- `PantheonFeedbackService` – orchestriert Feedback-Runden der Pantheon-Agenten
 - `BoundaryWaveSimulator` – modelliert interne Schwerewellen
 - `PantheonSandboxExpander` – skaliert Civilization-Sandboxen
 - `ResonanceShadowModule` – verbindet Schattenintegrationen
