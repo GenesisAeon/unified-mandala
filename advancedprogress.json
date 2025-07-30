@@ -13,7 +13,7 @@
     },
     {
       "commit": "Create MandalaReader module",
-      "status": "planned"
+      "status": "done"
     },
     {
       "commit": "Add MandalaFlowDashboard",
@@ -607,6 +607,10 @@
     },
     {
       "commit": "Finalize VR-Begegnungsraum blueprint",
+      "status": "done"
+    },
+    {
+      "commit": "Implement MandalaReader module",
       "status": "done"
     }
   ]

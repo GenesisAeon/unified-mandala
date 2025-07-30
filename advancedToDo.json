@@ -7204,7 +7204,7 @@
     "path": "packages/mandala-reader/MandalaReader.ts",
     "task": "Analyze SVG and bitmap Mandalas and export structured JSON",
     "test": "packages/mandala-reader/MandalaReader.test.ts",
-    "status": "planned"
+    "status": "done"
   },
   {
     "commit": "Add MandalaFlowDashboard",
