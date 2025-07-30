@@ -5,7 +5,7 @@
     "work"
   ],
   "mergeConflicts": [],
-  "notes": "Added CREP prioritization to generate-todo script",
+  "notes": "Extracted new Pantheon, Boundary and VR tasks",
   "pendingTasks": [
     {
       "commit": "Create BlackboxMirrorBoard component",
@@ -29,6 +29,22 @@
     },
     {
       "commit": "Create MandalaVisualizer component",
+      "status": "planned"
+    },
+    {
+      "commit": "Create GenesisInterfaceMasterplan blueprint",
+      "status": "planned"
+    },
+    {
+      "commit": "Implement BoundaryLawCLI",
+      "status": "planned"
+    },
+    {
+      "commit": "Add PantheonResonanceIntegrator",
+      "status": "planned"
+    },
+    {
+      "commit": "Create VRMultiViewHub component",
       "status": "planned"
     }
   ],
