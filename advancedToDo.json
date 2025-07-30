@@ -7359,5 +7359,26 @@
     "task": "Blueprint for integrating boundary events into Pantheon VR room",
     "test": "",
     "status": "planned"
+  },
+  {
+    "commit": "Enhance CosmicTheoryAgent caching with LRUCache",
+    "path": "packages/agents/CosmicTheoryAgent.ts",
+    "task": "Integrate LRUCache for theory results",
+    "test": "packages/agents/CosmicTheoryAgent.test.ts",
+    "status": "planned"
+  },
+  {
+    "commit": "Add CircuitBreaker to CosmicTheoryAgent",
+    "path": "packages/agents/CosmicTheoryAgent.ts",
+    "task": "Wrap remote calls with CircuitBreaker",
+    "test": "packages/agents/CosmicTheoryAgent.test.ts",
+    "status": "planned"
+  },
+  {
+    "commit": "Instrument CosmicTheoryAgent metrics",
+    "path": "packages/agents/CosmicTheoryAgent.ts",
+    "task": "Use registerHistogram and registerCounter",
+    "test": "packages/agents/CosmicTheoryAgent.test.ts",
+    "status": "planned"
   }
 ]
