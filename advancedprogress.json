@@ -1,5 +1,5 @@
 {
-  "lastCommit": "chore: update progress state",
+  "lastCommit": "Merge pull request #897 from GenesisAeon/jkqcvt-codex/extract-todos-from-newadvancedconversations.json",
   "fractalStep": "sync",
   "openBranches": [
     "work"
@@ -9,6 +9,30 @@
   "pendingTasks": [
     {
       "commit": "Create BlackboxMirrorBoard component",
+      "status": "planned"
+    },
+    {
+      "commit": "Create MandalaReader module",
+      "status": "planned"
+    },
+    {
+      "commit": "Add MandalaFlowDashboard",
+      "status": "planned"
+    },
+    {
+      "commit": "Add SigillinBubbles component",
+      "status": "planned"
+    },
+    {
+      "commit": "Enhance AgentDispatcher with ErrorBoundary and priority queue",
+      "status": "planned"
+    },
+    {
+      "commit": "Create PantheonBegegnungsraum VR component",
+      "status": "planned"
+    },
+    {
+      "commit": "Add ExtendedResonanceBlueprint",
       "status": "planned"
     },
     {
