@@ -8145,7 +8145,7 @@
   path: packages/mandala-reader/MandalaReader.ts
   task: Analyze SVG and bitmap Mandalas and export structured JSON
   test: packages/mandala-reader/MandalaReader.test.ts
-  status: planned
+  status: done
 - commit: Add MandalaFlowDashboard
   path: packages/unifiedmandala-ui/components/MandalaFlowDashboard.tsx
   task: Dashboard with ResonancePlotter and animated MandalaFlow canvas
