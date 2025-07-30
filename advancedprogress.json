@@ -1,19 +1,15 @@
 {
-  "lastCommit": "chore: fix newline",
+  "lastCommit": "chore: add CosmicTheoryAgent cache and metrics tasks",
   "fractalStep": "sync",
   "openBranches": [
     "work"
   ],
   "mergeConflicts": [],
-  "notes": "Added tasks from newadvancedconversations.json",
+  "notes": "Added CosmicTheoryAgent cache, breaker and metrics tasks",
   "pendingTasks": [
     {
       "commit": "Create BlackboxMirrorBoard component",
       "status": "planned"
-    },
-    {
-      "commit": "Create MandalaReader module",
-      "status": "done"
     },
     {
       "commit": "Add MandalaFlowDashboard",
@@ -101,6 +97,18 @@
     },
     {
       "commit": "Add PantheonBoundaryVRIntegration blueprint",
+      "status": "planned"
+    },
+    {
+      "commit": "Enhance CosmicTheoryAgent caching with LRUCache",
+      "status": "planned"
+    },
+    {
+      "commit": "Add CircuitBreaker to CosmicTheoryAgent",
+      "status": "planned"
+    },
+    {
+      "commit": "Instrument CosmicTheoryAgent metrics",
       "status": "planned"
     }
   ],
