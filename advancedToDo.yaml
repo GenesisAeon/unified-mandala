@@ -8231,3 +8231,28 @@
   task: Toggle Mandala number sequence display
   test: packages/unifiedmandala-ui/components/LeereButton.test.tsx
   status: planned
+- commit: Create CosmicTheoryAgent_with_Sigil module
+  path: packages/agents/CosmicTheoryAgent_with_Sigil.ts
+  task: Integrate SigilManager and dynamic configuration into CosmicTheoryAgent
+  test: packages/agents/CosmicTheoryAgent_with_Sigil.test.ts
+  status: planned
+- commit: Implement ArcticGravityWaveVisualizer
+  path: packages/simulations/ArcticGravityWaveVisualizer.ts
+  task: Visualize internal gravity waves in Arctic environment
+  test: packages/simulations/ArcticGravityWaveVisualizer.test.ts
+  status: planned
+- commit: Add VRTuringTest module
+  path: packages/testing/VRTuringTest.ts
+  task: Run Turing test scenarios in VR meeting room
+  test: packages/testing/VRTuringTest.test.ts
+  status: planned
+- commit: Create ResonanceControlPanel component
+  path: packages/unifiedmandala-ui/components/ResonanceControlPanel.tsx
+  task: Manage extended resonance modules from UI
+  test: packages/unifiedmandala-ui/components/ResonanceControlPanel.test.tsx
+  status: planned
+- commit: Add PantheonBoundaryVRIntegration blueprint
+  path: docs/vr/PantheonBoundaryIntegration.md
+  task: Blueprint for integrating boundary events into Pantheon VR room
+  test: ""
+  status: planned

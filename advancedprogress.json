@@ -1,11 +1,11 @@
 {
-  "lastCommit": "docs: update advancedprogress notes",
+  "lastCommit": "chore: fix newline",
   "fractalStep": "sync",
   "openBranches": [
     "work"
   ],
   "mergeConflicts": [],
-  "notes": "Verified features from newadvancedconversations.json; no additional tasks found.",
+  "notes": "Added tasks from newadvancedconversations.json",
   "pendingTasks": [
     {
       "commit": "Create BlackboxMirrorBoard component",
@@ -81,6 +81,26 @@
     },
     {
       "commit": "Add LeereButton component",
+      "status": "planned"
+    },
+    {
+      "commit": "Create CosmicTheoryAgent_with_Sigil module",
+      "status": "planned"
+    },
+    {
+      "commit": "Implement ArcticGravityWaveVisualizer",
+      "status": "planned"
+    },
+    {
+      "commit": "Add VRTuringTest module",
+      "status": "planned"
+    },
+    {
+      "commit": "Create ResonanceControlPanel component",
+      "status": "planned"
+    },
+    {
+      "commit": "Add PantheonBoundaryVRIntegration blueprint",
       "status": "planned"
     }
   ],
