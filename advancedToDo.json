@@ -7303,5 +7303,26 @@
     "task": "Switch between 2D, 3D and VR Mandala views",
     "test": "packages/unifiedmandala-vr/components/VRMultiViewHub.test.tsx",
     "status": "planned"
+  },
+  {
+    "commit": "Document MandalaNumberSequence blueprint",
+    "path": "docs/mandala/MandalaNumberSequence.md",
+    "task": "Document Mandala number sequence interactions and LeereButton",
+    "test": "docs/mandala/__tests__/MandalaNumberSequence.test.ts",
+    "status": "planned"
+  },
+  {
+    "commit": "Implement MandalaNumberEngine",
+    "path": "packages/mandala-core/MandalaNumberEngine.ts",
+    "task": "Generate and analyze number sequences for Mandala modules",
+    "test": "packages/mandala-core/MandalaNumberEngine.test.ts",
+    "status": "planned"
+  },
+  {
+    "commit": "Add LeereButton component",
+    "path": "packages/unifiedmandala-ui/components/LeereButton.tsx",
+    "task": "Toggle Mandala number sequence display",
+    "test": "packages/unifiedmandala-ui/components/LeereButton.test.tsx",
+    "status": "planned"
   }
 ]
