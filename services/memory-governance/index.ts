@@ -6,7 +6,9 @@ export class MemoryGovernanceService {
   enforceLimit(category: MemoryCategory, maxEntries: number) {
     const entries = this.manager.get(category);
     if (entries.length > maxEntries) {
-      this.manager["cleanup"](category as any);
+      const trimmed = entries.slice(-maxEntries);
+      this.manager.clear(category as any);
+      trimmed.forEach((e) => this.manager.add(category, e));
     }
   }
 
