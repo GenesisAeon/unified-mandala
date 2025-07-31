@@ -1,4 +1,5 @@
 import { GPTEventHub } from '../gpt-bridges/GPTEventHub';
+import { UnifiedLogger } from '../core/UnifiedLogger';
 
 export interface GenesisNavigatorOptions {
   phaseMapPath: string;
@@ -7,6 +8,7 @@ export interface GenesisNavigatorOptions {
 
 export class GenesisAeonNavigator {
   private phaseMap: Record<string, string>;
+  private logger = new UnifiedLogger('GenesisAeonNavigator');
   constructor(private options: GenesisNavigatorOptions) {
     this.phaseMap = this.loadPhaseMap(options.phaseMapPath);
   }
@@ -16,7 +18,7 @@ export class GenesisAeonNavigator {
       const data = require('fs').readFileSync(file, 'utf-8');
       return JSON.parse(data) as Record<string, string>;
     } catch (err) {
-      console.error('Failed to load phase map', err);
+      this.logger.error('Failed to load phase map');
       return {};
     }
   }
@@ -42,8 +44,7 @@ export class GenesisAeonNavigator {
   private log(msg: string): void {
     if (this.options.logFile) {
       require('fs').appendFileSync(this.options.logFile, msg + '\n');
-    } else {
-      console.log(msg);
     }
+    this.logger.info(msg);
   }
 }
