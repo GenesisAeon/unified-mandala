@@ -8597,3 +8597,18 @@
   task: Auto-generate framework report from repo analysis
   test: scripts/generate-framework-report.test.js
   status: planned
+- commit: Create UnifiedMandala test feedback report
+  path: docs/unifiedmandala_test_report.md
+  task: Summarize program test results and feedback from conversation
+  test: ""
+  status: planned
+- commit: Add semantic-release configuration
+  path: .releaserc.yaml
+  task: Enable SemVer versioning with semantic-release for core packages
+  test: scripts/semantic-release.test.js
+  status: planned
+- commit: Provide automated test script
+  path: scripts/run-program-tests.sh
+  task: Run project tests and compile unified report
+  test: scripts/run-program-tests.test.sh
+  status: planned
