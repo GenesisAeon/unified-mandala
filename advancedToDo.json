@@ -7765,14 +7765,14 @@
     "path": "packages/agents",
     "task": "Cover Navigator, CREPEvaluator and HexaAgentSystem with tests",
     "test": "packages/agents/coreAgents.test.ts",
-    "status": "planned"
+    "status": "done"
   },
   {
     "commit": "Centralize logging",
     "path": "packages/core",
     "task": "Implement UnifiedLogger and replace scattered console logs",
     "test": "packages/core/UnifiedLogger.test.ts",
-    "status": "planned"
+    "status": "done"
   },
   {
     "commit": "Integrate Mistral API plugin",

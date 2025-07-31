@@ -12,3 +12,8 @@ Dieser Bericht fasst den aktuellen Stand des Repositories zusammen und listet ge
 - Archivierung erledigter ToDos über ZIPMEM.
 
 Weitere Verbesserungen sind im Fortschrittslog dokumentiert.
+
+## Neue Entwicklungen
+- Zentrale Logging-Struktur via `UnifiedLogger` eingeführt.
+- Kernagenten mit zusätzlichen Tests abgesichert.
+- Mistral Code Agent Service bereitgestellt.
