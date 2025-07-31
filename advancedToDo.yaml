@@ -8130,7 +8130,7 @@
   path: packages/unifiedmandala-ui/components/BlackboxMirrorBoard.tsx
   task: Mirror user input and reflections in Blackbox UI
   test: packages/unifiedmandala-ui/components/BlackboxMirrorBoard.test.tsx
-  status: planned
+  status: done
 - commit: Document Blackbox resonance modules
   path: manifest/blackbox-manifest.md
   task: Summarize Blackbox UI components and usage
@@ -8575,52 +8575,52 @@
   path: packages/agents/mistral-code-agent
   task: Support code generation via Mistral API
   test: packages/agents/mistral-code-agent/MistralCodeAgent.test.ts
-  status: planned
+  status: done
 - commit: Extend Archiv Menschheitsspuren dataset
   path: docs/archive/archiv-menschheitsspuren.md
   task: Document additional archaeological findings from conversation
   test: ""
-  status: planned
+  status: done
 - commit: Add archive maintenance script
   path: scripts/archive-menschheitsspuren.js
   task: Append new entries to archiv dataset automatically
   test: scripts/archive-menschheitsspuren.test.js
-  status: planned
+  status: done
 - commit: Add climate context to Archiv Menschheitsspuren
   path: docs/archive/archiv-menschheitsspuren.md
   task: Include climatic and cosmic event data for documented findings
   test: ""
-  status: planned
+  status: done
 - commit: Create cosmic event timeline (60k-40k BP)
   path: docs/archive/cosmic-event-timeline.md
   task: Document cosmic and climatic events influencing early humans
   test: ""
-  status: planned
+  status: done
 - commit: Generate framework summary report
   path: docs/FrameworkReport.md
   task: Summarize UnifiedMandala architecture and future plans
   test: ""
-  status: planned
+  status: done
 - commit: Add framework report generator script
   path: scripts/generate-framework-report.js
   task: Auto-generate framework report from repo analysis
   test: scripts/generate-framework-report.test.js
-  status: planned
+  status: done
 - commit: Create UnifiedMandala test feedback report
   path: docs/unifiedmandala_test_report.md
   task: Summarize program test results and feedback from conversation
   test: ""
-  status: planned
+  status: done
 - commit: Add semantic-release configuration
   path: .releaserc.yaml
   task: Enable SemVer versioning with semantic-release for core packages
   test: scripts/semantic-release.test.js
-  status: planned
+  status: done
 - commit: Provide automated test script
   path: scripts/run-program-tests.sh
   task: Run project tests and compile unified report
   test: scripts/run-program-tests.test.sh
-  status: planned
+  status: done
 - commit: Refactor CREPManager with async file operations
   path: packages/crep-engine/CREPManager.ts
   task: Use asynchronous file handling and reduce complexity per feedback

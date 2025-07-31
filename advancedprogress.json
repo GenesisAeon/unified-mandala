@@ -1,5 +1,5 @@
 {
-  "lastCommit": "Fix formatting",
+  "lastCommit": "feat: add mistral helpers and archive updates",
   "fractalStep": "sync",
   "openBranches": [
     "work"
@@ -7,10 +7,6 @@
   "mergeConflicts": [],
   "notes": "Fraktalstep Fehlerbehebung",
   "pendingTasks": [
-    {
-      "commit": "Create BlackboxMirrorBoard component",
-      "status": "planned"
-    },
     {
       "commit": "Add MandalaFlowDashboard",
       "status": "planned"
@@ -133,46 +129,6 @@
     },
     {
       "commit": "Add Claude service integration",
-      "status": "planned"
-    },
-    {
-      "commit": "Introduce Mistral Code Agent helper",
-      "status": "planned"
-    },
-    {
-      "commit": "Extend Archiv Menschheitsspuren dataset",
-      "status": "planned"
-    },
-    {
-      "commit": "Add archive maintenance script",
-      "status": "planned"
-    },
-    {
-      "commit": "Add climate context to Archiv Menschheitsspuren",
-      "status": "planned"
-    },
-    {
-      "commit": "Create cosmic event timeline (60k-40k BP)",
-      "status": "planned"
-    },
-    {
-      "commit": "Generate framework summary report",
-      "status": "planned"
-    },
-    {
-      "commit": "Add framework report generator script",
-      "status": "planned"
-    },
-    {
-      "commit": "Create UnifiedMandala test feedback report",
-      "status": "planned"
-    },
-    {
-      "commit": "Add semantic-release configuration",
-      "status": "planned"
-    },
-    {
-      "commit": "Provide automated test script",
       "status": "planned"
     },
     {
