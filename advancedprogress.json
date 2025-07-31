@@ -1,5 +1,5 @@
 {
-  "lastCommit": "chore: refresh progress log",
+  "lastCommit": "Merge pull request #919 from GenesisAeon/dlap95-codex/extract-tasks-and-features-for-advancedtodo",
   "fractalStep": "sync",
   "openBranches": [
     "work"
@@ -148,6 +148,14 @@
       "status": "planned"
     },
     {
+      "commit": "Add climate context to Archiv Menschheitsspuren",
+      "status": "planned"
+    },
+    {
+      "commit": "Create cosmic event timeline (60k-40k BP)",
+      "status": "planned"
+    },
+    {
       "commit": "Generate framework summary report",
       "status": "planned"
     },
@@ -165,6 +173,90 @@
     },
     {
       "commit": "Provide automated test script",
+      "status": "planned"
+    },
+    {
+      "commit": "Refactor CREPManager with async file operations",
+      "status": "planned"
+    },
+    {
+      "commit": "Add English documentation for international audience",
+      "status": "planned"
+    },
+    {
+      "commit": "Create onboarding video tutorial",
+      "status": "planned"
+    },
+    {
+      "commit": "Document example use cases",
+      "status": "planned"
+    },
+    {
+      "commit": "Community outreach plan",
+      "status": "planned"
+    },
+    {
+      "commit": "Improve QA workflow script",
+      "status": "planned"
+    },
+    {
+      "commit": "Document offline testing workflow and ToDo sync",
+      "status": "planned"
+    },
+    {
+      "commit": "Expand early human traces archive",
+      "status": "planned"
+    },
+    {
+      "commit": "Implement Memory Feedback Loop with new archives",
+      "status": "planned"
+    },
+    {
+      "commit": "Improve documentation and onboarding demo",
+      "status": "planned"
+    },
+    {
+      "commit": "Standardize external API and integrate datasets",
+      "status": "planned"
+    },
+    {
+      "commit": "Enforce ToDo sync before commits",
+      "status": "planned"
+    },
+    {
+      "commit": "Update ToDos from advanced conversations",
+      "status": "planned"
+    },
+    {
+      "commit": "Document CLI tools for sigil and backup",
+      "status": "planned"
+    },
+    {
+      "commit": "Clarify Manager versus Orchestrator roles",
+      "status": "planned"
+    },
+    {
+      "commit": "Add unit tests for core agents",
+      "status": "planned"
+    },
+    {
+      "commit": "Centralize logging",
+      "status": "planned"
+    },
+    {
+      "commit": "Integrate Mistral API plugin",
+      "status": "planned"
+    },
+    {
+      "commit": "Build collaborative AI UI",
+      "status": "planned"
+    },
+    {
+      "commit": "Archive old ToDos with ZIPMEM",
+      "status": "planned"
+    },
+    {
+      "commit": "Create framework status report",
       "status": "planned"
     }
   ],
@@ -342,7 +434,7 @@
       "status": "done"
     },
     {
-      "commit": "meta:update-progress \u2013 mark memory governance done",
+      "commit": "meta:update-progress – mark memory governance done",
       "status": "done"
     },
     {
@@ -539,67 +631,67 @@
   "featureLog": [
     {
       "featureId": "open-ethik-dashboard",
-      "commit": "meta:implement-features \u2013 open-ethik-dashboard",
+      "commit": "meta:implement-features – open-ethik-dashboard",
       "status": "done"
     },
     {
       "featureId": "implicit-todos",
-      "commit": "meta:extract-features \u2013 implicit todo extraction",
+      "commit": "meta:extract-features – implicit todo extraction",
       "status": "done"
     },
     {
       "featureId": "zivilisations-sandboxen",
-      "commit": "meta:extract-features \u2013 Zivilisations-Sandboxen",
+      "commit": "meta:extract-features – Zivilisations-Sandboxen",
       "status": "done"
     },
     {
       "featureId": "climate-integration",
-      "commit": "meta:extract-features \u2013 climate integration",
+      "commit": "meta:extract-features – climate integration",
       "status": "done"
     },
     {
       "featureId": "keilschrift",
-      "commit": "meta:extract-features \u2013 keilschrift",
+      "commit": "meta:extract-features – keilschrift",
       "status": "done"
     },
     {
       "featureId": "grok-agent",
-      "commit": "meta:implement-features \u2013 grok agent skeleton",
+      "commit": "meta:implement-features – grok agent skeleton",
       "status": "done"
     },
     {
       "featureId": "shadow-integration",
-      "commit": "meta:extract-features \u2013 shadow integration",
+      "commit": "meta:extract-features – shadow integration",
       "status": "done"
     },
     {
       "featureId": "self-reflection",
-      "commit": "meta:extract-features \u2013 self reflection",
+      "commit": "meta:extract-features – self reflection",
       "status": "done"
     },
     {
       "featureId": "memory-governance",
-      "commit": "meta:extract-features \u2013 memory governance",
+      "commit": "meta:extract-features – memory governance",
       "status": "done"
     },
     {
       "featureId": "turing-tests",
-      "commit": "meta:extract-features \u2013 turing tests",
+      "commit": "meta:extract-features – turing tests",
       "status": "done"
     },
     {
       "featureId": "schwerewellen",
-      "commit": "meta:extract-features \u2013 schwerewellen",
+      "commit": "meta:extract-features – schwerewellen",
       "status": "done"
     },
     {
       "featureId": "anthropic-multiversum",
-      "commit": "meta:extract-features \u2013 anthropic multiversum",
+      "commit": "meta:extract-features – anthropic multiversum",
       "status": "done"
     },
     {
       "featureId": "memory-governance",
-      "commit": "meta:implement-features \u2013 memory governance service",
+      "commit": "meta:implement-features – memory governance service",
       "status": "done"
     },
     {
