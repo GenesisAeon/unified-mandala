@@ -1,0 +1,10 @@
+name: "mistralCodeAgent"
+type: "agent"
+description: "Proxy plugin to the Mistral code API"
+version: "0.1.0"
+author: "AeonDev"
+entry: "mistralCodeAgent.js"
+apiVersion: "1.0"
+permissions:
+  - "call:mistral_api"
+  - "emit:mistral_result"

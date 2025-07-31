@@ -7667,7 +7667,7 @@
     "path": "docs/README.en.md",
     "task": "Provide English summary of README and key documents",
     "test": "",
-    "status": "planned"
+    "status": "done"
   },
   {
     "commit": "Create onboarding video tutorial",
@@ -7709,14 +7709,14 @@
     "path": "docs/Archiv_Menschheitsspuren.md",
     "task": "Compile scientifically documented archaeological hints as discussed in chat",
     "test": "",
-    "status": "planned"
+    "status": "done"
   },
   {
     "commit": "Implement Memory Feedback Loop with new archives",
     "path": "services/memory-manager",
     "task": "Integrate aeon-fraktalurs and aeon-resoecho and design feedback loop",
     "test": "",
-    "status": "planned"
+    "status": "done"
   },
   {
     "commit": "Improve documentation and onboarding demo",
