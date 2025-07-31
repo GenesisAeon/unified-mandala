@@ -8634,27 +8634,27 @@
   path: docs/tutorials/onboarding-video.md
   task: Step-by-step developer onboarding with video links
   test: ""
-  status: planned
+  status: done
 - commit: Document example use cases
   path: docs/use-cases.md
   task: Describe concrete UnifiedMandala application scenarios
   test: ""
-  status: planned
+  status: done
 - commit: Community outreach plan
   path: docs/community/outreach-plan.md
   task: Outline strategy for partnerships and funding opportunities
   test: ""
-  status: planned
+  status: done
 - commit: Improve QA workflow script
   path: scripts/qa-enhanced.sh
   task: Automate pnpm run qa and summarize results
   test: scripts/qa-enhanced.test.sh
-  status: planned
+  status: done
 - commit: Document offline testing workflow and ToDo sync
   path: docs/offline/README.md
   task: Add docker-compose setup, Node troubleshooting, and scripts for syncing ToDos
   test: ""
-  status: planned
+  status: done
 - commit: Expand early human traces archive
   path: docs/Archiv_Menschheitsspuren.md
   task: Compile scientifically documented archaeological hints as discussed in chat

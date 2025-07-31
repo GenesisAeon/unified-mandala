@@ -37,29 +37,30 @@ describe('CREPManager with localStorage', () => {
 });
 
 describe('CREPManager without localStorage', () => {
-  beforeEach(() => {
+  beforeEach(async () => {
     delete (globalThis as any).localStorage;
-    if (fs.existsSync(file)) fs.unlinkSync(file);
+    try { await fs.promises.unlink(file); } catch {}
     jest.spyOn(GPTEventHub, 'emit');
   });
 
-  afterEach(() => {
+  afterEach(async () => {
     jest.restoreAllMocks();
-    if (fs.existsSync(file)) fs.unlinkSync(file);
+    try { await fs.promises.unlink(file); } catch {}
   });
 
-  it('writes history to file when no localStorage', () => {
+  it('writes history to file when no localStorage', async () => {
     const manager = new CREPManager();
-    manager.addCREPEntry(1, 1, 1, 1);
-    expect(fs.existsSync(file)).toBe(true);
-    const data = JSON.parse(fs.readFileSync(file, 'utf8'));
+    await manager.addCREPEntry(1, 1, 1, 1);
+    await new Promise((r) => setTimeout(r, 10));
+    const data = JSON.parse(await fs.promises.readFile(file, 'utf8'));
     expect(data).toHaveLength(1);
   });
 
-  it('loads history from file', () => {
+  it('loads history from file', async () => {
     const ts = new Date().toISOString();
-    fs.writeFileSync(file, JSON.stringify([{ timestamp: ts, C: 1, R: 1, E: 1, P: 1 }]));
+    await fs.promises.writeFile(file, JSON.stringify([{ timestamp: ts, C: 1, R: 1, E: 1, P: 1 }]));
     const manager = new CREPManager();
+    await new Promise((r) => setTimeout(r, 10));
     expect(manager.getCREPHistory()).toHaveLength(1);
   });
 });
