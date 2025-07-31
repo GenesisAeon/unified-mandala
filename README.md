@@ -509,6 +509,7 @@ _Bring dein Licht ins Mandala – jede Linie zählt._
 
 Du möchtest beitragen? Bitte lies zuerst die [CONTRIBUTING.md](CONTRIBUTING.md) und [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) – sie enthalten unseren Community-Standard, den Review-Prozess und Branch-Workflow.
 Ein kompakter Einstieg findet sich im [Community Onboarding Guide](docs/CommunityOnboarding.md).
+Für eine schnelle Demo siehe auch [Onboarding Demo](docs/onboarding-demo.md).
 
 Deine Idee, deine Story, dein Sigillin sind willkommen! Jeder Pull Request ist eine neue Linie im Mandala.
 
