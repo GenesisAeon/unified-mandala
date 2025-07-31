@@ -18,3 +18,4 @@ export * from './advancedConversation';
 export * from './RestClient';
 export * from './MandalaCoreLicense';
 export * from './decompressReverseLines';
+export * from './sigillinFractalTodo';
