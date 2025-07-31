@@ -8642,3 +8642,28 @@
   task: Automate pnpm run qa and summarize results
   test: scripts/qa-enhanced.test.sh
   status: planned
+- commit: Document offline testing workflow and ToDo sync
+  path: docs/offline/README.md
+  task: Add docker-compose setup, Node troubleshooting, and scripts for syncing ToDos
+  test: ""
+  status: planned
+- commit: Expand early human traces archive
+  path: docs/Archiv_Menschheitsspuren.md
+  task: Compile scientifically documented archaeological hints as discussed in chat
+  test: ""
+  status: planned
+- commit: Implement Memory Feedback Loop with new archives
+  path: services/memory-manager
+  task: Integrate aeon-fraktalurs and aeon-resoecho and design feedback loop
+  test: ""
+  status: planned
+- commit: Improve documentation and onboarding demo
+  path: docs
+  task: Add tutorials, examples, and public demo site for easier onboarding
+  test: ""
+  status: planned
+- commit: Standardize external API and integrate datasets
+  path: packages/api
+  task: Provide stable REST API for metrics and gamification, integrate real data sources
+  test: ""
+  status: planned
