@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { metrics } from '@opentelemetry/api';
+import { LRUCache } from 'lru-cache';
 import { fractalDecompose, computeFractalMetric } from '../analysis/FractalAnalyzer';
 import { symbolicRegression } from '../analysis/SymbolicRegression';
 import { SigilManager, SigilEntry } from '../shared-utils/SigilManager';
@@ -20,8 +21,14 @@ const meter = metrics.getMeter('cosmic-theory-agent');
 const regressionDuration = meter.createHistogram('pysr_call_duration_seconds', {
   description: 'Duration of PySR service calls'
 });
+const cacheHits = meter.createCounter('pysr_cache_hits_total', {
+  description: 'Number of cached regression results used'
+});
+const cacheMisses = meter.createCounter('pysr_cache_misses_total', {
+  description: 'Number of regression cache misses'
+});
 
-const regressionCache = new Map<string, string>();
+const regressionCache = new LRUCache<string, string>({ max: 50 });
 
 export const introspectionLog: TraceLogPayload[] = [];
 CosmicTheoryEventHub.on('trace:log', p => introspectionLog.push(p));
@@ -145,8 +152,11 @@ export async function callPySRService(
   const cacheKey = `${endpoint}:${protocol}:${JSON.stringify(data)}`;
   if (regressionCache.has(cacheKey)) {
     logTrace(`cache hit for ${cacheKey}`);
+    cacheHits.add(1);
     return regressionCache.get(cacheKey)!;
   }
+
+  cacheMisses.add(1);
 
   const run = async (): Promise<string> => {
     if (protocol === 'grpc') {
