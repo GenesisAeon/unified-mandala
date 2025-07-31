@@ -14,3 +14,8 @@ plugins:
     crepCondition: ">=0.7"
     layoutSuggestion: |
       layout: admin
+  - name: mistralCodeAgent
+    version: "0.1.0"
+    component: "../plugins/mistralCodeAgent/mistralCodeAgent"
+    dataHook: ""
+    story: ""

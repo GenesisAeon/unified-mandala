@@ -8625,12 +8625,11 @@
   path: packages/crep-engine/CREPManager.ts
   task: Use asynchronous file handling and reduce complexity per feedback
   test: packages/crep-engine/CREPManager.async.test.ts
-  status: planned
 - commit: Add English documentation for international audience
   path: docs/README.en.md
   task: Provide English summary of README and key documents
   test: ""
-  status: planned
+  status: done
 - commit: Create onboarding video tutorial
   path: docs/tutorials/onboarding-video.md
   task: Step-by-step developer onboarding with video links
@@ -8660,12 +8659,12 @@
   path: docs/Archiv_Menschheitsspuren.md
   task: Compile scientifically documented archaeological hints as discussed in chat
   test: ""
-  status: planned
+  status: done
 - commit: Implement Memory Feedback Loop with new archives
   path: services/memory-manager
   task: Integrate aeon-fraktalurs and aeon-resoecho and design feedback loop
   test: ""
-  status: planned
+  status: done
 - commit: Improve documentation and onboarding demo
   path: docs
   task: Add tutorials, examples, and public demo site for easier onboarding

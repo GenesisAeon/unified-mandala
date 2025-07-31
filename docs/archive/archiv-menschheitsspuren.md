@@ -6,6 +6,7 @@ Dieses Archiv sammelt nach und nach wissenschaftlich belegte Funde, die im Laufe
 
 - **Blombos Cave, Suedafrika** – ca. 75.000 BP – Hinweise auf fruehe Symbolkunst, warmes Klima.
 - **Goebekli Tepe, Tuerskei** – ca. 11.500 BP – frueher Tempelbau, waehrend einer Klimaerwaermung.
+- **Lake Mungo, Australien** – ca. 45.000 BP – früheste Feuerbestattungen in trockener Phase.
 
 ## Klimatische und kosmische Ereignisse
 

@@ -1,5 +1,5 @@
 {
-  "lastCommit": "feat: add mistral helpers and archive updates",
+  "lastCommit": "fix: newline in progress file",
   "fractalStep": "sync",
   "openBranches": [
     "work"
@@ -7,18 +7,6 @@
   "mergeConflicts": [],
   "notes": "Fraktalstep Fehlerbehebung",
   "pendingTasks": [
-    {
-      "commit": "Add MandalaFlowDashboard",
-      "status": "done"
-    },
-    {
-      "commit": "Add SigillinBubbles component",
-      "status": "done"
-    },
-    {
-      "commit": "Enhance AgentDispatcher with ErrorBoundary and priority queue",
-      "status": "done"
-    },
     {
       "commit": "Create PantheonBegegnungsraum VR component",
       "status": "planned"
@@ -124,22 +112,6 @@
       "status": "planned"
     },
     {
-      "commit": "Integrate MistralAPI agent",
-      "status": "done"
-    },
-    {
-      "commit": "Add Claude service integration",
-      "status": "done"
-    },
-    {
-      "commit": "Refactor CREPManager with async file operations",
-      "status": "planned"
-    },
-    {
-      "commit": "Add English documentation for international audience",
-      "status": "planned"
-    },
-    {
       "commit": "Create onboarding video tutorial",
       "status": "planned"
     },
@@ -157,14 +129,6 @@
     },
     {
       "commit": "Document offline testing workflow and ToDo sync",
-      "status": "planned"
-    },
-    {
-      "commit": "Expand early human traces archive",
-      "status": "planned"
-    },
-    {
-      "commit": "Implement Memory Feedback Loop with new archives",
       "status": "planned"
     },
     {
@@ -197,46 +161,6 @@
     },
     {
       "commit": "Centralize logging",
-      "status": "planned"
-    },
-    {
-      "commit": "Integrate Mistral API plugin",
-      "status": "planned"
-    },
-    {
-      "commit": "Build collaborative AI UI",
-      "status": "planned"
-    },
-    {
-      "commit": "Archive old ToDos with ZIPMEM",
-      "status": "planned"
-    },
-    {
-      "commit": "Create framework status report",
-      "status": "planned"
-    },
-    {
-      "commit": "Add refresh-handbook script",
-      "status": "planned"
-    },
-    {
-      "commit": "Provide setup-unifiedmandala installer",
-      "status": "planned"
-    },
-    {
-      "commit": "Implement Sigillin Loader component",
-      "status": "planned"
-    },
-    {
-      "commit": "Expand MasterCanvas nodes",
-      "status": "planned"
-    },
-    {
-      "commit": "Add symbolzeit base configuration",
-      "status": "planned"
-    },
-    {
-      "commit": "Create GPT-Synapse module",
       "status": "planned"
     }
   ],
