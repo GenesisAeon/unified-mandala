@@ -7717,5 +7717,75 @@
     "task": "Provide stable REST API for metrics and gamification, integrate real data sources",
     "test": "",
     "status": "planned"
+  },
+  {
+    "commit": "Enforce ToDo sync before commits",
+    "path": "scripts/sync-todo-progress.js",
+    "task": "Sync advanced ToDo files with progress before large commits",
+    "test": "",
+    "status": "planned"
+  },
+  {
+    "commit": "Update ToDos from advanced conversations",
+    "path": "scripts/parse-advanced-conversations.js",
+    "task": "Parse new chat logs to update advancedToDo.json and advancedprogress.json",
+    "test": "",
+    "status": "planned"
+  },
+  {
+    "commit": "Document CLI tools for sigil and backup",
+    "path": "packages/cli-tools",
+    "task": "Refine docs for SigillinOnDemandGenerator and backup utilities",
+    "test": "",
+    "status": "planned"
+  },
+  {
+    "commit": "Clarify Manager versus Orchestrator roles",
+    "path": "packages/aeon-genesisos",
+    "task": "Define responsibilities and naming for Manager and Orchestrator modules",
+    "test": "",
+    "status": "planned"
+  },
+  {
+    "commit": "Add unit tests for core agents",
+    "path": "packages/agents",
+    "task": "Cover Navigator, CREPEvaluator and HexaAgentSystem with tests",
+    "test": "packages/agents/coreAgents.test.ts",
+    "status": "planned"
+  },
+  {
+    "commit": "Centralize logging",
+    "path": "packages/core",
+    "task": "Implement UnifiedLogger and replace scattered console logs",
+    "test": "packages/core/UnifiedLogger.test.ts",
+    "status": "planned"
+  },
+  {
+    "commit": "Integrate Mistral API plugin",
+    "path": "services/mistral_service",
+    "task": "Add service and OpenAPI spec for Mistral code agent support",
+    "test": "services/mistral_service/mistral.test.ts",
+    "status": "planned"
+  },
+  {
+    "commit": "Build collaborative AI UI",
+    "path": "packages/unifiedmandala-ui",
+    "task": "Multi-agent interface with human transparency features",
+    "test": "packages/unifiedmandala-ui/AIUI.test.ts",
+    "status": "planned"
+  },
+  {
+    "commit": "Archive old ToDos with ZIPMEM",
+    "path": "services/memory-manager",
+    "task": "Use ArchiveOldTodos to compress completed tasks",
+    "test": "services/memory-manager/ArchiveOldTodos.test.ts",
+    "status": "planned"
+  },
+  {
+    "commit": "Create framework status report",
+    "path": "docs/Framework-Bericht.md",
+    "task": "Summarize repository state and planned features with improvement proposals",
+    "test": "",
+    "status": "planned"
   }
 ]
