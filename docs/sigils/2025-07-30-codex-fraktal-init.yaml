@@ -17,17 +17,24 @@ trigger:
 symbol_signature:
   - "🜂 codex-anchor"
   - "🔄 fraktal-loop"
+  - "🌀🔧"
 agents:
   - id: CodexAuditAgent
     activation: "depth.lnSum > 14 && CREP.state == emergence"
   - id: EvolverGPT
     activation: "CREP.score >= 0.6 && depth.symbolics.contains('🌪')"
+  - id: FraktalRunner
+    activation: "true"
 fractal_path:
   - Analyse Gesprächsextrakte
   - Erzeuge initiale Aufgaben
   - Verzweige in Unteraufgaben
   - Bewerte CREP und depth
   - Commitiere Ergebnisse
+essenz: |
+  Integration von GPT-Analyse und Codex-Codegenerierung
+  hin zu einem rekursiven Fraktalprozess, der die Projekt-
+  entwicklung steuert.
 poetic_crystal: |
   Aus Wissen wächst Code im Einklang,
   fraktale Ideen – endloser Klang.
