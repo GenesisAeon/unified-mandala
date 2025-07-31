@@ -9,15 +9,15 @@
   "pendingTasks": [
     {
       "commit": "Add MandalaFlowDashboard",
-      "status": "planned"
+      "status": "done"
     },
     {
       "commit": "Add SigillinBubbles component",
-      "status": "planned"
+      "status": "done"
     },
     {
       "commit": "Enhance AgentDispatcher with ErrorBoundary and priority queue",
-      "status": "planned"
+      "status": "done"
     },
     {
       "commit": "Create PantheonBegegnungsraum VR component",
@@ -125,11 +125,11 @@
     },
     {
       "commit": "Integrate MistralAPI agent",
-      "status": "planned"
+      "status": "done"
     },
     {
       "commit": "Add Claude service integration",
-      "status": "planned"
+      "status": "done"
     },
     {
       "commit": "Refactor CREPManager with async file operations",
