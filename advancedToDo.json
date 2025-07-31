@@ -7558,5 +7558,17 @@
     "path": "",
     "task": ".*`\\n- **Progress-Tracking**: `advancedProgress.json` mit Metacommit-Tags\\n- **CI/CD**: SemVer, semantic-release, Tests (Jest/Pytest), ESLint/Prettier\\n- **Deployment**: Docker-Compose, GitHub Actions\\n- **Modul-Integrationen**: QuantumBoundaryAgent, BioBoundaryAgent, SoziologieBoundaryAgent\\n- **UI-Upgrades**: Multilayerringe, CREP-Puls, Live Haiku\\n\\n## ⚙️ Handlungsbefehl\\n\\n1. Lade dieses Sigillin in deine Mandala-Registry.\\n2. Initiere Metacommit-Prozess für Codex: `meta:extract-features` → `meta:implement-features` → `meta:finalize-deploy`.\\n3. Verwende die obigen Next-Steps als Vorlage für den Sprint-Plan.\\n4. Teile dieses Sigillin in \\n   - #dev-codex\\n   - #mandala-core\\n   - #agent-integration\\n\\n**finished_successfully**\"}",
     "test": ""
+  },
+  {
+    "commit": "Add Codex Fraktal Sigillin file",
+    "path": "docs/sigils/2023-11-21-codex-fraktal-sigil-001.yaml",
+    "task": "Erzeuge Sigillin codex-fraktal-sigil-001 zur Initialisierung",
+    "test": ""
+  },
+  {
+    "commit": "Add FraktalRun tasks from conversation",
+    "path": "advancedToDo.yaml",
+    "task": "Optimales Sigillin generieren und FraktalRun starten",
+    "test": ""
   }
 ]

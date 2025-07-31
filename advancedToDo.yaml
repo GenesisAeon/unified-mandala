@@ -8553,3 +8553,12 @@
     den Sprint-Plan.\n4. Teile dieses Sigillin in \n   - #dev-codex\n   -
     #mandala-core\n   - #agent-integration\n\n**finished_successfully**"}'
   test: ""
+
+- commit: Add Codex Fraktal Sigillin file
+  path: docs/sigils/2023-11-21-codex-fraktal-sigil-001.yaml
+  task: Erzeuge Sigillin codex-fraktal-sigil-001 zur Initialisierung
+  test: ""
+- commit: Add FraktalRun tasks from conversation
+  path: advancedToDo.yaml
+  task: Optimales Sigillin generieren und FraktalRun starten
+  test: ""
