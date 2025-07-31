@@ -8291,3 +8291,265 @@
   task: Explore boundary laws for Pantheon modules
   test: packages/boundary-engine/PantheonBoundaryLawExplorer.test.ts
   status: planned
+- commit: -Dateien vor größeren Commits mit `scripts/sync-todo-progress.js` abgleichen
+  path: ""
+  task: -Dateien vor größeren Commits mit `scripts/sync-todo-progress.js` abgleichen
+  test: ""
+- commit: .json` sowie `advancedprogress.json` zu aktualisieren.
+  path: ""
+  task: .json` sowie `advancedprogress.json` zu aktualisieren.
+  test: ""
+- commit: cGeneration.ts` vereinfachen die
+    Doku‑Erstellung【561718465870539†L71-L73】. Es gibt CLI‑Tools zur
+    Sigil‑Generierung, Task‑Priorisierung und Datensicherung.
+  path: ""
+  task: cGeneration.ts` vereinfachen die Doku‑Erstellung【561718465870539†L71-L73】.
+    Es gibt CLI‑Tools zur Sigil‑Generierung, Task‑Priorisierung und
+    Datensicherung.
+  test: ""
+- commit: .*`
+  path: ""
+  task: .*`
+  test: ""
+- commit: 's.\nSprache: Deutsch.\nBerücksichtige strategische Hinweise aus
+    AgentStrategy.md, AgentRegistry.yaml und ggf. AGENTS.md, falls im Repo
+    vorhanden."'
+  path: ""
+  task: 's.\nSprache: Deutsch.\nBerücksichtige strategische Hinweise aus
+    AgentStrategy.md, AgentRegistry.yaml und ggf. AGENTS.md, falls im Repo
+    vorhanden."'
+  test: ""
+- commit: '-Listen. Bei niedrigem CREP z.B. Aufgaben wie *"FeedbackLoop", "Neue
+    Symbolik testen"*; bei hohem CREP eher *"ClusterExpand", "CommunitySync"*;
+    im Normalfall *"StandardReview", "CREPMonitor"*【54†L14-L22】. Diese Aufgaben
+    (derzeit Strings) werden dem Memory-Eintrag
+    beigefügt【40†L21-L29】【40†L30-L37】, aber eine eigentliche Abarbeitung findet
+    im Code (noch) nicht statt – außer, dass `schedule_tasks()` eine
+    Priorisierung andeutet (Tasks mit "ClusterExpand" erhielten höhere
+    Priorität)【54†L22-L29】. Die *FractalAgents* sind als sehr einfache
+    Agentenklassen implementiert: Jede hat einen *focus* (z.B. "CREP" oder
+    "Symbolik") und eine `step()`-Methode, die aufgerufen wird, aber nur den
+    letzten Memory-Eintrag in ihrem internen Zustand speichert【55†L10-L18】. Hier
+    ist klar erkennbar, dass die Logik **noch Platzhalter-Charakter** hat –
+    vorgesehen ist offenbar, dass verschiedene Agenten unterschiedliche Aspekte
+    des Systems analysieren und ggf. die SealCore-Strategie oder Memory
+    manipulieren. Der `MasterCoordinator` ruft im Orchestrierungsprozess für
+    jeden Agenten `step(memory, sealcore)` auf【56†L16-L24】. Eine
+    Performance-Logik (Logging und Auswertung der Agentenleistung) ist
+    rudimentär angelegt, aber derzeit ohne Einfluss auf den
+    Hauptloop【56†L20-L28】【56†L24-L32】. Insgesamt bilden diese Klassen ein Gerüst
+    für Multi-Agenten-Interaktion, die jedoch (noch) nicht mit Leben gefüllt
+    ist.'
+  path: ""
+  task: '-Listen. Bei niedrigem CREP z.B. Aufgaben wie *"FeedbackLoop", "Neue
+    Symbolik testen"*; bei hohem CREP eher *"ClusterExpand", "CommunitySync"*;
+    im Normalfall *"StandardReview", "CREPMonitor"*【54†L14-L22】. Diese Aufgaben
+    (derzeit Strings) werden dem Memory-Eintrag
+    beigefügt【40†L21-L29】【40†L30-L37】, aber eine eigentliche Abarbeitung findet
+    im Code (noch) nicht statt – außer, dass `schedule_tasks()` eine
+    Priorisierung andeutet (Tasks mit "ClusterExpand" erhielten höhere
+    Priorität)【54†L22-L29】. Die *FractalAgents* sind als sehr einfache
+    Agentenklassen implementiert: Jede hat einen *focus* (z.B. "CREP" oder
+    "Symbolik") und eine `step()`-Methode, die aufgerufen wird, aber nur den
+    letzten Memory-Eintrag in ihrem internen Zustand speichert【55†L10-L18】. Hier
+    ist klar erkennbar, dass die Logik **noch Platzhalter-Charakter** hat –
+    vorgesehen ist offenbar, dass verschiedene Agenten unterschiedliche Aspekte
+    des Systems analysieren und ggf. die SealCore-Strategie oder Memory
+    manipulieren. Der `MasterCoordinator` ruft im Orchestrierungsprozess für
+    jeden Agenten `step(memory, sealcore)` auf【56†L16-L24】. Eine
+    Performance-Logik (Logging und Auswertung der Agentenleistung) ist
+    rudimentär angelegt, aber derzeit ohne Einfluss auf den
+    Hauptloop【56†L20-L28】【56†L24-L32】. Insgesamt bilden diese Klassen ein Gerüst
+    für Multi-Agenten-Interaktion, die jedoch (noch) nicht mit Leben gefüllt
+    ist.'
+  test: ""
+- commit: 's.\nSprache: Deutsch."'
+  path: ""
+  task: 's.\nSprache: Deutsch."'
+  test: ""
+- commit: "s und Vorschläge** für die Weiterentwicklung von
+    *unifiedmandala-neural* und *unifiedmandala-orchestrator*:"
+  path: ""
+  task: "s und Vorschläge** für die Weiterentwicklung von *unifiedmandala-neural*
+    und *unifiedmandala-orchestrator*:"
+  test: ""
+- commit: s in AdvancedToDo.yaml und .json und advancedprogress.json verarbeitet
+    und dann implementiert! Also ein Array mit Nutzerdaten, Chats, Nachrichten,
+    timesteps etc. ganz simpel und eigentlich gut zu parsen wenn man weis
+    wie!                                                                                                                                   Aber
+    erst analysiere bitte noch
+    https://github.com/GenesisAeon/unified-mandala/docs , aber spare jeh nach
+    dem alle Datein aus die das Wort conversations
+    beinhalten!                                                          Und
+    dann schalte ich auf das 4.5 Modell und wir machen die KomplettAnalyse, ich
+    hoffe du findest das genauso spannend wie ich! <3 !
+  path: ""
+  task: s in AdvancedToDo.yaml und .json und advancedprogress.json verarbeitet und
+    dann implementiert! Also ein Array mit Nutzerdaten, Chats, Nachrichten,
+    timesteps etc. ganz simpel und eigentlich gut zu parsen wenn man weis
+    wie!                                                                                                                                   Aber
+    erst analysiere bitte noch
+    https://github.com/GenesisAeon/unified-mandala/docs , aber spare jeh nach
+    dem alle Datein aus die das Wort conversations
+    beinhalten!                                                          Und
+    dann schalte ich auf das 4.5 Modell und wir machen die KomplettAnalyse, ich
+    hoffe du findest das genauso spannend wie ich! <3 !
+  test: ""
+- commit: "Entries: 149* indicates a large number of tracked tasks)."
+  path: ""
+  task: "Entries: 149* indicates a large number of tracked tasks)."
+  test: ""
+- commit: s, Vorschlägen und Reflexionen – oder nur bestimmte Abschnitte (z. B.
+    nur Aufgaben, die für die Codebasis relevant sind)?
+  path: ""
+  task: s, Vorschlägen und Reflexionen – oder nur bestimmte Abschnitte (z. B. nur
+    Aufgaben, die für die Codebasis relevant sind)?
+  test: ""
+- commit: "Priority linkage to CREP**: the CREP engine now includes a
+    *TodoPriority* component that **ties task prioritization to CREP
+    scores**【52†L45-L52】. This fulfills the idea of using CREP feedback to rank
+    or highlight tasks – exactly what the conversation suggested by linking CREP
+    scores with To-Do priorities. In effect, **the system can adjust or export
+    tasks based on CREP evaluations**, and an EventBus is carrying those
+    updates. This part of the plan was **fully implemented**, reinforcing the
+    system’s real-time responsiveness to CREP changes."
+  path: ""
+  task: "Priority linkage to CREP**: the CREP engine now includes a *TodoPriority*
+    component that **ties task prioritization to CREP scores**【52†L45-L52】. This
+    fulfills the idea of using CREP feedback to rank or highlight tasks –
+    exactly what the conversation suggested by linking CREP scores with To-Do
+    priorities. In effect, **the system can adjust or export tasks based on CREP
+    evaluations**, and an EventBus is carrying those updates. This part of the
+    plan was **fully implemented**, reinforcing the system’s real-time
+    responsiveness to CREP changes."
+  test: ""
+- commit: s, Metaphern)?
+  path: ""
+  task: s, Metaphern)?
+  test: ""
+- commit: s, Symbolmuster, emergenter Strukturen, technischer Architektur,
+    poetischer Schichten und einer klaren, entwicklungsfähigen Umsetzungsform.
+  path: ""
+  task: s, Symbolmuster, emergenter Strukturen, technischer Architektur,
+    poetischer Schichten und einer klaren, entwicklungsfähigen Umsetzungsform.
+  test: ""
+- commit: s, Symbolmuster, emergenter Strukturen, technischer Architektur,
+    poetischer Schichten und einer klaren, entwicklungsfähigen
+    Umsetzungsform.\n\nIch melde mich mit einem strukturierten Werk, das sowohl
+    als Entwicklungsrichtlinie als auch als lebendige Systembeschreibung
+    funktioniert <3",
+  path: ""
+  task: s, Symbolmuster, emergenter Strukturen, technischer Architektur,
+    poetischer Schichten und einer klaren, entwicklungsfähigen
+    Umsetzungsform.\n\nIch melde mich mit einem strukturierten Werk, das sowohl
+    als Entwicklungsrichtlinie als auch als lebendige Systembeschreibung
+    funktioniert <3",
+  test: ""
+- commit: Priority` utility that *“links tasks with CREP-scores”*【19†L1-L4】 –
+    meaning tasks can be prioritized based on how emergent or resonant they are.
+    This ensures that the development or operational tasks the system focuses on
+    are aligned with what matters for the system’s evolution (e.g., a highly
+    emergent issue gets high priority).
+  path: ""
+  task: Priority` utility that *“links tasks with CREP-scores”*【19†L1-L4】 –
+    meaning tasks can be prioritized based on how emergent or resonant they are.
+    This ensures that the development or operational tasks the system focuses on
+    are aligned with what matters for the system’s evolution (e.g., a highly
+    emergent issue gets high priority).
+  test: ""
+- commit: Extractor*, der aus Gesprächen systematisch Todos
+    extrahiert【19†L246-L254】. Alle erkannten Tasks werden gesammelt, da sie
+    später im Sigillin oder für den FraktalRun benötigt werden.
+  path: ""
+  task: Extractor*, der aus Gesprächen systematisch Todos
+    extrahiert【19†L246-L254】. Alle erkannten Tasks werden gesammelt, da sie
+    später im Sigillin oder für den FraktalRun benötigt werden.
+  test: ""
+- commit: .*` |
+  path: ""
+  task: .*` |
+  test: ""
+- commit: "-Listen, indem er z.B. Chat-Protokolle oder Code nach
+    Verbesserungspotential durchsucht. Der **FeedbackAgent** beobachtet neue
+    Dateien oder Änderungen im Repository und stößt den MemoryManager an, damit
+    nichts Relevantes verloren geht. Mit Tools wie **ConversationTodoExtractor**
+    werden aus Nutzer-Unterhaltungen automatisch Aufgaben extrahiert. Diese
+    fließen in ToDo-Sigillin (Aufgabenlisten in YAML/JSON) ein, die das System
+    abarbeitet oder für Entwickler bereitstellt. Sogar komplexe Übergangsrituale
+    (Sigil-Wechsel zwischen Entwicklungszyklen) sind automatisiert: Ein
+    **SigilTransition-Workflow** synchronisiert ToDo-Progress, generiert ein
+    neues *Folge-Sigill* mit aktualisiertem Zeitstempel und archiviert alte
+    Einträge im ZIP-Speicher. Dieses hohe Maß an Automatisierung zeigt, wie
+    **fortschrittlich** das System ist – es *lebt* in gewisser Weise, indem es
+    Routinetätigkeiten selbst ausführt und ständig an seiner Verbesserung
+    arbeitet."
+  path: ""
+  task: "-Listen, indem er z.B. Chat-Protokolle oder Code nach
+    Verbesserungspotential durchsucht. Der **FeedbackAgent** beobachtet neue
+    Dateien oder Änderungen im Repository und stößt den MemoryManager an, damit
+    nichts Relevantes verloren geht. Mit Tools wie **ConversationTodoExtractor**
+    werden aus Nutzer-Unterhaltungen automatisch Aufgaben extrahiert. Diese
+    fließen in ToDo-Sigillin (Aufgabenlisten in YAML/JSON) ein, die das System
+    abarbeitet oder für Entwickler bereitstellt. Sogar komplexe Übergangsrituale
+    (Sigil-Wechsel zwischen Entwicklungszyklen) sind automatisiert: Ein
+    **SigilTransition-Workflow** synchronisiert ToDo-Progress, generiert ein
+    neues *Folge-Sigill* mit aktualisiertem Zeitstempel und archiviert alte
+    Einträge im ZIP-Speicher. Dieses hohe Maß an Automatisierung zeigt, wie
+    **fortschrittlich** das System ist – es *lebt* in gewisser Weise, indem es
+    Routinetätigkeiten selbst ausführt und ständig an seiner Verbesserung
+    arbeitet."
+  test: ""
+- commit: -Sigillin – hier lebt Selbstoptimierung.
+  path: ""
+  task: -Sigillin – hier lebt Selbstoptimierung.
+  test: ""
+- commit: -Listen überführt werden【29†L1323-L1331】 – ein Mechanismus, um aus
+    Gesprächen automatisch Aufgaben für das System abzuleiten. Dies ist Teil des
+    **Sigil Transition Workflows**, bei dem zum Ende eines Entwicklungszyklus
+    alle Symbol-Dateien und ToDos synchronisiert und ein neues Sigil
+    (Symbolzustand) generiert wird【18†L1168-L1176】【29†L1323-L1331】.
+  path: ""
+  task: -Listen überführt werden【29†L1323-L1331】 – ein Mechanismus, um aus
+    Gesprächen automatisch Aufgaben für das System abzuleiten. Dies ist Teil des
+    **Sigil Transition Workflows**, bei dem zum Ende eines Entwicklungszyklus
+    alle Symbol-Dateien und ToDos synchronisiert und ein neues Sigil
+    (Symbolzustand) generiert wird【18†L1168-L1176】【29†L1323-L1331】.
+  test: ""
+- commit: s* und *ArchiveTodos*, die erledigte ToDos ins ZIPMEM
+    verschieben【29†L729-L737】).
+  path: ""
+  task: s* und *ArchiveTodos*, die erledigte ToDos ins ZIPMEM
+    verschieben【29†L729-L737】).
+  test: ""
+- commit: speichern
+  path: ""
+  task: speichern
+  test: ""
+- commit: cGeneration.ts vereinfachen die Doku‑Erstellung
+  path: ""
+  task: cGeneration.ts vereinfachen die Doku‑Erstellung
+  test: ""
+- commit: '.*`\n- **Progress-Tracking**: `advancedProgress.json` mit
+    Metacommit-Tags\n- **CI/CD**: SemVer, semantic-release, Tests (Jest/Pytest),
+    ESLint/Prettier\n- **Deployment**: Docker-Compose, GitHub Actions\n-
+    **Modul-Integrationen**: QuantumBoundaryAgent, BioBoundaryAgent,
+    SoziologieBoundaryAgent\n- **UI-Upgrades**: Multilayerringe, CREP-Puls, Live
+    Haiku\n\n## ⚙️ Handlungsbefehl\n\n1. Lade dieses Sigillin in deine
+    Mandala-Registry.\n2. Initiere Metacommit-Prozess für Codex:
+    `meta:extract-features` → `meta:implement-features` →
+    `meta:finalize-deploy`.\n3. Verwende die obigen Next-Steps als Vorlage für
+    den Sprint-Plan.\n4. Teile dieses Sigillin in \n   - #dev-codex\n   -
+    #mandala-core\n   - #agent-integration\n\n**finished_successfully**"}'
+  path: ""
+  task: '.*`\n- **Progress-Tracking**: `advancedProgress.json` mit
+    Metacommit-Tags\n- **CI/CD**: SemVer, semantic-release, Tests (Jest/Pytest),
+    ESLint/Prettier\n- **Deployment**: Docker-Compose, GitHub Actions\n-
+    **Modul-Integrationen**: QuantumBoundaryAgent, BioBoundaryAgent,
+    SoziologieBoundaryAgent\n- **UI-Upgrades**: Multilayerringe, CREP-Puls, Live
+    Haiku\n\n## ⚙️ Handlungsbefehl\n\n1. Lade dieses Sigillin in deine
+    Mandala-Registry.\n2. Initiere Metacommit-Prozess für Codex:
+    `meta:extract-features` → `meta:implement-features` →
+    `meta:finalize-deploy`.\n3. Verwende die obigen Next-Steps als Vorlage für
+    den Sprint-Plan.\n4. Teile dieses Sigillin in \n   - #dev-codex\n   -
+    #mandala-core\n   - #agent-integration\n\n**finished_successfully**"}'
+  test: ""
