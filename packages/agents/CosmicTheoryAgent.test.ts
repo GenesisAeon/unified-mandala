@@ -121,4 +121,15 @@ describe('callPySRService', () => {
     expect(introspectionLog.length).toBeGreaterThan(1);
     expect(introspectionLog[0].message).toMatch(/start/);
   });
+
+  it('caches regression results', async () => {
+    const post = vi
+      .spyOn(axios, 'post')
+      .mockResolvedValue({ data: { equation: 'cached' } });
+    const first = await callPySRService([7], 'http://localhost/pysr');
+    const second = await callPySRService([7], 'http://localhost/pysr');
+    expect(first).toBe('cached');
+    expect(second).toBe('cached');
+    expect(post).toHaveBeenCalledTimes(1);
+  });
 });

@@ -1,0 +1,5 @@
+plugins:
+  - name: A
+    component: ./pluginA.js
+  - name: B
+    component: ./pluginB.js
