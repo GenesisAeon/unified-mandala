@@ -7751,14 +7751,14 @@
     "path": "packages/cli-tools",
     "task": "Refine docs for SigillinOnDemandGenerator and backup utilities",
     "test": "",
-    "status": "planned"
+    "status": "done"
   },
   {
     "commit": "Clarify Manager versus Orchestrator roles",
     "path": "packages/aeon-genesisos",
     "task": "Define responsibilities and naming for Manager and Orchestrator modules",
     "test": "",
-    "status": "planned"
+    "status": "done"
   },
   {
     "commit": "Add unit tests for core agents",

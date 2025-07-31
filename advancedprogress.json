@@ -1,5 +1,5 @@
 {
-  "lastCommit": "feat: add UnifiedLogger and core agent tests",
+  "lastCommit": "chore: update progress log",
   "fractalStep": "sync",
   "openBranches": [
     "work"
@@ -125,22 +125,6 @@
     },
     {
       "commit": "Update ToDos from advanced conversations",
-      "status": "planned"
-    },
-    {
-      "commit": "Document CLI tools for sigil and backup",
-      "status": "planned"
-    },
-    {
-      "commit": "Clarify Manager versus Orchestrator roles",
-      "status": "planned"
-    },
-    {
-      "commit": "Add unit tests for core agents",
-      "status": "planned"
-    },
-    {
-      "commit": "Centralize logging",
       "status": "planned"
     }
   ],
@@ -651,6 +635,14 @@
     },
     {
       "commit": "Implement MandalaReader module",
+      "status": "done"
+    },
+    {
+      "commit": "Document CLI tools for sigil and backup",
+      "status": "done"
+    },
+    {
+      "commit": "Clarify Manager versus Orchestrator roles",
       "status": "done"
     }
   ]
