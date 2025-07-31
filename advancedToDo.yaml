@@ -8612,3 +8612,33 @@
   task: Run project tests and compile unified report
   test: scripts/run-program-tests.test.sh
   status: planned
+- commit: Refactor CREPManager with async file operations
+  path: packages/crep-engine/CREPManager.ts
+  task: Use asynchronous file handling and reduce complexity per feedback
+  test: packages/crep-engine/CREPManager.async.test.ts
+  status: planned
+- commit: Add English documentation for international audience
+  path: docs/README.en.md
+  task: Provide English summary of README and key documents
+  test: ""
+  status: planned
+- commit: Create onboarding video tutorial
+  path: docs/tutorials/onboarding-video.md
+  task: Step-by-step developer onboarding with video links
+  test: ""
+  status: planned
+- commit: Document example use cases
+  path: docs/use-cases.md
+  task: Describe concrete UnifiedMandala application scenarios
+  test: ""
+  status: planned
+- commit: Community outreach plan
+  path: docs/community/outreach-plan.md
+  task: Outline strategy for partnerships and funding opportunities
+  test: ""
+  status: planned
+- commit: Improve QA workflow script
+  path: scripts/qa-enhanced.sh
+  task: Automate pnpm run qa and summarize results
+  test: scripts/qa-enhanced.test.sh
+  status: planned
