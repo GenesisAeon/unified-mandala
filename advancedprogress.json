@@ -1,5 +1,5 @@
 {
-  "lastCommit": "Merge pull request #919 from GenesisAeon/dlap95-codex/extract-tasks-and-features-for-advancedtodo",
+  "lastCommit": "Fix formatting",
   "fractalStep": "sync",
   "openBranches": [
     "work"
@@ -257,6 +257,30 @@
     },
     {
       "commit": "Create framework status report",
+      "status": "planned"
+    },
+    {
+      "commit": "Add refresh-handbook script",
+      "status": "planned"
+    },
+    {
+      "commit": "Provide setup-unifiedmandala installer",
+      "status": "planned"
+    },
+    {
+      "commit": "Implement Sigillin Loader component",
+      "status": "planned"
+    },
+    {
+      "commit": "Expand MasterCanvas nodes",
+      "status": "planned"
+    },
+    {
+      "commit": "Add symbolzeit base configuration",
+      "status": "planned"
+    },
+    {
+      "commit": "Create GPT-Synapse module",
       "status": "planned"
     }
   ],
