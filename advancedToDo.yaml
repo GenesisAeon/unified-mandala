@@ -8562,3 +8562,38 @@
   path: advancedToDo.yaml
   task: Optimales Sigillin generieren und FraktalRun starten
   test: ""
+- commit: Integrate MistralAPI agent
+  path: packages/agents/mistral-api-agent
+  task: Build FastAPI wrapper for Mistral OpenAPI spec and register service
+  test: packages/agents/mistral-api-agent/MistralAPI.test.ts
+  status: planned
+- commit: Add Claude service integration
+  path: services/claude_service
+  task: Provide Claude code service and orchestrator config
+  test: services/claude_service/claude_service.test.ts
+  status: planned
+- commit: Introduce Mistral Code Agent helper
+  path: packages/agents/mistral-code-agent
+  task: Support code generation via Mistral API
+  test: packages/agents/mistral-code-agent/MistralCodeAgent.test.ts
+  status: planned
+- commit: Extend Archiv Menschheitsspuren dataset
+  path: docs/archive/archiv-menschheitsspuren.md
+  task: Document additional archaeological findings from conversation
+  test: ""
+  status: planned
+- commit: Add archive maintenance script
+  path: scripts/archive-menschheitsspuren.js
+  task: Append new entries to archiv dataset automatically
+  test: scripts/archive-menschheitsspuren.test.js
+  status: planned
+- commit: Generate framework summary report
+  path: docs/FrameworkReport.md
+  task: Summarize UnifiedMandala architecture and future plans
+  test: ""
+  status: planned
+- commit: Add framework report generator script
+  path: scripts/generate-framework-report.js
+  task: Auto-generate framework report from repo analysis
+  test: scripts/generate-framework-report.test.js
+  status: planned
