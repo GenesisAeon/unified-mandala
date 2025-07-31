@@ -7267,14 +7267,14 @@
     "path": "packages/crep-engine/CREPFeedbackAPI.ts",
     "task": "API for collective CREP feedback and heatmap",
     "test": "packages/crep-engine/CREPFeedbackAPI.test.ts",
-    "status": "planned"
+    "status": "done"
   },
   {
     "commit": "Create MandalaVisualizer component",
     "path": "packages/unifiedmandala-ui/components/MandalaVisualizer.tsx",
     "task": "Visualize live Mandala resonance network",
     "test": "packages/unifiedmandala-ui/components/MandalaVisualizer.test.tsx",
-    "status": "planned"
+    "status": "done"
   },
   {
     "commit": "Create GenesisInterfaceMasterplan blueprint",
