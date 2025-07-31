@@ -7211,21 +7211,21 @@
     "path": "packages/unifiedmandala-ui/components/MandalaFlowDashboard.tsx",
     "task": "Dashboard with ResonancePlotter and animated MandalaFlow canvas",
     "test": "packages/unifiedmandala-ui/components/MandalaFlowDashboard.test.tsx",
-    "status": "planned"
+    "status": "done"
   },
   {
     "commit": "Add SigillinBubbles component",
     "path": "packages/unifiedmandala-ui/components/SigillinBubbles.tsx",
     "task": "Interactive Sigillin bubbles with framer-motion",
     "test": "packages/unifiedmandala-ui/components/SigillinBubbles.test.tsx",
-    "status": "planned"
+    "status": "done"
   },
   {
     "commit": "Enhance AgentDispatcher with ErrorBoundary and priority queue",
     "path": "packages/agents/AgentDispatcher.ts",
     "task": "Add error boundary wrapper and priority-based task dispatch",
     "test": "packages/agents/AgentDispatcher.test.ts",
-    "status": "planned"
+    "status": "done"
   },
   {
     "commit": "Create PantheonBegegnungsraum VR component",
@@ -7583,7 +7583,7 @@
     "path": "services/claude_service",
     "task": "Provide Claude code service and orchestrator config",
     "test": "services/claude_service/claude_service.test.ts",
-    "status": "planned"
+    "status": "done"
   },
   {
     "commit": "Introduce Mistral Code Agent helper",

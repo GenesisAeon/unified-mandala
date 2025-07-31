@@ -12,7 +12,7 @@ router.post('/code', async (req, res) => {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ snippet })
     });
-    const data = await resp.json();
+    const data = await (resp as any).json();
     res.json(data);
   } catch (err) {
     res.status(500).json({ error: 'mistral request failed' });
