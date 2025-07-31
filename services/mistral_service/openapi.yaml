@@ -1,0 +1,24 @@
+openapi: 3.0.0
+info:
+  title: Mistral Code Agent
+  version: 0.1.0
+paths:
+  /code:
+    post:
+      summary: Send code snippet to Mistral API
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                snippet:
+                  type: string
+      responses:
+        '200':
+          description: Analysis result
+          content:
+            application/json:
+              schema:
+                type: object
