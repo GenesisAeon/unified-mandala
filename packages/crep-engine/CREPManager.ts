@@ -1,6 +1,6 @@
 import { CREPEntry } from './types';
 import { GPTEventHub } from '../gpt-bridges/GPTEventHub';
-import fs from 'fs';
+import fs from 'fs/promises';
 import path from 'path';
 
 export class CREPManager {
@@ -11,12 +11,22 @@ export class CREPManager {
   constructor() {
     this.useLocalStorage = typeof globalThis.localStorage !== 'undefined';
     this.filePath = path.resolve(process.cwd(), 'crepHistory.json');
+    this.loadHistory().catch((error) => {
+      console.error('Fehler beim Laden der CREP-History:', error);
+    });
+  }
+
+  private async loadHistory() {
     try {
       let savedHistory: string | null = null;
       if (this.useLocalStorage) {
         savedHistory = localStorage.getItem('crepHistory');
-      } else if (fs.existsSync(this.filePath)) {
-        savedHistory = fs.readFileSync(this.filePath, 'utf8');
+      } else {
+        try {
+          savedHistory = await fs.readFile(this.filePath, 'utf8');
+        } catch {
+          savedHistory = null;
+        }
       }
       if (savedHistory) {
         this.crepHistory = JSON.parse(savedHistory).map((entry: CREPEntry) => ({
@@ -30,14 +40,14 @@ export class CREPManager {
     }
   }
 
-  addCREPEntry(C: number, R: number, E: number, P: number) {
+  async addCREPEntry(C: number, R: number, E: number, P: number) {
     const entry: CREPEntry = { timestamp: new Date(), C, R, E, P };
     this.crepHistory.push(entry);
     if (this.useLocalStorage) {
       localStorage.setItem('crepHistory', JSON.stringify(this.crepHistory));
     } else {
       try {
-        fs.writeFileSync(this.filePath, JSON.stringify(this.crepHistory));
+        await fs.writeFile(this.filePath, JSON.stringify(this.crepHistory));
       } catch (err) {
         console.error('Fehler beim Schreiben der CREP-History:', err);
       }

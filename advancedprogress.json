@@ -1,5 +1,5 @@
 {
-  "lastCommit": "fix: newline in progress file",
+  "lastCommit": "chore: update progress logs",
   "fractalStep": "sync",
   "openBranches": [
     "work"
@@ -109,26 +109,6 @@
     },
     {
       "commit": "Add PantheonBoundaryLawExplorer service",
-      "status": "planned"
-    },
-    {
-      "commit": "Create onboarding video tutorial",
-      "status": "planned"
-    },
-    {
-      "commit": "Document example use cases",
-      "status": "planned"
-    },
-    {
-      "commit": "Community outreach plan",
-      "status": "planned"
-    },
-    {
-      "commit": "Improve QA workflow script",
-      "status": "planned"
-    },
-    {
-      "commit": "Document offline testing workflow and ToDo sync",
       "status": "planned"
     },
     {
