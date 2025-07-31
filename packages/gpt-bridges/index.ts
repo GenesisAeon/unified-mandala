@@ -3,3 +3,4 @@ export * from './aeon-gpt-synapse';
 export * from './GPTConversationLogger';
 export * from './gptRoles';
 export * from './ChatGPTWrapper';
+export * from "./GPTSynapse";

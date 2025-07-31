@@ -1,0 +1,13 @@
+phasen:
+  - id: morgen
+    phase: Erwachen
+    duration: 2h
+  - id: tag
+    phase: Aktiv
+    duration: 8h
+  - id: abend
+    phase: Reflexion
+    duration: 4h
+  - id: nacht
+    phase: Ruhe
+    duration: 10h

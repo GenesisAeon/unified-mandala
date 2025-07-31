@@ -312,4 +312,21 @@
     "status": "geplant",
     "poetry": "Bewusstsein trifft Resonanz"
   }
+  ,{
+    "id": "mistral-plugin",
+    "label": "Mistral Code Agent",
+    "crep": {"C":5,"R":7,"E":5,"P":6},
+    "related": [{"id":"ki-bewusstsein","relation":"supports"}],
+    "type": "service",
+    "status": "geplant",
+    "poetry": "Sturm der Codes"
+  },{
+    "id": "ai-collab-ui",
+    "label": "Collaborative AI UI",
+    "crep": {"C":6,"R":6,"E":7,"P":5},
+    "related": [{"id":"mistral-plugin","relation":"interfaces"}],
+    "type": "ui",
+    "status": "geplant",
+    "poetry": "Gemeinsam sehen"
+  }
 ]

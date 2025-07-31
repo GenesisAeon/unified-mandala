@@ -7779,69 +7779,69 @@
     "path": "services/mistral_service",
     "task": "Add service and OpenAPI spec for Mistral code agent support",
     "test": "services/mistral_service/mistral.test.ts",
-    "status": "planned"
+    "status": "done"
   },
   {
     "commit": "Build collaborative AI UI",
     "path": "packages/unifiedmandala-ui",
     "task": "Multi-agent interface with human transparency features",
     "test": "packages/unifiedmandala-ui/AIUI.test.ts",
-    "status": "planned"
+    "status": "done"
   },
   {
     "commit": "Archive old ToDos with ZIPMEM",
     "path": "services/memory-manager",
     "task": "Use ArchiveOldTodos to compress completed tasks",
     "test": "services/memory-manager/ArchiveOldTodos.test.ts",
-    "status": "planned"
+    "status": "done"
   },
   {
     "commit": "Create framework status report",
     "path": "docs/Framework-Bericht.md",
     "task": "Summarize repository state and planned features with improvement proposals",
     "test": "",
-    "status": "planned"
+    "status": "done"
   },
   {
     "commit": "Add refresh-handbook script",
     "path": "scripts/refresh-handbook.js",
     "task": "Automatically regenerate the handbook from source comments",
     "test": "scripts/__tests__/refresh-handbook.test.js",
-    "status": "planned"
+    "status": "done"
   },
   {
     "commit": "Provide setup-unifiedmandala installer",
     "path": "scripts/setup-unifiedmandala.sh",
     "task": "Install dependencies and configure environment",
     "test": "scripts/__tests__/setup-unifiedmandala.test.sh",
-    "status": "planned"
+    "status": "done"
   },
   {
     "commit": "Implement Sigillin Loader component",
     "path": "packages/unifiedmandala-ui/components/SigillinLoader.tsx",
     "task": "Import and filter Sigillin files via UI",
     "test": "packages/unifiedmandala-ui/components/SigillinLoader.test.tsx",
-    "status": "planned"
+    "status": "done"
   },
   {
     "commit": "Expand MasterCanvas nodes",
     "path": "config/sigillin_nodes.json",
     "task": "Add new nodes from roadmap and update MasterCanvas display",
     "test": "packages/unifiedmandala-ui/components/MasterCanvas.test.tsx",
-    "status": "planned"
+    "status": "done"
   },
   {
     "commit": "Add symbolzeit base configuration",
     "path": "config/symbolzeit.yaml",
     "task": "Provide default symbolzeit phases with customizable times",
     "test": "packages/core/__tests__/symbolzeit-config.test.ts",
-    "status": "planned"
+    "status": "done"
   },
   {
     "commit": "Create GPT-Synapse module",
     "path": "packages/gpt-bridges/GPTSynapse.ts",
     "task": "Interface between Aeon system and external GPT services",
     "test": "packages/gpt-bridges/GPTSynapse.test.ts",
-    "status": "planned"
+    "status": "done"
   }
 ]
