@@ -7607,6 +7607,20 @@
     "status": "planned"
   },
   {
+    "commit": "Add climate context to Archiv Menschheitsspuren",
+    "path": "docs/archive/archiv-menschheitsspuren.md",
+    "task": "Include climatic and cosmic event data for documented findings",
+    "test": "",
+    "status": "planned"
+  },
+  {
+    "commit": "Create cosmic event timeline (60k-40k BP)",
+    "path": "docs/archive/cosmic-event-timeline.md",
+    "task": "Document cosmic and climatic events influencing early humans",
+    "test": "",
+    "status": "planned"
+  },
+  {
     "commit": "Generate framework summary report",
     "path": "docs/FrameworkReport.md",
     "task": "Summarize UnifiedMandala architecture and future plans",
