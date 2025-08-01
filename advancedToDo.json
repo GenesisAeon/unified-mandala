@@ -8088,5 +8088,26 @@
     "task": "Document governance mechanisms and trustworthy AI guidelines",
     "test": "docs/ethics/ethics.test.ts",
     "status": "open"
+  },
+  {
+    "commit": "Document Mistral Code Agent",
+    "path": "README.md",
+    "task": "Add usage section for Mistral Code Agent",
+    "test": "docs/mistral/readme.test.md",
+    "status": "open"
+  },
+  {
+    "commit": "Add dataset images",
+    "path": "docs/archive/images",
+    "task": "Provide image references for Archiv Menschheitsspuren",
+    "test": "docs/archive/archive.test.ts",
+    "status": "open"
+  },
+  {
+    "commit": "Integrate historical dataset",
+    "path": "scripts/historical-data-sync.ts",
+    "task": "Import external archaeological data into archive",
+    "test": "scripts/historical-data-sync.test.ts",
+    "status": "open"
   }
 ]
