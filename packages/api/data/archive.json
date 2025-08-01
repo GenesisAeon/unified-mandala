@@ -1,0 +1,32 @@
+{
+  "entries": [
+    {
+      "location": "Blombos Cave, Südafrika",
+      "ageBP": 75000,
+      "description": "Hints of early symbolic art",
+      "climate": "warm"
+    },
+    {
+      "location": "Göbekli Tepe, Türkei",
+      "ageBP": 11500,
+      "description": "Early temple construction",
+      "climate": "warming"
+    },
+    {
+      "location": "Lake Mungo, Australien",
+      "ageBP": 45000,
+      "description": "Earliest cremations",
+      "climate": "dry"
+    },
+    {
+      "event": "Junge Dryas",
+      "ageBP": 12900,
+      "impact": "Rapid cooling and migration changes"
+    },
+    {
+      "event": "Laschamp-Exkursion",
+      "ageBP": 42000,
+      "impact": "Magnetic storm influencing environment"
+    }
+  ]
+}
