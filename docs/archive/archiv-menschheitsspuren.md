@@ -7,6 +7,9 @@ Dieses Archiv sammelt nach und nach wissenschaftlich belegte Funde, die im Laufe
 - **Blombos Cave, Suedafrika** – ca. 75.000 BP – Hinweise auf fruehe Symbolkunst, warmes Klima.
 - **Goebekli Tepe, Tuerskei** – ca. 11.500 BP – frueher Tempelbau, waehrend einer Klimaerwaermung.
 - **Lake Mungo, Australien** – ca. 45.000 BP – früheste Feuerbestattungen in trockener Phase.
+- **Denisova Cave, Russland** – ca. 50.000 BP – DNA-Spuren fr\u00fcher Menschen, kaltes Kontinentalklima.
+- **Bacho Kiro, Bulgarien** – ca. 46.000 BP – fr\u00fcher Nachweis moderner Menschen in Europa.
+- **Panga ya Saidi, Kenia** – ca. 78.000 BP – Langzeitnutzung einer H\u00f6hle bei wechselhaftem Klima.
 
 ## Klimatische und kosmische Ereignisse
 
