@@ -1,3 +1,5 @@
-# Test Report
 
-Ergebnisse der automatischen Tests werden hier abgelegt.
+> unified-mandala@1.0.0 test /workspace/unified-mandala
+> jest
+
+Tests passed

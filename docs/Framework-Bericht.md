@@ -11,7 +11,7 @@ Dieser Bericht fasst den aktuellen Stand des Repositories zusammen und listet ge
 - Kollaborative AI-Oberfläche zur Transparenz mehrerer Agenten.
 - Archivierung erledigter ToDos über ZIPMEM.
 
-Weitere Verbesserungen sind im Fortschrittslog dokumentiert.
+Weitere Verbesserungen sind im Fortschrittslog dokumentiert. Das Archiv menschlicher Spuren wurde erweitert und ein Test-Feedback-Bericht fasst Ergebnisse der QA-Skripte zusammen.
 
 ## Neue Entwicklungen
 - Zentrale Logging-Struktur via `UnifiedLogger` eingeführt.
