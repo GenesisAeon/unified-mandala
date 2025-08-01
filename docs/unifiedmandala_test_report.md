@@ -3,3 +3,5 @@
 > jest
 
 Tests passed
+
+Tests executed via pnpm test.

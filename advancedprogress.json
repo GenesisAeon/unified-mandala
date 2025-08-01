@@ -1,21 +1,12 @@
 {
-  "lastCommit": "feat: extend archive and test reports",
+  "lastCommit": "feat: extended resonance blueprint and archive update",
   "fractalStep": "sync",
   "openBranches": [
     "work"
   ],
   "mergeConflicts": [],
   "notes": "UnifiedLogger added; core agents covered by tests",
-  "pendingTasks": [
-    {
-      "commit": "Create PantheonBegegnungsraum VR component",
-      "status": "planned"
-    },
-    {
-      "commit": "Add ExtendedResonanceBlueprint",
-      "status": "planned"
-    }
-  ],
+  "pendingTasks": [],
   "progress": [
     {
       "commit": "Implement boundary manager modules",
@@ -531,6 +522,14 @@
     },
     {
       "commit": "Clarify Manager versus Orchestrator roles",
+      "status": "done"
+    },
+    {
+      "commit": "Create PantheonBegegnungsraum VR component",
+      "status": "done"
+    },
+    {
+      "commit": "Add ExtendedResonanceBlueprint",
       "status": "done"
     }
   ]
