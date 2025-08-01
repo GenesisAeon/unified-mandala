@@ -1,5 +1,5 @@
 {
-  "lastCommit": "docs(todo): add repo analysis and event bus tasks",
+  "lastCommit": "chore: update progress metadata",
   "fractalStep": "sync",
   "openBranches": [
     "work"
@@ -109,6 +109,18 @@
     },
     {
       "commit": "Create ethics whitepaper",
+      "status": "open"
+    },
+    {
+      "commit": "Document Mistral Code Agent",
+      "status": "open"
+    },
+    {
+      "commit": "Add dataset images",
+      "status": "open"
+    },
+    {
+      "commit": "Integrate historical dataset",
       "status": "open"
     }
   ],
