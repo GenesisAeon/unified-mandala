@@ -7309,7 +7309,7 @@
     "path": "docs/mandala/MandalaNumberSequence.md",
     "task": "Document Mandala number sequence interactions and LeereButton",
     "test": "docs/mandala/__tests__/MandalaNumberSequence.test.ts",
-    "status": "planned"
+    "status": "done"
   },
   {
     "commit": "Implement MandalaNumberEngine",
@@ -7323,7 +7323,7 @@
     "path": "packages/unifiedmandala-ui/components/LeereButton.tsx",
     "task": "Toggle Mandala number sequence display",
     "test": "packages/unifiedmandala-ui/components/LeereButton.test.tsx",
-    "status": "planned"
+    "status": "done"
   },
   {
     "commit": "Create CosmicTheoryAgent_with_Sigil module",
