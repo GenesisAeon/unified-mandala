@@ -6,4 +6,8 @@ export class BoundaryLawDiscoveryEngine {
   analyze(rules: BoundaryRule[]): string[] {
     return this.discovery.discover(rules);
   }
+
+  scan() {
+    return this.analyze([]);
+  }
 }

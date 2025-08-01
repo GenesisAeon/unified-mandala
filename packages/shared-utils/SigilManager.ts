@@ -13,6 +13,7 @@ export type SigilManagerEvent =
 
 export class SigilManager extends EventEmitter {
   private sigils: SigilEntry[] = [];
+  private currentId = '';
 
   constructor() {
     super();
@@ -24,6 +25,7 @@ export class SigilManager extends EventEmitter {
 
   add(entry: SigilEntry): void {
     this.sigils.push(entry);
+    if (!this.currentId) this.currentId = entry.id;
     this.emit('sigil:added', entry);
   }
 
@@ -38,6 +40,10 @@ export class SigilManager extends EventEmitter {
   remove(id: string): void {
     this.sigils = this.sigils.filter(e => e.id !== id);
     this.emit('sigil:removed', id);
+  }
+
+  currentSigil(): string {
+    return this.currentId;
   }
 
   loadFromString(id: string, text: string): SigilEntry {
