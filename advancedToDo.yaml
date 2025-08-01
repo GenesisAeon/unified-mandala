@@ -8220,7 +8220,7 @@
   path: docs/mandala/MandalaNumberSequence.md
   task: Document Mandala number sequence interactions and LeereButton
   test: docs/mandala/__tests__/MandalaNumberSequence.test.ts
-  status: planned
+  status: done
 - commit: Implement MandalaNumberEngine
   path: packages/mandala-core/MandalaNumberEngine.ts
   task: Generate and analyze number sequences for Mandala modules
@@ -8230,7 +8230,7 @@
   path: packages/unifiedmandala-ui/components/LeereButton.tsx
   task: Toggle Mandala number sequence display
   test: packages/unifiedmandala-ui/components/LeereButton.test.tsx
-  status: planned
+  status: done
 - commit: Create CosmicTheoryAgent_with_Sigil module
   path: packages/agents/CosmicTheoryAgent_with_Sigil.ts
   task: Integrate SigilManager and dynamic configuration into CosmicTheoryAgent
