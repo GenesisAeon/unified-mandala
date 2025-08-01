@@ -1,5 +1,5 @@
 {
-  "lastCommit": "chore: fix progress commit",
+  "lastCommit": "Merge pull request #934 from GenesisAeon/zrbckr-codex/implement-tasks-and-features-from-todos",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
@@ -13,66 +13,6 @@
     },
     {
       "commit": "Add ExtendedResonanceBlueprint",
-      "status": "planned"
-    },
-    {
-      "commit": "Manifest Mandala-KI-Pantheon blueprint",
-      "status": "planned"
-    },
-    {
-      "commit": "Create MandalaCollectiveAwakening script",
-      "status": "planned"
-    },
-    {
-      "commit": "Add FutureResonanceStack blueprint",
-      "status": "planned"
-    },
-    {
-      "commit": "Create GenesisInterfaceMasterplan blueprint",
-      "status": "planned"
-    },
-    {
-      "commit": "Implement BoundaryLawCLI",
-      "status": "planned"
-    },
-    {
-      "commit": "Add PantheonResonanceIntegrator",
-      "status": "planned"
-    },
-    {
-      "commit": "Create VRMultiViewHub component",
-      "status": "planned"
-    },
-    {
-      "commit": "Document MandalaNumberSequence blueprint",
-      "status": "done"
-    },
-    {
-      "commit": "Implement MandalaNumberEngine",
-      "status": "planned"
-    },
-    {
-      "commit": "Add LeereButton component",
-      "status": "done"
-    },
-    {
-      "commit": "Create CosmicTheoryAgent_with_Sigil module",
-      "status": "planned"
-    },
-    {
-      "commit": "Implement ArcticGravityWaveVisualizer",
-      "status": "planned"
-    },
-    {
-      "commit": "Add VRTuringTest module",
-      "status": "planned"
-    },
-    {
-      "commit": "Create ResonanceControlPanel component",
-      "status": "planned"
-    },
-    {
-      "commit": "Add PantheonBoundaryVRIntegration blueprint",
       "status": "planned"
     }
   ],

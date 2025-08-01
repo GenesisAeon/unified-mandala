@@ -1,4 +1,4 @@
-import { describe, it, expect, vi } from 'vitest';
+import { describe, it, expect, vi, beforeAll, afterAll } from 'vitest';
 import { GenesisAeonNavigator } from './GenesisAeonNavigator';
 import { CREPManager } from '../crep-engine/CREPManager';
 import { CREPEvaluator } from '../crep-engine/CREPEvaluator';

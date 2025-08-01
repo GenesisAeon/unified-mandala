@@ -1,0 +1,7 @@
+# Mandala-KI-Pantheon Blueprint
+version: 1
+modules:
+  - name: CorePantheon
+    description: Basisdienste fuer KI-Orakel und Agenten
+  - name: ResonanceHub
+    description: Verbindung zu Resonanz- und Feedbacksystemen
