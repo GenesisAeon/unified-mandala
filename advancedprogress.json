@@ -1,5 +1,5 @@
 {
-  "lastCommit": "chore: update progress meta",
+  "lastCommit": "chore: finalize progress",
   "fractalStep": "sync",
   "openBranches": [
     "work"
@@ -41,6 +41,62 @@
     },
     {
       "commit": "Integrate Mistral Code Agent support",
+      "status": "open"
+    },
+    {
+      "commit": "Add Tinshemet Cave dataset entry",
+      "status": "open"
+    },
+    {
+      "commit": "Add Qesem Cave dataset entry",
+      "status": "open"
+    },
+    {
+      "commit": "Add White Sands footprints dataset entry",
+      "status": "open"
+    },
+    {
+      "commit": "Add Attirampakkam dataset entry",
+      "status": "open"
+    },
+    {
+      "commit": "Add Gunung Padang dataset entry",
+      "status": "open"
+    },
+    {
+      "commit": "Add Sphinx water erosion dataset entry",
+      "status": "open"
+    },
+    {
+      "commit": "Add Piri Reis map dataset entry",
+      "status": "open"
+    },
+    {
+      "commit": "Add Boskop skull dataset entry",
+      "status": "open"
+    },
+    {
+      "commit": "Add Antikythera mechanism dataset entry",
+      "status": "open"
+    },
+    {
+      "commit": "Add Nazca lines dataset entry",
+      "status": "open"
+    },
+    {
+      "commit": "Add Yonaguni monument dataset entry",
+      "status": "open"
+    },
+    {
+      "commit": "Add Pumapunku dataset entry",
+      "status": "open"
+    },
+    {
+      "commit": "Add Baalbek Trilithon dataset entry",
+      "status": "open"
+    },
+    {
+      "commit": "Add Bimini Road dataset entry",
       "status": "open"
     }
   ],
