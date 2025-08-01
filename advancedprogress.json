@@ -1,6 +1,6 @@
 {
-  "lastCommit": "feat: implement planned features",
-  "fractalStep": "sync",
+  "lastCommit": "chore: fix progress commit",
+  "fractalStep": "implementiert",
   "openBranches": [
     "work"
   ],
@@ -73,22 +73,6 @@
     },
     {
       "commit": "Add PantheonBoundaryVRIntegration blueprint",
-      "status": "planned"
-    },
-    {
-      "commit": "Improve documentation and onboarding demo",
-      "status": "planned"
-    },
-    {
-      "commit": "Standardize external API and integrate datasets",
-      "status": "planned"
-    },
-    {
-      "commit": "Enforce ToDo sync before commits",
-      "status": "planned"
-    },
-    {
-      "commit": "Update ToDos from advanced conversations",
       "status": "planned"
     }
   ],

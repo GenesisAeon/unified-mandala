@@ -21,3 +21,7 @@ Dieses Dokument erleichtert neuen Mitwirkenden den Einstieg in UnifiedMandala.
    ```
 
 Weitere Hinweise zu Modulen und Ordnerstruktur findest du im [Handbuch](Handbuch.md).
+
+## Onboarding Demo
+
+Eine kurze Schritt-für-Schritt-Anleitung zum Starten einer Demo inklusive Mistral Code Agent findest du in [docs/demo/onboarding-demo.md](demo/onboarding-demo.md).
