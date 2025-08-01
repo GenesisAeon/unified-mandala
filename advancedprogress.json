@@ -1,5 +1,5 @@
 {
-  "lastCommit": "chore: finalize progress",
+  "lastCommit": "docs(todo): add repo analysis and event bus tasks",
   "fractalStep": "sync",
   "openBranches": [
     "work"
@@ -97,6 +97,18 @@
     },
     {
       "commit": "Add Bimini Road dataset entry",
+      "status": "open"
+    },
+    {
+      "commit": "Deep repo package analysis",
+      "status": "open"
+    },
+    {
+      "commit": "Event bus load tests",
+      "status": "open"
+    },
+    {
+      "commit": "Create ethics whitepaper",
       "status": "open"
     }
   ],
