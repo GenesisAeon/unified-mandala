@@ -1,5 +1,5 @@
 {
-  "lastCommit": "feat: extend archive and test reports",
+  "lastCommit": "chore: update progress meta",
   "fractalStep": "sync",
   "openBranches": [
     "work"
@@ -8,12 +8,40 @@
   "notes": "UnifiedLogger added; core agents covered by tests",
   "pendingTasks": [
     {
-      "commit": "Create PantheonBegegnungsraum VR component",
-      "status": "done"
+      "commit": "Test and Feedback for repository",
+      "status": "open"
     },
     {
-      "commit": "Add ExtendedResonanceBlueprint",
-      "status": "done"
+      "commit": "Add extended human traces archive dataset",
+      "status": "open"
+    },
+    {
+      "commit": "Add UnifiedMandala framework report",
+      "status": "open"
+    },
+    {
+      "commit": "Generate skeleton modules from PLAN-ANCHOR",
+      "status": "open"
+    },
+    {
+      "commit": "Enhance MandalaCanvas and CREPVisualizer UI",
+      "status": "open"
+    },
+    {
+      "commit": "Add governance workflow",
+      "status": "open"
+    },
+    {
+      "commit": "Initialize DeepScience experiment suite",
+      "status": "open"
+    },
+    {
+      "commit": "Add wiki sync script",
+      "status": "open"
+    },
+    {
+      "commit": "Integrate Mistral Code Agent support",
+      "status": "open"
     }
   ],
   "progress": [
