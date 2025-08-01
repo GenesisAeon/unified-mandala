@@ -8871,3 +8871,18 @@
   task: Describe submerged Bimini Road formation
   test: docs/archive/archive.test.ts
   status: open
+- commit: Deep repo package analysis
+  path: scripts/deep-repo-analysis.ts
+  task: Analyze packages for code quality and risk issues
+  test: scripts/deep-repo-analysis.test.ts
+  status: open
+- commit: Event bus load tests
+  path: tests/event-bus/load.test.ts
+  task: Benchmark event bus performance under high concurrency
+  test: tests/event-bus/load.test.ts
+  status: open
+- commit: Create ethics whitepaper
+  path: docs/ethics/ETHICS_WHITEPAPER.md
+  task: Document governance mechanisms and trustworthy AI guidelines
+  test: docs/ethics/ethics.test.ts
+  status: open
