@@ -36,6 +36,7 @@ Weitere Hinweise aus dem „Sigil Übergang“:
 - [**Sigillin-Logik**](docs/sigils/SIGILLIN_GENESIS.md) – Heimkehr-Trigger, Symbolphasen, SigillinMap
 - [**Symbolzeit-Modulator**](packages/shared-utils/symbolzeitModulator.ts) – morgen, tag, abend, nacht
 - [**MandalaNetworkView**](packages/unifiedmandala-ui/components/MandalaNetworkView.tsx) – Visualisierung aller Sigillin-Knoten und CREP-Felder
+- [**ArchiveMap**](packages/unifiedmandala-ui/components/ArchiveMap.tsx) – Interaktive Karte der Archiv Menschheitsspuren
 - [**SigillinLoader**](packages/unifiedmandala-ui/components/SigillinLoader.tsx) – Import & Filter von Sigillin-Dateien
 - [**AutoDoc & Manifest-Generator**](packages/crep-engine/autoDocGeneration.ts) – Dokumentation auf Knopfdruck
 - [**FourierLayer Analyse**](packages/analysis/FourierLayer.ts) – Frequenzbasierte Emergenzbewertung

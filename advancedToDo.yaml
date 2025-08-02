@@ -8003,6 +8003,7 @@
   path: docs/boundary/PantheonBoundaryIntegration.md
   task: Summarize integration blueprint from chats
   test: ""
+  status: done
 - commit: Add Zivilisations-Sandbox simulation module
   path: packages/simulations/zivilisations-sandbox
   task: Simulate ancient megastructures
@@ -8905,7 +8906,7 @@
   path: packages/unifiedmandala-ui/components/ArchiveMap.tsx
   task: Visualize Archiv Menschheitsspuren data on an interactive map
   test: packages/unifiedmandala-ui/components/ArchiveMap.test.tsx
-  status: open
+  status: done
 - commit: Analyze test results automatically
   path: scripts/feedback-analyzer.ts
   task: Parse test logs and generate summarized feedback report
