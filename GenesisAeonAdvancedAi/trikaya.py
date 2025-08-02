@@ -2,10 +2,10 @@
 
 from __future__ import annotations
 
-from typing import Literal
+from typing import Dict, Literal
 
 
-TRIKAYA_STATES = {
+TRIKAYA_STATES: Dict[int, Literal["PRÄSENZ", "LEERE", "AUFLÖSUNG"]] = {
     1: "PRÄSENZ",
     0: "LEERE",
     -1: "AUFLÖSUNG",

@@ -4,7 +4,7 @@ import requests
 class SigillinScheduler:
     def __init__(self, config_file='pipeline_config.yaml'):
         with open(config_file) as f:
-            cfg = yaml.safe_load(f)
+            cfg = yaml.safe_load(f.read())
         self.map = cfg['sigillin_map']
         self.thresholds = cfg['crep_thresholds']
 

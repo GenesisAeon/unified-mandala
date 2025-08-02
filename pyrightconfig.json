@@ -2,6 +2,16 @@
   "venvPath": "./.venv",
   "pythonVersion": "3.10",
   "include": ["**/*.py"],
+  "exclude": [
+    "unifiedmandala-neural",
+    "experiments",
+    "packages",
+    "scripts",
+    "apps",
+    "GenesisAeonZIPMEM",
+    "GenesisAeonAdvancedAi/test_memory_store.py",
+    "GenesisAeonAdvancedAi/test_*"
+  ],
   "reportMissingImports": false,
   "extraPaths": ["stubs"]
 }

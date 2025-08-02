@@ -148,6 +148,7 @@ def refactor_fraktal(symbolic_data: Dict[str, Any]) -> Dict[str, Any]:
 def fraktal_feedback(data: Iterable[float], depth: int = 3):
     """Recursive fractal feedback loop with basic CREP evaluation."""
     symbolic = translate_numeric_to_symbolic(data)
+    score = -1
     for _ in range(depth):
         score = CREP_eval(symbolic)
         if score == -1:
@@ -165,6 +166,8 @@ def fraktal_feedback_metrics(
     """Fractal feedback that also returns CREP metric dictionary."""
     symbolic = translate_numeric_to_symbolic(data)
     states = list(prev_states or [])
+    score = -1
+    metrics: Dict[str, float] = {}
     for _ in range(depth):
         score = CREP_eval(symbolic)
         metrics = advanced_crep_eval(symbolic, states[-1:] if states else None)

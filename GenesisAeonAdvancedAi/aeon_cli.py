@@ -39,6 +39,7 @@ def dump_yaml(data: dict) -> str:
     if not _HAS_YAML:
         print("PyYAML not installed; using JSON")
         return json.dumps(data, indent=2)
+    assert yaml is not None
     return yaml.safe_dump(data, allow_unicode=True, sort_keys=False)
 
 

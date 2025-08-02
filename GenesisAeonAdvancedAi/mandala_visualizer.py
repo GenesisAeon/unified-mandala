@@ -1,10 +1,14 @@
 """Basic plotting utilities for CREP data."""
 
 from typing import Sequence
-import plotly.graph_objs as go
+
+import plotly.graph_objects as go
+from plotly.graph_objects import Figure
 
 
-def plot_crep_mandala(crep_values: Sequence[float], sigil_labels: Sequence[str] | None = None) -> "go.Figure":
+def plot_crep_mandala(
+    crep_values: Sequence[float], sigil_labels: Sequence[str] | None = None
+) -> Figure:
     """Return a polar chart figure for CREP metrics.
 
     Parameters
