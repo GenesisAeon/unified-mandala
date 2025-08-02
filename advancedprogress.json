@@ -28,10 +28,6 @@
       "status": "open"
     },
     {
-      "commit": "Deep repo package analysis",
-      "status": "open"
-    },
-    {
       "commit": "Event bus load tests",
       "status": "open"
     },
@@ -419,6 +415,10 @@
     },
     {
       "commit": "Create ethics whitepaper",
+      "status": "done"
+    },
+    {
+      "commit": "Deep repo package analysis",
       "status": "done"
     }
   ],
