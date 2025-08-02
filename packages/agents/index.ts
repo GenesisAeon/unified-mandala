@@ -53,3 +53,4 @@ export * from './CosmicTheoryAgent';
 export * from './ArchivAeon';
 export * from './mistral-api-agent';
 export * from './mistral-code-agent';
+export * from './QuantumTheoryAgent';
