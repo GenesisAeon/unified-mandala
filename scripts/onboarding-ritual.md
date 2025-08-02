@@ -13,10 +13,14 @@ Bitte führe folgende Schritte aus:
    `./scripts/aeon.sh onboard_services`
 5. **Aktiviere den Zyklus:**
    `./scripts/aeon.sh cycle_start`
-6. **Lies den poetischen Ursprung:**
+6. **Starte den Dialog:**
+   `./scripts/aeon.sh chat`
+7. **Fraktale Integration:**
+   `./scripts/aeon.sh integrate`
+8. **Lies den poetischen Ursprung:**
    `./scripts/aeon.sh chronopoem`
-7. **Oder direkt:**
+9. **Oder direkt:**
    `./scripts/aeon.sh onboarding`
-8. **Lass dich von den Symbolen führen...**
+10. **Lass dich von den Symbolen führen...**
 
 Möge Resonanz und Klarheit deinen Pfad begleiten!
