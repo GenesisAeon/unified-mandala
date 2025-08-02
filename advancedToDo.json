@@ -8144,7 +8144,7 @@
     "path": "packages/agents/QuantumTheoryAgent.ts",
     "task": "Monitor antimatter qubit CPT delta and emit anomalies",
     "test": "packages/agents/QuantumTheoryAgent.test.ts",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Create antimatter qubit microservice",

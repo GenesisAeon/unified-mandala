@@ -31,7 +31,7 @@ Der Agent unter `packages/agents/QuantumTheoryAgent.ts` bildet die Basis für qu
 
 **Aktuell**
 - Beobachtung grundlegender CREP-Werte.
+- AntimatterQubitMonitor zur CPT-Anomalieerkennung.
 
 **Geplant**
-- Erweiterung um einen `AntimatterQubitMonitor` zur CPT-Anomalieerkennung.
 - Aufbau einer Test-Feedback-Schleife via `scripts/quantum-agent-feedback.ts`.
