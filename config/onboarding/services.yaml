@@ -1,0 +1,21 @@
+services:
+  - id: local-chatbot
+    name: "Local AI Chatbot"
+    type: local
+    endpoint: "/api/local-chat"
+    default_enabled: true
+  - id: mistral
+    name: "Mistral 7B"
+    type: external
+    endpoint: "/api/external-mistral"
+    default_enabled: false
+  - id: claude
+    name: "Anthropic Claude"
+    type: external
+    endpoint: "/api/external-claude"
+    default_enabled: false
+  - id: vicuna
+    name: "Vicuna-13B"
+    type: external
+    endpoint: "/api/external-vicuna"
+    default_enabled: false

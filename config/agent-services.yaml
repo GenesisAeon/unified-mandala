@@ -1,0 +1,11 @@
+sigillin_map:
+  local-chatbot: local-chatbot
+  mistral: external-mistral
+  claude: external-claude
+  vicuna: external-vicuna
+
+crep_thresholds:
+  local-chatbot: 0.5
+  mistral: 0.6
+  claude: 0.6
+  vicuna: 0.6
