@@ -201,6 +201,7 @@ GPTEventHub.emit('orakel:says', { content: 'Hallo Welt' });
 - Module für narrative KI-Simulationen.
 ### unifiedmandala-ui (Auswahl)
 - `MandalaNetworkView` – Visualisierung der Sigillin-Knoten als D3-Graph.
+- `ArchiveMap` – Interaktive Karte der Archiv Menschheitsspuren.
 - `CREPChart` – Linienchart für CREP-Werte.
 - `CREPStatsCard` – zeigt Durchschnitts-CREP mit kleinem Chart.
 - `CREPTimeline` – zeigt historische CREP-Einträge als Liste.
