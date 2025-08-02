@@ -1,5 +1,5 @@
 {
-  "lastCommit": "feat: integrate mistral agent and extend archive",
+  "lastCommit": "feat: enhance mistral service config",
   "fractalStep": "sync",
   "openBranches": [
     "work"
@@ -587,6 +587,10 @@
     },
     {
       "commit": "Clarify Manager versus Orchestrator roles",
+      "status": "done"
+    },
+    {
+      "commit": "Enhance Mistral service with env config",
       "status": "done"
     }
   ]

@@ -237,6 +237,8 @@ npx ts-node packages/agents/mistral-code-agent/index.ts "print('hello')"
 
 Der Agent liefert den von Mistral erzeugten Code auf STDOUT und unterstützt so explorative Entwicklungsrunden.
 
+Der dazugehörige [Mistral Service](services/mistral_service) leitet Code-Snippets an die API weiter und nutzt `MISTRAL_API_KEY` sowie optional `MISTRAL_API_BASE` für die Ziel-URL.
+
 ## 📦 Paketstruktur
 
 ```bash

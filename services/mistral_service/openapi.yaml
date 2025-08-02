@@ -2,6 +2,12 @@ openapi: 3.0.0
 info:
   title: Mistral Code Agent
   version: 0.1.0
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
 paths:
   /code:
     post:
@@ -22,3 +28,5 @@ paths:
             application/json:
               schema:
                 type: object
+      security:
+        - ApiKeyAuth: []
