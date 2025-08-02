@@ -226,6 +226,17 @@ Weitere Hinweise aus dem „Sigil Übergang“:
 - [**Aeon CLI**](GenesisAeonAdvancedAi/aeon_cli.py) – erzeugt symbolische Ergebnisse aus Zahlenfolgen, kann Leistungsdaten, CREP-Metriken, Fraktal-Graphen (`--graph`) und poetische Kommentare (`--poetry`) ausgeben. Fehlt PyYAML, gibt die CLI stattdessen JSON aus und weist per Warnung darauf hin.
 - [**AdvancedAeonAgent**](GenesisAeonAdvancedAi/advanced_agent.py) – Beispielagent für `advanced_crep_eval` über `--advanced-values`, optional mit Haiku-Ausgabe.
 
+
+### Mistral Code Agent
+
+Der [Mistral Code Agent](packages/agents/mistral-code-agent) ermöglicht Code‑Generierung über die Mistral‑API. In `.env` muss `MISTRAL_API_KEY` gesetzt sein. Ein Beispielaufruf:
+
+```bash
+npx ts-node packages/agents/mistral-code-agent/index.ts "print('hello')"
+```
+
+Der Agent liefert den von Mistral erzeugten Code auf STDOUT und unterstützt so explorative Entwicklungsrunden.
+
 ## 📦 Paketstruktur
 
 ```bash

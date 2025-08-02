@@ -8805,72 +8805,72 @@
   path: docs/archive/archiv-menschheitsspuren.md
   task: Include Tinshemet Cave burial findings
   test: docs/archive/archive.test.ts
-  status: open
+  status: done
 - commit: Add Qesem Cave dataset entry
   path: docs/archive/archiv-menschheitsspuren.md
   task: Document Qesem Cave fire usage evidence
   test: docs/archive/archive.test.ts
-  status: open
+  status: done
 - commit: Add White Sands footprints dataset entry
   path: docs/archive/archiv-menschheitsspuren.md
   task: Record White Sands Pleistocene footprints
   test: docs/archive/archive.test.ts
-  status: open
+  status: done
 - commit: Add Attirampakkam dataset entry
   path: docs/archive/archiv-menschheitsspuren.md
   task: Note Acheulean tools from Attirampakkam site
   test: docs/archive/archive.test.ts
-  status: open
+  status: done
 - commit: Add Gunung Padang dataset entry
   path: docs/archive/archiv-menschheitsspuren.md
   task: Summarize pyramid studies of Gunung Padang
   test: docs/archive/archive.test.ts
-  status: open
+  status: done
 - commit: Add Sphinx water erosion dataset entry
   path: docs/archive/archiv-menschheitsspuren.md
   task: Reference Sphinx erosion hypothesis details
   test: docs/archive/archive.test.ts
-  status: open
+  status: done
 - commit: Add Piri Reis map dataset entry
   path: docs/archive/archiv-menschheitsspuren.md
   task: Include notes about Piri Reis world map
   test: docs/archive/archive.test.ts
-  status: open
+  status: done
 - commit: Add Boskop skull dataset entry
   path: docs/archive/archiv-menschheitsspuren.md
   task: Document Boskop hominin skull discovery
   test: docs/archive/archive.test.ts
-  status: open
+  status: done
 - commit: Add Antikythera mechanism dataset entry
   path: docs/archive/archiv-menschheitsspuren.md
   task: Describe ancient Greek analogue computer
   test: docs/archive/archive.test.ts
-  status: open
+  status: done
 - commit: Add Nazca lines dataset entry
   path: docs/archive/archiv-menschheitsspuren.md
   task: List famous geoglyphs and theories
   test: docs/archive/archive.test.ts
-  status: open
+  status: done
 - commit: Add Yonaguni monument dataset entry
   path: docs/archive/archiv-menschheitsspuren.md
   task: Include debate on Yonaguni underwater structures
   test: docs/archive/archive.test.ts
-  status: open
+  status: done
 - commit: Add Pumapunku dataset entry
   path: docs/archive/archiv-menschheitsspuren.md
   task: Summarize megalithic site of Pumapunku
   test: docs/archive/archive.test.ts
-  status: open
+  status: done
 - commit: Add Baalbek Trilithon dataset entry
   path: docs/archive/archiv-menschheitsspuren.md
   task: Mention enormous stone blocks at Baalbek
   test: docs/archive/archive.test.ts
-  status: open
+  status: done
 - commit: Add Bimini Road dataset entry
   path: docs/archive/archiv-menschheitsspuren.md
   task: Describe submerged Bimini Road formation
   test: docs/archive/archive.test.ts
-  status: open
+  status: done
 - commit: Deep repo package analysis
   path: scripts/deep-repo-analysis.ts
   task: Analyze packages for code quality and risk issues
@@ -8890,12 +8890,12 @@
   path: README.md
   task: Add usage section for Mistral Code Agent
   test: docs/mistral/readme.test.md
-  status: open
+  status: done
 - commit: Add dataset images
   path: docs/archive/images
   task: Provide image references for Archiv Menschheitsspuren
   test: docs/archive/archive.test.ts
-  status: open
+  status: done
 - commit: Integrate historical dataset
   path: scripts/historical-data-sync.ts
   task: Import external archaeological data into archive
@@ -8910,13 +8910,13 @@
   path: scripts/feedback-analyzer.ts
   task: Parse test logs and generate summarized feedback report
   test: scripts/feedback-analyzer.test.ts
-  status: open
+  status: done
 - commit: Update Framework-Bericht summary
   path: docs/Framework-Bericht.md
   task: Include analysis and improvement suggestions from Framework Bericht
     conversation
   test: docs/Framework-Bericht.test.ts
-  status: open
+  status: done
 - commit: Finalize MandalaNetworkView MVP
   path: packages/unifiedmandala-ui/components/MandalaNetworkView.tsx
   task: Implement Sigillin interaction and CREP visualization for funding demo
@@ -8946,7 +8946,7 @@
   path: docs/Framework-Bericht.md
   task: Add QuantumTheoryAgent roadmap and current implementation
   test: docs/Framework-Bericht.test.ts
-  status: open
+  status: done
 - commit: Setup QuantumTheoryAgent test feedback loop
   path: scripts/quantum-agent-feedback.ts
   task: Run QuantumTheoryAgent program tests and collect feedback
