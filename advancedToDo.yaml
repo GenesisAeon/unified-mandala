@@ -8913,6 +8913,12 @@
   status: open
 - commit: Update Framework-Bericht summary
   path: docs/Framework-Bericht.md
-  task: Include analysis and improvement suggestions from Framework Bericht conversation
+  task: Include analysis and improvement suggestions from Framework Bericht
+    conversation
   test: docs/Framework-Bericht.test.ts
+  status: open
+- commit: Finalize MandalaNetworkView MVP
+  path: packages/unifiedmandala-ui/components/MandalaNetworkView.tsx
+  task: Implement Sigillin interaction and CREP visualization for funding demo
+  test: packages/unifiedmandala-ui/components/MandalaNetworkView.test.tsx
   status: open

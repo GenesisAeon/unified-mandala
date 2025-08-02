@@ -1,5 +1,5 @@
 {
-  "lastCommit": "chore: update progress metadata",
+  "lastCommit": "Merge pull request #945 from GenesisAeon/codex/extract-tasks-and-features-from-chats",
   "fractalStep": "sync",
   "openBranches": [
     "work"
@@ -133,6 +133,10 @@
     },
     {
       "commit": "Update Framework-Bericht summary",
+      "status": "open"
+    },
+    {
+      "commit": "Finalize MandalaNetworkView MVP",
       "status": "open"
     }
   ],
