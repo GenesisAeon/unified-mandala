@@ -8901,3 +8901,18 @@
   task: Import external archaeological data into archive
   test: scripts/historical-data-sync.test.ts
   status: open
+- commit: Create interactive archaeologic map
+  path: packages/unifiedmandala-ui/components/ArchiveMap.tsx
+  task: Visualize Archiv Menschheitsspuren data on an interactive map
+  test: packages/unifiedmandala-ui/components/ArchiveMap.test.tsx
+  status: open
+- commit: Analyze test results automatically
+  path: scripts/feedback-analyzer.ts
+  task: Parse test logs and generate summarized feedback report
+  test: scripts/feedback-analyzer.test.ts
+  status: open
+- commit: Update Framework-Bericht summary
+  path: docs/Framework-Bericht.md
+  task: Include analysis and improvement suggestions from Framework Bericht conversation
+  test: docs/Framework-Bericht.test.ts
+  status: open
