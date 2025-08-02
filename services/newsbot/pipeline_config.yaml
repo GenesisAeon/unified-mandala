@@ -1,0 +1,16 @@
+# Mapping of Sigillin identifiers to NewsBot services.
+# TODO: refine CREP thresholds and orchestration logic.
+
+sigillin_map:
+  news_fetch: news_fetcher_service
+  script_gen: script_gen_service
+  tts: tts_service
+  avatar: avatar_renderer_service
+  stream: streamer_service
+
+crep_thresholds:
+  news_fetcher_service: 0.5
+  script_gen_service: 0.6
+  tts_service: 0.4
+  avatar_renderer_service: 0.4
+  streamer_service: 0.3

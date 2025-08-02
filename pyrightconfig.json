@@ -10,7 +10,8 @@
     "apps",
     "GenesisAeonZIPMEM",
     "GenesisAeonAdvancedAi/test_memory_store.py",
-    "GenesisAeonAdvancedAi/test_*"
+    "GenesisAeonAdvancedAi/test_*",
+    "services/newsbot"
   ],
   "reportMissingImports": false,
   "extraPaths": ["stubs"]

@@ -16,3 +16,34 @@ services:
     volumes:
       - .:/workspace/unified-mandala
     command: ./scripts/run-all-tests.sh
+
+  # --- NewsBot microservices ---
+  news_fetcher_service:
+    build:
+      context: ./services/newsbot/news_fetcher
+    ports:
+      - "8101:8000"
+
+  script_gen_service:
+    build:
+      context: ./services/newsbot/script_gen
+    ports:
+      - "8102:8000"
+
+  tts_service:
+    build:
+      context: ./services/newsbot/tts
+    ports:
+      - "8103:8000"
+
+  avatar_renderer_service:
+    build:
+      context: ./services/newsbot/avatar_renderer
+    ports:
+      - "8104:8000"
+
+  streamer_service:
+    build:
+      context: ./services/newsbot/streamer
+    ports:
+      - "8105:8000"
