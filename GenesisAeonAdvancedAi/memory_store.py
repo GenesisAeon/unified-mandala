@@ -115,7 +115,11 @@ def trend_metric(path: Path, key: str, n: int = 5) -> float | None:
         Number of recent entries to evaluate.
     """
     entries = tail_results(path, n)
-    values = [e.get(key) for e in entries if isinstance(e.get(key), (int, float))]
+    values: List[float] = []
+    for e in entries:
+        v = e.get(key)
+        if isinstance(v, (int, float)):
+            values.append(float(v))
     if len(values) < 2:
         return None
     diffs = [values[i] - values[i - 1] for i in range(1, len(values))]

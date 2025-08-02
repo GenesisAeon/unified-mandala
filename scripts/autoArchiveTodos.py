@@ -17,7 +17,7 @@ def load_tasks(json_path: Path, yaml_path: Path):
     if yaml_path.exists():
         if yaml is not None:
             with yaml_path.open() as f:
-                tasks.extend(yaml.safe_load(f) or [])
+                tasks.extend(yaml.safe_load(f.read()) or [])
         else:
             # very small fallback parser for simple lists of key-value pairs
             content = yaml_path.read_text()

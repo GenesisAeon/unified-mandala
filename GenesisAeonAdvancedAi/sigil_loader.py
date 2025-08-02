@@ -31,6 +31,7 @@ def load_start_sigil() -> Dict[str, Any]:
     easily include the project\'s default sigil without requiring an explicit
     file path.
     """
+    assert __package__ is not None
     with resources.files(__package__).joinpath("StartSigil.json").open(
         "r", encoding="utf-8"
     ) as f:

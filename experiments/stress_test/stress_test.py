@@ -12,7 +12,7 @@ async def worker(name, config, metrics):
     url = config['target_url']
     types = config['event_types']
     end = time.time() + config['duration_sec']
-    async with aiohttp.ClientSession() as session:
+    async with aiohttp.ClientSession() as session:  # type: ignore
         while time.time() < end:
             ev = {
                 'task_type': random.choice(types),
@@ -29,7 +29,8 @@ async def worker(name, config, metrics):
                 metrics['fail'] += 1
 
 async def main():
-    config = yaml.safe_load(open('stress_config.yaml'))
+    with open('stress_config.yaml') as f:
+        config = yaml.safe_load(f.read())
     metrics = {'success': 0, 'fail': 0, 'latencies': []}
     tasks = [asyncio.create_task(worker(f'w{i}', config, metrics)) for i in range(config['concurrency'])]
     await asyncio.gather(*tasks)

@@ -1,10 +1,12 @@
 """Utilities to visualize fractal feedback graphs."""
 
-from typing import Dict, Any
-import plotly.graph_objs as go
+from typing import Any, Dict
+
+import plotly.graph_objects as go
+from plotly.graph_objects import Figure
 
 
-def visualize_feedback_graph(graph: Dict[str, Any]) -> "go.Figure":
+def visualize_feedback_graph(graph: Dict[str, Any]) -> Figure:
     """Return Plotly figure visualizing feedback graph."""
     nodes = graph.get("nodes", [])
     edges = graph.get("edges", [])
