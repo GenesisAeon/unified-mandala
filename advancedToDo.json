@@ -8137,5 +8137,47 @@
     "task": "Implement Sigillin interaction and CREP visualization for funding demo",
     "test": "packages/unifiedmandala-ui/components/MandalaNetworkView.test.tsx",
     "status": "open"
+  },
+  {
+    "commit": "Add AntimatterQubitMonitor to QuantumTheoryAgent",
+    "path": "packages/agents/QuantumTheoryAgent.ts",
+    "task": "Monitor antimatter qubit CPT delta and emit anomalies",
+    "test": "packages/agents/QuantumTheoryAgent.test.ts",
+    "status": "open"
+  },
+  {
+    "commit": "Create antimatter qubit microservice",
+    "path": "services/antimatter_service/main.py",
+    "task": "Fetch latest antimatter qubit measurements via API",
+    "test": "services/antimatter_service/main.test.py",
+    "status": "open"
+  },
+  {
+    "commit": "Configure CPT anomaly emergence detection",
+    "path": "config/emergence-detector.yaml",
+    "task": "Add CPT-Anomaly trigger for antimatter qubit monitoring",
+    "test": "tests/emergence-detector.test.ts",
+    "status": "open"
+  },
+  {
+    "commit": "Link Archiv dataset to QuantumTheoryAgent",
+    "path": "scripts/quantum-archive-ingest.ts",
+    "task": "Connect Menschheitsspuren records to QuantumTheoryAgent analysis",
+    "test": "scripts/quantum-archive-ingest.test.ts",
+    "status": "open"
+  },
+  {
+    "commit": "Document QuantumTheoryAgent framework status",
+    "path": "docs/Framework-Bericht.md",
+    "task": "Add QuantumTheoryAgent roadmap and current implementation",
+    "test": "docs/Framework-Bericht.test.ts",
+    "status": "open"
+  },
+  {
+    "commit": "Setup QuantumTheoryAgent test feedback loop",
+    "path": "scripts/quantum-agent-feedback.ts",
+    "task": "Run QuantumTheoryAgent program tests and collect feedback",
+    "test": "scripts/quantum-agent-feedback.test.ts",
+    "status": "open"
   }
 ]

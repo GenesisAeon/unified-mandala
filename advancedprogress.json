@@ -1,5 +1,5 @@
 {
-  "lastCommit": "Merge pull request #945 from GenesisAeon/codex/extract-tasks-and-features-from-chats",
+  "lastCommit": "feat: add QuantumTheoryAgent todos",
   "fractalStep": "sync",
   "openBranches": [
     "work"
@@ -137,6 +137,30 @@
     },
     {
       "commit": "Finalize MandalaNetworkView MVP",
+      "status": "open"
+    },
+    {
+      "commit": "Add AntimatterQubitMonitor to QuantumTheoryAgent",
+      "status": "open"
+    },
+    {
+      "commit": "Create antimatter qubit microservice",
+      "status": "open"
+    },
+    {
+      "commit": "Configure CPT anomaly emergence detection",
+      "status": "open"
+    },
+    {
+      "commit": "Link Archiv dataset to QuantumTheoryAgent",
+      "status": "open"
+    },
+    {
+      "commit": "Document QuantumTheoryAgent framework status",
+      "status": "open"
+    },
+    {
+      "commit": "Setup QuantumTheoryAgent test feedback loop",
       "status": "open"
     }
   ],
