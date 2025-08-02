@@ -79,6 +79,7 @@ Für neue Aufgaben aus Chat-Logs nutze `scripts/parse-advanced-conversations.js`
 - `BoundaryWaveSimulator` – modelliert interne Schwerewellen
 - `PantheonSandboxExpander` – skaliert Civilization-Sandboxen
 - `ResonanceShadowModule` – verbindet Schattenintegrationen
+- `Pantheon-Boundary Integration` – Überblick der Schnittstellen, siehe docs/boundary/PantheonBoundaryIntegration.md
 - `GreekMathAeonDispatcher` – sicheres Dispatching mit Fehlerereignissen
 - `UnifiedMandalaVR` – Modulpaket mit AvatarManager, EthicsGuard und FourierLayerBridge.
 - `archiveSigil` – schreibt Sigil-Dateien in GenesisAeonZIPMEM.

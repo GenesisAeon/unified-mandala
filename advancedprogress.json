@@ -1,11 +1,11 @@
 {
-  "lastCommit": "feat: add wiki sync script",
-  "fractalStep": "wiki-sync",
+  "lastCommit": "docs: expand Pantheon-Boundary integration plan",
+  "fractalStep": "pantheon-boundary-doc",
   "openBranches": [
     "work"
   ],
   "mergeConflicts": [],
-  "notes": "Wiki sync script implemented; next: interactive archaeologic map",
+  "notes": "Expanded plan linking Boundary laws with Pantheon and VR modules",
   "pendingTasks": [
     {
       "commit": "Generate skeleton modules from PLAN-ANCHOR",
@@ -591,6 +591,10 @@
     },
     {
       "commit": "Integrate historical dataset",
+      "status": "done"
+    },
+    {
+      "commit": "expand Pantheon-Boundary integration plan",
       "status": "done"
     }
   ]
