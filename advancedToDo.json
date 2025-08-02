@@ -8087,7 +8087,7 @@
     "path": "docs/ethics/ETHICS_WHITEPAPER.md",
     "task": "Document governance mechanisms and trustworthy AI guidelines",
     "test": "docs/ethics/ethics.test.ts",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Document Mistral Code Agent",

@@ -53,7 +53,7 @@
     },
     {
       "commit": "Create ethics whitepaper",
-      "status": "open"
+      "status": "done"
     },
     {
       "commit": "Integrate historical dataset",
@@ -435,6 +435,10 @@
     },
     {
       "commit": "extract MandalaReader and VR tasks",
+      "status": "done"
+    },
+    {
+      "commit": "Create ethics whitepaper",
       "status": "done"
     }
   ],
