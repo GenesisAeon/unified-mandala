@@ -8760,17 +8760,17 @@
   path: scripts/test-feedback.md
   task: Run full test suite and compile feedback report
   test: pnpm test
-  status: open
+  status: done
 - commit: Add extended human traces archive dataset
   path: docs/archaeology/archiv-menschheitsspuren.md
   task: Document additional archaeological evidence
   test: docs/archaeology/archive.test.ts
-  status: open
+  status: done
 - commit: Add UnifiedMandala framework report
   path: docs/Framework-Bericht.md
   task: Summarize repository status with improvement suggestions
   test: docs/Framework-Bericht.test.ts
-  status: open
+  status: done
 - commit: Generate skeleton modules from PLAN-ANCHOR
   path: tasks/sigillin_skeleton.yaml
   task: Create initial module stubs based on PLAN-ANCHOR
@@ -8800,7 +8800,7 @@
   path: packages/agents/mistral-code-agent
   task: Ensure Mistral Code Agent is available for code generation
   test: packages/agents/mistral-code-agent/MistralCodeAgent.test.ts
-  status: open
+  status: done
 - commit: Add Tinshemet Cave dataset entry
   path: docs/archive/archiv-menschheitsspuren.md
   task: Include Tinshemet Cave burial findings

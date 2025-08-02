@@ -17,11 +17,14 @@ Weitere Verbesserungen sind im Fortschrittslog dokumentiert. Das Archiv menschli
 - Zentrale Logging-Struktur via `UnifiedLogger` eingeführt.
 - Kernagenten mit zusätzlichen Tests abgesichert.
 - Mistral Code Agent Service bereitgestellt.
+- Export der Mistral-Agents über `packages/agents/index.ts` erleichtert die Nutzung.
 
 ## Analyse & Verbesserungen
 - Automatisierte Testauswertung über `scripts/feedback-analyzer.ts` reduziert manuellen QA-Aufwand.
 - Das Archiv Menschheitsspuren wurde um zusätzliche Datensätze und Bildverweise ergänzt.
 - Die Haupt-README dokumentiert nun die Nutzung des Mistral Code Agents.
+- Neue Funde im erweiterten Archiv `docs/archaeology/archiv-menschheitsspuren.md` vertiefen die Wissensbasis.
+- Aktuelle Testergebnisse werden in `scripts/test-feedback.md` festgehalten.
 
 ## QuantumTheoryAgent Roadmap
 Der Agent unter `packages/agents/QuantumTheoryAgent.ts` bildet die Basis für quantenbezogene Analysen.
