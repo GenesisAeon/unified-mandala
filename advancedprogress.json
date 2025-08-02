@@ -1,5 +1,5 @@
 {
-  "lastCommit": "feat: add QuantumTheoryAgent todos",
+  "lastCommit": "feat: expand archive and add feedback analyzer",
   "fractalStep": "sync",
   "openBranches": [
     "work"
@@ -9,15 +9,15 @@
   "pendingTasks": [
     {
       "commit": "Test and Feedback for repository",
-      "status": "open"
+      "status": "done"
     },
     {
       "commit": "Add extended human traces archive dataset",
-      "status": "open"
+      "status": "done"
     },
     {
       "commit": "Add UnifiedMandala framework report",
-      "status": "open"
+      "status": "done"
     },
     {
       "commit": "Generate skeleton modules from PLAN-ANCHOR",
@@ -41,63 +41,7 @@
     },
     {
       "commit": "Integrate Mistral Code Agent support",
-      "status": "open"
-    },
-    {
-      "commit": "Add Tinshemet Cave dataset entry",
-      "status": "open"
-    },
-    {
-      "commit": "Add Qesem Cave dataset entry",
-      "status": "open"
-    },
-    {
-      "commit": "Add White Sands footprints dataset entry",
-      "status": "open"
-    },
-    {
-      "commit": "Add Attirampakkam dataset entry",
-      "status": "open"
-    },
-    {
-      "commit": "Add Gunung Padang dataset entry",
-      "status": "open"
-    },
-    {
-      "commit": "Add Sphinx water erosion dataset entry",
-      "status": "open"
-    },
-    {
-      "commit": "Add Piri Reis map dataset entry",
-      "status": "open"
-    },
-    {
-      "commit": "Add Boskop skull dataset entry",
-      "status": "open"
-    },
-    {
-      "commit": "Add Antikythera mechanism dataset entry",
-      "status": "open"
-    },
-    {
-      "commit": "Add Nazca lines dataset entry",
-      "status": "open"
-    },
-    {
-      "commit": "Add Yonaguni monument dataset entry",
-      "status": "open"
-    },
-    {
-      "commit": "Add Pumapunku dataset entry",
-      "status": "open"
-    },
-    {
-      "commit": "Add Baalbek Trilithon dataset entry",
-      "status": "open"
-    },
-    {
-      "commit": "Add Bimini Road dataset entry",
-      "status": "open"
+      "status": "done"
     },
     {
       "commit": "Deep repo package analysis",
@@ -112,27 +56,11 @@
       "status": "open"
     },
     {
-      "commit": "Document Mistral Code Agent",
-      "status": "open"
-    },
-    {
-      "commit": "Add dataset images",
-      "status": "open"
-    },
-    {
       "commit": "Integrate historical dataset",
       "status": "open"
     },
     {
       "commit": "Create interactive archaeologic map",
-      "status": "open"
-    },
-    {
-      "commit": "Analyze test results automatically",
-      "status": "open"
-    },
-    {
-      "commit": "Update Framework-Bericht summary",
       "status": "open"
     },
     {
@@ -153,10 +81,6 @@
     },
     {
       "commit": "Link Archiv dataset to QuantumTheoryAgent",
-      "status": "open"
-    },
-    {
-      "commit": "Document QuantumTheoryAgent framework status",
       "status": "open"
     },
     {
