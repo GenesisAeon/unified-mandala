@@ -1,5 +1,5 @@
 {
-  "lastCommit": "feat: expand archive and add feedback analyzer",
+  "lastCommit": "feat: integrate mistral agent and extend archive",
   "fractalStep": "sync",
   "openBranches": [
     "work"
@@ -7,18 +7,6 @@
   "mergeConflicts": [],
   "notes": "UnifiedLogger added; core agents covered by tests",
   "pendingTasks": [
-    {
-      "commit": "Test and Feedback for repository",
-      "status": "done"
-    },
-    {
-      "commit": "Add extended human traces archive dataset",
-      "status": "done"
-    },
-    {
-      "commit": "Add UnifiedMandala framework report",
-      "status": "done"
-    },
     {
       "commit": "Generate skeleton modules from PLAN-ANCHOR",
       "status": "open"
@@ -40,20 +28,12 @@
       "status": "open"
     },
     {
-      "commit": "Integrate Mistral Code Agent support",
-      "status": "done"
-    },
-    {
       "commit": "Deep repo package analysis",
       "status": "open"
     },
     {
       "commit": "Event bus load tests",
       "status": "open"
-    },
-    {
-      "commit": "Create ethics whitepaper",
-      "status": "done"
     },
     {
       "commit": "Integrate historical dataset",
