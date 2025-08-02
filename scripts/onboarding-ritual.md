@@ -7,14 +7,16 @@ Bitte führe folgende Schritte aus:
    `git clone ...`
 2. **Installiere Abhängigkeiten:**  
    `pnpm install`
-3. **Starte das Setup-Ritual:**  
+3. **Starte das Setup-Ritual:**
    `./scripts/setup-unifiedmandala.sh`
-4. **Aktiviere den Zyklus:**  
+4. **Wähle deine Agentendienste:**
+   `./scripts/aeon.sh onboard_services`
+5. **Aktiviere den Zyklus:**
    `./scripts/aeon.sh cycle_start`
-5. **Lies den poetischen Ursprung:**
+6. **Lies den poetischen Ursprung:**
    `./scripts/aeon.sh chronopoem`
-6. **Oder direkt:**
+7. **Oder direkt:**
    `./scripts/aeon.sh onboarding`
-7. **Lass dich von den Symbolen führen...**
+8. **Lass dich von den Symbolen führen...**
 
 Möge Resonanz und Klarheit deinen Pfad begleiten!

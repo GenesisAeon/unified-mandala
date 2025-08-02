@@ -19,6 +19,7 @@ function show_help() {
     chronopoem      – Erzeugt poetische Commit-Signatur
     setup           – Führt das Setup-Ritual aus
     onboarding      – Zeigt das Onboarding-Ritual
+    onboard_services – Wählt aktivierte Agentendienste
     help            – Diese Hilfe"
 }
 function chronopoem() {
@@ -33,11 +34,15 @@ function onboarding() {
   echo -e "\n${yellow}Aktueller Chronopoem:${reset}"
   chronopoem
 }
+function onboard_services() {
+  node "$ROOT_DIR/scripts/onboard-services.js"
+}
 case "$1" in
   sigil_invoke) sigil_invoke ;;
   cycle_start) cycle_start ;;
   chronopoem) chronopoem ;;
   setup) setup ;;
   onboarding) onboarding ;;
+  onboard_services) onboard_services ;;
   help|*) show_help ;;
 esac
