@@ -8073,7 +8073,7 @@
     "path": "scripts/deep-repo-analysis.ts",
     "task": "Analyze packages for code quality and risk issues",
     "test": "scripts/deep-repo-analysis.test.ts",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Event bus load tests",
