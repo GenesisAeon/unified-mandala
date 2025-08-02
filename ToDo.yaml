@@ -67,7 +67,7 @@ todos:
     status: erledigt
   - id: todo-23
     beschreibung: "GitHub Action agents_ci.yaml einrichten, die runDryAgent.ts ausführt"
-    status: offen
+    status: erledigt
   - id: todo-24
     beschreibung: "CodexZentral.yaml als Masterindex aller Module anlegen"
     status: erledigt
