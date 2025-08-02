@@ -1,11 +1,11 @@
 {
-  "lastCommit": "feat: enhance mistral service config",
-  "fractalStep": "sync",
+  "lastCommit": "feat: add wiki sync script",
+  "fractalStep": "wiki-sync",
   "openBranches": [
     "work"
   ],
   "mergeConflicts": [],
-  "notes": "UnifiedLogger added; core agents covered by tests",
+  "notes": "Wiki sync script implemented; next: interactive archaeologic map",
   "pendingTasks": [
     {
       "commit": "Generate skeleton modules from PLAN-ANCHOR",
@@ -21,10 +21,6 @@
     },
     {
       "commit": "Initialize DeepScience experiment suite",
-      "status": "open"
-    },
-    {
-      "commit": "Add wiki sync script",
       "status": "open"
     },
     {
@@ -411,6 +407,10 @@
     },
     {
       "commit": "Deep repo package analysis",
+      "status": "done"
+    },
+    {
+      "commit": "Add wiki sync script",
       "status": "done"
     }
   ],
