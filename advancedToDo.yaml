@@ -8931,8 +8931,8 @@
 - commit: Create antimatter qubit microservice
   path: services/antimatter_service/main.py
   task: Fetch latest antimatter qubit measurements via API
-  test: services/antimatter_service/main.test.py
-  status: open
+  test: services/antimatter_service/main_test.py
+  status: done
 - commit: Configure CPT anomaly emergence detection
   path: config/emergence-detector.yaml
   task: Add CPT-Anomaly trigger for antimatter qubit monitoring

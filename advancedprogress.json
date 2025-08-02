@@ -1,11 +1,11 @@
 {
-  "lastCommit": "feat: add AntimatterQubitMonitor to QuantumTheoryAgent",
+  "lastCommit": "feat: add antimatter qubit microservice",
   "fractalStep": "quantum-agent",
   "openBranches": [
     "work"
   ],
   "mergeConflicts": [],
-  "notes": "AntimatterQubitMonitor integrated; next: create antimatter microservice and CPT detector",
+  "notes": "Antimatter microservice added; next: configure CPT detector and link Archiv dataset",
   "pendingTasks": [
     {
       "commit": "Generate skeleton modules from PLAN-ANCHOR",
@@ -25,10 +25,6 @@
     },
     {
       "commit": "Finalize MandalaNetworkView MVP",
-      "status": "open"
-    },
-    {
-      "commit": "Create antimatter qubit microservice",
       "status": "open"
     },
     {
@@ -595,6 +591,10 @@
     },
     {
       "commit": "Add AntimatterQubitMonitor to QuantumTheoryAgent",
+      "status": "done"
+    },
+    {
+      "commit": "Create antimatter qubit microservice",
       "status": "done"
     }
   ]
