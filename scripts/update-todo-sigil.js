@@ -1,18 +1,32 @@
 #!/usr/bin/env node
+const fs = require('fs');
 const path = require('path');
-const { checks } = require('./check-todo-sigil');
-let updateTodoSigilStatus;
+const YAML = require('yaml');
+let scanDir;
 try {
-  ({ updateTodoSigilStatus } = require('../dist/shared-utils/todoSigilUpdater.js'));
+  ({ scanTodoCommentsInDir: scanDir } = require('../dist/shared-utils/todoCommentScanner.js'));
 } catch {
-  ({ updateTodoSigilStatus } = require('../packages/shared-utils/todoSigilUpdater'));
+  ({ scanTodoCommentsInDir: scanDir } = require('../packages/shared-utils/todoCommentScanner'));
 }
-
-const file = path.join(__dirname, '../docs/sigils/todo-sigil.yaml');
-
-async function run() {
-  await updateTodoSigilStatus(file, checks);
-  console.log('todo-sigil.yaml status aktualisiert.');
+function update() {
+  const repoRoot = path.join(__dirname, '..');
+  const sigilPath = path.join(repoRoot, 'docs/sigils/todo-sigil.yaml');
+  const data = fs.existsSync(sigilPath) ? YAML.parse(fs.readFileSync(sigilPath, 'utf8')) : {};
+  const base = Array.isArray(data.aufgaben) ? data.aufgaben.filter(t => !(t.id && String(t.id).startsWith('code-'))) : [];
+  const todos = scanDir(repoRoot);
+  const codeTasks = todos.map((t, i) => ({
+    id: `code-${i + 1}`,
+    beschreibung: `${path.relative(repoRoot, t.file)}:${t.line} ${t.text}`,
+    status: 'offen',
+  }));
+  const out = {
+    sigillin_id: data.sigillin_id || 'aeon:2025-0605-TODO',
+    symbolzeit: data.symbolzeit || 'tag',
+    titel: data.titel || 'UnifiedMandala ToDo Übersicht',
+    aufgaben: [...base, ...codeTasks],
+  };
+  fs.writeFileSync(sigilPath, YAML.stringify(out));
+  console.log(`updated ${sigilPath} with ${codeTasks.length} code TODOs`);
 }
-
-run();
+if (require.main === module) update();
+module.exports = { update };
