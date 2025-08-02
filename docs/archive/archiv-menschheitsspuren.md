@@ -28,6 +28,8 @@ Dieses Archiv sammelt nach und nach wissenschaftlich belegte Funde, die im Laufe
 - **Baalbek Trilithon, Libanon** – ca. 2.000 BP – gigantische Steinquader im mediterranen Klima.
 - **Bimini Road, Bahamas** – ca. 11.000 BP – versunkene Steinformationen im subtropischen Meer.
 
+- **Çatalhöyük, Türkei** – ca. 7.500 BP – frühe neolithische Stadt, gemäßigtes Kontinentalklima.
+- **Monte Verde, Chile** – ca. 14.500 BP – prä-Clovis Siedlung in feuchtem Küstenklima.
 ## Klimatische und kosmische Ereignisse
 
 Die klimatischen Bedingungen und kosmischen Ereignisse haben großen Einfluss auf die Entwicklung früher Kulturen. Die folgenden Punkte ergänzen die Fundliste:
@@ -36,4 +38,3 @@ Die klimatischen Bedingungen und kosmischen Ereignisse haben großen Einfluss au
 - **Magnetischer Sturm (ca. 42.000 BP)** – bekannte Laschamp-Exkursion könnte Einfluss auf Umweltbedingungen gehabt haben.
 
 Weitere Einträge können durch das Skript `archive-menschheitsspuren.js` automatisch angefügt werden.
-

@@ -5,7 +5,9 @@ export default defineConfig({
     include: [
       'packages/agents/**/*.{test,spec}.ts',
       'packages/boundary-engine/**/*.{test,spec}.ts',
-      'packages/api/**/*.{test,spec}.ts'
+      'packages/api/**/*.{test,spec}.ts',
+      'scripts/**/*.{test,spec}.ts',
+      'docs/**/*.{test,spec}.ts'
     ],
     environment: 'node'
   }

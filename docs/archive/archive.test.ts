@@ -1,5 +1,6 @@
 import { readFileSync, existsSync } from 'fs';
 import { join } from 'path';
+import { describe, it, expect } from 'vitest';
 
 describe('Archiv Menschheitsspuren', () => {
   const archivePath = join(__dirname, 'archiv-menschheitsspuren.md');
@@ -20,7 +21,9 @@ describe('Archiv Menschheitsspuren', () => {
       'Qesem Cave',
       'White Sands',
       'Attirampakkam',
-      'Gunung Padang'
+      'Gunung Padang',
+      'Çatalhöyük',
+      'Monte Verde'
     ];
     for (const e of entries) {
       expect(content).toContain(e);

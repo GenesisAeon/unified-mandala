@@ -8108,7 +8108,7 @@
     "path": "scripts/historical-data-sync.ts",
     "task": "Import external archaeological data into archive",
     "test": "scripts/historical-data-sync.test.ts",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Create interactive archaeologic map",

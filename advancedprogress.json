@@ -32,10 +32,6 @@
       "status": "open"
     },
     {
-      "commit": "Integrate historical dataset",
-      "status": "open"
-    },
-    {
       "commit": "Create interactive archaeologic map",
       "status": "open"
     },
@@ -591,6 +587,10 @@
     },
     {
       "commit": "Enhance Mistral service with env config",
+      "status": "done"
+    },
+    {
+      "commit": "Integrate historical dataset",
       "status": "done"
     }
   ]
