@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import { scanTodoComments } from './todoCommentScanner';
+import { scanTodoComments, scanTodoCommentsInDir } from './todoCommentScanner';
 
 describe('scanTodoComments', () => {
   const tmp = path.join(__dirname, '__todo_test');
@@ -19,5 +19,13 @@ describe('scanTodoComments', () => {
     const content = fs.readFileSync(file, 'utf8');
     const todos = scanTodoComments(content);
     expect(todos).toEqual(['first', 'second']);
+  });
+
+  it('scans directory and reports file and line', () => {
+    const todos = scanTodoCommentsInDir(tmp);
+    expect(todos).toEqual([
+      { file, line: 1, text: 'first' },
+      { file, line: 3, text: 'second' },
+    ]);
   });
 });

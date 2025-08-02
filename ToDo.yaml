@@ -31,7 +31,7 @@ todos:
     status: offen
   - id: todo-11
     beschreibung: "Automatisches Scannen von TODO-Kommentaren und Update von todo-sigil.yaml"
-    status: offen
+    status: erledigt
   - id: todo-12
     beschreibung: "CI-Check zur Einhaltung von AI_POLICY.md in GitHub Actions einrichten"
     status: offen
