@@ -28,10 +28,6 @@
       "status": "open"
     },
     {
-      "commit": "Event bus load tests",
-      "status": "open"
-    },
-    {
       "commit": "Integrate historical dataset",
       "status": "open"
     },
@@ -587,6 +583,10 @@
     },
     {
       "commit": "Clarify Manager versus Orchestrator roles",
+      "status": "done"
+    },
+    {
+      "commit": "Event bus load tests",
       "status": "done"
     }
   ]

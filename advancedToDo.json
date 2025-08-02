@@ -7870,7 +7870,7 @@
     "path": "tasks/sigillin_skeleton.yaml",
     "task": "Create initial module stubs based on PLAN-ANCHOR",
     "test": "tasks/sigillin_skeleton.test.ts",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Enhance MandalaCanvas and CREPVisualizer UI",
@@ -8080,7 +8080,7 @@
     "path": "tests/event-bus/load.test.ts",
     "task": "Benchmark event bus performance under high concurrency",
     "test": "tests/event-bus/load.test.ts",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Create ethics whitepaper",
