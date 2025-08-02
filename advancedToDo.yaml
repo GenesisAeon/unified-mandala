@@ -8795,7 +8795,7 @@
   path: scripts/wiki-sync.js
   task: Synchronize modules with UnifiedMandala Wiki
   test: scripts/wiki-sync.test.ts
-  status: open
+  status: done
 - commit: Integrate Mistral Code Agent support
   path: packages/agents/mistral-code-agent
   task: Ensure Mistral Code Agent is available for code generation
