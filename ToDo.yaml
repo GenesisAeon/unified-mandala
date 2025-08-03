@@ -193,7 +193,7 @@ todos:
     status: erledigt
   - id: todo-65
     beschreibung: "depth-sigil-generator.ts zur Erstellung von Sigillin-Dateien aus Tiefenwerten entwickeln"
-    status: offen
+    status: erledigt
   - id: todo-66
     beschreibung: "crep-depth-router.ts implementieren, um Prozesse anhand der Faktortiefe zu lenken"
     status: offen
