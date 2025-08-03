@@ -1,0 +1,8 @@
+schema_version: 1.0
+description: CPT-Anomalie-Trigger für Antimaterie-Qubit-Überwachung
+triggers:
+  - id: cpt-anomaly
+    source: antimatter-qubit-monitor
+    cpt_delta_threshold: 0.002
+    action: emit
+    event: cpt_anomaly_detected

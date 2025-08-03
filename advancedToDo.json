@@ -8158,7 +8158,7 @@
     "path": "config/emergence-detector.yaml",
     "task": "Add CPT-Anomaly trigger for antimatter qubit monitoring",
     "test": "tests/emergence-detector.test.ts",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Link Archiv dataset to QuantumTheoryAgent",
