@@ -52,6 +52,7 @@ Weitere Hinweise aus dem „Sigil Übergang“:
 - [**GrokAgent**](packages/agents/GrokAgent.ts) – simple pattern analyzer
 - [**ShadowIntegration**](packages/integration/ShadowIntegration.ts) – experimental data bridge
 - [**MemoryGovernance**](packages/core/MemoryGovernance.ts) – manage memory state
+- [**CodexMemoryKernel**](services/codex-memory-kernel.ts) – persists reference memory to disk
 - [**TuringOrchestrator**](packages/testing/TuringOrchestrator.ts) – run minimal Turing tests
 - [**TuringTestSuite**](packages/testing/TuringTestSuite.ts) – automated conversation Turing tests
 - [**Climate Module**](packages/unifiedmandala-climate/index.ts) – blueprint for climate data
