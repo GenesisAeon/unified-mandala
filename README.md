@@ -58,6 +58,7 @@ Weitere Hinweise aus dem „Sigil Übergang“:
 - [**SymbolicContextInjector**](packages/core/SymbolicContextInjector.ts) – injiziert symbolische Informationen in den Codex
 - [**TuringOrchestrator**](packages/testing/TuringOrchestrator.ts) – run minimal Turing tests
 - [**TuringTestSuite**](packages/testing/TuringTestSuite.ts) – automated conversation Turing tests
+- [**CodeAgent**](go-agent/pkg/codeagent) – scaffold for language-aware automation with CLI support
 - [**Climate Module**](packages/unifiedmandala-climate/index.ts) – blueprint for climate data
 - [**Keilschrift Module**](packages/aeon-labs/keilschrift/index.ts) – cuneiform utilities
 - [**ZivilisationsSandbox**](packages/pantheon/ZivilisationsSandbox/index.ts) – simulate ancient builds
