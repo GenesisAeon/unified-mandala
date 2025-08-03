@@ -8180,5 +8180,12 @@
     "task": "Visualize sync status of modules",
     "test": "packages/unifiedmandala-ui/components/MandalaDashboard.test.tsx",
     "status": "done"
+  },
+  {
+    "commit": "Add depth-sigil generator script",
+    "path": "scripts/depth-sigil-generator.ts",
+    "task": "Generate Sigillin files from depth values",
+    "test": "scripts/depth-sigil-generator.test.ts",
+    "status": "done"
   }
 ]

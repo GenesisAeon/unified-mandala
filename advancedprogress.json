@@ -1,11 +1,11 @@
 {
-  "lastCommit": "feat: add codex memory kernel",
-  "fractalStep": "codex-memory-kernel",
+  "lastCommit": "feat: implement depth sigil generator",
+  "fractalStep": "depth-sigil-generator",
   "openBranches": [
     "work"
   ],
   "mergeConflicts": [],
-  "notes": "Codex memory kernel implemented; next: finalize MandalaNetworkView MVP and link Archiv dataset",
+  "notes": "Depth sigil generator script added; next: finalize MandalaNetworkView MVP and link Archiv dataset",
   "pendingTasks": [
     {
       "commit": "Generate skeleton modules from PLAN-ANCHOR",
@@ -607,6 +607,10 @@
     },
     {
       "commit": "Add codex memory kernel",
+      "status": "done"
+    },
+    {
+      "commit": "Implement depth-sigil generator script",
       "status": "done"
     }
   ]
