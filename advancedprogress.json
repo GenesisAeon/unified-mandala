@@ -1,11 +1,11 @@
 {
-  "lastCommit": "feat: implement symbolic-context-injector module",
-  "fractalStep": "implement-symbolic-context-injector",
+  "lastCommit": "feat: add crep-depth-router script",
+  "fractalStep": "implement-crep-depth-router",
   "openBranches": [
     "work"
   ],
   "mergeConflicts": [],
-  "notes": "Symbolic context injector added; next setup semantic-release and docker compose deployment",
+  "notes": "Implemented crep-depth-router script; marked go-agent tasks done",
   "pendingTasks": [
     {
       "commit": "Generate skeleton modules from PLAN-ANCHOR",
@@ -443,6 +443,10 @@
     },
     {
       "commit": "add crep-flow-synchronizer script",
+      "status": "done"
+    },
+    {
+      "commit": "Implement crep-depth-router script",
       "status": "done"
     }
   ],

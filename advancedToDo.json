@@ -499,7 +499,8 @@
     "commit": "Add liveness and readiness endpoints",
     "path": "go-agent/cmd/go-agent.go",
     "task": "Implement /healthz/live and /healthz/ready probes",
-    "test": "test/health_test.go"
+    "test": "test/health_test.go",
+    "status": "done"
   },
   {
     "commit": "Add self-healing and dead letter queue",
@@ -533,13 +534,15 @@
     "commit": "Configure Vault integration",
     "path": "internal/config",
     "task": "Load secrets via Vault provider with auto rotation",
-    "test": ""
+    "test": "",
+    "status": "done"
   },
   {
     "commit": "Add ML based task prioritization plugin",
     "path": "pkg/plugin",
     "task": "Integrate LightGBM/XGBoost service",
-    "test": "test/plugin_test.go"
+    "test": "test/plugin_test.go",
+    "status": "done"
   },
   {
     "commit": "Add KEDA and HPA scaling",
