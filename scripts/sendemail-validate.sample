@@ -1,12 +1,20 @@
 #!/bin/sh
 
+set -e
+
 # Custom sendemail validation hook for UnifiedMandala
 # Applies incoming patches in a temporary worktree and runs lint/tests
 
 validate_patch() {
     file="$1"
     git am -3 "$file" >/dev/null || return
-    pnpm lint >/dev/null && pnpm test >/dev/null
+    pnpm lint >/dev/null && pnpm test >/dev/null || {
+        git am --abort >/dev/null 2>&1
+        return 1
+    }
+    # Reset applied commit to keep worktree clean
+    git reset --hard HEAD^ >/dev/null 2>&1
+    git clean -fd >/dev/null 2>&1
 }
 
 validate_cover_letter() {

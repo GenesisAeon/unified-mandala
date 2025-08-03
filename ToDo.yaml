@@ -43,7 +43,7 @@ todos:
     status: offen
   - id: todo-15
     beschreibung: "sendemail-validate.sample Hook mit echten Validierungs-Checks ausstatten"
-    status: offen
+    status: erledigt
   - id: todo-16
     beschreibung: "Binäre Existenzsimulation mit 1, -1 und 0 gemäß conversations.json implementieren"
     status: offen
