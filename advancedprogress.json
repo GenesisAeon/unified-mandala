@@ -1,6 +1,6 @@
 {
-  "lastCommit": "feat: add irrational monitor and universe-sim dashboard",
-  "fractalStep": "implement-irrational-monitor-universe-dashboard",
+  "lastCommit": "chore: sync advanced todo statuses",
+  "fractalStep": "sync-advanced-todo-status",
   "openBranches": [
     "work"
   ],
@@ -49,6 +49,10 @@
     }
   ],
   "progress": [
+    {
+      "commit": "sync advanced todo statuses",
+      "status": "done"
+    },
     {
       "commit": "Add Sigillin Fractal Visualizer component",
       "status": "done"
