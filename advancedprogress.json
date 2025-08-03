@@ -1,9 +1,11 @@
 {
   "lastCommit": "feat: add crep-flow-synchronizer script",
   "fractalStep": "implement-crep-flow-synchronizer",
-  "openBranches": ["work"],
+  "openBranches": [
+    "work"
+  ],
   "mergeConflicts": [],
-  "notes": "Added CREP flow synchronizer; next implement symbolic-context-injector",
+  "notes": "Parsed Sigillin sessions; next setup semantic-release and symbolic-context-injector",
   "pendingTasks": [
     {
       "commit": "Generate skeleton modules from PLAN-ANCHOR",
@@ -35,6 +37,14 @@
     },
     {
       "commit": "Implement symbolic-context-injector module",
+      "status": "open"
+    },
+    {
+      "commit": "Setup semantic-release pipeline",
+      "status": "open"
+    },
+    {
+      "commit": "Configure Docker Compose deployment",
       "status": "open"
     }
   ],
@@ -671,5 +681,8 @@
       "commit": "add crep-flow-synchronizer script",
       "status": "done"
     }
+  ],
+  "metacommitTags": [
+    "meta:extract-features"
   ]
 }
