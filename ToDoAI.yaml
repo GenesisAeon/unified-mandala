@@ -24,6 +24,7 @@ todos:
     implement: packages/agents/
     priority: high
     next_commit: false
+    status: erledigt
   - id: Fragment_06_KoKreation_Init
     implement: packages/agents/
     priority: high
