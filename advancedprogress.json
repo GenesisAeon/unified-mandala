@@ -1,11 +1,11 @@
 {
-  "lastCommit": "feat: add DeepScience experiment suite and improve sendemail hook",
-  "fractalStep": "deep-science-experiment",
+  "lastCommit": "feat: finalize MandalaNetworkView interactions",
+  "fractalStep": "mandala-networkview",
   "openBranches": [
     "work"
   ],
   "mergeConflicts": [],
-  "notes": "DeepScience experiment suite initialized and sendemail hook validated; next: finalize MandalaNetworkView MVP and link Archiv dataset",
+  "notes": "MandalaNetworkView MVP finalized with interactive node details; next: link Archiv dataset and setup QuantumTheoryAgent feedback",
   "pendingTasks": [
     {
       "commit": "Generate skeleton modules from PLAN-ANCHOR",
@@ -25,7 +25,7 @@
     },
     {
       "commit": "Finalize MandalaNetworkView MVP",
-      "status": "open"
+      "status": "done"
     },
     {
       "commit": "Link Archiv dataset to QuantumTheoryAgent",

@@ -28,6 +28,7 @@ export const MandalaNetworkView: React.FC = () => {
   const svgRef = useRef<SVGSVGElement>(null);
   const [filterType, setFilterType] = useState<string>('all');
   const [filterLevel, setFilterLevel] = useState<string>('all');
+  const [selectedNode, setSelectedNode] = useState<MandalaNode | null>(null);
   // verfügbare Sigillin-Typen für die Filter-UI ermitteln
   const types = Array.from(new Set(nodesData.map(n => n.type)));
 
@@ -99,7 +100,8 @@ export const MandalaNetworkView: React.FC = () => {
             d.fx = null;
             d.fy = null;
           })
-      );
+      )
+      .on('click', (_, d) => setSelectedNode(d));
 
     const label = svg.append("g")
       .selectAll("text")
@@ -178,6 +180,17 @@ export const MandalaNetworkView: React.FC = () => {
       <button onClick={handleExportSVG} className="mt-4 p-2 bg-blue-600 text-white rounded-lg shadow">
         Export as SVG
       </button>
+      {selectedNode ? (
+        <div data-testid="node-details" className="mt-4 p-2 border rounded text-center">
+          <div className="font-bold">{selectedNode.label}</div>
+          <div>
+            C:{selectedNode.crep.C} R:{selectedNode.crep.R} E:{selectedNode.crep.E} P:{selectedNode.crep.P}
+          </div>
+          {selectedNode.poetry && <div className="italic">{selectedNode.poetry}</div>}
+        </div>
+      ) : (
+        <div data-testid="node-details" className="mt-4 text-sm text-gray-600">No node selected</div>
+      )}
       <Tooltip id="node-tooltip" data-testid="tooltip-anchor" />
     </div>
   );
