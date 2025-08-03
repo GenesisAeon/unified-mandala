@@ -8781,7 +8781,7 @@
   path: packages/unifiedmandala-ui/components
   task: Add buttons for modules and visuals for CREP timeline
   test: packages/unifiedmandala-ui/components/UIEnhancements.test.tsx
-  status: open
+  status: done
 - commit: Add governance workflow
   path: .github/workflows/governance.yml
   task: Setup GovernanceAgent checks and peer review workflow

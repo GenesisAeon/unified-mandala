@@ -4,9 +4,11 @@ import { useEffect, useRef } from 'react';
 export interface MandalaCanvasProps {
   boundaryRules: string[];
   pantheonEvents: string[];
+  modules?: string[];
+  onModuleSelect?: (module: string) => void;
 }
 
-const MandalaCanvas: React.FC<MandalaCanvasProps> = ({ boundaryRules, pantheonEvents }) => {
+const MandalaCanvas: React.FC<MandalaCanvasProps> = ({ boundaryRules, pantheonEvents, modules = [], onModuleSelect }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -26,6 +28,11 @@ const MandalaCanvas: React.FC<MandalaCanvasProps> = ({ boundaryRules, pantheonEv
       <canvas ref={canvasRef} width={200} height={200} />
       <div data-testid="rule-count">{boundaryRules.length}</div>
       <div data-testid="event-count">{pantheonEvents.length}</div>
+      {modules.map((m) => (
+        <button key={m} onClick={() => onModuleSelect?.(m)}>
+          {m}
+        </button>
+      ))}
     </div>
   );
 };
