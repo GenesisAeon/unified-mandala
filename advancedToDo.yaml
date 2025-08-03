@@ -302,6 +302,7 @@
   path: simulations/universe-sim/ui/dashboard
   task: Real-time metrics and 3D render prototype
   test: simulations/universe-sim/ui/dashboard/Dashboard.test.tsx
+  status: done
 - commit: Add sigil generator for simulation runs
   path: simulations/universe-sim/pkg/sigil
   task: Generate sigils for each simulation
