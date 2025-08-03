@@ -1,0 +1,7 @@
+modules:
+  - id: plan-anchor-core
+    description: Core module stub generated from PLAN-ANCHOR reference
+    status: stub
+  - id: plan-anchor-ui
+    description: UI binding stub for PLAN-ANCHOR integration
+    status: stub
