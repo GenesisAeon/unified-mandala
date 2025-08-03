@@ -2107,7 +2107,7 @@
     CREP-Signaturen, Tags, emotionale Marker\n  - Ausgabe:
     `CREPConvoReport.json`\n\n* [ ] **Modul:** `ChronoPoemExtractor.ts`\n  -
     Zweck: Generiert poetische Timeline-Abschnitte aus `conversations.json`\n  -
-    Ausgabe: `CHRONOPOEM_TIMELINE.md`\n\n* [ ] **Script:**
+    Ausgabe: `CHRONOPOEM_TIMELINE.md`\n\n* [x] **Script:**
     `generate-todo-from-convos.ts`\n  - Zweck: extrahiert implizite Aufgaben als
     ToDos (z. B. durch Schlüsselphrasen wie „wir sollten“, „könnten wir“,
     etc.)\n  - Ausgabe: `todo-sigil.yaml`\n\n### 🧠 GPT-Verhaltensausdehnung
