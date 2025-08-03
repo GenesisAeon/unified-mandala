@@ -8173,5 +8173,12 @@
     "task": "Generate Sigillin files from depth values",
     "test": "scripts/depth-sigil-generator.test.ts",
     "status": "done"
+  },
+  {
+    "commit": "Integrate NucleonScanner with CREP engine",
+    "path": "packages/nukleon-scanner/CREPBridge.ts",
+    "task": "Bridge conversation memories with phi analysis",
+    "test": "packages/nukleon-scanner/CREPBridge.test.ts",
+    "status": "done"
   }
 ]

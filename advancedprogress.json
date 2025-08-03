@@ -1,11 +1,11 @@
 {
-  "lastCommit": "feat: implement generate-todo-from-convos script",
+  "lastCommit": "feat: integrate nucleon scanner with crep engine",
   "fractalStep": "review-newadvancedconvos",
   "openBranches": [
     "work"
   ],
   "mergeConflicts": [],
-  "notes": "generate-todo-from-convos.ts implemented; next: review new advanced conversations",
+  "notes": "Nucleon scanner bridged with CREP engine; continue reviewing new advanced conversations",
   "pendingTasks": [
     {
       "commit": "Generate skeleton modules from PLAN-ANCHOR",
@@ -643,6 +643,10 @@
     },
     {
       "commit": "Enhance sendemail validation hook",
+      "status": "done"
+    },
+    {
+      "commit": "Integrate nucleon scanner with crep engine",
       "status": "done"
     }
   ]
