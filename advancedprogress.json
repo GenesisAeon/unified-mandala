@@ -1,11 +1,9 @@
 {
-  "lastCommit": "feat: add CREPTooltip component",
-  "fractalStep": "implement-crep-tooltip",
-  "openBranches": [
-    "work"
-  ],
+  "lastCommit": "feat: add crep-flow-synchronizer script",
+  "fractalStep": "implement-crep-flow-synchronizer",
+  "openBranches": ["work"],
   "mergeConflicts": [],
-  "notes": "Added CREPTooltip component; next implement CREPInfoModal",
+  "notes": "Added CREP flow synchronizer; next implement symbolic-context-injector",
   "pendingTasks": [
     {
       "commit": "Generate skeleton modules from PLAN-ANCHOR",
@@ -36,7 +34,7 @@
       "status": "done"
     },
     {
-      "commit": "Implement CREPInfoModal component",
+      "commit": "Implement symbolic-context-injector module",
       "status": "open"
     }
   ],
@@ -432,6 +430,10 @@
     {
       "commit": "Add CREPTooltip component",
       "status": "done"
+    },
+    {
+      "commit": "add crep-flow-synchronizer script",
+      "status": "done"
     }
   ],
   "completed": [
@@ -663,6 +665,10 @@
     },
     {
       "commit": "Integrate nucleon scanner with crep engine",
+      "status": "done"
+    },
+    {
+      "commit": "add crep-flow-synchronizer script",
       "status": "done"
     }
   ]

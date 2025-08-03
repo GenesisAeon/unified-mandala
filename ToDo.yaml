@@ -100,7 +100,7 @@ todos:
     status: erledigt
   - id: todo-34
     beschreibung: "crep-flow-synchronizer.ts implementieren für CREP-Datenabgleich zwischen Repositories"
-    status: offen
+    status: erledigt
   - id: todo-35
     beschreibung: "symbolic-context-injector.ts erstellen, um symbolische Informationen in den Codex zu injizieren"
     status: offen
@@ -111,7 +111,7 @@ todos:
     beschreibung: "emergence_signal_hub.ts zur Koordination von CREP- und Sigillin-Signalen bauen"
     status: offen
   - id: todo-38
-    beschreibung: "GenesisOS-Modul \"KernelGPT-DriverBuilder\" vorbereiten"
+    beschreibung: 'GenesisOS-Modul "KernelGPT-DriverBuilder" vorbereiten'
     status: offen
   - id: todo-39
     beschreibung: "Proof of Concept: USB-Tastatur als Sigillin-Device einbinden"
