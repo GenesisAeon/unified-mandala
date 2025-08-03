@@ -1,11 +1,11 @@
 {
-  "lastCommit": "feat: add governance workflow and AI policy check",
-  "fractalStep": "governance-workflow",
+  "lastCommit": "feat: add codex memory kernel",
+  "fractalStep": "codex-memory-kernel",
   "openBranches": [
     "work"
   ],
   "mergeConflicts": [],
-  "notes": "Governance workflow added; next: link Archiv dataset and setup feedback loop",
+  "notes": "Codex memory kernel implemented; next: finalize MandalaNetworkView MVP and link Archiv dataset",
   "pendingTasks": [
     {
       "commit": "Generate skeleton modules from PLAN-ANCHOR",
@@ -600,10 +600,13 @@
     {
       "commit": "Implement PactDepthGatekeeper role management",
       "status": "done"
-    }
-    ,
+    },
     {
       "commit": "Add governance workflow and policy checks",
+      "status": "done"
+    },
+    {
+      "commit": "Add codex memory kernel",
       "status": "done"
     }
   ]

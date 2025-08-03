@@ -88,7 +88,7 @@ todos:
     status: erledigt
   - id: todo-30
     beschreibung: "codex-memory-kernel.ts zur Verwaltung eines persistenten Referenz-Gedächtnisses entwickeln"
-    status: offen
+    status: erledigt
   - id: todo-31
     beschreibung: "generate-todo-from-convos.ts implementieren, um aus conversations.json ToDos abzuleiten"
     status: offen
