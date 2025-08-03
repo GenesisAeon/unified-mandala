@@ -40,7 +40,7 @@ todos:
     status: erledigt
   - id: todo-14
     beschreibung: "Verarbeitung von conversations.json mit Fortschrittsdatei automatisieren"
-    status: offen
+    status: erledigt
   - id: todo-15
     beschreibung: "sendemail-validate.sample Hook mit echten Validierungs-Checks ausstatten"
     status: erledigt
