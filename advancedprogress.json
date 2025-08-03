@@ -1,109 +1,12 @@
 {
-  "lastCommit": "chore: extract tasks from new conversations",
-  "fractalStep": "feature-extraction",
+  "lastCommit": "Merge pull request #995 from GenesisAeon/thhxx6-codex/implement-features-from-advancedtodo.yaml-and-.json",
+  "fractalStep": "fractal-run",
   "openBranches": [
     "work"
   ],
   "mergeConflicts": [],
   "notes": "Added scripts for ToDo synchronization and advanced conversation parsing",
-  "pendingTasks": [
-    {
-      "commit": "Generate skeleton modules from PLAN-ANCHOR",
-      "status": "done"
-    },
-    {
-      "commit": "Enhance MandalaCanvas and CREPVisualizer UI",
-      "status": "done"
-    },
-    {
-      "commit": "Add governance workflow",
-      "status": "done"
-    },
-    {
-      "commit": "Initialize DeepScience experiment suite",
-      "status": "done"
-    },
-    {
-      "commit": "Finalize MandalaNetworkView MVP",
-      "status": "done"
-    },
-    {
-      "commit": "Link Archiv dataset to QuantumTheoryAgent",
-      "status": "done"
-    },
-    {
-      "commit": "Setup QuantumTheoryAgent test feedback loop",
-      "status": "done"
-    },
-    {
-      "commit": "Implement symbolic-context-injector module",
-      "status": "done"
-    },
-    {
-      "commit": "Setup semantic-release pipeline",
-      "status": "open"
-    },
-    {
-      "commit": "Configure Docker Compose deployment",
-      "status": "open"
-    },
-    {
-      "commit": "Add pre-commit hook for ToDo sync",
-      "status": "open"
-    },
-    {
-      "commit": "Provide Docker Compose setup",
-      "status": "open"
-    },
-    {
-      "commit": "Add run-demo script",
-      "status": "open"
-    },
-    {
-      "commit": "Feature-Extraktion aus newadvancedconversations",
-      "status": "done"
-    },
-    {
-      "commit": "Progress-Tracking mit Metacommit-Tags",
-      "status": "planned"
-    },
-    {
-      "commit": "CI/CD tooling erweitern",
-      "status": "planned"
-    },
-    {
-      "commit": "Deployment via Docker Compose und GitHub Actions",
-      "status": "planned"
-    },
-    {
-      "commit": "Modul-Integrationen für Boundary Agents",
-      "status": "planned"
-    },
-    {
-      "commit": "UI-Upgrades Multilayerringe CREP-Puls Live Haiku",
-      "status": "planned"
-    },
-    {
-      "commit": "Add PoeticSigillin module",
-      "status": "open"
-    },
-    {
-      "commit": "Add ResonanzMandala visualization",
-      "status": "open"
-    },
-    {
-      "commit": "Implement MemoryManager Service",
-      "status": "open"
-    },
-    {
-      "commit": "Add Feedback Agents for new files",
-      "status": "open"
-    },
-    {
-      "commit": "Create todo_parser Go component",
-      "status": "open"
-    }
-  ],
+  "pendingTasks": [],
   "progress": [
     {
       "commit": "Add Sigillin Fractal Visualizer component",
@@ -631,6 +534,18 @@
     },
     {
       "commit": "extract tasks from newadvancedconversations",
+      "status": "done"
+    },
+    {
+      "commit": "Add pre-commit hook for ToDo sync",
+      "status": "done"
+    },
+    {
+      "commit": "Provide Docker Compose setup",
+      "status": "done"
+    },
+    {
+      "commit": "Add run-demo script",
       "status": "done"
     }
   ],
