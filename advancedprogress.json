@@ -1,11 +1,11 @@
 {
-  "lastCommit": "feat: add QuantumTheoryAgent test feedback loop",
+  "lastCommit": "feat: implement generate-todo-from-convos script",
   "fractalStep": "review-newadvancedconvos",
   "openBranches": [
     "work"
   ],
   "mergeConflicts": [],
-  "notes": "QuantumTheoryAgent feedback script implemented; next: review new advanced conversations",
+  "notes": "generate-todo-from-convos.ts implemented; next: review new advanced conversations",
   "pendingTasks": [
     {
       "commit": "Generate skeleton modules from PLAN-ANCHOR",
@@ -37,6 +37,10 @@
     }
   ],
   "progress": [
+    {
+      "commit": "implement generate-todo-from-convos script",
+      "status": "done"
+    },
     {
       "commit": "Setup QuantumTheoryAgent test feedback loop",
       "status": "done"
