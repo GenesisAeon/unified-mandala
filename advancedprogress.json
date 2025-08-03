@@ -1,11 +1,11 @@
 {
-  "lastCommit": "feat: integrate nucleon scanner with crep engine",
-  "fractalStep": "review-newadvancedconvos",
+  "lastCommit": "feat: add codex-sync script",
+  "fractalStep": "implement-codex-sync",
   "openBranches": [
     "work"
   ],
   "mergeConflicts": [],
-  "notes": "Nucleon scanner bridged with CREP engine; continue reviewing new advanced conversations",
+  "notes": "Added codex-sync script with sigillin hashing; continue reviewing new advanced conversations",
   "pendingTasks": [
     {
       "commit": "Generate skeleton modules from PLAN-ANCHOR",
@@ -415,6 +415,10 @@
     },
     {
       "commit": "Add wiki sync script",
+      "status": "done"
+    },
+    {
+      "commit": "add codex-sync script",
       "status": "done"
     }
   ],

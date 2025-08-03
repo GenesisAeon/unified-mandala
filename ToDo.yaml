@@ -73,7 +73,7 @@ todos:
     status: erledigt
   - id: todo-25
     beschreibung: "Skript codex-sync.sh mit CREP-Checks und Sigillin-Hashing entwickeln"
-    status: offen
+    status: erledigt
   - id: todo-26
     beschreibung: "sigillin-validator.ts zur Prüfung von Sigillin-Dateien gemäß Schema erstellen"
     status: erledigt
