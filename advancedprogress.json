@@ -1,6 +1,6 @@
 {
-  "lastCommit": "chore: add todo sync and conversation parser",
-  "fractalStep": "sync-todo-and-parse-conversations",
+  "lastCommit": "chore: extract tasks from new conversations",
+  "fractalStep": "feature-extraction",
   "openBranches": [
     "work"
   ],
@@ -61,7 +61,7 @@
     },
     {
       "commit": "Feature-Extraktion aus newadvancedconversations",
-      "status": "planned"
+      "status": "done"
     },
     {
       "commit": "Progress-Tracking mit Metacommit-Tags",
@@ -627,6 +627,10 @@
     },
     {
       "commit": "Automate documentation, sigil generation, and TODO prioritization",
+      "status": "done"
+    },
+    {
+      "commit": "extract tasks from newadvancedconversations",
       "status": "done"
     }
   ],
