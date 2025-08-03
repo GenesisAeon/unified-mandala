@@ -3,10 +3,15 @@ const fs = require('fs');
 const path = require('path');
 
 const convFile = path.join(__dirname, '../docs/sigils/conversations.json');
+const fallbackFile = path.join(
+  __dirname,
+  '../docs/sigils/newadvancedconversations.json'
+);
 const kontextFile = path.join(__dirname, '../kontext.json');
 
-function loadConversations() {
-  return JSON.parse(fs.readFileSync(convFile, 'utf8'));
+function loadConversations(file) {
+  if (!fs.existsSync(file)) return null;
+  return JSON.parse(fs.readFileSync(file, 'utf8'));
 }
 
 function categorize(title) {
@@ -22,8 +27,14 @@ function categorize(title) {
   return null;
 }
 
-function run() {
-  const convs = loadConversations();
+function run(source = convFile, outFile = kontextFile) {
+  let convs = loadConversations(source);
+  if (!convs) {
+    convs = loadConversations(fallbackFile);
+  }
+  if (!convs) {
+    throw new Error('No conversations file found');
+  }
   const topics = {
     codex: [], genesisos: [], unified_mandala: [], aeonshell: [],
     genesis_aeon: [], nukleon_scanner: [], sigillin: [], innovation: []
@@ -38,7 +49,7 @@ function run() {
     summary: `Automatisch generiert aus ${convs.length} Gespr\u00e4chen.`,
     topics
   };
-  fs.writeFileSync(kontextFile, JSON.stringify(kontext, null, 2));
+  fs.writeFileSync(outFile, JSON.stringify(kontext, null, 2));
   console.log('kontext.json updated.');
 }
 
