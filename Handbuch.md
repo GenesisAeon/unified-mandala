@@ -339,7 +339,8 @@ codexbuild/               # Build-Skripte und Deploy-Hilfen
 codex-sync/              # Antwortsystem für Vorschläge
 ci/                      # Test- und Pipeline-Konfigurationen
 config/                  # Zentrale YAML- und Env-Dateien
-  └── interfaces.yaml       # API-Endpunkte der Plattform
+  ├── interfaces.yaml       # API-Endpunkte der Plattform
+  ├── emergence-detector.yaml  # CPT-Anomalie-Trigger für Antimaterie-Qubits
   ├── memory-manager.yaml  # Cleanup-Interval Konfiguration
   ├── memory-job-example.yaml # Vorlage für MemoryManager-Jobs
   └── memory-jobs/            # Weitere Job-Templates

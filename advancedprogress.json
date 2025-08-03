@@ -1,11 +1,11 @@
 {
-  "lastCommit": "feat: implement PactDepthGatekeeper roles",
-  "fractalStep": "pact-depth-gatekeeper",
+  "lastCommit": "feat: configure CPT anomaly emergence detection",
+  "fractalStep": "emergence-detector",
   "openBranches": [
     "work"
   ],
   "mergeConflicts": [],
-  "notes": "Antimatter microservice added; next: configure CPT detector and link Archiv dataset",
+  "notes": "CPT detector configured; next: link Archiv dataset and setup feedback loop",
   "pendingTasks": [
     {
       "commit": "Generate skeleton modules from PLAN-ANCHOR",
@@ -25,10 +25,6 @@
     },
     {
       "commit": "Finalize MandalaNetworkView MVP",
-      "status": "open"
-    },
-    {
-      "commit": "Configure CPT anomaly emergence detection",
       "status": "open"
     },
     {
@@ -596,8 +592,11 @@
     {
       "commit": "Create antimatter qubit microservice",
       "status": "done"
-    }
-    ,
+    },
+    {
+      "commit": "Configure CPT anomaly emergence detection",
+      "status": "done"
+    },
     {
       "commit": "Implement PactDepthGatekeeper role management",
       "status": "done"
