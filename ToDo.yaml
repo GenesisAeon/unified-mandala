@@ -34,10 +34,10 @@ todos:
     status: erledigt
   - id: todo-12
     beschreibung: "CI-Check zur Einhaltung von AI_POLICY.md in GitHub Actions einrichten"
-    status: offen
+    status: erledigt
   - id: todo-13
     beschreibung: "Sigillin-Lint in CI integrieren"
-    status: offen
+    status: erledigt
   - id: todo-14
     beschreibung: "Verarbeitung von conversations.json mit Fortschrittsdatei automatisieren"
     status: offen

@@ -1,0 +1,21 @@
+name: Governance Workflow
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  governance:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+      - name: Install dependencies
+        run: pnpm install
+      - name: Check AI_POLICY
+        run: node scripts/check-ai-policy.js
+      - name: Sigillin Lint
+        run: bash ci/sigillin-lint-and-validate.sh
