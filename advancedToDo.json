@@ -7885,7 +7885,7 @@
     "path": "packages/experiments/DeepScience",
     "task": "Start automated stress tests and CREP tuning",
     "test": "packages/experiments/DeepScience/experiment.test.ts",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Add wiki sync script",
@@ -7948,7 +7948,7 @@
     "path": "packages/experiments/DeepScience",
     "task": "Start automated stress tests and CREP tuning",
     "test": "packages/experiments/DeepScience/experiment.test.ts",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Add wiki sync script",
