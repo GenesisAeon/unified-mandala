@@ -29,6 +29,7 @@ Weitere Hinweise aus dem „Sigil Übergang“:
   Nutze `docs/offline/docker-compose.yml` für lokale Tests und
   synchronisiere ToDo-Dateien vor großen Commits mit
   `scripts/sync-todo-progress.js`.
+- Freundschaftssystem-Konzept siehe [docs/friendship-system.md](docs/friendship-system.md)
 
 ## 🚀 Features
 

@@ -665,6 +665,7 @@
   path: docs/friendship-system.md
   task: Outline AI friendship system from Aeon KI Resonanz chat
   test: ""
+  status: done
 - commit: Add plugin registry and loader
   path: plugins/manifest.yaml
   task: Define manifest schema and implement usePluginLoader
