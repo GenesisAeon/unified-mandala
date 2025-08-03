@@ -21,6 +21,7 @@ Weitere Hinweise aus dem „Sigil Übergang“:
 - Über `scripts/generate-next-sigil.js` wird nach jedem Zyklus ein neues Sigil
   mit aktuellem `update_time` erzeugt.
 Für neue Aufgaben aus Chat-Logs nutze `scripts/parse-advanced-conversations.js` und aktualisiere `advancedToDo.json` sowie `advancedprogress.json`.
+- Archivdaten mit dem QuantumTheoryAgent verknüpfen: `ts-node scripts/quantum-archive-ingest.ts`.
 
 > **TL;DR**
 > - Installation: `./scripts/setup-unifiedmandala.sh`

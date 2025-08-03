@@ -5,7 +5,7 @@
     "work"
   ],
   "mergeConflicts": [],
-  "notes": "MandalaNetworkView MVP finalized with interactive node details; next: link Archiv dataset and setup QuantumTheoryAgent feedback",
+  "notes": "MandalaNetworkView MVP finalized with interactive node details; Archiv dataset linked; next: setup QuantumTheoryAgent feedback",
   "pendingTasks": [
     {
       "commit": "Generate skeleton modules from PLAN-ANCHOR",
@@ -29,7 +29,7 @@
     },
     {
       "commit": "Link Archiv dataset to QuantumTheoryAgent",
-      "status": "open"
+      "status": "done"
     },
     {
       "commit": "Setup QuantumTheoryAgent test feedback loop",
@@ -37,6 +37,10 @@
     }
   ],
   "progress": [
+    {
+      "commit": "Link Archiv dataset to QuantumTheoryAgent",
+      "status": "done"
+    },
     {
       "commit": "Implement boundary manager modules",
       "status": "done"
