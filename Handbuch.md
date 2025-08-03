@@ -305,8 +305,10 @@ packages/
   ├── tts                  # Sprachsynthese
   ├── universum-simulationen # Simulationsmodule
   │   └── universe-sim       # Beispiel-Simulation mit Go
+  │       └── ui/dashboard   # Metrik-Dashboard
   ├── nukleon-scanner        # Extrahiert Gesprächsstrukturen
   ├── nukleon-sonifier       # Sonifiziert Memory-Zustände
+  ├── irrational-monitor     # Überwacht Abweichungen irrationaler Konstanten
   ├── sim-domain          # Domänenspezifische Simulationen
   ├── pkg/chem             # Reaction kinetics simulation
   ├── pkg/mind             # Hybrid symbolic & neural agents

@@ -38,6 +38,8 @@ Weitere Hinweise aus dem „Sigil Übergang“:
 - [**MandalaNetworkView**](packages/unifiedmandala-ui/components/MandalaNetworkView.tsx) – Visualisierung aller Sigillin-Knoten und CREP-Felder
 - [**ArchiveMap**](packages/unifiedmandala-ui/components/ArchiveMap.tsx) – Interaktive Karte der Archiv Menschheitsspuren
 - [**QuantumArchiv-Ingest**](scripts/quantum-archive-ingest.ts) – verbindet das Archiv Menschheitsspuren mit dem QuantumTheoryAgent zur Anomalieerkennung
+- [**IrrationalMonitor**](packages/irrational-monitor/IrrationalMonitor.ts) – Watchdog für Abweichungen irrationaler Konstanten
+- [**UniverseSim Dashboard**](simulations/universe-sim/ui/dashboard/Dashboard.tsx) – Minimal UI für Simulationsmetriken
 - [**QuantumAgent Feedback Loop**](scripts/quantum-agent-feedback.ts) – sammelt Testergebnisse des QuantumTheoryAgent
 - [**SigillinLoader**](packages/unifiedmandala-ui/components/SigillinLoader.tsx) – Import & Filter von Sigillin-Dateien
 - [**AutoDoc & Manifest-Generator**](packages/crep-engine/autoDocGeneration.ts) – Dokumentation auf Knopfdruck
