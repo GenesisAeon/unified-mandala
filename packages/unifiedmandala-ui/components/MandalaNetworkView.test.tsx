@@ -1,4 +1,5 @@
 // d3 ist ESM-only, daher hier minimal gemockt
+const mockOn = jest.fn();
 jest.mock('d3', () => ({
   select: () => ({
     selectAll: () => ({ remove: jest.fn() }),
@@ -11,6 +12,7 @@ jest.mock('d3', () => ({
       append: jest.fn().mockReturnThis(),
       text: jest.fn().mockReturnThis(),
       call: jest.fn().mockReturnThis(),
+      on: mockOn,
     }),
   }),
   forceSimulation: () => ({ force: jest.fn().mockReturnThis(), on: jest.fn() }),
@@ -34,4 +36,9 @@ test('renders svg and filter options', () => {
   // one option per type plus "Alle"
   const options = screen.getAllByRole('option');
   expect(options.length).toBeGreaterThan(2);
+});
+
+test('shows placeholder when no node is selected', () => {
+  render(<MandalaNetworkView />);
+  expect(screen.getByTestId('node-details')).toHaveTextContent('No node selected');
 });

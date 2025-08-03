@@ -8130,7 +8130,7 @@
     "path": "packages/unifiedmandala-ui/components/MandalaNetworkView.tsx",
     "task": "Implement Sigillin interaction and CREP visualization for funding demo",
     "test": "packages/unifiedmandala-ui/components/MandalaNetworkView.test.tsx",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Add AntimatterQubitMonitor to QuantumTheoryAgent",
