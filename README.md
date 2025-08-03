@@ -112,6 +112,7 @@ Weitere Hinweise aus dem „Sigil Übergang“:
 - [**SelfAuditModul**](packages/unifiedmandala-ui/components/SelfAuditModul.tsx) – analysiert die Repository-Struktur
 - [**AdminMetrics**](packages/unifiedmandala-ui/README.md) – zeigt CREP- und Sigillin-Kennzahlen
 - [**SigillinViewer & SigillinMap**](packages/unifiedmandala-ui/components/SigillinMap.tsx) – Übersicht und Detailansicht aller Sigillin
+- [**SigillinFractalVisualizer**](packages/unifiedmandala-ui/components/SigillinFractalVisualizer.tsx) – Fraktalkunst aus Sigillin-Daten
 - [**SymbolicWayfinder & SoforthilfeOverlay**](packages/unifiedmandala-ui/components/SymbolicWayfinder.tsx) – Navigation und Hilfedialoge
 - [**CREPChart & CREPTriggerPanel**](packages/unifiedmandala-ui/components/CREPChart.tsx) – CREP-Historie und Steuerung
 - [**CREPTestHarness**](packages/unifiedmandala-ui/components/CREPTestHarness.tsx) – UI zum Durchspielen von CREP-Werten

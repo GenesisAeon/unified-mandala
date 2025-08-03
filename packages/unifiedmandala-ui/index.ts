@@ -39,3 +39,4 @@ export { default as BlackboxMandala } from './components/BlackboxMandala';
 export { default as MandalaCanvas } from './components/MandalaCanvas';
 export { default as AIUI } from './components/AIUI';
 export { default as ArchiveMap } from './components/ArchiveMap';
+export { default as SigillinFractalVisualizer } from './components/SigillinFractalVisualizer';

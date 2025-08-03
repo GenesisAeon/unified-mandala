@@ -212,6 +212,7 @@ GPTEventHub.emit('orakel:says', { content: 'Hallo Welt' });
 - `CREPTriggerPanel` – Buttons zum Auslösen von CREP-Ereignissen.
 - `LiveCREPPanel` – Kombiniert Trigger und Chart für Live-Daten.
 - `SigillinLoader` – Lädt Sigillin-Dateien und filtert Einträge.
+- `SigillinFractalVisualizer` – Generiert einfache Fraktalkunst aus Sigillin-Daten.
 - `SelfAuditModul` – Zeigt Kennzahlen aus `selfAnalyzer`.
 - `useSymbolzeit` – liest Symbolphasen aus der YAML und steuert Farben dynamisch.
 - `useBreakpoint` – erkennt mobile Ansichten für responsive Layouts.
