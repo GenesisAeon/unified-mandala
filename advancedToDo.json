@@ -771,9 +771,10 @@
   },
   {
     "commit": "Add CodeAgent scaffolding",
-    "path": "pkg/codeagent",
+    "path": "go-agent/pkg/codeagent",
     "task": "Skeleton for language agents and CLI",
-    "test": ""
+    "test": "",
+    "status": "done"
   },
   {
     "commit": "Add C-Tutor skeleton",

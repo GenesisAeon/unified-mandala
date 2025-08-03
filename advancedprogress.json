@@ -1,11 +1,11 @@
 {
-  "lastCommit": "feat: add crep-depth-router script",
-  "fractalStep": "implement-crep-depth-router",
+  "lastCommit": "feat: add codeagent scaffolding",
+  "fractalStep": "implement-codeagent-scaffolding",
   "openBranches": [
     "work"
   ],
   "mergeConflicts": [],
-  "notes": "Implemented crep-depth-router script; marked go-agent tasks done",
+  "notes": "Implemented CodeAgent scaffolding and CLI",
   "pendingTasks": [
     {
       "commit": "Generate skeleton modules from PLAN-ANCHOR",
@@ -447,6 +447,10 @@
     },
     {
       "commit": "Implement crep-depth-router script",
+      "status": "done"
+    },
+    {
+      "commit": "Add CodeAgent scaffolding",
       "status": "done"
     }
   ],

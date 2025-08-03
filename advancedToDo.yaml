@@ -8976,3 +8976,8 @@
   task: Bridge conversation memories with phi analysis
   test: packages/nukleon-scanner/CREPBridge.test.ts
   status: done
+- commit: Add CodeAgent scaffolding
+  path: go-agent/pkg/codeagent
+  task: Skeleton for language agents and CLI
+  test: go-agent/pkg/codeagent/agent_test.go
+  status: done

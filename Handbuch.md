@@ -311,7 +311,7 @@ packages/
   ├── pkg/chem             # Reaction kinetics simulation
   ├── pkg/mind             # Hybrid symbolic & neural agents
   ├── pkg/sonifier         # CREP-to-MIDI music generator
-  ├── pkg/codeagent        # Language-specific code agents
+  ├── go-agent/pkg/codeagent        # Language-specific code agents
   ├── art                 # Sonification & AI-Art
   ├── shared-utils              # Hilfsfunktionen für alle Pakete
   │   └── RestClient.ts         # einfacher REST-Helper
@@ -324,7 +324,7 @@ packages/
   │   └── pkg/hooks         # Event Hook Publisher
   ├── mandala              # Aktiviert Mandala-Kollektive
   ├── orchestrator         # Steuert Boundary- und Pantheon-Dienste
-  ├── cmd/mandala-codeagent.go  # Beispiel-CLI für CodeAgent
+  ├── go-agent/cmd/mandala-codeagent  # CLI entrypoint for CodeAgent
   ├── services/vector-indexer # Embedding generator service
   ├── services/sigil-trigger  # Beobachtet Sigillin-Änderungen
   ├── services/memorymesh     # Region-Archive und Reflexionsdienste
