@@ -28,7 +28,7 @@ todos:
     status: erledigt
   - id: todo-10
     beschreibung: "kontext.json regelmäßig mit Inhalten aus conversations.json aktualisieren"
-    status: offen
+    status: erledigt
   - id: todo-11
     beschreibung: "Automatisches Scannen von TODO-Kommentaren und Update von todo-sigil.yaml"
     status: erledigt
