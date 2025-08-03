@@ -8786,7 +8786,7 @@
   path: .github/workflows/governance.yml
   task: Setup GovernanceAgent checks and peer review workflow
   test: tests/governanceWorkflow.test.ts
-  status: open
+  status: done
 - commit: Initialize DeepScience experiment suite
   path: packages/experiments/DeepScience
   task: Start automated stress tests and CREP tuning

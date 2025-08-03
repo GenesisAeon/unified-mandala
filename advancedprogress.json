@@ -1,11 +1,11 @@
 {
-  "lastCommit": "feat: configure CPT anomaly emergence detection",
-  "fractalStep": "emergence-detector",
+  "lastCommit": "feat: add governance workflow and AI policy check",
+  "fractalStep": "governance-workflow",
   "openBranches": [
     "work"
   ],
   "mergeConflicts": [],
-  "notes": "CPT detector configured; next: link Archiv dataset and setup feedback loop",
+  "notes": "Governance workflow added; next: link Archiv dataset and setup feedback loop",
   "pendingTasks": [
     {
       "commit": "Generate skeleton modules from PLAN-ANCHOR",
@@ -17,7 +17,7 @@
     },
     {
       "commit": "Add governance workflow",
-      "status": "open"
+      "status": "done"
     },
     {
       "commit": "Initialize DeepScience experiment suite",
@@ -599,6 +599,11 @@
     },
     {
       "commit": "Implement PactDepthGatekeeper role management",
+      "status": "done"
+    }
+    ,
+    {
+      "commit": "Add governance workflow and policy checks",
       "status": "done"
     }
   ]

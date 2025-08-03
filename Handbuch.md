@@ -17,6 +17,7 @@ Weitere Hinweise aus dem „Sigil Übergang“:
 - Siehe Agenten-Mapping-Blueprint in [docs/architecture/AgentMappingBlueprint.md](docs/architecture/AgentMappingBlueprint.md)
 - Lokaler Test-Stack unter `docs/offline/docker-compose.yml`
 - ToDo-Dateien vor größeren Commits mit `scripts/sync-todo-progress.js` abgleichen
+- Governance-Workflow (`.github/workflows/governance.yml`) prüft `AI_POLICY.md` und Sigillin-Validität
 - Über `scripts/generate-next-sigil.js` wird nach jedem Zyklus ein neues Sigil
   mit aktuellem `update_time` erzeugt.
 Für neue Aufgaben aus Chat-Logs nutze `scripts/parse-advanced-conversations.js` und aktualisiere `advancedToDo.json` sowie `advancedprogress.json`.

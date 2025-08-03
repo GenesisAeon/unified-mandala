@@ -589,6 +589,7 @@ Nutze `node scripts/update-advanced-from-newconvos.js` um die ToDo-Dateien aus `
 - **Module**: unter `packages/` gegliedert in Agents, Core und mehr
 - **Utils**: zentrale Helfer liegen in `packages/shared-utils/`
 - **Scripts**: Automatisierungs- und CI-Skripte finden sich im `scripts/` Verzeichnis
+- **Governance CI**: `.github/workflows/governance.yml` prüft `AI_POLICY.md` und Sigillin-Definitionen
 - `scripts/wiki-sync.js`: synchronisiert Markdown-Dokumente mit dem UnifiedMandala Wiki
 
 ## 🐳 ProtoDeploy
