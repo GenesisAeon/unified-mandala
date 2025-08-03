@@ -8942,7 +8942,7 @@
   path: scripts/quantum-archive-ingest.ts
   task: Connect Menschheitsspuren records to QuantumTheoryAgent analysis
   test: scripts/quantum-archive-ingest.test.ts
-  status: open
+  status: done
 - commit: Document QuantumTheoryAgent framework status
   path: docs/Framework-Bericht.md
   task: Add QuantumTheoryAgent roadmap and current implementation
