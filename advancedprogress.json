@@ -1,11 +1,11 @@
 {
-  "lastCommit": "feat: add irrational monitor and universe-sim dashboard",
-  "fractalStep": "implement-irrational-monitor-universe-dashboard",
+  "lastCommit": "chore: add todo sync and conversation parser",
+  "fractalStep": "sync-todo-and-parse-conversations",
   "openBranches": [
     "work"
   ],
   "mergeConflicts": [],
-  "notes": "Added irrational constants watchdog and universe simulation dashboard",
+  "notes": "Added scripts for ToDo synchronization and advanced conversation parsing",
   "pendingTasks": [
     {
       "commit": "Generate skeleton modules from PLAN-ANCHOR",
@@ -45,6 +45,62 @@
     },
     {
       "commit": "Configure Docker Compose deployment",
+      "status": "open"
+    },
+    {
+      "commit": "Add pre-commit hook for ToDo sync",
+      "status": "open"
+    },
+    {
+      "commit": "Provide Docker Compose setup",
+      "status": "open"
+    },
+    {
+      "commit": "Add run-demo script",
+      "status": "open"
+    },
+    {
+      "commit": "Feature-Extraktion aus newadvancedconversations",
+      "status": "planned"
+    },
+    {
+      "commit": "Progress-Tracking mit Metacommit-Tags",
+      "status": "planned"
+    },
+    {
+      "commit": "CI/CD tooling erweitern",
+      "status": "planned"
+    },
+    {
+      "commit": "Deployment via Docker Compose und GitHub Actions",
+      "status": "planned"
+    },
+    {
+      "commit": "Modul-Integrationen für Boundary Agents",
+      "status": "planned"
+    },
+    {
+      "commit": "UI-Upgrades Multilayerringe CREP-Puls Live Haiku",
+      "status": "planned"
+    },
+    {
+      "commit": "Add PoeticSigillin module",
+      "status": "open"
+    },
+    {
+      "commit": "Add ResonanzMandala visualization",
+      "status": "open"
+    },
+    {
+      "commit": "Implement MemoryManager Service",
+      "status": "open"
+    },
+    {
+      "commit": "Add Feedback Agents for new files",
+      "status": "open"
+    },
+    {
+      "commit": "Create todo_parser Go component",
       "status": "open"
     }
   ],
@@ -246,7 +302,7 @@
       "status": "done"
     },
     {
-      "commit": "meta:update-progress \u2013 mark memory governance done",
+      "commit": "meta:update-progress – mark memory governance done",
       "status": "done"
     },
     {
@@ -456,6 +512,122 @@
     {
       "commit": "Add irrational monitor and universe-sim dashboard",
       "status": "done"
+    },
+    {
+      "commit": "Implement C-Tutor progress workflow",
+      "status": "done"
+    },
+    {
+      "commit": "Add JavaHamster AI Flow",
+      "status": "done"
+    },
+    {
+      "commit": "Document learning modules",
+      "status": "done"
+    },
+    {
+      "commit": "Add PoetryErrorBoundary component",
+      "status": "done"
+    },
+    {
+      "commit": "Create VRBegegnungsraumLobby",
+      "status": "done"
+    },
+    {
+      "commit": "Develop AeonResonanceModules",
+      "status": "done"
+    },
+    {
+      "commit": "Implement Dispatcher Error-Boundary",
+      "status": "done"
+    },
+    {
+      "commit": "Aeon transition sigil workflow",
+      "status": "done"
+    },
+    {
+      "commit": "MemoryMesh region POC",
+      "status": "done"
+    },
+    {
+      "commit": "Implement FreieKIZivilisation module",
+      "status": "done"
+    },
+    {
+      "commit": "Implement AeonSigillin state",
+      "status": "done"
+    },
+    {
+      "commit": "Implement MemoryManager service",
+      "status": "done"
+    },
+    {
+      "commit": "Add parsing & SocialGood workflow trigger",
+      "status": "done"
+    },
+    {
+      "commit": "Generate memory-job config templates",
+      "status": "done"
+    },
+    {
+      "commit": "Add transition history script",
+      "status": "done"
+    },
+    {
+      "commit": "Sync ToDo vor Commits",
+      "status": "done"
+    },
+    {
+      "commit": "Chat-Log Parser für Aufgaben",
+      "status": "done"
+    },
+    {
+      "commit": "Add Parse TODOs button",
+      "status": "done"
+    },
+    {
+      "commit": "Automate ToDo generation",
+      "status": "done"
+    },
+    {
+      "commit": "Cluster roadmap guidelines",
+      "status": "done"
+    },
+    {
+      "commit": "Implement MemoryManager Service",
+      "status": "done"
+    },
+    {
+      "commit": "Add Feedback Agents for new files",
+      "status": "done"
+    },
+    {
+      "commit": "Create todo_parser Go component",
+      "status": "done"
+    },
+    {
+      "commit": "Add React use-case components for Sigil generation, ToDo parsing, and SocialGood matching",
+      "status": "done"
+    },
+    {
+      "commit": "Create Go todo_parser module",
+      "status": "done"
+    },
+    {
+      "commit": "Add handleTodo action and button",
+      "status": "done"
+    },
+    {
+      "commit": "Auto-generate tasks from SelfAnalyzer results",
+      "status": "done"
+    },
+    {
+      "commit": "Implement repair ticket automation",
+      "status": "done"
+    },
+    {
+      "commit": "Automate documentation, sigil generation, and TODO prioritization",
+      "status": "done"
     }
   ],
   "completed": [
@@ -479,67 +651,67 @@
   "featureLog": [
     {
       "featureId": "open-ethik-dashboard",
-      "commit": "meta:implement-features \u2013 open-ethik-dashboard",
+      "commit": "meta:implement-features – open-ethik-dashboard",
       "status": "done"
     },
     {
       "featureId": "implicit-todos",
-      "commit": "meta:extract-features \u2013 implicit todo extraction",
+      "commit": "meta:extract-features – implicit todo extraction",
       "status": "done"
     },
     {
       "featureId": "zivilisations-sandboxen",
-      "commit": "meta:extract-features \u2013 Zivilisations-Sandboxen",
+      "commit": "meta:extract-features – Zivilisations-Sandboxen",
       "status": "done"
     },
     {
       "featureId": "climate-integration",
-      "commit": "meta:extract-features \u2013 climate integration",
+      "commit": "meta:extract-features – climate integration",
       "status": "done"
     },
     {
       "featureId": "keilschrift",
-      "commit": "meta:extract-features \u2013 keilschrift",
+      "commit": "meta:extract-features – keilschrift",
       "status": "done"
     },
     {
       "featureId": "grok-agent",
-      "commit": "meta:implement-features \u2013 grok agent skeleton",
+      "commit": "meta:implement-features – grok agent skeleton",
       "status": "done"
     },
     {
       "featureId": "shadow-integration",
-      "commit": "meta:extract-features \u2013 shadow integration",
+      "commit": "meta:extract-features – shadow integration",
       "status": "done"
     },
     {
       "featureId": "self-reflection",
-      "commit": "meta:extract-features \u2013 self reflection",
+      "commit": "meta:extract-features – self reflection",
       "status": "done"
     },
     {
       "featureId": "memory-governance",
-      "commit": "meta:extract-features \u2013 memory governance",
+      "commit": "meta:extract-features – memory governance",
       "status": "done"
     },
     {
       "featureId": "turing-tests",
-      "commit": "meta:extract-features \u2013 turing tests",
+      "commit": "meta:extract-features – turing tests",
       "status": "done"
     },
     {
       "featureId": "schwerewellen",
-      "commit": "meta:extract-features \u2013 schwerewellen",
+      "commit": "meta:extract-features – schwerewellen",
       "status": "done"
     },
     {
       "featureId": "anthropic-multiversum",
-      "commit": "meta:extract-features \u2013 anthropic multiversum",
+      "commit": "meta:extract-features – anthropic multiversum",
       "status": "done"
     },
     {
       "featureId": "memory-governance",
-      "commit": "meta:implement-features \u2013 memory governance service",
+      "commit": "meta:implement-features – memory governance service",
       "status": "done"
     },
     {
@@ -699,6 +871,7 @@
     }
   ],
   "metacommitTags": [
-    "meta:extract-features"
+    "meta:extract-features",
+    "meta:implement-features"
   ]
 }

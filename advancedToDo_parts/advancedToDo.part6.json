@@ -1,0 +1,58 @@
+[
+  {
+    "commit": "Feature-Extraktion aus newadvancedconversations",
+    "path": "docs/sigils/newadvancedconversations.json",
+    "task": "Extract features to advancedToDo.*",
+    "test": "",
+    "status": "planned"
+  },
+  {
+    "commit": "Progress-Tracking mit Metacommit-Tags",
+    "path": "advancedprogress.json",
+    "task": "Add metacommit tags for progress",
+    "test": "",
+    "status": "planned"
+  },
+  {
+    "commit": "CI/CD tooling erweitern",
+    "path": "ci",
+    "task": "Add SemVer semantic-release and lint/test config",
+    "test": "",
+    "status": "planned"
+  },
+  {
+    "commit": "Deployment via Docker Compose und GitHub Actions",
+    "path": "deployment",
+    "task": "Provide Docker compose and GitHub Actions deployment",
+    "test": "",
+    "status": "planned"
+  },
+  {
+    "commit": "Modul-Integrationen für Boundary Agents",
+    "path": "packages",
+    "task": "Integrate QuantumBoundaryAgent, BioBoundaryAgent, SoziologieBoundaryAgent",
+    "test": "",
+    "status": "planned"
+  },
+  {
+    "commit": "UI-Upgrades Multilayerringe CREP-Puls Live Haiku",
+    "path": "packages/unifiedmandala-ui",
+    "task": "Enhance UI with multilayer rings, CREP pulse and live haiku",
+    "test": "",
+    "status": "planned"
+  },
+  {
+    "commit": "Sync ToDo vor Commits",
+    "path": "scripts/sync-todo-progress.js",
+    "task": "Check ToDo and progress before commits",
+    "test": "node scripts/sync-todo-progress.js",
+    "status": "done"
+  },
+  {
+    "commit": "Chat-Log Parser für Aufgaben",
+    "path": "scripts/parse-newadvanced-conversations.js",
+    "task": "Parse chat logs and update advanced ToDo and progress",
+    "test": "node scripts/parse-newadvanced-conversations.js --extract-todos",
+    "status": "done"
+  }
+]
