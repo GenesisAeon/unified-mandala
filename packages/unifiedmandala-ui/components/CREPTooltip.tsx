@@ -1,23 +1,20 @@
 import React from 'react';
-import { Tooltip } from 'react-tooltip';
 
 interface CREPTooltipProps {
-  label: string;
   value: number;
+  label?: string;
+  children?: React.ReactNode;
 }
 
-const CREPTooltip: React.FC<CREPTooltipProps> = ({ label, value }) => {
-  const descriptionMap: Record<string, string> = {
-    C: 'Coherence – Klarheit der Verbindungen.',
-    R: 'Resonance – Mitschwingen und Kommunikation.',
-    E: 'Emergence – Neues entsteht spontan.',
-    P: 'Poetics – Tiefere symbolische Bedeutung.',
-  };
-
+/**
+ * Small info overlay to display a CREP value.
+ */
+const CREPTooltip: React.FC<CREPTooltipProps> = ({ value, label = 'ℹ️', children }) => {
+  const content = children || label;
   return (
-    <Tooltip content={`${descriptionMap[label]} Wert: ${value.toFixed(2)}`}> 
-      <span className="crep-label">{label}: {value.toFixed(2)}</span>
-    </Tooltip>
+    <span data-testid="crep-tooltip" title={`CREP value: ${value}`}>
+      {content}
+    </span>
   );
 };
 

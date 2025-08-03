@@ -1,5 +1,12 @@
 [
   {
+    "commit": "Add CREPTooltip component",
+    "path": "packages/unifiedmandala-ui/components/CREPTooltip.tsx",
+    "task": "Small info overlay for CREP values",
+    "test": "packages/unifiedmandala-ui/components/CREPTooltip.test.tsx",
+    "status": "done"
+  },
+  {
     "commit": "Implement Live CREP Timeline Visualization",
     "path": "packages/unifiedmandala-ui/components/CREPTimeline.tsx",
     "status": "done",
