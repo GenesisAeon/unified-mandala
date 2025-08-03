@@ -8158,7 +8158,7 @@
     "path": "scripts/quantum-agent-feedback.ts",
     "task": "Run QuantumTheoryAgent program tests and collect feedback",
     "test": "scripts/quantum-agent-feedback.test.ts",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Add Mandala Dashboard component",
