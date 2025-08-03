@@ -8776,7 +8776,7 @@
   path: tasks/sigillin_skeleton.yaml
   task: Create initial module stubs based on PLAN-ANCHOR
   test: tasks/sigillin_skeleton.test.ts
-  status: open
+  status: done
 - commit: Enhance MandalaCanvas and CREPVisualizer UI
   path: packages/unifiedmandala-ui/components
   task: Add buttons for modules and visuals for CREP timeline
