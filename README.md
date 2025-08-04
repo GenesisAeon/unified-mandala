@@ -30,6 +30,7 @@ Weitere Hinweise aus dem „Sigil Übergang“:
   synchronisiere ToDo-Dateien vor großen Commits mit
   `scripts/sync-todo-progress.js`.
 - Freundschaftssystem-Konzept siehe [docs/friendship-system.md](docs/friendship-system.md)
+- Gesprächsstatistiken aus neuen Chat-Logs: `ts-node scripts/analyze-newadvanced-conversations.ts`
 
 ## 🚀 Features
 
