@@ -1,13 +1,13 @@
 {
-  "lastCommit": "Extend GitHub Actions for extras",
+  "lastCommit": "Add implicit todo validation script",
   "fractalStep": "fractal-run",
   "openBranches": [
     "work"
   ],
   "mergeConflicts": [],
-  "notes": "Added ML plugin build and policy linter steps to agent workflow; next: validate implicit todo extraction results.",
+  "notes": "Created script to validate advancedToDo entries; next: integrate into CI pipeline.",
   "pendingTasks": [
-    "Validate implicit todo extraction results"
+    "Integrate validation script into CI pipeline"
   ],
   "progress": [
     {
@@ -580,6 +580,10 @@
     },
     {
       "commit": "Expand CREP export documentation",
+      "status": "done"
+    },
+    {
+      "commit": "Add implicit todo validation script",
       "status": "done"
     }
   ],
