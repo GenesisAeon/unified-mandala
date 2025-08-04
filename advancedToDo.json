@@ -388,37 +388,43 @@
     "commit": "Scaffold universe-sim module",
     "path": "simulations/universe-sim",
     "task": "Scaffold project structure and default config",
-    "test": "simulations/universe-sim/test/core_test.go"
+    "test": "simulations/universe-sim/test/core_test.go",
+    "status": "done"
   },
   {
     "commit": "Implement state manager and physics engine",
     "path": "simulations/universe-sim/pkg/core",
     "task": "Add State-Manager and Physics-Engine",
-    "test": "simulations/universe-sim/test/core_state_test.go"
+    "test": "simulations/universe-sim/test/core_state_test.go",
+    "status": "done"
   },
   {
     "commit": "Add agent engine with interaction rules",
     "path": "simulations/universe-sim/pkg/agent",
     "task": "Implement Agent-Engine and Interaction-Rules",
-    "test": "simulations/universe-sim/test/agent_rules_test.go"
+    "test": "simulations/universe-sim/test/agent_rules_test.go",
+    "status": "done"
   },
   {
     "commit": "Add event logger and JSONL pipeline",
     "path": "simulations/universe-sim/pkg/logger",
     "task": "Log events to JSONL and process pipeline",
-    "test": "simulations/universe-sim/test/logger_test.go"
+    "test": "simulations/universe-sim/test/logger_test.go",
+    "status": "done"
   },
   {
     "commit": "Add federation servers for gRPC and REST",
     "path": "simulations/universe-sim/pkg/federation",
     "task": "Expose gRPC and REST APIs for universe-sim",
-    "test": "simulations/universe-sim/test/federation_test.go"
+    "test": "simulations/universe-sim/test/federation_test.go",
+    "status": "done"
   },
   {
     "commit": "Implement CREP scanner and emergence analyzer",
     "path": "simulations/universe-sim/pkg/analysis",
     "task": "Analyze events for CREP and emergent patterns",
-    "test": "simulations/universe-sim/test/analysis_test.go"
+    "test": "simulations/universe-sim/test/analysis_test.go",
+    "status": "done"
   },
   {
     "commit": "Build visualization dashboard prototype",
@@ -431,7 +437,8 @@
     "commit": "Add sigil generator for simulation runs",
     "path": "simulations/universe-sim/pkg/sigil",
     "task": "Generate sigils for each simulation",
-    "test": "simulations/universe-sim/test/sigil_test.go"
+    "test": "simulations/universe-sim/test/sigil_test.go",
+    "status": "done"
   },
   {
     "commit": "Set up CI/CD and tests",
