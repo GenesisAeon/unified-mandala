@@ -146,6 +146,7 @@ Weitere Hinweise aus dem „Sigil Übergang“:
 - [**CalendarSync**](packages/shared-utils/CalendarSync.ts) – exportiert priorisierte ToDos in Kalender
 - [**KarmaBalance**](packages/shared-utils/KarmaBalance.ts) – verwaltet Karma-Punkte
 - [**SymbolicForecaster**](packages/shared-utils/SymbolicForecaster.ts) – sagt kommende Symbolzeit-Phasen voraus
+- [**SchemaValidator**](packages/shared-utils/schema/index.ts) – validiert Daten gegen JSON-Schemata
 - [**SymbolzeitSync**](packages/crep-automation/SymbolzeitSync.ts) – synchronisiert CREPGameEngine und SymbolzeitManager
 - [**RitualCompiler**](packages/crep-automation/RitualCompiler.ts) – wandelt Rituale in CREP-FSMs
 - [**AutomergeFederation**](packages/collab-editor/AutomergeFederation.ts) – führt verteilte Edits automatisch zusammen
