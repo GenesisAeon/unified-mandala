@@ -1055,14 +1055,17 @@
   path: packages/community/PluginSecurityAuditor.ts
   task: Audit community plugins before integration
   test: packages/community/PluginSecurityAuditor.test.ts
+  status: done
 - commit: Implement ExternalIntegrationAPI
   path: packages/core/ExternalIntegrationAPI.ts
   task: Provide interfaces to external services
   test: packages/core/ExternalIntegrationAPI.test.ts
+  status: done
 - commit: Add WebhookSystem
   path: packages/core/WebhookSystem.ts
   task: Enable external event notifications via webhooks
   test: packages/core/WebhookSystem.test.ts
+  status: done
 - commit: Create GuidedOnboardingTour
   path: packages/unifiedmandala-ui/components/GuidedOnboardingTour.tsx
   task: Interactive tour for new users

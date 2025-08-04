@@ -59,6 +59,7 @@ Weitere Hinweise aus dem „Sigil Übergang“:
 - [**ShadowIntegration**](packages/integration/ShadowIntegration.ts) – experimental data bridge
 - [**MemoryGovernance**](packages/core/MemoryGovernance.ts) – manage memory state
 - [**CodexMemoryKernel**](services/codex-memory-kernel.ts) – persists reference memory to disk
+- [**WebhookSystem**](packages/core/WebhookSystem.ts) – send webhook notifications to external services
 - [**SymbolicContextInjector**](packages/core/SymbolicContextInjector.ts) – injiziert symbolische Informationen in den Codex
 - [**TuringOrchestrator**](packages/testing/TuringOrchestrator.ts) – run minimal Turing tests
 - [**TuringTestSuite**](packages/testing/TuringTestSuite.ts) – automated conversation Turing tests
