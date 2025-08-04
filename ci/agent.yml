@@ -16,3 +16,11 @@ jobs:
           go test ./services/vector-indexer
       - name: Package Lambda@Edge
         run: ./scripts/package-lambda-edge.sh
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '18'
+      - run: pnpm install
+      - name: Build ML plugins
+        run: npx ts-node scripts/generate-plugin-manifest.ts
+      - name: Lint AI policy
+        run: node scripts/check-ai-policy.js
