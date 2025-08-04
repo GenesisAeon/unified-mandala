@@ -1,11 +1,11 @@
 {
-  "lastCommit": "Expand CREP export documentation",
+  "lastCommit": "Extend GitHub Actions for extras",
   "fractalStep": "fractal-run",
   "openBranches": [
     "work"
   ],
   "mergeConflicts": [],
-  "notes": "Expanded CREP export documentation; next: validate implicit todo extraction results.",
+  "notes": "Added ML plugin build and policy linter steps to agent workflow; next: validate implicit todo extraction results.",
   "pendingTasks": [
     "Validate implicit todo extraction results"
   ],
@@ -872,6 +872,10 @@
     },
     {
       "commit": "Integrate conversation stats into MandalaDashboard",
+      "status": "done"
+    },
+    {
+      "commit": "Extend GitHub Actions for extras",
       "status": "done"
     }
   ],
