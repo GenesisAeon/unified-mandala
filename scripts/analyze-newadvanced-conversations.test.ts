@@ -9,5 +9,8 @@ describe('analyzeNewAdvancedConversations', () => {
     expect(stats.conversationCount).toBe(1);
     expect(stats.messageCount).toBe(1);
     expect(stats.authorCounts.user).toBe(1);
+    expect(stats.averageMessagesPerConversation).toBe(1);
+    expect(stats.timeRange.start).toBe(1234567890);
+    expect(stats.timeRange.end).toBe(1234567890);
   });
 });
