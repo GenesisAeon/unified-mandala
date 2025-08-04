@@ -100,7 +100,7 @@ Weitere Hinweise aus dem „Sigil Übergang“:
 - **AeonKernel** – zentrales CREP-State-Management unter `packages/aeon-core`
 - [**Plug-in-Architektur**](plugins/manifest.yaml) – GPT-Kommunikationsmodule, CLI-Tools
 - 🔗 [**GPTBridge (Go)**](go-bridge/pkg/gpt) – API- und Link-basierte GPT-Anbindung
-- [**Plugin-Registry & Dynamic Loader**](plugins/manifest.yaml) – `usePluginLoader` lädt jetzt YAML- und JSON-Manifeste
+- [**Plugin-Registry & Dynamic Loader**](plugins/manifest.yaml) – `usePluginLoader` lädt YAML-/JSON-Manifeste und prüft sie gegen `manifest.schema.json`
 - [**Objective2UI**](packages/unifiedmandala-ui/components/ObjectiveLayoutSuggester.tsx) – generiert Layout-Vorschläge via GPT
 - [**Ethik-Governance & Heimkehr-Deklaration**](docs/sigils/sigillin_heimkehr.md) – Offene, poetische Ethik als Systembasis
 - [**Advanced Resonanzmodule Plan**](docs/resonance/AdvancedResonanzModulePlan.md) – Fahrplan für kommende Erweiterungen

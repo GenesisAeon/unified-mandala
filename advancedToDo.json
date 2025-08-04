@@ -570,7 +570,8 @@
     "commit": "Implement multi agent coordination handler",
     "path": "pkg/handler/coordination.go",
     "task": "Add correlationId and traceId support",
-    "test": ""
+    "test": "",
+    "status": "done"
   },
   {
     "commit": "Create LangChain adapter and sigil generator service",
@@ -950,7 +951,8 @@
     "commit": "Document Aeon Transition guidelines",
     "path": "docs/sigils/aeon-transition.md",
     "task": "Summarize transition instructions from conversations",
-    "test": ""
+    "test": "",
+    "status": "done"
   },
   {
     "commit": "Draft Friendship system concept",
@@ -963,7 +965,8 @@
     "commit": "Add plugin registry and loader",
     "path": "plugins/manifest.yaml",
     "task": "Define manifest schema and implement usePluginLoader",
-    "test": "apps/sharedream-interface/hooks/usePluginLoader.test.ts"
+    "test": "apps/sharedream-interface/hooks/usePluginLoader.test.ts",
+    "status": "done"
   },
   {
     "commit": "Add FeedbackButtons component",

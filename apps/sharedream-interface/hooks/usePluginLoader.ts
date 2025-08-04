@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import YAML from 'yaml';
+import Ajv from 'ajv';
+import manifestSchema from '../../../plugins/manifest.schema.json';
 
 export interface PluginDefinition {
   name: string;
@@ -23,7 +25,14 @@ export function usePluginLoader() {
     fetch('/plugins/manifest.yaml')
       .then((res) => res.text())
       .then((text) => YAML.parse(text))
-      .then(async (manifest) => {
+      .then(async (manifest: { plugins: PluginDefinition[] }) => {
+        const ajv = new Ajv();
+        const validate = ajv.compile(manifestSchema as any);
+        if (!validate(manifest)) {
+          console.error('Ungültiges Plugin-Manifest:', validate.errors);
+          setError('Ungültiges Plugin-Manifest');
+          return;
+        }
         const loaded = await Promise.all(
           manifest.plugins.map(async (p: PluginDefinition) => {
             const Component = (await import(/* @vite-ignore */ p.component)).default;
