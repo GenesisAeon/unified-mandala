@@ -1,14 +1,13 @@
 {
-  "lastCommit": "Update shared schema utilities",
+  "lastCommit": "Add KEDA and HPA scaling configuration",
   "fractalStep": "fractal-run",
   "openBranches": [
     "work"
   ],
   "mergeConflicts": [],
-  "notes": "Aligned ToDo sync and conversation parsing tasks; next: validate implicit todo extraction results, add KEDA/HPA scaling, implement multi agent coordination handler.",
+  "notes": "Aligned ToDo sync and conversation parsing tasks; next: validate implicit todo extraction results, implement multi agent coordination handler.",
   "pendingTasks": [
     "Validate implicit todo extraction results",
-    "Add KEDA and HPA scaling",
     "Implement multi agent coordination handler"
   ],
   "progress": [
@@ -574,6 +573,10 @@
     },
     {
       "commit": "Update ToDos from advanced conversations",
+      "status": "done"
+    },
+    {
+      "commit": "Add KEDA and HPA scaling configuration",
       "status": "done"
     }
   ],

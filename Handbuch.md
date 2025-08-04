@@ -25,6 +25,7 @@ Für neue Aufgaben aus Chat-Logs nutze `scripts/parse-advanced-conversations.js`
 - Gesprächsstatistiken aus neuen Protokollen: `ts-node scripts/analyze-newadvanced-conversations.ts`
 - Archivdaten mit dem QuantumTheoryAgent verknüpfen: `ts-node scripts/quantum-archive-ingest.ts`.
 - QuantumTheoryAgent Tests ausführen und Feedback sammeln: `ts-node scripts/quantum-agent-feedback.ts`
+- KEDA/HPA Skalierung unter `deployment/keda` für NATS Queue-Length
 
 > **TL;DR**
 > - Installation: `./scripts/setup-unifiedmandala.sh`
