@@ -17,8 +17,18 @@ export class MemoryGovernanceService {
     return this.manager.get(category).filter((t) => traumaRegex.test(t));
   }
 
-  clear(category?: MemoryCategory) {
-    this.manager.clear(category as any);
+  clear(category?: MemoryCategory): number {
+    if (category) {
+      const count = this.manager.get(category).length;
+      this.manager.clear(category);
+      return count;
+    }
+    let count = 0;
+    this.listCategories().forEach((cat) => {
+      count += this.manager.get(cat).length;
+    });
+    this.manager.clear();
+    return count;
   }
 
   listCategories(): MemoryCategory[] {

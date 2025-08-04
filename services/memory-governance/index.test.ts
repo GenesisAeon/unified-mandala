@@ -24,9 +24,21 @@ test('clear resets selected category', () => {
   manager.add('daily', 'one');
   manager.add('weekly', 'two');
   const governance = new MemoryGovernanceService(manager);
-  governance.clear('daily');
+  const removed = governance.clear('daily');
+  expect(removed).toBe(1);
   expect(manager.get('daily')).toEqual([]);
   expect(manager.get('weekly')).toEqual(['two']);
+});
+
+test('clear without category wipes all entries', () => {
+  const manager = new MemoryManager({ daily: 0, weekly: 0, longterm: 0 });
+  manager.add('daily', 'one');
+  manager.add('weekly', 'two');
+  const governance = new MemoryGovernanceService(manager);
+  const removed = governance.clear();
+  expect(removed).toBe(2);
+  expect(manager.get('daily')).toEqual([]);
+  expect(manager.get('weekly')).toEqual([]);
 });
 
 test('listCategories returns manager categories', () => {
