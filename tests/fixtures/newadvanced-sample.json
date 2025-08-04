@@ -6,6 +6,7 @@
         "id": "node1",
         "message": {
           "author": { "role": "user" },
+          "create_time": 1234567890,
           "content": { "content_type": "text", "parts": ["hello"] }
         }
       }

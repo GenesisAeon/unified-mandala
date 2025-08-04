@@ -1,14 +1,15 @@
 {
-  "lastCommit": "Add KEDA and HPA scaling configuration",
+  "lastCommit": "Add conversation time-range stats to analyzer",
   "fractalStep": "fractal-run",
   "openBranches": [
     "work"
   ],
   "mergeConflicts": [],
-  "notes": "Aligned ToDo sync and conversation parsing tasks; next: validate implicit todo extraction results, implement multi agent coordination handler.",
+  "notes": "Extended conversation analyzer with time range metrics; next: integrate stats into dashboards. Aligned ToDo sync and conversation parsing tasks; next: validate implicit todo extraction results, implement multi agent coordination handler.",
   "pendingTasks": [
     "Validate implicit todo extraction results",
-    "Implement multi agent coordination handler"
+    "Implement multi agent coordination handler",
+    "Integrate conversation stats into dashboards"
   ],
   "progress": [
     {
@@ -853,6 +854,10 @@
     },
     {
       "commit": "Update shared schema utilities",
+      "status": "done"
+    },
+    {
+      "commit": "Add conversation time-range stats to analyzer",
       "status": "done"
     }
   ],

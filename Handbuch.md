@@ -22,7 +22,7 @@ Weitere Hinweise aus dem „Sigil Übergang“:
 - Über `scripts/generate-next-sigil.js` wird nach jedem Zyklus ein neues Sigil
   mit aktuellem `update_time` erzeugt.
 Für neue Aufgaben aus Chat-Logs nutze `scripts/parse-advanced-conversations.js` und aktualisiere `advancedToDo.json` sowie `advancedprogress.json`.
-- Gesprächsstatistiken aus neuen Protokollen: `ts-node scripts/analyze-newadvanced-conversations.ts`
+- Gesprächsstatistiken (inkl. Zeitspanne) aus neuen Protokollen: `ts-node scripts/analyze-newadvanced-conversations.ts`
 - Archivdaten mit dem QuantumTheoryAgent verknüpfen: `ts-node scripts/quantum-archive-ingest.ts`.
 - QuantumTheoryAgent Tests ausführen und Feedback sammeln: `ts-node scripts/quantum-agent-feedback.ts`
 - KEDA/HPA Skalierung unter `deployment/keda` für NATS Queue-Length
