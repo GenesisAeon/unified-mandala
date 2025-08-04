@@ -789,13 +789,15 @@
     "commit": "Add C-Tutor skeleton",
     "path": "apps/c-tutor",
     "task": "Interactive C learning tool placeholder",
-    "test": ""
+    "test": "",
+    "status": "done"
   },
   {
     "commit": "Add JavaHamster AI skeleton",
     "path": "apps/java-hamster-ai",
     "task": "Gamified C learning pendant",
-    "test": ""
+    "test": "",
+    "status": "done"
   },
   {
     "commit": "Add WeightedDispatcher",
