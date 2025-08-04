@@ -556,7 +556,8 @@
     "commit": "Add KEDA and HPA scaling",
     "path": "deployment/keda",
     "task": "Trigger scaling based on NATS queue length",
-    "test": ""
+    "test": "",
+    "status": "done"
   },
   {
     "commit": "Implement RBAC and policy management",

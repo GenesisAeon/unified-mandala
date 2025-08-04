@@ -394,6 +394,7 @@
   path: deployment/keda
   task: Trigger scaling based on NATS queue length
   test: ""
+  status: done
 - commit: Implement RBAC and policy management
   path: internal/auth
   task: Enforce YAML policies for handlers

@@ -78,6 +78,7 @@ Weitere Hinweise aus dem „Sigil Übergang“:
 - [**Fractal Runner CLI**](packages/agents/bin/fractal-runner.ts) – runs YAML task files with optional soundscape
 - [**React Starter**](packages/unifiedmandala-ui/ReactStarter.tsx) – Tailwind/Vite skeleton setup
 - **Aeon Orchestrator** – koordiniert Pantheon-Agenten und streamt Boundary-Regeln
+- [**KEDA/HPA Skalierung**](deployment/keda) – skaliert mandala-worker anhand der NATS Queue-Length
 - [**PantheonPortalAnalytics**](packages/pantheon/PantheonPortalAnalytics.ts) – track portal usage
 - [**PantheonBoundaryBridge**](packages/pantheon/PantheonBoundaryBridge.ts) – verbindet Pantheon-Events mit BoundaryRuleDetector
 - [**PantheonExport Tool**](packages/pantheon/tools/PantheonExport.ts) – exportiert die vorhandenen Pantheon-Module als Datensatz
