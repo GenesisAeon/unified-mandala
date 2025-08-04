@@ -398,6 +398,7 @@
   path: internal/auth
   task: Enforce YAML policies for handlers
   test: test/policy_test.go
+  status: done
 - commit: Implement multi agent coordination handler
   path: pkg/handler/coordination.go
   task: Add correlationId and traceId support

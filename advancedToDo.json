@@ -562,7 +562,8 @@
     "commit": "Implement RBAC and policy management",
     "path": "internal/auth",
     "task": "Enforce YAML policies for handlers",
-    "test": "test/policy_test.go"
+    "test": "test/policy_test.go",
+    "status": "done"
   },
   {
     "commit": "Implement multi agent coordination handler",
