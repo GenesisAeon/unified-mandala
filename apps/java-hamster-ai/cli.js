@@ -1,1 +1,4 @@
-#!/usr/bin/env node\nconsole.log("java-hamster-ai placeholder");
+#!/usr/bin/env node
+
+console.log("java-hamster-ai placeholder");
+
