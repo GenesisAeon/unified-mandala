@@ -8207,5 +8207,12 @@
     "task": "Bridge conversation memories with phi analysis",
     "test": "packages/nukleon-scanner/CREPBridge.test.ts",
     "status": "done"
+  },
+  {
+    "commit": "Support implicit TODO extraction",
+    "path": "packages/shared-utils/advancedTodoUpdater.ts",
+    "task": "Include implicit conversation cues when updating advancedToDo",
+    "test": "packages/shared-utils/advancedTodoUpdater.test.ts",
+    "status": "done"
   }
 ]

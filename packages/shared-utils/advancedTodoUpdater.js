@@ -1,15 +1,24 @@
 const fs = require('fs');
 const YAML = require('yaml');
-const { extractTodosFromConversations } = require('./conversationAnalyzer');
+const { extractTodosFromConversations, extractImplicitTodosFromConversations } = require('./conversationAnalyzer');
 
-function updateAdvancedTodo(convFile, yamlFile, jsonFile) {
+function updateAdvancedTodo(convFile, yamlFile, jsonFile, options = {}) {
+  const { includeImplicit = false, maxEntries } = options;
   const todos = extractTodosFromConversations(convFile);
-  const entries = Array.from(new Set(todos)).map(t => ({
+  if (includeImplicit) {
+    todos.push(...extractImplicitTodosFromConversations(convFile));
+  }
+  const clean = t => t.replace(/^[*\-]\s*/, '').replace(/【.*?】/g, '').trim();
+  const isValid = t => /\w{3}/.test(t) && t.split(/\s+/).length >= 3 && t.length <= 120 && !t.startsWith('.') && !t.includes('http') && /[a-zA-Z0-9)]$/.test(t);
+  let entries = Array.from(new Set(todos.map(clean))).filter(isValid).map(t => ({
     commit: t,
     path: '',
     task: t,
     test: ''
   }));
+  if (typeof maxEntries === 'number') {
+    entries = entries.slice(0, maxEntries);
+  }
 
   const loadYaml = f => {
     if (fs.existsSync(f)) {
