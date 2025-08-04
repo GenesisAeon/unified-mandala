@@ -12,4 +12,10 @@ describe('GrokAgent', () => {
     agent.setPatternLibrary(['foo']);
     expect(agent.analyze('foo bar')).toBe('Matched 1: foo');
   });
+
+  it('learns patterns from text', () => {
+    const agent = new GrokAgent();
+    agent.learn('alpha beta');
+    expect(agent.analyze('gamma alpha')).toBe('Matched 1: alpha');
+  });
 });

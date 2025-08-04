@@ -7,5 +7,7 @@ describe('ShadowIntegrations', () => {
     sis.register('secret', 'data', 1);
     expect(sis.list()).toContain('secret');
     expect(sis.retrieve('secret', 1)).toBe('data');
+    sis.unregister('secret');
+    expect(sis.list()).not.toContain('secret');
   });
 });

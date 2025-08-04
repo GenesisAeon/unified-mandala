@@ -1,5 +1,5 @@
 {
-  "lastCommit": "Add conversation time-range stats to analyzer",
+  "lastCommit": "Enable GrokAgent learning and ShadowIntegrations cleanup",
   "fractalStep": "fractal-run",
   "openBranches": [
     "work"
@@ -858,6 +858,10 @@
     },
     {
       "commit": "Add conversation time-range stats to analyzer",
+      "status": "done"
+    },
+    {
+      "commit": "Enable GrokAgent learning and ShadowIntegrations cleanup",
       "status": "done"
     }
   ],
