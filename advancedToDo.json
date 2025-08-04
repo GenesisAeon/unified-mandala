@@ -908,7 +908,8 @@
     "commit": "Add agent registry YAML",
     "path": "agents.yaml",
     "task": "Store all agent types centrally",
-    "test": ""
+    "test": "",
+    "status": "done"
   },
   {
     "commit": "Gamification API routes",

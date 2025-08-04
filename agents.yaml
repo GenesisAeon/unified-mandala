@@ -7,3 +7,52 @@ agents:
     description: "Generiert Go-Code-Snippets via GPT"
     endpoint: "/codeagent/go/generate"
     example: "curl -X POST /codeagent/go/generate -d '{\"description\":\"hello\"}'"
+  - id: codex-audit
+    description: "Emergenz pr\u00fcfen und Sigillin zuweisen"
+    start: mandala-sync.ts
+    docs: docs/agents/CodexAuditAgent.md
+  - id: evolver-gpt
+    description: "Generiert alternative Pfade und poetische Entscheidungen"
+    start: codexwork.yaml
+    docs: docs/agents/EvolverGPT.md
+  - id: fragment-mapper
+    description: "Ordnet Gespr\u00e4chsfragmente zu Modulen und Themen"
+    start: fragmented_conversation.json
+    docs: docs/agents/FragmentMapper.md
+  - id: sync-runner
+    description: "Synchronisiert CREP-Zust\u00e4nde und erkennt Kollisionen"
+    start: codexsync.yaml
+    docs: docs/agents/SyncRunner.md
+  - id: pact-depth-gatekeeper
+    description: "Zugangskontrolle via Tiefe und Sigillin"
+    start: pact-depth-rules.ts
+    docs: docs/agents/PactDepthGatekeeper.md
+  - id: depth-bundle-exporter
+    description: "Exportiert Sigillin Depth Bundles"
+    start: export_depth_bundle
+    outputs:
+      - sigillin_depth_bundle.sigil.json
+      - depth_index.md
+      - irrational_matrix.wav
+      - "mandala_depth_*.svg"
+    docs: docs/agents/DepthBundleExporter.md
+  - id: pattern-reactivator
+    description: "Reaktiviert ruhende Aufgabenketten bei niedrigem CREP"
+    start: pattern-reactivator.ts
+    docs: docs/agents/PatternReactivator.md
+  - id: genesis-aeon-navigator
+    description: "Steuert Phasenwechsel im Genesis-Aeon"
+    start: genesis-aeon-navigator.ts
+    docs: docs/agents/GenesisAeonNavigator.md
+  - id: vision-context-integrator
+    description: "Verteilt Vision und Strategie"
+    start: vision-context-integrator.ts
+    docs: docs/agents/VisionContextIntegrator.md
+  - id: strategic-agent-coordinator
+    description: "Schreibt strategy-overview.json aus AGENTS.md"
+    start: strategic-agent-coordinator.ts
+    docs: docs/agents/StrategicAgentCoordinator.md
+  - id: quality-assurance-agent
+    description: "F\u00fchrt Lint- und Test-Suites aus"
+    start: qa-test-runner.ts
+    docs: docs/agents/QualityAssuranceAgent.md
