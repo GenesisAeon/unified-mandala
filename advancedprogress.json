@@ -1,11 +1,11 @@
 {
-  "lastCommit": "Integrate conversation stats into MandalaDashboard",
+  "lastCommit": "Expand CREP export documentation",
   "fractalStep": "fractal-run",
   "openBranches": [
     "work"
   ],
   "mergeConflicts": [],
-  "notes": "Added plugin manifest schema validation and expanded Aeon transition guidelines; next: validate implicit todo extraction results.",
+  "notes": "Expanded CREP export documentation; next: validate implicit todo extraction results.",
   "pendingTasks": [
     "Validate implicit todo extraction results"
   ],
@@ -576,6 +576,10 @@
     },
     {
       "commit": "Add KEDA and HPA scaling configuration",
+      "status": "done"
+    },
+    {
+      "commit": "Expand CREP export documentation",
       "status": "done"
     }
   ],
