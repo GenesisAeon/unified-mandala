@@ -35,6 +35,7 @@ Weitere Hinweise aus dem „Sigil Übergang“:
 ## 🚀 Features
 
 - [**CREP-Systematik**](docs/crep/overview.md) – Coherence, Resonance, Emergence, Poetics
+- [**CREP-Exportstruktur**](docs/CREPDocExport.md) – Aufbau der exportierten CREP-Daten
 - [**Sigillin-Logik**](docs/sigils/SIGILLIN_GENESIS.md) – Heimkehr-Trigger, Symbolphasen, SigillinMap
 - [**Symbolzeit-Modulator**](packages/shared-utils/symbolzeitModulator.ts) – morgen, tag, abend, nacht
 - [**MandalaNetworkView**](packages/unifiedmandala-ui/components/MandalaNetworkView.tsx) – Visualisierung aller Sigillin-Knoten und CREP-Felder
