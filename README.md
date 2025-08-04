@@ -598,6 +598,7 @@ Teil 5 enthält Aufgaben zur Sigil-Historie.
 Teil 7 listet Aufgaben zu poetischen Sigill- und Mandala-Modulen.
 Nutze `node scripts/parse-advanced-conversations.js` um Gesprächs-TODOs aus dem Datensatz zu filtern.
 Neu erzeugte Einträge landen in `advancedToDo.json` und `advancedToDo.yaml` und werden in `advancedprogress.json` dokumentiert.
+Prüfe fehlende Felder oder doppelte Tasks mit `node scripts/validate-implicit-todos.js`.
 Nutze `node scripts/update-advanced-from-newconvos.js` um die ToDo-Dateien aus `newadvancedconversations.json` zu aktualisieren.
 
 - **Module**: unter `packages/` gegliedert in Agents, Core und mehr
