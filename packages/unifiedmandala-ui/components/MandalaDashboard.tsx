@@ -1,5 +1,6 @@
 import React from 'react';
 import SyncStatus from './SyncStatus';
+import ConversationStats, { ConversationStatsProps } from './ConversationStats';
 
 export interface ModuleStatus {
   name: string;
@@ -8,9 +9,10 @@ export interface ModuleStatus {
 
 interface MandalaDashboardProps {
   modules: ModuleStatus[];
+  conversationStats?: ConversationStatsProps;
 }
 
-const MandalaDashboard: React.FC<MandalaDashboardProps> = ({ modules }) => (
+const MandalaDashboard: React.FC<MandalaDashboardProps> = ({ modules, conversationStats }) => (
   <div aria-label="Mandala Dashboard">
     <h3>Module Synchronisation</h3>
     <ul>
@@ -20,6 +22,12 @@ const MandalaDashboard: React.FC<MandalaDashboardProps> = ({ modules }) => (
         </li>
       ))}
     </ul>
+    {conversationStats && (
+      <ConversationStats
+        conversationCount={conversationStats.conversationCount}
+        messageCount={conversationStats.messageCount}
+      />
+    )}
   </div>
 );
 
