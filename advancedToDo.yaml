@@ -404,6 +404,7 @@
   path: pkg/handler/coordination.go
   task: Add correlationId and traceId support
   test: ""
+  status: done
 - commit: Create LangChain adapter and sigil generator service
   path: services/sigil-generator
   task: Provide POST /sigil/generate with markdown output
@@ -673,6 +674,7 @@
   path: docs/sigils/aeon-transition.md
   task: Summarize transition instructions from conversations
   test: ""
+  status: done
 - commit: Draft Friendship system concept
   path: docs/friendship-system.md
   task: Outline AI friendship system from Aeon KI Resonanz chat
@@ -682,6 +684,7 @@
   path: plugins/manifest.yaml
   task: Define manifest schema and implement usePluginLoader
   test: apps/sharedream-interface/hooks/usePluginLoader.test.ts
+  status: done
 - commit: Add FeedbackButtons component
   path: packages/unifiedmandala-ui/components/FeedbackButtons.tsx
   status: done
