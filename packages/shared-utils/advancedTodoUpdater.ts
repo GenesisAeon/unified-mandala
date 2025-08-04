@@ -1,7 +1,7 @@
 import fs from 'fs';
 import YAML from 'yaml';
 import path from 'path';
-import { extractTodosFromConversations } from './conversationAnalyzer';
+import { extractTodosFromConversations, extractImplicitTodosFromConversations } from './conversationAnalyzer';
 
 export interface AdvancedTodoEntry {
   commit: string;
@@ -10,12 +10,33 @@ export interface AdvancedTodoEntry {
   test: string;
 }
 
-export function updateAdvancedTodo(convFile: string, yamlFile: string, jsonFile: string): AdvancedTodoEntry[] {
+export interface UpdateOptions {
+  includeImplicit?: boolean;
+  maxEntries?: number;
+}
+
+export function updateAdvancedTodo(
+  convFile: string,
+  yamlFile: string,
+  jsonFile: string,
+  options: UpdateOptions = {}
+): AdvancedTodoEntry[] {
+  const { includeImplicit = false, maxEntries } = options;
   const todos = extractTodosFromConversations(convFile);
+  if (includeImplicit) {
+    todos.push(...extractImplicitTodosFromConversations(convFile));
+  }
 
-  const isValid = (t: string) => /[a-zA-Z0-9]{3}/.test(t);
+  const clean = (t: string) => t.replace(/^[*\-]\s*/, '').replace(/【.*?】/g, '').trim();
+  const isValid = (t: string) =>
+    /\w{3}/.test(t) &&
+    t.split(/\s+/).length >= 3 &&
+    t.length <= 120 &&
+    !t.startsWith('.') &&
+    !t.includes('http') &&
+    /[a-zA-Z0-9)]$/.test(t);
 
-  const entries: AdvancedTodoEntry[] = Array.from(new Set(todos))
+  let entries: AdvancedTodoEntry[] = Array.from(new Set(todos.map(clean)))
     .filter(isValid)
     .map((t) => ({
       commit: t,
@@ -23,6 +44,10 @@ export function updateAdvancedTodo(convFile: string, yamlFile: string, jsonFile:
       task: t,
       test: ''
     }));
+
+  if (typeof maxEntries === 'number') {
+    entries = entries.slice(0, maxEntries);
+  }
 
   const loadYaml = (f: string): AdvancedTodoEntry[] => {
     if (fs.existsSync(f)) {

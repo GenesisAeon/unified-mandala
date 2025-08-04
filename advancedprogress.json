@@ -1,13 +1,13 @@
 {
-  "lastCommit": "Mark universe-sim tasks complete",
+  "lastCommit": "Support implicit TODO extraction",
   "fractalStep": "fractal-run",
   "openBranches": [
     "work"
   ],
   "mergeConflicts": [],
-  "notes": "Marked universe-sim tasks as done in advancedToDo; continue auditing remaining entries",
+  "notes": "Extended advancedTodoUpdater to parse implicit conversation tasks",
   "pendingTasks": [
-    "Audit remaining advancedToDo items for status alignment"
+    "Validate implicit todo extraction results"
   ],
   "progress": [
     {
@@ -808,6 +808,10 @@
     },
     {
       "commit": "Mark universe-sim tasks complete",
+      "status": "done"
+    },
+    {
+      "commit": "Support implicit TODO extraction",
       "status": "done"
     }
   ],

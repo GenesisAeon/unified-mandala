@@ -8997,3 +8997,8 @@
   task: Skeleton for language agents and CLI
   test: go-agent/pkg/codeagent/agent_test.go
   status: done
+- commit: Support implicit TODO extraction
+  path: packages/shared-utils/advancedTodoUpdater.ts
+  task: Include implicit conversation cues when updating advancedToDo
+  test: packages/shared-utils/advancedTodoUpdater.test.ts
+  status: done
