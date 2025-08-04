@@ -1,0 +1,14 @@
+[
+  {
+    "title": "Sample",
+    "mapping": {
+      "node1": {
+        "id": "node1",
+        "message": {
+          "author": { "role": "user" },
+          "content": { "content_type": "text", "parts": ["hello"] }
+        }
+      }
+    }
+  }
+]
