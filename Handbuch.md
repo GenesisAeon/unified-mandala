@@ -97,6 +97,7 @@ Für neue Aufgaben aus Chat-Logs nutze `scripts/parse-advanced-conversations.js`
 - `ResonanceModuleSynth` – erzeugt Audiosignale für Resonanzmodule.
 - `MemoryGovernance` – speichert Zustände mit Governance-Regeln.
 - `CodexMemoryKernel` – persistiert MemoryManager-Zustände als Referenzgedächtnis.
+- `WebhookSystem` – sendet Ereignisse als HTTP-Post an registrierte Endpunkte.
 - `TuringOrchestrator` – führt minimale Turing-Tests aus.
 - `Climate Module` – integriert Klimadaten ins Mandala.
 - `KIKeilschrift` – Werkzeuge zur Keilschrift-Verarbeitung.
