@@ -8,6 +8,7 @@ require (
 	github.com/nats-io/nats.go v1.42.0
 	github.com/prometheus/client_golang v1.17.0
 	github.com/spf13/cobra v1.9.1
+	gopkg.in/yaml.v3 v3.0.1
 )
 
 require (

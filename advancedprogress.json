@@ -1,13 +1,15 @@
 {
-  "lastCommit": "Support implicit TODO extraction",
+  "lastCommit": "Implement RBAC and policy management",
   "fractalStep": "fractal-run",
   "openBranches": [
     "work"
   ],
   "mergeConflicts": [],
-  "notes": "Extended advancedTodoUpdater to parse implicit conversation tasks",
+  "notes": "Added YAML-based RBAC policy loader and authorization checks",
   "pendingTasks": [
-    "Validate implicit todo extraction results"
+    "Validate implicit todo extraction results",
+    "Add KEDA and HPA scaling",
+    "Implement multi agent coordination handler"
   ],
   "progress": [
     {
@@ -812,6 +814,10 @@
     },
     {
       "commit": "Support implicit TODO extraction",
+      "status": "done"
+    },
+    {
+      "commit": "Implement RBAC and policy management",
       "status": "done"
     }
   ],
