@@ -5,15 +5,11 @@
     "work"
   ],
   "mergeConflicts": [],
-  "notes": "Expanded agents.yaml with Codex agents; added schema validator; next: tackle KEDA/HPA scaling and coordination handler",
+  "notes": "Aligned ToDo sync and conversation parsing tasks; next: validate implicit todo extraction results, add KEDA/HPA scaling, implement multi agent coordination handler.",
   "pendingTasks": [
     "Validate implicit todo extraction results",
     "Add KEDA and HPA scaling",
-    "Implement multi agent coordination handler",
-    "Improve documentation and onboarding demo",
-    "Standardize external API and integrate datasets",
-    "Enforce ToDo sync before commits",
-    "Update ToDos from advanced conversations"
+    "Implement multi agent coordination handler"
   ],
   "progress": [
     {
@@ -562,6 +558,22 @@
     },
     {
       "commit": "Add central agent registry",
+      "status": "done"
+    },
+    {
+      "commit": "Improve documentation and onboarding demo",
+      "status": "done"
+    },
+    {
+      "commit": "Standardize external API and integrate datasets",
+      "status": "done"
+    },
+    {
+      "commit": "Enforce ToDo sync before commits",
+      "status": "done"
+    },
+    {
+      "commit": "Update ToDos from advanced conversations",
       "status": "done"
     }
   ],

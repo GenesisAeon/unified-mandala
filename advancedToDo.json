@@ -7756,28 +7756,28 @@
     "path": "docs",
     "task": "Add tutorials, examples, and public demo site for easier onboarding",
     "test": "",
-    "status": "planned"
+    "status": "done"
   },
   {
     "commit": "Standardize external API and integrate datasets",
     "path": "packages/api",
     "task": "Provide stable REST API for metrics and gamification, integrate real data sources",
     "test": "",
-    "status": "planned"
+    "status": "done"
   },
   {
     "commit": "Enforce ToDo sync before commits",
     "path": "scripts/sync-todo-progress.js",
     "task": "Sync advanced ToDo files with progress before large commits",
     "test": "",
-    "status": "planned"
+    "status": "done"
   },
   {
     "commit": "Update ToDos from advanced conversations",
     "path": "scripts/parse-advanced-conversations.js",
     "task": "Parse new chat logs to update advancedToDo.json and advancedprogress.json",
     "test": "",
-    "status": "planned"
+    "status": "done"
   },
   {
     "commit": "Document CLI tools for sigil and backup",
