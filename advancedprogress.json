@@ -1,14 +1,13 @@
 {
-  "lastCommit": "Validate plugin manifest and Aeon transition docs",
+  "lastCommit": "Integrate conversation stats into MandalaDashboard",
   "fractalStep": "fractal-run",
   "openBranches": [
     "work"
   ],
   "mergeConflicts": [],
-  "notes": "Added plugin manifest schema validation and expanded Aeon transition guidelines; next: integrate stats into dashboards.",
+  "notes": "Added plugin manifest schema validation and expanded Aeon transition guidelines; next: validate implicit todo extraction results.",
   "pendingTasks": [
-    "Validate implicit todo extraction results",
-    "Integrate conversation stats into dashboards"
+    "Validate implicit todo extraction results"
   ],
   "progress": [
     {
@@ -865,6 +864,10 @@
     },
     {
       "commit": "Validate plugin manifest and Aeon transition docs",
+      "status": "done"
+    },
+    {
+      "commit": "Integrate conversation stats into MandalaDashboard",
       "status": "done"
     }
   ],
