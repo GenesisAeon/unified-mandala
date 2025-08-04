@@ -8,6 +8,10 @@ export class ShadowIntegrations {
     this.flows.set(name, encoded);
   }
 
+  unregister(name: string) {
+    this.flows.delete(name);
+  }
+
   retrieve(name: string, key = 42): string | undefined {
     const encoded = this.flows.get(name);
     if (!encoded) return undefined;
