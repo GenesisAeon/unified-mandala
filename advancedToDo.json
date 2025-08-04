@@ -650,7 +650,8 @@
     "commit": "Update shared schema utilities",
     "path": "shared-utils/schema",
     "task": "Support new metadata and consent fields",
-    "test": ""
+    "test": "",
+    "status": "done"
   },
   {
     "commit": "Extend CI pipeline for schema and vector tests",

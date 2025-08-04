@@ -460,6 +460,7 @@
   path: shared-utils/schema
   task: Support new metadata and consent fields
   test: ""
+  status: done
 - commit: Extend CI pipeline for schema and vector tests
   path: ci/agent.yml
   status: done

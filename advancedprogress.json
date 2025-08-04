@@ -1,11 +1,11 @@
 {
-  "lastCommit": "Add central agent registry",
+  "lastCommit": "Update shared schema utilities",
   "fractalStep": "fractal-run",
   "openBranches": [
     "work"
   ],
   "mergeConflicts": [],
-  "notes": "Expanded agents.yaml with Codex agents; next: tackle KEDA/HPA scaling and coordination handler",
+  "notes": "Expanded agents.yaml with Codex agents; added schema validator; next: tackle KEDA/HPA scaling and coordination handler",
   "pendingTasks": [
     "Validate implicit todo extraction results",
     "Add KEDA and HPA scaling",
@@ -834,6 +834,10 @@
     },
     {
       "commit": "Finalize C-Tutor and JavaHamster skeletons",
+      "status": "done"
+    },
+    {
+      "commit": "Update shared schema utilities",
       "status": "done"
     }
   ],

@@ -143,6 +143,7 @@ console.log(sigil.id); // hello
 - `MandalaCoreLicense` – Verwaltet Lizenzhinweise für Module.
 - `loadSymbolphasen` – liest die Symbolphasen-Definition aus `config/symbolphasen.yaml`.
 - `RestClient` – einfacher HTTP/HTTPS-Client für Tests und Skripte.
+- `schema` – Validiert Daten anhand von JSON-Schemata.
 
 ### core
 - `AeonMemory` – Persistiert Aufgaben in `mandala-chronik.yaml`.
