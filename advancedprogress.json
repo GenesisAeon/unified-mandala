@@ -1,11 +1,11 @@
 {
-  "lastCommit": "feat: memory promotion and parsing-socialgood runner",
-  "fractalStep": "fractal-run",
+  "lastCommit": "feat: filter analyze new advanced conversations by title",
+  "fractalStep": "fractal-run/analyze-filter",
   "openBranches": [
     "work"
   ],
   "mergeConflicts": [],
-  "notes": "Added MemoryManager promotion and workflow script; next integrate fragment and code hooks.",
+  "notes": "Added title filtering to analyze-newadvanced-conversations script; next extract training data and integrate tasks.",
   "pendingTasks": [
     "Integrate extracted tasks into advancedToDo manifest",
     "Implement JavaHamster AI Flow",

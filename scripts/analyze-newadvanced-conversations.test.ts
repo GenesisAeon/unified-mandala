@@ -15,4 +15,17 @@ describe('analyzeNewAdvancedConversations', () => {
     expect(stats.todoCount).toBe(1);
     expect(stats.titles).toEqual(['Sample']);
   });
+
+  it('filters by specified titles', () => {
+    const file = path.join(
+      __dirname,
+      '../tests/fixtures/newadvanced-multi.json'
+    );
+    const stats = analyzeNewAdvancedConversations(file, ['Second']);
+    expect(stats.conversationCount).toBe(1);
+    expect(stats.messageCount).toBe(1);
+    expect(stats.authorCounts.assistant).toBe(1);
+    expect(stats.titles).toEqual(['Second']);
+    expect(stats.todoCount).toBe(0);
+  });
 });
