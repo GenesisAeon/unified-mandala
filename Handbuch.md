@@ -278,6 +278,7 @@ Informationen zur Exportstruktur der CREP-Daten finden sich in [docs/CREPDocExpo
 - Integration in andere Mandala-basierte Systeme via `event-bus`.
 
 Beispielhafte Sigillin-Dateien liegen unter [docs/sigillin.examples](docs/sigillin.examples).
+Nutze `ts-node scripts/validate-sigillin-examples.ts`, um diese gegen das Schema zu prüfen.
 
 ## Changelog
 Aktuelle Versionshinweise werden in [CHANGELOG.md](CHANGELOG.md) gepflegt.

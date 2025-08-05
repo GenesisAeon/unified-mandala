@@ -1,11 +1,13 @@
 import fs from 'fs';
 import Ajv from 'ajv';
+import addFormats from 'ajv-formats';
 import YAML from 'yaml';
 import path from 'path';
 import schema from '../genesis-sigillin-core/schemas/sigillin.schema.json';
 
 export function validateSigil(filePath: string): boolean {
   const ajv = new Ajv();
+  addFormats(ajv);
   const validate = ajv.compile(schema);
   const content = fs.readFileSync(filePath, 'utf8');
   const data = filePath.endsWith('.yaml') || filePath.endsWith('.yml')
