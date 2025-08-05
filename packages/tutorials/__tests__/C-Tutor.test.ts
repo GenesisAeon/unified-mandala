@@ -9,4 +9,12 @@ describe('CTutorProgress', () => {
     tutor.complete('b');
     expect(tutor.getProgress()).toBe(1);
   });
+
+  it('awards a sigil per milestone', () => {
+    const awarded: string[] = [];
+    const tutor = new CTutorProgress(['a'], (name) => awarded.push(name));
+    tutor.complete('a');
+    expect(awarded).toEqual(['a']);
+    expect(tutor.getAwardedSigils()).toEqual(['a']);
+  });
 });

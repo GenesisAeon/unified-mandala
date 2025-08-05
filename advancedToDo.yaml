@@ -662,6 +662,7 @@
   path: packages/tutorials/C-Tutor
   task: Track user progress and award Sigil per milestone
   test: packages/tutorials/__tests__/C-Tutor.test.ts
+  status: done
 - commit: Add JavaHamster AI Flow
   path: packages/tutorials/JavaHamsterAI
   task: Interactive hamster coding with AI coach and Sigil rewards
@@ -853,6 +854,7 @@
   path: services/ghost-shell/session-store.ts
   task: Track WebSocket message history per client
   test: services/ghost-shell/session-store.test.ts
+  status: done
 - commit: Add GhostShell cluster manager
   path: services/ghost-shell/cluster.ts
   task: Start Node.js cluster of GhostShellAgent workers using `cluster` API

@@ -1,13 +1,14 @@
 {
-  "lastCommit": "feat: extract todos by conversation title",
+  "lastCommit": "feat: award sigils in C-Tutor progress",
   "fractalStep": "fractal-run",
   "openBranches": [
     "work"
   ],
   "mergeConflicts": [],
-  "notes": "Added helper to extract TODOs from conversations by title; tasks from Programm testen Feedback and Sigillin Entwicklungszusammenfassung captured",
+  "notes": "Implemented CTutor sigil awarding; GhostShell session store marked done",
   "pendingTasks": [
-    "Integrate extracted tasks into advancedToDo manifest"
+    "Integrate extracted tasks into advancedToDo manifest",
+    "Implement JavaHamster AI Flow"
   ],
   "progress": [
     {
@@ -419,10 +420,6 @@
       "status": "done"
     },
     {
-      "commit": "Implement C-Tutor progress workflow",
-      "status": "done"
-    },
-    {
       "commit": "Add JavaHamster AI Flow",
       "status": "done"
     },
@@ -600,6 +597,10 @@
     },
     {
       "commit": "Add conversation title reporting to analyzer",
+      "status": "done"
+    },
+    {
+      "commit": "Implement C-Tutor progress workflow",
       "status": "done"
     }
   ],

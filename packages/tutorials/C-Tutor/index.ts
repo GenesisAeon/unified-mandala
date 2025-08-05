@@ -5,15 +5,29 @@ export interface Milestone {
 
 export class CTutorProgress {
   private milestones: Milestone[];
-  constructor(milestones: string[] = []) {
+  private awarded: string[] = [];
+  private awardCallback?: (name: string) => void;
+
+  constructor(milestones: string[] = [], awardCallback?: (name: string) => void) {
     this.milestones = milestones.map((m) => ({ name: m, completed: false }));
+    this.awardCallback = awardCallback;
   }
+
   complete(name: string) {
     const m = this.milestones.find((m) => m.name === name);
-    if (m) m.completed = true;
+    if (m && !m.completed) {
+      m.completed = true;
+      this.awarded.push(name);
+      this.awardCallback?.(name);
+    }
   }
+
   getProgress() {
     const completed = this.milestones.filter((m) => m.completed).length;
-    return completed / this.milestones.length;
+    return this.milestones.length === 0 ? 0 : completed / this.milestones.length;
+  }
+
+  getAwardedSigils() {
+    return [...this.awarded];
   }
 }
