@@ -12,16 +12,22 @@ export interface ConversationStats {
   titles: string[];
 }
 
-export function analyzeNewAdvancedConversations(filePath: string): ConversationStats {
+export function analyzeNewAdvancedConversations(
+  filePath: string,
+  filterTitles?: string[]
+): ConversationStats {
   const raw = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+  const sessions = Array.isArray(filterTitles)
+    ? raw.filter((s: any) => filterTitles.includes(s.title))
+    : raw;
   let messageCount = 0;
   const authorCounts: Record<string, number> = {};
   let minTime: number | null = null;
   let maxTime: number | null = null;
   let todoCount = 0;
-  const titles: string[] = [];
-  raw.forEach((session: any) => {
-    titles.push(session.title || 'Untitled');
+  const collectedTitles: string[] = [];
+  sessions.forEach((session: any) => {
+    collectedTitles.push(session.title || 'Untitled');
     const nodes = Object.values(session.mapping || {});
     nodes.forEach((node: any) => {
       const msg = node.message;
@@ -42,13 +48,15 @@ export function analyzeNewAdvancedConversations(filePath: string): ConversationS
     });
   });
   return {
-    conversationCount: raw.length,
+    conversationCount: sessions.length,
     messageCount,
     authorCounts,
-    averageMessagesPerConversation: raw.length ? messageCount / raw.length : 0,
+    averageMessagesPerConversation: sessions.length
+      ? messageCount / sessions.length
+      : 0,
     timeRange: { start: minTime, end: maxTime },
     todoCount,
-    titles,
+    titles: collectedTitles,
   };
 }
 
@@ -60,7 +68,14 @@ if (require.main === module) {
       : path.join(__dirname, '../docs/sigils/newadvancedconversations.json');
   const summaryIndex = process.argv.indexOf('--summary');
   const summaryPath = summaryIndex >= 0 ? process.argv[summaryIndex + 1] : null;
-  const stats = analyzeNewAdvancedConversations(file);
+  const titlesArgIndex = process.argv.indexOf('--titles');
+  const titleList =
+    titlesArgIndex >= 0
+      ? process.argv[titlesArgIndex + 1]
+          .split(',')
+          .map((t: string) => t.trim())
+      : undefined;
+  const stats = analyzeNewAdvancedConversations(file, titleList);
   console.log(`Conversations: ${stats.conversationCount}`);
   console.log(`Messages: ${stats.messageCount}`);
   console.log('Authors:', stats.authorCounts);

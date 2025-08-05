@@ -1,0 +1,34 @@
+[
+  {
+    "id": "1",
+    "title": "First",
+    "mapping": {
+      "n1": {
+        "id": "n1",
+        "message": {
+          "author": { "role": "user" },
+          "create_time": 1000,
+          "content": { "parts": ["TODO: first task"] }
+        }
+      }
+    },
+    "create_time": 1000,
+    "update_time": 1001
+  },
+  {
+    "id": "2",
+    "title": "Second",
+    "mapping": {
+      "n1": {
+        "id": "n1",
+        "message": {
+          "author": { "role": "assistant" },
+          "create_time": 2000,
+          "content": { "parts": ["no tasks here"] }
+        }
+      }
+    },
+    "create_time": 2000,
+    "update_time": 2001
+  }
+]
