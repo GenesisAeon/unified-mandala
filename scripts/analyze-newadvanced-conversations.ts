@@ -49,9 +49,31 @@ export function analyzeNewAdvancedConversations(filePath: string): ConversationS
 }
 
 if (require.main === module) {
-  const file = process.argv[2] || path.join(__dirname, '../docs/sigils/newadvancedconversations.json');
+  const fileArgIndex = process.argv.findIndex((a: string) => !a.startsWith('--'));
+  const file =
+    fileArgIndex > 1
+      ? process.argv[fileArgIndex]
+      : path.join(__dirname, '../docs/sigils/newadvancedconversations.json');
+  const summaryIndex = process.argv.indexOf('--summary');
+  const summaryPath = summaryIndex >= 0 ? process.argv[summaryIndex + 1] : null;
   const stats = analyzeNewAdvancedConversations(file);
   console.log(`Conversations: ${stats.conversationCount}`);
   console.log(`Messages: ${stats.messageCount}`);
   console.log('Authors:', stats.authorCounts);
+  if (summaryPath) {
+    const lines = [
+      '# New Advanced Conversations Stats',
+      '',
+      `- Conversations: ${stats.conversationCount}`,
+      `- Messages: ${stats.messageCount}`,
+      '- Authors:',
+      ...Object.entries(stats.authorCounts).map(
+        ([role, count]) => `  - ${role}: ${count}`
+      ),
+      `- TODOs: ${stats.todoCount}`,
+      `- Time range: ${stats.timeRange.start ?? 'n/a'} - ${stats.timeRange.end ?? 'n/a'}`,
+    ];
+    fs.writeFileSync(summaryPath, lines.join('\n') + '\n');
+    console.log(`Summary written to ${summaryPath}`);
+  }
 }
