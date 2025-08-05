@@ -4379,7 +4379,8 @@
 - commit: "feat: add ParticleForce module"
   path: packages/universum-simulationen/modules/particle_force.py
   task: Kernel for stable particles and basic forces
-  test: packages/universum-simulationen/__tests__/particle_force.test.py
+  test: packages/universum-simulationen/__tests__/particle_force_test.py
+  status: done
 - commit: "feat: add FusionEvolution module"
   path: packages/universum-simulationen/modules/fusion_evolution.py
   task: Compute fusion processes and heavier elements
