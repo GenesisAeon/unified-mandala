@@ -1,11 +1,11 @@
 {
-  "lastCommit": "Integrate implicit todo validation into CI",
+  "lastCommit": "Add advancedToDo consistency validator script",
   "fractalStep": "fractal-run",
   "openBranches": [
     "work"
   ],
   "mergeConflicts": [],
-  "notes": "Validation script integrated into CI pipeline.",
+  "notes": "Added script validating advancedToDo YAML/JSON alignment.",
   "pendingTasks": [],
   "progress": [
     {
@@ -882,6 +882,10 @@
     },
     {
       "commit": "Extend GitHub Actions for extras",
+      "status": "done"
+    },
+    {
+      "commit": "Add advancedToDo consistency validator script",
       "status": "done"
     }
   ],
