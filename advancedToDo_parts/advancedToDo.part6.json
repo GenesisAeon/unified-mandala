@@ -77,11 +77,11 @@
     "status": "planned"
   },
   {
-    "commit": "- **HookTriggererAgent (`HookTriggererAgent.ts`)**: Ein simpler Stub, der bei `handle()` lediglich ein Glocken-Emoji und den Task.id loggt【63†L3-L9】. Geplant ist wohl, Webhooks oder externe Hooks auszulösen. Potenzial: Hier könnte man REST-Calls an definierte Endpunkte einbauen (z.B. CI/CD Trigger, Slack Notifications etc.). Verbesserung: Implementierung echter Hook-Auslösung basierend auf Task-Details (evtl. URL im Task enthalten?).",
-    "path": "",
-    "task": "**HookTriggererAgent (`HookTriggererAgent.ts`)**: Ein simpler Stub, der bei `handle()` lediglich ein Glocken-Emoji und den Task.id loggt【63†L3-L9】. Geplant ist wohl, Webhooks oder externe Hooks auszulösen. Potenzial: Hier könnte man REST-Calls an definierte Endpunkte einbauen (z.B. CI/CD Trigger, Slack Notifications etc.). Verbesserung: Implementierung echter Hook-Auslösung basierend auf Task-Details (evtl. URL im Task enthalten?).",
-    "test": "",
-    "status": "planned"
+    "commit": "Implement HookTriggererAgent webhook",
+    "path": "packages/agents/HookTriggererAgent.ts",
+    "task": "Add webhook POST trigger based on task.url",
+    "test": "packages/agents/__tests__/HookTriggererAgent.spec.ts",
+    "status": "done"
   },
   {
     "commit": "- There are **tools to process these logs**. For example, `scripts/parse-advanced-conversations.js` is used to parse new tasks from chat logs and update the to-do lists (`advancedToDo.json`) and progress tracking (`advancedprogress.json`)【29†L19-L22】. This indicates an automated pipeline where creative brainstorming with an AI is converted into actionable development tasks (ToDos) and their completion status.",

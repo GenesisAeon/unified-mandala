@@ -8243,5 +8243,12 @@
     "task": "Extend validator to check for duplicate conversation titles",
     "test": "scripts/validate-newadvanced-conversations.test.ts",
     "status": "done"
+  },
+  {
+    "commit": "Implement HookTriggererAgent webhook",
+    "path": "packages/agents/HookTriggererAgent.ts",
+    "task": "Add webhook POST trigger based on task.url",
+    "test": "packages/agents/__tests__/HookTriggererAgent.spec.ts",
+    "status": "done"
   }
 ]
