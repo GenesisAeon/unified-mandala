@@ -486,7 +486,7 @@ Verwende `./scripts/aeon.sh <command>` für alle CLI-Aufrufe.
 | `node scripts/sync-todo-progress.js` | Aktualisiert ToDo- & Progress-Dateien |
 | `node scripts/validate-advancedtodo.js` | Prüft Konsistenz zwischen YAML und JSON |
 | `node scripts/update-kontext.js` | Passt Kontext-Datei an (nutzt conversations oder newadvancedconversations) |
-| `ts-node scripts/validate-newadvanced-conversations.ts` | Prüft Struktur von `newadvancedconversations.json` |
+| `ts-node scripts/validate-newadvanced-conversations.ts` | Prüft Struktur und Zeitreihen von `newadvancedconversations.json` |
 | `ts-node scripts/validate-sigillin-examples.ts` | Validiert Sigillin-Beispieldateien |
 | `node scripts/generate-readmes.ts` | Erstellt Modul-READMEs |
 | `node scripts/extract-snippets.js` | Extrahiert Code-Snippets |
