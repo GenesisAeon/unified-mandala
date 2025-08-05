@@ -1030,7 +1030,8 @@
     "commit": "Add parsing & SocialGood workflow trigger",
     "path": "scripts",
     "task": "Provide command or UI to start Parsing and SocialGood-Matching",
-    "test": ""
+    "test": "",
+    "status": "done"
   },
   {
     "commit": "Generate memory-job config templates",
