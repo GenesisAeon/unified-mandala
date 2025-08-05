@@ -60,10 +60,31 @@ export class MemoryManager {
 
   private cleanup(category: MemoryCategory) {
     const cutoff = Date.now() - this.cleanupConfig[category];
-    this.store[category] = this.store[category].filter((e) => e.timestamp >= cutoff);
+    const remain: Entry[] = [];
+    const promote: Entry[] = [];
+    this.store[category].forEach((e) => {
+      if (e.timestamp < cutoff) {
+        promote.push(e);
+      } else {
+        remain.push(e);
+      }
+    });
+    this.store[category] = remain;
+    this.promote(category, promote);
   }
 
   stop() {
     Object.values(this.timers).forEach((t) => t && clearInterval(t));
+  }
+
+  private promote(from: MemoryCategory, entries: Entry[]) {
+    const map: Record<MemoryCategory, MemoryCategory | undefined> = {
+      daily: 'weekly',
+      weekly: 'longterm',
+      longterm: undefined
+    };
+    const target = map[from];
+    if (!target || entries.length === 0) return;
+    this.store[target].push(...entries);
   }
 }

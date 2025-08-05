@@ -34,3 +34,24 @@ test('getCategories lists all categories', () => {
   expect(mm.getCategories().sort()).toEqual(['daily', 'longterm', 'weekly']);
   mm.stop();
 });
+
+test('expired daily entries move to weekly', () => {
+  const mm = new MemoryManager({ daily: 10, weekly: 20, longterm: 30 });
+  mm.add('daily', 'old');
+  // make entry appear old
+  (mm as any).store.daily[0].timestamp -= 20;
+  (mm as any).cleanup('daily');
+  expect(mm.get('daily')).toEqual([]);
+  expect(mm.get('weekly')).toEqual(['old']);
+  mm.stop();
+});
+
+test('expired weekly entries move to longterm', () => {
+  const mm = new MemoryManager({ daily: 10, weekly: 20, longterm: 30 });
+  mm.add('weekly', 'wold');
+  (mm as any).store.weekly[0].timestamp -= 40;
+  (mm as any).cleanup('weekly');
+  expect(mm.get('weekly')).toEqual([]);
+  expect(mm.get('longterm')).toEqual(['wold']);
+  mm.stop();
+});
