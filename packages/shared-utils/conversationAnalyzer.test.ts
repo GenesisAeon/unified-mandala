@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import { analyzeConversations, extractTodosFromConversations, extractImplicitTodosFromConversations, loadConversations, countTodosByConversation } from './conversationAnalyzer';
+import { analyzeConversations, extractTodosFromConversations, extractImplicitTodosFromConversations, loadConversations, countTodosByConversation, extractTodosByTitle } from './conversationAnalyzer';
 
 describe('conversationAnalyzer', () => {
   const sample = path.join(__dirname, 'sample-conv.json');
@@ -49,6 +49,35 @@ describe('conversationAnalyzer', () => {
     fs.writeFileSync(file, JSON.stringify(data), 'utf8');
     const todos = extractImplicitTodosFromConversations(file);
     expect(todos).toEqual(['mehr Tests schreiben']);
+    fs.unlinkSync(file);
+  });
+
+  it('extracts todos by title', () => {
+    const file = path.join(__dirname, 'by-title.json');
+    const data = [
+      {
+        id: 'a',
+        title: 'Foo',
+        mapping: {
+          root: {
+            message: {
+              author: { role: 'user' },
+              content: { parts: ['TODO: sample'] }
+            }
+          }
+        }
+      },
+      {
+        id: 'b',
+        title: 'Bar',
+        mapping: {
+          root: { message: { author: { role: 'user' }, content: { parts: ['no tasks'] } } }
+        }
+      }
+    ];
+    fs.writeFileSync(file, JSON.stringify(data), 'utf8');
+    const todos = extractTodosByTitle(file, 'Foo');
+    expect(todos).toEqual(['sample']);
     fs.unlinkSync(file);
   });
 

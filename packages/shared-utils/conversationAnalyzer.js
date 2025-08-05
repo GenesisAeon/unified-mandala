@@ -33,17 +33,58 @@ function extractTodosFromConversations(filePath) {
   const todos = [];
   const regex = /TODO[:]?\s*(.*)/i;
   for (const conv of convs) {
+    todos.push(...extractTodosFromConversation(conv, regex));
+  }
+  return todos;
+}
+
+function extractTodosFromConversation(conv, regex = /TODO[:]?\s*(.*)/i) {
+  const todos = [];
+  for (const node of Object.values(conv.mapping)) {
+    const msg = node.message;
+    if (!msg) continue;
+    const parts = msg.content?.parts || [];
+    for (const part of parts) {
+      if (typeof part !== 'string') continue;
+      for (const line of part.split(/\n+/)) {
+        const m = regex.exec(line);
+        if (m) {
+          const text = m[1].split(/[\n\.]/)[0].trim();
+          if (text) todos.push(text);
+        }
+      }
+    }
+  }
+  return todos;
+}
+
+function countTodosByConversation(filePath) {
+  const convs = loadConversations(filePath);
+  const regex = /TODO[:]?\s*(.*)/i;
+  const counts = {};
+  for (const conv of convs) {
+    let count = 0;
     for (const node of Object.values(conv.mapping)) {
       const msg = node.message;
       if (!msg) continue;
       const parts = msg.content?.parts || [];
       for (const part of parts) {
-        const m = regex.exec(part);
-        if (m) todos.push(m[1].trim());
+        if (typeof part !== 'string') continue;
+        for (const line of part.split(/\n+/)) {
+          if (regex.test(line)) count++;
+        }
       }
     }
+    counts[conv.id] = count;
   }
-  return todos;
+  return counts;
+}
+
+function extractTodosByTitle(filePath, title) {
+  const convs = loadConversations(filePath);
+  const conv = convs.find((c) => c.title === title);
+  if (!conv) return [];
+  return extractTodosFromConversation(conv);
 }
 
 function extractImplicitTodosFromConversations(filePath) {
@@ -87,5 +128,7 @@ module.exports = {
   loadConversations,
   analyzeConversations,
   extractTodosFromConversations,
-  extractImplicitTodosFromConversations
+  extractImplicitTodosFromConversations,
+  countTodosByConversation,
+  extractTodosByTitle
 };
