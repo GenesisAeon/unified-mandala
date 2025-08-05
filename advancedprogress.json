@@ -1,11 +1,11 @@
 {
-  "lastCommit": "feat: skip empty conversations in training data extraction",
+  "lastCommit": "test: cover SocialGood workflow trigger",
   "fractalStep": "fractal-run",
   "openBranches": [
     "work"
   ],
   "mergeConflicts": [],
-  "notes": "Updated extract-training-data to skip empty conversations. Next: run extraction on full dataset and integrate summaries.",
+  "notes": "Reviewed sigil docs and SocialGood workflow; next integrate UI trigger.",
   "pendingTasks": [
     "Integrate extracted tasks into advancedToDo manifest",
     "Implement JavaHamster AI Flow",
@@ -310,7 +310,8 @@
       "commit": "Create todo_parser Go component",
       "status": "open"
     },
-    "Refine extraction pipeline for new advanced conversations"
+    "Refine extraction pipeline for new advanced conversations",
+    "Connect trigger-socialgood-workflow.js to UI and process full conversation dataset"
   ],
   "progress": [
     {
