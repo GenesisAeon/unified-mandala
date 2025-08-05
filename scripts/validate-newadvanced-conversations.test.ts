@@ -26,4 +26,13 @@ describe('validateNewAdvancedConversations', () => {
     const res = validateNewAdvancedConversations(file);
     expect(res.invalidTimestamps).toEqual([0]);
   });
+
+  it('flags conversations missing root node', () => {
+    const file = path.join(
+      __dirname,
+      '../tests/fixtures/newadvanced-missing-root.json'
+    );
+    const res = validateNewAdvancedConversations(file);
+    expect(res.conversationsMissingRoot).toEqual([0]);
+  });
 });
