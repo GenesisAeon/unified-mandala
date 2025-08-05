@@ -104,3 +104,25 @@ export function extractImplicitTodosFromConversations(filePath: string): string[
   }
   return Array.from(new Set(todos));
 }
+
+export function countTodosByConversation(filePath: string): Record<string, number> {
+  const convs = loadConversations(filePath);
+  const regex = /TODO[:]?\s*(.*)/i;
+  const counts: Record<string, number> = {};
+  for (const conv of convs) {
+    let count = 0;
+    for (const node of Object.values(conv.mapping)) {
+      const msg = node.message;
+      if (!msg) continue;
+      const parts = msg.content?.parts || [];
+      for (const part of parts) {
+        if (typeof part !== 'string') continue;
+        for (const line of part.split(/\n+/)) {
+          if (regex.test(line)) count++;
+        }
+      }
+    }
+    counts[conv.id] = count;
+  }
+  return counts;
+}

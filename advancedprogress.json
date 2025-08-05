@@ -1,11 +1,11 @@
 {
-  "lastCommit": "Count TODO markers in conversation analyzer",
+  "lastCommit": "Add per-conversation TODO counter",
   "fractalStep": "fractal-run",
   "openBranches": [
     "work"
   ],
   "mergeConflicts": [],
-  "notes": "Extended analyzer to count TODO markers",
+  "notes": "Expose per-conversation TODO marker counts",
   "pendingTasks": [],
   "progress": [
     {
@@ -898,6 +898,10 @@
     },
     {
       "commit": "Count TODO markers in conversation analyzer",
+      "status": "done"
+    },
+    {
+      "commit": "Add per-conversation TODO counter",
       "status": "done"
     }
   ],

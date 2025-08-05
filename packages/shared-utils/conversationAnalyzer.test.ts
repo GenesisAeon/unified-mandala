@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import { analyzeConversations, extractTodosFromConversations, extractImplicitTodosFromConversations, loadConversations } from './conversationAnalyzer';
+import { analyzeConversations, extractTodosFromConversations, extractImplicitTodosFromConversations, loadConversations, countTodosByConversation } from './conversationAnalyzer';
 
 describe('conversationAnalyzer', () => {
   const sample = path.join(__dirname, 'sample-conv.json');
@@ -27,6 +27,11 @@ describe('conversationAnalyzer', () => {
   it('extracts TODOs', () => {
     const todos = extractTodosFromConversations(sample);
     expect(todos).toEqual(['teste']);
+  });
+
+  it('counts TODO markers per conversation', () => {
+    const counts = countTodosByConversation(sample);
+    expect(counts['a']).toBe(1);
   });
 
   it('extracts implicit todos', () => {
