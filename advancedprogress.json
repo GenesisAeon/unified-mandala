@@ -1,14 +1,15 @@
 {
-  "lastCommit": "feat: trigger webhooks in HookTriggererAgent",
+  "lastCommit": "feat: extract training data from conversations",
   "fractalStep": "fractal-run",
   "openBranches": [
     "work"
   ],
   "mergeConflicts": [],
-  "notes": "Added duplicate title check for new advanced conversations. Implemented timestamp order validation. Implemented webhook triggering in HookTriggererAgent. Next: integrate extracted tasks into advancedToDo manifest and implement JavaHamster AI Flow.",
+  "notes": "Added training data extraction script for new advanced conversations. Implemented webhook triggering earlier. Next: run extractor and integrate tasks into advancedToDo manifest; continue with JavaHamster AI Flow.",
   "pendingTasks": [
     "Integrate extracted tasks into advancedToDo manifest",
     "Implement JavaHamster AI Flow",
+    "Run scripts/extract-training-data.ts to fragment new advanced conversations",
     {
       "commit": "- ToDo-Dateien vor größeren Commits mit `scripts/sync-todo-progress.js` abgleichen",
       "status": "planned"
