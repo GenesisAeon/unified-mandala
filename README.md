@@ -31,7 +31,8 @@ Weitere Hinweise aus dem „Sigil Übergang“:
   `scripts/sync-todo-progress.js`.
 - Freundschaftssystem-Konzept siehe [docs/friendship-system.md](docs/friendship-system.md)
 - Gesprächsstatistiken (inkl. Titel & Zeitspanne) aus neuen Chat-Logs: `ts-node scripts/analyze-newadvanced-conversations.ts`
-- Sozialaktionen anstoßen: `node scripts/trigger-socialgood-workflow.js` (parst ToDos und startet SocialGood-Matching)
+- Sozialaktionen anstoßen: `node scripts/trigger-socialgood-workflow.js` (parst ToDos und startet SocialGood-Matching) oder `node scripts/run-parsing-socialgood.js` (lokales Parsing & Matching)
+- MemoryManager verschiebt abgelaufene Einträge automatisch von `daily` zu `weekly` und `longterm`.
 
 ## 🚀 Features
 

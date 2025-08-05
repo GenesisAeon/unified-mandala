@@ -5,6 +5,8 @@ This module stores conversation fragments in short, mid and long term buckets. I
 ## Purpose
 The manager collects text entries across `daily`, `weekly` and `longterm` categories. Entries expire based on configurable intervals so the memory remains concise for periodic scans.
 
+Expired items are automatically promoted to the next bucket (`daily` → `weekly` → `longterm`) during cleanup cycles, providing a lightweight retention hierarchy.
+
 ## API
 - `add(category, text)` – push a new entry into the given bucket.
 - `get(category)` – retrieve all strings for that category.

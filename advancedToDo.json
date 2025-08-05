@@ -1044,7 +1044,8 @@
     "commit": "Implement MemoryManager Service",
     "path": "services/memory-manager",
     "task": "Manage daily, weekly and longterm categories with scheduler; integrate with fragment_and_package_conversations.js and extract_code_fragments.js",
-    "test": "services/memory-manager/test.ts"
+    "test": "services/memory-manager/test.ts",
+    "status": "done"
   },
   {
     "commit": "Add Feedback Agents for new files",

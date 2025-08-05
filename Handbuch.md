@@ -28,7 +28,8 @@ Validiere extrahierte Einträge mit `pnpm run validate:todos` (CI integriert) um
 - Archivdaten mit dem QuantumTheoryAgent verknüpfen: `ts-node scripts/quantum-archive-ingest.ts`.
 - QuantumTheoryAgent Tests ausführen und Feedback sammeln: `ts-node scripts/quantum-agent-feedback.ts`
 - KEDA/HPA Skalierung unter `deployment/keda` für NATS Queue-Length
-- Sozialaktionen anstoßen: `node scripts/trigger-socialgood-workflow.js` (parst ToDos und startet SocialGood-Matching)
+- Sozialaktionen anstoßen: `node scripts/trigger-socialgood-workflow.js` (parst ToDos und startet SocialGood-Matching) oder `node scripts/run-parsing-socialgood.js` (lokales Parsing & Matching)
+- MemoryManager verschiebt abgelaufene Einträge automatisch von `daily` zu `weekly` und `longterm`.
 
 > **TL;DR**
 > - Installation: `./scripts/setup-unifiedmandala.sh`
