@@ -17,4 +17,13 @@ describe('validateNewAdvancedConversations', () => {
     const res = validateNewAdvancedConversations(file);
     expect(res.outOfOrderConversations).toEqual([0]);
   });
+
+  it('flags conversations where update_time precedes create_time', () => {
+    const file = path.join(
+      __dirname,
+      '../tests/fixtures/newadvanced-invalid-times.json'
+    );
+    const res = validateNewAdvancedConversations(file);
+    expect(res.invalidTimestamps).toEqual([0]);
+  });
 });
