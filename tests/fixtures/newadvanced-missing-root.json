@@ -1,0 +1,16 @@
+[
+  {
+    "id": "conv1",
+    "title": "Missing root",
+    "create_time": 1,
+    "update_time": 2,
+    "mapping": {
+      "some-node": {
+        "id": "some-node",
+        "message": {"author": {"role": "user"}, "create_time": 1},
+        "parent": null,
+        "children": []
+      }
+    }
+  }
+]

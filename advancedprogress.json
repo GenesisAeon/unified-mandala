@@ -1,11 +1,11 @@
 {
-  "lastCommit": "feat: add SymbolMapper agent",
-  "fractalStep": "fractal-run/symbolmapper",
+  "lastCommit": "feat: validate root node in newadvanced conversations",
+  "fractalStep": "fractal-run/validate-newadvanced-root",
   "openBranches": [
     "work"
   ],
   "mergeConflicts": [],
-  "notes": "Implemented SymbolMapper agent for glyph mapping; next integrate into SealCore and process remaining conversation tasks.",
+  "notes": "Added root-node validation for newadvanced conversations; next integrate training data extraction and remaining conversation tasks.",
   "pendingTasks": [
     "Integrate extracted tasks into advancedToDo manifest",
     "Implement JavaHamster AI Flow",
