@@ -1,11 +1,11 @@
 {
-  "lastCommit": "feat: award sigils in C-Tutor progress",
+  "lastCommit": "feat: validate duplicate conversation titles",
   "fractalStep": "fractal-run",
   "openBranches": [
     "work"
   ],
   "mergeConflicts": [],
-  "notes": "Implemented CTutor sigil awarding; GhostShell session store marked done",
+  "notes": "Added duplicate title check for new advanced conversations. Next: integrate extracted tasks into advancedToDo manifest and implement JavaHamster AI Flow.",
   "pendingTasks": [
     "Integrate extracted tasks into advancedToDo manifest",
     "Implement JavaHamster AI Flow"
@@ -601,6 +601,10 @@
     },
     {
       "commit": "Implement C-Tutor progress workflow",
+      "status": "done"
+    },
+    {
+      "commit": "Validate duplicate conversation titles",
       "status": "done"
     }
   ],
