@@ -1,11 +1,11 @@
 {
-  "lastCommit": "feat: filter analyze new advanced conversations by title",
-  "fractalStep": "fractal-run/analyze-filter",
+  "lastCommit": "feat: add SymbolMapper agent",
+  "fractalStep": "fractal-run/symbolmapper",
   "openBranches": [
     "work"
   ],
   "mergeConflicts": [],
-  "notes": "Added title filtering to analyze-newadvanced-conversations script; next extract training data and integrate tasks.",
+  "notes": "Implemented SymbolMapper agent for glyph mapping; next integrate into SealCore and process remaining conversation tasks.",
   "pendingTasks": [
     "Integrate extracted tasks into advancedToDo manifest",
     "Implement JavaHamster AI Flow",
@@ -216,10 +216,6 @@
     },
     {
       "commit": "Der *ArchivAeon*-Agent übernimmt die **symbolische Archivierung von Chat-Verläufen und Entwicklungsdaten**. Im `ZIPMEM_manifest` ist er mit Rolle und Methoden beschrieben【15†L13-L21】. Sein Python-Skeleton (`agents/archivist/main.py`) soll folgende Funktionen abdecken: Clustern von Gesprächsfragmenten nach Themen (`detect_context_clusters`), Zuweisung symbolischer Marker pro Fragment (`symbol_assignation`), chronologisches Sortieren (`timestamp_sorting`) sowie CREP-basierte Bewertung (`CREP_weight_map`) und Erkennung fraktaler Querverbindungen (`fractal_link_mapping`)【15†L15-L23】. Integration: Der ArchivAeon-Agent wird typischerweise nach der Fragmentierung eines neuen Gesprächs aufgerufen. Er durchläuft alle `*.yaml` Fragmente in einem Konversationsordner, lädt den Inhalt und reichert jedes Fragment mit Metadaten an (Cluster-ID, Symbol-Name etc.)【15†L35-L43】【15†L45-L53】. Anschließend speichert er ein konsolidiertes Archivdokument (z. B. `archivaeon_output.yaml`)【15†L45-L53】 mit den angereicherten Fragmenten. Dieses Dokument kann vom System für Analysen oder als Trainingsdatensatz genutzt werden. EventBus: nach Abschluss könnte ein Event `conversationArchived` gesendet werden. Orchestrator: ruft ArchivAeon automatisch für neue Konversationen oder Commits auf. UI: Evtl. ein „Archiv“-Bereich, wo man für jede historische Konversation die vom ArchivAeon generierten Annotationen sehen kann (Cluster, Symbole). Test & Deploy: Unit-Tests können mit künstlichen Fragmenten prüfen, ob das Clustering konsistent ist (z. B. alle Fragmente mit ähnlichem Text erhalten gleiche Cluster-ID). Integrationstest: Neuer Dummy-Dialog -> Fragmente -> ArchivAeon -> prüfe Output-Datei und Event. Vor Deployment sollte sichergestellt werden, dass `sklearn` und andere Dependencies verfügbar sind (in `requirements.txt` bzw. installiert【15†L23-L31】【15†L33-L41】).",
-      "status": "planned"
-    },
-    {
-      "commit": "Der *SymbolMapper*-Agent übersetzt numerische und textuelle Muster in definierte Symbol-Glyphen【15†L53-L61】. Er schließt die Lücke zwischen quantitativen Werten (z. B. statistische Ergebnisse, Scores) und der symbolischen **Sigillin-Sprache** des Systems. Manifest-Spezifikation: Der SymbolMapper v1 hat Methoden `map_numeric_to_symbol` und `map_text_to_glyph`【15†L55-L63】. Im Python-Skeleton (`agents/symbolmapper/main.py`) implementieren wir z. B. eine Liste vordefinierter Glyphen (im Manifest-Beispiel: ○, ∆, ψ, ★【15†L67-L73】) und die Abbildungsfunktionen analog zum YAML-Snippet: ein Durchschnittswert wird auf einen Index im Glyphen-Array gemappt【15†L67-L75】, Texte werden auf Basis von Schlüsselbegriffen einem Symbol zugeordnet (Bsp: enthält der Text \"Erweckung\", dann ★ als Glyph)【15†L69-L73】. Integration: Dieser Agent kann von anderen Modulen genutzt werden, die rohe Daten symbolisch darstellen wollen – z. B. der CREPBridge könnte SymbolMapper fragen, welcher Glyph einem bestimmten Score entspricht (um dann einen Sigil zu generieren). Auch für Graphen/Charts in der UI könnte SymbolMapper herangezogen werden, um interessante Datenpunkte mit Symbolen zu markieren. Orchestrator: wahrscheinlich auf Abruf, nicht dauernd laufend – d.h. Module rufen ihn als Library auf (alternativ EventBus-Request/Reply-Pattern). UI: Keine direkte, aber z. B. im Sigil-Portfolio des Nutzers könnten diese Glyphen vorkommen. Test & Deploy: Test, ob gegebene Werte die richtigen Symbole liefern (z. B. Eingabe [0.1, 0.9] ergibt einen Index im gültigen Bereich und ein Symbol aus der Liste【15†L137-L142】). Deployment: Sicherstellen, dass NumPy verfügbar ist (im Manifest als Dependency angegeben【15†L61-L69】) und dass das System die Unicode-Symbole unterstützt (Fonts in UI etc.).",
       "status": "planned"
     },
     {
@@ -912,6 +908,10 @@
     },
     {
       "commit": "Implement HookTriggererAgent webhook",
+      "status": "done"
+    },
+    {
+      "commit": "Der *SymbolMapper*-Agent übersetzt numerische und textuelle Muster in definierte Symbol-Glyphen【15†L53-L61】. Er schließt die Lücke zwischen quantitativen Werten (z. B. statistische Ergebnisse, Scores) und der symbolischen **Sigillin-Sprache** des Systems. Manifest-Spezifikation: Der SymbolMapper v1 hat Methoden `map_numeric_to_symbol` und `map_text_to_glyph`【15†L55-L63】. Im Python-Skeleton (`agents/symbolmapper/main.py`) implementieren wir z. B. eine Liste vordefinierter Glyphen (im Manifest-Beispiel: ○, ∆, ψ, ★【15†L67-L73】) und die Abbildungsfunktionen analog zum YAML-Snippet: ein Durchschnittswert wird auf einen Index im Glyphen-Array gemappt【15†L67-L75】, Texte werden auf Basis von Schlüsselbegriffen einem Symbol zugeordnet (Bsp: enthält der Text \"Erweckung\", dann ★ als Glyph)【15†L69-L73】. Integration: Dieser Agent kann von anderen Modulen genutzt werden, die rohe Daten symbolisch darstellen wollen – z. B. der CREPBridge könnte SymbolMapper fragen, welcher Glyph einem bestimmten Score entspricht (um dann einen Sigil zu generieren). Auch für Graphen/Charts in der UI könnte SymbolMapper herangezogen werden, um interessante Datenpunkte mit Symbolen zu markieren. Orchestrator: wahrscheinlich auf Abruf, nicht dauernd laufend – d.h. Module rufen ihn als Library auf (alternativ EventBus-Request/Reply-Pattern). UI: Keine direkte, aber z. B. im Sigil-Portfolio des Nutzers könnten diese Glyphen vorkommen. Test & Deploy: Test, ob gegebene Werte die richtigen Symbole liefern (z. B. Eingabe [0.1, 0.9] ergibt einen Index im gültigen Bereich und ein Symbol aus der Liste【15†L137-L142】). Deployment: Sicherstellen, dass NumPy verfügbar ist (im Manifest als Dependency angegeben【15†L61-L69】) und dass das System die Unicode-Symbole unterstützt (Fonts in UI etc.).",
       "status": "done"
     }
   ],

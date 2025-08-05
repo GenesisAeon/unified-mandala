@@ -59,6 +59,7 @@ Weitere Hinweise aus dem „Sigil Übergang“:
  - [**SelfReflectionAgent**](docs/agents/SelfReflectionAgent.md) – system introspection helper with memory governance checks
 - [**CosmicTheoryAgent introspection log**](packages/agents/CosmicTheoryAgent.ts#L1) – captures Fourier metrics
 - [**GrokAgent**](packages/agents/GrokAgent.ts) – simple pattern analyzer
+- [**SymbolMapper**](agents/symbolmapper/main.py) – maps numeric and textual patterns to Sigillin glyphs
 - [**ShadowIntegration**](packages/integration/ShadowIntegration.ts) – experimental data bridge
 - [**MemoryGovernance**](packages/core/MemoryGovernance.ts) – manage memory state
 - [**CodexMemoryKernel**](services/codex-memory-kernel.ts) – persists reference memory to disk

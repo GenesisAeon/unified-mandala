@@ -98,6 +98,7 @@ Validiere extrahierte Einträge mit `pnpm run validate:todos` (CI integriert) um
 - `CREPVisualizer` – zeigt CREP-Verlauf als animierte Timeline.
  - [`SelfReflectionAgent`](docs/agents/SelfReflectionAgent.md) – überwacht Logs, fasst Erkenntnisse zusammen und prüft gespeicherte Erinnerungen.
 - `GrokAgent` – erkennt einfache Wortmuster.
+- `SymbolMapper` – übersetzt numerische und textuelle Muster in Sigillin-Glyphen.
 - `ShadowIntegration` – experimentelle Schnittstelle für Datentransfer.
 - `ResonanceModuleSynth` – erzeugt Audiosignale für Resonanzmodule.
 - `MemoryGovernance` – speichert Zustände mit Governance-Regeln.
