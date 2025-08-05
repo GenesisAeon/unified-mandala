@@ -8,6 +8,7 @@ export interface ValidationResult {
   duplicateTitles: string[];
   missingFields: { index: number; fields: string[] }[];
   outOfOrderConversations: number[];
+  invalidTimestamps: number[];
 }
 
 export function validateNewAdvancedConversations(filePath: string): ValidationResult {
@@ -18,12 +19,22 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
   const duplicateTitles: string[] = [];
   const missingFields: { index: number; fields: string[] }[] = [];
   const outOfOrder: number[] = [];
+  const invalidTimestamps: number[] = [];
 
   raw.forEach((conv: any, idx: number) => {
     const missing: string[] = [];
     if (!conv.id) missing.push('id');
     if (!conv.title) missing.push('title');
     if (typeof conv.mapping !== 'object') missing.push('mapping');
+    if (typeof conv.create_time !== 'number') missing.push('create_time');
+    if (typeof conv.update_time !== 'number') missing.push('update_time');
+    if (
+      typeof conv.create_time === 'number' &&
+      typeof conv.update_time === 'number' &&
+      conv.update_time < conv.create_time
+    ) {
+      invalidTimestamps.push(idx);
+    }
     if (missing.length) missingFields.push({ index: idx, fields: missing });
     if (conv.id) {
       if (seenIds.has(conv.id)) duplicateIds.push(conv.id);
@@ -51,6 +62,7 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
     duplicateTitles,
     missingFields,
     outOfOrderConversations: outOfOrder,
+    invalidTimestamps,
   };
 }
 
@@ -61,7 +73,8 @@ if (require.main === module) {
     result.duplicateIds.length ||
     result.duplicateTitles.length ||
     result.missingFields.length ||
-    result.outOfOrderConversations.length
+    result.outOfOrderConversations.length ||
+    result.invalidTimestamps.length
   ) {
     console.error('Validation issues found:\n', JSON.stringify(result, null, 2));
     process.exit(1);
