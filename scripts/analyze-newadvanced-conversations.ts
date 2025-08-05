@@ -9,6 +9,7 @@ export interface ConversationStats {
   averageMessagesPerConversation: number;
   timeRange: { start: number | null; end: number | null };
   todoCount: number;
+  titles: string[];
 }
 
 export function analyzeNewAdvancedConversations(filePath: string): ConversationStats {
@@ -18,7 +19,9 @@ export function analyzeNewAdvancedConversations(filePath: string): ConversationS
   let minTime: number | null = null;
   let maxTime: number | null = null;
   let todoCount = 0;
+  const titles: string[] = [];
   raw.forEach((session: any) => {
+    titles.push(session.title || 'Untitled');
     const nodes = Object.values(session.mapping || {});
     nodes.forEach((node: any) => {
       const msg = node.message;
@@ -45,6 +48,7 @@ export function analyzeNewAdvancedConversations(filePath: string): ConversationS
     averageMessagesPerConversation: raw.length ? messageCount / raw.length : 0,
     timeRange: { start: minTime, end: maxTime },
     todoCount,
+    titles,
   };
 }
 
@@ -60,6 +64,7 @@ if (require.main === module) {
   console.log(`Conversations: ${stats.conversationCount}`);
   console.log(`Messages: ${stats.messageCount}`);
   console.log('Authors:', stats.authorCounts);
+  console.log('Titles:', stats.titles);
   if (summaryPath) {
     const lines = [
       '# New Advanced Conversations Stats',
@@ -70,6 +75,8 @@ if (require.main === module) {
       ...Object.entries(stats.authorCounts).map(
         ([role, count]) => `  - ${role}: ${count}`
       ),
+      '- Titles:',
+      ...stats.titles.map((t) => `  - ${t}`),
       `- TODOs: ${stats.todoCount}`,
       `- Time range: ${stats.timeRange.start ?? 'n/a'} - ${stats.timeRange.end ?? 'n/a'}`,
     ];
