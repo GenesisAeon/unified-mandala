@@ -15,6 +15,7 @@ interface ConversationNode {
 
 interface Conversation {
   id: string;
+  title?: string;
   mapping: Record<string, ConversationNode>;
 }
 
@@ -51,23 +52,36 @@ export function extractTodosFromConversations(filePath: string): string[] {
   const todos: string[] = [];
   const regex = /TODO[:]?\s*(.*)/i;
   for (const conv of convs) {
-    for (const node of Object.values(conv.mapping)) {
-      const msg = node.message;
-      if (!msg) continue;
-      const parts = msg.content?.parts || [];
-      for (const part of parts) {
-        if (typeof part !== 'string') continue;
-        for (const line of part.split(/\n+/)) {
-          const m = regex.exec(line);
-          if (m) {
-            const text = m[1].split(/[\n\.]/)[0].trim();
-            if (text) todos.push(text);
-          }
+    todos.push(...extractTodosFromConversation(conv, regex));
+  }
+  return todos;
+}
+
+function extractTodosFromConversation(conv: Conversation, regex = /TODO[:]?\s*(.*)/i): string[] {
+  const todos: string[] = [];
+  for (const node of Object.values(conv.mapping)) {
+    const msg = node.message;
+    if (!msg) continue;
+    const parts = msg.content?.parts || [];
+    for (const part of parts) {
+      if (typeof part !== 'string') continue;
+      for (const line of part.split(/\n+/)) {
+        const m = regex.exec(line);
+        if (m) {
+          const text = m[1].split(/[\n\.]/)[0].trim();
+          if (text) todos.push(text);
         }
       }
     }
   }
   return todos;
+}
+
+export function extractTodosByTitle(filePath: string, title: string): string[] {
+  const convs = loadConversations(filePath);
+  const conv = convs.find((c) => c.title === title);
+  if (!conv) return [];
+  return extractTodosFromConversation(conv);
 }
 
 export function extractImplicitTodosFromConversations(filePath: string): string[] {

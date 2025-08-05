@@ -1,13 +1,13 @@
 {
-  "lastCommit": "feat: add conversation titles to analyzer",
+  "lastCommit": "feat: extract todos by conversation title",
   "fractalStep": "fractal-run",
   "openBranches": [
     "work"
   ],
   "mergeConflicts": [],
-  "notes": "Analyzer now lists conversation titles; next: extract tasks for specific conversations",
+  "notes": "Added helper to extract TODOs from conversations by title; tasks from Programm testen Feedback and Sigillin Entwicklungszusammenfassung captured",
   "pendingTasks": [
-    "Extract tasks from Programm testen Feedback and Sigillin Entwicklungszusammenfassung"
+    "Integrate extracted tasks into advancedToDo manifest"
   ],
   "progress": [
     {
@@ -916,6 +916,10 @@
     },
     {
       "commit": "feat: add ParticleForce module",
+      "status": "done"
+    },
+    {
+      "commit": "feat: extract todos by conversation title",
       "status": "done"
     }
   ],
