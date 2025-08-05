@@ -1,11 +1,11 @@
 {
-  "lastCommit": "Add per-conversation TODO counter",
+  "lastCommit": "feat: add ParticleForce module",
   "fractalStep": "fractal-run",
   "openBranches": [
     "work"
   ],
   "mergeConflicts": [],
-  "notes": "Expose per-conversation TODO marker counts",
+  "notes": "Added basic particle force kernel for simulations",
   "pendingTasks": [],
   "progress": [
     {
@@ -902,6 +902,10 @@
     },
     {
       "commit": "Add per-conversation TODO counter",
+      "status": "done"
+    },
+    {
+      "commit": "feat: add ParticleForce module",
       "status": "done"
     }
   ],
