@@ -1,13 +1,13 @@
 {
-  "lastCommit": "feat: summarize newadvancedconversations",
+  "lastCommit": "feat: add conversation titles to analyzer",
   "fractalStep": "fractal-run",
   "openBranches": [
     "work"
   ],
   "mergeConflicts": [],
-  "notes": "Generated summary from newadvancedconversations.json; next: fragment extraction",
+  "notes": "Analyzer now lists conversation titles; next: extract tasks for specific conversations",
   "pendingTasks": [
-    "Split newadvancedconversations into fragments and link to TODOs"
+    "Extract tasks from Programm testen Feedback and Sigillin Entwicklungszusammenfassung"
   ],
   "progress": [
     {
@@ -596,6 +596,10 @@
     },
     {
       "commit": "Summarize newadvancedconversations dataset",
+      "status": "done"
+    },
+    {
+      "commit": "Add conversation title reporting to analyzer",
       "status": "done"
     }
   ],
