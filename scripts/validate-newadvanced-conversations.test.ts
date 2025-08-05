@@ -8,4 +8,13 @@ describe('validateNewAdvancedConversations', () => {
     const res = validateNewAdvancedConversations(file);
     expect(res.duplicateTitles).toEqual(['Foo']);
   });
+
+  it('detects out-of-order message timestamps', () => {
+    const file = path.join(
+      __dirname,
+      '../tests/fixtures/newadvanced-out-of-order.json'
+    );
+    const res = validateNewAdvancedConversations(file);
+    expect(res.outOfOrderConversations).toEqual([0]);
+  });
 });
