@@ -1,14 +1,12 @@
 {
-  "lastCommit": "Add implicit todo validation script",
+  "lastCommit": "Integrate implicit todo validation into CI",
   "fractalStep": "fractal-run",
   "openBranches": [
     "work"
   ],
   "mergeConflicts": [],
-  "notes": "Created script to validate advancedToDo entries; next: integrate into CI pipeline.",
-  "pendingTasks": [
-    "Integrate validation script into CI pipeline"
-  ],
+  "notes": "Validation script integrated into CI pipeline.",
+  "pendingTasks": [],
   "progress": [
     {
       "commit": "Add Sigillin Fractal Visualizer component",
@@ -584,6 +582,10 @@
     },
     {
       "commit": "Add implicit todo validation script",
+      "status": "done"
+    },
+    {
+      "commit": "Integrate implicit todo validation into CI",
       "status": "done"
     }
   ],
