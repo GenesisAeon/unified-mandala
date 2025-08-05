@@ -8236,5 +8236,12 @@
     "task": "Provide TODO counts per conversation",
     "test": "packages/shared-utils/conversationAnalyzer.test.ts",
     "status": "done"
+  },
+  {
+    "commit": "Validate duplicate conversation titles",
+    "path": "scripts/validate-newadvanced-conversations.ts",
+    "task": "Extend validator to check for duplicate conversation titles",
+    "test": "scripts/validate-newadvanced-conversations.test.ts",
+    "status": "done"
   }
 ]
