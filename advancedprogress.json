@@ -1,12 +1,14 @@
 {
-  "lastCommit": "feat: add ParticleForce module",
+  "lastCommit": "feat: summarize newadvancedconversations",
   "fractalStep": "fractal-run",
   "openBranches": [
     "work"
   ],
   "mergeConflicts": [],
-  "notes": "Added basic particle force kernel for simulations",
-  "pendingTasks": [],
+  "notes": "Generated summary from newadvancedconversations.json; next: fragment extraction",
+  "pendingTasks": [
+    "Split newadvancedconversations into fragments and link to TODOs"
+  ],
   "progress": [
     {
       "commit": "Add Sigillin Fractal Visualizer component",
@@ -590,6 +592,10 @@
     },
     {
       "commit": "Add Sigillin example validator",
+      "status": "done"
+    },
+    {
+      "commit": "Summarize newadvancedconversations dataset",
       "status": "done"
     }
   ],
