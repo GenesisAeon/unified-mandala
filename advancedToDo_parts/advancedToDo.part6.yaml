@@ -103,7 +103,6 @@
     dem Datensatz zu filtern.
   test: ''
   status: planned
-
 - commit: Implement HookTriggererAgent webhook
   path: packages/agents/HookTriggererAgent.ts
   task: Add webhook POST trigger based on task.url
@@ -1351,7 +1350,7 @@
     der Liste【15†L137-L142】). Deployment: Sicherstellen, dass NumPy verfügbar
     ist (im Manifest als Dependency angegeben【15†L61-L69】) und dass das System
     die Unicode-Symbole unterstützt (Fonts in UI etc.).
-  path: ''
+  path: agents/symbolmapper/main.py
   task: >-
     Der *SymbolMapper*-Agent übersetzt numerische und textuelle Muster in
     definierte Symbol-Glyphen【15†L53-L61】. Er schließt die Lücke zwischen
@@ -1378,8 +1377,8 @@
     der Liste【15†L137-L142】). Deployment: Sicherstellen, dass NumPy verfügbar
     ist (im Manifest als Dependency angegeben【15†L61-L69】) und dass das System
     die Unicode-Symbole unterstützt (Fonts in UI etc.).
-  test: ''
-  status: planned
+  test: agents/symbolmapper/test_main.py
+  status: done
 - commit: '**ToDo:**'
   path: ''
   task: '*ToDo:**'

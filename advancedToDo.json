@@ -1,5 +1,12 @@
 [
   {
+    "commit": "Add SymbolMapper agent",
+    "path": "agents/symbolmapper/main.py",
+    "task": "Map numeric and textual inputs to glyphs",
+    "test": "agents/symbolmapper/test_main.py",
+    "status": "done"
+  },
+  {
     "commit": "Add CREPTooltip component",
     "path": "packages/unifiedmandala-ui/components/CREPTooltip.tsx",
     "task": "Small info overlay for CREP values",
