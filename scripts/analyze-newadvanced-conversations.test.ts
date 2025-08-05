@@ -12,5 +12,6 @@ describe('analyzeNewAdvancedConversations', () => {
     expect(stats.averageMessagesPerConversation).toBe(1);
     expect(stats.timeRange.start).toBe(1234567890);
     expect(stats.timeRange.end).toBe(1234567890);
+    expect(stats.todoCount).toBe(1);
   });
 });
