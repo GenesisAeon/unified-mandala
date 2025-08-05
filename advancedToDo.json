@@ -8226,5 +8226,12 @@
     "task": "Include implicit conversation cues when updating advancedToDo",
     "test": "packages/shared-utils/advancedTodoUpdater.test.ts",
     "status": "done"
+  },
+  {
+    "commit": "Add per-conversation TODO counter",
+    "path": "packages/shared-utils/conversationAnalyzer.ts",
+    "task": "Provide TODO counts per conversation",
+    "test": "packages/shared-utils/conversationAnalyzer.test.ts",
+    "status": "done"
   }
 ]
