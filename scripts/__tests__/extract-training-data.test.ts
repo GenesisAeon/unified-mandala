@@ -30,16 +30,24 @@ describe('extractTrainingData', () => {
           { role: 'assistant', content: 'Hi' },
         ],
       },
+      {
+        timestamp: '2025-01-02T00:00:00Z',
+        title: 'Empty Conversation',
+        messages: [],
+      },
     ];
     await fs.writeFile(src, JSON.stringify(sample));
 
     await extractTrainingData(src, out, manifest);
 
     const slug = '2025-01-01-test-conversation';
+    const emptySlug = '2025-01-02-empty-conversation';
     expect(await exists(path.join(out, slug, 'conversation.json'))).toBe(true);
     expect(await exists(path.join(out, slug, 'msg_0001.yaml'))).toBe(true);
+    expect(await exists(path.join(out, emptySlug))).toBe(false);
 
     const manifestContent = yaml.load(await fs.readFile(manifest, 'utf8')) as any;
+    expect(manifestContent.conversations).toHaveLength(1);
     expect(manifestContent.conversations[0].id).toBe(slug);
   });
 });

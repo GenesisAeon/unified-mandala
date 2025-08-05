@@ -1,11 +1,11 @@
 {
-  "lastCommit": "feat: validate conversation roles",
+  "lastCommit": "feat: skip empty conversations in training data extraction",
   "fractalStep": "fractal-run",
   "openBranches": [
     "work"
   ],
   "mergeConflicts": [],
-  "notes": "Added role validation for conversations. Next: refine extraction pipeline.",
+  "notes": "Updated extract-training-data to skip empty conversations. Next: run extraction on full dataset and integrate summaries.",
   "pendingTasks": [
     "Integrate extracted tasks into advancedToDo manifest",
     "Implement JavaHamster AI Flow",

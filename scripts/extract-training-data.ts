@@ -43,12 +43,18 @@ export async function extractTrainingData(
     const title = convo.title || convo.id || 'conversation';
     const slug = `${date}-${slugifyTitle(title)}`;
     const folder = path.join(outRoot, slug);
+
+    const messages = convo.messages || convo.log || [];
+    if (messages.length === 0) {
+      console.warn(`Skipping conversation '${title}' with no messages`);
+      continue;
+    }
+
     await fs.mkdir(folder, { recursive: true });
 
     await fs.writeFile(path.join(folder, 'conversation.json'), JSON.stringify(convo, null, 2));
     await fs.writeFile(path.join(folder, 'conversation.yaml'), yaml.dump(convo, { lineWidth: 120 }));
 
-    const messages = convo.messages || convo.log || [];
     for (let i = 0; i < messages.length; i++) {
       const msg = messages[i];
       const idx = String(i + 1).padStart(4, '0');
@@ -69,7 +75,7 @@ export async function extractTrainingData(
     await fs.writeFile(path.join(folder, 'summary.md'), summaryMd);
 
     const participants = Array.from(
-      new Set((messages || []).map((m: any) => m.role || m.sender).filter(Boolean))
+      new Set(messages.map((m: any) => m.role || m.sender).filter(Boolean))
     );
     const meta = { id: slug, title, date, participants, tags: convo.tags || [] };
     await fs.writeFile(path.join(folder, 'meta.yaml'), yaml.dump(meta));
