@@ -9,6 +9,7 @@ export interface ValidationResult {
   missingFields: { index: number; fields: string[] }[];
   outOfOrderConversations: number[];
   invalidTimestamps: number[];
+  conversationsWithInvalidRoles: number[];
 }
 
 export function validateNewAdvancedConversations(filePath: string): ValidationResult {
@@ -20,6 +21,7 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
   const missingFields: { index: number; fields: string[] }[] = [];
   const outOfOrder: number[] = [];
   const invalidTimestamps: number[] = [];
+  const invalidRoles: number[] = [];
 
   raw.forEach((conv: any, idx: number) => {
     const missing: string[] = [];
@@ -54,6 +56,13 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
         break;
       }
     }
+
+    const roles = Object.values(conv.mapping || {})
+      .map((n: any) => n?.message?.author?.role)
+      .filter((r: any): r is string => typeof r === 'string');
+    if (roles.some((r) => !['system', 'user', 'assistant'].includes(r))) {
+      invalidRoles.push(idx);
+    }
   });
 
   return {
@@ -63,6 +72,7 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
     missingFields,
     outOfOrderConversations: outOfOrder,
     invalidTimestamps,
+    conversationsWithInvalidRoles: invalidRoles,
   };
 }
 

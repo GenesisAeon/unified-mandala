@@ -9031,3 +9031,9 @@
   task: Add webhook POST trigger based on task.url
   test: packages/agents/__tests__/HookTriggererAgent.spec.ts
   status: done
+
+- commit: Validate conversation roles
+  path: scripts/validate-newadvanced-conversations.ts
+  task: Ensure conversation messages use allowed roles
+  test: scripts/__tests__/validate-newadvanced-conversations.test.ts
+  status: done
