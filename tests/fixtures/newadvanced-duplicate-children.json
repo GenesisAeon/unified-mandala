@@ -1,0 +1,38 @@
+[
+  {
+    "id": "conv1",
+    "title": "Duplicate Children",
+    "create_time": 1,
+    "update_time": 2,
+    "mapping": {
+      "client-created-root": {
+        "id": "client-created-root",
+        "message": null,
+        "parent": null,
+        "children": ["a"]
+      },
+      "a": {
+        "id": "a",
+        "parent": "client-created-root",
+        "children": ["b", "b"],
+        "message": {
+          "id": "a",
+          "author": { "role": "user" },
+          "content": { "parts": ["hello"] },
+          "create_time": 1
+        }
+      },
+      "b": {
+        "id": "b",
+        "parent": "a",
+        "children": [],
+        "message": {
+          "id": "b",
+          "author": { "role": "assistant" },
+          "content": { "parts": ["hi"] },
+          "create_time": 2
+        }
+      }
+    }
+  }
+]

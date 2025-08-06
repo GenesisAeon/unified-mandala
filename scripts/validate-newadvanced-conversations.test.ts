@@ -116,4 +116,13 @@ describe('validateNewAdvancedConversations', () => {
     const res = validateNewAdvancedConversations(file);
     expect(res.conversationsWithUnlistedChildren).toEqual([0]);
   });
+
+  it('flags duplicate child references', () => {
+    const file = path.join(
+      __dirname,
+      '../tests/fixtures/newadvanced-duplicate-children.json'
+    );
+    const res = validateNewAdvancedConversations(file);
+    expect(res.conversationsWithDuplicateChildIds).toEqual([0]);
+  });
 });
