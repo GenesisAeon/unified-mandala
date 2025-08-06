@@ -332,6 +332,7 @@ packages/
   ├── TonePlayground.ts        # Experimentelle Tone.js-Steuerung
   ├── go-bridge             # Go-Client für REST, gRPC und NATS (inkl. GPTBridge)
   ├── go-agent              # Autonomer Go-Daemon für Tasks
+  │   └── docs/go-agent          # ML-Priorisierung und Policy Guide
   │   ├── pkg/policy        # Policy Enforcement Stubs
   │   ├── pkg/handler       # Task handlers (CoordinationHandler)
   │   └── pkg/hooks         # Event Hook Publisher
