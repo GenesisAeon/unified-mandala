@@ -1,11 +1,11 @@
 {
-  "lastCommit": "feat: validate conversation content parts",
-  "fractalStep": "fractal-run/validate-content-parts",
+  "lastCommit": "feat: detect orphan nodes in conversations",
+  "fractalStep": "fractal-run/validate-orphan-nodes",
   "openBranches": [
     "work"
   ],
   "mergeConflicts": [],
-  "notes": "Validated non-string message parts and strengthened timestamp checks",
+  "notes": "Added orphan node detection to conversation validator",
   "pendingTasks": [
     "Run scripts/extract-training-data.ts to fragment new advanced conversations",
     "Deploy GhostShellAgent as Lambda@Edge"
@@ -1001,6 +1001,10 @@
     },
     {
       "commit": "feat: validate conversation content parts",
+      "status": "done"
+    },
+    {
+      "commit": "feat: detect orphan nodes in conversations",
       "status": "done"
     }
   ],

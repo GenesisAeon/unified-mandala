@@ -11285,3 +11285,8 @@
   task: Ensure each node message has create_time and update_time with update_time >= create_time
   test: scripts/validate-newadvanced-conversations.test.ts
   status: done
+- commit: Detect orphan nodes in conversations
+  path: scripts/validate-newadvanced-conversations.ts
+  task: Flag nodes without parent aside from root
+  test: scripts/validate-newadvanced-conversations.test.ts
+  status: done

@@ -16,6 +16,7 @@ export interface ValidationResult {
   conversationsWithParentCycles: number[];
   conversationsWithInvalidChildRefs: number[];
   conversationsWithUnlistedChildren: number[];
+  conversationsWithOrphanNodes: number[];
   conversationsWithUnreachableNodes: number[];
   conversationsWithEmptyMessages: number[];
   conversationsWithMissingMessages: number[];
@@ -42,6 +43,7 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
   const parentCycles: number[] = [];
   const invalidChildren: number[] = [];
   const unlistedChildren: number[] = [];
+  const orphanNodes: number[] = [];
   const unreachableNodes: number[] = [];
   const emptyMessages: number[] = [];
   const missingMessages: number[] = [];
@@ -109,6 +111,10 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
       }
       if (node.parent && !conv.mapping[node.parent]) {
         missingParents.push(idx);
+        break;
+      }
+      if ((node.parent === null || node.parent === undefined) && key !== 'client-created-root') {
+        orphanNodes.push(idx);
         break;
       }
 
@@ -233,6 +239,7 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
     conversationsWithParentCycles: parentCycles,
     conversationsWithInvalidChildRefs: invalidChildren,
     conversationsWithUnlistedChildren: unlistedChildren,
+    conversationsWithOrphanNodes: orphanNodes,
     conversationsWithUnreachableNodes: unreachableNodes,
     conversationsWithEmptyMessages: emptyMessages,
     conversationsWithMissingMessages: missingMessages,
@@ -259,6 +266,7 @@ if (require.main === module) {
     result.conversationsWithParentCycles.length ||
     result.conversationsWithInvalidChildRefs.length ||
     result.conversationsWithUnlistedChildren.length ||
+    result.conversationsWithOrphanNodes.length ||
     result.conversationsWithUnreachableNodes.length ||
     result.conversationsWithEmptyMessages.length ||
     result.conversationsWithMissingMessages.length ||
