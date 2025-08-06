@@ -152,4 +152,13 @@ describe('validateNewAdvancedConversations', () => {
     const res = validateNewAdvancedConversations(file);
     expect(res.conversationsWithInvalidMessageTimestamps).toEqual([0]);
   });
+
+  it('flags non-string message parts', () => {
+    const file = path.join(
+      __dirname,
+      '../tests/fixtures/newadvanced-invalid-part-types.json'
+    );
+    const res = validateNewAdvancedConversations(file);
+    expect(res.conversationsWithInvalidContentParts).toEqual([0]);
+  });
 });
