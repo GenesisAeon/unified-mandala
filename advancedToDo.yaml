@@ -11290,3 +11290,8 @@
   task: Flag nodes without parent aside from root
   test: scripts/validate-newadvanced-conversations.test.ts
   status: done
+- commit: Detect self-referential child nodes
+  path: scripts/validate-newadvanced-conversations.ts
+  task: Flag nodes that list themselves as children
+  test: scripts/validate-newadvanced-conversations.test.ts
+  status: done

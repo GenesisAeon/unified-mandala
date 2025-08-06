@@ -135,6 +135,15 @@ describe('validateNewAdvancedConversations', () => {
     expect(res.conversationsWithDuplicateChildIds).toEqual([0]);
   });
 
+  it('flags self-referential child nodes', () => {
+    const file = path.join(
+      __dirname,
+      '../tests/fixtures/newadvanced-self-referential-child.json'
+    );
+    const res = validateNewAdvancedConversations(file);
+    expect(res.conversationsWithSelfReferencingChildren).toEqual([0]);
+  });
+
   it('flags nodes missing message timestamps', () => {
     const file = path.join(
       __dirname,
