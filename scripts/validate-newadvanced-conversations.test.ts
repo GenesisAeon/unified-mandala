@@ -53,4 +53,13 @@ describe('validateNewAdvancedConversations', () => {
     const res = validateNewAdvancedConversations(file);
     expect(res.conversationsWithMissingParents).toEqual([0]);
   });
+
+  it('flags nodes with mismatched ids', () => {
+    const file = path.join(
+      __dirname,
+      '../tests/fixtures/newadvanced-mismatched-node-ids.json'
+    );
+    const res = validateNewAdvancedConversations(file);
+    expect(res.conversationsWithMismatchedNodeIds).toEqual([0]);
+  });
 });

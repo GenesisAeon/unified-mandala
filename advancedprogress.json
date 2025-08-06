@@ -1,14 +1,15 @@
 {
-  "lastCommit": "docs: add go-agent extras docs",
-  "fractalStep": "fractal-run/go-agent-docs",
+  "lastCommit": "feat: validate node id consistency",
+  "fractalStep": "fractal-run/newadvanced-validation",
   "openBranches": [
     "work"
   ],
   "mergeConflicts": [],
-  "notes": "Added ML prioritization and policy guide docs with example; next run training data extraction and JavaHamster AI flow.",
+  "notes": "Added mismatched node id check to conversation validator; next run training data extraction and JavaHamster AI flow.",
   "pendingTasks": [
     "Run scripts/extract-training-data.ts to fragment new advanced conversations",
-    "Implement JavaHamster AI Flow"
+    "Implement JavaHamster AI Flow",
+    "Add cyclic parent reference detection for conversations"
   ],
   "progress": [
     {
@@ -949,6 +950,10 @@
     },
     {
       "commit": "feat: enforce case-insensitive conversation titles",
+      "status": "done"
+    },
+    {
+      "commit": "feat: validate node id consistency",
       "status": "done"
     }
   ],

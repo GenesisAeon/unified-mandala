@@ -1,0 +1,22 @@
+[
+  {
+    "id": "conv1",
+    "title": "Mismatched node",
+    "create_time": 1,
+    "update_time": 2,
+    "mapping": {
+      "client-created-root": {
+        "id": "client-created-root",
+        "message": null,
+        "parent": null,
+        "children": ["node1"]
+      },
+      "node1": {
+        "id": "node2",
+        "message": {"author": {"role": "user"}, "create_time": 1},
+        "parent": "client-created-root",
+        "children": []
+      }
+    }
+  }
+]
