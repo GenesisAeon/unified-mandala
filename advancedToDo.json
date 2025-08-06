@@ -7,6 +7,13 @@
     "status": "done"
   },
   {
+    "commit": "Validate message IDs in conversations",
+    "path": "scripts/validate-newadvanced-conversations.ts",
+    "task": "Ensure each node message has an id field",
+    "test": "scripts/validate-newadvanced-conversations.test.ts",
+    "status": "done"
+  },
+  {
     "commit": "Add SymbolMapper agent",
     "path": "agents/symbolmapper/main.py",
     "task": "Map numeric and textual inputs to glyphs",

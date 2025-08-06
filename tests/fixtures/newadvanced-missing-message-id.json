@@ -1,7 +1,7 @@
 [
   {
-    "id": "conv1",
-    "title": "Mismatched node",
+    "id": "c1",
+    "title": "Missing Message ID",
     "create_time": 1,
     "update_time": 2,
     "mapping": {
@@ -9,11 +9,14 @@
         "id": "client-created-root",
         "message": null,
         "parent": null,
-        "children": ["node1"]
+        "children": ["n1"]
       },
-      "node1": {
-        "id": "node2",
-        "message": {"id": "m1", "author": {"role": "user"}, "create_time": 1},
+      "n1": {
+        "id": "n1",
+        "message": {
+          "author": { "role": "user" },
+          "content": { "parts": ["hello"] }
+        },
         "parent": "client-created-root",
         "children": []
       }

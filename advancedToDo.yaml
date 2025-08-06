@@ -23,6 +23,11 @@
   task: Treat conversation titles as case-insensitive when checking duplicates
   test: scripts/validate-newadvanced-conversations.test.ts
   status: done
+- commit: Validate message IDs in conversations
+  path: scripts/validate-newadvanced-conversations.ts
+  task: Ensure each node message has an id field
+  test: scripts/validate-newadvanced-conversations.test.ts
+  status: done
 - commit: Add CREPTooltip component
   path: packages/unifiedmandala-ui/components/CREPTooltip.tsx
   task: Small info overlay for CREP values
