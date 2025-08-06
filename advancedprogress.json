@@ -1,11 +1,11 @@
 {
-  "lastCommit": "feat: extract todos by conversation title",
-  "fractalStep": "fractal-run/parse-newadvanced-titles",
+  "lastCommit": "feat: enforce case-insensitive conversation titles",
+  "fractalStep": "fractal-run/validate-case-insensitive-titles",
   "openBranches": [
     "work"
   ],
   "mergeConflicts": [],
-  "notes": "Added dynamic title parsing for new advanced conversations and refreshed ToDo manifests; next run training data extraction and JavaHamster AI flow.",
+  "notes": "Added case-insensitive duplicate title validation; next run training data extraction and JavaHamster AI flow.",
   "pendingTasks": [
     "Run scripts/extract-training-data.ts to fragment new advanced conversations",
     "Implement JavaHamster AI Flow"
@@ -937,6 +937,11 @@
     },
     {
       "commit": "feat: validate message timestamp order",
+      "status": "done"
+    }
+    ,
+    {
+      "commit": "feat: enforce case-insensitive conversation titles",
       "status": "done"
     }
   ],

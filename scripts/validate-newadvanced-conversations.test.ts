@@ -9,6 +9,15 @@ describe('validateNewAdvancedConversations', () => {
     expect(res.duplicateTitles).toEqual(['Foo']);
   });
 
+  it('flags duplicate titles case-insensitively', () => {
+    const file = path.join(
+      __dirname,
+      '../tests/fixtures/newadvanced-duplicate-titles-case.json'
+    );
+    const res = validateNewAdvancedConversations(file);
+    expect(res.duplicateTitles).toEqual(['foo']);
+  });
+
   it('detects out-of-order message timestamps', () => {
     const file = path.join(
       __dirname,

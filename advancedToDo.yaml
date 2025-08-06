@@ -8,6 +8,11 @@
   task: Extend validator to check for duplicate conversation titles
   test: scripts/validate-newadvanced-conversations.test.ts
   status: done
+- commit: Enforce case-insensitive conversation titles
+  path: scripts/validate-newadvanced-conversations.ts
+  task: Treat conversation titles as case-insensitive when checking duplicates
+  test: scripts/validate-newadvanced-conversations.test.ts
+  status: done
 - commit: Add CREPTooltip component
   path: packages/unifiedmandala-ui/components/CREPTooltip.tsx
   task: Small info overlay for CREP values

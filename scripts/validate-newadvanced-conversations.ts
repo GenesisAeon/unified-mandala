@@ -45,8 +45,9 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
       else seenIds.add(conv.id);
     }
     if (conv.title) {
-      if (seenTitles.has(conv.title)) duplicateTitles.push(conv.title);
-      else seenTitles.add(conv.title);
+      const key = conv.title.toLowerCase();
+      if (seenTitles.has(key)) duplicateTitles.push(conv.title);
+      else seenTitles.add(key);
     }
 
     const times = Object.values(conv.mapping || {})
