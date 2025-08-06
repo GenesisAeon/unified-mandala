@@ -103,11 +103,23 @@
     dem Datensatz zu filtern.
   test: ''
   status: planned
-- commit: Implement HookTriggererAgent webhook
-  path: packages/agents/HookTriggererAgent.ts
-  task: Add webhook POST trigger based on task.url
-  test: packages/agents/__tests__/HookTriggererAgent.spec.ts
-  status: done
+- commit: >-
+    - **HookTriggererAgent (`HookTriggererAgent.ts`)**: Ein simpler Stub, der
+    bei `handle()` lediglich ein Glocken-Emoji und den Task.id loggt【63†L3-L9】.
+    Geplant ist wohl, Webhooks oder externe Hooks auszulösen. Potenzial: Hier
+    könnte man REST-Calls an definierte Endpunkte einbauen (z.B. CI/CD Trigger,
+    Slack Notifications etc.). Verbesserung: Implementierung echter
+    Hook-Auslösung basierend auf Task-Details (evtl. URL im Task enthalten?).
+  path: ''
+  task: >-
+    **HookTriggererAgent (`HookTriggererAgent.ts`)**: Ein simpler Stub, der bei
+    `handle()` lediglich ein Glocken-Emoji und den Task.id loggt【63†L3-L9】.
+    Geplant ist wohl, Webhooks oder externe Hooks auszulösen. Potenzial: Hier
+    könnte man REST-Calls an definierte Endpunkte einbauen (z.B. CI/CD Trigger,
+    Slack Notifications etc.). Verbesserung: Implementierung echter
+    Hook-Auslösung basierend auf Task-Details (evtl. URL im Task enthalten?).
+  test: ''
+  status: planned
 - commit: >-
     - There are **tools to process these logs**. For example,
     `scripts/parse-advanced-conversations.js` is used to parse new tasks from
@@ -1350,7 +1362,7 @@
     der Liste【15†L137-L142】). Deployment: Sicherstellen, dass NumPy verfügbar
     ist (im Manifest als Dependency angegeben【15†L61-L69】) und dass das System
     die Unicode-Symbole unterstützt (Fonts in UI etc.).
-  path: agents/symbolmapper/main.py
+  path: ''
   task: >-
     Der *SymbolMapper*-Agent übersetzt numerische und textuelle Muster in
     definierte Symbol-Glyphen【15†L53-L61】. Er schließt die Lücke zwischen
@@ -1377,8 +1389,8 @@
     der Liste【15†L137-L142】). Deployment: Sicherstellen, dass NumPy verfügbar
     ist (im Manifest als Dependency angegeben【15†L61-L69】) und dass das System
     die Unicode-Symbole unterstützt (Fonts in UI etc.).
-  test: agents/symbolmapper/test_main.py
-  status: done
+  test: ''
+  status: planned
 - commit: '**ToDo:**'
   path: ''
   task: '*ToDo:**'
