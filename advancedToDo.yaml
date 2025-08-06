@@ -11263,3 +11263,8 @@
   task: Ensure all nodes are reachable from root
   test: scripts/validate-newadvanced-conversations.test.ts
   status: done
+- commit: Add parent-child link validation
+  path: scripts/validate-newadvanced-conversations.ts
+  task: Ensure each node is listed in its parent's children array
+  test: scripts/validate-newadvanced-conversations.test.ts
+  status: done
