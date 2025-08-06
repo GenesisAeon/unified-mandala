@@ -1,0 +1,28 @@
+[
+  {
+    "id": "1",
+    "title": "Parent Cycle",
+    "create_time": 1,
+    "update_time": 2,
+    "mapping": {
+      "client-created-root": {
+        "id": "client-created-root",
+        "message": null,
+        "parent": null,
+        "children": ["A"]
+      },
+      "A": {
+        "id": "A",
+        "message": {"author": {"role": "user"}, "create_time": 1},
+        "parent": "B",
+        "children": []
+      },
+      "B": {
+        "id": "B",
+        "message": {"author": {"role": "assistant"}, "create_time": 2},
+        "parent": "A",
+        "children": []
+      }
+    }
+  }
+]

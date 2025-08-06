@@ -11179,5 +11179,12 @@
     "path": "",
     "task": "das Schritt für Schritt durchgehen",
     "test": ""
+  },
+  {
+    "commit": "Add cyclic parent reference detection",
+    "path": "scripts/validate-newadvanced-conversations.ts",
+    "task": "Detect cyclic parent reference loops in conversations",
+    "test": "scripts/validate-newadvanced-conversations.test.ts",
+    "status": "done"
   }
 ]

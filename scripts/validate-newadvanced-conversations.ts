@@ -13,6 +13,7 @@ export interface ValidationResult {
   conversationsMissingRoot: number[];
   conversationsWithMissingParents: number[];
   conversationsWithMismatchedNodeIds: number[];
+  conversationsWithParentCycles: number[];
 }
 
 export function validateNewAdvancedConversations(filePath: string): ValidationResult {
@@ -28,6 +29,7 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
   const missingRoot: number[] = [];
   const missingParents: number[] = [];
   const mismatchedNodeIds: number[] = [];
+  const parentCycles: number[] = [];
 
   raw.forEach((conv: any, idx: number) => {
     const missing: string[] = [];
@@ -80,6 +82,21 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
         missingParents.push(idx);
         break;
       }
+
+      // Detect cyclic parent references
+      const visited = new Set<string>([key]);
+      let current = node.parent;
+      while (current) {
+        if (visited.has(current)) {
+          parentCycles.push(idx);
+          current = null;
+          break;
+        }
+        visited.add(current);
+        const parentNode = conv.mapping[current];
+        current = parentNode ? parentNode.parent : null;
+      }
+      if (parentCycles.includes(idx)) break;
     }
 
     const root = conv.mapping?.['client-created-root'];
@@ -99,6 +116,7 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
     conversationsMissingRoot: missingRoot,
     conversationsWithMissingParents: missingParents,
     conversationsWithMismatchedNodeIds: mismatchedNodeIds,
+    conversationsWithParentCycles: parentCycles,
   };
 }
 
@@ -113,7 +131,8 @@ if (require.main === module) {
     result.invalidTimestamps.length ||
     result.conversationsMissingRoot.length ||
     result.conversationsWithMissingParents.length ||
-    result.conversationsWithMismatchedNodeIds.length
+    result.conversationsWithMismatchedNodeIds.length ||
+    result.conversationsWithParentCycles.length
   ) {
     console.error('Validation issues found:\n', JSON.stringify(result, null, 2));
     process.exit(1);

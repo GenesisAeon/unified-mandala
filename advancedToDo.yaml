@@ -3,6 +3,11 @@
   task: Ensure all nodes reference existing parents
   test: scripts/validate-newadvanced-conversations.test.ts
   status: done
+- commit: Add cyclic parent reference detection
+  path: scripts/validate-newadvanced-conversations.ts
+  task: Detect and report cyclic parent references in conversation mappings
+  test: scripts/validate-newadvanced-conversations.test.ts
+  status: done
 - commit: Add SymbolMapper agent
   path: agents/symbolmapper/main.py
   task: Map numeric and textual inputs to glyphs
