@@ -15,7 +15,8 @@
           "id": "m1",
           "author": { "role": "user" },
           "content": { "parts": ["hi"] },
-          "create_time": 1
+          "create_time": 1,
+          "update_time": 1
         },
         "parent": "client-created-root",
         "children": []

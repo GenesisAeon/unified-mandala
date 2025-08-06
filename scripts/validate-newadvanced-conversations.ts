@@ -21,6 +21,8 @@ export interface ValidationResult {
   conversationsWithMissingMessages: number[];
   conversationsWithDuplicateChildIds: number[];
   conversationsWithMissingMessageIds: number[];
+  conversationsWithMessagesMissingTimestamps: number[];
+  conversationsWithInvalidMessageTimestamps: number[];
 }
 
 export function validateNewAdvancedConversations(filePath: string): ValidationResult {
@@ -44,6 +46,8 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
   const missingMessages: number[] = [];
   const duplicateChildIds: number[] = [];
   const missingMessageIds: number[] = [];
+  const messagesMissingTimestamps: number[] = [];
+  const invalidMessageTimestamps: number[] = [];
 
   raw.forEach((conv: any, idx: number) => {
     const missing: string[] = [];
@@ -156,6 +160,20 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
           duplicateChildIds.push(idx);
         }
       }
+      if (key !== 'client-created-root' && node.message) {
+        const m = node.message;
+        if (
+          typeof m.create_time !== 'number' ||
+          typeof m.update_time !== 'number'
+        ) {
+          messagesMissingTimestamps.push(idx);
+          break;
+        }
+        if (m.update_time < m.create_time) {
+          invalidMessageTimestamps.push(idx);
+          break;
+        }
+      }
     }
 
     if (
@@ -209,6 +227,8 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
     conversationsWithMissingMessages: missingMessages,
     conversationsWithDuplicateChildIds: duplicateChildIds,
     conversationsWithMissingMessageIds: missingMessageIds,
+    conversationsWithMessagesMissingTimestamps: messagesMissingTimestamps,
+    conversationsWithInvalidMessageTimestamps: invalidMessageTimestamps,
   };
 }
 

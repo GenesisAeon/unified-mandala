@@ -134,4 +134,22 @@ describe('validateNewAdvancedConversations', () => {
     const res = validateNewAdvancedConversations(file);
     expect(res.conversationsWithDuplicateChildIds).toEqual([0]);
   });
+
+  it('flags nodes missing message timestamps', () => {
+    const file = path.join(
+      __dirname,
+      '../tests/fixtures/newadvanced-missing-message-timestamp.json'
+    );
+    const res = validateNewAdvancedConversations(file);
+    expect(res.conversationsWithMessagesMissingTimestamps).toEqual([0]);
+  });
+
+  it('flags nodes with invalid message timestamps', () => {
+    const file = path.join(
+      __dirname,
+      '../tests/fixtures/newadvanced-invalid-message-times.json'
+    );
+    const res = validateNewAdvancedConversations(file);
+    expect(res.conversationsWithInvalidMessageTimestamps).toEqual([0]);
+  });
 });

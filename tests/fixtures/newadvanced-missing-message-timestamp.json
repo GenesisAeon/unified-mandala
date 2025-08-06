@@ -1,0 +1,26 @@
+[
+  {
+    "title": "Missing message timestamp",
+    "id": "conv-missing-time",
+    "create_time": 1,
+    "update_time": 2,
+    "mapping": {
+      "client-created-root": {
+        "id": "client-created-root",
+        "message": null,
+        "parent": null,
+        "children": ["n1"]
+      },
+      "n1": {
+        "id": "n1",
+        "message": {
+          "id": "n1",
+          "author": {"role": "user"},
+          "content": {"parts": ["hi"]}
+        },
+        "parent": "client-created-root",
+        "children": []
+      }
+    }
+  }
+]
