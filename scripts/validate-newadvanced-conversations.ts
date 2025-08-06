@@ -25,6 +25,7 @@ export interface ValidationResult {
   conversationsWithMessagesMissingTimestamps: number[];
   conversationsWithInvalidMessageTimestamps: number[];
   conversationsWithInvalidContentParts: number[];
+  conversationsWithSelfReferencingChildren: number[];
 }
 
 export function validateNewAdvancedConversations(filePath: string): ValidationResult {
@@ -52,6 +53,7 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
   const messagesMissingTimestamps: number[] = [];
   const invalidMessageTimestamps: number[] = [];
   const invalidContentParts: number[] = [];
+  const selfReferencingChildren: number[] = [];
 
   raw.forEach((conv: any, idx: number) => {
     const missing: string[] = [];
@@ -148,6 +150,7 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
       if (Array.isArray(node.children)) {
         let childInvalid = false;
         let duplicateChild = false;
+        let selfReference = false;
         const seenChildren = new Set<string>();
         for (const childId of node.children) {
           if (seenChildren.has(childId)) {
@@ -155,6 +158,10 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
             break;
           }
           seenChildren.add(childId);
+          if (childId === key) {
+            selfReference = true;
+            break;
+          }
           const child = conv.mapping[childId];
           if (!child || child.parent !== key) {
             childInvalid = true;
@@ -166,6 +173,9 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
         }
         if (duplicateChild) {
           duplicateChildIds.push(idx);
+        }
+        if (selfReference) {
+          selfReferencingChildren.push(idx);
         }
       }
       if (key !== 'client-created-root' && node.message) {
@@ -248,6 +258,7 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
     conversationsWithMessagesMissingTimestamps: messagesMissingTimestamps,
     conversationsWithInvalidMessageTimestamps: invalidMessageTimestamps,
     conversationsWithInvalidContentParts: invalidContentParts,
+    conversationsWithSelfReferencingChildren: selfReferencingChildren,
   };
 }
 
@@ -274,7 +285,8 @@ if (require.main === module) {
     result.conversationsWithMissingMessageIds.length ||
     result.conversationsWithMessagesMissingTimestamps.length ||
     result.conversationsWithInvalidMessageTimestamps.length ||
-    result.conversationsWithInvalidContentParts.length
+    result.conversationsWithInvalidContentParts.length ||
+    result.conversationsWithSelfReferencingChildren.length
   ) {
     console.error('Validation issues found:\n', JSON.stringify(result, null, 2));
     process.exit(1);

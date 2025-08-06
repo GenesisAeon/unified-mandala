@@ -21,6 +21,13 @@
     "status": "done"
   },
   {
+    "commit": "Detect self-referential child nodes",
+    "path": "scripts/validate-newadvanced-conversations.ts",
+    "task": "Flag nodes that list themselves as children",
+    "test": "scripts/validate-newadvanced-conversations.test.ts",
+    "status": "done"
+  },
+  {
     "commit": "Add SymbolMapper agent",
     "path": "agents/symbolmapper/main.py",
     "task": "Map numeric and textual inputs to glyphs",

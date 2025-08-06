@@ -1,0 +1,28 @@
+[
+  {
+    "id": "1",
+    "title": "Self child",
+    "mapping": {
+      "client-created-root": {
+        "id": "client-created-root",
+        "message": null,
+        "parent": null,
+        "children": ["1"]
+      },
+      "1": {
+        "id": "1",
+        "parent": "client-created-root",
+        "children": ["1"],
+        "message": {
+          "id": "m1",
+          "author": { "role": "user" },
+          "create_time": 1,
+          "update_time": 1,
+          "content": { "parts": ["hello"] }
+        }
+      }
+    },
+    "create_time": 1,
+    "update_time": 1
+  }
+]
