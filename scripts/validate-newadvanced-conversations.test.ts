@@ -89,4 +89,13 @@ describe('validateNewAdvancedConversations', () => {
     const res = validateNewAdvancedConversations(file);
     expect(res.conversationsWithUnreachableNodes).toEqual([0]);
   });
+
+  it('flags conversations with empty message content', () => {
+    const file = path.join(
+      __dirname,
+      '../tests/fixtures/newadvanced-empty-message.json'
+    );
+    const res = validateNewAdvancedConversations(file);
+    expect(res.conversationsWithEmptyMessages).toEqual([0]);
+  });
 });
