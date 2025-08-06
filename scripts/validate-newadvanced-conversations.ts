@@ -11,6 +11,7 @@ export interface ValidationResult {
   invalidTimestamps: number[];
   conversationsWithInvalidRoles: number[];
   conversationsMissingRoot: number[];
+  conversationsWithMissingParents: number[];
 }
 
 export function validateNewAdvancedConversations(filePath: string): ValidationResult {
@@ -24,6 +25,7 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
   const invalidTimestamps: number[] = [];
   const invalidRoles: number[] = [];
   const missingRoot: number[] = [];
+  const missingParents: number[] = [];
 
   raw.forEach((conv: any, idx: number) => {
     const missing: string[] = [];
@@ -67,6 +69,13 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
       invalidRoles.push(idx);
     }
 
+    for (const node of Object.values(conv.mapping || {}) as any[]) {
+      if (node.parent && !conv.mapping[node.parent]) {
+        missingParents.push(idx);
+        break;
+      }
+    }
+
     const root = conv.mapping?.['client-created-root'];
     if (!root || root.parent !== null) {
       missingRoot.push(idx);
@@ -82,6 +91,7 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
     invalidTimestamps,
     conversationsWithInvalidRoles: invalidRoles,
     conversationsMissingRoot: missingRoot,
+    conversationsWithMissingParents: missingParents,
   };
 }
 
@@ -94,7 +104,8 @@ if (require.main === module) {
     result.missingFields.length ||
     result.outOfOrderConversations.length ||
     result.invalidTimestamps.length ||
-    result.conversationsMissingRoot.length
+    result.conversationsMissingRoot.length ||
+    result.conversationsWithMissingParents.length
   ) {
     console.error('Validation issues found:\n', JSON.stringify(result, null, 2));
     process.exit(1);
