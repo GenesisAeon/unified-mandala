@@ -11186,5 +11186,12 @@
     "task": "Detect cyclic parent reference loops in conversations",
     "test": "scripts/validate-newadvanced-conversations.test.ts",
     "status": "done"
+  },
+  {
+    "commit": "Add child reference validation",
+    "path": "scripts/validate-newadvanced-conversations.ts",
+    "task": "Ensure children reference existing nodes and proper parents",
+    "test": "scripts/validate-newadvanced-conversations.test.ts",
+    "status": "done"
   }
 ]

@@ -1,0 +1,16 @@
+[
+  {
+    "id": "1",
+    "title": "Missing child",
+    "mapping": {
+      "client-created-root": {
+        "id": "client-created-root",
+        "message": null,
+        "parent": null,
+        "children": ["ghost"]
+      }
+    },
+    "create_time": 1,
+    "update_time": 2
+  }
+]

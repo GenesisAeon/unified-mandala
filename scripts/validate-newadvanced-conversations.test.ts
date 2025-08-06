@@ -71,4 +71,13 @@ describe('validateNewAdvancedConversations', () => {
     const res = validateNewAdvancedConversations(file);
     expect(res.conversationsWithParentCycles).toEqual([0]);
   });
+
+  it('flags nodes referencing missing children', () => {
+    const file = path.join(
+      __dirname,
+      '../tests/fixtures/newadvanced-missing-child.json'
+    );
+    const res = validateNewAdvancedConversations(file);
+    expect(res.conversationsWithInvalidChildRefs).toEqual([0]);
+  });
 });
