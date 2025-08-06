@@ -8254,6 +8254,13 @@
     "status": "done"
   },
   {
+    "commit": "Enforce case-insensitive conversation titles",
+    "path": "scripts/validate-newadvanced-conversations.ts",
+    "task": "Treat conversation titles as case-insensitive when checking duplicates",
+    "test": "scripts/validate-newadvanced-conversations.test.ts",
+    "status": "done"
+  },
+  {
     "commit": "Implement HookTriggererAgent webhook",
     "path": "packages/agents/HookTriggererAgent.ts",
     "task": "Add webhook POST trigger based on task.url",
