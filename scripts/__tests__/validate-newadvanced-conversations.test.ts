@@ -29,13 +29,32 @@ test('detects duplicates, missing fields and invalid roles', () => {
         },
         create_time: 1,
         update_time: 2
+      },
+      {
+        id: '4',
+        title: 'Missing parent reference',
+        mapping: {
+          node: {
+            id: 'node',
+            parent: 'ghost',
+            children: [],
+            message: {
+              id: 'node',
+              author: { role: 'user' },
+              create_time: 1
+            }
+          }
+        },
+        create_time: 1,
+        update_time: 2
       }
     ])
   );
   const res = validateNewAdvancedConversations(file);
-  expect(res.conversationCount).toBe(4);
+  expect(res.conversationCount).toBe(5);
   expect(res.duplicateIds).toEqual(['1']);
   expect(res.missingFields.length).toBe(2);
   expect(res.conversationsWithInvalidRoles).toEqual([3]);
+  expect(res.conversationsWithMissingParents).toEqual([4]);
   fs.rmSync(tmp, { recursive: true, force: true });
 });
