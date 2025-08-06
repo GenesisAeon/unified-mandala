@@ -15,6 +15,7 @@ export interface ValidationResult {
   conversationsWithMismatchedNodeIds: number[];
   conversationsWithParentCycles: number[];
   conversationsWithInvalidChildRefs: number[];
+  conversationsWithUnlistedChildren: number[];
   conversationsWithUnreachableNodes: number[];
   conversationsWithEmptyMessages: number[];
   conversationsWithMissingMessages: number[];
@@ -35,6 +36,7 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
   const mismatchedNodeIds: number[] = [];
   const parentCycles: number[] = [];
   const invalidChildren: number[] = [];
+  const unlistedChildren: number[] = [];
   const unreachableNodes: number[] = [];
   const emptyMessages: number[] = [];
   const missingMessages: number[] = [];
@@ -111,6 +113,18 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
       }
       if (parentCycles.includes(idx)) break;
 
+      if (node.parent) {
+        const parent = conv.mapping[node.parent];
+        if (
+          parent &&
+          Array.isArray(parent.children) &&
+          !parent.children.includes(key)
+        ) {
+          unlistedChildren.push(idx);
+          break;
+        }
+      }
+
       if (Array.isArray(node.children)) {
         let childInvalid = false;
         for (const childId of node.children) {
@@ -171,6 +185,7 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
     conversationsWithMismatchedNodeIds: mismatchedNodeIds,
     conversationsWithParentCycles: parentCycles,
     conversationsWithInvalidChildRefs: invalidChildren,
+    conversationsWithUnlistedChildren: unlistedChildren,
     conversationsWithUnreachableNodes: unreachableNodes,
     conversationsWithEmptyMessages: emptyMessages,
     conversationsWithMissingMessages: missingMessages,
@@ -191,6 +206,7 @@ if (require.main === module) {
     result.conversationsWithMismatchedNodeIds.length ||
     result.conversationsWithParentCycles.length ||
     result.conversationsWithInvalidChildRefs.length ||
+    result.conversationsWithUnlistedChildren.length ||
     result.conversationsWithUnreachableNodes.length ||
     result.conversationsWithEmptyMessages.length ||
     result.conversationsWithMissingMessages.length

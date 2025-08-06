@@ -107,4 +107,13 @@ describe('validateNewAdvancedConversations', () => {
     const res = validateNewAdvancedConversations(file);
     expect(res.conversationsWithMissingMessages).toEqual([0]);
   });
+
+  it('flags nodes whose parents do not list them as children', () => {
+    const file = path.join(
+      __dirname,
+      '../tests/fixtures/newadvanced-unlinked-child.json'
+    );
+    const res = validateNewAdvancedConversations(file);
+    expect(res.conversationsWithUnlistedChildren).toEqual([0]);
+  });
 });
