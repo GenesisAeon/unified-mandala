@@ -1,11 +1,11 @@
 {
-  "lastCommit": "feat: detect unreachable conversation nodes",
+  "lastCommit": "feat: validate empty message content",
   "fractalStep": "fractal-run/newadvanced-validation",
   "openBranches": [
     "work"
   ],
   "mergeConflicts": [],
-  "notes": "Added unreachable node validation to conversation validator; next run training data extraction and implement JavaHamster AI flow.",
+  "notes": "Added validation for empty message content; next run training data extraction and implement JavaHamster AI flow.",
   "pendingTasks": [
     "Run scripts/extract-training-data.ts to fragment new advanced conversations",
     "Implement JavaHamster AI Flow"
@@ -965,6 +965,10 @@
     },
     {
       "commit": "feat: validate child node references",
+      "status": "done"
+    },
+    {
+      "commit": "feat: validate empty message content",
       "status": "done"
     }
   ],
