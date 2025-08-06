@@ -884,6 +884,7 @@
   path: config/nginx/ghostshell.conf
   task: Provide NGINX reverse proxy for clustered GhostShellAgent
   test: ""
+  status: done
 - commit: Implement GhostShell session store
   path: services/ghost-shell/session-store.ts
   task: Track WebSocket message history per client

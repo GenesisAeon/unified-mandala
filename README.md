@@ -58,6 +58,7 @@ Weitere Hinweise aus dem „Sigil Übergang“:
  - [**FourierAPI**](packages/analysis/FourierAPI.ts) – exposes metrics via REST (`/metrics`, `/analyze`)
  - [**SelfReflectionAgent**](docs/agents/SelfReflectionAgent.md) – system introspection helper with memory governance checks
 - [**CosmicTheoryAgent introspection log**](packages/agents/CosmicTheoryAgent.ts#L1) – captures Fourier metrics
+- **GhostShellAgent NGINX proxy** – reverse proxy configuration for clustered GhostShell deployments (`config/nginx/ghostshell.conf`)
 - [**GrokAgent**](packages/agents/GrokAgent.ts) – simple pattern analyzer
 - [**SymbolMapper**](agents/symbolmapper/main.py) – maps numeric and textual patterns to Sigillin glyphs
 - [**ShadowIntegration**](packages/integration/ShadowIntegration.ts) – experimental data bridge

@@ -1,13 +1,14 @@
 {
-  "lastCommit": "feat: expand JavaHamsterFlow",
-  "fractalStep": "fractal-run/newadvanced-validation",
+  "lastCommit": "feat: add GhostShell NGINX config",
+  "fractalStep": "fractal-run/ghostshell-nginx",
   "openBranches": [
     "work"
   ],
   "mergeConflicts": [],
-  "notes": "Expanded JavaHamsterFlow with coaching hints and sigil rewards; next run training data extraction.",
+  "notes": "Added GhostShell reverse proxy; next step deploy at edge",
   "pendingTasks": [
-    "Run scripts/extract-training-data.ts to fragment new advanced conversations"
+    "Run scripts/extract-training-data.ts to fragment new advanced conversations",
+    "Deploy GhostShellAgent as Lambda@Edge"
   ],
   "progress": [
     {
@@ -628,6 +629,10 @@
     },
     {
       "commit": "feat: detect unreachable conversation nodes",
+      "status": "done"
+    },
+    {
+      "commit": "Add GhostShell NGINX config",
       "status": "done"
     }
   ],
