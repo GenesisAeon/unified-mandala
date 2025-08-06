@@ -12,6 +12,7 @@ export interface ValidationResult {
   conversationsWithInvalidRoles: number[];
   conversationsMissingRoot: number[];
   conversationsWithMissingParents: number[];
+  conversationsWithMismatchedNodeIds: number[];
 }
 
 export function validateNewAdvancedConversations(filePath: string): ValidationResult {
@@ -26,6 +27,7 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
   const invalidRoles: number[] = [];
   const missingRoot: number[] = [];
   const missingParents: number[] = [];
+  const mismatchedNodeIds: number[] = [];
 
   raw.forEach((conv: any, idx: number) => {
     const missing: string[] = [];
@@ -69,7 +71,11 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
       invalidRoles.push(idx);
     }
 
-    for (const node of Object.values(conv.mapping || {}) as any[]) {
+    for (const [key, node] of Object.entries(conv.mapping || {}) as [string, any][]) {
+      if (node.id && node.id !== key) {
+        mismatchedNodeIds.push(idx);
+        break;
+      }
       if (node.parent && !conv.mapping[node.parent]) {
         missingParents.push(idx);
         break;
@@ -92,6 +98,7 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
     conversationsWithInvalidRoles: invalidRoles,
     conversationsMissingRoot: missingRoot,
     conversationsWithMissingParents: missingParents,
+    conversationsWithMismatchedNodeIds: mismatchedNodeIds,
   };
 }
 
@@ -105,7 +112,8 @@ if (require.main === module) {
     result.outOfOrderConversations.length ||
     result.invalidTimestamps.length ||
     result.conversationsMissingRoot.length ||
-    result.conversationsWithMissingParents.length
+    result.conversationsWithMissingParents.length ||
+    result.conversationsWithMismatchedNodeIds.length
   ) {
     console.error('Validation issues found:\n', JSON.stringify(result, null, 2));
     process.exit(1);
