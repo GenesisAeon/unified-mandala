@@ -19,6 +19,7 @@ export interface ValidationResult {
   conversationsWithUnreachableNodes: number[];
   conversationsWithEmptyMessages: number[];
   conversationsWithMissingMessages: number[];
+  conversationsWithDuplicateChildIds: number[];
 }
 
 export function validateNewAdvancedConversations(filePath: string): ValidationResult {
@@ -40,6 +41,7 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
   const unreachableNodes: number[] = [];
   const emptyMessages: number[] = [];
   const missingMessages: number[] = [];
+  const duplicateChildIds: number[] = [];
 
   raw.forEach((conv: any, idx: number) => {
     const missing: string[] = [];
@@ -127,7 +129,14 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
 
       if (Array.isArray(node.children)) {
         let childInvalid = false;
+        let duplicateChild = false;
+        const seenChildren = new Set<string>();
         for (const childId of node.children) {
+          if (seenChildren.has(childId)) {
+            duplicateChild = true;
+            break;
+          }
+          seenChildren.add(childId);
           const child = conv.mapping[childId];
           if (!child || child.parent !== key) {
             childInvalid = true;
@@ -136,6 +145,9 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
         }
         if (childInvalid) {
           invalidChildren.push(idx);
+        }
+        if (duplicateChild) {
+          duplicateChildIds.push(idx);
         }
       }
     }
@@ -189,6 +201,7 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
     conversationsWithUnreachableNodes: unreachableNodes,
     conversationsWithEmptyMessages: emptyMessages,
     conversationsWithMissingMessages: missingMessages,
+    conversationsWithDuplicateChildIds: duplicateChildIds,
   };
 }
 
@@ -209,7 +222,8 @@ if (require.main === module) {
     result.conversationsWithUnlistedChildren.length ||
     result.conversationsWithUnreachableNodes.length ||
     result.conversationsWithEmptyMessages.length ||
-    result.conversationsWithMissingMessages.length
+    result.conversationsWithMissingMessages.length ||
+    result.conversationsWithDuplicateChildIds.length
   ) {
     console.error('Validation issues found:\n', JSON.stringify(result, null, 2));
     process.exit(1);
