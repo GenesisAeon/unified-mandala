@@ -439,6 +439,7 @@
   path: docs/go-agent
   task: Add ml-prioritization and policy guide docs
   test: ""
+  status: done
 - commit: Add append only chat writer
   path: services/chat-writer/writer.go
   task: Store messages.json logs and optional eventHook

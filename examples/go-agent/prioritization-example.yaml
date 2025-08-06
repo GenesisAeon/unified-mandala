@@ -1,0 +1,8 @@
+job: analyze-sigil
+description: Sample job with ML-based prioritization and policy tags
+features:
+  size: 120
+  urgency: 0.8
+policy:
+  tags: [sigil, analysis]
+  maxRuntime: 300
