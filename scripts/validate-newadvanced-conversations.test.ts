@@ -108,6 +108,15 @@ describe('validateNewAdvancedConversations', () => {
     expect(res.conversationsWithMissingMessages).toEqual([0]);
   });
 
+  it('flags nodes missing message ids', () => {
+    const file = path.join(
+      __dirname,
+      '../tests/fixtures/newadvanced-missing-message-id.json'
+    );
+    const res = validateNewAdvancedConversations(file);
+    expect(res.conversationsWithMissingMessageIds).toEqual([0]);
+  });
+
   it('flags nodes whose parents do not list them as children', () => {
     const file = path.join(
       __dirname,

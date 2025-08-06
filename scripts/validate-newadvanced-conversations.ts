@@ -20,6 +20,7 @@ export interface ValidationResult {
   conversationsWithEmptyMessages: number[];
   conversationsWithMissingMessages: number[];
   conversationsWithDuplicateChildIds: number[];
+  conversationsWithMissingMessageIds: number[];
 }
 
 export function validateNewAdvancedConversations(filePath: string): ValidationResult {
@@ -42,6 +43,7 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
   const emptyMessages: number[] = [];
   const missingMessages: number[] = [];
   const duplicateChildIds: number[] = [];
+  const missingMessageIds: number[] = [];
 
   raw.forEach((conv: any, idx: number) => {
     const missing: string[] = [];
@@ -89,6 +91,10 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
     for (const [key, node] of Object.entries(conv.mapping || {}) as [string, any][]) {
       if (key !== 'client-created-root' && !node.message) {
         missingMessages.push(idx);
+        break;
+      }
+      if (key !== 'client-created-root' && node.message && typeof node.message.id !== 'string') {
+        missingMessageIds.push(idx);
         break;
       }
       if (node.id && node.id !== key) {
@@ -202,6 +208,7 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
     conversationsWithEmptyMessages: emptyMessages,
     conversationsWithMissingMessages: missingMessages,
     conversationsWithDuplicateChildIds: duplicateChildIds,
+    conversationsWithMissingMessageIds: missingMessageIds,
   };
 }
 
@@ -223,7 +230,8 @@ if (require.main === module) {
     result.conversationsWithUnreachableNodes.length ||
     result.conversationsWithEmptyMessages.length ||
     result.conversationsWithMissingMessages.length ||
-    result.conversationsWithDuplicateChildIds.length
+    result.conversationsWithDuplicateChildIds.length ||
+    result.conversationsWithMissingMessageIds.length
   ) {
     console.error('Validation issues found:\n', JSON.stringify(result, null, 2));
     process.exit(1);
