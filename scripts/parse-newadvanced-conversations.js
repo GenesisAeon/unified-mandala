@@ -47,10 +47,17 @@ if (require.main === module) {
   const dest = path.join(__dirname, '../GenesisAeonZIPMEM/newadvancedconversations');
   const arg = process.argv[2];
   if (arg === '--extract-todos') {
-    const titles = [
-      'Sigillin Entwicklungszusammenfassung',
-      'Programm testen Feedback'
-    ];
+    const titlesIndex = process.argv.indexOf('--titles');
+    const titles =
+      titlesIndex >= 0
+        ? process.argv[titlesIndex + 1]
+            .split(',')
+            .map((t) => t.trim())
+            .filter(Boolean)
+        : [
+            'Sigillin Entwicklungszusammenfassung',
+            'Programm testen Feedback',
+          ];
     const tasks = extractSessionTodos(file, titles);
     const outJson = path.join(__dirname, '../advancedToDo_parts/advancedToDo.part6.json');
     const outYaml = path.join(__dirname, '../advancedToDo_parts/advancedToDo.part6.yaml');
