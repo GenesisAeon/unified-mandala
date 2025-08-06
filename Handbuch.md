@@ -420,6 +420,8 @@ npm run dev   # oder: yarn dev
 Nutze `scripts/protodeploy.sh up` für einen lokalen Docker-Start.
 Die Compose-Datei findet sich unter `infrastructure/protodeploy/docker-compose.yml`.
 
+Für den GhostShellAgent steht eine NGINX-Reverse-Proxy-Config unter `config/nginx/ghostshell.conf` bereit.
+
 
 ## QA-Workflow
 Führe `pnpm run qa` aus, um Linting und Tests zu starten. Das Skript `scripts/qa-test-runner.ts` erstellt im Projektstamm die Datei `qa-report.log`.
