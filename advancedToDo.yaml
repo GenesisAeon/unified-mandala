@@ -11268,3 +11268,8 @@
   task: Ensure each node is listed in its parent's children array
   test: scripts/validate-newadvanced-conversations.test.ts
   status: done
+- commit: Add duplicate child reference validation
+  path: scripts/validate-newadvanced-conversations.ts
+  task: Detect duplicate IDs within children arrays
+  test: scripts/validate-newadvanced-conversations.test.ts
+  status: done
