@@ -1,14 +1,13 @@
 {
-  "lastCommit": "feat: validate message timestamps",
+  "lastCommit": "feat: expand JavaHamsterFlow",
   "fractalStep": "fractal-run/newadvanced-validation",
   "openBranches": [
     "work"
   ],
   "mergeConflicts": [],
-  "notes": "Added message timestamp validation; next run training data extraction and implement JavaHamster AI flow.",
+  "notes": "Expanded JavaHamsterFlow with coaching hints and sigil rewards; next run training data extraction.",
   "pendingTasks": [
-    "Run scripts/extract-training-data.ts to fragment new advanced conversations",
-    "Implement JavaHamster AI Flow"
+    "Run scripts/extract-training-data.ts to fragment new advanced conversations"
   ],
   "progress": [
     {
@@ -989,6 +988,10 @@
     },
     {
       "commit": "feat: validate message timestamps",
+      "status": "done"
+    },
+    {
+      "commit": "feat: expand JavaHamsterFlow",
       "status": "done"
     }
   ],
