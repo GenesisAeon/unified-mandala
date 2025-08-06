@@ -1,15 +1,14 @@
 {
-  "lastCommit": "feat: validate node id consistency",
+  "lastCommit": "feat: detect cyclic parent reference loops",
   "fractalStep": "fractal-run/newadvanced-validation",
   "openBranches": [
     "work"
   ],
   "mergeConflicts": [],
-  "notes": "Added mismatched node id check to conversation validator; next run training data extraction and JavaHamster AI flow.",
+  "notes": "Added cycle detection to conversation validator; next run training data extraction and implement JavaHamster AI flow.",
   "pendingTasks": [
     "Run scripts/extract-training-data.ts to fragment new advanced conversations",
-    "Implement JavaHamster AI Flow",
-    "Add cyclic parent reference detection for conversations"
+    "Implement JavaHamster AI Flow"
   ],
   "progress": [
     {
@@ -622,6 +621,10 @@
     },
     {
       "commit": "Add go-agent extras docs",
+      "status": "done"
+    },
+    {
+      "commit": "Add cyclic parent reference detection for conversations",
       "status": "done"
     }
   ],

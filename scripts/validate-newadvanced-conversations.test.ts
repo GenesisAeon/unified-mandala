@@ -62,4 +62,13 @@ describe('validateNewAdvancedConversations', () => {
     const res = validateNewAdvancedConversations(file);
     expect(res.conversationsWithMismatchedNodeIds).toEqual([0]);
   });
+
+  it('detects cyclic parent references', () => {
+    const file = path.join(
+      __dirname,
+      '../tests/fixtures/newadvanced-parent-cycle.json'
+    );
+    const res = validateNewAdvancedConversations(file);
+    expect(res.conversationsWithParentCycles).toEqual([0]);
+  });
 });
