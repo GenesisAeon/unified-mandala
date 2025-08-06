@@ -80,4 +80,13 @@ describe('validateNewAdvancedConversations', () => {
     const res = validateNewAdvancedConversations(file);
     expect(res.conversationsWithInvalidChildRefs).toEqual([0]);
   });
+
+  it('flags unreachable nodes', () => {
+    const file = path.join(
+      __dirname,
+      '../tests/fixtures/newadvanced-unreachable-node.json'
+    );
+    const res = validateNewAdvancedConversations(file);
+    expect(res.conversationsWithUnreachableNodes).toEqual([0]);
+  });
 });

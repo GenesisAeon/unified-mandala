@@ -1,0 +1,28 @@
+[
+  {
+    "id": "1",
+    "title": "Unreachable node",
+    "mapping": {
+      "client-created-root": {
+        "id": "client-created-root",
+        "message": null,
+        "parent": null,
+        "children": ["a"]
+      },
+      "a": {
+        "id": "a",
+        "message": null,
+        "parent": "client-created-root",
+        "children": []
+      },
+      "b": {
+        "id": "b",
+        "message": null,
+        "parent": "client-created-root",
+        "children": []
+      }
+    },
+    "create_time": 1,
+    "update_time": 2
+  }
+]

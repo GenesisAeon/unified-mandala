@@ -15,6 +15,7 @@ export interface ValidationResult {
   conversationsWithMismatchedNodeIds: number[];
   conversationsWithParentCycles: number[];
   conversationsWithInvalidChildRefs: number[];
+  conversationsWithUnreachableNodes: number[];
 }
 
 export function validateNewAdvancedConversations(filePath: string): ValidationResult {
@@ -32,6 +33,7 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
   const mismatchedNodeIds: number[] = [];
   const parentCycles: number[] = [];
   const invalidChildren: number[] = [];
+  const unreachableNodes: number[] = [];
 
   raw.forEach((conv: any, idx: number) => {
     const missing: string[] = [];
@@ -118,6 +120,23 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
     const root = conv.mapping?.['client-created-root'];
     if (!root || root.parent !== null) {
       missingRoot.push(idx);
+    } else {
+      const visited = new Set<string>();
+      const stack = ['client-created-root'];
+      while (stack.length) {
+        const id = stack.pop()!;
+        if (visited.has(id)) continue;
+        visited.add(id);
+        const node = conv.mapping[id];
+        if (Array.isArray(node?.children)) {
+          for (const childId of node.children) {
+            stack.push(childId);
+          }
+        }
+      }
+      if (visited.size !== Object.keys(conv.mapping || {}).length) {
+        unreachableNodes.push(idx);
+      }
     }
   });
 
@@ -134,6 +153,7 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
     conversationsWithMismatchedNodeIds: mismatchedNodeIds,
     conversationsWithParentCycles: parentCycles,
     conversationsWithInvalidChildRefs: invalidChildren,
+    conversationsWithUnreachableNodes: unreachableNodes,
   };
 }
 
@@ -150,7 +170,8 @@ if (require.main === module) {
     result.conversationsWithMissingParents.length ||
     result.conversationsWithMismatchedNodeIds.length ||
     result.conversationsWithParentCycles.length ||
-    result.conversationsWithInvalidChildRefs.length
+    result.conversationsWithInvalidChildRefs.length ||
+    result.conversationsWithUnreachableNodes.length
   ) {
     console.error('Validation issues found:\n', JSON.stringify(result, null, 2));
     process.exit(1);
