@@ -1,0 +1,28 @@
+[
+  {
+    "id": "1",
+    "title": "Invalid parts",
+    "mapping": {
+      "client-created-root": {
+        "id": "client-created-root",
+        "message": null,
+        "parent": null,
+        "children": ["a"]
+      },
+      "a": {
+        "id": "a",
+        "message": {
+          "id": "m1",
+          "author": {"role": "user"},
+          "content": {"parts": ["valid", {"foo": "bar"}]},
+          "create_time": 1,
+          "update_time": 1
+        },
+        "parent": "client-created-root",
+        "children": []
+      }
+    },
+    "create_time": 1,
+    "update_time": 1
+  }
+]
