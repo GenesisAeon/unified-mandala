@@ -14,6 +14,7 @@ export interface ValidationResult {
   conversationsWithMissingParents: number[];
   conversationsWithMismatchedNodeIds: number[];
   conversationsWithParentCycles: number[];
+  conversationsWithInvalidChildRefs: number[];
 }
 
 export function validateNewAdvancedConversations(filePath: string): ValidationResult {
@@ -30,6 +31,7 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
   const missingParents: number[] = [];
   const mismatchedNodeIds: number[] = [];
   const parentCycles: number[] = [];
+  const invalidChildren: number[] = [];
 
   raw.forEach((conv: any, idx: number) => {
     const missing: string[] = [];
@@ -97,6 +99,20 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
         current = parentNode ? parentNode.parent : null;
       }
       if (parentCycles.includes(idx)) break;
+
+      if (Array.isArray(node.children)) {
+        let childInvalid = false;
+        for (const childId of node.children) {
+          const child = conv.mapping[childId];
+          if (!child || child.parent !== key) {
+            childInvalid = true;
+            break;
+          }
+        }
+        if (childInvalid) {
+          invalidChildren.push(idx);
+        }
+      }
     }
 
     const root = conv.mapping?.['client-created-root'];
@@ -117,6 +133,7 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
     conversationsWithMissingParents: missingParents,
     conversationsWithMismatchedNodeIds: mismatchedNodeIds,
     conversationsWithParentCycles: parentCycles,
+    conversationsWithInvalidChildRefs: invalidChildren,
   };
 }
 
@@ -132,7 +149,8 @@ if (require.main === module) {
     result.conversationsMissingRoot.length ||
     result.conversationsWithMissingParents.length ||
     result.conversationsWithMismatchedNodeIds.length ||
-    result.conversationsWithParentCycles.length
+    result.conversationsWithParentCycles.length ||
+    result.conversationsWithInvalidChildRefs.length
   ) {
     console.error('Validation issues found:\n', JSON.stringify(result, null, 2));
     process.exit(1);

@@ -11253,3 +11253,8 @@
   path: ""
   task: das Schritt für Schritt durchgehen
   test: ""
+- commit: Add child reference validation
+  path: scripts/validate-newadvanced-conversations.ts
+  task: Ensure children reference existing nodes and proper parents
+  test: scripts/validate-newadvanced-conversations.test.ts
+  status: done

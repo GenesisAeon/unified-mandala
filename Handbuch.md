@@ -24,7 +24,7 @@ Weitere Hinweise aus dem „Sigil Übergang“:
 Für neue Aufgaben aus Chat-Logs nutze `scripts/parse-advanced-conversations.js` und aktualisiere `advancedToDo.json` sowie `advancedprogress.json`.
 Validiere extrahierte Einträge mit `pnpm run validate:todos` (CI integriert) um fehlende Felder oder Duplikate zu finden.
 - Gesprächsstatistiken (inkl. Titel & Zeitspanne) aus neuen Protokollen: `ts-node scripts/analyze-newadvanced-conversations.ts`
-- Struktur-, Zeit-, Root-Knoten- und Elternreferenz-Validierung für neue Protokolle: `ts-node scripts/validate-newadvanced-conversations.ts`
+- Struktur-, Zeit-, Root-Knoten-, Eltern- und Kindreferenz-Validierung für neue Protokolle: `ts-node scripts/validate-newadvanced-conversations.ts`
 - Archivdaten mit dem QuantumTheoryAgent verknüpfen: `ts-node scripts/quantum-archive-ingest.ts`.
 - QuantumTheoryAgent Tests ausführen und Feedback sammeln: `ts-node scripts/quantum-agent-feedback.ts`
 - KEDA/HPA Skalierung unter `deployment/keda` für NATS Queue-Length
