@@ -969,7 +969,8 @@
     "commit": "Add JavaHamster AI Flow",
     "path": "packages/tutorials/JavaHamsterAI",
     "task": "Interactive hamster coding with AI coach and Sigil rewards",
-    "test": "packages/tutorials/__tests__/JavaHamsterAI.test.ts"
+    "test": "packages/tutorials/__tests__/JavaHamsterAI.test.ts",
+    "status": "done"
   },
   {
     "commit": "Document learning modules",
