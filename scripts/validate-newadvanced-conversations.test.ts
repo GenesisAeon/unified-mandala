@@ -4,9 +4,12 @@ import { validateNewAdvancedConversations } from './validate-newadvanced-convers
 
 describe('validateNewAdvancedConversations', () => {
   it('flags duplicate titles', () => {
-    const file = path.join(__dirname, '../tests/fixtures/newadvanced-duplicate-titles.json');
+    const file = path.join(
+      __dirname,
+      '../tests/fixtures/newadvanced-duplicate-titles.json'
+    );
     const res = validateNewAdvancedConversations(file);
-    expect(res.duplicateTitles).toEqual(['Foo']);
+    expect(res.duplicateTitles).toEqual(['foo']);
   });
 
   it('flags duplicate titles case-insensitively', () => {
@@ -16,6 +19,16 @@ describe('validateNewAdvancedConversations', () => {
     );
     const res = validateNewAdvancedConversations(file);
     expect(res.duplicateTitles).toEqual(['foo']);
+  });
+
+  it('flags titles with extra whitespace and normalizes for duplicates', () => {
+    const file = path.join(
+      __dirname,
+      '../tests/fixtures/newadvanced-title-whitespace.json'
+    );
+    const res = validateNewAdvancedConversations(file);
+    expect(res.duplicateTitles).toEqual(['foo']);
+    expect(res.conversationsWithTitleWhitespace).toEqual([1]);
   });
 
   it('detects out-of-order message timestamps', () => {
