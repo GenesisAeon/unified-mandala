@@ -11284,7 +11284,8 @@
   status: done
 - commit: Validate message timestamps in conversations
   path: scripts/validate-newadvanced-conversations.ts
-  task: Ensure each node message has create_time and update_time with update_time >= create_time
+  task: Ensure each node message has create_time and update_time with update_time
+    >= create_time
   test: scripts/validate-newadvanced-conversations.test.ts
   status: done
 - commit: Detect orphan nodes in conversations
@@ -11315,5 +11316,10 @@
 - commit: Validate message author roles
   path: scripts/validate-newadvanced-conversations.ts
   task: Ensure each node message has an author role and valid role value
+  test: scripts/validate-newadvanced-conversations.test.ts
+  status: done
+- commit: Validate conversation message timestamp bounds
+  path: scripts/validate-newadvanced-conversations.ts
+  task: Ensure conversation timestamps encompass all message timestamps
   test: scripts/validate-newadvanced-conversations.test.ts
   status: done

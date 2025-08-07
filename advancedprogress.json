@@ -1,15 +1,12 @@
 {
-  "lastCommit": "feat: add NullfeldSimulation and visualization modules",
-  "fractalStep": "fractal-run/nullfeld-modules",
+  "lastCommit": "Merge pull request #1069 from GenesisAeon/h0ydyc-codex/implement-features-from-advancedtodo.yaml-and-json",
+  "fractalStep": "implementiert",
   "openBranches": [
     "work"
   ],
   "mergeConflicts": [],
   "notes": "Normalized conversation titles, added whitespace and control-char validation",
-  "pendingTasks": [
-    "Run scripts/extract-training-data.ts to fragment new advanced conversations",
-    "Deploy GhostShellAgent as Lambda@Edge"
-  ],
+  "pendingTasks": [],
   "progress": [
     {
       "commit": "Add Sigillin Fractal Visualizer component",
@@ -1049,6 +1046,10 @@
     },
     {
       "commit": "Enhance Sigillin integrity validation",
+      "status": "done"
+    },
+    {
+      "commit": "Validate conversation message timestamp bounds",
       "status": "done"
     }
   ],
