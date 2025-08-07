@@ -29,6 +29,8 @@ export interface ValidationResult {
   conversationsWithSelfReferencingChildren: number[];
   conversationsWithInvalidIds: number[];
   conversationsWithDuplicateMessageIds: number[];
+  conversationsWithInvalidCurrentNode: number[];
+  conversationsWithMismatchedConversationIds: number[];
 }
 
 export function validateNewAdvancedConversations(filePath: string): ValidationResult {
@@ -60,6 +62,8 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
   const selfReferencingChildren: number[] = [];
   const invalidIds: number[] = [];
   const duplicateMessageIds: number[] = [];
+  const invalidCurrentNodes: number[] = [];
+  const mismatchedConversationIds: number[] = [];
   const uuidPattern = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 
   raw.forEach((conv: any, idx: number) => {
@@ -71,6 +75,8 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
     if (typeof conv.mapping !== 'object') missing.push('mapping');
     if (typeof conv.create_time !== 'number') missing.push('create_time');
     if (typeof conv.update_time !== 'number') missing.push('update_time');
+    if (typeof conv.conversation_id !== 'string') missing.push('conversation_id');
+    if (typeof conv.current_node !== 'string') missing.push('current_node');
     if (
       typeof conv.create_time === 'number' &&
       typeof conv.update_time === 'number' &&
@@ -86,6 +92,21 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
       }
       if (seenIds.has(conv.id)) duplicateIds.push(conv.id);
       else seenIds.add(conv.id);
+    }
+    if (
+      typeof conv.conversation_id === 'string' &&
+      conv.id &&
+      conv.conversation_id !== conv.id
+    ) {
+      mismatchedConversationIds.push(idx);
+    }
+    if (
+      typeof conv.conversation_id === 'string' &&
+      !uuidPattern.test(conv.conversation_id) &&
+      !invalidIdRecorded
+    ) {
+      invalidIds.push(idx);
+      invalidIdRecorded = true;
     }
     if (typeof conv.title === 'string') {
       const normalized = conv.title.trim().replace(/\s+/g, ' ').toLowerCase();
@@ -271,6 +292,12 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
       if (visited.size !== Object.keys(conv.mapping || {}).length) {
         unreachableNodes.push(idx);
       }
+      if (
+        typeof conv.current_node === 'string' &&
+        !conv.mapping[conv.current_node]
+      ) {
+        invalidCurrentNodes.push(idx);
+      }
     }
   });
 
@@ -301,6 +328,8 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
     conversationsWithSelfReferencingChildren: selfReferencingChildren,
     conversationsWithInvalidIds: invalidIds,
     conversationsWithDuplicateMessageIds: duplicateMessageIds,
+    conversationsWithInvalidCurrentNode: invalidCurrentNodes,
+    conversationsWithMismatchedConversationIds: mismatchedConversationIds,
   };
 }
 
@@ -331,7 +360,9 @@ if (require.main === module) {
     result.conversationsWithInvalidContentParts.length ||
     result.conversationsWithSelfReferencingChildren.length ||
     result.conversationsWithInvalidIds.length ||
-    result.conversationsWithDuplicateMessageIds.length
+    result.conversationsWithDuplicateMessageIds.length ||
+    result.conversationsWithInvalidCurrentNode.length ||
+    result.conversationsWithMismatchedConversationIds.length
   ) {
     console.error('Validation issues found:\n', JSON.stringify(result, null, 2));
     process.exit(1);

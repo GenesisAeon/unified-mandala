@@ -11259,5 +11259,12 @@
     "task": "Ensure IDs follow UUID format and message IDs are unique",
     "test": "scripts/validate-newadvanced-conversations.test.ts",
     "status": "done"
+  },
+  {
+    "commit": "Validate current_node and conversation_id consistency",
+    "path": "scripts/validate-newadvanced-conversations.ts",
+    "task": "Ensure current_node exists and conversation_id matches id",
+    "test": "scripts/validate-newadvanced-conversations.test.ts",
+    "status": "done"
   }
 ]

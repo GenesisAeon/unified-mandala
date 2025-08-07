@@ -1,0 +1,24 @@
+[
+  {
+    "id": "00000000-0000-0000-0000-000000000002",
+    "conversation_id": "00000000-0000-0000-0000-000000000003",
+    "title": "Mismatched conversation id",
+    "create_time": 1,
+    "update_time": 2,
+    "current_node": "client-created-root",
+    "mapping": {
+      "client-created-root": {
+        "id": "client-created-root",
+        "message": {
+          "id": "33333333-3333-3333-3333-333333333333",
+          "author": { "role": "user" },
+          "create_time": 1,
+          "update_time": 1,
+          "content": { "parts": ["hi"] }
+        },
+        "parent": null,
+        "children": []
+      }
+    }
+  }
+]

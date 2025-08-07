@@ -1022,6 +1022,10 @@
     {
       "commit": "Validate ID formats and duplicate message IDs",
       "status": "done"
+    },
+    {
+      "commit": "Validate current_node and conversation_id consistency",
+      "status": "done"
     }
   ],
   "metacommitTags": [
