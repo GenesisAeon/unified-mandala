@@ -11252,5 +11252,12 @@
     "task": "Flag nodes without parent aside from root",
     "test": "scripts/validate-newadvanced-conversations.test.ts",
     "status": "done"
+  },
+  {
+    "commit": "Validate ID formats and duplicate message IDs",
+    "path": "scripts/validate-newadvanced-conversations.ts",
+    "task": "Ensure IDs follow UUID format and message IDs are unique",
+    "test": "scripts/validate-newadvanced-conversations.test.ts",
+    "status": "done"
   }
 ]

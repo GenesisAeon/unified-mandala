@@ -27,6 +27,8 @@ export interface ValidationResult {
   conversationsWithInvalidMessageTimestamps: number[];
   conversationsWithInvalidContentParts: number[];
   conversationsWithSelfReferencingChildren: number[];
+  conversationsWithInvalidIds: number[];
+  conversationsWithDuplicateMessageIds: number[];
 }
 
 export function validateNewAdvancedConversations(filePath: string): ValidationResult {
@@ -56,8 +58,13 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
   const invalidMessageTimestamps: number[] = [];
   const invalidContentParts: number[] = [];
   const selfReferencingChildren: number[] = [];
+  const invalidIds: number[] = [];
+  const duplicateMessageIds: number[] = [];
+  const uuidPattern = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 
   raw.forEach((conv: any, idx: number) => {
+    const seenMessageIds = new Set<string>();
+    let invalidIdRecorded = false;
     const missing: string[] = [];
     if (!conv.id) missing.push('id');
     if (!conv.title) missing.push('title');
@@ -73,6 +80,10 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
     }
     if (missing.length) missingFields.push({ index: idx, fields: missing });
     if (conv.id) {
+      if (!uuidPattern.test(conv.id)) {
+        invalidIds.push(idx);
+        invalidIdRecorded = true;
+      }
       if (seenIds.has(conv.id)) duplicateIds.push(conv.id);
       else seenIds.add(conv.id);
     }
@@ -104,6 +115,10 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
     }
 
     for (const [key, node] of Object.entries(conv.mapping || {}) as [string, any][]) {
+      if (key !== 'client-created-root' && !uuidPattern.test(key) && !invalidIdRecorded) {
+        invalidIds.push(idx);
+        invalidIdRecorded = true;
+      }
       if (key !== 'client-created-root' && !node.message) {
         missingMessages.push(idx);
         break;
@@ -115,6 +130,25 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
       if (node.id && node.id !== key) {
         mismatchedNodeIds.push(idx);
         break;
+      }
+      if (node.id && !uuidPattern.test(node.id) && key !== 'client-created-root' && !invalidIdRecorded) {
+        invalidIds.push(idx);
+        invalidIdRecorded = true;
+      }
+      if (node.message && typeof node.message.id === 'string' && !uuidPattern.test(node.message.id) && !invalidIdRecorded) {
+        invalidIds.push(idx);
+        invalidIdRecorded = true;
+      }
+      if (
+        node.message &&
+        typeof node.message.id === 'string' &&
+        seenMessageIds.has(node.message.id)
+      ) {
+        duplicateMessageIds.push(idx);
+        break;
+      }
+      if (node.message && typeof node.message.id === 'string') {
+        seenMessageIds.add(node.message.id);
       }
       if (node.parent && !conv.mapping[node.parent]) {
         missingParents.push(idx);
@@ -265,6 +299,8 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
     conversationsWithInvalidMessageTimestamps: invalidMessageTimestamps,
     conversationsWithInvalidContentParts: invalidContentParts,
     conversationsWithSelfReferencingChildren: selfReferencingChildren,
+    conversationsWithInvalidIds: invalidIds,
+    conversationsWithDuplicateMessageIds: duplicateMessageIds,
   };
 }
 
@@ -293,7 +329,9 @@ if (require.main === module) {
     result.conversationsWithMessagesMissingTimestamps.length ||
     result.conversationsWithInvalidMessageTimestamps.length ||
     result.conversationsWithInvalidContentParts.length ||
-    result.conversationsWithSelfReferencingChildren.length
+    result.conversationsWithSelfReferencingChildren.length ||
+    result.conversationsWithInvalidIds.length ||
+    result.conversationsWithDuplicateMessageIds.length
   ) {
     console.error('Validation issues found:\n', JSON.stringify(result, null, 2));
     process.exit(1);

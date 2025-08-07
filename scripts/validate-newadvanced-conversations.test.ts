@@ -183,4 +183,22 @@ describe('validateNewAdvancedConversations', () => {
     const res = validateNewAdvancedConversations(file);
     expect(res.conversationsWithInvalidContentParts).toEqual([0]);
   });
+
+  it('flags invalid id formats', () => {
+    const file = path.join(
+      __dirname,
+      '../tests/fixtures/newadvanced-invalid-id-format.json'
+    );
+    const res = validateNewAdvancedConversations(file);
+    expect(res.conversationsWithInvalidIds).toEqual([0]);
+  });
+
+  it('flags duplicate message ids', () => {
+    const file = path.join(
+      __dirname,
+      '../tests/fixtures/newadvanced-duplicate-message-id.json'
+    );
+    const res = validateNewAdvancedConversations(file);
+    expect(res.conversationsWithDuplicateMessageIds).toEqual([0]);
+  });
 });
