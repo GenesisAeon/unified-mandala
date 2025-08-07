@@ -58,6 +58,15 @@ describe('validateNewAdvancedConversations', () => {
     expect(res.conversationsWithMissingRoles).toEqual([0]);
   });
 
+  it('flags conversations with message timestamps outside conversation range', () => {
+    const file = path.join(
+      __dirname,
+      '../tests/fixtures/newadvanced-message-time-out-of-range.json'
+    );
+    const res = validateNewAdvancedConversations(file);
+    expect(res.conversationsWithMessageTimeOutOfRange).toEqual([0]);
+  });
+
   it('detects out-of-order message timestamps', () => {
     const file = path.join(
       __dirname,

@@ -32,6 +32,7 @@ export interface ValidationResult {
   conversationsWithDuplicateMessageIds: number[];
   conversationsWithInvalidCurrentNode: number[];
   conversationsWithMismatchedConversationIds: number[];
+  conversationsWithMessageTimeOutOfRange: number[];
   conversationsWithMissingRoles: number[];
 }
 
@@ -68,6 +69,7 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
   const duplicateMessageIds: number[] = [];
   const invalidCurrentNodes: number[] = [];
   const mismatchedConversationIds: number[] = [];
+  const messageTimeOutOfRange: number[] = [];
   const uuidPattern = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 
   raw.forEach((conv: any, idx: number) => {
@@ -311,6 +313,23 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
         invalidCurrentNodes.push(idx);
       }
     }
+
+    const msgTimes = nodes.flatMap((n: any) => {
+      const m = n?.message;
+      return typeof m?.create_time === 'number' && typeof m?.update_time === 'number'
+        ? [m.create_time, m.update_time]
+        : [];
+    });
+    if (msgTimes.length) {
+      const earliest = Math.min(...msgTimes);
+      const latest = Math.max(...msgTimes);
+      if (
+        (typeof conv.create_time === 'number' && conv.create_time > earliest) ||
+        (typeof conv.update_time === 'number' && conv.update_time < latest)
+      ) {
+        messageTimeOutOfRange.push(idx);
+      }
+    }
   });
 
   return {
@@ -343,6 +362,7 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
     conversationsWithDuplicateMessageIds: duplicateMessageIds,
     conversationsWithInvalidCurrentNode: invalidCurrentNodes,
     conversationsWithMismatchedConversationIds: mismatchedConversationIds,
+    conversationsWithMessageTimeOutOfRange: messageTimeOutOfRange,
     conversationsWithMissingRoles: missingRoles,
   };
 }
@@ -378,6 +398,7 @@ if (require.main === module) {
     result.conversationsWithDuplicateMessageIds.length ||
     result.conversationsWithInvalidCurrentNode.length ||
     result.conversationsWithMismatchedConversationIds.length ||
+    result.conversationsWithMessageTimeOutOfRange.length ||
     result.conversationsWithMissingRoles.length
   ) {
     console.error('Validation issues found:\n', JSON.stringify(result, null, 2));
