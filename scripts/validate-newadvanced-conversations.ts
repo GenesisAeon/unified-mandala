@@ -8,6 +8,7 @@ export interface ValidationResult {
   duplicateTitles: string[];
   conversationsWithTitleWhitespace: number[];
   conversationsWithInvalidTitleChars: number[];
+  conversationsWithLongTitles: number[];
   missingFields: { index: number; fields: string[] }[];
   outOfOrderConversations: number[];
   invalidTimestamps: number[];
@@ -44,6 +45,7 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
   const duplicateTitles: string[] = [];
   const titlesWithWhitespace: number[] = [];
   const titlesWithInvalidChars: number[] = [];
+  const longTitles: number[] = [];
   const missingFields: { index: number; fields: string[] }[] = [];
   const outOfOrder: number[] = [];
   const invalidTimestamps: number[] = [];
@@ -121,6 +123,9 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
       }
       if (/[\x00-\x1F\x7F]/.test(conv.title)) {
         titlesWithInvalidChars.push(idx);
+      }
+      if (conv.title.length > 100) {
+        longTitles.push(idx);
       }
       if (seenTitles.has(normalized)) duplicateTitles.push(normalized);
       else seenTitles.add(normalized);
@@ -338,6 +343,7 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
     duplicateTitles,
   conversationsWithTitleWhitespace: titlesWithWhitespace,
   conversationsWithInvalidTitleChars: titlesWithInvalidChars,
+  conversationsWithLongTitles: longTitles,
     missingFields,
     outOfOrderConversations: outOfOrder,
     invalidTimestamps,
@@ -375,6 +381,7 @@ if (require.main === module) {
     result.duplicateTitles.length ||
     result.conversationsWithTitleWhitespace.length ||
     result.conversationsWithInvalidTitleChars.length ||
+    result.conversationsWithLongTitles.length ||
     result.missingFields.length ||
     result.outOfOrderConversations.length ||
     result.invalidTimestamps.length ||

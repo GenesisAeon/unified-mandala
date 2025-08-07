@@ -40,6 +40,15 @@ describe('validateNewAdvancedConversations', () => {
     expect(res.conversationsWithInvalidTitleChars).toEqual([0]);
   });
 
+  it('flags titles exceeding 100 characters', () => {
+    const file = path.join(
+      __dirname,
+      '../tests/fixtures/newadvanced-long-title.json'
+    );
+    const res = validateNewAdvancedConversations(file);
+    expect(res.conversationsWithLongTitles).toEqual([0]);
+  });
+
   it('flags nodes with invalid author roles', () => {
     const file = path.join(
       __dirname,
