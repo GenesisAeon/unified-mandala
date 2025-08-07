@@ -1448,7 +1448,8 @@
     "commit": "Add SigillinIntegrityChecker",
     "path": "packages/genesis-sigillin-core/SigillinIntegrityChecker.ts",
     "task": "Verify Sigillin data for integrity",
-    "test": "packages/genesis-sigillin-core/SigillinIntegrityChecker.test.ts"
+    "test": "packages/genesis-sigillin-core/SigillinIntegrityChecker.test.ts",
+    "status": "done"
   },
   {
     "commit": "Create RealTimeCollaborationChat",
