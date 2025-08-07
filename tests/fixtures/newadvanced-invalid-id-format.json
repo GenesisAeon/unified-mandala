@@ -1,0 +1,28 @@
+[
+  {
+    "id": "invalid",
+    "title": "Invalid ID format",
+    "create_time": 1,
+    "update_time": 1,
+    "mapping": {
+      "client-created-root": {
+        "id": "client-created-root",
+        "message": null,
+        "parent": null,
+        "children": ["bad-node"]
+      },
+      "bad-node": {
+        "id": "bad-node",
+        "parent": "client-created-root",
+        "children": [],
+        "message": {
+          "id": "not-a-uuid",
+          "author": {"role": "user"},
+          "create_time": 1,
+          "update_time": 1,
+          "content": {"content_type": "text", "parts": ["Hello"]}
+        }
+      }
+    }
+  }
+]

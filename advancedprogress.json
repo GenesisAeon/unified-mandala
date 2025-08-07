@@ -1018,6 +1018,10 @@
     {
       "commit": "feat: enhance AgentCoordinator thresholds",
       "status": "done"
+    },
+    {
+      "commit": "Validate ID formats and duplicate message IDs",
+      "status": "done"
     }
   ],
   "metacommitTags": [
