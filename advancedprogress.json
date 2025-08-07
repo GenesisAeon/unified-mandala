@@ -1055,6 +1055,10 @@
     {
       "commit": "Validate conversation message timestamp bounds",
       "status": "done"
+    },
+    {
+      "commit": "Validate plugin and URL fields in conversations",
+      "status": "done"
     }
   ],
   "metacommitTags": [

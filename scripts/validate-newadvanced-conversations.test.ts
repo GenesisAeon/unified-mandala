@@ -264,4 +264,16 @@ describe('validateNewAdvancedConversations', () => {
     const res = validateNewAdvancedConversations(file);
     expect(res.conversationsWithMismatchedConversationIds).toEqual([0]);
   });
+
+  it('flags invalid plugin and URL fields', () => {
+    const file = path.join(
+      __dirname,
+      '../tests/fixtures/newadvanced-invalid-extras.json'
+    );
+    const res = validateNewAdvancedConversations(file);
+    expect(res.conversationsWithInvalidPluginIds).toEqual([0]);
+    expect(res.conversationsWithInvalidDisabledToolIds).toEqual([0]);
+    expect(res.conversationsWithInvalidBlockedUrls).toEqual([0]);
+    expect(res.conversationsWithInvalidSafeUrls).toEqual([0]);
+  });
 });

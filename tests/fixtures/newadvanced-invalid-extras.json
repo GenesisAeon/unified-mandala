@@ -1,0 +1,22 @@
+[
+  {
+    "id": "11111111-1111-4111-8111-111111111111",
+    "conversation_id": "11111111-1111-4111-8111-111111111111",
+    "title": "Invalid extras",
+    "current_node": "client-created-root",
+    "mapping": {
+      "client-created-root": {
+        "id": "client-created-root",
+        "parent": null,
+        "children": [],
+        "message": null
+      }
+    },
+    "create_time": 1,
+    "update_time": 1,
+    "plugin_ids": [123],
+    "disabled_tool_ids": ["ok", 42],
+    "blocked_urls": [null],
+    "safe_urls": ["https://example.com", 5]
+  }
+]

@@ -35,6 +35,10 @@ export interface ValidationResult {
   conversationsWithMismatchedConversationIds: number[];
   conversationsWithMessageTimeOutOfRange: number[];
   conversationsWithMissingRoles: number[];
+  conversationsWithInvalidPluginIds: number[];
+  conversationsWithInvalidDisabledToolIds: number[];
+  conversationsWithInvalidBlockedUrls: number[];
+  conversationsWithInvalidSafeUrls: number[];
 }
 
 export function validateNewAdvancedConversations(filePath: string): ValidationResult {
@@ -72,6 +76,10 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
   const invalidCurrentNodes: number[] = [];
   const mismatchedConversationIds: number[] = [];
   const messageTimeOutOfRange: number[] = [];
+  const invalidPluginIds: number[] = [];
+  const invalidDisabledToolIds: number[] = [];
+  const invalidBlockedUrls: number[] = [];
+  const invalidSafeUrls: number[] = [];
   const uuidPattern = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 
   raw.forEach((conv: any, idx: number) => {
@@ -107,6 +115,38 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
       conv.conversation_id !== conv.id
     ) {
       mismatchedConversationIds.push(idx);
+    }
+    if (conv.plugin_ids !== undefined && conv.plugin_ids !== null) {
+      if (
+        !Array.isArray(conv.plugin_ids) ||
+        conv.plugin_ids.some((p: any) => typeof p !== 'string')
+      ) {
+        invalidPluginIds.push(idx);
+      }
+    }
+    if (conv.disabled_tool_ids !== undefined && conv.disabled_tool_ids !== null) {
+      if (
+        !Array.isArray(conv.disabled_tool_ids) ||
+        conv.disabled_tool_ids.some((p: any) => typeof p !== 'string')
+      ) {
+        invalidDisabledToolIds.push(idx);
+      }
+    }
+    if (conv.blocked_urls !== undefined) {
+      if (
+        !Array.isArray(conv.blocked_urls) ||
+        conv.blocked_urls.some((u: any) => typeof u !== 'string')
+      ) {
+        invalidBlockedUrls.push(idx);
+      }
+    }
+    if (conv.safe_urls !== undefined) {
+      if (
+        !Array.isArray(conv.safe_urls) ||
+        conv.safe_urls.some((u: any) => typeof u !== 'string')
+      ) {
+        invalidSafeUrls.push(idx);
+      }
     }
     if (
       typeof conv.conversation_id === 'string' &&
@@ -370,6 +410,10 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
     conversationsWithMismatchedConversationIds: mismatchedConversationIds,
     conversationsWithMessageTimeOutOfRange: messageTimeOutOfRange,
     conversationsWithMissingRoles: missingRoles,
+    conversationsWithInvalidPluginIds: invalidPluginIds,
+    conversationsWithInvalidDisabledToolIds: invalidDisabledToolIds,
+    conversationsWithInvalidBlockedUrls: invalidBlockedUrls,
+    conversationsWithInvalidSafeUrls: invalidSafeUrls,
   };
 }
 
@@ -406,7 +450,11 @@ if (require.main === module) {
     result.conversationsWithInvalidCurrentNode.length ||
     result.conversationsWithMismatchedConversationIds.length ||
     result.conversationsWithMessageTimeOutOfRange.length ||
-    result.conversationsWithMissingRoles.length
+    result.conversationsWithMissingRoles.length ||
+    result.conversationsWithInvalidPluginIds.length ||
+    result.conversationsWithInvalidDisabledToolIds.length ||
+    result.conversationsWithInvalidBlockedUrls.length ||
+    result.conversationsWithInvalidSafeUrls.length
   ) {
     console.error('Validation issues found:\n', JSON.stringify(result, null, 2));
     process.exit(1);
