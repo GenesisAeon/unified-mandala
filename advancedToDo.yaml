@@ -11306,3 +11306,8 @@
   task: Ensure current_node exists and conversation_id matches id
   test: scripts/validate-newadvanced-conversations.test.ts
   status: done
+- commit: Validate conversation title characters
+  path: scripts/validate-newadvanced-conversations.ts
+  task: Flag titles containing control characters
+  test: scripts/validate-newadvanced-conversations.test.ts
+  status: done

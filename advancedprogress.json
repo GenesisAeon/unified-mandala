@@ -1,11 +1,11 @@
 {
-  "lastCommit": "feat: normalize conversation titles",
-  "fractalStep": "fractal-run/title-whitespace-validation",
+  "lastCommit": "feat: validate conversation title chars",
+  "fractalStep": "fractal-run/title-char-validation",
   "openBranches": [
     "work"
   ],
   "mergeConflicts": [],
-  "notes": "Normalized conversation titles and added whitespace validation",
+  "notes": "Normalized conversation titles, added whitespace and control-char validation",
   "pendingTasks": [
     "Run scripts/extract-training-data.ts to fragment new advanced conversations",
     "Deploy GhostShellAgent as Lambda@Edge"
@@ -1025,6 +1025,10 @@
     },
     {
       "commit": "Validate current_node and conversation_id consistency",
+      "status": "done"
+    },
+    {
+      "commit": "Validate conversation title characters",
       "status": "done"
     }
   ],

@@ -7,6 +7,7 @@ export interface ValidationResult {
   duplicateIds: string[];
   duplicateTitles: string[];
   conversationsWithTitleWhitespace: number[];
+  conversationsWithInvalidTitleChars: number[];
   missingFields: { index: number; fields: string[] }[];
   outOfOrderConversations: number[];
   invalidTimestamps: number[];
@@ -40,6 +41,7 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
   const duplicateIds: string[] = [];
   const duplicateTitles: string[] = [];
   const titlesWithWhitespace: number[] = [];
+  const titlesWithInvalidChars: number[] = [];
   const missingFields: { index: number; fields: string[] }[] = [];
   const outOfOrder: number[] = [];
   const invalidTimestamps: number[] = [];
@@ -112,6 +114,9 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
       const normalized = conv.title.trim().replace(/\s+/g, ' ').toLowerCase();
       if (conv.title.trim() !== conv.title || /\s{2,}/.test(conv.title)) {
         titlesWithWhitespace.push(idx);
+      }
+      if (/[\x00-\x1F\x7F]/.test(conv.title)) {
+        titlesWithInvalidChars.push(idx);
       }
       if (seenTitles.has(normalized)) duplicateTitles.push(normalized);
       else seenTitles.add(normalized);
@@ -305,7 +310,8 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
     conversationCount: raw.length,
     duplicateIds,
     duplicateTitles,
-    conversationsWithTitleWhitespace: titlesWithWhitespace,
+  conversationsWithTitleWhitespace: titlesWithWhitespace,
+  conversationsWithInvalidTitleChars: titlesWithInvalidChars,
     missingFields,
     outOfOrderConversations: outOfOrder,
     invalidTimestamps,
@@ -340,6 +346,7 @@ if (require.main === module) {
     result.duplicateIds.length ||
     result.duplicateTitles.length ||
     result.conversationsWithTitleWhitespace.length ||
+    result.conversationsWithInvalidTitleChars.length ||
     result.missingFields.length ||
     result.outOfOrderConversations.length ||
     result.invalidTimestamps.length ||

@@ -31,6 +31,15 @@ describe('validateNewAdvancedConversations', () => {
     expect(res.conversationsWithTitleWhitespace).toEqual([1]);
   });
 
+  it('flags titles with control characters', () => {
+    const file = path.join(
+      __dirname,
+      '../tests/fixtures/newadvanced-invalid-title-chars.json'
+    );
+    const res = validateNewAdvancedConversations(file);
+    expect(res.conversationsWithInvalidTitleChars).toEqual([0]);
+  });
+
   it('detects out-of-order message timestamps', () => {
     const file = path.join(
       __dirname,
