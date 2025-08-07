@@ -1052,6 +1052,7 @@
   path: packages/genesis-sigillin-core/SigillinIntegrityChecker.ts
   task: Verify Sigillin data for integrity
   test: packages/genesis-sigillin-core/SigillinIntegrityChecker.test.ts
+  status: done
 - commit: Create RealTimeCollaborationChat
   path: packages/collab-editor/RealTimeCollaborationChat.ts
   task: Provide integrated chat during collaborative editing
