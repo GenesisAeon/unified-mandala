@@ -40,6 +40,24 @@ describe('validateNewAdvancedConversations', () => {
     expect(res.conversationsWithInvalidTitleChars).toEqual([0]);
   });
 
+  it('flags nodes with invalid author roles', () => {
+    const file = path.join(
+      __dirname,
+      '../tests/fixtures/newadvanced-invalid-role.json'
+    );
+    const res = validateNewAdvancedConversations(file);
+    expect(res.conversationsWithInvalidRoles).toEqual([0]);
+  });
+
+  it('flags nodes missing author roles', () => {
+    const file = path.join(
+      __dirname,
+      '../tests/fixtures/newadvanced-missing-role.json'
+    );
+    const res = validateNewAdvancedConversations(file);
+    expect(res.conversationsWithMissingRoles).toEqual([0]);
+  });
+
   it('detects out-of-order message timestamps', () => {
     const file = path.join(
       __dirname,

@@ -32,6 +32,7 @@ export interface ValidationResult {
   conversationsWithDuplicateMessageIds: number[];
   conversationsWithInvalidCurrentNode: number[];
   conversationsWithMismatchedConversationIds: number[];
+  conversationsWithMissingRoles: number[];
 }
 
 export function validateNewAdvancedConversations(filePath: string): ValidationResult {
@@ -46,6 +47,7 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
   const outOfOrder: number[] = [];
   const invalidTimestamps: number[] = [];
   const invalidRoles: number[] = [];
+  const missingRoles: number[] = [];
   const missingRoot: number[] = [];
   const missingParents: number[] = [];
   const mismatchedNodeIds: number[] = [];
@@ -133,11 +135,16 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
       }
     }
 
-    const roles = nodes
-      .map((n: any) => n?.message?.author?.role)
-      .filter((r: any): r is string => typeof r === 'string');
-    if (roles.some((r) => !['system', 'user', 'assistant'].includes(r))) {
-      invalidRoles.push(idx);
+    for (const node of nodes) {
+      const role = node?.message?.author?.role;
+      if (typeof role !== 'string') {
+        missingRoles.push(idx);
+        break;
+      }
+      if (!['system', 'user', 'assistant'].includes(role)) {
+        invalidRoles.push(idx);
+        break;
+      }
     }
 
     for (const [key, node] of Object.entries(conv.mapping || {}) as [string, any][]) {
@@ -336,6 +343,7 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
     conversationsWithDuplicateMessageIds: duplicateMessageIds,
     conversationsWithInvalidCurrentNode: invalidCurrentNodes,
     conversationsWithMismatchedConversationIds: mismatchedConversationIds,
+    conversationsWithMissingRoles: missingRoles,
   };
 }
 
@@ -369,7 +377,8 @@ if (require.main === module) {
     result.conversationsWithInvalidIds.length ||
     result.conversationsWithDuplicateMessageIds.length ||
     result.conversationsWithInvalidCurrentNode.length ||
-    result.conversationsWithMismatchedConversationIds.length
+    result.conversationsWithMismatchedConversationIds.length ||
+    result.conversationsWithMissingRoles.length
   ) {
     console.error('Validation issues found:\n', JSON.stringify(result, null, 2));
     process.exit(1);

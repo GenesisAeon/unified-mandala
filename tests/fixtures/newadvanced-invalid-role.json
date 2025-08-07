@@ -1,0 +1,24 @@
+[
+  {
+    "id": "00000000-0000-0000-0000-000000000002",
+    "conversation_id": "00000000-0000-0000-0000-000000000002",
+    "title": "Invalid role",
+    "create_time": 1,
+    "update_time": 2,
+    "current_node": "client-created-root",
+    "mapping": {
+      "client-created-root": {
+        "id": "client-created-root",
+        "message": {
+          "id": "22222222-2222-2222-2222-222222222222",
+          "author": { "role": "invalid" },
+          "create_time": 1,
+          "update_time": 1,
+          "content": { "parts": ["hi"] }
+        },
+        "parent": null,
+        "children": []
+      }
+    }
+  }
+]
