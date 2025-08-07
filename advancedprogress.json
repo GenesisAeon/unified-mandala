@@ -1,6 +1,6 @@
 {
-  "lastCommit": "feat: validate conversation title chars",
-  "fractalStep": "fractal-run/title-char-validation",
+  "lastCommit": "feat: add NullfeldSimulation and visualization modules",
+  "fractalStep": "fractal-run/nullfeld-modules",
   "openBranches": [
     "work"
   ],
@@ -634,6 +634,14 @@
     {
       "commit": "Add GhostShell NGINX config",
       "status": "done"
+    },
+    {
+      "commit": "Add NullfeldSimulation and visualization modules",
+      "status": "done"
+    },
+    {
+      "commit": "Fraktalrun: continue with NullfeldWellenModul",
+      "status": "open"
     }
   ],
   "completed": [
