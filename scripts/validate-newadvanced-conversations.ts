@@ -124,7 +124,7 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
       else seenTitles.add(normalized);
     }
 
-    const nodes = Object.values(conv.mapping || {});
+    const nodes: any[] = Object.values(conv.mapping || {});
     const times = nodes
       .map((n: any) => n?.message?.create_time)
       .filter((t: any): t is number => typeof t === 'number');

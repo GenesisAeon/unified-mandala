@@ -4916,9 +4916,9 @@
   },
   {
     "commit": "Split newadvancedconversations into fragments",
-    "path": "scripts/newadvancedconvo_splitter.ts",
+    "path": "scripts/split-newadvanced-conversations.ts",
     "task": "Split newadvancedconversations.json into numbered YAML/JSON fragments",
-    "test": "scripts/__tests__/newadvancedconvo_splitter.test.ts",
+    "test": "scripts/split-newadvanced-conversations.test.ts",
     "status": "done"
   },
   {
@@ -11267,8 +11267,7 @@
     "task": "Ensure current_node exists and conversation_id matches id",
     "test": "scripts/validate-newadvanced-conversations.test.ts",
     "status": "done"
-  }
-  ,
+  },
   {
     "commit": "Validate conversation title characters",
     "path": "scripts/validate-newadvanced-conversations.ts",
