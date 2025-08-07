@@ -11288,5 +11288,12 @@
     "task": "Ensure conversation timestamps encompass all message timestamps",
     "test": "scripts/validate-newadvanced-conversations.test.ts",
     "status": "done"
+  },
+  {
+    "commit": "Validate conversation title length",
+    "path": "scripts/validate-newadvanced-conversations.ts",
+    "task": "Flag titles exceeding 100 characters",
+    "test": "scripts/validate-newadvanced-conversations.test.ts",
+    "status": "done"
   }
 ]
