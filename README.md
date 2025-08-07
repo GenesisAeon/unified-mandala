@@ -235,6 +235,7 @@ Weitere Hinweise aus dem „Sigil Übergang“:
 - [**Friendship System**](docs/friendship-system.md) – Konzept
 - [**Agent-Registry**](agents.yaml) – zentrale Übersicht aller Agents
 - [**StrategicAgentCoordinator**](docs/agents/StrategicAgentCoordinator.md) – synchronisiert AGENTS.md
+- [**AgentCoordinator**](packages/agents/AgentCoordinator.ts) – orchestriert Agents nach CREP und Symbolzeit
 - [**VisionContextIntegrator**](docs/agents/VisionContextIntegrator.md) – verteilt Vision-Kontext an alle Agenten
 - [**QualityAssuranceAgent**](docs/agents/QualityAssuranceAgent.md) – führt Lint- und Test-Suites aus
 - [**SigilStory**](docs/CommunityOnboarding.md) – Mandala-Lern-Lebenslauf für C-Tutor & JavaHamster

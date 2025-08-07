@@ -1014,6 +1014,10 @@
     {
       "commit": "feat: normalize conversation titles",
       "status": "done"
+    },
+    {
+      "commit": "feat: enhance AgentCoordinator thresholds",
+      "status": "done"
     }
   ],
   "metacommitTags": [
