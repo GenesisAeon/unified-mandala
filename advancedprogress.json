@@ -1030,6 +1030,10 @@
     {
       "commit": "Validate conversation title characters",
       "status": "done"
+    },
+    {
+      "commit": "Validate presence and validity of message author roles",
+      "status": "done"
     }
   ],
   "metacommitTags": [

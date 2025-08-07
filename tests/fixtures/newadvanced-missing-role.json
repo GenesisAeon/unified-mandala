@@ -1,0 +1,23 @@
+[
+  {
+    "id": "00000000-0000-0000-0000-000000000001",
+    "conversation_id": "00000000-0000-0000-0000-000000000001",
+    "title": "Missing role",
+    "create_time": 1,
+    "update_time": 2,
+    "current_node": "client-created-root",
+    "mapping": {
+      "client-created-root": {
+        "id": "client-created-root",
+        "message": {
+          "id": "11111111-1111-1111-1111-111111111111",
+          "create_time": 1,
+          "update_time": 1,
+          "content": { "parts": ["hi"] }
+        },
+        "parent": null,
+        "children": []
+      }
+    }
+  }
+]
