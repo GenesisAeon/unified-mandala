@@ -168,6 +168,7 @@ console.log(sigil.id); // hello
 - `AeonKIResonanzAnalyzer` – Analysiert Resonanzmuster in Gesprächen.
 - `KIBewusstseinResonanzMonitor` – Überwacht Bewusstseins- und Resonanzmetriken.
 - `StrategicAgentCoordinator` – synchronisiert die Agentenliste und schreibt `strategy-overview.json` ([docs/agents/StrategicAgentCoordinator.md](docs/agents/StrategicAgentCoordinator.md))
+- `AgentCoordinator` – steuert Agenten abhängig von CREP und Symbolzeit ([packages/agents/AgentCoordinator.ts](packages/agents/AgentCoordinator.ts))
 - `VisionContextIntegrator` – verteilt die Vision aus `AgentStrategy.md` an alle Agenten ([docs/agents/VisionContextIntegrator.md](docs/agents/VisionContextIntegrator.md))
 - `QualityAssuranceAgent` – führt Lint- und Test-Suites aus ([docs/agents/QualityAssuranceAgent.md](docs/agents/QualityAssuranceAgent.md))
 ### collab-editor
