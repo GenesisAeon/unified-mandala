@@ -6,6 +6,7 @@ export interface ValidationResult {
   conversationCount: number;
   duplicateIds: string[];
   duplicateTitles: string[];
+  conversationsWithTitleWhitespace: number[];
   missingFields: { index: number; fields: string[] }[];
   outOfOrderConversations: number[];
   invalidTimestamps: number[];
@@ -34,6 +35,7 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
   const seenTitles = new Set<string>();
   const duplicateIds: string[] = [];
   const duplicateTitles: string[] = [];
+  const titlesWithWhitespace: number[] = [];
   const missingFields: { index: number; fields: string[] }[] = [];
   const outOfOrder: number[] = [];
   const invalidTimestamps: number[] = [];
@@ -74,10 +76,13 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
       if (seenIds.has(conv.id)) duplicateIds.push(conv.id);
       else seenIds.add(conv.id);
     }
-    if (conv.title) {
-      const key = conv.title.toLowerCase();
-      if (seenTitles.has(key)) duplicateTitles.push(conv.title);
-      else seenTitles.add(key);
+    if (typeof conv.title === 'string') {
+      const normalized = conv.title.trim().replace(/\s+/g, ' ').toLowerCase();
+      if (conv.title.trim() !== conv.title || /\s{2,}/.test(conv.title)) {
+        titlesWithWhitespace.push(idx);
+      }
+      if (seenTitles.has(normalized)) duplicateTitles.push(normalized);
+      else seenTitles.add(normalized);
     }
 
     const nodes = Object.values(conv.mapping || {});
@@ -239,6 +244,7 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
     conversationCount: raw.length,
     duplicateIds,
     duplicateTitles,
+    conversationsWithTitleWhitespace: titlesWithWhitespace,
     missingFields,
     outOfOrderConversations: outOfOrder,
     invalidTimestamps,
@@ -268,6 +274,7 @@ if (require.main === module) {
   if (
     result.duplicateIds.length ||
     result.duplicateTitles.length ||
+    result.conversationsWithTitleWhitespace.length ||
     result.missingFields.length ||
     result.outOfOrderConversations.length ||
     result.invalidTimestamps.length ||
