@@ -201,4 +201,22 @@ describe('validateNewAdvancedConversations', () => {
     const res = validateNewAdvancedConversations(file);
     expect(res.conversationsWithDuplicateMessageIds).toEqual([0]);
   });
+
+  it('flags invalid current_node references', () => {
+    const file = path.join(
+      __dirname,
+      '../tests/fixtures/newadvanced-invalid-current-node.json'
+    );
+    const res = validateNewAdvancedConversations(file);
+    expect(res.conversationsWithInvalidCurrentNode).toEqual([0]);
+  });
+
+  it('flags mismatched conversation_id', () => {
+    const file = path.join(
+      __dirname,
+      '../tests/fixtures/newadvanced-mismatched-conversation-id.json'
+    );
+    const res = validateNewAdvancedConversations(file);
+    expect(res.conversationsWithMismatchedConversationIds).toEqual([0]);
+  });
 });
