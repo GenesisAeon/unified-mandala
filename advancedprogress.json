@@ -1,11 +1,11 @@
 {
-  "lastCommit": "Integrate CREP SelfReflection filter into training data extractor",
+  "lastCommit": "Add channel and recipient validation ToDos",
   "fractalStep": "weiter",
   "openBranches": [
     "work"
   ],
   "mergeConflicts": [],
-  "notes": "Integrated SelfReflection CREP filter; ReviewAgent and message status validation pending",
+  "notes": "Added ToDos for message channel and recipient validation; ReviewAgent and message status validation pending",
   "pendingTasks": [
     {
       "commit": "Implement ReviewAgent for manual fragment validation",
@@ -13,6 +13,14 @@
     },
     {
       "commit": "Validate message status values in conversations",
+      "status": "todo"
+    },
+    {
+      "commit": "Validate message channel values in conversations",
+      "status": "todo"
+    },
+    {
+      "commit": "Validate message recipient values in conversations",
       "status": "todo"
     }
   ],
@@ -680,6 +688,10 @@
     {
       "commit": "Integrate CREP SelfReflection filter into training data extractor",
       "status": "done"
+    },
+    {
+      "commit": "Plan message channel and recipient validation for conversations",
+      "status": "pending"
     }
   ],
   "completed": [
@@ -1096,6 +1108,10 @@
     {
       "commit": "Plan message weight validation for conversations",
       "status": "done"
+    },
+    {
+      "commit": "Plan message channel and recipient validation for conversations",
+      "status": "pending"
     }
   ],
   "metacommitTags": [

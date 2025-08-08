@@ -9888,3 +9888,13 @@
   task: Ensure node messages use allowed status values
   test: scripts/validate-newadvanced-conversations.test.ts
   status: todo
+- commit: Validate message channel values in conversations
+  path: scripts/validate-newadvanced-conversations.ts
+  task: Ensure node messages use allowed channel values
+  test: scripts/validate-newadvanced-conversations.test.ts
+  status: todo
+- commit: Validate message recipient values in conversations
+  path: scripts/validate-newadvanced-conversations.ts
+  task: Ensure node messages use allowed recipient values
+  test: scripts/validate-newadvanced-conversations.test.ts
+  status: todo
