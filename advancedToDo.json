@@ -11315,6 +11315,6 @@
     "path": "scripts/validate-newadvanced-conversations.ts",
     "task": "Ensure message weight values are between 0 and 1",
     "test": "scripts/validate-newadvanced-conversations.test.ts",
-    "status": "todo"
+    "status": "done"
   }
 ]
