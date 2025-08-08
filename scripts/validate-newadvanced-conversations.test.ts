@@ -276,4 +276,13 @@ describe('validateNewAdvancedConversations', () => {
     expect(res.conversationsWithInvalidBlockedUrls).toEqual([0]);
     expect(res.conversationsWithInvalidSafeUrls).toEqual([0]);
   });
+
+  it('flags messages with weight outside 0-1', () => {
+    const file = path.join(
+      __dirname,
+      '../tests/fixtures/newadvanced-invalid-message-weight.json'
+    );
+    const res = validateNewAdvancedConversations(file);
+    expect(res.conversationsWithInvalidMessageWeights).toEqual([0]);
+  });
 });

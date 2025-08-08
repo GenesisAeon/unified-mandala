@@ -27,6 +27,7 @@ export interface ValidationResult {
   conversationsWithMissingMessageIds: number[];
   conversationsWithMessagesMissingTimestamps: number[];
   conversationsWithInvalidMessageTimestamps: number[];
+  conversationsWithInvalidMessageWeights: number[];
   conversationsWithInvalidContentParts: number[];
   conversationsWithSelfReferencingChildren: number[];
   conversationsWithInvalidIds: number[];
@@ -69,6 +70,7 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
   const missingMessageIds: number[] = [];
   const messagesMissingTimestamps: number[] = [];
   const invalidMessageTimestamps: number[] = [];
+  const invalidMessageWeights: number[] = [];
   const invalidContentParts: number[] = [];
   const selfReferencingChildren: number[] = [];
   const invalidIds: number[] = [];
@@ -299,18 +301,25 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
       }
       if (key !== 'client-created-root' && node.message) {
         const m = node.message;
-        if (
-          typeof m.create_time !== 'number' ||
-          typeof m.update_time !== 'number'
-        ) {
-          messagesMissingTimestamps.push(idx);
-          break;
-        }
-        if (m.update_time < m.create_time) {
-          invalidMessageTimestamps.push(idx);
-          break;
-        }
+      if (
+        typeof m.create_time !== 'number' ||
+        typeof m.update_time !== 'number'
+      ) {
+        messagesMissingTimestamps.push(idx);
+        break;
       }
+      if (m.update_time < m.create_time) {
+        invalidMessageTimestamps.push(idx);
+        break;
+      }
+      if (
+        m.weight !== undefined &&
+        (typeof m.weight !== 'number' || m.weight < 0 || m.weight > 1)
+      ) {
+        invalidMessageWeights.push(idx);
+        break;
+      }
+    }
     }
 
     if (
@@ -402,6 +411,7 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
     conversationsWithMissingMessageIds: missingMessageIds,
     conversationsWithMessagesMissingTimestamps: messagesMissingTimestamps,
     conversationsWithInvalidMessageTimestamps: invalidMessageTimestamps,
+    conversationsWithInvalidMessageWeights: invalidMessageWeights,
     conversationsWithInvalidContentParts: invalidContentParts,
     conversationsWithSelfReferencingChildren: selfReferencingChildren,
     conversationsWithInvalidIds: invalidIds,
@@ -443,6 +453,7 @@ if (require.main === module) {
     result.conversationsWithMissingMessageIds.length ||
     result.conversationsWithMessagesMissingTimestamps.length ||
     result.conversationsWithInvalidMessageTimestamps.length ||
+    result.conversationsWithInvalidMessageWeights.length ||
     result.conversationsWithInvalidContentParts.length ||
     result.conversationsWithSelfReferencingChildren.length ||
     result.conversationsWithInvalidIds.length ||

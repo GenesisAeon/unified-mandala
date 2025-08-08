@@ -1,5 +1,5 @@
 {
-  "lastCommit": "Add message weight validation TODO",
+  "lastCommit": "feat: validate message weight bounds",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
@@ -13,10 +13,6 @@
     },
     {
       "commit": "Integrate CREP SelfReflection filter into training data extractor",
-      "status": "todo"
-    },
-    {
-      "commit": "Validate message weight bounds in conversations",
       "status": "todo"
     }
   ],
@@ -667,7 +663,7 @@
     },
     {
       "commit": "Plan message weight validation for conversations",
-      "status": "todo"
+      "status": "done"
     }
   ],
   "completed": [
@@ -1083,7 +1079,7 @@
     },
     {
       "commit": "Plan message weight validation for conversations",
-      "status": "todo"
+      "status": "done"
     }
   ],
   "metacommitTags": [
