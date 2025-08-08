@@ -1,15 +1,15 @@
 {
-  "lastCommit": "feat: validate message weight bounds",
+  "lastCommit": "feat: add conversation summary generation",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
   ],
   "mergeConflicts": [],
-  "notes": "Added ToDos for summary generation and CREP filtering in extract-training-data script",
+  "notes": "Implemented summary generation; CREP filter remains pending",
   "pendingTasks": [
     {
       "commit": "Add summary generator to training data extraction",
-      "status": "todo"
+      "status": "done"
     },
     {
       "commit": "Integrate CREP SelfReflection filter into training data extractor",
@@ -20,6 +20,10 @@
     {
       "commit": "Add extract-training-data enhancement ToDos",
       "status": "pending"
+    },
+    {
+      "commit": "Add summary generator to training data extraction",
+      "status": "done"
     },
     {
       "commit": "Add Sigillin Fractal Visualizer component",

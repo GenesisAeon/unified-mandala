@@ -1,11 +1,11 @@
 [
   {
-    "commit": "Add summary generator to training data extraction",
-    "path": "scripts/extract-training-data.ts",
-    "task": "Replace placeholder with generated conversation summaries",
-    "test": "scripts/__tests__/extract-training-data.test.ts",
-    "status": "todo"
-  },
+  "commit": "Add summary generator to training data extraction",
+  "path": "scripts/extract-training-data.ts",
+  "task": "Replace placeholder with generated conversation summaries",
+  "test": "scripts/__tests__/extract-training-data.test.ts",
+  "status": "done"
+},
   {
     "commit": "Integrate CREP SelfReflection filter into training data extractor",
     "path": "scripts/extract-training-data.ts",
