@@ -11343,3 +11343,14 @@
   task: Ensure message weight values are between 0 and 1
   test: scripts/validate-newadvanced-conversations.test.ts
   status: done
+- commit: Add AGENTS manifest schema validation
+  path: scripts/validate-agents-schema.ts
+  task: Validate AGENTS.md entries against JSON/YAML schema for consistency
+  test: scripts/validate-agents-schema.test.ts
+  status: todo
+- commit: Implement ReviewAgent for manual fragment validation
+  path: packages/agents/ReviewAgent.ts
+  task: Sample conversation fragments for human validation
+  test: packages/agents/__tests__/ReviewAgent.test.ts
+  status: todo
+

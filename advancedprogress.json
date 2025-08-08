@@ -1,5 +1,5 @@
 {
-  "lastCommit": "feat: add conversation summary generation",
+  "lastCommit": "Merge pull request #1076 from GenesisAeon/wxgp76-codex/implement-features-from-advancedtodo.yaml",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
@@ -8,11 +8,15 @@
   "notes": "Implemented summary generation; CREP filter remains pending",
   "pendingTasks": [
     {
-      "commit": "Add summary generator to training data extraction",
-      "status": "done"
+      "commit": "Integrate CREP SelfReflection filter into training data extractor",
+      "status": "todo"
     },
     {
-      "commit": "Integrate CREP SelfReflection filter into training data extractor",
+      "commit": "Add AGENTS manifest schema validation",
+      "status": "todo"
+    },
+    {
+      "commit": "Implement ReviewAgent for manual fragment validation",
       "status": "todo"
     }
   ],
@@ -668,6 +672,14 @@
     {
       "commit": "Plan message weight validation for conversations",
       "status": "done"
+    },
+    {
+      "commit": "Planned AGENTS manifest schema validation",
+      "status": "pending"
+    },
+    {
+      "commit": "Planned ReviewAgent for manual fragment validation",
+      "status": "pending"
     }
   ],
   "completed": [
