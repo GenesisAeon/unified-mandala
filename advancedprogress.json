@@ -1,18 +1,18 @@
 {
-  "lastCommit": "Add AGENTS manifest schema validation",
+  "lastCommit": "Integrate CREP SelfReflection filter into training data extractor",
   "fractalStep": "weiter",
   "openBranches": [
     "work"
   ],
   "mergeConflicts": [],
-  "notes": "AGENTS manifest schema validation complete; ReviewAgent still pending",
+  "notes": "Integrated SelfReflection CREP filter; ReviewAgent and message status validation pending",
   "pendingTasks": [
     {
-      "commit": "Integrate CREP SelfReflection filter into training data extractor",
+      "commit": "Implement ReviewAgent for manual fragment validation",
       "status": "todo"
     },
     {
-      "commit": "Implement ReviewAgent for manual fragment validation",
+      "commit": "Validate message status values in conversations",
       "status": "todo"
     }
   ],
@@ -676,6 +676,10 @@
     {
       "commit": "Planned ReviewAgent for manual fragment validation",
       "status": "pending"
+    },
+    {
+      "commit": "Integrate CREP SelfReflection filter into training data extractor",
+      "status": "done"
     }
   ],
   "completed": [
