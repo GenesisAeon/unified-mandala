@@ -49,5 +49,10 @@ describe('extractTrainingData', () => {
     const manifestContent = yaml.load(await fs.readFile(manifest, 'utf8')) as any;
     expect(manifestContent.conversations).toHaveLength(1);
     expect(manifestContent.conversations[0].id).toBe(slug);
+    expect(manifestContent.conversations[0].summary).toContain('Hello');
+
+    const summaryFile = await fs.readFile(path.join(out, slug, 'summary.md'), 'utf8');
+    expect(summaryFile).toContain('Hello');
+    expect(summaryFile).not.toContain('TODO');
   });
 });

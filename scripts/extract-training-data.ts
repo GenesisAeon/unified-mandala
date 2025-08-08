@@ -9,6 +9,15 @@ function slugifyTitle(title: string): string {
     .replace(/^-+|-+$/g, '');
 }
 
+function summarizeMessages(messages: any[]): string {
+  const contents = messages
+    .map((m: any) => (m.content || m.text || '').toString().trim())
+    .filter(Boolean);
+  if (contents.length === 0) return 'No summary available.';
+  const summary = contents.slice(0, 2).join(' ').replace(/\s+/g, ' ');
+  return summary.length > 200 ? summary.slice(0, 197) + '...' : summary;
+}
+
 export async function extractTrainingData(
   src = path.resolve('docs/sigils/newadvancedconversations.json'),
   outRoot = path.resolve('GenesisAeonZIPMEM/newadvancedconversations'),
@@ -71,7 +80,8 @@ export async function extractTrainingData(
       );
     }
 
-    const summaryMd = `# Summary for ${slug}\n\n*TODO: Generate conversation summary here.*\n`;
+    const summaryText = summarizeMessages(messages);
+    const summaryMd = `# Summary for ${slug}\n\n${summaryText}\n`;
     await fs.writeFile(path.join(folder, 'summary.md'), summaryMd);
 
     const participants = Array.from(
@@ -85,7 +95,7 @@ export async function extractTrainingData(
         id: slug,
         title,
         date,
-        summary: '',
+        summary: summaryText,
         tags: meta.tags,
       });
     }
