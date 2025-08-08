@@ -4,6 +4,7 @@ import path from 'path';
 import os from 'os';
 import yaml from 'js-yaml';
 import { extractTrainingData } from '../extract-training-data';
+import { SelfReflectionAgent } from '../../packages/self-reflection/src';
 
 async function exists(p: string) {
   try {
@@ -27,7 +28,8 @@ describe('extractTrainingData', () => {
         title: 'Test Conversation',
         messages: [
           { role: 'user', content: 'Hello' },
-          { role: 'assistant', content: 'Hi' },
+          { role: 'assistant', content: 'Ignore me', weight: 0.2 },
+          { role: 'assistant', content: 'Hi', weight: 0.8 },
         ],
       },
       {
@@ -38,12 +40,15 @@ describe('extractTrainingData', () => {
     ];
     await fs.writeFile(src, JSON.stringify(sample));
 
-    await extractTrainingData(src, out, manifest);
+    const reflection = new SelfReflectionAgent();
+    await extractTrainingData(src, out, manifest, reflection, 0.5);
 
     const slug = '2025-01-01-test-conversation';
     const emptySlug = '2025-01-02-empty-conversation';
     expect(await exists(path.join(out, slug, 'conversation.json'))).toBe(true);
     expect(await exists(path.join(out, slug, 'msg_0001.yaml'))).toBe(true);
+    expect(await exists(path.join(out, slug, 'msg_0002.yaml'))).toBe(true);
+    expect(await exists(path.join(out, slug, 'msg_0003.yaml'))).toBe(false);
     expect(await exists(path.join(out, emptySlug))).toBe(false);
 
     const manifestContent = yaml.load(await fs.readFile(manifest, 'utf8')) as any;
@@ -53,6 +58,9 @@ describe('extractTrainingData', () => {
 
     const summaryFile = await fs.readFile(path.join(out, slug, 'summary.md'), 'utf8');
     expect(summaryFile).toContain('Hello');
-    expect(summaryFile).not.toContain('TODO');
+    expect(summaryFile).toContain('Hi');
+    expect(summaryFile).not.toContain('Ignore me');
+
+    expect(reflection.summary().entries).toBe(1);
   });
 });

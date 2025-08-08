@@ -11,7 +11,7 @@
     "path": "scripts/extract-training-data.ts",
     "task": "Filter extracted data through SelfReflectionAgent based on CREP scores",
     "test": "scripts/__tests__/extract-training-data.test.ts",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "Validate parent references in conversations",
@@ -11329,6 +11329,13 @@
     "path": "packages/agents/ReviewAgent.ts",
     "task": "Sample conversation fragments for human validation",
     "test": "packages/agents/__tests__/ReviewAgent.test.ts",
+    "status": "todo"
+  },
+  {
+    "commit": "Validate message status values in conversations",
+    "path": "scripts/validate-newadvanced-conversations.ts",
+    "task": "Ensure node messages use allowed status values",
+    "test": "scripts/validate-newadvanced-conversations.test.ts",
     "status": "todo"
   }
 ]

@@ -1,6 +1,7 @@
 import { promises as fs } from 'fs';
 import path from 'path';
 import yaml from 'js-yaml';
+import { SelfReflectionAgent } from '../packages/self-reflection/src';
 
 function slugifyTitle(title: string): string {
   return title
@@ -21,7 +22,9 @@ function summarizeMessages(messages: any[]): string {
 export async function extractTrainingData(
   src = path.resolve('docs/sigils/newadvancedconversations.json'),
   outRoot = path.resolve('GenesisAeonZIPMEM/newadvancedconversations'),
-  manifestPath = path.resolve('GenesisAeonZIPMEM/ZIPMEM_manifest.yaml')
+  manifestPath = path.resolve('GenesisAeonZIPMEM/ZIPMEM_manifest.yaml'),
+  reflection: SelfReflectionAgent = new SelfReflectionAgent(),
+  crepThreshold = 0.5
 ) {
   let raw = '';
   try {
@@ -53,7 +56,23 @@ export async function extractTrainingData(
     const slug = `${date}-${slugifyTitle(title)}`;
     const folder = path.join(outRoot, slug);
 
-    const messages = convo.messages || convo.log || [];
+    const rawMessages = convo.messages || convo.log || [];
+    const messages = rawMessages.filter((m: any, i: number) => {
+      const score =
+        typeof m.crep === 'number'
+          ? m.crep
+          : typeof m.metadata?.crep === 'number'
+          ? m.metadata.crep
+          : typeof m.weight === 'number'
+          ? m.weight
+          : 1;
+      if (score < crepThreshold) {
+        reflection.record(`Filtered message ${i} in '${title}' with CREP ${score}`);
+        return false;
+      }
+      return true;
+    });
+
     if (messages.length === 0) {
       console.warn(`Skipping conversation '${title}' with no messages`);
       continue;
