@@ -1,12 +1,16 @@
 {
-  "lastCommit": "Add cyclic reference validation for conversations",
+  "lastCommit": "Plan conversation validation for root node, timestamps, and weights",
   "fractalStep": "weiter",
   "openBranches": [
     "work"
   ],
   "mergeConflicts": [],
-  "notes": "Implemented cyclic reference validation for conversations",
-  "pendingTasks": [],
+  "notes": "Outlined ToDos for root node presence, timestamp ordering, and message weight range",
+  "pendingTasks": [
+    "Implement root node presence validation",
+    "Implement conversation timestamp ordering validation",
+    "Implement message weight range validation"
+  ],
   "progress": [
     {
       "commit": "Add extract-training-data enhancement ToDos",
@@ -682,6 +686,18 @@
     },
     {
       "commit": "Plan cyclic reference validation for conversations",
+      "status": "pending"
+    },
+    {
+      "commit": "Plan root node presence validation",
+      "status": "pending"
+    },
+    {
+      "commit": "Plan conversation timestamp ordering validation",
+      "status": "pending"
+    },
+    {
+      "commit": "Plan message weight range validation",
       "status": "pending"
     }
   ],
