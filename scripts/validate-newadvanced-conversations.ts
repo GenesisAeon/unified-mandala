@@ -17,6 +17,7 @@ export interface ValidationResult {
   conversationsWithMissingParents: number[];
   conversationsWithMismatchedNodeIds: number[];
   conversationsWithParentCycles: number[];
+  conversationsWithCyclicReferences: number[];
   conversationsWithInvalidChildRefs: number[];
   conversationsWithUnlistedChildren: number[];
   conversationsWithOrphanNodes: number[];
@@ -63,6 +64,7 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
   const missingParents: number[] = [];
   const mismatchedNodeIds: number[] = [];
   const parentCycles: number[] = [];
+  const cyclicReferences: number[] = [];
   const invalidChildren: number[] = [];
   const unlistedChildren: number[] = [];
   const orphanNodes: number[] = [];
@@ -407,6 +409,30 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
       invalidContentParts.push(idx);
     }
 
+    // Detect cycles in child references using DFS
+    const globalVisited = new Set<string>();
+    const stackSet = new Set<string>();
+    const detectCycle = (id: string): boolean => {
+      if (stackSet.has(id)) return true;
+      if (globalVisited.has(id)) return false;
+      globalVisited.add(id);
+      stackSet.add(id);
+      const node = conv.mapping[id];
+      if (Array.isArray(node?.children)) {
+        for (const childId of node.children) {
+          if (detectCycle(childId)) return true;
+        }
+      }
+      stackSet.delete(id);
+      return false;
+    };
+    for (const id of Object.keys(conv.mapping || {})) {
+      if (detectCycle(id)) {
+        cyclicReferences.push(idx);
+        break;
+      }
+    }
+
     const root = conv.mapping?.['client-created-root'];
     if (!root || root.parent !== null) {
       missingRoot.push(idx);
@@ -468,6 +494,7 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
     conversationsWithMissingParents: missingParents,
     conversationsWithMismatchedNodeIds: mismatchedNodeIds,
     conversationsWithParentCycles: parentCycles,
+    conversationsWithCyclicReferences: cyclicReferences,
     conversationsWithInvalidChildRefs: invalidChildren,
     conversationsWithUnlistedChildren: unlistedChildren,
     conversationsWithOrphanNodes: orphanNodes,
@@ -513,6 +540,7 @@ if (require.main === module) {
     result.conversationsWithMissingParents.length ||
     result.conversationsWithMismatchedNodeIds.length ||
     result.conversationsWithParentCycles.length ||
+    result.conversationsWithCyclicReferences.length ||
     result.conversationsWithInvalidChildRefs.length ||
     result.conversationsWithUnlistedChildren.length ||
     result.conversationsWithOrphanNodes.length ||

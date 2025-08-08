@@ -1,0 +1,40 @@
+[
+  {
+    "id": "1",
+    "title": "Cycle",
+    "mapping": {
+      "client-created-root": {
+        "id": "client-created-root",
+        "message": null,
+        "parent": null,
+        "children": ["a"]
+      },
+      "a": {
+        "id": "a",
+        "parent": "client-created-root",
+        "children": ["b"],
+        "message": {
+          "id": "m1",
+          "author": { "role": "user" },
+          "create_time": 1,
+          "update_time": 1,
+          "content": { "parts": ["hello"] }
+        }
+      },
+      "b": {
+        "id": "b",
+        "parent": "a",
+        "children": ["client-created-root"],
+        "message": {
+          "id": "m2",
+          "author": { "role": "assistant" },
+          "create_time": 1,
+          "update_time": 1,
+          "content": { "parts": ["hi"] }
+        }
+      }
+    },
+    "create_time": 1,
+    "update_time": 1
+  }
+]

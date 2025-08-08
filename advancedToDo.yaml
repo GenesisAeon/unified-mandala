@@ -9887,7 +9887,7 @@
   path: scripts/validate-newadvanced-conversations.ts
   task: Detect cycles in conversation graph to ensure tree structure
   test: scripts/validate-newadvanced-conversations.test.ts
-  status: todo
+  status: done
 - commit: Validate message status values in conversations
   path: scripts/validate-newadvanced-conversations.ts
   task: Ensure node messages use allowed status values

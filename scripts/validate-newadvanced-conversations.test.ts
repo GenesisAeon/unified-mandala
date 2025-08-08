@@ -312,4 +312,13 @@ describe('validateNewAdvancedConversations', () => {
     const res = validateNewAdvancedConversations(file);
     expect(res.conversationsWithInvalidMessageRecipients).toEqual([0]);
   });
+
+  it('flags cyclic child references', () => {
+    const file = path.join(
+      __dirname,
+      '../tests/fixtures/newadvanced-cyclic-reference.json'
+    );
+    const res = validateNewAdvancedConversations(file);
+    expect(res.conversationsWithCyclicReferences).toEqual([0]);
+  });
 });
