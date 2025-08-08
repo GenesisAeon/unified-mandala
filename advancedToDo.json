@@ -1,11 +1,11 @@
 [
   {
-  "commit": "Add summary generator to training data extraction",
-  "path": "scripts/extract-training-data.ts",
-  "task": "Replace placeholder with generated conversation summaries",
-  "test": "scripts/__tests__/extract-training-data.test.ts",
-  "status": "done"
-},
+    "commit": "Add summary generator to training data extraction",
+    "path": "scripts/extract-training-data.ts",
+    "task": "Replace placeholder with generated conversation summaries",
+    "test": "scripts/__tests__/extract-training-data.test.ts",
+    "status": "done"
+  },
   {
     "commit": "Integrate CREP SelfReflection filter into training data extractor",
     "path": "scripts/extract-training-data.ts",
@@ -11316,5 +11316,19 @@
     "task": "Ensure message weight values are between 0 and 1",
     "test": "scripts/validate-newadvanced-conversations.test.ts",
     "status": "done"
+  },
+  {
+    "commit": "Add AGENTS manifest schema validation",
+    "path": "scripts/validate-agents-schema.ts",
+    "task": "Validate AGENTS.md entries against JSON/YAML schema for consistency",
+    "test": "scripts/validate-agents-schema.test.ts",
+    "status": "todo"
+  },
+  {
+    "commit": "Implement ReviewAgent for manual fragment validation",
+    "path": "packages/agents/ReviewAgent.ts",
+    "task": "Sample conversation fragments for human validation",
+    "test": "packages/agents/__tests__/ReviewAgent.test.ts",
+    "status": "todo"
   }
 ]
