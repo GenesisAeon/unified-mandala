@@ -40,6 +40,9 @@ export interface ValidationResult {
   conversationsWithInvalidDisabledToolIds: number[];
   conversationsWithInvalidBlockedUrls: number[];
   conversationsWithInvalidSafeUrls: number[];
+  conversationsWithInvalidMessageStatuses: number[];
+  conversationsWithInvalidMessageChannels: number[];
+  conversationsWithInvalidMessageRecipients: number[];
 }
 
 export function validateNewAdvancedConversations(filePath: string): ValidationResult {
@@ -82,7 +85,49 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
   const invalidDisabledToolIds: number[] = [];
   const invalidBlockedUrls: number[] = [];
   const invalidSafeUrls: number[] = [];
+  const invalidMessageStatuses: number[] = [];
+  const invalidMessageChannels: number[] = [];
+  const invalidMessageRecipients: number[] = [];
   const uuidPattern = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+  const allowedStatuses = [
+    'cancelled',
+    'done',
+    'failed_with_in_kernel_exception',
+    'finished',
+    'finished_partial_completion',
+    'finished_successfully',
+    'in_progress',
+    'requested',
+    'running',
+    'success',
+  ];
+  const allowedChannels = ['commentary', 'final'];
+  const allowedRecipients = [
+    'all',
+    'assistant',
+    'bio',
+    'browser.open',
+    'browser.search',
+    'canmore.comment_textdoc',
+    'canmore.create_textdoc',
+    'canmore.update_textdoc',
+    'computer.do',
+    'computer.get',
+    'computer.initialize',
+    'computer.sync_file',
+    'container.exec',
+    'dalle.text2im',
+    'de1d73e.create',
+    'de1d73e.update',
+    'file_search.msearch',
+    'python',
+    'research_kickoff_tool.start_research_task',
+    't2uay3k.sj1i4kz',
+    'web',
+    'web.open_url',
+    'web.run',
+    'web.search',
+  ];
 
   raw.forEach((conv: any, idx: number) => {
     const seenMessageIds = new Set<string>();
@@ -319,6 +364,28 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
         invalidMessageWeights.push(idx);
         break;
       }
+      if (
+        m.status !== undefined &&
+        (typeof m.status !== 'string' || !allowedStatuses.includes(m.status))
+      ) {
+        invalidMessageStatuses.push(idx);
+        break;
+      }
+      if (
+        m.channel !== undefined &&
+        m.channel !== null &&
+        !allowedChannels.includes(m.channel)
+      ) {
+        invalidMessageChannels.push(idx);
+        break;
+      }
+      if (
+        m.recipient !== undefined &&
+        (typeof m.recipient !== 'string' || !allowedRecipients.includes(m.recipient))
+      ) {
+        invalidMessageRecipients.push(idx);
+        break;
+      }
     }
     }
 
@@ -424,6 +491,9 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
     conversationsWithInvalidDisabledToolIds: invalidDisabledToolIds,
     conversationsWithInvalidBlockedUrls: invalidBlockedUrls,
     conversationsWithInvalidSafeUrls: invalidSafeUrls,
+    conversationsWithInvalidMessageStatuses: invalidMessageStatuses,
+    conversationsWithInvalidMessageChannels: invalidMessageChannels,
+    conversationsWithInvalidMessageRecipients: invalidMessageRecipients,
   };
 }
 
@@ -465,7 +535,10 @@ if (require.main === module) {
     result.conversationsWithInvalidPluginIds.length ||
     result.conversationsWithInvalidDisabledToolIds.length ||
     result.conversationsWithInvalidBlockedUrls.length ||
-    result.conversationsWithInvalidSafeUrls.length
+    result.conversationsWithInvalidSafeUrls.length ||
+    result.conversationsWithInvalidMessageStatuses.length ||
+    result.conversationsWithInvalidMessageChannels.length ||
+    result.conversationsWithInvalidMessageRecipients.length
   ) {
     console.error('Validation issues found:\n', JSON.stringify(result, null, 2));
     process.exit(1);

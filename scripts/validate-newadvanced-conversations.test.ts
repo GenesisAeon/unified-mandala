@@ -285,4 +285,31 @@ describe('validateNewAdvancedConversations', () => {
     const res = validateNewAdvancedConversations(file);
     expect(res.conversationsWithInvalidMessageWeights).toEqual([0]);
   });
+
+  it('flags messages with invalid status values', () => {
+    const file = path.join(
+      __dirname,
+      '../tests/fixtures/newadvanced-invalid-message-status.json'
+    );
+    const res = validateNewAdvancedConversations(file);
+    expect(res.conversationsWithInvalidMessageStatuses).toEqual([0]);
+  });
+
+  it('flags messages with invalid channel values', () => {
+    const file = path.join(
+      __dirname,
+      '../tests/fixtures/newadvanced-invalid-message-channel.json'
+    );
+    const res = validateNewAdvancedConversations(file);
+    expect(res.conversationsWithInvalidMessageChannels).toEqual([0]);
+  });
+
+  it('flags messages with invalid recipient values', () => {
+    const file = path.join(
+      __dirname,
+      '../tests/fixtures/newadvanced-invalid-message-recipient.json'
+    );
+    const res = validateNewAdvancedConversations(file);
+    expect(res.conversationsWithInvalidMessageRecipients).toEqual([0]);
+  });
 });
