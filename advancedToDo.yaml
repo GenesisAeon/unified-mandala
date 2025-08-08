@@ -11347,7 +11347,7 @@
   path: scripts/validate-agents-schema.ts
   task: Validate AGENTS.md entries against JSON/YAML schema for consistency
   test: scripts/validate-agents-schema.test.ts
-  status: todo
+  status: done
 - commit: Implement ReviewAgent for manual fragment validation
   path: packages/agents/ReviewAgent.ts
   task: Sample conversation fragments for human validation
