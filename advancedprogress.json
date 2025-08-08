@@ -1,14 +1,24 @@
 {
-  "lastCommit": "Add extract-training-data enhancement ToDos",
-  "fractalStep": "todo-added",
+  "lastCommit": "Add message weight validation TODO",
+  "fractalStep": "implementiert",
   "openBranches": [
     "work"
   ],
   "mergeConflicts": [],
   "notes": "Added ToDos for summary generation and CREP filtering in extract-training-data script",
   "pendingTasks": [
-    "Implement summary generation in scripts/extract-training-data.ts",
-    "Integrate CREP SelfReflection filter in scripts/extract-training-data.ts"
+    {
+      "commit": "Add summary generator to training data extraction",
+      "status": "todo"
+    },
+    {
+      "commit": "Integrate CREP SelfReflection filter into training data extractor",
+      "status": "todo"
+    },
+    {
+      "commit": "Validate message weight bounds in conversations",
+      "status": "todo"
+    }
   ],
   "progress": [
     {
@@ -654,6 +664,10 @@
     {
       "commit": "Validate conversation title length",
       "status": "done"
+    },
+    {
+      "commit": "Plan message weight validation for conversations",
+      "status": "todo"
     }
   ],
   "completed": [
@@ -1066,6 +1080,10 @@
     {
       "commit": "Validate plugin and URL fields in conversations",
       "status": "done"
+    },
+    {
+      "commit": "Plan message weight validation for conversations",
+      "status": "todo"
     }
   ],
   "metacommitTags": [
