@@ -1,17 +1,12 @@
 {
-  "lastCommit": "Implement ReviewAgent for manual fragment validation",
+  "lastCommit": "Add cyclic reference validation for conversations",
   "fractalStep": "weiter",
   "openBranches": [
     "work"
   ],
   "mergeConflicts": [],
-  "notes": "Implemented message status, channel, and recipient validations; planned cyclic reference validation",
-  "pendingTasks": [
-    {
-      "commit": "Add cyclic reference validation for conversations",
-      "status": "todo"
-    }
-  ],
+  "notes": "Implemented cyclic reference validation for conversations",
+  "pendingTasks": [],
   "progress": [
     {
       "commit": "Add extract-training-data enhancement ToDos",
@@ -1119,6 +1114,10 @@
     },
     {
       "commit": "Validate message recipient values in conversations",
+      "status": "done"
+    },
+    {
+      "commit": "Add cyclic reference validation for conversations",
       "status": "done"
     }
   ],
