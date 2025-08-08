@@ -1,3 +1,13 @@
+- commit: Add summary generator to training data extraction
+  path: scripts/extract-training-data.ts
+  task: Replace placeholder with generated conversation summaries
+  test: scripts/__tests__/extract-training-data.test.ts
+  status: todo
+- commit: Integrate CREP SelfReflection filter into training data extractor
+  path: scripts/extract-training-data.ts
+  task: Filter extracted data through SelfReflectionAgent based on CREP scores
+  test: scripts/__tests__/extract-training-data.test.ts
+  status: todo
 - commit: Validate parent references in conversations
   path: scripts/validate-newadvanced-conversations.ts
   task: Ensure all nodes reference existing parents

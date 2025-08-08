@@ -1,13 +1,20 @@
 {
-  "lastCommit": "Merge pull request #1069 from GenesisAeon/h0ydyc-codex/implement-features-from-advancedtodo.yaml-and-json",
-  "fractalStep": "implementiert",
+  "lastCommit": "Add extract-training-data enhancement ToDos",
+  "fractalStep": "todo-added",
   "openBranches": [
     "work"
   ],
   "mergeConflicts": [],
-  "notes": "Normalized conversation titles, added whitespace and control-char validation",
-  "pendingTasks": [],
+  "notes": "Added ToDos for summary generation and CREP filtering in extract-training-data script",
+  "pendingTasks": [
+    "Implement summary generation in scripts/extract-training-data.ts",
+    "Integrate CREP SelfReflection filter in scripts/extract-training-data.ts"
+  ],
   "progress": [
+    {
+      "commit": "Add extract-training-data enhancement ToDos",
+      "status": "pending"
+    },
     {
       "commit": "Add Sigillin Fractal Visualizer component",
       "status": "done"
