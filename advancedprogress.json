@@ -1,26 +1,14 @@
 {
-  "lastCommit": "Add channel and recipient validation ToDos",
+  "lastCommit": "Validate message status, channel, and recipient values",
   "fractalStep": "weiter",
   "openBranches": [
     "work"
   ],
   "mergeConflicts": [],
-  "notes": "Added ToDos for message channel and recipient validation; ReviewAgent and message status validation pending",
+  "notes": "Implemented message status, channel, and recipient validations; ReviewAgent pending",
   "pendingTasks": [
     {
       "commit": "Implement ReviewAgent for manual fragment validation",
-      "status": "todo"
-    },
-    {
-      "commit": "Validate message status values in conversations",
-      "status": "todo"
-    },
-    {
-      "commit": "Validate message channel values in conversations",
-      "status": "todo"
-    },
-    {
-      "commit": "Validate message recipient values in conversations",
       "status": "todo"
     }
   ],
@@ -691,7 +679,7 @@
     },
     {
       "commit": "Plan message channel and recipient validation for conversations",
-      "status": "pending"
+      "status": "done"
     }
   ],
   "completed": [
@@ -1111,7 +1099,19 @@
     },
     {
       "commit": "Plan message channel and recipient validation for conversations",
-      "status": "pending"
+      "status": "done"
+    },
+    {
+      "commit": "Validate message status values in conversations",
+      "status": "done"
+    },
+    {
+      "commit": "Validate message channel values in conversations",
+      "status": "done"
+    },
+    {
+      "commit": "Validate message recipient values in conversations",
+      "status": "done"
     }
   ],
   "metacommitTags": [
