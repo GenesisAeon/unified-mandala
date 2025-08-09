@@ -44,6 +44,7 @@ export interface ValidationResult {
   conversationsWithInvalidMessageStatuses: number[];
   conversationsWithInvalidMessageChannels: number[];
   conversationsWithInvalidMessageRecipients: number[];
+  conversationsWithInvalidAuthorNames: number[];
   conversationsWithMissingAttachments: number[];
   conversationsWithInvalidAttachmentMetadata: number[];
   conversationsWithInvalidContentTypes: number[];
@@ -107,6 +108,7 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
   const invalidMessageStatuses: number[] = [];
   const invalidMessageChannels: number[] = [];
   const invalidMessageRecipients: number[] = [];
+  const invalidAuthorNames: number[] = [];
   const missingAttachments: number[] = [];
   const invalidAttachmentMetadata: number[] = [];
   const invalidMessageMetadata: number[] = [];
@@ -372,6 +374,18 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
         invalidRoles.push(idx);
         break;
       }
+    }
+
+    let invalidAuthorName = false;
+    for (const node of nodes) {
+      const name = node?.message?.author?.name;
+      if (name !== undefined && name !== null && (typeof name !== 'string' || name.trim() === '')) {
+        invalidAuthorName = true;
+        break;
+      }
+    }
+    if (invalidAuthorName) {
+      invalidAuthorNames.push(idx);
     }
 
     let attachmentMissing = false;
@@ -728,6 +742,7 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
     conversationsWithInvalidMessageStatuses: invalidMessageStatuses,
     conversationsWithInvalidMessageChannels: invalidMessageChannels,
     conversationsWithInvalidMessageRecipients: invalidMessageRecipients,
+    conversationsWithInvalidAuthorNames: invalidAuthorNames,
     conversationsWithMissingAttachments: missingAttachments,
     conversationsWithInvalidAttachmentMetadata: invalidAttachmentMetadata,
     conversationsWithInvalidContentTypes: invalidContentTypes,
@@ -787,6 +802,7 @@ if (require.main === module) {
     result.conversationsWithInvalidMessageStatuses.length ||
     result.conversationsWithInvalidMessageChannels.length ||
     result.conversationsWithInvalidMessageRecipients.length ||
+    result.conversationsWithInvalidAuthorNames.length ||
     result.conversationsWithInvalidAttachmentMetadata.length ||
     result.conversationsWithInvalidContentTypes.length ||
     result.conversationsWithInvalidEndTurn.length ||

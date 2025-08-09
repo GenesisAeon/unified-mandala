@@ -11456,5 +11456,12 @@
     "task": "Ensure message metadata is an object and is_visually_hidden_from_conversation is boolean when present",
     "test": "scripts/validate-newadvanced-conversations.test.ts",
     "status": "done"
+  },
+  {
+    "commit": "Validate message author names",
+    "path": "scripts/validate-newadvanced-conversations.ts",
+    "task": "Ensure author.name is a non-empty string when defined",
+    "test": "scripts/validate-newadvanced-conversations.test.ts",
+    "status": "done"
   }
 ]

@@ -67,6 +67,15 @@ describe('validateNewAdvancedConversations', () => {
     expect(res.conversationsWithMissingRoles).toEqual([0]);
   });
 
+  it('flags nodes with invalid author names', () => {
+    const file = path.join(
+      __dirname,
+      '../tests/fixtures/newadvanced-invalid-author-name.json'
+    );
+    const res = validateNewAdvancedConversations(file);
+    expect(res.conversationsWithInvalidAuthorNames).toEqual([0]);
+  });
+
   it('flags conversations with message timestamps outside conversation range', () => {
     const file = path.join(
       __dirname,
