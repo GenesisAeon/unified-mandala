@@ -11462,3 +11462,33 @@
   task: Verify blocked_urls and safe_urls contain valid URLs
   test: scripts/validate-newadvanced-conversations.test.ts
   status: todo
+- commit: Add agent profile switching to ChatPanel
+  path: packages/unifiedmandala-ui/components/ChatPanel.tsx
+  task: Allow ChatPanel to switch between local and external agent backends and show service toolbar
+  test: packages/unifiedmandala-ui/components/ChatPanel.test.tsx
+  status: todo
+- commit: Create AgentControlPanel component
+  path: packages/unifiedmandala-ui/components/AgentControlPanel.tsx
+  task: UI panel for selecting agent backend, modes and CREP thresholds
+  test: packages/unifiedmandala-ui/components/AgentControlPanel.test.tsx
+  status: todo
+- commit: Add live suggestion badges to CREPVisualizer
+  path: packages/unifiedmandala-ui/components/CREPVisualizer.tsx
+  task: Display notification badges for new agent insights
+  test: packages/unifiedmandala-ui/components/CREPVisualizer.test.tsx
+  status: todo
+- commit: Expose service avatars in PyramidVRMeetingRoom
+  path: packages/unifiedmandala-ui/components/PyramidVRMeetingRoom.tsx
+  task: Render avatars for local and external services with interaction hooks
+  test: packages/unifiedmandala-ui/components/PyramidVRMeetingRoom.test.tsx
+  status: todo
+- commit: Implement chat proxy route for local and external agents
+  path: services/chat-proxy.ts
+  task: Route /api/chat requests to local or external services based on agent profile
+  test: services/chat-proxy.test.ts
+  status: todo
+- commit: Add hybrid service aggregator
+  path: packages/unifiedmandala-ui/hooks/useHybridService.ts
+  task: Query all enabled services in parallel and select response with highest CREP score
+  test: packages/unifiedmandala-ui/hooks/useHybridService.test.ts
+  status: todo
