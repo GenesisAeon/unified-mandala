@@ -11492,3 +11492,68 @@
   task: Query all enabled services in parallel and select response with highest CREP score
   test: packages/unifiedmandala-ui/hooks/useHybridService.test.ts
   status: todo
+- commit: Add onboarding service catalog
+  path: config/onboarding/services.yaml
+  task: List available local and external agent services for onboarding
+  test: ''
+  status: todo
+- commit: Add agent service mapping configuration
+  path: config/agent-services.yaml
+  task: Map service IDs to endpoints and CREP thresholds
+  test: ''
+  status: todo
+- commit: Extend onboarding ritual documentation for service selection
+  path: scripts/onboarding-ritual.md
+  task: Guide users to choose and activate avatar services
+  test: ''
+  status: todo
+- commit: Implement onboard_services CLI step
+  path: scripts/aeon.sh
+  task: Provide interactive service selection and save to user-config/services_selected.yaml
+  test: ''
+  status: todo
+- commit: Create service configuration API endpoint
+  path: services/configure-services.ts
+  task: Update pipeline and user config with selected services
+  test: services/configure-services.test.ts
+  status: todo
+- commit: Scaffold news_fetcher microservice
+  path: services/news_fetcher/app.py
+  task: Fetch top headlines from RSS feeds and NewsAPI
+  test: services/news_fetcher/app.test.py
+  status: todo
+- commit: Scaffold script_gen microservice
+  path: services/script_gen/app.py
+  task: Generate news scripts using LLM API
+  test: services/script_gen/app.test.py
+  status: todo
+- commit: Scaffold tts microservice
+  path: services/tts/app.py
+  task: Convert generated scripts into audio clips
+  test: services/tts/app.test.py
+  status: todo
+- commit: Scaffold avatar_renderer microservice
+  path: services/avatar_renderer/app.py
+  task: Render avatar video using audio narration
+  test: services/avatar_renderer/app.test.py
+  status: todo
+- commit: Scaffold streamer microservice
+  path: services/streamer/app.py
+  task: Stream rendered news videos to YouTube
+  test: services/streamer/app.test.py
+  status: todo
+- commit: Implement newsbot orchestrator service
+  path: orchestrator/newsbot_orchestrator.py
+  task: Coordinate news fetch, script, TTS, render and stream services
+  test: orchestrator/newsbot_orchestrator.test.py
+  status: todo
+- commit: Integrate newsbot services into docker-compose
+  path: docker-compose.yml
+  task: Add newsbot microservices and orchestrator to compose stack
+  test: ''
+  status: todo
+- commit: Register newsbot services in pipeline configuration
+  path: pipeline_config.yaml
+  task: Add sigillin_map and CREP thresholds for newsbot pipeline
+  test: ''
+  status: todo
