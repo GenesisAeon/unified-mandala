@@ -384,4 +384,13 @@ describe('validateNewAdvancedConversations', () => {
     const res = validateNewAdvancedConversations(file);
     expect(res.conversationsWithInvalidVoice).toEqual([0]);
   });
+
+  it('flags invalid memory_scope values', () => {
+    const file = path.join(
+      __dirname,
+      '../tests/fixtures/newadvanced-invalid-memory-scope.json'
+    );
+    const res = validateNewAdvancedConversations(file);
+    expect(res.conversationsWithInvalidMemoryScope).toEqual([0]);
+  });
 });

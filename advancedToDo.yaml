@@ -11418,4 +11418,4 @@
   path: scripts/validate-newadvanced-conversations.ts
   task: Ensure memory_scope uses allowed values
   test: scripts/validate-newadvanced-conversations.test.ts
-  status: planned
+  status: done

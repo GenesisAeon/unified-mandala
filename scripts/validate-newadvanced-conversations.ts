@@ -51,6 +51,7 @@ export interface ValidationResult {
   conversationsWithInvalidDefaultModelSlug: number[];
   conversationsWithInvalidAsyncStatus: number[];
   conversationsWithInvalidVoice: number[];
+  conversationsWithInvalidMemoryScope: number[];
 }
 
 export function validateNewAdvancedConversations(filePath: string): ValidationResult {
@@ -104,6 +105,7 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
   const missingAttachments: number[] = [];
   const invalidAsyncStatus: number[] = [];
   const invalidVoice: number[] = [];
+  const invalidMemoryScope: number[] = [];
   const uuidPattern = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
   const allowedStatuses = [
     'cancelled',
@@ -156,6 +158,13 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
     'tether_quote',
   ];
   const allowedAsyncStatuses = ['not_started', 'in_progress', 'completed', 'failed'];
+  const allowedMemoryScopes = [
+    'none',
+    'project_enabled',
+    'project_disabled',
+    'global_enabled',
+    'global_disabled',
+  ];
 
   raw.forEach((conv: any, idx: number) => {
     const seenMessageIds = new Set<string>();
@@ -190,6 +199,13 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
       (typeof conv.voice !== 'string' || conv.voice.trim() === '')
     ) {
       invalidVoice.push(idx);
+    }
+    if (
+      conv.memory_scope !== undefined &&
+      conv.memory_scope !== null &&
+      !allowedMemoryScopes.includes(conv.memory_scope)
+    ) {
+      invalidMemoryScope.push(idx);
     }
     if (conv.id) {
       if (!uuidPattern.test(conv.id)) {
@@ -624,6 +640,7 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
     conversationsWithInvalidDefaultModelSlug: invalidDefaultModelSlugs,
     conversationsWithInvalidAsyncStatus: invalidAsyncStatus,
     conversationsWithInvalidVoice: invalidVoice,
+    conversationsWithInvalidMemoryScope: invalidMemoryScope,
   };
 }
 
@@ -676,7 +693,8 @@ if (require.main === module) {
     result.conversationsWithInvalidTemplateId.length ||
     result.conversationsWithInvalidDefaultModelSlug.length ||
     result.conversationsWithInvalidAsyncStatus.length ||
-    result.conversationsWithInvalidVoice.length
+    result.conversationsWithInvalidVoice.length ||
+    result.conversationsWithInvalidMemoryScope.length
   ) {
     console.error('Validation issues found:\n', JSON.stringify(result, null, 2));
     process.exit(1);
