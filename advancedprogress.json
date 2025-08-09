@@ -1150,6 +1150,10 @@
     },
     {
       "commit": "Plan validation for async_status and voice fields in conversations",
+      "status": "done"
+    },
+    {
+      "commit": "Plan validation for memory_scope field in conversations",
       "status": "planned"
     }
   ],
