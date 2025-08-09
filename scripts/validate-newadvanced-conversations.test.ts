@@ -321,4 +321,13 @@ describe('validateNewAdvancedConversations', () => {
     const res = validateNewAdvancedConversations(file);
     expect(res.conversationsWithCyclicReferences).toEqual([0]);
   });
+
+  it('flags missing attachments', () => {
+    const file = path.join(
+      __dirname,
+      '../tests/fixtures/newadvanced-missing-attachment.json'
+    );
+    const res = validateNewAdvancedConversations(file);
+    expect(res.conversationsWithMissingAttachments).toEqual([0]);
+  });
 });

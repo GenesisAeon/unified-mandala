@@ -1,0 +1,34 @@
+[
+  {
+    "id": "00000000-0000-0000-0000-0000000000aa",
+    "conversation_id": "00000000-0000-0000-0000-0000000000aa",
+    "title": "Missing attachment",
+    "create_time": 1,
+    "update_time": 2,
+    "current_node": "client-created-root",
+    "mapping": {
+      "client-created-root": {
+        "id": "client-created-root",
+        "message": {
+          "id": "22222222-2222-2222-2222-222222222222",
+          "author": { "role": "user" },
+          "create_time": 1,
+          "update_time": 1,
+          "content": { "parts": ["hi"] },
+          "metadata": {
+            "attachments": [
+              {
+                "id": "file-1",
+                "name": "nonexistent-file.txt",
+                "mimeType": "text/plain",
+                "fileSizeTokens": 1
+              }
+            ]
+          }
+        },
+        "parent": null,
+        "children": []
+      }
+    }
+  }
+]

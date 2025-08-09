@@ -44,6 +44,7 @@ export interface ValidationResult {
   conversationsWithInvalidMessageStatuses: number[];
   conversationsWithInvalidMessageChannels: number[];
   conversationsWithInvalidMessageRecipients: number[];
+  conversationsWithMissingAttachments: number[];
 }
 
 export function validateNewAdvancedConversations(filePath: string): ValidationResult {
@@ -90,6 +91,7 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
   const invalidMessageStatuses: number[] = [];
   const invalidMessageChannels: number[] = [];
   const invalidMessageRecipients: number[] = [];
+  const missingAttachments: number[] = [];
   const uuidPattern = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
   const allowedStatuses = [
     'cancelled',
@@ -241,6 +243,26 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
         invalidRoles.push(idx);
         break;
       }
+    }
+
+    let attachmentMissing = false;
+    for (const node of nodes) {
+      const atts = node?.message?.metadata?.attachments;
+      if (Array.isArray(atts)) {
+        for (const att of atts) {
+          if (typeof att?.name === 'string') {
+            const attPath = path.join(__dirname, '../docs/sigils', att.name);
+            if (!fs.existsSync(attPath)) {
+              attachmentMissing = true;
+              break;
+            }
+          }
+        }
+      }
+      if (attachmentMissing) break;
+    }
+    if (attachmentMissing) {
+      missingAttachments.push(idx);
     }
 
     for (const [key, node] of Object.entries(conv.mapping || {}) as [string, any][]) {
@@ -521,6 +543,7 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
     conversationsWithInvalidMessageStatuses: invalidMessageStatuses,
     conversationsWithInvalidMessageChannels: invalidMessageChannels,
     conversationsWithInvalidMessageRecipients: invalidMessageRecipients,
+    conversationsWithMissingAttachments: missingAttachments,
   };
 }
 
@@ -566,7 +589,8 @@ if (require.main === module) {
     result.conversationsWithInvalidSafeUrls.length ||
     result.conversationsWithInvalidMessageStatuses.length ||
     result.conversationsWithInvalidMessageChannels.length ||
-    result.conversationsWithInvalidMessageRecipients.length
+    result.conversationsWithInvalidMessageRecipients.length ||
+    result.conversationsWithMissingAttachments.length
   ) {
     console.error('Validation issues found:\n', JSON.stringify(result, null, 2));
     process.exit(1);
