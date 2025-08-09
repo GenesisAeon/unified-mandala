@@ -11434,3 +11434,8 @@
   task: Ensure conversation_origin and sugar_item_id are strings when present
   test: scripts/validate-newadvanced-conversations.test.ts
   status: done
+- commit: Validate attachment metadata in conversations
+  path: scripts/validate-newadvanced-conversations.ts
+  task: Ensure attachments include valid mimeType and fileSizeTokens
+  test: scripts/validate-newadvanced-conversations.test.ts
+  status: done

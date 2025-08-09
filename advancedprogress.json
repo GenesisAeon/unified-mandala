@@ -703,6 +703,10 @@
     {
       "commit": "Add conversation metadata validation ToDos",
       "status": "done"
+    },
+    {
+      "commit": "Validate attachment metadata in conversations",
+      "status": "done"
     }
   ],
   "completed": [
@@ -1166,7 +1170,11 @@
     },
     {
       "commit": "Review docs/sigils for additional spec insights",
-      "status": "planned"
+      "status": "done"
+    },
+    {
+      "commit": "Validate attachment metadata in conversations",
+      "status": "done"
     }
   ],
   "metacommitTags": [

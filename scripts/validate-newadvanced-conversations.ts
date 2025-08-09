@@ -45,6 +45,7 @@ export interface ValidationResult {
   conversationsWithInvalidMessageChannels: number[];
   conversationsWithInvalidMessageRecipients: number[];
   conversationsWithMissingAttachments: number[];
+  conversationsWithInvalidAttachmentMetadata: number[];
   conversationsWithInvalidContentTypes: number[];
   conversationsWithInvalidEndTurn: number[];
   conversationsWithInvalidTemplateId: number[];
@@ -106,6 +107,7 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
   const invalidMessageChannels: number[] = [];
   const invalidMessageRecipients: number[] = [];
   const missingAttachments: number[] = [];
+  const invalidAttachmentMetadata: number[] = [];
   const invalidAsyncStatus: number[] = [];
   const invalidVoice: number[] = [];
   const invalidMemoryScope: number[] = [];
@@ -171,6 +173,12 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
     'global_enabled',
     'global_disabled',
   ];
+  const mimeByExt: Record<string, string> = {
+    '.md': 'text/markdown',
+    '.json': 'application/json',
+    '.yaml': 'application/x-yaml',
+    '.yml': 'application/x-yaml',
+  };
 
   raw.forEach((conv: any, idx: number) => {
     const seenMessageIds = new Set<string>();
@@ -365,6 +373,7 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
     }
 
     let attachmentMissing = false;
+    let attachmentInvalid = false;
     for (const node of nodes) {
       const atts = node?.message?.metadata?.attachments;
       if (Array.isArray(atts)) {
@@ -375,13 +384,31 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
               attachmentMissing = true;
               break;
             }
+            const ext = path.extname(att.name).toLowerCase();
+            const expected = mimeByExt[ext];
+            if (
+              typeof att.id !== 'string' ||
+              typeof att.mimeType !== 'string' ||
+              typeof att.fileSizeTokens !== 'number' ||
+              att.fileSizeTokens <= 0 ||
+              (expected && att.mimeType !== expected)
+            ) {
+              attachmentInvalid = true;
+              break;
+            }
+          } else {
+            attachmentInvalid = true;
+            break;
           }
         }
       }
-      if (attachmentMissing) break;
+      if (attachmentMissing || attachmentInvalid) break;
     }
     if (attachmentMissing) {
       missingAttachments.push(idx);
+    }
+    if (attachmentInvalid) {
+      invalidAttachmentMetadata.push(idx);
     }
 
     for (const [key, node] of Object.entries(conv.mapping || {}) as [string, any][]) {
@@ -676,6 +703,7 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
     conversationsWithInvalidMessageChannels: invalidMessageChannels,
     conversationsWithInvalidMessageRecipients: invalidMessageRecipients,
     conversationsWithMissingAttachments: missingAttachments,
+    conversationsWithInvalidAttachmentMetadata: invalidAttachmentMetadata,
     conversationsWithInvalidContentTypes: invalidContentTypes,
     conversationsWithInvalidEndTurn: invalidEndTurn,
     conversationsWithInvalidTemplateId: invalidTemplateIds,
@@ -732,6 +760,7 @@ if (require.main === module) {
     result.conversationsWithInvalidMessageStatuses.length ||
     result.conversationsWithInvalidMessageChannels.length ||
     result.conversationsWithInvalidMessageRecipients.length ||
+    result.conversationsWithInvalidAttachmentMetadata.length ||
     result.conversationsWithInvalidContentTypes.length ||
     result.conversationsWithInvalidEndTurn.length ||
     result.conversationsWithMissingAttachments.length ||
