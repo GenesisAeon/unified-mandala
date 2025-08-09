@@ -393,4 +393,31 @@ describe('validateNewAdvancedConversations', () => {
     const res = validateNewAdvancedConversations(file);
     expect(res.conversationsWithInvalidMemoryScope).toEqual([0]);
   });
+
+  it('flags invalid boolean flags', () => {
+    const file = path.join(
+      __dirname,
+      '../tests/fixtures/newadvanced-invalid-boolean-flags.json'
+    );
+    const res = validateNewAdvancedConversations(file);
+    expect(res.conversationsWithInvalidBooleanFlags).toEqual([0]);
+  });
+
+  it('flags invalid gizmo metadata fields', () => {
+    const file = path.join(
+      __dirname,
+      '../tests/fixtures/newadvanced-invalid-gizmo-metadata.json'
+    );
+    const res = validateNewAdvancedConversations(file);
+    expect(res.conversationsWithInvalidGizmoMetadata).toEqual([0]);
+  });
+
+  it('flags invalid origin fields', () => {
+    const file = path.join(
+      __dirname,
+      '../tests/fixtures/newadvanced-invalid-origin-fields.json'
+    );
+    const res = validateNewAdvancedConversations(file);
+    expect(res.conversationsWithInvalidOriginFields).toEqual([0]);
+  });
 });

@@ -52,6 +52,9 @@ export interface ValidationResult {
   conversationsWithInvalidAsyncStatus: number[];
   conversationsWithInvalidVoice: number[];
   conversationsWithInvalidMemoryScope: number[];
+  conversationsWithInvalidBooleanFlags: number[];
+  conversationsWithInvalidGizmoMetadata: number[];
+  conversationsWithInvalidOriginFields: number[];
 }
 
 export function validateNewAdvancedConversations(filePath: string): ValidationResult {
@@ -106,6 +109,9 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
   const invalidAsyncStatus: number[] = [];
   const invalidVoice: number[] = [];
   const invalidMemoryScope: number[] = [];
+  const invalidBooleanFlags: number[] = [];
+  const invalidGizmoMetadata: number[] = [];
+  const invalidOriginFields: number[] = [];
   const uuidPattern = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
   const allowedStatuses = [
     'cancelled',
@@ -206,6 +212,42 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
       !allowedMemoryScopes.includes(conv.memory_scope)
     ) {
       invalidMemoryScope.push(idx);
+    }
+
+    if (
+      (conv.is_archived !== undefined &&
+        conv.is_archived !== null &&
+        typeof conv.is_archived !== 'boolean') ||
+      (conv.is_starred !== undefined &&
+        conv.is_starred !== null &&
+        typeof conv.is_starred !== 'boolean') ||
+      (conv.is_do_not_remember !== undefined &&
+        conv.is_do_not_remember !== null &&
+        typeof conv.is_do_not_remember !== 'boolean')
+    ) {
+      invalidBooleanFlags.push(idx);
+    }
+
+    if (
+      (conv.gizmo_id !== undefined &&
+        conv.gizmo_id !== null &&
+        (typeof conv.gizmo_id !== 'string' || !/^g-[a-f0-9]{32}$/.test(conv.gizmo_id))) ||
+      (conv.gizmo_type !== undefined &&
+        conv.gizmo_type !== null &&
+        (typeof conv.gizmo_type !== 'string' || conv.gizmo_type.trim() === ''))
+    ) {
+      invalidGizmoMetadata.push(idx);
+    }
+
+    if (
+      (conv.conversation_origin !== undefined &&
+        conv.conversation_origin !== null &&
+        typeof conv.conversation_origin !== 'string') ||
+      (conv.sugar_item_id !== undefined &&
+        conv.sugar_item_id !== null &&
+        typeof conv.sugar_item_id !== 'string')
+    ) {
+      invalidOriginFields.push(idx);
     }
     if (conv.id) {
       if (!uuidPattern.test(conv.id)) {
@@ -641,6 +683,9 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
     conversationsWithInvalidAsyncStatus: invalidAsyncStatus,
     conversationsWithInvalidVoice: invalidVoice,
     conversationsWithInvalidMemoryScope: invalidMemoryScope,
+    conversationsWithInvalidBooleanFlags: invalidBooleanFlags,
+    conversationsWithInvalidGizmoMetadata: invalidGizmoMetadata,
+    conversationsWithInvalidOriginFields: invalidOriginFields,
   };
 }
 
@@ -694,7 +739,10 @@ if (require.main === module) {
     result.conversationsWithInvalidDefaultModelSlug.length ||
     result.conversationsWithInvalidAsyncStatus.length ||
     result.conversationsWithInvalidVoice.length ||
-    result.conversationsWithInvalidMemoryScope.length
+    result.conversationsWithInvalidMemoryScope.length ||
+    result.conversationsWithInvalidBooleanFlags.length ||
+    result.conversationsWithInvalidGizmoMetadata.length ||
+    result.conversationsWithInvalidOriginFields.length
   ) {
     console.error('Validation issues found:\n', JSON.stringify(result, null, 2));
     process.exit(1);
