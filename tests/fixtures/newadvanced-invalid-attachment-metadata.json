@@ -1,0 +1,34 @@
+[
+  {
+    "id": "00000000-0000-0000-0000-0000000000ab",
+    "conversation_id": "00000000-0000-0000-0000-0000000000ab",
+    "title": "Invalid attachment metadata",
+    "create_time": 1,
+    "update_time": 2,
+    "current_node": "client-created-root",
+    "mapping": {
+      "client-created-root": {
+        "id": "client-created-root",
+        "message": {
+          "id": "22222222-2222-2222-2222-222222222223",
+          "author": { "role": "user" },
+          "create_time": 1,
+          "update_time": 1,
+          "content": { "content_type": "text", "parts": ["hi"] },
+          "metadata": {
+            "attachments": [
+              {
+                "id": "file-1",
+                "name": "SIGILLIN_GENESIS.md",
+                "mimeType": "application/json",
+                "fileSizeTokens": 0
+              }
+            ]
+          }
+        },
+        "parent": null,
+        "children": []
+      }
+    }
+  }
+]

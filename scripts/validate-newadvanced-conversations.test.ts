@@ -349,6 +349,15 @@ describe('validateNewAdvancedConversations', () => {
     expect(res.conversationsWithMissingAttachments).toEqual([0]);
   });
 
+  it('flags attachments with invalid metadata', () => {
+    const file = path.join(
+      __dirname,
+      '../tests/fixtures/newadvanced-invalid-attachment-metadata.json'
+    );
+    const res = validateNewAdvancedConversations(file);
+    expect(res.conversationsWithInvalidAttachmentMetadata).toEqual([0]);
+  });
+
   it('flags invalid conversation_template_id values', () => {
     const file = path.join(
       __dirname,
