@@ -11364,20 +11364,28 @@
     "path": "scripts/validate-newadvanced-conversations.ts",
     "task": "Ensure each conversation mapping defines exactly one root node",
     "test": "scripts/validate-newadvanced-conversations.test.ts",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "Validate conversation timestamp ordering",
     "path": "scripts/validate-newadvanced-conversations.ts",
     "task": "Check that create_time and update_time are numeric and update_time >= create_time",
     "test": "scripts/validate-newadvanced-conversations.test.ts",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "Validate conversation message weight values",
     "path": "scripts/validate-newadvanced-conversations.ts",
     "task": "Ensure node message weight is within 0-1 range",
     "test": "scripts/validate-newadvanced-conversations.test.ts",
-    "status": "todo"
+    "status": "done"
+  }
+  ,
+  {
+    "commit": "Validate conversation attachments exist",
+    "path": "scripts/validate-newadvanced-conversations.ts",
+    "task": "Ensure attachments referenced in messages exist under docs/sigils",
+    "test": "scripts/validate-newadvanced-conversations.test.ts",
+    "status": "done"
   }
 ]
