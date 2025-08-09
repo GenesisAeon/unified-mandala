@@ -1,0 +1,30 @@
+[
+  {
+    "title": "Invalid origin fields",
+    "id": "conv-invalid-origin",
+    "conversation_origin": 42,
+    "sugar_item_id": false,
+    "create_time": 1,
+    "update_time": 1,
+    "mapping": {
+      "client-created-root": {
+        "id": "client-created-root",
+        "message": null,
+        "parent": null,
+        "children": ["n1"]
+      },
+      "n1": {
+        "id": "n1",
+        "message": {
+          "id": "n1",
+          "author": {"role": "user"},
+          "create_time": 1,
+          "update_time": 1,
+          "content": {"parts": ["hi"]}
+        },
+        "parent": "client-created-root",
+        "children": []
+      }
+    }
+  }
+]
