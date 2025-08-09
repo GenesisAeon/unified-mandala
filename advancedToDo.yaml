@@ -11406,7 +11406,8 @@
   status: done
 - commit: Validate conversation template and model slug
   path: scripts/validate-newadvanced-conversations.ts
-  task: Ensure conversation_template_id matches UUID format and default_model_slug is non-empty
+  task: Ensure conversation_template_id matches UUID format and default_model_slug
+    is non-empty
   test: scripts/validate-newadvanced-conversations.test.ts
   status: done
 - commit: Validate conversation async_status and voice fields
@@ -11421,7 +11422,8 @@
   status: done
 - commit: Plan validation for conversation boolean flags
   path: scripts/validate-newadvanced-conversations.ts
-  task: Ensure is_archived, is_starred, and is_do_not_remember are boolean when defined
+  task: Ensure is_archived, is_starred, and is_do_not_remember are boolean when
+    defined
   test: scripts/validate-newadvanced-conversations.test.ts
   status: done
 - commit: Plan validation for gizmo metadata fields
@@ -11437,5 +11439,11 @@
 - commit: Validate attachment metadata in conversations
   path: scripts/validate-newadvanced-conversations.ts
   task: Ensure attachments include valid mimeType and fileSizeTokens
+  test: scripts/validate-newadvanced-conversations.test.ts
+  status: done
+- commit: Validate message metadata flags in conversations
+  path: scripts/validate-newadvanced-conversations.ts
+  task: Ensure message metadata is an object and
+    is_visually_hidden_from_conversation is boolean when present
   test: scripts/validate-newadvanced-conversations.test.ts
   status: done

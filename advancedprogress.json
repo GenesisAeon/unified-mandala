@@ -1,12 +1,14 @@
 {
-  "lastCommit": "Validate conversation metadata fields",
+  "lastCommit": "Validate message metadata flags in conversations",
   "fractalStep": "weiter",
   "openBranches": [
     "work"
   ],
   "mergeConflicts": [],
-  "notes": "Validated boolean flags, gizmo metadata, and origin fields; continue exploring conversation metadata and review docs/sigils.",
-  "pendingTasks": [],
+  "notes": "Added validation for message metadata flags; continue exploring metadata structure in conversations.",
+  "pendingTasks": [
+    "Expand message metadata schema checks"
+  ],
   "progress": [
     {
       "commit": "Add extract-training-data enhancement ToDos",
@@ -706,6 +708,10 @@
     },
     {
       "commit": "Validate attachment metadata in conversations",
+      "status": "done"
+    },
+    {
+      "commit": "Validate message metadata flags in conversations",
       "status": "done"
     }
   ],

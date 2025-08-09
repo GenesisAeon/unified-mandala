@@ -358,6 +358,15 @@ describe('validateNewAdvancedConversations', () => {
     expect(res.conversationsWithInvalidAttachmentMetadata).toEqual([0]);
   });
 
+  it('flags invalid message metadata', () => {
+    const file = path.join(
+      __dirname,
+      '../tests/fixtures/newadvanced-invalid-message-metadata.json'
+    );
+    const res = validateNewAdvancedConversations(file);
+    expect(res.conversationsWithInvalidMessageMetadata).toEqual([0]);
+  });
+
   it('flags invalid conversation_template_id values', () => {
     const file = path.join(
       __dirname,
