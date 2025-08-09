@@ -49,6 +49,8 @@ export interface ValidationResult {
   conversationsWithInvalidEndTurn: number[];
   conversationsWithInvalidTemplateId: number[];
   conversationsWithInvalidDefaultModelSlug: number[];
+  conversationsWithInvalidAsyncStatus: number[];
+  conversationsWithInvalidVoice: number[];
 }
 
 export function validateNewAdvancedConversations(filePath: string): ValidationResult {
@@ -100,6 +102,8 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
   const invalidMessageChannels: number[] = [];
   const invalidMessageRecipients: number[] = [];
   const missingAttachments: number[] = [];
+  const invalidAsyncStatus: number[] = [];
+  const invalidVoice: number[] = [];
   const uuidPattern = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
   const allowedStatuses = [
     'cancelled',
@@ -151,6 +155,7 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
     'tether_browsing_display',
     'tether_quote',
   ];
+  const allowedAsyncStatuses = ['not_started', 'in_progress', 'completed', 'failed'];
 
   raw.forEach((conv: any, idx: number) => {
     const seenMessageIds = new Set<string>();
@@ -171,6 +176,21 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
       invalidTimestamps.push(idx);
     }
     if (missing.length) missingFields.push({ index: idx, fields: missing });
+
+    if (
+      conv.async_status !== undefined &&
+      conv.async_status !== null &&
+      !allowedAsyncStatuses.includes(conv.async_status)
+    ) {
+      invalidAsyncStatus.push(idx);
+    }
+
+    if (
+      'voice' in conv &&
+      (typeof conv.voice !== 'string' || conv.voice.trim() === '')
+    ) {
+      invalidVoice.push(idx);
+    }
     if (conv.id) {
       if (!uuidPattern.test(conv.id)) {
         invalidIds.push(idx);
@@ -602,6 +622,8 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
     conversationsWithInvalidEndTurn: invalidEndTurn,
     conversationsWithInvalidTemplateId: invalidTemplateIds,
     conversationsWithInvalidDefaultModelSlug: invalidDefaultModelSlugs,
+    conversationsWithInvalidAsyncStatus: invalidAsyncStatus,
+    conversationsWithInvalidVoice: invalidVoice,
   };
 }
 
@@ -652,7 +674,9 @@ if (require.main === module) {
     result.conversationsWithInvalidEndTurn.length ||
     result.conversationsWithMissingAttachments.length ||
     result.conversationsWithInvalidTemplateId.length ||
-    result.conversationsWithInvalidDefaultModelSlug.length
+    result.conversationsWithInvalidDefaultModelSlug.length ||
+    result.conversationsWithInvalidAsyncStatus.length ||
+    result.conversationsWithInvalidVoice.length
   ) {
     console.error('Validation issues found:\n', JSON.stringify(result, null, 2));
     process.exit(1);

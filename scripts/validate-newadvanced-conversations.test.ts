@@ -366,4 +366,22 @@ describe('validateNewAdvancedConversations', () => {
     const res = validateNewAdvancedConversations(file);
     expect(res.conversationsWithInvalidDefaultModelSlug).toEqual([0]);
   });
+
+  it('flags invalid async_status values', () => {
+    const file = path.join(
+      __dirname,
+      '../tests/fixtures/newadvanced-invalid-async-status.json'
+    );
+    const res = validateNewAdvancedConversations(file);
+    expect(res.conversationsWithInvalidAsyncStatus).toEqual([0]);
+  });
+
+  it('flags empty voice fields', () => {
+    const file = path.join(
+      __dirname,
+      '../tests/fixtures/newadvanced-invalid-voice.json'
+    );
+    const res = validateNewAdvancedConversations(file);
+    expect(res.conversationsWithInvalidVoice).toEqual([0]);
+  });
 });
