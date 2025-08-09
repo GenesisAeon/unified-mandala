@@ -1183,6 +1183,10 @@
     {
       "commit": "Validate message author names",
       "status": "done"
+    },
+    {
+      "commit": "Plan moderation and URL validation tasks",
+      "status": "todo"
     }
   ],
   "metacommitTags": [
