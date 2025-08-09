@@ -11449,5 +11449,12 @@
     "task": "Ensure attachments include valid mimeType and fileSizeTokens",
     "test": "scripts/validate-newadvanced-conversations.test.ts",
     "status": "done"
+  },
+  {
+    "commit": "Validate message metadata flags in conversations",
+    "path": "scripts/validate-newadvanced-conversations.ts",
+    "task": "Ensure message metadata is an object and is_visually_hidden_from_conversation is boolean when present",
+    "test": "scripts/validate-newadvanced-conversations.test.ts",
+    "status": "done"
   }
 ]

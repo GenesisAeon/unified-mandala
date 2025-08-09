@@ -56,6 +56,7 @@ export interface ValidationResult {
   conversationsWithInvalidBooleanFlags: number[];
   conversationsWithInvalidGizmoMetadata: number[];
   conversationsWithInvalidOriginFields: number[];
+  conversationsWithInvalidMessageMetadata: number[];
 }
 
 export function validateNewAdvancedConversations(filePath: string): ValidationResult {
@@ -108,6 +109,7 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
   const invalidMessageRecipients: number[] = [];
   const missingAttachments: number[] = [];
   const invalidAttachmentMetadata: number[] = [];
+  const invalidMessageMetadata: number[] = [];
   const invalidAsyncStatus: number[] = [];
   const invalidVoice: number[] = [];
   const invalidMemoryScope: number[] = [];
@@ -409,6 +411,30 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
     }
     if (attachmentInvalid) {
       invalidAttachmentMetadata.push(idx);
+    }
+
+    let invalidMetadata = false;
+    for (const node of nodes) {
+      const meta = node?.message?.metadata;
+      if (meta !== undefined) {
+        if (typeof meta !== 'object' || Array.isArray(meta)) {
+          invalidMetadata = true;
+          break;
+        }
+        if (
+          Object.prototype.hasOwnProperty.call(
+            meta,
+            'is_visually_hidden_from_conversation'
+          ) &&
+          typeof meta.is_visually_hidden_from_conversation !== 'boolean'
+        ) {
+          invalidMetadata = true;
+          break;
+        }
+      }
+    }
+    if (invalidMetadata) {
+      invalidMessageMetadata.push(idx);
     }
 
     for (const [key, node] of Object.entries(conv.mapping || {}) as [string, any][]) {
@@ -714,6 +740,7 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
     conversationsWithInvalidBooleanFlags: invalidBooleanFlags,
     conversationsWithInvalidGizmoMetadata: invalidGizmoMetadata,
     conversationsWithInvalidOriginFields: invalidOriginFields,
+    conversationsWithInvalidMessageMetadata: invalidMessageMetadata,
   };
 }
 
@@ -771,7 +798,8 @@ if (require.main === module) {
     result.conversationsWithInvalidMemoryScope.length ||
     result.conversationsWithInvalidBooleanFlags.length ||
     result.conversationsWithInvalidGizmoMetadata.length ||
-    result.conversationsWithInvalidOriginFields.length
+    result.conversationsWithInvalidOriginFields.length ||
+    result.conversationsWithInvalidMessageMetadata.length
   ) {
     console.error('Validation issues found:\n', JSON.stringify(result, null, 2));
     process.exit(1);

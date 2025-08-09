@@ -1,0 +1,33 @@
+[
+  {
+    "title": "Invalid message metadata",
+    "id": "conv-invalid-message-metadata",
+    "create_time": 1,
+    "update_time": 2,
+    "mapping": {
+      "client-created-root": {
+        "id": "client-created-root",
+        "message": null,
+        "parent": null,
+        "children": ["n1"]
+      },
+      "n1": {
+        "id": "n1",
+        "message": {
+          "id": "n1",
+          "author": {"role": "user"},
+          "create_time": 1,
+          "update_time": 1,
+          "content": {"parts": ["hi"]},
+          "status": "finished",
+          "recipient": "all",
+          "channel": null,
+          "weight": 0.5,
+          "metadata": {"is_visually_hidden_from_conversation": "true"}
+        },
+        "parent": "client-created-root",
+        "children": []
+      }
+    }
+  }
+]
