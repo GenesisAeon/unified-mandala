@@ -1,0 +1,25 @@
+[
+  {
+    "id": "00000000-0000-0000-0000-000000000001",
+    "conversation_id": "00000000-0000-0000-0000-000000000001",
+    "title": "Invalid template id",
+    "create_time": 1,
+    "update_time": 2,
+    "current_node": "client-created-root",
+    "conversation_template_id": "not-a-uuid",
+    "mapping": {
+      "client-created-root": {
+        "id": "client-created-root",
+        "message": {
+          "id": "22222222-2222-2222-2222-222222222222",
+          "author": { "role": "user" },
+          "create_time": 1,
+          "update_time": 1,
+          "content": { "parts": ["hi"] }
+        },
+        "parent": null,
+        "children": []
+      }
+    }
+  }
+]

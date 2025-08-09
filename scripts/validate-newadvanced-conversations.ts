@@ -47,6 +47,8 @@ export interface ValidationResult {
   conversationsWithMissingAttachments: number[];
   conversationsWithInvalidContentTypes: number[];
   conversationsWithInvalidEndTurn: number[];
+  conversationsWithInvalidTemplateId: number[];
+  conversationsWithInvalidDefaultModelSlug: number[];
 }
 
 export function validateNewAdvancedConversations(filePath: string): ValidationResult {
@@ -82,6 +84,8 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
   const invalidContentParts: number[] = [];
   const invalidContentTypes: number[] = [];
   const invalidEndTurn: number[] = [];
+  const invalidTemplateIds: number[] = [];
+  const invalidDefaultModelSlugs: number[] = [];
   const selfReferencingChildren: number[] = [];
   const invalidIds: number[] = [];
   const duplicateMessageIds: number[] = [];
@@ -212,6 +216,28 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
         conv.safe_urls.some((u: any) => typeof u !== 'string')
       ) {
         invalidSafeUrls.push(idx);
+      }
+    }
+    if (
+      conv.conversation_template_id !== undefined &&
+      conv.conversation_template_id !== null
+    ) {
+      if (
+        typeof conv.conversation_template_id !== 'string' ||
+        !uuidPattern.test(conv.conversation_template_id)
+      ) {
+        invalidTemplateIds.push(idx);
+      }
+    }
+    if (
+      conv.default_model_slug !== undefined &&
+      conv.default_model_slug !== null
+    ) {
+      if (
+        typeof conv.default_model_slug !== 'string' ||
+        !conv.default_model_slug.trim()
+      ) {
+        invalidDefaultModelSlugs.push(idx);
       }
     }
     if (
@@ -574,6 +600,8 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
     conversationsWithMissingAttachments: missingAttachments,
     conversationsWithInvalidContentTypes: invalidContentTypes,
     conversationsWithInvalidEndTurn: invalidEndTurn,
+    conversationsWithInvalidTemplateId: invalidTemplateIds,
+    conversationsWithInvalidDefaultModelSlug: invalidDefaultModelSlugs,
   };
 }
 
@@ -622,7 +650,9 @@ if (require.main === module) {
     result.conversationsWithInvalidMessageRecipients.length ||
     result.conversationsWithInvalidContentTypes.length ||
     result.conversationsWithInvalidEndTurn.length ||
-    result.conversationsWithMissingAttachments.length
+    result.conversationsWithMissingAttachments.length ||
+    result.conversationsWithInvalidTemplateId.length ||
+    result.conversationsWithInvalidDefaultModelSlug.length
   ) {
     console.error('Validation issues found:\n', JSON.stringify(result, null, 2));
     process.exit(1);

@@ -348,4 +348,22 @@ describe('validateNewAdvancedConversations', () => {
     const res = validateNewAdvancedConversations(file);
     expect(res.conversationsWithMissingAttachments).toEqual([0]);
   });
+
+  it('flags invalid conversation_template_id values', () => {
+    const file = path.join(
+      __dirname,
+      '../tests/fixtures/newadvanced-invalid-template-id.json'
+    );
+    const res = validateNewAdvancedConversations(file);
+    expect(res.conversationsWithInvalidTemplateId).toEqual([0]);
+  });
+
+  it('flags invalid default_model_slug values', () => {
+    const file = path.join(
+      __dirname,
+      '../tests/fixtures/newadvanced-invalid-model-slug.json'
+    );
+    const res = validateNewAdvancedConversations(file);
+    expect(res.conversationsWithInvalidDefaultModelSlug).toEqual([0]);
+  });
 });
