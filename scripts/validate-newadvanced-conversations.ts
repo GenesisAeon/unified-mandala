@@ -45,6 +45,8 @@ export interface ValidationResult {
   conversationsWithInvalidMessageChannels: number[];
   conversationsWithInvalidMessageRecipients: number[];
   conversationsWithMissingAttachments: number[];
+  conversationsWithInvalidContentTypes: number[];
+  conversationsWithInvalidEndTurn: number[];
 }
 
 export function validateNewAdvancedConversations(filePath: string): ValidationResult {
@@ -78,6 +80,8 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
   const invalidMessageTimestamps: number[] = [];
   const invalidMessageWeights: number[] = [];
   const invalidContentParts: number[] = [];
+  const invalidContentTypes: number[] = [];
+  const invalidEndTurn: number[] = [];
   const selfReferencingChildren: number[] = [];
   const invalidIds: number[] = [];
   const duplicateMessageIds: number[] = [];
@@ -131,6 +135,17 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
     'web.open_url',
     'web.run',
     'web.search',
+  ];
+  const allowedContentTypes = [
+    'text',
+    'code',
+    'computer_output',
+    'execution_output',
+    'multimodal_text',
+    'reasoning_recap',
+    'system_error',
+    'tether_browsing_display',
+    'tether_quote',
   ];
 
   raw.forEach((conv: any, idx: number) => {
@@ -410,6 +425,19 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
         invalidMessageRecipients.push(idx);
         break;
       }
+      if (
+        m.content &&
+        m.content.content_type !== undefined &&
+        (typeof m.content.content_type !== 'string' ||
+          !allowedContentTypes.includes(m.content.content_type))
+      ) {
+        invalidContentTypes.push(idx);
+        break;
+      }
+      if (m.end_turn !== undefined && typeof m.end_turn !== 'boolean') {
+        invalidEndTurn.push(idx);
+        break;
+      }
     }
     }
 
@@ -544,6 +572,8 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
     conversationsWithInvalidMessageChannels: invalidMessageChannels,
     conversationsWithInvalidMessageRecipients: invalidMessageRecipients,
     conversationsWithMissingAttachments: missingAttachments,
+    conversationsWithInvalidContentTypes: invalidContentTypes,
+    conversationsWithInvalidEndTurn: invalidEndTurn,
   };
 }
 
@@ -590,6 +620,8 @@ if (require.main === module) {
     result.conversationsWithInvalidMessageStatuses.length ||
     result.conversationsWithInvalidMessageChannels.length ||
     result.conversationsWithInvalidMessageRecipients.length ||
+    result.conversationsWithInvalidContentTypes.length ||
+    result.conversationsWithInvalidEndTurn.length ||
     result.conversationsWithMissingAttachments.length
   ) {
     console.error('Validation issues found:\n', JSON.stringify(result, null, 2));

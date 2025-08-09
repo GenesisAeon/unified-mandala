@@ -1,0 +1,33 @@
+[
+  {
+    "title": "Invalid end turn",
+    "id": "conv-invalid-end-turn",
+    "create_time": 1,
+    "update_time": 2,
+    "mapping": {
+      "client-created-root": {
+        "id": "client-created-root",
+        "message": null,
+        "parent": null,
+        "children": ["n1"]
+      },
+      "n1": {
+        "id": "n1",
+        "message": {
+          "id": "n1",
+          "author": { "role": "user" },
+          "create_time": 1,
+          "update_time": 1,
+          "content": { "content_type": "text", "parts": ["hi"] },
+          "status": "finished_successfully",
+          "recipient": "all",
+          "channel": "commentary",
+          "weight": 0.5,
+          "end_turn": "yes"
+        },
+        "parent": "client-created-root",
+        "children": []
+      }
+    }
+  }
+]

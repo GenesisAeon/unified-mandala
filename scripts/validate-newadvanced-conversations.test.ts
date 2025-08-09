@@ -313,6 +313,24 @@ describe('validateNewAdvancedConversations', () => {
     expect(res.conversationsWithInvalidMessageRecipients).toEqual([0]);
   });
 
+  it('flags messages with invalid content_type values', () => {
+    const file = path.join(
+      __dirname,
+      '../tests/fixtures/newadvanced-invalid-content-type.json'
+    );
+    const res = validateNewAdvancedConversations(file);
+    expect(res.conversationsWithInvalidContentTypes).toEqual([0]);
+  });
+
+  it('flags messages with invalid end_turn values', () => {
+    const file = path.join(
+      __dirname,
+      '../tests/fixtures/newadvanced-invalid-end-turn.json'
+    );
+    const res = validateNewAdvancedConversations(file);
+    expect(res.conversationsWithInvalidEndTurn).toEqual([0]);
+  });
+
   it('flags cyclic child references', () => {
     const file = path.join(
       __dirname,

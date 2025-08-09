@@ -11379,12 +11379,25 @@
     "task": "Ensure node message weight is within 0-1 range",
     "test": "scripts/validate-newadvanced-conversations.test.ts",
     "status": "done"
-  }
-  ,
+  },
   {
     "commit": "Validate conversation attachments exist",
     "path": "scripts/validate-newadvanced-conversations.ts",
     "task": "Ensure attachments referenced in messages exist under docs/sigils",
+    "test": "scripts/validate-newadvanced-conversations.test.ts",
+    "status": "done"
+  },
+  {
+    "commit": "Validate message content_type values in conversations",
+    "path": "scripts/validate-newadvanced-conversations.ts",
+    "task": "Ensure message content_type is a string and within allowed values",
+    "test": "scripts/validate-newadvanced-conversations.test.ts",
+    "status": "done"
+  },
+  {
+    "commit": "Validate message end_turn values in conversations",
+    "path": "scripts/validate-newadvanced-conversations.ts",
+    "task": "Ensure end_turn is boolean when defined",
     "test": "scripts/validate-newadvanced-conversations.test.ts",
     "status": "done"
   }

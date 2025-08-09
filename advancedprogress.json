@@ -1,11 +1,11 @@
 {
-  "lastCommit": "Validate conversation attachments exist",
+  "lastCommit": "Validate message content_type and end_turn values",
   "fractalStep": "weiter",
   "openBranches": [
     "work"
   ],
   "mergeConflicts": [],
-  "notes": "Implemented attachment existence check and completed prior validations",
+  "notes": "Added validations for message content_type and end_turn; further metadata checks may follow",
   "pendingTasks": [],
   "progress": [
     {
@@ -1134,6 +1134,14 @@
     },
     {
       "commit": "Validate conversation attachments exist",
+      "status": "done"
+    },
+    {
+      "commit": "Validate message content_type values in conversations",
+      "status": "done"
+    },
+    {
+      "commit": "Validate message end_turn values in conversations",
       "status": "done"
     }
   ],
