@@ -11452,3 +11452,13 @@
   task: Ensure author.name is a non-empty string when defined
   test: scripts/validate-newadvanced-conversations.test.ts
   status: done
+- commit: Validate moderation results in conversations
+  path: scripts/validate-newadvanced-conversations.ts
+  task: Ensure moderation_results entries include category and flagged fields
+  test: scripts/validate-newadvanced-conversations.test.ts
+  status: todo
+- commit: Validate blocked and safe URLs in conversations
+  path: scripts/validate-newadvanced-conversations.ts
+  task: Verify blocked_urls and safe_urls contain valid URLs
+  test: scripts/validate-newadvanced-conversations.test.ts
+  status: todo
