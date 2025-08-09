@@ -11404,3 +11404,8 @@
   task: Ensure end_turn is boolean when defined
   test: scripts/validate-newadvanced-conversations.test.ts
   status: done
+- commit: Validate conversation template and model slug
+  path: scripts/validate-newadvanced-conversations.ts
+  task: Ensure conversation_template_id matches UUID format and default_model_slug is non-empty
+  test: scripts/validate-newadvanced-conversations.test.ts
+  status: done
