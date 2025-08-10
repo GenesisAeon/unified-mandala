@@ -11775,3 +11775,93 @@
   task: Define MQTT plugin, FastAPI agent with orchestrator and compose wiring
   test: agents/iot_sensor/main.test.py
   status: todo
+- commit: Add Dockerfile and requirements for IoT sensor agent
+  path: agents/iot_sensor/Dockerfile
+  task: Create Dockerfile and requirements for IoT sensor agent
+  test: agents/iot_sensor/main.test.py
+  status: todo
+- commit: Add Dockerfile and requirements for sentiment agent
+  path: agents/sentiment/Dockerfile
+  task: Create Dockerfile and requirements for sentiment agent
+  test: agents/sentiment/main.test.py
+  status: todo
+- commit: Add Dockerfile and requirements for provenance agent
+  path: agents/provenance/Dockerfile
+  task: Create Dockerfile and requirements for provenance agent
+  test: agents/provenance/main.test.py
+  status: todo
+- commit: Add Dockerfile and requirements for generative art agent
+  path: agents/art/Dockerfile
+  task: Create Dockerfile and requirements for generative art agent
+  test: agents/art/main.test.py
+  status: todo
+- commit: Add Dockerfile and requirements for societal impact agent
+  path: agents/impact/Dockerfile
+  task: Create Dockerfile and requirements for societal impact agent
+  test: agents/impact/main.test.py
+  status: todo
+- commit: Add Dockerfile and requirements for catalyst agent
+  path: agents/catalyst/Dockerfile
+  task: Create Dockerfile and requirements for catalyst agent
+  test: agents/catalyst/main.test.py
+  status: todo
+- commit: Add Dockerfile and requirements for digital twin agent
+  path: agents/digital_twin/Dockerfile
+  task: Create Dockerfile and requirements for digital twin agent
+  test: agents/digital_twin/main.test.py
+  status: todo
+- commit: Add Dockerfile and requirements for gamification agent
+  path: agents/gamification/Dockerfile
+  task: Create Dockerfile and requirements for gamification agent
+  test: agents/gamification/main.test.py
+  status: todo
+- commit: Register new agents in plugins manifest
+  path: plugins/manifest.yaml
+  task: Add plugin entries for new agents
+  test: ""
+  status: todo
+- commit: Extend docker-compose with new agent services
+  path: docker-compose.yml
+  task: Add service definitions for new agents
+  test: ""
+  status: todo
+- commit: Configure agents CI workflow for new agents
+  path: .github/workflows/agents_ci.yaml
+  task: Run tests for new agents in GitHub Actions
+  test: ""
+  status: todo
+- commit: Create IoTSensorWidget component
+  path: packages/unifiedmandala-ui/components/IoTSensorWidget.tsx
+  task: Display IoT sensor realtime data
+  test: packages/unifiedmandala-ui/components/IoTSensorWidget.test.tsx
+  status: todo
+- commit: Create SentimentBadge component
+  path: packages/unifiedmandala-ui/components/SentimentBadge.tsx
+  task: Show real-time sentiment analysis badge
+  test: packages/unifiedmandala-ui/components/SentimentBadge.test.tsx
+  status: todo
+- commit: Create ArtGallery component
+  path: packages/unifiedmandala-ui/components/ArtGallery.tsx
+  task: Render generative art pieces
+  test: packages/unifiedmandala-ui/components/ArtGallery.test.tsx
+  status: todo
+- commit: Create ImpactMap component
+  path: packages/unifiedmandala-ui/components/ImpactMap.tsx
+  task: Visualize societal impact metrics
+  test: packages/unifiedmandala-ui/components/ImpactMap.test.tsx
+  status: todo
+- commit: Create EmergencePanel component
+  path: packages/unifiedmandala-ui/components/EmergencePanel.tsx
+  task: Display catalyst spark emergence data
+  test: packages/unifiedmandala-ui/components/EmergencePanel.test.tsx
+  status: todo
+- commit: Create TwinMonitor component
+  path: packages/unifiedmandala-ui/components/TwinMonitor.tsx
+  task: Monitor digital twin bridge status
+  test: packages/unifiedmandala-ui/components/TwinMonitor.test.tsx
+  status: todo
+- commit: Create BadgeProfile component
+  path: packages/unifiedmandala-ui/components/BadgeProfile.tsx
+  task: Show gamification badge progress
+  test: packages/unifiedmandala-ui/components/BadgeProfile.test.tsx
+  status: todo
