@@ -47,3 +47,9 @@ services:
       context: ./services/newsbot/streamer
     ports:
       - "8105:8000"
+
+  finetune_service:
+    build:
+      context: ./services/finetune
+    ports:
+      - "8106:8000"
