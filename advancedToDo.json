@@ -12086,5 +12086,47 @@
     "task": "Display ethically grounded refusal messages",
     "test": "packages/unifiedmandala-ui/components/RefusalNotice.test.tsx",
     "status": "todo"
+  },
+  {
+    "commit": "Add Singularity Simulator plugin manifest",
+    "path": "plugins/singularity-simulator.yaml",
+    "task": "Register SingularitySimulatorAgent plugin with growth parameters",
+    "test": "",
+    "status": "todo"
+  },
+  {
+    "commit": "Implement SingularitySimulatorAgent",
+    "path": "agents/singularity_simulator/main.py",
+    "task": "Serve /simulate endpoint for intelligence growth projection",
+    "test": "agents/singularity_simulator/main.test.py",
+    "status": "todo"
+  },
+  {
+    "commit": "Map singularity simulator pipeline",
+    "path": "pipeline_config.yaml",
+    "task": "Map simulate_singularity to singularity-simulator with CREP threshold",
+    "test": "",
+    "status": "todo"
+  },
+  {
+    "commit": "Extend docker-compose with singularity simulator service",
+    "path": "docker-compose.yml",
+    "task": "Add singularity_simulator service with build and ports",
+    "test": "",
+    "status": "todo"
+  },
+  {
+    "commit": "Create SingularitySimulatorPanel component",
+    "path": "packages/unifiedmandala-ui/components/SingularitySimulatorPanel.tsx",
+    "task": "Interactive UI to run Singularity simulation and chart results",
+    "test": "packages/unifiedmandala-ui/components/SingularitySimulatorPanel.test.tsx",
+    "status": "todo"
+  },
+  {
+    "commit": "Define Singularity-Simulator sigillin",
+    "path": "docs/sigillin.examples/singularity-simulator.sigil.yaml",
+    "task": "Poetic sigillin for Singularity Simulator trigger",
+    "test": "scripts/validate-sigillin-examples.ts",
+    "status": "todo"
   }
 ]
