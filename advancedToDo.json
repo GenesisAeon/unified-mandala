@@ -12155,7 +12155,7 @@
     "path": "scripts/chat_migration/init_modules.ts",
     "task": "Load Ethical Refusal, Singularity Simulator, and Weltinnenpolitik-Simulator modules",
     "test": "scripts/chat_migration/init_modules.test.ts",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "Create chat transition bootstrap",
