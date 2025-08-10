@@ -447,4 +447,31 @@ describe('validateNewAdvancedConversations', () => {
     const res = validateNewAdvancedConversations(file);
     expect(res.conversationsWithInvalidOriginFields).toEqual([0]);
   });
+
+  it('flags invalid moderation results', () => {
+    const file = path.join(
+      __dirname,
+      '../tests/fixtures/newadvanced-invalid-moderation-results.json'
+    );
+    const res = validateNewAdvancedConversations(file);
+    expect(res.conversationsWithInvalidModerationResults).toEqual([0]);
+  });
+
+  it('flags invalid blocked urls', () => {
+    const file = path.join(
+      __dirname,
+      '../tests/fixtures/newadvanced-invalid-blocked-urls.json'
+    );
+    const res = validateNewAdvancedConversations(file);
+    expect(res.conversationsWithInvalidBlockedUrls).toEqual([0]);
+  });
+
+  it('flags invalid safe urls', () => {
+    const file = path.join(
+      __dirname,
+      '../tests/fixtures/newadvanced-invalid-safe-urls.json'
+    );
+    const res = validateNewAdvancedConversations(file);
+    expect(res.conversationsWithInvalidSafeUrls).toEqual([0]);
+  });
 });
