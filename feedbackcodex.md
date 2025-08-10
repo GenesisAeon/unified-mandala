@@ -4,3 +4,4 @@ Alle offenen MetaCommits werden in `metacommit.yaml` und `metacommit.json` refer
 Dev-Agents prüfen zu Beginn eines Laufs auf diese Dateien und priorisieren deren Aufgaben, bis sie erledigt und die Dateien gelöscht wurden.
 
 - Implemented `log_triggers` script to collect latest trigger phrases and open ToDos for chat migration.
+- Implemented `export_sigillin` script to aggregate active Sigillin into JSON and YAML for chat migration.

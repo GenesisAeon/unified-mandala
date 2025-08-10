@@ -11939,7 +11939,7 @@
   path: scripts/chat_migration/export_sigillin.ts
   task: Export all active Sigillin from GenesisAeonZIPMEM into JSON and YAML files
   test: scripts/chat_migration/export_sigillin.test.ts
-  status: todo
+  status: done
 - commit: Log trigger phrases and pending todos
   path: scripts/chat_migration/log_triggers.ts
   task: Collect last trigger phrases and open ToDos from advancedToDo.yaml into migration log
