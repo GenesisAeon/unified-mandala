@@ -11954,7 +11954,7 @@
   path: scripts/chat_migration/bootstrap_new_chat.ts
   task: Run SigillinLoader.load calls and start new chat with Mandala state prompt
   test: scripts/chat_migration/bootstrap_new_chat.test.ts
-  status: todo
+  status: done
 - commit: Add open-source chat services to compose
   path: docker-compose.yml
   task: Define GPT4All, OpenAssistant, h2oGPT, text-generation-webui and AutoGen microservices
