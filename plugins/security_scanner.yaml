@@ -1,0 +1,10 @@
+id: security-scanner
+title: "Security Scanner"
+type: security
+agent: SecurityScannerAgent
+entrypoint: agents/security_scanner/main.py
+config:
+  signatures:
+    - "DROP TABLE"
+    - "<script>"
+    - "../"
