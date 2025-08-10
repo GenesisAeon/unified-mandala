@@ -230,6 +230,10 @@
     {
       "commit": "Schedule positive progress cron job",
       "status": "todo"
+    },
+    {
+      "commit": "Add governance simulator plugin and agent",
+      "status": "done"
     }
   ],
   "progress": [

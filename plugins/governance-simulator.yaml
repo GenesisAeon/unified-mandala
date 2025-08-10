@@ -1,0 +1,8 @@
+id: governance-simulator
+title: "Governance Simulator"
+type: simulation
+agent: GovernanceSimulatorAgent
+entrypoint: agents/governance_simulator/main.py
+config:
+  countries: 2
+  cooperation: 0.5
