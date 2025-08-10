@@ -1,21 +1,13 @@
 services:
-  - id: local-chatbot
-    name: "Local AI Chatbot"
+  - id: gpt4all
+    name: GPT4All
     type: local
-    endpoint: "/api/local-chat"
-    default_enabled: true
-  - id: mistral
-    name: "Mistral 7B"
+    description: Local open-source language model
+  - id: openassistant
+    name: OpenAssistant
     type: external
-    endpoint: "/api/external-mistral"
-    default_enabled: false
-  - id: claude
-    name: "Anthropic Claude"
+    description: External OpenAssistant service
+  - id: h2ogpt
+    name: h2oGPT
     type: external
-    endpoint: "/api/external-claude"
-    default_enabled: false
-  - id: vicuna
-    name: "Vicuna-13B"
-    type: external
-    endpoint: "/api/external-vicuna"
-    default_enabled: false
+    description: External h2oGPT service
