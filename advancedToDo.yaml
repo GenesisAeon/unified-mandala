@@ -11955,3 +11955,33 @@
   task: Run SigillinLoader.load calls and start new chat with Mandala state prompt
   test: scripts/chat_migration/bootstrap_new_chat.test.ts
   status: todo
+- commit: Add open-source chat services to compose
+  path: docker-compose.yml
+  task: Define GPT4All, OpenAssistant, h2oGPT, text-generation-webui and AutoGen microservices
+  test: ""
+  status: todo
+- commit: Map chat services in pipeline config
+  path: pipeline_config.yaml
+  task: Link gpt4all, openassistant, and h2ogpt services with CREP thresholds
+  test: ""
+  status: todo
+- commit: Schedule nightly model fine-tuning
+  path: memory-jobs.yaml
+  task: Add fine_tune_models cron calling Mistral CodeAgent
+  test: ""
+  status: todo
+- commit: Implement ZIPMEM RAG indexer
+  path: services/rag/indexer.py
+  task: Index ZIPMEM fragments with FAISS or Elastic for retrieval
+  test: services/rag/indexer.test.py
+  status: todo
+- commit: Integrate agent frameworks into FractalTaskRunner
+  path: packages/task-runner/FractalTaskRunner.ts
+  task: Support LangChain, Rasa, Botpress, MS Bot Framework, AutoGPT and AutoGen tasks
+  test: packages/task-runner/FractalTaskRunner.test.ts
+  status: todo
+- commit: Add AgentControlPanel UI
+  path: packages/unifiedmandala-ui/components/AgentControlPanel.tsx
+  task: Allow switching between local and external agent backends
+  test: packages/unifiedmandala-ui/components/AgentControlPanel.test.tsx
+  status: todo
