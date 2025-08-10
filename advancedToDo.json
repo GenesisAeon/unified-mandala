@@ -12148,7 +12148,7 @@
     "path": "scripts/chat_migration/log_triggers.ts",
     "task": "Collect last trigger phrases and open ToDos from advancedToDo.yaml into migration log",
     "test": "scripts/chat_migration/log_triggers.test.ts",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "Initialize core modules for new chat",
