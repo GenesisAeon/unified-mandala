@@ -11456,12 +11456,12 @@
   path: scripts/validate-newadvanced-conversations.ts
   task: Ensure moderation_results entries include category and flagged fields
   test: scripts/validate-newadvanced-conversations.test.ts
-  status: todo
+  status: done
 - commit: Validate blocked and safe URLs in conversations
   path: scripts/validate-newadvanced-conversations.ts
   task: Verify blocked_urls and safe_urls contain valid URLs
   test: scripts/validate-newadvanced-conversations.test.ts
-  status: todo
+  status: done
 - commit: Add agent profile switching to ChatPanel
   path: packages/unifiedmandala-ui/components/ChatPanel.tsx
   task: Allow ChatPanel to switch between local and external agent backends and

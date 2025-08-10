@@ -5,15 +5,15 @@
     "work"
   ],
   "mergeConflicts": [],
-  "notes": "Added validation for message metadata flags; continue exploring metadata structure in conversations. Implemented Sigillin export for chat migration.",
+  "notes": "Added validation for message metadata flags; continue exploring metadata structure in conversations. Implemented Sigillin export for chat migration. Completed validation for moderation results and URL lists.",
   "pendingTasks": [
     {
       "commit": "Validate moderation results in conversations",
-      "status": "todo"
+      "status": "done"
     },
     {
       "commit": "Validate blocked and safe URLs in conversations",
-      "status": "todo"
+      "status": "done"
     },
     {
       "commit": "Add agent profile switching to ChatPanel",

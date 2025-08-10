@@ -41,6 +41,7 @@ export interface ValidationResult {
   conversationsWithInvalidDisabledToolIds: number[];
   conversationsWithInvalidBlockedUrls: number[];
   conversationsWithInvalidSafeUrls: number[];
+  conversationsWithInvalidModerationResults: number[];
   conversationsWithInvalidMessageStatuses: number[];
   conversationsWithInvalidMessageChannels: number[];
   conversationsWithInvalidMessageRecipients: number[];
@@ -105,6 +106,7 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
   const invalidDisabledToolIds: number[] = [];
   const invalidBlockedUrls: number[] = [];
   const invalidSafeUrls: number[] = [];
+  const invalidModerationResults: number[] = [];
   const invalidMessageStatuses: number[] = [];
   const invalidMessageChannels: number[] = [];
   const invalidMessageRecipients: number[] = [];
@@ -295,7 +297,15 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
     if (conv.blocked_urls !== undefined) {
       if (
         !Array.isArray(conv.blocked_urls) ||
-        conv.blocked_urls.some((u: any) => typeof u !== 'string')
+        conv.blocked_urls.some((u: any) => {
+          if (typeof u !== 'string') return true;
+          try {
+            new URL(u);
+            return false;
+          } catch {
+            return true;
+          }
+        })
       ) {
         invalidBlockedUrls.push(idx);
       }
@@ -303,9 +313,30 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
     if (conv.safe_urls !== undefined) {
       if (
         !Array.isArray(conv.safe_urls) ||
-        conv.safe_urls.some((u: any) => typeof u !== 'string')
+        conv.safe_urls.some((u: any) => {
+          if (typeof u !== 'string') return true;
+          try {
+            new URL(u);
+            return false;
+          } catch {
+            return true;
+          }
+        })
       ) {
         invalidSafeUrls.push(idx);
+      }
+    }
+    if (conv.moderation_results !== undefined) {
+      if (
+        !Array.isArray(conv.moderation_results) ||
+        conv.moderation_results.some(
+          (m: any) =>
+            typeof m !== 'object' ||
+            typeof m.category !== 'string' ||
+            typeof m.flagged !== 'boolean'
+        )
+      ) {
+        invalidModerationResults.push(idx);
       }
     }
     if (
@@ -739,6 +770,7 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
     conversationsWithInvalidDisabledToolIds: invalidDisabledToolIds,
     conversationsWithInvalidBlockedUrls: invalidBlockedUrls,
     conversationsWithInvalidSafeUrls: invalidSafeUrls,
+    conversationsWithInvalidModerationResults: invalidModerationResults,
     conversationsWithInvalidMessageStatuses: invalidMessageStatuses,
     conversationsWithInvalidMessageChannels: invalidMessageChannels,
     conversationsWithInvalidMessageRecipients: invalidMessageRecipients,
@@ -799,6 +831,7 @@ if (require.main === module) {
     result.conversationsWithInvalidDisabledToolIds.length ||
     result.conversationsWithInvalidBlockedUrls.length ||
     result.conversationsWithInvalidSafeUrls.length ||
+    result.conversationsWithInvalidModerationResults.length ||
     result.conversationsWithInvalidMessageStatuses.length ||
     result.conversationsWithInvalidMessageChannels.length ||
     result.conversationsWithInvalidMessageRecipients.length ||

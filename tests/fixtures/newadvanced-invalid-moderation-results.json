@@ -1,0 +1,27 @@
+[
+  {
+    "id": "00000000-0000-0000-0000-000000000100",
+    "conversation_id": "00000000-0000-0000-0000-000000000100",
+    "title": "Invalid moderation results",
+    "create_time": 1,
+    "update_time": 2,
+    "current_node": "root",
+    "mapping": {
+      "root": {
+        "id": "root",
+        "message": {
+          "id": "00000000-0000-0000-0000-000000000101",
+          "author": { "role": "user" },
+          "create_time": 1,
+          "update_time": 1,
+          "content": { "parts": ["hi"] }
+        },
+        "parent": null,
+        "children": []
+      }
+    },
+    "moderation_results": [
+      { "category": "violence", "flagged": "yes" }
+    ]
+  }
+]

@@ -1,0 +1,25 @@
+[
+  {
+    "id": "00000000-0000-0000-0000-000000000300",
+    "conversation_id": "00000000-0000-0000-0000-000000000300",
+    "title": "Invalid safe URLs",
+    "create_time": 1,
+    "update_time": 2,
+    "current_node": "root",
+    "mapping": {
+      "root": {
+        "id": "root",
+        "message": {
+          "id": "00000000-0000-0000-0000-000000000301",
+          "author": { "role": "user" },
+          "create_time": 1,
+          "update_time": 1,
+          "content": { "parts": ["hi"] }
+        },
+        "parent": null,
+        "children": []
+      }
+    },
+    "safe_urls": ["not a url"]
+  }
+]
