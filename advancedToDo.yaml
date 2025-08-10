@@ -11865,3 +11865,38 @@
   task: Show gamification badge progress
   test: packages/unifiedmandala-ui/components/BadgeProfile.test.tsx
   status: todo
+- commit: Add security scanner plugin and agent
+  path: plugins/security_scanner.yaml
+  task: Scan agent endpoints against ART benchmark attacks
+  test: "agents/security_scanner/main.test.py"
+  status: todo
+- commit: Add defensive shield plugin and agent
+  path: plugins/defensive_shield.yaml
+  task: Sanitize inputs and block exploits via DefensiveShieldAgent
+  test: "agents/defensive_shield/main.test.py"
+  status: todo
+- commit: Add governance simulator plugin and agent
+  path: plugins/governance-simulator.yaml
+  task: Simulate global cooperation scenarios with GovernanceSimulatorAgent
+  test: "agents/governance_simulator/main.test.py"
+  status: todo
+- commit: Add ethics policy and refusal agents
+  path: plugins/ethics-policy.yaml
+  task: Enforce policy rules and return well-founded refusals
+  test: "agents/ethics_policy/main.test.py"
+  status: todo
+- commit: Create SecurityDashboard component
+  path: packages/unifiedmandala-ui/components/SecurityDashboard.tsx
+  task: Visualize vulnerabilities from security scans
+  test: "packages/unifiedmandala-ui/components/SecurityDashboard.test.tsx"
+  status: todo
+- commit: Create GovernanceSimulatorPanel component
+  path: packages/unifiedmandala-ui/components/GovernanceSimulatorPanel.tsx
+  task: Run world policy simulations interactively
+  test: "packages/unifiedmandala-ui/components/GovernanceSimulatorPanel.test.tsx"
+  status: todo
+- commit: Create RefusalNotice component
+  path: packages/unifiedmandala-ui/components/RefusalNotice.tsx
+  task: Display ethically grounded refusal messages
+  test: "packages/unifiedmandala-ui/components/RefusalNotice.test.tsx"
+  status: todo
