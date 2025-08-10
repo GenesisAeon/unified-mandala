@@ -1,0 +1,33 @@
+id: singularity-simulator
+title: Singularity Simulator
+type: simulation
+agent: SingularitySimulatorAgent
+entrypoint: agents/singularity_simulator/main.py
+config:
+  base_intelligence: 1.0            # Normierte Baseline (2025)
+  doubling_period_months: 6         # Verdopplung alle 6 Monate
+  merge_advantage_factor: 2.0       # Maximaler Boost-Faktor bei voller Verschmelzung
+  simulation_step_months: 12        # Schrittweite in Monaten für die Ausgabe
+api:
+  /simulate:
+    post:
+      description: Run singularity growth projection
+      request:
+        contentType: application/json
+        body:
+          name: string
+          timeline_years: integer  # 1-50
+          merge_depth: number      # 0.0-1.0
+      response:
+        contentType: application/json
+        body:
+          scenario:
+            name: string
+            timeline_years: integer
+            merge_depth: number
+          results:
+            - time_months: integer
+              year: number
+              raw_intelligence: number
+              merge_boost: number
+              effective_intelligence: number
