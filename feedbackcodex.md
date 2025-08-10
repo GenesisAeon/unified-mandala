@@ -8,3 +8,4 @@ Dev-Agents prüfen zu Beginn eines Laufs auf diese Dateien und priorisieren dere
 - Added `init_modules` script to verify presence of key modules for new chat bootstrap.
 
 - Added onboarding service catalog and agent service mapping configurations.
+- Added DefensiveShieldAgent plugin and sanitization service.

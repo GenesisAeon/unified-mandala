@@ -12050,7 +12050,7 @@
     "path": "plugins/defensive_shield.yaml",
     "task": "Sanitize inputs and block exploits via DefensiveShieldAgent",
     "test": "agents/defensive_shield/main.test.py",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "Add governance simulator plugin and agent",

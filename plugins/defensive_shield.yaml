@@ -1,0 +1,11 @@
+id: defensive-shield
+title: "Defensive Shield"
+type: security
+agent: DefensiveShieldAgent
+entrypoint: agents/defensive_shield/main.py
+config:
+  block_patterns:
+    - "<script>"
+    - "</script>"
+    - "DROP TABLE"
+    - "../"
