@@ -5,7 +5,7 @@
     "work"
   ],
   "mergeConflicts": [],
-  "notes": "Added validation for message metadata flags; continue exploring metadata structure in conversations.",
+  "notes": "Added validation for message metadata flags; continue exploring metadata structure in conversations. Implemented Sigillin export for chat migration.",
   "pendingTasks": [
     {
       "commit": "Validate moderation results in conversations",

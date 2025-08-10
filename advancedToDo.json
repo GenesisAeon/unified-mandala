@@ -12141,7 +12141,7 @@
     "path": "scripts/chat_migration/export_sigillin.ts",
     "task": "Export all active Sigillin from GenesisAeonZIPMEM into JSON and YAML files",
     "test": "scripts/chat_migration/export_sigillin.test.ts",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "Log trigger phrases and pending todos",
