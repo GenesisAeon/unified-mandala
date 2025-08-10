@@ -1,12 +1,237 @@
 {
-  "lastCommit": "test: add invalid author name fixture",
+  "lastCommit": "Merge pull request #1101 from GenesisAeon/codex/integrate-climate-and-social-data-into-news-team",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
   ],
   "mergeConflicts": [],
   "notes": "Added validation for message metadata flags; continue exploring metadata structure in conversations.",
-  "pendingTasks": [],
+  "pendingTasks": [
+    {
+      "commit": "Validate moderation results in conversations",
+      "status": "todo"
+    },
+    {
+      "commit": "Validate blocked and safe URLs in conversations",
+      "status": "todo"
+    },
+    {
+      "commit": "Add agent profile switching to ChatPanel",
+      "status": "todo"
+    },
+    {
+      "commit": "Create AgentControlPanel component",
+      "status": "todo"
+    },
+    {
+      "commit": "Add live suggestion badges to CREPVisualizer",
+      "status": "todo"
+    },
+    {
+      "commit": "Expose service avatars in PyramidVRMeetingRoom",
+      "status": "todo"
+    },
+    {
+      "commit": "Implement chat proxy route for local and external agents",
+      "status": "todo"
+    },
+    {
+      "commit": "Add hybrid service aggregator",
+      "status": "todo"
+    },
+    {
+      "commit": "Add onboarding service catalog",
+      "status": "todo"
+    },
+    {
+      "commit": "Add agent service mapping configuration",
+      "status": "todo"
+    },
+    {
+      "commit": "Extend onboarding ritual documentation for service selection",
+      "status": "todo"
+    },
+    {
+      "commit": "Implement onboard_services CLI step",
+      "status": "todo"
+    },
+    {
+      "commit": "Create service configuration API endpoint",
+      "status": "todo"
+    },
+    {
+      "commit": "Scaffold news_fetcher microservice",
+      "status": "todo"
+    },
+    {
+      "commit": "Scaffold script_gen microservice",
+      "status": "todo"
+    },
+    {
+      "commit": "Scaffold tts microservice",
+      "status": "todo"
+    },
+    {
+      "commit": "Scaffold avatar_renderer microservice",
+      "status": "todo"
+    },
+    {
+      "commit": "Scaffold streamer microservice",
+      "status": "todo"
+    },
+    {
+      "commit": "Implement newsbot orchestrator service",
+      "status": "todo"
+    },
+    {
+      "commit": "Integrate newsbot services into docker-compose",
+      "status": "todo"
+    },
+    {
+      "commit": "Register newsbot services in pipeline configuration",
+      "status": "todo"
+    },
+    {
+      "commit": "Implement training data collection endpoint",
+      "status": "todo"
+    },
+    {
+      "commit": "Scaffold finetune microservice",
+      "status": "todo"
+    },
+    {
+      "commit": "Extend NewsBotPanel with training controls",
+      "status": "todo"
+    },
+    {
+      "commit": "Introduce review agent service",
+      "status": "todo"
+    },
+    {
+      "commit": "Add draft review UI",
+      "status": "todo"
+    },
+    {
+      "commit": "Add publish endpoint for approved drafts",
+      "status": "todo"
+    },
+    {
+      "commit": "Schedule publish cron job",
+      "status": "todo"
+    },
+    {
+      "commit": "Integrate finetune and review services in compose",
+      "status": "todo"
+    },
+    {
+      "commit": "Document NewsBot live cycle flow",
+      "status": "todo"
+    },
+    {
+      "commit": "Document NewsBot training flow",
+      "status": "todo"
+    },
+    {
+      "commit": "Document NewsBot draft and publish flow",
+      "status": "todo"
+    },
+    {
+      "commit": "Add glacier balance plugin and agent",
+      "status": "todo"
+    },
+    {
+      "commit": "Add desertification tracker plugin and agent",
+      "status": "todo"
+    },
+    {
+      "commit": "Add forest dynamics plugin and agent",
+      "status": "todo"
+    },
+    {
+      "commit": "Add island loss monitoring plugin and agent",
+      "status": "todo"
+    },
+    {
+      "commit": "Add cosmic events monitoring plugin and agent",
+      "status": "todo"
+    },
+    {
+      "commit": "Add climate news plugin and orchestrator",
+      "status": "todo"
+    },
+    {
+      "commit": "Scaffold climate_service microservice",
+      "status": "todo"
+    },
+    {
+      "commit": "Scaffold forest_service microservice",
+      "status": "todo"
+    },
+    {
+      "commit": "Scaffold flood_service microservice",
+      "status": "todo"
+    },
+    {
+      "commit": "Scaffold economy_service microservice",
+      "status": "todo"
+    },
+    {
+      "commit": "Scaffold emissions_service microservice",
+      "status": "todo"
+    },
+    {
+      "commit": "Scaffold mitigation_service microservice",
+      "status": "todo"
+    },
+    {
+      "commit": "Create ClimateSocialPanel UI",
+      "status": "todo"
+    },
+    {
+      "commit": "Register climate news services in pipeline configuration",
+      "status": "todo"
+    },
+    {
+      "commit": "Integrate climate news services into docker compose",
+      "status": "todo"
+    },
+    {
+      "commit": "Add global events plugin with positive progress services",
+      "status": "todo"
+    },
+    {
+      "commit": "Scaffold science_service microservice",
+      "status": "todo"
+    },
+    {
+      "commit": "Scaffold tech_service microservice",
+      "status": "todo"
+    },
+    {
+      "commit": "Scaffold environment_service microservice",
+      "status": "todo"
+    },
+    {
+      "commit": "Extend global_events orchestrator with positive streams",
+      "status": "todo"
+    },
+    {
+      "commit": "Create GlobalEventsPanel UI",
+      "status": "todo"
+    },
+    {
+      "commit": "Register global events services in pipeline config",
+      "status": "todo"
+    },
+    {
+      "commit": "Integrate global events services into compose",
+      "status": "todo"
+    },
+    {
+      "commit": "Schedule positive progress cron job",
+      "status": "todo"
+    }
+  ],
   "progress": [
     {
       "commit": "Add extract-training-data enhancement ToDos",

@@ -11792,5 +11792,68 @@
     "status": "todo",
     "task": "Add climate data microservices and orchestrator containers",
     "test": ""
+  },
+  {
+    "commit": "Add global events plugin with positive progress services",
+    "path": "plugins/global-events.yaml",
+    "status": "todo",
+    "task": "Define global & positive progress event layer",
+    "test": ""
+  },
+  {
+    "commit": "Scaffold science_service microservice",
+    "path": "agents/global_events/science_service.py",
+    "status": "todo",
+    "task": "Fetch science breakthroughs from API",
+    "test": "agents/global_events/science_service.test.py"
+  },
+  {
+    "commit": "Scaffold tech_service microservice",
+    "path": "agents/global_events/tech_service.py",
+    "status": "todo",
+    "task": "Fetch tech innovations from API",
+    "test": "agents/global_events/tech_service.test.py"
+  },
+  {
+    "commit": "Scaffold environment_service microservice",
+    "path": "agents/global_events/environment_service.py",
+    "status": "todo",
+    "task": "Fetch environmental success stories",
+    "test": "agents/global_events/environment_service.test.py"
+  },
+  {
+    "commit": "Extend global_events orchestrator with positive streams",
+    "path": "agents/global_events/orchestrator.py",
+    "status": "todo",
+    "task": "Collect science, tech and environment events",
+    "test": "agents/global_events/orchestrator.test.py"
+  },
+  {
+    "commit": "Create GlobalEventsPanel UI",
+    "path": "packages/unifiedmandala-ui/components/GlobalEventsPanel.tsx",
+    "status": "todo",
+    "task": "Display cosmic, crisis and positive events",
+    "test": "packages/unifiedmandala-ui/components/GlobalEventsPanel.test.tsx"
+  },
+  {
+    "commit": "Register global events services in pipeline config",
+    "path": "pipeline_config.yaml",
+    "status": "todo",
+    "task": "Add sigillin_map and CREP thresholds for global events",
+    "test": ""
+  },
+  {
+    "commit": "Integrate global events services into compose",
+    "path": "docker-compose.yml",
+    "status": "todo",
+    "task": "Add global event microservices and orchestrator containers",
+    "test": ""
+  },
+  {
+    "commit": "Schedule positive progress cron job",
+    "path": "memory-jobs.yaml",
+    "status": "todo",
+    "task": "Add mandala-positive-hourly job for science_fetch",
+    "test": ""
   }
 ]
