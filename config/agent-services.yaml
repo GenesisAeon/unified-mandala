@@ -1,11 +1,10 @@
-sigillin_map:
-  local-chatbot: local-chatbot
-  mistral: external-mistral
-  claude: external-claude
-  vicuna: external-vicuna
-
-crep_thresholds:
-  local-chatbot: 0.5
-  mistral: 0.6
-  claude: 0.6
-  vicuna: 0.6
+services:
+  gpt4all:
+    endpoint: http://gpt4all:8080/api/chat
+    crep_threshold: 0.5
+  openassistant:
+    endpoint: http://openassistant:8081/api/chat
+    crep_threshold: 0.6
+  h2ogpt:
+    endpoint: http://h2ogpt:8082/api/chat
+    crep_threshold: 0.55

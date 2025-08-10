@@ -940,6 +940,14 @@
     {
       "commit": "Validate message metadata flags in conversations",
       "status": "done"
+    },
+    {
+      "commit": "Add onboarding service catalog",
+      "status": "done"
+    },
+    {
+      "commit": "Add agent service mapping configuration",
+      "status": "done"
     }
   ],
   "completed": [

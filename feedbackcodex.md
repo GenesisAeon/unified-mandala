@@ -6,3 +6,5 @@ Dev-Agents prüfen zu Beginn eines Laufs auf diese Dateien und priorisieren dere
 - Implemented `log_triggers` script to collect latest trigger phrases and open ToDos for chat migration.
 - Implemented `export_sigillin` script to aggregate active Sigillin into JSON and YAML for chat migration.
 - Added `init_modules` script to verify presence of key modules for new chat bootstrap.
+
+- Added onboarding service catalog and agent service mapping configurations.

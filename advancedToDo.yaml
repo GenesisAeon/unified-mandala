@@ -11498,12 +11498,12 @@
   path: config/onboarding/services.yaml
   task: List available local and external agent services for onboarding
   test: ""
-  status: todo
+  status: done
 - commit: Add agent service mapping configuration
   path: config/agent-services.yaml
   task: Map service IDs to endpoints and CREP thresholds
   test: ""
-  status: todo
+  status: done
 - commit: Extend onboarding ritual documentation for service selection
   path: scripts/onboarding-ritual.md
   task: Guide users to choose and activate avatar services
