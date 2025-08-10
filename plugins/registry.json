@@ -11,5 +11,9 @@
   "mistralCodeAgent": {
     "approved": true,
     "blacklisted": false
+  },
+  "governance-simulator": {
+    "approved": false,
+    "blacklisted": false
   }
 }

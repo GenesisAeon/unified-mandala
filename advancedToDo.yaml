@@ -11879,7 +11879,7 @@
   path: plugins/governance-simulator.yaml
   task: Simulate global cooperation scenarios with GovernanceSimulatorAgent
   test: "agents/governance_simulator/main.test.py"
-  status: todo
+  status: done
 - commit: Add ethics policy and refusal agents
   path: plugins/ethics-policy.yaml
   task: Enforce policy rules and return well-founded refusals
