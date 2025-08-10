@@ -12042,8 +12042,8 @@
     "commit": "Add security scanner plugin and agent",
     "path": "plugins/security_scanner.yaml",
     "task": "Scan agent endpoints against ART benchmark attacks",
-    "test": "agents/security_scanner/main.test.py",
-    "status": "todo"
+    "test": "agents/security_scanner/test_main.py",
+    "status": "done"
   },
   {
     "commit": "Add defensive shield plugin and agent",

@@ -15,5 +15,9 @@
   "governance-simulator": {
     "approved": false,
     "blacklisted": false
+  },
+  "security-scanner": {
+    "approved": false,
+    "blacklisted": false
   }
 }
