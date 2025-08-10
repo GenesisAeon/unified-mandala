@@ -11855,5 +11855,61 @@
     "status": "todo",
     "task": "Add mandala-positive-hourly job for science_fetch",
     "test": ""
+  },
+  {
+    "commit": "Define Auto-Resonanz sigillin",
+    "path": "codex-sigil.yaml",
+    "status": "todo",
+    "task": "Add um:2025-0804-AUTO-RESONANZ with trigger and services",
+    "test": ""
+  },
+  {
+    "commit": "Add drift detection plugin and agent",
+    "path": "plugins/drift-detection.yaml",
+    "status": "todo",
+    "task": "Monitor data streams for distribution drift with DriftAgent",
+    "test": "agents/drift_detection/main.test.ts"
+  },
+  {
+    "commit": "Add review checkpoint plugin and agent",
+    "path": "plugins/review-checkpoint.yaml",
+    "status": "todo",
+    "task": "Sample fragments for manual validation via ReviewAgent",
+    "test": "agents/review_checkpoint/main.test.ts"
+  },
+  {
+    "commit": "Add meta tuner plugin and agent",
+    "path": "plugins/meta-tuner.yaml",
+    "status": "todo",
+    "task": "Adjust CREP thresholds via MetaTunerAgent",
+    "test": "agents/meta_tuner/main.test.ts"
+  },
+  {
+    "commit": "Add contrastive training plugin and agent",
+    "path": "plugins/contrastive-training.yaml",
+    "status": "todo",
+    "task": "Create hallucination vs fact pairs using ContrastAgent",
+    "test": "agents/contrastive_training/main.test.ts"
+  },
+  {
+    "commit": "Create ResonanceHistoryPanel UI",
+    "path": "packages/unifiedmandala-ui/components/ResonanceHistoryPanel.tsx",
+    "status": "todo",
+    "task": "Visualize CREP, data volume and drift scores over time",
+    "test": "packages/unifiedmandala-ui/components/ResonanceHistoryPanel.test.tsx"
+  },
+  {
+    "commit": "Add mandala federation plugin and agent",
+    "path": "plugins/mandala-global.yaml",
+    "status": "todo",
+    "task": "Sync anonymous metrics across instances with FederatedMetaAgent",
+    "test": "agents/federated_meta/main.test.ts"
+  },
+  {
+    "commit": "Add IoT sensor plugin and agent",
+    "path": "plugins/iot-sensor.yaml",
+    "status": "todo",
+    "task": "Define MQTT plugin, FastAPI agent with orchestrator and compose wiring",
+    "test": "agents/iot_sensor/main.test.py"
   }
 ]
