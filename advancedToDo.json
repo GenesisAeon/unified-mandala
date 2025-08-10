@@ -12135,5 +12135,33 @@
     "task": "Sigillin to trigger Singularity Simulator",
     "test": "",
     "status": "todo"
+  },
+  {
+    "commit": "Add Sigillin export script for chat migration",
+    "path": "scripts/chat_migration/export_sigillin.ts",
+    "task": "Export all active Sigillin from GenesisAeonZIPMEM into JSON and YAML files",
+    "test": "scripts/chat_migration/export_sigillin.test.ts",
+    "status": "todo"
+  },
+  {
+    "commit": "Log trigger phrases and pending todos",
+    "path": "scripts/chat_migration/log_triggers.ts",
+    "task": "Collect last trigger phrases and open ToDos from advancedToDo.yaml into migration log",
+    "test": "scripts/chat_migration/log_triggers.test.ts",
+    "status": "todo"
+  },
+  {
+    "commit": "Initialize core modules for new chat",
+    "path": "scripts/chat_migration/init_modules.ts",
+    "task": "Load Ethical Refusal, Singularity Simulator, and Weltinnenpolitik-Simulator modules",
+    "test": "scripts/chat_migration/init_modules.test.ts",
+    "status": "todo"
+  },
+  {
+    "commit": "Create chat transition bootstrap",
+    "path": "scripts/chat_migration/bootstrap_new_chat.ts",
+    "task": "Run SigillinLoader.load calls and start new chat with Mandala state prompt",
+    "test": "scripts/chat_migration/bootstrap_new_chat.test.ts",
+    "status": "todo"
   }
 ]
