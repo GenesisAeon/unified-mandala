@@ -1,0 +1,8 @@
+id: singularity-simulator
+title: "Singularity Simulator"
+type: simulation
+agent: SingularitySimulatorAgent
+entrypoint: agents/singularity_simulator/main.py
+config:
+  growth: 1.01
+  iterations: 10

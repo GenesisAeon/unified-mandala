@@ -12092,21 +12092,21 @@
     "path": "plugins/singularity-simulator.yaml",
     "task": "Define plugin manifest for SingularitySimulatorAgent",
     "test": "",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "Implement SingularitySimulatorAgent skeleton",
     "path": "agents/singularity_simulator/main.py",
     "task": "FastAPI service for singularity growth simulation",
-    "test": "agents/singularity_simulator/main.test.py",
-    "status": "todo"
+    "test": "agents/singularity_simulator/test_main.py",
+    "status": "done"
   },
   {
     "commit": "Add Dockerfile and requirements for Singularity Simulator agent",
     "path": "agents/singularity_simulator/Dockerfile",
     "task": "Create Dockerfile and requirements for Singularity Simulator agent",
-    "test": "agents/singularity_simulator/main.test.py",
-    "status": "todo"
+    "test": "agents/singularity_simulator/test_main.py",
+    "status": "done"
   },
   {
     "commit": "Map simulate_singularity pipeline",
@@ -12134,7 +12134,7 @@
     "path": "docs/sigils/um-2025-0806-singularity-sim.yaml",
     "task": "Sigillin to trigger Singularity Simulator",
     "test": "",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "Add Sigillin export script for chat migration",

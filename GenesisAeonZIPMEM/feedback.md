@@ -10,3 +10,6 @@ Neural network demo in R illustrates further learning potential.
 
 Additional stubs for UI and core modules created.
 Added README with commitMemory instructions.
+
+## 2025-08-06
+- Integrated Singularity Simulator agent skeleton and sigil.
