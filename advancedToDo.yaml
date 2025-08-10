@@ -11597,3 +11597,18 @@
   task: Add finetune and review service containers
   test: ''
   status: todo
+- commit: Document NewsBot live cycle flow
+  path: docs/newsbot/flows.md
+  task: Describe NewsFetch -> ScriptGen -> TTS -> Avatar -> Stream
+  test: ''
+  status: todo
+- commit: Document NewsBot training flow
+  path: docs/newsbot/flows.md
+  task: Explain /training/collect and /finetune leading to new model
+  test: ''
+  status: todo
+- commit: Document NewsBot draft and publish flow
+  path: docs/newsbot/flows.md
+  task: Detail ReviewAgent -> manual gate -> LiveStore -> Stream
+  test: ''
+  status: todo
