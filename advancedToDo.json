@@ -11666,5 +11666,26 @@
     "task": "Add finetune and review service containers",
     "test": "",
     "status": "todo"
+  },
+  {
+    "commit": "Document NewsBot live cycle flow",
+    "path": "docs/newsbot/flows.md",
+    "status": "todo",
+    "task": "Describe NewsFetch -> ScriptGen -> TTS -> Avatar -> Stream",
+    "test": ""
+  },
+  {
+    "commit": "Document NewsBot training flow",
+    "path": "docs/newsbot/flows.md",
+    "status": "todo",
+    "task": "Explain /training/collect and /finetune leading to new model",
+    "test": ""
+  },
+  {
+    "commit": "Document NewsBot draft and publish flow",
+    "path": "docs/newsbot/flows.md",
+    "status": "todo",
+    "task": "Detail ReviewAgent -> manual gate -> LiveStore -> Stream",
+    "test": ""
   }
 ]
