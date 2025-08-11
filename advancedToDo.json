@@ -12078,7 +12078,7 @@
     "path": "packages/unifiedmandala-ui/components/GovernanceSimulatorPanel.tsx",
     "task": "Run world policy simulations interactively",
     "test": "packages/unifiedmandala-ui/components/GovernanceSimulatorPanel.test.tsx",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "Create RefusalNotice component",
