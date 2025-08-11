@@ -1,11 +1,11 @@
 {
-  "lastCommit": "feat: add training data extraction script",
+  "lastCommit": "feat: implement ZIPMEM RAG indexer",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
   ],
   "mergeConflicts": [],
-  "notes": "Added script to extract training data from newadvancedconversations JSON.",
+  "notes": "Implemented baseline TF-IDF indexer for ZIPMEM fragments.",
   "pendingTasks": [
     {
       "commit": "Expose service avatars in PyramidVRMeetingRoom",

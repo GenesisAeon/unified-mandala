@@ -11981,8 +11981,8 @@
 - commit: Implement ZIPMEM RAG indexer
   path: services/rag/indexer.py
   task: Index ZIPMEM fragments with FAISS or Elastic for retrieval
-  test: services/rag/indexer.test.py
-  status: todo
+  test: services/rag/indexer_test.py
+  status: done
 - commit: Integrate agent frameworks into FractalTaskRunner
   path: packages/task-runner/FractalTaskRunner.ts
   task: Support LangChain, Rasa, Botpress, MS Bot Framework, AutoGPT and AutoGen
