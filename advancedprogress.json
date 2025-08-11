@@ -1,12 +1,16 @@
 {
-  "lastCommit": "feat: add TTS microservice",
+  "lastCommit": "feat: enhance usecase components with backend fetch",
   "fractalStep": "monitoring",
   "openBranches": [
     "work"
   ],
   "mergeConflicts": [],
-  "notes": "Implemented TTS microservice converting scripts to audio clips.",
+  "notes": "Implemented UI component triggering sigil generation, TODO parsing and SocialGood matching.",
   "pendingTasks": [
+    {
+      "commit": "Add React use-case components for Sigil generation, ToDo parsing, and SocialGood matching",
+      "status": "done"
+    },
     {
       "commit": "Expose service avatars in PyramidVRMeetingRoom",
       "status": "done"

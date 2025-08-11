@@ -2,21 +2,43 @@ import React from 'react';
 import TodoButton from './TodoButton';
 
 interface Props {
-  onSigil?: () => void;
+  onSigil?: (data: any) => void;
   onTodos?: (data: any) => void;
-  onMatch?: () => void;
+  onMatch?: (data: any) => void;
 }
 
-const UsecaseComponents: React.FC<Props> = ({ onSigil, onTodos, onMatch }) => (
-  <div aria-label="Usecase Components">
-    <button aria-label="Generate Sigil" onClick={onSigil}>
-      Generate Sigil
-    </button>
-    <TodoButton onComplete={onTodos} />
-    <button aria-label="Match SocialGood" onClick={onMatch}>
-      Match SocialGood
-    </button>
-  </div>
-);
+const UsecaseComponents: React.FC<Props> = ({ onSigil, onTodos, onMatch }) => {
+  const handleSigil = async () => {
+    try {
+      const res = await fetch('/usecases/sigil/generate');
+      const data = await res.json();
+      onSigil?.(data);
+    } catch {
+      onSigil?.(null);
+    }
+  };
+
+  const handleMatch = async () => {
+    try {
+      const res = await fetch('/usecases/socialgood/match');
+      const data = await res.json();
+      onMatch?.(data);
+    } catch {
+      onMatch?.(null);
+    }
+  };
+
+  return (
+    <div aria-label="Usecase Components">
+      <button aria-label="Generate Sigil" onClick={handleSigil}>
+        Generate Sigil
+      </button>
+      <TodoButton onComplete={onTodos} />
+      <button aria-label="Match SocialGood" onClick={handleMatch}>
+        Match SocialGood
+      </button>
+    </div>
+  );
+};
 
 export default UsecaseComponents;
