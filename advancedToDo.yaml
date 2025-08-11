@@ -11977,7 +11977,7 @@
   path: memory-jobs.yaml
   task: Add fine_tune_models cron calling Mistral CodeAgent
   test: ""
-  status: todo
+  status: done
 - commit: Implement ZIPMEM RAG indexer
   path: services/rag/indexer.py
   task: Index ZIPMEM fragments with FAISS or Elastic for retrieval
