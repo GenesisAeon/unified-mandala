@@ -17,3 +17,4 @@ Dev-Agents prüfen zu Beginn eines Laufs auf diese Dateien und priorisieren dere
 - Implemented SecurityDashboard component for vulnerability visualization.
 - Added agent backend switching in ChatPanel with service toolbar.
 - Implemented SingularitySimulatorPanel for interactive singularity simulations.
+- Added duplicate conversation title index tracking in validator.
