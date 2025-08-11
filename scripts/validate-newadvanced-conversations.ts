@@ -6,6 +6,7 @@ export interface ValidationResult {
   conversationCount: number;
   duplicateIds: string[];
   duplicateTitles: string[];
+  duplicateTitleIndices: number[];
   conversationsWithTitleWhitespace: number[];
   conversationsWithInvalidTitleChars: number[];
   conversationsWithLongTitles: number[];
@@ -67,6 +68,7 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
   const seenTitles = new Set<string>();
   const duplicateIds: string[] = [];
   const duplicateTitles: string[] = [];
+  const duplicateTitleIndices: number[] = [];
   const titlesWithWhitespace: number[] = [];
   const titlesWithInvalidChars: number[] = [];
   const longTitles: number[] = [];
@@ -380,8 +382,12 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
       if (conv.title.length > 100) {
         longTitles.push(idx);
       }
-      if (seenTitles.has(normalized)) duplicateTitles.push(normalized);
-      else seenTitles.add(normalized);
+      if (seenTitles.has(normalized)) {
+        duplicateTitles.push(normalized);
+        duplicateTitleIndices.push(idx);
+      } else {
+        seenTitles.add(normalized);
+      }
     }
 
     const nodes: any[] = Object.values(conv.mapping || {});
@@ -735,6 +741,7 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
     conversationCount: raw.length,
     duplicateIds,
     duplicateTitles,
+    duplicateTitleIndices,
   conversationsWithTitleWhitespace: titlesWithWhitespace,
   conversationsWithInvalidTitleChars: titlesWithInvalidChars,
   conversationsWithLongTitles: longTitles,

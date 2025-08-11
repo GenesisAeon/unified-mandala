@@ -10,6 +10,7 @@ describe('validateNewAdvancedConversations', () => {
     );
     const res = validateNewAdvancedConversations(file);
     expect(res.duplicateTitles).toEqual(['foo']);
+    expect(res.duplicateTitleIndices).toEqual([1]);
   });
 
   it('flags duplicate titles case-insensitively', () => {
@@ -19,6 +20,7 @@ describe('validateNewAdvancedConversations', () => {
     );
     const res = validateNewAdvancedConversations(file);
     expect(res.duplicateTitles).toEqual(['foo']);
+    expect(res.duplicateTitleIndices).toEqual([1]);
   });
 
   it('flags titles with extra whitespace and normalizes for duplicates', () => {
@@ -28,6 +30,7 @@ describe('validateNewAdvancedConversations', () => {
     );
     const res = validateNewAdvancedConversations(file);
     expect(res.duplicateTitles).toEqual(['foo']);
+    expect(res.duplicateTitleIndices).toEqual([1]);
     expect(res.conversationsWithTitleWhitespace).toEqual([1]);
   });
 

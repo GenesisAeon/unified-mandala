@@ -8308,6 +8308,13 @@
     "status": "done"
   },
   {
+    "commit": "Report duplicate conversation title indices",
+    "path": "scripts/validate-newadvanced-conversations.ts",
+    "task": "Record indices of duplicate titles in validation result",
+    "test": "scripts/validate-newadvanced-conversations.test.ts",
+    "status": "done"
+  },
+  {
     "commit": "Implement HookTriggererAgent webhook",
     "path": "packages/agents/HookTriggererAgent.ts",
     "task": "Add webhook POST trigger based on task.url",
