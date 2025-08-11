@@ -1,11 +1,11 @@
 {
-  "lastCommit": "feat: scaffold news fetcher microservice",
+  "lastCommit": "feat: add TTS microservice",
   "fractalStep": "monitoring",
   "openBranches": [
     "work"
   ],
   "mergeConflicts": [],
-  "notes": "Scaffolded RSS and NewsAPI fetcher service.",
+  "notes": "Implemented TTS microservice converting scripts to audio clips.",
   "pendingTasks": [
     {
       "commit": "Expose service avatars in PyramidVRMeetingRoom",
@@ -41,7 +41,7 @@
     },
     {
       "commit": "Scaffold tts microservice",
-      "status": "todo"
+      "status": "done"
     },
     {
       "commit": "Scaffold avatar_renderer microservice",

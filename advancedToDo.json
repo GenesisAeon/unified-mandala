@@ -11578,10 +11578,10 @@
   },
   {
     "commit": "Scaffold tts microservice",
-    "path": "services/tts/app.py",
+    "path": "services/newsbot/tts/app.py",
     "task": "Convert generated scripts into audio clips",
-    "test": "services/tts/app.test.py",
-    "status": "todo"
+    "test": "services/newsbot/tts/app_test.py",
+    "status": "done"
   },
   {
     "commit": "Scaffold avatar_renderer microservice",
