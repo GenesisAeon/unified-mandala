@@ -11483,7 +11483,7 @@
     "path": "packages/unifiedmandala-ui/components/ChatPanel.tsx",
     "task": "Allow ChatPanel to switch between local and external agent backends and show service toolbar",
     "test": "packages/unifiedmandala-ui/components/ChatPanel.test.tsx",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "Create AgentControlPanel component",
