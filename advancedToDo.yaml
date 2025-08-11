@@ -11962,12 +11962,12 @@
   task: Define GPT4All, OpenAssistant, h2oGPT, text-generation-webui and AutoGen
     microservices
   test: ""
-  status: todo
+  status: done
 - commit: Map chat services in pipeline config
   path: pipeline_config.yaml
   task: Link gpt4all, openassistant, and h2ogpt services with CREP thresholds
   test: ""
-  status: todo
+  status: done
 - commit: Schedule nightly model fine-tuning
   path: memory-jobs.yaml
   task: Add fine_tune_models cron calling Mistral CodeAgent

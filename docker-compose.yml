@@ -58,3 +58,29 @@ services:
       context: ./agents/singularity_simulator
     ports:
       - "8107:8000"
+
+  # --- Open-source chat services ---
+  gpt4all_service:
+    image: ghcr.io/nomic-ai/gpt4all:latest
+    ports:
+      - "8201:80"
+
+  openassistant_service:
+    image: ghcr.io/laion-ai/open-assistant:latest
+    ports:
+      - "8202:80"
+
+  h2ogpt_service:
+    image: ghcr.io/h2oai/h2ogpt-server:latest
+    ports:
+      - "8203:80"
+
+  text_generation_webui_service:
+    image: ghcr.io/oobabooga/text-generation-webui:latest
+    ports:
+      - "8204:7860"
+
+  autogen_service:
+    image: ghcr.io/microsoft/autogen:latest
+    ports:
+      - "8205:80"

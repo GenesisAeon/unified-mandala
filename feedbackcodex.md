@@ -13,3 +13,4 @@ Dev-Agents prüfen zu Beginn eines Laufs auf diese Dateien und priorisieren dere
 - Implemented RefusalNotice component to show ethical refusal messages.
 - Added singularity simulator service and pipeline mapping for advanced simulations.
 - Added EthicsPolicy agent and plugin.
+- Integrated open-source chat microservices and linked them in the pipeline configuration.
