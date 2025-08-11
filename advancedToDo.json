@@ -12204,7 +12204,7 @@
     "path": "packages/task-runner/FractalTaskRunner.ts",
     "task": "Support LangChain, Rasa, Botpress, MS Bot Framework, AutoGPT and AutoGen tasks",
     "test": "packages/task-runner/FractalTaskRunner.test.ts",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "Add AgentControlPanel UI",
