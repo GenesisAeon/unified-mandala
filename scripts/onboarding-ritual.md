@@ -11,6 +11,10 @@ Bitte führe folgende Schritte aus:
    `./scripts/setup-unifiedmandala.sh`
 4. **Wähle deine Agentendienste:**
    `./scripts/aeon.sh onboard_services`
+   
+   Dabei kannst du lokale und externe Dienste aktivieren. Deine Auswahl wird
+   in `user-config/services_selected.yaml` gespeichert und steht dem Mandala
+   anschließend über eine API (`services/configure-services.ts`) zur Verfügung.
 5. **Aktiviere den Zyklus:**
    `./scripts/aeon.sh cycle_start`
 6. **Starte den Dialog:**

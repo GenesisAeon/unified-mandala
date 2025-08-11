@@ -11546,21 +11546,21 @@
     "path": "scripts/onboarding-ritual.md",
     "task": "Guide users to choose and activate avatar services",
     "test": "",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "Implement onboard_services CLI step",
     "path": "scripts/aeon.sh",
     "task": "Provide interactive service selection and save to user-config/services_selected.yaml",
     "test": "",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "Create service configuration API endpoint",
     "path": "services/configure-services.ts",
     "task": "Update pipeline and user config with selected services",
     "test": "services/configure-services.test.ts",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "Scaffold news_fetcher microservice",
