@@ -12071,7 +12071,7 @@
     "path": "packages/unifiedmandala-ui/components/SecurityDashboard.tsx",
     "task": "Visualize vulnerabilities from security scans",
     "test": "packages/unifiedmandala-ui/components/SecurityDashboard.test.tsx",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "Create GovernanceSimulatorPanel component",

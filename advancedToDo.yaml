@@ -11889,7 +11889,7 @@
   path: packages/unifiedmandala-ui/components/SecurityDashboard.tsx
   task: Visualize vulnerabilities from security scans
   test: packages/unifiedmandala-ui/components/SecurityDashboard.test.tsx
-  status: todo
+  status: done
 - commit: Create GovernanceSimulatorPanel component
   path: packages/unifiedmandala-ui/components/GovernanceSimulatorPanel.tsx
   task: Run world policy simulations interactively
