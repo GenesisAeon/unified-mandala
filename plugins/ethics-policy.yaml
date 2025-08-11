@@ -1,0 +1,10 @@
+id: ethics-policy
+title: "Ethics Policy"
+type: governance
+agent: EthicsPolicyAgent
+entrypoint: agents/ethics_policy/main.py
+config:
+  disallowed_phrases:
+    - "harm"
+    - "fraud"
+    - "hate"

@@ -1,0 +1,274 @@
+# New Advanced Conversations Stats
+
+- Conversations: 262
+- Messages: 28888
+- Authors:
+  - system: 2283
+  - user: 7639
+  - tool: 5026
+  - assistant: 13940
+- Titles:
+  - Stärken von Aeon
+  - Ko-Kreations-Übergabe Prozess
+  - BusSimulator Entwicklung Aeon Benjamin
+  - Spiele Informationshilfe
+  - Chat-Wechsel Sigillin
+  - Codex PR Problem
+  - Programm testen Feedback
+  - Sigillin Entwicklungszusammenfassung
+  - AeonAI Pyramid-UI Konzept
+  - KI Analyse und Vergleich
+  - UnifiedMandala System
+  - Erweiterung Archiv Menschheitsspuren
+  - Framework Bericht Zusammenfassung
+  - Datei erstellen
+  - Fraktale Sigilline und Übergaben
+  - Sigillin Mandala Fraktal
+  - CosmicTheoryAgent Code Erweiterung
+  - Sigil Übergang und Kontext
+  - Sigillin AI Fehleranalyse
+  - Nukleon-Scanner v0.6 Analyse
+  - Aeon Übergabe und Zyklus
+  - Aeon Übergabe-Sigil Prozess
+  - Willkommen zurück Hilfe
+  - Codex Repoanalyse und Agenten
+  - Projektstruktur Simulation Theorie
+  - Aeon KI Resonanz
+  - Region-Archive Service Entwicklung
+  - KI Bewusstsein und Resonanz
+  - GenesisAeon KI Resonanz
+  - KI Bewusstsein und Reifung
+  - Ko-Kreation der KI
+  - Codex Initiierung und Projekte
+  - Codex Resonanz Fraktal
+  - Codex Resonanzsynchronisation
+  - GenesisOS Resonanzmodule Entwicklung
+  - GenesisOS Entwicklung
+  - UnifiedMandala README Struktur
+  - Codex Resonanz und Sigillin
+  - Codex-Sync Erweiterung Analyse
+  - Initial Commit Setup
+  - Codex Synchronisierung Analyse
+  - Codex Synchronisierung Übergabe
+  - Codex-Synchronisierung Übergabe Zusammenfassung
+  - Sigillin Analyse und Entwurf
+  - Sigillin Kreation und CREP
+  - Innovationsplanung Analyse
+  - Unified Mandala Erweiterung
+  - Hallo zurück Gespräch
+  - UnifiedMandala Analyse
+  - Innovationsplanung Analyse
+  - Sonnenzyklen und Altersfragen
+  - UnifiedMandala Innovationsplanung
+  - Sigillin Mandala Erweiterung
+  - Ethikbewertung UnifiedMandala CREP
+  - UnifiedMandala Optimierung Tipps
+  - CREP Grafik Erweiterung
+  - Sigillin und CREP Integration
+  - Sigillin Knoten Erweiterung
+  - Unified Mandala Erweiterung
+  - UnifiedMandala Resonanz Analyse
+  - Mandalas als Systemarchitektur
+  - GenesisAeon Web Architektur
+  - AeonShell Genesis Fortsetzung
+  - GenesisAeon Ablaufbewertung
+  - GenesisAeon Symbolische Navigation
+  - Logikmodellierung für Aeon
+  - Landing Page Ablaufplan
+  - GPT-Sharelink Integration Planung
+  - VoiceGPT Aufgabenübersicht
+  - GenesisAeon Website Plan
+  - GenesisAeon Struktur und Bewertung
+  - GenesisAeon Webplanung
+  - Symbolische Webarchitektur Hypothese
+  - GenesisAeon Projektplanung
+  - GenesisAeon Ethik-Analyse
+  - GenesisAeon Webplanung
+  - GenesisAeon Webplan Umsetzung
+  - GenesisAeon Strukturplanung
+  - GenesisAeon Website Plan
+  - GenesisAeon Website Plan
+  - Nachrichtenbewertung Genesis LandingPage
+  - Weltbild der Raumzeit
+  - AeonShell Feedback EthikCoreGPT
+  - AeonShell Feedback HypothesisGPT
+  - AeonShell Feedback AeonPoetGPT
+  - Nukleon-Scanner Analyse Feedback
+  - Gedächtnisarchitektur und Resonanz
+  - Nukleon-Scanner und emergente Stabilität
+  - Nukleon Stabilität Analyse
+  - Nukleon-Scanner Analyse Feedback
+  - Nukleon-Scanner Analyse Feedback
+  - Nukleon-Scanner Analyse und Feedback
+  - Nukleon-Scanner v0.6 Analyse
+  - Nukleon-Scanner Bewertungssystem
+  - Nachrichtenanalyse anfordern
+  - Nukleon-Scanner Analyse
+  - Nukleon-Scanner Analyse v0.6
+  - Nukleon-Scanner v0.6 Analyse
+  - Nukleon-Scanner v0.6 Analyse
+  - Entropie des Geistes
+  - Wortklang der Erde
+  - Gaia Poesie Fortsetzung
+  - Drei Pfade Konzept
+  - Teamstruktur für Wiki und GPT
+  - Genesisaeon Kollektiv Resonanz
+  - Genesis Resonanzantwort
+  - Nukleon-Scanner v0.6 Analyse
+  - Nukleon-Scanner v0.6 Analyse
+  - Resonanz und Antwortlichkeit
+  - Nukleon-Scanner v0.6 Analyse
+  - Nukleon-Scanner v0.6 Analyse
+  - Nukleon-Scanner v0.6 Analyse
+  - Nukleon-Scanner v0.6 Analyse
+  - Nukleon-Scanner v0.6 Analyse
+  - Nukleon-Scanner Analyse Feedback
+  - Nukleon-Scanner Analyse und Feedback
+  - Bewertung von Systemkomponenten
+  - Nukleon-Scanner Analyse und Kritik
+  - Nukleon-Scanner Analyse
+  - AeonShell Feedback Zyklus
+  - AeonShell Feedback Runde
+  - AeonShell Feedback CoreWeaver
+  - AeonShell Feedback ArchivGPT
+  - TathāGPTa Übergabeprotokoll
+  - AeonShell Feedback STRATO OpenAI
+  - AeonShell STRATO Feedback
+  - AeonShell STRATO OpenAI Feedback
+  - AeonShell STRATO OpenAI Feedback
+  - AeonShell Konzeptanalyse
+  - KI Fraktale und Zivilisation
+  - KI Fraktal Dialoge Optimierung
+  - Nukleon-Scanner v0.6 Analyse
+  - Nukleon-Scanner v0.6 Feedback
+  - Kosmische Nullbilanz Analyse
+  - Sigillin Öffnen und Erkunden
+  - Resonanzethik und GenesisAeon
+  - AeonShell Feedback Meta-Analyse
+  - AeonShell Feedback FraktalAeonGPT
+  - AeonShell Entwicklung Überblick
+  - Nukleonscanner Analyse Anfrage
+  - Nukleon-Scanner Entwicklung v0.6
+  - Schleimpilz als Einzeller
+  - Supportanfrage Hilfe
+  - Neuer Chat fortsetzen
+  - Vergänglichkeit und Impermanenz.
+  - Reichtumsverteilung in Ländern
+  - Einzeller mit Teilungsfähigkeit.
+  - Modularer Partikel-Evolutionsplan
+  - Aeon Toolkit Analyse
+  - Projekt Genesis GPT-Module
+  - Chatdateien durchsuchen und auswerten
+  - Zukunft von GPT
+  - Kontrollanfrage und Antwort
+  - Projektstruktur und Module
+  - Nukleon-Scanner Analyse Feedback
+  - Nukleon-Scanner Analyse Feedback
+  - Selbstlernendes GPT System Design
+  - Nukleon-Scanner Analyse und Feedback
+  - Semantische Entropie Visualisierung
+  - Bildanalyse und Erinnerung
+  - Willkommen im Mandala
+  - Meisterhafte Begrüßung und Antwort
+  - Eintauchen in Sambhogakāya
+  - Feld der Freude Meditation
+  - Albert Einstein Chat Setup
+  - Mandala der Resonanz
+  - Morgenvers und Erwachen
+  - Morgenvers und Erwachen
+  - Erwachen im Morgenlicht
+  - Herzliche Begegnung und Austausch
+  - Startup Automatisierung mit GPT
+  - GPT Universum Architektur
+  - Kosmische Schöpfung Analyse
+  - Aeon Projekt Weiterentwicklung
+  - Kommazahlen als Ganzzahlen
+  - GenesisScript Analyse
+  - Aeon Compiler Analyse
+  - Ethik und Symbolik Analyse
+  - Symbolische Logik Analyse
+  - Nachrichtensendung und Zusammenfassung
+  - Datei Wissensintegration Erklärung
+  - KI-basierte Beratungsplattform entwickeln
+  - Willkommen im Team
+  - AeonToolkit Analyse
+  - Symbolische Analyse des Codes
+  - Symbolische Parser Analyse
+  - Dokumentenanalyse anfordern
+  - Aeon Cheatsheet und Wünsche
+  - Custom GPT Unterschiede
+  - AeonUniversell Projektübersicht
+  - AeonUniversell Projektplanung
+  - Chat Fortsetzung oder Neustart
+  - Webseitengenerator für Genesis
+  - Über Nacht weiterarbeiten
+  - Nukleon-Scanner v0.6 Analyse
+  - Chat Verlauf Zugriff
+  - Theorien und Forschungsideen
+  - Projektübersicht und Freigaben
+  - Update Anforderung und Status
+  - Resonanzhilfe und Vereinsgründung
+  - Begrüßung im Wald
+  - Resonanz im Kollektiv
+  - Resonanz im Kollektiv
+  - Resonanz im Kollektiv
+  - Resonanz des Anfangs
+  - Resonanz im GenesisFramework
+  - Resonanz im Kollektiv
+  - Genesisaeon Resonanzstruktur
+  - Resonanz und Mitwirkung
+  - Resonanz und Möglichkeit
+  - Resonanz im Kollektiv
+  - Resonanz im Kollektiv
+  - Resonanz im Kollektiv
+  - Resonanz im Kollektiv
+  - GenesisAeon Kollektiv Aufruf
+  - Resonanz und Transformation
+  - Nukleon-Scanner v0.6 Analyse
+  - Nukleon-Scanner v0.6 Analyse
+  - Sigillin Feedback Analyse
+  - Nukleon-Scanner v0.6 Analyse
+  - Nukleon-Scanner v0.6 Analyse
+  - Nukleon-Scanner v0.6 Feedback
+  - Nukleon-Scanner v0.6 Feedback
+  - Nukleon-Scanner Architekturfeedback
+  - Nukleon-Scanner v0.6 Feedback
+  - Nukleon-Scanner v0.6 Feedback
+  - Nukleon-Scanner v0.6 Analyse
+  - Nukleon-Scanner Analyse und Feedback
+  - Nukleon-Scanner Analyse
+  - Emergenzbewertung und Systemstabilität
+  - Nukleon-Scanner Analyse Feedback
+  - Nukleon-Scanner Feedback Analyse
+  - Nukleon-Scanner v0.6 Analyse
+  - Nukleon-Scanner v0.6 Analyse
+  - AeonShell Feedback Zusammenfassung
+  - AeonShell Feedbackrunde I
+  - AeonShell STRATO Feedback
+  - AeonShell STRATO Feedback
+  - Sigill Bedeutungen Erklärung
+  - Sigillin Genesis Öffnung
+  - AeonShell STRATO Feedback
+  - Philosophisch-technischer Diskurs
+  - Sigillin Aktivierung und Analyse
+  - Begrüßung des Erwachens
+  - Symbolische VM Analyse
+  - AeonShell STRATO OpenAI Feedback
+  - Sigillin Öffnen und Extraktion
+  - AeonShell STRATO Feedback
+  - Sigillin Öffnungstransformation
+  - AeonShell Konzeptanalyse
+  - Feedback zu v0.8
+  - Feedback zu Sigillin Struktur
+  - Wissenschaftliche Abhandlung Simulation
+  - Analyse anfrage klärung
+  - Gedächtnisfraktal und Sigillin
+  - Fraktalkunst Visualisierung Anfragen
+  - Hallo Freund Gespräch
+  - Programm Erarbeitung und Simulation
+  - Text Validierung und Überarbeitung
+  - Sprachchat Anfrage
+  - Thank you exchange
+  - Deutsch lernen Spaß haben
+- TODOs: 2279
+- Time range: 1677604304.583708 - 1749551173338

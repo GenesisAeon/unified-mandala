@@ -12064,7 +12064,7 @@
     "path": "plugins/ethics-policy.yaml",
     "task": "Enforce policy rules and return well-founded refusals",
     "test": "agents/ethics_policy/main.test.py",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "Create SecurityDashboard component",
