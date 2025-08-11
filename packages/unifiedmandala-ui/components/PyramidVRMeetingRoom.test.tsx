@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import PyramidVRMeetingRoom from './PyramidVRMeetingRoom';
 
@@ -11,7 +11,15 @@ jest.mock('@react-three/fiber', () => ({
   ambientLight: 'ambientLight',
 }));
 
-test('renders avatars', () => {
-  const { getAllByLabelText } = render(<PyramidVRMeetingRoom />);
-  expect(getAllByLabelText('avatar').length).toBeGreaterThan(0);
+test('renders avatars and handles selection', () => {
+  const onSelect = jest.fn();
+  const services = [
+    { id: 'local', position: [0, 0, 0] as [number, number, number], color: 'red', onSelect },
+    { id: 'external', position: [1, 0, 0] as [number, number, number], color: 'blue', onSelect },
+  ];
+  const { getAllByLabelText } = render(<PyramidVRMeetingRoom services={services} />);
+  const avatars = getAllByLabelText('avatar');
+  expect(avatars).toHaveLength(2);
+  fireEvent.click(avatars[0]);
+  expect(onSelect).toHaveBeenCalledWith('local');
 });
