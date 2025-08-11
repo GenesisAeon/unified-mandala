@@ -1,0 +1,1 @@
+"""News fetcher microservice package."""
