@@ -11988,7 +11988,7 @@
   task: Support LangChain, Rasa, Botpress, MS Bot Framework, AutoGPT and AutoGen
     tasks
   test: packages/task-runner/FractalTaskRunner.test.ts
-  status: todo
+  status: done
 - commit: Add AgentControlPanel UI
   path: packages/unifiedmandala-ui/components/AgentControlPanel.tsx
   task: Allow switching between local and external agent backends

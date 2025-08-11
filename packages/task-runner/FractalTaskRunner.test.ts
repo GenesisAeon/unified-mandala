@@ -17,3 +17,10 @@ test('runs tasks via plugins', async () => {
   const [res] = await runner.runFile(tmp);
   expect(res).toBe(4);
 });
+
+test('runs tasks via framework runners', async () => {
+  fs.writeFileSync(tmp, '- framework: langchain\n  input: "ping"');
+  const runner = new FractalTaskRunner();
+  const [res] = await runner.runFile(tmp);
+  expect(res).toEqual({ framework: 'langchain', input: 'ping' });
+});
