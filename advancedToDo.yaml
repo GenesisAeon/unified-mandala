@@ -11498,7 +11498,7 @@
   task: Query all enabled services in parallel and select response with highest
     CREP score
   test: packages/unifiedmandala-ui/hooks/useHybridService.test.ts
-  status: todo
+  status: done
 - commit: Add onboarding service catalog
   path: config/onboarding/services.yaml
   task: List available local and external agent services for onboarding

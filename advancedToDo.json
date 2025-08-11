@@ -11525,7 +11525,7 @@
     "path": "packages/unifiedmandala-ui/hooks/useHybridService.ts",
     "task": "Query all enabled services in parallel and select response with highest CREP score",
     "test": "packages/unifiedmandala-ui/hooks/useHybridService.test.ts",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "Add onboarding service catalog",

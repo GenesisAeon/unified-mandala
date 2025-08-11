@@ -1,11 +1,11 @@
 {
-  "lastCommit": "feat: expose service avatars in PyramidVRMeetingRoom",
+  "lastCommit": "feat: add hybrid service aggregator hook",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
   ],
   "mergeConflicts": [],
-  "notes": "Implemented baseline TF-IDF indexer for ZIPMEM fragments.",
+  "notes": "Added hybrid service aggregator hook and tests.",
   "pendingTasks": [
     {
       "commit": "Expose service avatars in PyramidVRMeetingRoom",
@@ -17,7 +17,7 @@
     },
     {
       "commit": "Add hybrid service aggregator",
-      "status": "todo"
+      "status": "done"
     },
     {
       "commit": "Extend onboarding ritual documentation for service selection",

@@ -21,3 +21,4 @@ Dev-Agents prüfen zu Beginn eines Laufs auf diese Dateien und priorisieren dere
 - Added live suggestion badges to CREPVisualizer and synced progress files.
 - Implemented chat proxy route to forward /api/chat requests to configured services.
 - Exposed service avatars in PyramidVRMeetingRoom for interactive local/external agents.
+- Implemented hybrid service aggregator hook to select highest CREP response.
