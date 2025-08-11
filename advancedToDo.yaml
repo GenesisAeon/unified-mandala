@@ -11492,7 +11492,7 @@
   path: services/chat-proxy.ts
   task: Route /api/chat requests to local or external services based on agent profile
   test: services/chat-proxy.test.ts
-  status: todo
+  status: done
 - commit: Add hybrid service aggregator
   path: packages/unifiedmandala-ui/hooks/useHybridService.ts
   task: Query all enabled services in parallel and select response with highest
