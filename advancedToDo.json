@@ -12085,7 +12085,7 @@
     "path": "packages/unifiedmandala-ui/components/RefusalNotice.tsx",
     "task": "Display ethically grounded refusal messages",
     "test": "packages/unifiedmandala-ui/components/RefusalNotice.test.tsx",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "Add Singularity Simulator plugin manifest",
