@@ -11585,17 +11585,17 @@
   },
   {
     "commit": "Scaffold avatar_renderer microservice",
-    "path": "services/avatar_renderer/app.py",
+    "path": "services/newsbot/avatar_renderer/app.py",
     "task": "Render avatar video using audio narration",
-    "test": "services/avatar_renderer/app.test.py",
-    "status": "todo"
+    "test": "services/newsbot/avatar_renderer/app_test.py",
+    "status": "done"
   },
   {
     "commit": "Scaffold streamer microservice",
-    "path": "services/streamer/app.py",
+    "path": "services/newsbot/streamer/app.py",
     "task": "Stream rendered news videos to YouTube",
-    "test": "services/streamer/app.test.py",
-    "status": "todo"
+    "test": "services/newsbot/streamer/app_test.py",
+    "status": "done"
   },
   {
     "commit": "Implement newsbot orchestrator service",

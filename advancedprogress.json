@@ -1,5 +1,5 @@
 {
-  "lastCommit": "feat: add TTS microservice",
+  "lastCommit": "feat: add avatar and streamer tests",
   "fractalStep": "monitoring",
   "openBranches": [
     "work"
@@ -45,11 +45,11 @@
     },
     {
       "commit": "Scaffold avatar_renderer microservice",
-      "status": "todo"
+      "status": "done"
     },
     {
       "commit": "Scaffold streamer microservice",
-      "status": "todo"
+      "status": "done"
     },
     {
       "commit": "Implement newsbot orchestrator service",
