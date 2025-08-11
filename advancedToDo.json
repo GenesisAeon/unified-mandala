@@ -11999,7 +11999,7 @@
   {
     "commit": "Create SentimentBadge component",
     "path": "packages/unifiedmandala-ui/components/SentimentBadge.tsx",
-    "status": "todo",
+    "status": "done",
     "task": "Show real-time sentiment analysis badge",
     "test": "packages/unifiedmandala-ui/components/SentimentBadge.test.tsx"
   },
