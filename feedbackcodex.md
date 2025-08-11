@@ -11,3 +11,4 @@ Dev-Agents prüfen zu Beginn eines Laufs auf diese Dateien und priorisieren dere
 - Added DefensiveShieldAgent plugin and sanitization service.
 
 - Implemented RefusalNotice component to show ethical refusal messages.
+- Added singularity simulator service and pipeline mapping for advanced simulations.

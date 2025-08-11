@@ -6,6 +6,7 @@ sigillin_map:
   time_series:      liquidnet_service
   physics_sim:      kan_service
   on_device_task:   npu_service
+  simulate_singularity: singularity_simulator_service
 
 crep_thresholds:
   gnn_service: 0.60
@@ -15,3 +16,4 @@ crep_thresholds:
   liquidnet_service: 0.60
   kan_service: 0.70
   npu_service: 0.50
+  singularity_simulator_service: 0.75
