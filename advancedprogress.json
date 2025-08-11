@@ -1,11 +1,11 @@
 {
-  "lastCommit": "feat: add hybrid service aggregator hook",
-  "fractalStep": "implementiert",
+  "lastCommit": "feat: add service configuration API",
+  "fractalStep": "service-selection",
   "openBranches": [
     "work"
   ],
   "mergeConflicts": [],
-  "notes": "Added hybrid service aggregator hook and tests.",
+  "notes": "Added API and docs for selecting active services.",
   "pendingTasks": [
     {
       "commit": "Expose service avatars in PyramidVRMeetingRoom",
@@ -21,15 +21,15 @@
     },
     {
       "commit": "Extend onboarding ritual documentation for service selection",
-      "status": "todo"
+      "status": "done"
     },
     {
       "commit": "Implement onboard_services CLI step",
-      "status": "todo"
+      "status": "done"
     },
     {
       "commit": "Create service configuration API endpoint",
-      "status": "todo"
+      "status": "done"
     },
     {
       "commit": "Scaffold news_fetcher microservice",
