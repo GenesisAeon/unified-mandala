@@ -11472,7 +11472,7 @@
   path: packages/unifiedmandala-ui/components/AgentControlPanel.tsx
   task: UI panel for selecting agent backend, modes and CREP thresholds
   test: packages/unifiedmandala-ui/components/AgentControlPanel.test.tsx
-  status: todo
+  status: done
 - commit: Add live suggestion badges to CREPVisualizer
   path: packages/unifiedmandala-ui/components/CREPVisualizer.tsx
   task: Display notification badges for new agent insights
@@ -11988,4 +11988,4 @@
   path: packages/unifiedmandala-ui/components/AgentControlPanel.tsx
   task: Allow switching between local and external agent backends
   test: packages/unifiedmandala-ui/components/AgentControlPanel.test.tsx
-  status: todo
+  status: done
