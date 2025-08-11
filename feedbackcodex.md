@@ -15,3 +15,4 @@ Dev-Agents prüfen zu Beginn eines Laufs auf diese Dateien und priorisieren dere
 - Added EthicsPolicy agent and plugin.
 - Integrated open-source chat microservices and linked them in the pipeline configuration.
 - Implemented SecurityDashboard component for vulnerability visualization.
+- Added agent backend switching in ChatPanel with service toolbar.
