@@ -11839,7 +11839,7 @@
   path: packages/unifiedmandala-ui/components/SentimentBadge.tsx
   task: Show real-time sentiment analysis badge
   test: packages/unifiedmandala-ui/components/SentimentBadge.test.tsx
-  status: todo
+  status: done
 - commit: Create ArtGallery component
   path: packages/unifiedmandala-ui/components/ArtGallery.tsx
   task: Render generative art pieces
