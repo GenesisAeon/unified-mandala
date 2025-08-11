@@ -1,5 +1,5 @@
 {
-  "lastCommit": "feat: implement ZIPMEM RAG indexer",
+  "lastCommit": "feat: implement chat proxy route for local and external agents",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
@@ -13,7 +13,7 @@
     },
     {
       "commit": "Implement chat proxy route for local and external agents",
-      "status": "todo"
+      "status": "done"
     },
     {
       "commit": "Add hybrid service aggregator",

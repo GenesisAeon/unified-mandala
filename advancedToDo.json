@@ -11518,7 +11518,7 @@
     "path": "services/chat-proxy.ts",
     "task": "Route /api/chat requests to local or external services based on agent profile",
     "test": "services/chat-proxy.test.ts",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "Add hybrid service aggregator",
