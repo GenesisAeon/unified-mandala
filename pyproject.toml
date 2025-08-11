@@ -17,6 +17,7 @@ numpy = "*"
 torch = "*"
 fastapi = "*"
 uvicorn = "*"
+gtts = "*"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "*"
