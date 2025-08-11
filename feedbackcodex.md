@@ -9,3 +9,5 @@ Dev-Agents prüfen zu Beginn eines Laufs auf diese Dateien und priorisieren dere
 
 - Added onboarding service catalog and agent service mapping configurations.
 - Added DefensiveShieldAgent plugin and sanitization service.
+
+- Implemented RefusalNotice component to show ethical refusal messages.
