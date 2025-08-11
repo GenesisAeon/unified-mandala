@@ -1,8 +1,13 @@
 import React, { useEffect, useRef } from 'react';
 import { CREPEntry } from '../../crep-engine/types';
 
+interface InsightEntry extends CREPEntry {
+  /** Number of live suggestions generated for this entry */
+  insights?: number;
+}
+
 interface Props {
-  history: CREPEntry[];
+  history: InsightEntry[];
 }
 
 const CREPVisualizer: React.FC<Props> = ({ history }) => {
@@ -21,6 +26,29 @@ const CREPVisualizer: React.FC<Props> = ({ history }) => {
       rect.setAttribute('height', String(e.C * 5));
       rect.setAttribute('fill', '#8884d8');
       svg.appendChild(rect);
+
+      if (e.insights && e.insights > 0) {
+        const badge = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        const cx = x + 1;
+        const cy = 50 - e.C * 5 - 4;
+        badge.setAttribute('cx', String(cx));
+        badge.setAttribute('cy', String(cy));
+        badge.setAttribute('r', '4');
+        badge.setAttribute('fill', '#ff4136');
+        badge.setAttribute('data-testid', 'crep-badge');
+        svg.appendChild(badge);
+
+        const label = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        label.setAttribute('x', String(cx));
+        label.setAttribute('y', String(cy));
+        label.setAttribute('text-anchor', 'middle');
+        label.setAttribute('dominant-baseline', 'middle');
+        label.setAttribute('font-size', '6');
+        label.setAttribute('fill', '#fff');
+        label.textContent = String(e.insights);
+        svg.appendChild(label);
+      }
+
       x += 3;
     });
     const axis = document.createElementNS('http://www.w3.org/2000/svg', 'line');
