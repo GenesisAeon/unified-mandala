@@ -1,5 +1,5 @@
 {
-  "lastCommit": "feat: implement chat proxy route for local and external agents",
+  "lastCommit": "feat: expose service avatars in PyramidVRMeetingRoom",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
@@ -9,7 +9,7 @@
   "pendingTasks": [
     {
       "commit": "Expose service avatars in PyramidVRMeetingRoom",
-      "status": "todo"
+      "status": "done"
     },
     {
       "commit": "Implement chat proxy route for local and external agents",

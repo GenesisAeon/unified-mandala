@@ -11511,7 +11511,7 @@
     "path": "packages/unifiedmandala-ui/components/PyramidVRMeetingRoom.tsx",
     "task": "Render avatars for local and external services with interaction hooks",
     "test": "packages/unifiedmandala-ui/components/PyramidVRMeetingRoom.test.tsx",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "Implement chat proxy route for local and external agents",
