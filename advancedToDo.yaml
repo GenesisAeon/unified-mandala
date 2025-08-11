@@ -11528,8 +11528,8 @@
 - commit: Scaffold news_fetcher microservice
   path: services/news_fetcher/app.py
   task: Fetch top headlines from RSS feeds and NewsAPI
-  test: services/news_fetcher/app.test.py
-  status: todo
+  test: services/news_fetcher/app_test.py
+  status: done
 - commit: Scaffold script_gen microservice
   path: services/script_gen/app.py
   task: Generate news scripts using LLM API

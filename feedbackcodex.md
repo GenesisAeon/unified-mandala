@@ -23,3 +23,4 @@ Dev-Agents prüfen zu Beginn eines Laufs auf diese Dateien und priorisieren dere
 - Exposed service avatars in PyramidVRMeetingRoom for interactive local/external agents.
 - Implemented hybrid service aggregator hook to select highest CREP response.
 - Introduced DriftDetectionAgent plugin for monitoring data drift.
+- Scaffolded standalone news_fetcher microservice for RSS and NewsAPI aggregation.
