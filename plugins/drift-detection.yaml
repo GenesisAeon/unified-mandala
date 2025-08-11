@@ -1,0 +1,7 @@
+id: drift-detection
+title: "Drift Detection"
+type: monitoring
+agent: DriftDetectionAgent
+entrypoint: agents/drift_detection/main.py
+config:
+  threshold: 0.2

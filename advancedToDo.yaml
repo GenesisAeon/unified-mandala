@@ -11748,8 +11748,8 @@
 - commit: Add drift detection plugin and agent
   path: plugins/drift-detection.yaml
   task: Monitor data streams for distribution drift with DriftAgent
-  test: agents/drift_detection/main.test.ts
-  status: todo
+  test: agents/drift_detection/test_main.py
+  status: done
 - commit: Add review checkpoint plugin and agent
   path: plugins/review-checkpoint.yaml
   task: Sample fragments for manual validation via ReviewAgent

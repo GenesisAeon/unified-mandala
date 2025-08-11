@@ -11873,9 +11873,9 @@
   {
     "commit": "Add drift detection plugin and agent",
     "path": "plugins/drift-detection.yaml",
-    "status": "todo",
+    "status": "done",
     "task": "Monitor data streams for distribution drift with DriftAgent",
-    "test": "agents/drift_detection/main.test.ts"
+    "test": "agents/drift_detection/test_main.py"
   },
   {
     "commit": "Add review checkpoint plugin and agent",
