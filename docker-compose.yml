@@ -53,3 +53,8 @@ services:
       context: ./services/finetune
     ports:
       - "8106:8000"
+  singularity_simulator_service:
+    build:
+      context: ./agents/singularity_simulator
+    ports:
+      - "8107:8000"

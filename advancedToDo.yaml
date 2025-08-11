@@ -11868,37 +11868,37 @@
 - commit: Add security scanner plugin and agent
   path: plugins/security_scanner.yaml
   task: Scan agent endpoints against ART benchmark attacks
-  test: "agents/security_scanner/test_main.py"
+  test: agents/security_scanner/test_main.py
   status: done
 - commit: Add defensive shield plugin and agent
   path: plugins/defensive_shield.yaml
   task: Sanitize inputs and block exploits via DefensiveShieldAgent
-  test: "agents/defensive_shield/main.test.py"
+  test: agents/defensive_shield/main.test.py
   status: done
 - commit: Add governance simulator plugin and agent
   path: plugins/governance-simulator.yaml
   task: Simulate global cooperation scenarios with GovernanceSimulatorAgent
-  test: "agents/governance_simulator/main.test.py"
+  test: agents/governance_simulator/main.test.py
   status: done
 - commit: Add ethics policy and refusal agents
   path: plugins/ethics-policy.yaml
   task: Enforce policy rules and return well-founded refusals
-  test: "agents/ethics_policy/main.test.py"
+  test: agents/ethics_policy/main.test.py
   status: todo
 - commit: Create SecurityDashboard component
   path: packages/unifiedmandala-ui/components/SecurityDashboard.tsx
   task: Visualize vulnerabilities from security scans
-  test: "packages/unifiedmandala-ui/components/SecurityDashboard.test.tsx"
+  test: packages/unifiedmandala-ui/components/SecurityDashboard.test.tsx
   status: todo
 - commit: Create GovernanceSimulatorPanel component
   path: packages/unifiedmandala-ui/components/GovernanceSimulatorPanel.tsx
   task: Run world policy simulations interactively
-  test: "packages/unifiedmandala-ui/components/GovernanceSimulatorPanel.test.tsx"
+  test: packages/unifiedmandala-ui/components/GovernanceSimulatorPanel.test.tsx
   status: todo
 - commit: Create RefusalNotice component
   path: packages/unifiedmandala-ui/components/RefusalNotice.tsx
   task: Display ethically grounded refusal messages
-  test: "packages/unifiedmandala-ui/components/RefusalNotice.test.tsx"
+  test: packages/unifiedmandala-ui/components/RefusalNotice.test.tsx
   status: done
 - commit: Add Singularity Simulator plugin manifest
   path: plugins/singularity-simulator.yaml
@@ -11919,12 +11919,12 @@
   path: pipeline_config.yaml
   task: Add singularity-simulator mapping and threshold
   test: ""
-  status: todo
+  status: done
 - commit: Extend docker-compose with singularity simulator service
   path: docker-compose.yml
   task: Add singularity_simulator service definition
   test: ""
-  status: todo
+  status: done
 - commit: Create SingularitySimulatorPanel component
   path: packages/unifiedmandala-ui/components/SingularitySimulatorPanel.tsx
   task: Interactive panel for running singularity simulations
@@ -11942,12 +11942,14 @@
   status: done
 - commit: Log trigger phrases and pending todos
   path: scripts/chat_migration/log_triggers.ts
-  task: Collect last trigger phrases and open ToDos from advancedToDo.yaml into migration log
+  task: Collect last trigger phrases and open ToDos from advancedToDo.yaml into
+    migration log
   test: scripts/chat_migration/log_triggers.test.ts
   status: done
 - commit: Initialize core modules for new chat
   path: scripts/chat_migration/init_modules.ts
-  task: Load Ethical Refusal, Singularity Simulator, and Weltinnenpolitik-Simulator modules
+  task: Load Ethical Refusal, Singularity Simulator, and
+    Weltinnenpolitik-Simulator modules
   test: scripts/chat_migration/init_modules.test.ts
   status: done
 - commit: Create chat transition bootstrap
@@ -11957,7 +11959,8 @@
   status: done
 - commit: Add open-source chat services to compose
   path: docker-compose.yml
-  task: Define GPT4All, OpenAssistant, h2oGPT, text-generation-webui and AutoGen microservices
+  task: Define GPT4All, OpenAssistant, h2oGPT, text-generation-webui and AutoGen
+    microservices
   test: ""
   status: todo
 - commit: Map chat services in pipeline config
@@ -11977,7 +11980,8 @@
   status: todo
 - commit: Integrate agent frameworks into FractalTaskRunner
   path: packages/task-runner/FractalTaskRunner.ts
-  task: Support LangChain, Rasa, Botpress, MS Bot Framework, AutoGPT and AutoGen tasks
+  task: Support LangChain, Rasa, Botpress, MS Bot Framework, AutoGPT and AutoGen
+    tasks
   test: packages/task-runner/FractalTaskRunner.test.ts
   status: todo
 - commit: Add AgentControlPanel UI

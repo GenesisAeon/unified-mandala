@@ -1,5 +1,5 @@
 {
-  "lastCommit": "Merge pull request #1101 from GenesisAeon/codex/integrate-climate-and-social-data-into-news-team",
+  "lastCommit": "feat: integrate singularity simulator pipeline",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
@@ -7,14 +7,6 @@
   "mergeConflicts": [],
   "notes": "Added validation for message metadata flags; continue exploring metadata structure in conversations. Implemented Sigillin export for chat migration. Completed validation for moderation results and URL lists.",
   "pendingTasks": [
-    {
-      "commit": "Validate moderation results in conversations",
-      "status": "done"
-    },
-    {
-      "commit": "Validate blocked and safe URLs in conversations",
-      "status": "done"
-    },
     {
       "commit": "Add agent profile switching to ChatPanel",
       "status": "todo"
@@ -37,14 +29,6 @@
     },
     {
       "commit": "Add hybrid service aggregator",
-      "status": "todo"
-    },
-    {
-      "commit": "Add onboarding service catalog",
-      "status": "todo"
-    },
-    {
-      "commit": "Add agent service mapping configuration",
       "status": "todo"
     },
     {
@@ -232,8 +216,148 @@
       "status": "todo"
     },
     {
-      "commit": "Add governance simulator plugin and agent",
-      "status": "done"
+      "commit": "Define Auto-Resonanz sigillin",
+      "status": "todo"
+    },
+    {
+      "commit": "Add drift detection plugin and agent",
+      "status": "todo"
+    },
+    {
+      "commit": "Add review checkpoint plugin and agent",
+      "status": "todo"
+    },
+    {
+      "commit": "Add meta tuner plugin and agent",
+      "status": "todo"
+    },
+    {
+      "commit": "Add contrastive training plugin and agent",
+      "status": "todo"
+    },
+    {
+      "commit": "Create ResonanceHistoryPanel UI",
+      "status": "todo"
+    },
+    {
+      "commit": "Add mandala federation plugin and agent",
+      "status": "todo"
+    },
+    {
+      "commit": "Add IoT sensor plugin and agent",
+      "status": "todo"
+    },
+    {
+      "commit": "Add Dockerfile and requirements for IoT sensor agent",
+      "status": "todo"
+    },
+    {
+      "commit": "Add Dockerfile and requirements for sentiment agent",
+      "status": "todo"
+    },
+    {
+      "commit": "Add Dockerfile and requirements for provenance agent",
+      "status": "todo"
+    },
+    {
+      "commit": "Add Dockerfile and requirements for generative art agent",
+      "status": "todo"
+    },
+    {
+      "commit": "Add Dockerfile and requirements for societal impact agent",
+      "status": "todo"
+    },
+    {
+      "commit": "Add Dockerfile and requirements for catalyst agent",
+      "status": "todo"
+    },
+    {
+      "commit": "Add Dockerfile and requirements for digital twin agent",
+      "status": "todo"
+    },
+    {
+      "commit": "Add Dockerfile and requirements for gamification agent",
+      "status": "todo"
+    },
+    {
+      "commit": "Register new agents in plugins manifest",
+      "status": "todo"
+    },
+    {
+      "commit": "Extend docker-compose with new agent services",
+      "status": "todo"
+    },
+    {
+      "commit": "Configure agents CI workflow for new agents",
+      "status": "todo"
+    },
+    {
+      "commit": "Create IoTSensorWidget component",
+      "status": "todo"
+    },
+    {
+      "commit": "Create SentimentBadge component",
+      "status": "todo"
+    },
+    {
+      "commit": "Create ArtGallery component",
+      "status": "todo"
+    },
+    {
+      "commit": "Create ImpactMap component",
+      "status": "todo"
+    },
+    {
+      "commit": "Create EmergencePanel component",
+      "status": "todo"
+    },
+    {
+      "commit": "Create TwinMonitor component",
+      "status": "todo"
+    },
+    {
+      "commit": "Create BadgeProfile component",
+      "status": "todo"
+    },
+    {
+      "commit": "Add ethics policy and refusal agents",
+      "status": "todo"
+    },
+    {
+      "commit": "Create SecurityDashboard component",
+      "status": "todo"
+    },
+    {
+      "commit": "Create GovernanceSimulatorPanel component",
+      "status": "todo"
+    },
+    {
+      "commit": "Create SingularitySimulatorPanel component",
+      "status": "todo"
+    },
+    {
+      "commit": "Add open-source chat services to compose",
+      "status": "todo"
+    },
+    {
+      "commit": "Map chat services in pipeline config",
+      "status": "todo"
+    },
+    {
+      "commit": "Schedule nightly model fine-tuning",
+      "status": "todo"
+    },
+    {
+      "commit": "Implement ZIPMEM RAG indexer",
+      "status": "todo"
+    },
+    {
+      "commit": "Integrate agent frameworks into FractalTaskRunner",
+      "status": "todo"
+    },
+    {
+      "commit": "Add AgentControlPanel UI",
+      "status": "todo"
     }
   ],
   "progress": [
@@ -1452,6 +1576,14 @@
     {
       "commit": "Plan moderation and URL validation tasks",
       "status": "todo"
+    },
+    {
+      "commit": "Map simulate_singularity pipeline",
+      "status": "done"
+    },
+    {
+      "commit": "Extend docker-compose with singularity simulator service",
+      "status": "done"
     }
   ],
   "metacommitTags": [

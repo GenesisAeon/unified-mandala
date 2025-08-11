@@ -12113,14 +12113,14 @@
     "path": "pipeline_config.yaml",
     "task": "Add singularity-simulator mapping and threshold",
     "test": "",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "Extend docker-compose with singularity simulator service",
     "path": "docker-compose.yml",
     "task": "Add singularity_simulator service definition",
     "test": "",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "Create SingularitySimulatorPanel component",
