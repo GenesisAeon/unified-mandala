@@ -1,20 +1,12 @@
 {
-  "lastCommit": "feat: add EthicsPolicy agent",
+  "lastCommit": "feat: add AgentControlPanel UI",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
   ],
   "mergeConflicts": [],
-  "notes": "Added EthicsPolicy agent and plugin. Generated conversation stats.",
+  "notes": "Added AgentControlPanel component for backend switching.",
   "pendingTasks": [
-    {
-      "commit": "Add agent profile switching to ChatPanel",
-      "status": "done"
-    },
-    {
-      "commit": "Create AgentControlPanel component",
-      "status": "todo"
-    },
     {
       "commit": "Add live suggestion badges to CREPVisualizer",
       "status": "todo"
@@ -296,10 +288,6 @@
       "status": "todo"
     },
     {
-      "commit": "Create SentimentBadge component",
-      "status": "todo"
-    },
-    {
       "commit": "Create ArtGallery component",
       "status": "todo"
     },
@@ -320,30 +308,6 @@
       "status": "todo"
     },
     {
-      "commit": "Add ethics policy and refusal agents",
-      "status": "done"
-    },
-    {
-      "commit": "Create SecurityDashboard component",
-      "status": "done"
-    },
-    {
-      "commit": "Create GovernanceSimulatorPanel component",
-      "status": "done"
-    },
-    {
-      "commit": "Create SingularitySimulatorPanel component",
-      "status": "done"
-    },
-    {
-      "commit": "Add open-source chat services to compose",
-      "status": "done"
-    },
-    {
-      "commit": "Map chat services in pipeline config",
-      "status": "done"
-    },
-    {
       "commit": "Schedule nightly model fine-tuning",
       "status": "todo"
     },
@@ -353,10 +317,6 @@
     },
     {
       "commit": "Integrate agent frameworks into FractalTaskRunner",
-      "status": "todo"
-    },
-    {
-      "commit": "Add AgentControlPanel UI",
       "status": "todo"
     }
   ],
