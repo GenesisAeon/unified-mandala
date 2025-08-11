@@ -11531,10 +11531,10 @@
   test: services/news_fetcher/app_test.py
   status: done
 - commit: Scaffold script_gen microservice
-  path: services/script_gen/app.py
+  path: services/newsbot/script_gen/app.py
   task: Generate news scripts using LLM API
-  test: services/script_gen/app.test.py
-  status: todo
+  test: services/newsbot/script_gen/app_test.py
+  status: done
 - commit: Scaffold tts microservice
   path: services/tts/app.py
   task: Convert generated scripts into audio clips
