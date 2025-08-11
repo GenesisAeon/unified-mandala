@@ -12127,7 +12127,7 @@
     "path": "packages/unifiedmandala-ui/components/SingularitySimulatorPanel.tsx",
     "task": "Interactive panel for running singularity simulations",
     "test": "packages/unifiedmandala-ui/components/SingularitySimulatorPanel.test.tsx",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "Define Singularity Simulator sigillin",
