@@ -1,0 +1,9 @@
+id: review-checkpoint
+title: "Review Checkpoint"
+type: quality
+agent: ReviewCheckpointAgent
+entrypoint: agents/review_checkpoint/main.py
+config:
+  banned_terms:
+    - "error"
+    - "fail"

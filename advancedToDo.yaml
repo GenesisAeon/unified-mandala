@@ -11753,8 +11753,8 @@
 - commit: Add review checkpoint plugin and agent
   path: plugins/review-checkpoint.yaml
   task: Sample fragments for manual validation via ReviewAgent
-  test: agents/review_checkpoint/main.test.ts
-  status: todo
+  test: agents/review_checkpoint/test_main.py
+  status: done
 - commit: Add meta tuner plugin and agent
   path: plugins/meta-tuner.yaml
   task: Adjust CREP thresholds via MetaTunerAgent

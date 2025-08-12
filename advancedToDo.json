@@ -11880,9 +11880,9 @@
   {
     "commit": "Add review checkpoint plugin and agent",
     "path": "plugins/review-checkpoint.yaml",
-    "status": "todo",
+    "status": "done",
     "task": "Sample fragments for manual validation via ReviewAgent",
-    "test": "agents/review_checkpoint/main.test.ts"
+    "test": "agents/review_checkpoint/test_main.py"
   },
   {
     "commit": "Add meta tuner plugin and agent",
