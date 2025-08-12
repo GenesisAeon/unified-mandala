@@ -1,0 +1,1 @@
+"""Cosmic events monitoring agent."""

@@ -42,3 +42,4 @@ Dev-Agents prüfen zu Beginn eines Laufs auf diese Dateien und priorisieren dere
 - Added JSON summary export to analyze-newadvanced-conversations script.
 - Implemented ExportFormats utilities for CSV, JSON, DOT, MIDI and AEON outputs in nukleon-scanner.
 - Added default fetch handling in UsecaseComponents for sigil generation and SocialGood matching.
+- Added island loss and cosmic events monitoring agents and plugins.
