@@ -11721,16 +11721,16 @@
   {
     "commit": "Add island loss monitoring plugin and agent",
     "path": "plugins/island_loss.yaml",
-    "status": "todo",
+    "status": "done",
     "task": "Detect disappearing islands from sea level rise",
-    "test": "agents/island_loss/main.test.py"
+    "test": "agents/island_loss/test_main.py"
   },
   {
     "commit": "Add cosmic events monitoring plugin and agent",
     "path": "plugins/cosmic_events.yaml",
-    "status": "todo",
+    "status": "done",
     "task": "Fetch volcanic eruptions and solar storm alerts",
-    "test": "agents/cosmic_events/main.test.py"
+    "test": "agents/cosmic_events/test_main.py"
   },
   {
     "commit": "Add climate news plugin and orchestrator",

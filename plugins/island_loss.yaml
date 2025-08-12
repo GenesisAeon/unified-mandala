@@ -1,0 +1,7 @@
+id: island-loss-monitor
+title: "Island Loss Monitor"
+type: environment
+agent: IslandLossAgent
+entrypoint: agents/island_loss/main.py
+config:
+  api_url: "https://example.com/islands"

@@ -1,5 +1,5 @@
 {
-  "lastCommit": "Merge pull request #1166 from GenesisAeon/4q6zj5-codex/implement-features-from-advancedtodo.yaml",
+  "lastCommit": "Add island loss and cosmic events monitoring agents",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
@@ -17,11 +17,11 @@
     },
     {
       "commit": "Add island loss monitoring plugin and agent",
-      "status": "todo"
+      "status": "done"
     },
     {
       "commit": "Add cosmic events monitoring plugin and agent",
-      "status": "todo"
+      "status": "done"
     },
     {
       "commit": "Add climate news plugin and orchestrator",
@@ -896,6 +896,14 @@
     {
       "commit": "Add defensive shield plugin and agent",
       "status": "done"
+    },
+    {
+      "commit": "Add island loss monitoring plugin and agent",
+      "status": "done"
+    },
+    {
+      "commit": "Add cosmic events monitoring plugin and agent",
+      "status": "done"
     }
   ],
   "completed": [
@@ -917,6 +925,14 @@
     },
     {
       "commit": "Desertification tracker plugin and agent",
+      "status": "done"
+    },
+    {
+      "commit": "Add island loss monitoring plugin and agent",
+      "status": "done"
+    },
+    {
+      "commit": "Add cosmic events monitoring plugin and agent",
       "status": "done"
     }
   ],

@@ -1,0 +1,7 @@
+id: cosmic-events
+title: "Cosmic Events Monitor"
+type: environment
+agent: CosmicEventsAgent
+entrypoint: agents/cosmic_events/main.py
+config:
+  api_url: "https://example.com/cosmic"

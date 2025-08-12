@@ -11640,13 +11640,13 @@
 - commit: Add island loss monitoring plugin and agent
   path: plugins/island_loss.yaml
   task: Detect disappearing islands from sea level rise
-  test: agents/island_loss/main.test.py
-  status: todo
+  test: agents/island_loss/test_main.py
+  status: done
 - commit: Add cosmic events monitoring plugin and agent
   path: plugins/cosmic_events.yaml
   task: Fetch volcanic eruptions and solar storm alerts
-  test: agents/cosmic_events/main.test.py
-  status: todo
+  test: agents/cosmic_events/test_main.py
+  status: done
 - commit: Add climate news plugin and orchestrator
   path: plugins/news-climate.yaml
   task: Define climate and social data aggregator for NewsBot
