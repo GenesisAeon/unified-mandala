@@ -11999,3 +11999,8 @@
   task: Reject blocked_urls and safe_urls with unsupported protocols
   test: scripts/validate-newadvanced-conversations.test.ts
   status: done
+- commit: Add JSON summary export to conversation analyzer
+  path: scripts/analyze-newadvanced-conversations.ts
+  task: Allow writing conversation stats to JSON via --json flag
+  test: scripts/analyze-newadvanced-conversations.test.ts
+  status: done

@@ -61,17 +61,20 @@ export function analyzeNewAdvancedConversations(
 }
 
 if (require.main === module) {
-  const fileArgIndex = process.argv.findIndex((a: string) => !a.startsWith('--'));
+  const args = process.argv.slice(2);
+  const fileArgIndex = args.findIndex((a: string) => !a.startsWith('--'));
   const file =
-    fileArgIndex > 1
-      ? process.argv[fileArgIndex]
+    fileArgIndex >= 0
+      ? args[fileArgIndex]
       : path.join(__dirname, '../docs/sigils/newadvancedconversations.json');
-  const summaryIndex = process.argv.indexOf('--summary');
-  const summaryPath = summaryIndex >= 0 ? process.argv[summaryIndex + 1] : null;
-  const titlesArgIndex = process.argv.indexOf('--titles');
+  const summaryIndex = args.indexOf('--summary');
+  const summaryPath = summaryIndex >= 0 ? args[summaryIndex + 1] : null;
+  const jsonIndex = args.indexOf('--json');
+  const jsonPath = jsonIndex >= 0 ? args[jsonIndex + 1] : null;
+  const titlesArgIndex = args.indexOf('--titles');
   const titleList =
     titlesArgIndex >= 0
-      ? process.argv[titlesArgIndex + 1]
+      ? args[titlesArgIndex + 1]
           .split(',')
           .map((t: string) => t.trim())
       : undefined;
@@ -97,5 +100,9 @@ if (require.main === module) {
     ];
     fs.writeFileSync(summaryPath, lines.join('\n') + '\n');
     console.log(`Summary written to ${summaryPath}`);
+  }
+  if (jsonPath) {
+    fs.writeFileSync(jsonPath, JSON.stringify(stats, null, 2));
+    console.log(`JSON summary written to ${jsonPath}`);
   }
 }

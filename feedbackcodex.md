@@ -39,3 +39,4 @@ Dev-Agents prüfen zu Beginn eines Laufs auf diese Dateien und priorisieren dere
 - Enforced HTTP/HTTPS scheme validation for conversation URLs and updated progress trackers.
 - Added publish endpoint to move approved drafts into live store.
 - Scheduled mandala-news-publish job to automate draft publishing.
+- Added JSON summary export to analyze-newadvanced-conversations script.
