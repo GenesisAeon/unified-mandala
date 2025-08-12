@@ -11749,9 +11749,9 @@
   {
     "commit": "Scaffold forest_service microservice",
     "path": "agents/news_climate/forest_service.py",
-    "status": "todo",
+    "status": "done",
     "task": "Provide wildfire and deforestation data",
-    "test": "agents/news_climate/forest_service.test.py"
+    "test": "agents/news_climate/forest_service_test.py"
   },
   {
     "commit": "Scaffold flood_service microservice",

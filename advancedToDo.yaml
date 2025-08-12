@@ -11660,8 +11660,8 @@
 - commit: Scaffold forest_service microservice
   path: agents/news_climate/forest_service.py
   task: Provide wildfire and deforestation data
-  test: agents/news_climate/forest_service.test.py
-  status: todo
+  test: agents/news_climate/forest_service_test.py
+  status: done
 - commit: Scaffold flood_service microservice
   path: agents/news_climate/flood_service.py
   task: Supply global flood mapping feeds
