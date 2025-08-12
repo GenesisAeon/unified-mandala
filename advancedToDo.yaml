@@ -4783,6 +4783,7 @@
   path: packages/nukleon_scanner/export_formats.py
   task: Provide CSV, JSON, DOT, MIDI and AEON exports
   test: packages/nukleon_scanner/tests/export_formats_test.py
+  status: done
 - commit: "feat: add TimeSeriesSimulation"
   path: packages/nukleon_scanner/time_series.py
   task: Simulate CREP development over multiple steps
