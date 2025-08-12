@@ -11583,8 +11583,8 @@
 - commit: Introduce review agent service
   path: agents/review/main.py
   task: Evaluate drafts and recommend approval
-  test: agents/review/main.test.py
-  status: todo
+  test: agents/review/test_main.py
+  status: done
 - commit: Add draft review UI
   path: packages/unifiedmandala-ui/components/DraftList.tsx
   task: List drafts with approve or reject actions
