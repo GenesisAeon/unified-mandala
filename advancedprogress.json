@@ -1,5 +1,5 @@
 {
-  "lastCommit": "Add draft review UI",
+  "lastCommit": "Merge pull request #1159 from GenesisAeon/cdqn9t-codex/implement-features-from-advancedtodo.yaml",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
@@ -8,36 +8,8 @@
   "notes": "Added NewsBot services to docker-compose and mapped sigillin thresholds.",
   "pendingTasks": [
     {
-      "commit": "Implement newsbot orchestrator service",
-      "status": "done"
-    },
-    {
-      "commit": "Integrate newsbot services into docker-compose",
-      "status": "done"
-    },
-    {
-      "commit": "Register newsbot services in pipeline configuration",
-      "status": "done"
-    },
-    {
-      "commit": "Implement training data collection endpoint",
-      "status": "done"
-    },
-    {
       "commit": "Scaffold finetune microservice",
       "status": "todo"
-    },
-    {
-      "commit": "Extend NewsBotPanel with training controls",
-      "status": "done"
-    },
-    {
-      "commit": "Introduce review agent service",
-      "status": "done"
-    },
-    {
-      "commit": "Add draft review UI",
-      "status": "done"
     },
     {
       "commit": "Add publish endpoint for approved drafts",
@@ -50,18 +22,6 @@
     {
       "commit": "Integrate finetune and review services in compose",
       "status": "todo"
-    },
-    {
-      "commit": "Add glacier balance plugin and agent",
-      "status": "done"
-    },
-    {
-      "commit": "Add desertification tracker plugin and agent",
-      "status": "todo"
-    },
-    {
-      "commit": "Add forest dynamics plugin and agent",
-      "status": "done"
     },
     {
       "commit": "Add island loss monitoring plugin and agent",
@@ -149,10 +109,6 @@
     },
     {
       "commit": "Define Auto-Resonanz sigillin",
-      "status": "todo"
-    },
-    {
-      "commit": "Add review checkpoint plugin and agent",
       "status": "todo"
     },
     {
@@ -599,11 +555,11 @@
     },
     {
       "commit": "Add VRExperienceRoom component",
-      "status": "planned"
+      "status": "done"
     },
     {
       "commit": "Implement ResonanceMapping module",
-      "status": "planned"
+      "status": "done"
     },
     {
       "commit": "Add Arctic gravity wave module and docs",
@@ -622,8 +578,8 @@
       "status": "done"
     },
     {
-      "commit": "Plan BlackboxMirrorBoard component",
-      "status": "planned"
+      "commit": "Create BlackboxMirrorBoard component",
+      "status": "done"
     },
     {
       "commit": "extract MandalaReader and VR tasks",
