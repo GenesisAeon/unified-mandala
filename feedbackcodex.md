@@ -36,3 +36,4 @@ Dev-Agents prüfen zu Beginn eines Laufs auf diese Dateien und priorisieren dere
 - Added forest dynamics plugin and agent stub.
 
 - Implemented DraftList component for reviewing drafts with approve/reject controls.
+- Enforced HTTP/HTTPS scheme validation for conversation URLs and updated progress trackers.

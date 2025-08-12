@@ -12219,5 +12219,12 @@
     "status": "done",
     "task": "Monitor expansion of arid regions using UNCCD data",
     "test": "agents/desert_tracker/test_main.py"
+  },
+  {
+    "commit": "Enforce HTTP/HTTPS schemes for conversation URLs",
+    "path": "scripts/validate-newadvanced-conversations.ts",
+    "task": "Reject blocked_urls and safe_urls with unsupported protocols",
+    "test": "scripts/validate-newadvanced-conversations.test.ts",
+    "status": "done"
   }
 ]

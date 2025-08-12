@@ -11994,3 +11994,8 @@
   task: Allow switching between local and external agent backends
   test: packages/unifiedmandala-ui/components/AgentControlPanel.test.tsx
   status: done
+- commit: Enforce HTTP/HTTPS schemes for conversation URLs
+  path: scripts/validate-newadvanced-conversations.ts
+  task: Reject blocked_urls and safe_urls with unsupported protocols
+  test: scripts/validate-newadvanced-conversations.test.ts
+  status: done

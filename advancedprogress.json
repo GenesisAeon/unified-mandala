@@ -1,5 +1,5 @@
 {
-  "lastCommit": "Merge pull request #1159 from GenesisAeon/cdqn9t-codex/implement-features-from-advancedtodo.yaml",
+  "lastCommit": "feat: enforce HTTP/HTTPS schemes for conversation URLs",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
@@ -1427,7 +1427,11 @@
     },
     {
       "commit": "Plan moderation and URL validation tasks",
-      "status": "todo"
+      "status": "done"
+    },
+    {
+      "commit": "Enforce HTTP/HTTPS schemes for conversation URLs",
+      "status": "done"
     },
     {
       "commit": "Map simulate_singularity pipeline",
