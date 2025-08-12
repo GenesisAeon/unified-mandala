@@ -11665,7 +11665,7 @@
     "path": "memory-jobs.yaml",
     "task": "Add mandala-news-publish job invoking orchestrator /publish",
     "test": "",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "Integrate finetune and review services in compose",
