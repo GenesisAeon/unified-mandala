@@ -11559,17 +11559,17 @@
   path: docker-compose.yml
   task: Add newsbot microservices and orchestrator to compose stack
   test: ""
-  status: todo
+  status: done
 - commit: Register newsbot services in pipeline configuration
   path: pipeline_config.yaml
   task: Add sigillin_map and CREP thresholds for newsbot pipeline
   test: ""
-  status: todo
+  status: done
 - commit: Implement training data collection endpoint
   path: orchestrator/main.py
   task: Store event payloads in TrainingStore via /training/collect
-  test: orchestrator/training_collect.test.py
-  status: todo
+  test: orchestrator/training_collect_test.py
+  status: done
 - commit: Scaffold finetune microservice
   path: services/finetune/app.py
   task: Run LoRA fine-tuning on collected samples

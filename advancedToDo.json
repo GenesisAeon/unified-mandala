@@ -11622,8 +11622,8 @@
     "commit": "Implement training data collection endpoint",
     "path": "orchestrator/main.py",
     "task": "Store event payloads in TrainingStore via /training/collect",
-    "test": "orchestrator/training_collect.test.py",
-    "status": "todo"
+    "test": "orchestrator/training_collect_test.py",
+    "status": "done"
   },
   {
     "commit": "Scaffold finetune microservice",
