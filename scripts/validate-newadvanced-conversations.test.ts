@@ -469,10 +469,28 @@ describe('validateNewAdvancedConversations', () => {
     expect(res.conversationsWithInvalidBlockedUrls).toEqual([0]);
   });
 
+  it('flags blocked urls with unsupported protocols', () => {
+    const file = path.join(
+      __dirname,
+      '../tests/fixtures/newadvanced-invalid-blocked-url-scheme.json'
+    );
+    const res = validateNewAdvancedConversations(file);
+    expect(res.conversationsWithInvalidBlockedUrls).toEqual([0]);
+  });
+
   it('flags invalid safe urls', () => {
     const file = path.join(
       __dirname,
       '../tests/fixtures/newadvanced-invalid-safe-urls.json'
+    );
+    const res = validateNewAdvancedConversations(file);
+    expect(res.conversationsWithInvalidSafeUrls).toEqual([0]);
+  });
+
+  it('flags safe urls with unsupported protocols', () => {
+    const file = path.join(
+      __dirname,
+      '../tests/fixtures/newadvanced-invalid-safe-url-scheme.json'
     );
     const res = validateNewAdvancedConversations(file);
     expect(res.conversationsWithInvalidSafeUrls).toEqual([0]);

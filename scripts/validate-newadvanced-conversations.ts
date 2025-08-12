@@ -181,6 +181,7 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
     'global_enabled',
     'global_disabled',
   ];
+  const allowedProtocols = ['http:', 'https:'];
   const mimeByExt: Record<string, string> = {
     '.md': 'text/markdown',
     '.json': 'application/json',
@@ -302,8 +303,8 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
         conv.blocked_urls.some((u: any) => {
           if (typeof u !== 'string') return true;
           try {
-            new URL(u);
-            return false;
+            const url = new URL(u);
+            return !allowedProtocols.includes(url.protocol);
           } catch {
             return true;
           }
@@ -318,8 +319,8 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
         conv.safe_urls.some((u: any) => {
           if (typeof u !== 'string') return true;
           try {
-            new URL(u);
-            return false;
+            const url = new URL(u);
+            return !allowedProtocols.includes(url.protocol);
           } catch {
             return true;
           }
