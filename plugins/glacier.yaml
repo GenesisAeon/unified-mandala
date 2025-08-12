@@ -1,0 +1,7 @@
+id: glacier-balance
+title: "Glacier Balance"
+type: environment
+agent: GlacierBalanceAgent
+entrypoint: agents/glacier_balance/main.py
+config:
+  api_url: "https://example.com/glacier"

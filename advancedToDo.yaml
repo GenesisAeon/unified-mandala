@@ -11624,7 +11624,7 @@
   path: plugins/glacier.yaml
   task: Track global glacier mass balance via API
   test: agents/glacier_balance/main.test.py
-  status: todo
+  status: done
 - commit: Add desertification tracker plugin and agent
   path: plugins/desertification.yaml
   task: Monitor expansion of arid regions using UNCCD data
