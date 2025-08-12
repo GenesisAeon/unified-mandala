@@ -11658,7 +11658,7 @@
     "path": "orchestrator/main.py",
     "task": "Move approved drafts to live store and emit sigillins via /publish",
     "test": "orchestrator/publish.test.py",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "Schedule publish cron job",

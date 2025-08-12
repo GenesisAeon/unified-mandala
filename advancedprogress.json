@@ -1,5 +1,5 @@
 {
-  "lastCommit": "feat: enforce HTTP/HTTPS schemes for conversation URLs",
+  "lastCommit": "meta:implement-features – add publish endpoint for approved drafts",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
@@ -9,10 +9,6 @@
   "pendingTasks": [
     {
       "commit": "Scaffold finetune microservice",
-      "status": "todo"
-    },
-    {
-      "commit": "Add publish endpoint for approved drafts",
       "status": "todo"
     },
     {
@@ -1443,6 +1439,10 @@
     },
     {
       "commit": "Add review checkpoint plugin and agent",
+      "status": "done"
+    },
+    {
+      "commit": "Add publish endpoint for approved drafts",
       "status": "done"
     }
   ],
