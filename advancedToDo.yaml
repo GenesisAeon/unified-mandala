@@ -11633,8 +11633,8 @@
 - commit: Add forest dynamics plugin and agent
   path: plugins/forest_dynamics.yaml
   task: Report deforestation and reforestation trends
-  test: agents/forest_dynamics/main.test.py
-  status: todo
+  test: agents/forest_dynamics/test_main.py
+  status: done
 - commit: Add island loss monitoring plugin and agent
   path: plugins/island_loss.yaml
   task: Detect disappearing islands from sea level rise
