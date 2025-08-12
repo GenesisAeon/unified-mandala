@@ -8,15 +8,25 @@ Returns dummy data as placeholder for future integrations.
 
 from dataclasses import dataclass
 
+import httpx
 from fastapi import FastAPI
 from pydantic import BaseModel
 
 
 @dataclass
 class DesertConfig:
-    """Configuration for the agent."""
+    """Configuration for the agent.
 
-    api_url: str = "https://example.com/desert"
+    Attributes:
+        api_url: Optional endpoint providing UNCCD desertification metrics.
+        If omitted, the agent returns a default value without performing
+        any network requests.
+    """
+
+    api_url: str | None = None
+
+
+_config = DesertConfig()
 
 
 class DesertStatus(BaseModel):
@@ -31,11 +41,24 @@ app = FastAPI(title="Desertification Tracker")
 async def get_status(region: str) -> DesertStatus:
     """Return the desertification severity for a given region.
 
-    Currently returns a dummy value of ``0.0``. In a full implementation,
-    this endpoint would fetch data from :class:`DesertConfig.api_url`.
+    If :data:`DesertConfig.api_url` is configured, the agent will attempt to
+    fetch data from the UNCCD API and extract a ``severity_index`` value.
+    Any network or parsing errors gracefully fall back to ``0.0``.
     """
 
-    return DesertStatus(region=region, severity_index=0.0)
+    severity = 0.0
+    if _config.api_url:
+        try:
+            async with httpx.AsyncClient(timeout=10.0) as client:
+                resp = await client.get(f"{_config.api_url}/{region}")
+                resp.raise_for_status()
+                data = resp.json()
+                severity = float(data.get("severity_index", 0.0))
+        except httpx.HTTPError:
+            # Network failure or invalid payload; retain default severity.
+            pass
+
+    return DesertStatus(region=region, severity_index=severity)
 
 
 if __name__ == "__main__":
