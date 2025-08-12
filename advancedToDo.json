@@ -11601,8 +11601,8 @@
     "commit": "Implement newsbot orchestrator service",
     "path": "orchestrator/newsbot_orchestrator.py",
     "task": "Coordinate news fetch, script, TTS, render and stream services",
-    "test": "orchestrator/newsbot_orchestrator.test.py",
-    "status": "todo"
+    "test": "orchestrator/newsbot_orchestrator_test.py",
+    "status": "done"
   },
   {
     "commit": "Integrate newsbot services into docker-compose",
