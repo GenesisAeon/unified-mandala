@@ -1,0 +1,7 @@
+id: forest-dynamics
+title: "Forest Dynamics"
+type: environment
+agent: ForestDynamicsAgent
+entrypoint: agents/forest_dynamics/main.py
+config:
+  api_url: "https://example.com/forest"

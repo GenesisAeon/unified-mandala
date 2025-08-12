@@ -33,3 +33,4 @@ Dev-Agents prüfen zu Beginn eines Laufs auf diese Dateien und priorisieren dere
 - Added training controls to NewsBotPanel for collecting data and starting finetunes.
 
 - Added desertification tracker plugin and agent stub.
+- Added forest dynamics plugin and agent stub.
