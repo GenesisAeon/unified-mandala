@@ -11705,22 +11705,22 @@
   path: agents/global_events/science_service.py
   task: Fetch science breakthroughs from API
   test: agents/global_events/science_service.test.py
-  status: todo
+  status: done
 - commit: Scaffold tech_service microservice
   path: agents/global_events/tech_service.py
   task: Fetch tech innovations from API
   test: agents/global_events/tech_service.test.py
-  status: todo
+  status: done
 - commit: Scaffold environment_service microservice
   path: agents/global_events/environment_service.py
   task: Fetch environmental success stories
   test: agents/global_events/environment_service.test.py
-  status: todo
+  status: done
 - commit: Extend global_events orchestrator with positive streams
   path: agents/global_events/orchestrator.py
   task: Collect science, tech and environment events
   test: agents/global_events/orchestrator.test.py
-  status: todo
+  status: done
 - commit: Create GlobalEventsPanel UI
   path: packages/unifiedmandala-ui/components/GlobalEventsPanel.tsx
   task: Display cosmic, crisis and positive events

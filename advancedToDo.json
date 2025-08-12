@@ -11811,28 +11811,28 @@
   {
     "commit": "Scaffold science_service microservice",
     "path": "agents/global_events/science_service.py",
-    "status": "todo",
+    "status": "done",
     "task": "Fetch science breakthroughs from API",
     "test": "agents/global_events/science_service.test.py"
   },
   {
     "commit": "Scaffold tech_service microservice",
     "path": "agents/global_events/tech_service.py",
-    "status": "todo",
+    "status": "done",
     "task": "Fetch tech innovations from API",
     "test": "agents/global_events/tech_service.test.py"
   },
   {
     "commit": "Scaffold environment_service microservice",
     "path": "agents/global_events/environment_service.py",
-    "status": "todo",
+    "status": "done",
     "task": "Fetch environmental success stories",
     "test": "agents/global_events/environment_service.test.py"
   },
   {
     "commit": "Extend global_events orchestrator with positive streams",
     "path": "agents/global_events/orchestrator.py",
-    "status": "todo",
+    "status": "done",
     "task": "Collect science, tech and environment events",
     "test": "agents/global_events/orchestrator.test.py"
   },
