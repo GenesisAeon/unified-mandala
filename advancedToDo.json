@@ -11698,7 +11698,7 @@
   {
     "commit": "Add glacier balance plugin and agent",
     "path": "plugins/glacier.yaml",
-    "status": "todo",
+    "status": "done",
     "task": "Track global glacier mass balance via API",
     "test": "agents/glacier_balance/main.test.py"
   },
