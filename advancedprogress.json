@@ -1444,6 +1444,10 @@
     {
       "commit": "Add publish endpoint for approved drafts",
       "status": "done"
+    },
+    {
+      "commit": "Schedule publish cron job",
+      "status": "done"
     }
   ],
   "metacommitTags": [
