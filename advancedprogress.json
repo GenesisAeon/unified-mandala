@@ -1452,6 +1452,10 @@
     {
       "commit": "Add JSON summary export to conversation analyzer",
       "status": "done"
+    },
+    {
+      "commit": "Add ExportFormats utilities",
+      "status": "done"
     }
   ],
   "metacommitTags": [
