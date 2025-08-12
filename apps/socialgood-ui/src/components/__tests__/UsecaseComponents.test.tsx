@@ -7,15 +7,15 @@ const mockFetch = jest.fn(() => Promise.resolve({ json: () => Promise.resolve({}
 // @ts-ignore
 global.fetch = mockFetch;
 
-test('triggers callbacks', async () => {
+test('triggers callbacks and fetches', async () => {
   const sigil = jest.fn();
   const todos = jest.fn();
   const match = jest.fn();
   render(<UsecaseComponents onSigil={sigil} onTodos={todos} onMatch={match} />);
   fireEvent.click(screen.getByLabelText('Generate Sigil'));
   fireEvent.click(screen.getByLabelText('Parse TODOs'));
-  await waitFor(() => expect(mockFetch).toHaveBeenCalled());
   fireEvent.click(screen.getByLabelText('Match SocialGood'));
+  await waitFor(() => expect(mockFetch).toHaveBeenCalledTimes(3));
   expect(sigil).toHaveBeenCalled();
   expect(todos).toHaveBeenCalled();
   expect(match).toHaveBeenCalled();

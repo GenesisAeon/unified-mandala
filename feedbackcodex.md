@@ -41,3 +41,4 @@ Dev-Agents prüfen zu Beginn eines Laufs auf diese Dateien und priorisieren dere
 - Scheduled mandala-news-publish job to automate draft publishing.
 - Added JSON summary export to analyze-newadvanced-conversations script.
 - Implemented ExportFormats utilities for CSV, JSON, DOT, MIDI and AEON outputs in nukleon-scanner.
+- Added default fetch handling in UsecaseComponents for sigil generation and SocialGood matching.
