@@ -1,7 +1,8 @@
 id: desertification-tracker
 title: "Desertification Tracker"
+description: "Monitors the expansion of arid regions using UNCCD data"
 type: environment
 agent: DesertTrackerAgent
 entrypoint: agents/desert_tracker/main.py
 config:
-  api_url: "https://example.com/desert"
+  api_url: "https://api.unccd.example/desertification"
