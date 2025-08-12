@@ -11677,21 +11677,21 @@
   {
     "commit": "Document NewsBot live cycle flow",
     "path": "docs/newsbot/flows.md",
-    "status": "todo",
+    "status": "done",
     "task": "Describe NewsFetch -> ScriptGen -> TTS -> Avatar -> Stream",
     "test": ""
   },
   {
     "commit": "Document NewsBot training flow",
     "path": "docs/newsbot/flows.md",
-    "status": "todo",
+    "status": "done",
     "task": "Explain /training/collect and /finetune leading to new model",
     "test": ""
   },
   {
     "commit": "Document NewsBot draft and publish flow",
     "path": "docs/newsbot/flows.md",
-    "status": "todo",
+    "status": "done",
     "task": "Detail ReviewAgent -> manual gate -> LiveStore -> Stream",
     "test": ""
   },
