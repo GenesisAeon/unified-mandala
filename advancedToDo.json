@@ -11756,9 +11756,9 @@
   {
     "commit": "Scaffold flood_service microservice",
     "path": "agents/news_climate/flood_service.py",
-    "status": "todo",
+    "status": "done",
     "task": "Supply global flood mapping feeds",
-    "test": "agents/news_climate/flood_service.test.py"
+    "test": "agents/news_climate/flood_service_test.py"
   },
   {
     "commit": "Scaffold economy_service microservice",

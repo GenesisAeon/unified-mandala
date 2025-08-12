@@ -47,3 +47,4 @@ Dev-Agents prüfen zu Beginn eines Laufs auf diese Dateien und priorisieren dere
 - Added climate news plugin with basic climate service stub.
 - Enhanced DesertTrackerAgent with optional UNCCD API integration and updated plugin configuration.
 - Added repository map summary script to list module counts for quick overview.
+- Scaffolded flood service microservice stub for global flood mapping feeds.
