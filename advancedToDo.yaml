@@ -11579,7 +11579,7 @@
   path: packages/unifiedmandala-ui/components/NewsBotPanel.tsx
   task: Buttons to collect training data and launch finetune
   test: packages/unifiedmandala-ui/components/NewsBotPanel.test.tsx
-  status: todo
+  status: done
 - commit: Introduce review agent service
   path: agents/review/main.py
   task: Evaluate drafts and recommend approval
