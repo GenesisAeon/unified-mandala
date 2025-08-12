@@ -11707,7 +11707,7 @@
     "path": "plugins/desertification.yaml",
     "status": "todo",
     "task": "Monitor expansion of arid regions using UNCCD data",
-    "test": "agents/desert_tracker/main.test.py"
+    "test": "agents/desert_tracker/test_main.py"
   },
   {
     "commit": "Add forest dynamics plugin and agent",
@@ -12212,5 +12212,12 @@
     "task": "Allow switching between local and external agent backends",
     "test": "packages/unifiedmandala-ui/components/AgentControlPanel.test.tsx",
     "status": "done"
+  },
+  {
+    "commit": "Add desertification tracker plugin and agent",
+    "path": "plugins/desertification.yaml",
+    "status": "done",
+    "task": "Monitor expansion of arid regions using UNCCD data",
+    "test": "agents/desert_tracker/test_main.py"
   }
 ]

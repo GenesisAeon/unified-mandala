@@ -31,3 +31,5 @@ Dev-Agents prüfen zu Beginn eines Laufs auf diese Dateien und priorisieren dere
 - Integrated NewsBot services into docker-compose and pipeline configuration.
 
 - Added training controls to NewsBotPanel for collecting data and starting finetunes.
+
+- Added desertification tracker plugin and agent stub.
