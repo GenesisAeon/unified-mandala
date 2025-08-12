@@ -11665,8 +11665,8 @@
 - commit: Scaffold flood_service microservice
   path: agents/news_climate/flood_service.py
   task: Supply global flood mapping feeds
-  test: agents/news_climate/flood_service.test.py
-  status: todo
+  test: agents/news_climate/flood_service_test.py
+  status: done
 - commit: Scaffold economy_service microservice
   path: agents/news_climate/economy_service.py
   task: Aggregate income, wealth and land ownership stats
