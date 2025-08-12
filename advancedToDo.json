@@ -12242,5 +12242,12 @@
     "task": "Validate repository_map.yaml structure",
     "test": "scripts/validate-repository-map.test.ts",
     "status": "done"
+  },
+  {
+    "commit": "Add repository map summary script",
+    "path": "scripts/repository-map-summary.ts",
+    "task": "Output module counts from repository_map.yaml",
+    "test": "",
+    "status": "done"
   }
 ]
