@@ -10,6 +10,11 @@ sigillin_map:
   gpt4all_chat:     gpt4all_service
   openassistant_chat: openassistant_service
   h2ogpt_chat:      h2ogpt_service
+  news_fetch:       news_fetcher_service
+  script_gen:       script_gen_service
+  tts:              tts_service
+  avatar:           avatar_renderer_service
+  stream:           streamer_service
 
 crep_thresholds:
   gnn_service: 0.60
@@ -23,3 +28,8 @@ crep_thresholds:
   gpt4all_service: 0.55
   openassistant_service: 0.60
   h2ogpt_service: 0.58
+  news_fetcher_service: 0.50
+  script_gen_service: 0.60
+  tts_service: 0.40
+  avatar_renderer_service: 0.40
+  streamer_service: 0.30

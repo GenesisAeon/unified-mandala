@@ -18,6 +18,22 @@ services:
     command: ./scripts/run-all-tests.sh
 
   # --- NewsBot microservices ---
+  newsbot_orchestrator:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    command: python orchestrator/newsbot_orchestrator.py
+    volumes:
+      - .:/workspace/unified-mandala
+    ports:
+      - "8100:8000"
+    depends_on:
+      - news_fetcher_service
+      - script_gen_service
+      - tts_service
+      - avatar_renderer_service
+      - streamer_service
+
   news_fetcher_service:
     build:
       context: ./services/newsbot/news_fetcher
