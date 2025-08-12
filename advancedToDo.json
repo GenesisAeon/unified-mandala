@@ -11643,8 +11643,8 @@
     "commit": "Introduce review agent service",
     "path": "agents/review/main.py",
     "task": "Evaluate drafts and recommend approval",
-    "test": "agents/review/main.test.py",
-    "status": "todo"
+    "test": "agents/review/test_main.py",
+    "status": "done"
   },
   {
     "commit": "Add draft review UI",

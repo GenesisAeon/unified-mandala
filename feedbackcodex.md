@@ -27,3 +27,4 @@ Dev-Agents prüfen zu Beginn eines Laufs auf diese Dateien und priorisieren dere
 - Implemented script_gen microservice with optional OpenAI-based script generation.
 
 - Documented NewsBot flows for live cycle, training, and publishing.
+- Introduced review agent service for evaluating drafts and recommending approval.
