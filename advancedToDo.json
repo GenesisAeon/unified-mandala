@@ -11631,8 +11631,8 @@
     "commit": "Scaffold finetune microservice",
     "path": "services/finetune/app.py",
     "task": "Run LoRA fine-tuning on collected samples",
-    "test": "services/finetune/app.test.py",
-    "status": "todo"
+    "test": "services/finetune/app_test.py",
+    "status": "done"
   },
   {
     "commit": "Extend NewsBotPanel with training controls",
