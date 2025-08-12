@@ -1476,6 +1476,10 @@
     {
       "commit": "Extend docker-compose with singularity simulator service",
       "status": "done"
+    },
+    {
+      "commit": "Add review checkpoint plugin and agent",
+      "status": "done"
     }
   ],
   "metacommitTags": [
