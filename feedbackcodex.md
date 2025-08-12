@@ -43,3 +43,4 @@ Dev-Agents prüfen zu Beginn eines Laufs auf diese Dateien und priorisieren dere
 - Implemented ExportFormats utilities for CSV, JSON, DOT, MIDI and AEON outputs in nukleon-scanner.
 - Added default fetch handling in UsecaseComponents for sigil generation and SocialGood matching.
 - Added island loss and cosmic events monitoring agents and plugins.
+- Added repository map validation script to verify repository structure.

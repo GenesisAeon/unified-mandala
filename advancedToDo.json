@@ -12235,5 +12235,12 @@
     "task": "Allow writing conversation stats to JSON via --json flag",
     "test": "scripts/analyze-newadvanced-conversations.test.ts",
     "status": "done"
+  },
+  {
+    "commit": "Add repository map validation script",
+    "path": "scripts/validate-repository-map.ts",
+    "task": "Validate repository_map.yaml structure",
+    "test": "scripts/validate-repository-map.test.ts",
+    "status": "done"
   }
 ]
