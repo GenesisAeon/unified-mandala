@@ -11609,17 +11609,17 @@
   path: docs/newsbot/flows.md
   task: Describe NewsFetch -> ScriptGen -> TTS -> Avatar -> Stream
   test: ""
-  status: todo
+  status: done
 - commit: Document NewsBot training flow
   path: docs/newsbot/flows.md
   task: Explain /training/collect and /finetune leading to new model
   test: ""
-  status: todo
+  status: done
 - commit: Document NewsBot draft and publish flow
   path: docs/newsbot/flows.md
   task: Detail ReviewAgent -> manual gate -> LiveStore -> Stream
   test: ""
-  status: todo
+  status: done
 - commit: Add glacier balance plugin and agent
   path: plugins/glacier.yaml
   task: Track global glacier mass balance via API
