@@ -1,7 +1,16 @@
 const fs = require('fs');
 const path = require('path');
+const yaml = require('js-yaml');
 
-function syncTodoProgress(partsDir, progressFile) {
+function loadTasks(filePath) {
+  const ext = path.extname(filePath).toLowerCase();
+  const raw = fs.readFileSync(filePath, 'utf8');
+  if (ext === '.json') return JSON.parse(raw);
+  if (ext === '.yaml' || ext === '.yml') return yaml.load(raw);
+  return [];
+}
+
+function syncTodoProgress(partsDir, progressFile, extraFiles = []) {
   const progress = JSON.parse(fs.readFileSync(progressFile, 'utf8'));
   progress.progress = progress.progress || [];
   progress.pendingTasks = progress.pendingTasks || [];
@@ -9,11 +18,17 @@ function syncTodoProgress(partsDir, progressFile) {
   const doneSet = new Set(progress.progress.map(p => p.commit));
   const pendingSet = new Set(progress.pendingTasks.map(p => p.commit));
 
-  const files = fs.readdirSync(partsDir).filter(f => f.endsWith('.json'));
+  const partFiles = fs
+    .readdirSync(partsDir)
+    .filter(f => ['.json', '.yaml', '.yml'].includes(path.extname(f)));
 
-  files.forEach(file => {
-    const tasks = JSON.parse(fs.readFileSync(path.join(partsDir, file), 'utf8'));
-    tasks.forEach(task => {
+  const allFiles = partFiles.map(f => path.join(partsDir, f)).concat(extraFiles);
+
+  allFiles.forEach(file => {
+    if (!fs.existsSync(file)) return;
+    const tasks = loadTasks(file) || [];
+    (tasks || []).forEach(task => {
+      if (!task || !task.commit) return;
       if (task.status === 'done') {
         if (!doneSet.has(task.commit)) {
           progress.progress.push({ commit: task.commit, status: 'done' });
@@ -35,8 +50,12 @@ function syncTodoProgress(partsDir, progressFile) {
 if (require.main === module) {
   const partsDir = path.join(__dirname, '../advancedToDo_parts');
   const progressFile = path.join(__dirname, '../advancedprogress.json');
-  syncTodoProgress(partsDir, progressFile);
+  const extra = [
+    path.join(__dirname, '../advancedToDo.json'),
+    path.join(__dirname, '../advancedToDo.yaml'),
+  ];
+  syncTodoProgress(partsDir, progressFile, extra);
   console.log('Synchronized ToDo parts with progress file');
 }
 
-module.exports = { syncTodoProgress };
+module.exports = { syncTodoProgress, loadTasks };
