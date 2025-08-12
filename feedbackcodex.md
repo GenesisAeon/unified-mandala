@@ -29,3 +29,5 @@ Dev-Agents prüfen zu Beginn eines Laufs auf diese Dateien und priorisieren dere
 - Documented NewsBot flows for live cycle, training, and publishing.
 - Introduced review agent service for evaluating drafts and recommending approval.
 - Integrated NewsBot services into docker-compose and pipeline configuration.
+
+- Added training controls to NewsBotPanel for collecting data and starting finetunes.

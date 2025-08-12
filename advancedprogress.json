@@ -1,5 +1,5 @@
 {
-  "lastCommit": "Integrate newsbot services into compose and pipeline",
+  "lastCommit": "Extend NewsBotPanel with training controls",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
@@ -29,7 +29,7 @@
     },
     {
       "commit": "Extend NewsBotPanel with training controls",
-      "status": "todo"
+      "status": "done"
     },
     {
       "commit": "Introduce review agent service",
