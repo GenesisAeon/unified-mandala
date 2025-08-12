@@ -11628,8 +11628,8 @@
 - commit: Add desertification tracker plugin and agent
   path: plugins/desertification.yaml
   task: Monitor expansion of arid regions using UNCCD data
-  test: agents/desert_tracker/main.test.py
-  status: todo
+  test: agents/desert_tracker/test_main.py
+  status: done
 - commit: Add forest dynamics plugin and agent
   path: plugins/forest_dynamics.yaml
   task: Report deforestation and reforestation trends

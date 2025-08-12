@@ -1,0 +1,7 @@
+id: desertification-tracker
+title: "Desertification Tracker"
+type: environment
+agent: DesertTrackerAgent
+entrypoint: agents/desert_tracker/main.py
+config:
+  api_url: "https://example.com/desert"
