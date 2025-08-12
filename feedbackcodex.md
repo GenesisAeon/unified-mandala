@@ -34,3 +34,5 @@ Dev-Agents prüfen zu Beginn eines Laufs auf diese Dateien und priorisieren dere
 
 - Added desertification tracker plugin and agent stub.
 - Added forest dynamics plugin and agent stub.
+
+- Implemented DraftList component for reviewing drafts with approve/reject controls.

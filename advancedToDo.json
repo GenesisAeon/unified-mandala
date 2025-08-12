@@ -11651,7 +11651,7 @@
     "path": "packages/unifiedmandala-ui/components/DraftList.tsx",
     "task": "List drafts with approve or reject actions",
     "test": "packages/unifiedmandala-ui/components/DraftList.test.tsx",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "Add publish endpoint for approved drafts",

@@ -1,5 +1,5 @@
 {
-  "lastCommit": "Extend NewsBotPanel with training controls",
+  "lastCommit": "Add draft review UI",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
@@ -37,7 +37,7 @@
     },
     {
       "commit": "Add draft review UI",
-      "status": "todo"
+      "status": "done"
     },
     {
       "commit": "Add publish endpoint for approved drafts",
