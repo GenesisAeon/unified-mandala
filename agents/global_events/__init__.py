@@ -1,0 +1,1 @@
+"""Global events microservices."""

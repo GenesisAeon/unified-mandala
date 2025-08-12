@@ -1,5 +1,5 @@
 {
-  "lastCommit": "Add JSON summary export to conversation analyzer",
+  "lastCommit": "Merge pull request #1165 from GenesisAeon/0x1pxe-codex/implement-features-from-advancedtodo.yaml",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
@@ -9,10 +9,6 @@
   "pendingTasks": [
     {
       "commit": "Scaffold finetune microservice",
-      "status": "todo"
-    },
-    {
-      "commit": "Schedule publish cron job",
       "status": "todo"
     },
     {
@@ -69,22 +65,6 @@
     },
     {
       "commit": "Add global events plugin with positive progress services",
-      "status": "todo"
-    },
-    {
-      "commit": "Scaffold science_service microservice",
-      "status": "todo"
-    },
-    {
-      "commit": "Scaffold tech_service microservice",
-      "status": "todo"
-    },
-    {
-      "commit": "Scaffold environment_service microservice",
-      "status": "todo"
-    },
-    {
-      "commit": "Extend global_events orchestrator with positive streams",
       "status": "todo"
     },
     {
@@ -1455,6 +1435,22 @@
     },
     {
       "commit": "Add ExportFormats utilities",
+      "status": "done"
+    },
+    {
+      "commit": "Scaffold science_service microservice",
+      "status": "done"
+    },
+    {
+      "commit": "Scaffold tech_service microservice",
+      "status": "done"
+    },
+    {
+      "commit": "Scaffold environment_service microservice",
+      "status": "done"
+    },
+    {
+      "commit": "Extend global_events orchestrator with positive streams",
       "status": "done"
     }
   ],
