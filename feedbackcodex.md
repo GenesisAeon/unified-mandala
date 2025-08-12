@@ -46,3 +46,4 @@ Dev-Agents prüfen zu Beginn eines Laufs auf diese Dateien und priorisieren dere
 - Added repository map validation script to verify repository structure.
 - Added climate news plugin with basic climate service stub.
 - Enhanced DesertTrackerAgent with optional UNCCD API integration and updated plugin configuration.
+- Added repository map summary script to list module counts for quick overview.
