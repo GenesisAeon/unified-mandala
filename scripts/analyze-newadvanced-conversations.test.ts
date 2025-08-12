@@ -1,5 +1,8 @@
 import { describe, it, expect } from 'vitest';
 import path from 'path';
+import fs from 'fs';
+import os from 'os';
+import { execSync } from 'child_process';
 import { analyzeNewAdvancedConversations } from './analyze-newadvanced-conversations';
 
 describe('analyzeNewAdvancedConversations', () => {
@@ -27,5 +30,14 @@ describe('analyzeNewAdvancedConversations', () => {
     expect(stats.authorCounts.assistant).toBe(1);
     expect(stats.titles).toEqual(['Second']);
     expect(stats.todoCount).toBe(0);
+  });
+
+  it('writes JSON stats when using --json flag', () => {
+    const file = path.join(__dirname, '../tests/fixtures/newadvanced-sample.json');
+    const out = path.join(os.tmpdir(), 'newadvanced-stats.json');
+    const script = path.join(__dirname, 'analyze-newadvanced-conversations.ts');
+    execSync(`npx ts-node ${script} ${file} --json ${out}`);
+    const written = JSON.parse(fs.readFileSync(out, 'utf8'));
+    expect(written.conversationCount).toBe(1);
   });
 });
