@@ -1,0 +1,9 @@
+id: news-climate
+title: "Climate News Aggregator"
+type: news
+agent: ClimateNewsAgent
+entrypoint: agents/news_climate/orchestrator.py
+config:
+  sources:
+    - "https://example.com/climate"
+    - "https://example.com/social"

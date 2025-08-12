@@ -11650,13 +11650,13 @@
 - commit: Add climate news plugin and orchestrator
   path: plugins/news-climate.yaml
   task: Define climate and social data aggregator for NewsBot
-  test: agents/news_climate/orchestrator.test.py
-  status: todo
+  test: agents/news_climate/test_orchestrator.py
+  status: done
 - commit: Scaffold climate_service microservice
   path: agents/news_climate/climate_service.py
   task: Fetch glacier, desert, island and water metrics
-  test: agents/news_climate/climate_service.test.py
-  status: todo
+  test: agents/news_climate/test_climate_service.py
+  status: done
 - commit: Scaffold forest_service microservice
   path: agents/news_climate/forest_service.py
   task: Provide wildfire and deforestation data
