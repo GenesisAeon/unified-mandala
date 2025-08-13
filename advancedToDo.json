@@ -1391,7 +1391,8 @@
     "commit": "Implement EmergencePredictorAgent",
     "path": "packages/agents/EmergencePredictorAgent.ts",
     "task": "Predict emergent states from historic data",
-    "test": "packages/agents/EmergencePredictorAgent.test.ts"
+    "test": "packages/agents/EmergencePredictorAgent.test.ts",
+    "status": "done"
   },
   {
     "commit": "Create AgentDependencyGraph module",
@@ -1404,7 +1405,8 @@
     "commit": "Add GPTContextSummarizer bridge",
     "path": "packages/gpt-bridges/GPTContextSummarizer.ts",
     "task": "Summarize long conversations for quick reference",
-    "test": "packages/gpt-bridges/GPTContextSummarizer.test.ts"
+    "test": "packages/gpt-bridges/GPTContextSummarizer.test.ts",
+    "status": "done"
   },
   {
     "commit": "Introduce GPTEthicsSupervisor",
