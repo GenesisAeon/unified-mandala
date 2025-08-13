@@ -12268,5 +12268,12 @@
     "task": "Simulate wave propagation in a null field using finite difference method",
     "test": "tests/nullfield_wave_test.py",
     "status": "done"
+  },
+  {
+    "commit": "Add JSON option to repository map summary",
+    "path": "scripts/repository-map-summary.ts",
+    "task": "Support --json flag for machine-readable module counts",
+    "test": "scripts/repository-map-summary.test.ts",
+    "status": "done"
   }
 ]
