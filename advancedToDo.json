@@ -1479,9 +1479,10 @@
   },
   {
     "commit": "Add PresenceIndicator feature",
-    "path": "packages/collab-editor/PresenceIndicator.ts",
+    "path": "packages/collab-editor/PresenceIndicator.tsx",
     "task": "Show real-time user presence information",
-    "test": "packages/collab-editor/PresenceIndicator.test.ts"
+    "test": "packages/collab-editor/PresenceIndicator.test.ts",
+    "status": "done"
   },
   {
     "commit": "Implement EventPlaybackModule",

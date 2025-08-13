@@ -4529,5 +4529,11 @@
   "metacommitTags": [
     "meta:extract-features",
     "meta:implement-features"
+  ],
+  "commits": [
+    {
+      "commit": "Add PresenceIndicator feature",
+      "status": "done"
+    }
   ]
 }

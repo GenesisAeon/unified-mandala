@@ -1081,9 +1081,10 @@
   test: packages/collab-editor/RealTimeCollaborationChat.test.ts
   status: done
 - commit: Add PresenceIndicator feature
-  path: packages/collab-editor/PresenceIndicator.ts
+  path: packages/collab-editor/PresenceIndicator.tsx
   task: Show real-time user presence information
   test: packages/collab-editor/PresenceIndicator.test.ts
+  status: done
 - commit: Implement EventPlaybackModule
   path: packages/event-bus/EventPlaybackModule.ts
   task: Record and replay event streams for debugging
