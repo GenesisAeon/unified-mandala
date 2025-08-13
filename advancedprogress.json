@@ -5,7 +5,7 @@
     "work"
   ],
   "mergeConflicts": [],
-  "notes": "Implemented region profile REST endpoint and completed country/region model set.",
+  "notes": "Implemented region profile REST endpoint and completed country/region model set. Added mitigation service microservice stub.",
   "pendingTasks": [
     {
       "commit": "Integrate finetune and review services in compose",
@@ -17,7 +17,7 @@
     },
     {
       "commit": "Scaffold mitigation_service microservice",
-      "status": "todo"
+      "status": "done"
     },
     {
       "commit": "Create ClimateSocialPanel UI",

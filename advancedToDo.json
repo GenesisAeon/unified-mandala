@@ -11782,7 +11782,7 @@
   {
     "commit": "Scaffold mitigation_service microservice",
     "path": "agents/news_climate/mitigation_service.py",
-    "status": "todo",
+    "status": "done",
     "task": "Gather climate mitigation program data",
     "test": "agents/news_climate/mitigation_service.test.py"
   },
