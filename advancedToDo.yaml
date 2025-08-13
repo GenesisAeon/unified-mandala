@@ -11689,7 +11689,7 @@
   path: agents/news_climate/mitigation_service.py
   task: Gather climate mitigation program data
   test: agents/news_climate/mitigation_service.test.py
-  status: todo
+  status: done
 - commit: Create ClimateSocialPanel UI
   path: packages/unifiedmandala-ui/components/ClimateSocialPanel.tsx
   task: Display aggregated climate and social metrics on dashboard
