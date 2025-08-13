@@ -11791,7 +11791,7 @@
   {
     "commit": "Create ClimateSocialPanel UI",
     "path": "packages/unifiedmandala-ui/components/ClimateSocialPanel.tsx",
-    "status": "todo",
+    "status": "done",
     "task": "Display aggregated climate and social metrics on dashboard",
     "test": "packages/unifiedmandala-ui/components/ClimateSocialPanel.test.tsx"
   },
