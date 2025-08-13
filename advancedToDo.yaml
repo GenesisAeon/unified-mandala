@@ -11696,7 +11696,7 @@
   path: packages/unifiedmandala-ui/components/ClimateSocialPanel.tsx
   task: Display aggregated climate and social metrics on dashboard
   test: packages/unifiedmandala-ui/components/ClimateSocialPanel.test.tsx
-  status: todo
+  status: done
 - commit: Register climate news services in pipeline configuration
   path: pipeline_config.yaml
   task: Add sigillin_map and CREP thresholds for climate data pipeline
