@@ -8,9 +8,9 @@ regions:
   - ip: "10.0.0.1"
     country: US
     region: California
-  - ip: "8.8.8.8"
-    country: US
-    region: Global
+  - ip: "200.200.200.200"
+    country: BR
+    region: São Paulo
   - ip: "1.1.1.1"
     country: JP
     region: Tokyo
