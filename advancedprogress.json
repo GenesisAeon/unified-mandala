@@ -1,5 +1,5 @@
 {
-  "lastCommit": "Merge pull request #1186 from GenesisAeon/hwbjwk-codex/implement-features-from-advancedtodo.yaml",
+  "lastCommit": "feat: add js utilities for sigillin-cli",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
@@ -8,16 +8,8 @@
   "notes": "Implemented region profile REST endpoint and completed country/region model set. Added mitigation service microservice stub.",
   "pendingTasks": [
     {
-      "commit": "Integrate finetune and review services in compose",
-      "status": "done"
-    },
-    {
       "commit": "Scaffold emissions_service microservice",
       "status": "todo"
-    },
-    {
-      "commit": "Scaffold mitigation_service microservice",
-      "status": "done"
     },
     {
       "commit": "Create ClimateSocialPanel UI",
@@ -3972,6 +3964,18 @@
     {
       "commit": "ein einfaches Python-Programm schreiben, das die Wellenausbreitung im Nullfeld als Simulation darstellt",
       "status": "done"
+    },
+    {
+      "commit": "Scaffold mitigation_service microservice",
+      "status": "done"
+    },
+    {
+      "commit": "Fix sigillin-cli Node runtime",
+      "status": "done"
+    },
+    {
+      "commit": "Integrate finetune and review services in compose",
+      "status": "done"
     }
   ],
   "completed": [
@@ -4573,6 +4577,10 @@
     },
     {
       "commit": "Add JSON option to repository map summary",
+      "status": "done"
+    },
+    {
+      "commit": "Fix sigillin-cli Node runtime",
       "status": "done"
     }
   ]
