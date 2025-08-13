@@ -11679,7 +11679,7 @@
   path: agents/news_climate/economy_service.py
   task: Aggregate income, wealth and land ownership stats
   test: agents/news_climate/economy_service.test.py
-  status: todo
+  status: done
 - commit: Scaffold emissions_service microservice
   path: agents/news_climate/emissions_service.py
   task: Stream CO2 and methane emission metrics
