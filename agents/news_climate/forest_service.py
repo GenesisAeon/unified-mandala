@@ -4,6 +4,8 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
+from fastapi import FastAPI
+
 
 @dataclass
 class ForestMetrics:
@@ -25,4 +27,20 @@ def fetch_forest_metrics() -> ForestMetrics:
     """
 
     return ForestMetrics()
+
+
+app = FastAPI(title="Forest Service")
+
+
+@app.get("/metrics", response_model=ForestMetrics)
+async def get_metrics() -> ForestMetrics:
+    """Return forest metrics."""
+
+    return fetch_forest_metrics()
+
+
+if __name__ == "__main__":
+    import uvicorn
+
+    uvicorn.run(app, host="0.0.0.0", port=8000)
 

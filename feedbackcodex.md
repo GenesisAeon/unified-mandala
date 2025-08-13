@@ -58,3 +58,4 @@ Dev-Agents prüfen zu Beginn eines Laufs auf diese Dateien und priorisieren dere
 - Scaffolded emissions service microservice for CO2 and methane metrics.
 - Defined Auto-Resonanz sigillin connecting core training and governance agents.
 - Implemented ClimateSocialPanel component to surface aggregated climate and social data on the dashboard.
+- Registered climate news microservices in orchestrator pipeline configuration and docker-compose.

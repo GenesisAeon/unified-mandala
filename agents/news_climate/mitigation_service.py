@@ -4,6 +4,8 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
+from fastapi import FastAPI
+
 
 @dataclass
 class MitigationMetrics:
@@ -25,3 +27,19 @@ def fetch_mitigation_metrics() -> MitigationMetrics:
     """
 
     return MitigationMetrics()
+
+
+app = FastAPI(title="Mitigation Service")
+
+
+@app.get("/metrics", response_model=MitigationMetrics)
+async def get_metrics() -> MitigationMetrics:
+    """Return mitigation metrics."""
+
+    return fetch_mitigation_metrics()
+
+
+if __name__ == "__main__":
+    import uvicorn
+
+    uvicorn.run(app, host="0.0.0.0", port=8000)

@@ -2,6 +2,8 @@
 
 from dataclasses import dataclass
 
+from fastapi import FastAPI
+
 
 @dataclass
 class FloodMetrics:
@@ -21,3 +23,19 @@ def fetch_flood_metrics() -> FloodMetrics:
     """
 
     return FloodMetrics()
+
+
+app = FastAPI(title="Flood Service")
+
+
+@app.get("/metrics", response_model=FloodMetrics)
+async def get_metrics() -> FloodMetrics:
+    """Return flood metrics."""
+
+    return fetch_flood_metrics()
+
+
+if __name__ == "__main__":
+    import uvicorn
+
+    uvicorn.run(app, host="0.0.0.0", port=8000)
