@@ -26,3 +26,7 @@ usage:
 finalize:
   - Nach Integration des FraktalAeon-Beitrags → neues MetaCommit erzeugen
   - Dokumentiere das Endresultat als GenesisBlueprint.md
+related_sigils:
+  - id: um:2025-0804-AUTO-RESONANZ
+    file: docs/sigils/um-2025-0804-auto-resonanz.yaml
+    description: "Auto-Resonanz trigger connecting core training and governance agents"

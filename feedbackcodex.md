@@ -56,3 +56,4 @@ Dev-Agents prüfen zu Beginn eines Laufs auf diese Dateien und priorisieren dere
 
 - Enabled sigillin-cli commands to run without ts-node by adding JS fallbacks.
 - Scaffolded emissions service microservice for CO2 and methane metrics.
+- Defined Auto-Resonanz sigillin connecting core training and governance agents.
