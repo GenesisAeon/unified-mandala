@@ -12029,3 +12029,8 @@
   task: Find repositories referencing a given module in repository_map.yaml
   test: scripts/repository-map-find.test.ts
   status: done
+- commit: Add JSON option to repository map summary
+  path: scripts/repository-map-summary.ts
+  task: Support --json flag for machine-readable module counts
+  test: scripts/repository-map-summary.test.ts
+  status: done

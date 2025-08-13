@@ -1,5 +1,5 @@
 {
-  "lastCommit": "feat: add region profile endpoint",
+  "lastCommit": "Merge pull request #1186 from GenesisAeon/hwbjwk-codex/implement-features-from-advancedtodo.yaml",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
@@ -10,10 +10,6 @@
     {
       "commit": "Integrate finetune and review services in compose",
       "status": "todo"
-    },
-    {
-      "commit": "Scaffold economy_service microservice",
-      "status": "done"
     },
     {
       "commit": "Scaffold emissions_service microservice",
@@ -3936,6 +3932,46 @@
     {
       "commit": "Enhance CREPTrendAnalyzer with regression and classification",
       "status": "done"
+    },
+    {
+      "commit": "Implement EmergencePredictorAgent",
+      "status": "done"
+    },
+    {
+      "commit": "Create AgentDependencyGraph module",
+      "status": "done"
+    },
+    {
+      "commit": "Add GPTContextSummarizer bridge",
+      "status": "done"
+    },
+    {
+      "commit": "Add CREPTrendAnalyzer",
+      "status": "done"
+    },
+    {
+      "commit": "Add PresenceIndicator feature",
+      "status": "done"
+    },
+    {
+      "commit": "Scaffold economy_service microservice",
+      "status": "done"
+    },
+    {
+      "commit": "Add repository map finder script",
+      "status": "done"
+    },
+    {
+      "commit": "Add null field wave simulation",
+      "status": "done"
+    },
+    {
+      "commit": "Add JSON option to repository map summary",
+      "status": "done"
+    },
+    {
+      "commit": "ein einfaches Python-Programm schreiben, das die Wellenausbreitung im Nullfeld als Simulation darstellt",
+      "status": "done"
     }
   ],
   "completed": [
@@ -4533,6 +4569,10 @@
   "commits": [
     {
       "commit": "Add PresenceIndicator feature",
+      "status": "done"
+    },
+    {
+      "commit": "Add JSON option to repository map summary",
       "status": "done"
     }
   ]
