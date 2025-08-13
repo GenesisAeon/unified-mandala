@@ -12275,5 +12275,12 @@
     "task": "Support --json flag for machine-readable module counts",
     "test": "scripts/repository-map-summary.test.ts",
     "status": "done"
+  },
+  {
+    "commit": "Fix sigillin-cli Node runtime",
+    "path": "packages/cli-tools/sigillin-cli.js",
+    "task": "Ensure CLI commands work without build using JS fallbacks",
+    "test": "packages/cli-tools/__tests__/sigillin-cli.list-open-tasks.test.ts",
+    "status": "done"
   }
 ]
