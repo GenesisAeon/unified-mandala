@@ -11614,7 +11614,7 @@
   path: docker-compose.yml
   task: Add finetune and review service containers
   test: ""
-  status: todo
+  status: done
 - commit: Document NewsBot live cycle flow
   path: docs/newsbot/flows.md
   task: Describe NewsFetch -> ScriptGen -> TTS -> Avatar -> Stream
