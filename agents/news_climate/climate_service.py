@@ -4,6 +4,8 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
+from fastapi import FastAPI
+
 
 @dataclass
 class ClimateMetrics:
@@ -20,3 +22,19 @@ def fetch_metrics() -> ClimateMetrics:
     """
 
     return ClimateMetrics()
+
+
+app = FastAPI(title="Climate Service")
+
+
+@app.get("/metrics", response_model=ClimateMetrics)
+async def get_metrics() -> ClimateMetrics:
+    """Return climate metrics."""
+
+    return fetch_metrics()
+
+
+if __name__ == "__main__":
+    import uvicorn
+
+    uvicorn.run(app, host="0.0.0.0", port=8000)

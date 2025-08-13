@@ -19,6 +19,12 @@ sigillin_map:
   tech_events:      tech_service
   environment_events: environment_service
   global_events:    global_events_orchestrator
+  climate_metrics:  climate_service
+  forest_metrics:   forest_service
+  flood_metrics:    flood_service
+  economy_metrics:  economy_service
+  emissions_metrics: emissions_service
+  mitigation_metrics: mitigation_service
 
 crep_thresholds:
   gnn_service: 0.60
@@ -41,3 +47,9 @@ crep_thresholds:
   tech_service: 0.45
   environment_service: 0.45
   global_events_orchestrator: 0.50
+  climate_service: 0.40
+  forest_service: 0.40
+  flood_service: 0.40
+  economy_service: 0.45
+  emissions_service: 0.45
+  mitigation_service: 0.45

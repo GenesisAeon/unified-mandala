@@ -1,6 +1,10 @@
-from dataclasses import dataclass
+from __future__ import annotations
 
 """Placeholder microservice for greenhouse gas emission metrics."""
+
+from dataclasses import dataclass
+
+from fastapi import FastAPI
 
 
 @dataclass
@@ -23,3 +27,19 @@ def fetch_emissions_metrics() -> EmissionsMetrics:
     """
 
     return EmissionsMetrics()
+
+
+app = FastAPI(title="Emissions Service")
+
+
+@app.get("/metrics", response_model=EmissionsMetrics)
+async def get_metrics() -> EmissionsMetrics:
+    """Return emission metrics."""
+
+    return fetch_emissions_metrics()
+
+
+if __name__ == "__main__":
+    import uvicorn
+
+    uvicorn.run(app, host="0.0.0.0", port=8000)

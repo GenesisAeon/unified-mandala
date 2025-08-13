@@ -11798,14 +11798,14 @@
   {
     "commit": "Register climate news services in pipeline configuration",
     "path": "pipeline_config.yaml",
-    "status": "todo",
+    "status": "done",
     "task": "Add sigillin_map and CREP thresholds for climate data pipeline",
     "test": ""
   },
   {
     "commit": "Integrate climate news services into docker compose",
     "path": "docker-compose.yml",
-    "status": "todo",
+    "status": "done",
     "task": "Add climate data microservices and orchestrator containers",
     "test": ""
   },

@@ -1,6 +1,10 @@
-from dataclasses import dataclass
+from __future__ import annotations
 
 """Placeholder microservice for basic economic metrics."""
+
+from dataclasses import dataclass
+
+from fastapi import FastAPI
 
 
 @dataclass
@@ -26,3 +30,19 @@ def fetch_economy_metrics() -> EconomyMetrics:
     """
 
     return EconomyMetrics()
+
+
+app = FastAPI(title="Economy Service")
+
+
+@app.get("/metrics", response_model=EconomyMetrics)
+async def get_metrics() -> EconomyMetrics:
+    """Return economy metrics."""
+
+    return fetch_economy_metrics()
+
+
+if __name__ == "__main__":
+    import uvicorn
+
+    uvicorn.run(app, host="0.0.0.0", port=8000)

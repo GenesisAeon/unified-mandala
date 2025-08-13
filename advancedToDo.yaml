@@ -11701,12 +11701,12 @@
   path: pipeline_config.yaml
   task: Add sigillin_map and CREP thresholds for climate data pipeline
   test: ""
-  status: todo
+  status: done
 - commit: Integrate climate news services into docker compose
   path: docker-compose.yml
   task: Add climate data microservices and orchestrator containers
   test: ""
-  status: todo
+  status: done
 - commit: Add global events plugin with positive progress services
   path: plugins/global-events.yaml
   task: Define global & positive progress event layer

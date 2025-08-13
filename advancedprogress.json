@@ -1,5 +1,5 @@
 {
-  "lastCommit": "feat: add ClimateSocialPanel UI",
+  "lastCommit": "feat: integrate climate news services",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
@@ -21,11 +21,11 @@
     },
     {
       "commit": "Register climate news services in pipeline configuration",
-      "status": "todo"
+      "status": "done"
     },
     {
       "commit": "Integrate climate news services into docker compose",
-      "status": "todo"
+      "status": "done"
     },
     {
       "commit": "Create GlobalEventsPanel UI",
