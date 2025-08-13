@@ -15,6 +15,10 @@ sigillin_map:
   tts:              tts_service
   avatar:           avatar_renderer_service
   stream:           streamer_service
+  science_events:   science_service
+  tech_events:      tech_service
+  environment_events: environment_service
+  global_events:    global_events_orchestrator
 
 crep_thresholds:
   gnn_service: 0.60
@@ -33,3 +37,7 @@ crep_thresholds:
   tts_service: 0.40
   avatar_renderer_service: 0.40
   streamer_service: 0.30
+  science_service: 0.45
+  tech_service: 0.45
+  environment_service: 0.45
+  global_events_orchestrator: 0.50

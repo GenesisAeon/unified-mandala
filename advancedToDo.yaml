@@ -11701,7 +11701,7 @@
   path: plugins/global-events.yaml
   task: Define global & positive progress event layer
   test: ""
-  status: todo
+  status: done
 - commit: Scaffold science_service microservice
   path: agents/global_events/science_service.py
   task: Fetch science breakthroughs from API
@@ -11731,7 +11731,7 @@
   path: pipeline_config.yaml
   task: Add sigillin_map and CREP thresholds for global events
   test: ""
-  status: todo
+  status: done
 - commit: Integrate global events services into compose
   path: docker-compose.yml
   task: Add global event microservices and orchestrator containers
@@ -11741,7 +11741,7 @@
   path: memory-jobs.yaml
   task: Add mandala-positive-hourly job for science_fetch
   test: ""
-  status: todo
+  status: done
 - commit: Define Auto-Resonanz sigillin
   path: codex-sigil.yaml
   task: Add um:2025-0804-AUTO-RESONANZ with trigger and services

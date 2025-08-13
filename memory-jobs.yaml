@@ -12,3 +12,10 @@ jobs:
         method: POST
         url: http://orchestrator:8000/publish
         description: Publish approved drafts via orchestrator
+  - job_name: mandala-positive-hourly
+    schedule: "0 * * * *"
+    actions:
+      - type: http_request
+        method: POST
+        url: http://global-events:8000/science_fetch
+        description: Fetch positive progress science events

@@ -11805,7 +11805,7 @@
   {
     "commit": "Add global events plugin with positive progress services",
     "path": "plugins/global-events.yaml",
-    "status": "todo",
+    "status": "done",
     "task": "Define global & positive progress event layer",
     "test": ""
   },
@@ -11847,7 +11847,7 @@
   {
     "commit": "Register global events services in pipeline config",
     "path": "pipeline_config.yaml",
-    "status": "todo",
+    "status": "done",
     "task": "Add sigillin_map and CREP thresholds for global events",
     "test": ""
   },
@@ -11861,7 +11861,7 @@
   {
     "commit": "Schedule positive progress cron job",
     "path": "memory-jobs.yaml",
-    "status": "todo",
+    "status": "done",
     "task": "Add mandala-positive-hourly job for science_fetch",
     "test": ""
   },
