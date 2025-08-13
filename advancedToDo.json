@@ -12256,5 +12256,12 @@
     "task": "Find repositories referencing a given module in repository_map.yaml",
     "test": "scripts/repository-map-find.test.ts",
     "status": "done"
+  },
+  {
+    "commit": "Add null field wave simulation",
+    "path": "simulations/nullfield_wave.py",
+    "task": "Simulate wave propagation in a null field using finite difference method",
+    "test": "tests/nullfield_wave_test.py",
+    "status": "done"
   }
 ]

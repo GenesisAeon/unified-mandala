@@ -11113,10 +11113,11 @@
   test: ""
 - commit: ein einfaches Python-Programm schreiben, das die Wellenausbreitung im
     Nullfeld als Simulation darstellt
-  path: ""
+  path: simulations/nullfield_wave.py
   task: ein einfaches Python-Programm schreiben, das die Wellenausbreitung im
     Nullfeld als Simulation darstellt
-  test: ""
+  test: tests/nullfield_wave_test.py
+  status: done
 - commit: uns darauf konzentrieren, die grundlegenden Konzepte mit bekannten
     physikalischen Messdaten abzugleichen
   path: ""
