@@ -11768,7 +11768,7 @@
   {
     "commit": "Scaffold economy_service microservice",
     "path": "agents/news_climate/economy_service.py",
-    "status": "todo",
+    "status": "done",
     "task": "Aggregate income, wealth and land ownership stats",
     "test": "agents/news_climate/economy_service.test.py"
   },

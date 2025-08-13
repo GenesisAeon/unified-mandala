@@ -49,3 +49,4 @@ Dev-Agents prüfen zu Beginn eines Laufs auf diese Dateien und priorisieren dere
 - Added repository map summary script to list module counts for quick overview.
 - Scaffolded flood service microservice stub for global flood mapping feeds.
 - Implemented PresenceIndicator component for collaborative session awareness.
+- Scaffolded economy service microservice for basic inequality metrics.
