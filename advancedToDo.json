@@ -1397,7 +1397,8 @@
     "commit": "Create AgentDependencyGraph module",
     "path": "packages/agents/AgentDependencyGraph.ts",
     "task": "Visualize agent dependencies in real time",
-    "test": "packages/agents/AgentDependencyGraph.test.ts"
+    "test": "packages/agents/AgentDependencyGraph.test.ts",
+    "status": "done"
   },
   {
     "commit": "Add GPTContextSummarizer bridge",
