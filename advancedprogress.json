@@ -1,12 +1,16 @@
 {
-  "lastCommit": "feat: add js utilities for sigillin-cli",
+  "lastCommit": "feat: enhance GPT ethics supervisor filtering",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
   ],
   "mergeConflicts": [],
-  "notes": "Implemented region profile REST endpoint and completed country/region model set. Added mitigation service microservice stub.",
+  "notes": "Implemented region profile REST endpoint and completed country/region model set. Added mitigation service microservice stub. Enhanced ethics supervisor with pattern checks.",
   "pendingTasks": [
+    {
+      "commit": "Introduce GPTEthicsSupervisor",
+      "status": "done"
+    },
     {
       "commit": "Scaffold emissions_service microservice",
       "status": "done"

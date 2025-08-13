@@ -1412,7 +1412,8 @@
     "commit": "Introduce GPTEthicsSupervisor",
     "path": "packages/gpt-bridges/GPTEthicsSupervisor.ts",
     "task": "Check GPT answers for ethical consistency",
-    "test": "packages/gpt-bridges/GPTEthicsSupervisor.test.ts"
+    "test": "packages/gpt-bridges/GPTEthicsSupervisor.test.ts",
+    "status": "done"
   },
   {
     "commit": "Add GPTSymbolInterpreter",
