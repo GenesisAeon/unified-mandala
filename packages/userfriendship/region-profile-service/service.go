@@ -1,11 +1,12 @@
 package regionprofileservice
 
 import (
-	"encoding/json"
-	"net/http"
-	"os"
+        "encoding/json"
+        "net/http"
+        "os"
+        "strings"
 
-	yaml "gopkg.in/yaml.v3"
+        yaml "gopkg.in/yaml.v3"
 )
 
 type Region struct {
@@ -40,13 +41,15 @@ func LookupRegion(ip string) *Region {
 }
 
 func Handler(w http.ResponseWriter, r *http.Request) {
-	ip := r.URL.Query().Get("ip")
-	if ip == "" {
-		ip = r.RemoteAddr
-	}
-	if region := LookupRegion(ip); region != nil {
-		json.NewEncoder(w).Encode(region)
-	} else {
-		w.WriteHeader(http.StatusNotFound)
-	}
+        ip := strings.TrimPrefix(r.URL.Path, "/friendship/region/")
+        if ip == "" || strings.Contains(ip, "/") {
+                w.WriteHeader(http.StatusBadRequest)
+                return
+        }
+        if region := LookupRegion(ip); region != nil {
+                w.Header().Set("Content-Type", "application/json")
+                json.NewEncoder(w).Encode(region)
+        } else {
+                w.WriteHeader(http.StatusNotFound)
+        }
 }
