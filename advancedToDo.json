@@ -11775,7 +11775,7 @@
   {
     "commit": "Scaffold emissions_service microservice",
     "path": "agents/news_climate/emissions_service.py",
-    "status": "todo",
+    "status": "done",
     "task": "Stream CO2 and methane emission metrics",
     "test": "agents/news_climate/emissions_service.test.py"
   },

@@ -55,3 +55,4 @@ Dev-Agents prüfen zu Beginn eines Laufs auf diese Dateien und priorisieren dere
 - Scaffolded mitigation service microservice for climate program metrics.
 
 - Enabled sigillin-cli commands to run without ts-node by adding JS fallbacks.
+- Scaffolded emissions service microservice for CO2 and methane metrics.

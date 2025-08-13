@@ -11684,7 +11684,7 @@
   path: agents/news_climate/emissions_service.py
   task: Stream CO2 and methane emission metrics
   test: agents/news_climate/emissions_service.test.py
-  status: todo
+  status: done
 - commit: Scaffold mitigation_service microservice
   path: agents/news_climate/mitigation_service.py
   task: Gather climate mitigation program data
