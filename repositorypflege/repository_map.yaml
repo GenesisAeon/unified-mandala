@@ -87,4 +87,5 @@ gpt_bridges:
         - "AI = Werkzeug, nie Wille."
         - "Bewusstsein = fehlerhaft, aber lernend."
         - "Poetische Klarheit vor technischer Perfektion."
-
+  - gpt-ethics-supervisor.ts:
+      description: "Checks GPT answers for ethical consistency"

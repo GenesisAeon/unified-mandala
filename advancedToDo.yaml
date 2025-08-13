@@ -1037,6 +1037,7 @@
   path: packages/gpt-bridges/GPTEthicsSupervisor.ts
   task: Check GPT answers for ethical consistency
   test: packages/gpt-bridges/GPTEthicsSupervisor.test.ts
+  status: done
 - commit: Add GPTSymbolInterpreter
   path: packages/gpt-bridges/GPTSymbolInterpreter.ts
   task: Explain symbolic meanings to the user in real time
