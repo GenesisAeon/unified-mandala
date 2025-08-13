@@ -89,3 +89,5 @@ gpt_bridges:
         - "Poetische Klarheit vor technischer Perfektion."
   - gpt-ethics-supervisor.ts:
       description: "Checks GPT answers for ethical consistency"
+  - gpt-symbol-interpreter.ts:
+      description: "Explains symbolic meanings to the user in real time"
