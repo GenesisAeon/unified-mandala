@@ -1,6 +1,11 @@
 import { summarize } from './GPTContextSummarizer';
 
-test('summarizes long text', () => {
-  const txt = 'a'.repeat(150);
-  expect(summarize(txt, 10)).toBe('aaaaaaaaaa...');
+test('summarizes long text without breaking words', () => {
+  const txt = 'hello world from unified mandala';
+  expect(summarize(txt, 12)).toBe('hello world…');
+});
+
+test('returns original text when short enough', () => {
+  const txt = 'short text';
+  expect(summarize(txt, 50)).toBe(txt);
 });
