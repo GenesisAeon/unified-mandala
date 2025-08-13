@@ -33,6 +33,8 @@ services:
       - tts_service
       - avatar_renderer_service
       - streamer_service
+      - finetune_service
+      - review_service
 
   news_fetcher_service:
     build:
@@ -69,11 +71,16 @@ services:
       context: ./services/finetune
     ports:
       - "8106:8000"
+  review_service:
+    build:
+      context: ./agents/review_checkpoint
+    ports:
+      - "8107:8000"
   singularity_simulator_service:
     build:
       context: ./agents/singularity_simulator
     ports:
-      - "8107:8000"
+      - "8108:8000"
 
   # --- Open-source chat services ---
   gpt4all_service:

@@ -9,7 +9,7 @@
   "pendingTasks": [
     {
       "commit": "Integrate finetune and review services in compose",
-      "status": "todo"
+      "status": "done"
     },
     {
       "commit": "Scaffold emissions_service microservice",
