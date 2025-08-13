@@ -12016,3 +12016,8 @@
   task: Output module counts from repository_map.yaml
   test: ""
   status: done
+- commit: Add repository map finder script
+  path: scripts/repository-map-find.ts
+  task: Find repositories referencing a given module in repository_map.yaml
+  test: scripts/repository-map-find.test.ts
+  status: done
