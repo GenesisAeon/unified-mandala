@@ -12061,3 +12061,8 @@
   task: Verify modules listed in repository_map.yaml exist in filesystem
   test: scripts/repository-map-check-modules.test.ts
   status: done
+- commit: Add repository map duplicate checker
+  path: scripts/repository-map-check-duplicates.ts
+  task: Ensure repository and module names in repository_map.yaml are unique
+  test: scripts/repository-map-check-duplicates.test.ts
+  status: done
