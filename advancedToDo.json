@@ -11851,7 +11851,7 @@
   {
     "commit": "Create GlobalEventsPanel UI",
     "path": "packages/unifiedmandala-ui/components/GlobalEventsPanel.tsx",
-    "status": "todo",
+    "status": "done",
     "task": "Display cosmic, crisis and positive events",
     "test": "packages/unifiedmandala-ui/components/GlobalEventsPanel.test.tsx"
   },
