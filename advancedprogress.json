@@ -1,5 +1,5 @@
 {
-  "lastCommit": "chore: finalize progress sync",
+  "lastCommit": "chore: sync progress tracker",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
@@ -4044,6 +4044,10 @@
     {
       "commit": "Create ImpactMap component",
       "status": "done"
+    },
+    {
+      "commit": "Add repository map list script",
+      "status": "done"
     }
   ],
   "completed": [
@@ -4725,6 +4729,10 @@
     },
     {
       "commit": "Enhance EventPlaybackModule with filtering",
+      "status": "done"
+    },
+    {
+      "commit": "Add repository map list script",
       "status": "done"
     }
   ]

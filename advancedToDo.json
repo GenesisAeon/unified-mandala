@@ -12317,5 +12317,12 @@
     "task": "Ensure repository_map.yaml has unique repository names and modules",
     "test": "scripts/repository-map-check-duplicates.test.ts",
     "status": "done"
+  },
+  {
+    "commit": "Add repository map list script",
+    "path": "scripts/repository-map-list.ts",
+    "task": "List repositories and modules from repository_map.yaml",
+    "test": "scripts/repository-map-list.test.ts",
+    "status": "done"
   }
 ]

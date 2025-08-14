@@ -72,3 +72,4 @@ Dev-Agents prüfen zu Beginn eines Laufs auf diese Dateien und priorisieren dere
 - Implemented ParticleTimeDilation module simulating relativistic effects.
 - Added repository map duplicate checker script to ensure unique repositories and modules.
 - Enhanced EventPlaybackModule with filtering and clear capabilities.
+- Added repository map list script to enumerate modules per repository.
