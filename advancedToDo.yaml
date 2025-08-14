@@ -11819,7 +11819,7 @@
   path: agents/sentiment/Dockerfile
   task: Create Dockerfile and requirements for sentiment agent
   test: agents/sentiment/main.test.py
-  status: todo
+  status: done
 - commit: Add Dockerfile and requirements for provenance agent
   path: agents/provenance/Dockerfile
   task: Create Dockerfile and requirements for provenance agent
