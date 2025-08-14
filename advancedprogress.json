@@ -1,5 +1,5 @@
 {
-  "lastCommit": "feat(symbolzeit): add linear regression forecaster",
+  "lastCommit": "feat: add meta tuner agent",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
@@ -9,10 +9,6 @@
   "pendingTasks": [
     {
       "commit": "Integrate global events services into compose",
-      "status": "todo"
-    },
-    {
-      "commit": "Add meta tuner plugin and agent",
       "status": "todo"
     },
     {
@@ -4012,6 +4008,10 @@
     {
       "commit": "Implement SymbolzeitMLForecaster",
       "status": "done"
+    },
+    {
+      "commit": "Add meta tuner plugin and agent",
+      "status": "done"
     }
   ],
   "completed": [
@@ -4657,6 +4657,10 @@
     },
     {
       "commit": "Implement SymbolzeitMLForecaster",
+      "status": "done"
+    },
+    {
+      "commit": "Add Meta Tuner plugin and agent",
       "status": "done"
     }
   ]

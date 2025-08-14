@@ -1,0 +1,7 @@
+id: meta-tuner
+title: "Meta Tuner"
+type: optimization
+agent: MetaTunerAgent
+entrypoint: agents/meta_tuner/main.py
+config:
+  base_threshold: 0.5

@@ -11902,9 +11902,9 @@
   {
     "commit": "Add meta tuner plugin and agent",
     "path": "plugins/meta-tuner.yaml",
-    "status": "todo",
+    "status": "done",
     "task": "Adjust CREP thresholds via MetaTunerAgent",
-    "test": "agents/meta_tuner/main.test.ts"
+    "test": "agents/meta_tuner/test_main.py"
   },
   {
     "commit": "Add contrastive training plugin and agent",

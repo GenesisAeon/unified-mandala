@@ -19,3 +19,8 @@ plugins:
     component: "../plugins/mistralCodeAgent/mistralCodeAgent"
     dataHook: ""
     story: ""
+  - name: meta-tuner
+    version: "0.1.0"
+    component: "../plugins/meta-tuner.yaml"
+    dataHook: ""
+    story: ""
