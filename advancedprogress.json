@@ -1,5 +1,5 @@
 {
-  "lastCommit": "Merge pull request #1198 from GenesisAeon/codex/implement-features-from-advancedtodo.yaml-qs3pws",
+  "lastCommit": "chore(progress): set commit reference",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
@@ -7,10 +7,6 @@
   "mergeConflicts": [],
   "notes": "Implemented region profile REST endpoint and completed country/region model set. Added mitigation service microservice stub. Enhanced ethics supervisor with pattern checks. Added ClimateSocialPanel UI for dashboard metrics.",
   "pendingTasks": [
-    {
-      "commit": "Create GlobalEventsPanel UI",
-      "status": "todo"
-    },
     {
       "commit": "Integrate global events services into compose",
       "status": "todo"
@@ -3995,6 +3991,10 @@
     },
     {
       "commit": "Define Auto-Resonanz sigillin",
+      "status": "done"
+    },
+    {
+      "commit": "Create GlobalEventsPanel UI",
       "status": "done"
     }
   ],

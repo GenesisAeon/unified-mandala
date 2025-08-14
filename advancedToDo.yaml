@@ -11740,7 +11740,7 @@
   path: packages/unifiedmandala-ui/components/GlobalEventsPanel.tsx
   task: Display cosmic, crisis and positive events
   test: packages/unifiedmandala-ui/components/GlobalEventsPanel.test.tsx
-  status: todo
+  status: done
 - commit: Register global events services in pipeline config
   path: pipeline_config.yaml
   task: Add sigillin_map and CREP thresholds for global events
