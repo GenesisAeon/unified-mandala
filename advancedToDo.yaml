@@ -11100,6 +11100,7 @@
   task: eine Debugging-Phase einbauen, um falsche Werte oder ungewollte
     Endlosschleifen zu erkennen
   test: ""
+  status: done
 - commit: alternative Algorithmen für Kraftberechnungen und Partikelinteraktionen
     ausprobieren
   path: ""
@@ -11124,6 +11125,7 @@
   task: die Simulation so aufbauen, dass sie **Variablen für Fortschritt und
     mögliche Hürden** integriert
   test: ""
+  status: done
 - commit: die Gravitation als eine Strömungsreaktion im Nullfeld modellieren
   path: ""
   task: die Gravitation als eine Strömungsreaktion im Nullfeld modellieren
