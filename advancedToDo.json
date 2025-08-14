@@ -11915,7 +11915,7 @@
   {
     "commit": "Create ResonanceHistoryPanel UI",
     "path": "packages/unifiedmandala-ui/components/ResonanceHistoryPanel.tsx",
-    "status": "todo",
+    "status": "done",
     "task": "Visualize CREP, data volume and drift scores over time",
     "test": "packages/unifiedmandala-ui/components/ResonanceHistoryPanel.test.tsx"
   },
