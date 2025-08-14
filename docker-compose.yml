@@ -185,3 +185,48 @@ services:
       - .:/workspace/unified-mandala
     ports:
       - "8306:8000"
+
+  # --- Global events microservices ---
+  global_events_orchestrator:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    command: python agents/global_events/orchestrator.py
+    volumes:
+      - .:/workspace/unified-mandala
+    ports:
+      - "8400:8000"
+    depends_on:
+      - science_service
+      - tech_service
+      - environment_service
+
+  science_service:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    command: python agents/global_events/science_service.py
+    volumes:
+      - .:/workspace/unified-mandala
+    ports:
+      - "8401:8000"
+
+  tech_service:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    command: python agents/global_events/tech_service.py
+    volumes:
+      - .:/workspace/unified-mandala
+    ports:
+      - "8402:8000"
+
+  environment_service:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    command: python agents/global_events/environment_service.py
+    volumes:
+      - .:/workspace/unified-mandala
+    ports:
+      - "8403:8000"

@@ -11685,7 +11685,7 @@
     "path": "docker-compose.yml",
     "task": "Add finetune and review service containers",
     "test": "",
-    "status": "todo"
+    "status": "done"
   },
   {
     "commit": "Document NewsBot live cycle flow",
@@ -11718,7 +11718,7 @@
   {
     "commit": "Add desertification tracker plugin and agent",
     "path": "plugins/desertification.yaml",
-    "status": "todo",
+    "status": "done",
     "task": "Monitor expansion of arid regions using UNCCD data",
     "test": "agents/desert_tracker/test_main.py"
   },
@@ -11865,7 +11865,7 @@
   {
     "commit": "Integrate global events services into compose",
     "path": "docker-compose.yml",
-    "status": "todo",
+    "status": "done",
     "task": "Add global event microservices and orchestrator containers",
     "test": ""
   },
