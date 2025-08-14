@@ -10,18 +10,30 @@ export class HookTriggererAgent implements Agent {
   }
 
   async handle(task: Task): Promise<void> {
-    const url = (task as any).url;
-    if (url) {
+    const urls = Array.isArray((task as any).urls)
+      ? (task as any).urls
+      : (task as any).url
+      ? [(task as any).url]
+      : [];
+    const method = (task as any).method || 'POST';
+
+    for (const url of urls) {
       try {
-        await this.request(url, {
-          method: 'POST',
+        const res = await this.request(url, {
+          method,
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(task),
         });
+        if (!res.ok) {
+          console.error(
+            `HookTriggerer error for ${task.id} [${url}]: ${res.status}`
+          );
+        }
       } catch (err) {
-        console.error(`HookTriggerer error for ${task.id}:`, err);
+        console.error(`HookTriggerer error for ${task.id} [${url}]:`, err);
       }
     }
+
     console.log(`🔔 HookTriggerer → Trigger für ${task.id}`);
   }
 }

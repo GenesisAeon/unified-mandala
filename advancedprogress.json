@@ -1,6 +1,6 @@
 {
-  "lastCommit": "feat: add threshold alerts to RealTimePerformanceMonitor",
-  "fractalStep": "RealTimePerformanceMonitor extended",
+  "lastCommit": "feat: support multiple webhooks in HookTriggererAgent",
+  "fractalStep": "HookTriggererAgent multi-webhook",
   "openBranches": [
     "work"
   ],
@@ -4669,6 +4669,10 @@
     },
     {
       "commit": "Add threshold alerts to RealTimePerformanceMonitor",
+      "status": "done"
+    },
+    {
+      "commit": "feat: support multiple webhooks in HookTriggererAgent",
       "status": "done"
     }
   ]

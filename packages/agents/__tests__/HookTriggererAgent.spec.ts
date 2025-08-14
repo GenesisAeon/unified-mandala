@@ -20,4 +20,25 @@ describe('HookTriggererAgent', () => {
       expect.objectContaining({ method: 'POST' })
     );
   });
+
+  it('triggers multiple webhooks when urls array provided', async () => {
+    const fetchMock = vi.fn().mockResolvedValue({ ok: true } as any);
+    const agent = new HookTriggererAgent(fetchMock as any);
+    await agent.handle({
+      id: 'T-URLs',
+      description: '...',
+      urls: ['https://example.com/1', 'https://example.com/2'],
+    });
+    expect(fetchMock).toHaveBeenCalledTimes(2);
+    expect(fetchMock).toHaveBeenNthCalledWith(
+      1,
+      'https://example.com/1',
+      expect.objectContaining({ method: 'POST' })
+    );
+    expect(fetchMock).toHaveBeenNthCalledWith(
+      2,
+      'https://example.com/2',
+      expect.objectContaining({ method: 'POST' })
+    );
+  });
 });

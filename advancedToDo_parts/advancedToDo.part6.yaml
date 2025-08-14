@@ -103,23 +103,11 @@
     dem Datensatz zu filtern.
   test: ''
   status: planned
-- commit: >-
-    - **HookTriggererAgent (`HookTriggererAgent.ts`)**: Ein simpler Stub, der
-    bei `handle()` lediglich ein Glocken-Emoji und den Task.id loggt【63†L3-L9】.
-    Geplant ist wohl, Webhooks oder externe Hooks auszulösen. Potenzial: Hier
-    könnte man REST-Calls an definierte Endpunkte einbauen (z.B. CI/CD Trigger,
-    Slack Notifications etc.). Verbesserung: Implementierung echter
-    Hook-Auslösung basierend auf Task-Details (evtl. URL im Task enthalten?).
-  path: ''
-  task: >-
-    **HookTriggererAgent (`HookTriggererAgent.ts`)**: Ein simpler Stub, der bei
-    `handle()` lediglich ein Glocken-Emoji und den Task.id loggt【63†L3-L9】.
-    Geplant ist wohl, Webhooks oder externe Hooks auszulösen. Potenzial: Hier
-    könnte man REST-Calls an definierte Endpunkte einbauen (z.B. CI/CD Trigger,
-    Slack Notifications etc.). Verbesserung: Implementierung echter
-    Hook-Auslösung basierend auf Task-Details (evtl. URL im Task enthalten?).
-  test: ''
-  status: planned
+- commit: "Extend HookTriggererAgent to trigger multiple webhooks and log responses"
+  path: packages/agents/HookTriggererAgent.ts
+  task: "Support array task.urls and log HTTP status for each hook"
+  test: packages/agents/__tests__/HookTriggererAgent.spec.ts
+  status: done
 - commit: >-
     - There are **tools to process these logs**. For example,
     `scripts/parse-advanced-conversations.js` is used to parse new tasks from
