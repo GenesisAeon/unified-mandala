@@ -1441,7 +1441,8 @@
     "commit": "Add InteractiveNarrativeEngine",
     "path": "packages/universum-simulationen/InteractiveNarrativeEngine.ts",
     "task": "Allow users to build interactive narratives based on CREP",
-    "test": "packages/universum-simulationen/InteractiveNarrativeEngine.test.ts"
+    "test": "packages/universum-simulationen/InteractiveNarrativeEngine.test.ts",
+    "status": "done"
   },
   {
     "commit": "Introduce EmotionalResonanceSimulator",
