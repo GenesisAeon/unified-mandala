@@ -12326,5 +12326,12 @@
     "task": "List repositories and modules from repository_map.yaml",
     "test": "scripts/repository-map-list.test.ts",
     "status": "done"
+  },
+  {
+    "commit": "Add summary output to sync-todo-progress script",
+    "path": "scripts/sync-todo-progress.js",
+    "task": "Log counts of tasks synced into advancedprogress.json",
+    "test": "scripts/__tests__/sync-todo-progress.test.ts",
+    "status": "done"
   }
 ]
