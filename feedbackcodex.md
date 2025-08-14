@@ -64,3 +64,4 @@ Dev-Agents prüfen zu Beginn eines Laufs auf diese Dateien und priorisieren dere
 - Implemented InteractiveSymbolzeitExplorer component for navigating Symbolzeit timelines.
 - Added ResonanceHistoryPanel component for visualizing CREP, volume, and drift over time.
 - Enhanced SymbolzeitMLForecaster with linear regression training and forecasting utilities.
+- Implemented IoTSensorWidget component to display realtime IoT sensor values.
