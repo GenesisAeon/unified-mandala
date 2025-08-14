@@ -1466,7 +1466,8 @@
     "commit": "Integrate SigillinBlockchain storage",
     "path": "packages/genesis-sigillin-core/SigillinBlockchainIntegration.ts",
     "task": "Persist Sigillin metadata on a blockchain",
-    "test": "packages/genesis-sigillin-core/SigillinBlockchainIntegration.test.ts"
+    "test": "packages/genesis-sigillin-core/SigillinBlockchainIntegration.test.ts",
+    "status": "done"
   },
   {
     "commit": "Add SigillinIntegrityChecker",
