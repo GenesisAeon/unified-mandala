@@ -18,6 +18,7 @@ Dev-Agents prüfen zu Beginn eines Laufs auf diese Dateien und priorisieren dere
 - Added agent backend switching in ChatPanel with service toolbar.
 - Implemented SingularitySimulatorPanel for interactive singularity simulations.
 - Added duplicate conversation title index tracking in validator.
+- Enhanced EmotionalResonanceSimulator to classify resonance states.
 - Added live suggestion badges to CREPVisualizer and synced progress files.
 - Implemented chat proxy route to forward /api/chat requests to configured services.
 - Exposed service avatars in PyramidVRMeetingRoom for interactive local/external agents.
