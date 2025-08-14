@@ -3,6 +3,7 @@ from __future__ import annotations
 """Desertification Tracker Agent.
 
 A tiny FastAPI service that exposes a desertification severity index.
+
 Returns dummy data as placeholder for future integrations.
 """
 
