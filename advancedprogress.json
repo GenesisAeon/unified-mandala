@@ -4660,6 +4660,10 @@
     {
       "commit": "Add repository map duplicate checker",
       "status": "done"
+    },
+    {
+      "commit": "Add summary output to sync-todo-progress script",
+      "status": "done"
     }
   ],
   "metacommitTags": [
@@ -4757,6 +4761,10 @@
     },
     {
       "commit": "Filter conversations by keyword",
+      "status": "done"
+    },
+    {
+      "commit": "Add summary output to sync-todo-progress script",
       "status": "done"
     }
   ]
