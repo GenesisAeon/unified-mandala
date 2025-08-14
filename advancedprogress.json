@@ -1,5 +1,5 @@
 {
-  "lastCommit": "Merge pull request #1211 from GenesisAeon/codex/implement-features-from-advancedtodo.yaml-ebrje9",
+  "lastCommit": "Merge pull request #1212 from GenesisAeon/codex/implement-features-from-advancedtodo.yaml-y8rq64",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
@@ -4024,6 +4024,14 @@
     {
       "commit": "Extend HookTriggererAgent with multi webhook support",
       "status": "done"
+    },
+    {
+      "commit": "eine Debugging-Phase einbauen, um falsche Werte oder ungewollte Endlosschleifen zu erkennen",
+      "status": "done"
+    },
+    {
+      "commit": "die Simulation so aufbauen, dass sie **Variablen für Fortschritt und mögliche Hürden** integriert",
+      "status": "done"
     }
   ],
   "completed": [
@@ -4619,6 +4627,14 @@
     },
     {
       "commit": "Create AgentDependencyGraph module",
+      "status": "done"
+    },
+    {
+      "commit": "die Simulation so aufbauen, dass sie Variablen für Fortschritt und mögliche Hürden integriert",
+      "status": "done"
+    },
+    {
+      "commit": "eine Debugging-Phase einbauen, um falsche Werte oder ungewollte Endlosschleifen zu erkennen",
       "status": "done"
     }
   ],
