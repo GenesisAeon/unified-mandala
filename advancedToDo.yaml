@@ -11775,8 +11775,8 @@
 - commit: Add meta tuner plugin and agent
   path: plugins/meta-tuner.yaml
   task: Adjust CREP thresholds via MetaTunerAgent
-  test: agents/meta_tuner/main.test.ts
-  status: todo
+  test: agents/meta_tuner/test_main.py
+  status: done
 - commit: Add contrastive training plugin and agent
   path: plugins/contrastive-training.yaml
   task: Create hallucination vs fact pairs using ContrastAgent
