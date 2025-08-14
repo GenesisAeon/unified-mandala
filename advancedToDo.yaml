@@ -1052,6 +1052,7 @@
   path: packages/aeon-shell/SymbolzeitMLForecaster.ts
   task: Predict Symbolzeit progression using ML
   test: packages/aeon-shell/SymbolzeitMLForecaster.test.ts
+  status: done
 - commit: Add InteractiveNarrativeEngine
   path: packages/universum-simulationen/InteractiveNarrativeEngine.ts
   task: Allow users to build interactive narratives based on CREP

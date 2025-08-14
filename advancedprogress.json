@@ -1,5 +1,5 @@
 {
-  "lastCommit": "feat(ui): add ResonanceHistoryPanel",
+  "lastCommit": "feat(symbolzeit): add linear regression forecaster",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
@@ -4008,6 +4008,10 @@
     {
       "commit": "Validate repository map module paths",
       "status": "done"
+    },
+    {
+      "commit": "Implement SymbolzeitMLForecaster",
+      "status": "done"
     }
   ],
   "completed": [
@@ -4649,6 +4653,10 @@
     },
     {
       "commit": "Add InteractiveSymbolzeitExplorer component",
+      "status": "done"
+    },
+    {
+      "commit": "Implement SymbolzeitMLForecaster",
       "status": "done"
     }
   ]
