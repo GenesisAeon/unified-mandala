@@ -11758,7 +11758,7 @@
   path: docker-compose.yml
   task: Add global event microservices and orchestrator containers
   test: ""
-  status: todo
+  status: done
 - commit: Schedule positive progress cron job
   path: memory-jobs.yaml
   task: Add mandala-positive-hourly job for science_fetch
@@ -11788,7 +11788,7 @@
   path: plugins/contrastive-training.yaml
   task: Create hallucination vs fact pairs using ContrastAgent
   test: agents/contrastive_training/main.test.ts
-  status: todo
+  status: done
 - commit: Create ResonanceHistoryPanel UI
   path: packages/unifiedmandala-ui/components/ResonanceHistoryPanel.tsx
   task: Visualize CREP, data volume and drift scores over time

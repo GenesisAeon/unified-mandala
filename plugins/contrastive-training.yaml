@@ -1,0 +1,7 @@
+id: contrastive-training
+title: "Contrastive Training"
+type: training
+agent: ContrastiveTrainingAgent
+entrypoint: agents/contrastive_training/main.ts
+config:
+  pairLimit: 50

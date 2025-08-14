@@ -67,3 +67,4 @@ Dev-Agents prüfen zu Beginn eines Laufs auf diese Dateien und priorisieren dere
 - Implemented IoTSensorWidget component to display realtime IoT sensor values.
 - Extended HookTriggererAgent to trigger multiple webhooks and report response statuses.
 - Implemented SigillinBlockchainIntegration with an in-memory ledger as a step toward on-chain Sigillin persistence.
+- Added contrastive training plugin and agent stub.
