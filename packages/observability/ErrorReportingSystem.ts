@@ -1,4 +1,21 @@
+export interface ErrorRecord {
+  error: Error;
+  timestamp: number;
+}
+
 export class ErrorReportingSystem {
-  errors: string[] = [];
-  report(e: Error) { this.errors.push(e.message); }
+  private records: ErrorRecord[] = [];
+
+  report(e: Error) {
+    console.error(e);
+    this.records.push({ error: e, timestamp: Date.now() });
+  }
+
+  getErrors(): ErrorRecord[] {
+    return this.records;
+  }
+
+  clear() {
+    this.records = [];
+  }
 }
