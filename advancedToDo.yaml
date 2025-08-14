@@ -1074,6 +1074,7 @@
   path: packages/genesis-sigillin-core/SigillinBlockchainIntegration.ts
   task: Persist Sigillin metadata on a blockchain
   test: packages/genesis-sigillin-core/SigillinBlockchainIntegration.test.ts
+  status: done
 - commit: Add SigillinIntegrityChecker
   path: packages/genesis-sigillin-core/SigillinIntegrityChecker.ts
   task: Verify Sigillin data for integrity
