@@ -12014,7 +12014,7 @@
   {
     "commit": "Create IoTSensorWidget component",
     "path": "packages/unifiedmandala-ui/components/IoTSensorWidget.tsx",
-    "status": "todo",
+    "status": "done",
     "task": "Display IoT sensor realtime data",
     "test": "packages/unifiedmandala-ui/components/IoTSensorWidget.test.tsx"
   },

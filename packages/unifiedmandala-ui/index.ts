@@ -42,3 +42,4 @@ export { default as AIUI } from './components/AIUI';
 export { default as ArchiveMap } from './components/ArchiveMap';
 export { default as SigillinFractalVisualizer } from './components/SigillinFractalVisualizer';
 export { default as InteractiveSymbolzeitExplorer } from './components/InteractiveSymbolzeitExplorer';
+export { default as IoTSensorWidget } from './components/IoTSensorWidget';

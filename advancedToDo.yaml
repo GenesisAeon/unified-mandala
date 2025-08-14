@@ -11856,7 +11856,7 @@
   path: packages/unifiedmandala-ui/components/IoTSensorWidget.tsx
   task: Display IoT sensor realtime data
   test: packages/unifiedmandala-ui/components/IoTSensorWidget.test.tsx
-  status: todo
+  status: done
 - commit: Create SentimentBadge component
   path: packages/unifiedmandala-ui/components/SentimentBadge.tsx
   task: Show real-time sentiment analysis badge
