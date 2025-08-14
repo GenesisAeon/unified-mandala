@@ -11967,9 +11967,9 @@
   {
     "commit": "Add Dockerfile and requirements for provenance agent",
     "path": "agents/provenance/Dockerfile",
-    "status": "todo",
+    "status": "done",
     "task": "Create Dockerfile and requirements for provenance agent",
-    "test": "agents/provenance/main.test.py"
+    "test": "agents/provenance/test_main.py"
   },
   {
     "commit": "Add Dockerfile and requirements for generative art agent",

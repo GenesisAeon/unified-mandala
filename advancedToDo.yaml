@@ -11824,8 +11824,8 @@
 - commit: Add Dockerfile and requirements for provenance agent
   path: agents/provenance/Dockerfile
   task: Create Dockerfile and requirements for provenance agent
-  test: agents/provenance/main.test.py
-  status: todo
+  test: agents/provenance/test_main.py
+  status: done
 - commit: Add Dockerfile and requirements for generative art agent
   path: agents/art/Dockerfile
   task: Create Dockerfile and requirements for generative art agent
