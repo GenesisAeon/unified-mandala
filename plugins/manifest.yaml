@@ -29,3 +29,8 @@ plugins:
     component: "../plugins/mandala-global.yaml"
     dataHook: ""
     story: ""
+  - name: iot-sensor
+    version: "0.1.0"
+    component: "../plugins/iot-sensor.yaml"
+    dataHook: ""
+    story: ""
