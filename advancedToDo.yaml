@@ -12045,3 +12045,8 @@
   task: Ensure CLI commands work without build using JS fallbacks
   test: packages/cli-tools/__tests__/sigillin-cli.list-open-tasks.test.ts
   status: done
+- commit: Validate repository map module paths
+  path: scripts/repository-map-check-modules.ts
+  task: Verify modules listed in repository_map.yaml exist in filesystem
+  test: scripts/repository-map-check-modules.test.ts
+  status: done
