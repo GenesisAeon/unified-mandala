@@ -11959,7 +11959,7 @@
   {
     "commit": "Add Dockerfile and requirements for sentiment agent",
     "path": "agents/sentiment/Dockerfile",
-    "status": "todo",
+    "status": "done",
     "task": "Create Dockerfile and requirements for sentiment agent",
     "test": "agents/sentiment/main.test.py"
   },

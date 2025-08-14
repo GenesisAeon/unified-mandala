@@ -1,5 +1,5 @@
 {
-  "lastCommit": "feat: enhance emotional resonance simulation",
+  "lastCommit": "feat: add sentiment agent container",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
@@ -17,10 +17,6 @@
     },
     {
       "commit": "Add Dockerfile and requirements for IoT sensor agent",
-      "status": "todo"
-    },
-    {
-      "commit": "Add Dockerfile and requirements for sentiment agent",
       "status": "todo"
     },
     {
@@ -4056,6 +4052,10 @@
     {
       "commit": "Introduce EmotionalResonanceSimulator",
       "status": "done"
+    },
+    {
+      "commit": "Add Dockerfile and requirements for sentiment agent",
+      "status": "done"
     }
   ],
   "completed": [
@@ -4749,6 +4749,10 @@
     },
     {
       "commit": "Introduce EmotionalResonanceSimulator",
+      "status": "done"
+    },
+    {
+      "commit": "Add Dockerfile and requirements for sentiment agent",
       "status": "done"
     }
   ]
