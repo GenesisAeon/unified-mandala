@@ -1094,6 +1094,7 @@
   path: packages/event-bus/EventPlaybackModule.ts
   task: Record and replay event streams for debugging
   test: packages/event-bus/EventPlaybackModule.test.ts
+  status: done
 - commit: Add EventVisualizationDashboard
   path: packages/unifiedmandala-ui/components/EventVisualizationDashboard.tsx
   task: Visualize module communication in real time
