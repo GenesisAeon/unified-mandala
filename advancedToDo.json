@@ -2697,7 +2697,8 @@
     "commit": "feat: implement particle time-dilation module",
     "path": "packages/universum-simulationen/ParticleTimeDilation.ts",
     "task": "Simulate time dilation, energy conversion and gas formation",
-    "test": "packages/universum-simulationen/ParticleTimeDilation.test.ts"
+    "test": "packages/universum-simulationen/ParticleTimeDilation.test.ts",
+    "status": "done"
   },
   {
     "commit": "chore: scaffold Wissenschaftliche Versuche project",

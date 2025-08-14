@@ -1,5 +1,5 @@
 {
-  "lastCommit": "Merge pull request #1212 from GenesisAeon/codex/implement-features-from-advancedtodo.yaml-y8rq64",
+  "lastCommit": "feat: add particle time dilation simulation",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
@@ -4032,6 +4032,10 @@
     {
       "commit": "die Simulation so aufbauen, dass sie **Variablen für Fortschritt und mögliche Hürden** integriert",
       "status": "done"
+    },
+    {
+      "commit": "feat: implement particle time-dilation module",
+      "status": "done"
     }
   ],
   "completed": [
@@ -4697,6 +4701,10 @@
     },
     {
       "commit": "feat: support multiple webhooks in HookTriggererAgent",
+      "status": "done"
+    },
+    {
+      "commit": "feat: implement particle time-dilation module",
       "status": "done"
     }
   ]
