@@ -71,3 +71,4 @@ Dev-Agents prüfen zu Beginn eines Laufs auf diese Dateien und priorisieren dere
 - Integrated progress metrics and debugging safeguards into null field wave simulation.
 - Implemented ParticleTimeDilation module simulating relativistic effects.
 - Added repository map duplicate checker script to ensure unique repositories and modules.
+- Enhanced EventPlaybackModule with filtering and clear capabilities.

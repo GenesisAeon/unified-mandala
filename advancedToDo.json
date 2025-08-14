@@ -1494,7 +1494,8 @@
     "commit": "Implement EventPlaybackModule",
     "path": "packages/event-bus/EventPlaybackModule.ts",
     "task": "Record and replay event streams for debugging",
-    "test": "packages/event-bus/EventPlaybackModule.test.ts"
+    "test": "packages/event-bus/EventPlaybackModule.test.ts",
+    "status": "done"
   },
   {
     "commit": "Add EventVisualizationDashboard",
