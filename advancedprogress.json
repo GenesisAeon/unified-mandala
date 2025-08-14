@@ -1,5 +1,5 @@
 {
-  "lastCommit": "feat(ui): add InteractiveSymbolzeitExplorer component",
+  "lastCommit": "feat(ui): add ResonanceHistoryPanel",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
@@ -9,7 +9,7 @@
   "pendingTasks": [
     {
       "commit": "Integrate global events services into compose",
-      "status": "done"
+      "status": "todo"
     },
     {
       "commit": "Add meta tuner plugin and agent",
@@ -17,10 +17,6 @@
     },
     {
       "commit": "Add contrastive training plugin and agent",
-      "status": "todo"
-    },
-    {
-      "commit": "Create ResonanceHistoryPanel UI",
       "status": "todo"
     },
     {
@@ -3999,6 +3995,18 @@
     },
     {
       "commit": "Integrate global events services into compose",
+      "status": "done"
+    },
+    {
+      "commit": "Create InteractiveSymbolzeitExplorer",
+      "status": "done"
+    },
+    {
+      "commit": "Create ResonanceHistoryPanel UI",
+      "status": "done"
+    },
+    {
+      "commit": "Validate repository map module paths",
       "status": "done"
     }
   ],

@@ -11785,7 +11785,7 @@
   path: packages/unifiedmandala-ui/components/ResonanceHistoryPanel.tsx
   task: Visualize CREP, data volume and drift scores over time
   test: packages/unifiedmandala-ui/components/ResonanceHistoryPanel.test.tsx
-  status: todo
+  status: done
 - commit: Add mandala federation plugin and agent
   path: plugins/mandala-global.yaml
   task: Sync anonymous metrics across instances with FederatedMetaAgent
