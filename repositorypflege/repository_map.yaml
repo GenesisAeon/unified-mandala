@@ -38,7 +38,7 @@ repository_map:
       - sigillin-cli.js
       - generate-todo-sigil.js
       - split-conversations.js
-      - filter-conversations.js
+      - scripts/filter-conversations.ts
       - self-analyze.js
       - sync-todo-progress.js
       - repository-map-find.ts
