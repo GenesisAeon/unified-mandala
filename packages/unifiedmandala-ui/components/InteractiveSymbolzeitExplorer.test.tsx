@@ -1,8 +1,15 @@
-import { render, fireEvent } from '@testing-library/react';
-import { InteractiveSymbolzeitExplorer } from './InteractiveSymbolzeitExplorer';
+import React from 'react';
+import { render, screen, fireEvent } from '@testing-library/react';
+import '@testing-library/jest-dom';
+import InteractiveSymbolzeitExplorer from './InteractiveSymbolzeitExplorer';
 
-test('increments symbolzeit', () => {
-  const { getByText, getByTestId } = render(<InteractiveSymbolzeitExplorer />);
-  fireEvent.click(getByText('next'));
-  expect(getByTestId('symbolzeit').textContent).toBe('1');
+test('explores past and future symbolzeit', () => {
+  const onChange = jest.fn();
+  render(<InteractiveSymbolzeitExplorer initial={0} onChange={onChange} />);
+  expect(screen.getByText('Symbolzeit: 0')).toBeInTheDocument();
+  fireEvent.click(screen.getByText('Future'));
+  expect(screen.getByText('Symbolzeit: 1')).toBeInTheDocument();
+  expect(onChange).toHaveBeenCalledWith(1);
+  fireEvent.click(screen.getByText('Past'));
+  expect(screen.getByText('Symbolzeit: 0')).toBeInTheDocument();
 });

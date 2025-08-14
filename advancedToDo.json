@@ -1427,7 +1427,8 @@
     "commit": "Create InteractiveSymbolzeitExplorer",
     "path": "packages/unifiedmandala-ui/components/InteractiveSymbolzeitExplorer.tsx",
     "task": "Interactive exploration of past and future Symbolzeit",
-    "test": "packages/unifiedmandala-ui/components/InteractiveSymbolzeitExplorer.test.tsx"
+    "test": "packages/unifiedmandala-ui/components/InteractiveSymbolzeitExplorer.test.tsx",
+    "status": "done"
   },
   {
     "commit": "Implement SymbolzeitMLForecaster",
