@@ -1,11 +1,25 @@
 import React, { useState } from 'react';
 
-export function InteractiveSymbolzeitExplorer() {
-  const [value, setValue] = useState(0);
+export interface InteractiveSymbolzeitExplorerProps {
+  initial?: number;
+  onChange?: (value: number) => void;
+}
+
+const InteractiveSymbolzeitExplorer: React.FC<InteractiveSymbolzeitExplorerProps> = ({ initial = 0, onChange }) => {
+  const [value, setValue] = useState(initial);
+
+  const update = (next: number) => {
+    setValue(next);
+    onChange?.(next);
+  };
+
   return (
-    <div>
-      <span data-testid="symbolzeit">{value}</span>
-      <button onClick={() => setValue(v => v + 1)}>next</button>
+    <div aria-label="symbolzeit-explorer">
+      <p>Symbolzeit: {value}</p>
+      <button onClick={() => update(value - 1)}>Past</button>
+      <button onClick={() => update(value + 1)}>Future</button>
     </div>
   );
-}
+};
+
+export default InteractiveSymbolzeitExplorer;
