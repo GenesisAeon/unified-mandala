@@ -1100,10 +1100,12 @@
   path: packages/visuals/ResonanceAudioVisualizer.ts
   task: Map resonance data to audiovisual output
   test: packages/visuals/ResonanceAudioVisualizer.test.ts
+  status: done
 - commit: Add RealTimeCREPSonification
   path: packages/visuals/RealTimeCREPSonification.ts
   task: Sonify CREP values in real time
   test: packages/visuals/RealTimeCREPSonification.test.ts
+  status: done
 - commit: Introduce CREPInsightDashboard
   path: packages/analytics/CREPInsightDashboard.tsx
   task: Provide interactive CREP analytics

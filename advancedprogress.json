@@ -1,5 +1,5 @@
 {
-  "lastCommit": "feat: integrate climate news services",
+  "lastCommit": "Merge pull request #1198 from GenesisAeon/codex/implement-features-from-advancedtodo.yaml-qs3pws",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
@@ -8,36 +8,12 @@
   "notes": "Implemented region profile REST endpoint and completed country/region model set. Added mitigation service microservice stub. Enhanced ethics supervisor with pattern checks. Added ClimateSocialPanel UI for dashboard metrics.",
   "pendingTasks": [
     {
-      "commit": "Introduce GPTEthicsSupervisor",
-      "status": "done"
-    },
-    {
-      "commit": "Scaffold emissions_service microservice",
-      "status": "done"
-    },
-    {
-      "commit": "Create ClimateSocialPanel UI",
-      "status": "done"
-    },
-    {
-      "commit": "Register climate news services in pipeline configuration",
-      "status": "done"
-    },
-    {
-      "commit": "Integrate climate news services into docker compose",
-      "status": "done"
-    },
-    {
       "commit": "Create GlobalEventsPanel UI",
       "status": "todo"
     },
     {
       "commit": "Integrate global events services into compose",
       "status": "todo"
-    },
-    {
-      "commit": "Define Auto-Resonanz sigillin",
-      "status": "done"
     },
     {
       "commit": "Add meta tuner plugin and agent",
@@ -3980,6 +3956,46 @@
     {
       "commit": "Integrate finetune and review services in compose",
       "status": "done"
+    },
+    {
+      "commit": "Introduce GPTEthicsSupervisor",
+      "status": "done"
+    },
+    {
+      "commit": "Add GPTSymbolInterpreter",
+      "status": "done"
+    },
+    {
+      "commit": "Create ResonanceAudioVisualizer",
+      "status": "done"
+    },
+    {
+      "commit": "Add RealTimeCREPSonification",
+      "status": "done"
+    },
+    {
+      "commit": "Create ErrorReportingSystem",
+      "status": "done"
+    },
+    {
+      "commit": "Scaffold emissions_service microservice",
+      "status": "done"
+    },
+    {
+      "commit": "Create ClimateSocialPanel UI",
+      "status": "done"
+    },
+    {
+      "commit": "Register climate news services in pipeline configuration",
+      "status": "done"
+    },
+    {
+      "commit": "Integrate climate news services into docker compose",
+      "status": "done"
+    },
+    {
+      "commit": "Define Auto-Resonanz sigillin",
+      "status": "done"
     }
   ],
   "completed": [
@@ -4009,6 +4025,14 @@
     },
     {
       "commit": "Add cosmic events monitoring plugin and agent",
+      "status": "done"
+    },
+    {
+      "commit": "Create ResonanceAudioVisualizer",
+      "status": "done"
+    },
+    {
+      "commit": "Add RealTimeCREPSonification",
       "status": "done"
     }
   ],
@@ -4597,6 +4621,10 @@
     },
     {
       "commit": "Create ErrorReportingSystem",
+      "status": "done"
+    },
+    {
+      "commit": "Enhance resonance visualizer and CREP sonification",
       "status": "done"
     }
   ]
