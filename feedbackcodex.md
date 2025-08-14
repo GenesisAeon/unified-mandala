@@ -76,3 +76,4 @@ Dev-Agents prüfen zu Beginn eines Laufs auf diese Dateien und priorisieren dere
 - Added repository map list script to enumerate modules per repository.
 - Added sentiment analysis agent with container setup.
 - Implemented TwinMonitor component for monitoring digital twin bridge status.
+- Implemented filter-conversations script enabling keyword-based extraction of conversation entries.
