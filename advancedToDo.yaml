@@ -11881,7 +11881,7 @@
   path: packages/unifiedmandala-ui/components/ImpactMap.tsx
   task: Visualize societal impact metrics
   test: packages/unifiedmandala-ui/components/ImpactMap.test.tsx
-  status: todo
+  status: done
 - commit: Create EmergencePanel component
   path: packages/unifiedmandala-ui/components/EmergencePanel.tsx
   task: Display catalyst spark emergence data

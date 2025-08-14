@@ -12047,7 +12047,7 @@
   {
     "commit": "Create ImpactMap component",
     "path": "packages/unifiedmandala-ui/components/ImpactMap.tsx",
-    "status": "todo",
+    "status": "done",
     "task": "Visualize societal impact metrics",
     "test": "packages/unifiedmandala-ui/components/ImpactMap.test.tsx"
   },
