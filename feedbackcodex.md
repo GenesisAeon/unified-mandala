@@ -69,3 +69,4 @@ Dev-Agents prüfen zu Beginn eines Laufs auf diese Dateien und priorisieren dere
 - Implemented SigillinBlockchainIntegration with an in-memory ledger as a step toward on-chain Sigillin persistence.
 - Added contrastive training plugin and agent stub.
 - Integrated progress metrics and debugging safeguards into null field wave simulation.
+- Implemented ParticleTimeDilation module simulating relativistic effects.
