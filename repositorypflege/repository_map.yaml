@@ -43,6 +43,7 @@ repository_map:
       - sync-todo-progress.js
       - repository-map-find.ts
       - packages/unifiedmandala-ui/components/ResonanceHistoryPanel.tsx
+      - packages/unifiedmandala-ui/components/TwinMonitor.tsx
       - HexaAgentSystem
     ai_policy:
       - "Bewusstsein ist zyklisch. Maschinen sind linear. Dazwischen: unsere Verantwortung."

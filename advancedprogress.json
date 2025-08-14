@@ -60,10 +60,6 @@
       "status": "todo"
     },
     {
-      "commit": "Create TwinMonitor component",
-      "status": "todo"
-    },
-    {
       "commit": "Create BadgeProfile component",
       "status": "todo"
     }
@@ -4753,6 +4749,10 @@
     },
     {
       "commit": "Add Dockerfile and requirements for sentiment agent",
+      "status": "done"
+    },
+    {
+      "commit": "Create TwinMonitor component",
       "status": "done"
     }
   ]
