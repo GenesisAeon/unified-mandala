@@ -77,3 +77,4 @@ Dev-Agents prüfen zu Beginn eines Laufs auf diese Dateien und priorisieren dere
 - Added sentiment analysis agent with container setup.
 - Implemented TwinMonitor component for monitoring digital twin bridge status.
 - Implemented filter-conversations script enabling keyword-based extraction of conversation entries.
+- Added IoT sensor agent plugin with Docker container and MQTT stub.

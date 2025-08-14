@@ -11945,16 +11945,16 @@
   {
     "commit": "Add IoT sensor plugin and agent",
     "path": "plugins/iot-sensor.yaml",
-    "status": "todo",
+    "status": "done",
     "task": "Define MQTT plugin, FastAPI agent with orchestrator and compose wiring",
-    "test": "agents/iot_sensor/main.test.py"
+    "test": "agents/iot_sensor/test_main.py"
   },
   {
     "commit": "Add Dockerfile and requirements for IoT sensor agent",
     "path": "agents/iot_sensor/Dockerfile",
-    "status": "todo",
+    "status": "done",
     "task": "Create Dockerfile and requirements for IoT sensor agent",
-    "test": "agents/iot_sensor/main.test.py"
+    "test": "agents/iot_sensor/test_main.py"
   },
   {
     "commit": "Add Dockerfile and requirements for sentiment agent",

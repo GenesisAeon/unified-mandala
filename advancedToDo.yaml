@@ -11808,13 +11808,13 @@
 - commit: Add IoT sensor plugin and agent
   path: plugins/iot-sensor.yaml
   task: Define MQTT plugin, FastAPI agent with orchestrator and compose wiring
-  test: agents/iot_sensor/main.test.py
-  status: todo
+  test: agents/iot_sensor/test_main.py
+  status: done
 - commit: Add Dockerfile and requirements for IoT sensor agent
   path: agents/iot_sensor/Dockerfile
   task: Create Dockerfile and requirements for IoT sensor agent
-  test: agents/iot_sensor/main.test.py
-  status: todo
+  test: agents/iot_sensor/test_main.py
+  status: done
 - commit: Add Dockerfile and requirements for sentiment agent
   path: agents/sentiment/Dockerfile
   task: Create Dockerfile and requirements for sentiment agent
