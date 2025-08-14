@@ -1,0 +1,7 @@
+id: mandala-global
+title: "Mandala Global Metrics"
+type: federation
+agent: FederatedMetaAgent
+entrypoint: agents/federated_meta/main.ts
+config:
+  sync_url: "https://example.com/metrics"

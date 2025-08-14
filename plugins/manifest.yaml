@@ -24,3 +24,8 @@ plugins:
     component: "../plugins/meta-tuner.yaml"
     dataHook: ""
     story: ""
+  - name: mandala-global
+    version: "0.1.0"
+    component: "../plugins/mandala-global.yaml"
+    dataHook: ""
+    story: ""
