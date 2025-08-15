@@ -1463,7 +1463,8 @@
     "commit": "Implement CREPThresholdOptimizer",
     "path": "packages/crep-engine/CREPThresholdOptimizer.ts",
     "task": "Adapt CREP thresholds through learning",
-    "test": "packages/crep-engine/CREPThresholdOptimizer.test.ts"
+    "test": "packages/crep-engine/CREPThresholdOptimizer.test.ts",
+    "status": "done"
   },
   {
     "commit": "Integrate SigillinBlockchain storage",

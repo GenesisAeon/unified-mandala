@@ -84,3 +84,4 @@ Dev-Agents prüfen zu Beginn eines Laufs auf diese Dateien und priorisieren dere
 - Added StyleAdapter utility to tailor responses to user language and style preferences.
 - Added deployment helper script for GhostShellAgent Lambda@Edge service.
 - Registered digital twin, gamification, generative art, and catalyst agents in plugin manifest and repository map.
+- Implemented adaptive CREPThresholdOptimizer for dynamic threshold learning.

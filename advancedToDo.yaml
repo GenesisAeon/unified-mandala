@@ -1073,6 +1073,7 @@
   path: packages/crep-engine/CREPThresholdOptimizer.ts
   task: Adapt CREP thresholds through learning
   test: packages/crep-engine/CREPThresholdOptimizer.test.ts
+  status: done
 - commit: Integrate SigillinBlockchain storage
   path: packages/genesis-sigillin-core/SigillinBlockchainIntegration.ts
   task: Persist Sigillin metadata on a blockchain

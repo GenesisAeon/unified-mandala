@@ -1,5 +1,5 @@
 {
-  "lastCommit": "feat: add GhostShell lambda-edge deployment",
+  "lastCommit": "feat: implement CREPThresholdOptimizer",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
@@ -4083,6 +4083,10 @@
     },
     {
       "commit": "feat: add StyleAdapter utility",
+      "status": "done"
+    },
+    {
+      "commit": "Implement CREPThresholdOptimizer",
       "status": "done"
     }
   ],
