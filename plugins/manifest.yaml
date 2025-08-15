@@ -34,3 +34,23 @@ plugins:
     component: "../plugins/iot-sensor.yaml"
     dataHook: ""
     story: ""
+  - name: TwinMonitor
+    version: "0.1.0"
+    component: "../packages/unifiedmandala-ui/components/TwinMonitor"
+    dataHook: ""
+    story: ""
+  - name: BadgeProfile
+    version: "0.1.0"
+    component: "../packages/unifiedmandala-ui/components/BadgeProfile"
+    dataHook: ""
+    story: ""
+  - name: ArtGallery
+    version: "0.1.0"
+    component: "../packages/unifiedmandala-ui/components/ArtGallery"
+    dataHook: ""
+    story: ""
+  - name: EmergencePanel
+    version: "0.1.0"
+    component: "../packages/unifiedmandala-ui/components/EmergencePanel"
+    dataHook: ""
+    story: ""

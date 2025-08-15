@@ -83,3 +83,4 @@ Dev-Agents prüfen zu Beginn eines Laufs auf diese Dateien und priorisieren dere
 - Implemented EventVisualizationDashboard component for real-time event counts.
 - Added StyleAdapter utility to tailor responses to user language and style preferences.
 - Added deployment helper script for GhostShellAgent Lambda@Edge service.
+- Registered digital twin, gamification, generative art, and catalyst agents in plugin manifest and repository map.
