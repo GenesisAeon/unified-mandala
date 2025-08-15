@@ -80,3 +80,4 @@ Dev-Agents prüfen zu Beginn eines Laufs auf diese Dateien und priorisieren dere
 - Added IoT sensor agent plugin with Docker container and MQTT stub.
 - Enhanced SecurityVulnerabilityScanner to scan directories for risky patterns.
 - Extended split-newadvanced-conversations script to output YAML fragments alongside JSON.
+- Implemented EventVisualizationDashboard component for real-time event counts.
