@@ -1,4 +1,11 @@
 AWSTemplateFormatVersion: '2010-09-09'
+Parameters:
+  BucketName:
+    Type: String
+    Description: S3 bucket containing the Lambda@Edge package
+  CodeKey:
+    Type: String
+    Description: Object key for the Lambda@Edge package
 Resources:
   GhostShellEdgeFunction:
     Type: AWS::Lambda::Function
@@ -8,5 +15,11 @@ Resources:
       Runtime: nodejs20.x
       Role: arn:aws:iam::123456789012:role/lambda-edge-role
       Code:
-        S3Bucket: YOUR_BUCKET
-        S3Key: ghostshell-edge.zip
+        S3Bucket: !Ref BucketName
+        S3Key: !Ref CodeKey
+      MemorySize: 128
+      Timeout: 5
+Outputs:
+  FunctionArn:
+    Value: !GetAtt GhostShellEdgeFunction.Arn
+    Description: ARN of the deployed GhostShellAgent Lambda@Edge function

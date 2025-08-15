@@ -1,5 +1,5 @@
 {
-  "lastCommit": "feat: add style adapter utility",
+  "lastCommit": "feat: add GhostShell lambda-edge deployment",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
@@ -1459,6 +1459,10 @@
     },
     {
       "commit": "Add NPM scripts for GhostShell start",
+      "status": "done"
+    },
+    {
+      "commit": "Edge deploy GhostShellAgent",
       "status": "done"
     },
     {
