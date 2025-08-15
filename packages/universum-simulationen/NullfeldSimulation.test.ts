@@ -1,14 +1,9 @@
-import { gravitationalForce, membraneCurvature, energyConversion, NullfeldParameters } from './NullfeldSimulation';
+import { simulateNullfeld } from './NullfeldSimulation';
 
-test('computes gravitational force', () => {
-  const params: NullfeldParameters = { mass1: 1, mass2: 2, distance: 3, membraneEnergy: 0 };
-  expect(gravitationalForce(params)).toBeCloseTo(6.674e-11 * 2 / 9);
-});
-
-test('computes membrane curvature', () => {
-  expect(membraneCurvature(10)).toBe(1);
-});
-
-test('converts energy', () => {
-  expect(energyConversion(100)).toBe(42);
+test('calculates forces, curvature effect and energy-mass conversion', () => {
+  const result = simulateNullfeld([1, 2], 0.5, 9e16);
+  const expectedForce = 6.674e-11 * 1 * 2;
+  expect(result.totalForce).toBeCloseTo(expectedForce);
+  expect(result.curvatureEffect).toBeCloseTo(expectedForce * 0.5);
+  expect(result.massFromEnergy).toBeCloseTo(1);
 });

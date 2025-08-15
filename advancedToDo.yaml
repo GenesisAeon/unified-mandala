@@ -4409,10 +4409,12 @@
   task: Implement NullfeldSimulation with gravitational forces, membrane curvature
     and energy conversion
   test: packages/universum-simulationen/NullfeldSimulation.test.ts
+  status: done
 - commit: Add Nullfeld visualization components
   path: packages/universum-simulationen/NullfeldVisualization.ts
   task: Visualize membrane curvature, galaxy map and dark matter distribution
   test: packages/universum-simulationen/NullfeldVisualization.test.ts
+  status: done
 - commit: Integrate new GPT teams from Zukunft conversation
   path: packages/agents
   task: Register PädagogikGPT, FutureTechScoutGPT, OptimizerGPT and StateMatterGPT
