@@ -6,25 +6,24 @@
   ],
   "mergeConflicts": [],
   "notes": "Implemented region profile REST endpoint and completed country/region model set. Added mitigation service microservice stub. Enhanced ethics supervisor with pattern checks. Added ClimateSocialPanel UI for dashboard metrics. Added InteractiveSymbolzeitExplorer UI. Added IoTSensorWidget UI for realtime sensor data.; Added repository map duplicate checker.; Added IoT sensor agent plugin and container.; Added provenance agent scaffold.; Added societal impact agent container.; Added catalyst agent container.",
-  "pendingTasks": [
+  "pendingTasks": [],
+  "progress": [
     {
       "commit": "Add Dockerfile and requirements for digital twin agent",
-      "status": "todo"
+      "status": "done"
     },
     {
       "commit": "Add Dockerfile and requirements for gamification agent",
-      "status": "todo"
+      "status": "done"
     },
     {
       "commit": "Extend docker-compose with new agent services",
-      "status": "todo"
+      "status": "done"
     },
     {
       "commit": "Configure agents CI workflow for new agents",
-      "status": "todo"
-    }
-  ],
-  "progress": [
+      "status": "done"
+    },
     {
       "commit": "Register new agents in plugins manifest",
       "status": "done"

@@ -378,10 +378,12 @@
   path: packages/userfriendship/style-variant-engine
   task: Generate text variants for regions
   test: packages/userfriendship/style-variant-engine/engine_test.go
+  status: done
 - commit: Implement basic A/B test for DE and FR
   path: packages/userfriendship/behavioral-testing-engine
   task: Simple A/B testing for region variants
   test: packages/userfriendship/behavioral-testing-engine/engine_test.go
+  status: done
 - commit: Create project CRUD service
   path: packages/socialgoodmesh/project-service
   task: CRUD API for community projects
@@ -11853,13 +11855,13 @@
 - commit: Add Dockerfile and requirements for digital twin agent
   path: agents/digital_twin/Dockerfile
   task: Create Dockerfile and requirements for digital twin agent
-  test: agents/digital_twin/main.test.py
-  status: todo
+  test: agents/digital_twin/test_main.py
+  status: done
 - commit: Add Dockerfile and requirements for gamification agent
   path: agents/gamification/Dockerfile
   task: Create Dockerfile and requirements for gamification agent
-  test: agents/gamification/main.test.py
-  status: todo
+  test: agents/gamification/test_main.py
+  status: done
 - commit: Register new agents in plugins manifest
   path: plugins/manifest.yaml
   task: Add plugin entries for new agents
@@ -11869,12 +11871,12 @@
   path: docker-compose.yml
   task: Add service definitions for new agents
   test: ""
-  status: todo
+  status: done
 - commit: Configure agents CI workflow for new agents
   path: .github/workflows/agents_ci.yaml
   task: Run tests for new agents in GitHub Actions
   test: ""
-  status: todo
+  status: done
 - commit: Create IoTSensorWidget component
   path: packages/unifiedmandala-ui/components/IoTSensorWidget.tsx
   task: Display IoT sensor realtime data
