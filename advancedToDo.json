@@ -12075,7 +12075,7 @@
   {
     "commit": "Create BadgeProfile component",
     "path": "packages/unifiedmandala-ui/components/BadgeProfile.tsx",
-    "status": "todo",
+    "status": "done",
     "task": "Show gamification badge progress",
     "test": "packages/unifiedmandala-ui/components/BadgeProfile.test.tsx"
   },
