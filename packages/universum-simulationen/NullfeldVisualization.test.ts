@@ -1,13 +1,16 @@
-import { generateCurvatureMap, generateGalaxyMap, simulateDarkMatterDistribution } from './NullfeldVisualization';
+import { visualizeNullfeld } from './NullfeldVisualization';
 
-test('inverts curvature values', () => {
-  expect(generateCurvatureMap([1, -2])).toEqual([-1, 2]);
-});
-
-test('creates galaxy map identifiers', () => {
-  expect(generateGalaxyMap(2)).toEqual(['Galaxy-0', 'Galaxy-1']);
-});
-
-test('estimates dark matter distribution', () => {
-  expect(simulateDarkMatterDistribution(100)).toBeCloseTo(27);
+test('renders curvature, galaxies and dark matter', () => {
+  const viz = visualizeNullfeld({
+    curvature: [
+      [0.6, 0.1],
+      [0.2, 0.7],
+    ],
+    galaxies: [[1, 0]],
+    darkMatter: [
+      [0.1, 0.1],
+      [0.6, 0.2],
+    ],
+  });
+  expect(viz).toEqual(['^G', 'D^']);
 });

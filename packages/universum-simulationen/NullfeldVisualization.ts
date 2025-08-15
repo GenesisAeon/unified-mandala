@@ -1,12 +1,36 @@
-export function generateCurvatureMap(curvatures: number[]): number[] {
-  return curvatures.map(c => c * -1);
+export interface VisualizationInput {
+  curvature: number[][];
+  galaxies: Array<[number, number]>;
+  darkMatter: number[][];
 }
 
-export function generateGalaxyMap(count: number): string[] {
-  return Array.from({ length: count }, (_, i) => `Galaxy-${i}`);
-}
+/**
+ * Visualize curvature, galaxies and dark matter density on a simple grid.
+ * Galaxies override dark matter and curvature markers.
+ */
+export function visualizeNullfeld({
+  curvature,
+  galaxies,
+  darkMatter,
+}: VisualizationInput): string[] {
+  const height = curvature.length;
+  const width = curvature[0].length;
+  const galaxySet = new Set(galaxies.map(([x, y]) => `${x},${y}`));
 
-export function simulateDarkMatterDistribution(mass: number): number {
-  const darkMatterFraction = 0.27;
-  return mass * darkMatterFraction;
+  const rows: string[] = [];
+  for (let y = 0; y < height; y++) {
+    let row = '';
+    for (let x = 0; x < width; x++) {
+      const key = `${x},${y}`;
+      if (galaxySet.has(key)) {
+        row += 'G';
+      } else if (darkMatter[y][x] > 0.5) {
+        row += 'D';
+      } else {
+        row += curvature[y][x] > 0.5 ? '^' : '.';
+      }
+    }
+    rows.push(row);
+  }
+  return rows;
 }
