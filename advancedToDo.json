@@ -11983,7 +11983,7 @@
   {
     "commit": "Add Dockerfile and requirements for societal impact agent",
     "path": "agents/impact/Dockerfile",
-    "status": "todo",
+    "status": "done",
     "task": "Create Dockerfile and requirements for societal impact agent",
     "test": "agents/impact/main.test.py"
   },

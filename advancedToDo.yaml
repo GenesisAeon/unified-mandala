@@ -11837,7 +11837,7 @@
   path: agents/impact/Dockerfile
   task: Create Dockerfile and requirements for societal impact agent
   test: agents/impact/main.test.py
-  status: todo
+  status: done
 - commit: Add Dockerfile and requirements for catalyst agent
   path: agents/catalyst/Dockerfile
   task: Create Dockerfile and requirements for catalyst agent
