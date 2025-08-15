@@ -1230,10 +1230,11 @@
   path: ""
   task: – für YAML/JSON Übergabe**
   test: ""
-- commit: -Tasks überwachen** (via NATS oder Polling auf `advancedToDo.json`)
-  path: ""
-  task: -Tasks überwachen** (via NATS oder Polling auf `advancedToDo.json`)
-  test: ""
+- commit: Monitor advancedToDo tasks via polling
+  path: scripts/watch-advanced-todo.ts
+  task: Watch advancedToDo.json for changes and log updates
+  test: scripts/__tests__/watch-advanced-todo.test.ts
+  status: done
 - commit: '.*`, `agent.commands`.\n- **Dispatcher & WorkerPool:** Steuert
     Concurrent Execution nach Task-Priorität.\n- **Handler:** Task-spezifische
     Logik (Sigil, Memory-Update, Friendship-Trigger).\n- **ExternalAdapters:**
