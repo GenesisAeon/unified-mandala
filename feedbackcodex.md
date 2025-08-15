@@ -85,3 +85,4 @@ Dev-Agents prüfen zu Beginn eines Laufs auf diese Dateien und priorisieren dere
 - Added deployment helper script for GhostShellAgent Lambda@Edge service.
 - Registered digital twin, gamification, generative art, and catalyst agents in plugin manifest and repository map.
 - Implemented adaptive CREPThresholdOptimizer for dynamic threshold learning.
+- Added watcher script to monitor advancedToDo.json changes and log updates.
