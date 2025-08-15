@@ -4798,6 +4798,7 @@
   path: packages/tools/style_adapter.ts
   task: Adapt assistant responses to user language and style preferences
   test: packages/tools/__tests__/style_adapter.test.ts
+  status: done
 - commit: "feat: add AudioResonanceMapper"
   path: packages/nukleon_scanner/audio_resonance_mapper.py
   task: Map CREP metrics to MIDI and sound output

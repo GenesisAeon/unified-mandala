@@ -81,3 +81,4 @@ Dev-Agents prüfen zu Beginn eines Laufs auf diese Dateien und priorisieren dere
 - Enhanced SecurityVulnerabilityScanner to scan directories for risky patterns.
 - Extended split-newadvanced-conversations script to output YAML fragments alongside JSON.
 - Implemented EventVisualizationDashboard component for real-time event counts.
+- Added StyleAdapter utility to tailor responses to user language and style preferences.
