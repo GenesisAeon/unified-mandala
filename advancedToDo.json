@@ -11941,7 +11941,7 @@
   {
     "commit": "Add mandala federation plugin and agent",
     "path": "plugins/mandala-global.yaml",
-    "status": "todo",
+    "status": "done",
     "task": "Sync anonymous metrics across instances with FederatedMetaAgent",
     "test": "agents/federated_meta/main.test.ts"
   },
@@ -11976,9 +11976,9 @@
   {
     "commit": "Add Dockerfile and requirements for generative art agent",
     "path": "agents/art/Dockerfile",
-    "status": "todo",
+    "status": "done",
     "task": "Create Dockerfile and requirements for generative art agent",
-    "test": "agents/art/main.test.py"
+    "test": "agents/art/test_main.py"
   },
   {
     "commit": "Add Dockerfile and requirements for societal impact agent",
