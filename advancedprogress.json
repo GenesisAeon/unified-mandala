@@ -1,5 +1,5 @@
 {
-  "lastCommit": "feat: add YAML output to conversation splitter",
+  "lastCommit": "feat(nukleon-scanner): time series and phi feedback",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
@@ -4064,6 +4064,14 @@
     {
       "commit": "Add summary output to sync-todo-progress script",
       "status": "done"
+    },
+    {
+      "commit": "feat: add TimeSeriesSimulation",
+      "status": "done"
+    },
+    {
+      "commit": "feat: add PhiGradientFeedback",
+      "status": "done"
     }
   ],
   "completed": [
@@ -4785,6 +4793,14 @@
     },
     {
       "commit": "Add YAML output to split-newadvanced-conversations script",
+      "status": "done"
+    },
+    {
+      "commit": "feat: add TimeSeriesSimulation",
+      "status": "done"
+    },
+    {
+      "commit": "feat: add PhiGradientFeedback",
       "status": "done"
     }
   ],

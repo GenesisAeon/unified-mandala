@@ -4807,13 +4807,15 @@
   test: packages/nukleon_scanner/tests/export_formats_test.py
   status: done
 - commit: "feat: add TimeSeriesSimulation"
-  path: packages/nukleon_scanner/time_series.py
+  path: packages/nukleon-scanner/timeSeries.ts
   task: Simulate CREP development over multiple steps
-  test: packages/nukleon_scanner/tests/time_series_test.py
+  test: packages/nukleon-scanner/timeSeries.test.ts
+  status: done
 - commit: "feat: add PhiGradientFeedback"
-  path: packages/nukleon_scanner/feedback.py
+  path: packages/nukleon-scanner/feedback.ts
   task: Adjust weights via spiral-based phi feedback
-  test: packages/nukleon_scanner/tests/feedback_test.py
+  test: packages/nukleon-scanner/feedback.test.ts
+  status: done
 - commit: "feat: add NukleonScannerUI component"
   path: packages/nukleon_scanner/ui/NukleonScannerUI.tsx
   task: Interactive interface for weight tuning and charts
