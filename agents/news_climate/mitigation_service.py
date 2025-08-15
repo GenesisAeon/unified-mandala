@@ -32,7 +32,7 @@ def fetch_mitigation_metrics() -> MitigationMetrics:
 app = FastAPI(title="Mitigation Service")
 
 
-@app.get("/metrics", response_model=MitigationMetrics)
+@app.get("/metrics", response_model=MitigationMetrics)  # type: ignore[attr-defined]
 async def get_metrics() -> MitigationMetrics:
     """Return mitigation metrics."""
 
@@ -42,4 +42,4 @@ async def get_metrics() -> MitigationMetrics:
 if __name__ == "__main__":
     import uvicorn
 
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    uvicorn.run(app, host="0.0.0.0", port=8000)  # type: ignore[arg-type]

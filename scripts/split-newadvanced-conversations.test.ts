@@ -12,5 +12,7 @@ describe('splitNewAdvancedConversations', () => {
     expect(files.length).toBe(2);
     const first = JSON.parse(fs.readFileSync(files[0], 'utf8'));
     expect(first.title).toBe('First');
+    const yamlFile = files[0].replace(/\.json$/, '.yaml');
+    expect(fs.existsSync(yamlFile)).toBe(true);
   });
 });

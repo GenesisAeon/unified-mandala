@@ -35,7 +35,7 @@ def fetch_economy_metrics() -> EconomyMetrics:
 app = FastAPI(title="Economy Service")
 
 
-@app.get("/metrics", response_model=EconomyMetrics)
+@app.get("/metrics", response_model=EconomyMetrics)  # type: ignore[attr-defined]
 async def get_metrics() -> EconomyMetrics:
     """Return economy metrics."""
 
@@ -45,4 +45,4 @@ async def get_metrics() -> EconomyMetrics:
 if __name__ == "__main__":
     import uvicorn
 
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    uvicorn.run(app, host="0.0.0.0", port=8000)  # type: ignore[arg-type]

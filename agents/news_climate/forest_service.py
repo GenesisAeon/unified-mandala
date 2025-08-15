@@ -32,7 +32,7 @@ def fetch_forest_metrics() -> ForestMetrics:
 app = FastAPI(title="Forest Service")
 
 
-@app.get("/metrics", response_model=ForestMetrics)
+@app.get("/metrics", response_model=ForestMetrics)  # type: ignore[attr-defined]
 async def get_metrics() -> ForestMetrics:
     """Return forest metrics."""
 
@@ -42,5 +42,5 @@ async def get_metrics() -> ForestMetrics:
 if __name__ == "__main__":
     import uvicorn
 
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    uvicorn.run(app, host="0.0.0.0", port=8000)  # type: ignore[arg-type]
 

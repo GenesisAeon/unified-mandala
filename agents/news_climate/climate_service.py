@@ -27,7 +27,7 @@ def fetch_metrics() -> ClimateMetrics:
 app = FastAPI(title="Climate Service")
 
 
-@app.get("/metrics", response_model=ClimateMetrics)
+@app.get("/metrics", response_model=ClimateMetrics)  # type: ignore[attr-defined]
 async def get_metrics() -> ClimateMetrics:
     """Return climate metrics."""
 
@@ -37,4 +37,4 @@ async def get_metrics() -> ClimateMetrics:
 if __name__ == "__main__":
     import uvicorn
 
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    uvicorn.run(app, host="0.0.0.0", port=8000)  # type: ignore[arg-type]
