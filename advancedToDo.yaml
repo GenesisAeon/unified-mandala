@@ -1009,6 +1009,7 @@
   path: aws/lambda-edge
   task: Deploy GhostShellAgent as Lambda@Edge for global availability
   test: ""
+  status: done
 - commit: Blockchain-based plugin trust
   path: services/ghost-shell/blockchain-trust.ts
   task: Verify plugin manifest signatures via blockchain ledger

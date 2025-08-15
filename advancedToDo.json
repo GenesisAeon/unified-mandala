@@ -1372,7 +1372,8 @@
     "commit": "Edge deploy GhostShellAgent",
     "path": "aws/lambda-edge",
     "task": "Deploy GhostShellAgent as Lambda@Edge for global availability",
-    "test": ""
+    "test": "",
+    "status": "done"
   },
   {
     "commit": "Blockchain-based plugin trust",
