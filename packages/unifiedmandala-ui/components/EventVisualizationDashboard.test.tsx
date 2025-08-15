@@ -1,7 +1,16 @@
-import { render } from '@testing-library/react';
-import { EventVisualizationDashboard } from './EventVisualizationDashboard';
+import React from 'react';
+import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
+import EventVisualizationDashboard from './EventVisualizationDashboard';
 
-test('renders events', () => {
-  const { getByTestId } = render(<EventVisualizationDashboard events={[{a:1}]} />);
-  expect(getByTestId('events').textContent).toContain('a');
+test('renders counts per event type', () => {
+  const events = [
+    { type: 'start' },
+    { type: 'stop' },
+    { type: 'start' },
+  ];
+  render(<EventVisualizationDashboard events={events} />);
+  expect(screen.getByLabelText('event-visualization-dashboard')).toBeInTheDocument();
+  expect(screen.getByText('start: 2')).toBeInTheDocument();
+  expect(screen.getByText('stop: 1')).toBeInTheDocument();
 });
