@@ -11991,7 +11991,7 @@
   {
     "commit": "Add Dockerfile and requirements for catalyst agent",
     "path": "agents/catalyst/Dockerfile",
-    "status": "todo",
+    "status": "done",
     "task": "Create Dockerfile and requirements for catalyst agent",
     "test": "agents/catalyst/main.test.py"
   },

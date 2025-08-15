@@ -11843,7 +11843,7 @@
   path: agents/catalyst/Dockerfile
   task: Create Dockerfile and requirements for catalyst agent
   test: agents/catalyst/main.test.py
-  status: todo
+  status: done
 - commit: Add Dockerfile and requirements for digital twin agent
   path: agents/digital_twin/Dockerfile
   task: Create Dockerfile and requirements for digital twin agent
