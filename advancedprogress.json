@@ -1,5 +1,5 @@
 {
-  "lastCommit": "Add Dockerfile and requirements for societal impact agent",
+  "lastCommit": "feat: add EmergencePanel component",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
@@ -29,10 +29,6 @@
     },
     {
       "commit": "Configure agents CI workflow for new agents",
-      "status": "todo"
-    },
-    {
-      "commit": "Create EmergencePanel component",
       "status": "todo"
     },
     {
@@ -4072,6 +4068,10 @@
     {
       "commit": "Add Dockerfile and requirements for societal impact agent",
       "status": "done"
+    },
+    {
+      "commit": "Create EmergencePanel component",
+      "status": "done"
     }
   ],
   "completed": [
@@ -4691,6 +4691,10 @@
     "meta:implement-features"
   ],
   "commits": [
+    {
+      "commit": "Create EmergencePanel component",
+      "status": "done"
+    },
     {
       "commit": "Add PresenceIndicator feature",
       "status": "done"
