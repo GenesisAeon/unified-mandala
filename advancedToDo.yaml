@@ -11807,7 +11807,7 @@
   path: plugins/mandala-global.yaml
   task: Sync anonymous metrics across instances with FederatedMetaAgent
   test: agents/federated_meta/main.test.ts
-  status: todo
+  status: done
 - commit: Add IoT sensor plugin and agent
   path: plugins/iot-sensor.yaml
   task: Define MQTT plugin, FastAPI agent with orchestrator and compose wiring
@@ -11831,8 +11831,8 @@
 - commit: Add Dockerfile and requirements for generative art agent
   path: agents/art/Dockerfile
   task: Create Dockerfile and requirements for generative art agent
-  test: agents/art/main.test.py
-  status: todo
+  test: agents/art/test_main.py
+  status: done
 - commit: Add Dockerfile and requirements for societal impact agent
   path: agents/impact/Dockerfile
   task: Create Dockerfile and requirements for societal impact agent
