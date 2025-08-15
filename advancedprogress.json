@@ -1,16 +1,12 @@
 {
-  "lastCommit": "Add Dockerfile and requirements for generative art agent",
+  "lastCommit": "Add Dockerfile and requirements for societal impact agent",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
   ],
   "mergeConflicts": [],
-  "notes": "Implemented region profile REST endpoint and completed country/region model set. Added mitigation service microservice stub. Enhanced ethics supervisor with pattern checks. Added ClimateSocialPanel UI for dashboard metrics. Added InteractiveSymbolzeitExplorer UI. Added IoTSensorWidget UI for realtime sensor data.; Added repository map duplicate checker.; Added IoT sensor agent plugin and container.; Added provenance agent scaffold.",
+  "notes": "Implemented region profile REST endpoint and completed country/region model set. Added mitigation service microservice stub. Enhanced ethics supervisor with pattern checks. Added ClimateSocialPanel UI for dashboard metrics. Added InteractiveSymbolzeitExplorer UI. Added IoTSensorWidget UI for realtime sensor data.; Added repository map duplicate checker.; Added IoT sensor agent plugin and container.; Added provenance agent scaffold.; Added societal impact agent container.",
   "pendingTasks": [
-    {
-      "commit": "Add Dockerfile and requirements for societal impact agent",
-      "status": "todo"
-    },
     {
       "commit": "Add Dockerfile and requirements for catalyst agent",
       "status": "todo"
@@ -4071,6 +4067,10 @@
     },
     {
       "commit": "feat: add PhiGradientFeedback",
+      "status": "done"
+    },
+    {
+      "commit": "Add Dockerfile and requirements for societal impact agent",
       "status": "done"
     }
   ],
