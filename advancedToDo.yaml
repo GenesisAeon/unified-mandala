@@ -11860,7 +11860,7 @@
   path: plugins/manifest.yaml
   task: Add plugin entries for new agents
   test: ""
-  status: todo
+  status: done
 - commit: Extend docker-compose with new agent services
   path: docker-compose.yml
   task: Add service definitions for new agents

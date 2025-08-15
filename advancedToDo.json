@@ -12014,7 +12014,7 @@
   {
     "commit": "Register new agents in plugins manifest",
     "path": "plugins/manifest.yaml",
-    "status": "todo",
+    "status": "done",
     "task": "Add plugin entries for new agents",
     "test": ""
   },

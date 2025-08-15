@@ -16,10 +16,6 @@
       "status": "todo"
     },
     {
-      "commit": "Register new agents in plugins manifest",
-      "status": "todo"
-    },
-    {
       "commit": "Extend docker-compose with new agent services",
       "status": "todo"
     },
@@ -29,6 +25,10 @@
     }
   ],
   "progress": [
+    {
+      "commit": "Register new agents in plugins manifest",
+      "status": "done"
+    },
     {
       "commit": "Add Dockerfile and requirements for catalyst agent",
       "status": "done"
