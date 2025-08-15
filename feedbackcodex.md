@@ -79,3 +79,4 @@ Dev-Agents prüfen zu Beginn eines Laufs auf diese Dateien und priorisieren dere
 - Implemented filter-conversations script enabling keyword-based extraction of conversation entries.
 - Added IoT sensor agent plugin with Docker container and MQTT stub.
 - Enhanced SecurityVulnerabilityScanner to scan directories for risky patterns.
+- Extended split-newadvanced-conversations script to output YAML fragments alongside JSON.

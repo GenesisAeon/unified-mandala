@@ -1,6 +1,7 @@
 #!/usr/bin/env ts-node
 import fs from 'fs';
 import path from 'path';
+import yaml from 'js-yaml';
 
 export function splitNewAdvancedConversations(
   srcPath: string,
@@ -14,9 +15,12 @@ export function splitNewAdvancedConversations(
     fs.mkdirSync(outDir, { recursive: true });
   }
   return data.map((conv: any, idx: number) => {
-    const file = path.join(outDir, `conversation-${idx + 1}.json`);
-    fs.writeFileSync(file, JSON.stringify(conv, null, 2));
-    return file;
+    const base = path.join(outDir, `conversation-${idx + 1}`);
+    const jsonFile = `${base}.json`;
+    const yamlFile = `${base}.yaml`;
+    fs.writeFileSync(jsonFile, JSON.stringify(conv, null, 2));
+    fs.writeFileSync(yamlFile, yaml.dump(conv));
+    return jsonFile;
   });
 }
 

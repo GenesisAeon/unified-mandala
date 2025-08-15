@@ -32,7 +32,7 @@ def fetch_emissions_metrics() -> EmissionsMetrics:
 app = FastAPI(title="Emissions Service")
 
 
-@app.get("/metrics", response_model=EmissionsMetrics)
+@app.get("/metrics", response_model=EmissionsMetrics)  # type: ignore[attr-defined]
 async def get_metrics() -> EmissionsMetrics:
     """Return emission metrics."""
 
@@ -42,4 +42,4 @@ async def get_metrics() -> EmissionsMetrics:
 if __name__ == "__main__":
     import uvicorn
 
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    uvicorn.run(app, host="0.0.0.0", port=8000)  # type: ignore[arg-type]

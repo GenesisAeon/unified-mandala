@@ -28,7 +28,7 @@ def fetch_flood_metrics() -> FloodMetrics:
 app = FastAPI(title="Flood Service")
 
 
-@app.get("/metrics", response_model=FloodMetrics)
+@app.get("/metrics", response_model=FloodMetrics)  # type: ignore[attr-defined]
 async def get_metrics() -> FloodMetrics:
     """Return flood metrics."""
 
@@ -38,4 +38,4 @@ async def get_metrics() -> FloodMetrics:
 if __name__ == "__main__":
     import uvicorn
 
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    uvicorn.run(app, host="0.0.0.0", port=8000)  # type: ignore[arg-type]
