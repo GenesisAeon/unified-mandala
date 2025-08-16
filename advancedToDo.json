@@ -13504,5 +13504,40 @@
     "task": "Add build, voice API, and UIA demo commands",
     "test": "",
     "status": "open"
+  },
+  {
+    "commit": "Add UIA screen redaction tool",
+    "path": "tools/windows/UIARedactor.cs",
+    "task": "Mask sensitive regions in screenshots before returning",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Add WinUI tree inspector utility",
+    "path": "tools/windows/WinUITreeInspector.cs",
+    "task": "List UI Automation element hierarchy for target window",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Add AutoHotkey hook scripts",
+    "path": "tools/windows/AutoHotkeyHooks.ahk",
+    "task": "Provide advanced hotkey and input sequence support",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Add desktop recorder tool",
+    "path": "tools/windows/DesktopRecorder.cs",
+    "task": "Capture screen and audio to file with consent gating",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Implement UIMacroSynth agent",
+    "path": "packages/agents/UIMacroSynthAgent.ts",
+    "task": "Translate prompts into executable UI automation workflows",
+    "test": "",
+    "status": "open"
   }
 ]
