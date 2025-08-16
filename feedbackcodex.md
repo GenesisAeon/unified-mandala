@@ -93,3 +93,4 @@ Dev-Agents prüfen zu Beginn eines Laufs auf diese Dateien und priorisieren dere
 - Improved PrivacyComplianceAgent with detailed violation reporting.
 - Enhanced CommunityPluginMarketplace with plugin rating support.
 - Added script to sync advancedprogress pending tasks with open advanced todos.
+- Extended list-open-advanced-todos to aggregate YAML and JSON tasks with dedicated tests.

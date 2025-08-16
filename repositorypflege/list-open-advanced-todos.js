@@ -1,11 +1,35 @@
 const fs = require('fs');
 const path = require('path');
+const yaml = require('js-yaml');
 
-function listOpenAdvancedTodos() {
-  const todoPath = path.resolve(__dirname, '..', 'advancedToDo.json');
-  const raw = fs.readFileSync(todoPath, 'utf-8');
-  const data = JSON.parse(raw);
-  return data.filter(item => item.status !== 'done')
+function listOpenAdvancedTodos(
+  jsonPath = path.resolve(__dirname, '..', 'advancedToDo.json'),
+  yamlPath = path.resolve(__dirname, '..', 'advancedToDo.yaml')
+) {
+  const items = [];
+
+  if (fs.existsSync(jsonPath)) {
+    try {
+      const rawJson = fs.readFileSync(jsonPath, 'utf-8');
+      const jsonData = JSON.parse(rawJson);
+      if (Array.isArray(jsonData)) items.push(...jsonData);
+    } catch {
+      // ignore parse errors
+    }
+  }
+
+  if (fs.existsSync(yamlPath)) {
+    try {
+      const rawYaml = fs.readFileSync(yamlPath, 'utf-8');
+      const yamlData = yaml.load(rawYaml);
+      if (Array.isArray(yamlData)) items.push(...yamlData);
+    } catch {
+      // ignore parse errors
+    }
+  }
+
+  return items
+    .filter(item => item.status !== 'done')
     .map(item => ({ commit: item.commit, path: item.path }));
 }
 
