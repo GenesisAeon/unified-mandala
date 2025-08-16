@@ -1,5 +1,5 @@
 {
-  "lastCommit": "feat: add energy-to-mass conversion in nullfield simulation",
+  "lastCommit": "feat: add MasterGPTBridge orchestrator",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
@@ -4086,6 +4086,10 @@
     },
     {
       "commit": "Implement CREPThresholdOptimizer",
+      "status": "done"
+    },
+    {
+      "commit": "feat: add MasterGPTBridge orchestrator",
       "status": "done"
     }
   ],
