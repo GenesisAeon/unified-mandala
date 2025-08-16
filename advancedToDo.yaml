@@ -12314,3 +12314,118 @@
   task: Validate agents.yaml and run system start dry-run in CI
   test: ""
   status: open
+- commit: Extend NatsEventBus with auth options
+  path: packages/event-bus/NatsEventBus.ts
+  task: Support connection config for url, creds and max reconnects
+  test: packages/event-bus/NatsEventBus.test.ts
+  status: open
+- commit: Bridge LocalEventBus with NATS
+  path: packages/event-bus/bridge.ts
+  task: Forward events between local and NATS buses
+  test: ""
+  status: open
+- commit: Add NATS bridge start script
+  path: scripts/start-bus-bridge.ts
+  task: Launch bridge using Subjects list and env config
+  test: ""
+  status: open
+- commit: Provide NATS env snippet
+  path: docs/snippets/ENV_NATS.example
+  task: Document NATS_URL and credentials placeholders
+  test: ""
+  status: open
+- commit: Implement ToolRegistry
+  path: packages/gpt-bridges/tools/ToolRegistry.ts
+  task: Register tools and transform specs to OpenAI format
+  test: tests/toolRegistry.test.ts
+  status: open
+- commit: Add chatWithTools helper
+  path: packages/gpt-bridges/router/callWithTools.ts
+  task: Iterate model responses and execute registered tools
+  test: ""
+  status: open
+- commit: Create tool-calling demo script
+  path: scripts/tools-demo.ts
+  task: Demonstrate tool execution with vLLM/OpenAI-compatible model
+  test: ""
+  status: open
+- commit: Introduce AgentHeartbeat class
+  path: packages/agents/AgentHeartbeat.ts
+  task: Auto-register agent and emit periodic health events with JSONL log
+  test: ""
+  status: open
+- commit: Expose agent health API
+  path: apps/sharedream-interface/pages/api/agents/health.ts
+  task: Serve latest heartbeat records from data/agents/heartbeats.jsonl
+  test: ""
+  status: open
+- commit: Add AgentHealthPanel component
+  path: packages/unifiedmandala-ui/components/AgentHealthPanel.tsx
+  task: Display heartbeat status in UI with polling refresh
+  test: ""
+  status: open
+- commit: Add JetStreamBus for persistent events
+  path: packages/event-bus/JetStreamBus.ts
+  task: Publish and consume durable events via NATS JetStream
+  test: ""
+  status: open
+- commit: Create JetStream setup script
+  path: scripts/js-setup.ts
+  task: Ensure JetStream stream exists using environment options
+  test: ""
+  status: open
+- commit: Create JetStream replay script
+  path: scripts/js-replay.ts
+  task: Replay events from JetStream durable consumer
+  test: ""
+  status: open
+- commit: Implement OpenAIProvider with Responses API fallback
+  path: packages/gpt-bridges/providers/OpenAIProvider.ts
+  task: Use responses endpoint when USE_RESPONSES_API=1 and support tools
+  test: ""
+  status: open
+- commit: Validate tool arguments with AJV
+  path: packages/gpt-bridges/tools/validateArgs.ts
+  task: Check tool call inputs against JSON schema before execution
+  test: ""
+  status: open
+- commit: Add PolicyEnforcer for governance
+  path: packages/governance/PolicyEnforcer.ts
+  task: Restrict tools, models and subjects based on permissions.yaml
+  test: ""
+  status: open
+- commit: Introduce HmacSigner for event envelopes
+  path: packages/security/HmacSigner.ts
+  task: Sign and verify events using shared secret
+  test: ""
+  status: open
+- commit: Start metrics server script
+  path: scripts/metrics-start.ts
+  task: Expose Prometheus /metrics for runtime stats
+  test: ""
+  status: open
+- commit: Provide KEDA autoscaling template
+  path: deployment/keda/scaledobject-natsjs.yaml
+  task: Scale workers by JetStream lag using KEDA
+  test: ""
+  status: open
+- commit: Add BudgetGuard utility
+  path: packages/costs/BudgetGuard.ts
+  task: Track token spend per agent and enforce daily limits
+  test: ""
+  status: open
+- commit: Add ToolRegistry tests
+  path: tests/toolRegistry.test.ts
+  task: Verify tool registration, listing and handler invocation
+  test: vitest
+  status: open
+- commit: Document MaxBundle runbook
+  path: docs/runbooks/MaxBundle.md
+  task: Explain setup for JetStream, security, observability and scaling
+  test: ""
+  status: open
+- commit: Extend event subjects for agent health and errors
+  path: packages/event-bus/subjects.ts
+  task: Add agent.health.v1 and agent.error.v1 subjects
+  test: ""
+  status: open
