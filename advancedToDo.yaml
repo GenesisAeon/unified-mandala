@@ -12172,3 +12172,35 @@
   task: Verify JSON tool call, RAG answer and image caption using gpt-5
   test: tests/gpt5-smoke.test.ts
   status: open
+- commit: Add voice intent cheat sheet and YAML mapping
+  path: voice_intents.yaml
+  task: Document voice intents and trigger mappings for aeon.sh, Sigillin loader
+    and ToDo parser
+  test: ""
+  status: open
+- commit: Implement voice note to advancedToDo pipeline
+  path: scripts/parse-advanced-conversations.js
+  task: Convert voice notes into advancedToDo entries using
+    parse-advanced-conversations.js
+  test: scripts/__tests__/parse-advanced-conversations.test.ts
+  status: open
+- commit: Generate sigillin JSONL index
+  path: data/sigils/sigillin.jsonl
+  task: Aggregate existing sigil files into a RAG-ready JSONL corpus
+  test: ""
+  status: open
+- commit: Create simulation scenario starter templates
+  path: data/simulations/scenarios
+  task: Provide initial universe and multiverse scenario YAMLs for GPT-5 testing
+  test: ""
+  status: open
+- commit: Create historic sandbox scenario templates
+  path: data/sandboxes/historic
+  task: Define initial civilization simulation scenarios with source references
+  test: ""
+  status: open
+- commit: Add JSONL logging utility for simulations
+  path: packages/shared-utils/jsonlLogger.ts
+  task: Write helper to stream simulation run metrics into JSONL logs
+  test: ""
+  status: open
