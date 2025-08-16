@@ -13539,5 +13539,201 @@
     "task": "Translate prompts into executable UI automation workflows",
     "test": "",
     "status": "open"
+  },
+  {
+    "commit": "Add PII regex patterns module",
+    "path": "packages/redaction/PIIPatterns.ts",
+    "task": "Define regex patterns for common PII for screen redaction",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Add image redactor utility",
+    "path": "packages/redaction/ImageRedactor.ts",
+    "task": "Overlay black boxes on specified regions of PNG images",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Implement redaction API service",
+    "path": "scripts/redaction-api.ts",
+    "task": "Expose HTTP endpoint to redact screenshots with optional OCR",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Add AutoHotkey template script",
+    "path": "tools/windows/templates/mandala.ahk",
+    "task": "Provide sample AHK script for Windows automation",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Create AutoHotkey macro compiler",
+    "path": "packages/automation/AHKCompiler.ts",
+    "task": "Compile macro steps into AutoHotkey scripts",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Add AutoHotkey runner script",
+    "path": "scripts/ahk-runner.ts",
+    "task": "Execute compiled AHK scripts with capability guard",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Introduce macro DSL validator",
+    "path": "packages/automation/MacroDSL.ts",
+    "task": "Validate declarative automation macros and allowed steps",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Add macro execution script",
+    "path": "scripts/macro-exec.ts",
+    "task": "Interpret macro DSL and dispatch OS bridge commands",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Add session log utility",
+    "path": "packages/automation/SessionLog.ts",
+    "task": "Append automation events to JSONL session log",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Add macro replay script",
+    "path": "scripts/macro-replay.ts",
+    "task": "Replay macro steps from recorded session file",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Implement desktop recorder API",
+    "path": "scripts/recorder-api.ts",
+    "task": "Wrap ffmpeg to start and stop screen recording via HTTP",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Create MacroEditor component",
+    "path": "packages/unifiedmandala-ui/components/MacroEditor.tsx",
+    "task": "Edit and run automation macros in the UI",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Create RedactionPanel component",
+    "path": "packages/unifiedmandala-ui/components/RedactionPanel.tsx",
+    "task": "Upload screenshots and apply manual redaction boxes",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Define role permissions map",
+    "path": "packages/identity/Roles.ts",
+    "task": "Map roles to permissions for admin and commons modules",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Extend capability policy for UI consent",
+    "path": "governance/capabilities.policy.yaml",
+    "task": "Allow admin to grant and revoke consent in UI modules",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Add topology index registry",
+    "path": "packages/admin/TopologyIndex.ts",
+    "task": "Track service probes and health in admin console",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Implement admin API gateway",
+    "path": "scripts/admin-api.ts",
+    "task": "Aggregate service statuses and proxy admin commands",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Create admin console app",
+    "path": "packages/admin-ui/AdminConsoleApp.tsx",
+    "task": "React UI for monitoring services and consent state",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Add AI peer connector module",
+    "path": "packages/connectors/AIPeerConnector.ts",
+    "task": "Register external AI peers and invoke routes",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Implement admin peers API",
+    "path": "scripts/admin-peers-api.ts",
+    "task": "Manage AI peer registrations with policy checks",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Create spaces management module",
+    "path": "packages/commons/Spaces.ts",
+    "task": "Manage collaboration spaces, members, and invites",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Implement commons API",
+    "path": "scripts/commons-api.ts",
+    "task": "Handle space creation, invites, and membership",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Add commons presence websocket",
+    "path": "scripts/commons-presence-ws.ts",
+    "task": "Broadcast presence and signaling events for spaces",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Create commons hub app",
+    "path": "packages/commons-ui/CommonsApp.tsx",
+    "task": "Human-first interface integrating research and voice panels",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Add system overview widget",
+    "path": "packages/unifiedmandala-ui/components/SystemOverview.tsx",
+    "task": "Display health status of core services",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Add capability graph widget",
+    "path": "packages/unifiedmandala-ui/components/CapabilityGraph.tsx",
+    "task": "Visualize available capabilities and gating",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Introduce task router module",
+    "path": "packages/hub/TaskRouter.ts",
+    "task": "Assign tasks to humans or AI peers based on role and score",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Extend code agent tasks for admin and commons modules",
+    "path": "code-agent-tasks.yaml",
+    "task": "Add commands to run admin and commons APIs and websockets",
+    "test": "",
+    "status": "open"
   }
 ]
