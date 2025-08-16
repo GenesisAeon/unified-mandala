@@ -1526,7 +1526,8 @@
     "commit": "Introduce CREPInsightDashboard",
     "path": "packages/analytics/CREPInsightDashboard.tsx",
     "task": "Provide interactive CREP analytics",
-    "test": "packages/analytics/CREPInsightDashboard.test.tsx"
+    "test": "packages/analytics/CREPInsightDashboard.test.tsx",
+    "status": "done"
   },
   {
     "commit": "Add PredictiveAnalyticsAgent",

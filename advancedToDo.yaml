@@ -1120,6 +1120,7 @@
   path: packages/analytics/CREPInsightDashboard.tsx
   task: Provide interactive CREP analytics
   test: packages/analytics/CREPInsightDashboard.test.tsx
+  status: done
 - commit: Add PredictiveAnalyticsAgent
   path: packages/analytics/PredictiveAnalyticsAgent.ts
   task: Predict user interactions and events
