@@ -13154,5 +13154,159 @@
     "task": "Verify consent requirement for PII research",
     "test": "",
     "status": "open"
+  },
+  {
+    "commit": "Implement RAG Chunker",
+    "path": "packages/rag/Chunker.ts",
+    "task": "Split documents into overlapping token chunks",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Add LocalHasher and OpenAIEmbedder",
+    "path": "packages/rag/Embedder.ts",
+    "task": "Provide embedding implementations with fallback local hasher",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Create VectorStore",
+    "path": "packages/rag/VectorStore.ts",
+    "task": "Persist vectors on disk and support cosine search",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Create DocStore",
+    "path": "packages/rag/DocStore.ts",
+    "task": "Track provenance and tombstone documents",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Add AnswerComposer",
+    "path": "packages/rag/AnswerComposer.ts",
+    "task": "Generate answers with citations using ModelRouter",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Implement RAGPipeline",
+    "path": "packages/rag/RAGPipeline.ts",
+    "task": "Index and query documents with personhood guard and audit",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Add rag-index CLI",
+    "path": "scripts/rag-index.ts",
+    "task": "Index files into RAG store via CLI",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Add rag-query CLI",
+    "path": "scripts/rag-query.ts",
+    "task": "Query RAG index from command line",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Add rag-api server",
+    "path": "scripts/rag-api.ts",
+    "task": "Expose RAG index, search and ask HTTP endpoints",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Add ReviewerPanel component",
+    "path": "packages/unifiedmandala-ui/components/ReviewerPanel.tsx",
+    "task": "Enqueue and decide review items via API",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Add RAGSearchPanel component",
+    "path": "packages/unifiedmandala-ui/components/RAGSearchPanel.tsx",
+    "task": "Provide retrieval and ask UI for RAG API",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Add RAG smoke test",
+    "path": "tests/rag.flow.test.ts",
+    "task": "Verify indexing and querying of RAG pipeline",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Extend code agent tasks for RAG",
+    "path": "code-agent-tasks.yaml",
+    "task": "Add rag.api, rag.index.demo and rag.query.demo commands",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Implement DatasetRegistry",
+    "path": "packages/datasets/DatasetRegistry.ts",
+    "task": "Register datasets, versions, splits and artifacts with personhood checks",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Add dataset API",
+    "path": "scripts/dataset-api.ts",
+    "task": "Serve dataset registry over HTTP",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Add CitationIndex",
+    "path": "packages/rag/CitationIndex.ts",
+    "task": "Store chunk citation metadata and render markdown and HTML",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Add RAG citation demo script",
+    "path": "scripts/rag-cite-demo.ts",
+    "task": "Demonstrate citation rendering from RAG hits",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Add RAG API deployment",
+    "path": "k8s/deploy-rag-api.yaml",
+    "task": "Deploy RAG API with horizontal pod autoscaling",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Add flags, experiments and reviewer deployments",
+    "path": "k8s/deploy-flags-exp-review.yaml",
+    "task": "Deploy flags, experiments and reviewer APIs",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Add optional KEDA scaler",
+    "path": "k8s/keda-scalers.yaml",
+    "task": "Configure Prometheus based auto scaling",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Add dataset registry test",
+    "path": "tests/datasets.registry.test.ts",
+    "task": "Verify dataset creation, versioning and splitting",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Extend code agent tasks for dataset and k8s",
+    "path": "code-agent-tasks.yaml",
+    "task": "Add dataset.api, rag.cite.demo and k8s.apply.base tasks",
+    "test": "",
+    "status": "open"
   }
 ]
