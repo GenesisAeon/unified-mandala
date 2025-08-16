@@ -12429,3 +12429,128 @@
   task: Add agent.health.v1 and agent.error.v1 subjects
   test: ""
   status: open
+- commit: Implement WebSocketHub for live events
+  path: packages/event-bus/WebSocketHub.ts
+  task: Provide WebSocket server to broadcast LocalEventBus events
+  test: ""
+  status: open
+- commit: Add ws-start bridge script
+  path: scripts/ws-start.ts
+  task: Start WebSocketHub and forward events from LocalEventBus
+  test: ""
+  status: open
+- commit: Create live event React hook
+  path: apps/sharedream-interface/hooks/useLiveEvents.ts
+  task: Subscribe to WebSocket stream and update event list
+  test: ""
+  status: open
+- commit: Add EventStreamPanel component
+  path: packages/unifiedmandala-ui/components/EventStreamPanel.tsx
+  task: Render live events in scrollable panel
+  test: ""
+  status: open
+- commit: Implement JetStreamKV wrapper
+  path: packages/event-bus/JetStreamKV.ts
+  task: Manage NATS JetStream key-value buckets for state
+  test: ""
+  status: open
+- commit: Implement JetStreamObjectStore
+  path: packages/event-bus/JetStreamObjectStore.ts
+  task: Store and retrieve blob artifacts via JetStream
+  test: ""
+  status: open
+- commit: Load tools from YAML specs
+  path: packages/gpt-bridges/tools/ToolDSL.ts
+  task: Register tool handlers based on YAML definitions
+  test: ""
+  status: open
+- commit: Provide sigil search tool spec
+  path: tools/specs/sigil.search.yaml
+  task: Define YAML schema for sigil search tool
+  test: ""
+  status: open
+- commit: Add sigil search tool handler
+  path: tools/handlers/sigil_search.js
+  task: Implement JSONL search handler for sigils
+  test: ""
+  status: open
+- commit: Define diverse research agents
+  path: agents.research.yaml
+  task: List climate, bio, materials, governance, RAG and astro agents
+  test: ""
+  status: open
+- commit: Write reproducibility protocol
+  path: docs/protocols/reproducibility.md
+  task: Document seeds, JSONL format and environment export steps
+  test: ""
+  status: open
+- commit: Write dataset provenance protocol
+  path: docs/protocols/dataset_provenance.md
+  task: Capture source, license, hashes and dataset card info
+  test: ""
+  status: open
+- commit: Write CREP research protocol
+  path: docs/protocols/crep_research_protocol.md
+  task: Outline CREP runbook for research workflows
+  test: ""
+  status: open
+- commit: Write research safety guidelines
+  path: docs/protocols/research_safety.md
+  task: Summarize ethics and safety measures for agents
+  test: ""
+  status: open
+- commit: Create PipelineOrchestrator
+  path: packages/orchestrator/PipelineOrchestrator.ts
+  task: Execute YAML-defined steps sequentially
+  test: ""
+  status: open
+- commit: Add universe pulse pipeline
+  path: pipelines/universe_pulse.yaml
+  task: Configure demo pipeline steps for UniversePulse
+  test: ""
+  status: open
+- commit: Add UniversePulse E2E demo
+  path: demos/universe_pulse_e2e.ts
+  task: Emit simulation events and log run metrics
+  test: ""
+  status: open
+- commit: Provide Prometheus scrape config
+  path: observability/prometheus.yml
+  task: Scrape metrics server on :9108
+  test: ""
+  status: open
+- commit: Add Grafana mini dashboard
+  path: observability/grafana_universe_pulse_mini.json
+  task: Visualize UniversePulse metrics in Grafana
+  test: ""
+  status: open
+- commit: Implement PIIRedactor utility
+  path: packages/security/PIIRedactor.ts
+  task: Mask phone numbers, emails and card numbers in text
+  test: ""
+  status: open
+- commit: Create ResearchHub UI
+  path: packages/unifiedmandala-ui/components/ResearchHub.tsx
+  task: Provide entry point for research agents and flags
+  test: ""
+  status: open
+- commit: Implement FeatureFlags service
+  path: packages/featureflags/FeatureFlags.ts
+  task: Read and write toggle values via JetStream KV
+  test: ""
+  status: open
+- commit: Seed feature flags script
+  path: scripts/feature-flags-seed.ts
+  task: Populate KV store with default flags
+  test: ""
+  status: open
+- commit: Implement ExperimentRegistry
+  path: packages/experiments/ExperimentRegistry.ts
+  task: Track experiment metadata and artifacts in JetStream
+  test: ""
+  status: open
+- commit: Add experiment sample script
+  path: scripts/experiments-sample.ts
+  task: Create sample experiment and attach artifact
+  test: ""
+  status: open
