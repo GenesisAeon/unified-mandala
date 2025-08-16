@@ -14141,5 +14141,110 @@
     "task": "Deploy base and prod manifests on tagged releases",
     "test": "",
     "status": "open"
+  },
+  {
+    "commit": "Add Helm OIDC bundle",
+    "path": "helm/helmfile.yaml",
+    "task": "Keycloak and Postgres via helmfile with TLS and /auth path",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Add Traefik mTLS ingress",
+    "path": "traefik/",
+    "task": "IngressRoute with security headers, sticky sessions and mTLS",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Add SLO monitoring pack",
+    "path": "slo/",
+    "task": "Burn-rate alerts, Grafana dashboard and exporter snippets",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Add GitOps manifests and workflow",
+    "path": "gitops/",
+    "task": "Argo CD app-of-apps, Flux Kustomization and publish workflow",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Add Go OIDC quickstart",
+    "path": "go-oidc-quickstart/",
+    "task": "PKCE SPA with Go session bridge and token exchange",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Add Keycloak auto-import helmfile",
+    "path": "helm/keycloak-autoimport/",
+    "task": "Mount ConfigMap and enable --import-realm for mandala realm",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Add Cloudflare DNS01 ClusterIssuer",
+    "path": "cert-manager/dns01-cloudflare/clusterissuer.yaml",
+    "task": "Enable cert-manager DNS-01 TLS with Cloudflare token",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Add Argo Rollouts canary stack",
+    "path": "rollouts/",
+    "task": "Analysis template, admin rollout and NGINX header routing",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Add GitOps app factory script",
+    "path": "gitops-app-factory/scripts/scaffold-app.ts",
+    "task": "Scaffold app directories with Kustomize via CLI",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Add Observability++ stack",
+    "path": "observability/",
+    "task": "Deploy Tempo, OTel collector and Grafana datasource with snippets",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Add secret management examples",
+    "path": "secrets/",
+    "task": "SealedSecrets controller and Vault injector setup",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Add NetworkPolicy templates",
+    "path": "netpol/",
+    "task": "Default deny policies with allowed ingress and egress rules",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Add blue/green rollouts with Slack alerts",
+    "path": "rollouts-bluegreen/",
+    "task": "Rollout with preview header and Slack notification config",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Add GitOps golden path template",
+    "path": "goldenpath/",
+    "task": "Sample service, Flux image automation and CI pipeline",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Add one-click cluster bootstrap",
+    "path": "bootstrap/",
+    "task": "Helmfile and scripts to install full Mandala stack",
+    "test": "",
+    "status": "open"
   }
 ]
