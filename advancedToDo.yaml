@@ -1150,6 +1150,7 @@
   path: packages/community/CommunityPluginMarketplace.ts
   task: Host and rate community plugins
   test: packages/community/CommunityPluginMarketplace.test.ts
+  status: done
 - commit: Introduce PluginSecurityAuditor
   path: packages/community/PluginSecurityAuditor.ts
   task: Audit community plugins before integration

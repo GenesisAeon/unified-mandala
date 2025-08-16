@@ -1,5 +1,5 @@
 {
-  "lastCommit": "feat: enhance privacy compliance agent",
+  "lastCommit": "feat: add plugin rating",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
@@ -4123,6 +4123,10 @@
     {
       "commit": "Create PrivacyComplianceAgent",
       "status": "done"
+    },
+    {
+      "commit": "Add CommunityPluginMarketplace",
+      "status": "done"
     }
   ],
   "completed": [
@@ -4876,6 +4880,10 @@
     },
     {
       "commit": "Implement energy-to-mass cooling in nullfield simulation",
+      "status": "done"
+    },
+    {
+      "commit": "Add CommunityPluginMarketplace",
       "status": "done"
     }
   ],
