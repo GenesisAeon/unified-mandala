@@ -1,11 +1,11 @@
 {
-  "lastCommit": "feat: enhance privacy compliance agent",
+  "lastCommit": "feat: add repository map export script",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
   ],
   "mergeConflicts": [],
-  "notes": "Implemented region profile REST endpoint and completed country/region model set. Added mitigation service microservice stub. Enhanced ethics supervisor with pattern checks. Added ClimateSocialPanel UI for dashboard metrics. Added InteractiveSymbolzeitExplorer UI. Added IoTSensorWidget UI for realtime sensor data.; Added repository map duplicate checker.; Added IoT sensor agent plugin and container.; Added provenance agent scaffold.; Added societal impact agent container.; Added catalyst agent container.",
+  "notes": "Implemented region profile REST endpoint and completed country/region model set. Added mitigation service microservice stub. Enhanced ethics supervisor with pattern checks. Added ClimateSocialPanel UI for dashboard metrics. Added InteractiveSymbolzeitExplorer UI. Added IoTSensorWidget UI for realtime sensor data.; Added repository map duplicate checker.; Added IoT sensor agent plugin and container.; Added provenance agent scaffold.; Added societal impact agent container.; Added catalyst agent container.; Added repository map export script.",
   "pendingTasks": [],
   "progress": [
     {
@@ -4123,6 +4123,10 @@
     {
       "commit": "Create PrivacyComplianceAgent",
       "status": "done"
+    },
+    {
+      "commit": "Add repository map export script",
+      "status": "done"
     }
   ],
   "completed": [
@@ -4876,6 +4880,10 @@
     },
     {
       "commit": "Implement energy-to-mass cooling in nullfield simulation",
+      "status": "done"
+    },
+    {
+      "commit": "Add repository map export script",
       "status": "done"
     }
   ],

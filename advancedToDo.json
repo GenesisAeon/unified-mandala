@@ -1,5 +1,12 @@
 [
   {
+    "commit": "Add repository map export script",
+    "path": "scripts/repository-map-export.ts",
+    "task": "Export repository_map.yaml to JSON",
+    "test": "scripts/repository-map-export.test.ts",
+    "status": "done"
+  },
+  {
     "commit": "Add summary generator to training data extraction",
     "path": "scripts/extract-training-data.ts",
     "task": "Replace placeholder with generated conversation summaries",

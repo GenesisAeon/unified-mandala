@@ -42,6 +42,7 @@ repository_map:
       - self-analyze.js
       - sync-todo-progress.js
       - repository-map-find.ts
+      - scripts/repository-map-export.ts
       - packages/unifiedmandala-ui/components/ResonanceHistoryPanel.tsx
       - packages/unifiedmandala-ui/components/TwinMonitor.tsx
       - packages/unifiedmandala-ui/components/EmergencePanel.tsx
