@@ -12348,5 +12348,12 @@
     "task": "Log counts of tasks synced into advancedprogress.json",
     "test": "scripts/__tests__/sync-todo-progress.test.ts",
     "status": "done"
+  },
+  {
+    "commit": "Add repository map HTML exporter",
+    "path": "scripts/repository-map-html.ts",
+    "task": "Render repository_map.yaml as HTML table",
+    "test": "scripts/repository-map-html.test.ts",
+    "status": "done"
   }
 ]
