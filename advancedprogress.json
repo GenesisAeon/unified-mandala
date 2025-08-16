@@ -1,5 +1,5 @@
 {
-  "lastCommit": "chore: add advanced ToDos for infra and gating",
+  "lastCommit": "chore: add security hardening tasks",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
@@ -1169,6 +1169,42 @@
     },
     {
       "commit": "Introduce multi-cluster ApplicationSet and security policies",
+      "status": "open"
+    },
+    {
+      "commit": "Integrate Kyverno policies with Gatekeeper audit layer",
+      "status": "open"
+    },
+    {
+      "commit": "Apply Cilium default-deny and service allow policies",
+      "status": "open"
+    },
+    {
+      "commit": "Deploy Falco with RBAC-abuse rules and Slack alerts",
+      "status": "open"
+    },
+    {
+      "commit": "Wire OpenTelemetry collector to Tempo and Loki",
+      "status": "open"
+    },
+    {
+      "commit": "Add unified security Grafana dashboard",
+      "status": "open"
+    },
+    {
+      "commit": "Add Red Team Day exercise scripts",
+      "status": "open"
+    },
+    {
+      "commit": "Enable Alertmanager night mode routing",
+      "status": "open"
+    },
+    {
+      "commit": "Define per-namespace Cilium FQDN allowlists",
+      "status": "open"
+    },
+    {
+      "commit": "Switch Kyverno verifyImages to enforce",
       "status": "open"
     }
   ],
