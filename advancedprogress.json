@@ -1,5 +1,5 @@
 {
-  "lastCommit": "feat: sync advanced progress with open todos",
+  "lastCommit": "chore: add voice and gpt-5 tasks",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
@@ -7,11 +7,90 @@
   "mergeConflicts": [],
   "notes": "Implemented region profile REST endpoint and completed country/region model set. Added mitigation service microservice stub. Enhanced ethics supervisor with pattern checks. Added ClimateSocialPanel UI for dashboard metrics. Added InteractiveSymbolzeitExplorer UI. Added IoTSensorWidget UI for realtime sensor data.; Added repository map duplicate checker.; Added IoT sensor agent plugin and container.; Added provenance agent scaffold.; Added societal impact agent container.; Added catalyst agent container.",
   "pendingTasks": [
-    "TODO from GenesisAeonZIPMEM/Aeon_Uebergabe-Sigil_Prozess_part2.json - a0cddb53-12d4-44b8-b881-4fbfad63f129 (GenesisAeonZIPMEM/Aeon_Uebergabe-Sigil_Prozess_part2.json)",
-    "TODO from GenesisAeonZIPMEM/Aeon_Uebergabe_und_Zyklus_part1.json - bbb21f74-3a0f-45b2-8e8c-25e45e32861e (GenesisAeonZIPMEM/Aeon_Uebergabe_und_Zyklus_part1.json)",
-    "- und Progress-Dateien mit diesem Stand. ()",
-    "- und Progress-Dateien mit diesem Standpunkt, um Gedächtniskohärenz zu wahren. ()",
-    "Parser` – Liest ToDo-Listen aus Markdown-Dateien. ()"
+    {
+      "commit": "Track golden signals metrics",
+      "status": "open"
+    },
+    {
+      "commit": "Map CREP metrics to outcome KPIs",
+      "status": "open"
+    },
+    {
+      "commit": "Add one-click workflow launcher",
+      "status": "open"
+    },
+    {
+      "commit": "Revise pitch docs with outcome focused demos",
+      "status": "open"
+    },
+    {
+      "commit": "Add gpt-5 ModelMatrix and routing",
+      "status": "open"
+    },
+    {
+      "commit": "Declare gpt-5 capabilities for agents",
+      "status": "open"
+    },
+    {
+      "commit": "Introduce ToolAdapter for unified tool calling",
+      "status": "open"
+    },
+    {
+      "commit": "Adjust text fragmenter for gpt-5 context",
+      "status": "open"
+    },
+    {
+      "commit": "Add gpt-5 QA script and Fourier logging",
+      "status": "open"
+    },
+    {
+      "commit": "Tune ethics policy for gpt-5",
+      "status": "open"
+    },
+    {
+      "commit": "Configure gpt-5 KEDA scaler and budget guard",
+      "status": "open"
+    },
+    {
+      "commit": "Expose gpt-5 metrics in admin panel",
+      "status": "open"
+    },
+    {
+      "commit": "Enable gpt-5 filter in MandalaNetworkView",
+      "status": "open"
+    },
+    {
+      "commit": "Switch OpenAI provider to responses API",
+      "status": "open"
+    },
+    {
+      "commit": "Add gpt-5 smoke test suite",
+      "status": "open"
+    },
+    {
+      "commit": "Add voice intent cheat sheet and YAML mapping",
+      "status": "open"
+    },
+    {
+      "commit": "Implement voice note to advancedToDo pipeline",
+      "status": "open"
+    },
+    {
+      "commit": "Generate sigillin JSONL index",
+      "status": "open"
+    },
+    {
+      "commit": "Create simulation scenario starter templates",
+      "status": "open"
+    },
+    {
+      "commit": "Create historic sandbox scenario templates",
+      "status": "open"
+    },
+    {
+      "commit": "Add JSONL logging utility for simulations",
+      "status": "open"
+    }
   ],
   "progress": [
     {
