@@ -1,5 +1,5 @@
 {
-  "lastCommit": "feat: sync advanced progress with open todos",
+  "lastCommit": "feat: add json output to open advanced todos script",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
@@ -14,6 +14,10 @@
     "Parser` – Liest ToDo-Listen aus Markdown-Dateien. ()"
   ],
   "progress": [
+    {
+      "commit": "Add JSON output to open advanced todos script",
+      "status": "done"
+    },
     {
       "commit": "Add advanced progress sync script",
       "status": "done"
