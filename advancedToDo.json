@@ -12986,5 +12986,173 @@
     "task": "Create sample experiment and attach artifact",
     "test": "",
     "status": "open"
+  },
+  {
+    "commit": "Add Personhood Protocol documentation",
+    "path": "docs/personhood/PersonhoodProtocol.md",
+    "task": "Document consent, provenance, audit and refusal guidelines",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Create personhood policy config",
+    "path": "governance/personhood.policy.yaml",
+    "task": "Define consent, retention and model access rules",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Implement ConsentRegistry",
+    "path": "packages/personhood/ConsentRegistry.ts",
+    "task": "Store and fetch consent records via JetStream KV",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Implement AuditTrail",
+    "path": "packages/personhood/AuditTrail.ts",
+    "task": "Record signed personhood events to JSONL log",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Add RefusalEngine",
+    "path": "packages/personhood/RefusalEngine.ts",
+    "task": "Generate structured refusal objects",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Implement PolicyGuard",
+    "path": "packages/personhood/PolicyGuard.ts",
+    "task": "Enforce consent, region, review and model rules",
+    "test": "tests/personhood.guard.test.ts",
+    "status": "open"
+  },
+  {
+    "commit": "Implement flags API",
+    "path": "scripts/flags-api.ts",
+    "task": "Expose HTTP API to toggle feature flags via KV",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Add FeatureFlagsPanel component",
+    "path": "packages/unifiedmandala-ui/components/FeatureFlagsPanel.tsx",
+    "task": "Render toggle switches for feature flags",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Implement experiments API",
+    "path": "scripts/experiments-api.ts",
+    "task": "Serve experiment metadata and comparisons with personhood checks",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Add ExperimentBoard component",
+    "path": "packages/unifiedmandala-ui/components/ExperimentBoard.tsx",
+    "task": "Compare experiment runs with personhood enforcement",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Add provenance card type",
+    "path": "packages/ingest/ProvenanceCard.ts",
+    "task": "Track source, license, hash and personhood metadata",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Implement PDF ingest",
+    "path": "packages/ingest/PDFIngest.ts",
+    "task": "Extract text and provenance from PDFs",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Implement GeoTIFF ingest",
+    "path": "packages/ingest/GeoTIFFIngest.ts",
+    "task": "Read raster metadata and provenance",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Implement VCF ingest",
+    "path": "packages/ingest/VCFIngest.ts",
+    "task": "Parse variant records with provenance",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Add ingest demo script",
+    "path": "scripts/ingest-demo.ts",
+    "task": "Demonstrate ingest kit with personhood gate and audit",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Implement ReviewerQueue",
+    "path": "packages/hitloop/ReviewerQueue.ts",
+    "task": "Queue and decide human review items via JetStream",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Add reviewer API",
+    "path": "scripts/reviewer-api.ts",
+    "task": "Expose enqueue and decision endpoints for review queue",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Add AutoTuningAgent",
+    "path": "packages/agents/AutoTuningAgent.ts",
+    "task": "Search parameter space with budget guard and experiment logging",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Implement SecureAggregator",
+    "path": "packages/federated/SecureAggregator.ts",
+    "task": "Average vectors and add DP noise",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Add federated API",
+    "path": "scripts/federated-api.ts",
+    "task": "Collect client updates and aggregate with personhood enforcement",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Add withPersonhood router hook",
+    "path": "packages/gpt-bridges/router/withPersonhood.ts",
+    "task": "Wrap tools or models with policy checks and audit",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Update agent permissions",
+    "path": "governance/permissions.yaml",
+    "task": "Allow personhood-agent and autotuning-agent tools and models",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Extend code agent tasks for Wave 2",
+    "path": "code-agent-tasks.yaml",
+    "task": "Add setup and API start commands for new modules",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Add personhood guard test",
+    "path": "tests/personhood.guard.test.ts",
+    "task": "Verify consent requirement for PII research",
+    "test": "",
+    "status": "open"
   }
 ]
