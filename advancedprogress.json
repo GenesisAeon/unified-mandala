@@ -1,12 +1,18 @@
 {
-  "lastCommit": "feat: add plugin rating",
+  "lastCommit": "feat: list open advanced todos",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
   ],
   "mergeConflicts": [],
   "notes": "Implemented region profile REST endpoint and completed country/region model set. Added mitigation service microservice stub. Enhanced ethics supervisor with pattern checks. Added ClimateSocialPanel UI for dashboard metrics. Added InteractiveSymbolzeitExplorer UI. Added IoTSensorWidget UI for realtime sensor data.; Added repository map duplicate checker.; Added IoT sensor agent plugin and container.; Added provenance agent scaffold.; Added societal impact agent container.; Added catalyst agent container.",
-  "pendingTasks": [],
+  "pendingTasks": [
+    "TODO from GenesisAeonZIPMEM/Aeon_Uebergabe-Sigil_Prozess_part1.json - 4df8c73d-6df3-443c-a695-31458a2e1cf7",
+    "TODO from GenesisAeonZIPMEM/Aeon_Uebergabe-Sigil_Prozess_part2.json - a0cddb53-12d4-44b8-b881-4fbfad63f129",
+    "TODO from GenesisAeonZIPMEM/Aeon_Uebergabe_und_Zyklus_part1.json - bbb21f74-3a0f-45b2-8e8c-25e45e32861e",
+    "- und Progress-Dateien mit diesem Stand.",
+    "- und Progress-Dateien mit diesem Standpunkt, um Gedächtniskohärenz zu wahren."
+  ],
   "progress": [
     {
       "commit": "Add Dockerfile and requirements for digital twin agent",
