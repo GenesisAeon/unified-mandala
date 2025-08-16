@@ -13557,3 +13557,48 @@
     supply chain security workflows
   test: .github/workflows/sign-images.yml
   status: open
+- commit: Integrate Kyverno policies with Gatekeeper audit layer
+  path: admission/kyverno/policies/
+  task: Apply Kyverno enforcement policies and Gatekeeper dry-run TLS constraints
+  test: kubectl apply -k admission/kyverno/policies/
+  status: open
+- commit: Apply Cilium default-deny and service allow policies
+  path: cilium/policies/
+  task: Enforce CiliumNetworkPolicies for admin-ui, admin-api, and backend services
+  test: kubectl apply -f cilium/policies/default-deny.yaml
+  status: open
+- commit: Deploy Falco with RBAC-abuse rules and Slack alerts
+  path: falco/k8s-audit-values.yaml
+  task: Install Falco with tuned values and Sidekick Slack integration
+  test: helm upgrade --install falco -f falco/k8s-audit-values.yaml
+  status: open
+- commit: Wire OpenTelemetry collector to Tempo and Loki
+  path: observability/otel-collector.yaml
+  task: Route OTLP metrics, traces, and logs and expose ServiceMonitor
+  test: kubectl apply -f observability/otel-collector.yaml
+  status: open
+- commit: Add unified security Grafana dashboard
+  path: grafana/dashboards/unified-security-board.json
+  task: Visualize Falco, Kyverno, Cilium, and audit log metrics in one board
+  test: ""
+  status: open
+- commit: Add Red Team Day exercise scripts
+  path: scripts/rt-start.sh
+  task: Provide reproducible security drill setup and cleanup scripts
+  test: scripts/rt-start.sh
+  status: open
+- commit: Enable Alertmanager night mode routing
+  path: alerting/alertmanager/alertmanager-night-overlays.yaml
+  task: Route warning alerts to night channel while keeping critical alerts active
+  test: kubectl apply -f alerting/alertmanager/alertmanager-night-overlays.yaml
+  status: open
+- commit: Define per-namespace Cilium FQDN allowlists
+  path: cilium/fqdn/mandala-prod.yaml
+  task: Allow required external domains for prod and staging namespaces
+  test: kubectl apply -f cilium/fqdn/mandala-prod.yaml
+  status: open
+- commit: Switch Kyverno verifyImages to enforce
+  path: kyverno/verify-images-cosign-enforce.yaml
+  task: Enforce cosign-signed images via Kyverno policy and helper script
+  test: ./scripts/switch-cosign-enforce.sh
+  status: open
