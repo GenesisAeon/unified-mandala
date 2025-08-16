@@ -1,18 +1,12 @@
 {
-  "lastCommit": "feat: sync advanced progress with open todos",
+  "lastCommit": "Merge pull request #1258 from GenesisAeon/codex/implement-features-from-advancedtodo.yaml-m6w00h",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
   ],
   "mergeConflicts": [],
   "notes": "Implemented region profile REST endpoint and completed country/region model set. Added mitigation service microservice stub. Enhanced ethics supervisor with pattern checks. Added ClimateSocialPanel UI for dashboard metrics. Added InteractiveSymbolzeitExplorer UI. Added IoTSensorWidget UI for realtime sensor data.; Added repository map duplicate checker.; Added IoT sensor agent plugin and container.; Added provenance agent scaffold.; Added societal impact agent container.; Added catalyst agent container.",
-  "pendingTasks": [
-    "TODO from GenesisAeonZIPMEM/Aeon_Uebergabe-Sigil_Prozess_part2.json - a0cddb53-12d4-44b8-b881-4fbfad63f129 (GenesisAeonZIPMEM/Aeon_Uebergabe-Sigil_Prozess_part2.json)",
-    "TODO from GenesisAeonZIPMEM/Aeon_Uebergabe_und_Zyklus_part1.json - bbb21f74-3a0f-45b2-8e8c-25e45e32861e (GenesisAeonZIPMEM/Aeon_Uebergabe_und_Zyklus_part1.json)",
-    "- und Progress-Dateien mit diesem Stand. ()",
-    "- und Progress-Dateien mit diesem Standpunkt, um Gedächtniskohärenz zu wahren. ()",
-    "Parser` – Liest ToDo-Listen aus Markdown-Dateien. ()"
-  ],
+  "pendingTasks": [],
   "progress": [
     {
       "commit": "Add advanced progress sync script",
