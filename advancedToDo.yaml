@@ -12204,3 +12204,113 @@
   task: Write helper to stream simulation run metrics into JSONL logs
   test: ""
   status: open
+- commit: Add RunLogger utility
+  path: packages/shared-utils/runLogger.ts
+  task: Implement append-based JSONL run logging with run_id and reader
+  test: scripts/runlog-demo.ts
+  status: open
+- commit: Integrate Sigil RAG search hooks
+  path: packages/unifiedmandala-ui/components/SigilSearchPanel.tsx
+  task: Provide hook and panel to search sigillin.jsonl via RAG index
+  test: ""
+  status: open
+- commit: Expose Sigil search API
+  path: apps/sharedream-interface/pages/api/sigils/index.ts
+  task: Stream sigil results from sigillin.jsonl through API route
+  test: ""
+  status: open
+- commit: Add Mandala Sigil link bridge
+  path: packages/unifiedmandala-ui/components/MandalaSigilLinkBridge.tsx
+  task: Connect MandalaNetworkView clicks to SigilSearchPanel
+  test: ""
+  status: open
+- commit: Implement vector index ingest script
+  path: scripts/ingest-sigils-to-vector-index.ts
+  task: Batch POST sigils to VECTOR_INDEX_URL from sigillin.jsonl
+  test: ""
+  status: open
+- commit: Document RunLogger usage
+  path: docs/hooks/RunLogger.md
+  task: Write guide for emitting and reading run logs
+  test: ""
+  status: open
+- commit: Document Sigil RAG hooks
+  path: docs/hooks/RAG-Sigils.md
+  task: Explain RAG index loading and search for sigils
+  test: ""
+  status: open
+- commit: Add runlog archive workflow
+  path: .github/workflows/runlog-archive.yml
+  task: Archive JSONL run logs nightly as GitHub artifacts
+  test: ""
+  status: open
+- commit: Document vector index env snippet
+  path: docs/snippets/ENV_VECTOR_INDEX.md
+  task: Provide VECTOR_INDEX_URL environment variable example
+  test: ""
+  status: open
+- commit: Add AgentWorkflowEngine
+  path: packages/agents/AgentWorkflowEngine.ts
+  task: Load agents.yaml and emit lifecycle events with status snapshot
+  test: scripts/system-start.ts
+  status: open
+- commit: Create agent registry file
+  path: agents.yaml
+  task: List core agents with ids, capabilities and lifecycle events
+  test: ""
+  status: open
+- commit: Add event bus subjects and LocalEventBus
+  path: packages/event-bus/subjects.ts
+  task: Define versioned event names and simple local bus
+  test: ""
+  status: open
+- commit: Provide system start script
+  path: scripts/system-start.ts
+  task: Initialize agents and log lifecycle events with dry-run option
+  test: ""
+  status: open
+- commit: Implement model router and providers
+  path: packages/gpt-bridges/router/ModelRouter.ts
+  task: Route generation requests to Ollama, TGI or vLLM providers
+  test: ""
+  status: open
+- commit: Add open-source model provider interfaces
+  path: packages/gpt-bridges/providers/ModelProvider.ts
+  task: Define provider API and implement Ollama, TGI and VLLM adapters
+  test: ""
+  status: open
+- commit: Expose agent status API
+  path: apps/sharedream-interface/pages/api/agents/status.ts
+  task: Serve agents/status.json via API route
+  test: ""
+  status: open
+- commit: Expose agent status in UI
+  path: packages/unifiedmandala-ui/components/AgentStatusPanel.tsx
+  task: Display agent snapshot from /api/agents/status
+  test: ""
+  status: open
+- commit: Document agent workflow
+  path: docs/agents/AgentWorkflow.md
+  task: Explain lifecycle events and system start sequence
+  test: ""
+  status: open
+- commit: Document open source model setup
+  path: docs/models/OpenSourceModels.md
+  task: Describe configuration and routing for Ollama, TGI and vLLM
+  test: ""
+  status: open
+- commit: Provide model env snippet
+  path: docs/snippets/ENV_MODELS.example
+  task: List environment variables for local model providers
+  test: ""
+  status: open
+- commit: Document system start workflow
+  path: docs/system/SystemStart.md
+  task: Outline steps to launch agents and models with ts-node
+  test: ""
+  status: open
+- commit: Add agent workflow CI check
+  path: .github/workflows/agent-workflow-check.yml
+  task: Validate agents.yaml and run system start dry-run in CI
+  test: ""
+  status: open
