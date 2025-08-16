@@ -13239,3 +13239,58 @@
   task: Include identity, instance, ACL and federation service run commands
   test: ""
   status: open
+- commit: Add OIDC stub service
+  path: scripts/oidc-stub.ts
+  task: Serve JWKS and token endpoints for development
+  test: ""
+  status: open
+- commit: Add UI switchboard service
+  path: scripts/ui-switchboard.ts
+  task: List cloned UIs via instance registry proxy
+  test: ""
+  status: open
+- commit: Add policy lint script
+  path: scripts/policy-lint.ts
+  task: Enforce baseline safety rules on policy files
+  test: ""
+  status: open
+- commit: Add compose override for UM services
+  path: compose.override.yml
+  task: Define containers for identity, federation, collab and admin services
+  test: ""
+  status: open
+- commit: Add Windows stack start script
+  path: windows/Start-UMStack.ps1
+  task: Launch all UM services as background processes on Windows
+  test: ""
+  status: open
+- commit: Add Windows services installer
+  path: windows/Install-UMServices.ps1
+  task: Register UM services with Task Scheduler or NSSM
+  test: ""
+  status: open
+- commit: Add UM integration GitHub workflow
+  path: .github/workflows/um-integration.yml
+  task: Run type check and smoke test for UM services
+  test: ""
+  status: open
+- commit: Document UM integration guide
+  path: docs/INTEGRATION_GUIDE.md
+  task: Explain how to apply and run the integration pack
+  test: ""
+  status: open
+- commit: Add integration copier script
+  path: integration/apply.mjs
+  task: Copy integration pack files into repository root
+  test: ""
+  status: open
+- commit: Expose UM service scripts in package.json
+  path: package.json
+  task: Add dev commands for identity, registry, collab and admin APIs
+  test: ""
+  status: open
+- commit: Provide tsconfig for UM services
+  path: tsconfig.json
+  task: Configure ES2020 modules and ts-node options
+  test: ""
+  status: open
