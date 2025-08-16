@@ -13309,4 +13309,96 @@
     "test": "",
     "status": "open"
   }
+,
+  {
+    "commit": "Add Realtime StreamProtocol definitions",
+    "path": "packages/realtime/StreamProtocol.ts",
+    "task": "Define LiveMsg types for realtime hub",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Implement ResearchHubWS server",
+    "path": "packages/realtime/ResearchHubWS.ts",
+    "task": "Broadcast live RAG events over WebSocket",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Create realtime hub HTTP bridge script",
+    "path": "scripts/realtime-hub.ts",
+    "task": "Expose /live/ask endpoint and stream answers",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Implement annotations KV store",
+    "path": "packages/collab/AnnotationsStore.ts",
+    "task": "Persist and list annotations per document",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Add annotations API with broadcast",
+    "path": "scripts/annotations-api.ts",
+    "task": "Serve annotation add/list endpoints with WS notifications",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Add ReviewerHotkeys UI hook",
+    "path": "packages/unifiedmandala-ui/components/ReviewerHotkeys.tsx",
+    "task": "Trigger reviewer decisions via keyboard shortcuts",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Implement HMAC signed URLs",
+    "path": "packages/security/SignedURL.ts",
+    "task": "Generate and verify expiring share tokens",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Create share API server",
+    "path": "scripts/share-api.ts",
+    "task": "Serve signed links for object store artifacts",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Add RealtimeResearchHub UI component",
+    "path": "packages/unifiedmandala-ui/components/RealtimeResearchHub.tsx",
+    "task": "Display live retrieval hits and streamed answers",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Add AnnotationsPanel UI component",
+    "path": "packages/unifiedmandala-ui/components/AnnotationsPanel.tsx",
+    "task": "Create realtime annotation list and add form",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Extend code agent tasks for realtime APIs",
+    "path": "code-agent-tasks.yaml",
+    "task": "Add realtime.hub, annotations.api and share.api commands",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Add signed URL test",
+    "path": "tests/signedurl.test.ts",
+    "task": "Verify signing and expiration logic",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Add realtime flow smoke test",
+    "path": "tests/realtime.flow.test.ts",
+    "task": "Demonstrate token chunking in realtime hub",
+    "test": "",
+    "status": "open"
+  }
 ]
