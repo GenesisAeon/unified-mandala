@@ -14246,5 +14246,145 @@
     "task": "Helmfile and scripts to install full Mandala stack",
     "test": "",
     "status": "open"
+  },
+  {
+    "commit": "Integrate Vault CSI for secret file mounts",
+    "path": "csi/helmfile.yaml",
+    "task": "Deploy Vault CSI and mount secrets into pods via SecretProviderClass",
+    "test": "csi/deployment-example.yaml",
+    "status": "open"
+  },
+  {
+    "commit": "Add ServiceMap-based NetworkPolicy generator",
+    "path": "netpolgen/",
+    "task": "Generate namespace-scoped ingress and egress policies from service map and apply output",
+    "test": "netpolgen/sample/service-map.json",
+    "status": "open"
+  },
+  {
+    "commit": "Set up Cypress UI smoke tests and workflow",
+    "path": "e2e/cypress",
+    "task": "Run Cypress smoke suite via GitHub action",
+    "test": ".github/workflows/e2e-cypress.yml",
+    "status": "open"
+  },
+  {
+    "commit": "Set up k6 API smoke tests and workflow",
+    "path": "e2e/k6",
+    "task": "Run k6 API smoke test via GitHub action",
+    "test": ".github/workflows/e2e-k6.yml",
+    "status": "open"
+  },
+  {
+    "commit": "Configure promotion gates for rollouts",
+    "path": "gates/rollouts/rollout-admin-canary-gated.yaml",
+    "task": "Gated canary steps requiring Prometheus SLO and E2E webhook success",
+    "test": "gates/analysis/prometheus-slo.yaml",
+    "status": "open"
+  },
+  {
+    "commit": "Deploy gate-controller for E2E gating",
+    "path": "gate-controller/",
+    "task": "Expose report endpoint and Prometheus metrics for E2E statuses",
+    "test": "gate-controller/k8s.yaml",
+    "status": "open"
+  },
+  {
+    "commit": "Add Playwright synthetics with OTel",
+    "path": "synthetics/playwright/",
+    "task": "Run scheduled Playwright smoke tests with tracing enabled",
+    "test": "synthetics/.github/workflows/synthetics.yml",
+    "status": "open"
+  },
+  {
+    "commit": "Provide RUM OTel web snippet",
+    "path": "rum/otel-web.js",
+    "task": "Collect browser metrics and forward to collector via OTLP",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Implement multi-signal quorum gates",
+    "path": "quorum/rollouts/rollout-admin-quorum.yaml",
+    "task": "Require SLO, error budget, and E2E quorum before promotion",
+    "test": "quorum/analysis/slo-success-5m.yaml",
+    "status": "open"
+  },
+  {
+    "commit": "Add Terraform synthetics and alerting",
+    "path": "terraform-synthetics/",
+    "task": "Provision blackbox probes and Prometheus alerts with optional Slack notifications",
+    "test": "terraform-synthetics/main.tf",
+    "status": "open"
+  },
+  {
+    "commit": "Enable auto-rollback on SLO violation",
+    "path": "rollback/rollouts/rollout-admin-autorollback.yaml",
+    "task": "Abort and rollback rollout when SLO analysis fails",
+    "test": "rollback/analysis/slo-5m.yaml",
+    "status": "open"
+  },
+  {
+    "commit": "Schedule weekly SLO and error budget reports",
+    "path": ".github/workflows/slo-report.yml",
+    "task": "Render Grafana dashboard to PDF and post to Slack",
+    "test": ".github/workflows/slo-report.yml",
+    "status": "open"
+  },
+  {
+    "commit": "Support multi-tenant E2E gates",
+    "path": "multitenant/gate-controller/k8s.yaml",
+    "task": "Enforce per-tenant quorum policies and rollout configs",
+    "test": "multitenant/analysis/e2e-webhook-quorum-tenant.yaml",
+    "status": "open"
+  },
+  {
+    "commit": "Add Windows E2E workflow",
+    "path": ".github/workflows/e2e-windows.yml",
+    "task": "Run Playwright and k6 checks on Windows runner",
+    "test": ".github/workflows/e2e-windows.yml",
+    "status": "open"
+  },
+  {
+    "commit": "Track SLO budget consumption",
+    "path": "budget/prometheus/recording-rules.yaml",
+    "task": "Record burn rates and emit alerts with daily Slack summary",
+    "test": "budget/prometheus/alerts.yaml",
+    "status": "open"
+  },
+  {
+    "commit": "Capture debug snapshots on aborted rollouts",
+    "path": "snapshots/webhook/k8s.yaml",
+    "task": "Webhook creates job to archive logs and events with optional S3 upload",
+    "test": "snapshots/rollouts/notifications-config.yaml",
+    "status": "open"
+  },
+  {
+    "commit": "Provide tenant admin API and UI",
+    "path": "tenant-admin/api/k8s.yaml",
+    "task": "OIDC-protected service and React UI for policy editing and rollout controls",
+    "test": "tenant-admin/ui/k8s.yaml",
+    "status": "open"
+  },
+  {
+    "commit": "Automate image builds and Kustomize validation",
+    "path": ".github/workflows/build-push.yml",
+    "task": "Build and push service images and validate overlays in CI",
+    "test": ".github/workflows/validate-kustomize.yml",
+    "status": "open"
+  },
+  {
+    "commit": "Bootstrap GitOps root application",
+    "path": "gitops/argocd/root-app.yaml",
+    "task": "App-of-apps wiring for budget, snapshots, gates, and rollouts",
+    "test": "gitops/argocd/project.yaml",
+    "status": "open"
+  },
+  {
+    "commit": "Introduce multi-cluster ApplicationSet and security policies",
+    "path": "gitops/argocd/applicationset.yaml",
+    "task": "Deploy Kyverno, network policies, autoscaling, quotas, Velero backups, and supply chain security workflows",
+    "test": ".github/workflows/sign-images.yml",
+    "status": "open"
   }
 ]
