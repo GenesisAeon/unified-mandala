@@ -1,5 +1,5 @@
 {
-  "lastCommit": "chore: add co-intelligence and federation todos",
+  "lastCommit": "Merge pull request #1271 from GenesisAeon/codex/create-repoconform-todos-in-json-and-yaml-pc5q80",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
@@ -917,6 +917,50 @@
     },
     {
       "commit": "Append identity and federation services to code agent tasks",
+      "status": "open"
+    },
+    {
+      "commit": "Add OIDC stub service",
+      "status": "open"
+    },
+    {
+      "commit": "Add UI switchboard service",
+      "status": "open"
+    },
+    {
+      "commit": "Add policy lint script",
+      "status": "open"
+    },
+    {
+      "commit": "Add compose override for UM services",
+      "status": "open"
+    },
+    {
+      "commit": "Add Windows stack start script",
+      "status": "open"
+    },
+    {
+      "commit": "Add Windows services installer",
+      "status": "open"
+    },
+    {
+      "commit": "Add UM integration GitHub workflow",
+      "status": "open"
+    },
+    {
+      "commit": "Document UM integration guide",
+      "status": "open"
+    },
+    {
+      "commit": "Add integration copier script",
+      "status": "open"
+    },
+    {
+      "commit": "Expose UM service scripts in package.json",
+      "status": "open"
+    },
+    {
+      "commit": "Provide tsconfig for UM services",
       "status": "open"
     }
   ],
