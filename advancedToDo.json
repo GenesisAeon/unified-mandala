@@ -1568,7 +1568,8 @@
     "commit": "Add CommunityPluginMarketplace",
     "path": "packages/community/CommunityPluginMarketplace.ts",
     "task": "Host and rate community plugins",
-    "test": "packages/community/CommunityPluginMarketplace.test.ts"
+    "test": "packages/community/CommunityPluginMarketplace.test.ts",
+    "status": "done"
   },
   {
     "commit": "Introduce PluginSecurityAuditor",

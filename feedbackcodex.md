@@ -91,3 +91,4 @@ Dev-Agents prüfen zu Beginn eines Laufs auf diese Dateien und priorisieren dere
 - Implemented energy-to-mass conversion and cooling mechanics in null field wave simulation and updated progress trackers.
 - Enhanced PredictiveAnalyticsAgent with average delta prediction and synced progress files.
 - Improved PrivacyComplianceAgent with detailed violation reporting.
+- Enhanced CommunityPluginMarketplace with plugin rating support.

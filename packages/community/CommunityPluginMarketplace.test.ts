@@ -1,7 +1,8 @@
 import { CommunityPluginMarketplace } from './CommunityPluginMarketplace';
 
-test('stores plugins', () => {
+test('rates plugins', () => {
   const m = new CommunityPluginMarketplace();
-  m.add('p');
-  expect(m.list()).toEqual(['p']);
+  m.add('p', 3);
+  m.rate('p', 5);
+  expect(m.list()).toEqual([{ name: 'p', rating: 5 }]);
 });
