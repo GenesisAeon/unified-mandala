@@ -1,5 +1,5 @@
 {
-  "lastCommit": "feat: implement CREPThresholdOptimizer",
+  "lastCommit": "feat: add energy-to-mass conversion in nullfield simulation",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
@@ -4832,6 +4832,10 @@
     },
     {
       "commit": "Add repository map graph exporter",
+      "status": "done"
+    },
+    {
+      "commit": "Implement energy-to-mass cooling in nullfield simulation",
       "status": "done"
     }
   ],

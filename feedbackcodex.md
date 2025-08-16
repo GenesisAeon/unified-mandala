@@ -88,3 +88,4 @@ Dev-Agents prüfen zu Beginn eines Laufs auf diese Dateien und priorisieren dere
 - Added watcher script to monitor advancedToDo.json changes and log updates.
 
 - Added repository map graph exporter for visualizing repository relationships.
+- Implemented energy-to-mass conversion and cooling mechanics in null field wave simulation and updated progress trackers.

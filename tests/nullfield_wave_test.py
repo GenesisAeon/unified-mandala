@@ -39,3 +39,18 @@ def test_debug_detection():
             amplitude_limit=0.1,
             track_progress=True,
         )
+
+
+def test_energy_to_mass_conversion():
+    field, metrics = simulate_nullfield_wave(
+        length=1.0,
+        duration=0.2,
+        dx=0.1,
+        dt=0.05,
+        track_progress=True,
+        energy_to_mass=True,
+        cooling_rate=0.2,
+    )
+    assert "mass" in metrics
+    assert metrics["mass"][-1] > 0
+    assert metrics["max_amplitude"][0] > metrics["max_amplitude"][-1]
