@@ -13735,5 +13735,215 @@
     "task": "Add commands to run admin and commons APIs and websockets",
     "test": "",
     "status": "open"
+  },
+  {
+    "commit": "Add ContributionEvent schema",
+    "path": "packages/protocol/ContributionEvent.ts",
+    "task": "Define event type for contributions with provenance and credit fields",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Add PluginManifest schema",
+    "path": "packages/protocol/PluginManifest.ts",
+    "task": "Define plugin metadata including capabilities and policies",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Add AIPeerHandshake protocol",
+    "path": "packages/protocol/AIPeerHandshake.ts",
+    "task": "Introduce PeerHello type with attestation fields",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Create CoIntel orchestrator service",
+    "path": "scripts/cointel-orchestrator.ts",
+    "task": "Match tasks to humans or AI peers and dispatch via HTTP",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Implement collab websocket server",
+    "path": "scripts/collab-ws.ts",
+    "task": "Host Automerge documents and fan out changes over websockets",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Add CreditLedger module",
+    "path": "packages/credits/CreditLedger.ts",
+    "task": "Track contribution line counts and weights per actor",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Add AttributionIndex module",
+    "path": "packages/credits/AttributionIndex.ts",
+    "task": "Map artifacts to contributor shares and licenses",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Add Provenance hashing utilities",
+    "path": "packages/provenance/Provenance.ts",
+    "task": "Provide SHA-256 hashing for strings and buffers",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Create peer handshake service",
+    "path": "scripts/peer-handshake.ts",
+    "task": "Receive peer hello messages and record attestation",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Add setup wizard script",
+    "path": "scripts/setup-wizard.ts",
+    "task": "Automate space creation and peer registration workflow",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Create CoauthorCanvas component",
+    "path": "packages/commons-ui/CoauthorCanvas.tsx",
+    "task": "Collaboratively edit documents over collab-ws",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Create TaskBoard component",
+    "path": "packages/commons-ui/TaskBoard.tsx",
+    "task": "List and enqueue tasks via orchestrator API",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Add ConsentTimeline component",
+    "path": "packages/admin-ui/ConsentTimeline.tsx",
+    "task": "Display active consent records from admin API",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Add PeerManager component",
+    "path": "packages/admin-ui/PeerManager.tsx",
+    "task": "Show registered AI peers with roles and trust",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Add ModelRouterEditor component",
+    "path": "packages/admin-ui/ModelRouterEditor.tsx",
+    "task": "Edit model routing policies in admin console",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Introduce Tenant and Instance types",
+    "path": "packages/identity/Tenant.ts",
+    "task": "Define multi-tenant IDs and membership structures",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Add RBAC permission helper",
+    "path": "packages/identity/RBAC.ts",
+    "task": "Map roles to permissions and check access",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Create identity API service",
+    "path": "scripts/identity-api.ts",
+    "task": "Issue JWTs and manage tenants and instances",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Define UI templates",
+    "path": "packages/instances/Templates.ts",
+    "task": "Provide admin-console and commons-hub UI templates",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Create instance registry service",
+    "path": "scripts/instance-registry.ts",
+    "task": "Clone UI instances from templates and list them",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Add ACL API service",
+    "path": "scripts/acl-api.ts",
+    "task": "Manage per-instance role grants",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Create InitialAdminPanel component",
+    "path": "packages/unifiedmandala-ui/components/InitialAdminPanel.tsx",
+    "task": "Clone UIs and assign roles for tenants and instances",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Define federation manifest type",
+    "path": "packages/federation/Manifest.ts",
+    "task": "Describe global registry entries for Mandala peers",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Create federation registry service",
+    "path": "scripts/federation-registry.ts",
+    "task": "Register and list Mandala manifests",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Create federation bridge websocket",
+    "path": "scripts/federation-bridge-ws.ts",
+    "task": "Broadcast presence and activity across instances",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Add collab federation bridge script",
+    "path": "scripts/collab-federation-bridge.ts",
+    "task": "Relay CRDT patches between local collab server and federation bridge",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Create GlobalMandalaGraph component",
+    "path": "packages/unifiedmandala-ui/components/GlobalMandalaGraph.tsx",
+    "task": "Visualize registered Mandala instances and capabilities",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Add unified AppShell",
+    "path": "packages/unifiedmandala-ui/AppShell.tsx",
+    "task": "Compose admin panels and global network graph",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Extend code agent tasks for Co-Intelligence services",
+    "path": "code-agent-tasks.yaml",
+    "task": "Add orchestrator, collab, peer handshake and setup wizard commands",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Append identity and federation services to code agent tasks",
+    "path": "code-agent-tasks.yaml",
+    "task": "Include identity, instance, ACL and federation service run commands",
+    "test": "",
+    "status": "open"
   }
 ]

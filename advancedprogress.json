@@ -1,5 +1,5 @@
 {
-  "lastCommit": "chore: add windows os bridge todos",
+  "lastCommit": "chore: add co-intelligence and federation todos",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
@@ -665,6 +665,258 @@
     },
     {
       "commit": "Extend code agent tasks for Windows OS bridge",
+      "status": "open"
+    },
+    {
+      "commit": "Add UIA screen redaction tool",
+      "status": "open"
+    },
+    {
+      "commit": "Add WinUI tree inspector utility",
+      "status": "open"
+    },
+    {
+      "commit": "Add AutoHotkey hook scripts",
+      "status": "open"
+    },
+    {
+      "commit": "Add desktop recorder tool",
+      "status": "open"
+    },
+    {
+      "commit": "Implement UIMacroSynth agent",
+      "status": "open"
+    },
+    {
+      "commit": "Add PII regex patterns module",
+      "status": "open"
+    },
+    {
+      "commit": "Add image redactor utility",
+      "status": "open"
+    },
+    {
+      "commit": "Implement redaction API service",
+      "status": "open"
+    },
+    {
+      "commit": "Add AutoHotkey template script",
+      "status": "open"
+    },
+    {
+      "commit": "Create AutoHotkey macro compiler",
+      "status": "open"
+    },
+    {
+      "commit": "Add AutoHotkey runner script",
+      "status": "open"
+    },
+    {
+      "commit": "Introduce macro DSL validator",
+      "status": "open"
+    },
+    {
+      "commit": "Add macro execution script",
+      "status": "open"
+    },
+    {
+      "commit": "Add session log utility",
+      "status": "open"
+    },
+    {
+      "commit": "Add macro replay script",
+      "status": "open"
+    },
+    {
+      "commit": "Implement desktop recorder API",
+      "status": "open"
+    },
+    {
+      "commit": "Create MacroEditor component",
+      "status": "open"
+    },
+    {
+      "commit": "Create RedactionPanel component",
+      "status": "open"
+    },
+    {
+      "commit": "Define role permissions map",
+      "status": "open"
+    },
+    {
+      "commit": "Extend capability policy for UI consent",
+      "status": "open"
+    },
+    {
+      "commit": "Add topology index registry",
+      "status": "open"
+    },
+    {
+      "commit": "Implement admin API gateway",
+      "status": "open"
+    },
+    {
+      "commit": "Create admin console app",
+      "status": "open"
+    },
+    {
+      "commit": "Add AI peer connector module",
+      "status": "open"
+    },
+    {
+      "commit": "Implement admin peers API",
+      "status": "open"
+    },
+    {
+      "commit": "Create spaces management module",
+      "status": "open"
+    },
+    {
+      "commit": "Implement commons API",
+      "status": "open"
+    },
+    {
+      "commit": "Add commons presence websocket",
+      "status": "open"
+    },
+    {
+      "commit": "Create commons hub app",
+      "status": "open"
+    },
+    {
+      "commit": "Add system overview widget",
+      "status": "open"
+    },
+    {
+      "commit": "Add capability graph widget",
+      "status": "open"
+    },
+    {
+      "commit": "Introduce task router module",
+      "status": "open"
+    },
+    {
+      "commit": "Extend code agent tasks for admin and commons modules",
+      "status": "open"
+    },
+    {
+      "commit": "Add ContributionEvent schema",
+      "status": "open"
+    },
+    {
+      "commit": "Add PluginManifest schema",
+      "status": "open"
+    },
+    {
+      "commit": "Add AIPeerHandshake protocol",
+      "status": "open"
+    },
+    {
+      "commit": "Create CoIntel orchestrator service",
+      "status": "open"
+    },
+    {
+      "commit": "Implement collab websocket server",
+      "status": "open"
+    },
+    {
+      "commit": "Add CreditLedger module",
+      "status": "open"
+    },
+    {
+      "commit": "Add AttributionIndex module",
+      "status": "open"
+    },
+    {
+      "commit": "Add Provenance hashing utilities",
+      "status": "open"
+    },
+    {
+      "commit": "Create peer handshake service",
+      "status": "open"
+    },
+    {
+      "commit": "Add setup wizard script",
+      "status": "open"
+    },
+    {
+      "commit": "Create CoauthorCanvas component",
+      "status": "open"
+    },
+    {
+      "commit": "Create TaskBoard component",
+      "status": "open"
+    },
+    {
+      "commit": "Add ConsentTimeline component",
+      "status": "open"
+    },
+    {
+      "commit": "Add PeerManager component",
+      "status": "open"
+    },
+    {
+      "commit": "Add ModelRouterEditor component",
+      "status": "open"
+    },
+    {
+      "commit": "Introduce Tenant and Instance types",
+      "status": "open"
+    },
+    {
+      "commit": "Add RBAC permission helper",
+      "status": "open"
+    },
+    {
+      "commit": "Create identity API service",
+      "status": "open"
+    },
+    {
+      "commit": "Define UI templates",
+      "status": "open"
+    },
+    {
+      "commit": "Create instance registry service",
+      "status": "open"
+    },
+    {
+      "commit": "Add ACL API service",
+      "status": "open"
+    },
+    {
+      "commit": "Create InitialAdminPanel component",
+      "status": "open"
+    },
+    {
+      "commit": "Define federation manifest type",
+      "status": "open"
+    },
+    {
+      "commit": "Create federation registry service",
+      "status": "open"
+    },
+    {
+      "commit": "Create federation bridge websocket",
+      "status": "open"
+    },
+    {
+      "commit": "Add collab federation bridge script",
+      "status": "open"
+    },
+    {
+      "commit": "Create GlobalMandalaGraph component",
+      "status": "open"
+    },
+    {
+      "commit": "Add unified AppShell",
+      "status": "open"
+    },
+    {
+      "commit": "Extend code agent tasks for Co-Intelligence services",
+      "status": "open"
+    },
+    {
+      "commit": "Append identity and federation services to code agent tasks",
       "status": "open"
     }
   ],
