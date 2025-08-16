@@ -14,3 +14,10 @@ jobs:
           node-version: '18'
       - run: pnpm install
       - run: pnpm ts-node scripts/run-dry-agents.ts
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+      - run: |
+          python -m pip install --upgrade pip
+          pip install -r agents/digital_twin/requirements.txt -r agents/gamification/requirements.txt pytest
+      - run: pytest agents/digital_twin/test_main.py agents/gamification/test_main.py

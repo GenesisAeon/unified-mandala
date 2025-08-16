@@ -230,3 +230,15 @@ services:
       - .:/workspace/unified-mandala
     ports:
       - "8403:8000"
+
+  digital_twin_agent:
+    build:
+      context: ./agents/digital_twin
+    ports:
+      - "8404:8000"
+
+  gamification_agent:
+    build:
+      context: ./agents/gamification
+    ports:
+      - "8405:8000"
