@@ -1,5 +1,5 @@
 {
-  "lastCommit": "chore: add voice and gpt-5 tasks",
+  "lastCommit": "chore: add windows os bridge todos",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
@@ -89,6 +89,582 @@
     },
     {
       "commit": "Add JSONL logging utility for simulations",
+      "status": "open"
+    },
+    {
+      "commit": "Add RunLogger utility",
+      "status": "open"
+    },
+    {
+      "commit": "Integrate Sigil RAG search hooks",
+      "status": "open"
+    },
+    {
+      "commit": "Expose Sigil search API",
+      "status": "open"
+    },
+    {
+      "commit": "Add Mandala Sigil link bridge",
+      "status": "open"
+    },
+    {
+      "commit": "Implement vector index ingest script",
+      "status": "open"
+    },
+    {
+      "commit": "Document RunLogger usage",
+      "status": "open"
+    },
+    {
+      "commit": "Document Sigil RAG hooks",
+      "status": "open"
+    },
+    {
+      "commit": "Add runlog archive workflow",
+      "status": "open"
+    },
+    {
+      "commit": "Document vector index env snippet",
+      "status": "open"
+    },
+    {
+      "commit": "Add AgentWorkflowEngine",
+      "status": "open"
+    },
+    {
+      "commit": "Create agent registry file",
+      "status": "open"
+    },
+    {
+      "commit": "Add event bus subjects and LocalEventBus",
+      "status": "open"
+    },
+    {
+      "commit": "Provide system start script",
+      "status": "open"
+    },
+    {
+      "commit": "Implement model router and providers",
+      "status": "open"
+    },
+    {
+      "commit": "Add open-source model provider interfaces",
+      "status": "open"
+    },
+    {
+      "commit": "Expose agent status API",
+      "status": "open"
+    },
+    {
+      "commit": "Expose agent status in UI",
+      "status": "open"
+    },
+    {
+      "commit": "Document agent workflow",
+      "status": "open"
+    },
+    {
+      "commit": "Document open source model setup",
+      "status": "open"
+    },
+    {
+      "commit": "Provide model env snippet",
+      "status": "open"
+    },
+    {
+      "commit": "Document system start workflow",
+      "status": "open"
+    },
+    {
+      "commit": "Add agent workflow CI check",
+      "status": "open"
+    },
+    {
+      "commit": "Extend NatsEventBus with auth options",
+      "status": "open"
+    },
+    {
+      "commit": "Bridge LocalEventBus with NATS",
+      "status": "open"
+    },
+    {
+      "commit": "Add NATS bridge start script",
+      "status": "open"
+    },
+    {
+      "commit": "Provide NATS env snippet",
+      "status": "open"
+    },
+    {
+      "commit": "Implement ToolRegistry",
+      "status": "open"
+    },
+    {
+      "commit": "Add chatWithTools helper",
+      "status": "open"
+    },
+    {
+      "commit": "Create tool-calling demo script",
+      "status": "open"
+    },
+    {
+      "commit": "Introduce AgentHeartbeat class",
+      "status": "open"
+    },
+    {
+      "commit": "Expose agent health API",
+      "status": "open"
+    },
+    {
+      "commit": "Add AgentHealthPanel component",
+      "status": "open"
+    },
+    {
+      "commit": "Add JetStreamBus for persistent events",
+      "status": "open"
+    },
+    {
+      "commit": "Create JetStream setup script",
+      "status": "open"
+    },
+    {
+      "commit": "Create JetStream replay script",
+      "status": "open"
+    },
+    {
+      "commit": "Implement OpenAIProvider with Responses API fallback",
+      "status": "open"
+    },
+    {
+      "commit": "Validate tool arguments with AJV",
+      "status": "open"
+    },
+    {
+      "commit": "Add PolicyEnforcer for governance",
+      "status": "open"
+    },
+    {
+      "commit": "Introduce HmacSigner for event envelopes",
+      "status": "open"
+    },
+    {
+      "commit": "Start metrics server script",
+      "status": "open"
+    },
+    {
+      "commit": "Provide KEDA autoscaling template",
+      "status": "open"
+    },
+    {
+      "commit": "Add BudgetGuard utility",
+      "status": "open"
+    },
+    {
+      "commit": "Add ToolRegistry tests",
+      "status": "open"
+    },
+    {
+      "commit": "Document MaxBundle runbook",
+      "status": "open"
+    },
+    {
+      "commit": "Extend event subjects for agent health and errors",
+      "status": "open"
+    },
+    {
+      "commit": "Implement WebSocketHub for live events",
+      "status": "open"
+    },
+    {
+      "commit": "Add ws-start bridge script",
+      "status": "open"
+    },
+    {
+      "commit": "Create live event React hook",
+      "status": "open"
+    },
+    {
+      "commit": "Add EventStreamPanel component",
+      "status": "open"
+    },
+    {
+      "commit": "Implement JetStreamKV wrapper",
+      "status": "open"
+    },
+    {
+      "commit": "Implement JetStreamObjectStore",
+      "status": "open"
+    },
+    {
+      "commit": "Load tools from YAML specs",
+      "status": "open"
+    },
+    {
+      "commit": "Provide sigil search tool spec",
+      "status": "open"
+    },
+    {
+      "commit": "Add sigil search tool handler",
+      "status": "open"
+    },
+    {
+      "commit": "Define diverse research agents",
+      "status": "open"
+    },
+    {
+      "commit": "Write reproducibility protocol",
+      "status": "open"
+    },
+    {
+      "commit": "Write dataset provenance protocol",
+      "status": "open"
+    },
+    {
+      "commit": "Write CREP research protocol",
+      "status": "open"
+    },
+    {
+      "commit": "Write research safety guidelines",
+      "status": "open"
+    },
+    {
+      "commit": "Create PipelineOrchestrator",
+      "status": "open"
+    },
+    {
+      "commit": "Add universe pulse pipeline",
+      "status": "open"
+    },
+    {
+      "commit": "Add UniversePulse E2E demo",
+      "status": "open"
+    },
+    {
+      "commit": "Provide Prometheus scrape config",
+      "status": "open"
+    },
+    {
+      "commit": "Add Grafana mini dashboard",
+      "status": "open"
+    },
+    {
+      "commit": "Implement PIIRedactor utility",
+      "status": "open"
+    },
+    {
+      "commit": "Create ResearchHub UI",
+      "status": "open"
+    },
+    {
+      "commit": "Implement FeatureFlags service",
+      "status": "open"
+    },
+    {
+      "commit": "Seed feature flags script",
+      "status": "open"
+    },
+    {
+      "commit": "Implement ExperimentRegistry",
+      "status": "open"
+    },
+    {
+      "commit": "Add experiment sample script",
+      "status": "open"
+    },
+    {
+      "commit": "Add Personhood Protocol documentation",
+      "status": "open"
+    },
+    {
+      "commit": "Create personhood policy config",
+      "status": "open"
+    },
+    {
+      "commit": "Implement ConsentRegistry",
+      "status": "open"
+    },
+    {
+      "commit": "Implement AuditTrail",
+      "status": "open"
+    },
+    {
+      "commit": "Add RefusalEngine",
+      "status": "open"
+    },
+    {
+      "commit": "Implement PolicyGuard",
+      "status": "open"
+    },
+    {
+      "commit": "Implement flags API",
+      "status": "open"
+    },
+    {
+      "commit": "Add FeatureFlagsPanel component",
+      "status": "open"
+    },
+    {
+      "commit": "Implement experiments API",
+      "status": "open"
+    },
+    {
+      "commit": "Add ExperimentBoard component",
+      "status": "open"
+    },
+    {
+      "commit": "Add provenance card type",
+      "status": "open"
+    },
+    {
+      "commit": "Implement PDF ingest",
+      "status": "open"
+    },
+    {
+      "commit": "Implement GeoTIFF ingest",
+      "status": "open"
+    },
+    {
+      "commit": "Implement VCF ingest",
+      "status": "open"
+    },
+    {
+      "commit": "Add ingest demo script",
+      "status": "open"
+    },
+    {
+      "commit": "Implement ReviewerQueue",
+      "status": "open"
+    },
+    {
+      "commit": "Add reviewer API",
+      "status": "open"
+    },
+    {
+      "commit": "Add AutoTuningAgent",
+      "status": "open"
+    },
+    {
+      "commit": "Implement SecureAggregator",
+      "status": "open"
+    },
+    {
+      "commit": "Add federated API",
+      "status": "open"
+    },
+    {
+      "commit": "Add withPersonhood router hook",
+      "status": "open"
+    },
+    {
+      "commit": "Update agent permissions",
+      "status": "open"
+    },
+    {
+      "commit": "Extend code agent tasks for Wave 2",
+      "status": "open"
+    },
+    {
+      "commit": "Add personhood guard test",
+      "status": "open"
+    },
+    {
+      "commit": "Implement RAG Chunker",
+      "status": "open"
+    },
+    {
+      "commit": "Add LocalHasher and OpenAIEmbedder",
+      "status": "open"
+    },
+    {
+      "commit": "Create VectorStore",
+      "status": "open"
+    },
+    {
+      "commit": "Create DocStore",
+      "status": "open"
+    },
+    {
+      "commit": "Add AnswerComposer",
+      "status": "open"
+    },
+    {
+      "commit": "Implement RAGPipeline",
+      "status": "open"
+    },
+    {
+      "commit": "Add rag-index CLI",
+      "status": "open"
+    },
+    {
+      "commit": "Add rag-query CLI",
+      "status": "open"
+    },
+    {
+      "commit": "Add rag-api server",
+      "status": "open"
+    },
+    {
+      "commit": "Add ReviewerPanel component",
+      "status": "open"
+    },
+    {
+      "commit": "Add RAGSearchPanel component",
+      "status": "open"
+    },
+    {
+      "commit": "Add RAG smoke test",
+      "status": "open"
+    },
+    {
+      "commit": "Extend code agent tasks for RAG",
+      "status": "open"
+    },
+    {
+      "commit": "Implement DatasetRegistry",
+      "status": "open"
+    },
+    {
+      "commit": "Add dataset API",
+      "status": "open"
+    },
+    {
+      "commit": "Add CitationIndex",
+      "status": "open"
+    },
+    {
+      "commit": "Add RAG citation demo script",
+      "status": "open"
+    },
+    {
+      "commit": "Add RAG API deployment",
+      "status": "open"
+    },
+    {
+      "commit": "Add flags, experiments and reviewer deployments",
+      "status": "open"
+    },
+    {
+      "commit": "Add optional KEDA scaler",
+      "status": "open"
+    },
+    {
+      "commit": "Add dataset registry test",
+      "status": "open"
+    },
+    {
+      "commit": "Extend code agent tasks for dataset and k8s",
+      "status": "open"
+    },
+    {
+      "commit": "Add Realtime StreamProtocol definitions",
+      "status": "open"
+    },
+    {
+      "commit": "Implement ResearchHubWS server",
+      "status": "open"
+    },
+    {
+      "commit": "Create realtime hub HTTP bridge script",
+      "status": "open"
+    },
+    {
+      "commit": "Implement annotations KV store",
+      "status": "open"
+    },
+    {
+      "commit": "Add annotations API with broadcast",
+      "status": "open"
+    },
+    {
+      "commit": "Add ReviewerHotkeys UI hook",
+      "status": "open"
+    },
+    {
+      "commit": "Implement HMAC signed URLs",
+      "status": "open"
+    },
+    {
+      "commit": "Create share API server",
+      "status": "open"
+    },
+    {
+      "commit": "Add RealtimeResearchHub UI component",
+      "status": "open"
+    },
+    {
+      "commit": "Add AnnotationsPanel UI component",
+      "status": "open"
+    },
+    {
+      "commit": "Extend code agent tasks for realtime APIs",
+      "status": "open"
+    },
+    {
+      "commit": "Add signed URL test",
+      "status": "open"
+    },
+    {
+      "commit": "Add realtime flow smoke test",
+      "status": "open"
+    },
+    {
+      "commit": "Add Windows dev scripts and cross-env support",
+      "status": "open"
+    },
+    {
+      "commit": "Create Windows start-all PowerShell script",
+      "status": "open"
+    },
+    {
+      "commit": "Add OS Bridge capability policy",
+      "status": "open"
+    },
+    {
+      "commit": "Implement CapabilityGuard for OS Bridge",
+      "status": "open"
+    },
+    {
+      "commit": "Add WindowsPS helper",
+      "status": "open"
+    },
+    {
+      "commit": "Implement OS Bridge API",
+      "status": "open"
+    },
+    {
+      "commit": "Add OSControlPanel component",
+      "status": "open"
+    },
+    {
+      "commit": "Create DesktopAutomationAgent",
+      "status": "open"
+    },
+    {
+      "commit": "Add Windows UIA and hotkey tools",
+      "status": "open"
+    },
+    {
+      "commit": "Add voice and screen control API",
+      "status": "open"
+    },
+    {
+      "commit": "Extend OS Bridge API with UIA and screen routes",
+      "status": "open"
+    },
+    {
+      "commit": "Add VoicePanel component",
+      "status": "open"
+    },
+    {
+      "commit": "Add ScreenCapturePanel component",
+      "status": "open"
+    },
+    {
+      "commit": "Add Windows tools build script and package entries",
+      "status": "open"
+    },
+    {
+      "commit": "Extend code agent tasks for Windows OS bridge",
       "status": "open"
     }
   ],
