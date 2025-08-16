@@ -1,5 +1,5 @@
 {
-  "lastCommit": "Merge pull request #1272 from GenesisAeon/codex/create-repok-compliant-todos-for-integration",
+  "lastCommit": "Merge pull request #1273 from GenesisAeon/codex/create-repo-compliant-todos-in-advancedtodo.json-w6158l",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
@@ -1029,6 +1029,66 @@
     },
     {
       "commit": "Add GitHub Actions workflow for Kubernetes deployment",
+      "status": "open"
+    },
+    {
+      "commit": "Add Helm OIDC bundle",
+      "status": "open"
+    },
+    {
+      "commit": "Add Traefik mTLS ingress",
+      "status": "open"
+    },
+    {
+      "commit": "Add SLO monitoring pack",
+      "status": "open"
+    },
+    {
+      "commit": "Add GitOps manifests and workflow",
+      "status": "open"
+    },
+    {
+      "commit": "Add Go OIDC quickstart",
+      "status": "open"
+    },
+    {
+      "commit": "Add Keycloak auto-import helmfile",
+      "status": "open"
+    },
+    {
+      "commit": "Add Cloudflare DNS01 ClusterIssuer",
+      "status": "open"
+    },
+    {
+      "commit": "Add Argo Rollouts canary stack",
+      "status": "open"
+    },
+    {
+      "commit": "Add GitOps app factory script",
+      "status": "open"
+    },
+    {
+      "commit": "Add Observability++ stack",
+      "status": "open"
+    },
+    {
+      "commit": "Add secret management examples",
+      "status": "open"
+    },
+    {
+      "commit": "Add NetworkPolicy templates",
+      "status": "open"
+    },
+    {
+      "commit": "Add blue/green rollouts with Slack alerts",
+      "status": "open"
+    },
+    {
+      "commit": "Add GitOps golden path template",
+      "status": "open"
+    },
+    {
+      "commit": "Add one-click cluster bootstrap",
       "status": "open"
     }
   ],
