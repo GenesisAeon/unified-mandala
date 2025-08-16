@@ -12348,5 +12348,12 @@
     "task": "Log counts of tasks synced into advancedprogress.json",
     "test": "scripts/__tests__/sync-todo-progress.test.ts",
     "status": "done"
+  },
+  {
+    "commit": "Add repository map CSV exporter",
+    "path": "scripts/repository-map-export-csv.ts",
+    "task": "Export repository_map.yaml entries to CSV listing repository-module pairs",
+    "test": "scripts/repository-map-export-csv.test.ts",
+    "status": "done"
   }
 ]

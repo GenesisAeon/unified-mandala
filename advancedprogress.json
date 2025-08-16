@@ -1,5 +1,5 @@
 {
-  "lastCommit": "feat: add plugin rating",
+  "lastCommit": "Merge pull request #1251 from GenesisAeon/codex/implement-features-from-advancedtodo.yaml-ezzbcp",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
@@ -4127,6 +4127,10 @@
     {
       "commit": "Add CommunityPluginMarketplace",
       "status": "done"
+    },
+    {
+      "commit": "Add repository map CSV exporter",
+      "status": "done"
     }
   ],
   "completed": [
@@ -4884,6 +4888,10 @@
     },
     {
       "commit": "Add CommunityPluginMarketplace",
+      "status": "done"
+    },
+    {
+      "commit": "Add repository map CSV exporter",
       "status": "done"
     }
   ],

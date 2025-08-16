@@ -92,3 +92,4 @@ Dev-Agents prüfen zu Beginn eines Laufs auf diese Dateien und priorisieren dere
 - Enhanced PredictiveAnalyticsAgent with average delta prediction and synced progress files.
 - Improved PrivacyComplianceAgent with detailed violation reporting.
 - Enhanced CommunityPluginMarketplace with plugin rating support.
+- Implemented repository map CSV exporter script for external analysis.
