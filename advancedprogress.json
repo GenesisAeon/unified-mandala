@@ -1,11 +1,11 @@
 {
-  "lastCommit": "feat: implement CREPThresholdOptimizer",
+  "lastCommit": "Include implicit TODOs in sync progress",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
   ],
   "mergeConflicts": [],
-  "notes": "Implemented region profile REST endpoint and completed country/region model set. Added mitigation service microservice stub. Enhanced ethics supervisor with pattern checks. Added ClimateSocialPanel UI for dashboard metrics. Added InteractiveSymbolzeitExplorer UI. Added IoTSensorWidget UI for realtime sensor data.; Added repository map duplicate checker.; Added IoT sensor agent plugin and container.; Added provenance agent scaffold.; Added societal impact agent container.; Added catalyst agent container.",
+  "notes": "Implemented region profile REST endpoint and completed country/region model set. Added mitigation service microservice stub. Enhanced ethics supervisor with pattern checks. Added ClimateSocialPanel UI for dashboard metrics. Added InteractiveSymbolzeitExplorer UI. Added IoTSensorWidget UI for realtime sensor data.; Added repository map duplicate checker.; Added IoT sensor agent plugin and container.; Added provenance agent scaffold.; Added societal impact agent container.; Added catalyst agent container.; Included implicit-todos.yaml in progress syncing.",
   "pendingTasks": [],
   "progress": [
     {
@@ -4832,6 +4832,10 @@
     },
     {
       "commit": "Add repository map graph exporter",
+      "status": "done"
+    },
+    {
+      "commit": "Include implicit TODOs in sync progress",
       "status": "done"
     }
   ],

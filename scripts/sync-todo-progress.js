@@ -61,6 +61,7 @@ if (require.main === module) {
   const extra = [
     path.join(__dirname, '../advancedToDo.json'),
     path.join(__dirname, '../advancedToDo.yaml'),
+    path.join(__dirname, '../docs/sigils/implicit-todos.yaml'),
   ];
   const dryRun = process.argv.includes('--dry-run');
   const { addedDone, addedPending } = syncTodoProgress(partsDir, progressFile, extra, { dryRun });

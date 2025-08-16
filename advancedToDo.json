@@ -7,6 +7,13 @@
     "status": "done"
   },
   {
+    "commit": "Include implicit TODOs in sync progress",
+    "path": "scripts/sync-todo-progress.js",
+    "task": "Sync implicit-todos.yaml with progress tracking",
+    "test": "scripts/__tests__/sync-todo-progress.test.ts",
+    "status": "done"
+  },
+  {
     "commit": "Integrate CREP SelfReflection filter into training data extractor",
     "path": "scripts/extract-training-data.ts",
     "task": "Filter extracted data through SelfReflectionAgent based on CREP scores",
