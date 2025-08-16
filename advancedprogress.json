@@ -1,5 +1,5 @@
 {
-  "lastCommit": "Merge pull request #1271 from GenesisAeon/codex/create-repoconform-todos-in-json-and-yaml-pc5q80",
+  "lastCommit": "Merge pull request #1272 from GenesisAeon/codex/create-repok-compliant-todos-for-integration",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
@@ -961,6 +961,74 @@
     },
     {
       "commit": "Provide tsconfig for UM services",
+      "status": "open"
+    },
+    {
+      "commit": "Add production docker compose file",
+      "status": "open"
+    },
+    {
+      "commit": "Create generic Dockerfile for TypeScript services",
+      "status": "open"
+    },
+    {
+      "commit": "Configure NGINX reverse proxy for UM services",
+      "status": "open"
+    },
+    {
+      "commit": "Add Kong gateway configuration",
+      "status": "open"
+    },
+    {
+      "commit": "Implement Ed25519 key generation script",
+      "status": "open"
+    },
+    {
+      "commit": "Add manifest signing script",
+      "status": "open"
+    },
+    {
+      "commit": "Add manifest verification script",
+      "status": "open"
+    },
+    {
+      "commit": "Create verified federation registry service",
+      "status": "open"
+    },
+    {
+      "commit": "Implement SSO broker service",
+      "status": "open"
+    },
+    {
+      "commit": "Generate systemd unit files script",
+      "status": "open"
+    },
+    {
+      "commit": "Provide environment example",
+      "status": "open"
+    },
+    {
+      "commit": "Document production setup",
+      "status": "open"
+    },
+    {
+      "commit": "Add Keycloak OIDC dev bundle",
+      "status": "open"
+    },
+    {
+      "commit": "Add Kubernetes manifests with Kustomize overlays",
+      "status": "open"
+    },
+    {
+      "commit": "Add monitoring configuration",
+      "status": "open"
+    },
+    {
+      "commit": "Add Caddy TLS reverse proxy",
+      "status": "open"
+    },
+    {
+      "commit": "Add GitHub Actions workflow for Kubernetes deployment",
       "status": "open"
     }
   ],

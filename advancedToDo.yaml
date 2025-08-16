@@ -13294,3 +13294,88 @@
   task: Configure ES2020 modules and ts-node options
   test: ""
   status: open
+- commit: Add production docker compose file
+  path: compose.prod.yml
+  task: Provide dist-first multi-service builds with ts-node fallback
+  test: ""
+  status: open
+- commit: Create generic Dockerfile for TypeScript services
+  path: docker/Dockerfile.service
+  task: Add multi-stage build template using SERVICE_ENTRY arg
+  test: ""
+  status: open
+- commit: Configure NGINX reverse proxy for UM services
+  path: config/nginx/mandala.conf
+  task: Route REST and WebSocket paths for production
+  test: ""
+  status: open
+- commit: Add Kong gateway configuration
+  path: kong/kong.yml
+  task: Define DB-less routes with CORS and rate limits
+  test: ""
+  status: open
+- commit: Implement Ed25519 key generation script
+  path: scripts/generate-ed25519.ts
+  task: Write key pair to keys/ directory
+  test: ""
+  status: open
+- commit: Add manifest signing script
+  path: scripts/sign-manifest.ts
+  task: Sign federation manifest with Ed25519 key
+  test: ""
+  status: open
+- commit: Add manifest verification script
+  path: scripts/verify-manifest.ts
+  task: Verify signed manifest using public key
+  test: ""
+  status: open
+- commit: Create verified federation registry service
+  path: scripts/federation-registry-verified.ts
+  task: Validate manifest signatures on register
+  test: ""
+  status: open
+- commit: Implement SSO broker service
+  path: scripts/sso-broker.ts
+  task: Expose config and token exchange endpoints
+  test: ""
+  status: open
+- commit: Generate systemd unit files script
+  path: scripts/generate-systemd-units.ts
+  task: Emit service units for production deployment
+  test: ""
+  status: open
+- commit: Provide environment example
+  path: .env.example
+  task: Document core secrets and service ports
+  test: ""
+  status: open
+- commit: Document production setup
+  path: README-PROD.md
+  task: Describe prod stack usage and security notes
+  test: ""
+  status: open
+- commit: Add Keycloak OIDC dev bundle
+  path: oidc/keycloak/docker-compose.yml
+  task: Provide realm export and compose for local OIDC
+  test: ""
+  status: open
+- commit: Add Kubernetes manifests with Kustomize overlays
+  path: k8s/
+  task: Include base and prod overlay with ingress and HPA
+  test: ""
+  status: open
+- commit: Add monitoring configuration
+  path: monitoring/
+  task: Provide ServiceMonitor, alerts and Grafana dashboard
+  test: ""
+  status: open
+- commit: Add Caddy TLS reverse proxy
+  path: tls/caddy/Caddyfile
+  task: Auto-configure HTTPS and WebSockets
+  test: ""
+  status: open
+- commit: Add GitHub Actions workflow for Kubernetes deployment
+  path: .github/workflows/deploy-k8s.yml
+  task: Deploy base and prod manifests on tagged releases
+  test: ""
+  status: open
