@@ -11070,10 +11070,11 @@
   test: ""
 - commit: den Mechanismus zur **Energieumwandlung und Abkühlung zu Masse** in der
     Simulation explizit umsetzen
-  path: ""
+  path: simulations/nullfield_wave.py
   task: den Mechanismus zur **Energieumwandlung und Abkühlung zu Masse** in der
     Simulation explizit umsetzen
-  test: ""
+  test: tests/nullfield_wave_test.py
+  status: done
 - commit: sie als eine **fundamentale Urkraft** betrachten
   path: ""
   task: sie als eine **fundamentale Urkraft** betrachten

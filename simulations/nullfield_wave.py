@@ -11,6 +11,9 @@ def simulate_nullfield_wave(
     track_progress: bool = False,
     debug: bool = False,
     amplitude_limit: float = 10.0,
+    energy_to_mass: bool = False,
+    energy_to_mass_ratio: float = 0.1,
+    cooling_rate: float = 0.01,
 ):
     """Simulate a 1D wave equation on a 'null field'.
 
@@ -38,6 +41,7 @@ def simulate_nullfield_wave(
     u = np.zeros((nt, nx))
 
     metrics = {"max_amplitude": [], "energy": []} if track_progress else None
+    mass = 0.0
 
     # initial condition: localized pulse in center
     mid = nx // 2
@@ -54,11 +58,20 @@ def simulate_nullfield_wave(
                 u[n, i + 1] - 2 * u[n, i] + u[n, i - 1]
             )
 
+        if energy_to_mass:
+            energy = float(np.sum(u[n] ** 2))
+            converted = energy * energy_to_mass_ratio * cooling_rate
+            mass += converted
+            u[n] *= 1 - cooling_rate
+
         if track_progress and metrics is not None:
             max_amp = float(np.max(np.abs(u[n])))
             energy = float(np.sum(u[n] ** 2))
             metrics["max_amplitude"].append(max_amp)
             metrics["energy"].append(energy)
+            if energy_to_mass:
+                mass_metric = metrics.setdefault("mass", [])
+                mass_metric.append(mass)
 
         if debug:
             if np.isnan(u[n]).any() or np.isinf(u[n]).any() or (
