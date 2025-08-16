@@ -1,5 +1,5 @@
 {
-  "lastCommit": "Merge pull request #1273 from GenesisAeon/codex/create-repo-compliant-todos-in-advancedtodo.json-w6158l",
+  "lastCommit": "chore: add advanced ToDos for infra and gating",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
@@ -1089,6 +1089,86 @@
     },
     {
       "commit": "Add one-click cluster bootstrap",
+      "status": "open"
+    },
+    {
+      "commit": "Integrate Vault CSI for secret file mounts",
+      "status": "open"
+    },
+    {
+      "commit": "Add ServiceMap-based NetworkPolicy generator",
+      "status": "open"
+    },
+    {
+      "commit": "Set up Cypress UI smoke tests and workflow",
+      "status": "open"
+    },
+    {
+      "commit": "Set up k6 API smoke tests and workflow",
+      "status": "open"
+    },
+    {
+      "commit": "Configure promotion gates for rollouts",
+      "status": "open"
+    },
+    {
+      "commit": "Deploy gate-controller for E2E gating",
+      "status": "open"
+    },
+    {
+      "commit": "Add Playwright synthetics with OTel",
+      "status": "open"
+    },
+    {
+      "commit": "Provide RUM OTel web snippet",
+      "status": "open"
+    },
+    {
+      "commit": "Implement multi-signal quorum gates",
+      "status": "open"
+    },
+    {
+      "commit": "Add Terraform synthetics and alerting",
+      "status": "open"
+    },
+    {
+      "commit": "Enable auto-rollback on SLO violation",
+      "status": "open"
+    },
+    {
+      "commit": "Schedule weekly SLO and error budget reports",
+      "status": "open"
+    },
+    {
+      "commit": "Support multi-tenant E2E gates",
+      "status": "open"
+    },
+    {
+      "commit": "Add Windows E2E workflow",
+      "status": "open"
+    },
+    {
+      "commit": "Track SLO budget consumption",
+      "status": "open"
+    },
+    {
+      "commit": "Capture debug snapshots on aborted rollouts",
+      "status": "open"
+    },
+    {
+      "commit": "Provide tenant admin API and UI",
+      "status": "open"
+    },
+    {
+      "commit": "Automate image builds and Kustomize validation",
+      "status": "open"
+    },
+    {
+      "commit": "Bootstrap GitOps root application",
+      "status": "open"
+    },
+    {
+      "commit": "Introduce multi-cluster ApplicationSet and security policies",
       "status": "open"
     }
   ],
