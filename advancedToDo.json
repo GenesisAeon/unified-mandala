@@ -12349,5 +12349,110 @@
     "task": "Log counts of tasks synced into advancedprogress.json",
     "test": "scripts/__tests__/sync-todo-progress.test.ts",
     "status": "done"
+  },
+  {
+    "commit": "Track golden signals metrics",
+    "path": "observability/golden-signals.ts",
+    "task": "Collect p95 latency, success rate, queue depth and retries",
+    "test": "observability/golden-signals.test.ts",
+    "status": "open"
+  },
+  {
+    "commit": "Map CREP metrics to outcome KPIs",
+    "path": "packages/pantheon/PantheonPortalAnalytics.ts",
+    "task": "Link coherence, resonance, emergence and poetics to task success analytics",
+    "test": "packages/pantheon/PantheonPortalAnalytics.test.ts",
+    "status": "open"
+  },
+  {
+    "commit": "Add one-click workflow launcher",
+    "path": "packages/unifiedmandala-ui/components/WorkflowLauncher.tsx",
+    "task": "Provide button to trigger Sigillin jobs without intermediate screens",
+    "test": "packages/unifiedmandala-ui/components/WorkflowLauncher.test.tsx",
+    "status": "open"
+  },
+  {
+    "commit": "Revise pitch docs with outcome focused demos",
+    "path": "docs/pitch/impact-demos.md",
+    "task": "Include two short GIFs demonstrating outcome over screentime",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Add gpt-5 ModelMatrix and routing",
+    "path": "packages/gpt-bridges/aeon-gpt-synapse.ts",
+    "task": "Define model capabilities and route tasks with gpt-5 fallback",
+    "test": "packages/gpt-bridges/aeon-gpt-synapse.test.ts",
+    "status": "open"
+  },
+  {
+    "commit": "Declare gpt-5 capabilities for agents",
+    "path": "agents.yaml",
+    "task": "Set capabilities.model to [\"gpt-5\",\"gpt-4.1\"] for core agents",
+    "test": "pnpm run qa:gpt5",
+    "status": "open"
+  },
+  {
+    "commit": "Introduce ToolAdapter for unified tool calling",
+    "path": "packages/gpt-bridges/tool-adapter.ts",
+    "task": "Normalize parallel and multi-tool calls across providers",
+    "test": "packages/gpt-bridges/tool-adapter.test.ts",
+    "status": "open"
+  },
+  {
+    "commit": "Adjust text fragmenter for gpt-5 context",
+    "path": "packages/shared-utils/textFragmenter.ts",
+    "task": "Set MAX_TOKENS_BY_MODEL['gpt-5']=200000 and update chunking",
+    "test": "packages/shared-utils/textFragmenter.test.ts",
+    "status": "open"
+  },
+  {
+    "commit": "Add gpt-5 QA script and Fourier logging",
+    "path": "scripts/qa-gpt5.json",
+    "task": "Run smoke prompts and log Fourier peaks in PantheonPortalAnalytics",
+    "test": "pnpm run qa:gpt5",
+    "status": "open"
+  },
+  {
+    "commit": "Tune ethics policy for gpt-5",
+    "path": "plugins/ethics-policy.yaml",
+    "task": "Raise refusal thresholds and expand red-team suite",
+    "test": "tests/redteam/gpt5-refusal.test.ts",
+    "status": "open"
+  },
+  {
+    "commit": "Configure gpt-5 KEDA scaler and budget guard",
+    "path": "deployment/keda/gpt5-scaler.yaml",
+    "task": "Add dedicated scaler and MAX_DAILY_TOKENS limit for gpt-5 queue",
+    "test": "deployment/keda/gpt5-scaler.test.ts",
+    "status": "open"
+  },
+  {
+    "commit": "Expose gpt-5 metrics in admin panel",
+    "path": "packages/unifiedmandala-ui/components/AdminMetrics.tsx",
+    "task": "Show gpt-5 badge with avg latency and success rate",
+    "test": "packages/unifiedmandala-ui/components/AdminMetrics.test.tsx",
+    "status": "open"
+  },
+  {
+    "commit": "Enable gpt-5 filter in MandalaNetworkView",
+    "path": "packages/unifiedmandala-ui/components/MandalaNetworkView.tsx",
+    "task": "Allow filtering network view to runs using gpt-5",
+    "test": "packages/unifiedmandala-ui/components/MandalaNetworkView.test.tsx",
+    "status": "open"
+  },
+  {
+    "commit": "Switch OpenAI provider to responses API",
+    "path": "packages/gpt-bridges/provider/openai.ts",
+    "task": "Use responses API with fallback to chat completions",
+    "test": "packages/gpt-bridges/provider/openai.test.ts",
+    "status": "open"
+  },
+  {
+    "commit": "Add gpt-5 smoke test suite",
+    "path": "tests/gpt5-smoke.test.ts",
+    "task": "Verify JSON tool call, RAG answer and image caption using gpt-5",
+    "test": "tests/gpt5-smoke.test.ts",
+    "status": "open"
   }
 ]
