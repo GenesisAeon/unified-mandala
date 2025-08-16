@@ -13602,3 +13602,39 @@
   task: Enforce cosign-signed images via Kyverno policy and helper script
   test: ./scripts/switch-cosign-enforce.sh
   status: open
+
+- commit: Document EVC-guided worldview blueprint
+  path: worldview/mandala-worldview.yaml
+  task: Capture hypothesis, Emergence Viability Criteria, and CREP mapping
+  test: ""
+  status: open
+- commit: Implement EPI scanning CLI
+  path: analysis/epi_scan.py
+  task: Calculate Emergence Potential Index and generate heatmap overlays
+  test: ""
+  status: open
+- commit: Merge EPI with abundance dataset
+  path: ingest/merge_epi_abundance.py
+  task: Combine EPI scores with elemental abundance for EVC
+  test: ""
+  status: open
+- commit: Add Universe Tree simulation
+  path: sims/fractal_universe_tree.py
+  task: Branch parameter vectors with Null-Invariant and EVC/CREP fitness
+  test: ""
+  status: open
+- commit: Provide Universe Tree config
+  path: simulations/fractal-universe-tree.yaml
+  task: Define branching, selection, and null invariant parameters
+  test: ""
+  status: open
+- commit: Evaluate Universe Tree outputs
+  path: analysis/eval_universe_tree.py
+  task: Produce KPIs, heatmaps, and survivor tables
+  test: ""
+  status: open
+- commit: Add Universe Tree sanity checks
+  path: validation/sanity_checks.py
+  task: Verify tree depth, duplicate nodes, and required fields
+  test: ""
+  status: open
