@@ -12849,3 +12849,78 @@
   task: Demonstrate token chunking in realtime hub
   test: ""
   status: open
+- commit: Add Windows dev scripts and cross-env support
+  path: package.json
+  task: Provide cross-platform dev commands using cross-env and concurrently
+  test: ""
+  status: open
+- commit: Create Windows start-all PowerShell script
+  path: scripts/windows/start-all.ps1
+  task: Launch all dev APIs on Windows with predefined ports
+  test: ""
+  status: open
+- commit: Add OS Bridge capability policy
+  path: governance/capabilities.policy.yaml
+  task: Define default decisions for Windows OS integration features
+  test: ""
+  status: open
+- commit: Implement CapabilityGuard for OS Bridge
+  path: packages/os-bridge/CapabilityGuard.ts
+  task: Enforce personhood and capability policy with consent cache
+  test: ""
+  status: open
+- commit: Add WindowsPS helper
+  path: packages/os-bridge/WindowsPS.ts
+  task: Execute PowerShell commands for clipboard, apps, and files
+  test: ""
+  status: open
+- commit: Implement OS Bridge API
+  path: scripts/os-bridge-api.ts
+  task: Expose Windows capabilities over HTTP with consent checks
+  test: ""
+  status: open
+- commit: Add OSControlPanel component
+  path: packages/unifiedmandala-ui/components/OSControlPanel.tsx
+  task: Provide UI for granting consent and triggering OS actions
+  test: ""
+  status: open
+- commit: Create DesktopAutomationAgent
+  path: packages/agents/DesktopAutomationAgent.ts
+  task: Automate Windows workflows through the OS Bridge API
+  test: ""
+  status: open
+- commit: Add Windows UIA and hotkey tools
+  path: tools/windows
+  task: Include WinUABridge, HotkeyDaemon, ScreenGrab, and SpeechListener utilities
+  test: ""
+  status: open
+- commit: Add voice and screen control API
+  path: scripts/voice-os-control-api.ts
+  task: Serve STT, screen capture, and hotkey endpoints
+  test: ""
+  status: open
+- commit: Extend OS Bridge API with UIA and screen routes
+  path: scripts/os-bridge-api.ts
+  task: Proxy UI automation and screen capture calls to Windows tools
+  test: ""
+  status: open
+- commit: Add VoicePanel component
+  path: packages/unifiedmandala-ui/components/VoicePanel.tsx
+  task: Display partial and final speech-to-text results
+  test: ""
+  status: open
+- commit: Add ScreenCapturePanel component
+  path: packages/unifiedmandala-ui/components/ScreenCapturePanel.tsx
+  task: Request and render screenshots from Windows
+  test: ""
+  status: open
+- commit: Add Windows tools build script and package entries
+  path: tools/windows/build-windows-tools.ps1
+  task: Compile C# helpers and expose dev:voiceos script in package.json
+  test: ""
+  status: open
+- commit: Extend code agent tasks for Windows OS bridge
+  path: code-agent-tasks.yaml
+  task: Add build, voice API, and UIA demo commands
+  test: ""
+  status: open
