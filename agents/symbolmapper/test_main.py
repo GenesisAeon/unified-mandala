@@ -1,10 +1,16 @@
 import pytest
+import numpy as np
 from .main import map_numeric_to_symbol, map_text_to_glyph, SymbolMapper
 
 
 def test_map_numeric_to_symbol_basic():
     assert map_numeric_to_symbol([0.1, 0.9]) == "ψ"
     assert map_numeric_to_symbol([1.0]) == "★"
+
+
+def test_map_numeric_to_symbol_numpy():
+    arr = np.array([0.1, 0.9])  # type: ignore[attr-defined]
+    assert map_numeric_to_symbol(arr) == "ψ"
 
 
 def test_map_numeric_to_symbol_empty():
