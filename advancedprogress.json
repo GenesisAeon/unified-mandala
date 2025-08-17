@@ -89,11 +89,11 @@
     },
     {
       "commit": "Add JSONL logging utility for simulations",
-      "status": "open"
+      "status": "done"
     },
     {
       "commit": "Add RunLogger utility",
-      "status": "open"
+      "status": "done"
     },
     {
       "commit": "Integrate Sigil RAG search hooks",
@@ -113,7 +113,7 @@
     },
     {
       "commit": "Document RunLogger usage",
-      "status": "open"
+      "status": "done"
     },
     {
       "commit": "Document Sigil RAG hooks",
