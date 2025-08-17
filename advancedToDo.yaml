@@ -13638,3 +13638,28 @@
   task: Verify tree depth, duplicate nodes, and required fields
   test: ""
   status: open
+- commit: Add UtopieToDo adapter module
+  path: packages/utopie-adapter
+  task: Convert utopian scenarios into Sigils and advanced ToDo tasks
+  test: packages/utopie-adapter/utopie-adapter.test.ts
+  status: open
+- commit: Expose reasoning-effort parameter in LLM client
+  path: packages/core/llm-client.ts
+  task: Allow setting reasoning.effort on Responses API calls
+  test: packages/core/llm-client.test.ts
+  status: open
+- commit: Document Responses API and reasoning-effort usage
+  path: docs/responses-api-guide.md
+  task: Write developer guide for Responses API, structured outputs, streaming and effort levels
+  test: ""
+  status: open
+- commit: Extend CREP metric with hope activation
+  path: packages/crep-engine/HopeActivation.ts
+  task: Add hope activation factor to CREP score
+  test: packages/crep-engine/HopeActivation.test.ts
+  status: open
+- commit: Compare tech vs society mobility paths in Universe Tree simulation
+  path: sims/universe_tree_mobility.py
+  task: Branch policy scenarios for tech-optimism and society-optimism and compute survivor frontier
+  test: ""
+  status: open
