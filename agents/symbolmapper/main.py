@@ -8,7 +8,12 @@ Sigillin symbolism used throughout the project.
 """
 
 from dataclasses import dataclass, field
-from typing import Iterable, List, Dict
+from typing import Iterable, List, Dict, Any
+
+try:  # Optional dependency used for array support
+    import numpy as np
+except Exception:  # pragma: no cover - numpy not available
+    np = None  # type: ignore
 
 GLYPHS: List[str] = ["○", "∆", "ψ", "★"]
 KEYWORDS: Dict[str, str] = {
@@ -19,18 +24,26 @@ KEYWORDS: Dict[str, str] = {
 }
 
 
-def map_numeric_to_symbol(values: Iterable[float]) -> str:
-    """Map a sequence of numeric values to a glyph.
+def map_numeric_to_symbol(values: Iterable[float] | Any) -> str:
+    """Map numeric inputs to a glyph.
 
-    The mean of the values is scaled to the index of the ``GLYPHS`` list.
-    Values outside the 0..1 range are clamped.
+    Accepts any iterable of floats or a :class:`numpy.ndarray`. The values are
+    clipped to ``0..1`` before calculating the mean that determines the glyph
+    index.
     """
 
-    vals = list(values)
-    if not vals:
-        raise ValueError("values must not be empty")
-    mean = sum(vals) / len(vals)
-    mean = max(0.0, min(1.0, mean))
+    if np is not None and hasattr(values, "__array__"):
+        arr = np.array(values, dtype=float)  # type: ignore[attr-defined]
+        if arr.size == 0:
+            raise ValueError("values must not be empty")
+        arr = np.clip(arr, 0.0, 1.0)  # type: ignore[attr-defined]
+        mean = float(arr.mean())
+    else:
+        vals = list(values)  # type: ignore[arg-type]
+        if not vals:
+            raise ValueError("values must not be empty")
+        vals = [max(0.0, min(1.0, v)) for v in vals]
+        mean = sum(vals) / len(vals)
     idx = min(int(mean * len(GLYPHS)), len(GLYPHS) - 1)
     return GLYPHS[idx]
 
