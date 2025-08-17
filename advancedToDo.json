@@ -14449,8 +14449,7 @@
     "task": "Enforce cosign-signed images via Kyverno policy and helper script",
     "test": "./scripts/switch-cosign-enforce.sh",
     "status": "open"
-  }
-,
+  },
   {
     "commit": "Document EVC-guided worldview blueprint",
     "path": "worldview/mandala-worldview.yaml",
@@ -14498,6 +14497,48 @@
     "path": "validation/sanity_checks.py",
     "task": "Verify tree depth, duplicate nodes, and required fields",
     "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Document Reasoning-Effort and Responses API usage",
+    "path": "docs/guides/responses-api.md",
+    "task": "Explain Reasoning-Effort levels and demonstrate Responses API features for Mandala",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Document Mandala prompt patterns",
+    "path": "docs/prompts/mandala-patterns.md",
+    "task": "Describe planner-worker-verifier and other prompt recipes for CREP and Sigillin agents",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Integrate Utopie-to-Do adapter",
+    "path": "packages/utopie-adapter/",
+    "task": "Generate utopian Sigils and create CREP tasks via save_sigil and create_tasks",
+    "test": "packages/utopie-adapter/utopie_adapter.test.ts",
+    "status": "open"
+  },
+  {
+    "commit": "Extend CREP metrics with hope activation",
+    "path": "packages/crep/metrics.ts",
+    "task": "Add hopeActivation field to CREP evaluation schema",
+    "test": "packages/crep/metrics.test.ts",
+    "status": "open"
+  },
+  {
+    "commit": "Compare tech vs society branches in Universe Tree",
+    "path": "sims/universe_tree_optimism.py",
+    "task": "Simulate and contrast tech- and society-optimistic branches for sustainable mobility",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "Implement Consent Mesh for utopia packages",
+    "path": "packages/consent-mesh/utopie-consent.ts",
+    "task": "Collect community votes on utopia packages and feed results into task prioritization",
+    "test": "packages/consent-mesh/utopie-consent.test.ts",
     "status": "open"
   }
 ]
