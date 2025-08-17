@@ -13160,7 +13160,7 @@
     "path": "packages/rag/Chunker.ts",
     "task": "Split documents into overlapping token chunks",
     "test": "",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Add LocalHasher and OpenAIEmbedder",
