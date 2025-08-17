@@ -12678,7 +12678,7 @@
   path: packages/rag/Chunker.ts
   task: Split documents into overlapping token chunks
   test: ""
-  status: open
+  status: done
 - commit: Add LocalHasher and OpenAIEmbedder
   path: packages/rag/Embedder.ts
   task: Provide embedding implementations with fallback local hasher
