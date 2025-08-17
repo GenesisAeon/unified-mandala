@@ -97,3 +97,4 @@ Dev-Agents prüfen zu Beginn eines Laufs auf diese Dateien und priorisieren dere
 - Added starter simulation templates and linked CREP metrics to outcome KPIs.
 - Documented Mandala prompt patterns and synced progress files.
 - Documented Responses API usage and reasoning-effort levels.
+- Added PIIRedactor utility to mask emails, phone numbers, and card numbers.
