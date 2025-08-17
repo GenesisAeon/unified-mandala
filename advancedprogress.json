@@ -1,5 +1,5 @@
 {
-  "lastCommit": "Implement RAG Chunker",
+  "lastCommit": "Document EVC-guided worldview blueprint",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
@@ -4144,6 +4144,10 @@
     },
     {
       "commit": "Implement RAG Chunker",
+      "status": "done"
+    },
+    {
+      "commit": "Document EVC-guided worldview blueprint",
       "status": "done"
     }
   ],

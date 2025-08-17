@@ -13606,7 +13606,7 @@
   path: worldview/mandala-worldview.yaml
   task: Capture hypothesis, Emergence Viability Criteria, and CREP mapping
   test: ""
-  status: open
+  status: done
 - commit: Implement EPI scanning CLI
   path: analysis/epi_scan.py
   task: Calculate Emergence Potential Index and generate heatmap overlays
