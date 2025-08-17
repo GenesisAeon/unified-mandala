@@ -1,0 +1,11 @@
+# Cheat sheet for voice intents and their command mappings
+intents:
+  - intent: "open workflow"
+    command: "aeon.sh workflow open"
+    description: "Launches the workflow launcher in the shell"
+  - intent: "load sigil"
+    command: "sigillin load <name>"
+    description: "Loads a Sigillin file into the active context"
+  - intent: "add task"
+    command: "todo add <task>"
+    description: "Appends a new item to the advanced ToDo list"

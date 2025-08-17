@@ -12460,7 +12460,7 @@
     "path": "voice_intents.yaml",
     "task": "Document voice intents and trigger mappings for aeon.sh, Sigillin loader and ToDo parser",
     "test": "",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Implement voice note to advancedToDo pipeline",

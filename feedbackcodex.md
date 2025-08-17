@@ -100,3 +100,4 @@ Dev-Agents prüfen zu Beginn eines Laufs auf diese Dateien und priorisieren dere
 - Added PIIRedactor utility to mask emails, phone numbers, and card numbers.
 
 - Added basic personhood consent guard with tests enforcing consent requirement.
+- Added voice intent cheat sheet for aeon.sh, Sigillin loader and ToDo parser.
