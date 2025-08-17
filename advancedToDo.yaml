@@ -12203,12 +12203,12 @@
   path: packages/shared-utils/jsonlLogger.ts
   task: Write helper to stream simulation run metrics into JSONL logs
   test: ""
-  status: open
+  status: done
 - commit: Add RunLogger utility
   path: packages/shared-utils/runLogger.ts
   task: Implement append-based JSONL run logging with run_id and reader
   test: scripts/runlog-demo.ts
-  status: open
+  status: done
 - commit: Integrate Sigil RAG search hooks
   path: packages/unifiedmandala-ui/components/SigilSearchPanel.tsx
   task: Provide hook and panel to search sigillin.jsonl via RAG index
@@ -12233,7 +12233,7 @@
   path: docs/hooks/RunLogger.md
   task: Write guide for emitting and reading run logs
   test: ""
-  status: open
+  status: done
 - commit: Document Sigil RAG hooks
   path: docs/hooks/RAG-Sigils.md
   task: Explain RAG index loading and search for sigils
