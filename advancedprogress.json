@@ -1,5 +1,5 @@
 {
-  "lastCommit": "Implement PIIRedactor utility",
+  "lastCommit": "Add voice intent cheat sheet and YAML mapping",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
@@ -4156,6 +4156,10 @@
     },
     {
       "commit": "Add personhood guard test",
+      "status": "done"
+    },
+    {
+      "commit": "Add voice intent cheat sheet and YAML mapping",
       "status": "done"
     }
   ],
