@@ -96,3 +96,4 @@ Dev-Agents prüfen zu Beginn eines Laufs auf diese Dateien und priorisieren dere
 - Implemented golden signals metrics collector for latency, success rate, queue depth, and retries.
 - Added starter simulation templates and linked CREP metrics to outcome KPIs.
 - Documented Mandala prompt patterns and synced progress files.
+- Documented Responses API usage and reasoning-effort levels.
