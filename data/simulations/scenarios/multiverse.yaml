@@ -1,0 +1,6 @@
+title: Basic Multiverse Simulation
+description: Template exploring parallel universes with divergent constants.
+parameters:
+  universes: 3
+  base_seed: 42
+  timesteps: 500

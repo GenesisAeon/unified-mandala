@@ -1,0 +1,6 @@
+title: Basic Universe Simulation
+description: Starter template for single universe evolution used in GPT-5 tests.
+parameters:
+  dimensions: 3
+  initial_energy: 1000000
+  timesteps: 1000
