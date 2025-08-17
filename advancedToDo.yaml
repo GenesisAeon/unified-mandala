@@ -12106,7 +12106,7 @@
   path: packages/pantheon/PantheonPortalAnalytics.ts
   task: Link coherence, resonance, emergence and poetics to task success analytics
   test: packages/pantheon/PantheonPortalAnalytics.test.ts
-  status: open
+  status: done
 - commit: Add one-click workflow launcher
   path: packages/unifiedmandala-ui/components/WorkflowLauncher.tsx
   task: Provide button to trigger Sigillin jobs without intermediate screens
@@ -12193,12 +12193,12 @@
   path: data/simulations/scenarios
   task: Provide initial universe and multiverse scenario YAMLs for GPT-5 testing
   test: ""
-  status: open
+  status: done
 - commit: Create historic sandbox scenario templates
   path: data/sandboxes/historic
   task: Define initial civilization simulation scenarios with source references
   test: ""
-  status: open
+  status: done
 - commit: Add JSONL logging utility for simulations
   path: packages/shared-utils/jsonlLogger.ts
   task: Write helper to stream simulation run metrics into JSONL logs

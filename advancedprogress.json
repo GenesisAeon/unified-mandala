@@ -1,5 +1,5 @@
 {
-  "lastCommit": "Track golden signals metrics",
+  "lastCommit": "Create historic sandbox scenario templates",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
@@ -13,7 +13,7 @@
     },
     {
       "commit": "Map CREP metrics to outcome KPIs",
-      "status": "open"
+      "status": "done"
     },
     {
       "commit": "Add one-click workflow launcher",
@@ -81,11 +81,11 @@
     },
     {
       "commit": "Create simulation scenario starter templates",
-      "status": "open"
+      "status": "done"
     },
     {
       "commit": "Create historic sandbox scenario templates",
-      "status": "open"
+      "status": "done"
     },
     {
       "commit": "Add JSONL logging utility for simulations",

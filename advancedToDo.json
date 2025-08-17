@@ -12362,7 +12362,7 @@
     "path": "packages/pantheon/PantheonPortalAnalytics.ts",
     "task": "Link coherence, resonance, emergence and poetics to task success analytics",
     "test": "packages/pantheon/PantheonPortalAnalytics.test.ts",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Add one-click workflow launcher",
@@ -12481,14 +12481,14 @@
     "path": "data/simulations/scenarios",
     "task": "Provide initial universe and multiverse scenario YAMLs for GPT-5 testing",
     "test": "",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Create historic sandbox scenario templates",
     "path": "data/sandboxes/historic",
     "task": "Define initial civilization simulation scenarios with source references",
     "test": "",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Add JSONL logging utility for simulations",
