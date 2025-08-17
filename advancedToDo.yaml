@@ -12527,8 +12527,8 @@
 - commit: Implement PIIRedactor utility
   path: packages/security/PIIRedactor.ts
   task: Mask phone numbers, emails and card numbers in text
-  test: ""
-  status: open
+  test: packages/security/PIIRedactor.test.ts
+  status: done
 - commit: Create ResearchHub UI
   path: packages/unifiedmandala-ui/components/ResearchHub.tsx
   task: Provide entry point for research agents and flags
