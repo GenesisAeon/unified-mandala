@@ -1,5 +1,5 @@
 {
-  "lastCommit": "Enhance SymbolMapper with NumPy support",
+  "lastCommit": "Add LocalHasher and OpenAIEmbedder",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
@@ -4164,6 +4164,10 @@
     },
     {
       "commit": "Enhance SymbolMapper to handle NumPy arrays",
+      "status": "done"
+    },
+    {
+      "commit": "Add LocalHasher and OpenAIEmbedder",
       "status": "done"
     }
   ],
