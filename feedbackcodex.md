@@ -102,3 +102,4 @@ Dev-Agents prüfen zu Beginn eines Laufs auf diese Dateien und priorisieren dere
 - Added basic personhood consent guard with tests enforcing consent requirement.
 - Added voice intent cheat sheet for aeon.sh, Sigillin loader and ToDo parser.
 - Enhanced SymbolMapper to support NumPy arrays.
+\n- Added LocalHasher and OpenAIEmbedder with fallback to expand RAG capabilities.

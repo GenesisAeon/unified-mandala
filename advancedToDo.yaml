@@ -12683,7 +12683,7 @@
   path: packages/rag/Embedder.ts
   task: Provide embedding implementations with fallback local hasher
   test: ""
-  status: open
+  status: done
 - commit: Create VectorStore
   path: packages/rag/VectorStore.ts
   task: Persist vectors on disk and support cosine search
