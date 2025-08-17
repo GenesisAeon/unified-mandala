@@ -98,3 +98,5 @@ Dev-Agents prüfen zu Beginn eines Laufs auf diese Dateien und priorisieren dere
 - Documented Mandala prompt patterns and synced progress files.
 - Documented Responses API usage and reasoning-effort levels.
 - Added PIIRedactor utility to mask emails, phone numbers, and card numbers.
+
+- Added basic personhood consent guard with tests enforcing consent requirement.

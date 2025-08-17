@@ -12673,7 +12673,7 @@
   path: tests/personhood.guard.test.ts
   task: Verify consent requirement for PII research
   test: ""
-  status: open
+  status: done
 - commit: Implement RAG Chunker
   path: packages/rag/Chunker.ts
   task: Split documents into overlapping token chunks
