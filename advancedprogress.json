@@ -1,5 +1,5 @@
 {
-  "lastCommit": "Add tasks for Responses API and utopia integration",
+  "lastCommit": "Track golden signals metrics",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
@@ -9,7 +9,7 @@
   "pendingTasks": [
     {
       "commit": "Track golden signals metrics",
-      "status": "open"
+      "status": "done"
     },
     {
       "commit": "Map CREP metrics to outcome KPIs",

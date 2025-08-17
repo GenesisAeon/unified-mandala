@@ -12355,7 +12355,7 @@
     "path": "observability/golden-signals.ts",
     "task": "Collect p95 latency, success rate, queue depth and retries",
     "test": "observability/golden-signals.test.ts",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Map CREP metrics to outcome KPIs",
