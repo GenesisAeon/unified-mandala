@@ -1,5 +1,5 @@
 {
-  "lastCommit": "chore: add security hardening tasks",
+  "lastCommit": "Add tasks for Responses API and utopia integration",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
@@ -1205,6 +1205,58 @@
     },
     {
       "commit": "Switch Kyverno verifyImages to enforce",
+      "status": "open"
+    },
+    {
+      "commit": "Document EVC-guided worldview blueprint",
+      "status": "open"
+    },
+    {
+      "commit": "Implement EPI scanning CLI",
+      "status": "open"
+    },
+    {
+      "commit": "Merge EPI with abundance dataset",
+      "status": "open"
+    },
+    {
+      "commit": "Add Universe Tree simulation",
+      "status": "open"
+    },
+    {
+      "commit": "Provide Universe Tree config",
+      "status": "open"
+    },
+    {
+      "commit": "Evaluate Universe Tree outputs",
+      "status": "open"
+    },
+    {
+      "commit": "Add Universe Tree sanity checks",
+      "status": "open"
+    },
+    {
+      "commit": "Document Reasoning-Effort and Responses API usage",
+      "status": "open"
+    },
+    {
+      "commit": "Document Mandala prompt patterns",
+      "status": "open"
+    },
+    {
+      "commit": "Integrate Utopie-to-Do adapter",
+      "status": "open"
+    },
+    {
+      "commit": "Extend CREP metrics with hope activation",
+      "status": "open"
+    },
+    {
+      "commit": "Compare tech vs society branches in Universe Tree",
+      "status": "open"
+    },
+    {
+      "commit": "Implement Consent Mesh for utopia packages",
       "status": "open"
     }
   ],
