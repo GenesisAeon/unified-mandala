@@ -5067,6 +5067,14 @@
     {
       "commit": "feat: add BinaryExistenceMatrix simulation",
       "status": "done"
+    },
+    {
+      "commit": "Add ReviewerPanel component",
+      "status": "done"
+    },
+    {
+      "commit": "Add RAGSearchPanel component",
+      "status": "done"
     }
   ],
   "fractalTodos": [
