@@ -12658,7 +12658,7 @@
   path: packages/gpt-bridges/router/withPersonhood.ts
   task: Wrap tools or models with policy checks and audit
   test: ""
-  status: open
+  status: done
 - commit: Update agent permissions
   path: governance/permissions.yaml
   task: Allow personhood-agent and autotuning-agent tools and models
