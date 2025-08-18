@@ -12111,7 +12111,7 @@
   path: packages/unifiedmandala-ui/components/WorkflowLauncher.tsx
   task: Provide button to trigger Sigillin jobs without intermediate screens
   test: packages/unifiedmandala-ui/components/WorkflowLauncher.test.tsx
-  status: open
+  status: done
 - commit: Revise pitch docs with outcome focused demos
   path: docs/pitch/impact-demos.md
   task: Include two short GIFs demonstrating outcome over screentime
