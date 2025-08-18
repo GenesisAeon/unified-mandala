@@ -1,5 +1,5 @@
 {
-  "lastCommit": "Add withPersonhood router hook",
+  "lastCommit": "Add AnswerComposer",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
@@ -4950,6 +4950,11 @@
     },
     {
       "commit": "Create DocStore",
+      "status": "done"
+    }
+    ,
+    {
+      "commit": "Add AnswerComposer",
       "status": "done"
     }
   ],
