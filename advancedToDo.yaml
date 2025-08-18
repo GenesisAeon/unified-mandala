@@ -12229,7 +12229,7 @@
   path: scripts/ingest-sigils-to-vector-index.ts
   task: Batch POST sigils to VECTOR_INDEX_URL from sigillin.jsonl
   test: ""
-  status: open
+  status: done
 - commit: Document RunLogger usage
   path: docs/hooks/RunLogger.md
   task: Write guide for emitting and reading run logs
@@ -12239,7 +12239,7 @@
   path: docs/hooks/RAG-Sigils.md
   task: Explain RAG index loading and search for sigils
   test: ""
-  status: open
+  status: done
 - commit: Add runlog archive workflow
   path: .github/workflows/runlog-archive.yml
   task: Archive JSONL run logs nightly as GitHub artifacts
