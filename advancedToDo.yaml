@@ -12708,7 +12708,7 @@
   path: scripts/rag-index.ts
   task: Index files into RAG store via CLI
   test: ""
-  status: open
+  status: done
 - commit: Add rag-query CLI
   path: scripts/rag-query.ts
   task: Query RAG index from command line

@@ -13202,7 +13202,7 @@
     "path": "scripts/rag-index.ts",
     "task": "Index files into RAG store via CLI",
     "test": "",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Add rag-query CLI",
