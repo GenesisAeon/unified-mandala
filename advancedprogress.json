@@ -1,5 +1,5 @@
 {
-  "lastCommit": "Add LocalHasher and OpenAIEmbedder",
+  "lastCommit": "Add Mandala transparency policy block",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
@@ -4168,6 +4168,10 @@
     },
     {
       "commit": "Add LocalHasher and OpenAIEmbedder",
+      "status": "done"
+    },
+    {
+      "commit": "Add Mandala transparency policy block",
       "status": "done"
     }
   ],

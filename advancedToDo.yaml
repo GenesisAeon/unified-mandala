@@ -13671,3 +13671,8 @@
     prioritization
   test: packages/consent-mesh/utopie-consent.test.ts
   status: open
+- commit: Add Mandala transparency policy block
+  path: README.md
+  task: Document transparency principles in README
+  test: ""
+  status: done
