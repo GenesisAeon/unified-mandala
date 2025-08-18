@@ -4448,7 +4448,8 @@
 - commit: "feat: add BinaryExistenceMatrix simulation"
   path: packages/universum-simulationen/binary_existence_matrix.py
   task: Simulate binäre Existenzstruktur with nullmembrane matrix
-  test: packages/universum-simulationen/binary_existence_matrix.test.py
+  test: packages/universum-simulationen/binary_existence_matrix_test.py
+  status: done
 - commit: "chore: scaffold WVH simulation modules"
   path: packages/universum-simulationen/modules
   task: Create modular simulation files like S01_Weissloch_Entstehung.py
