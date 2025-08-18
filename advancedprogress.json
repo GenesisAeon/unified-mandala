@@ -1,5 +1,5 @@
 {
-  "lastCommit": "Create VectorStore",
+  "lastCommit": "Adjust text fragmenter for gpt-5 context",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
@@ -4934,6 +4934,10 @@
     },
     {
       "commit": "Add CommunityPluginMarketplace",
+      "status": "done"
+    },
+    {
+      "commit": "Adjust text fragmenter for gpt-5 context",
       "status": "done"
     }
   ],
