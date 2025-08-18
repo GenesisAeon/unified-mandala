@@ -13224,14 +13224,14 @@
     "path": "packages/unifiedmandala-ui/components/ReviewerPanel.tsx",
     "task": "Enqueue and decide review items via API",
     "test": "",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Add RAGSearchPanel component",
     "path": "packages/unifiedmandala-ui/components/RAGSearchPanel.tsx",
     "task": "Provide retrieval and ask UI for RAG API",
     "test": "",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Add RAG smoke test",
