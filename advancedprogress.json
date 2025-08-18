@@ -1,5 +1,5 @@
 {
-  "lastCommit": "feat: add BinaryExistenceMatrix simulation",
+  "lastCommit": "feat(event-bus): add LocalEventBus",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
@@ -81,10 +81,6 @@
     },
     {
       "commit": "Create agent registry file",
-      "status": "open"
-    },
-    {
-      "commit": "Add event bus subjects and LocalEventBus",
       "status": "open"
     },
     {
@@ -5404,6 +5400,10 @@
     {
       "commit": "Declare gpt-5 capabilities for agents",
       "status": "done"
+    },
+    {
+      "commit": "Add event bus subjects and LocalEventBus",
+      "status": "done"
     }
   ],
   "completed": [
@@ -6181,6 +6181,10 @@
     },
     {
       "commit": "Add AnswerComposer",
+      "status": "done"
+    },
+    {
+      "commit": "Add event bus subjects and LocalEventBus",
       "status": "done"
     },
     {
