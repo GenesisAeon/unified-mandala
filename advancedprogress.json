@@ -1,5 +1,5 @@
 {
-  "lastCommit": "Adjust text fragmenter for gpt-5 context",
+  "lastCommit": "Create DocStore",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
@@ -4938,6 +4938,10 @@
     },
     {
       "commit": "Adjust text fragmenter for gpt-5 context",
+      "status": "done"
+    },
+    {
+      "commit": "Create DocStore",
       "status": "done"
     }
   ],

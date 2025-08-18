@@ -12693,7 +12693,7 @@
   path: packages/rag/DocStore.ts
   task: Track provenance and tombstone documents
   test: ""
-  status: open
+  status: done
 - commit: Add AnswerComposer
   path: packages/rag/AnswerComposer.ts
   task: Generate answers with citations using ModelRouter

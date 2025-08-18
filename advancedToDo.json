@@ -13181,7 +13181,7 @@
     "path": "packages/rag/DocStore.ts",
     "task": "Track provenance and tombstone documents",
     "test": "",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Add AnswerComposer",
