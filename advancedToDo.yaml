@@ -12136,7 +12136,7 @@
   path: packages/shared-utils/textFragmenter.ts
   task: Set MAX_TOKENS_BY_MODEL['gpt-5']=200000 and update chunking
   test: packages/shared-utils/textFragmenter.test.ts
-  status: open
+  status: done
 - commit: Add gpt-5 QA script and Fourier logging
   path: scripts/qa-gpt5.json
   task: Run smoke prompts and log Fourier peaks in PantheonPortalAnalytics
