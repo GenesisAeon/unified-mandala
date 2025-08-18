@@ -106,3 +106,4 @@ Dev-Agents prüfen zu Beginn eines Laufs auf diese Dateien und priorisieren dere
 - Implemented VectorStore for RAG with cosine search and persistence.
 - Documented VECTOR_INDEX_URL snippet for vector index configuration.
 - Added initial RAG tasks to code-agent workflow for Wave 2.
+- Declared gpt-5 capabilities for core agents.

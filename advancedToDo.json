@@ -12390,7 +12390,7 @@
     "path": "agents.yaml",
     "task": "Set capabilities.model to [\"gpt-5\",\"gpt-4.1\"] for core agents",
     "test": "pnpm run qa:gpt5",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Introduce ToolAdapter for unified tool calling",
