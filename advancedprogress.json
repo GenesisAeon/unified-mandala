@@ -1,5 +1,5 @@
 {
-  "lastCommit": "feat: generate sigillin JSONL index",
+  "lastCommit": "Add Sigil RAG hook docs and ingest script",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
@@ -4276,6 +4276,10 @@
     },
     {
       "commit": "Generate sigillin JSONL index",
+      "status": "done"
+    },
+    {
+      "commit": "Add Sigil RAG hook docs and ingest script",
       "status": "done"
     }
   ],
