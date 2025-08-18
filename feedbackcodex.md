@@ -110,3 +110,4 @@ Dev-Agents prüfen zu Beginn eines Laufs auf diese Dateien und priorisieren dere
 - Introduced LocalEventBus with versioned subjects for lightweight event handling.
 
 - Implemented generate-sigillin-jsonl script to aggregate sigil files into RAG-ready corpus.
+- Added CitationIndex to manage RAG chunk citations and rendering.
