@@ -1,5 +1,5 @@
 {
-  "lastCommit": "Create DocStore",
+  "lastCommit": "Add withPersonhood router hook",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
@@ -4177,6 +4177,10 @@
     {
       "commit": "Create VectorStore",
       "status": "done"
+    },
+    {
+      "commit": "Add withPersonhood router hook",
+      "status": "done"
     }
   ],
   "completed": [
@@ -4218,6 +4222,10 @@
     },
     {
       "commit": "Introduce CREPInsightDashboard",
+      "status": "done"
+    },
+    {
+      "commit": "Add withPersonhood router hook",
       "status": "done"
     }
   ],
