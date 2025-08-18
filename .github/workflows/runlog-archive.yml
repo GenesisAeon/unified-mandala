@@ -1,0 +1,22 @@
+name: Runlog Archive
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+
+jobs:
+  archive:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Collect run logs
+        run: |
+          mkdir -p runlogs
+          find . -name '*runlog*.jsonl' -exec cp {} runlogs/ \; || true
+          tar -czf runlogs.tar.gz runlogs
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: runlogs
+          path: runlogs.tar.gz

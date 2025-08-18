@@ -12552,7 +12552,7 @@
     "path": ".github/workflows/runlog-archive.yml",
     "task": "Archive JSONL run logs nightly as GitHub artifacts",
     "test": "",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Document vector index env snippet",

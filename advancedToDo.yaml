@@ -12244,7 +12244,7 @@
   path: .github/workflows/runlog-archive.yml
   task: Archive JSONL run logs nightly as GitHub artifacts
   test: ""
-  status: open
+  status: done
 - commit: Document vector index env snippet
   path: docs/snippets/ENV_VECTOR_INDEX.md
   task: Provide VECTOR_INDEX_URL environment variable example

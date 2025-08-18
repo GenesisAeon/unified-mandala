@@ -1,5 +1,5 @@
 {
-  "lastCommit": "feat: add RAG pipeline and smoke test",
+  "lastCommit": "chore: add runlog archive workflow",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
@@ -4284,6 +4284,10 @@
     },
     {
       "commit": "Add Sigil RAG hook docs and ingest script",
+      "status": "done"
+    },
+    {
+      "commit": "Add runlog archive workflow",
       "status": "done"
     }
   ],
