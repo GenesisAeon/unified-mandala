@@ -12264,7 +12264,7 @@
   path: packages/event-bus/subjects.ts
   task: Define versioned event names and simple local bus
   test: ""
-  status: open
+  status: done
 - commit: Provide system start script
   path: scripts/system-start.ts
   task: Initialize agents and log lifecycle events with dry-run option
