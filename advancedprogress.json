@@ -1,5 +1,5 @@
 {
-  "lastCommit": "docs: add impact demos and extend voice intents",
+  "lastCommit": "feat: add workflow launcher component",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
@@ -7,10 +7,6 @@
   "mergeConflicts": [],
   "notes": "Implemented region profile REST endpoint and completed country/region model set. Added mitigation service microservice stub. Enhanced ethics supervisor with pattern checks. Added ClimateSocialPanel UI for dashboard metrics. Added InteractiveSymbolzeitExplorer UI. Added IoTSensorWidget UI for realtime sensor data.; Added repository map duplicate checker.; Added IoT sensor agent plugin and container.; Added provenance agent scaffold.; Added societal impact agent container.; Added catalyst agent container.; Documented Mandala prompt patterns; Implemented RAG Chunker for document tokenization; Extended SymbolMapper to accept NumPy arrays; Added VectorStore for RAG.",
   "pendingTasks": [
-    {
-      "commit": "Add one-click workflow launcher",
-      "status": "open"
-    },
     {
       "commit": "Add gpt-5 ModelMatrix and routing",
       "status": "open"
@@ -5395,6 +5391,10 @@
     },
     {
       "commit": "Document Mandala prompt patterns",
+      "status": "done"
+    },
+    {
+      "commit": "Add one-click workflow launcher",
       "status": "done"
     }
   ],
