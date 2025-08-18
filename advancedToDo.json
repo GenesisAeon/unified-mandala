@@ -12475,7 +12475,7 @@
     "path": "data/sigils/sigillin.jsonl",
     "task": "Aggregate existing sigil files into a RAG-ready JSONL corpus",
     "test": "",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Create simulation scenario starter templates",

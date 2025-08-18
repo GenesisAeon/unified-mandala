@@ -108,3 +108,5 @@ Dev-Agents prüfen zu Beginn eines Laufs auf diese Dateien und priorisieren dere
 - Added initial RAG tasks to code-agent workflow for Wave 2.
 - Declared gpt-5 capabilities for core agents.
 - Introduced LocalEventBus with versioned subjects for lightweight event handling.
+
+- Implemented generate-sigillin-jsonl script to aggregate sigil files into RAG-ready corpus.

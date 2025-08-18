@@ -12189,7 +12189,7 @@
   path: data/sigils/sigillin.jsonl
   task: Aggregate existing sigil files into a RAG-ready JSONL corpus
   test: ""
-  status: open
+  status: done
 - commit: Create simulation scenario starter templates
   path: data/simulations/scenarios
   task: Provide initial universe and multiverse scenario YAMLs for GPT-5 testing
