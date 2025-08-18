@@ -105,3 +105,4 @@ Dev-Agents prüfen zu Beginn eines Laufs auf diese Dateien und priorisieren dere
 \n- Added LocalHasher and OpenAIEmbedder with fallback to expand RAG capabilities.
 - Implemented VectorStore for RAG with cosine search and persistence.
 - Documented VECTOR_INDEX_URL snippet for vector index configuration.
+- Added initial RAG tasks to code-agent workflow for Wave 2.

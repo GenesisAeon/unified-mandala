@@ -1,0 +1,28 @@
+version: 2
+tasks:
+  - id: env.setup
+    run:
+      - pnpm add -D ts-node yaml node-fetch nats ws ajv micromatch
+    verify:
+      - node -v
+      - pnpm -v
+  - id: bus.jetstream.setup
+    env: [NATS_URL]
+    run:
+      - npx ts-node scripts/js-setup.ts
+    verify:
+      - echo "JetStream ready"
+  - id: deps.wave2
+    run:
+      - pnpm install
+  - id: rag.api
+    run:
+      - npx ts-node scripts/rag-api.ts
+    verify:
+      - curl -f http://localhost:4010/health || echo "API not responding"
+  - id: rag.index.demo
+    run:
+      - npx ts-node scripts/rag-index.ts docs
+  - id: rag.query.demo
+    run:
+      - npx ts-node scripts/rag-query.ts "What is Mandala?"

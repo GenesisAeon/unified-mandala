@@ -13146,7 +13146,7 @@
     "path": "code-agent-tasks.yaml",
     "task": "Add setup and API start commands for new modules",
     "test": "",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Add personhood guard test",
@@ -13244,7 +13244,7 @@
     "path": "code-agent-tasks.yaml",
     "task": "Add rag.api, rag.index.demo and rag.query.demo commands",
     "test": "",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Implement DatasetRegistry",
