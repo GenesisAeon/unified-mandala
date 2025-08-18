@@ -34,6 +34,12 @@ Weitere Hinweise aus dem „Sigil Übergang“:
 - Sozialaktionen anstoßen: `node scripts/trigger-socialgood-workflow.js` (parst ToDos und startet SocialGood-Matching) oder `node scripts/run-parsing-socialgood.js` (lokales Parsing & Matching)
 - MemoryManager verschiebt abgelaufene Einträge automatisch von `daily` zu `weekly` und `longterm`.
 
+## 🔍 Mandala Transparency
+
+Transparenz ist ein zentraler Wert des UnifiedMandala.
+Dieses Repository bietet klare Einblicke in Entwicklungsentscheidungen, offene Aufgaben und ethische Richtlinien.
+Siehe [AI_POLICY.md](AI_POLICY.md) und [advancedprogress.json](advancedprogress.json) für fortlaufend nachvollziehbare Zustände.
+
 ## 🚀 Features
 
 - [**CREP-Systematik**](docs/crep/overview.md) – Coherence, Resonance, Emergence, Poetics

@@ -14540,5 +14540,12 @@
     "task": "Collect community votes on utopia packages and feed results into task prioritization",
     "test": "packages/consent-mesh/utopie-consent.test.ts",
     "status": "open"
+  },
+  {
+    "commit": "Add Mandala transparency policy block",
+    "path": "README.md",
+    "task": "Document transparency principles in README",
+    "test": "",
+    "status": "done"
   }
 ]
