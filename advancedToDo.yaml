@@ -12754,7 +12754,7 @@
   path: packages/rag/CitationIndex.ts
   task: Store chunk citation metadata and render markdown and HTML
   test: ""
-  status: open
+  status: done
 - commit: Add RAG citation demo script
   path: scripts/rag-cite-demo.ts
   task: Demonstrate citation rendering from RAG hits
