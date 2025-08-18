@@ -103,3 +103,4 @@ Dev-Agents prüfen zu Beginn eines Laufs auf diese Dateien und priorisieren dere
 - Added voice intent cheat sheet for aeon.sh, Sigillin loader and ToDo parser.
 - Enhanced SymbolMapper to support NumPy arrays.
 \n- Added LocalHasher and OpenAIEmbedder with fallback to expand RAG capabilities.
+- Implemented VectorStore for RAG with cosine search and persistence.

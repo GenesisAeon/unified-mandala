@@ -13174,7 +13174,7 @@
     "path": "packages/rag/VectorStore.ts",
     "task": "Persist vectors on disk and support cosine search",
     "test": "",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Create DocStore",
