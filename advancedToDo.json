@@ -13196,7 +13196,7 @@
     "path": "packages/rag/RAGPipeline.ts",
     "task": "Index and query documents with personhood guard and audit",
     "test": "",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Add rag-index CLI",
@@ -13238,7 +13238,7 @@
     "path": "tests/rag.flow.test.ts",
     "task": "Verify indexing and querying of RAG pipeline",
     "test": "",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Extend code agent tasks for RAG",
