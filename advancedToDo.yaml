@@ -12698,7 +12698,7 @@
   path: packages/rag/AnswerComposer.ts
   task: Generate answers with citations using ModelRouter
   test: ""
-  status: open
+  status: done
 - commit: Implement RAGPipeline
   path: packages/rag/RAGPipeline.ts
   task: Index and query documents with personhood guard and audit
