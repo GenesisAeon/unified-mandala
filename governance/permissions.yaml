@@ -1,0 +1,11 @@
+agents:
+  personhood-agent:
+    tools:
+      - "*"
+    models:
+      - "*"
+  autotuning-agent:
+    tools:
+      - "*"
+    models:
+      - "*"
