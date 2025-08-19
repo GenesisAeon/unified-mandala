@@ -13302,7 +13302,7 @@
     "path": "tests/datasets.registry.test.ts",
     "task": "Verify dataset creation, versioning and splitting",
     "test": "",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Extend code agent tasks for dataset and k8s",

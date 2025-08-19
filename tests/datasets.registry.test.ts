@@ -29,4 +29,19 @@ describe('DatasetRegistry', () => {
     expect(version.splits.train).toBe('/train.txt');
     expect(version.artifacts.card).toBe('/card.md');
   });
+
+  it('throws when adding version to unknown dataset', () => {
+    ConsentRegistry.grant(personId);
+    expect(() =>
+      DatasetRegistry.addVersion('missing', 'v1', personId)
+    ).toThrow(/Unknown dataset/);
+  });
+
+  it('throws when adding split for unknown version', () => {
+    ConsentRegistry.grant(personId);
+    DatasetRegistry.registerDataset('sample', personId);
+    expect(() =>
+      DatasetRegistry.addSplit('sample', 'v1', 'train', '/t.txt', personId)
+    ).toThrow(/Unknown version/);
+  });
 });
