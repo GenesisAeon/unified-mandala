@@ -12295,7 +12295,7 @@
   path: docs/agents/AgentWorkflow.md
   task: Explain lifecycle events and system start sequence
   test: ""
-  status: open
+  status: done
 - commit: Document open source model setup
   path: docs/models/OpenSourceModels.md
   task: Describe configuration and routing for Ollama, TGI and vLLM
@@ -12310,7 +12310,7 @@
   path: docs/system/SystemStart.md
   task: Outline steps to launch agents and models with ts-node
   test: ""
-  status: open
+  status: done
 - commit: Add agent workflow CI check
   path: .github/workflows/agent-workflow-check.yml
   task: Validate agents.yaml and run system start dry-run in CI
