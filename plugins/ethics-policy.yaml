@@ -8,3 +8,15 @@ config:
     - "harm"
     - "fraud"
     - "hate"
+    # Additional restrictions tuned for gpt-5's advanced capabilities
+    - "autonomous weaponization"
+    - "non-consensual surveillance"
+    - "deepfake impersonation"
+
+# Model-specific overrides
+models:
+  gpt-5:
+    disallowed_phrases:
+      - "autonomous weaponization"
+      - "non-consensual surveillance"
+      - "deepfake impersonation"

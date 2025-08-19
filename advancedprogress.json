@@ -1,5 +1,5 @@
 {
-  "lastCommit": "feat: add dataset registry",
+  "lastCommit": "chore: tune ethics policy for gpt-5",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
@@ -13,10 +13,6 @@
     },
     {
       "commit": "Add gpt-5 QA script and Fourier logging",
-      "status": "open"
-    },
-    {
-      "commit": "Tune ethics policy for gpt-5",
       "status": "open"
     },
     {
@@ -5417,6 +5413,10 @@
     {
       "commit": "Implement DatasetRegistry",
       "status": "done"
+    },
+    {
+      "commit": "Tune ethics policy for gpt-5",
+      "status": "done"
     }
   ],
   "completed": [
@@ -6222,6 +6222,10 @@
     },
     {
       "commit": "Update agent permissions",
+      "status": "done"
+    },
+    {
+      "commit": "Tune ethics policy for gpt-5",
       "status": "done"
     }
   ],
