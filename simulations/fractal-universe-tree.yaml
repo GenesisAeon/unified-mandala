@@ -1,0 +1,21 @@
+id: sim:fractal-universe-tree:alpha
+null_invariant:
+  terms: [unitarity, anomaly_free, renormalizable]
+  penalty: 5.0
+evolution:
+  branching_factor: 3
+  depth: 7
+  mutation_sigma: 0.08
+  max_width: 120
+fitness:
+  weights:
+    evc: 0.6
+    crep: 0.4
+selection:
+  temperature: 1.0
+  threshold: 0.35
+outputs:
+  survivors_frontier: survivors_frontier.csv
+  tree_edges: tree_edges.csv
+  theta_heatmap: theta_heatmap.png
+seed: 42

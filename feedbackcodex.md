@@ -117,3 +117,4 @@ Dev-Agents prüfen zu Beginn eines Laufs auf diese Dateien und priorisieren dere
 - Added gpt-5 ModelMatrix with fallback routing in AeonGPTSynapse.
 - Added UniverseTreeOptimism simulation comparing tech and society branches for sustainable mobility.
 - Documented agent workflow and system start sequence to guide future contributors.
+- Added Universe Tree simulation scaffold, EPI scan CLI, dataset merge, and sanity validation.
