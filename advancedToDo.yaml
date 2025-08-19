@@ -12744,7 +12744,7 @@
   path: packages/datasets/DatasetRegistry.ts
   task: Register datasets, versions, splits and artifacts with personhood checks
   test: ""
-  status: open
+  status: done
 - commit: Add dataset API
   path: scripts/dataset-api.ts
   task: Serve dataset registry over HTTP
