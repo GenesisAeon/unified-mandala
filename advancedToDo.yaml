@@ -12304,7 +12304,7 @@
   path: docs/snippets/ENV_MODELS.example
   task: List environment variables for local model providers
   test: ""
-  status: open
+  status: done
 - commit: Document system start workflow
   path: docs/system/SystemStart.md
   task: Outline steps to launch agents and models with ts-node

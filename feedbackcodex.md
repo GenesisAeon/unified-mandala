@@ -113,3 +113,4 @@ Dev-Agents prüfen zu Beginn eines Laufs auf diese Dateien und priorisieren dere
 - Added CitationIndex to manage RAG chunk citations and rendering.
 - Implemented dataset API server to expose DatasetRegistry over HTTP.
 - Added policy lint script to enforce baseline safety rules on policy files.
+- Provided model provider env snippet for local model setup.
