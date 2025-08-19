@@ -1,0 +1,6 @@
+{
+  "prompts": [
+    { "input": "Fourier of hello world", "expected": "analysis" },
+    { "input": "Compute 1+1", "expected": "2" }
+  ]
+}

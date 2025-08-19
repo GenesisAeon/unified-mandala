@@ -13,6 +13,7 @@ describe('PantheonPortalAnalytics', () => {
       visits: 2,
       events: { open: 2, close: 1 },
       outcomeKPIs: { coherence: 0, resonance: 0, emergence: 0, poetics: 0 },
+      fourierPeaks: [],
     });
   });
 
@@ -26,5 +27,11 @@ describe('PantheonPortalAnalytics', () => {
       emergence: 0.8,
       poetics: 0.5,
     });
+  });
+
+  it('logs Fourier peaks', () => {
+    const analytics = new PantheonPortalAnalytics();
+    analytics.recordFourierPeak(42);
+    expect(analytics.getStats().fourierPeaks).toEqual([42]);
   });
 });
