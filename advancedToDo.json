@@ -12398,7 +12398,7 @@
     "path": "packages/gpt-bridges/tool-adapter.ts",
     "task": "Normalize parallel and multi-tool calls across providers",
     "test": "packages/gpt-bridges/tool-adapter.test.ts",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Adjust text fragmenter for gpt-5 context",
