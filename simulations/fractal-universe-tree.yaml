@@ -1,0 +1,14 @@
+# Fractal Universe Tree configuration
+# Defines branching, selection, and null invariant parameters for simulations
+branching:
+  factor: 3        # number of child branches per node
+  depth: 5         # maximum depth of the tree
+selection:
+  metric: crep     # fitness metric guiding selection
+  threshold: 0.7   # minimum CREP score to retain branch
+nullInvariant:
+  enabled: true
+  epsilon: 1e-9    # safeguard for floating point comparisons
+fitness:
+  crepWeight: 0.6
+  evcWeight: 0.4

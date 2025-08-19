@@ -1,5 +1,5 @@
 {
-  "lastCommit": "chore: tune ethics policy for gpt-5",
+  "lastCommit": "feat: provide Universe Tree config",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
@@ -1041,10 +1041,6 @@
     },
     {
       "commit": "Add Universe Tree simulation",
-      "status": "open"
-    },
-    {
-      "commit": "Provide Universe Tree config",
       "status": "open"
     },
     {
@@ -5417,6 +5413,10 @@
     {
       "commit": "Tune ethics policy for gpt-5",
       "status": "done"
+    },
+    {
+      "commit": "Provide Universe Tree config",
+      "status": "done"
     }
   ],
   "completed": [
@@ -5466,6 +5466,10 @@
     },
     {
       "commit": "Document vector index env snippet",
+      "status": "done"
+    },
+    {
+      "commit": "Provide Universe Tree config",
       "status": "done"
     }
   ],
@@ -6226,6 +6230,10 @@
     },
     {
       "commit": "Tune ethics policy for gpt-5",
+      "status": "done"
+    },
+    {
+      "commit": "Provide Universe Tree config",
       "status": "done"
     }
   ],
