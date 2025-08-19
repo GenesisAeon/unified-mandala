@@ -12719,7 +12719,7 @@
   path: scripts/rag-api.ts
   task: Expose RAG index, search and ask HTTP endpoints
   test: ""
-  status: open
+  status: done
 - commit: Add ReviewerPanel component
   path: packages/unifiedmandala-ui/components/ReviewerPanel.tsx
   task: Enqueue and decide review items via API
