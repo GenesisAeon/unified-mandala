@@ -1,5 +1,5 @@
 {
-  "lastCommit": "Merge pull request #1319 from GenesisAeon/codex/implement-features-from-advancedtodo.yaml-8uxptf",
+  "lastCommit": "feat: add dataset registry",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
@@ -357,10 +357,6 @@
     },
     {
       "commit": "Add federated API",
-      "status": "open"
-    },
-    {
-      "commit": "Implement DatasetRegistry",
       "status": "open"
     },
     {
@@ -5416,6 +5412,10 @@
     },
     {
       "commit": "Add rag-api server",
+      "status": "done"
+    },
+    {
+      "commit": "Implement DatasetRegistry",
       "status": "done"
     }
   ],
