@@ -13966,7 +13966,7 @@
     "path": "scripts/policy-lint.ts",
     "task": "Enforce baseline safety rules on policy files",
     "test": "",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Add compose override for UM services",
