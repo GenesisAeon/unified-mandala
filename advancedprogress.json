@@ -1,6 +1,6 @@
 {
-  "lastCommit": "Add gpt-5 ModelMatrix and routing",
-  "fractalStep": "gpt-5 model matrix integrated",
+  "lastCommit": "Add dataset registry test",
+  "fractalStep": "dataset registry verified",
   "openBranches": [
     "work"
   ],
@@ -10,9 +10,14 @@
     "TODO from GenesisAeonZIPMEM/Aeon_Uebergabe-Sigil_Prozess_part2.json - a0cddb53-12d4-44b8-b881-4fbfad63f129 (GenesisAeonZIPMEM/Aeon_Uebergabe-Sigil_Prozess_part2.json)",
     "TODO from GenesisAeonZIPMEM/Aeon_Uebergabe_und_Zyklus_part1.json - bbb21f74-3a0f-45b2-8e8c-25e45e32861e (GenesisAeonZIPMEM/Aeon_Uebergabe_und_Zyklus_part1.json)",
     "Integrate new GPT teams from Zukunft conversation (packages/agents)",
-    "chore: scaffold Wissenschaftliche Versuche project (packages/wissenschaftliche-versuche)"
+    "chore: scaffold Wissenschaftliche Versuche project (packages/wissenschaftliche-versuche)",
+    "feat: integrate FutureTechFramework (packages/agents/FutureTechFramework.ts)"
   ],
   "progress": [
+    {
+      "commit": "Add dataset registry test",
+      "status": "done"
+    },
     {
       "commit": "Add gpt-5 ModelMatrix and routing",
       "status": "done"
