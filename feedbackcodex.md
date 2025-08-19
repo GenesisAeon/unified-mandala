@@ -115,3 +115,4 @@ Dev-Agents prüfen zu Beginn eines Laufs auf diese Dateien und priorisieren dere
 - Added policy lint script to enforce baseline safety rules on policy files.
 - Provided model provider env snippet for local model setup.
 - Added gpt-5 ModelMatrix with fallback routing in AeonGPTSynapse.
+- Added UniverseTreeOptimism simulation comparing tech and society branches for sustainable mobility.
