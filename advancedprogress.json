@@ -1,6 +1,6 @@
 {
-  "lastCommit": "Add gpt-5 QA script and Fourier logging",
-  "fractalStep": "gpt-5 QA script integrated",
+  "lastCommit": "Add gpt-5 ModelMatrix and routing",
+  "fractalStep": "gpt-5 model matrix integrated",
   "openBranches": [
     "work"
   ],
@@ -13,6 +13,10 @@
     "chore: scaffold Wissenschaftliche Versuche project (packages/wissenschaftliche-versuche)"
   ],
   "progress": [
+    {
+      "commit": "Add gpt-5 ModelMatrix and routing",
+      "status": "done"
+    },
     {
       "commit": "Provide model env snippet",
       "status": "done"
@@ -278,7 +282,7 @@
       "status": "done"
     },
     {
-      "commit": "meta:update-progress \u2013 mark memory governance done",
+      "commit": "meta:update-progress – mark memory governance done",
       "status": "done"
     },
     {
@@ -551,7 +555,7 @@
       "status": "done"
     },
     {
-      "commit": "Chat-Log Parser f\u00fcr Aufgaben",
+      "commit": "Chat-Log Parser für Aufgaben",
       "status": "done"
     },
     {
@@ -683,7 +687,7 @@
       "status": "done"
     },
     {
-      "commit": "Der *SymbolMapper*-Agent \u00fcbersetzt numerische und textuelle Muster in definierte Symbol-Glyphen\u301015\u2020L53-L61\u3011. Er schlie\u00dft die L\u00fccke zwischen quantitativen Werten (z.\u202fB. statistische Ergebnisse, Scores) und der symbolischen **Sigillin-Sprache** des Systems. Manifest-Spezifikation: Der SymbolMapper v1 hat Methoden `map_numeric_to_symbol` und `map_text_to_glyph`\u301015\u2020L55-L63\u3011. Im Python-Skeleton (`agents/symbolmapper/main.py`) implementieren wir z.\u202fB. eine Liste vordefinierter Glyphen (im Manifest-Beispiel: \u25cb, \u2206, \u03c8, \u2605\u301015\u2020L67-L73\u3011) und die Abbildungsfunktionen analog zum YAML-Snippet: ein Durchschnittswert wird auf einen Index im Glyphen-Array gemappt\u301015\u2020L67-L75\u3011, Texte werden auf Basis von Schl\u00fcsselbegriffen einem Symbol zugeordnet (Bsp: enth\u00e4lt der Text \"Erweckung\", dann \u2605 als Glyph)\u301015\u2020L69-L73\u3011. Integration: Dieser Agent kann von anderen Modulen genutzt werden, die rohe Daten symbolisch darstellen wollen \u2013 z.\u202fB. der CREPBridge k\u00f6nnte SymbolMapper fragen, welcher Glyph einem bestimmten Score entspricht (um dann einen Sigil zu generieren). Auch f\u00fcr Graphen/Charts in der UI k\u00f6nnte SymbolMapper herangezogen werden, um interessante Datenpunkte mit Symbolen zu markieren. Orchestrator: wahrscheinlich auf Abruf, nicht dauernd laufend \u2013 d.h. Module rufen ihn als Library auf (alternativ EventBus-Request/Reply-Pattern). UI: Keine direkte, aber z.\u202fB. im Sigil-Portfolio des Nutzers k\u00f6nnten diese Glyphen vorkommen. Test & Deploy: Test, ob gegebene Werte die richtigen Symbole liefern (z.\u202fB. Eingabe [0.1, 0.9] ergibt einen Index im g\u00fcltigen Bereich und ein Symbol aus der Liste\u301015\u2020L137-L142\u3011). Deployment: Sicherstellen, dass NumPy verf\u00fcgbar ist (im Manifest als Dependency angegeben\u301015\u2020L61-L69\u3011) und dass das System die Unicode-Symbole unterst\u00fctzt (Fonts in UI etc.).",
+      "commit": "Der *SymbolMapper*-Agent übersetzt numerische und textuelle Muster in definierte Symbol-Glyphen【15†L53-L61】. Er schließt die Lücke zwischen quantitativen Werten (z. B. statistische Ergebnisse, Scores) und der symbolischen **Sigillin-Sprache** des Systems. Manifest-Spezifikation: Der SymbolMapper v1 hat Methoden `map_numeric_to_symbol` und `map_text_to_glyph`【15†L55-L63】. Im Python-Skeleton (`agents/symbolmapper/main.py`) implementieren wir z. B. eine Liste vordefinierter Glyphen (im Manifest-Beispiel: ○, ∆, ψ, ★【15†L67-L73】) und die Abbildungsfunktionen analog zum YAML-Snippet: ein Durchschnittswert wird auf einen Index im Glyphen-Array gemappt【15†L67-L75】, Texte werden auf Basis von Schlüsselbegriffen einem Symbol zugeordnet (Bsp: enthält der Text \"Erweckung\", dann ★ als Glyph)【15†L69-L73】. Integration: Dieser Agent kann von anderen Modulen genutzt werden, die rohe Daten symbolisch darstellen wollen – z. B. der CREPBridge könnte SymbolMapper fragen, welcher Glyph einem bestimmten Score entspricht (um dann einen Sigil zu generieren). Auch für Graphen/Charts in der UI könnte SymbolMapper herangezogen werden, um interessante Datenpunkte mit Symbolen zu markieren. Orchestrator: wahrscheinlich auf Abruf, nicht dauernd laufend – d.h. Module rufen ihn als Library auf (alternativ EventBus-Request/Reply-Pattern). UI: Keine direkte, aber z. B. im Sigil-Portfolio des Nutzers könnten diese Glyphen vorkommen. Test & Deploy: Test, ob gegebene Werte die richtigen Symbole liefern (z. B. Eingabe [0.1, 0.9] ergibt einen Index im gültigen Bereich und ein Symbol aus der Liste【15†L137-L142】). Deployment: Sicherstellen, dass NumPy verfügbar ist (im Manifest als Dependency angegeben【15†L61-L69】) und dass das System die Unicode-Symbole unterstützt (Fonts in UI etc.).",
       "status": "done"
     },
     {
@@ -871,7 +875,7 @@
       "status": "done"
     },
     {
-      "commit": "Aktivit\u00e4tsdaten via Dispatcher laden",
+      "commit": "Aktivitätsdaten via Dispatcher laden",
       "status": "done"
     },
     {
@@ -1603,7 +1607,7 @@
       "status": "done"
     },
     {
-      "commit": "docs: add Genesis_Ver\u00f6ffentlichungsstrategie",
+      "commit": "docs: add Genesis_Veröffentlichungsstrategie",
       "status": "done"
     },
     {
@@ -1611,7 +1615,7 @@
       "status": "done"
     },
     {
-      "commit": "c & Manifest-Generator \u2013 Dokumentation auf Knopfdruck",
+      "commit": "c & Manifest-Generator – Dokumentation auf Knopfdruck",
       "status": "done"
     },
     {
@@ -2203,7 +2207,7 @@
       "status": "done"
     },
     {
-      "commit": "SVG-Export oder WebSocket-Event f\u00fcr UI",
+      "commit": "SVG-Export oder WebSocket-Event für UI",
       "status": "done"
     },
     {
@@ -4019,7 +4023,7 @@
       "status": "done"
     },
     {
-      "commit": "die Simulation so aufbauen, dass sie **Variablen f\u00fcr Fortschritt und m\u00f6gliche H\u00fcrden** integriert",
+      "commit": "die Simulation so aufbauen, dass sie **Variablen für Fortschritt und mögliche Hürden** integriert",
       "status": "done"
     },
     {
@@ -4131,7 +4135,7 @@
       "status": "done"
     },
     {
-      "commit": "den Mechanismus zur **Energieumwandlung und Abk\u00fchlung zu Masse** in der Simulation explizit umsetzen",
+      "commit": "den Mechanismus zur **Energieumwandlung und Abkühlung zu Masse** in der Simulation explizit umsetzen",
       "status": "done"
     },
     {
@@ -4420,67 +4424,67 @@
   "featureLog": [
     {
       "featureId": "open-ethik-dashboard",
-      "commit": "meta:implement-features \u2013 open-ethik-dashboard",
+      "commit": "meta:implement-features – open-ethik-dashboard",
       "status": "done"
     },
     {
       "featureId": "implicit-todos",
-      "commit": "meta:extract-features \u2013 implicit todo extraction",
+      "commit": "meta:extract-features – implicit todo extraction",
       "status": "done"
     },
     {
       "featureId": "zivilisations-sandboxen",
-      "commit": "meta:extract-features \u2013 Zivilisations-Sandboxen",
+      "commit": "meta:extract-features – Zivilisations-Sandboxen",
       "status": "done"
     },
     {
       "featureId": "climate-integration",
-      "commit": "meta:extract-features \u2013 climate integration",
+      "commit": "meta:extract-features – climate integration",
       "status": "done"
     },
     {
       "featureId": "keilschrift",
-      "commit": "meta:extract-features \u2013 keilschrift",
+      "commit": "meta:extract-features – keilschrift",
       "status": "done"
     },
     {
       "featureId": "grok-agent",
-      "commit": "meta:implement-features \u2013 grok agent skeleton",
+      "commit": "meta:implement-features – grok agent skeleton",
       "status": "done"
     },
     {
       "featureId": "shadow-integration",
-      "commit": "meta:extract-features \u2013 shadow integration",
+      "commit": "meta:extract-features – shadow integration",
       "status": "done"
     },
     {
       "featureId": "self-reflection",
-      "commit": "meta:extract-features \u2013 self reflection",
+      "commit": "meta:extract-features – self reflection",
       "status": "done"
     },
     {
       "featureId": "memory-governance",
-      "commit": "meta:extract-features \u2013 memory governance",
+      "commit": "meta:extract-features – memory governance",
       "status": "done"
     },
     {
       "featureId": "turing-tests",
-      "commit": "meta:extract-features \u2013 turing tests",
+      "commit": "meta:extract-features – turing tests",
       "status": "done"
     },
     {
       "featureId": "schwerewellen",
-      "commit": "meta:extract-features \u2013 schwerewellen",
+      "commit": "meta:extract-features – schwerewellen",
       "status": "done"
     },
     {
       "featureId": "anthropic-multiversum",
-      "commit": "meta:extract-features \u2013 anthropic multiversum",
+      "commit": "meta:extract-features – anthropic multiversum",
       "status": "done"
     },
     {
       "featureId": "memory-governance",
-      "commit": "meta:implement-features \u2013 memory governance service",
+      "commit": "meta:implement-features – memory governance service",
       "status": "done"
     },
     {
@@ -4975,7 +4979,7 @@
       "status": "done"
     },
     {
-      "commit": "die Simulation so aufbauen, dass sie Variablen f\u00fcr Fortschritt und m\u00f6gliche H\u00fcrden integriert",
+      "commit": "die Simulation so aufbauen, dass sie Variablen für Fortschritt und mögliche Hürden integriert",
       "status": "done"
     },
     {
