@@ -111,3 +111,4 @@ Dev-Agents prüfen zu Beginn eines Laufs auf diese Dateien und priorisieren dere
 
 - Implemented generate-sigillin-jsonl script to aggregate sigil files into RAG-ready corpus.
 - Added CitationIndex to manage RAG chunk citations and rendering.
+- Implemented dataset API server to expose DatasetRegistry over HTTP.

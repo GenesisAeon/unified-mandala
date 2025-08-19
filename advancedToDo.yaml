@@ -12749,7 +12749,7 @@
   path: scripts/dataset-api.ts
   task: Serve dataset registry over HTTP
   test: ""
-  status: open
+  status: done
 - commit: Add CitationIndex
   path: packages/rag/CitationIndex.ts
   task: Store chunk citation metadata and render markdown and HTML
