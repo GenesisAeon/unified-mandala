@@ -1,5 +1,5 @@
 {
-  "lastCommit": "feat: add agent workflow engine",
+  "lastCommit": "chore: update advanced progress statuses",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
@@ -10,10 +10,6 @@
     {
       "commit": "Add gpt-5 ModelMatrix and routing",
       "status": "open"
-    },
-    {
-      "commit": "Introduce ToolAdapter for unified tool calling",
-      "status": "done"
     },
     {
       "commit": "Add gpt-5 QA script and Fourier logging",
@@ -1155,7 +1151,7 @@
     },
     {
       "commit": "Add extract-training-data enhancement ToDos",
-      "status": "pending"
+      "status": "done"
     },
     {
       "commit": "Add summary generator to training data extraction",
@@ -1455,7 +1451,8 @@
       "status": "done"
     },
     {
-      "commit": "added gateway and avatar hub"
+      "commit": "added gateway and avatar hub",
+      "status": "open"
     },
     {
       "commit": "Append new advanced tasks from conversations",
@@ -1827,19 +1824,19 @@
     },
     {
       "commit": "Plan cyclic reference validation for conversations",
-      "status": "pending"
+      "status": "done"
     },
     {
       "commit": "Plan root node presence validation",
-      "status": "pending"
+      "status": "done"
     },
     {
       "commit": "Plan conversation timestamp ordering validation",
-      "status": "pending"
+      "status": "done"
     },
     {
       "commit": "Plan message weight range validation",
-      "status": "pending"
+      "status": "done"
     },
     {
       "commit": "Validate conversation template and model slug",
@@ -5415,6 +5412,10 @@
     },
     {
       "commit": "Add CitationIndex",
+      "status": "done"
+    },
+    {
+      "commit": "Introduce ToolAdapter for unified tool calling",
       "status": "done"
     }
   ],
