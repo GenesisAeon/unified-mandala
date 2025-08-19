@@ -1,11 +1,12 @@
 agents:
   personhood-agent:
     tools:
-      - "*"
+      - consent-registry
+      - policy-guard
     models:
-      - "*"
+      - gpt-4o-mini
   autotuning-agent:
     tools:
-      - "*"
+      - autotune-worker
     models:
-      - "*"
+      - gpt-4o-mini
