@@ -1,6 +1,6 @@
 {
-  "lastCommit": "feat: add MasterGPTBridge orchestrator",
-  "fractalStep": "MasterGPTBridge orchestrator implemented",
+  "lastCommit": "Add gpt-5 QA script and Fourier logging",
+  "fractalStep": "gpt-5 QA script integrated",
   "openBranches": [
     "work"
   ],
@@ -5174,6 +5174,10 @@
     },
     {
       "commit": "Tune ethics policy for gpt-5",
+      "status": "done"
+    },
+    {
+      "commit": "Add gpt-5 QA script and Fourier logging",
       "status": "done"
     }
   ],

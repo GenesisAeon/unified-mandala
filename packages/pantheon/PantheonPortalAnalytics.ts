@@ -8,6 +8,7 @@ export class PantheonPortalAnalytics {
     poetics: 0,
   };
   private crepCount = 0;
+  private fourierPeaks: number[] = [];
 
   recordVisit() {
     this.visits += 1;
@@ -15,6 +16,10 @@ export class PantheonPortalAnalytics {
 
   recordEvent(name: string) {
     this.events[name] = (this.events[name] || 0) + 1;
+  }
+
+  recordFourierPeak(peak: number) {
+    this.fourierPeaks.push(peak);
   }
 
   recordCREP(metrics: {
@@ -47,6 +52,7 @@ export class PantheonPortalAnalytics {
       visits: this.visits,
       events: { ...this.events },
       outcomeKPIs: this.getOutcomeKPIs(),
+      fourierPeaks: [...this.fourierPeaks],
     };
   }
 }

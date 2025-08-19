@@ -35,6 +35,7 @@
     "generate:agents-diagram": "node scripts/generate-agents-diagram.js",
     "generate:agent-docs": "node scripts/generate-agent-docs.js",
     "qa": "ts-node scripts/qa-test-runner.ts",
+    "qa:gpt5": "ts-node scripts/qa-test-runner.ts scripts/qa-gpt5.json",
     "ghost-shell:cluster": "ts-node services/ghost-shell/cluster.ts",
     "ghost-shell:server": "ts-node services/ghost-shell/server.ts",
     "generate:ghostshell-nginx": "ts-node scripts/generate-ghostshell-nginx.ts",

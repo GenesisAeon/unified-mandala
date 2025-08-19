@@ -12143,7 +12143,7 @@
   path: scripts/qa-gpt5.json
   task: Run smoke prompts and log Fourier peaks in PantheonPortalAnalytics
   test: pnpm run qa:gpt5
-  status: open
+  status: done
 - commit: Tune ethics policy for gpt-5
   path: plugins/ethics-policy.yaml
   task: Raise refusal thresholds and expand red-team suite
