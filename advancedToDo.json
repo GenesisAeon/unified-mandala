@@ -12623,7 +12623,7 @@
     "path": "docs/agents/AgentWorkflow.md",
     "task": "Explain lifecycle events and system start sequence",
     "test": "",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Document open source model setup",
@@ -12644,7 +12644,7 @@
     "path": "docs/system/SystemStart.md",
     "task": "Outline steps to launch agents and models with ts-node",
     "test": "",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Add agent workflow CI check",
