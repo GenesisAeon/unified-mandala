@@ -1,0 +1,10 @@
+# Example environment variables for local model providers
+
+# Ollama model server endpoint
+OLLAMA_URL=http://localhost:11434
+
+# Text Generation Inference (TGI) server endpoint
+TGI_URL=http://localhost:8080
+
+# vLLM server endpoint
+VLLM_URL=http://localhost:8000
