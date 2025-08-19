@@ -1,5 +1,5 @@
 {
-  "lastCommit": "chore: update advanced progress statuses",
+  "lastCommit": "chore: update progress metadata",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
@@ -373,10 +373,6 @@
     },
     {
       "commit": "Add dataset API",
-      "status": "open"
-    },
-    {
-      "commit": "Add RAG citation demo script",
       "status": "open"
     },
     {
@@ -5416,6 +5412,10 @@
     },
     {
       "commit": "Introduce ToolAdapter for unified tool calling",
+      "status": "done"
+    },
+    {
+      "commit": "Add RAG citation demo script",
       "status": "done"
     }
   ],
