@@ -12468,7 +12468,7 @@
     "path": "scripts/parse-advanced-conversations.js",
     "task": "Convert voice notes into advancedToDo entries using parse-advanced-conversations.js",
     "test": "scripts/__tests__/parse-advanced-conversations.test.ts",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Generate sigillin JSONL index",

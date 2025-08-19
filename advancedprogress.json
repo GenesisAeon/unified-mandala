@@ -1,6 +1,6 @@
 {
-  "lastCommit": "chore: tune ethics policy for gpt-5",
-  "fractalStep": "implementiert",
+  "lastCommit": "feat: parse voice notes into advanced tasks",
+  "fractalStep": "voice note pipeline implemented",
   "openBranches": [
     "work"
   ],
@@ -13,6 +13,10 @@
     },
     {
       "commit": "Add gpt-5 QA script and Fourier logging",
+      "status": "open"
+    },
+    {
+      "commit": "Tune ethics policy for gpt-5",
       "status": "open"
     },
     {
@@ -33,10 +37,6 @@
     },
     {
       "commit": "Add gpt-5 smoke test suite",
-      "status": "open"
-    },
-    {
-      "commit": "Implement voice note to advancedToDo pipeline",
       "status": "open"
     },
     {
@@ -354,10 +354,6 @@
     {
       "commit": "Add federated API",
       "status": "open"
-    },
-    {
-      "commit": "Add dataset API",
-      "status": "done"
     },
     {
       "commit": "Add RAG API deployment",
@@ -750,10 +746,6 @@
     {
       "commit": "Add UI switchboard service",
       "status": "open"
-    },
-    {
-      "commit": "Add policy lint script",
-      "status": "done"
     },
     {
       "commit": "Add compose override for UM services",

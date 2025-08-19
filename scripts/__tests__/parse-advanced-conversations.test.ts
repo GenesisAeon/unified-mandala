@@ -1,6 +1,9 @@
 import fs from 'fs';
 import path from 'path';
-const { parseAdvancedConversations } = require('../parse-advanced-conversations');
+const {
+  parseAdvancedConversations,
+  extractTodosFromVoiceNote,
+} = require('../parse-advanced-conversations');
 
 test('parseAdvancedConversations extracts TODO fragments', () => {
   const tmpDir = fs.mkdtempSync(path.join(__dirname, 'tmp'));
@@ -13,4 +16,11 @@ test('parseAdvancedConversations extracts TODO fragments', () => {
   const out = fs.readFileSync(path.join(dest, 'convos-grep.json'), 'utf8');
   expect(out.includes('test')).toBe(true);
   fs.rmSync(tmpDir, { recursive: true });
+});
+
+test('extractTodosFromVoiceNote converts TODO lines', () => {
+  const transcript = 'random line\nTODO: finish docs\nAnother';
+  const tasks = extractTodosFromVoiceNote(transcript);
+  expect(tasks).toHaveLength(1);
+  expect(tasks[0].task).toBe('finish docs');
 });
