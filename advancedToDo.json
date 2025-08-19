@@ -12566,14 +12566,14 @@
     "path": "packages/agents/AgentWorkflowEngine.ts",
     "task": "Load agents.yaml and emit lifecycle events with status snapshot",
     "test": "scripts/system-start.ts",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Create agent registry file",
     "path": "agents.yaml",
     "task": "List core agents with ids, capabilities and lifecycle events",
     "test": "",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Add event bus subjects and LocalEventBus",
@@ -12587,7 +12587,7 @@
     "path": "scripts/system-start.ts",
     "task": "Initialize agents and log lifecycle events with dry-run option",
     "test": "",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Implement model router and providers",
