@@ -12123,7 +12123,7 @@
   path: packages/gpt-bridges/aeon-gpt-synapse.ts
   task: Define model capabilities and route tasks with gpt-5 fallback
   test: packages/gpt-bridges/aeon-gpt-synapse.test.ts
-  status: open
+  status: done
 - commit: Declare gpt-5 capabilities for agents
   path: agents.yaml
   task: Set capabilities.model to ["gpt-5","gpt-4.1"] for core agents
