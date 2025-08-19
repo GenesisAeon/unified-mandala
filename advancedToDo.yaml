@@ -12184,7 +12184,7 @@
   task: Convert voice notes into advancedToDo entries using
     parse-advanced-conversations.js
   test: scripts/__tests__/parse-advanced-conversations.test.ts
-  status: open
+  status: done
 - commit: Generate sigillin JSONL index
   path: data/sigils/sigillin.jsonl
   task: Aggregate existing sigil files into a RAG-ready JSONL corpus
