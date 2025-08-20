@@ -1,5 +1,5 @@
 {
-  "lastCommit": "feat: integrate FutureTechFramework",
+  "lastCommit": "Enable gpt-5 filter in MandalaNetworkView",
   "fractalStep": "universe tree prototype ready",
   "openBranches": [
     "work"
@@ -4413,6 +4413,10 @@
     },
     {
       "commit": "Configure gpt-5 KEDA scaler and budget guard",
+      "status": "done"
+    },
+    {
+      "commit": "Enable gpt-5 filter in MandalaNetworkView",
       "status": "done"
     }
   ],
