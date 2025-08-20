@@ -12168,7 +12168,7 @@
   path: packages/gpt-bridges/provider/openai.ts
   task: Use responses API with fallback to chat completions
   test: packages/gpt-bridges/provider/openai.test.ts
-  status: open
+  status: done
 - commit: Add gpt-5 smoke test suite
   path: tests/gpt5-smoke.test.ts
   task: Verify JSON tool call, RAG answer and image caption using gpt-5

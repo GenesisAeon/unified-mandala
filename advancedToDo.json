@@ -12448,7 +12448,7 @@
     "path": "packages/gpt-bridges/provider/openai.ts",
     "task": "Use responses API with fallback to chat completions",
     "test": "packages/gpt-bridges/provider/openai.test.ts",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Add gpt-5 smoke test suite",
@@ -12675,12 +12675,12 @@
     "status": "open"
   },
   {
-  "commit": "Provide NATS env snippet",
-  "path": "docs/snippets/ENV_NATS.example",
-  "task": "Document NATS_URL and credentials placeholders",
-  "test": "",
-  "status": "done"
-},
+    "commit": "Provide NATS env snippet",
+    "path": "docs/snippets/ENV_NATS.example",
+    "task": "Document NATS_URL and credentials placeholders",
+    "test": "",
+    "status": "done"
+  },
   {
     "commit": "Implement ToolRegistry",
     "path": "packages/gpt-bridges/tools/ToolRegistry.ts",
