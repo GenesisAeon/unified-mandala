@@ -56,3 +56,4 @@ export * from './mistral-code-agent';
 export * from './QuantumTheoryAgent';
 export * from './ReviewAgent';
 export * from './MasterGPTBridge';
+export * from './FutureTechFramework';
