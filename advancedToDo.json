@@ -12435,7 +12435,7 @@
     "path": "packages/unifiedmandala-ui/components/AdminMetrics.tsx",
     "task": "Show gpt-5 badge with avg latency and success rate",
     "test": "packages/unifiedmandala-ui/components/AdminMetrics.test.tsx",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Enable gpt-5 filter in MandalaNetworkView",

@@ -4,6 +4,8 @@ export interface AdminMetric {
   avgCREP: number;
   sigillinAdoption: number;
   openTodos: number;
+  gpt5AvgLatency: number;
+  gpt5SuccessRate: number;
 }
 
 export function useAdminMetrics() {
