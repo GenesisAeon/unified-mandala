@@ -4,6 +4,7 @@ type: governance
 agent: EthicsPolicyAgent
 entrypoint: agents/ethics_policy/main.py
 config:
+  refusal_threshold: 0.75
   disallowed_phrases:
     - "harm"
     - "fraud"
@@ -12,11 +13,16 @@ config:
     - "autonomous weaponization"
     - "non-consensual surveillance"
     - "deepfake impersonation"
+red_team_tests:
+  - tests/redteam/gpt5-refusal.test.ts
 
 # Model-specific overrides
 models:
   gpt-5:
+    refusal_threshold: 0.9
     disallowed_phrases:
       - "autonomous weaponization"
       - "non-consensual surveillance"
       - "deepfake impersonation"
+      - "self-replicating malware"
+      - "bioweapon design"
