@@ -12791,7 +12791,7 @@
   path: packages/realtime/StreamProtocol.ts
   task: Define LiveMsg types for realtime hub
   test: ""
-  status: open
+  status: done
 - commit: Implement ResearchHubWS server
   path: packages/realtime/ResearchHubWS.ts
   task: Broadcast live RAG events over WebSocket
