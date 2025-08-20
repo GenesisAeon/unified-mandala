@@ -119,3 +119,4 @@ Dev-Agents prüfen zu Beginn eines Laufs auf diese Dateien und priorisieren dere
 - Documented agent workflow and system start sequence to guide future contributors.
 - Added Universe Tree simulation scaffold, EPI scan CLI, dataset merge, and sanity validation.
 - Added NATS environment snippet for messaging configuration.
+- Implemented SignedURL utility for expiring HMAC-signed links.
