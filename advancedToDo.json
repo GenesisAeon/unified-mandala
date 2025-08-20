@@ -12675,12 +12675,12 @@
     "status": "open"
   },
   {
-    "commit": "Provide NATS env snippet",
-    "path": "docs/snippets/ENV_NATS.example",
-    "task": "Document NATS_URL and credentials placeholders",
-    "test": "",
-    "status": "open"
-  },
+  "commit": "Provide NATS env snippet",
+  "path": "docs/snippets/ENV_NATS.example",
+  "task": "Document NATS_URL and credentials placeholders",
+  "test": "",
+  "status": "done"
+},
   {
     "commit": "Implement ToolRegistry",
     "path": "packages/gpt-bridges/tools/ToolRegistry.ts",

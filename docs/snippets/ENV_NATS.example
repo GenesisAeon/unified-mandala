@@ -1,0 +1,9 @@
+# Example environment variables for NATS messaging
+
+# NATS server endpoint
+NATS_URL=nats://localhost:4222
+
+# Optional credentials
+# NATS_USER=demo
+# NATS_PASSWORD=secret
+# NATS_CREDS=./nats.creds

@@ -12335,7 +12335,7 @@
   path: docs/snippets/ENV_NATS.example
   task: Document NATS_URL and credentials placeholders
   test: ""
-  status: open
+  status: done
 - commit: Implement ToolRegistry
   path: packages/gpt-bridges/tools/ToolRegistry.ts
   task: Register tools and transform specs to OpenAI format
