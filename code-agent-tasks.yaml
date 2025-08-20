@@ -26,3 +26,14 @@ tasks:
   - id: rag.query.demo
     run:
       - npx ts-node scripts/rag-query.ts "What is Mandala?"
+  - id: dataset.api
+    run:
+      - npx ts-node scripts/dataset-api.ts
+    verify:
+      - curl -f http://localhost:3000/datasets || echo "API not responding"
+  - id: rag.cite.demo
+    run:
+      - npx ts-node scripts/rag-cite-demo.ts "What is Mandala?"
+  - id: k8s.apply.base
+    run:
+      - kubectl apply -f deployment

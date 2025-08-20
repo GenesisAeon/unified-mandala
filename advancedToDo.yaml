@@ -12785,7 +12785,7 @@
   path: code-agent-tasks.yaml
   task: Add dataset.api, rag.cite.demo and k8s.apply.base tasks
   test: ""
-  status: open
+  status: done
 - commit: Add Realtime StreamProtocol definitions
   path: packages/realtime/StreamProtocol.ts
   task: Define LiveMsg types for realtime hub
