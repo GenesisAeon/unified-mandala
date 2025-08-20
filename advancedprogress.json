@@ -5022,6 +5022,10 @@
     {
       "commit": "Add summary output to sync-todo-progress script",
       "status": "done"
+    },
+    {
+      "commit": "Switch OpenAI provider to responses API",
+      "status": "done"
     }
   ],
   "metacommitTags": [
@@ -5215,6 +5219,10 @@
     },
     {
       "commit": "Extend code agent tasks for dataset and k8s",
+      "status": "done"
+    },
+    {
+      "commit": "Switch OpenAI provider to responses API",
       "status": "done"
     }
   ],
