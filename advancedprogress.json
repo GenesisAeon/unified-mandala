@@ -4405,6 +4405,10 @@
     {
       "commit": "Provide NATS env snippet",
       "status": "done"
+    },
+    {
+      "commit": "Configure gpt-5 KEDA scaler and budget guard",
+      "status": "done"
     }
   ],
   "completed": [

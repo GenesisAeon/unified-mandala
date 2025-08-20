@@ -121,3 +121,4 @@ Dev-Agents prüfen zu Beginn eines Laufs auf diese Dateien und priorisieren dere
 - Added NATS environment snippet for messaging configuration.
 - Implemented SignedURL utility for expiring HMAC-signed links.
 - Added FutureTechFramework agent skeleton with module registry.
+- Configured gpt-5 KEDA scaler with daily token budget guard.

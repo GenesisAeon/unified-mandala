@@ -1,0 +1,22 @@
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: gpt5-queue-scaledobject
+spec:
+  scaleTargetRef:
+    name: gpt5-worker
+  pollingInterval: 30
+  cooldownPeriod: 300
+  minReplicaCount: 1
+  maxReplicaCount: 5
+  triggers:
+    - type: nats-jetstream
+      metadata:
+        natsServerMonitoringEndpoint: "http://nats.monitoring:8222"
+        streamName: gpt5
+        consumerName: gpt5-worker
+        pendingMessages: "100"
+    - type: metrics-api
+      metadata:
+        url: "http://gpt5-budget-guard:8080/usage"
+        value: "MAX_DAILY_TOKENS"
