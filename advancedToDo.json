@@ -14527,7 +14527,7 @@
     "path": "packages/crep/metrics.ts",
     "task": "Add hopeActivation field to CREP evaluation schema",
     "test": "packages/crep/metrics.test.ts",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Compare tech vs society branches in Universe Tree",

@@ -13660,7 +13660,7 @@
   path: packages/crep/metrics.ts
   task: Add hopeActivation field to CREP evaluation schema
   test: packages/crep/metrics.test.ts
-  status: open
+  status: done
 - commit: Compare tech vs society branches in Universe Tree
   path: sims/universe_tree_optimism.py
   task: Simulate and contrast tech- and society-optimistic branches for
