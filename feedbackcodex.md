@@ -120,3 +120,4 @@ Dev-Agents prüfen zu Beginn eines Laufs auf diese Dateien und priorisieren dere
 - Added Universe Tree simulation scaffold, EPI scan CLI, dataset merge, and sanity validation.
 - Added NATS environment snippet for messaging configuration.
 - Implemented SignedURL utility for expiring HMAC-signed links.
+- Added FutureTechFramework agent skeleton with module registry.
