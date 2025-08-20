@@ -3,7 +3,7 @@ import * as d3 from "d3";
 import { Tooltip } from "react-tooltip";
 
 // Annahme: sigillin_nodes.json ist bereits im Projekt und importierbar
-import nodesData from "../data/sigillin_nodes.json";
+import rawNodesData from "../data/sigillin_nodes.json";
 import { getCREPPhaseColor } from "../../shared-utils";
 
 interface MandalaNode {
@@ -13,6 +13,7 @@ interface MandalaNode {
   related: Array<{ id: string; relation: string }>;
   type: string;
   status: string;
+  model?: string;
   poetry?: string;
   x?: number;
   y?: number;
@@ -28,9 +29,12 @@ export const MandalaNetworkView: React.FC = () => {
   const svgRef = useRef<SVGSVGElement>(null);
   const [filterType, setFilterType] = useState<string>('all');
   const [filterLevel, setFilterLevel] = useState<string>('all');
+  const [filterModel, setFilterModel] = useState<string>('all');
   const [selectedNode, setSelectedNode] = useState<MandalaNode | null>(null);
+  const nodesData = rawNodesData as MandalaNode[];
   // verfügbare Sigillin-Typen für die Filter-UI ermitteln
   const types = Array.from(new Set(nodesData.map(n => n.type)));
+  const models = Array.from(new Set(nodesData.map(n => n.model).filter(Boolean))) as string[];
 
   useEffect(() => {
     // D3-Force-Simulation
@@ -44,6 +48,7 @@ export const MandalaNetworkView: React.FC = () => {
       if (filterLevel === 'low' && sum >= 10) return false;
       if (filterLevel === 'medium' && (sum < 10 || sum > 20)) return false;
       if (filterLevel === 'high' && sum <= 20) return false;
+      if (filterModel !== 'all' && n.model !== filterModel) return false;
       return true;
     });
     const links = nodes.flatMap(n =>
@@ -132,7 +137,7 @@ export const MandalaNetworkView: React.FC = () => {
         .attr("x", d => d.x!)
         .attr("y", d => d.y!);
     });
-  }, [filterType, filterLevel]);
+  }, [filterType, filterLevel, filterModel]);
 
   const handleExportSVG = () => {
     const svg = svgRef.current;
@@ -174,6 +179,19 @@ export const MandalaNetworkView: React.FC = () => {
           <option value="low">Niedrig</option>
           <option value="medium">Mittel</option>
           <option value="high">Hoch</option>
+        </select>
+      </label>
+      <label className="mb-2">
+        Model:
+        <select
+          value={filterModel}
+          onChange={e => setFilterModel(e.target.value)}
+          className="ml-2 border p-1 rounded"
+        >
+          <option value="all">Alle</option>
+          {models.map(m => (
+            <option key={m} value={m}>{m}</option>
+          ))}
         </select>
       </label>
       <svg ref={svgRef} width={800} height={600} tabIndex={0} aria-label="Mandala Netzwerk" />

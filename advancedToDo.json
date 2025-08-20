@@ -12442,7 +12442,7 @@
     "path": "packages/unifiedmandala-ui/components/MandalaNetworkView.tsx",
     "task": "Allow filtering network view to runs using gpt-5",
     "test": "packages/unifiedmandala-ui/components/MandalaNetworkView.test.tsx",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Switch OpenAI provider to responses API",
