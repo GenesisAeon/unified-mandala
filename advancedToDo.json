@@ -12428,7 +12428,7 @@
     "path": "deployment/keda/gpt5-scaler.yaml",
     "task": "Add dedicated scaler and MAX_DAILY_TOKENS limit for gpt-5 queue",
     "test": "deployment/keda/gpt5-scaler.test.ts",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Expose gpt-5 metrics in admin panel",
