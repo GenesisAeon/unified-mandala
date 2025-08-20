@@ -12148,7 +12148,7 @@
   path: plugins/ethics-policy.yaml
   task: Raise refusal thresholds and expand red-team suite
   test: tests/redteam/gpt5-refusal.test.ts
-  status: open
+  status: done
 - commit: Configure gpt-5 KEDA scaler and budget guard
   path: deployment/keda/gpt5-scaler.yaml
   task: Add dedicated scaler and MAX_DAILY_TOKENS limit for gpt-5 queue
