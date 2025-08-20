@@ -1,5 +1,5 @@
 {
-  "lastCommit": "Extend code agent tasks for dataset and k8s",
+  "lastCommit": "Provide NATS env snippet",
   "fractalStep": "universe tree prototype ready",
   "openBranches": [
     "work"
@@ -4389,6 +4389,10 @@
     },
     {
       "commit": "Implement Universe Tree simulation and EPI tools",
+      "status": "done"
+    },
+    {
+      "commit": "Provide NATS env snippet",
       "status": "done"
     }
   ],
