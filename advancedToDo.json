@@ -12769,8 +12769,8 @@
     "commit": "Introduce HmacSigner for event envelopes",
     "path": "packages/security/HmacSigner.ts",
     "task": "Sign and verify events using shared secret",
-    "test": "",
-    "status": "open"
+    "test": "packages/security/HmacSigner.test.ts",
+    "status": "done"
   },
   {
     "commit": "Start metrics server script",
