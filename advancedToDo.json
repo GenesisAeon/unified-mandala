@@ -13358,7 +13358,7 @@
     "path": "packages/security/SignedURL.ts",
     "task": "Generate and verify expiring share tokens",
     "test": "",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Create share API server",
