@@ -12846,7 +12846,7 @@
   path: tests/signedurl.test.ts
   task: Verify signing and expiration logic
   test: ""
-  status: open
+  status: done
 - commit: Add realtime flow smoke test
   path: tests/realtime.flow.test.ts
   task: Demonstrate token chunking in realtime hub
