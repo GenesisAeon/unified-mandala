@@ -12365,7 +12365,7 @@
   path: packages/agents/AgentHeartbeat.ts
   task: Auto-register agent and emit periodic health events with JSONL log
   test: ""
-  status: open
+  status: done
 - commit: Expose agent health API
   path: apps/sharedream-interface/pages/api/agents/health.ts
   task: Serve latest heartbeat records from data/agents/heartbeats.jsonl
