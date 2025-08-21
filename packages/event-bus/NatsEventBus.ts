@@ -1,12 +1,20 @@
-import { connect, NatsConnection, StringCodec, Subscription } from 'nats';
+import { connect, NatsConnection, StringCodec, Subscription, ConnectionOptions } from 'nats';
 import { Subjects } from './subjects';
 
 export class NatsEventBus {
   private nc?: NatsConnection;
   private sc = StringCodec();
 
-  async connect(url = 'nats://localhost:4222'): Promise<void> {
-    this.nc = await connect({ servers: url });
+  async connect(options: { url?: string; creds?: string; maxReconnects?: number } = {}): Promise<void> {
+    const { url = 'nats://localhost:4222', creds, maxReconnects } = options;
+    const connectOpts: ConnectionOptions = { servers: url } as ConnectionOptions;
+    if (creds) {
+      (connectOpts as any).userCreds = creds;
+    }
+    if (typeof maxReconnects === 'number') {
+      (connectOpts as any).maxReconnectAttempts = maxReconnects;
+    }
+    this.nc = await connect(connectOpts);
   }
 
   async publish(subject: Subjects, payload: unknown): Promise<void> {
