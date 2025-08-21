@@ -130,3 +130,4 @@ Dev-Agents prüfen zu Beginn eines Laufs auf diese Dateien und priorisieren dere
 - Added AgentStatusPanel component to display agent status snapshots.
 - Added provenance hashing utility and tests for traceable artifact signatures.
 - Implemented bridge between LocalEventBus and NATS with start script.
+- Implemented chatWithTools helper and demonstration script for tool execution.

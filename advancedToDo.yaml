@@ -12348,12 +12348,12 @@
   path: packages/gpt-bridges/router/callWithTools.ts
   task: Iterate model responses and execute registered tools
   test: ""
-  status: open
+  status: done
 - commit: Create tool-calling demo script
   path: scripts/tools-demo.ts
   task: Demonstrate tool execution with vLLM/OpenAI-compatible model
   test: ""
-  status: open
+  status: done
 - commit: Introduce AgentHeartbeat class
   path: packages/agents/AgentHeartbeat.ts
   task: Auto-register agent and emit periodic health events with JSONL log
