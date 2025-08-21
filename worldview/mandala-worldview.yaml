@@ -10,3 +10,20 @@ crep_mapping:
     description: Quantifies aspirational impact within CREP evaluations.
   - metric: depth
     description: Measures contextual richness and symbolic depth.
+blueprint:
+  layers:
+    - name: observation
+      focus: Monitor CREP and EVC signals across the mandala.
+    - name: reflection
+      focus: Align insights with Emergence Viability Criteria.
+    - name: action
+      focus: Feed calibrated decisions back into the system.
+  loops:
+    - perceive
+    - calibrate
+    - harmonize
+    - express
+decision_protocol:
+  - check_crep_alignment
+  - verify_evc_thresholds
+  - enact_iteration
