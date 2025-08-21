@@ -1,5 +1,5 @@
 {
-  "lastCommit": "feat: add sigil search panel and api",
+  "lastCommit": "feat: validate tool arguments with AJV",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
@@ -4509,6 +4509,10 @@
     },
     {
       "commit": "Add Mandala Sigil link bridge",
+      "status": "done"
+    },
+    {
+      "commit": "Validate tool arguments with AJV",
       "status": "done"
     }
   ],

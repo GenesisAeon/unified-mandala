@@ -12393,7 +12393,7 @@
   path: packages/gpt-bridges/tools/validateArgs.ts
   task: Check tool call inputs against JSON schema before execution
   test: ""
-  status: open
+  status: done
 - commit: Add PolicyEnforcer for governance
   path: packages/governance/PolicyEnforcer.ts
   task: Restrict tools, models and subjects based on permissions.yaml
