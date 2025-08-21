@@ -12408,7 +12408,7 @@
   path: scripts/metrics-start.ts
   task: Expose Prometheus /metrics for runtime stats
   test: ""
-  status: open
+  status: done
 - commit: Provide KEDA autoscaling template
   path: deployment/keda/scaledobject-natsjs.yaml
   task: Scale workers by JetStream lag using KEDA
