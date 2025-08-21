@@ -12780,7 +12780,7 @@
     "path": "scripts/metrics-start.ts",
     "task": "Expose Prometheus /metrics for runtime stats",
     "test": "",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Provide KEDA autoscaling template",

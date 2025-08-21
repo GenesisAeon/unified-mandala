@@ -1,5 +1,5 @@
 {
-  "lastCommit": "feat: add BudgetGuard utility",
+  "lastCommit": "feat: add metrics server script",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
@@ -49,10 +49,6 @@
     },
     {
       "commit": "Add PolicyEnforcer for governance",
-      "status": "open"
-    },
-    {
-      "commit": "Start metrics server script",
       "status": "open"
     },
     {
@@ -5445,6 +5441,10 @@
     {
       "commit": "Add BudgetGuard utility",
       "status": "done"
+    },
+    {
+      "commit": "Start metrics server script",
+      "status": "done"
     }
   ],
   "completed": [
@@ -5498,6 +5498,10 @@
     },
     {
       "commit": "Document vector index env snippet",
+      "status": "done"
+    },
+    {
+      "commit": "Start metrics server script",
       "status": "done"
     }
   ],
@@ -6288,3 +6292,4 @@
     }
   ]
 }
+
