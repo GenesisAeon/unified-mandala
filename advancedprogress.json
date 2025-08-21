@@ -1,11 +1,11 @@
 {
-  "lastCommit": "feat: bridge LocalEventBus with NATS",
+  "lastCommit": "Add chatWithTools helper and demo script",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
   ],
   "mergeConflicts": [],
-  "notes": "Implemented LocalEventBus<->NATS bridge and start script",
+  "notes": "Implemented chatWithTools helper and tool-calling demo script",
   "pendingTasks": [
     {
       "commit": "Add gpt-5 smoke test suite",
@@ -17,14 +17,6 @@
     },
     {
       "commit": "Add open-source model provider interfaces",
-      "status": "open"
-    },
-    {
-      "commit": "Add chatWithTools helper",
-      "status": "open"
-    },
-    {
-      "commit": "Create tool-calling demo script",
       "status": "open"
     },
     {
@@ -909,6 +901,14 @@
     }
   ],
   "progress": [
+    {
+      "commit": "Add chatWithTools helper",
+      "status": "done"
+    },
+    {
+      "commit": "Create tool-calling demo script",
+      "status": "done"
+    },
     {
       "commit": "Add Provenance hashing utilities",
       "status": "done"
