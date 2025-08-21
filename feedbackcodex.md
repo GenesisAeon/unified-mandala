@@ -126,3 +126,4 @@ Dev-Agents prüfen zu Beginn eines Laufs auf diese Dateien und priorisieren dere
 - Documented open source model setup for local providers.
 - Scaffolded Wissenschaftliche Versuche package with placeholder modules and tests.
 - Implemented agent status API route serving agents/status.json.
+- Extended `list-open-advanced-todos` script to merge YAML and JSON tasks and added tests for multi-file support.

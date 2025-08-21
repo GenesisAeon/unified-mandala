@@ -1,10 +1,29 @@
 const fs = require('fs');
 const path = require('path');
+const yaml = require('js-yaml');
 
-function listOpenAdvancedTodos(pattern, todoPath) {
-  const file = todoPath || path.resolve(__dirname, '..', 'advancedToDo.json');
+function readTodoFile(file) {
   const raw = fs.readFileSync(file, 'utf-8');
-  const data = JSON.parse(raw);
+  const ext = path.extname(file).toLowerCase();
+  return ext === '.yaml' || ext === '.yml' ? yaml.load(raw) : JSON.parse(raw);
+}
+
+function listOpenAdvancedTodos(pattern, todoPaths) {
+  const files =
+    todoPaths && todoPaths.length
+      ? Array.isArray(todoPaths)
+        ? todoPaths
+        : [todoPaths]
+      : [
+          path.resolve(__dirname, '..', 'advancedToDo.json'),
+          path.resolve(__dirname, '..', 'advancedToDo.yaml')
+        ];
+  let data = [];
+  for (const file of files) {
+    if (fs.existsSync(file)) {
+      data = data.concat(readTodoFile(file));
+    }
+  }
   const regex = pattern ? new RegExp(pattern, 'i') : null;
   return data
     .filter(
@@ -21,7 +40,10 @@ if (require.main === module) {
   const limit = parseInt(process.argv[2], 10) || 5;
   const grepIndex = process.argv.indexOf('--grep');
   const pattern = grepIndex >= 0 ? process.argv[grepIndex + 1] : undefined;
-  const open = listOpenAdvancedTodos(pattern);
+  const pathIndex = process.argv.indexOf('--path');
+  const pathArg = pathIndex >= 0 ? process.argv[pathIndex + 1] : undefined;
+  const todoPaths = pathArg ? pathArg.split(',') : undefined;
+  const open = listOpenAdvancedTodos(pattern, todoPaths);
   const display = open.slice(0, limit);
   display.forEach((t) => {
     const commitText =
