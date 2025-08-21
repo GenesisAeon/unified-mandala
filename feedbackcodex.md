@@ -131,3 +131,4 @@ Dev-Agents prüfen zu Beginn eines Laufs auf diese Dateien und priorisieren dere
 - Added provenance hashing utility and tests for traceable artifact signatures.
 - Implemented bridge between LocalEventBus and NATS with start script.
 - Implemented chatWithTools helper and demonstration script for tool execution.
+- Added SystemOverview component for monitoring core services.
