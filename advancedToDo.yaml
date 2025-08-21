@@ -12418,7 +12418,7 @@
   path: packages/costs/BudgetGuard.ts
   task: Track token spend per agent and enforce daily limits
   test: ""
-  status: open
+  status: done
 - commit: Add ToolRegistry tests
   path: tests/toolRegistry.test.ts
   task: Verify tool registration, listing and handler invocation

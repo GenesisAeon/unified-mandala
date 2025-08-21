@@ -12794,7 +12794,7 @@
     "path": "packages/costs/BudgetGuard.ts",
     "task": "Track token spend per agent and enforce daily limits",
     "test": "",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Add ToolRegistry tests",

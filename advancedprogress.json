@@ -1,11 +1,11 @@
 {
-  "lastCommit": "Add chatWithTools helper and demo script",
+  "lastCommit": "feat: add BudgetGuard utility",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
   ],
   "mergeConflicts": [],
-  "notes": "Implemented chatWithTools helper and tool-calling demo script",
+  "notes": "Implemented BudgetGuard utility for token limits",
   "pendingTasks": [
     {
       "commit": "Add gpt-5 smoke test suite",
@@ -57,10 +57,6 @@
     },
     {
       "commit": "Provide KEDA autoscaling template",
-      "status": "open"
-    },
-    {
-      "commit": "Add BudgetGuard utility",
       "status": "open"
     },
     {
@@ -5444,6 +5440,10 @@
     },
     {
       "commit": "Add NATS bridge start script",
+      "status": "done"
+    },
+    {
+      "commit": "Add BudgetGuard utility",
       "status": "done"
     }
   ],
