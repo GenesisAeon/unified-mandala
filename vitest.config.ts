@@ -7,7 +7,8 @@ export default defineConfig({
       'packages/boundary-engine/**/*.{test,spec}.ts',
       'packages/api/**/*.{test,spec}.ts',
       'scripts/**/*.{test,spec}.ts',
-      'packages/wissenschaftliche-versuche/**/*.{test,spec}.ts'
+      'packages/wissenschaftliche-versuche/**/*.{test,spec}.ts',
+      'packages/consent-mesh/**/*.{test,spec}.ts'
     ],
     environment: 'node'
   }
