@@ -37,37 +37,76 @@ function extractSessionTodos(filePath, titles) {
   return tasks;
 }
 
-function parseNewAdvancedConversations(filePath, destDir, keyword = 'TODO') {
+function parseNewAdvancedConversations(filePath, destDir, keyword = 'TODO', options = {}) {
+  const { writeYaml = false } = options;
   const regex = new RegExp(keyword, 'i');
-  return grepJsonArrayFile(filePath, destDir, regex);
+  const matches = grepJsonArrayFile(filePath, destDir, regex);
+  if (writeYaml) {
+    const base = filePath.replace(/\.json$/i, '');
+    const outPath = path.join(destDir, `${path.basename(base)}-grep.yaml`);
+    fs.writeFileSync(outPath, yaml.dump(matches));
+  }
+  return matches;
 }
 
 if (require.main === module) {
-  const file = path.join(__dirname, '../docs/sigils/newadvancedconversations.json');
-  const dest = path.join(__dirname, '../GenesisAeonZIPMEM/newadvancedconversations');
-  const arg = process.argv[2];
-  if (arg === '--extract-todos') {
-    const titlesIndex = process.argv.indexOf('--titles');
-    const titles =
-      titlesIndex >= 0
-        ? process.argv[titlesIndex + 1]
-            .split(',')
-            .map((t) => t.trim())
-            .filter(Boolean)
-        : [
-            'Sigillin Entwicklungszusammenfassung',
-            'Programm testen Feedback',
-          ];
-    const tasks = extractSessionTodos(file, titles);
-    const outJson = path.join(__dirname, '../advancedToDo_parts/advancedToDo.part6.json');
-    const outYaml = path.join(__dirname, '../advancedToDo_parts/advancedToDo.part6.yaml');
+  const args = process.argv.slice(2);
+  const opts = {
+    file: path.join(__dirname, '../docs/sigils/newadvancedconversations.json'),
+    dest: path.join(__dirname, '../GenesisAeonZIPMEM/newadvancedconversations'),
+    keyword: 'TODO',
+    extract: false,
+    titles: [
+      'Sigillin Entwicklungszusammenfassung',
+      'Programm testen Feedback',
+    ],
+    yaml: false,
+  };
+
+  for (let i = 0; i < args.length; i++) {
+    const arg = args[i];
+    switch (arg) {
+      case '--file':
+      case '-f':
+        opts.file = path.resolve(args[++i]);
+        break;
+      case '--dest':
+      case '-d':
+        opts.dest = path.resolve(args[++i]);
+        break;
+      case '--keyword':
+      case '-k':
+        opts.keyword = args[++i] || opts.keyword;
+        break;
+      case '--extract-todos':
+        opts.extract = true;
+        break;
+      case '--titles':
+        opts.titles = (args[++i] || '')
+          .split(',')
+          .map(t => t.trim())
+          .filter(Boolean);
+        break;
+      case '--yaml':
+        opts.yaml = true;
+        break;
+      default:
+        // legacy positional keyword
+        if (!arg.startsWith('-')) opts.keyword = arg;
+    }
+  }
+
+  if (opts.extract) {
+    const tasks = extractSessionTodos(opts.file, opts.titles);
+    const outJson = path.join(opts.dest, 'advancedToDo.part6.json');
+    const outYaml = path.join(opts.dest, 'advancedToDo.part6.yaml');
+    fs.mkdirSync(opts.dest, { recursive: true });
     fs.writeFileSync(outJson, JSON.stringify(tasks, null, 2));
     fs.writeFileSync(outYaml, yaml.dump(tasks));
     console.log(`Extracted ${tasks.length} tasks to ${outJson}`);
   } else {
-    const keyword = arg || 'TODO';
-    const matches = parseNewAdvancedConversations(file, dest, keyword);
-    console.log(`Parsed ${matches.length} fragments containing '${keyword}'. Output: ${dest}`);
+    const matches = parseNewAdvancedConversations(opts.file, opts.dest, opts.keyword, { writeYaml: opts.yaml });
+    console.log(`Parsed ${matches.length} fragments containing '${opts.keyword}'. Output: ${opts.dest}`);
   }
 }
 

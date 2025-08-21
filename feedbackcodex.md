@@ -133,3 +133,4 @@ Dev-Agents prüfen zu Beginn eines Laufs auf diese Dateien und priorisieren dere
 - Implemented chatWithTools helper and demonstration script for tool execution.
 - Added SystemOverview component for monitoring core services.
 - Implemented FusionEvolution module for basic energy fusion simulation.
+- Added CLI options and YAML export to parse-newadvanced-conversations script.
