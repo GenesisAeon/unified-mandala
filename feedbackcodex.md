@@ -128,3 +128,4 @@ Dev-Agents prüfen zu Beginn eines Laufs auf diese Dateien und priorisieren dere
 - Implemented agent status API route serving agents/status.json.
 - Extended `list-open-advanced-todos` script to merge YAML and JSON tasks and added tests for multi-file support.
 - Added AgentStatusPanel component to display agent status snapshots.
+- Added provenance hashing utility and tests for traceable artifact signatures.
