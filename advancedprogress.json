@@ -1,11 +1,11 @@
 {
-  "lastCommit": "Merge pull request #1346 from GenesisAeon/codex/implement-features-from-advancedtodo-files-j07jfv",
+  "lastCommit": "chore: finalize progress",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
   ],
   "mergeConflicts": [],
-  "notes": "Implemented region profile REST endpoint and completed country/region model set. Added mitigation service microservice stub. Enhanced ethics supervisor with pattern checks. Added ClimateSocialPanel UI for dashboard metrics. Added InteractiveSymbolzeitExplorer UI. Added IoTSensorWidget UI for realtime sensor data.; Added repository map duplicate checker.; Added IoT sensor agent plugin and container.; Added provenance agent scaffold.; Added societal impact agent container.; Added catalyst agent container.; Documented Mandala prompt patterns; Implemented RAG Chunker for document tokenization; Extended SymbolMapper to accept NumPy arrays; Added VectorStore for RAG.; Declared gpt-5 capabilities for core agents.; Implemented RAGPipeline with smoke test.; Documented agent workflow and system start sequence; Added Universe Tree simulation with config, evaluation, and sanity checks. Implemented EPI scan CLI and dataset merge.; Extended code agent tasks for dataset API, citation demo and k8s base deployment.; Introduced HmacSigner for event envelopes. Added FutureTechFramework agent skeleton.",
+  "notes": "Implemented region profile REST endpoint and completed country/region model set. Added mitigation service microservice stub. Enhanced ethics supervisor with pattern checks. Added ClimateSocialPanel UI for dashboard metrics. Added InteractiveSymbolzeitExplorer UI. Added IoTSensorWidget UI for realtime sensor data.; Added repository map duplicate checker.; Added IoT sensor agent plugin and container.; Added provenance agent scaffold.; Added societal impact agent container.; Added catalyst agent container.; Documented Mandala prompt patterns; Implemented RAG Chunker for document tokenization; Extended SymbolMapper to accept NumPy arrays; Added VectorStore for RAG.; Declared gpt-5 capabilities for core agents.; Implemented RAGPipeline with smoke test.; Documented agent workflow and system start sequence; Added Universe Tree simulation with config, evaluation, and sanity checks. Implemented EPI scan CLI and dataset merge.; Extended code agent tasks for dataset API, citation demo and k8s base deployment.; Introduced HmacSigner for event envelopes. Added FutureTechFramework agent skeleton.; Documented open source model setup for Ollama, TGI and vLLM.",
   "pendingTasks": [
     {
       "commit": "Add gpt-5 smoke test suite",
@@ -37,10 +37,6 @@
     },
     {
       "commit": "Expose agent status in UI",
-      "status": "open"
-    },
-    {
-      "commit": "Document open source model setup",
       "status": "open"
     },
     {
@@ -5429,7 +5425,7 @@
     {
       "commit": "Extend CREP metrics with hope activation",
       "status": "done"
-    }
+    },
   ],
   "completed": [
     {
