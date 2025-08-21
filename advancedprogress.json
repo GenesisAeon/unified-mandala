@@ -36,10 +36,6 @@
       "status": "open"
     },
     {
-      "commit": "Create JetStream setup script",
-      "status": "open"
-    },
-    {
       "commit": "Create JetStream replay script",
       "status": "open"
     },
@@ -6283,6 +6279,10 @@
     {
       "commit": "Switch OpenAI provider to responses API",
       "status": "done"
+    },
+    {
+      "commit": "Create JetStream setup script",
+      "status": "done"
     }
   ],
   "fractalTodos": [
@@ -6292,4 +6292,3 @@
     }
   ]
 }
-

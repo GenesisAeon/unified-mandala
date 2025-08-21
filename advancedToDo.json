@@ -12738,7 +12738,7 @@
     "path": "scripts/js-setup.ts",
     "task": "Ensure JetStream stream exists using environment options",
     "test": "",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Create JetStream replay script",
