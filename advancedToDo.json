@@ -12661,7 +12661,7 @@
     "path": "packages/event-bus/NatsEventBus.ts",
     "task": "Support connection config for url, creds and max reconnects",
     "test": "packages/event-bus/NatsEventBus.test.ts",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Bridge LocalEventBus with NATS",
