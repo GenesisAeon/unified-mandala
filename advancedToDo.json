@@ -12808,7 +12808,7 @@
     "path": "docs/runbooks/MaxBundle.md",
     "task": "Explain setup for JetStream, security, observability and scaling",
     "test": "",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Extend event subjects for agent health and errors",
