@@ -1,0 +1,30 @@
+name: Agent Workflow Check
+
+on:
+  push:
+    paths:
+      - 'agents.yaml'
+      - 'scripts/system-start.ts'
+      - '.github/workflows/agent-workflow-check.yml'
+  pull_request:
+    paths:
+      - 'agents.yaml'
+      - 'scripts/system-start.ts'
+      - '.github/workflows/agent-workflow-check.yml'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 20
+      - name: Setup pnpm
+        run: corepack enable
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Validate agents.yaml
+        run: node -e "const fs=require('fs');const yaml=require('js-yaml');yaml.load(fs.readFileSync('agents.yaml','utf8'));"
+      - name: Run system start dry-run
+        run: pnpm ts-node scripts/system-start.ts --dry-run

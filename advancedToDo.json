@@ -12654,7 +12654,7 @@
     "path": ".github/workflows/agent-workflow-check.yml",
     "task": "Validate agents.yaml and run system start dry-run in CI",
     "test": "",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Extend NatsEventBus with auth options",
