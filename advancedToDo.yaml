@@ -4437,6 +4437,7 @@
   path: packages/wissenschaftliche-versuche
   task: Create WVH folder with module placeholders
   test: packages/wissenschaftliche-versuche/__tests__/scaffold.test.ts
+  status: done
 - commit: "feat: add MasterGPTBridge orchestrator"
   path: packages/agents/MasterGPTBridge.ts
   task: Orchestrate systems autonomously when captain absent

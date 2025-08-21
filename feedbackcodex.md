@@ -124,3 +124,4 @@ Dev-Agents prüfen zu Beginn eines Laufs auf diese Dateien und priorisieren dere
 - Configured gpt-5 KEDA scaler with daily token budget guard.
 - Added SignedURL root test verifying signing, expiration, and tampering logic.
 - Documented open source model setup for local providers.
+- Scaffolded Wissenschaftliche Versuche package with placeholder modules and tests.
