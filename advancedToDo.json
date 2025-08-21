@@ -12611,7 +12611,7 @@
     "path": "apps/sharedream-interface/pages/api/agents/status.ts",
     "task": "Serve agents/status.json via API route",
     "test": "",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Expose agent status in UI",

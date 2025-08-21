@@ -12287,7 +12287,7 @@
   path: apps/sharedream-interface/pages/api/agents/status.ts
   task: Serve agents/status.json via API route
   test: ""
-  status: open
+  status: done
 - commit: Expose agent status in UI
   path: packages/unifiedmandala-ui/components/AgentStatusPanel.tsx
   task: Display agent snapshot from /api/agents/status
