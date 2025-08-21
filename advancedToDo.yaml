@@ -13598,7 +13598,7 @@
   path: scripts/rt-start.sh
   task: Provide reproducible security drill setup and cleanup scripts
   test: scripts/rt-start.sh
-  status: open
+  status: done
 - commit: Enable Alertmanager night mode routing
   path: alerting/alertmanager/alertmanager-night-overlays.yaml
   task: Route warning alerts to night channel while keeping critical alerts active
