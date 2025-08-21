@@ -13078,7 +13078,7 @@
   path: packages/unifiedmandala-ui/components/SystemOverview.tsx
   task: Display health status of core services
   test: ""
-  status: open
+  status: done
 - commit: Add capability graph widget
   path: packages/unifiedmandala-ui/components/CapabilityGraph.tsx
   task: Visualize available capabilities and gating
