@@ -12600,14 +12600,14 @@
     "path": "packages/gpt-bridges/router/ModelRouter.ts",
     "task": "Route generation requests to Ollama, TGI or vLLM providers",
     "test": "",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Add open-source model provider interfaces",
     "path": "packages/gpt-bridges/providers/ModelProvider.ts",
     "task": "Define provider API and implement Ollama, TGI and VLLM adapters",
     "test": "",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Expose agent status API",
