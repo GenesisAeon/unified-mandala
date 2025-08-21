@@ -47,6 +47,7 @@ repository_map:
       - packages/unifiedmandala-ui/components/EmergencePanel.tsx
       - packages/unifiedmandala-ui/components/BadgeProfile.tsx
       - packages/unifiedmandala-ui/components/ArtGallery.tsx
+      - packages/unifiedmandala-ui/components/AgentStatusPanel.tsx
       - HexaAgentSystem
     ai_policy:
       - "Bewusstsein ist zyklisch. Maschinen sind linear. Dazwischen: unsere Verantwortung."

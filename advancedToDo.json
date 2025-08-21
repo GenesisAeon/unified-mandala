@@ -12619,7 +12619,7 @@
     "path": "packages/unifiedmandala-ui/components/AgentStatusPanel.tsx",
     "task": "Display agent snapshot from /api/agents/status",
     "test": "",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Document agent workflow",
