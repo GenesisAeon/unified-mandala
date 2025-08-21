@@ -4465,11 +4465,13 @@
 - commit: "feat: add NullmembranQuantization module"
   path: packages/universum-simulationen/modules/nullmembran_quantization.py
   task: Implement start conditions and binary reproduction
-  test: packages/universum-simulationen/__tests__/nullmembran_quantization.test.py
+  test: packages/universum-simulationen/__tests__/nullmembran_quantization_test.py
+  status: done
 - commit: "feat: add FieldQuantization module"
   path: packages/universum-simulationen/modules/field_quantization.py
   task: Simulate two-dimensional fields and dynamic quantum states
-  test: packages/universum-simulationen/__tests__/field_quantization.test.py
+  test: packages/universum-simulationen/__tests__/field_quantization_test.py
+  status: done
 - commit: "feat: add ParticleForce module"
   path: packages/universum-simulationen/modules/particle_force.py
   task: Kernel for stable particles and basic forces
