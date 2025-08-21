@@ -13293,7 +13293,7 @@
     "path": "k8s/deploy-rag-api.yaml",
     "task": "Deploy RAG API with horizontal pod autoscaling",
     "test": "",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Add flags, experiments and reviewer deployments",
