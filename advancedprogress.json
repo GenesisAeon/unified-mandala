@@ -1,5 +1,5 @@
 {
-  "lastCommit": "chore: sync progress metadata",
+  "lastCommit": "feat: add sigil search panel and api",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
@@ -9,18 +9,6 @@
   "pendingTasks": [
     {
       "commit": "Add gpt-5 smoke test suite",
-      "status": "open"
-    },
-    {
-      "commit": "Integrate Sigil RAG search hooks",
-      "status": "open"
-    },
-    {
-      "commit": "Expose Sigil search API",
-      "status": "open"
-    },
-    {
-      "commit": "Add Mandala Sigil link bridge",
       "status": "open"
     },
     {
@@ -5440,6 +5428,18 @@
     },
     {
       "commit": "feat: add OvernightWorkerAgent",
+      "status": "done"
+    },
+    {
+      "commit": "Integrate Sigil RAG search hooks",
+      "status": "done"
+    },
+    {
+      "commit": "Expose Sigil search API",
+      "status": "done"
+    },
+    {
+      "commit": "Add Mandala Sigil link bridge",
       "status": "done"
     }
   ],

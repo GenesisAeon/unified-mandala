@@ -12514,21 +12514,21 @@
     "path": "packages/unifiedmandala-ui/components/SigilSearchPanel.tsx",
     "task": "Provide hook and panel to search sigillin.jsonl via RAG index",
     "test": "",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Expose Sigil search API",
     "path": "apps/sharedream-interface/pages/api/sigils/index.ts",
     "task": "Stream sigil results from sigillin.jsonl through API route",
     "test": "",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Add Mandala Sigil link bridge",
     "path": "packages/unifiedmandala-ui/components/MandalaSigilLinkBridge.tsx",
     "task": "Connect MandalaNetworkView clicks to SigilSearchPanel",
     "test": "",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Implement vector index ingest script",
