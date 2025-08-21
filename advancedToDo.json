@@ -1,5 +1,12 @@
 [
   {
+    "commit": "feat: add FusionEvolution module",
+    "path": "packages/universum-simulationen/modules/fusion_evolution.py",
+    "task": "Simulate basic fusion-based population evolution",
+    "test": "packages/universum-simulationen/fusion_evolution_test.py",
+    "status": "done"
+  },
+  {
     "commit": "Add summary generator to training data extraction",
     "path": "scripts/extract-training-data.ts",
     "task": "Replace placeholder with generated conversation summaries",
