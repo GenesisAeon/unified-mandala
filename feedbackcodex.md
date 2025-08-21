@@ -134,3 +134,4 @@ Dev-Agents prüfen zu Beginn eines Laufs auf diese Dateien und priorisieren dere
 - Added SystemOverview component for monitoring core services.
 - Implemented FusionEvolution module for basic energy fusion simulation.
 - Added CLI options and YAML export to parse-newadvanced-conversations script.
+- Added Red Team Day exercise script for reproducible security drills.
