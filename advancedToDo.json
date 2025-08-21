@@ -12631,7 +12631,7 @@
     "path": "docs/models/OpenSourceModels.md",
     "task": "Describe configuration and routing for Ollama, TGI and vLLM",
     "test": "",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Provide model env snippet",
