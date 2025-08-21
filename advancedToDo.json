@@ -2719,7 +2719,8 @@
     "commit": "chore: scaffold Wissenschaftliche Versuche project",
     "path": "packages/wissenschaftliche-versuche",
     "task": "Create WVH folder with module placeholders",
-    "test": "packages/wissenschaftliche-versuche/__tests__/scaffold.test.ts"
+    "test": "packages/wissenschaftliche-versuche/__tests__/scaffold.test.ts",
+    "status": "done"
   },
   {
     "commit": "feat: add MasterGPTBridge orchestrator",
