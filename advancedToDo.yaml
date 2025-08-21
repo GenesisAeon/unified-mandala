@@ -13132,8 +13132,8 @@
 - commit: Add Provenance hashing utilities
   path: packages/provenance/Provenance.ts
   task: Provide SHA-256 hashing for strings and buffers
-  test: ""
-  status: open
+  test: packages/provenance/Provenance.test.ts
+  status: done
 - commit: Create peer handshake service
   path: scripts/peer-handshake.ts
   task: Receive peer hello messages and record attestation
