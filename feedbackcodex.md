@@ -125,3 +125,4 @@ Dev-Agents prüfen zu Beginn eines Laufs auf diese Dateien und priorisieren dere
 - Added SignedURL root test verifying signing, expiration, and tampering logic.
 - Documented open source model setup for local providers.
 - Scaffolded Wissenschaftliche Versuche package with placeholder modules and tests.
+- Implemented agent status API route serving agents/status.json.
