@@ -1,5 +1,5 @@
 {
-  "lastCommit": "feat: expose agent status API route",
+  "lastCommit": "feat: add OvernightWorkerAgent",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
@@ -5436,6 +5436,10 @@
     },
     {
       "commit": "Document open source model setup",
+      "status": "done"
+    },
+    {
+      "commit": "feat: add OvernightWorkerAgent",
       "status": "done"
     }
   ],

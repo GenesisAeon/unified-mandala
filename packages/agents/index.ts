@@ -57,3 +57,4 @@ export * from './QuantumTheoryAgent';
 export * from './ReviewAgent';
 export * from './MasterGPTBridge';
 export * from './FutureTechFramework';
+export * from './OvernightWorkerAgent';

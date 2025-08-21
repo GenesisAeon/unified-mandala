@@ -2753,7 +2753,8 @@
     "commit": "feat: add OvernightWorkerAgent",
     "path": "packages/agents/OvernightWorkerAgent.ts",
     "task": "Maintain nightly analysis and orchestrate progress",
-    "test": "packages/agents/__tests__/OvernightWorkerAgent.test.ts"
+    "test": "packages/agents/__tests__/OvernightWorkerAgent.test.ts",
+    "status": "done"
   },
   {
     "commit": "feat: add NullmembranQuantization module",
