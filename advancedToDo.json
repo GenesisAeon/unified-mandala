@@ -12689,7 +12689,7 @@
     "path": "packages/gpt-bridges/tools/ToolRegistry.ts",
     "task": "Register tools and transform specs to OpenAI format",
     "test": "tests/toolRegistry.test.ts",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Add chatWithTools helper",
@@ -12801,7 +12801,7 @@
     "path": "tests/toolRegistry.test.ts",
     "task": "Verify tool registration, listing and handler invocation",
     "test": "vitest",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Document MaxBundle runbook",
