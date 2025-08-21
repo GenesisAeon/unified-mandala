@@ -14544,7 +14544,7 @@
     "path": "packages/consent-mesh/utopie-consent.ts",
     "task": "Collect community votes on utopia packages and feed results into task prioritization",
     "test": "packages/consent-mesh/utopie-consent.test.ts",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Add Mandala transparency policy block",
