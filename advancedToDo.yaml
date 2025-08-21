@@ -12328,12 +12328,12 @@
   path: packages/event-bus/bridge.ts
   task: Forward events between local and NATS buses
   test: ""
-  status: open
+  status: done
 - commit: Add NATS bridge start script
   path: scripts/start-bus-bridge.ts
   task: Launch bridge using Subjects list and env config
   test: ""
-  status: open
+  status: done
 - commit: Provide NATS env snippet
   path: docs/snippets/ENV_NATS.example
   task: Document NATS_URL and credentials placeholders
