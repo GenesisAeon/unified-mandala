@@ -14,6 +14,7 @@ const file = path.join(__dirname, '../repositorypflege/repository_map.yaml');
 
 export interface SummaryOptions {
   json?: boolean;
+  csv?: boolean;
 }
 
 export function summarizeRepositoryMap(options: SummaryOptions = {}) {
@@ -32,6 +33,13 @@ export function summarizeRepositoryMap(options: SummaryOptions = {}) {
     return summary;
   }
 
+  if (options.csv) {
+    const lines = Object.entries(summary).map(
+      ([name, count]) => `${name},${count}`
+    );
+    return ['name,count', ...lines].join('\n');
+  }
+
   return Object.entries(summary)
     .map(([name, count]) => `${name}: ${count} module(s)`)
     .join('\n');
@@ -39,7 +47,8 @@ export function summarizeRepositoryMap(options: SummaryOptions = {}) {
 
 if (require.main === module) {
   const jsonFlag = process.argv.includes('--json');
-  const result = summarizeRepositoryMap({ json: jsonFlag });
+  const csvFlag = process.argv.includes('--csv');
+  const result = summarizeRepositoryMap({ json: jsonFlag, csv: csvFlag });
   if (jsonFlag) {
     console.log(JSON.stringify(result, null, 2));
   } else {

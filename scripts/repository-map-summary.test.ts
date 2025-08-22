@@ -11,4 +11,9 @@ describe('summarizeRepositoryMap', () => {
     const result = summarizeRepositoryMap({ json: true }) as Record<string, number>;
     expect(result.aeon).toBeGreaterThan(0);
   });
+
+  it('returns CSV summary when csv option is true', () => {
+    const result = summarizeRepositoryMap({ csv: true }) as string;
+    expect(result.split('\n')[0]).toBe('name,count');
+  });
 });

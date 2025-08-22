@@ -1,5 +1,5 @@
 {
-  "lastCommit": "feat: add Prometheus scrape config",
+  "lastCommit": "feat: add CSV option to repository map summary",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
@@ -4756,6 +4756,10 @@
     },
     {
       "commit": "Add JSON option to repository map summary",
+      "status": "done"
+    },
+    {
+      "commit": "Add CSV option to repository map summary",
       "status": "done"
     },
     {
