@@ -1,9 +1,10 @@
 # Event Bus
 
-The `NatsEventBus` provides a lightweight wrapper over the NATS client for communication between UnifiedMandala services.
+Wrappers over the NATS client provide communication between UnifiedMandala services.
 
 ## Key modules
 - `NatsEventBus.ts` – connect, publish, subscribe and close helpers.
+- `JetStreamBus.ts` – publish and consume durable events via JetStream.
 - `subjects.ts` – enumerates all well known subjects.
 
 ## Available subjects
@@ -25,4 +26,4 @@ await bus.publish(Subjects.CREP_UPDATE, { score: 0.9 });
 ```
 
 ## Tests
-See [`NatsEventBus.test.ts`](./NatsEventBus.test.ts).
+See [`NatsEventBus.test.ts`](./NatsEventBus.test.ts) and [`JetStreamBus.test.ts`](./JetStreamBus.test.ts).
