@@ -16,5 +16,23 @@ describe('LocalEventBus', () => {
     bus.publish(Subjects.CREP_UPDATE, { value: 7 });
     expect(handler).toHaveBeenCalledTimes(1);
   });
+
+  it('handles agent health and error events', () => {
+    const bus = new LocalEventBus();
+    const healthHandler = jest.fn();
+    const errorHandler = jest.fn();
+
+    bus.subscribe(Subjects.AGENT_HEALTH, healthHandler);
+    bus.subscribe(Subjects.AGENT_ERROR, errorHandler);
+
+    const healthPayload = { ok: true };
+    const errorPayload = { message: 'boom' };
+
+    bus.publish(Subjects.AGENT_HEALTH, healthPayload);
+    bus.publish(Subjects.AGENT_ERROR, errorPayload);
+
+    expect(healthHandler).toHaveBeenCalledWith(healthPayload);
+    expect(errorHandler).toHaveBeenCalledWith(errorPayload);
+  });
 });
 

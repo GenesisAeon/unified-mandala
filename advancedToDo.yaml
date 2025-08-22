@@ -12443,7 +12443,7 @@
   path: packages/event-bus/subjects.ts
   task: Add agent.health.v1 and agent.error.v1 subjects
   test: ""
-  status: open
+  status: done
 - commit: Implement WebSocketHub for live events
   path: packages/event-bus/WebSocketHub.ts
   task: Provide WebSocket server to broadcast LocalEventBus events
