@@ -3,3 +3,4 @@ export * from './LocalEventBus';
 export * from './subjects';
 export * from './bridge';
 export * from './WebSocketHub';
+export * from './JetStreamBus';

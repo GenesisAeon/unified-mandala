@@ -1,11 +1,11 @@
 {
-  "lastCommit": "feat: add live events hook and panel",
+  "lastCommit": "feat: add JetStreamBus for persistent events",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
   ],
   "mergeConflicts": [],
-  "notes": "Added FusionEvolution module | Added FieldQuantization module and marked NullmembranQuantization complete | Added ModelRouter and open-source providers | Added Red Team Day exercise scripts | Added RAG API deployment manifest | Implemented AgentHeartbeat module | Added unified security Grafana dashboard | Exposed agent health API | Implemented ReviewerHotkeys UI hook | Added AgentHealthPanel component | Added Personhood Protocol documentation | Provide Prometheus scrape config",
+  "notes": "Added FusionEvolution module | Added FieldQuantization module and marked NullmembranQuantization complete | Added ModelRouter and open-source providers | Added Red Team Day exercise scripts | Added RAG API deployment manifest | Implemented AgentHeartbeat module | Added unified security Grafana dashboard | Exposed agent health API | Implemented ReviewerHotkeys UI hook | Added AgentHealthPanel component | Added Personhood Protocol documentation | Provide Prometheus scrape config | Added JetStreamBus for persistent events",
   "pendingTasks": [
     {
       "commit": "TODO from GenesisAeonZIPMEM/Aeon_Uebergabe-Sigil_Prozess_part2.json - a0cddb53-12d4-44b8-b881-4fbfad63f129",
@@ -5612,6 +5612,10 @@
     },
     {
       "commit": "Integrate Utopie-to-Do adapter",
+      "status": "done"
+    },
+    {
+      "commit": "Add JetStreamBus for persistent events",
       "status": "done"
     }
   ],

@@ -12750,7 +12750,7 @@
     "path": "packages/event-bus/JetStreamBus.ts",
     "task": "Publish and consume durable events via NATS JetStream",
     "test": "",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Create JetStream setup script",
