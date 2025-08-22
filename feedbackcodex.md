@@ -136,3 +136,4 @@ Dev-Agents prüfen zu Beginn eines Laufs auf diese Dateien und priorisieren dere
 - Added CLI options and YAML export to parse-newadvanced-conversations script.
 - Added Red Team Day exercise script for reproducible security drills.
 - Added RAG API deployment manifest with autoscaling support.
+- Added JetStream replay script and removed fs-extra dependency from AgentHeartbeat.
