@@ -12428,7 +12428,7 @@
   path: deployment/keda/scaledobject-natsjs.yaml
   task: Scale workers by JetStream lag using KEDA
   test: ""
-  status: open
+  status: done
 - commit: Add BudgetGuard utility
   path: packages/costs/BudgetGuard.ts
   task: Track token spend per agent and enforce daily limits
