@@ -12448,12 +12448,12 @@
   path: packages/event-bus/WebSocketHub.ts
   task: Provide WebSocket server to broadcast LocalEventBus events
   test: ""
-  status: open
+  status: done
 - commit: Add ws-start bridge script
   path: scripts/ws-start.ts
   task: Start WebSocketHub and forward events from LocalEventBus
   test: ""
-  status: open
+  status: done
 - commit: Create live event React hook
   path: apps/sharedream-interface/hooks/useLiveEvents.ts
   task: Subscribe to WebSocket stream and update event list
