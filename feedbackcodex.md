@@ -143,3 +143,5 @@ Dev-Agents prüfen zu Beginn eines Laufs auf diese Dateien und priorisieren dere
 - Added AgentHealthPanel component for live heartbeat monitoring.
 - Added WebSocketHub and ws-start bridge script for LocalEventBus broadcasting.
 - Integrated Utopie-to-Do adapter skeleton and synced progress files.
+
+- Added Prometheus scrape config for metrics server.

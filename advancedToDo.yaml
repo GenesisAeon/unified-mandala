@@ -12533,7 +12533,7 @@
   path: observability/prometheus.yml
   task: Scrape metrics server on :9108
   test: ""
-  status: open
+  status: done
 - commit: Add Grafana mini dashboard
   path: observability/grafana_universe_pulse_mini.json
   task: Visualize UniversePulse metrics in Grafana
