@@ -1,5 +1,5 @@
 {
-  "lastCommit": "feat: add sigil search tool spec and handler",
+  "lastCommit": "feat: extend agent event subjects",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
@@ -4665,6 +4665,10 @@
     },
     {
       "commit": "feat: add sigil search tool spec and handler",
+      "status": "done"
+    },
+    {
+      "commit": "Extend event subjects for agent health and errors",
       "status": "done"
     }
   ],

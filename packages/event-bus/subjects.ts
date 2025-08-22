@@ -8,8 +8,16 @@ export enum Subjects {
   /**
    * Heartbeat events emitted by agents to signal liveness.
    * Versioned for forward compatibility.
-   */
+  */
   AGENT_HEARTBEAT = 'v1.agent.heartbeat',
+  /**
+   * Periodic health summaries emitted by agents to report status.
+   */
+  AGENT_HEALTH = 'v1.agent.health',
+  /**
+   * Error events emitted when an agent encounters a failure.
+   */
+  AGENT_ERROR = 'v1.agent.error',
   /**
    * Client submitted live question.
    */
