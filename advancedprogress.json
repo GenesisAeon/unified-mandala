@@ -1,11 +1,11 @@
 {
-  "lastCommit": "feat: extend agent event subjects",
+  "lastCommit": "feat: add AgentHealthPanel component",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
   ],
   "mergeConflicts": [],
-  "notes": "Added FusionEvolution module | Added FieldQuantization module and marked NullmembranQuantization complete | Added ModelRouter and open-source providers | Added Red Team Day exercise scripts | Added RAG API deployment manifest | Implemented AgentHeartbeat module | Added unified security Grafana dashboard | Exposed agent health API | Implemented ReviewerHotkeys UI hook",
+  "notes": "Added FusionEvolution module | Added FieldQuantization module and marked NullmembranQuantization complete | Added ModelRouter and open-source providers | Added Red Team Day exercise scripts | Added RAG API deployment manifest | Implemented AgentHeartbeat module | Added unified security Grafana dashboard | Exposed agent health API | Implemented ReviewerHotkeys UI hook | Added AgentHealthPanel component",
   "pendingTasks": [
     {
       "commit": "TODO from GenesisAeonZIPMEM/Aeon_Uebergabe-Sigil_Prozess_part2.json - a0cddb53-12d4-44b8-b881-4fbfad63f129",
@@ -4669,6 +4669,10 @@
     },
     {
       "commit": "Extend event subjects for agent health and errors",
+      "status": "done"
+    },
+    {
+      "commit": "Add AgentHealthPanel component",
       "status": "done"
     }
   ],
