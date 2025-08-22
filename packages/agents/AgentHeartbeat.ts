@@ -1,4 +1,4 @@
-import fs from 'fs-extra';
+import { promises as fs } from 'fs';
 import path from 'path';
 
 /**
@@ -6,7 +6,7 @@ import path from 'path';
  * emits heartbeat events to a JSONL log file.
  */
 export class AgentHeartbeat {
-  private intervalId?: NodeJS.Timer;
+  private intervalId?: NodeJS.Timeout;
   private readonly logFile: string;
 
   constructor(private agentId: string, private intervalMs = 60000, logFile?: string) {
@@ -19,7 +19,7 @@ export class AgentHeartbeat {
    * Append an event record to the heartbeat log file.
    */
   private async append(event: Record<string, unknown>): Promise<void> {
-    await fs.ensureDir(path.dirname(this.logFile));
+    await fs.mkdir(path.dirname(this.logFile), { recursive: true });
     await fs.appendFile(this.logFile, JSON.stringify(event) + '\n');
   }
 

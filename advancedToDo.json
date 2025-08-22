@@ -12754,7 +12754,7 @@
     "path": "scripts/js-replay.ts",
     "task": "Replay events from JetStream durable consumer",
     "test": "",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Implement OpenAIProvider with Responses API fallback",

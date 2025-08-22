@@ -12390,7 +12390,7 @@
   path: scripts/js-replay.ts
   task: Replay events from JetStream durable consumer
   test: ""
-  status: open
+  status: done
 - commit: Implement OpenAIProvider with Responses API fallback
   path: packages/gpt-bridges/providers/OpenAIProvider.ts
   task: Use responses endpoint when USE_RESPONSES_API=1 and support tools
