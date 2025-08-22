@@ -12827,8 +12827,8 @@
 - commit: Add ReviewerHotkeys UI hook
   path: packages/unifiedmandala-ui/components/ReviewerHotkeys.tsx
   task: Trigger reviewer decisions via keyboard shortcuts
-  test: ""
-  status: open
+  test: packages/unifiedmandala-ui/components/ReviewerHotkeys.test.tsx
+  status: done
 - commit: Implement HMAC signed URLs
   path: packages/security/SignedURL.ts
   task: Generate and verify expiring share tokens
