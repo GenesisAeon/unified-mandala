@@ -12869,21 +12869,21 @@
     "path": "packages/event-bus/JetStreamKV.ts",
     "task": "Manage NATS JetStream key-value buckets for state",
     "test": "",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Implement JetStreamObjectStore",
     "path": "packages/event-bus/JetStreamObjectStore.ts",
     "task": "Store and retrieve blob artifacts via JetStream",
     "test": "",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Load tools from YAML specs",
     "path": "packages/gpt-bridges/tools/ToolDSL.ts",
     "task": "Register tool handlers based on YAML definitions",
     "test": "",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Provide sigil search tool spec",
