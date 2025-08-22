@@ -13190,12 +13190,12 @@
   path: packages/identity/Tenant.ts
   task: Define multi-tenant IDs and membership structures
   test: ""
-  status: open
+  status: done
 - commit: Add RBAC permission helper
   path: packages/identity/RBAC.ts
   task: Map roles to permissions and check access
   test: ""
-  status: open
+  status: done
 - commit: Create identity API service
   path: scripts/identity-api.ts
   task: Issue JWTs and manage tenants and instances
