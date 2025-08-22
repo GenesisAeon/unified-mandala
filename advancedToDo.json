@@ -13338,14 +13338,14 @@
     "path": "packages/realtime/ResearchHubWS.ts",
     "task": "Broadcast live RAG events over WebSocket",
     "test": "",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Create realtime hub HTTP bridge script",
     "path": "scripts/realtime-hub.ts",
     "task": "Expose /live/ask endpoint and stream answers",
     "test": "",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Implement annotations KV store",

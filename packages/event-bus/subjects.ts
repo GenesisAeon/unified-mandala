@@ -10,4 +10,12 @@ export enum Subjects {
    * Versioned for forward compatibility.
    */
   AGENT_HEARTBEAT = 'v1.agent.heartbeat',
+  /**
+   * Client submitted live question.
+   */
+  LIVE_ASK = 'v1.live.ask',
+  /**
+   * Response event for live questions.
+   */
+  LIVE_ANSWER = 'v1.live.answer',
 }

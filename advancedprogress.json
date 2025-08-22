@@ -5512,6 +5512,14 @@
     {
       "commit": "Add system overview widget",
       "status": "done"
+    },
+    {
+      "commit": "Implement ResearchHubWS server",
+      "status": "done"
+    },
+    {
+      "commit": "Create realtime hub HTTP bridge script",
+      "status": "done"
     }
   ],
   "fractalTodos": [
