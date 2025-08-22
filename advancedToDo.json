@@ -12854,15 +12854,15 @@
     "commit": "Create live event React hook",
     "path": "apps/sharedream-interface/hooks/useLiveEvents.ts",
     "task": "Subscribe to WebSocket stream and update event list",
-    "test": "",
-    "status": "open"
+    "test": "apps/sharedream-interface/hooks/useLiveEvents.test.ts",
+    "status": "done"
   },
   {
     "commit": "Add EventStreamPanel component",
     "path": "packages/unifiedmandala-ui/components/EventStreamPanel.tsx",
     "task": "Render live events in scrollable panel",
-    "test": "",
-    "status": "open"
+    "test": "packages/unifiedmandala-ui/components/EventStreamPanel.test.tsx",
+    "status": "done"
   },
   {
     "commit": "Implement JetStreamKV wrapper",
