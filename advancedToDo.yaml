@@ -12370,7 +12370,7 @@
   path: apps/sharedream-interface/pages/api/agents/health.ts
   task: Serve latest heartbeat records from data/agents/heartbeats.jsonl
   test: ""
-  status: open
+  status: done
 - commit: Add AgentHealthPanel component
   path: packages/unifiedmandala-ui/components/AgentHealthPanel.tsx
   task: Display heartbeat status in UI with polling refresh
