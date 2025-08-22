@@ -3,7 +3,7 @@
     "commit": "feat: add FusionEvolution module",
     "path": "packages/universum-simulationen/modules/fusion_evolution.py",
     "task": "Simulate basic fusion-based population evolution",
-    "test": "packages/universum-simulationen/fusion_evolution_test.py",
+    "test": "packages/universum-simulationen/__tests__/fusion_evolution_test.py",
     "status": "done"
   },
   {
@@ -2789,13 +2789,15 @@
     "commit": "feat: add FusionEvolution module",
     "path": "packages/universum-simulationen/modules/fusion_evolution.py",
     "task": "Compute fusion processes and heavier elements",
-    "test": "packages/universum-simulationen/__tests__/fusion_evolution.test.py"
+    "test": "packages/universum-simulationen/__tests__/fusion_evolution_test.py",
+    "status": "done"
   },
   {
     "commit": "feat: add Consciousness module",
     "path": "packages/universum-simulationen/modules/consciousness.py",
     "task": "Model biochemical processes and neural networks",
-    "test": "packages/universum-simulationen/__tests__/consciousness.test.py"
+    "test": "packages/universum-simulationen/__tests__/consciousness_test.py",
+    "status": "done"
   },
   {
     "commit": "feat: add GermanGrammarAssistant agent",
