@@ -138,3 +138,4 @@ Dev-Agents prüfen zu Beginn eines Laufs auf diese Dateien und priorisieren dere
 - Added RAG API deployment manifest with autoscaling support.
 - Added JetStream replay script and removed fs-extra dependency from AgentHeartbeat.
 - Improved advanced progress sync to store pending task paths and deduplicate TODO sources.
+- Implemented ResearchHubWS server and realtime hub HTTP bridge to stream live questions and answers.
