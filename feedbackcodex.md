@@ -141,3 +141,4 @@ Dev-Agents prüfen zu Beginn eines Laufs auf diese Dateien und priorisieren dere
 - Implemented ResearchHubWS server and realtime hub HTTP bridge to stream live questions and answers.
 - Added sigil search tool spec and handler for JSONL-based sigil queries.
 - Added AgentHealthPanel component for live heartbeat monitoring.
+- Added WebSocketHub and ws-start bridge script for LocalEventBus broadcasting.
