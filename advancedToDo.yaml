@@ -13593,7 +13593,7 @@
   path: grafana/dashboards/unified-security-board.json
   task: Visualize Falco, Kyverno, Cilium, and audit log metrics in one board
   test: ""
-  status: open
+  status: done
 - commit: Add Red Team Day exercise scripts
   path: scripts/rt-start.sh
   task: Provide reproducible security drill setup and cleanup scripts
