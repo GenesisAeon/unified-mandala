@@ -146,3 +146,4 @@ Dev-Agents prüfen zu Beginn eines Laufs auf diese Dateien und priorisieren dere
 - Integrated Utopie-to-Do adapter skeleton and synced progress files.
 
 - Added Prometheus scrape config for metrics server.
+- Added exclude filter to advanced todo scripts to ignore conversation-heavy tasks.

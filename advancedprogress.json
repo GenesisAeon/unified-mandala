@@ -1,5 +1,5 @@
 {
-  "lastCommit": "feat: add JetStreamBus for persistent events",
+  "lastCommit": "Add exclude filter to advanced todo scripts",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
@@ -30,31 +30,6 @@
     {
       "commit": "feat: add Consciousness module",
       "path": "packages/universum-simulationen/modules/consciousness.py",
-      "status": "open"
-    },
-    {
-      "commit": "feat: add GermanGrammarAssistant agent",
-      "path": "packages/agents/GermanGrammarAssistant.ts",
-      "status": "open"
-    },
-    {
-      "commit": "feat: add SimulationOrchestrator agent",
-      "path": "packages/agents/SimulationOrchestrator.ts",
-      "status": "open"
-    },
-    {
-      "commit": "feat: extend FutureKIAgent",
-      "path": "packages/agents/FutureKIAgent.ts",
-      "status": "open"
-    },
-    {
-      "commit": "feat: add DocumentGenerator agent",
-      "path": "packages/agents/DocumentGenerator.ts",
-      "status": "open"
-    },
-    {
-      "commit": "feat: add TeamboardManager module",
-      "path": "packages/agents/TeamboardManager.ts",
       "status": "open"
     }
   ],
@@ -5616,6 +5591,10 @@
     },
     {
       "commit": "Add JetStreamBus for persistent events",
+      "status": "done"
+    },
+    {
+      "commit": "Add exclude filter to advanced todo scripts",
       "status": "done"
     }
   ],
