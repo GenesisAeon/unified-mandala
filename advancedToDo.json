@@ -12953,7 +12953,7 @@
     "path": "observability/prometheus.yml",
     "task": "Scrape metrics server on :9108",
     "test": "",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Add Grafana mini dashboard",
