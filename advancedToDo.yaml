@@ -4462,6 +4462,7 @@
   path: packages/universum-simulationen/modules
   task: Create modular simulation files like S01_Weissloch_Entstehung.py
   test: packages/universum-simulationen/__tests__/modules.test.ts
+  status: done
 - commit: "feat: add OvernightWorkerAgent"
   path: packages/agents/OvernightWorkerAgent.ts
   task: Maintain nightly analysis and orchestrate progress
@@ -4786,10 +4787,12 @@
   path: docs/WVH/Grundannahmen.md
   task: Document theoretical assumptions from WVH conversation
   test: ""
+  status: done
 - commit: "docs: add Bewusstseinsentwicklung paper"
   path: docs/WVH/Bewusstseinsentwicklung.md
   task: Outline consciousness development theory
   test: ""
+  status: done
 - commit: "feat: add Nullmembran simulation module"
   path: simulations/universe-sim/modules/nullmembran.go
   task: Implement Nullmembran & first quantization simulation stage

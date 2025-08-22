@@ -1,5 +1,5 @@
 {
-  "lastCommit": "feat: expose agent health API",
+  "lastCommit": "chore: scaffold WVH simulation modules",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
@@ -23,19 +23,23 @@
       "status": "open"
     },
     {
-      "commit": "chore: scaffold WVH simulation modules",
-      "path": "packages/universum-simulationen/modules",
+      "commit": "feat: add FusionEvolution module",
+      "path": "packages/universum-simulationen/modules/fusion_evolution.py",
       "status": "open"
     },
     {
-      "commit": "feat: add FusionEvolution module",
-      "path": "packages/universum-simulationen/modules/fusion_evolution.py",
+      "commit": "feat: add Consciousness module",
+      "path": "packages/universum-simulationen/modules/consciousness.py",
       "status": "open"
     }
   ],
   "progress": [
     {
       "commit": "feat: add FusionEvolution module",
+      "status": "done"
+    },
+    {
+      "commit": "chore: scaffold WVH simulation modules",
       "status": "done"
     },
     {
