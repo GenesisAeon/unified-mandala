@@ -12573,7 +12573,7 @@
   path: docs/personhood/PersonhoodProtocol.md
   task: Document consent, provenance, audit and refusal guidelines
   test: ""
-  status: open
+  status: done
 - commit: Create personhood policy config
   path: governance/personhood.policy.yaml
   task: Define consent, retention and model access rules
