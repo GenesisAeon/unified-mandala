@@ -14535,7 +14535,7 @@
     "path": "packages/utopie-adapter/",
     "task": "Generate utopian Sigils and create CREP tasks via save_sigil and create_tasks",
     "test": "packages/utopie-adapter/utopie_adapter.test.ts",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Extend CREP metrics with hope activation",
