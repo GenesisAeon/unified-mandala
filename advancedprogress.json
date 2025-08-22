@@ -1,5 +1,5 @@
 {
-  "lastCommit": "chore: scaffold WVH simulation modules",
+  "lastCommit": "feat: add sigil search tool spec and handler",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
@@ -4661,6 +4661,10 @@
     },
     {
       "commit": "Expose agent health API",
+      "status": "done"
+    },
+    {
+      "commit": "feat: add sigil search tool spec and handler",
       "status": "done"
     }
   ],

@@ -12883,14 +12883,14 @@
     "path": "tools/specs/sigil.search.yaml",
     "task": "Define YAML schema for sigil search tool",
     "test": "",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Add sigil search tool handler",
     "path": "tools/handlers/sigil_search.js",
     "task": "Implement JSONL search handler for sigils",
     "test": "",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Define diverse research agents",

@@ -1,0 +1,13 @@
+name: sigil_search
+description: Search sigillin index by keyword and optional tag filter
+parameters:
+  type: object
+  properties:
+    query:
+      type: string
+      description: Search term
+    tag:
+      type: string
+      description: Optional tag to filter results
+  required:
+    - query
