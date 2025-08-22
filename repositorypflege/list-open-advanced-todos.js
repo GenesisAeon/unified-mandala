@@ -8,7 +8,7 @@ function readTodoFile(file) {
   return ext === '.yaml' || ext === '.yml' ? yaml.load(raw) : JSON.parse(raw);
 }
 
-function listOpenAdvancedTodos(pattern, todoPaths) {
+function listOpenAdvancedTodos(pattern, todoPaths, excludePattern) {
   const files =
     todoPaths && todoPaths.length
       ? Array.isArray(todoPaths)
@@ -25,6 +25,7 @@ function listOpenAdvancedTodos(pattern, todoPaths) {
     }
   }
   const regex = pattern ? new RegExp(pattern, 'i') : null;
+  const excludeRegex = excludePattern ? new RegExp(excludePattern, 'i') : null;
   const seen = new Set();
   const result = [];
   for (const item of data) {
@@ -32,7 +33,8 @@ function listOpenAdvancedTodos(pattern, todoPaths) {
       item.status !== 'done' &&
       item.commit &&
       item.path &&
-      (!regex || regex.test(item.commit) || regex.test(item.path))
+      (!regex || regex.test(item.commit) || regex.test(item.path)) &&
+      (!excludeRegex || (!excludeRegex.test(item.commit) && !excludeRegex.test(item.path)))
     ) {
       const key = `${item.commit}|${item.path}`;
       if (!seen.has(key)) {
@@ -51,7 +53,9 @@ if (require.main === module) {
   const pathIndex = process.argv.indexOf('--path');
   const pathArg = pathIndex >= 0 ? process.argv[pathIndex + 1] : undefined;
   const todoPaths = pathArg ? pathArg.split(',') : undefined;
-  const open = listOpenAdvancedTodos(pattern, todoPaths);
+  const exclIndex = process.argv.indexOf('--exclude');
+  const exclude = exclIndex >= 0 ? process.argv[exclIndex + 1] : undefined;
+  const open = listOpenAdvancedTodos(pattern, todoPaths, exclude);
   const display = open.slice(0, limit);
   display.forEach((t) => {
     const commitText =

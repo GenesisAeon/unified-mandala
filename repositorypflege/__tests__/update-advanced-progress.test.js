@@ -23,3 +23,17 @@ test('updates pendingTasks with limited todos', () => {
     { commit: 'Task B', path: 'b', status: 'open' }
   ]);
 });
+
+test('forwards exclude pattern to listOpenAdvancedTodos', () => {
+  const tmp = path.join(__dirname, 'tmp-progress.json');
+  fs.writeFileSync(tmp, JSON.stringify({ pendingTasks: [] }, null, 2));
+  listOpenAdvancedTodos.mockClear();
+  listOpenAdvancedTodos.mockReturnValue([]);
+
+  updateAdvancedProgress(5, tmp, undefined, undefined, 'conversations');
+  expect(listOpenAdvancedTodos).toHaveBeenCalledWith(
+    undefined,
+    undefined,
+    'conversations'
+  );
+});

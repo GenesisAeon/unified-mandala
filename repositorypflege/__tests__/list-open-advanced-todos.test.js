@@ -37,6 +37,20 @@ test('combines tasks from multiple JSON and YAML files', () => {
   fs.unlinkSync(tmpYaml);
 });
 
+test('excludes tasks matching pattern', () => {
+  const tmp = path.join(__dirname, 'tmp-exclude.json');
+  const sample = [
+    { commit: 'Keep me', path: 'a', status: 'open' },
+    { commit: 'Skip this conversation task', path: 'conversations/b', status: 'open' }
+  ];
+  fs.writeFileSync(tmp, JSON.stringify(sample, null, 2));
+
+  const todos = listOpenAdvancedTodos(undefined, tmp, 'conversations');
+  expect(todos).toEqual([{ commit: 'Keep me', path: 'a' }]);
+
+  fs.unlinkSync(tmp);
+});
+
 test('deduplicates tasks with same commit and path', () => {
   const tmp = path.join(__dirname, 'tmp-dup.json');
   const sample = [
