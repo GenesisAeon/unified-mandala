@@ -12906,14 +12906,14 @@
     "path": "agents.research.yaml",
     "task": "List climate, bio, materials, governance, RAG and astro agents",
     "test": "",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Write reproducibility protocol",
     "path": "docs/protocols/reproducibility.md",
     "task": "Document seeds, JSONL format and environment export steps",
     "test": "",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Write dataset provenance protocol",

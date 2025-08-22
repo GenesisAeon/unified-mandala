@@ -150,3 +150,4 @@ Dev-Agents prüfen zu Beginn eines Laufs auf diese Dateien und priorisieren dere
 - Added KEDA autoscaling template for JetStream workers to scale by lag.
 
 - Added Consciousness module and tests; marked related advanced todos as done.
+\n- Added research agent definitions and reproducibility protocol.
