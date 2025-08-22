@@ -1,0 +1,50 @@
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: flags-api
+spec:
+  scaleTargetRef:
+    name: flags-api
+  minReplicaCount: 1
+  maxReplicaCount: 10
+  triggers:
+    - type: prometheus
+      metadata:
+        serverAddress: http://prometheus.monitoring.svc.cluster.local:9090
+        metricName: http_requests_total
+        threshold: "100"
+        query: sum(rate(http_requests_total{app="flags-api"}[2m]))
+---
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: experiments-api
+spec:
+  scaleTargetRef:
+    name: experiments-api
+  minReplicaCount: 1
+  maxReplicaCount: 10
+  triggers:
+    - type: prometheus
+      metadata:
+        serverAddress: http://prometheus.monitoring.svc.cluster.local:9090
+        metricName: http_requests_total
+        threshold: "100"
+        query: sum(rate(http_requests_total{app="experiments-api"}[2m]))
+---
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: reviewer-api
+spec:
+  scaleTargetRef:
+    name: reviewer-api
+  minReplicaCount: 1
+  maxReplicaCount: 10
+  triggers:
+    - type: prometheus
+      metadata:
+        serverAddress: http://prometheus.monitoring.svc.cluster.local:9090
+        metricName: http_requests_total
+        threshold: "100"
+        query: sum(rate(http_requests_total{app="reviewer-api"}[2m]))

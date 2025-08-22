@@ -1,5 +1,5 @@
 {
-  "lastCommit": "feat: add JetStream replay script",
+  "lastCommit": "chore: add flags, experiments and reviewer deployments",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
@@ -4641,6 +4641,14 @@
     },
     {
       "commit": "Add RAG API deployment",
+      "status": "done"
+    },
+    {
+      "commit": "Add flags, experiments and reviewer deployments",
+      "status": "done"
+    },
+    {
+      "commit": "Add optional KEDA scaler",
       "status": "done"
     }
   ],

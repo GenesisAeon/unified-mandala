@@ -12780,12 +12780,12 @@
   path: k8s/deploy-flags-exp-review.yaml
   task: Deploy flags, experiments and reviewer APIs
   test: ""
-  status: open
+  status: done
 - commit: Add optional KEDA scaler
   path: k8s/keda-scalers.yaml
   task: Configure Prometheus based auto scaling
   test: ""
-  status: open
+  status: done
 - commit: Add dataset registry test
   path: tests/datasets.registry.test.ts
   task: Verify dataset creation, versioning and splitting
