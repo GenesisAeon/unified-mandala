@@ -12378,7 +12378,7 @@
   path: packages/unifiedmandala-ui/components/AgentHealthPanel.tsx
   task: Display heartbeat status in UI with polling refresh
   test: ""
-  status: open
+  status: done
 - commit: Add JetStreamBus for persistent events
   path: packages/event-bus/JetStreamBus.ts
   task: Publish and consume durable events via NATS JetStream
