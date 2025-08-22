@@ -142,3 +142,4 @@ Dev-Agents prüfen zu Beginn eines Laufs auf diese Dateien und priorisieren dere
 - Added sigil search tool spec and handler for JSONL-based sigil queries.
 - Added AgentHealthPanel component for live heartbeat monitoring.
 - Added WebSocketHub and ws-start bridge script for LocalEventBus broadcasting.
+- Integrated Utopie-to-Do adapter skeleton and synced progress files.

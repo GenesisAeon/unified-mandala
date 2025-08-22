@@ -1,5 +1,5 @@
 {
-  "lastCommit": "feat: add WebSocketHub and start script",
+  "lastCommit": "Integrate Utopie-to-Do adapter",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
@@ -805,7 +805,7 @@
     },
     {
       "commit": "Integrate Utopie-to-Do adapter",
-      "status": "open"
+      "status": "done"
     }
   ],
   "progress": [
@@ -6342,6 +6342,10 @@
     },
     {
       "commit": "Create realtime hub HTTP bridge script",
+      "status": "done"
+    },
+    {
+      "commit": "Integrate Utopie-to-Do adapter",
       "status": "done"
     }
   ],
