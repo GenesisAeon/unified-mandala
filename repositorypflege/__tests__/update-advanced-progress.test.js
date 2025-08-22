@@ -19,7 +19,7 @@ test('updates pendingTasks with limited todos', () => {
   updateAdvancedProgress(2, tmp);
   const updated = JSON.parse(fs.readFileSync(tmp, 'utf8'));
   expect(updated.pendingTasks).toEqual([
-    'Task A (a)',
-    'Task B (b)'
+    { commit: 'Task A', path: 'a', status: 'open' },
+    { commit: 'Task B', path: 'b', status: 'open' }
   ]);
 });

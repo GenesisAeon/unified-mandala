@@ -36,3 +36,17 @@ test('combines tasks from multiple JSON and YAML files', () => {
   fs.unlinkSync(tmpJson);
   fs.unlinkSync(tmpYaml);
 });
+
+test('deduplicates tasks with same commit and path', () => {
+  const tmp = path.join(__dirname, 'tmp-dup.json');
+  const sample = [
+    { commit: 'Task A', path: 'a', status: 'open' },
+    { commit: 'Task A', path: 'a', status: 'open' }
+  ];
+  fs.writeFileSync(tmp, JSON.stringify(sample, null, 2));
+
+  const todos = listOpenAdvancedTodos(undefined, tmp);
+  expect(todos).toEqual([{ commit: 'Task A', path: 'a' }]);
+
+  fs.unlinkSync(tmp);
+});

@@ -25,15 +25,23 @@ function listOpenAdvancedTodos(pattern, todoPaths) {
     }
   }
   const regex = pattern ? new RegExp(pattern, 'i') : null;
-  return data
-    .filter(
-      (item) =>
-        item.status !== 'done' &&
-        item.commit &&
-        item.path &&
-        (!regex || regex.test(item.commit) || regex.test(item.path))
-    )
-    .map((item) => ({ commit: item.commit, path: item.path }));
+  const seen = new Set();
+  const result = [];
+  for (const item of data) {
+    if (
+      item.status !== 'done' &&
+      item.commit &&
+      item.path &&
+      (!regex || regex.test(item.commit) || regex.test(item.path))
+    ) {
+      const key = `${item.commit}|${item.path}`;
+      if (!seen.has(key)) {
+        seen.add(key);
+        result.push({ commit: item.commit, path: item.path });
+      }
+    }
+  }
+  return result;
 }
 
 if (require.main === module) {
