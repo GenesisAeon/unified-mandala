@@ -1,5 +1,5 @@
 {
-  "lastCommit": "feat: enforce personhood policies with audit trail",
+  "lastCommit": "chore: sync progress metadata",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
@@ -4774,6 +4774,14 @@
     {
       "commit": "Implement PolicyGuard",
       "status": "done"
+    },
+    {
+      "commit": "Introduce Tenant and Instance types",
+      "status": "done"
+    },
+    {
+      "commit": "Add RBAC permission helper",
+      "status": "done"
     }
   ],
   "completed": [
@@ -5656,9 +5664,5 @@
       "status": "done"
     }
   ],
-  "changedFiles": [
-    "advancedToDo.json",
-    "advancedToDo.yaml",
-    "packages/identity/"
-  ]
+  "changedFiles": []
 }
