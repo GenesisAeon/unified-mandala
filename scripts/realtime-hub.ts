@@ -9,12 +9,29 @@ new ResearchHubWS({ port: wsPort, bus });
 const app = express();
 app.use(express.json());
 
-app.post('/live/ask', (req, res) => {
-  const question = (req.body && req.body.question) || '';
+app.get('/live/ask', (req, res) => {
+  const question = (req.query.question as string) || '';
+
+  res.setHeader('Content-Type', 'text/event-stream');
+  res.setHeader('Cache-Control', 'no-cache');
+  // flushHeaders is only present in some frameworks
+  (res as any).flushHeaders?.();
+
+  const unsub = bus.subscribe(Subjects.LIVE_ANSWER, (payload) => {
+    res.write(`data: ${JSON.stringify(payload)}\n\n`);
+  });
+
   bus.publish(Subjects.LIVE_ASK, { question });
-  // Echo back a placeholder answer for now
-  bus.publish(Subjects.LIVE_ANSWER, { question, answer: 'acknowledged' });
-  res.json({ status: 'queued' });
+
+  // send placeholder answer if no other responder is active
+  setTimeout(() => {
+    bus.publish(Subjects.LIVE_ANSWER, { question, answer: 'acknowledged' });
+  }, 0);
+
+  req.on('close', () => {
+    unsub();
+    res.end();
+  });
 });
 
 const port = Number(process.env.PORT || 3000);
