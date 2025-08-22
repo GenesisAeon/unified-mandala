@@ -12333,6 +12333,13 @@
     "status": "done"
   },
   {
+    "commit": "Add CSV option to repository map summary",
+    "path": "scripts/repository-map-summary.ts",
+    "task": "Support --csv flag for comma-separated module counts",
+    "test": "scripts/repository-map-summary.test.ts",
+    "status": "done"
+  },
+  {
     "commit": "Fix sigillin-cli Node runtime",
     "path": "packages/cli-tools/sigillin-cli.js",
     "task": "Ensure CLI commands work without build using JS fallbacks",

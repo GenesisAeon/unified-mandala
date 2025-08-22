@@ -8,6 +8,7 @@ Dev-Agents prüfen zu Beginn eines Laufs auf diese Dateien und priorisieren dere
 - Added `init_modules` script to verify presence of key modules for new chat bootstrap.
 
 - Added onboarding service catalog and agent service mapping configurations.
+- Added CSV output option to repository-map-summary script for spreadsheet-friendly module counts.
 - Added DefensiveShieldAgent plugin and sanitization service.
 
 - Implemented RefusalNotice component to show ethical refusal messages.
