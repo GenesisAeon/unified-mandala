@@ -13039,7 +13039,7 @@
     "path": "packages/personhood/AuditTrail.ts",
     "task": "Record signed personhood events to JSONL log",
     "test": "",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Add RefusalEngine",
@@ -13053,7 +13053,7 @@
     "path": "packages/personhood/PolicyGuard.ts",
     "task": "Enforce consent, region, review and model rules",
     "test": "tests/personhood.guard.test.ts",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Implement flags API",
