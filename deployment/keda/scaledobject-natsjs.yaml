@@ -1,0 +1,19 @@
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: natsjs-worker-autoscaler
+spec:
+  scaleTargetRef:
+    name: natsjs-worker
+  pollingInterval: 30 # seconds
+  cooldownPeriod: 300 # seconds
+  minReplicaCount: 1
+  maxReplicaCount: 20
+  triggers:
+    - type: nats-jetstream
+      metadata:
+        natsServerMonitoringEndpoint: "http://nats.monitoring:8222"
+        streamName: tasks
+        consumerName: worker
+        lagThreshold: "100"
+

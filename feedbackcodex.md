@@ -147,3 +147,4 @@ Dev-Agents prüfen zu Beginn eines Laufs auf diese Dateien und priorisieren dere
 
 - Added Prometheus scrape config for metrics server.
 - Added exclude filter to advanced todo scripts to ignore conversation-heavy tasks.
+- Added KEDA autoscaling template for JetStream workers to scale by lag.

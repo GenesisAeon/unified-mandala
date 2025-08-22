@@ -5596,6 +5596,10 @@
     {
       "commit": "Add exclude filter to advanced todo scripts",
       "status": "done"
+    },
+    {
+      "commit": "Provide KEDA autoscaling template",
+      "status": "done"
     }
   ],
   "fractalTodos": [
