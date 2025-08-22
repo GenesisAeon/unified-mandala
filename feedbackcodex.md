@@ -139,3 +139,4 @@ Dev-Agents prüfen zu Beginn eines Laufs auf diese Dateien und priorisieren dere
 - Added JetStream replay script and removed fs-extra dependency from AgentHeartbeat.
 - Improved advanced progress sync to store pending task paths and deduplicate TODO sources.
 - Implemented ResearchHubWS server and realtime hub HTTP bridge to stream live questions and answers.
+- Added sigil search tool spec and handler for JSONL-based sigil queries.
