@@ -151,3 +151,4 @@ Dev-Agents prüfen zu Beginn eines Laufs auf diese Dateien und priorisieren dere
 
 - Added Consciousness module and tests; marked related advanced todos as done.
 \n- Added research agent definitions and reproducibility protocol.
+- Tracked changed files in advanced progress updater for clearer fractal steps.

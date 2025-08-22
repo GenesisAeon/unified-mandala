@@ -1,12 +1,27 @@
 const fs = require('fs');
 const path = require('path');
+const { execSync } = require('child_process');
 const { listOpenAdvancedTodos } = require('./list-open-advanced-todos');
+
+function getChangedFiles() {
+  try {
+    const output = execSync('git status --porcelain').toString();
+    return output
+      .split('\n')
+      .filter(Boolean)
+      .map((line) => line.slice(3).trim());
+  } catch {
+    return [];
+  }
+}
 
 function updateAdvancedProgress(limit = 5, progressFile, pattern, todoPaths, excludePattern) {
   const progressPath = progressFile || path.resolve(__dirname, '..', 'advancedprogress.json');
   const progress = JSON.parse(fs.readFileSync(progressPath, 'utf8'));
   const todos = listOpenAdvancedTodos(pattern, todoPaths, excludePattern).slice(0, limit);
   progress.pendingTasks = todos.map((t) => ({ commit: t.commit, path: t.path, status: 'open' }));
+  const changed = getChangedFiles().filter((f) => f !== path.relative(path.resolve(__dirname, '..'), progressPath));
+  progress.changedFiles = changed;
   fs.writeFileSync(progressPath, JSON.stringify(progress, null, 2));
   console.log(`Synced ${todos.length} tasks to ${progressPath}`);
 }
