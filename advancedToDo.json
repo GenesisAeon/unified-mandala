@@ -12959,7 +12959,7 @@
     "path": "demos/universe_pulse_e2e.ts",
     "task": "Emit simulation events and log run metrics",
     "test": "",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Provide Prometheus scrape config",
