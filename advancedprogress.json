@@ -5688,6 +5688,10 @@
     {
       "commit": "Provide KEDA autoscaling template",
       "status": "done"
+    },
+    {
+      "commit": "feat: add limit option to newadvanced-conversations parser",
+      "status": "done"
     }
   ],
   "fractalTodos": [
@@ -5697,8 +5701,9 @@
     }
   ],
   "changedFiles": [
-    "packages/visuals/RealTimeCREPSonification.ts",
-    "packages/visuals/__tests__/RealTimeCREPSonification.test.ts"
+    "scripts/parse-newadvanced-conversations.js",
+    "packages/shared-utils/jsonFragmenter.ts",
+    "packages/shared-utils/jsonFragmenter.js"
   ],
-  "lastUpdated": "2025-08-23T14:27:14.744Z"
+  "lastUpdated": "2025-08-23T16:17:12Z"
 }
