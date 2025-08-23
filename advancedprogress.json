@@ -5669,6 +5669,9 @@
     }
   ],
   "changedFiles": [
-    "docs/sigils/advancedprogress-guide.md"
-  ]
+    "docs/sigils/advancedprogress-guide.md",
+    "repositorypflege/__tests__/update-advanced-progress.test.js",
+    "repositorypflege/update-advanced-progress.js"
+  ],
+  "lastUpdated": "2025-08-23T10:56:56.223Z"
 }
