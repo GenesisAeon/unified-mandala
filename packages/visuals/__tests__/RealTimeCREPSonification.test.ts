@@ -10,7 +10,7 @@ test('creates oscillator with mapped frequency', () => {
       connect: oscConnect,
       start,
       stop,
-    }),
+    }) as any,
     createGain: () => gainNode,
     destination: {},
     currentTime: 0,
@@ -19,11 +19,12 @@ test('creates oscillator with mapped frequency', () => {
     return ctx;
   } as any;
   const { sonifyCREP } = require('../RealTimeCREPSonification');
-  const osc = sonifyCREP(0.5, { duration: 1, volume: 0.3 });
+  const osc = sonifyCREP(0.5, { duration: 1, volume: 0.3, type: 'square' });
   expect(osc.frequency.value).toBeCloseTo(330);
   expect(start).toHaveBeenCalled();
   expect(stop).toHaveBeenCalledWith(1);
   expect(gainNode.gain.value).toBeCloseTo(0.3);
+  expect(osc.type).toBe('square');
   expect(oscConnect).toHaveBeenCalledWith(gainNode);
   expect(gainConnect).toHaveBeenCalledWith(ctx.destination);
 });

@@ -8,11 +8,13 @@ export interface SonifyOptions {
   ctx?: AudioContext;
   /** Output volume 0..1 */
   volume?: number;
+  /** Waveform type for the oscillator */
+  type?: OscillatorType;
 }
 
 export function sonifyCREP(
   crep: number,
-  { duration = 0.5, ctx, volume = 1 }: SonifyOptions = {}
+  { duration = 0.5, ctx, volume = 1, type = 'sine' }: SonifyOptions = {}
 ): OscillatorNode | undefined {
   const AudioCtx =
     (typeof window !== 'undefined' &&
@@ -30,6 +32,7 @@ export function sonifyCREP(
   const osc = audioCtx.createOscillator();
   const gain = audioCtx.createGain();
   gain.gain.value = volume;
+  osc.type = type;
   osc.frequency.value = 220 + crep * 220;
   osc.connect(gain);
   gain.connect(audioCtx.destination);
