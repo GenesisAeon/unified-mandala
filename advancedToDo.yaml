@@ -12995,7 +12995,7 @@
   path: observability/grafana_universe_pulse_mini.json
   task: Visualize UniversePulse metrics in Grafana
   test: ''
-  status: open
+  status: done
 - commit: Implement PIIRedactor utility
   path: packages/security/PIIRedactor.ts
   task: Mask phone numbers, emails and card numbers in text
