@@ -154,3 +154,4 @@ Dev-Agents prüfen zu Beginn eines Laufs auf diese Dateien und priorisieren dere
 - Tracked changed files in advanced progress updater for clearer fractal steps.
 
 - Added initial personhood policy configuration and marked corresponding advanced todos complete.
+- Added dataset provenance, CREP research protocol, and research safety docs, syncing advanced progress.

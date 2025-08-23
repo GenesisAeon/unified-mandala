@@ -12510,17 +12510,17 @@
   path: docs/protocols/dataset_provenance.md
   task: Capture source, license, hashes and dataset card info
   test: ""
-  status: open
+  status: done
 - commit: Write CREP research protocol
   path: docs/protocols/crep_research_protocol.md
   task: Outline CREP runbook for research workflows
   test: ""
-  status: open
+  status: done
 - commit: Write research safety guidelines
   path: docs/protocols/research_safety.md
   task: Summarize ethics and safety measures for agents
   test: ""
-  status: open
+  status: done
 - commit: Create PipelineOrchestrator
   path: packages/orchestrator/PipelineOrchestrator.ts
   task: Execute YAML-defined steps sequentially
