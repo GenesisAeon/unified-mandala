@@ -1,0 +1,21 @@
+# Mandala Personhood Policy
+version: "1.0"
+consent:
+  required: true
+  methods:
+    - explicit
+    - revocable
+retention:
+  default_days: 365
+  overrides:
+    eu: 730
+    children: 0
+models:
+  allow:
+    - openai/gpt-4o
+    - local/phi-3
+  deny:
+    - openai/gpt-4o-experimental
+notes: >
+  Defines baseline consent requirements, data retention limits and
+  model access rules for personhood-aware operations.
