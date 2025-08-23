@@ -44,3 +44,4 @@ export { default as SigillinFractalVisualizer } from './components/SigillinFract
 export { default as InteractiveSymbolzeitExplorer } from './components/InteractiveSymbolzeitExplorer';
 export { default as IoTSensorWidget } from './components/IoTSensorWidget';
 export { default as AgentStatusPanel } from './components/AgentStatusPanel';
+export { default as ResearchHub } from './components/ResearchHub';

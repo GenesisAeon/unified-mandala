@@ -5715,7 +5715,9 @@
   "changedFiles": [
     "advancedToDo.json",
     "advancedToDo.yaml",
-    "scripts/share-api.ts"
+    "packages/unifiedmandala-ui/index.ts",
+    "packages/unifiedmandala-ui/components/ResearchHub.test.tsx",
+    "packages/unifiedmandala-ui/components/ResearchHub.tsx"
   ],
-  "lastUpdated": "2025-08-23T21:47:34.033Z"
+  "lastUpdated": "2025-08-23T22:50:56.301Z"
 }
