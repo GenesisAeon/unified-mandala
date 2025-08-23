@@ -13072,7 +13072,7 @@
     "path": "packages/unifiedmandala-ui/components/FeatureFlagsPanel.tsx",
     "task": "Render toggle switches for feature flags",
     "test": "",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Implement experiments API",

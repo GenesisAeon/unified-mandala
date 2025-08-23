@@ -1,5 +1,5 @@
 {
-  "lastCommit": "Add gpt-5 smoke test suite",
+  "lastCommit": "Add FeatureFlagsPanel component",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
@@ -4818,6 +4818,10 @@
     {
       "commit": "feat: implement ChannelScribe utility",
       "status": "done"
+    },
+    {
+      "commit": "Add FeatureFlagsPanel component",
+      "status": "done"
     }
   ],
   "completed": [
@@ -5712,8 +5716,8 @@
     "advancedToDo.json",
     "advancedToDo.yaml",
     "feedbackcodex.md",
-    "packages/core/ChannelScribe.ts",
-    "packages/core/__tests__/ChannelScribe.test.ts"
+    "packages/unifiedmandala-ui/components/FeatureFlagsPanel.test.tsx",
+    "packages/unifiedmandala-ui/components/FeatureFlagsPanel.tsx"
   ],
-  "lastUpdated": "2025-08-23T20:35:59.378Z"
+  "lastUpdated": "2025-08-23T21:12:01.462Z"
 }
