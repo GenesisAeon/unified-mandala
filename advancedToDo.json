@@ -12987,8 +12987,8 @@
     "commit": "Create ResearchHub UI",
     "path": "packages/unifiedmandala-ui/components/ResearchHub.tsx",
     "task": "Provide entry point for research agents and flags",
-    "test": "",
-    "status": "open"
+    "test": "packages/unifiedmandala-ui/components/ResearchHub.test.tsx",
+    "status": "done"
   },
   {
     "commit": "Implement FeatureFlags service",
