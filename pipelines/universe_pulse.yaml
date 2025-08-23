@@ -1,0 +1,8 @@
+id: universe-pulse-demo
+steps:
+  - id: run-sim
+    uses: runlog-demo   # calls scripts/runlog-demo.ts default export if present
+    with: { steps: 25, dt: 0.05 }
+  - id: push-metrics
+    uses: metrics-push
+    with: { file: "data/simulations/runs/universe-pulse-v1.jsonl" }
