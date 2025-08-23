@@ -13009,14 +13009,14 @@
     "path": "packages/experiments/ExperimentRegistry.ts",
     "task": "Track experiment metadata and artifacts in JetStream",
     "test": "",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Add experiment sample script",
     "path": "scripts/experiments-sample.ts",
     "task": "Create sample experiment and attach artifact",
     "test": "",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Add Personhood Protocol documentation",
