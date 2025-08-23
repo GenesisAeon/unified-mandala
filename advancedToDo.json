@@ -13088,7 +13088,7 @@
     "path": "packages/ingest/ProvenanceCard.ts",
     "task": "Track source, license, hash and personhood metadata",
     "test": "",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Implement PDF ingest",
