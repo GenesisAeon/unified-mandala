@@ -1,5 +1,5 @@
 {
-  "lastCommit": "feat: add GermanGrammarAssistant agent",
+  "lastCommit": "Add gpt-5 smoke test suite",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
@@ -5692,6 +5692,10 @@
     {
       "commit": "feat: add limit option to newadvanced-conversations parser",
       "status": "done"
+    },
+    {
+      "commit": "Add gpt-5 smoke test suite",
+      "status": "done"
     }
   ],
   "fractalTodos": [
@@ -5703,7 +5707,7 @@
   "changedFiles": [
     "advancedToDo.json",
     "advancedToDo.yaml",
-    "packages/governance/"
+    "tests/gpt5-smoke.test.ts"
   ],
-  "lastUpdated": "2025-08-23T18:38:34.666Z"
+  "lastUpdated": "2025-08-23T19:12:12.455Z"
 }

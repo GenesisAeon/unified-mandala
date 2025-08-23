@@ -12483,7 +12483,7 @@
     "path": "tests/gpt5-smoke.test.ts",
     "task": "Verify JSON tool call, RAG answer and image caption using gpt-5",
     "test": "tests/gpt5-smoke.test.ts",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Add voice intent cheat sheet and YAML mapping",
