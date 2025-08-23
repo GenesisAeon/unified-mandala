@@ -8,16 +8,36 @@ function readTodoFile(file) {
   return ext === '.yaml' || ext === '.yml' ? yaml.load(raw) : JSON.parse(raw);
 }
 
+function collectFiles(inputPaths) {
+  const files = [];
+  for (const p of inputPaths) {
+    if (!fs.existsSync(p)) continue;
+    const stat = fs.statSync(p);
+    if (stat.isDirectory()) {
+      for (const f of fs.readdirSync(p)) {
+        if (/\.(json|ya?ml)$/i.test(f)) {
+          files.push(path.join(p, f));
+        }
+      }
+    } else {
+      files.push(p);
+    }
+  }
+  return files;
+}
+
 function listOpenAdvancedTodos(pattern, todoPaths, excludePattern) {
-  const files =
+  const basePaths =
     todoPaths && todoPaths.length
       ? Array.isArray(todoPaths)
         ? todoPaths
         : [todoPaths]
       : [
           path.resolve(__dirname, '..', 'advancedToDo.json'),
-          path.resolve(__dirname, '..', 'advancedToDo.yaml')
+          path.resolve(__dirname, '..', 'advancedToDo.yaml'),
+          path.resolve(__dirname, '..', 'advancedToDo_parts')
         ];
+  const files = collectFiles(basePaths);
   let data = [];
   for (const file of files) {
     if (fs.existsSync(file)) {

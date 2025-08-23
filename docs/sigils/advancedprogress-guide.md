@@ -10,9 +10,10 @@ Run the maintenance script after making changes:
 node repositorypflege/update-advanced-progress.js
 ```
 
-The script now records a `changedFiles` list which captures the files currently
-modified in the working tree and stamps a `lastUpdated` timestamp. This helps
-trace fractal updates across commits.
+The script collects open items from `advancedToDo.json`, `advancedToDo.yaml`
+and every fragment in `advancedToDo_parts/`. It also records a `changedFiles`
+list capturing the files currently modified in the working tree and stamps a
+`lastUpdated` timestamp. This helps trace fractal updates across commits.
 
 ## Handling Large Conversation Files
 

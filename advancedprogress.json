@@ -5701,9 +5701,9 @@
     }
   ],
   "changedFiles": [
-    "scripts/parse-newadvanced-conversations.js",
-    "packages/shared-utils/jsonFragmenter.ts",
-    "packages/shared-utils/jsonFragmenter.js"
+    "docs/sigils/advancedprogress-guide.md",
+    "repositorypflege/__tests__/list-open-advanced-todos.test.js",
+    "repositorypflege/list-open-advanced-todos.js"
   ],
-  "lastUpdated": "2025-08-23T16:17:12Z"
+  "lastUpdated": "2025-08-23T16:38:54.926Z"
 }
