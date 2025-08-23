@@ -12405,7 +12405,7 @@
   path: packages/gpt-bridges/providers/OpenAIProvider.ts
   task: Use responses endpoint when USE_RESPONSES_API=1 and support tools
   test: ""
-  status: open
+  status: done
 - commit: Validate tool arguments with AJV
   path: packages/gpt-bridges/tools/validateArgs.ts
   task: Check tool call inputs against JSON schema before execution
