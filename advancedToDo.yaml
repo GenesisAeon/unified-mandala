@@ -13100,7 +13100,7 @@
   path: packages/unifiedmandala-ui/components/CapabilityGraph.tsx
   task: Visualize available capabilities and gating
   test: ""
-  status: open
+  status: done
 - commit: Introduce task router module
   path: packages/hub/TaskRouter.ts
   task: Assign tasks to humans or AI peers based on role and score
