@@ -37,6 +37,23 @@ test('combines tasks from multiple JSON and YAML files', () => {
   fs.unlinkSync(tmpYaml);
 });
 
+test('reads tasks from directory of part files', () => {
+  const tmpDir = path.join(__dirname, 'tmp-parts');
+  fs.mkdirSync(tmpDir);
+  const part1 = [{ commit: 'Part A', path: 'pa', status: 'open' }];
+  const part2 = [{ commit: 'Part B', path: 'pb', status: 'open' }];
+  fs.writeFileSync(path.join(tmpDir, 'part1.json'), JSON.stringify(part1, null, 2));
+  fs.writeFileSync(path.join(tmpDir, 'part2.yaml'), yaml.dump(part2));
+
+  const todos = listOpenAdvancedTodos(undefined, tmpDir);
+  expect(todos).toEqual([
+    { commit: 'Part A', path: 'pa' },
+    { commit: 'Part B', path: 'pb' }
+  ]);
+
+  fs.rmSync(tmpDir, { recursive: true, force: true });
+});
+
 test('excludes tasks matching pattern', () => {
   const tmp = path.join(__dirname, 'tmp-exclude.json');
   const sample = [
