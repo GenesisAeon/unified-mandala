@@ -2804,7 +2804,8 @@
     "commit": "feat: add GermanGrammarAssistant agent",
     "path": "packages/agents/GermanGrammarAssistant.ts",
     "task": "Assist users with text corrections from conversation",
-    "test": "packages/agents/__tests__/GermanGrammarAssistant.test.ts"
+    "test": "packages/agents/GermanGrammarAssistant.test.ts",
+    "status": "done"
   },
   {
     "commit": "feat: add SimulationOrchestrator agent",
