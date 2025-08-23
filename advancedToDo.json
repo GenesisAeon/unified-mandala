@@ -13065,7 +13065,7 @@
     "path": "scripts/flags-api.ts",
     "task": "Expose HTTP API to toggle feature flags via KV",
     "test": "",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Add FeatureFlagsPanel component",
