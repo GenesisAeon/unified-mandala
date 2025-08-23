@@ -12994,14 +12994,14 @@
     "path": "packages/featureflags/FeatureFlags.ts",
     "task": "Read and write toggle values via JetStream KV",
     "test": "",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Seed feature flags script",
     "path": "scripts/feature-flags-seed.ts",
     "task": "Populate KV store with default flags",
     "test": "",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Implement ExperimentRegistry",
