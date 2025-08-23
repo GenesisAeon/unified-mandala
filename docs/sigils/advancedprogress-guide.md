@@ -15,6 +15,17 @@ and every fragment in `advancedToDo_parts/`. It also records a `changedFiles`
 list capturing the files currently modified in the working tree and stamps a
 `lastUpdated` timestamp. This helps trace fractal updates across commits.
 
+## Generating Reports
+
+To view open tasks grouped by their directories, run:
+
+```bash
+node repositorypflege/advanced-todo-report.js
+```
+
+This summarizes open items per folder without touching the large conversation
+datasets.
+
 ## Handling Large Conversation Files
 
 Datasets such as `newadvancedconversations.json` in this directory are
