@@ -22,6 +22,7 @@ function updateAdvancedProgress(limit = 5, progressFile, pattern, todoPaths, exc
   progress.pendingTasks = todos.map((t) => ({ commit: t.commit, path: t.path, status: 'open' }));
   const changed = getChangedFiles().filter((f) => f !== path.relative(path.resolve(__dirname, '..'), progressPath));
   progress.changedFiles = changed;
+  progress.lastUpdated = new Date().toISOString();
   fs.writeFileSync(progressPath, JSON.stringify(progress, null, 2));
   console.log(`Synced ${todos.length} tasks to ${progressPath}`);
 }

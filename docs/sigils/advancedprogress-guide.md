@@ -11,7 +11,8 @@ node repositorypflege/update-advanced-progress.js
 ```
 
 The script now records a `changedFiles` list which captures the files currently
-modified in the working tree. This helps trace fractal updates across commits.
+modified in the working tree and stamps a `lastUpdated` timestamp. This helps
+trace fractal updates across commits.
 
 ## Handling Large Conversation Files
 

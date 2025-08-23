@@ -22,6 +22,8 @@ test('updates pendingTasks with limited todos', () => {
     { commit: 'Task A', path: 'a', status: 'open' },
     { commit: 'Task B', path: 'b', status: 'open' }
   ]);
+  expect(typeof updated.lastUpdated).toBe('string');
+  expect(isNaN(Date.parse(updated.lastUpdated))).toBe(false);
 });
 
 test('forwards exclude pattern to listOpenAdvancedTodos', () => {
