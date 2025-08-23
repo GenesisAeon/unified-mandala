@@ -38,9 +38,9 @@ function extractSessionTodos(filePath, titles) {
 }
 
 function parseNewAdvancedConversations(filePath, destDir, keyword = 'TODO', options = {}) {
-  const { writeYaml = false } = options;
+  const { writeYaml = false, limit } = options;
   const regex = new RegExp(keyword, 'i');
-  const matches = grepJsonArrayFile(filePath, destDir, regex);
+  const matches = grepJsonArrayFile(filePath, destDir, regex, limit);
   if (writeYaml) {
     const base = filePath.replace(/\.json$/i, '');
     const outPath = path.join(destDir, `${path.basename(base)}-grep.yaml`);
@@ -61,6 +61,7 @@ if (require.main === module) {
       'Programm testen Feedback',
     ],
     yaml: false,
+    limit: undefined,
   };
 
   for (let i = 0; i < args.length; i++) {
@@ -90,6 +91,10 @@ if (require.main === module) {
       case '--yaml':
         opts.yaml = true;
         break;
+      case '--limit':
+      case '-n':
+        opts.limit = parseInt(args[++i], 10);
+        break;
       default:
         // legacy positional keyword
         if (!arg.startsWith('-')) opts.keyword = arg;
@@ -105,7 +110,7 @@ if (require.main === module) {
     fs.writeFileSync(outYaml, yaml.dump(tasks));
     console.log(`Extracted ${tasks.length} tasks to ${outJson}`);
   } else {
-    const matches = parseNewAdvancedConversations(opts.file, opts.dest, opts.keyword, { writeYaml: opts.yaml });
+    const matches = parseNewAdvancedConversations(opts.file, opts.dest, opts.keyword, { writeYaml: opts.yaml, limit: opts.limit });
     console.log(`Parsed ${matches.length} fragments containing '${opts.keyword}'. Output: ${opts.dest}`);
   }
 }

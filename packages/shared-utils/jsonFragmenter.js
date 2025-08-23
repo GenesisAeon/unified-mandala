@@ -58,14 +58,22 @@ function writeJsonChunks(filePath, destDir, chunkSize) {
  * @param filePath Input JSON array file.
  * @param destDir Destination directory for grep result file.
  * @param pattern Regular expression used to match items.
+ * @param limit Optional maximum number of matches to return.
  */
-function grepJsonArrayFile(filePath, destDir, pattern) {
+function grepJsonArrayFile(filePath, destDir, pattern, limit) {
     const raw = fs_1.default.readFileSync(filePath, 'utf8');
     const data = JSON.parse(raw);
     if (!Array.isArray(data)) {
         throw new Error('Input JSON must be an array');
     }
-    const matches = data.filter(item => pattern.test(JSON.stringify(item)));
+    const matches = [];
+    for (const item of data) {
+        if (pattern.test(JSON.stringify(item))) {
+            matches.push(item);
+            if (limit && matches.length >= limit)
+                break;
+        }
+    }
     if (!fs_1.default.existsSync(destDir))
         fs_1.default.mkdirSync(destDir, { recursive: true });
     const base = filePath.replace(/\.json$/i, '');

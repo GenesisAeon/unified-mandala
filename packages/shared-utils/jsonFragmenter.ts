@@ -50,14 +50,26 @@ export function writeJsonChunks(filePath: string, destDir: string, chunkSize: nu
  * @param filePath Input JSON array file.
  * @param destDir Destination directory for grep result file.
  * @param pattern Regular expression used to match items.
+ * @param limit Optional maximum number of matches to return.
  */
-export function grepJsonArrayFile<T>(filePath: string, destDir: string, pattern: RegExp): T[] {
+export function grepJsonArrayFile<T>(
+  filePath: string,
+  destDir: string,
+  pattern: RegExp,
+  limit?: number
+): T[] {
   const raw = fs.readFileSync(filePath, 'utf8');
   const data: T[] = JSON.parse(raw);
   if (!Array.isArray(data)) {
     throw new Error('Input JSON must be an array');
   }
-  const matches = data.filter(item => pattern.test(JSON.stringify(item)));
+  const matches: T[] = [];
+  for (const item of data) {
+    if (pattern.test(JSON.stringify(item))) {
+      matches.push(item);
+      if (limit && matches.length >= limit) break;
+    }
+  }
   if (!fs.existsSync(destDir)) fs.mkdirSync(destDir, { recursive: true });
   const base = filePath.replace(/\.json$/i, '');
   const outPath = `${destDir}/${base.split('/').pop()}-grep.json`;
