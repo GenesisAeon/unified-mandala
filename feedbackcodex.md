@@ -155,3 +155,5 @@ Dev-Agents prüfen zu Beginn eines Laufs auf diese Dateien und priorisieren dere
 
 - Added initial personhood policy configuration and marked corresponding advanced todos complete.
 - Added dataset provenance, CREP research protocol, and research safety docs, syncing advanced progress.
+
+- Implemented Markdown ToDo parser and synced advanced ToDo progress.
