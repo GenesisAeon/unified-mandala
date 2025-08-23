@@ -12585,7 +12585,7 @@
   path: governance/personhood.policy.yaml
   task: Define consent, retention and model access rules
   test: ""
-  status: open
+  status: done
 - commit: Implement ConsentRegistry
   path: packages/personhood/ConsentRegistry.ts
   task: Store and fetch consent records via JetStream KV

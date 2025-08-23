@@ -1,5 +1,5 @@
 {
-  "lastCommit": "chore: sync progress metadata",
+  "lastCommit": "feat: add personhood policy config",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
@@ -4782,6 +4782,10 @@
     {
       "commit": "Add RBAC permission helper",
       "status": "done"
+    },
+    {
+      "commit": "Create personhood policy config",
+      "status": "done"
     }
   ],
   "completed": [
@@ -5664,5 +5668,10 @@
       "status": "done"
     }
   ],
-  "changedFiles": []
+  "changedFiles": [
+    "advancedToDo.json",
+    "advancedToDo.yaml",
+    "feedbackcodex.md",
+    "governance/personhood.policy.yaml"
+  ]
 }
