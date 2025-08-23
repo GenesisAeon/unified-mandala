@@ -12866,7 +12866,7 @@
   path: packages/governance/PolicyEnforcer.ts
   task: Restrict tools, models and subjects based on permissions.yaml
   test: ''
-  status: open
+  status: done
 - commit: Introduce HmacSigner for event envelopes
   path: packages/security/HmacSigner.ts
   task: Sign and verify events using shared secret
