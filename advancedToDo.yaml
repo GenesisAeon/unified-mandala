@@ -12630,7 +12630,7 @@
   path: packages/unifiedmandala-ui/components/ExperimentBoard.tsx
   task: Compare experiment runs with personhood enforcement
   test: ""
-  status: open
+  status: done
 - commit: Add provenance card type
   path: packages/ingest/ProvenanceCard.ts
   task: Track source, license, hash and personhood metadata
