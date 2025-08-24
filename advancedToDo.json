@@ -13116,7 +13116,7 @@
     "path": "packages/ingest/VCFIngest.ts",
     "task": "Parse variant records with provenance",
     "test": "",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Add ingest demo script",
