@@ -4508,6 +4508,7 @@
   path: packages/agents/FutureKIAgent.ts
   task: Integrate predictions from Zukunft von KI conversation
   test: packages/agents/__tests__/FutureKIAgent.test.ts
+  status: done
 - commit: "feat: add DocumentGenerator agent"
   path: packages/agents/DocumentGenerator.ts
   task: Compile nightly scientific reports from conversation data
