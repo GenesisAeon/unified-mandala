@@ -1,40 +1,68 @@
 import express from 'express';
+import path from 'path';
 import { LocalEventBus, Subjects } from '../packages/event-bus';
 import { ResearchHubWS } from '../packages/realtime';
+import { RAGPipeline } from '../packages/rag/RAGPipeline';
+import { ModelRouter } from '../packages/rag/AnswerComposer';
 
-const bus = new LocalEventBus();
-const wsPort = Number(process.env.WS_PORT || 7070);
-new ResearchHubWS({ port: wsPort, bus });
+async function main() {
+  const bus = new LocalEventBus();
+  const wsPort = parseInt(process.env.WS_PORT || '4021', 10);
+  new ResearchHubWS({ port: wsPort, bus });
 
-const app = express();
-app.use(express.json());
+  const STORE_DIR = process.env.RAG_STORE_DIR || path.join('data', 'rag');
+  const DOC_PATH = path.join(STORE_DIR, 'docs.json');
+  const VECTOR_PATH = path.join(STORE_DIR, 'vectors.json');
 
-app.get('/live/ask', (req, res) => {
-  const question = (req.query.question as string) || '';
+  const router: ModelRouter = {
+    async generate(prompt: string) {
+      const apiKey = process.env.OPENAI_API_KEY;
+      if (!apiKey) return '';
+      const res = await fetch('https://api.openai.com/v1/completions', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${apiKey}`,
+        },
+        body: JSON.stringify({
+          model: 'gpt-3.5-turbo-instruct',
+          prompt,
+          max_tokens: 200,
+        }),
+      });
+      const json = await res.json();
+      return json.choices?.[0]?.text?.trim() || '';
+    },
+  };
 
-  res.setHeader('Content-Type', 'text/event-stream');
-  res.setHeader('Cache-Control', 'no-cache');
-  // flushHeaders is only present in some frameworks
-  (res as any).flushHeaders?.();
-
-  const unsub = bus.subscribe(Subjects.LIVE_ANSWER, (payload) => {
-    res.write(`data: ${JSON.stringify(payload)}\n\n`);
+  const pipeline = new RAGPipeline({
+    docPath: DOC_PATH,
+    vectorPath: VECTOR_PATH,
+    router,
   });
 
-  bus.publish(Subjects.LIVE_ASK, { question });
+  const app = express();
+  app.use(express.json());
 
-  // send placeholder answer if no other responder is active
-  setTimeout(() => {
-    bus.publish(Subjects.LIVE_ANSWER, { question, answer: 'acknowledged' });
-  }, 0);
-
-  req.on('close', () => {
-    unsub();
-    res.end();
+  app.post('/live/ask', async (req, res) => {
+    const { question, k } = req.body;
+    if (!question) {
+      return res.status(400).json({ error: 'question required' });
+    }
+    bus.publish(Subjects.LIVE_ASK, { question });
+    const answer = await pipeline.ask(question, k);
+    bus.publish(Subjects.LIVE_ANSWER, { question, answer });
+    res.json(answer);
   });
+
+  const port = parseInt(process.env.PORT || '4020', 10);
+  app.listen(port, () => {
+    console.log(`Realtime hub listening on ${port}`);
+  });
+}
+
+main().catch((err) => {
+  console.error(err);
+  process.exit(1);
 });
 
-const port = Number(process.env.PORT || 3000);
-app.listen(port, () => {
-  console.log(`realtime hub listening on http://localhost:${port} with ws ${wsPort}`);
-});

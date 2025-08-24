@@ -21,15 +21,15 @@
     },
     {
       "commit": "Create realtime hub HTTP bridge script",
-      "status": "open"
+      "status": "done"
     },
     {
       "commit": "Implement annotations KV store",
-      "status": "open"
+      "status": "done"
     },
     {
       "commit": "Add annotations API with broadcast",
-      "status": "open"
+      "status": "done"
     },
     {
       "commit": "Add RealtimeResearchHub UI component",
@@ -6442,5 +6442,5 @@
     "packages/hitloop/",
     "scripts/reviewer-api.ts"
   ],
-  "lastUpdated": "2025-08-24T19:50:45.494Z"
+  "lastUpdated": "2025-08-24T20:29:50Z"
 }

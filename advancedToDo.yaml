@@ -12827,17 +12827,17 @@
   path: scripts/realtime-hub.ts
   task: Expose /live/ask endpoint and stream answers
   test: ""
-  status: open
+  status: done
 - commit: Implement annotations KV store
   path: packages/collab/AnnotationsStore.ts
   task: Persist and list annotations per document
   test: ""
-  status: open
+  status: done
 - commit: Add annotations API with broadcast
   path: scripts/annotations-api.ts
   task: Serve annotation add/list endpoints with WS notifications
   test: ""
-  status: open
+  status: done
 - commit: Add ReviewerHotkeys UI hook
   path: packages/unifiedmandala-ui/components/ReviewerHotkeys.tsx
   task: Trigger reviewer decisions via keyboard shortcuts
