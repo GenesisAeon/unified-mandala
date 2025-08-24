@@ -161,3 +161,4 @@ Dev-Agents prüfen zu Beginn eines Laufs auf diese Dateien und priorisieren dere
 - Implemented ChannelScribe utility with log and clear capabilities.
 - Added FeatureFlagsPanel component to toggle feature flags in UI.
 - Implemented flags API server for HTTP-based feature toggles.
+- Implemented RefusalEngine to generate structured refusal objects and synced progress files.

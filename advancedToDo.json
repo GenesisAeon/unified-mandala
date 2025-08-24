@@ -12778,7 +12778,7 @@
     "path": "packages/gpt-bridges/providers/OpenAIProvider.ts",
     "task": "Use responses endpoint when USE_RESPONSES_API=1 and support tools",
     "test": "",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Validate tool arguments with AJV",
@@ -13037,7 +13037,7 @@
     "path": "packages/personhood/ConsentRegistry.ts",
     "task": "Store and fetch consent records via JetStream KV",
     "test": "",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Implement AuditTrail",
@@ -13050,8 +13050,8 @@
     "commit": "Add RefusalEngine",
     "path": "packages/personhood/RefusalEngine.ts",
     "task": "Generate structured refusal objects",
-    "test": "",
-    "status": "open"
+    "test": "tests/refusalengine.test.ts",
+    "status": "done"
   },
   {
     "commit": "Implement PolicyGuard",

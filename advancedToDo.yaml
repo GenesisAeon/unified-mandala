@@ -12595,7 +12595,7 @@
   path: packages/personhood/ConsentRegistry.ts
   task: Store and fetch consent records via JetStream KV
   test: ""
-  status: open
+  status: done
 - commit: Implement AuditTrail
   path: packages/personhood/AuditTrail.ts
   task: Record signed personhood events to JSONL log
@@ -12604,8 +12604,8 @@
 - commit: Add RefusalEngine
   path: packages/personhood/RefusalEngine.ts
   task: Generate structured refusal objects
-  test: ""
-  status: open
+  test: tests/refusalengine.test.ts
+  status: done
 - commit: Implement PolicyGuard
   path: packages/personhood/PolicyGuard.ts
   task: Enforce consent, region, review and model rules
