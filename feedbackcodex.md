@@ -165,3 +165,4 @@ Dev-Agents prüfen zu Beginn eines Laufs auf diese Dateien und priorisieren dere
 - Implemented ExperimentBoard component comparing experiment runs with personhood enforcement and synced advanced progress.
 
 - Implemented VCF ingest parser with provenance support and updated progress trackers.
+- Implemented ReviewerQueue and reviewer API, updating advanced tasks and progress tracking.
