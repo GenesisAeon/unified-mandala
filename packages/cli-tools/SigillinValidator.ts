@@ -1,35 +1,26 @@
-import fs from 'fs';
-import Ajv from 'ajv';
-import addFormats from 'ajv-formats';
-import YAML from 'yaml';
-import path from 'path';
-import schema from '../genesis-sigillin-core/schemas/sigillin.schema.json';
+import { validateSigillin, ValidationResult } from '../shared-utils/SigillinValidator';
 
-export function validateSigil(filePath: string): boolean {
-  const ajv = new Ajv();
-  addFormats(ajv);
-  const validate = ajv.compile(schema);
-  const content = fs.readFileSync(filePath, 'utf8');
-  const data = filePath.endsWith('.yaml') || filePath.endsWith('.yml')
-    ? YAML.parse(content)
-    : JSON.parse(content);
-  const valid = validate(data);
-  if (!valid) {
-    console.error(validate.errors);
-  }
-  return !!valid;
+/**
+ * Validate a sigil file against the core schema.
+ * @param file - Path to the sigil YAML or JSON file.
+ * @param schemaPath - Optional path to a schema file.
+ * @returns ValidationResult from Ajv.
+ */
+export function validateSigilFile(file: string, schemaPath?: string): ValidationResult {
+  return validateSigillin(file, schemaPath);
 }
 
 if (require.main === module) {
-  const file = process.argv[2];
+  const [file, schema] = process.argv.slice(2);
   if (!file) {
-    console.error('Usage: ts-node SigillinValidator.ts <file>');
+    console.error('Usage: ts-node SigillinValidator.ts <sigil-file> [schema]');
     process.exit(1);
   }
-  const abs = path.resolve(file);
-  if (validateSigil(abs)) {
-    console.log('Sigillin-Datei gültig.');
+  const result = validateSigillin(file, schema);
+  if (result.valid) {
+    console.log('Sigil is valid');
   } else {
+    console.error('Sigil is invalid:', result.errors);
     process.exit(1);
   }
 }
