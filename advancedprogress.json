@@ -1,5 +1,5 @@
 {
-  "lastCommit": "Merge pull request #1428 from GenesisAeon/codex/optimize-repository-and-implement-features-hmwxvp",
+  "lastCommit": "Merge pull request #1429 from GenesisAeon/codex/optimize-repository-structure-and-features-u0vymk",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
@@ -7,14 +7,6 @@
   "mergeConflicts": [],
   "notes": "Added FusionEvolution module | Added FieldQuantization module and marked NullmembranQuantization complete | Added ModelRouter and open-source providers | Added Red Team Day exercise scripts | Added RAG API deployment manifest | Implemented AgentHeartbeat module | Added unified security Grafana dashboard | Exposed agent health API | Implemented ReviewerHotkeys UI hook | Added AgentHealthPanel component | Added Personhood Protocol documentation | Provide Prometheus scrape config | Added JetStreamBus for persistent events | Added JetStream KV/ObjectStore wrappers and tool loader | Added waveform option to CREP sonification | Implemented GermanGrammarAssistant agent",
   "pendingTasks": [
-    {
-      "commit": "Implement ConsentRegistry",
-      "status": "open"
-    },
-    {
-      "commit": "Add RefusalEngine",
-      "status": "open"
-    },
     {
       "commit": "Implement experiments API",
       "status": "open"
@@ -5517,6 +5509,14 @@
     {
       "commit": "Create share API server",
       "status": "done"
+    },
+    {
+      "commit": "Implement ConsentRegistry",
+      "status": "done"
+    },
+    {
+      "commit": "Add RefusalEngine",
+      "status": "done"
     }
   ],
   "completed": [
@@ -6418,8 +6418,8 @@
   "changedFiles": [
     "advancedToDo.json",
     "advancedToDo.yaml",
-    "packages/experiments/ExperimentRegistry.ts",
-    "scripts/experiments-sample.ts"
+    "packages/personhood/RefusalEngine.ts",
+    "tests/refusalengine.test.ts"
   ],
-  "lastUpdated": "2025-08-23T23:06:42.839Z"
+  "lastUpdated": "2025-08-23T23:15:48.564Z"
 }
