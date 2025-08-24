@@ -1,5 +1,5 @@
 {
-  "lastCommit": "test: add AutoTuningAgent",
+  "lastCommit": "chore: sync advanced progress",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
@@ -18,18 +18,6 @@
     {
       "commit": "Implement ResearchHubWS server",
       "status": "open"
-    },
-    {
-      "commit": "Create realtime hub HTTP bridge script",
-      "status": "done"
-    },
-    {
-      "commit": "Implement annotations KV store",
-      "status": "done"
-    },
-    {
-      "commit": "Add annotations API with broadcast",
-      "status": "done"
     },
     {
       "commit": "Add RealtimeResearchHub UI component",
@@ -5533,6 +5521,18 @@
     {
       "commit": "Add reviewer API",
       "status": "done"
+    },
+    {
+      "commit": "feat: add DarkMatterFieldModel module",
+      "status": "done"
+    },
+    {
+      "commit": "Implement annotations KV store",
+      "status": "done"
+    },
+    {
+      "commit": "Add annotations API with broadcast",
+      "status": "done"
     }
   ],
   "completed": [
@@ -6439,8 +6439,10 @@
     "advancedToDo.json",
     "advancedToDo.yaml",
     "feedbackcodex.md",
-    "packages/hitloop/",
-    "scripts/reviewer-api.ts"
+    "packages/universum-simulationen/__tests__/__pycache__/",
+    "packages/universum-simulationen/__tests__/dark_matter_field_model_test.py",
+    "packages/universum-simulationen/modules/__pycache__/",
+    "packages/universum-simulationen/modules/dark_matter_field_model.py"
   ],
-  "lastUpdated": "2025-08-24T20:29:50Z"
+  "lastUpdated": "2025-08-24T20:45:47.198Z"
 }
