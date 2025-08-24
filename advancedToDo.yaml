@@ -12995,7 +12995,7 @@
   path: tools/windows/templates/mandala.ahk
   task: Provide sample AHK script for Windows automation
   test: ""
-  status: open
+  status: done
 - commit: Create AutoHotkey macro compiler
   path: packages/automation/AHKCompiler.ts
   task: Compile macro steps into AutoHotkey scripts
