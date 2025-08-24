@@ -1,0 +1,20 @@
+# Mandala OS Bridge Capability Policy
+version: "1.0"
+capabilities:
+  allow:
+    - fs.read
+    - fs.write
+    - process.spawn
+    - uia.keyboard
+    - uia.mouse
+  deny:
+    - network.access
+    - system.shutdown
+consent:
+  required: true
+  methods:
+    - explicit
+    - session
+notes: >
+  Defines default capability rules for Windows OS Bridge integration. Most
+  operations require explicit user approval and are scoped per session.

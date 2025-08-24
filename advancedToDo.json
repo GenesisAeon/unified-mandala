@@ -13453,7 +13453,7 @@
     "path": "governance/capabilities.policy.yaml",
     "task": "Define default decisions for Windows OS integration features",
     "test": "",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Implement CapabilityGuard for OS Bridge",
