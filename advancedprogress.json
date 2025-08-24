@@ -1,5 +1,5 @@
 {
-  "lastCommit": "Merge pull request #1433 from GenesisAeon/codex/optimize-repository-and-implement-features-qxtcz6",
+  "lastCommit": "chore: sync advanced progress",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
@@ -5521,6 +5521,10 @@
     {
       "commit": "Add AutoHotkey template script",
       "status": "done"
+    },
+    {
+      "commit": "Add JSON output option to advanced-todo-report script",
+      "status": "done"
     }
   ],
   "completed": [
@@ -6422,8 +6426,8 @@
   "changedFiles": [
     "advancedToDo.json",
     "advancedToDo.yaml",
-    "packages/agents/SimulationOrchestrator.ts",
-    "packages/agents/__tests__/SimulationOrchestrator.test.ts"
+    "repositorypflege/__tests__/advanced-todo-report.test.js",
+    "repositorypflege/advanced-todo-report.js"
   ],
-  "lastUpdated": "2025-08-24T17:44:05.877Z"
+  "lastUpdated": "2025-08-24T17:57:35.378Z"
 }

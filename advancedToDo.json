@@ -14579,5 +14579,12 @@
     "task": "Document transparency principles in README",
     "test": "",
     "status": "done"
+  },
+  {
+    "commit": "Add JSON output option to advanced-todo-report script",
+    "path": "repositorypflege/advanced-todo-report.js",
+    "task": "Allow advanced-todo-report to output grouped tasks as JSON when --json flag is used",
+    "test": "repositorypflege/__tests__/advanced-todo-report.test.js",
+    "status": "done"
   }
 ]
