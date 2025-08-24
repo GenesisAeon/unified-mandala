@@ -13154,7 +13154,7 @@
     "path": "packages/federated/SecureAggregator.ts",
     "task": "Average vectors and add DP noise",
     "test": "",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Add federated API",

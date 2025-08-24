@@ -8,7 +8,8 @@ export default defineConfig({
       'packages/api/**/*.{test,spec}.ts',
       'scripts/**/*.{test,spec}.ts',
       'packages/wissenschaftliche-versuche/**/*.{test,spec}.ts',
-      'packages/consent-mesh/**/*.{test,spec}.ts'
+      'packages/consent-mesh/**/*.{test,spec}.ts',
+      'packages/federated/**/*.{test,spec}.ts'
     ],
     environment: 'node'
   }
