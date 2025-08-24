@@ -4512,6 +4512,7 @@
   path: packages/agents/DocumentGenerator.ts
   task: Compile nightly scientific reports from conversation data
   test: packages/agents/__tests__/DocumentGenerator.test.ts
+  status: done
 - commit: "feat: add TeamboardManager module"
   path: packages/agents/TeamboardManager.ts
   task: Manage specialized GPT teams and persistent teamboard docs
