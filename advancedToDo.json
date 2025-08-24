@@ -13079,7 +13079,7 @@
     "path": "scripts/experiments-api.ts",
     "task": "Serve experiment metadata and comparisons with personhood checks",
     "test": "",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Add ExperimentBoard component",
