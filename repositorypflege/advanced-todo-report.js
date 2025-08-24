@@ -18,11 +18,16 @@ if (require.main === module) {
   const todoPaths = pathIndex >= 0 ? process.argv[pathIndex + 1].split(',') : undefined;
   const exclIndex = process.argv.indexOf('--exclude');
   const exclude = exclIndex >= 0 ? process.argv[exclIndex + 1] : undefined;
+  const jsonOutput = process.argv.includes('--json');
 
   const grouped = groupTodosByDir(pattern, todoPaths, exclude);
-  for (const [dir, tasks] of Object.entries(grouped)) {
-    console.log(`${dir}:`);
-    tasks.forEach((t) => console.log(`  - ${t.commit}`));
+  if (jsonOutput) {
+    console.log(JSON.stringify(grouped, null, 2));
+  } else {
+    for (const [dir, tasks] of Object.entries(grouped)) {
+      console.log(`${dir}:`);
+      tasks.forEach((t) => console.log(`  - ${t.commit}`));
+    }
   }
 }
 

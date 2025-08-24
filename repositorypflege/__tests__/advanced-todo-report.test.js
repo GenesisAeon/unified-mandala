@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const { execSync } = require('child_process');
 const { groupTodosByDir } = require('../advanced-todo-report');
 
 test('groups open todos by directory', () => {
@@ -21,6 +22,27 @@ test('groups open todos by directory', () => {
     b: [
       { commit: 'Task C', path: 'b/file3' }
     ]
+  });
+
+  fs.unlinkSync(tmp);
+});
+
+test('cli outputs json when --json flag is provided', () => {
+  const tmp = path.join(__dirname, 'tmp-report.json');
+  const sample = [
+    { commit: 'Task A', path: 'a/file1', status: 'open' },
+    { commit: 'Task C', path: 'b/file3', status: 'open' }
+  ];
+  fs.writeFileSync(tmp, JSON.stringify(sample, null, 2));
+
+  const script = path.join(__dirname, '..', 'advanced-todo-report.js');
+  const out = execSync(`node ${script} --path ${tmp} --json`, {
+    encoding: 'utf8'
+  });
+  const grouped = JSON.parse(out);
+  expect(grouped).toEqual({
+    a: [{ commit: 'Task A', path: 'a/file1' }],
+    b: [{ commit: 'Task C', path: 'b/file3' }]
   });
 
   fs.unlinkSync(tmp);
