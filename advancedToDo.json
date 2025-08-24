@@ -2818,7 +2818,8 @@
     "commit": "feat: extend FutureKIAgent",
     "path": "packages/agents/FutureKIAgent.ts",
     "task": "Integrate predictions from Zukunft von KI conversation",
-    "test": "packages/agents/__tests__/FutureKIAgent.test.ts"
+    "test": "packages/agents/__tests__/FutureKIAgent.test.ts",
+    "status": "done"
   },
   {
     "commit": "feat: add DocumentGenerator agent",
