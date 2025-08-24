@@ -12860,7 +12860,7 @@
   path: packages/unifiedmandala-ui/components/RealtimeResearchHub.tsx
   task: Display live retrieval hits and streamed answers
   test: ""
-  status: open
+  status: done
 - commit: Add AnnotationsPanel UI component
   path: packages/unifiedmandala-ui/components/AnnotationsPanel.tsx
   task: Create realtime annotation list and add form

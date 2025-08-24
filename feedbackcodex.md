@@ -168,3 +168,4 @@ Dev-Agents prüfen zu Beginn eines Laufs auf diese Dateien und priorisieren dere
 - Implemented ReviewerQueue and reviewer API, updating advanced tasks and progress tracking.
 - Added AutoTuningAgent for parameter search with budget guard.
 - Introduced DarkMatterFieldModel module with tests and synced advanced progress.
+- Implemented RealtimeResearchHub component for streaming retrieval hits and answers.
