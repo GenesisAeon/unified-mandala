@@ -13441,14 +13441,14 @@
     "path": "package.json",
     "task": "Provide cross-platform dev commands using cross-env and concurrently",
     "test": "",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Create Windows start-all PowerShell script",
     "path": "scripts/windows/start-all.ps1",
     "task": "Launch all dev APIs on Windows with predefined ports",
     "test": "",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Add OS Bridge capability policy",
