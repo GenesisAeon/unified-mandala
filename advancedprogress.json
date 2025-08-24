@@ -1,5 +1,5 @@
 {
-  "lastCommit": "feat: add GeoTIFF ingest",
+  "lastCommit": "chore: refresh advanced progress",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
@@ -4926,6 +4926,14 @@
     {
       "commit": "Implement PDF ingest",
       "status": "done"
+    },
+    {
+      "commit": "Implement GeoTIFF ingest",
+      "status": "done"
+    },
+    {
+      "commit": "Implement VCF ingest",
+      "status": "done"
     }
   ],
   "completed": [
@@ -5824,12 +5832,6 @@
       "status": "done"
     }
   ],
-  "changedFiles": [
-    "advancedToDo.json",
-    "advancedToDo.yaml",
-    "package.json",
-    "pnpm-lock.yaml",
-    "packages/ingest/GeoTIFFIngest.ts"
-  ],
-  "lastUpdated": "2025-08-24T19:06:24.613Z"
+  "changedFiles": [],
+  "lastUpdated": "2025-08-24T19:29:57.860Z"
 }
