@@ -4547,9 +4547,10 @@
   task: Simulate dynamic interactions between 0- and 1-states
   test: packages/universum-simulationen/__tests__/NullmembranDynamics.test.py
 - commit: "feat: add DarkMatterFieldModel module"
-  path: packages/universum-simulationen/modules/DarkMatterFieldModel.py
+  path: packages/universum-simulationen/modules/dark_matter_field_model.py
   task: Model dark matter effects from Nullmembran interactions
-  test: packages/universum-simulationen/__tests__/DarkMatterFieldModel.test.py
+  test: packages/universum-simulationen/__tests__/dark_matter_field_model_test.py
+  status: done
 - commit: "feat: add TheoryDatabase service"
   path: packages/universum-simulationen/modules/TheoryDatabase.ts
   task: Store and retrieve scientific theories for simulations
