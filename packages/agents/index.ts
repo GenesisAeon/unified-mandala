@@ -59,3 +59,4 @@ export * from './MasterGPTBridge';
 export * from './FutureTechFramework';
 export * from './OvernightWorkerAgent';
 export * from './AgentHeartbeat';
+export * from './TeamboardManager';
