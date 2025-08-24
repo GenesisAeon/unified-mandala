@@ -13123,7 +13123,7 @@
     "path": "scripts/ingest-demo.ts",
     "task": "Demonstrate ingest kit with personhood gate and audit",
     "test": "",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Implement ReviewerQueue",
