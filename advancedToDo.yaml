@@ -12647,7 +12647,7 @@
   path: packages/ingest/GeoTIFFIngest.ts
   task: Read raster metadata and provenance
   test: ""
-  status: open
+  status: done
 - commit: Implement VCF ingest
   path: packages/ingest/VCFIngest.ts
   task: Parse variant records with provenance
