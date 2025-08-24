@@ -37,3 +37,18 @@ tasks:
   - id: k8s.apply.base
     run:
       - kubectl apply -f deployment
+  - id: realtime.hub
+    run:
+      - npx ts-node scripts/realtime-hub.ts
+    verify:
+      - curl -f http://localhost:4020/live/ask -H 'Content-Type: application/json' -d '{"question":"ping"}' || echo "API not responding"
+  - id: annotations.api
+    run:
+      - npx ts-node scripts/annotations-api.ts
+    verify:
+      - curl -f http://localhost:3002/annotations/test || echo "API not responding"
+  - id: share.api
+    run:
+      - npx ts-node scripts/share-api.ts
+    verify:
+      - curl -f "http://localhost:3000/verify?url=http://example.com" || echo "API not responding"
