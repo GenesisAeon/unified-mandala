@@ -13101,7 +13101,7 @@
     "path": "packages/ingest/PDFIngest.ts",
     "task": "Extract text and provenance from PDFs",
     "test": "",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Implement GeoTIFF ingest",
