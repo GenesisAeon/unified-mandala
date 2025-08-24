@@ -12657,7 +12657,7 @@
   path: scripts/ingest-demo.ts
   task: Demonstrate ingest kit with personhood gate and audit
   test: ""
-  status: open
+  status: done
 - commit: Implement ReviewerQueue
   path: packages/hitloop/ReviewerQueue.ts
   task: Queue and decide human review items via JetStream
