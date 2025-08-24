@@ -1,5 +1,5 @@
 {
-  "lastCommit": "Merge pull request #1445 from GenesisAeon/codex/optimize-repository-and-implement-features-m32e7y",
+  "lastCommit": "chore: update advanced progress",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
@@ -4966,6 +4966,10 @@
     {
       "commit": "Add annotations API with broadcast",
       "status": "done"
+    },
+    {
+      "commit": "Add OS Bridge capability policy",
+      "status": "done"
     }
   ],
   "completed": [
@@ -5869,5 +5873,5 @@
     }
   ],
   "changedFiles": [],
-  "lastUpdated": "2025-08-24T20:53:40.825Z"
+  "lastUpdated": "2025-08-24T21:04:07.634Z"
 }

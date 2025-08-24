@@ -12893,7 +12893,7 @@
   path: governance/capabilities.policy.yaml
   task: Define default decisions for Windows OS integration features
   test: ""
-  status: open
+  status: done
 - commit: Implement CapabilityGuard for OS Bridge
   path: packages/os-bridge/CapabilityGuard.ts
   task: Enforce personhood and capability policy with consent cache
