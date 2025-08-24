@@ -13130,14 +13130,14 @@
     "path": "packages/hitloop/ReviewerQueue.ts",
     "task": "Queue and decide human review items via JetStream",
     "test": "",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Add reviewer API",
     "path": "scripts/reviewer-api.ts",
     "task": "Expose enqueue and decision endpoints for review queue",
     "test": "",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Add AutoTuningAgent",
