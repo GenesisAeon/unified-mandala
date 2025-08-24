@@ -2824,7 +2824,8 @@
     "commit": "feat: add DocumentGenerator agent",
     "path": "packages/agents/DocumentGenerator.ts",
     "task": "Compile nightly scientific reports from conversation data",
-    "test": "packages/agents/__tests__/DocumentGenerator.test.ts"
+    "test": "packages/agents/__tests__/DocumentGenerator.test.ts",
+    "status": "done"
   },
   {
     "commit": "feat: add TeamboardManager module",
