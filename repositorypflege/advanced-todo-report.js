@@ -1,4 +1,5 @@
 const path = require('path');
+const yaml = require('js-yaml');
 const { listOpenAdvancedTodos } = require('./list-open-advanced-todos');
 
 function groupTodosByDir(pattern, todoPaths, excludePattern) {
@@ -19,9 +20,12 @@ if (require.main === module) {
   const exclIndex = process.argv.indexOf('--exclude');
   const exclude = exclIndex >= 0 ? process.argv[exclIndex + 1] : undefined;
   const jsonOutput = process.argv.includes('--json');
+  const yamlOutput = process.argv.includes('--yaml');
 
   const grouped = groupTodosByDir(pattern, todoPaths, exclude);
-  if (jsonOutput) {
+  if (yamlOutput) {
+    console.log(yaml.dump(grouped));
+  } else if (jsonOutput) {
     console.log(JSON.stringify(grouped, null, 2));
   } else {
     for (const [dir, tasks] of Object.entries(grouped)) {

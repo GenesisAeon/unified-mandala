@@ -24,7 +24,7 @@ node repositorypflege/advanced-todo-report.js
 ```
 
 This summarizes open items per folder without touching the large conversation
-datasets.
+datasets. Add `--json` or `--yaml` to emit structured output formats.
 
 ## Handling Large Conversation Files
 
