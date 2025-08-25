@@ -13312,12 +13312,12 @@
   path: docs/INTEGRATION_GUIDE.md
   task: Explain how to apply and run the integration pack
   test: ""
-  status: open
+  status: done
 - commit: Add integration copier script
   path: integration/apply.mjs
   task: Copy integration pack files into repository root
   test: ""
-  status: open
+  status: done
 - commit: Expose UM service scripts in package.json
   path: package.json
   task: Add dev commands for identity, registry, collab and admin APIs
