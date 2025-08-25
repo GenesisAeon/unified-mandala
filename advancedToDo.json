@@ -3208,7 +3208,8 @@
     "commit": "feat: add ZahlensystemKonverter module",
     "path": "packages/universum-simulationen/modules/Konvertierung_Zahlensysteme.py",
     "task": "Convert numeric systems like binary, hex and phi-based numbers",
-    "test": "packages/universum-simulationen/__tests__/Konvertierung_Zahlensysteme.test.py"
+    "test": "packages/universum-simulationen/__tests__/Konvertierung_Zahlensysteme_test.py",
+    "status": "done"
   },
   {
     "commit": "feat: add EinheitenSkalen utilities",
