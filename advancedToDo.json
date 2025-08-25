@@ -13491,8 +13491,8 @@
     "commit": "Create DesktopAutomationAgent",
     "path": "packages/agents/DesktopAutomationAgent.ts",
     "task": "Automate Windows workflows through the OS Bridge API",
-    "test": "",
-    "status": "open"
+    "test": "packages/agents/DesktopAutomationAgent.test.ts",
+    "status": "done"
   },
   {
     "commit": "Add Windows UIA and hotkey tools",

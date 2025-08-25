@@ -61,3 +61,4 @@ export * from './OvernightWorkerAgent';
 export * from './AgentHeartbeat';
 export * from './TeamboardManager';
 export * from './FutureKIAgent';
+export * from './DesktopAutomationAgent';
