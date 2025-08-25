@@ -12911,7 +12911,7 @@
   path: scripts/os-bridge-api.ts
   task: Expose Windows capabilities over HTTP with consent checks
   test: ""
-  status: open
+  status: done
 - commit: Add OSControlPanel component
   path: packages/unifiedmandala-ui/components/OSControlPanel.tsx
   task: Provide UI for granting consent and triggering OS actions
