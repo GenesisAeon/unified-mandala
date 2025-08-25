@@ -14,8 +14,7 @@ func Run(addr string) *http.Server {
 	mux.HandleFunc("/usecases/todo/parse", func(w http.ResponseWriter, r *http.Request) {
 		file := r.URL.Query().Get("file")
 		if file == "" {
-			http.Error(w, "missing file", http.StatusBadRequest)
-			return
+			file = "."
 		}
 		todos, err := codeagent.ParseTODOs(file)
 		if err != nil {

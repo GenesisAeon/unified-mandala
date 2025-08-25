@@ -5889,12 +5889,11 @@
     }
   ],
   "changedFiles": [
-    "advancedToDo.json",
-    "advancedToDo.yaml",
-    "package.json",
-    "pnpm-lock.yaml",
-    "scripts/validate-sigillin-examples.ts",
-    "scripts/windows/"
+    "go-bridge/cmd/todo-parser/main.go",
+    "go-bridge/cmd/todo-parser/main_test.go",
+    "go-bridge/cmd/todo_server/main.go",
+    "go-bridge/cmd/todo_server/main_test.go",
+    "go-bridge/pkg/codeagent/todo_parser.go"
   ],
-  "lastUpdated": "2025-08-24T22:58:47.179Z"
+  "lastUpdated": "2025-08-24T23:10:33.145Z"
 }
