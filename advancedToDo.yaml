@@ -12941,8 +12941,8 @@
 - commit: Add VoicePanel component
   path: packages/unifiedmandala-ui/components/VoicePanel.tsx
   task: Display partial and final speech-to-text results
-  test: ""
-  status: open
+  test: packages/unifiedmandala-ui/components/VoicePanel.test.tsx
+  status: done
 - commit: Add ScreenCapturePanel component
   path: packages/unifiedmandala-ui/components/ScreenCapturePanel.tsx
   task: Request and render screenshots from Windows

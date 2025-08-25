@@ -173,3 +173,4 @@ Dev-Agents prüfen zu Beginn eines Laufs auf diese Dateien und priorisieren dere
 - Added AnnotationsPanel component for realtime annotations and synced advanced progress.
 - Added ImageRedactor utility to mask selected regions in PNG images.
 - Added role permissions map for admin and commons modules.
+- Added VoicePanel component for speech-to-text results display.
