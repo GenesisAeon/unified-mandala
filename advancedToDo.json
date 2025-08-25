@@ -13681,7 +13681,7 @@
     "path": "governance/capabilities.policy.yaml",
     "task": "Allow admin to grant and revoke consent in UI modules",
     "test": "",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Add topology index registry",
