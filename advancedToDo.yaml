@@ -13027,7 +13027,7 @@
   path: packages/automation/SessionLog.ts
   task: Append automation events to JSONL session log
   test: ""
-  status: open
+  status: done
 - commit: Add macro replay script
   path: scripts/macro-replay.ts
   task: Replay macro steps from recorded session file
