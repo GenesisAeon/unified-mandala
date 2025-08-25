@@ -13161,7 +13161,7 @@
     "path": "scripts/federated-api.ts",
     "task": "Collect client updates and aggregate with personhood enforcement",
     "test": "",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Add withPersonhood router hook",
