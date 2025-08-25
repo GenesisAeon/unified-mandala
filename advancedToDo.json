@@ -13421,7 +13421,7 @@
     "path": "code-agent-tasks.yaml",
     "task": "Add realtime.hub, annotations.api and share.api commands",
     "test": "",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Add signed URL test",
@@ -13435,7 +13435,7 @@
     "path": "tests/realtime.flow.test.ts",
     "task": "Demonstrate token chunking in realtime hub",
     "test": "",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Add Windows dev scripts and cross-env support",
