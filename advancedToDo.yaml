@@ -4523,6 +4523,7 @@
   path: packages/core/PipelineService.ts
   task: Process message pipelines and integrate event streams
   test: packages/core/__tests__/PipelineService.test.ts
+  status: done
 - commit: "feat: implement ChannelScribe utility"
   path: packages/core/ChannelScribe.ts
   task: Record conversation channels and transitions
