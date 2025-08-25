@@ -12680,12 +12680,12 @@
   path: packages/federated/SecureAggregator.ts
   task: Average vectors and add DP noise
   test: ""
-  status: open
+  status: done
 - commit: Add federated API
   path: scripts/federated-api.ts
   task: Collect client updates and aggregate with personhood enforcement
   test: ""
-  status: open
+  status: done
 - commit: Add withPersonhood router hook
   path: packages/gpt-bridges/router/withPersonhood.ts
   task: Wrap tools or models with policy checks and audit

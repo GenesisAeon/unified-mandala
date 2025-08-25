@@ -1,28 +1,44 @@
-export class SecureAggregator {
-  constructor(private noiseStdDev = 0) {}
+export interface SecureAggregatorOptions {
+  /**
+   * Epsilon parameter for Laplace mechanism. If 0, no noise is added.
+   */
+  epsilon?: number;
+}
 
-  aggregate(vectors: number[][]): number[] {
-    if (vectors.length === 0) {
-      return [];
-    }
-    const dim = vectors[0].length;
-    const sum = new Array(dim).fill(0);
-    for (const vec of vectors) {
-      if (vec.length !== dim) {
-        throw new Error('Vector length mismatch');
-      }
-      for (let i = 0; i < dim; i++) {
+/**
+ * SecureAggregator averages numeric vectors and can add
+ * differential privacy noise to the result.
+ */
+export class SecureAggregator {
+  private updates: number[][] = [];
+  constructor(private opts: SecureAggregatorOptions = {}) {}
+
+  addUpdate(vec: number[]): void {
+    this.updates.push(vec);
+  }
+
+  aggregate(): number[] {
+    if (this.updates.length === 0) return [];
+    const length = this.updates[0].length;
+    const sum = new Array<number>(length).fill(0);
+    for (const vec of this.updates) {
+      for (let i = 0; i < length; i++) {
         sum[i] += vec[i];
       }
     }
-    const avg = sum.map(s => s / vectors.length);
-    return avg.map(v => v + this.noiseStdDev * gaussianRandom());
+    let avg = sum.map((s) => s / this.updates.length);
+    if (this.opts.epsilon && this.opts.epsilon > 0) {
+      avg = avg.map((v) => v + this.laplace(this.opts.epsilon!));
+    }
+    return avg;
   }
-}
 
-function gaussianRandom(): number {
-  let u = 0, v = 0;
-  while (u === 0) u = Math.random();
-  while (v === 0) v = Math.random();
-  return Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v);
+  clear(): void {
+    this.updates = [];
+  }
+
+  private laplace(epsilon: number): number {
+    const u = Math.random() - 0.5;
+    return -Math.sign(u) * Math.log(1 - 2 * Math.abs(u)) / epsilon;
+  }
 }
