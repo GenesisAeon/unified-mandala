@@ -13589,7 +13589,7 @@
     "path": "packages/redaction/ImageRedactor.ts",
     "task": "Overlay black boxes on specified regions of PNG images",
     "test": "",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Implement redaction API service",
