@@ -13485,7 +13485,7 @@
     "path": "packages/unifiedmandala-ui/components/OSControlPanel.tsx",
     "task": "Provide UI for granting consent and triggering OS actions",
     "test": "",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Create DesktopAutomationAgent",
