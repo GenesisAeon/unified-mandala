@@ -169,3 +169,4 @@ Dev-Agents prüfen zu Beginn eines Laufs auf diese Dateien und priorisieren dere
 - Added AutoTuningAgent for parameter search with budget guard.
 - Introduced DarkMatterFieldModel module with tests and synced advanced progress.
 - Implemented RealtimeResearchHub component for streaming retrieval hits and answers.
+- Added AnnotationsPanel component for realtime annotations and synced advanced progress.
