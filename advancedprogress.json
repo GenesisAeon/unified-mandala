@@ -31,81 +31,6 @@
       "commit": "feat: add S08_DNA_Umweltkoeffizient simulation",
       "path": "packages/universum-simulationen/modules/S08_DNA_Umweltkoeffizient.py",
       "status": "open"
-    },
-    {
-      "commit": "feat: add NASA_Messdaten dataset integration",
-      "path": "packages/datasets/NASA_Messdaten/index.ts",
-      "status": "open"
-    },
-    {
-      "commit": "feat: add 3D_Universumsstruktur visualization",
-      "path": "packages/universum-visualization/3D_Universumsstruktur.py",
-      "status": "open"
-    },
-    {
-      "commit": "feat: add NullmembranDynamics module",
-      "path": "packages/universum-simulationen/modules/NullmembranDynamics.py",
-      "status": "open"
-    },
-    {
-      "commit": "feat: add TheoryDatabase service",
-      "path": "packages/universum-simulationen/modules/TheoryDatabase.ts",
-      "status": "open"
-    },
-    {
-      "commit": "feat: add SimulationScenarioRunner module",
-      "path": "packages/universum-simulationen/modules/SimulationScenarioRunner.py",
-      "status": "open"
-    },
-    {
-      "commit": "feat: add BehavioralDiffViewer analytics module",
-      "path": "packages/analytics/BehavioralDiffViewer.ts",
-      "status": "open"
-    },
-    {
-      "commit": "feat: add PatternMapperGPT agent",
-      "path": "packages/agents/PatternMapperGPT.ts",
-      "status": "open"
-    },
-    {
-      "commit": "feat: add TunerGPT agent",
-      "path": "packages/agents/TunerGPT.ts",
-      "status": "open"
-    },
-    {
-      "commit": "feat: add ZipMemSigillinManager module",
-      "path": "packages/genesis-sigillin-core/ZipMemSigillinManager.ts",
-      "status": "open"
-    },
-    {
-      "commit": "feat: add SigillinGenesisExplainer module",
-      "path": "packages/genesis-sigillin-core/SigillinGenesisExplainer.ts",
-      "status": "open"
-    },
-    {
-      "commit": "feat: add AeonUpdateTicketGenerator",
-      "path": "packages/aeon-shell/AeonUpdateTicketGenerator.ts",
-      "status": "open"
-    },
-    {
-      "commit": "feat: add PathkeeperGPT agent",
-      "path": "packages/agents/PathkeeperGPT.ts",
-      "status": "open"
-    },
-    {
-      "commit": "feat: add FiniteElementSolver module",
-      "path": "packages/universum-simulationen/modules/FiniteElementSolver.ts",
-      "status": "open"
-    },
-    {
-      "commit": "feat: add MonteCarloTester module",
-      "path": "packages/universum-simulationen/modules/MonteCarloTester.ts",
-      "status": "open"
-    },
-    {
-      "commit": "feat: add SimHostGPT agent",
-      "path": "packages/agents/SimHostGPT.ts",
-      "status": "open"
     }
   ],
   "progress": [
@@ -6040,9 +5965,11 @@
     }
   ],
   "changedFiles": [
-    "advancedToDo.json",
-    "advancedToDo.yaml",
-    "packages/automation/"
+    "advancedToDo_parts/advancedToDo.part6.yaml",
+    "agents/symbolmapper/__init__.py",
+    "agents/symbolmapper/main.py",
+    "agents/symbolmapper/test_main.py",
+    "tests/symbolmapper_test.py"
   ],
-  "lastUpdated": "2025-08-25T20:00:02.818Z"
+  "lastUpdated": "2025-08-25T20:22:13.521Z"
 }
