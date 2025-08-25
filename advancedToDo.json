@@ -13673,7 +13673,7 @@
     "path": "packages/identity/Roles.ts",
     "task": "Map roles to permissions for admin and commons modules",
     "test": "",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Extend capability policy for UI consent",
