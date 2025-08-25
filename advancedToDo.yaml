@@ -12901,12 +12901,12 @@
   path: packages/os-bridge/CapabilityGuard.ts
   task: Enforce personhood and capability policy with consent cache
   test: ""
-  status: open
+  status: done
 - commit: Add WindowsPS helper
   path: packages/os-bridge/WindowsPS.ts
   task: Execute PowerShell commands for clipboard, apps, and files
   test: ""
-  status: open
+  status: done
 - commit: Implement OS Bridge API
   path: scripts/os-bridge-api.ts
   task: Expose Windows capabilities over HTTP with consent checks
