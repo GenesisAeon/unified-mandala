@@ -36,7 +36,9 @@ if (require.main === module) {
   const todoPaths = pathArg ? pathArg.split(',') : undefined;
   const exclIndex = process.argv.indexOf('--exclude');
   const exclude = exclIndex >= 0 ? process.argv[exclIndex + 1] : undefined;
-  updateAdvancedProgress(limit, undefined, pattern, todoPaths, exclude);
+  const fileIndex = process.argv.indexOf('--file');
+  const progressFile = fileIndex >= 0 ? process.argv[fileIndex + 1] : undefined;
+  updateAdvancedProgress(limit, progressFile, pattern, todoPaths, exclude);
 }
 
 module.exports = { updateAdvancedProgress };
