@@ -14339,7 +14339,7 @@
     "path": "rum/otel-web.js",
     "task": "Collect browser metrics and forward to collector via OTLP",
     "test": "",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Implement multi-signal quorum gates",
