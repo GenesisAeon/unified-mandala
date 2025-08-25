@@ -175,3 +175,4 @@ Dev-Agents prüfen zu Beginn eines Laufs auf diese Dateien und priorisieren dere
 - Added role permissions map for admin and commons modules.
 - Added VoicePanel component for speech-to-text results display.
 - Added SessionLog utility to append automation events and synced progress files.
+- Added integration guide and apply script for integration pack.
