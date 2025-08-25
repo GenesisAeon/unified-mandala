@@ -12986,7 +12986,7 @@
   path: packages/redaction/PIIPatterns.ts
   task: Define regex patterns for common PII for screen redaction
   test: ""
-  status: open
+  status: done
 - commit: Add image redactor utility
   path: packages/redaction/ImageRedactor.ts
   task: Overlay black boxes on specified regions of PNG images
