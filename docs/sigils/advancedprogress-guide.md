@@ -15,6 +15,12 @@ and every fragment in `advancedToDo_parts/`. It also records a `changedFiles`
 list capturing the files currently modified in the working tree and stamps a
 `lastUpdated` timestamp. This helps trace fractal updates across commits.
 
+To write progress to an alternative file, pass the `--file` flag:
+
+```bash
+node repositorypflege/update-advanced-progress.js 5 --file path/to/progress.json
+```
+
 ## Generating Reports
 
 To view open tasks grouped by their directories, run:

@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const { execSync } = require('child_process');
 jest.mock('../list-open-advanced-todos', () => ({
   listOpenAdvancedTodos: jest.fn()
 }));
@@ -38,4 +39,22 @@ test('forwards exclude pattern to listOpenAdvancedTodos', () => {
     undefined,
     'conversations'
   );
+});
+
+test('cli writes to provided progress file', () => {
+  const tmpProgress = path.join(__dirname, 'cli-progress.json');
+  const tmpTodo = path.join(__dirname, 'cli-todo.json');
+  fs.writeFileSync(tmpProgress, JSON.stringify({ pendingTasks: [] }, null, 2));
+  fs.writeFileSync(
+    tmpTodo,
+    JSON.stringify([{ commit: 'CLI Task', path: 'cli', status: 'open' }], null, 2)
+  );
+  const script = path.join(__dirname, '..', 'update-advanced-progress.js');
+  execSync(`node ${script} 5 --file ${tmpProgress} --path ${tmpTodo}`);
+  const updated = JSON.parse(fs.readFileSync(tmpProgress, 'utf8'));
+  expect(updated.pendingTasks).toEqual([
+    { commit: 'CLI Task', path: 'cli', status: 'open' }
+  ]);
+  fs.unlinkSync(tmpProgress);
+  fs.unlinkSync(tmpTodo);
 });
