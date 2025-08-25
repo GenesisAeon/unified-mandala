@@ -1,5 +1,5 @@
 {
-  "lastCommit": "chore: sync advanced progress",
+  "lastCommit": "feat(core): add PipelineService",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
@@ -23,13 +23,13 @@
       "status": "open"
     },
     {
-      "commit": "feat: implement PipelineService module",
-      "path": "packages/core/PipelineService.ts",
+      "commit": "feat: add S07_Supernova_Strahlungseinfluss simulation",
+      "path": "packages/universum-simulationen/modules/S07_Supernova_Strahlungseinfluss.py",
       "status": "open"
     },
     {
-      "commit": "feat: add S07_Supernova_Strahlungseinfluss simulation",
-      "path": "packages/universum-simulationen/modules/S07_Supernova_Strahlungseinfluss.py",
+      "commit": "feat: add S08_DNA_Umweltkoeffizient simulation",
+      "path": "packages/universum-simulationen/modules/S08_DNA_Umweltkoeffizient.py",
       "status": "open"
     }
   ],
@@ -5002,6 +5002,10 @@
     {
       "commit": "Add AnnotationsPanel UI component",
       "status": "done"
+    },
+    {
+      "commit": "feat: implement PipelineService module",
+      "status": "done"
     }
   ],
   "completed": [
@@ -5904,9 +5908,6 @@
       "status": "done"
     }
   ],
-  "changedFiles": [
-    "repositorypflege/__tests__/advanced-todo-report.test.js",
-    "repositorypflege/advanced-todo-report.js"
-  ],
-  "lastUpdated": "2025-08-25T05:51:25.520Z"
+  "changedFiles": [],
+  "lastUpdated": "2025-08-25T06:07:58.574Z"
 }
