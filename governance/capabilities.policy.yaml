@@ -15,6 +15,11 @@ consent:
   methods:
     - explicit
     - session
+roles:
+  admin:
+    actions:
+      - ui.consent.grant
+      - ui.consent.revoke
 notes: >
   Defines default capability rules for Windows OS Bridge integration. Most
   operations require explicit user approval and are scoped per session.

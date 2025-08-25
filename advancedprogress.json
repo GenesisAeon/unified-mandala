@@ -1,5 +1,5 @@
 {
-  "lastCommit": "Merge pull request #1472 from GenesisAeon/codex/optimize-repository-and-implement-features-6i48h2",
+  "lastCommit": "chore: sync advanced progress",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
@@ -93,10 +93,6 @@
     },
     {
       "commit": "Create RedactionPanel component",
-      "status": "open"
-    },
-    {
-      "commit": "Extend capability policy for UI consent",
       "status": "open"
     },
     {
@@ -5557,6 +5553,10 @@
     {
       "commit": "Add integration copier script",
       "status": "done"
+    },
+    {
+      "commit": "Extend capability policy for UI consent",
+      "status": "done"
     }
   ],
   "completed": [
@@ -6470,9 +6470,7 @@
   "changedFiles": [
     "advancedToDo.json",
     "advancedToDo.yaml",
-    "feedbackcodex.md",
-    "docs/INTEGRATION_GUIDE.md",
-    "integration/"
+    "governance/capabilities.policy.yaml"
   ],
-  "lastUpdated": "2025-08-25T20:48:25.028Z"
+  "lastUpdated": "2025-08-25T21:17:02.606Z"
 }
