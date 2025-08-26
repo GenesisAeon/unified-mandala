@@ -13741,7 +13741,7 @@
   path: src/adapters
   task: Stub ERA5, OISST, EFFIS, Pegel, Biodiversität, Radar und SPEI bindings
   test: npx tsc -p tsconfig.json
-  status: open
+  status: done
 - commit: "feat: add KI co-designer modules"
   path: src/modules/ki
   task: Implement BayesDesigner, RLCSOAgent und evolve_green Selektoren

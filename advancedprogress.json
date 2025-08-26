@@ -1,5 +1,5 @@
 {
-  "lastCommit": "feat: add timeseries utility modules",
+  "lastCommit": "feat: scaffold climate data adapters",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
@@ -6076,6 +6076,10 @@
     {
       "commit": "Extend OS Bridge API with UIA and screen routes",
       "status": "done"
+    },
+    {
+      "commit": "feat: scaffold climate data adapters",
+      "status": "done"
     }
   ],
   "fractalTodos": [
@@ -6087,9 +6091,7 @@
   "changedFiles": [
     "advancedToDo.json",
     "advancedToDo.yaml",
-    "feedbackcodex.md",
-    "tsconfig.json",
-    "src/utils/"
+    "src/adapters/"
   ],
-  "lastUpdated": "2025-08-26T15:29:28.421Z"
+  "lastUpdated": "2025-08-26T16:03:34.115Z"
 }
