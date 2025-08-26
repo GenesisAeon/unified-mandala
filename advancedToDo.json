@@ -13527,7 +13527,7 @@
     "path": "packages/unifiedmandala-ui/components/ScreenCapturePanel.tsx",
     "task": "Request and render screenshots from Windows",
     "test": "",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Add Windows tools build script and package entries",
