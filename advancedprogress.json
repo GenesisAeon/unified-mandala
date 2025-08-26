@@ -1,5 +1,5 @@
 {
-  "lastCommit": "chore: add AHK runner and windows bridge tasks",
+  "lastCommit": "Merge pull request #1487 from GenesisAeon/codex/optimize-repository-and-implement-features-kv3im3",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
@@ -457,6 +457,34 @@
     },
     {
       "commit": "Switch Kyverno verifyImages to enforce",
+      "status": "open"
+    },
+    {
+      "commit": "feat: add timeseries utility modules",
+      "status": "open"
+    },
+    {
+      "commit": "feat: scaffold climate data adapters",
+      "status": "open"
+    },
+    {
+      "commit": "feat: add KI co-designer modules",
+      "status": "open"
+    },
+    {
+      "commit": "feat: create GeophysikSection component",
+      "status": "open"
+    },
+    {
+      "commit": "feat: implement ClimateMandalaDashboard page",
+      "status": "open"
+    },
+    {
+      "commit": "feat: add dashboard config files",
+      "status": "open"
+    },
+    {
+      "commit": "docs: add Mandala Climate Dashboard setup",
       "status": "open"
     }
   ],
@@ -5572,6 +5600,10 @@
     },
     {
       "commit": "Add AutoHotkey runner script",
+      "status": "done"
+    },
+    {
+      "commit": "docs: add Mandala Climate Dashboard blueprint",
       "status": "done"
     }
   ],

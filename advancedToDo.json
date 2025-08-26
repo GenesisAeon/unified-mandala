@@ -14604,5 +14604,61 @@
     "task": "Allow splitting conversation dataset with optional start index and count",
     "test": "scripts/split-newadvanced-conversations.test.ts",
     "status": "done"
+  },
+  {
+    "commit": "docs: add Mandala Climate Dashboard blueprint",
+    "path": "docs/blueprints/MandalaClimateDashboard.md",
+    "task": "Outline modules and implementation steps for climate dashboard",
+    "test": "",
+    "status": "done"
+  },
+  {
+    "commit": "feat: add timeseries utility modules",
+    "path": "src/utils",
+    "task": "Provide types, quality-control helpers and MRV tools",
+    "test": "npx tsc -p tsconfig.json",
+    "status": "open"
+  },
+  {
+    "commit": "feat: scaffold climate data adapters",
+    "path": "src/adapters",
+    "task": "Stub ERA5, OISST, EFFIS, Pegel, Biodiversität, Radar und SPEI bindings",
+    "test": "npx tsc -p tsconfig.json",
+    "status": "open"
+  },
+  {
+    "commit": "feat: add KI co-designer modules",
+    "path": "src/modules/ki",
+    "task": "Implement BayesDesigner, RLCSOAgent und evolve_green Selektoren",
+    "test": "npx tsc -p tsconfig.json",
+    "status": "open"
+  },
+  {
+    "commit": "feat: create GeophysikSection component",
+    "path": "src/components/GeophysikSection.tsx",
+    "task": "Render geophysikalische KPIs als Kartenraster",
+    "test": "jest",
+    "status": "open"
+  },
+  {
+    "commit": "feat: implement ClimateMandalaDashboard page",
+    "path": "src/pages/ClimateMandalaDashboard.tsx",
+    "task": "Combine climate KPIs, Hydro-Whiplash, Geophysik und MRV export",
+    "test": "jest",
+    "status": "open"
+  },
+  {
+    "commit": "feat: add dashboard config files",
+    "path": "src/config",
+    "task": "Define KPI thresholds und Alarmregeln in YAML",
+    "test": "",
+    "status": "open"
+  },
+  {
+    "commit": "docs: add Mandala Climate Dashboard setup",
+    "path": "README.md",
+    "task": "Document setup und Adapter TODOs für Climate Dashboard",
+    "test": "",
+    "status": "open"
   }
 ]
