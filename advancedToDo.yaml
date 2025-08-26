@@ -12937,7 +12937,7 @@
   path: scripts/os-bridge-api.ts
   task: Proxy UI automation and screen capture calls to Windows tools
   test: ""
-  status: open
+  status: done
 - commit: Add VoicePanel component
   path: packages/unifiedmandala-ui/components/VoicePanel.tsx
   task: Display partial and final speech-to-text results

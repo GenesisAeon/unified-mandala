@@ -1,6 +1,11 @@
 import express from 'express';
 import { CapabilityGuard } from '../packages/os-bridge/CapabilityGuard';
-import { getClipboard, setClipboard } from '../packages/os-bridge/WindowsPS';
+import {
+  getClipboard,
+  setClipboard,
+  captureScreen,
+  runUIACommand,
+} from '../packages/os-bridge/WindowsPS';
 
 async function main() {
   const port = parseInt(process.env.PORT || '3030', 10);
@@ -36,6 +41,30 @@ async function main() {
     try {
       guard.enforce('clipboard.write');
       await setClipboard(text);
+      res.json({ ok: true });
+    } catch (err) {
+      res.status(400).json({ error: (err as Error).message });
+    }
+  });
+
+  app.get('/screen', async (_req, res) => {
+    try {
+      guard.enforce('screen.capture');
+      const image = await captureScreen();
+      res.json({ image });
+    } catch (err) {
+      res.status(400).json({ error: (err as Error).message });
+    }
+  });
+
+  app.post('/uia', async (req, res) => {
+    const { command } = req.body;
+    if (typeof command !== 'string') {
+      return res.status(400).json({ error: 'command required' });
+    }
+    try {
+      guard.enforce('uia.automation');
+      await runUIACommand(command);
       res.json({ ok: true });
     } catch (err) {
       res.status(400).json({ error: (err as Error).message });

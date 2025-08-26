@@ -42,3 +42,36 @@ export async function setClipboard(text: string): Promise<void> {
 export async function openApp(filePath: string): Promise<void> {
   await runPS(`Start-Process -FilePath \"${filePath}\"`);
 }
+
+/**
+ * Capture the current screen and return a base64 encoded PNG.
+ *
+ * This is a lightweight placeholder that relies on a PowerShell
+ * script available on the host. The function throws if the platform
+ * is not Windows or the capture fails.
+ */
+export async function captureScreen(): Promise<string> {
+  assertWindows();
+  // Uses a small PowerShell snippet to grab a screenshot and emit it as Base64.
+  const { stdout } = await runPS(
+    'Add-Type -AssemblyName System.Windows.Forms, System.Drawing; '
+      + '$bmp = New-Object System.Drawing.Bitmap([System.Windows.Forms.Screen]::PrimaryScreen.Bounds.Width, '
+      + '[System.Windows.Forms.Screen]::PrimaryScreen.Bounds.Height); '
+      + '$graphics = [System.Drawing.Graphics]::FromImage($bmp); '
+      + '$graphics.CopyFromScreen(0,0,0,0,$bmp.Size); '
+      + '$ms = New-Object System.IO.MemoryStream; '
+      + '$bmp.Save($ms, [System.Drawing.Imaging.ImageFormat]::Png); '
+      + '[Convert]::ToBase64String($ms.ToArray())'
+  );
+  return stdout;
+}
+
+/**
+ * Execute a UI Automation command. The given PowerShell snippet is
+ * passed through directly which allows higher level tooling such as
+ * WinUABridge to drive the UI.
+ */
+export async function runUIACommand(command: string): Promise<void> {
+  assertWindows();
+  await runPS(command);
+}
