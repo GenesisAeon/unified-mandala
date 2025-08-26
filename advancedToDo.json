@@ -2860,7 +2860,8 @@
     "commit": "feat: add S08_DNA_Umweltkoeffizient simulation",
     "path": "packages/universum-simulationen/modules/S08_DNA_Umweltkoeffizient.py",
     "task": "Model DNA adaptation to environmental factors",
-    "test": "packages/universum-simulationen/__tests__/S08_DNA_Umweltkoeffizient.test.py"
+    "test": "packages/universum-simulationen/__tests__/S08_DNA_Umweltkoeffizient_test.py",
+    "status": "done"
   },
   {
     "commit": "feat: add NASA_Messdaten dataset integration",
