@@ -176,3 +176,4 @@ Dev-Agents prüfen zu Beginn eines Laufs auf diese Dateien und priorisieren dere
 - Added VoicePanel component for speech-to-text results display.
 - Added SessionLog utility to append automation events and synced progress files.
 - Added integration guide and apply script for integration pack.
+- Implemented redaction API service exposing optional OCR for screenshot redaction.
