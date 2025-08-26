@@ -13786,21 +13786,21 @@
     "path": "packages/protocol/ContributionEvent.ts",
     "task": "Define event type for contributions with provenance and credit fields",
     "test": "",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Add PluginManifest schema",
     "path": "packages/protocol/PluginManifest.ts",
     "task": "Define plugin metadata including capabilities and policies",
     "test": "",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Add AIPeerHandshake protocol",
     "path": "packages/protocol/AIPeerHandshake.ts",
     "task": "Introduce PeerHello type with attestation fields",
     "test": "",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Create CoIntel orchestrator service",
