@@ -13504,7 +13504,7 @@
     "path": "tools/windows",
     "task": "Include WinUABridge, HotkeyDaemon, ScreenGrab, and SpeechListener utilities",
     "test": "",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Add voice and screen control API",
