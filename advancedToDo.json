@@ -14625,7 +14625,7 @@
     "path": "src/adapters",
     "task": "Stub ERA5, OISST, EFFIS, Pegel, Biodiversität, Radar und SPEI bindings",
     "test": "npx tsc -p tsconfig.json",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "feat: add KI co-designer modules",
