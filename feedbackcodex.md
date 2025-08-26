@@ -177,3 +177,4 @@ Dev-Agents prüfen zu Beginn eines Laufs auf diese Dateien und priorisieren dere
 - Added SessionLog utility to append automation events and synced progress files.
 - Added integration guide and apply script for integration pack.
 - Implemented redaction API service exposing optional OCR for screenshot redaction.
+- Added Supernova Strahlungseinfluss module with tests and synced progress.

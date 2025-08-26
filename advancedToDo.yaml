@@ -4532,7 +4532,8 @@
 - commit: "feat: add S07_Supernova_Strahlungseinfluss simulation"
   path: packages/universum-simulationen/modules/S07_Supernova_Strahlungseinfluss.py
   task: Simulate supernova radiation effects on environment
-  test: packages/universum-simulationen/__tests__/S07_Supernova_Strahlungseinfluss.test.py
+  test: packages/universum-simulationen/__tests__/S07_Supernova_Strahlungseinfluss_test.py
+  status: done
 - commit: "feat: add S08_DNA_Umweltkoeffizient simulation"
   path: packages/universum-simulationen/modules/S08_DNA_Umweltkoeffizient.py
   task: Model DNA adaptation to environmental factors

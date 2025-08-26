@@ -23,13 +23,13 @@
       "status": "open"
     },
     {
-      "commit": "feat: add S07_Supernova_Strahlungseinfluss simulation",
-      "path": "packages/universum-simulationen/modules/S07_Supernova_Strahlungseinfluss.py",
+      "commit": "feat: add S08_DNA_Umweltkoeffizient simulation",
+      "path": "packages/universum-simulationen/modules/S08_DNA_Umweltkoeffizient.py",
       "status": "open"
     },
     {
-      "commit": "feat: add S08_DNA_Umweltkoeffizient simulation",
-      "path": "packages/universum-simulationen/modules/S08_DNA_Umweltkoeffizient.py",
+      "commit": "feat: add NASA_Messdaten dataset integration",
+      "path": "packages/datasets/NASA_Messdaten/index.ts",
       "status": "open"
     }
   ],
@@ -6016,6 +6016,13 @@
       "status": "done"
     }
   ],
-  "changedFiles": [],
-  "lastUpdated": "2025-08-26T05:53:02.487Z"
+  "changedFiles": [
+    "advancedToDo.json",
+    "advancedToDo.yaml",
+    "feedbackcodex.md",
+    "packages/universum-simulationen/__tests__/S07_Supernova_Strahlungseinfluss_test.py",
+    "packages/universum-simulationen/modules/S07_Supernova_Strahlungseinfluss.py",
+    "packages/universum-simulationen/modules/__pycache__/"
+  ],
+  "lastUpdated": "2025-08-26T06:46:10.885Z"
 }
