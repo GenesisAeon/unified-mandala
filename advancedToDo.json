@@ -13511,7 +13511,7 @@
     "path": "scripts/voice-os-control-api.ts",
     "task": "Serve STT, screen capture, and hotkey endpoints",
     "test": "",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Extend OS Bridge API with UIA and screen routes",
@@ -13539,7 +13539,7 @@
     "path": "tools/windows/build-windows-tools.ps1",
     "task": "Compile C# helpers and expose dev:voiceos script in package.json",
     "test": "",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Extend code agent tasks for Windows OS bridge",
