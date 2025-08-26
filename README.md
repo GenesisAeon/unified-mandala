@@ -34,6 +34,16 @@ Weitere Hinweise aus dem „Sigil Übergang“:
 - Sozialaktionen anstoßen: `node scripts/trigger-socialgood-workflow.js` (parst ToDos und startet SocialGood-Matching) oder `node scripts/run-parsing-socialgood.js` (lokales Parsing & Matching)
 - MemoryManager verschiebt abgelaufene Einträge automatisch von `daily` zu `weekly` und `longterm`.
 
+## 🌦️ Mandala Climate Dashboard Setup
+
+Der Mandala Climate Dashboard bündelt Klimadaten und Alarme.
+
+1. Konfiguriere KPI-Schwellen in `src/config/climate-dashboard.yaml`.
+2. Adapterschichten für ERA5, OISST, EFFIS, Pegel, Biodiversität, Radar und SPEI werden in `src/adapters` implementiert (TODO).
+3. Einheitliche Zeitreihen-Helfer befinden sich in `src/utils` (TODO).
+
+Diese Adapter und Utilities sind noch offen – Beiträge willkommen.
+
 ## 🔍 Mandala Transparency
 
 Transparenz ist ein zentraler Wert des UnifiedMandala.
