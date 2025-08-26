@@ -2977,7 +2977,8 @@
     "commit": "feat: add TextSimplifier agent",
     "path": "packages/agents/TextSimplifier.ts",
     "task": "Provide dyslexia-friendly rephrasing for users",
-    "test": "packages/agents/__tests__/TextSimplifier.test.ts"
+    "test": "packages/agents/__tests__/TextSimplifier.test.ts",
+    "status": "done"
   },
   {
     "commit": "feat: add WhiteHoleFormation module",
