@@ -13037,7 +13037,7 @@
   path: scripts/macro-replay.ts
   task: Replay macro steps from recorded session file
   test: ""
-  status: open
+  status: done
 - commit: Implement desktop recorder API
   path: scripts/recorder-api.ts
   task: Wrap ffmpeg to start and stop screen recording via HTTP

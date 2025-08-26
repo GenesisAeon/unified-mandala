@@ -13651,7 +13651,7 @@
     "path": "scripts/macro-replay.ts",
     "task": "Replay macro steps from recorded session file",
     "test": "",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Implement desktop recorder API",
