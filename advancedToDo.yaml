@@ -12937,7 +12937,7 @@
   path: scripts/voice-os-control-api.ts
   task: Serve STT, screen capture, and hotkey endpoints
   test: ""
-  status: open
+  status: done
 - commit: Extend OS Bridge API with UIA and screen routes
   path: scripts/os-bridge-api.ts
   task: Proxy UI automation and screen capture calls to Windows tools
@@ -12957,7 +12957,7 @@
   path: tools/windows/build-windows-tools.ps1
   task: Compile C# helpers and expose dev:voiceos script in package.json
   test: ""
-  status: open
+  status: done
 - commit: Extend code agent tasks for Windows OS bridge
   path: code-agent-tasks.yaml
   task: Add build, voice API, and UIA demo commands
