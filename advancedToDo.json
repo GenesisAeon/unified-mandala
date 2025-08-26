@@ -13553,14 +13553,14 @@
     "path": "tools/windows/UIARedactor.cs",
     "task": "Mask sensitive regions in screenshots before returning",
     "test": "",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Add WinUI tree inspector utility",
     "path": "tools/windows/WinUITreeInspector.cs",
     "task": "List UI Automation element hierarchy for target window",
     "test": "",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Add AutoHotkey hook scripts",

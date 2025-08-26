@@ -1,5 +1,5 @@
 {
-  "lastCommit": "feat: add voice os control api and windows tooling",
+  "lastCommit": "Merge pull request #1484 from GenesisAeon/codex/optimize-repository-structure-and-implement-features-kfm2q1",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
@@ -21,14 +21,6 @@
     },
     {
       "commit": "Extend code agent tasks for Windows OS bridge",
-      "status": "open"
-    },
-    {
-      "commit": "Add UIA screen redaction tool",
-      "status": "open"
-    },
-    {
-      "commit": "Add WinUI tree inspector utility",
       "status": "open"
     },
     {
@@ -5581,6 +5573,14 @@
     {
       "commit": "Add range options to split-newadvanced-conversations script",
       "status": "done"
+    },
+    {
+      "commit": "Add UIA screen redaction tool",
+      "status": "done"
+    },
+    {
+      "commit": "Add WinUI tree inspector utility",
+      "status": "done"
     }
   ],
   "completed": [
@@ -6495,6 +6495,11 @@
       "status": "done"
     }
   ],
-  "changedFiles": [],
-  "lastUpdated": "2025-08-26T09:47:03.660Z"
+  "changedFiles": [
+    "advancedToDo.json",
+    "advancedToDo.yaml",
+    "tools/windows/UIARedactor.cs",
+    "tools/windows/WinUITreeInspector.cs"
+  ],
+  "lastUpdated": "2025-08-26T10:00:24.723Z"
 }
