@@ -52,3 +52,16 @@ tasks:
       - npx ts-node scripts/share-api.ts
     verify:
       - curl -f "http://localhost:3000/verify?url=http://example.com" || echo "API not responding"
+  - id: win.tools.build
+    run:
+      - pwsh tools/windows/build-windows-tools.ps1
+  - id: voice.os.api
+    run:
+      - npx ts-node scripts/voice-os-control-api.ts
+    verify:
+      - curl -f http://localhost:5050/stt -H 'Content-Type: application/json' -d '{}' || echo "API not responding"
+  - id: uia.demo
+    run:
+      - npx ts-node scripts/os-bridge-api.ts
+    verify:
+      - curl -f http://localhost:3030/clipboard || echo "API not responding"
