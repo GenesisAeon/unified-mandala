@@ -13617,7 +13617,7 @@
     "path": "packages/automation/AHKCompiler.ts",
     "task": "Compile macro steps into AutoHotkey scripts",
     "test": "",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Add AutoHotkey runner script",
@@ -13631,14 +13631,14 @@
     "path": "packages/automation/MacroDSL.ts",
     "task": "Validate declarative automation macros and allowed steps",
     "test": "",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Add macro execution script",
     "path": "scripts/macro-exec.ts",
     "task": "Interpret macro DSL and dispatch OS bridge commands",
     "test": "",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Add session log utility",

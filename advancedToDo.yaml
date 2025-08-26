@@ -13013,7 +13013,7 @@
   path: packages/automation/AHKCompiler.ts
   task: Compile macro steps into AutoHotkey scripts
   test: ""
-  status: open
+  status: done
 - commit: Add AutoHotkey runner script
   path: scripts/ahk-runner.ts
   task: Execute compiled AHK scripts with capability guard
@@ -13023,12 +13023,12 @@
   path: packages/automation/MacroDSL.ts
   task: Validate declarative automation macros and allowed steps
   test: ""
-  status: open
+  status: done
 - commit: Add macro execution script
   path: scripts/macro-exec.ts
   task: Interpret macro DSL and dispatch OS bridge commands
   test: ""
-  status: open
+  status: done
 - commit: Add session log utility
   path: packages/automation/SessionLog.ts
   task: Append automation events to JSONL session log
