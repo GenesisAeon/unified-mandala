@@ -2867,7 +2867,8 @@
     "commit": "feat: add NASA_Messdaten dataset integration",
     "path": "packages/datasets/NASA_Messdaten/index.ts",
     "task": "Import and parse NASA measurement data for simulations",
-    "test": "packages/datasets/__tests__/NASA_Messdaten.test.ts"
+    "test": "packages/datasets/__tests__/NASA_Messdaten.test.ts",
+    "status": "done"
   },
   {
     "commit": "feat: add 3D_Universumsstruktur visualization",
