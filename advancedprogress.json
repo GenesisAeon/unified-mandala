@@ -6105,11 +6105,15 @@
       "commit": "feat: scaffold climate data adapters",
       "status": "done"
     },
-    {
-      "commit": "feat: add macro automation modules",
-      "status": "done"
-    }
-  ],
+      {
+        "commit": "feat: add macro automation modules",
+        "status": "done"
+      },
+      {
+        "commit": "feat: create GeophysikSection component",
+        "status": "done"
+      }
+    ],
   "fractalTodos": [
     {
       "commit": "Add YAML output to split-newadvanced-conversations script",
@@ -6119,8 +6123,7 @@
   "changedFiles": [
     "advancedToDo.json",
     "advancedToDo.yaml",
-    "packages/datasets/NASA_Messdaten/",
-    "packages/datasets/__tests__/"
+    "src/components/"
   ],
-  "lastUpdated": "2025-08-26T18:43:14.408Z"
+  "lastUpdated": "2025-08-26T19:10:48.414Z"
 }

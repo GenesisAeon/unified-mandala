@@ -14640,7 +14640,7 @@
     "path": "src/components/GeophysikSection.tsx",
     "task": "Render geophysikalische KPIs als Kartenraster",
     "test": "jest",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "feat: implement ClimateMandalaDashboard page",
