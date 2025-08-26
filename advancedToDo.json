@@ -14632,7 +14632,7 @@
     "path": "src/modules/ki",
     "task": "Implement BayesDesigner, RLCSOAgent und evolve_green Selektoren",
     "test": "npx tsc -p tsconfig.json",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "feat: create GeophysikSection component",
