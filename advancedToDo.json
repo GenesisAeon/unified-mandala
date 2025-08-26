@@ -13597,7 +13597,7 @@
     "path": "scripts/redaction-api.ts",
     "task": "Expose HTTP endpoint to redact screenshots with optional OCR",
     "test": "",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Add AutoHotkey template script",
