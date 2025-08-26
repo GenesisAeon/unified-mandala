@@ -1,5 +1,5 @@
 {
-  "lastCommit": "feat(windows-tools): add UIA bridge and hotkey utilities",
+  "lastCommit": "feat: add DNA environment coefficient simulation",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
@@ -23,13 +23,13 @@
       "status": "open"
     },
     {
-      "commit": "feat: add S08_DNA_Umweltkoeffizient simulation",
-      "path": "packages/universum-simulationen/modules/S08_DNA_Umweltkoeffizient.py",
+      "commit": "feat: add NASA_Messdaten dataset integration",
+      "path": "packages/datasets/NASA_Messdaten/index.ts",
       "status": "open"
     },
     {
-      "commit": "feat: add NASA_Messdaten dataset integration",
-      "path": "packages/datasets/NASA_Messdaten/index.ts",
+      "commit": "feat: add 3D_Universumsstruktur visualization",
+      "path": "packages/universum-visualization/3D_Universumsstruktur.py",
       "status": "open"
     }
   ],
@@ -5154,6 +5154,18 @@
     {
       "commit": "Add Windows UIA and hotkey tools",
       "status": "done"
+    },
+    {
+      "commit": "feat: add S08_DNA_Umweltkoeffizient simulation",
+      "status": "done"
+    },
+    {
+      "commit": "feat: add dashboard config files",
+      "status": "done"
+    },
+    {
+      "commit": "docs: add Mandala Climate Dashboard setup",
+      "status": "done"
     }
   ],
   "completed": [
@@ -6068,11 +6080,6 @@
       "status": "done"
     }
   ],
-  "changedFiles": [
-    "README.md",
-    "advancedToDo.json",
-    "advancedToDo.yaml",
-    "src/"
-  ],
-  "lastUpdated": "2025-08-26T14:56:35.595Z"
+  "changedFiles": [],
+  "lastUpdated": "2025-08-26T15:10:02.389Z"
 }
