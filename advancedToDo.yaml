@@ -12922,12 +12922,12 @@
   path: packages/unifiedmandala-ui/components/OSControlPanel.tsx
   task: Provide UI for granting consent and triggering OS actions
   test: ""
-  status: open
+  status: done
 - commit: Create DesktopAutomationAgent
   path: packages/agents/DesktopAutomationAgent.ts
   task: Automate Windows workflows through the OS Bridge API
   test: ""
-  status: open
+  status: done
 - commit: Add Windows UIA and hotkey tools
   path: tools/windows
   task: Include WinUABridge, HotkeyDaemon, ScreenGrab, and SpeechListener utilities
@@ -12962,7 +12962,7 @@
   path: code-agent-tasks.yaml
   task: Add build, voice API, and UIA demo commands
   test: ""
-  status: open
+  status: done
 - commit: Add UIA screen redaction tool
   path: tools/windows/UIARedactor.cs
   task: Mask sensitive regions in screenshots before returning
@@ -13017,7 +13017,7 @@
   path: scripts/ahk-runner.ts
   task: Execute compiled AHK scripts with capability guard
   test: ""
-  status: open
+  status: done
 - commit: Introduce macro DSL validator
   path: packages/automation/MacroDSL.ts
   task: Validate declarative automation macros and allowed steps

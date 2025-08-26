@@ -13546,7 +13546,7 @@
     "path": "code-agent-tasks.yaml",
     "task": "Add build, voice API, and UIA demo commands",
     "test": "",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Add UIA screen redaction tool",
@@ -13623,7 +13623,7 @@
     "path": "scripts/ahk-runner.ts",
     "task": "Execute compiled AHK scripts with capability guard",
     "test": "",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Introduce macro DSL validator",
