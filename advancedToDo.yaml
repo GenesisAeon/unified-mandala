@@ -12947,7 +12947,7 @@
   path: packages/unifiedmandala-ui/components/ScreenCapturePanel.tsx
   task: Request and render screenshots from Windows
   test: ""
-  status: open
+  status: done
 - commit: Add Windows tools build script and package entries
   path: tools/windows/build-windows-tools.ps1
   task: Compile C# helpers and expose dev:voiceos script in package.json
