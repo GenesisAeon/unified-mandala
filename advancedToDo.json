@@ -2908,13 +2908,15 @@
     "commit": "feat: add PatternMapperGPT agent",
     "path": "packages/agents/PatternMapperGPT.ts",
     "task": "Analyze conversation patterns and suggest prompts",
-    "test": "packages/agents/__tests__/PatternMapperGPT.test.ts"
+    "test": "packages/agents/__tests__/PatternMapperGPT.test.ts",
+    "status": "done"
   },
   {
     "commit": "feat: add TunerGPT agent",
     "path": "packages/agents/TunerGPT.ts",
     "task": "Adjust GPT prompts based on PatternMapper output",
-    "test": "packages/agents/__tests__/TunerGPT.test.ts"
+    "test": "packages/agents/__tests__/TunerGPT.test.ts",
+    "status": "done"
   },
   {
     "commit": "feat: add ZipMemSigillinManager module",
