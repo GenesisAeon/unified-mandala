@@ -17,6 +17,7 @@
     "agents/**/*",
     "scripts/**/*.ts",
     "aws/**/*",
+    "src/**/*",
     "types/**/*.d.ts",
     "cypress.d.ts"
   ]

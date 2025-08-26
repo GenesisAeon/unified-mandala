@@ -178,3 +178,4 @@ Dev-Agents prüfen zu Beginn eines Laufs auf diese Dateien und priorisieren dere
 - Added integration guide and apply script for integration pack.
 - Implemented redaction API service exposing optional OCR for screenshot redaction.
 - Added Supernova Strahlungseinfluss module with tests and synced progress.
+- Added timeseries utility modules with quality control and MRV helpers for climate dashboard groundwork.

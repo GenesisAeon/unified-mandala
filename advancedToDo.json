@@ -14618,7 +14618,7 @@
     "path": "src/utils",
     "task": "Provide types, quality-control helpers and MRV tools",
     "test": "npx tsc -p tsconfig.json",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "feat: scaffold climate data adapters",
