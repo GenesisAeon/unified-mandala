@@ -15,4 +15,13 @@ describe('splitNewAdvancedConversations', () => {
     const yamlFile = files[0].replace(/\.json$/, '.yaml');
     expect(fs.existsSync(yamlFile)).toBe(true);
   });
+
+  it('supports start index and count', () => {
+    const src = path.join(__dirname, '../tests/fixtures/newadvanced-multi.json');
+    const outDir = fs.mkdtempSync(path.join(os.tmpdir(), 'split-convo-'));
+    const files = splitNewAdvancedConversations(src, outDir, 1, 1);
+    expect(files.length).toBe(1);
+    const second = JSON.parse(fs.readFileSync(files[0], 'utf8'));
+    expect(second.title).toBe('Second');
+  });
 });
