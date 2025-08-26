@@ -13721,3 +13721,8 @@
     flag is used
   test: repositorypflege/__tests__/advanced-todo-report.test.js
   status: done
+- commit: Add range options to split-newadvanced-conversations script
+  path: scripts/split-newadvanced-conversations.ts
+  task: Allow splitting conversation dataset with optional start index and count
+  test: scripts/split-newadvanced-conversations.test.ts
+  status: done
