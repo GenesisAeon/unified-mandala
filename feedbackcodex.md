@@ -180,3 +180,4 @@ Dev-Agents prüfen zu Beginn eines Laufs auf diese Dateien und priorisieren dere
 - Added Supernova Strahlungseinfluss module with tests and synced progress.
 - Added timeseries utility modules with quality control and MRV helpers for climate dashboard groundwork.
 - Scaffolded climate data adapters for ERA5, OISST, EFFIS, Pegel, Biodiversität, Radar and SPEI.
+\n- Implemented desktop recorder API with start/stop endpoints for ffmpeg screen capture.

@@ -13491,7 +13491,7 @@
   path: scripts/recorder-api.ts
   task: Wrap ffmpeg to start and stop screen recording via HTTP
   test: ''
-  status: open
+  status: done
 - commit: Create MacroEditor component
   path: packages/unifiedmandala-ui/components/MacroEditor.tsx
   task: Edit and run automation macros in the UI
