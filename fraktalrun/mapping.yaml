@@ -1,0 +1,50 @@
+# fraktalrun/mapping.yaml
+defaults:
+  status: "open"
+  phase: "PRÄSENZ"          # 1 | 0 | -1 → Präsenz | Leere | Auflösung
+  trikaya: "Nirmāṇakāya"    # erscheint-weltlich
+  labels: ["advanced", "codex-import"]
+  estimate: "1d"
+
+fields:
+  # Quelle → Ziel
+  title: ["title", "name", "summary"]
+  description: ["description", "desc", "details"]
+  priority: ["priority", "prio", "importance"]
+  status: ["status", "state"]
+  owner: ["owner", "assignee", "responsible"]
+  labels: ["labels", "tags"]
+  due: ["due", "deadline", "date"]
+  id: ["id", "uid", "slug", "key"]
+  area: ["area", "domain", "scope"]
+  component: ["component", "package", "service"]
+  crep:
+    resonance: ["resonance", "r"]
+    coherence: ["coherence", "c"]
+    emergence: ["emergence", "e"]
+    poetics: ["poetics", "p"]
+  sigillin:
+    glyph: ["glyph", "sigil", "symbol"]
+    ritual: ["ritual", "sequence"]
+    phase: ["phase", "zustand"]
+transforms:
+  - name: "normalize-title"
+    when: "title != null"
+    do: "title = title.trim()"
+  - name: "slug-if-missing"
+    when: "id == null && title != null"
+    do: "id = slugify(title)"
+  - name: "priority-range"
+    do: "priority = clamp(priority,1,5)"
+  - name: "labels-lowercase"
+    do: "labels = labels.map(l=>l.toLowerCase())"
+  - name: "derive-phase"
+    do: >
+      if (status in ['blocked','risk']) phase='AUFLÖSUNG';
+      else if (status in ['queued','backlog']) phase='LEERE';
+      else phase='PRÄSENZ';
+  - name: "trikaya-from-area"
+    do: >
+      if (area in ['infra','ops']) trikaya='Nirmāṇakāya';
+      else if (area in ['ui','xr','symbol']) trikaya='Sambhogakāya';
+      else trikaya='Dharmakāya';
