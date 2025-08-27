@@ -12986,7 +12986,7 @@
   path: tools/windows/DesktopRecorder.cs
   task: Capture screen and audio to file with consent gating
   test: ""
-  status: open
+  status: done
 - commit: Implement UIMacroSynth agent
   path: packages/agents/UIMacroSynthAgent.ts
   task: Translate prompts into executable UI automation workflows
