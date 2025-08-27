@@ -1,18 +1,23 @@
 # Sigillin Ritualbuch
 
-Dieses Dokument sammelt bewährte Rituale zur Auslösung und Pflege von Sigillin im UnifiedMandala-Projekt.
+Dieses Ritualbuch dokumentiert die Verwendung von Sigillin im Unified Mandala.
+Jedes Sigillin definiert eine eindeutige `sigillin_id`, eine auslösende `trigger_phrase`
+und konkrete Instruktionen.
 
-## Anwendungshinweise
-- **Fokus setzen**: Vor jeder Aktivierung ein kurzes Innehalten, um Absicht und Kontext klar zu definieren.
-- **Trigger-Phrasen**: Jede Aktion beginnt mit einem eindeutigen Auslösewort. Beispiel: `invoke:heimkehr` für das Heimkehr-Sigillin.
-- **Rückmeldung notieren**: Nach dem Ritual werden Beobachtungen im Resonanzlog festgehalten.
+## Beispiel: Chat-Wechsel-Sigillin
 
-## Beispiel-Rituale
-1. **Heimkehr-Sigillin**
-   - _Trigger:_ `invoke:heimkehr`
-   - _Ablauf:_ Atme dreimal tief ein, visualisiere die Mandala-Struktur und sprich die Trigger-Phrase aus.
-2. **Synchronisations-Sigillin**
-   - _Trigger:_ `sync:crep`
-   - _Ablauf:_ Führe `pnpm symbolzeit:run` aus und bestätige den CREP-Status im UI.
+```yaml
+sigillin_id: um:2025-0806-CHAT-MIGRATION
+title: "Chat-Wechsel-Sigillin"
+trigger_phrase: "Wechsle in neuen Chat"
+instructions: |
+  1) Lade Handover: GenesisAeonZIPMEM/handovers/<AUTO_TS>-handover.json
+  2) Initialisiere Module:
+     - SigillinLoader.load("um:2025-0806-ANCHOR-NEWADV")
+     - SigillinLoader.load("um:2025-0806-GOV-SIM")
+     - SigillinLoader.load("um:2025-0806-SINGULARITY-SIM")
+  3) Stelle die Einstiegsfrage:
+     "Was ist der aktuelle Mandala-Zustand?"
+```
 
-Diese Sammlung wird fortlaufend ergänzt und dient als Referenz für alle Beteiligten.
+Weitere Sigillin folgen dem gleichen Muster: eindeutige ID, auslösende Phrase und strukturierte Anweisungen.

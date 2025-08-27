@@ -4766,6 +4766,7 @@
   path: docs/SigilRitualbuch.md
   task: Document Sigillin usage and trigger phrases
   test: ""
+  status: done
 - commit: "docs: add Genesis-System scientific paper"
   path: docs/GenesisSystemScientific.md
   task: Outline CREP axioms and project status
