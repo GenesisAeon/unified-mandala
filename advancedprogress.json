@@ -1,5 +1,5 @@
 {
-  "lastCommit": "Merge pull request #1513 from GenesisAeon/codex/optimize-repo-structure-and-implement-features-5k35hp",
+  "lastCommit": "Merge pull request #1514 from GenesisAeon/codex/optimize-repository-structure-and-features-y102zl",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
@@ -5270,6 +5270,14 @@
     {
       "commit": "Add setup wizard script",
       "status": "done"
+    },
+    {
+      "commit": "Implement commons API",
+      "status": "done"
+    },
+    {
+      "commit": "Add commons presence websocket",
+      "status": "done"
     }
   ],
   "completed": [
@@ -6200,8 +6208,6 @@
       "status": "done"
     }
   ],
-  "changedFiles": [
-    "advancedToDo.json"
-  ],
-  "lastUpdated": "2025-08-27T18:42:13.921Z"
+  "changedFiles": [],
+  "lastUpdated": "2025-08-27T19:18:36.510Z"
 }

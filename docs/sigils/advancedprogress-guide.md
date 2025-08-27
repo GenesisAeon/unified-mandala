@@ -34,6 +34,13 @@ avoid loading massive datasets. Pass `--include-conversations` if you really
 need them. The default text output now also shows how many open tasks exist per
 directory and prints a total at the end.
 
+For machine-readable output you can add `--json` or `--yaml`:
+
+```bash
+node repositorypflege/advanced-todo-report.js --json
+node repositorypflege/advanced-todo-report.js --yaml
+```
+
 ## Handling Large Conversation Files
 
 Datasets such as `newadvancedconversations.json` in this directory are

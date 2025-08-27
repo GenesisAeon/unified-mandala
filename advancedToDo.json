@@ -13740,14 +13740,14 @@
     "path": "scripts/commons-api.ts",
     "task": "Handle space creation, invites, and membership",
     "test": "",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Add commons presence websocket",
     "path": "scripts/commons-presence-ws.ts",
     "task": "Broadcast presence and signaling events for spaces",
     "test": "",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Create commons hub app",
