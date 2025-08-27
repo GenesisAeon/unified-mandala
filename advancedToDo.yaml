@@ -13881,3 +13881,46 @@
   changes:
     - path: docs/offline/offline-kit.md
     - path: docs/offline/cards/
+
+- id: GOV-013
+  title: "HI-Compact + AB-Policy + Runbooks verankern"
+  owner: "genesis-aeon"
+  priority: high
+  labels: [governance, ethics, docs]
+  status: open
+  acceptance:
+    - "governance/HI-Compact.md vorhanden"
+    - "governance/policies/ab-test.yaml vorhanden"
+    - "docs/runbooks/* vorhanden und verlinkt"
+  changes:
+    - path: governance/HI-Compact.md
+    - path: governance/policies/ab-test.yaml
+    - path: docs/runbooks/
+
+- id: MRV-014
+  title: "MRV-Logging & Smoke-Tests lauffähig"
+  owner: "genesis-aeon"
+  priority: high
+  labels: [mrv, smoke, infra]
+  status: open
+  acceptance:
+    - "data/mrv/actions/*.json wird erzeugt"
+    - "smoke:ui, smoke:dev, smoke:mrv laufen lokal"
+  changes:
+    - path: scripts/mrv/
+    - path: scripts/smoke/
+    - path: package.json
+
+- id: CLI-015
+  title: "Climate-Config/Adapter-Skelette verdrahten"
+  owner: "genesis-aeon"
+  priority: medium
+  labels: [climate, adapters]
+  status: open
+  acceptance:
+    - "src/config/climate-dashboard.yaml vorhanden"
+    - "src/adapters/* und src/utils/series.ts vorhanden"
+  changes:
+    - path: src/config/climate-dashboard.yaml
+    - path: src/adapters/
+    - path: src/utils/series.ts
