@@ -1,6 +1,6 @@
 {
-  "lastCommit": "feat(agents): add phase A framework",
-  "fractalStep": "implementiert",
+  "lastCommit": "Merge pull request #1520 from GenesisAeon/codex/implement-fraktalrun-for-advancedtodo-import",
+  "fractalStep": "sync",
   "openBranches": [
     "work"
   ],
@@ -380,37 +380,80 @@
       "status": "open"
     },
     {
+      "commit": null,
       "status": "open"
     },
     {
+      "commit": null,
       "status": "open"
     },
     {
+      "commit": null,
       "status": "open"
     },
     {
+      "commit": null,
       "status": "open"
     },
     {
+      "commit": null,
       "status": "open"
     },
     {
+      "commit": null,
       "status": "open"
     },
     {
+      "commit": null,
       "status": "open"
     },
     {
+      "commit": null,
       "status": "open"
     },
     {
+      "commit": null,
       "status": "open"
     },
     {
+      "commit": null,
       "status": "open"
     },
     {
+      "commit": null,
       "status": "open"
+    },
+    {
+      "commit": null,
+      "status": "open"
+    },
+    {
+      "commit": null,
+      "status": "open"
+    },
+    {
+      "commit": null,
+      "status": "open"
+    },
+    {
+      "commit": "Analyse Gesprächsextrakte",
+      "status": "offen"
+    },
+    {
+      "commit": "Erzeuge initiale Aufgaben",
+      "status": "offen"
+    },
+    {
+      "commit": "Verzweige in Unteraufgaben",
+      "status": "offen"
+    },
+    {
+      "commit": "Bewerte CREP und depth",
+      "status": "offen"
+    },
+    {
+      "commit": "Commitiere Ergebnisse",
+      "status": "offen"
     }
   ],
   "progress": [
