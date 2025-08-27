@@ -13071,7 +13071,7 @@
   path: packages/admin/TopologyIndex.ts
   task: Track service probes and health in admin console
   test: ""
-  status: open
+  status: done
 - commit: Implement admin API gateway
   path: scripts/admin-api.ts
   task: Aggregate service statuses and proxy admin commands
