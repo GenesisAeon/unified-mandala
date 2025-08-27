@@ -5218,6 +5218,14 @@
     {
       "commit": "feat: add BehavioralDiffViewer analytics module",
       "status": "done"
+    },
+    {
+      "commit": "docs: create Sigillin Ritualbuch",
+      "status": "done"
+    },
+    {
+      "commit": "Add topology index registry",
+      "status": "done"
     }
   ],
   "completed": [
@@ -6148,11 +6156,6 @@
       "status": "done"
     }
   ],
-  "changedFiles": [
-    "advancedToDo.json",
-    "advancedToDo.yaml",
-    "docs/SigilRitualbuch.md",
-    "feedbackcodex.md"
-  ],
-  "lastUpdated": "2025-08-27T04:37:59.539Z"
+  "changedFiles": [],
+  "lastUpdated": "2025-08-27T05:40:11.783Z"
 }
