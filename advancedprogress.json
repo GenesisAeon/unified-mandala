@@ -6175,8 +6175,9 @@
   "changedFiles": [
     "advancedToDo.json",
     "advancedToDo.yaml",
-    "packages/unifiedmandala-ui/components/MacroEditor.test.tsx",
-    "packages/unifiedmandala-ui/components/MacroEditor.tsx"
+    "packages/aeon-shell/index.ts",
+    "packages/aeon-shell/AeonUpdateTicketGenerator.ts",
+    "packages/aeon-shell/__tests__/"
   ],
-  "lastUpdated": "2025-08-27T12:56:14.284Z"
+  "lastUpdated": "2025-08-27T13:19:20.090Z"
 }
