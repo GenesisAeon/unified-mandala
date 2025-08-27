@@ -13668,8 +13668,8 @@
     "commit": "Create MacroEditor component",
     "path": "packages/unifiedmandala-ui/components/MacroEditor.tsx",
     "task": "Edit and run automation macros in the UI",
-    "test": "",
-    "status": "open"
+    "test": "packages/unifiedmandala-ui/components/MacroEditor.test.tsx",
+    "status": "done"
   },
   {
     "commit": "Create RedactionPanel component",
