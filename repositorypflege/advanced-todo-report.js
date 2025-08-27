@@ -2,8 +2,10 @@ const path = require('path');
 const yaml = require('js-yaml');
 const { listOpenAdvancedTodos } = require('./list-open-advanced-todos');
 
-function groupTodosByDir(pattern, todoPaths, excludePattern) {
-  const todos = listOpenAdvancedTodos(pattern, todoPaths, excludePattern);
+function groupTodosByDir(pattern, todoPaths, excludePattern, includeConversations = false) {
+  const todos = listOpenAdvancedTodos(pattern, todoPaths, excludePattern, {
+    includeConversations
+  });
   return todos.reduce((acc, t) => {
     const dir = path.dirname(t.path || '').replace(/\\/g, '/');
     if (!acc[dir]) acc[dir] = [];
@@ -21,17 +23,21 @@ if (require.main === module) {
   const exclude = exclIndex >= 0 ? process.argv[exclIndex + 1] : undefined;
   const jsonOutput = process.argv.includes('--json');
   const yamlOutput = process.argv.includes('--yaml');
+  const includeConvos = process.argv.includes('--include-conversations');
 
-  const grouped = groupTodosByDir(pattern, todoPaths, exclude);
+  const grouped = groupTodosByDir(pattern, todoPaths, exclude, includeConvos);
   if (yamlOutput) {
     console.log(yaml.dump(grouped));
   } else if (jsonOutput) {
     console.log(JSON.stringify(grouped, null, 2));
   } else {
+    let total = 0;
     for (const [dir, tasks] of Object.entries(grouped)) {
-      console.log(`${dir}:`);
+      total += tasks.length;
+      console.log(`${dir} (${tasks.length}):`);
       tasks.forEach((t) => console.log(`  - ${t.commit}`));
     }
+    console.log(`Total open tasks: ${total}`);
   }
 }
 

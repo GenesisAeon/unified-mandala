@@ -6173,11 +6173,9 @@
     }
   ],
   "changedFiles": [
-    "advancedToDo.json",
-    "advancedToDo.yaml",
-    "packages/aeon-shell/index.ts",
-    "packages/aeon-shell/AeonUpdateTicketGenerator.ts",
-    "packages/aeon-shell/__tests__/"
+    "docs/sigils/advancedprogress-guide.md",
+    "repositorypflege/advanced-todo-report.js",
+    "repositorypflege/list-open-advanced-todos.js"
   ],
-  "lastUpdated": "2025-08-27T13:19:20.090Z"
+  "lastUpdated": "2025-08-27T13:48:47.427Z"
 }
