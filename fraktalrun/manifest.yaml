@@ -1,0 +1,40 @@
+# fraktalrun/manifest.yaml
+kind: FraktalRun
+version: 1
+meta:
+  name: "advancedToDo-import"
+  description: "Importiert und harmonisiert advancedToDo.{yaml,json} in ein einheitliches Fraktal-Task-Set."
+  owners: ["codex", "aeon"]
+  tags: ["fraktalrun", "codex", "todo", "crep", "sigillin"]
+sources:
+  - path: "./advancedToDo.yaml"
+    format: "yaml"
+  - path: "./advancedToDo.json"
+    format: "json"
+  - optional:
+      - path: "./ToDoAI.yaml"
+        format: "yaml"
+schema:
+  task: "./fraktalrun/task.schema.json"
+mapping: "./fraktalrun/mapping.yaml"
+output:
+  normalized_tasks: "./tasks/fractal_tasks.yaml"
+  progress_journal: "./advancedprogress.json"   # wird aktualisiert, falls vorhanden
+policies:
+  dedupe:
+    keys: ["title", "id", "slug"]
+    strategy: "keep-highest-priority"
+  priority:
+    weights:
+      resonance: 0.35
+      coherence: 0.35
+      emergence: 0.20
+      urgency: 0.10
+  governance:
+    redaction: true
+    pii_patterns: ["email", "token", "key", "ip"]
+runtime:
+  dryRun: false
+  commit:
+    enabled: true
+    message: "fraktalrun: normalize advancedToDo → tasks/fractal_tasks.yaml"

@@ -1,0 +1,39 @@
+# fraktalrun/pipeline.yaml
+jobs:
+  - id: ingest
+    run: |
+      load("./advancedToDo.yaml", as="yaml") +
+      load("./advancedToDo.json", as="json") → stream("raw")
+  - id: normalize
+    needs: ["ingest"]
+    run: |
+      map(stream("raw"), using="./fraktalrun/mapping.yaml") → stream("norm")
+      validate(stream("norm"), schema="./fraktalrun/task.schema.json")
+  - id: dedupe
+    needs: ["normalize"]
+    run: |
+      dedupe(stream("norm"), using="manifest.policies.dedupe") → stream("clean")
+  - id: prioritize
+    needs: ["dedupe"]
+    run: |
+      score(stream("clean"), weights="manifest.policies.priority.weights") → stream("scored")
+  - id: plan
+    needs: ["prioritize"]
+    run: |
+      planKanban(stream("scored"), wipLimits: {doing:5}) → file("./tasks/fractal_tasks.yaml")
+  - id: dispatch
+    needs: ["plan"]
+    run: |
+      route("./tasks/fractal_tasks.yaml")
+        .toAgent("CodeAgent", when: "labels includes 'code'")
+        .toAgent("GoBridge",   when: "component == 'go-bridge'")
+        .toAgent("Fourier",    when: "labels includes 'crep'")
+  - id: progress
+    needs: ["dispatch"]
+    run: |
+      progressUpdate("./advancedprogress.json", from="./tasks/fractal_tasks.yaml")
+  - id: commit
+    needs: ["progress"]
+    run: |
+      gitAdd(["./tasks/fractal_tasks.yaml","./advancedprogress.json"])
+      gitCommit(message=manifest.runtime.commit.message)
