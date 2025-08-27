@@ -24,6 +24,8 @@ if (require.main === module) {
   const jsonOutput = process.argv.includes('--json');
   const yamlOutput = process.argv.includes('--yaml');
   const includeConvos = process.argv.includes('--include-conversations');
+  const limitIndex = process.argv.indexOf('--limit');
+  const limit = limitIndex >= 0 ? parseInt(process.argv[limitIndex + 1], 10) : undefined;
 
   const grouped = groupTodosByDir(pattern, todoPaths, exclude, includeConvos);
   if (yamlOutput) {
@@ -35,7 +37,11 @@ if (require.main === module) {
     for (const [dir, tasks] of Object.entries(grouped)) {
       total += tasks.length;
       console.log(`${dir} (${tasks.length}):`);
-      tasks.forEach((t) => console.log(`  - ${t.commit}`));
+      const list = limit ? tasks.slice(0, limit) : tasks;
+      list.forEach((t) => console.log(`  - ${t.commit}`));
+      if (limit && tasks.length > limit) {
+        console.log(`  ...and ${tasks.length - limit} more`);
+      }
     }
     console.log(`Total open tasks: ${total}`);
   }
