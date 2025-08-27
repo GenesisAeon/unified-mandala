@@ -2938,7 +2938,8 @@
     "commit": "feat: add AeonUpdateTicketGenerator",
     "path": "packages/aeon-shell/AeonUpdateTicketGenerator.ts",
     "task": "Create update ticket templates for Aeon cycles",
-    "test": "packages/aeon-shell/__tests__/AeonUpdateTicketGenerator.test.ts"
+    "test": "packages/aeon-shell/__tests__/AeonUpdateTicketGenerator.test.ts",
+    "status": "done"
   },
   {
     "commit": "feat: add PathkeeperGPT agent",
