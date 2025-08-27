@@ -34,6 +34,12 @@ avoid loading massive datasets. Pass `--include-conversations` if you really
 need them. The default text output now also shows how many open tasks exist per
 directory and prints a total at the end.
 
+You can cap the number of tasks shown per directory with `--limit`:
+
+```bash
+node repositorypflege/advanced-todo-report.js --limit 3
+```
+
 For machine-readable output you can add `--json` or `--yaml`:
 
 ```bash
