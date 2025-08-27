@@ -1,0 +1,10 @@
+# Liste registrierter Agenten (opt-in). Beispiel-Einträge auskommentiert.
+agents: []
+# Beispiel:
+#  - id: "hydro.cso"
+#    entry: "agents/hydro.cso/index.ts"
+#    description: "CSO-Regelungsagent (Shadow→AB)"
+#  - id: "climate.risk"
+#    entry: "agents/climate.risk/index.ts"
+#    description: "Klimarisiko-Synthese (ERA5/OISST/EFFIS)"
+
