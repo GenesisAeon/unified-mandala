@@ -45,7 +45,10 @@
     "store:commit-memory": "node GenesisAeonZIPMEM/commitMemory/commit-memory.js",
     "generate:changelog": "node scripts/generate-changelog.js",
     "compile:agents-manifest": "node scripts/compile_agents_manifest.js",
-    "cy:run": "cypress run"
+    "cy:run": "cypress run",
+    "smoke:ui": "node scripts/smoke/ui-dev-smoke.mjs",
+    "smoke:dev": "node scripts/smoke/dev-server-smoke.mjs",
+    "smoke:mrv": "node scripts/smoke/mrv-smoke.mjs"
   },
   "dependencies": {
     "@grpc/grpc-js": "^1.9.10",
