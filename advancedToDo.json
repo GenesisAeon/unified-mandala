@@ -15023,5 +15023,40 @@
         "path": "tests/agents/golden/"
       }
     ]
+  },
+  {
+    "commit": "Analyse Gesprächsextrakte",
+    "path": "",
+    "task": "Analyse Gesprächsextrakte",
+    "test": "",
+    "status": "offen"
+  },
+  {
+    "commit": "Erzeuge initiale Aufgaben",
+    "path": "",
+    "task": "Erzeuge initiale Aufgaben",
+    "test": "",
+    "status": "offen"
+  },
+  {
+    "commit": "Verzweige in Unteraufgaben",
+    "path": "",
+    "task": "Verzweige in Unteraufgaben",
+    "test": "",
+    "status": "offen"
+  },
+  {
+    "commit": "Bewerte CREP und depth",
+    "path": "",
+    "task": "Bewerte CREP und depth",
+    "test": "",
+    "status": "offen"
+  },
+  {
+    "commit": "Commitiere Ergebnisse",
+    "path": "",
+    "task": "Commitiere Ergebnisse",
+    "test": "",
+    "status": "offen"
   }
 ]
