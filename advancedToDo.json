@@ -13585,7 +13585,7 @@
     "path": "packages/agents/UIMacroSynthAgent.ts",
     "task": "Translate prompts into executable UI automation workflows",
     "test": "",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Add PII regex patterns module",

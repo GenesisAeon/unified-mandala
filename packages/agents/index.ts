@@ -62,3 +62,4 @@ export * from './AgentHeartbeat';
 export * from './TeamboardManager';
 export * from './FutureKIAgent';
 export * from './DesktopAutomationAgent';
+export * from './UIMacroSynthAgent';
