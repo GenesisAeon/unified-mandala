@@ -182,3 +182,4 @@ Dev-Agents prüfen zu Beginn eines Laufs auf diese Dateien und priorisieren dere
 - Scaffolded climate data adapters for ERA5, OISST, EFFIS, Pegel, Biodiversität, Radar and SPEI.
 \n- Implemented desktop recorder API with start/stop endpoints for ffmpeg screen capture.
 - Documented Sigillin Ritualbuch usage and trigger phrases for unified Mandala.
+- Added start/count options to analyze-newadvanced-conversations script for partial dataset analysis.

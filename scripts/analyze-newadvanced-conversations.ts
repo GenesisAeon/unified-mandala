@@ -14,12 +14,15 @@ export interface ConversationStats {
 
 export function analyzeNewAdvancedConversations(
   filePath: string,
-  filterTitles?: string[]
+  filterTitles?: string[],
+  start = 0,
+  count = Infinity
 ): ConversationStats {
   const raw = JSON.parse(fs.readFileSync(filePath, 'utf8'));
-  const sessions = Array.isArray(filterTitles)
+  const allSessions = Array.isArray(filterTitles)
     ? raw.filter((s: any) => filterTitles.includes(s.title))
     : raw;
+  const sessions = allSessions.slice(start, start + count);
   let messageCount = 0;
   const authorCounts: Record<string, number> = {};
   let minTime: number | null = null;
@@ -78,7 +81,12 @@ if (require.main === module) {
           .split(',')
           .map((t: string) => t.trim())
       : undefined;
-  const stats = analyzeNewAdvancedConversations(file, titleList);
+  const startIndex = args.indexOf('--start');
+  const start = startIndex >= 0 ? parseInt(args[startIndex + 1], 10) : 0;
+  const countIndex = args.indexOf('--count');
+  const count =
+    countIndex >= 0 ? parseInt(args[countIndex + 1], 10) : Infinity;
+  const stats = analyzeNewAdvancedConversations(file, titleList, start, count);
   console.log(`Conversations: ${stats.conversationCount}`);
   console.log(`Messages: ${stats.messageCount}`);
   console.log('Authors:', stats.authorCounts);
