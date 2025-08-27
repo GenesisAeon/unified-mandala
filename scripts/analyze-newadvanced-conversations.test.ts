@@ -32,6 +32,16 @@ describe('analyzeNewAdvancedConversations', () => {
     expect(stats.todoCount).toBe(0);
   });
 
+  it('respects start and count parameters', () => {
+    const file = path.join(
+      __dirname,
+      '../tests/fixtures/newadvanced-multi.json'
+    );
+    const stats = analyzeNewAdvancedConversations(file, undefined, 1, 1);
+    expect(stats.conversationCount).toBe(1);
+    expect(stats.titles).toEqual(['Second']);
+  });
+
   it('writes JSON stats when using --json flag', () => {
     const file = path.join(__dirname, '../tests/fixtures/newadvanced-sample.json');
     const out = path.join(os.tmpdir(), 'newadvanced-stats.json');
@@ -39,5 +49,17 @@ describe('analyzeNewAdvancedConversations', () => {
     execSync(`npx ts-node ${script} ${file} --json ${out}`);
     const written = JSON.parse(fs.readFileSync(out, 'utf8'));
     expect(written.conversationCount).toBe(1);
+  });
+
+  it('honors --start and --count flags', () => {
+    const file = path.join(__dirname, '../tests/fixtures/newadvanced-multi.json');
+    const out = path.join(os.tmpdir(), 'newadvanced-stats2.json');
+    const script = path.join(__dirname, 'analyze-newadvanced-conversations.ts');
+    execSync(
+      `npx ts-node ${script} ${file} --start 1 --count 1 --json ${out}`
+    );
+    const written = JSON.parse(fs.readFileSync(out, 'utf8'));
+    expect(written.conversationCount).toBe(1);
+    expect(written.titles).toEqual(['Second']);
   });
 });
