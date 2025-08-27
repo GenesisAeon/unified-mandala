@@ -13361,17 +13361,17 @@
   path: scripts/generate-ed25519.ts
   task: Write key pair to keys/ directory
   test: ""
-  status: open
+  status: done
 - commit: Add manifest signing script
   path: scripts/sign-manifest.ts
   task: Sign federation manifest with Ed25519 key
   test: ""
-  status: open
+  status: done
 - commit: Add manifest verification script
   path: scripts/verify-manifest.ts
   task: Verify signed manifest using public key
   test: ""
-  status: open
+  status: done
 - commit: Create verified federation registry service
   path: scripts/federation-registry-verified.ts
   task: Validate manifest signatures on register

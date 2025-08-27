@@ -184,3 +184,4 @@ Dev-Agents prüfen zu Beginn eines Laufs auf diese Dateien und priorisieren dere
 - Documented Sigillin Ritualbuch usage and trigger phrases for unified Mandala.
 - Added start/count options to analyze-newadvanced-conversations script for partial dataset analysis.
 - Documented core service ports and secrets in .env.example and synced progress files.
+- Added Ed25519 key generation and manifest signing scripts for federation.
