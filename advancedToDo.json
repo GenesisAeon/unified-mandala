@@ -14649,7 +14649,7 @@
     "path": "src/pages/ClimateMandalaDashboard.tsx",
     "task": "Combine climate KPIs, Hydro-Whiplash, Geophysik und MRV export",
     "test": "jest",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "feat: add dashboard config files",
