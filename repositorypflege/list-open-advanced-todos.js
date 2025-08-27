@@ -26,7 +26,12 @@ function collectFiles(inputPaths) {
   return files;
 }
 
-function listOpenAdvancedTodos(pattern, todoPaths, excludePattern) {
+function listOpenAdvancedTodos(
+  pattern,
+  todoPaths,
+  excludePattern,
+  { includeConversations = false } = {}
+) {
   const basePaths =
     todoPaths && todoPaths.length
       ? Array.isArray(todoPaths)
@@ -45,7 +50,13 @@ function listOpenAdvancedTodos(pattern, todoPaths, excludePattern) {
     }
   }
   const regex = pattern ? new RegExp(pattern, 'i') : null;
-  const excludeRegex = excludePattern ? new RegExp(excludePattern, 'i') : null;
+  const exclude =
+    excludePattern !== undefined
+      ? excludePattern
+      : includeConversations
+      ? undefined
+      : 'conversations';
+  const excludeRegex = exclude ? new RegExp(exclude, 'i') : null;
   const seen = new Set();
   const result = [];
   for (const item of data) {
@@ -75,7 +86,10 @@ if (require.main === module) {
   const todoPaths = pathArg ? pathArg.split(',') : undefined;
   const exclIndex = process.argv.indexOf('--exclude');
   const exclude = exclIndex >= 0 ? process.argv[exclIndex + 1] : undefined;
-  const open = listOpenAdvancedTodos(pattern, todoPaths, exclude);
+  const includeConvos = process.argv.includes('--include-conversations');
+  const open = listOpenAdvancedTodos(pattern, todoPaths, exclude, {
+    includeConversations: includeConvos
+  });
   const display = open.slice(0, limit);
   display.forEach((t) => {
     const commitText =

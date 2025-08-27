@@ -29,8 +29,10 @@ To view open tasks grouped by their directories, run:
 node repositorypflege/advanced-todo-report.js
 ```
 
-This summarizes open items per folder without touching the large conversation
-datasets.
+By default this report skips any tasks referencing `conversations` files to
+avoid loading massive datasets. Pass `--include-conversations` if you really
+need them. The default text output now also shows how many open tasks exist per
+directory and prints a total at the end.
 
 ## Handling Large Conversation Files
 
