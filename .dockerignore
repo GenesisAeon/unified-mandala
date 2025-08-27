@@ -1,0 +1,27 @@
+# Node/JS
+node_modules
+**/node_modules
+.pnpm-store
+**/.pnpm-store
+.npm
+**/.npm
+dist
+build
+.out
+.next
+.turbo
+.cache
+.parcel-cache
+coverage
+# VCS/OS
+.git
+.gitignore
+.gitattributes
+.DS_Store
+Thumbs.db
+# Logs
+*.log
+**/*.log
+# IDE
+.vscode
+.idea

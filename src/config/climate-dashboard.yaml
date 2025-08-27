@@ -1,12 +1,16 @@
-# Configuration for Mandala Climate Dashboard
-# Defines KPI thresholds and alarm rules
 kpis:
-  temperature:
-    threshold: 2.0  # degrees Celsius above baseline
-    alarm: red
-  precipitation:
-    threshold: 150   # millimeters in 24h
-    alarm: yellow
-  co2:
-    threshold: 420   # ppm
-    alarm: orange
+  - id: wildfire_risk
+    label: "Großbrand-Risiko (EFFIS Proxy)"
+    threshold: 0.7
+    warn: 0.5
+    unit: "index"
+  - id: t2m_anomaly
+    label: "ERA5 2m Temperatur Anomalie (Δ)"
+    threshold: 2.0
+    warn: 1.0
+    unit: "°C"
+  - id: underground_water
+    label: "Grundwasserstand (Pegel)"
+    threshold: -30
+    warn: -15
+    unit: "cm"

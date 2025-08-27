@@ -1,0 +1,9 @@
+FROM node:20-bullseye
+WORKDIR /app
+RUN corepack enable && corepack prepare pnpm@8.15.6 --activate
+COPY apps/ui/package.json apps/ui/pnpm-lock.yaml ./apps/ui/
+WORKDIR /app/apps/ui
+RUN pnpm install --frozen-lockfile
+COPY apps/ui .
+EXPOSE 5173
+CMD ["pnpm", "dev", "--host", "0.0.0.0"]
