@@ -104,7 +104,7 @@ Dev-Agents prüfen zu Beginn eines Laufs auf diese Dateien und priorisieren dere
 - Added basic personhood consent guard with tests enforcing consent requirement.
 - Added voice intent cheat sheet for aeon.sh, Sigillin loader and ToDo parser.
 - Enhanced SymbolMapper to support NumPy arrays.
-\n- Added LocalHasher and OpenAIEmbedder with fallback to expand RAG capabilities.
+- Added LocalHasher and OpenAIEmbedder with fallback to expand RAG capabilities.
 - Implemented VectorStore for RAG with cosine search and persistence.
 - Documented VECTOR_INDEX_URL snippet for vector index configuration.
 - Added initial RAG tasks to code-agent workflow for Wave 2.
@@ -151,7 +151,7 @@ Dev-Agents prüfen zu Beginn eines Laufs auf diese Dateien und priorisieren dere
 - Added KEDA autoscaling template for JetStream workers to scale by lag.
 
 - Added Consciousness module and tests; marked related advanced todos as done.
-\n- Added research agent definitions and reproducibility protocol.
+- Added research agent definitions and reproducibility protocol.
 - Tracked changed files in advanced progress updater for clearer fractal steps.
 
 - Added initial personhood policy configuration and marked corresponding advanced todos complete.
@@ -180,6 +180,7 @@ Dev-Agents prüfen zu Beginn eines Laufs auf diese Dateien und priorisieren dere
 - Added Supernova Strahlungseinfluss module with tests and synced progress.
 - Added timeseries utility modules with quality control and MRV helpers for climate dashboard groundwork.
 - Scaffolded climate data adapters for ERA5, OISST, EFFIS, Pegel, Biodiversität, Radar and SPEI.
-\n- Implemented desktop recorder API with start/stop endpoints for ffmpeg screen capture.
+- Implemented desktop recorder API with start/stop endpoints for ffmpeg screen capture.
 - Documented Sigillin Ritualbuch usage and trigger phrases for unified Mandala.
 - Added start/count options to analyze-newadvanced-conversations script for partial dataset analysis.
+- Documented core service ports and secrets in .env.example and synced progress files.

@@ -13391,7 +13391,7 @@
   path: .env.example
   task: Document core secrets and service ports
   test: ""
-  status: open
+  status: done
 - commit: Document production setup
   path: README-PROD.md
   task: Describe prod stack usage and security notes
