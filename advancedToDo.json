@@ -13718,8 +13718,8 @@
     "commit": "Add AI peer connector module",
     "path": "packages/connectors/AIPeerConnector.ts",
     "task": "Register external AI peers and invoke routes",
-    "test": "",
-    "status": "open"
+    "test": "packages/connectors/AIPeerConnector.test.ts",
+    "status": "done"
   },
   {
     "commit": "Implement admin peers API",
