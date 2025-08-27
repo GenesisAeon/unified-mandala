@@ -4567,6 +4567,7 @@
   test: packages/universum-simulationen/__tests__/SimulationScenarioRunner.test.py
 - commit: "feat: add BehavioralDiffViewer analytics module"
   path: packages/analytics/BehavioralDiffViewer.ts
+  status: done
   task: Compare GPT responses and visualize diffs
   test: packages/analytics/__tests__/BehavioralDiffViewer.test.ts
 - commit: "feat: add PatternMapperGPT agent"

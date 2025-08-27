@@ -2905,7 +2905,8 @@
     "commit": "feat: add BehavioralDiffViewer analytics module",
     "path": "packages/analytics/BehavioralDiffViewer.ts",
     "task": "Compare GPT responses and visualize diffs",
-    "test": "packages/analytics/__tests__/BehavioralDiffViewer.test.ts"
+    "test": "packages/analytics/__tests__/BehavioralDiffViewer.test.ts",
+    "status": "done"
   },
   {
     "commit": "feat: add PatternMapperGPT agent",
