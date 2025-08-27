@@ -48,7 +48,10 @@
     "cy:run": "cypress run",
     "smoke:ui": "node scripts/smoke/ui-dev-smoke.mjs",
     "smoke:dev": "node scripts/smoke/dev-server-smoke.mjs",
-    "smoke:mrv": "node scripts/smoke/mrv-smoke.mjs"
+    "smoke:mrv": "node scripts/smoke/mrv-smoke.mjs",
+    "agents:health": "ts-node scripts/agents/runner.ts --health-all",
+    "agents:run": "ts-node scripts/agents/runner.ts",
+    "smoke:agents": "node scripts/smoke/agents-smoke.mjs"
   },
   "dependencies": {
     "@grpc/grpc-js": "^1.9.10",

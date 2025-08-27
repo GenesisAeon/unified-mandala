@@ -14836,14 +14836,17 @@
         "path": "docs/offline/cards/"
       }
     ]
-  }
-,
+  },
   {
     "id": "GOV-013",
     "title": "HI-Compact + AB-Policy + Runbooks verankern",
     "owner": "genesis-aeon",
     "priority": "high",
-    "labels": ["governance","ethics","docs"],
+    "labels": [
+      "governance",
+      "ethics",
+      "docs"
+    ],
     "status": "open",
     "acceptance": [
       "governance/HI-Compact.md vorhanden",
@@ -14851,9 +14854,15 @@
       "docs/runbooks/* vorhanden und verlinkt"
     ],
     "changes": [
-      {"path":"governance/HI-Compact.md"},
-      {"path":"governance/policies/ab-test.yaml"},
-      {"path":"docs/runbooks/"}
+      {
+        "path": "governance/HI-Compact.md"
+      },
+      {
+        "path": "governance/policies/ab-test.yaml"
+      },
+      {
+        "path": "docs/runbooks/"
+      }
     ]
   },
   {
@@ -14861,16 +14870,26 @@
     "title": "MRV-Logging & Smoke-Tests lauffähig",
     "owner": "genesis-aeon",
     "priority": "high",
-    "labels": ["mrv","smoke","infra"],
+    "labels": [
+      "mrv",
+      "smoke",
+      "infra"
+    ],
     "status": "open",
     "acceptance": [
       "data/mrv/actions/*.json wird erzeugt",
       "smoke:ui, smoke:dev, smoke:mrv laufen lokal"
     ],
     "changes": [
-      {"path":"scripts/mrv/"},
-      {"path":"scripts/smoke/"},
-      {"path":"package.json"}
+      {
+        "path": "scripts/mrv/"
+      },
+      {
+        "path": "scripts/smoke/"
+      },
+      {
+        "path": "package.json"
+      }
     ]
   },
   {
@@ -14878,16 +14897,57 @@
     "title": "Climate-Config/Adapter-Skelette verdrahten",
     "owner": "genesis-aeon",
     "priority": "medium",
-    "labels": ["climate","adapters"],
+    "labels": [
+      "climate",
+      "adapters"
+    ],
     "status": "open",
     "acceptance": [
       "src/config/climate-dashboard.yaml vorhanden",
       "src/adapters/* und src/utils/series.ts vorhanden"
     ],
     "changes": [
-      {"path":"src/config/climate-dashboard.yaml"},
-      {"path":"src/adapters/"},
-      {"path":"src/utils/series.ts"}
+      {
+        "path": "src/config/climate-dashboard.yaml"
+      },
+      {
+        "path": "src/adapters/"
+      },
+      {
+        "path": "src/utils/series.ts"
+      }
+    ]
+  },
+  {
+    "id": "AGT-020",
+    "title": "Agents Guardrails/Registry/Runner (Phase A) aktiv",
+    "owner": "genesis-aeon",
+    "priority": "high",
+    "labels": [
+      "agents",
+      "governance",
+      "infra"
+    ],
+    "status": "open",
+    "acceptance": [
+      "agents/registry.yaml existiert (leer oder mit Einträgen)",
+      "governance/policies/agents-policy.yaml vorhanden",
+      "scripts/agents/runner.ts + shared utils vorhanden",
+      "pnpm agents:health läuft (Exit 0)"
+    ],
+    "changes": [
+      {
+        "path": "agents/registry.yaml"
+      },
+      {
+        "path": "governance/policies/agents-policy.yaml"
+      },
+      {
+        "path": "agents/_shared/"
+      },
+      {
+        "path": "scripts/agents/"
+      }
     ]
   }
 ]
