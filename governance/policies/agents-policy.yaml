@@ -1,15 +1,10 @@
-# Globale Leitplanken für Agenten-Aufrufe (netzwerk-/aktionsbezogen)
+# Globale Leitplanken für Agenten
 defaults:
-  max_qps: 2                 # max Requests pro Sekunde (pro Agent)
-  max_concurrency: 2         # parallele Tasks pro Agent
-  request_timeout_ms: 120000 # 120s
-  retry:
-    attempts: 3
-    base_delay_ms: 400
-    jitter: true
-  circuit_breaker:
-    failure_threshold: 5
-    cooldown_ms: 60000
+  max_qps: 2
+  max_concurrency: 2
+  request_timeout_ms: 120000
+  retry: { attempts: 3, base_delay_ms: 400, jitter: true }
+  circuit_breaker: { failure_threshold: 5, cooldown_ms: 60000 }
   allowed_domains:
     - "noaa.gov"
     - "ecmwf.int"
@@ -19,10 +14,15 @@ defaults:
     - "gbif.org"
     - "dwd.de"
   user_consent_required: false
-agents:
-  # Beispiel-Overrides pro Agent-ID (wenn später eingetragen)
-  # "hydro.cso":
-  #   max_qps: 1
-  #   max_concurrency: 1
-  #   user_consent_required: true
-
+  metrics:
+    sink_logs: "data/agents/logs/"
+    sink_metrics: "data/agents/metrics/"
+agents: {}
+# Beispiel-Override (auskommentiert):
+# agents:
+#   hydro.cso:
+#     max_qps: 1
+#     max_concurrency: 1
+#     user_consent_required: true
+#     allowed_domains:
+#       - "pegelonline.wsv.de"

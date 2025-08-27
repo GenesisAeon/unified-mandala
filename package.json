@@ -51,7 +51,10 @@
     "smoke:mrv": "node scripts/smoke/mrv-smoke.mjs",
     "agents:health": "ts-node scripts/agents/runner.ts --health-all",
     "agents:run": "ts-node scripts/agents/runner.ts",
-    "smoke:agents": "node scripts/smoke/agents-smoke.mjs"
+    "smoke:agents": "node scripts/smoke/agents-smoke.mjs",
+    "agents:metrics": "ts-node scripts/agents/metrics-aggregate.ts",
+    "agents:audit:domains": "ts-node scripts/agents/domain-audit.ts",
+    "agents:test:golden": "ts-node scripts/agents/golden-runner.ts"
   },
   "dependencies": {
     "@grpc/grpc-js": "^1.9.10",

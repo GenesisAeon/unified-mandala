@@ -13948,3 +13948,42 @@
     - path: governance/policies/agents-policy.yaml
     - path: agents/_shared/
     - path: scripts/agents/
+- id: AGT-030
+  title: "Agents Observability (Metriken p50/p95, ok/fail) + Runner-Instrumentation"
+  owner: "genesis-aeon"
+  priority: high
+  labels: [agents, observability, metrics]
+  status: open
+  acceptance:
+    - "data/agents/metrics/*.jsonl entsteht beim Run"
+    - "pnpm agents:metrics produziert JSON-Report"
+  changes:
+    - path: scripts/agents/runner.ts
+    - path: scripts/agents/metrics-aggregate.ts
+    - path: governance/policies/agents-policy.yaml
+
+- id: AGT-031
+  title: "Domain-Audit in CI"
+  owner: "genesis-aeon"
+  priority: high
+  labels: [agents, audit, security]
+  status: open
+  acceptance:
+    - "pnpm agents:audit:domains findet keine verbotenen Domains (oder schlägt korrekt fehl)"
+    - ".github/workflows/agents.yml vorhanden"
+  changes:
+    - path: scripts/agents/domain-audit.ts
+    - path: .github/workflows/agents.yml
+
+- id: AGT-032
+  title: "Golden-File-Tests (deterministisch) für priorisierte Agenten"
+  owner: "genesis-aeon"
+  priority: medium
+  labels: [agents, tests]
+  status: open
+  acceptance:
+    - "tests/agents/golden/<agentId>/{input,expected}.json vorhanden"
+    - "pnpm agents:test:golden grün"
+  changes:
+    - path: scripts/agents/golden-runner.ts
+    - path: tests/agents/golden/
