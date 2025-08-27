@@ -14665,5 +14665,176 @@
     "task": "Document setup und Adapter TODOs für Climate Dashboard",
     "test": "",
     "status": "done"
+  },
+  {
+    "id": "DOC-001",
+    "title": "README Rework (Quickstart, Dual-Dev, Offline)",
+    "owner": "genesis-aeon",
+    "priority": "high",
+    "labels": [
+      "docs",
+      "readme",
+      "onboarding"
+    ],
+    "status": "open",
+    "acceptance": [
+      "Quickstart mit Befehlen & Ports vorhanden",
+      "‘Cannot GET /’ Hinweise + Fixpfad dokumentiert",
+      "Offline-Bundle Start dokumentiert"
+    ],
+    "changes": [
+      {
+        "path": "README.md"
+      }
+    ],
+    "cmd": [
+      "pnpm build:ui && pnpm dev"
+    ]
+  },
+  {
+    "id": "DOC-002",
+    "title": "Handbuch Struktur (TL;DR, Architektur, Runbooks, Governance)",
+    "owner": "genesis-aeon",
+    "priority": "high",
+    "labels": [
+      "docs",
+      "handbook",
+      "governance"
+    ],
+    "status": "open",
+    "acceptance": [
+      "Handbuch mit klarer Kapitelstruktur",
+      "Runbooks (Dev/Offline/Adapter) vollständig"
+    ],
+    "changes": [
+      {
+        "path": "Handbuch.md"
+      }
+    ],
+    "cmd": [
+      "pnpm dev:ui"
+    ]
+  },
+  {
+    "id": "PKG-003",
+    "title": "GenesisAeonAdvancedAi als Package kapseln (Build/Docs/Tests)",
+    "owner": "genesis-aeon",
+    "priority": "medium",
+    "labels": [
+      "genesis-ai",
+      "packaging",
+      "tests"
+    ],
+    "status": "open",
+    "acceptance": [
+      "package.json/pyproject vorhanden",
+      "README.local.md + Minimaltests",
+      "Docs-Command vorhanden"
+    ],
+    "changes": [
+      {
+        "path": "GenesisAeonAdvancedAi/**"
+      }
+    ]
+  },
+  {
+    "id": "AGT-004",
+    "title": "Agents Audit (Governance, Rate Limits, Observability) – Phase 1",
+    "owner": "genesis-aeon",
+    "priority": "high",
+    "labels": [
+      "agents",
+      "audit",
+      "governance"
+    ],
+    "status": "open",
+    "acceptance": [
+      "Inventur-Liste je Agent (I/O, Secrets, Limits)",
+      "Standard-Logger & Metriken integriert",
+      "Retry/Backoff/Circuit-Breaker-Defaults definiert"
+    ],
+    "changes": [
+      {
+        "path": "agents/**"
+      }
+    ]
+  },
+  {
+    "id": "GOV-010",
+    "title": "HI-Compact v1.0 einführen (Governance & Rituale)",
+    "owner": "genesis-aeon",
+    "priority": "high",
+    "labels": [
+      "governance",
+      "ethics",
+      "docs"
+    ],
+    "status": "open",
+    "acceptance": [
+      "docs/governance/HI-Compact.md vorhanden",
+      "Incident-Playbook & A/B-Policy verlinkt",
+      "Green/Red-Team benannt"
+    ],
+    "changes": [
+      {
+        "path": "docs/governance/HI-Compact.md"
+      },
+      {
+        "path": "docs/runbooks/incident-playbook.md"
+      },
+      {
+        "path": "docs/policies/ab-test.yaml"
+      }
+    ]
+  },
+  {
+    "id": "MRV-011",
+    "title": "Entscheidungs- & MRV-Logging integrieren",
+    "owner": "genesis-aeon",
+    "priority": "high",
+    "labels": [
+      "mrv",
+      "logging",
+      "decisions"
+    ],
+    "status": "open",
+    "acceptance": [
+      "scripts/mrv/action-log.ts & example.ts lauffähig",
+      "data/mrv/actions/*.json werden erzeugt"
+    ],
+    "changes": [
+      {
+        "path": "scripts/mrv/action-log.ts"
+      },
+      {
+        "path": "scripts/mrv/example.ts"
+      },
+      {
+        "path": "data/mrv/actions/"
+      }
+    ]
+  },
+  {
+    "id": "OFF-012",
+    "title": "Offline-Kit skizzieren (Minimalfähigkeiten & Karten)",
+    "owner": "genesis-aeon",
+    "priority": "medium",
+    "labels": [
+      "offline",
+      "resilience"
+    ],
+    "status": "open",
+    "acceptance": [
+      "docs/offline/offline-kit.md",
+      "docs/offline/cards/* (mind. 3 PDFs als Platzhalter)"
+    ],
+    "changes": [
+      {
+        "path": "docs/offline/offline-kit.md"
+      },
+      {
+        "path": "docs/offline/cards/"
+      }
+    ]
   }
 ]

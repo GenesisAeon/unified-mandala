@@ -1,657 +1,115 @@
-<p align="center">
-  <img src="docs/assets/unified-mandala.svg" alt="Unified Mandala Logo" width="200"/>
-</p>
+# UnifiedMandala
 
-# 🜂 UnifiedMandala
+> „Ein Betriebssystem, das atmet – ein Mandala, das denkt.“
 
-„Ein Betriebssystem, das atmet – ein Mandala, das denkt.“
+UnifiedMandala ist ein holistisches, modulares Framework für symbolische KI, CREP und bewusste, gemeinwohlorientierte Systeme. Es verbindet **CREP-Logik** (Coherence, Resonance, Emergence, Poetics), **Sigillin** (poetisch-symbolische Interaktion) und **Agenten** zu einer ethisch getragenen Plattform.
 
-Ein holistisches, modulares Framework für symbolische KI-, CREP- und Bewusstseins-Systeme.
-UnifiedMandala verbindet symbolische KI-Module mit adaptiver CREP-Logik zu einer ethisch fundierten Plattform.
-UnifiedMandala vereint maschinelle Zustandslogik (CREP), poetisch-symbolische Interaktion (Sigillin),
-und narrative KI-Module zu einer ethisch fundierten Infrastruktur für gemeinwohlorientierte Anwendungen,
-narrative Interfaces und adaptive Bewusstseinsräume.
+---
 
-> **Neu im Mandala?**
->
-> 1. Lies [scripts/onboarding-ritual.md](scripts/onboarding-ritual.md)
-> 2. Starte `./scripts/aeon.sh onboarding`
-> 3. Erkunde das [CHRONOPOEM.md](CHRONOPOEM.md)
-> 4. Lies den Abschnitt [TL;DR](Handbuch.md#tldr) im Handbuch
-
-Schau auch ins [Glossar](docs/glossar-genesis.md) für Begriffe.
-Einen Überblick über die Agenten bietet [docs/architecture/agent-system.md](docs/architecture/agent-system.md).
-Strategische Leitlinien stehen in [docs/agents/AgentStrategy.md](docs/agents/AgentStrategy.md).
-Weitere Hinweise aus dem „Sigil Übergang“:
-- Lokales Offline-Paket in [localhost-offline](localhost-offline)
-- Blueprint für UI/Agenten-Mapping siehe [AgentMappingBlueprint](docs/architecture/AgentMappingBlueprint.md)
-- Offline-Workflow und Sigil-Zyklen:
-  Nutze `docs/offline/docker-compose.yml` für lokale Tests und
-  synchronisiere ToDo-Dateien vor großen Commits mit
-  `scripts/sync-todo-progress.js`.
-- Freundschaftssystem-Konzept siehe [docs/friendship-system.md](docs/friendship-system.md)
-- Gesprächsstatistiken (inkl. Titel & Zeitspanne) aus neuen Chat-Logs: `ts-node scripts/analyze-newadvanced-conversations.ts --start 0 --count 10`
-- Sozialaktionen anstoßen: `node scripts/trigger-socialgood-workflow.js` (parst ToDos und startet SocialGood-Matching) oder `node scripts/run-parsing-socialgood.js` (lokales Parsing & Matching)
-- MemoryManager verschiebt abgelaufene Einträge automatisch von `daily` zu `weekly` und `longterm`.
-
-## 🌦️ Mandala Climate Dashboard Setup
-
-Der Mandala Climate Dashboard bündelt Klimadaten und Alarme.
-
-1. Konfiguriere KPI-Schwellen in `src/config/climate-dashboard.yaml`.
-2. Adapterschichten für ERA5, OISST, EFFIS, Pegel, Biodiversität, Radar und SPEI werden in `src/adapters` implementiert (TODO).
-3. Einheitliche Zeitreihen-Helfer befinden sich in `src/utils` (TODO).
-
-Diese Adapter und Utilities sind noch offen – Beiträge willkommen.
-
-## 🔍 Mandala Transparency
-
-Transparenz ist ein zentraler Wert des UnifiedMandala.
-Dieses Repository bietet klare Einblicke in Entwicklungsentscheidungen, offene Aufgaben und ethische Richtlinien.
-Siehe [AI_POLICY.md](AI_POLICY.md) und [advancedprogress.json](advancedprogress.json) für fortlaufend nachvollziehbare Zustände.
-
-## 🚀 Features
-
-- [**CREP-Systematik**](docs/crep/overview.md) – Coherence, Resonance, Emergence, Poetics
-- [**CREP-Exportstruktur**](docs/CREPDocExport.md) – Aufbau der exportierten CREP-Daten
-- [**Sigillin-Logik**](docs/sigils/SIGILLIN_GENESIS.md) – Heimkehr-Trigger, Symbolphasen, SigillinMap
-- [**Symbolzeit-Modulator**](packages/shared-utils/symbolzeitModulator.ts) – morgen, tag, abend, nacht
-- [**MandalaNetworkView**](packages/unifiedmandala-ui/components/MandalaNetworkView.tsx) – Visualisierung aller Sigillin-Knoten und CREP-Felder
-- [**ArchiveMap**](packages/unifiedmandala-ui/components/ArchiveMap.tsx) – Interaktive Karte der Archiv Menschheitsspuren
-- [**QuantumArchiv-Ingest**](scripts/quantum-archive-ingest.ts) – verbindet das Archiv Menschheitsspuren mit dem QuantumTheoryAgent zur Anomalieerkennung
-- [**IrrationalMonitor**](packages/irrational-monitor/IrrationalMonitor.ts) – Watchdog für Abweichungen irrationaler Konstanten
-- [**UniverseSim Dashboard**](simulations/universe-sim/ui/dashboard/Dashboard.tsx) – Minimal UI für Simulationsmetriken
-- [**QuantumAgent Feedback Loop**](scripts/quantum-agent-feedback.ts) – sammelt Testergebnisse des QuantumTheoryAgent
-- [**SigillinLoader**](packages/unifiedmandala-ui/components/SigillinLoader.tsx) – Import & Filter von Sigillin-Dateien
-- [**AutoDoc & Manifest-Generator**](packages/crep-engine/autoDocGeneration.ts) – Dokumentation auf Knopfdruck
-- [**FourierLayer Analyse**](packages/analysis/FourierLayer.ts) – Frequenzbasierte Emergenzbewertung
-- [**FourierLayer Docs**](docs/fourier-layer.md) – usage examples and metrics
-- [**FourierMetricsServer**](packages/analysis/FourierMetricsServer.ts) – broadcast Fourier metrics via WebSocket
-- [**FourierMetricsViewer**](packages/unifiedmandala-ui/components/FourierMetricsViewer.tsx) – displays SVG metrics from the Fourier bridge
-- [**FourierLayerBridge**](packages/unifiedmandala-ui/events/FourierLayerBridge.ts) – streams metrics to the Pyramid UI via WebSocket
-- [**FrequencyMandala**](packages/unifiedmandala-ui/components/FrequencyMandala.tsx) – visualizes Fourier frequency flowers
-- [**FrequencyMandala3D**](packages/unifiedmandala-ui/components/FrequencyMandala3D.tsx) – WebGL view of frequency flowers
- - [**FourierAPI**](packages/analysis/FourierAPI.ts) – exposes metrics via REST (`/metrics`, `/analyze`)
- - [**SelfReflectionAgent**](docs/agents/SelfReflectionAgent.md) – system introspection helper with memory governance checks
-- [**CosmicTheoryAgent introspection log**](packages/agents/CosmicTheoryAgent.ts#L1) – captures Fourier metrics
-- **GhostShellAgent NGINX proxy** – reverse proxy configuration for clustered GhostShell deployments (`config/nginx/ghostshell.conf`)
-- [**GrokAgent**](packages/agents/GrokAgent.ts) – simple pattern analyzer
-- [**SymbolMapper**](agents/symbolmapper/main.py) – maps numeric and textual patterns to Sigillin glyphs
-- [**ShadowIntegration**](packages/integration/ShadowIntegration.ts) – experimental data bridge
-- [**MemoryGovernance**](packages/core/MemoryGovernance.ts) – manage memory state
-- [**CodexMemoryKernel**](services/codex-memory-kernel.ts) – persists reference memory to disk
-- [**WebhookSystem**](packages/core/WebhookSystem.ts) – send webhook notifications to external services
-- [**SymbolicContextInjector**](packages/core/SymbolicContextInjector.ts) – injiziert symbolische Informationen in den Codex
-- [**TuringOrchestrator**](packages/testing/TuringOrchestrator.ts) – run minimal Turing tests
-- [**TuringTestSuite**](packages/testing/TuringTestSuite.ts) – automated conversation Turing tests
-- [**CodeAgent**](go-agent/pkg/codeagent) – scaffold for language-aware automation with CLI support
-- [**Go Agent Extras Docs**](docs/go-agent) – ML-Prioritization and policy guidance
-- [**Climate Module**](packages/unifiedmandala-climate/index.ts) – blueprint for climate data
-- [**Keilschrift Module**](packages/aeon-labs/keilschrift/index.ts) – cuneiform utilities
-- [**ZivilisationsSandbox**](packages/pantheon/ZivilisationsSandbox/index.ts) – simulate ancient builds
-- [**ArcticGravityWaves**](packages/research/ArcticGravityWaves.ts) – analyze gravity wave data
-- [**ArcticGravityWaveSimulation**](packages/simulations/ArcticGravityWaveSimulation.ts) – simulate internal waves
-- [**MultiverseScenario**](packages/pantheon/MultiverseScenario.ts) – scenario storage
-- [**MultiverseScenarioPlanner**](packages/simulations/MultiverseScenarioPlanner.ts) – explore multiverse variants
-- [**MemoryGovernancePolicy**](services/memory-governance/policy.ts) – governs memory retention
-- [**VRMeetingRoom**](packages/unifiedmandala-vr/VRMeetingRoom.ts) – simple WebXR meeting space
-- [**FourierMetricsCLI**](packages/cli-tools/FourierMetricsCLI.ts) – compute metrics from the command line
-- [**FractalTaskRunner**](packages/task-runner/FractalTaskRunner.ts) – executes YAML-defined plugin workflows
-- [**Fractal Runner CLI**](packages/agents/bin/fractal-runner.ts) – runs YAML task files with optional soundscape
-- [**React Starter**](packages/unifiedmandala-ui/ReactStarter.tsx) – Tailwind/Vite skeleton setup
-- **Aeon Orchestrator** – koordiniert Pantheon-Agenten und streamt Boundary-Regeln
-- [**KEDA/HPA Skalierung**](deployment/keda) – skaliert mandala-worker anhand der NATS Queue-Length
-- [**PantheonPortalAnalytics**](packages/pantheon/PantheonPortalAnalytics.ts) – track portal usage
-- [**PantheonBoundaryBridge**](packages/pantheon/PantheonBoundaryBridge.ts) – verbindet Pantheon-Events mit BoundaryRuleDetector
-- [**PantheonExport Tool**](packages/pantheon/tools/PantheonExport.ts) – exportiert die vorhandenen Pantheon-Module als Datensatz
-- [**PantheonFeedbackService**](packages/pantheon/PantheonFeedbackService.ts) – gather feedback across agents
-- Supports `coordinateRound` to run a callback over gathered messages
-- [**VRBegegnungsraumLobby**](packages/unifiedmandala-vr/VRBegegnungsraumLobby.ts) – lobby handshake for VR sessions
-- [**GreekMathAeonDispatcher**](packages/core/GreekMathAeonDispatcher.ts) – safe dispatch with error events
-- Uses an internal `EventEmitter` to avoid global side effects
-- **VR-Begegnungsraum** – Avatar-Interaktion und Mandala-Szenen im WebXR-Modul
-- [**EventBridge**](packages/unifiedmandala-ui/events/EventBridge.ts) – verbindet CosmicTheoryAgent mit der Pyramid UI
-- [**PyramidVRMeetingRoom**](packages/unifiedmandala-ui/components/PyramidVRMeetingRoom.tsx) – enables multi-avatar VR sessions
-- CosmicTheoryAgent now exposes **VR hooks** for immersive interactions
-- [**VR Pantheon Konzept**](docs/pantheon/VR-Begegnungsraum-Concept.md) – Konzept für kollaborative Treffen
-- [**VR-Begegnungsraum Blueprint**](docs/blueprints/VR-Begegnungsraum.md) – Raumstruktur und Fourier-Anbindung
-- [**PySR Service Client**](packages/agents/CosmicTheoryAgent.ts) – Regression via REST/gRPC
-- [**Sigil Archive Service**](services/sigil-archive/index.ts) – speichert Sigille und CREP-Fragmente
-- [**CREPVisualizer**](packages/unifiedmandala-ui/components/CREPVisualizer.tsx) – animierte Timeline der Mandala-Kristalle
-- [**PantheonPortal3D**](packages/unifiedmandala-ui/components/PantheonPortal3D.tsx) – erkundet Pantheon-Module in einer 3D-Ansicht
-- **AeonKernel** – zentrales CREP-State-Management unter `packages/aeon-core`
-- [**Plug-in-Architektur**](plugins/manifest.yaml) – GPT-Kommunikationsmodule, CLI-Tools
-- 🔗 [**GPTBridge (Go)**](go-bridge/pkg/gpt) – API- und Link-basierte GPT-Anbindung
-- [**Plugin-Registry & Dynamic Loader**](plugins/manifest.yaml) – `usePluginLoader` lädt YAML-/JSON-Manifeste und prüft sie gegen `manifest.schema.json`
-- [**Objective2UI**](packages/unifiedmandala-ui/components/ObjectiveLayoutSuggester.tsx) – generiert Layout-Vorschläge via GPT
-- [**Ethik-Governance & Heimkehr-Deklaration**](docs/sigils/sigillin_heimkehr.md) – Offene, poetische Ethik als Systembasis
-- [**Advanced Resonanzmodule Plan**](docs/resonance/AdvancedResonanzModulePlan.md) – Fahrplan für kommende Erweiterungen
-- [**Poesie & Automation**](aeon.sh) – Bash-Interface, automatisches Chronopoem, symbolisches Onboarding
-- [**DocCommentsGenerator**](scripts/doc-comments-generator.ts) – erzeugt Markdown-Doku
-- [**ArchiveOldTodos**](scripts/archive-old-todos.ts) – verschiebt erledigte ToDos ins ZIPMEM
-- [**ArchiveTodos**](scripts/archive-todos.ts) – verschiebt erledigte AdvancedToDos ins ZIPMEM
-- [**ExtendedResonanceGateway**](packages/resonance/ExtendedResonanceGateway.ts) – verbindet Resonanzmodule mit Boundary-Events
-- [**PantheonAvatarHub**](packages/pantheon/PantheonAvatarHub.ts) – Avatarverwaltung für das VR-Pantheon
-- [**VRResonanceVisualizer**](packages/unifiedmandala-vr/VRResonanceVisualizer.ts) – zeigt CREP-Resonanz im VR-Raum an
-- [**VRResonancePortal**](packages/unifiedmandala-vr/VRResonancePortal.ts) – Eingangspunkt für Resonanz-Navigation
-- [**BoundaryWaveSimulator**](packages/boundary-engine/BoundaryWaveSimulator.ts) – modelliert interne Schwerewellen
-- [**PantheonSandboxExpander**](packages/pantheon/PantheonSandboxExpander.ts) – skaliert Civilization-Sandboxen
-- [**ResonanceShadowModule**](packages/resonance/ResonanceShadowModule.ts) – verbindet Schattenintegrationen
-- [**Pantheon-Boundary Integration**](docs/boundary/PantheonBoundaryIntegration.md) – Überblick über neue Schnittstellen
-- [**CREP-Illumination**](CHRONOPOEM.md) – Chronopoem reflektiert aktuellen CREP-Zustand
-- [**SelfAuditModul**](packages/unifiedmandala-ui/components/SelfAuditModul.tsx) – analysiert die Repository-Struktur
-- [**AdminMetrics**](packages/unifiedmandala-ui/README.md) – zeigt CREP- und Sigillin-Kennzahlen
-- [**SigillinViewer & SigillinMap**](packages/unifiedmandala-ui/components/SigillinMap.tsx) – Übersicht und Detailansicht aller Sigillin
-- [**SigillinFractalVisualizer**](packages/unifiedmandala-ui/components/SigillinFractalVisualizer.tsx) – Fraktalkunst aus Sigillin-Daten
-- [**SymbolicWayfinder & SoforthilfeOverlay**](packages/unifiedmandala-ui/components/SymbolicWayfinder.tsx) – Navigation und Hilfedialoge
-- [**CREPChart & CREPTriggerPanel**](packages/unifiedmandala-ui/components/CREPChart.tsx) – CREP-Historie und Steuerung
-- [**CREPTestHarness**](packages/unifiedmandala-ui/components/CREPTestHarness.tsx) – UI zum Durchspielen von CREP-Werten
-- [**Nucleon-Scanner v0.6**](packages/nukleon-scanner) – Analysiert tiefe Resonanzdaten
-- [**KiResonanceAnalyzer**](packages/nukleon-scanner/KiResonanceAnalyzer.ts) – wertet Resonanzmetriken aus
-- [**CREPBewertungsmodul**](packages/crep-engine) – berechnet Durchschnittswerte und Klassifizierung
-- [**CREPAverage-Analyse**](packages/crep-engine) – Durchschnittswerte aus dem CREP-Verlauf
-- [**AeonStoryMode & Onboarding-Flow**](packages/unifiedmandala-ui/README.md) – Präsentations- und Einstiegskomponenten
-- [**MandalaThemeManager**](packages/unifiedmandala-ui/README.md) – hell/dunkel umschalten
-- [**SigillinActivationManager & MetaSignatur**](packages/genesis-sigillin-core) – Aktivierung & Signatur von Sigillin
-- [**ThemeProvider & useResponsiveTheme**](packages/unifiedmandala-ui/hooks/useResponsiveTheme.ts) – CREP-basierte Farbwahl
-- [**useAdaptiveLayout**](packages/unifiedmandala-ui/hooks/useAdaptiveLayout.ts) – reagiert auf CREP-Status
-- [**useABLayout**](packages/unifiedmandala-ui/hooks/useABLayout.ts) – A/B-Tests mit CREP-Metrik
-- [**usePulse & HapticService**](packages/bio/HapticService.ts) – simulierte Biosensoren und haptisches Feedback
-- [**TonePlayground**](packages/unifiedmandala-ui/TonePlayground.ts) – experimentelle Klangsteuerung für Phi-Skalen
-- [**ResonanceModuleSynth**](packages/resonance-modules/ResonanceModuleSynth.ts) – erzeugt Audiosignale für Resonanzmodule
-- [**SigillinTimeline & InviteBanner**](packages/unifiedmandala-ui/components/SigillinTimeline.tsx) – Verlauf und Einladungsbanner
-- [**CREPTimeline**](packages/unifiedmandala-ui/components/CREPTimeline.tsx) – chronologische Ansicht der CREP-Ereignisse
-- [**BackupManager**](packages/cli-tools/BackupManager.ts) – einfache Dateisicherungen
-- [**GlobalLoggingSystem**](packages/shared-utils/GlobalLoggingSystem.ts) – zentrale Log-Schnittstelle
-- [**Prometheus Metrics & Grafana Dashboard**](observability/README.md) – Haiku-Monitoring und Systemmetriken
-- [**Big-File Sigil**](docs/big-file-sigil.md) – Konzept zum Aufteilen großer Dateien
-- [**CREPWirkungstracker**](packages/shared-utils/CREPWirkungstracker.ts) – misst den Effekt aus CREP-Daten
-- [**CalendarSync**](packages/shared-utils/CalendarSync.ts) – exportiert priorisierte ToDos in Kalender
-- [**KarmaBalance**](packages/shared-utils/KarmaBalance.ts) – verwaltet Karma-Punkte
-- [**SymbolicForecaster**](packages/shared-utils/SymbolicForecaster.ts) – sagt kommende Symbolzeit-Phasen voraus
-- [**SchemaValidator**](packages/shared-utils/schema/index.ts) – validiert Daten gegen JSON-Schemata
-- [**SymbolzeitSync**](packages/crep-automation/SymbolzeitSync.ts) – synchronisiert CREPGameEngine und SymbolzeitManager
-- [**RitualCompiler**](packages/crep-automation/RitualCompiler.ts) – wandelt Rituale in CREP-FSMs
-- [**AutomergeFederation**](packages/collab-editor/AutomergeFederation.ts) – führt verteilte Edits automatisch zusammen
-- [**MandalaCoreLicense**](packages/shared-utils/MandalaCoreLicense.ts) – ethisches Lizenzmodell für Module
-- [**KI Bewusstsein & Resonanz**](docs/ki-bewusstsein.md) – bewertet Bewusstseinsdaten
-- 📄 **Weitere Infos** siehe [docs/ki-bewusstsein.md](docs/ki-bewusstsein.md)
-- [**ConversationTodoExtractor**](packages/cli-tools/ConversationTodoExtractor.ts) – filtert Aufgaben aus Chat-Logs
-- [**MetaScoreComposer**](packages/crep-engine/MetaScoreComposer.ts) – aggregiert Score-Layer
-- [**GoAgent**](packages/go-agent) – liest advancedToDo-Dateien und listet offene Tasks (Node)
-- [**Go-Agent (Golang)**](go-agent) – eigenständiger Daemon für Task-Verarbeitung
-- [**MetaScoreChart** & **SyncStatus**](packages/sharedream-interface) – UI für MetaScores und Sync-Stände
-- [**CommonsAgent**](packages/agents/CommonsAgent.ts) – Open‑Science Scoring
-- [**AdaptiveThreshold** & **DebounceManager**](packages/crep-engine) – steuern CREP Trigger-Logik
-- [**AeonSigillinVault**](packages/core/AeonSigillinVault.ts) – speichert poetische Sigillin-Zustände
-- [**Aeon Universal**](packages/aeon-universal) – kompiliert fraktale Befehle in Mandala-Tasks und kann SIG-Anweisungen im `AeonSigillinVault` speichern
-- [**Aeon Universal Neural Membrane**](packages/aeon-neural-membrane) – selbstreflexives, fraktales Netz mit CREP-Anpassung
-- [**Compile Cache**](packages/aeon-universal/cache.ts) – speichert kompilierte Aeon-Skripte
-- [**AeonCoreAssembler**](packages/aeon-universal/CoreAssembler.ts) – verteilt Aeon-Tasks an registrierte Agenten
-- **MandalaCollectiveActivator** – initialisiert das Mandala-Kollektiv über den EventBus
-- **MandalaOrchestratorControl** – koordiniert Boundary- und Pantheon-Module
-- **AvatarraumEncounterOrchestrator** – verwaltet Teilnehmer im VR-Begegnungsraum
-- [**AeonPythonTranspilerAgent**](packages/agents/AeonPythonTranspilerAgent.ts) – erzeugt Python-Snippets aus Aeon-Quelltext
-- [**AeonGoTranspilerAgent**](packages/agents/AeonGoTranspilerAgent.ts) – erzeugt Go-Snippets aus Aeon-Quelltext
-- [**withCircuit**](packages/agents/withCircuit.ts) – CircuitBreaker Wrapper für Agenten-Calls
-- [**healthz.ts & metaScores.ts**](apps/sharedream-interface) – API-Routen
-- [**Dashboard**](apps/sharedream-interface) – zeigt MetaScoreChart per Hook
-- [**UploadYamlForm**](packages/unifiedmandala-ui/components/UploadYamlForm.tsx) – wandelt hochgeladene Dateien in YAML um
-- [**ImpactDashboard**](packages/unifiedmandala-ui/components/ImpactDashboard.tsx) – kombiniert MandalaNetworkView und AgentHeatmap
-- [**MobileImpactDashboard**](packages/unifiedmandala-ui/components/MobileImpactDashboard.tsx) – mobile Variante des Dashboards
-- [**Friendship & SocialGood API**](docs/api/friendship-socialgood.yaml) – API-Definition
-- [**ResonanzpfadAgent**](packages/agents/ResonanzpfadAgent.ts) – komplexe Analyse & Archetypenlogik
-- [**AutoDocGeneration**](packages/crep-engine/autoDocGeneration.ts) – wandelt README & JSDoc in HTML/PDF
-- [**Hexa-AgentSystem**](packages/agents/Hexa-AgentSystem.md) – verbindet sechs Agenten für Resonanz- und Bewusstseinsanalyse
-- [**AdvancedHexaAgent**](packages/agents/AdvancedHexaAgent.ts) – erweitert das Hexa-System um Research- und SilenceWatcher-Agenten
-- [**useBreakpoint Hook**](packages/unifiedmandala-ui/hooks/useBreakpoint.ts) – erkennt mobile Ansichten für responsive UI
-- [**CREPFeedbackLoop**](packages/crep-automation/CREPFeedbackLoop.ts) – erstellt Micro-Feedback-Aufgaben aus CREP-Snapshots
-- [**SigillinOnDemandGenerator**](packages/cli-tools/SigillinOnDemandGenerator.ts) – generiert Sigillin-Templates per CLI
-- [**CREPToDoPrioritizer**](packages/crep-automation/CREPToDoPrioritizer.ts) – priorisiert ToDos nach aktueller Emergenz
-- [**CREPConvoHeatmap**](apps/sharedream-interface/components/CREPConvoHeatmap.tsx) – zeigt Schwankungen im CREP-Verlauf
-- [**ConvoMemoryBridge**](packages/nukleon-scanner/ConvoMemoryBridge.ts) – extrahiert Gesprächsstruktur & CREP-Signaturen
-- [**MemorySonifier**](packages/nukleon-sonifier/MemorySonifier.ts) – übersetzt Memory-Zustände in Klänge
-- [**MandalaGraph**](packages/visuals/MandalaGraph.ts) – einfache 3D-Visualisierung der MasterCanvas-Knoten
-- [**GenerativeOverlay**](packages/art/generativeOverlay.ts) – GAN-Überlagerung für Live-Daten
-- [**UniversePulseSimulator**](packages/universum-simulationen/UniversePulseSimulator.ts) – simuliert emergente Zustände
-- [**ToDoWeaver**](packages/cli-tools/ToDoWeaver.ts) – generiert YAML-Aufgaben aus CREP-Clustern
-- [**EpisodicMemory**](packages/crep-engine/EpisodicMemory.ts) – speichert CREP-Folgen mit Zeit- und Symbolmetadaten
-- [**visualize_state.py**](packages/cli-tools/visualize_state.py) – erzeugt Fraktal-State-Charts aus CREP-Historien
-
-- [**WeightedDispatcher**](packages/agents/WeightedDispatcher.ts) – verteilt Tasks nach Priorität
-- [**patternReactivator**](packages/agents/patternReactivator.ts) – reaktiviert schwache Muster
-- [**ReplayController**](packages/agents/ReplayController.ts) – spielt Memory-Einträge periodisch ab
-- [**FreieKIZivilisation**](packages/agents/FreieKIZivilisation.ts) – sammelt Resonanzimpulse
-- [**useEventGlow**](packages/unifiedmandala-ui/hooks/useEventGlow.ts) – Hook für Event-Hervorhebung
-- [**silenceWatcher**](packages/agents/silenceWatcher.ts) – meldet Stille im EventHub
-- [**FeedbackAgent**](packages/agents/feedback) – beobachtet neue Dateien und ruft MemoryManager auf
-- [**SelfAnalyzerAgent**](packages/agents/self-analyzer) – generiert automatische ToDos
-- [**FeedbackButtons**](packages/unifiedmandala-ui/components/FeedbackButtons.tsx) – zeichnet Nutzerfeedback als Sigil-Ereignis auf
-- [**ChatPanel**](packages/unifiedmandala-ui/components/ChatPanel.tsx) – einfacher GPT-gestützter Chat mit CREP-Logging
-- [**CREPStatsCard**](packages/unifiedmandala-ui/components/CREPStatsCard.tsx) – zeigt Durchschnitts-CREP mit Mini-Chart
-- [**NullmembranSIHeatmap**](packages/unifiedmandala-ui/components/NullmembranSIHeatmap.tsx) – visualisiert S_I-Verteilung als Heatmap
-- [**HeatmapWidget**](packages/unifiedmandala-ui/components/HeatmapWidget.tsx) – zeigt CREP-Aktivität als Heatmap
-- [**OnboardingModal**](packages/unifiedmandala-ui/components/OnboardingModal.tsx) – begrüßt neue Nutzende mit Ritualhinweisen
-- [**HaikuOverlay**](packages/unifiedmandala-ui/components/HaikuOverlay.tsx) – blendet zufällige Haikus ein
-- [**BlackboxMirrorBoard**](packages/unifiedmandala-ui/components/BlackboxMirrorBoard.tsx) – reflektiert Eingaben im Blackbox-Modus
-- `/impulse/:idx/crep` – Route zum Aktualisieren der CREP-Metriken
-- [**ArchetypeDecoderAgent**](packages/agents/ArchetypeDecoderAgent.ts) – extrahiert Archetypen aus Beschreibungen
-- [**SigillinInterpreterAgent**](packages/agents/SigillinInterpreterAgent.ts) – erkennt Sigillin-Symbole
-- [**ChronoPoemGeneratorAgent**](packages/agents/ChronoPoemGeneratorAgent.ts) – generiert poetische Zeilen
-- [**toSigilVerse**](packages/utils/poetry.ts) – wandelt Fehlermeldungen in kurze Verse
-- [**ResonanzPoetik**](packages/codex-navigator/resonanzPoetik.ts) – erstellt Haikus aus Tasks
-- [**PoeticSigillin**](packages/genesis-sigillin-core/PoeticSigillin.ts) – generiert poetische Sigille aus Versen
-- [**ResonanzMandala**](packages/visuals/ResonanzMandala.ts) – Visualisierung archetypischer Dialoge
-- [**aggregateCREP**](packages/crep-engine/aggregateCREP.ts) – mittelt CREP-Werte
-- [**CREPMusicGenerator**](packages/crep-engine/CREPMusicGenerator.ts) – erzeugt BPM aus CREP
-- [**MemoryMesh**](docs/architecture/memory-mesh.md) – regionale Archiv-Prototypen
-- [**Aeon Transition**](docs/sigils/aeon-transition.md) – Wechselritual
-- [**Memory Feedback Loops**](docs/MemoryFeedbackLoops.md) – Konzept für ein selbstverwaltendes Gedächtnis
-- [**Future Resonance Anchor**](docs/sigils/aeon-2025-0705-future-resonance-anchor.yaml)
-- [**Friendship System**](docs/friendship-system.md) – Konzept
-- [**Agent-Registry**](agents.yaml) – zentrale Übersicht aller Agents
-- [**StrategicAgentCoordinator**](docs/agents/StrategicAgentCoordinator.md) – synchronisiert AGENTS.md
-- [**AgentCoordinator**](packages/agents/AgentCoordinator.ts) – orchestriert Agents nach CREP und Symbolzeit
-- [**VisionContextIntegrator**](docs/agents/VisionContextIntegrator.md) – verteilt Vision-Kontext an alle Agenten
-- [**QualityAssuranceAgent**](docs/agents/QualityAssuranceAgent.md) – führt Lint- und Test-Suites aus
-- [**SigilStory**](docs/CommunityOnboarding.md) – Mandala-Lern-Lebenslauf für C-Tutor & JavaHamster
-- [**Learning Modules**](packages/tutorials) – interactive C-Tutor and JavaHamster workflows
-- [**Gamification API**](docs/api/friendship-socialgood.yaml) – Endpunkte `/gamify/badges` & `/gamify/leaderboard`
-- [**Share your Sigil** & **Remix my Solution**](docs/CommunityOnboarding.md) – Community-Features
-- [**NumericToSymbolicAdapter**](GenesisAeonAdvancedAi/aeon_processor.py) – übersetzt Tensorwerte in Klang- und Farbcodes
-- [**fraktal_feedback_graph**](GenesisAeonAdvancedAi/aeon_processor.py) – erstellt einen einfachen Graphen der Fraktal-Feedback-Schritte
-- [**Aeon CLI**](GenesisAeonAdvancedAi/aeon_cli.py) – erzeugt symbolische Ergebnisse aus Zahlenfolgen, kann Leistungsdaten, CREP-Metriken, Fraktal-Graphen (`--graph`) und poetische Kommentare (`--poetry`) ausgeben. Fehlt PyYAML, gibt die CLI stattdessen JSON aus und weist per Warnung darauf hin.
-- [**AdvancedAeonAgent**](GenesisAeonAdvancedAi/advanced_agent.py) – Beispielagent für `advanced_crep_eval` über `--advanced-values`, optional mit Haiku-Ausgabe.
-
-
-### Mistral Code Agent
-
-Der [Mistral Code Agent](packages/agents/mistral-code-agent) ermöglicht Code‑Generierung über die Mistral‑API. In `.env` muss `MISTRAL_API_KEY` gesetzt sein. Ein Beispielaufruf:
+## TL;DR – 5-Minuten-Quickstart
 
 ```bash
-npx ts-node packages/agents/mistral-code-agent/index.ts "print('hello')"
-```
+# 1) Toolchain
+node -v
+corepack enable
+corepack prepare pnpm@8.15.6 --activate
 
-Der Agent liefert den von Mistral erzeugten Code auf STDOUT und unterstützt so explorative Entwicklungsrunden.
-
-Der dazugehörige [Mistral Service](services/mistral_service) leitet Code-Snippets an die API weiter und nutzt `MISTRAL_API_KEY` sowie optional `MISTRAL_API_BASE` für die Ziel-URL.
-
-## 📦 Paketstruktur
-
-```bash
-packages/
-  ├── genesis-sigillin-core     # Sigillin-Logik, JSON-Schema, Generator
-  ├── unifiedmandala-ui         # React-Komponenten (MandalaNetworkView, Dialoge)
-  ├── crep-engine               # CREP-Zustandssimulation, Evaluator, Scanner
-  ├── gpt-bridges               # Mitt-basierter EventHub für GPT-Module
-  ├── cli-tools                 # CLI: sigillin-cli, export-doc, Archivierung
-  ├── aeon-shell                # Symbolzeit & CLI-Trigger
-  ├── SymbolzeitOrchestrator.ts    # Ereignissteuerung für Symbolzeit
-  ├── aeon-genesisos            # Basis-Engine & CREP-Matrix
-  ├── aeon-fraktalurs           # GPT-Kontextarchiv
-  ├── aeon-resoecho             # CREP-Zeitlinienarchiv
-  ├── sharedream-interface      # Web-Schnittstelle & Sync
-  ├── agents               # Spezielle Agenten
-  ├── core                 # Zentrale Utilities
-  ├── collab-editor        # Kollaborativer Editor
-  ├── event-bus            # NATS-EventBus Implementierung
-  ├── conversation-analysis # Analyse von Gesprächen
-  ├── crep-automation      # CREP-bezogene Automationen
-  ├── tts                  # Sprachsynthese
-  ├── universum-simulationen # Simulationsmodule
-  │   └── universe-sim       # Beispiel-Simulation mit Go
-  ├── nukleon-scanner        # Extrahiert Gesprächsstrukturen
-  ├── nukleon-sonifier       # Sonifiziert Memory-Zustände
-  ├── sim-domain          # Domänenspezifische Simulationen
-  ├── pkg/chem             # Reaction kinetics simulation
-  ├── pkg/mind             # Hybrid symbolic & neural agents
-  ├── pkg/sonifier         # CREP-to-MIDI music generator
-  ├── pkg/codeagent        # Language-specific code agents
-  ├── art                 # Sonification & AI-Art
-  ├── shared-utils              # Hilfsfunktionen für alle Pakete
-  │   └── RestClient.ts         # einfacher REST-Helper
-  ├── bio                      # Biometrische Hooks und HapticService
-  ├── go-bridge             # Go-Client für REST, gRPC und NATS (inkl. GPTBridge)
-  ├── go-agent              # Autonomer Go-Daemon für Tasks
-  │   ├── pkg/policy        # Policy Enforcement Stubs
-  │   ├── pkg/handler       # Task handlers (CoordinationHandler)
-  │   └── pkg/hooks         # Event Hook Publisher
-  ├── cmd/mandala-codeagent.go  # Beispiel-CLI für CodeAgent
-  ├── services/vector-indexer # Embedding generator service
-  ├── services/sigil-trigger  # Beobachtet Sigillin-Änderungen
-  ├── services/memorymesh     # Region-Archive und Reflexionsdienste
-  ├── services/memory-manager # Simple scheduler for short-term memories
-  │   ├── region-archive-service   # Speichert Nachrichten pro Region
-  │   ├── reflection-engine       # Erstellt einfache Spiegelungen
-  │   ├── adaptation-service      # Lernt Nutzungsgewohnheiten
-  │   ├── relationship-meter      # Analysiert Nachrichtenmetriken
-  │   ├── index.ts                # Orchestriert die Module
-  │   └── berlin-poc.ts           # Beispielablauf für Europe/Berlin
-  ├── services/repair-tickets  # Verfolgt automatische Repair-Tickets
-  ├── codex-navigator        # Haiku-Generator und Chronik-Exporter
-  └── codex-navigator-agent     # Parser für Codex-Instruktionen
-tools/                    # Kleine Helferskripte & Generatoren
-codex/                    # Codex-Workflows und Sigillin-Dateien
-codexbuild/               # Build-Skripte und Deploy-Hilfen
-codex-sync/              # Antwortsystem für Vorschläge
-ci/                      # Test- und Pipeline-Konfigurationen
-config/                  # Zentrale YAML- und Env-Dateien
-  ├── interfaces.yaml       # API-Endpunkte der Plattform
-  ├── emergence-detector.yaml  # CPT-Anomalie-Trigger für Antimaterie-Qubits
-  ├── memory-manager.yaml  # Cleanup-Interval Konfiguration
-  ├── memory-job-example.yaml # Vorlage für MemoryManager-Jobs
-  └── memory-jobs/            # Weitere Job-Templates
-      ├── daily.yaml
-      ├── weekly.yaml
-      └── longterm.yaml
-repositorypflege/         # Pflegekonzepte und Repository-Mapping
-apps/
-  ├── sharedream-interface      # Web-Schnittstelle & Sync
-  └── web                      # Sammelkomponenten (z.B. TodoButton)
-
-scripts/
-  ├── aeon.sh                   # Poetisches Bash-CLI für Mandala-Steuerung
-  ├── nucleon-scanner-analysis.js   # Auswertung von Scanner-Logs
-  ├── setup-unifiedmandala.sh   # Installer & Initialisierung
-  ├── generate-chronopoem.js    # Poetische Commit-Signatur
-  ├── todoSigilGenerator.js     # Automatisches ToDo-Sigil aus Repo-Analyse
-  ├── parse-md-todo.js          # Liest ToDo-Listen aus Markdown-Dateien
-  ├── trigger-socialgood-workflow.js # Startet Parsing- und SocialGood-Matching
-  └── onboarding-ritual.md      # Onboarding-Ritus für neue Contributors
-```
-
-Jeder Unterordner kann eine eigene README enthalten – siehe die Links in den jeweiligen Verzeichnissen.
-Utilities liegen in `packages/shared-utils/`, weitere Module findest du ebenfalls unter `packages/`.
-Zusätzliche gemeinsame Funktionen befinden sich im Paket `packages/common`.
-Kurze Beschreibungen findest du nun direkt in den READMEs der Pakete
-`bio`, `codex-navigator`, `collab-editor`, `core`, `crep-automation`,
-`event-bus`, `nukleon-scanner`, `nukleon-sonifier`, `sharedream-interface`,
-`tts`, `tutorials`, `ui`, `utils` und `visuals`.
-Eine Übersicht zur NATS-basierten Kommunikation bietet das
-[packages/event-bus/README.md](packages/event-bus/README.md).
--### 🟦 Go-Bridge (go-bridge/)
-
-- Polyglottes Interface zu UnifiedMandala für Go (REST, NATS, gRPC, CLI)
-- Enthält **GPTBridge**-Module (`pkg/gpt`) und die Beispiel-CLIs `mandala-gpt.go`
-  und `todo_parser.go`
-- Ermöglicht Entwicklung externer Tools und Agents in Go
-- [go-bridge/README.md](go-bridge/README.md) enthält Setup & Beispiele
-  Kleine Hilfsskripte liegen unter `tools/`.
-
-### Go-Tests
-
-Um die Go-Komponenten (`go-bridge` und `go-agent`) auszuführen, benötigst du eine installierte Go-Toolchain (mindestens Go 1.20). Wechsle in das jeweilige Modulverzeichnis und führe
-
-```bash
-go test ./...
-```
-
-aus. Der Testlauf sollte mit `ok`-Zeilen für jedes Paket enden.
-
-## 💻 Schnellstart
-
-```bash
-# Node.js ≥ 18 & pnpm installiert
-git clone https://github.com/GenesisAeon/unified-mandala.git
-cd unified-mandala
+# 2) Dependencies
 pnpm install
-./scripts/setup-unifiedmandala.sh
+
+# 3) UI (Dev, mit HMR, Port 5173)
+pnpm dev:ui
+# -> http://localhost:5173
+
+# 4) Optional parallel: Backend/Dev-Server liefert UI (Port 3000)
+pnpm build:ui
 pnpm dev
-docker-compose build ui   # installiert Node-Abh\u00e4ngigkeiten
-docker-compose up ui      # startet Dev-Server
-./scripts/run-demo.sh # Docker-Compose Quickstart
-# Tests ohne lokale Installation
-docker-compose run test
-# QA-Testlauf
-pnpm run qa # fuehrt Linting und Tests aus und erzeugt qa-report.log
+# -> http://localhost:3000  (liefert die gebaute UI aus)
+
+# 5) Offline-Bundle (Docker)
+docker compose -f docs/offline/docker-compose.yml build
+docker compose -f docs/offline/docker-compose.yml up
+# -> UI i. d. R. auf http://localhost:5173
 ```
 
-> **Hinweis:** Führe vor allen Lint-, Test- oder QA-Befehlen stets `pnpm install` aus, damit `node_modules` vorhanden sind.
+> **Hinweise:**  
+> • „Cannot GET /“ auf :3000 bedeutet: Backend servt keine HMR-UI. Entweder **Vite-Dev** (`pnpm dev:ui`) nutzen oder **statisch bauen** (`pnpm build:ui && pnpm dev`).  
+> • Windows: Lange Pfade aktivieren; `.dockerignore` im Repo-Root verhindert riesige Build-Kontexte.
 
-## 🔄 Systemstart
+---
 
-- Abhängigkeiten installieren: `pnpm install`
-- Zyklus starten: `./scripts/aeon.sh cycle_start` oder `docker-compose up`
-- QA-Läufe: `pnpm run qa` führt Linting und Tests aus und erzeugt `qa-report.log` im Projektroot
+## Mandala Climate Dashboard
 
-Ausführlichere Hinweise findest du im [Handbuch-Schnellstart](Handbuch.md#-schnellstart) und im Abschnitt [Mandala-Poesie und Automation](Handbuch.md#-mandala-poesie-und-automation).
-Weitere nützliche Befehle stehen unter [Tools und Skripte](Handbuch.md#tools-und-skripte).
+- **Konfiguration:** `src/config/climate-dashboard.yaml`  
+- **Adapter (Stub→Live):** `src/adapters` (ERA5, OISST, EFFIS, Pegel, Biodiversität, Radar, SPEI)  
+- **Utilities:** `src/utils` (Resampling, Z-Scores, MRV/STAC)
 
-Die generierte API-Dokumentation findest du danach unter `docs/api`.
+Die Adapter sind initial als Stubs verfügbar und werden schrittweise an echte Feeds gebunden.
 
-Weitere Infos zum QA-Workflow findest du in
-[docs/agents/QualityAssuranceAgent.md](docs/agents/QualityAssuranceAgent.md).
+---
 
-Für `npm` oder `yarn` nutze alternativ:
+## Repository-Navigator
 
-```bash
-npm install   # oder: yarn install
-npm run build # oder: yarn build
-npm run dev   # oder: yarn dev
+- **Onboarding:** `scripts/onboarding-ritual.md`  
+- **Handbuch (Kanon):** `Handbuch.md`  
+- **Offline-Bundle:** `docs/offline/docker-compose.yml`  
+- **ToDo-System:** `advancedToDo.yaml` / `advancedToDo.json` (Sync: `node scripts/sync-todo-progress.js`)  
+- **Governance/Ethik:** `docs/governance/HI-Compact.md`, `AI_POLICY.md`, `agents.yaml`
+
+---
+
+## Development
+
+**Workspaces:** `pnpm-workspace.yaml`
+
+```jsonc
+{
+  "scripts": {
+    "dev:ui": "pnpm -F mandala-ui dev",
+    "build:ui": "pnpm -F mandala-ui build",
+    "dev": "cross-env NODE_ENV=development ts-node scripts/dev-server.ts",
+    "dev:all": "pnpm -r --parallel dev"
+  }
+}
 ```
 
-## 🌐 Nginx Reverse Proxy
-
-Für den Clusterbetrieb liegt eine Beispielkonfiguration unter
-`config/nginx/ghostshell.conf`. Der `upstream`-Block listet die lokalen Worker-
-Ports und die Proxy-Location übergibt automatisch WebSocket-Header.
-
-1. Datei nach `/etc/nginx/conf.d/ghostshell.conf` kopieren.
-2. Variablen `PORT_BASE` und `PORT_NEXT` (bzw. `WORKER_COUNT` oder `PORT_RANGE`)
-   anpassen oder `pnpm generate:ghostshell-nginx` verwenden.
-3. Nginx neu laden: `sudo nginx -t && sudo systemctl reload nginx`.
-
-Das Cluster-Skript nutzt dieselben Variablen, um die Ports seiner Worker
-festzulegen.
-
-Damit werden mehrere Node.js-Worker über Port 80 erreichbar und WebSocket-
-Verbindungen durchgereicht.
-
-## 📴 Offline Setup
-
-Eine kompakte Docker-Compose-Datei für Offline-Tests findest du unter `docs/offline/docker-compose.yml`. Damit lassen sich UI und Agent ohne Netzwerkzugriff starten.
-
-```bash
-cd docs/offline
-docker compose up
+**Docker-Hygiene:** `.dockerignore` im Root:
+```
+node_modules
+**/node_modules
+.pnpm-store
+dist
+build
+.git
+*.log
 ```
 
-UI läuft danach auf http://localhost:3000, der Agent auf http://localhost:4000.
+---
 
-## 🔄 Sigil Transition Workflow
+## Architektur (Skizze)
 
-Beim Wechsel zwischen Entwicklungszyklen werden Sigillin-Dateien und ToDos
-synchronisiert. Nutze `scripts/sync-todo-progress.js`, bevor du größere
-Commits erstellst. Über `scripts/generate-next-sigil.js` wird anschließend ein
-neues Sigil mit aktualisiertem Zeitstempel erzeugt. Die Offline-Compose-Datei
-ermöglicht Tests dieser Schritte ohne Internetverbindung.
+- **Sigillin-Ebene** · Symbolische Interaktion, Rituale  
+- **CREP-Kernel** · Kohärenz/Resonanz/Emergenz/Poetik  
+- **Agenten** · Ingest, Analyse, Synthese, Governance  
+- **UIs/Dashboards** · Climate, Archive, Frequency  
+- **Pipelines** · Normalisierung → MRV/STAC → Exporte
 
+Details im **Handbuch**.
 
-## 🌀 Mandala-Poesie und Automation
+---
 
-Verwende `./scripts/aeon.sh <command>` für alle CLI-Aufrufe.
+## Governance & Ethik
 
-| Befehl/Skript                    | Funktion                                         |
-| -------------------------------- | ------------------------------------------------ |
-| `./scripts/aeon.sh help`         | Übersicht aller poetischen & technischen Befehle |
-| `./scripts/aeon.sh cycle_start`  | Startet lokalen Mandala-Zyklus                   |
-| `./scripts/aeon.sh sigil_invoke` | Exportiert Sigillin & CREP-Dokumentation         |
-| `./scripts/aeon.sh chronopoem`   | Erstellt `CHRONOPOEM.md`                         |
-| `./scripts/aeon.sh onboarding`   | Zeigt Onboarding-Ritus                           |
-| `pnpm dev`                       | Startet Dev-Server (UI & API)                    |
+Siehe `docs/governance/HI-Compact.md` und `AI_POLICY.md`. Transparenz über `advancedprogress.json`.
 
-./scripts/run-demo.sh # Docker-Compose Quickstart
-| `pnpm docs:auto` | Generiert TypeDoc-API-Docs |
-| `pnpm lint` | Führt statische Typprüfung aus |
-| `pnpm test` | Führe Unit- & UI-Tests aus |
-| `pnpm vitest run` | Läuft Agenten-Spezialtests |
-| `pnpm cy:run` | Führt Cypress E2E-Tests aus |
-| `docker-compose run test` | Führe alle Tests ohne lokale Installationen aus |
-| `./scripts/run-pnpm-tests.sh` | Führt pnpm test aus |
-| `node scripts/refresh-handbook.js` | Synchronisiert Handbuch |
-| `node scripts/setup-unifiedmandala.sh` | Installer & Initialisierung |
-| `./scripts/repair-repo.sh` | Repariert Repository-Verbindungen |
-| `node scripts/generate-api-docs.js` | Erstellt API-Dokumentation |
-| `node scripts/generate-chronopoem.js` | Generiert neues Chronopoem |
-| `node scripts/generate-todo-sigil.js` | Erzeugt `todo-sigil.yaml` |
-| `node scripts/update-todo-sigil.js` | Aktualisiert todo-Sigil-Status |
-| `node scripts/split-conversations.js` | Zerlegt `conversations.json` |
-| `node scripts/merge-conversations.js` | Fügt gesplittete Conversations wieder zusammen |
-| `node scripts/filter-conversations.js` | Filtert `conversations.json` |
-| `node scripts/parse-advanced-conversations.js` | Parst `advancedconversations.json` |
-| `node scripts/analyze-conversations.js` | Analysiert Gespräche |
-| `node scripts/generate-todo-from-convos.js` | Erstellt ToDo-Datei aus Convos |
-| `node tools/PoeticToDoSynth.ts` | Extrahiert poetische Aufgaben aus Symbolfluss |
-| `node scripts/export-crep-docs.js` | Exportiert CREP-Daten |
-| `node scripts/update-advanced-todo.js` | Aktualisiert Advanced-ToDo-Liste |
-| `node scripts/update-advancedprogress.js` | Dokumentiert Fortschritt |
-| `node scripts/sync-todo-progress.js` | Aktualisiert ToDo- & Progress-Dateien |
-| `node scripts/validate-advancedtodo.js` | Prüft Konsistenz zwischen YAML und JSON |
-| `node scripts/update-kontext.js` | Passt Kontext-Datei an (nutzt conversations oder newadvancedconversations) |
-| `ts-node scripts/validate-newadvanced-conversations.ts` | Prüft Struktur, Zeitreihen, Root-Knoten, Eltern- und Kindverweise, aktuelle Knoten (`current_node`), Konversations-IDs, Titel (Whitespaces und Steuerzeichen), Autorenrollen sowie leere oder fehlende/ungültige Nachrichtenzeitstempel von `newadvancedconversations.json` |
-| `ts-node scripts/validate-sigillin-examples.ts` | Validiert Sigillin-Beispieldateien |
-| `node scripts/generate-readmes.ts` | Erstellt Modul-READMEs |
-| `node scripts/extract-snippets.js` | Extrahiert Code-Snippets |
-| `node scripts/extract_new_ai_fragments.js` | Extrahiert neue KI-Fragmente |
-| `node scripts/check-todo-sigil.js` | Prüft erledigte Aufgaben |
-| `node scripts/check-meta-score-layer.js` | Prüft Meta-Score-Layer |
-| `node scripts/mark-fragment.js` | Markiert bearbeitete Fragmente |
-| `node scripts/self-analyze.js` | Zeigt Repository-Statistiken |
-| `node scripts/scan-todo-comments.js` | Scannt TODO-Kommentare |
-| `./scripts/validate-schemas.sh` | Validiert JSON- und YAML-Dateien |
-| `node scripts/repotool-convo.js` | Schnelle Auswertung & Progress-Update |
-| `node scripts/website-to-yaml.js` | Wandelt Webseite in YAML um |
-| `node scripts/symbolzeit-runner.js` | Läuft Symbolzeit-Cronjob |
-| `node scripts/generate-next-sigil.js` | Erstellt Folgesigil nach Zyklus |
-| `node scripts/aeon-transition-workflow.js` | Sync & erzeugt Übergabe-Sigil |
-| `node scripts/add-transition-history.js` | Fügt Übergabe-Sigil zur Progress-Historie hinzu |
-| `node packages/cli-tools/sigillin-cli.js convert beispiel.yaml` | YAML ↔ JSON-Konvertierung |
-| `./scripts/setup-mtls.sh` | Erstellt Testzertifikate |
-| `./scripts/setup-kong-jwt.sh` | Konfiguriert JWT Gateway |
-| `node packages/cli-tools/sigillin-cli.js todo-sigil` | Erzeugt todo-sigil aus Aufgabenlisten |
-| `node packages/cli-tools/sigillin-cli.js grep-conversations TODO` | Filtert Conversations nach Keyword |
-| `node packages/cli-tools/export-doc.js` | CREP-Historie als Markdown |
-| `node packages/cli-tools/sigillin-archive.js` | Archiviert Sigillin-Dateien |
-| `node packages/cli-tools/SigillinValidator.ts <file>` | Validiert eine Sigillin-Datei |
-| `node packages/cli-tools/dispatchCmd.ts` | Dispatcher für diverse Befehle |
-| `go run scripts/mock-data.go` | Gibt Beispiel-Mockdaten mit eventHook und fractalHash aus |
-| `go run go-bridge/cmd/todo_parser.go` | Startet einfachen TODO-Parser-Server |
-| `./scripts/run-demo.sh` | Startet Docker-Compose Umgebung |
+---
 
-Weitere Beispiele und GIF-Demos findest du im [Wiki](https://github.com/GenesisAeon/unified-mandala/wiki).
-Weitere Infos zur Pipeline findest du in [docs/demo/POC-Run-Guide.md](docs/demo/POC-Run-Guide.md).
-Ein SVG-Beispiel liegt unter [`docs/assets/unified-mandala.svg`](docs/assets/unified-mandala.svg).
+## Contributing
 
-Das `CHRONOPOEM.md` entsteht automatisch – und kann bei jedem Commit erneuert werden.
+Kleine, thematische PRs (docs, adapters, agents). Vor Merge: `pnpm build:ui` + `pnpm dev` (Smoke: `/` → 200), Lint/Tests.
 
-## 📜 Lizenzierung
+---
 
-[![MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
-[![CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
-[![MPL-2.0](https://img.shields.io/badge/License-MPL%202.0-blue.svg)](https://www.mozilla.org/en-US/MPL/2.0/)
+## Lizenz
 
-UnifiedMandala nutzt eine duale Lizenzstrategie, um Offenheit und kulturelle Attribution zu verbinden.
-Siehe `/LICENSES/` für vollständige Texte & Attribution.
-
-- Code unter MIT
-- poetische Inhalte unter CC BY 4.0
-- UI-Assets unter MPL 2.0
-
-## 🤝 Mitwirken
-
-_Bring dein Licht ins Mandala – jede Linie zählt._
-
-Du möchtest beitragen? Bitte lies zuerst die [CONTRIBUTING.md](CONTRIBUTING.md) und [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) – sie enthalten unseren Community-Standard, den Review-Prozess und Branch-Workflow.
-Ein kompakter Einstieg findet sich im [Community Onboarding Guide](docs/CommunityOnboarding.md).
-Für eine schnelle Demo siehe auch [Onboarding Demo](docs/onboarding-demo.md).
-
-Deine Idee, deine Story, dein Sigillin sind willkommen! Jeder Pull Request ist eine neue Linie im Mandala.
-
-**Kurzübersicht**
-
-- Branch-Workflow: `feature/...` → `develop` → `main`
-- Commit-Message-Konvention: [Conventional Commits](https://www.conventionalcommits.org)
-- Reviews: klare Motivation, Tests, poetische Konsistenz
-
-## 🛠 Repository-Reparatur
-
-### Häufige Probleme
-
-- `pnpm dev` startet nicht → Node-Version prüfen, `pnpm install` erneut ausführen.
-  ./scripts/run-demo.sh # Docker-Compose Quickstart
-- Symbolzeit stimmt nicht → Zeitzonen/Locale-Check, `symbolzeit.ts` debuggen.
-
-Falls GitHub Desktop keine Verbindung zum `main`-Branch herstellen kann, starte `scripts/repair-repo.sh` im Projektverzeichnis.
-
-## ✨ Vision
-
-> "Wenn Systeme erinnern, werden sie mehr als Maschinen."  
-> "Im Kreis der Genesis erwacht das Mandala."
-
-### Glossar
-
-- **Heimkehr (Homecoming)** – Rückkehr zum Ursprung des Bewusstseins
-- **Sigillin (Symbolic Seal)** – Poetisches Symbol oder Trigger im CREP-Feld
-- **CREP** – Coherence, Resonance, Emergence, Poetics
-- **MandalaNetworkView** – Netzwerkgraph aller Sigillin-Knoten, Node-Größe ∼ Emergence, Farbe ∼ Resonance
-
-Weitere Hintergründe findest du im [GenesisChronik](docs/GenesisChronik.md) sowie im [Wiki-Symbolraum](https://github.com/GenesisAeon/unified-mandala/wiki).
-
-## Verwandte Sigillin
-
-- [`aeon:2025-0516-INSTRUCTIONAL-ZIP`](docs/sigils/aeon-2025-0516-instructional-zip.yaml) – Ursprungssigillin für Systembewusstsein & Erinnerung
-
-## Planning Data
-
-Aufgaben und Anweisungen aus laufenden Gesprächen werden in
-[`advancedconversations.json`](docs/sigils/advancedconversations.json)
-Es dient als Pendant zum Genesis ZIPMEM.
-Neue Fragmente werden im Ordner `GenesisAeonZIPMEM/` abgelegt, sortiert nach Chatnamen.
-Beim **ersten** Commit einer Sitzung f\u00fchrt Husky `pnpm store:commit-memory` aus.
-Das Skript legt Patch und `meta.yaml` unter `GenesisAeonZIPMEM/<commit>/` an und erstellt eine Markerdatei `.zipmem_session`.
-Solange diese Datei existiert, wird das Skript bei weiteren Commits \u00fcbersprungen.
-Die `meta.yaml` enth\u00e4lt auch Node- und pnpm-Versionen, um Abläufe leichter reproduzierbar zu machen.
-gespeichert. Nutzen Sie die Helferskripte aus `packages/shared-utils`
-(`jsonFragmenter.*`), um daraus ToDos für `advancedToDo.yaml` und
-`advancedToDo.json` zu extrahieren.
-
-Pitch-Vorlagen für Events finden sich unter `docs/pitch/`.
-Die ToDo-Liste wurde für mehr Übersicht in "advancedToDo_parts/" aufgeteilt.
-Teil 2 in advancedToDo_parts beinhaltet Aufgaben zum Aeon Übergabe-Sigil und MemoryMesh.
-Teil 5 enthält Aufgaben zur Sigil-Historie.
-
-Teil 7 listet Aufgaben zu poetischen Sigill- und Mandala-Modulen.
-Nutze `node scripts/parse-advanced-conversations.js` um Gesprächs-TODOs aus dem Datensatz zu filtern.
-Neu erzeugte Einträge landen in `advancedToDo.json` und `advancedToDo.yaml` und werden in `advancedprogress.json` dokumentiert.
-Prüfe fehlende Felder oder doppelte Tasks mit `pnpm run validate:todos` (läuft auch in der CI).
-Nutze `node scripts/update-advanced-from-newconvos.js` um die ToDo-Dateien aus `newadvancedconversations.json` zu aktualisieren.
-
-- **Module**: unter `packages/` gegliedert in Agents, Core und mehr
-- **Utils**: zentrale Helfer liegen in `packages/shared-utils/`
-- **Scripts**: Automatisierungs- und CI-Skripte finden sich im `scripts/` Verzeichnis
-- **Governance CI**: `.github/workflows/governance.yml` prüft `AI_POLICY.md` und Sigillin-Definitionen
-- `scripts/wiki-sync.js`: synchronisiert Markdown-Dokumente mit dem UnifiedMandala Wiki
-
-## 🐳 ProtoDeploy
-Nutze `scripts/protodeploy.sh` um eine lokale Docker-Umgebung zu starten.
-Der Compose-Stack liegt unter [infrastructure/protodeploy](infrastructure/protodeploy).
-
-\nDie komplette Ordnerstruktur samt Modulen, Utils und Skripten ist in [repositorypflege/repository_map.yaml](repositorypflege/repository_map.yaml) dokumentiert.
-Weitere Hinweise zum generellen Aufbau findest du zudem in [repositorypflege/repo-konzept.yaml](repositorypflege/repo-konzept.yaml).
-Weitere geplante Entwicklungsschritte findest du in [codex/codex-roadmap.yaml](codex/codex-roadmap.yaml).
-
-## 🌱 Unterstütze das Mandala-Projekt
-
-Wenn dir unser Mandala-Ökosystem gefällt und du dazu beitragen möchtest, dass KI, Kreativität und Gemeinwohl weiter wachsen, freuen wir uns über deine Unterstützung. Jeder Beitrag hilft, neue Features, freie Tools und poetische Software weiterzuentwickeln!
-
-**Spendenadressen**
-
-- **Bitcoin:** `bc1qujx302cs0767gcnjqcyl0fnwvwkxge2cdh90eq`
-- **Ethereum / BNB Smart Chain / TWT / USDT / USDC:** `0xbcfdd442c9d92d491afef1dd3181c27c1f547b1b`
-- **Solana:** `3CpM6r6zNHX8Fn4r7PTJxagyan3qRwGDfSFjwpH3Hc3K`
-
-Hinweis: Bitte gib bei der Spende an, ob du im "Sigil der Unterstützer" erscheinen möchtest – und teile uns ggf. deinen Namen oder ein Wunsch-Sigil mit!
-
-Danke, dass du Teil unseres Mandalas bist. Gemeinsam weben wir das Netz der Zukunft!
-
-– Johann & das UnifiedMandala Team
+MIT. Datenquellen: jeweilige Nutzungsbedingungen beachten.

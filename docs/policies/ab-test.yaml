@@ -1,0 +1,15 @@
+ab_testing:
+  max_daily_change_pct: 10
+  min_pilot_duration_days: 7
+  abort_triggers:
+    - metric: cso_overflow_minutes
+      delta_pct_vs_baseline: 15
+      window_hours: 6
+    - metric: alert_false_positive_rate
+      absolute_over: 0.25
+  hard_caps:
+    - metric: reservoir_level_pct
+      min: 15
+      max: 95
+  logging:
+    sink: "data/mrv/actions/"

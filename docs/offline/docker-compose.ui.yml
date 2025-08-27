@@ -1,0 +1,10 @@
+services:
+  ui:
+    build:
+      context: ../..
+      dockerfile: docs/offline/Dockerfile.dev
+    ports:
+      - "5173:5173"
+    volumes:
+      - ../../apps/ui:/app/apps/ui:cached
+      - /app/apps/ui/node_modules
