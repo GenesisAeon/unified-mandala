@@ -13057,7 +13057,7 @@
   path: packages/unifiedmandala-ui/components/RedactionPanel.tsx
   task: Upload screenshots and apply manual redaction boxes
   test: ""
-  status: open
+  status: done
 - commit: Define role permissions map
   path: packages/identity/Roles.ts
   task: Map roles to permissions for admin and commons modules
