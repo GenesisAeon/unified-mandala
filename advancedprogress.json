@@ -6175,11 +6175,8 @@
   "changedFiles": [
     "advancedToDo.json",
     "advancedToDo.yaml",
-    "feedbackcodex.md",
-    "keys/",
-    "scripts/generate-ed25519.ts",
-    "scripts/sign-manifest.ts",
-    "scripts/verify-manifest.ts"
+    "packages/unifiedmandala-ui/components/MacroEditor.test.tsx",
+    "packages/unifiedmandala-ui/components/MacroEditor.tsx"
   ],
-  "lastUpdated": "2025-08-27T12:47:24.586Z"
+  "lastUpdated": "2025-08-27T12:56:14.284Z"
 }
