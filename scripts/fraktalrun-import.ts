@@ -39,7 +39,7 @@ async function useAjv() {
 /* --------------------------- CLI & Utilities --------------------------- */
 
 const argv = Object.fromEntries(
-  process.argv.slice(2).map((a) => {
+  process.argv.slice(2).map((a: string) => {
     const [k, v] = a.includes("=") ? a.split("=") : [a, true];
     return [k.replace(/^--/, ""), v];
   })
@@ -138,12 +138,12 @@ async function loadYamlOrJson(filePath: string) {
   const ext = path.extname(filePath).toLowerCase();
   const raw = await readFile(filePath, "utf8");
   if (ext === ".json") return JSON.parse(raw);
-  const YAML = await useYaml();
+  const YAML: any = await useYaml();
   return YAML.parse(raw);
 }
 
 async function writeYaml(filePath: string, data: any, headerComment?: string) {
-  const YAML = await useYaml();
+  const YAML: any = await useYaml();
   const doc = new YAML.Document(data);
   if (headerComment) doc.commentBefore = headerComment;
   await writeFile(filePath, String(doc), "utf8");
@@ -309,8 +309,8 @@ async function main() {
   }
 
   // 2) Normalize + validate
-  const ajv = await useAjv();
-  const validate = ajv.compile(taskSchema);
+  const ajv: any = await useAjv();
+  const validate: any = ajv.compile(taskSchema);
   const normalized: FraktalTask[] = [];
   for (const r of records) {
     const t = applyMapping(r, mapping) as FraktalTask;
@@ -324,7 +324,7 @@ async function main() {
     t.priority = clamp(Number(t.priority || 3), 1, 5);
 
     if (!validate(t)) {
-      console.warn(`! Schemafehler für ${t.id}:`, ajv.errorsText(validate.errors));
+      console.warn(`! Schemafehler für ${(t as any).id}:`, ajv.errorsText(validate.errors));
       continue;
     }
     normalized.push(t);
