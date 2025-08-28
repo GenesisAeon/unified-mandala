@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.splitJsonArray = splitJsonArray;
 exports.splitJsonArrayFile = splitJsonArrayFile;
 exports.writeJsonChunks = writeJsonChunks;
+exports.writeJsonChunksStream = writeJsonChunksStream;
 exports.grepJsonArrayFile = grepJsonArrayFile;
 exports.grepJsonArrayFileStream = grepJsonArrayFileStream;
 exports.extractCodeSnippetsFromFile = extractCodeSnippetsFromFile;
@@ -51,6 +52,38 @@ function writeJsonChunks(filePath, destDir, chunkSize) {
     chunks.forEach((chunk, idx) => {
     const outPath = `${destDir}/${base.split('/').pop()}-${idx + 1}.json`;
     fs_1.writeFileSync(outPath, JSON.stringify(chunk, null, 2), 'utf8');
+    });
+}
+
+function writeJsonChunksStream(filePath, destDir, chunkSize) {
+    return new Promise((resolve, reject) => {
+        if (!fs_1.existsSync(destDir))
+            fs_1.mkdirSync(destDir, { recursive: true });
+        const base = filePath.replace(/\.json$/i, '');
+        let buffer = [];
+        let index = 0;
+        const pipeline = fs_1
+            .createReadStream(filePath, { encoding: 'utf8' })
+            .pipe((0, stream_json_1.parser)())
+            .pipe((0, StreamArray_1.streamArray)());
+        pipeline.on('data', ({ value }) => {
+            buffer.push(value);
+            if (buffer.length >= chunkSize) {
+                index++;
+                const outPath = `${destDir}/${(0, path_1.basename)(base)}-${index}.json`;
+                fs_1.writeFileSync(outPath, JSON.stringify(buffer, null, 2), 'utf8');
+                buffer = [];
+            }
+        });
+        pipeline.on('end', () => {
+            if (buffer.length > 0) {
+                index++;
+                const outPath = `${destDir}/${(0, path_1.basename)(base)}-${index}.json`;
+                fs_1.writeFileSync(outPath, JSON.stringify(buffer, null, 2), 'utf8');
+            }
+            resolve();
+        });
+        pipeline.on('error', reject);
     });
 }
 /**

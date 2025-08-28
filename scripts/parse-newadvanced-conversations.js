@@ -1,7 +1,11 @@
 const fs = require('fs');
 const path = require('path');
 const yaml = require('js-yaml');
-const { grepJsonArrayFile, grepJsonArrayFileStream } = require('../packages/shared-utils/jsonFragmenter');
+const {
+  grepJsonArrayFile,
+  grepJsonArrayFileStream,
+  writeJsonChunksStream,
+} = require('../packages/shared-utils/jsonFragmenter');
 
 function extractSessionTodos(filePath, titles) {
   const raw = JSON.parse(fs.readFileSync(filePath, 'utf8'));
@@ -60,6 +64,10 @@ async function parseNewAdvancedConversations(filePath, destDir, keyword = 'TODO'
   return matches;
 }
 
+function chunkNewAdvancedConversations(filePath, destDir, chunkSize) {
+  return writeJsonChunksStream(filePath, destDir, chunkSize);
+}
+
 if (require.main === module) {
   const args = process.argv.slice(2);
   const opts = {
@@ -74,6 +82,7 @@ if (require.main === module) {
     yaml: false,
     limit: undefined,
     stream: undefined,
+    chunkSize: undefined,
   };
 
   for (let i = 0; i < args.length; i++) {
@@ -110,13 +119,21 @@ if (require.main === module) {
       case '--stream':
         opts.stream = true;
         break;
+      case '--chunk':
+      case '--chunk-size':
+        opts.chunkSize = parseInt(args[++i], 10);
+        break;
       default:
         // legacy positional keyword
         if (!arg.startsWith('-')) opts.keyword = arg;
     }
   }
 
-  if (opts.extract) {
+  if (opts.chunkSize) {
+    chunkNewAdvancedConversations(opts.file, opts.dest, opts.chunkSize).then(() => {
+      console.log(`Chunked ${opts.file} into ${opts.dest}`);
+    });
+  } else if (opts.extract) {
     const tasks = extractSessionTodos(opts.file, opts.titles);
     const outJson = path.join(opts.dest, 'advancedToDo.part6.json');
     const outYaml = path.join(opts.dest, 'advancedToDo.part6.yaml');
@@ -135,4 +152,4 @@ if (require.main === module) {
   }
 }
 
-module.exports = { parseNewAdvancedConversations, extractSessionTodos };
+module.exports = { parseNewAdvancedConversations, extractSessionTodos, chunkNewAdvancedConversations };
