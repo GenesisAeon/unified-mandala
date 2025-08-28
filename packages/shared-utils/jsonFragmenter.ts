@@ -183,6 +183,51 @@ export function grepJsonArrayFileStream<T>(
 }
 
 /**
+ * Streams a JSON array file and invokes a callback for each item without
+ * loading the entire file into memory.
+ *
+ * @param filePath Path to the JSON array file.
+ * @param onItem   Callback executed for every array element.
+ * @param start    Optional index to begin processing.
+ * @param count    Optional number of items to process.
+ */
+export function streamJsonArrayFile<T>(
+  filePath: string,
+  onItem: (item: T, index: number) => void | Promise<void>,
+  start = 0,
+  count = Infinity
+): Promise<void> {
+  return new Promise((resolve, reject) => {
+    let index = -1;
+    const pipeline = fs
+      .createReadStream(filePath, { encoding: 'utf8' })
+      .pipe(parser())
+      .pipe(streamArray());
+
+    const finalize = () => resolve();
+
+    pipeline.on('data', async ({ value }: { value: T }) => {
+      index++;
+      if (index < start) return;
+      if (index >= start + count) {
+        pipeline.destroy();
+        return;
+      }
+      try {
+        await onItem(value, index);
+      } catch (err) {
+        pipeline.destroy();
+        reject(err);
+      }
+    });
+
+    pipeline.on('end', finalize);
+    pipeline.on('close', finalize);
+    pipeline.on('error', reject);
+  });
+}
+
+/**
  * Extracts code snippets (```code```) from a JSON array file and writes them to individual files.
  * @param filePath Path to JSON array file.
  * @param destDir Output directory for snippets.

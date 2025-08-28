@@ -6,6 +6,7 @@ exports.writeJsonChunks = writeJsonChunks;
 exports.writeJsonChunksStream = writeJsonChunksStream;
 exports.grepJsonArrayFile = grepJsonArrayFile;
 exports.grepJsonArrayFileStream = grepJsonArrayFileStream;
+exports.streamJsonArrayFile = streamJsonArrayFile;
 exports.extractCodeSnippetsFromFile = extractCodeSnippetsFromFile;
 exports.mergeJsonChunks = mergeJsonChunks;
 const fs_1 = require("fs");
@@ -160,6 +161,45 @@ function grepJsonArrayFileStream(filePath, destDir, pattern, limit, start = 0, c
     pipeline.on('end', finalize);
     pipeline.on('close', finalize);
     pipeline.on('error', reject);
+    });
+}
+
+/**
+ * Streams a JSON array file and invokes a callback for each item without
+ * loading the entire file into memory.
+ * @param {string} filePath Path to the JSON array file.
+ * @param {(item:any,index:number)=>void|Promise<void>} onItem Callback executed per element.
+ * @param {number} [start=0] Index to begin processing.
+ * @param {number} [count=Infinity] Maximum number of items to process.
+ * @returns {Promise<void>}
+ */
+function streamJsonArrayFile(filePath, onItem, start = 0, count = Infinity) {
+    return new Promise((resolve, reject) => {
+        let index = -1;
+        const pipeline = (0, fs_1
+            .createReadStream)(filePath, { encoding: 'utf8' })
+            .pipe((0, stream_json_1.parser)())
+            .pipe((0, StreamArray_1.streamArray)());
+        const finalize = () => resolve();
+        pipeline.on('data', async ({ value }) => {
+            index++;
+            if (index < start)
+                return;
+            if (index >= start + count) {
+                pipeline.destroy();
+                return;
+            }
+            try {
+                await onItem(value, index);
+            }
+            catch (err) {
+                pipeline.destroy();
+                reject(err);
+            }
+        });
+        pipeline.on('end', finalize);
+        pipeline.on('close', finalize);
+        pipeline.on('error', reject);
     });
 }
 /**

@@ -7,6 +7,7 @@ import {
   writeJsonChunksStream,
   grepJsonArrayFile,
   grepJsonArrayFileStream,
+  streamJsonArrayFile,
 } from './jsonFragmenter';
 
 describe('jsonFragmenter', () => {
@@ -80,5 +81,13 @@ describe('jsonFragmenter', () => {
     const dest = path.join(tmpDir, 'grep-stream-start');
     const matches = await grepJsonArrayFileStream(sampleFile, dest, /4|5/, undefined, 3, 1);
     expect(matches).toEqual([4]);
+  });
+
+  test('streamJsonArrayFile invokes callback per item', async () => {
+    const collected: number[] = [];
+    await streamJsonArrayFile<number>(sampleFile, (item) => {
+      collected.push(item);
+    });
+    expect(collected).toEqual([1,2,3,4,5]);
   });
 });
