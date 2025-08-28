@@ -24,6 +24,13 @@ describe('parseNewAdvancedConversations', () => {
     expect(written).toEqual(matches);
   });
 
+  it('writes YAML output when enabled', async () => {
+    await parseNewAdvancedConversations(file, dest, 'Session', { stream: false, writeYaml: true });
+    const yamlPath = path.join(dest, 'newadvancedconversations-small-grep.yaml');
+    const content = fs.readFileSync(yamlPath, 'utf8');
+    expect(content).toMatch(/Session A/);
+  });
+
   it('respects start and count in streaming mode', async () => {
     const matches = await parseNewAdvancedConversations(file, dest, 'Session', { stream: true, start: 1, count: 1 });
     expect(matches).toEqual([{ title: 'Session B', mapping: {} }]);

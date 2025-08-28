@@ -192,3 +192,4 @@ Dev-Agents prüfen zu Beginn eines Laufs auf diese Dateien und priorisieren dere
 - Added streaming utilities for parsing large newadvancedconversations dataset.
 - Implemented CommonsApp component unifying ResearchHub and VoicePanel.
 - Added tests for parse-newadvanced-conversations script verifying streaming and range options.
+- Added YAML output test for parse-newadvanced-conversations to confirm optional YAML generation.
