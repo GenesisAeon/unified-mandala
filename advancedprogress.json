@@ -6254,13 +6254,15 @@
     {
       "commit": "feat: add start and count options to newadvanced parser",
       "status": "done"
+    },
+    {
+      "commit": "test: add parser coverage for newadvanced conversations",
+      "status": "done"
     }
   ],
   "changedFiles": [
-    "advancedToDo.json",
-    "advancedToDo.yaml",
     "feedbackcodex.md",
-    "packages/commons-ui/"
+    "scripts/__tests__/parse-newadvanced-conversations.test.ts"
   ],
-  "lastUpdated": "2025-08-28T16:53:54.426Z"
+  "lastUpdated": "2025-08-28T18:05:53.785Z"
 }

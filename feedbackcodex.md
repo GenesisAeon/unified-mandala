@@ -191,3 +191,4 @@ Dev-Agents prüfen zu Beginn eines Laufs auf diese Dateien und priorisieren dere
 - Added AIPeerConnector module stub with basic peer registration and invocation and updated progress trackers.
 - Added streaming utilities for parsing large newadvancedconversations dataset.
 - Implemented CommonsApp component unifying ResearchHub and VoicePanel.
+- Added tests for parse-newadvanced-conversations script verifying streaming and range options.
