@@ -7,3 +7,4 @@
 - Implemented admin API gateway script aggregating service statuses and proxying admin commands.
 - Added ConsentTimeline component for displaying consent records.
 - Implemented streaming analyzer for newadvanced conversations to handle large datasets.
+- Added streaming summary script for newadvanced conversations.
