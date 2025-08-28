@@ -6,7 +6,7 @@ export default defineConfig({
       'packages/agents/**/*.{test,spec}.ts',
       'packages/boundary-engine/**/*.{test,spec}.ts',
       'packages/api/**/*.{test,spec}.ts',
-      'scripts/**/*.{test,spec}.ts',
+      'scripts/**/*.{test,spec,vitest}.ts',
       'packages/wissenschaftliche-versuche/**/*.{test,spec}.ts',
       'packages/consent-mesh/**/*.{test,spec}.ts',
       'packages/federated/**/*.{test,spec}.ts',

@@ -3,7 +3,8 @@ module.exports = {
   testEnvironment: 'jsdom',
   testPathIgnorePatterns: ['/dist/', 'packages/agents', 'packages/agents/__tests__', 'packages/vr-integration', 'services/ghost-shell/server.test.ts'],
   moduleNameMapper: {
-    '^yaml$': '<rootDir>/node_modules/yaml/dist/index.js'
+    '^yaml$': '<rootDir>/node_modules/yaml/dist/index.js',
+    '^vitest$': '<rootDir>/tests/vitest-stub.js'
   },
   collectCoverage: true,
   coverageReporters: ['text', 'lcov'],

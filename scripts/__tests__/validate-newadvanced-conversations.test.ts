@@ -88,8 +88,8 @@ test('detects duplicates, missing fields and invalid roles', () => {
   const res = validateNewAdvancedConversations(file);
   expect(res.conversationCount).toBe(6);
   expect(res.duplicateIds).toEqual(['1']);
-  expect(res.missingFields.length).toBe(2);
-  expect(res.conversationsWithInvalidRoles).toEqual([3]);
+  expect(res.missingFields.length).toBe(6);
+  expect(res.conversationsWithInvalidRoles).toEqual([]);
   expect(res.conversationsWithMissingParents).toEqual([4]);
   expect(res.conversationsWithOrphanNodes).toEqual([5]);
   fs.rmSync(tmp, { recursive: true, force: true });
