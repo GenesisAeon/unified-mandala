@@ -13082,7 +13082,7 @@
   path: packages/admin-ui/AdminConsoleApp.tsx
   task: React UI for monitoring services and consent state
   test: ""
-  status: open
+  status: done
 - commit: Add AI peer connector module
   path: packages/connectors/AIPeerConnector.ts
   task: Register external AI peers and invoke routes
