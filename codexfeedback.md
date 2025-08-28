@@ -6,3 +6,4 @@
 - FR-UM-2025-08-27-Fraktalrun-Import: Alle Änderungen in einem Lauf umgesetzt – kein zweiter Lauf notwendig.
 - Implemented admin API gateway script aggregating service statuses and proxying admin commands.
 - Added ConsentTimeline component for displaying consent records.
+- Implemented streaming analyzer for newadvanced conversations to handle large datasets.

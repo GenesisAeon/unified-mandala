@@ -3,7 +3,10 @@ import path from 'path';
 import fs from 'fs';
 import os from 'os';
 import { execSync } from 'child_process';
-import { analyzeNewAdvancedConversations } from './analyze-newadvanced-conversations';
+import {
+  analyzeNewAdvancedConversations,
+  analyzeNewAdvancedConversationsStream,
+} from './analyze-newadvanced-conversations';
 
 describe('analyzeNewAdvancedConversations', () => {
   it('summarizes sample conversation data', () => {
@@ -46,7 +49,7 @@ describe('analyzeNewAdvancedConversations', () => {
     const file = path.join(__dirname, '../tests/fixtures/newadvanced-sample.json');
     const out = path.join(os.tmpdir(), 'newadvanced-stats.json');
     const script = path.join(__dirname, 'analyze-newadvanced-conversations.ts');
-    execSync(`npx ts-node ${script} ${file} --json ${out}`);
+    execSync(`npx ts-node --transpile-only ${script} ${file} --json ${out}`);
     const written = JSON.parse(fs.readFileSync(out, 'utf8'));
     expect(written.conversationCount).toBe(1);
   });
@@ -56,10 +59,24 @@ describe('analyzeNewAdvancedConversations', () => {
     const out = path.join(os.tmpdir(), 'newadvanced-stats2.json');
     const script = path.join(__dirname, 'analyze-newadvanced-conversations.ts');
     execSync(
-      `npx ts-node ${script} ${file} --start 1 --count 1 --json ${out}`
+      `npx ts-node --transpile-only ${script} ${file} --start 1 --count 1 --json ${out}`
     );
     const written = JSON.parse(fs.readFileSync(out, 'utf8'));
     expect(written.conversationCount).toBe(1);
     expect(written.titles).toEqual(['Second']);
+  });
+
+  it('streams conversation data without loading entire file', async () => {
+    const file = path.join(
+      __dirname,
+      '../tests/fixtures/newadvanced-multi.json'
+    );
+    const stats = await analyzeNewAdvancedConversationsStream(file);
+    expect(stats.conversationCount).toBe(2);
+    expect(stats.messageCount).toBe(2);
+    expect(stats.authorCounts.user).toBe(1);
+    expect(stats.authorCounts.assistant).toBe(1);
+    expect(stats.todoCount).toBe(1);
+    expect(stats.titles).toEqual(['First', 'Second']);
   });
 });
