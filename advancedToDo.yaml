@@ -13097,7 +13097,7 @@
   path: packages/commons/Spaces.ts
   task: Manage collaboration spaces, members, and invites
   test: ""
-  status: open
+  status: done
 - commit: Implement commons API
   path: scripts/commons-api.ts
   task: Handle space creation, invites, and membership
