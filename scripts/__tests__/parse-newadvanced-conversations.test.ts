@@ -54,3 +54,11 @@ test('parseNewAdvancedConversations honors start and count', async () => {
   });
   expect(matches).toHaveLength(0);
 });
+
+test('parseNewAdvancedConversations respects limit option', async () => {
+  const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'parse-limit-'));
+  const fixture = path.join(__dirname, '../../tests/fixtures/newadvanced-double.json');
+  const dest = path.join(tmp, 'out');
+  const matches = await parseNewAdvancedConversations(fixture, dest, 'TODO', { limit: 1 });
+  expect(matches).toHaveLength(1);
+});

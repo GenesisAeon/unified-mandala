@@ -1,0 +1,24 @@
+[
+  {
+    "title": "First",
+    "mapping": {
+      "n1": {
+        "id": "n1",
+        "message": {
+          "content": { "parts": ["TODO first"] }
+        }
+      }
+    }
+  },
+  {
+    "title": "Second",
+    "mapping": {
+      "n2": {
+        "id": "n2",
+        "message": {
+          "content": { "parts": ["TODO second"] }
+        }
+      }
+    }
+  }
+]
