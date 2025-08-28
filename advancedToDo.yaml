@@ -13112,7 +13112,7 @@
   path: packages/commons-ui/CommonsApp.tsx
   task: Human-first interface integrating research and voice panels
   test: ""
-  status: open
+  status: done
 - commit: Add system overview widget
   path: packages/unifiedmandala-ui/components/SystemOverview.tsx
   task: Display health status of core services
