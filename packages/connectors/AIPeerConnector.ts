@@ -15,6 +15,20 @@ export class AIPeerConnector {
     this.peers.set(peer.id, peer);
   }
 
+  /**
+   * Returns all registered peers as an array.
+   */
+  list(): AIPeer[] {
+    return Array.from(this.peers.values());
+  }
+
+  /**
+   * Unregister a peer by id. Returns true if the peer existed.
+   */
+  unregister(id: string): boolean {
+    return this.peers.delete(id);
+  }
+
   getPeer(id: string): AIPeer | undefined {
     return this.peers.get(id);
   }
