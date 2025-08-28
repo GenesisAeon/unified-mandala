@@ -3,7 +3,10 @@ import { promises as fs, constants as fsConstants } from 'fs';
 import path from 'path';
 import os from 'os';
 import yaml from 'js-yaml';
-import { extractTrainingData } from '../extract-training-data';
+// ts-jest allows requiring TypeScript files directly; using `require` avoids
+// issues with ESM syntax in the generated .js file.
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { extractTrainingData } = require('../extract-training-data.ts');
 import { SelfReflectionAgent } from '../../packages/self-reflection/src';
 
 async function exists(p: string) {
