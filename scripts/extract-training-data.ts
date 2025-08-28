@@ -1,7 +1,28 @@
-import { promises as fs } from 'fs';
+import { promises as fs, createReadStream } from 'fs';
 import path from 'path';
 import yaml from 'js-yaml';
-import { SelfReflectionAgent } from '../packages/self-reflection/src';
+import { createRequire } from 'module';
+const require = createRequire(import.meta.url);
+const { parser } = require('stream-json');
+const { streamArray } = require('stream-json/streamers/StreamArray');
+
+interface Reflection {
+  record(message: string): void;
+  summary(): { entries: number; lastEntry: string | null };
+}
+
+class BasicReflection implements Reflection {
+  private logs: string[] = [];
+  record(message: string) {
+    this.logs.push(message);
+  }
+  summary() {
+    return {
+      entries: this.logs.length,
+      lastEntry: this.logs[this.logs.length - 1] ?? null,
+    };
+  }
+}
 
 function slugifyTitle(title: string): string {
   return title
@@ -23,25 +44,9 @@ export async function extractTrainingData(
   src = path.resolve('docs/sigils/newadvancedconversations.json'),
   outRoot = path.resolve('GenesisAeonZIPMEM/newadvancedconversations'),
   manifestPath = path.resolve('GenesisAeonZIPMEM/ZIPMEM_manifest.yaml'),
-  reflection: SelfReflectionAgent = new SelfReflectionAgent(),
+  reflection: Reflection = new BasicReflection(),
   crepThreshold = 0.5
 ) {
-  let raw = '';
-  try {
-    raw = await fs.readFile(src, 'utf8');
-  } catch (e) {
-    console.error('Fehler beim Lesen oder Parsen der Source JSON:', e);
-    process.exit(1);
-  }
-  let convos: any[] = [];
-  try {
-    convos = JSON.parse(raw);
-    if (!Array.isArray(convos)) throw new Error('Expected JSON array');
-  } catch (e) {
-    console.error('Fehler beim Lesen oder Parsen der Source JSON:', e);
-    process.exit(1);
-  }
-
   let manifest: any = { conversations: [] };
   try {
     const manifestRaw = await fs.readFile(manifestPath, 'utf8');
@@ -50,7 +55,11 @@ export async function extractTrainingData(
     // ignore if manifest doesn't exist
   }
 
-  for (const convo of convos) {
+  const pipeline = createReadStream(src, { encoding: 'utf8' })
+    .pipe(parser())
+    .pipe(streamArray());
+
+  for await (const { value: convo } of pipeline) {
     const date = (convo.timestamp || convo.date || new Date().toISOString()).slice(0, 10);
     const title = convo.title || convo.id || 'conversation';
     const slug = `${date}-${slugifyTitle(title)}`;
@@ -75,7 +84,7 @@ export async function extractTrainingData(
 
     if (messages.length === 0) {
       console.warn(`Skipping conversation '${title}' with no messages`);
-      continue;
+      return;
     }
 
     await fs.mkdir(folder, { recursive: true });
@@ -126,7 +135,13 @@ export async function extractTrainingData(
   console.log('✅ Training data extraction complete.');
 }
 
-if (require.main === module) {
+// Allow execution as a standalone script in CommonJS environments
+// while remaining importable in ESM contexts.
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+if (typeof require !== 'undefined' && typeof module !== 'undefined' && require.main === module) {
   extractTrainingData().catch((err) => {
     console.error('Unexpected error:', err);
     process.exit(1);
