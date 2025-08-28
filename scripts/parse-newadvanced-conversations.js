@@ -38,7 +38,16 @@ function extractSessionTodos(filePath, titles) {
 }
 
 async function parseNewAdvancedConversations(filePath, destDir, keyword = 'TODO', options = {}) {
-  const { writeYaml = false, limit, stream = false } = options;
+  let { writeYaml = false, limit, stream } = options;
+  if (stream === undefined) {
+    try {
+      const size = fs.statSync(filePath).size;
+      // Default to streaming for files larger than 10MB
+      stream = size > 10 * 1024 * 1024;
+    } catch {
+      stream = false;
+    }
+  }
   const regex = new RegExp(keyword, 'i');
   const matches = stream
     ? await grepJsonArrayFileStream(filePath, destDir, regex, limit)
@@ -64,7 +73,7 @@ if (require.main === module) {
     ],
     yaml: false,
     limit: undefined,
-    stream: false,
+    stream: undefined,
   };
 
   for (let i = 0; i < args.length; i++) {
