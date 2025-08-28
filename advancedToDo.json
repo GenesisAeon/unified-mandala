@@ -13705,7 +13705,7 @@
     "path": "scripts/admin-api.ts",
     "task": "Aggregate service statuses and proxy admin commands",
     "test": "",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Create admin console app",

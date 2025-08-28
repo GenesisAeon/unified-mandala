@@ -4,3 +4,4 @@
 - FR-UM-2025-08-27-Agents-B: Alle Änderungen in einem Lauf umgesetzt – kein zweiter Lauf notwendig.
 - FR-UM-2025-08-27-Fraktalrun: Alle Änderungen in einem Lauf umgesetzt – kein zweiter Lauf notwendig.
 - FR-UM-2025-08-27-Fraktalrun-Import: Alle Änderungen in einem Lauf umgesetzt – kein zweiter Lauf notwendig.
+- Implemented admin API gateway script aggregating service statuses and proxying admin commands.
