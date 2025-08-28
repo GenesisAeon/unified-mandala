@@ -7,7 +7,7 @@ import yaml from 'js-yaml';
 // issues with ESM syntax in the generated .js file.
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { extractTrainingData } = require('../extract-training-data.ts');
-import { SelfReflectionAgent } from '../../packages/self-reflection/src';
+import { SelfReflectionAgent } from '../../packages/self-reflection/src/index.ts';
 
 async function exists(p: string) {
   try {
