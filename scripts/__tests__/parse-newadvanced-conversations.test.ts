@@ -1,7 +1,10 @@
 import fs from 'fs';
 import path from 'path';
 import os from 'os';
-const { parseNewAdvancedConversations } = require('../parse-newadvanced-conversations');
+const {
+  parseNewAdvancedConversations,
+  chunkNewAdvancedConversations,
+} = require('../parse-newadvanced-conversations');
 
 test('parseNewAdvancedConversations writes YAML when enabled', async () => {
   const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'parse-test-'));
@@ -24,4 +27,17 @@ test('parseNewAdvancedConversations streams when requested', async () => {
   expect(matches).toHaveLength(1);
   const base = path.join(dest, 'newadvanced-sample-grep');
   expect(fs.existsSync(`${base}.json`)).toBe(true);
+});
+
+test('chunkNewAdvancedConversations splits file into chunks', async () => {
+  const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'chunk-'));
+  const input = path.join(tmp, 'input.json');
+  const data = Array.from({ length: 5 }, (_, i) => ({ id: i }));
+  fs.writeFileSync(input, JSON.stringify(data));
+  const dest = path.join(tmp, 'out');
+  await chunkNewAdvancedConversations(input, dest, 2);
+  const files = fs.readdirSync(dest).sort();
+  expect(files).toEqual(['input-1.json', 'input-2.json', 'input-3.json']);
+  const first = JSON.parse(fs.readFileSync(path.join(dest, 'input-1.json'), 'utf8'));
+  expect(first).toEqual([{ id: 0 }, { id: 1 }]);
 });

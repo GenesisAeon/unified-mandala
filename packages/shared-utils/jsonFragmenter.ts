@@ -48,6 +48,51 @@ export function writeJsonChunks(filePath: string, destDir: string, chunkSize: nu
 }
 
 /**
+ * Streams a JSON array file and writes chunks without loading the entire file.
+ * Resulting files are named <basename>-<index>.json in destDir.
+ * @param filePath Input JSON array file.
+ * @param destDir Destination directory for chunk files.
+ * @param chunkSize Number of items per chunk.
+ */
+export function writeJsonChunksStream(
+  filePath: string,
+  destDir: string,
+  chunkSize: number
+): Promise<void> {
+  return new Promise((resolve, reject) => {
+    if (!fs.existsSync(destDir)) fs.mkdirSync(destDir, { recursive: true });
+    const base = filePath.replace(/\.json$/i, '');
+    let buffer: any[] = [];
+    let index = 0;
+
+    const pipeline = fs
+      .createReadStream(filePath, { encoding: 'utf8' })
+      .pipe(parser())
+      .pipe(streamArray());
+
+    pipeline.on('data', ({ value }: { value: any }) => {
+      buffer.push(value);
+      if (buffer.length >= chunkSize) {
+        index++;
+        const outPath = `${destDir}/${path.basename(base)}-${index}.json`;
+        fs.writeFileSync(outPath, JSON.stringify(buffer, null, 2), 'utf8');
+        buffer = [];
+      }
+    });
+
+    pipeline.on('end', () => {
+      if (buffer.length > 0) {
+        index++;
+        const outPath = `${destDir}/${path.basename(base)}-${index}.json`;
+        fs.writeFileSync(outPath, JSON.stringify(buffer, null, 2), 'utf8');
+      }
+      resolve();
+    });
+    pipeline.on('error', reject);
+  });
+}
+
+/**
  * Filters a JSON array file by a regex applied to each item's stringified form.
  * Matching items are written to <basename>-grep.json in destDir.
  * @param filePath Input JSON array file.
