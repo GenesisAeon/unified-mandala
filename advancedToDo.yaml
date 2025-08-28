@@ -13197,7 +13197,7 @@
   path: packages/admin-ui/ConsentTimeline.tsx
   task: Display active consent records from admin API
   test: ""
-  status: open
+  status: done
 - commit: Add PeerManager component
   path: packages/admin-ui/PeerManager.tsx
   task: Show registered AI peers with roles and trust
