@@ -7,6 +7,13 @@
     "status": "done"
   },
   {
+    "commit": "Add streaming JSON array iterator",
+    "path": "packages/shared-utils/jsonFragmenter.ts",
+    "task": "Provide memory-efficient callback-based streaming for large datasets",
+    "test": "packages/shared-utils/jsonFragmenter.test.ts",
+    "status": "done"
+  },
+  {
     "commit": "Add summary generator to training data extraction",
     "path": "scripts/extract-training-data.ts",
     "task": "Replace placeholder with generated conversation summaries",
