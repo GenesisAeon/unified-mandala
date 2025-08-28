@@ -69,4 +69,16 @@ describe('jsonFragmenter', () => {
     const written = JSON.parse(fs.readFileSync(outPath, 'utf8'));
     expect(written).toEqual([4,5]);
   });
+
+  test('grepJsonArrayFile respects start and count', () => {
+    const dest = path.join(tmpDir, 'grep-start');
+    const matches = grepJsonArrayFile(sampleFile, dest, /1|2|3/, undefined, 1, 2);
+    expect(matches).toEqual([2,3]);
+  });
+
+  test('grepJsonArrayFileStream respects start and count', async () => {
+    const dest = path.join(tmpDir, 'grep-stream-start');
+    const matches = await grepJsonArrayFileStream(sampleFile, dest, /4|5/, undefined, 3, 1);
+    expect(matches).toEqual([4]);
+  });
 });

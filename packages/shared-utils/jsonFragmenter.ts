@@ -104,7 +104,9 @@ export function grepJsonArrayFile<T>(
   filePath: string,
   destDir: string,
   pattern: RegExp,
-  limit?: number
+  limit?: number,
+  start = 0,
+  count = Infinity
 ): T[] {
   const raw = fs.readFileSync(filePath, 'utf8');
   const data: T[] = JSON.parse(raw);
@@ -112,7 +114,8 @@ export function grepJsonArrayFile<T>(
     throw new Error('Input JSON must be an array');
   }
   const matches: T[] = [];
-  for (const item of data) {
+  const slice = data.slice(start, start + count);
+  for (const item of slice) {
     if (pattern.test(JSON.stringify(item))) {
       matches.push(item);
       if (limit && matches.length >= limit) break;
@@ -139,20 +142,28 @@ export function grepJsonArrayFileStream<T>(
   filePath: string,
   destDir: string,
   pattern: RegExp,
-  limit?: number
+  limit?: number,
+  start = 0,
+  count = Infinity
 ): Promise<T[]> {
   return new Promise((resolve, reject) => {
     const matches: T[] = [];
     if (!fs.existsSync(destDir)) fs.mkdirSync(destDir, { recursive: true });
     const base = filePath.replace(/\.json$/i, '');
     const outPath = `${destDir}/${path.basename(base)}-grep.json`;
-
+    let index = -1;
     const pipeline = fs
       .createReadStream(filePath, { encoding: 'utf8' })
       .pipe(parser())
       .pipe(streamArray());
 
     pipeline.on('data', ({ value }: { value: T }) => {
+      index++;
+      if (index < start) return;
+      if (index >= start + count) {
+        pipeline.destroy();
+        return;
+      }
       if (pattern.test(JSON.stringify(value))) {
         matches.push(value);
         if (limit && matches.length >= limit) {
@@ -161,10 +172,12 @@ export function grepJsonArrayFileStream<T>(
       }
     });
 
-    pipeline.on('end', () => {
+    const finalize = () => {
       fs.writeFileSync(outPath, JSON.stringify(matches, null, 2), 'utf8');
       resolve(matches);
-    });
+    };
+    pipeline.on('end', finalize);
+    pipeline.on('close', finalize);
     pipeline.on('error', reject);
   });
 }
