@@ -188,3 +188,4 @@ Dev-Agents prüfen zu Beginn eines Laufs auf diese Dateien und priorisieren dere
 
 - Applied FR-UM-2025-08-27-A patch bundle successfully in one run.
 - Added AIPeerConnector module stub with basic peer registration and invocation and updated progress trackers.
+- Added streaming utilities for parsing large newadvancedconversations dataset.

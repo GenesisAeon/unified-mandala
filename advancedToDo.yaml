@@ -13949,66 +13949,73 @@
     - path: agents/_shared/
     - path: scripts/agents/
 - id: AGT-030
-  title: "Agents Observability (Metriken p50/p95, ok/fail) + Runner-Instrumentation"
-  owner: "genesis-aeon"
+  title: Agents Observability (Metriken p50/p95, ok/fail) + Runner-Instrumentation
+  owner: genesis-aeon
   priority: high
-  labels: [agents, observability, metrics]
+  labels:
+    - agents
+    - observability
+    - metrics
   status: open
   acceptance:
-    - "data/agents/metrics/*.jsonl entsteht beim Run"
-    - "pnpm agents:metrics produziert JSON-Report"
+    - data/agents/metrics/*.jsonl entsteht beim Run
+    - pnpm agents:metrics produziert JSON-Report
   changes:
     - path: scripts/agents/runner.ts
     - path: scripts/agents/metrics-aggregate.ts
     - path: governance/policies/agents-policy.yaml
-
 - id: AGT-031
-  title: "Domain-Audit in CI"
-  owner: "genesis-aeon"
+  title: Domain-Audit in CI
+  owner: genesis-aeon
   priority: high
-  labels: [agents, audit, security]
+  labels:
+    - agents
+    - audit
+    - security
   status: open
   acceptance:
-    - "pnpm agents:audit:domains findet keine verbotenen Domains (oder schlägt korrekt fehl)"
-    - ".github/workflows/agents.yml vorhanden"
+    - pnpm agents:audit:domains findet keine verbotenen Domains (oder schlägt
+      korrekt fehl)
+    - .github/workflows/agents.yml vorhanden
   changes:
     - path: scripts/agents/domain-audit.ts
     - path: .github/workflows/agents.yml
-
 - id: AGT-032
-  title: "Golden-File-Tests (deterministisch) für priorisierte Agenten"
-  owner: "genesis-aeon"
+  title: Golden-File-Tests (deterministisch) für priorisierte Agenten
+  owner: genesis-aeon
   priority: medium
-  labels: [agents, tests]
+  labels:
+    - agents
+    - tests
   status: open
   acceptance:
-    - "tests/agents/golden/<agentId>/{input,expected}.json vorhanden"
-    - "pnpm agents:test:golden grün"
+    - tests/agents/golden/<agentId>/{input,expected}.json vorhanden
+    - pnpm agents:test:golden grün
   changes:
     - path: scripts/agents/golden-runner.ts
     - path: tests/agents/golden/
-- commit: "Analyse Gesprächsextrakte"
+- commit: Analyse Gesprächsextrakte
   path: ""
-  task: "Analyse Gesprächsextrakte"
+  task: Analyse Gesprächsextrakte
   test: ""
   status: offen
-- commit: "Erzeuge initiale Aufgaben"
+- commit: Erzeuge initiale Aufgaben
   path: ""
-  task: "Erzeuge initiale Aufgaben"
+  task: Erzeuge initiale Aufgaben
   test: ""
   status: offen
-- commit: "Verzweige in Unteraufgaben"
+- commit: Verzweige in Unteraufgaben
   path: ""
-  task: "Verzweige in Unteraufgaben"
+  task: Verzweige in Unteraufgaben
   test: ""
   status: offen
-- commit: "Bewerte CREP und depth"
+- commit: Bewerte CREP und depth
   path: ""
-  task: "Bewerte CREP und depth"
+  task: Bewerte CREP und depth
   test: ""
   status: offen
-- commit: "Commitiere Ergebnisse"
+- commit: Commitiere Ergebnisse
   path: ""
-  task: "Commitiere Ergebnisse"
+  task: Commitiere Ergebnisse
   test: ""
   status: offen
