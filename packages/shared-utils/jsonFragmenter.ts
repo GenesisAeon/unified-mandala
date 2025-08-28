@@ -1,4 +1,7 @@
-import fs from 'fs';
+import * as fs from 'fs';
+import * as path from 'path';
+import { parser } from 'stream-json';
+import { streamArray } from 'stream-json/streamers/StreamArray';
 
 /**
  * Splits an array into chunks of the given size.
@@ -75,6 +78,50 @@ export function grepJsonArrayFile<T>(
   const outPath = `${destDir}/${base.split('/').pop()}-grep.json`;
   fs.writeFileSync(outPath, JSON.stringify(matches, null, 2), 'utf8');
   return matches;
+}
+
+/**
+ * Streams a JSON array file and filters items by regex without loading
+ * the entire file into memory. Matching items are written to
+ * <basename>-grep.json in destDir.
+ *
+ * @param filePath Path to JSON array file.
+ * @param destDir Destination directory for grep result file.
+ * @param pattern Regular expression to test each item.
+ * @param limit Optional maximum number of matches to return.
+ */
+export function grepJsonArrayFileStream<T>(
+  filePath: string,
+  destDir: string,
+  pattern: RegExp,
+  limit?: number
+): Promise<T[]> {
+  return new Promise((resolve, reject) => {
+    const matches: T[] = [];
+    if (!fs.existsSync(destDir)) fs.mkdirSync(destDir, { recursive: true });
+    const base = filePath.replace(/\.json$/i, '');
+    const outPath = `${destDir}/${path.basename(base)}-grep.json`;
+
+    const pipeline = fs
+      .createReadStream(filePath, { encoding: 'utf8' })
+      .pipe(parser())
+      .pipe(streamArray());
+
+    pipeline.on('data', ({ value }: { value: T }) => {
+      if (pattern.test(JSON.stringify(value))) {
+        matches.push(value);
+        if (limit && matches.length >= limit) {
+          pipeline.destroy();
+        }
+      }
+    });
+
+    pipeline.on('end', () => {
+      fs.writeFileSync(outPath, JSON.stringify(matches, null, 2), 'utf8');
+      resolve(matches);
+    });
+    pipeline.on('error', reject);
+  });
 }
 
 /**
