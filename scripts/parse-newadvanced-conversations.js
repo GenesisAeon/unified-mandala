@@ -42,7 +42,7 @@ function extractSessionTodos(filePath, titles) {
 }
 
 async function parseNewAdvancedConversations(filePath, destDir, keyword = 'TODO', options = {}) {
-  let { writeYaml = false, limit, stream } = options;
+  let { writeYaml = false, limit, stream, start = 0, count = Infinity } = options;
   if (stream === undefined) {
     try {
       const size = fs.statSync(filePath).size;
@@ -54,8 +54,8 @@ async function parseNewAdvancedConversations(filePath, destDir, keyword = 'TODO'
   }
   const regex = new RegExp(keyword, 'i');
   const matches = stream
-    ? await grepJsonArrayFileStream(filePath, destDir, regex, limit)
-    : grepJsonArrayFile(filePath, destDir, regex, limit);
+    ? await grepJsonArrayFileStream(filePath, destDir, regex, limit, start, count)
+    : grepJsonArrayFile(filePath, destDir, regex, limit, start, count);
   if (writeYaml) {
     const base = filePath.replace(/\.json$/i, '');
     const outPath = path.join(destDir, `${path.basename(base)}-grep.yaml`);
@@ -82,6 +82,8 @@ if (require.main === module) {
     yaml: false,
     limit: undefined,
     stream: undefined,
+    start: 0,
+    count: Infinity,
     chunkSize: undefined,
   };
 
@@ -119,6 +121,12 @@ if (require.main === module) {
       case '--stream':
         opts.stream = true;
         break;
+      case '--start':
+        opts.start = parseInt(args[++i], 10);
+        break;
+      case '--count':
+        opts.count = parseInt(args[++i], 10);
+        break;
       case '--chunk':
       case '--chunk-size':
         opts.chunkSize = parseInt(args[++i], 10);
@@ -146,6 +154,8 @@ if (require.main === module) {
       writeYaml: opts.yaml,
       limit: opts.limit,
       stream: opts.stream,
+      start: opts.start,
+      count: opts.count,
     }).then(matches => {
       console.log(`Parsed ${matches.length} fragments containing '${opts.keyword}'. Output: ${opts.dest}`);
     });

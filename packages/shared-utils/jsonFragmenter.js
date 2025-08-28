@@ -94,14 +94,15 @@ function writeJsonChunksStream(filePath, destDir, chunkSize) {
  * @param pattern Regular expression used to match items.
  * @param limit Optional maximum number of matches to return.
  */
-function grepJsonArrayFile(filePath, destDir, pattern, limit) {
+function grepJsonArrayFile(filePath, destDir, pattern, limit, start = 0, count = Infinity) {
     const raw = fs_1.readFileSync(filePath, 'utf8');
     const data = JSON.parse(raw);
     if (!Array.isArray(data)) {
         throw new Error('Input JSON must be an array');
     }
     const matches = [];
-    for (const item of data) {
+    const slice = data.slice(start, start + count);
+    for (const item of slice) {
         if (pattern.test(JSON.stringify(item))) {
             matches.push(item);
             if (limit && matches.length >= limit)
@@ -125,30 +126,40 @@ function grepJsonArrayFile(filePath, destDir, pattern, limit) {
  * @param pattern Regular expression to test each item.
  * @param limit Optional maximum number of matches to return.
  */
-function grepJsonArrayFileStream(filePath, destDir, pattern, limit) {
+function grepJsonArrayFileStream(filePath, destDir, pattern, limit, start = 0, count = Infinity) {
     return new Promise((resolve, reject) => {
         const matches = [];
         if (!fs_1.existsSync(destDir))
             fs_1.mkdirSync(destDir, { recursive: true });
         const base = filePath.replace(/\.json$/i, '');
         const outPath = `${destDir}/${path_1.basename(base)}-grep.json`;
-        const pipeline = fs_1
+    let index = -1;
+    const pipeline = fs_1
             .createReadStream(filePath, { encoding: 'utf8' })
             .pipe((0, stream_json_1.parser)())
             .pipe((0, StreamArray_1.streamArray)());
-        pipeline.on('data', ({ value }) => {
-            if (pattern.test(JSON.stringify(value))) {
-                matches.push(value);
-                if (limit && matches.length >= limit) {
-                    pipeline.destroy();
-                }
+    pipeline.on('data', ({ value }) => {
+        index++;
+        if (index < start)
+            return;
+        if (index >= start + count) {
+            pipeline.destroy();
+            return;
+        }
+        if (pattern.test(JSON.stringify(value))) {
+            matches.push(value);
+            if (limit && matches.length >= limit) {
+                pipeline.destroy();
             }
-        });
-    pipeline.on('end', () => {
+        }
+    });
+    const finalize = () => {
         fs_1.writeFileSync(outPath, JSON.stringify(matches, null, 2), 'utf8');
         resolve(matches);
-    });
-        pipeline.on('error', reject);
+    };
+    pipeline.on('end', finalize);
+    pipeline.on('close', finalize);
+    pipeline.on('error', reject);
     });
 }
 /**
