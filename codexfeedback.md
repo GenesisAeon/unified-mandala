@@ -8,3 +8,4 @@
 - Added ConsentTimeline component for displaying consent records.
 - Implemented streaming analyzer for newadvanced conversations to handle large datasets.
 - Added streaming summary script for newadvanced conversations.
+- Implemented in-memory Spaces module for managing collaboration spaces.
