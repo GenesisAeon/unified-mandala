@@ -1,5 +1,5 @@
 {
-  "lastCommit": "fractal-step-1: update progress feedback",
+  "lastCommit": "fractal-step-4: sync progress after test addition",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
@@ -5314,6 +5314,10 @@
     {
       "commit": "Add streaming JSON array iterator",
       "status": "done"
+    },
+    {
+      "commit": "Add extractSessionTodos unit test",
+      "status": "done"
     }
   ],
   "completed": [
@@ -6268,8 +6272,6 @@
       "status": "done"
     }
   ],
-  "changedFiles": [
-    "scripts/__tests__/chunk-newadvanced-conversations.test.ts"
-  ],
-  "lastUpdated": "2025-08-29T05:15:38.176Z"
+  "changedFiles": [],
+  "lastUpdated": "2025-08-29T06:24:23.491Z"
 }
