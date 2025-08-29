@@ -13137,7 +13137,7 @@
   path: code-agent-tasks.yaml
   task: Add commands to run admin and commons APIs and websockets
   test: ""
-  status: open
+  status: done
 - commit: Add ContributionEvent schema
   path: packages/protocol/ContributionEvent.ts
   task: Define event type for contributions with provenance and credit fields

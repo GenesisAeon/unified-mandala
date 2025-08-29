@@ -65,3 +65,23 @@ tasks:
       - npx ts-node scripts/os-bridge-api.ts
     verify:
       - curl -f http://localhost:3030/clipboard || echo "API not responding"
+  - id: admin.api
+    run:
+      - npx ts-node scripts/admin-api.ts
+    verify:
+      - curl -f http://localhost:4010/status || echo "API not responding"
+  - id: admin.peers.api
+    run:
+      - npx ts-node scripts/admin-peers-api.ts
+    verify:
+      - curl -f http://localhost:4011/peers || echo "API not responding"
+  - id: commons.api
+    run:
+      - npx ts-node scripts/commons-api.ts
+    verify:
+      - curl -f -X POST http://localhost:4000/spaces -H 'Content-Type: application/json' -d '{"name":"test"}' || echo "API not responding"
+  - id: commons.presence.ws
+    run:
+      - npx ts-node scripts/commons-presence-ws.ts
+    verify:
+      - node -e "const WebSocket=require('ws'); const ws=new WebSocket('ws://localhost:4050/?spaceId=test'); ws.on('open',()=>process.exit(0)); setTimeout(()=>process.exit(1),1000);" || echo "WS not responding"
