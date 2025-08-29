@@ -1,0 +1,41 @@
+[
+  {
+    "title": "Todo Session",
+    "mapping": {
+      "a": {
+        "message": {
+          "content": {
+            "parts": [
+              "TODO: implement feature",
+              "Some other line"
+            ]
+          }
+        }
+      },
+      "b": {
+        "message": {
+          "content": {
+            "parts": [
+              "- TODO: fix bug",
+              "Nothing here"
+            ]
+          }
+        }
+      }
+    }
+  },
+  {
+    "title": "Other Session",
+    "mapping": {
+      "x": {
+        "message": {
+          "content": {
+            "parts": [
+              "TODO: ignore this"
+            ]
+          }
+        }
+      }
+    }
+  }
+]
