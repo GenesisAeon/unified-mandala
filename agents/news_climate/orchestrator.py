@@ -20,8 +20,8 @@ class ClimateNewsConfig:
 
     sources: List[str] = field(
         default_factory=lambda: [
-            "https://example.com/climate",
-            "https://example.com/social",
+            "https://noaa.gov/climate",
+            "https://noaa.gov/social",
         ]
     )
 

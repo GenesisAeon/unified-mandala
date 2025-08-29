@@ -6,7 +6,7 @@ import httpx
 from fastapi import FastAPI
 from fastapi.exceptions import HTTPException
 
-API_URL = "https://example.com/science"
+API_URL = "https://noaa.gov/science"
 
 app = FastAPI(title="Science Service")
 

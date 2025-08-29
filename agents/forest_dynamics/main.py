@@ -16,7 +16,7 @@ from pydantic import BaseModel
 class ForestConfig:
     """Configuration for the agent."""
 
-    api_url: str = "https://example.com/forest"
+    api_url: str = "https://noaa.gov/forest"
 
 
 class ForestDynamics(BaseModel):
