@@ -14,7 +14,7 @@ from pydantic import BaseModel
 class IslandLossConfig:
     """Configuration for the agent."""
 
-    api_url: str = "https://example.com/islands"
+    api_url: str = "https://noaa.gov/islands"
 
 
 class IslandLoss(BaseModel):

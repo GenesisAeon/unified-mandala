@@ -14,7 +14,7 @@ from pydantic import BaseModel
 class CosmicConfig:
     """Configuration for the agent."""
 
-    api_url: str = "https://example.com/cosmic"
+    api_url: str = "https://noaa.gov/cosmic"
 
 
 class CosmicEvent(BaseModel):

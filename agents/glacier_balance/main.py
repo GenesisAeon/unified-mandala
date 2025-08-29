@@ -18,7 +18,7 @@ from pydantic import BaseModel
 class GlacierConfig:
     """Configuration for the agent."""
 
-    api_url: str = "https://example.com/glacier"
+    api_url: str = "https://noaa.gov/glacier"
 
 
 class GlacierBalance(BaseModel):
