@@ -5,10 +5,13 @@ import os from 'os';
 import { splitNewAdvancedConversations } from './split-newadvanced-conversations';
 
 describe('splitNewAdvancedConversations', () => {
-  it('splits conversations into separate files', () => {
-    const src = path.join(__dirname, '../tests/fixtures/newadvanced-multi.json');
+  it('splits conversations into separate files', async () => {
+    const src = path.join(
+      __dirname,
+      '../tests/fixtures/newadvanced-multi.json'
+    );
     const outDir = fs.mkdtempSync(path.join(os.tmpdir(), 'split-convo-'));
-    const files = splitNewAdvancedConversations(src, outDir);
+    const files = await splitNewAdvancedConversations(src, outDir);
     expect(files.length).toBe(2);
     const first = JSON.parse(fs.readFileSync(files[0], 'utf8'));
     expect(first.title).toBe('First');
@@ -16,10 +19,15 @@ describe('splitNewAdvancedConversations', () => {
     expect(fs.existsSync(yamlFile)).toBe(true);
   });
 
-  it('supports start index and count', () => {
-    const src = path.join(__dirname, '../tests/fixtures/newadvanced-multi.json');
+  it('supports start index and count in streaming mode', async () => {
+    const src = path.join(
+      __dirname,
+      '../tests/fixtures/newadvanced-multi.json'
+    );
     const outDir = fs.mkdtempSync(path.join(os.tmpdir(), 'split-convo-'));
-    const files = splitNewAdvancedConversations(src, outDir, 1, 1);
+    const files = await splitNewAdvancedConversations(src, outDir, 1, 1, {
+      stream: true,
+    });
     expect(files.length).toBe(1);
     const second = JSON.parse(fs.readFileSync(files[0], 'utf8'));
     expect(second.title).toBe('Second');
