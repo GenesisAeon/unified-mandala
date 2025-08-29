@@ -13782,7 +13782,7 @@
     "path": "packages/hub/TaskRouter.ts",
     "task": "Assign tasks to humans or AI peers based on role and score",
     "test": "",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Extend code agent tasks for admin and commons modules",
