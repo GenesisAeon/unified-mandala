@@ -54,6 +54,19 @@ test('reads tasks from directory of part files', () => {
   fs.rmSync(tmpDir, { recursive: true, force: true });
 });
 
+test('recurses into nested directories', () => {
+  const tmpDir = path.join(__dirname, 'tmp-nested');
+  const nested = path.join(tmpDir, 'inner');
+  fs.mkdirSync(nested, { recursive: true });
+  const sample = [{ commit: 'Nested Task', path: 'inner/task', status: 'open' }];
+  fs.writeFileSync(path.join(nested, 'todo.json'), JSON.stringify(sample, null, 2));
+
+  const todos = listOpenAdvancedTodos(undefined, tmpDir);
+  expect(todos).toEqual([{ commit: 'Nested Task', path: 'inner/task' }]);
+
+  fs.rmSync(tmpDir, { recursive: true, force: true });
+});
+
 test('excludes tasks matching pattern', () => {
   const tmp = path.join(__dirname, 'tmp-exclude.json');
   const sample = [
