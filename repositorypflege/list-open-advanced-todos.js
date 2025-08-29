@@ -10,19 +10,23 @@ function readTodoFile(file) {
 
 function collectFiles(inputPaths) {
   const files = [];
-  for (const p of inputPaths) {
-    if (!fs.existsSync(p)) continue;
+
+  function walk(p) {
+    if (!fs.existsSync(p)) return;
     const stat = fs.statSync(p);
     if (stat.isDirectory()) {
       for (const f of fs.readdirSync(p)) {
-        if (/\.(json|ya?ml)$/i.test(f)) {
-          files.push(path.join(p, f));
-        }
+        walk(path.join(p, f));
       }
-    } else {
+    } else if (/\.(json|ya?ml)$/i.test(p)) {
       files.push(p);
     }
   }
+
+  for (const p of inputPaths) {
+    walk(p);
+  }
+
   return files;
 }
 
