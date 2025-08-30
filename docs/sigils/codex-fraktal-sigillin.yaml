@@ -1,0 +1,23 @@
+sigillin:
+  id: "codex-fraktal-sigillin"
+  title: "Codex Fraktal Sigillin"
+  created_by: "ChefDevAgent"
+  timestamp: "2025-08-30T00:00:00Z"
+  sigillin_type: "FractalDirective"
+  crep:
+    state: "emergence"
+    score: 0.9
+  trigger:
+    phrase: "Entfalte das Fraktal"
+  symbol_signature: "🌐🌀"
+  agent_activation:
+    - CodexAuditAgent
+    - EvolverGPT
+  fractal_path:
+    - "Extract tasks from conversations via parsers"
+    - "Update advancedprogress.json"
+    - "Implement prioritized features"
+  essenz: |
+    Dieses Sigillin stärkt den kontinuierlichen Fraktal-Run.
+    Es verbindet Analyse, Umsetzung und Fortschrittslog in einem
+    resonanten Entwicklungszyklus.

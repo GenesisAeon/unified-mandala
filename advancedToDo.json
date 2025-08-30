@@ -7744,7 +7744,8 @@
     "commit": "Add Codex Fraktal Sigillin file",
     "path": "docs/sigils/2023-11-21-codex-fraktal-sigil-001.yaml",
     "task": "Erzeuge Sigillin codex-fraktal-sigil-001 zur Initialisierung",
-    "test": ""
+    "test": "",
+    "status": "done"
   },
   {
     "commit": "Add FraktalRun tasks from conversation",
