@@ -12,3 +12,4 @@
 - Provided seven deep-dive analyses (GenesisAeonAdvancedAi, agents, GenesisAeonZIPMEM, orchestrator, unifiedmandala-orchestrator, unifiedmandala-neural, .github/.husky) with patch proposals; further fractal runs recommended for implementation.
 - FR-UM-2025-08-30-OFFLINE-PERF-A: Proposed light static server with precompressed assets and TTFB smoke test to fix offline response times; awaiting application.
 - FR-UM-2025-08-30-OFFLINE-PERF-B: Implemented start scripts, light static server, and TTFB smoke test; kein weiterer Lauf notwendig.
+- FR-UM-2025-08-30-CLIMATE-WIRING-A: YAML-Config mit Live-KPI-Engine und Kachel-Board verdrahtet – kein weiterer Lauf notwendig.
