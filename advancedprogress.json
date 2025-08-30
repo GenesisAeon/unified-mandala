@@ -1,5 +1,5 @@
 {
-  "lastCommit": "meta: implement-features – add Codex Fraktal Sigillin",
+  "lastCommit": "chore: sync progress metadata",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
@@ -5334,6 +5334,10 @@
     {
       "commit": "Add Codex Fraktal Sigillin file",
       "status": "done"
+    },
+    {
+      "commit": "Implement collab websocket server",
+      "status": "done"
     }
   ],
   "completed": [
@@ -6289,5 +6293,5 @@
     }
   ],
   "changedFiles": [],
-  "lastUpdated": "2025-08-30T09:44:36.380Z"
+  "lastUpdated": "2025-08-30T13:42:24.541Z"
 }

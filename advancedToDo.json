@@ -13825,7 +13825,7 @@
     "path": "scripts/collab-ws.ts",
     "task": "Host Automerge documents and fan out changes over websockets",
     "test": "",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Add CreditLedger module",
