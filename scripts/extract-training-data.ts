@@ -1,10 +1,8 @@
 import { promises as fs, createReadStream } from 'fs';
 import path from 'path';
 import yaml from 'js-yaml';
-import { createRequire } from 'module';
-const require = createRequire(import.meta.url);
-const { parser } = require('stream-json');
-const { streamArray } = require('stream-json/streamers/StreamArray');
+import { parser } from 'stream-json';
+import { streamArray } from 'stream-json/streamers/StreamArray';
 
 interface Reflection {
   record(message: string): void;

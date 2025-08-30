@@ -8729,6 +8729,7 @@
   path: docs/sigils/2023-11-21-codex-fraktal-sigil-001.yaml
   task: Erzeuge Sigillin codex-fraktal-sigil-001 zur Initialisierung
   test: ""
+  status: done
 - commit: Add FraktalRun tasks from conversation
   path: advancedToDo.yaml
   task: Optimales Sigillin generieren und FraktalRun starten

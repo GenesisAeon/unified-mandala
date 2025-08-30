@@ -4,11 +4,13 @@
     "module": "CommonJS",
     "declaration": false,
     "outDir": "dist",
+    "noEmit": true,
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
     "resolveJsonModule": true,
     "jsx": "react-jsx",
+    "allowImportingTsExtensions": true,
     "types": ["node"]
   },
   "include": [
