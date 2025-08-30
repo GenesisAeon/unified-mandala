@@ -9,3 +9,5 @@
 - Implemented streaming analyzer for newadvanced conversations to handle large datasets.
 - Added streaming summary script for newadvanced conversations.
 - Implemented in-memory Spaces module for managing collaboration spaces.
+- Provided seven deep-dive analyses (GenesisAeonAdvancedAi, agents, GenesisAeonZIPMEM, orchestrator, unifiedmandala-orchestrator, unifiedmandala-neural, .github/.husky) with patch proposals; further fractal runs recommended for implementation.
+- FR-UM-2025-08-30-OFFLINE-PERF-A: Proposed light static server with precompressed assets and TTFB smoke test to fix offline response times; awaiting application.
