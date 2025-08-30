@@ -15,6 +15,14 @@ and every fragment in `advancedToDo_parts/`. It also records a `changedFiles`
 list capturing the files currently modified in the working tree and stamps a
 `lastUpdated` timestamp. This helps trace fractal updates across commits.
 
+By default tasks that reference conversation datasets are skipped. Pass
+`--include-conversations` to include them in the generated progress file when
+needed:
+
+```bash
+node repositorypflege/update-advanced-progress.js --include-conversations
+```
+
 To write progress to an alternative file, pass the `--file` flag:
 
 ```bash

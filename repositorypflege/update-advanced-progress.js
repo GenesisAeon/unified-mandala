@@ -15,12 +15,23 @@ function getChangedFiles() {
   }
 }
 
-function updateAdvancedProgress(limit = 5, progressFile, pattern, todoPaths, excludePattern) {
+function updateAdvancedProgress(
+  limit = 5,
+  progressFile,
+  pattern,
+  todoPaths,
+  excludePattern,
+  { includeConversations = false } = {}
+) {
   const progressPath = progressFile || path.resolve(__dirname, '..', 'advancedprogress.json');
   const progress = JSON.parse(fs.readFileSync(progressPath, 'utf8'));
-  const todos = listOpenAdvancedTodos(pattern, todoPaths, excludePattern).slice(0, limit);
+  const todos = listOpenAdvancedTodos(pattern, todoPaths, excludePattern, {
+    includeConversations
+  }).slice(0, limit);
   progress.pendingTasks = todos.map((t) => ({ commit: t.commit, path: t.path, status: 'open' }));
-  const changed = getChangedFiles().filter((f) => f !== path.relative(path.resolve(__dirname, '..'), progressPath));
+  const changed = getChangedFiles().filter(
+    (f) => f !== path.relative(path.resolve(__dirname, '..'), progressPath)
+  );
   progress.changedFiles = changed;
   progress.lastUpdated = new Date().toISOString();
   fs.writeFileSync(progressPath, JSON.stringify(progress, null, 2));
@@ -38,7 +49,10 @@ if (require.main === module) {
   const exclude = exclIndex >= 0 ? process.argv[exclIndex + 1] : undefined;
   const fileIndex = process.argv.indexOf('--file');
   const progressFile = fileIndex >= 0 ? process.argv[fileIndex + 1] : undefined;
-  updateAdvancedProgress(limit, progressFile, pattern, todoPaths, exclude);
+  const includeConvos = process.argv.includes('--include-conversations');
+  updateAdvancedProgress(limit, progressFile, pattern, todoPaths, exclude, {
+    includeConversations: includeConvos
+  });
 }
 
 module.exports = { updateAdvancedProgress };
