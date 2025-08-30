@@ -55,6 +55,13 @@ node repositorypflege/advanced-todo-report.js --json
 node repositorypflege/advanced-todo-report.js --yaml
 ```
 
+To sort directories by the number of open tasks, pass `--sort count`. The
+default alphabetical order can be made explicit with `--sort alpha`:
+
+```bash
+node repositorypflege/advanced-todo-report.js --sort count
+```
+
 ## Handling Large Conversation Files
 
 Datasets such as `newadvancedconversations.json` in this directory are

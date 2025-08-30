@@ -26,6 +26,8 @@ if (require.main === module) {
   const includeConvos = process.argv.includes('--include-conversations');
   const limitIndex = process.argv.indexOf('--limit');
   const limit = limitIndex >= 0 ? parseInt(process.argv[limitIndex + 1], 10) : undefined;
+  const sortIndex = process.argv.indexOf('--sort');
+  const sortMode = sortIndex >= 0 ? process.argv[sortIndex + 1] : 'alpha';
 
   const grouped = groupTodosByDir(pattern, todoPaths, exclude, includeConvos);
   if (yamlOutput) {
@@ -34,7 +36,14 @@ if (require.main === module) {
     console.log(JSON.stringify(grouped, null, 2));
   } else {
     let total = 0;
-    for (const [dir, tasks] of Object.entries(grouped)) {
+    const entries = Object.entries(grouped);
+    entries.sort((a, b) => {
+      if (sortMode === 'count') {
+        return b[1].length - a[1].length;
+      }
+      return a[0].localeCompare(b[0]);
+    });
+    for (const [dir, tasks] of entries) {
       total += tasks.length;
       console.log(`${dir} (${tasks.length}):`);
       const list = limit ? tasks.slice(0, limit) : tasks;

@@ -1,5 +1,5 @@
 {
-  "lastCommit": "feat: add CoIntel orchestrator service",
+  "lastCommit": "feat: add sort option to advanced todo report",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
@@ -6650,10 +6650,9 @@
     }
   ],
   "changedFiles": [
-    "advancedToDo.json",
-    "advancedToDo.yaml",
-    "repositorypflege/feedback.md",
-    "scripts/cointel-orchestrator.ts"
+    "docs/sigils/advancedprogress-guide.md",
+    "repositorypflege/advanced-todo-report.js",
+    "repositorypflege/feedback.md"
   ],
-  "lastUpdated": "2025-08-30T08:24:10.338Z"
+  "lastUpdated": "2025-08-30T08:45:48.823Z"
 }
