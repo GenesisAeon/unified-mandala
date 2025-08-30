@@ -13789,7 +13789,7 @@
     "path": "code-agent-tasks.yaml",
     "task": "Add commands to run admin and commons APIs and websockets",
     "test": "",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Add ContributionEvent schema",
@@ -13817,7 +13817,7 @@
     "path": "scripts/cointel-orchestrator.ts",
     "task": "Match tasks to humans or AI peers and dispatch via HTTP",
     "test": "",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Implement collab websocket server",

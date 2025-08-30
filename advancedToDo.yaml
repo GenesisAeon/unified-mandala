@@ -13157,7 +13157,7 @@
   path: scripts/cointel-orchestrator.ts
   task: Match tasks to humans or AI peers and dispatch via HTTP
   test: ""
-  status: open
+  status: done
 - commit: Implement collab websocket server
   path: scripts/collab-ws.ts
   task: Host Automerge documents and fan out changes over websockets

@@ -5,3 +5,4 @@
 - Replaced placeholder `example.com` domains in agents with `noaa.gov` to satisfy domain audit.
 - Implemented initial TaskRouter module to assign tasks to humans or AI based on role and score.
 - Added `--include-conversations` flag to `update-advanced-progress.js` and documented usage.
+- Implemented initial CoIntel orchestrator service to route tasks to human or AI endpoints.
