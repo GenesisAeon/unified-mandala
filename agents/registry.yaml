@@ -3,6 +3,12 @@ agents:
   - id: "echo"
     entry: "agents/echo/index.ts"
     description: "Echoes back input for testing"
+  - id: "desert_tracker"
+    entry: "agents/desert_tracker/main.py"
+    description: "Tracks desertification indicators"
+  - id: "digital_twin"
+    entry: "agents/digital_twin/main.py"
+    description: "Synchronizes digital twin simulations"
 # Beispiel:
 #  - id: "hydro.cso"
 #    entry: "agents/hydro.cso/index.ts"
