@@ -1,5 +1,5 @@
 {
-  "lastCommit": "chore: refresh progress metadata",
+  "lastCommit": "feat: add instance registry service",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
@@ -25,14 +25,6 @@
     },
     {
       "commit": "Create identity API service",
-      "status": "open"
-    },
-    {
-      "commit": "Define UI templates",
-      "status": "open"
-    },
-    {
-      "commit": "Create instance registry service",
       "status": "open"
     },
     {
@@ -5696,6 +5688,14 @@
     {
       "commit": "Create peer handshake service",
       "status": "done"
+    },
+    {
+      "commit": "Define UI templates",
+      "status": "done"
+    },
+    {
+      "commit": "Create instance registry service",
+      "status": "done"
     }
   ],
   "completed": [
@@ -6650,6 +6650,11 @@
       "status": "done"
     }
   ],
-  "changedFiles": [],
-  "lastUpdated": "2025-08-31T21:41:06.094Z"
+  "changedFiles": [
+    "advancedToDo.json",
+    "advancedToDo.yaml",
+    "packages/instances/",
+    "scripts/instance-registry.ts"
+  ],
+  "lastUpdated": "2025-08-31T22:30:32.920Z"
 }

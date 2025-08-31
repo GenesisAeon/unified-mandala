@@ -13923,14 +13923,14 @@
     "path": "packages/instances/Templates.ts",
     "task": "Provide admin-console and commons-hub UI templates",
     "test": "",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Create instance registry service",
     "path": "scripts/instance-registry.ts",
     "task": "Clone UI instances from templates and list them",
     "test": "",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Add ACL API service",
