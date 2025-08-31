@@ -12,3 +12,14 @@ export function resampleHourly(s: Series): Series {
   })).sort((a, b) => a.t.localeCompare(b.t));
   return { ...s, points };
 }
+
+export function movingAverage(s: Series, window: number): Series {
+  if (window <= 1) return { ...s };
+  const points = s.points.map((p, idx) => {
+    const start = Math.max(0, idx - window + 1);
+    const subset = s.points.slice(start, idx + 1);
+    const v = subset.reduce((sum, q) => sum + q.v, 0) / subset.length;
+    return { t: p.t, v };
+  });
+  return { ...s, points };
+}
