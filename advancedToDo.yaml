@@ -13167,13 +13167,13 @@
 - commit: Add CreditLedger module
   path: packages/credits/CreditLedger.ts
   task: Track contribution line counts and weights per actor
-  test: ""
-  status: open
+  test: packages/credits/CreditLedger.test.ts
+  status: done
 - commit: Add AttributionIndex module
   path: packages/credits/AttributionIndex.ts
   task: Map artifacts to contributor shares and licenses
-  test: ""
-  status: open
+  test: packages/credits/AttributionIndex.test.ts
+  status: done
 - commit: Add Provenance hashing utilities
   path: packages/provenance/Provenance.ts
   task: Provide SHA-256 hashing for strings and buffers
