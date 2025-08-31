@@ -7,3 +7,4 @@
 - Added `--include-conversations` flag to `update-advanced-progress.js` and documented usage.
 - Implemented initial CoIntel orchestrator service to route tasks to human or AI endpoints.
 - Added `--sort` flag to `advanced-todo-report.js` for directory ordering by task count.
+- Marked CreditLedger and AttributionIndex tasks as complete in `advancedToDo` files.
