@@ -13927,7 +13927,7 @@
   labels:
     - climate
     - adapters
-  status: open
+  status: done
   acceptance:
     - src/config/climate-dashboard.yaml vorhanden
     - src/adapters/* und src/utils/series.ts vorhanden
