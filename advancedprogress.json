@@ -6293,9 +6293,9 @@
     }
   ],
   "changedFiles": [
-    "agents/registry.yaml",
-    "agents/echo/",
-    "tests/agents/golden/echo/"
+    "advancedToDo.json",
+    "advancedToDo.yaml",
+    "scripts/peer-handshake.ts"
   ],
-  "lastUpdated": "2025-08-30T14:10:12.999Z"
+  "lastUpdated": "2025-08-30T22:31:56.627Z"
 }

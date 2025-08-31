@@ -13183,7 +13183,7 @@
   path: scripts/peer-handshake.ts
   task: Receive peer hello messages and record attestation
   test: ""
-  status: open
+  status: done
 - commit: Add setup wizard script
   path: scripts/setup-wizard.ts
   task: Automate space creation and peer registration workflow
