@@ -29,6 +29,12 @@ To write progress to an alternative file, pass the `--file` flag:
 node repositorypflege/update-advanced-progress.js 5 --file path/to/progress.json
 ```
 
+To preview changes without writing to disk, use `--dry-run`:
+
+```bash
+node repositorypflege/update-advanced-progress.js --dry-run
+```
+
 ## Generating Reports
 
 To view open tasks grouped by their directories, run:
