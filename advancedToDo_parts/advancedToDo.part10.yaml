@@ -33,3 +33,8 @@
   task: Multi-user resonance module for VR meeting spaces
   test: packages/unifiedmandala-vr/VRResonanceHub.test.ts
   status: done
+- commit: Add Markdown output option to advanced-todo-report script
+  path: repositorypflege/advanced-todo-report.js
+  task: Allow advanced-todo-report to output grouped tasks as Markdown when --md flag is used
+  test: repositorypflege/__tests__/advanced-todo-report.test.js
+  status: done
