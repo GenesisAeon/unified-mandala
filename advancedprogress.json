@@ -1,5 +1,5 @@
 {
-  "lastCommit": "Merge pull request #1570 from GenesisAeon/codex/optimize-repo-structure-and-codebase",
+  "lastCommit": "feat: add OIDC stub service",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
@@ -65,10 +65,6 @@
     },
     {
       "commit": "Append identity and federation services to code agent tasks",
-      "status": "open"
-    },
-    {
-      "commit": "Add OIDC stub service",
       "status": "open"
     },
     {
@@ -5700,6 +5696,10 @@
     {
       "commit": "Add Markdown output option to advanced-todo-report script",
       "status": "done"
+    },
+    {
+      "commit": "Add OIDC stub service",
+      "status": "done"
     }
   ],
   "completed": [
@@ -6655,9 +6655,9 @@
     }
   ],
   "changedFiles": [
-    "advancedToDo_parts/advancedToDo.part10.yaml",
-    "repositorypflege/__tests__/advanced-todo-report.test.js",
-    "repositorypflege/advanced-todo-report.js"
+    "advancedToDo.json",
+    "advancedToDo.yaml",
+    "scripts/oidc-stub.ts"
   ],
-  "lastUpdated": "2025-09-01T00:05:33.948Z"
+  "lastUpdated": "2025-09-01T05:45:30.021Z"
 }
