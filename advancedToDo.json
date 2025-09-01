@@ -14007,7 +14007,7 @@
     "path": "scripts/oidc-stub.ts",
     "task": "Serve JWKS and token endpoints for development",
     "test": "",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Add UI switchboard service",
