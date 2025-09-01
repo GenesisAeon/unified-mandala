@@ -69,3 +69,23 @@ test('cli outputs yaml when --yaml flag is provided', () => {
 
   fs.unlinkSync(tmp);
 });
+
+test('cli outputs markdown when --md flag is provided', () => {
+  const tmp = path.join(__dirname, 'tmp-report.json');
+  const sample = [
+    { commit: 'Task A', path: 'a/file1', status: 'open' },
+    { commit: 'Task C', path: 'b/file3', status: 'open' }
+  ];
+  fs.writeFileSync(tmp, JSON.stringify(sample, null, 2));
+
+  const script = path.join(__dirname, '..', 'advanced-todo-report.js');
+  const out = execSync(`node ${script} --path ${tmp} --md`, {
+    encoding: 'utf8'
+  });
+  expect(out).toContain('### a (1)');
+  expect(out).toContain('- Task A');
+  expect(out).toContain('### b (1)');
+  expect(out).toContain('- Task C');
+
+  fs.unlinkSync(tmp);
+});
