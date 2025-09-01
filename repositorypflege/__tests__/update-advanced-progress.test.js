@@ -37,8 +37,22 @@ test('forwards exclude pattern to listOpenAdvancedTodos', () => {
   expect(listOpenAdvancedTodos).toHaveBeenCalledWith(
     undefined,
     undefined,
-    'conversations'
+    'conversations',
+    { includeConversations: false }
   );
+});
+
+test('dry run prints without modifying file', () => {
+  const tmp = path.join(__dirname, 'tmp-progress.json');
+  fs.writeFileSync(tmp, JSON.stringify({ pendingTasks: [] }, null, 2));
+  listOpenAdvancedTodos.mockClear();
+  listOpenAdvancedTodos.mockReturnValue([{ commit: 'Task A', path: 'a' }]);
+  const spy = jest.spyOn(console, 'log').mockImplementation(() => {});
+  updateAdvancedProgress(5, tmp, undefined, undefined, undefined, { dryRun: true });
+  const updated = JSON.parse(fs.readFileSync(tmp, 'utf8'));
+  expect(updated.pendingTasks).toEqual([]);
+  expect(spy).toHaveBeenCalled();
+  spy.mockRestore();
 });
 
 test('cli writes to provided progress file', () => {

@@ -21,7 +21,7 @@ function updateAdvancedProgress(
   pattern,
   todoPaths,
   excludePattern,
-  { includeConversations = false } = {}
+  { includeConversations = false, dryRun = false } = {}
 ) {
   const progressPath = progressFile || path.resolve(__dirname, '..', 'advancedprogress.json');
   const progress = JSON.parse(fs.readFileSync(progressPath, 'utf8'));
@@ -34,8 +34,13 @@ function updateAdvancedProgress(
   );
   progress.changedFiles = changed;
   progress.lastUpdated = new Date().toISOString();
-  fs.writeFileSync(progressPath, JSON.stringify(progress, null, 2));
-  console.log(`Synced ${todos.length} tasks to ${progressPath}`);
+  const output = JSON.stringify(progress, null, 2);
+  if (dryRun) {
+    console.log(output);
+  } else {
+    fs.writeFileSync(progressPath, output);
+    console.log(`Synced ${todos.length} tasks to ${progressPath}`);
+  }
 }
 
 if (require.main === module) {
@@ -50,8 +55,10 @@ if (require.main === module) {
   const fileIndex = process.argv.indexOf('--file');
   const progressFile = fileIndex >= 0 ? process.argv[fileIndex + 1] : undefined;
   const includeConvos = process.argv.includes('--include-conversations');
+  const dryRun = process.argv.includes('--dry-run');
   updateAdvancedProgress(limit, progressFile, pattern, todoPaths, exclude, {
-    includeConversations: includeConvos
+    includeConversations: includeConvos,
+    dryRun
   });
 }
 
