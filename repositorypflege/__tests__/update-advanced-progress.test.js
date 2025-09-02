@@ -25,6 +25,7 @@ test('updates pendingTasks with limited todos', () => {
   ]);
   expect(typeof updated.lastUpdated).toBe('string');
   expect(isNaN(Date.parse(updated.lastUpdated))).toBe(false);
+  expect(updated.commitHash).toMatch(/^[0-9a-f]{40}$/);
 });
 
 test('forwards exclude pattern to listOpenAdvancedTodos', () => {
@@ -52,6 +53,7 @@ test('dry run prints without modifying file', () => {
   const updated = JSON.parse(fs.readFileSync(tmp, 'utf8'));
   expect(updated.pendingTasks).toEqual([]);
   expect(spy).toHaveBeenCalled();
+  expect(updated.commitHash).toBeUndefined();
   spy.mockRestore();
 });
 
@@ -69,6 +71,7 @@ test('cli writes to provided progress file', () => {
   expect(updated.pendingTasks).toEqual([
     { commit: 'CLI Task', path: 'cli', status: 'open' }
   ]);
+  expect(updated.commitHash).toMatch(/^[0-9a-f]{40}$/);
   fs.unlinkSync(tmpProgress);
   fs.unlinkSync(tmpTodo);
 });

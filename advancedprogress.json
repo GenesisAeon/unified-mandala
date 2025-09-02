@@ -1,5 +1,5 @@
 {
-  "lastCommit": "feat: add OIDC stub service",
+  "lastCommit": "Merge pull request #1572 from GenesisAeon/codex/optimize-repo-structure-and-code-dfmtmz",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
@@ -6655,9 +6655,10 @@
     }
   ],
   "changedFiles": [
-    "advancedToDo.json",
-    "advancedToDo.yaml",
-    "scripts/oidc-stub.ts"
+    "docs/sigils/advancedprogress-guide.md",
+    "repositorypflege/__tests__/update-advanced-progress.test.js",
+    "repositorypflege/update-advanced-progress.js"
   ],
-  "lastUpdated": "2025-09-01T05:45:30.021Z"
+  "lastUpdated": "2025-09-01T19:12:43.938Z",
+  "commitHash": "7399e5be1ee7e0f22e6cb148f15b5c313d6c1a06"
 }

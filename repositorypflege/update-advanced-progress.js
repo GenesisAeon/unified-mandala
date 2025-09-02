@@ -15,6 +15,14 @@ function getChangedFiles() {
   }
 }
 
+function getCommitHash() {
+  try {
+    return execSync('git rev-parse HEAD').toString().trim();
+  } catch {
+    return null;
+  }
+}
+
 function updateAdvancedProgress(
   limit = 5,
   progressFile,
@@ -34,6 +42,10 @@ function updateAdvancedProgress(
   );
   progress.changedFiles = changed;
   progress.lastUpdated = new Date().toISOString();
+  const commit = getCommitHash();
+  if (commit) {
+    progress.commitHash = commit;
+  }
   const output = JSON.stringify(progress, null, 2);
   if (dryRun) {
     console.log(output);

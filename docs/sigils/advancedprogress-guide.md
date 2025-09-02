@@ -13,7 +13,9 @@ node repositorypflege/update-advanced-progress.js
 The script collects open items from `advancedToDo.json`, `advancedToDo.yaml`
 and every fragment in `advancedToDo_parts/`. It also records a `changedFiles`
 list capturing the files currently modified in the working tree and stamps a
-`lastUpdated` timestamp. This helps trace fractal updates across commits.
+`lastUpdated` timestamp. The current Git `commitHash` is stored as well, which
+anchors the progress snapshot to a specific revision. This helps trace fractal
+updates across commits.
 
 By default tasks that reference conversation datasets are skipped. Pass
 `--include-conversations` to include them in the generated progress file when
