@@ -70,6 +70,18 @@ default alphabetical order can be made explicit with `--sort alpha`:
 node repositorypflege/advanced-todo-report.js --sort count
 ```
 
+## Summarizing Progress
+
+Use the summary script for a quick overview of repository progress:
+
+```bash
+node repositorypflege/advanced-progress-summary.js
+```
+
+Pass `--details` to include the last commit, current fractal step, and branch
+information. Output can be formatted with `--json`, `--yaml`, or
+`--markdown`.
+
 ## Handling Large Conversation Files
 
 Datasets such as `newadvancedconversations.json` in this directory are

@@ -11,6 +11,7 @@ const format = args.includes('--json')
     : args.includes('--markdown')
       ? 'markdown'
       : 'text';
+const showDetails = args.includes('--details');
 const fileIdx = args.indexOf('--file');
 const progressFile = fileIdx !== -1 && args[fileIdx + 1]
   ? args[fileIdx + 1]
@@ -26,6 +27,13 @@ try {
     lastUpdated: data.lastUpdated,
     commitHash: data.commitHash,
   };
+
+  if (showDetails) {
+    summary.lastCommit = data.lastCommit;
+    summary.fractalStep = data.fractalStep;
+    summary.openBranches = data.openBranches;
+    summary.mergeConflicts = data.mergeConflicts;
+  }
 
   if (format === 'json') {
     console.log(JSON.stringify(summary, null, 2));
@@ -47,6 +55,16 @@ try {
       console.log(`| Last Updated | ${summary.lastUpdated} |`);
     if (summary.commitHash)
       console.log(`| Commit | ${summary.commitHash} |`);
+    if (showDetails) {
+      if (summary.lastCommit)
+        console.log(`| Last Commit | ${summary.lastCommit} |`);
+      if (summary.fractalStep)
+        console.log(`| Fractal Step | ${summary.fractalStep} |`);
+      if (summary.openBranches)
+        console.log(`| Open Branches | ${summary.openBranches.join(', ')} |`);
+      if (summary.mergeConflicts && summary.mergeConflicts.length)
+        console.log(`| Merge Conflicts | ${summary.mergeConflicts.join(', ')} |`);
+    }
     return;
   }
 
@@ -56,6 +74,14 @@ try {
   console.log(`Fractal Todos: ${summary.fractalTodos}`);
   if (summary.lastUpdated) console.log(`Last Updated: ${summary.lastUpdated}`);
   if (summary.commitHash) console.log(`Commit: ${summary.commitHash}`);
+  if (showDetails) {
+    if (summary.lastCommit) console.log(`Last Commit: ${summary.lastCommit}`);
+    if (summary.fractalStep) console.log(`Fractal Step: ${summary.fractalStep}`);
+    if (summary.openBranches && summary.openBranches.length)
+      console.log(`Open Branches: ${summary.openBranches.join(', ')}`);
+    if (summary.mergeConflicts && summary.mergeConflicts.length)
+      console.log(`Merge Conflicts: ${summary.mergeConflicts.join(', ')}`);
+  }
 } catch (err) {
   console.error(`Failed to read ${progressFile}`, err);
   process.exit(1);
