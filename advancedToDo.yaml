@@ -13299,7 +13299,7 @@
   path: scripts/ui-switchboard.ts
   task: List cloned UIs via instance registry proxy
   test: ""
-  status: open
+  status: done
 - commit: Add policy lint script
   path: scripts/policy-lint.ts
   task: Enforce baseline safety rules on policy files
