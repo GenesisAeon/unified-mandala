@@ -13952,7 +13952,7 @@
     "path": "packages/federation/Manifest.ts",
     "task": "Describe global registry entries for Mandala peers",
     "test": "",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Create federation registry service",
