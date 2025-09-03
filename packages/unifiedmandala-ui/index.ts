@@ -46,3 +46,4 @@ export { default as IoTSensorWidget } from './components/IoTSensorWidget';
 export { default as AgentStatusPanel } from './components/AgentStatusPanel';
 export { default as ResearchHub } from './components/ResearchHub';
 export { default as ScreenCapturePanel } from './components/ScreenCapturePanel';
+export { default as GlobalMandalaGraph } from './components/GlobalMandalaGraph';

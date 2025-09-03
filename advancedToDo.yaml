@@ -13274,7 +13274,7 @@
   path: packages/unifiedmandala-ui/components/GlobalMandalaGraph.tsx
   task: Visualize registered Mandala instances and capabilities
   test: ""
-  status: open
+  status: done
 - commit: Add unified AppShell
   path: packages/unifiedmandala-ui/AppShell.tsx
   task: Compose admin panels and global network graph

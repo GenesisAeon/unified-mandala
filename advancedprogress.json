@@ -1,5 +1,5 @@
 {
-  "lastCommit": "feat: add TaskBoard component",
+  "lastCommit": "feat: add GlobalMandalaGraph component",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
@@ -5382,6 +5382,10 @@
     {
       "commit": "Create TaskBoard component",
       "status": "done"
+    },
+    {
+      "commit": "Create GlobalMandalaGraph component",
+      "status": "done"
     }
   ],
   "completed": [
@@ -6336,7 +6340,9 @@
       "status": "done"
     }
   ],
-  "changedFiles": [],
-  "lastUpdated": "2025-09-03T18:03:53.651Z",
-  "commitHash": "cfcac19d6130816e89582444b0fd4a61bfa3727a"
+  "changedFiles": [
+    "advancedToDo.json"
+  ],
+  "lastUpdated": "2025-09-03T19:18:23.956Z",
+  "commitHash": "25e62b01db2a39445be95751e80b25e8fe308b46"
 }
