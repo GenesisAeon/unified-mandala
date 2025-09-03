@@ -1,5 +1,5 @@
 {
-  "lastCommit": "feat: add yaml option to progress summary",
+  "lastCommit": "feat: add NullmembranDynamics module",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
@@ -28,8 +28,8 @@
       "status": "open"
     },
     {
-      "commit": "feat: add NullmembranDynamics module",
-      "path": "packages/universum-simulationen/modules/NullmembranDynamics.py",
+      "commit": "feat: add TheoryDatabase service",
+      "path": "packages/universum-simulationen/modules/TheoryDatabase.ts",
       "status": "open"
     }
   ],
@@ -5370,6 +5370,10 @@
     {
       "commit": "Add advanced progress summary script",
       "status": "done"
+    },
+    {
+      "commit": "feat: add NullmembranDynamics module",
+      "status": "done"
     }
   ],
   "completed": [
@@ -6324,7 +6328,9 @@
       "status": "done"
     }
   ],
-  "changedFiles": [],
-  "lastUpdated": "2025-09-03T13:58:06.227Z",
-  "commitHash": "9ffc675df8fd3fce44c641b94cb8b93caa42afcc"
+  "changedFiles": [
+    "advancedToDo.json"
+  ],
+  "lastUpdated": "2025-09-03T14:28:27.952Z",
+  "commitHash": "7c7d016c97a60356533e01becaeb269bb9846ec4"
 }
