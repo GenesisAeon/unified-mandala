@@ -1,13 +1,16 @@
 #!/usr/bin/env node
 const fs = require('fs');
+const yaml = require('js-yaml');
 
 // Basic argv parsing without extra dependencies
 const args = process.argv.slice(2);
 const format = args.includes('--json')
   ? 'json'
-  : args.includes('--markdown')
-    ? 'markdown'
-    : 'text';
+  : args.includes('--yaml') || args.includes('--yml')
+    ? 'yaml'
+    : args.includes('--markdown')
+      ? 'markdown'
+      : 'text';
 const fileIdx = args.indexOf('--file');
 const progressFile = fileIdx !== -1 && args[fileIdx + 1]
   ? args[fileIdx + 1]
@@ -26,6 +29,11 @@ try {
 
   if (format === 'json') {
     console.log(JSON.stringify(summary, null, 2));
+    return;
+  }
+
+  if (format === 'yaml') {
+    console.log(yaml.dump(summary));
     return;
   }
 
