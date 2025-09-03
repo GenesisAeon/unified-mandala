@@ -14005,6 +14005,11 @@
   task: Analyse Gesprächsextrakte
   test: ""
   status: done
+- commit: Add advanced progress summary script
+  path: repositorypflege/advanced-progress-summary.js
+  task: Summarize advanced progress file
+  test: ""
+  status: done
 - commit: Erzeuge initiale Aufgaben
   path: ""
   task: Erzeuge initiale Aufgaben
