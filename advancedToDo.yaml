@@ -4556,7 +4556,8 @@
 - commit: "feat: add NullmembranDynamics module"
   path: packages/universum-simulationen/modules/NullmembranDynamics.py
   task: Simulate dynamic interactions between 0- and 1-states
-  test: packages/universum-simulationen/__tests__/NullmembranDynamics.test.py
+  test: packages/universum-simulationen/__tests__/NullmembranDynamics_test.py
+  status: done
 - commit: "feat: add DarkMatterFieldModel module"
   path: packages/universum-simulationen/modules/dark_matter_field_model.py
   task: Model dark matter effects from Nullmembran interactions
