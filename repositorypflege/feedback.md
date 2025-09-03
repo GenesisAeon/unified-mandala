@@ -9,3 +9,4 @@
 - Added `--sort` flag to `advanced-todo-report.js` for directory ordering by task count.
 - Marked CreditLedger and AttributionIndex tasks as complete in `advancedToDo` files.
 - Added `--yaml` option to `advanced-progress-summary.js` for flexible report formats.
+- Added JSON/YAML/Markdown output options to `list-open-advanced-todos.js` for easier automation.

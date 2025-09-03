@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const yaml = require('js-yaml');
+const { execSync } = require('child_process');
 const { listOpenAdvancedTodos } = require('../list-open-advanced-todos');
 
 test('lists and filters open advanced todos', () => {
@@ -92,5 +93,24 @@ test('deduplicates tasks with same commit and path', () => {
   const todos = listOpenAdvancedTodos(undefined, tmp);
   expect(todos).toEqual([{ commit: 'Task A', path: 'a' }]);
 
+  fs.unlinkSync(tmp);
+});
+
+test('CLI outputs JSON format', () => {
+  const tmp = path.join(__dirname, 'tmp-cli.json');
+  const sample = [
+    { commit: 'Task A', path: 'a', status: 'open' },
+    { commit: 'Task B', path: 'b', status: 'open' }
+  ];
+  fs.writeFileSync(tmp, JSON.stringify(sample, null, 2));
+  const script = path.join(__dirname, '..', 'list-open-advanced-todos.js');
+  const output = execSync(`node ${script} 5 --path ${tmp} --json`, {
+    encoding: 'utf8'
+  });
+  const parsed = JSON.parse(output);
+  expect(parsed.todos).toEqual([
+    { commit: 'Task A', path: 'a' },
+    { commit: 'Task B', path: 'b' }
+  ]);
   fs.unlinkSync(tmp);
 });

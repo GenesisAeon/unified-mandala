@@ -91,19 +91,40 @@ if (require.main === module) {
   const exclIndex = process.argv.indexOf('--exclude');
   const exclude = exclIndex >= 0 ? process.argv[exclIndex + 1] : undefined;
   const includeConvos = process.argv.includes('--include-conversations');
+  const jsonOutput = process.argv.includes('--json');
+  const yamlOutput = process.argv.includes('--yaml');
+  const markdownOutput =
+    process.argv.includes('--markdown') || process.argv.includes('--md');
   const open = listOpenAdvancedTodos(pattern, todoPaths, exclude, {
     includeConversations: includeConvos
   });
   const display = open.slice(0, limit);
-  display.forEach((t) => {
-    const commitText =
-      typeof t.commit === 'string' && t.commit.length > 120
-        ? t.commit.slice(0, 117) + '...'
-        : t.commit;
-    console.log(`- ${commitText} (${t.path})`);
-  });
-  if (open.length > limit) {
-    console.log(`...and ${open.length - limit} more`);
+  if (jsonOutput) {
+    console.log(
+      JSON.stringify(
+        { todos: display, remaining: open.length - display.length },
+        null,
+        2
+      )
+    );
+  } else if (yamlOutput) {
+    console.log(
+      yaml.dump({ todos: display, remaining: open.length - display.length })
+    );
+  } else {
+    display.forEach((t) => {
+      const commitText =
+        markdownOutput || typeof t.commit !== 'string'
+          ? t.commit
+          : t.commit.length > 120
+            ? t.commit.slice(0, 117) + '...'
+            : t.commit;
+      console.log(`- ${commitText} (${t.path})`);
+    });
+    if (open.length > limit) {
+      const moreLine = `...and ${open.length - limit} more`;
+      console.log(markdownOutput ? `- ${moreLine}` : moreLine);
+    }
   }
 }
 
