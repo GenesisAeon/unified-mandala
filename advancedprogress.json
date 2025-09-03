@@ -1,5 +1,5 @@
 {
-  "lastCommit": "Merge pull request #1572 from GenesisAeon/codex/optimize-repo-structure-and-code-dfmtmz",
+  "lastCommit": "feat: add yaml option to progress summary",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
@@ -5366,6 +5366,10 @@
     {
       "commit": "Add OIDC stub service",
       "status": "done"
+    },
+    {
+      "commit": "Add advanced progress summary script",
+      "status": "done"
     }
   ],
   "completed": [
@@ -6320,10 +6324,7 @@
       "status": "done"
     }
   ],
-  "changedFiles": [
-    "repositorypflege/advanced-progress-summary.js",
-    "repositorypflege/__tests__/advanced-progress-summary.test.js"
-  ],
-  "lastUpdated": "2025-09-03T12:07:50.323Z",
-  "commitHash": "e0fccf519f95157fce551ce696efcb601ba91378"
+  "changedFiles": [],
+  "lastUpdated": "2025-09-03T13:58:06.227Z",
+  "commitHash": "9ffc675df8fd3fce44c641b94cb8b93caa42afcc"
 }

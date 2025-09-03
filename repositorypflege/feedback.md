@@ -8,3 +8,4 @@
 - Implemented initial CoIntel orchestrator service to route tasks to human or AI endpoints.
 - Added `--sort` flag to `advanced-todo-report.js` for directory ordering by task count.
 - Marked CreditLedger and AttributionIndex tasks as complete in `advancedToDo` files.
+- Added `--yaml` option to `advanced-progress-summary.js` for flexible report formats.
