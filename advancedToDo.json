@@ -13889,14 +13889,14 @@
     "path": "packages/admin-ui/PeerManager.tsx",
     "task": "Show registered AI peers with roles and trust",
     "test": "",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Add ModelRouterEditor component",
     "path": "packages/admin-ui/ModelRouterEditor.tsx",
     "task": "Edit model routing policies in admin console",
     "test": "",
-    "status": "open"
+    "status": "done"
   },
   {
     "commit": "Introduce Tenant and Instance types",
