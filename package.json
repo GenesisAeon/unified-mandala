@@ -29,6 +29,7 @@
     "update:fractal-todo": "node scripts/update-fractal-todo.js",
     "update:todo-sigil": "node scripts/update-todo-sigil.js",
     "update:advanced-progress": "node repositorypflege/update-advanced-progress.js",
+    "generate:initial-tasks": "node repositorypflege/generate-initial-tasks.js",
     "validate:todos": "node scripts/validate-implicit-todos.js",
     "validate:advancedtodo": "node scripts/validate-advancedtodo.js",
     "export:crep-docs": "node scripts/export-crep-docs.js",

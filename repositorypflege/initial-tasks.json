@@ -1,0 +1,105 @@
+{
+  "generatedAt": "2025-09-04T06:06:59.561Z",
+  "tasks": [
+    {
+      "commit": "Create CoauthorCanvas component",
+      "path": "packages/commons-ui/CoauthorCanvas.tsx",
+      "task": "Collaboratively edit documents over collab-ws"
+    },
+    {
+      "commit": "Add PeerManager component",
+      "path": "packages/admin-ui/PeerManager.tsx",
+      "task": "Show registered AI peers with roles and trust"
+    },
+    {
+      "commit": "Add ModelRouterEditor component",
+      "path": "packages/admin-ui/ModelRouterEditor.tsx",
+      "task": "Edit model routing policies in admin console"
+    },
+    {
+      "commit": "Create identity API service",
+      "path": "scripts/identity-api.ts",
+      "task": "Issue JWTs and manage tenants and instances"
+    },
+    {
+      "commit": "Add ACL API service",
+      "path": "scripts/acl-api.ts",
+      "task": "Manage per-instance role grants"
+    },
+    {
+      "commit": "Create InitialAdminPanel component",
+      "path": "packages/unifiedmandala-ui/components/InitialAdminPanel.tsx",
+      "task": "Clone UIs and assign roles for tenants and instances"
+    },
+    {
+      "commit": "Create federation registry service",
+      "path": "scripts/federation-registry.ts",
+      "task": "Register and list Mandala manifests"
+    },
+    {
+      "commit": "Create federation bridge websocket",
+      "path": "scripts/federation-bridge-ws.ts",
+      "task": "Broadcast presence and activity across instances"
+    },
+    {
+      "commit": "Add collab federation bridge script",
+      "path": "scripts/collab-federation-bridge.ts",
+      "task": "Relay CRDT patches between local collab server and federation bridge"
+    },
+    {
+      "commit": "Add unified AppShell",
+      "path": "packages/unifiedmandala-ui/AppShell.tsx",
+      "task": "Compose admin panels and global network graph"
+    },
+    {
+      "commit": "Extend code agent tasks for Co-Intelligence services",
+      "path": "code-agent-tasks.yaml",
+      "task": "Add orchestrator, collab, peer handshake and setup wizard commands"
+    },
+    {
+      "commit": "Append identity and federation services to code agent tasks",
+      "path": "code-agent-tasks.yaml",
+      "task": "Include identity, instance, ACL and federation service run commands"
+    },
+    {
+      "commit": "Add compose override for UM services",
+      "path": "compose.override.yml",
+      "task": "Define containers for identity, federation, collab and admin services"
+    },
+    {
+      "commit": "Add Windows stack start script",
+      "path": "windows/Start-UMStack.ps1",
+      "task": "Launch all UM services as background processes on Windows"
+    },
+    {
+      "commit": "Add Windows services installer",
+      "path": "windows/Install-UMServices.ps1",
+      "task": "Register UM services with Task Scheduler or NSSM"
+    },
+    {
+      "commit": "Add UM integration GitHub workflow",
+      "path": ".github/workflows/um-integration.yml",
+      "task": "Run type check and smoke test for UM services"
+    },
+    {
+      "commit": "Expose UM service scripts in package.json",
+      "path": "package.json",
+      "task": "Add dev commands for identity, registry, collab and admin APIs"
+    },
+    {
+      "commit": "Provide tsconfig for UM services",
+      "path": "tsconfig.json",
+      "task": "Configure ES2020 modules and ts-node options"
+    },
+    {
+      "commit": "Add production docker compose file",
+      "path": "compose.prod.yml",
+      "task": "Provide dist-first multi-service builds with ts-node fallback"
+    },
+    {
+      "commit": "Create generic Dockerfile for TypeScript services",
+      "path": "docker/Dockerfile.service",
+      "task": "Add multi-stage build template using SERVICE_ENTRY arg"
+    }
+  ]
+}
