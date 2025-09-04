@@ -3,6 +3,7 @@ import type { KpiConfig } from "../config/useClimateConfig";
 import { pollKpis, type KpiValue } from "../services/kpi-engine";
 import YAML from "yaml";
 import SigilBadge from "./SigilBadge";
+import CrepResonanceCard from "./CrepResonanceCard";
 // @ts-ignore
 import rawCfg from "../../../src/config/climate-dashboard.yaml?raw";
 const vizCfg = (() => { try { return YAML.parse(String(rawCfg))?.visualization || {}; } catch { return {}; } })();
@@ -73,9 +74,13 @@ export default function KpiBoard({ kpis }: { kpis: KpiConfig[] }) {
   }, [JSON.stringify(kpis)]);
   return (
     <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(240px,1fr))", gap: 12 }}>
-      {kpis.map(k => (
-        <KpiCard key={k.id} cfg={k} val={values[k.id]} />
-      ))}
+      {kpis.map(k =>
+        k.id === "crep_resonance" ? (
+          <CrepResonanceCard key={k.id} />
+        ) : (
+          <KpiCard key={k.id} cfg={k} val={values[k.id]} />
+        )
+      )}
     </div>
   );
 }
