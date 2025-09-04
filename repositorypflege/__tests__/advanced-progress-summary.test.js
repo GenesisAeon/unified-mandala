@@ -98,3 +98,29 @@ test('outputs CSV summary for custom file', () => {
 
   fs.unlinkSync(tmp);
 });
+
+test('includes changed files when details flag is used', () => {
+  const tmp = path.join(__dirname, 'tmp-progress-details.json');
+  fs.writeFileSync(
+    tmp,
+    JSON.stringify(
+      {
+        pendingTasks: [],
+        progress: [],
+        fractalTodos: [],
+        changedFiles: ['a.js', 'docs/readme.md']
+      },
+      null,
+      2
+    )
+  );
+
+  const script = path.join(__dirname, '..', 'advanced-progress-summary.js');
+  const output = execSync(`node ${script} --json --details --file ${tmp}`, {
+    encoding: 'utf8'
+  });
+  const summary = JSON.parse(output);
+  expect(summary.changedFiles).toEqual(['a.js', 'docs/readme.md']);
+
+  fs.unlinkSync(tmp);
+});

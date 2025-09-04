@@ -78,9 +78,9 @@ Use the summary script for a quick overview of repository progress:
 node repositorypflege/advanced-progress-summary.js
 ```
 
-Pass `--details` to include the last commit, current fractal step, and branch
-information. Output can be formatted with `--json`, `--yaml`, or
-`--markdown`.
+Pass `--details` to include the last commit, changed files, current fractal
+step, and branch information. Output can be formatted with `--json`, `--yaml`,
+or `--markdown`.
 
 ## Handling Large Conversation Files
 

@@ -35,6 +35,9 @@ try {
     summary.fractalStep = data.fractalStep;
     summary.openBranches = data.openBranches;
     summary.mergeConflicts = data.mergeConflicts;
+    if (data.changedFiles && data.changedFiles.length) {
+      summary.changedFiles = data.changedFiles;
+    }
   }
 
   if (format === 'json') {
@@ -66,6 +69,8 @@ try {
         console.log(`| Open Branches | ${summary.openBranches.join(', ')} |`);
       if (summary.mergeConflicts && summary.mergeConflicts.length)
         console.log(`| Merge Conflicts | ${summary.mergeConflicts.join(', ')} |`);
+      if (summary.changedFiles && summary.changedFiles.length)
+        console.log(`| Changed Files | ${summary.changedFiles.join(', ')} |`);
     }
     return;
   }
@@ -98,6 +103,10 @@ try {
         headers.push('Merge Conflicts');
         values.push(summary.mergeConflicts.join('|'));
       }
+      if (summary.changedFiles && summary.changedFiles.length) {
+        headers.push('Changed Files');
+        values.push(summary.changedFiles.join('|'));
+      }
     }
     console.log(headers.join(','));
     console.log(values.join(','));
@@ -117,6 +126,8 @@ try {
       console.log(`Open Branches: ${summary.openBranches.join(', ')}`);
     if (summary.mergeConflicts && summary.mergeConflicts.length)
       console.log(`Merge Conflicts: ${summary.mergeConflicts.join(', ')}`);
+    if (summary.changedFiles && summary.changedFiles.length)
+      console.log(`Changed Files: ${summary.changedFiles.join(', ')}`);
   }
 } catch (err) {
   console.error(`Failed to read ${progressFile}`, err);
