@@ -1,5 +1,5 @@
 import { WebSocketServer, WebSocket } from 'ws';
-import * as Automerge from 'automerge';
+import * as Automerge from '@automerge/automerge';
 
 interface ChangeMessage {
   id: string;
