@@ -14,3 +14,29 @@ kpis:
     threshold: -30
     warn: -15
     unit: "cm"
+  - id: crep_resonance
+    label: "CREP Resonanz"
+    unit: "index"
+    warn: 0.5
+    threshold: 0.8
+    worse_when: farther
+    baseline: 0.8
+    decimals: 2
+visualization:
+  show_sigils: true
+  sigil_mapping:
+    "🔔": { label: "Hohe Kohärenz" }
+    "✨": { label: "Mittlere Kohärenz" }
+    "🫧": { label: "Niedrige Kohärenz" }
+    "🌀": { label: "Chaotisch" }
+    "🔥": { label: "Hitzewelle" }
+    "❄️": { label: "Kältewelle" }
+    "🌡️": { label: "Temperatur" }
+    "🧯": { label: "Starker Mangel" }
+    "🚰": { label: "Mangel" }
+    "💧": { label: "OK" }
+    "⚠️": { label: "Warnstufe" }
+    "🟢": { label: "Geringes Risiko" }
+    "🌿": { label: "Hohe Vielfalt" }
+    "🍃": { label: "Mittlere Vielfalt" }
+    "🦗": { label: "Geringe Vielfalt" }
