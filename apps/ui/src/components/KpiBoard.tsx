@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import type { KpiConfig } from "../config/useClimateConfig";
 import { pollKpis, type KpiValue } from "../services/kpi-engine";
 
+const BASE_POLL_MS = Number((import.meta as any)?.env?.VITE_KPI_POLL_MS ?? 10000);
+
 function Badge({ status }: { status: KpiValue["status"] }) {
   const color = status === "alarm" ? "#c62828" : status === "warn" ? "#ef6c00" : "#2e7d32";
   const label = status === "alarm" ? "ALARM" : status === "warn" ? "WARN" : "OK";
@@ -52,7 +54,8 @@ export default function KpiBoard({ kpis }: { kpis: KpiConfig[] }) {
       }
     }
     tick();
-    const id = setInterval(tick, 10_000); // alle 10s
+    const poll = () => Math.round(BASE_POLL_MS * ((window as any).__MANDALA_THROTTLE__ || 1));
+    const id = setInterval(tick, poll());
     return () => {
       stop = true;
       clearInterval(id);
