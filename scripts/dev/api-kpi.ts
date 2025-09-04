@@ -62,6 +62,10 @@ export async function handleCrep(req: IncomingMessage, res: ServerResponse): Pro
   const r = calculateResonance(ring);
   const sig = resonanceToSigil(r);
   (globalThis as any).__LAST_CREP_RESONANCE_SIGIL__ = sig;
-  ok(res, { value: r, unit: "index", sigil: sig, n: ring.length });
+  const withTrace = u.searchParams.get("trace") === "1";
+  const trace = withTrace
+    ? ring.slice(-20).map(s => ({ symbol: s.symbol, intent: s.intent, ts: s.metadata?.timestamp }))
+    : undefined;
+  ok(res, { value: r, unit: "index", sigil: sig, n: ring.length, trace });
   return true;
 }
