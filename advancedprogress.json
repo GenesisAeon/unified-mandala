@@ -6347,10 +6347,13 @@
   "changedFiles": [
     "advancedToDo.json",
     "advancedToDo.yaml",
-    "packages/admin-ui/index.ts",
-    "packages/admin-ui/ModelRouterEditor.tsx",
-    "packages/admin-ui/PeerManager.tsx"
+    "package.json",
+    "packages/commons-ui/index.ts",
+    "pnpm-lock.yaml",
+    "scripts/collab-ws.ts",
+    "packages/commons-ui/CoauthorCanvas.test.tsx",
+    "packages/commons-ui/CoauthorCanvas.tsx"
   ],
-  "lastUpdated": "2025-09-04T12:04:32.436Z",
-  "commitHash": "959ce6302cfded5052d722fec6ec7fb688b61165"
+  "lastUpdated": "2025-09-04T12:58:49.486Z",
+  "commitHash": "f18dd6b268d28ccb52b0abdda6446a0aec06dba4"
 }

@@ -71,6 +71,7 @@
     "ajv": "^8.0.0",
     "ajv-formats": "^3.0.1",
     "axios": "^1.10.0",
+    "@automerge/automerge": "^3.1.1",
     "chokidar": "^3.5.3",
     "commander": "^11.0.0",
     "d3": "^7.8.5",
