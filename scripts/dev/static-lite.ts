@@ -2,10 +2,13 @@ import http from "http";
 import fs from "fs/promises";
 import path from "path";
 import { handleOps } from "./api-ops";
+import { handleKpi, handleCrep } from "./api-kpi";
 
 const distDir = path.resolve(__dirname, "../../apps/ui/dist");
 
 const server = http.createServer(async (req, res) => {
+  if (await handleKpi(req, res)) return;
+  if (await handleCrep(req, res)) return;
   if (await handleOps(req, res)) return;
   try {
     let reqPath = req.url || "/";
