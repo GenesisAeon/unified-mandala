@@ -76,15 +76,15 @@ export default function CrepResonanceCard() {
                 ✖
               </button>
             </div>
-            <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginTop: 12 }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: 4, marginTop: 12 }}>
               {trace.map((t, i) => (
-                <span
-                  key={i}
-                  title={`${t.intent || ""} ${t.ts || ""}`}
-                  style={{ padding: "2px 6px", border: "1px solid #eee", borderRadius: 8 }}
-                >
-                  {t.symbol}
-                </span>
+                <div key={i} style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                  <span style={{ width: 80, textAlign: "right", opacity: 0.6 }}>
+                    {t.ts ? new Date(t.ts).toLocaleTimeString().slice(0, 5) : `T-${trace.length - i}`}
+                  </span>
+                  <SigilBadge sigil={t.symbol} />
+                  <span style={{ fontSize: "0.8em", color: "#666" }}>{t.intent}</span>
+                </div>
               ))}
             </div>
           </div>
