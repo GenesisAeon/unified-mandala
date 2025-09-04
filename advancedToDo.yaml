@@ -4778,6 +4778,7 @@
   path: docs/GenesisSystemScientific.md
   task: Outline CREP axioms and project status
   test: ""
+  status: done
 - commit: "feat: add S06_Netzwerkbildung_Bewusstseinsfelder simulation"
   path: packages/universum-simulationen/modules/S06_Netzwerkbildung_Bewusstseinsfelder.py
   task: Simulate network formation of consciousness fields

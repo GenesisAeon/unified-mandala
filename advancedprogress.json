@@ -1,5 +1,5 @@
 {
-  "lastCommit": "Merge pull request #1585 from GenesisAeon/codex/optimize-repository-structure-and-code-x8iv0l",
+  "lastCommit": "docs: expand Genesis-System scientific paper",
   "fractalStep": "implementiert",
   "openBranches": [
     "work"
@@ -5390,6 +5390,26 @@
     {
       "commit": "Add UI switchboard service",
       "status": "done"
+    },
+    {
+      "commit": "docs: add Genesis-System scientific paper",
+      "status": "done"
+    },
+    {
+      "commit": "Create CoauthorCanvas component",
+      "status": "done"
+    },
+    {
+      "commit": "Add PeerManager component",
+      "status": "done"
+    },
+    {
+      "commit": "Add ModelRouterEditor component",
+      "status": "done"
+    },
+    {
+      "commit": "Add CSV output option to advanced progress summary",
+      "status": "done"
     }
   ],
   "completed": [
@@ -6344,16 +6364,7 @@
       "status": "done"
     }
   ],
-  "changedFiles": [
-    "advancedToDo.json",
-    "advancedToDo.yaml",
-    "package.json",
-    "packages/commons-ui/index.ts",
-    "pnpm-lock.yaml",
-    "scripts/collab-ws.ts",
-    "packages/commons-ui/CoauthorCanvas.test.tsx",
-    "packages/commons-ui/CoauthorCanvas.tsx"
-  ],
-  "lastUpdated": "2025-09-04T12:58:49.486Z",
-  "commitHash": "f18dd6b268d28ccb52b0abdda6446a0aec06dba4"
+  "changedFiles": [],
+  "lastUpdated": "2025-09-04T13:48:52.382Z",
+  "commitHash": "743851c2bde0ad40d543d912aeebbbde384e43fd"
 }
