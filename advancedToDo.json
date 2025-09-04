@@ -15074,5 +15074,12 @@
     "task": "Summarize advanced progress file",
     "test": "",
     "status": "done"
+  },
+  {
+    "commit": "Add CSV output option to advanced progress summary",
+    "path": "repositorypflege/advanced-progress-summary.js",
+    "task": "Allow summary script to export CSV format",
+    "test": "repositorypflege/__tests__/advanced-progress-summary.test.js",
+    "status": "done"
   }
 ]
