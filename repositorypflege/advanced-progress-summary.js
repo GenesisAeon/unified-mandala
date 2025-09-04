@@ -10,7 +10,9 @@ const format = args.includes('--json')
     ? 'yaml'
     : args.includes('--markdown')
       ? 'markdown'
-      : 'text';
+      : args.includes('--csv')
+        ? 'csv'
+        : 'text';
 const showDetails = args.includes('--details');
 const fileIdx = args.indexOf('--file');
 const progressFile = fileIdx !== -1 && args[fileIdx + 1]
@@ -65,6 +67,40 @@ try {
       if (summary.mergeConflicts && summary.mergeConflicts.length)
         console.log(`| Merge Conflicts | ${summary.mergeConflicts.join(', ')} |`);
     }
+    return;
+  }
+
+  if (format === 'csv') {
+    const headers = ['Pending Tasks', 'Completed Tasks', 'Fractal Todos'];
+    const values = [summary.pending, summary.done, summary.fractalTodos];
+    if (summary.lastUpdated) {
+      headers.push('Last Updated');
+      values.push(summary.lastUpdated);
+    }
+    if (summary.commitHash) {
+      headers.push('Commit');
+      values.push(summary.commitHash);
+    }
+    if (showDetails) {
+      if (summary.lastCommit) {
+        headers.push('Last Commit');
+        values.push(summary.lastCommit);
+      }
+      if (summary.fractalStep) {
+        headers.push('Fractal Step');
+        values.push(summary.fractalStep);
+      }
+      if (summary.openBranches) {
+        headers.push('Open Branches');
+        values.push(summary.openBranches.join('|'));
+      }
+      if (summary.mergeConflicts && summary.mergeConflicts.length) {
+        headers.push('Merge Conflicts');
+        values.push(summary.mergeConflicts.join('|'));
+      }
+    }
+    console.log(headers.join(','));
+    console.log(values.join(','));
     return;
   }
 

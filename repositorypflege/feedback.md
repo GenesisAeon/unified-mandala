@@ -12,3 +12,4 @@
 - Added JSON/YAML/Markdown output options to `list-open-advanced-todos.js` for easier automation.
 - Added GlobalMandalaGraph component to visualize Mandala nodes and capabilities.
 - Added `--details` option to `advanced-progress-summary.js` and documented usage.
+- Added `--csv` option to `advanced-progress-summary.js` for spreadsheet-friendly reports.

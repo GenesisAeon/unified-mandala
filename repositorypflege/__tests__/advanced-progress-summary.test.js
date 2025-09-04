@@ -66,3 +66,35 @@ test('outputs YAML summary for custom file', () => {
 
   fs.unlinkSync(tmp);
 });
+
+test('outputs CSV summary for custom file', () => {
+  const tmp = path.join(__dirname, 'tmp-progress.csv');
+  fs.writeFileSync(
+    tmp,
+    JSON.stringify(
+      {
+        pendingTasks: [{}],
+        progress: [{}],
+        fractalTodos: [{}],
+        lastUpdated: '2025-01-01T00:00:00.000Z',
+        commitHash: '0123456789abcdef0123456789abcdef01234567'
+      },
+      null,
+      2
+    )
+  );
+
+  const script = path.join(__dirname, '..', 'advanced-progress-summary.js');
+  const output = execSync(`node ${script} --csv --file ${tmp}`, {
+    encoding: 'utf8'
+  }).trim();
+  const lines = output.split(/\r?\n/);
+  expect(lines[0]).toBe(
+    'Pending Tasks,Completed Tasks,Fractal Todos,Last Updated,Commit'
+  );
+  expect(lines[1]).toBe(
+    '1,1,1,2025-01-01T00:00:00.000Z,0123456789abcdef0123456789abcdef01234567'
+  );
+
+  fs.unlinkSync(tmp);
+});
