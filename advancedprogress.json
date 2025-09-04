@@ -6345,11 +6345,12 @@
     }
   ],
   "changedFiles": [
-    "docs/sigils/advancedprogress-guide.md",
-    "repositorypflege/__tests__/advanced-progress-summary.test.js",
-    "repositorypflege/advanced-progress-summary.js",
-    "repositorypflege/feedback.md"
+    "advancedToDo.json",
+    "advancedToDo.yaml",
+    "packages/admin-ui/index.ts",
+    "packages/admin-ui/ModelRouterEditor.tsx",
+    "packages/admin-ui/PeerManager.tsx"
   ],
-  "lastUpdated": "2025-09-04T06:56:44.217Z",
-  "commitHash": "21cb35960497c16e2b7b962bd53186bf81d3648d"
+  "lastUpdated": "2025-09-04T12:04:32.436Z",
+  "commitHash": "959ce6302cfded5052d722fec6ec7fb688b61165"
 }
