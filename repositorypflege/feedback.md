@@ -13,3 +13,4 @@
 - Added GlobalMandalaGraph component to visualize Mandala nodes and capabilities.
 - Added `--details` option to `advanced-progress-summary.js` and documented usage.
 - Added `--csv` option to `advanced-progress-summary.js` for spreadsheet-friendly reports.
+- Added changed file listing to `advanced-progress-summary.js` when using `--details`.
