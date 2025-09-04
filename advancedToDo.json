@@ -3214,7 +3214,8 @@
     "commit": "docs: add Genesis-System scientific paper",
     "path": "docs/GenesisSystemScientific.md",
     "task": "Outline CREP axioms and project status",
-    "test": ""
+    "test": "",
+    "status": "done"
   },
   {
     "commit": "feat: add S06_Netzwerkbildung_Bewusstseinsfelder simulation",
