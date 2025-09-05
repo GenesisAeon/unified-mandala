@@ -106,7 +106,8 @@
     "three": "^0.161.0",
     "tone": "^15.1.22",
     "ws": "^8.17.0",
-    "yaml": "^2.8.0"
+    "yaml": "^2.8.0",
+    "ioredis": "^5.4.1"
   },
   "devDependencies": {
     "@cypress/react": "^9.0.1",
