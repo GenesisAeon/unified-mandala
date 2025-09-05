@@ -3,6 +3,19 @@ import fsp from "fs/promises";
 import path from "path";
 import { randomUUID } from "crypto";
 import type { Redis } from "ioredis";
+
+export async function cleanupStaleLocks(maxAgeMs = 5*60*1000) {
+  const dir = path.resolve(".locks");
+  if (!fs.existsSync(dir)) return;
+  const now = Date.now();
+  for (const entry of fs.readdirSync(dir)) {
+    const kdir = path.join(dir, entry);
+    try {
+      const st = fs.statSync(kdir);
+      if (now - st.mtimeMs > maxAgeMs) await fsp.rm(kdir, { recursive: true, force: true });
+    } catch {}
+  }
+}
 export interface ILock {
   acquire(key: string, ttlMs?: number): Promise<string>;
   release(key: string, token: string): Promise<void>;
