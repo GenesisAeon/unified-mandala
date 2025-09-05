@@ -1,0 +1,408 @@
+{
+  "repo": {
+    "name": "unified-mandala",
+    "version": "0.1.0-pre",
+    "description": "HI-Präphase: symbolische Ebenen, Demo-Start, schlanke Pfade zum First-Start."
+  },
+  "layers": [
+    {
+      "id": "L0",
+      "name": "Ritual & Sigillin",
+      "overview": "SigilMessage, Mappings, CREP-Resonanz"
+    },
+    {
+      "id": "L1",
+      "name": "Ethik & Governance",
+      "overview": "AI_POLICY, kontextsensitive Regeln, Hooks"
+    },
+    {
+      "id": "L2",
+      "name": "Orchestration",
+      "overview": "Event-Bus (mitt), Redis-Bridge, Request/Reply"
+    },
+    {
+      "id": "L3",
+      "name": "Agents",
+      "overview": "Agenten-Core, Circuit-Breaker, Health"
+    },
+    {
+      "id": "L4",
+      "name": "Data-Adapters",
+      "overview": "Adapter-Schemas (zod), Delta-Sync, Light-Adapter/Seeds"
+    },
+    {
+      "id": "L5",
+      "name": "UI",
+      "overview": "KPI-Board, SigilBadge, CREP-Card"
+    },
+    {
+      "id": "L6",
+      "name": "Observability",
+      "overview": "pino+ALS, /healthz, /readyz, Git-SHA"
+    },
+    {
+      "id": "L7",
+      "name": "Infra (dev/offline)",
+      "overview": "static-lite, docker compose (offline), demo-mode"
+    }
+  ],
+  "catalog": [
+    {
+      "name": "CREP-Kernel",
+      "path": "packages/crep/",
+      "purpose": "Kernlogik für Kohärenz/Resonanz/Emergenz/Poetik",
+      "components": [
+        {
+          "name": "Resonance",
+          "file": "resonance.ts",
+          "description": "Resonanz-Metrik (0–1) + Symbolabbildung",
+          "depends": [
+            "sigil/protocols"
+          ],
+          "status": "ready (pre/demo)"
+        },
+        {
+          "name": "Emergence",
+          "file": "emergence.ts",
+          "description": "(geplant) Muster in Sigil-Sequenzen",
+          "status": "todo"
+        }
+      ]
+    },
+    {
+      "name": "Sigillin-Ebene",
+      "path": "packages/sigil/",
+      "purpose": "Protokolle und Grammatik für symbolische Interaktion",
+      "components": [
+        {
+          "name": "Protokolle",
+          "file": "protocols.ts",
+          "description": "SigilMessage, Emitter/Receiver",
+          "status": "ready"
+        },
+        {
+          "name": "Grammatik",
+          "file": "grammar.yaml",
+          "description": "Formale Regeln für Rituale/Sigil-Sequenzen",
+          "status": "stub"
+        }
+      ]
+    },
+    {
+      "name": "Agenten",
+      "path": "src/agents/",
+      "purpose": "Autonome Einheiten für Daten/Ethik/UI",
+      "components": [
+        {
+          "name": "ClimateAgent",
+          "file": "climate.ts",
+          "description": "ERA5 → Sigils",
+          "depends": [
+            "adapters/ERA5",
+            "sigil/protocols"
+          ],
+          "status": "stub"
+        },
+        {
+          "name": "EthicsAgent",
+          "file": "ethics.ts",
+          "description": "Prüft Aktionen gegen AI_POLICY.yaml",
+          "depends": [
+            "ethics/hooks"
+          ],
+          "status": "ready"
+        }
+      ]
+    },
+    {
+      "name": "Adapter",
+      "path": "src/adapters/",
+      "purpose": "Schnittstellen zu externen Daten",
+      "components": [
+        {
+          "name": "ERA5",
+          "file": "ERA5.ts",
+          "description": "Temperatur → Sigils (🔥/❄️/🌡️)",
+          "status": "stub"
+        },
+        {
+          "name": "Wildfire",
+          "file": "wildfire.ts",
+          "description": "Feuerindex → Sigils (🔥/⚠️/🟢)",
+          "status": "stub"
+        }
+      ]
+    },
+    {
+      "name": "UI",
+      "path": "apps/mandala-ui/",
+      "purpose": "Visualisierung von KPIs/Sigils/CREP",
+      "components": [
+        {
+          "name": "ClimateDashboard",
+          "file": "src/components/ClimateDashboard.tsx",
+          "description": "KPIs + Sigils",
+          "status": "ready"
+        },
+        {
+          "name": "CrepResonanceCard",
+          "file": "src/components/CrepResonanceCard.tsx",
+          "description": "Interaktive Resonanzanzeige",
+          "status": "ready"
+        }
+      ]
+    },
+    {
+      "name": "Dokumentation",
+      "path": "docs/",
+      "purpose": "Handbuch, ADR, Rituale, Governance",
+      "components": [
+        {
+          "name": "Handbuch",
+          "file": "Handbuch.md",
+          "description": "Kanonische Doku",
+          "status": "base"
+        },
+        {
+          "name": "Governance",
+          "file": "governance/",
+          "description": "HI-Compact, AI_POLICY",
+          "status": "base"
+        }
+      ]
+    }
+  ],
+  "components": {
+    "packages": [
+      {
+        "id": "pkg-crep",
+        "path": "packages/crep",
+        "purpose": "CREP Resonanz/Emergenz",
+        "layer": "L0",
+        "phase": [
+          "pre",
+          "demo",
+          "full"
+        ]
+      },
+      {
+        "id": "pkg-sigil",
+        "path": "packages/sigil",
+        "purpose": "SigilMessage, Grammatik, Mapping",
+        "layer": "L0",
+        "phase": [
+          "pre",
+          "demo",
+          "full"
+        ]
+      },
+      {
+        "id": "pkg-ethics",
+        "path": "packages/ethics",
+        "purpose": "Ethik-Hooks/Regeln",
+        "layer": "L1",
+        "phase": [
+          "pre",
+          "demo",
+          "full"
+        ]
+      },
+      {
+        "id": "pkg-bus",
+        "path": "packages/bus",
+        "purpose": "Event-Bus/Redis-Bridge/Req-Rep",
+        "layer": "L2",
+        "phase": [
+          "pre",
+          "demo",
+          "full"
+        ]
+      },
+      {
+        "id": "pkg-logging",
+        "path": "packages/logging",
+        "purpose": "pino+ALS, Context-Logger",
+        "layer": "L6",
+        "phase": [
+          "pre",
+          "demo",
+          "full"
+        ]
+      },
+      {
+        "id": "pkg-lock",
+        "path": "packages/lock",
+        "purpose": "Distributed Lock (Redis/FS)",
+        "layer": "L7",
+        "phase": [
+          "pre",
+          "demo",
+          "full"
+        ]
+      }
+    ],
+    "services": [
+      {
+        "id": "svc-static-lite",
+        "path": "scripts/dev/static-lite.ts",
+        "purpose": "leichtgewichtiger Dev/Demo Server",
+        "layer": "L7",
+        "phase": [
+          "pre",
+          "demo"
+        ]
+      },
+      {
+        "id": "svc-api-health",
+        "path": "scripts/dev/api-health.ts",
+        "purpose": "Health-/Ready-Endpunkte",
+        "layer": "L6",
+        "phase": [
+          "pre",
+          "demo",
+          "full"
+        ]
+      },
+      {
+        "id": "svc-api-demo",
+        "path": "scripts/dev/api-demo.ts",
+        "purpose": "Demo-Seed-API & Overrides",
+        "layer": "L4",
+        "phase": [
+          "pre",
+          "demo"
+        ]
+      },
+      {
+        "id": "svc-api-kpi",
+        "path": "scripts/dev/api-kpi.ts",
+        "purpose": "KPI/CREP-Endpoints (light)",
+        "layer": "L4",
+        "phase": [
+          "pre",
+          "demo"
+        ]
+      }
+    ],
+    "adapters": [
+      {
+        "id": "adp-schemas-base",
+        "path": "src/adapters/schemas/base.ts",
+        "purpose": "Zod-Basis für Adapterresponses",
+        "layer": "L4",
+        "phase": [
+          "pre",
+          "demo",
+          "full"
+        ]
+      }
+    ],
+    "ui": [
+      {
+        "id": "ui-kpiboard",
+        "path": "apps/mandala-ui/src/components/KpiBoard.tsx",
+        "purpose": "KPI-Render, Sigil-Anzeige",
+        "layer": "L5",
+        "phase": [
+          "pre",
+          "demo",
+          "full"
+        ]
+      },
+      {
+        "id": "ui-sigilbadge",
+        "path": "apps/mandala-ui/src/components/SigilBadge.tsx",
+        "purpose": "Sigil-Badge",
+        "layer": "L5",
+        "phase": [
+          "pre",
+          "demo",
+          "full"
+        ]
+      },
+      {
+        "id": "ui-crep",
+        "path": "apps/mandala-ui/src/components/CrepResonanceCard.tsx",
+        "purpose": "CREP-Karte",
+        "layer": "L5",
+        "phase": [
+          "pre",
+          "demo"
+        ]
+      }
+    ],
+    "data": [
+      {
+        "id": "data-seeds-kpi",
+        "path": "data/demo/kpis.json",
+        "purpose": "Seed-KPIs",
+        "layer": "L4",
+        "phase": [
+          "pre",
+          "demo"
+        ]
+      },
+      {
+        "id": "data-seeds-crep",
+        "path": "data/demo/resonance_trace.json",
+        "purpose": "Sigil-Trace",
+        "layer": "L0",
+        "phase": [
+          "pre",
+          "demo"
+        ]
+      }
+    ],
+    "docs": [
+      {
+        "id": "doc-pre-map",
+        "path": "docs/pre-map.md",
+        "purpose": "Ebenen + Gate-Kriterien",
+        "layer": "L7",
+        "phase": [
+          "pre"
+        ]
+      },
+      {
+        "id": "doc-pre-ablauf",
+        "path": "docs/pre-ablaufplan.md",
+        "purpose": "Prä-Start Ablauf",
+        "layer": "L7",
+        "phase": [
+          "pre"
+        ]
+      },
+      {
+        "id": "doc-demo-runbook",
+        "path": "docs/runbooks/demo-first-start.md",
+        "purpose": "HowTo Demo",
+        "layer": "L7",
+        "phase": [
+          "pre",
+          "demo"
+        ]
+      }
+    ]
+  },
+  "pre_candidates": [
+    "pkg-crep",
+    "pkg-sigil",
+    "pkg-ethics",
+    "pkg-bus",
+    "pkg-logging",
+    "pkg-lock",
+    "svc-static-lite",
+    "svc-api-health",
+    "svc-api-demo",
+    "svc-api-kpi",
+    "adp-schemas-base",
+    "ui-sigilbadge",
+    "ui-crep",
+    "ui-kpiboard",
+    "data-seeds-kpi",
+    "data-seeds-crep",
+    "doc-pre-map",
+    "doc-pre-ablauf",
+    "doc-demo-runbook"
+  ]
+}

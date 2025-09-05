@@ -62,7 +62,10 @@
     "agents:metrics": "ts-node scripts/agents/metrics-aggregate.ts",
     "agents:audit:domains": "ts-node scripts/agents/domain-audit.ts",
     "agents:test:golden": "ts-node scripts/agents/golden-runner.ts",
-    "fraktalrun:import": "tsx scripts/fraktalrun-import.ts"
+    "fraktalrun:import": "tsx scripts/fraktalrun-import.ts",
+    "maps:validate": "node scripts/maps/validate-maps.mjs",
+    "maps:build": "node scripts/maps/to-json.mjs && node scripts/maps/to-mermaid.mjs",
+    "maps:all": "pnpm maps:validate && pnpm maps:build"
   },
   "dependencies": {
     "@grpc/grpc-js": "^1.9.10",
@@ -70,7 +73,7 @@
     "@opentelemetry/auto-instrumentations-node": "^0.46.0",
     "@opentelemetry/sdk-node": "^0.46.0",
     "@react-three/fiber": "^9.1.4",
-    "ajv": "^8.0.0",
+    "ajv": "^8.17.1",
     "ajv-formats": "^3.0.1",
     "axios": "^1.10.0",
     "@automerge/automerge": "^3.1.1",

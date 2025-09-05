@@ -113,3 +113,9 @@ Kleine, thematische PRs (docs, adapters, agents). Vor Merge: `pnpm build:ui` + `
 ## Lizenz
 
 MIT. Datenquellen: jeweilige Nutzungsbedingungen beachten.
+
+## Repo-Kartografie & Flüsse
+- **RepoMap**: `docs/maps/RepoMap.yaml` → `pnpm maps:build` erzeugt JSON
+- **ProgramFlow**: `docs/maps/ProgramFlow.yaml` → Mermaid SVG unter `docs/diagrams/`
+- **Pre-Rituale**: `docs/rituals/pre-rituale.md`
+
