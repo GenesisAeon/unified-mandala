@@ -1,0 +1,19 @@
+task: "Repo-Mapping für UnifiedMandala"
+outputs:
+  - docs/maps/RepoMap.yaml
+  - docs/maps/RepoMap.json
+  - docs/maps/ProgramFlow.yaml
+  - docs/maps/ProgramFlow.json
+focus:
+  - "Identifiziere Pre-Module (demo-ready)"
+  - "Markiere unvollständige Bereiche"
+  - "Priorisiere first-start-fähige Komponenten"
+steps:
+  - "Analysiere Repository-Struktur (paths, packages, apps, scripts)"
+  - "Aktualisiere Katalog (CREP, Sigillin, Agenten, Adapter, UI, Docs)"
+  - "Synchronisiere ProgramFlow-Flows mit tatsächlichen Endpunkten"
+  - "Generiere JSON/Diagramme via pnpm maps:all"
+acceptance:
+  - "pnpm maps:validate → ok"
+  - "RepoMap.json & ProgramFlow.json aktualisiert"
+  - "program-flow.svg regeneriert"
