@@ -5,6 +5,14 @@ type Events = {
   "kpi.update": { id: string; value: number; ts: string };
 };
 export const bus = mitt<Events>();
+export const dlq: { type: string; data: any; err: string; ts: string }[] = [];
+export function onSafe<T extends keyof Events>(type: T, handler: (data: Events[T]) => void) {
+  bus.on(type, (data: any) => {
+    try { handler(data); } catch (e:any) {
+      dlq.push({ type: String(type), data, err: String(e?.message || e), ts: new Date().toISOString() });
+    }
+  });
+}
 export function bridgeRedis(sub: Redis, pub: Redis, channel = "um:bus") {
   sub.subscribe(channel, (err)=>{ if (err) console.error("redis sub error", err); });
   sub.on("message", (_ch, msg) => {

@@ -5,6 +5,10 @@ import { handleOps } from "./api-ops";
 import { handleKpi, handleCrep } from "./api-kpi";
 import { requestLogger } from "../../src/middleware/request-logger";
 import { handleHealth } from "./api-health";
+import { cleanupStaleLocks } from "../../packages/lock";
+import { shutdownLogger } from "../../packages/logging/logger";
+
+cleanupStaleLocks().catch(()=>{});
 
 const distDir = path.resolve(__dirname, "../../apps/ui/dist");
 
@@ -32,3 +36,6 @@ const port = Number(process.env.PORT) || 3000;
 server.listen(port, () => {
   console.log(`Static lite server listening on http://localhost:${port}`);
 });
+
+const graceful = async () => { try { await shutdownLogger(); } catch {} process.exit(0); };
+process.on("SIGTERM", graceful); process.on("SIGINT", graceful);
