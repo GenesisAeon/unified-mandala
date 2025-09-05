@@ -8,9 +8,12 @@ export function calculateResonance(sigils: SigilMessage[]): number {
   const n = intents.length;
   const k = counts.size;
   if (k <= 1) return 1;
-  const entropy = Array.from(counts.values()).reduce((sum, c) => sum - (c / n) * Math.log2(c / n), 0);
+  const entropy = Array.from(counts.values()).reduce(
+    (sum, c) => sum - (c / n) * Math.log2(c / n),
+    0
+  );
   const res = 1 - entropy / Math.log2(k);
-  return Math.max(0, Math.min(1, res));
+  return isFinite(res) ? Math.max(0, Math.min(1, res)) : 0;
 }
 
 export function resonanceToSigil(r: number): SigilMessage {
