@@ -8,6 +8,7 @@ export default defineConfig({
       'packages/api/**/*.{test,spec}.ts',
       'scripts/**/*.{test,spec,vitest}.ts',
       'tests/**/*.{test,spec}.ts',
+      'src/adapters/tests/**/*.{test,spec}.ts',
       'docs/**/*.{test,spec}.ts',
       'packages/wissenschaftliche-versuche/**/*.{test,spec}.ts',
       'packages/consent-mesh/**/*.{test,spec}.ts',

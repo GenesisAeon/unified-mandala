@@ -140,6 +140,9 @@ importers:
       yaml:
         specifier: ^2.8.0
         version: 2.8.0
+      zod:
+        specifier: ^3.23.8
+        version: 3.23.8
     devDependencies:
       '@cypress/react':
         specifier: ^9.0.1
