@@ -1,25 +1,11 @@
-graph TD
-  ui.kpiBoard[ui.kpiBoard]
-  ui.crepCard[ui.crepCard]
-  api.kpi[api.kpi]
-  api.crep[api.crep]
-  api.demo[api.demo]
-  bus.core[bus.core]
-  ethics.guard[ethics.guard]
-  logging.ctx[logging.ctx]
-  health.ready[health.ready]
-  adapters.era5[adapters.era5]
-  agents.climate[agents.climate]
-  ui.kpiBoard-->api.kpi
-  ui.crepCard-->api.crep
-  ui.kpiBoard-->api.kpi
-  ui.kpiBoard-->ui.kpiBoard
-  ui.kpiBoard-->bus.core
-  bus.core-->bus.core
-  bus.core-->ui.kpiBoard
-  ui.kpiBoard-->health.ready
-  adapters.era5-->bus.core
-  ethics.guard-->bus.core
-  bus.core-->ui.kpiBoard
-  bus.core-->logging.ctx
-  logging.ctx-->ui.crepCard
+flowchart LR
+user((user))
+probe((probe))
+ui{{ui}}
+static-lite[static-lite]
+api-demo[api-demo]
+adapters(adapters)
+user -->|GET /| static-lite
+probe -->|GET /healthz,/readyz| static-lite
+ui -->|GET /api/kpi/list| api-demo
+api-demo -->|ERA5/OISST (stub)| adapters

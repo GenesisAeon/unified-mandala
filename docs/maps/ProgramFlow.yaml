@@ -1,117 +1,33 @@
-meta:
-  version: "0.1.0-pre"
-  intent: "Prä-Start & Demo-Flows (leicht, offline möglich)"
-nodes:
-  - id: ui.kpiBoard
-    kind: ui
-    ref: ui-kpiboard
-  - id: ui.crepCard
-    kind: ui
-    ref: ui-crep
-  - id: api.kpi
-    kind: service
-    ref: svc-api-kpi
-  - id: api.crep
-    kind: service
-    ref: ep-crep
-  - id: api.demo
-    kind: service
-    ref: svc-api-demo
-  - id: bus.core
-    kind: bus
-    ref: pkg-bus
-  - id: ethics.guard
-    kind: lib
-    ref: pkg-ethics
-  - id: logging.ctx
-    kind: lib
-    ref: pkg-logging
-  - id: health.ready
-    kind: service
-    ref: svc-api-health
-  - id: adapters.era5
-    kind: adapter
-    ref: adp-era5
-  - id: agents.climate
-    kind: agent
-    ref: ag-core
+version: 1
 flows:
-  - id: startup.demo
-    title: "Demo-Startup (offline)"
-    trigger: "pnpm start:demo (MANDALA_DEMO=1)"
-    steps:
-      - do: "static-lite boot"
-        out: ["/healthz","/readyz","/api/demo/*"]
-      - do: "UI lädt KPI-Board"
-        from: "ui.kpiBoard"
-        to: "api.kpi"
-      - do: "UI lädt CREP-Karte (trace)"
-        from: "ui.crepCard"
-        to: "api.crep"
-    success_criteria:
-      - "UI rendert KPIs + Sigils"
-      - "CREP-Overlay klickbar, trace sichtbar"
-  - id: user.kpi.view
-    title: "Nutzer öffnet Dashboard"
-    steps:
-      - do: "GET /api/kpi/list"
-        from: "ui.kpiBoard"
-        to: "api.kpi"
-      - do: "render KPIs + Sigils"
-        from: "ui.kpiBoard"
-        to: "ui.kpiBoard"
-  - id: agent.request.reply
-    title: "Agenten Request/Reply"
-    steps:
-      - do: "emit agent.request"
-        from: "ui.kpiBoard"
-        to: "bus.core"
-      - do: "agent verarbeitet & antwortet"
-        from: "bus.core"
-        to: "bus.core"
-      - do: "agent.reply korreliert (reqId)"
-        from: "bus.core"
-        to: "ui.kpiBoard"
-    success_criteria:
-      - "roundtrip < 1s (in-memory)"
-  - id: readiness.check
-    title: "Readiness inkl. Redis"
-    steps:
-      - do: "GET /readyz"
-        from: "ui.kpiBoard"
-        to: "health.ready"
-    success_criteria:
-      - "ready=true mit/ohne Redis"
-  - id: flow.climate.sigil.ui
-    title: "ClimateData → Sigil → UI"
-    trigger: "ERA5-Adapter liefert neue Temperaturdaten"
-    steps:
-      - do: "Temperatur → Sigil (🔥/❄️/🌡️)"
-        from: "adapters.era5"
-        to: "bus.core"
-      - do: "Ethikprüfung (policy)"
-        from: "ethics.guard"
-        to: "bus.core"
-      - do: "UI-Update KPI + Sigil"
-        from: "bus.core"
-        to: "ui.kpiBoard"
-  - id: flow.crep.resonance
-    title: "CREP-Resonanz-Berechnung"
-    trigger: "alle 10 Sigils oder 30s"
-    steps:
-      - do: "Sigil-Ringpuffer liefern"
-        from: "bus.core"
-        to: "logging.ctx"
-      - do: "Resonanz berechnen (CREP)"
-        from: "logging.ctx"
-        to: "ui.crepCard"
-    success_criteria:
-      - "Resonanz 0–1, Sigil 🟢/🟠/🔴"
-rituals:
-  - id: ritual.system.init
-    title: "System-Initialisierung"
-    trigger: "manuell (`pnpm ritual:init`) oder beim ersten Start"
-    steps:
-      - do: "CoreAgent sendet 🔮 (ritual:init)"
-      - do: "Agenten antworten 🌍/⚖️/🖥️ (ack)"
-      - do: "UI zeigt Onboarding-Ritual an"
+  - id: "boot"
+    title: "Boot & Health"
+    edges:
+      - from: "user"
+        to: "static-lite"
+        note: "GET /"
+      - from: "probe"
+        to: "static-lite"
+        note: "GET /healthz,/readyz"
+  - id: "kpi-demo"
+    title: "KPI Demo"
+    edges:
+      - from: "ui"
+        to: "api-demo"
+        note: "GET /api/kpi/list"
+      - from: "api-demo"
+        to: "adapters"
+        note: "ERA5/OISST (stub)"
+nodes:
+  - id: "user"
+    type: "actor"
+  - id: "probe"
+    type: "actor"
+  - id: "ui"
+    type: "app"
+  - id: "static-lite"
+    type: "service"
+  - id: "api-demo"
+    type: "service"
+  - id: "adapters"
+    type: "pkg"

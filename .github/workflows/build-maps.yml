@@ -1,0 +1,17 @@
+name: build-maps
+on: [push, pull_request]
+jobs:
+  maps:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with: { version: 8.15.6 }
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm maps:all
+      - uses: actions/upload-artifact@v4
+        with:
+          name: repo-maps
+          path: |
+            docs/diagrams/*
+            docs/maps/*.json

@@ -26,6 +26,9 @@ importers:
       '@react-three/fiber':
         specifier: ^9.1.4
         version: 9.1.4(@types/react@18.3.23)(immer@10.1.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(three@0.161.0)
+      '@um/health':
+        specifier: workspace:*
+        version: link:packages/health
       ajv:
         specifier: ^8.17.1
         version: 8.17.1
@@ -297,6 +300,15 @@ importers:
       ajv-formats:
         specifier: ^3.0.1
         version: 3.0.1(ajv@8.17.1)
+
+  packages/health:
+    devDependencies:
+      express:
+        specifier: ^4.19.2
+        version: 4.21.2
+      typescript:
+        specifier: ^5.4.0
+        version: 5.8.3
 
   packages/unifiedmandala-vr: {}
 
