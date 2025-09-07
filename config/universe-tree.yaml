@@ -1,0 +1,5 @@
+seed: 42
+branching_factor: 2
+depth: 3
+mutation_sigma: 0.1
+penalty: 0.0

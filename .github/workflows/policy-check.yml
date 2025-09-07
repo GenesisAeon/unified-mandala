@@ -1,0 +1,23 @@
+name: Policy Checks
+on: [push, pull_request]
+jobs:
+  opa:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: OPA policy check
+        run: |
+          node tools/opa-check.mjs fixtures/events/example_input.json
+  kyverno:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Kyverno validate (dry-run)
+        uses: kyverno/action@v0.4.0
+        with:
+          policies: policies/kyverno.yaml
+          resources: fixtures/events/example_input.json
+          cluster: false
