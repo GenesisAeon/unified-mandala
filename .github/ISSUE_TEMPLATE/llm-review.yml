@@ -1,0 +1,27 @@
+name: "🤖 LLM Review Request"
+description: "Request a review cycle from Claude/Mistral"
+title: "[LLM] Review: <short description>"
+labels: ["llm-orchestration","review"]
+body:
+  - type: markdown
+    attributes:
+      value: "## Ziel\nMerge-fähige DIFF-Patches + TESTS + CHANGESPEC (risk/acceptance)."
+  - type: textarea
+    id: context
+    attributes:
+      label: "Kontext / Scope"
+      placeholder: |
+        - EventBus (NATS + OTEL), Governance (OPA), Runner-Brücke
+        - Links: PR #123, Design-Doc
+    validations: { required: true }
+  - type: checkboxes
+    id: acceptance
+    attributes:
+      label: "Acceptance"
+      options:
+        - label: "DIFFs git-apply-fähig"          # required
+          required: true
+        - label: "TESTS decken Edge-Cases ab"     # required
+          required: true
+        - label: "CHANGESPEC mit risk + acceptance"
+          required: true

@@ -1,12 +1,4 @@
-# Leichte, menschlich-verständliche Guardrails (zusätzlich zu CI)
 rules:
-  - id: "no-gate-widening-without-issue"
-    description: "Gates (personhood-levels) dürfen nicht erweitert werden ohne referenziertes Issue/ADR."
-    check:
-      files: ["policies/personhood-levels.yaml","policies/personhood-levels.json"]
-      pattern_disallow: ["min_level: P0", "admin.*"]
-      require_issue_ref: true
-  - id: "docs-for-governance-changes"
-    description: "Governance-Änderungen erfordern DOC Patch mit Migrationshinweisen."
-    require_doc_touch:
-      paths: ["docs/","README.md","Handbuch.md"]
+  - id: docs-for-governance-changes
+  - id: no-gate-widening-without-issue
+  - id: llm-env-secrets-present

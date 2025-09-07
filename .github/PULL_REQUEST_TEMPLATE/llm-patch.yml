@@ -1,0 +1,25 @@
+name: "🤖 LLM Patch"
+title: "[LLM] <short description>"
+labels: ["llm-patch"]
+body:
+  - type: markdown
+    attributes:
+      value: "Quelle: feedback/claude.md, feedback/mistral.md • CHANGESET.yaml im Root"
+  - type: textarea
+    id: changes
+    attributes:
+      label: "Zusammenfassung"
+      placeholder: |
+        - nats-bus.ts: Retry/Backpressure (risk: low)
+        - docs/rituals: Ethics Escalation (risk: medium)
+    validations: { required: true }
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: "Pre-Merge"
+      options:
+        - label: "`git apply --check` sauber"         # required
+          required: true
+        - label: "`pnpm guardrails:check` grün"       # required
+          required: true
+        - label: "Release-Notes aktualisiert"
