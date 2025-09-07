@@ -1,16 +1,25 @@
-export type PersonhoodLevel = 'P0' | 'P1' | 'P2' | 'P3';
+export type Personhood = "P0"|"P1"|"P2"|"P3";
 
-export interface GovernanceInfo {
-  level: PersonhoodLevel;
-  compliant: boolean;
-  ethics_approval: boolean;
+export interface Governance {
+  level?: Personhood;
+  compliant?: boolean;
+  ethics_approval?: boolean;
   notes?: string;
 }
 
-export interface EventMessage<T = any> {
+export interface ActorRef {
+  id: string;
+  role: string;
+}
+
+export interface MandalaEvent<T=any> {
+  id: string;
   topic: string;
-  payload: T;
-  crep_resonance?: number;
+  actor: ActorRef;
+  ts: string;
+  personhood?: Personhood;
+  governance?: Governance;
   sigil?: string;
-  governance?: GovernanceInfo;
+  crep_resonance?: number;
+  payload: T;
 }
