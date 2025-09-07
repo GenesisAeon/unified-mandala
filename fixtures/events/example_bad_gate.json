@@ -1,0 +1,12 @@
+{
+  "topic": "governance.override",
+  "payload": { "action": "test" },
+  "crep_resonance": 0.4,
+  "sigil": "🚫",
+  "governance": {
+    "level": "P1",
+    "compliant": false,
+    "ethics_approval": false,
+    "notes": "bad"
+  }
+}
