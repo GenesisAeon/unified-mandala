@@ -21,3 +21,11 @@ jobs:
           policies: policies/kyverno.yaml
           resources: fixtures/events/example_input.json
           cluster: false
+  guardrails:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: '20' }
+      - run: pnpm add yaml
+      - run: node tools/governance-guardrails.mjs
