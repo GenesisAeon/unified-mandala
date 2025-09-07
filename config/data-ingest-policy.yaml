@@ -1,0 +1,17 @@
+# config/data-ingest-policy.yaml
+sources:
+  allowlist:
+    - domain: arxiv.org
+      license: CC0|CC-BY|arXiv-TOU
+    - domain: gutenberg.org
+      license: PublicDomain|CC0
+  forbidden_domains:
+    - libgen.rs
+    - z-library.*        # Piraterie-Domains: hard block
+rules:
+  require_license_evidence: true
+  require_terms_snapshot: true        # gespeicherter TOS-Screenshot/Hash
+  require_spdx_id: true
+  store_provenance_attestation: true  # W3C VC / JSON-LD
+copyright_sensitive: strict
+eu_ai_act_tagging: on
