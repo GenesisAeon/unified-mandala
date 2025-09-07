@@ -1,95 +1,41 @@
-import { useEffect, useState } from "react";
-import SigilBadge from "./SigilBadge";
+import React from "react";
+import { useCrepResonance } from "../hooks/useCrepResonance";
 
-type TraceItem = { symbol: string; intent?: "query" | "assert" | "ritual"; ts?: string };
-type Resp = { ok: boolean; data: { value: number; unit: string; sigil: string; n: number; trace?: TraceItem[] } };
-
-function colorFor(v: number) {
-  return v >= 0.8 ? "#2e7d32" : v >= 0.5 ? "#ef6c00" : "#c62828";
-}
+const badgeColor: Record<string, string> = {
+  green: "#22c55e",
+  amber: "#f59e0b",
+  red:   "#ef4444"
+};
 
 export default function CrepResonanceCard() {
-  const [val, setVal] = useState<number>(0);
-  const [sig, setSig] = useState<string>("🌀");
-  const [trace, setTrace] = useState<TraceItem[]>([]);
-  const [open, setOpen] = useState(false);
+  const { data, loading, error, refetch } = useCrepResonance(8000);
 
-  async function fetchRes() {
-    const r = await fetch("/api/crep/resonance?trace=1");
-    if (!r.ok) return;
-    const j: Resp = await r.json();
-    setVal(j.data.value);
-    setSig(j.data.sigil);
-    setTrace(j.data.trace || []);
-    (window as any).__LAST_CREP_RESONANCE_SIGIL__ = j.data.sigil;
-  }
+  if (loading) return <div className="card">CREP Resonance: loading…</div>;
+  if (error)   return <div className="card">CREP Resonance: error – {error}</div>;
+  if (!data)   return <div className="card">CREP Resonance: no data</div>;
 
-  useEffect(() => {
-    fetchRes();
-    const id = setInterval(fetchRes, 8000);
-    return () => clearInterval(id);
-  }, []);
+  const color = badgeColor[data.level] || "#999";
+  const entropy = data.entropy.toFixed(2);
 
   return (
-    <div style={{ border: "1px solid #eee", borderRadius: 10, padding: 12 }}>
+    <div className="card" style={{
+      border: "1px solid #eee", borderRadius: 12, padding: 16, boxShadow: "0 1px 4px rgba(0,0,0,0.06)"
+    }}>
       <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-        <div
-          style={{
-            background: colorFor(val),
-            color: "#fff",
-            padding: "4px 10px",
-            borderRadius: 8,
-            fontWeight: 600
-          }}
-        >
-          CREP Resonanz
-        </div>
-        <SigilBadge sigil={sig} />
-        <span style={{ fontVariantNumeric: "tabular-nums" }}>{val.toFixed(2)}</span>
-        <button
-          onClick={() => setOpen(true)}
-          style={{ marginLeft: "auto", padding: "4px 8px", borderRadius: 6, border: "1px solid #ddd" }}
-        >
-          Details
-        </button>
+        <span style={{
+          display: "inline-block", width: 14, height: 14, borderRadius: 14, background: color
+        }} />
+        <strong>CREP Resonance</strong>
       </div>
-      {open && (
-        <div
-          role="dialog"
-          aria-modal="true"
-          style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.35)", display: "grid", placeItems: "center" }}
-        >
-          <div
-            style={{
-              background: "#fff",
-              borderRadius: 12,
-              padding: 16,
-              width: "min(560px, 92vw)",
-              maxHeight: "80vh",
-              overflow: "auto",
-              boxShadow: "0 8px 24px rgba(0,0,0,0.2)"
-            }}
-          >
-            <div style={{ display: "flex", alignItems: "center" }}>
-              <h3 style={{ margin: 0 }}>Sigil-Trace (letzte {trace.length})</h3>
-              <button onClick={() => setOpen(false)} style={{ marginLeft: "auto" }}>
-                ✖
-              </button>
-            </div>
-            <div style={{ display: "flex", flexDirection: "column", gap: 4, marginTop: 12 }}>
-              {trace.map((t, i) => (
-                <div key={i} style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                  <span style={{ width: 80, textAlign: "right", opacity: 0.6 }}>
-                    {t.ts ? new Date(t.ts).toLocaleTimeString().slice(0, 5) : `T-${trace.length - i}`}
-                  </span>
-                  <SigilBadge sigil={t.symbol} />
-                  <span style={{ fontSize: "0.8em", color: "#666" }}>{t.intent}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      )}
+      <div style={{ marginTop: 8, fontSize: 14 }}>
+        <div>Level: <b>{data.level.toUpperCase()}</b></div>
+        <div>Entropy: <code>{entropy}</code></div>
+        <div>n: <code>{data.n}</code> • source: <code>{data.source}</code></div>
+        <div style={{ color: "#666", fontSize: 12, marginTop: 4 }}>{new Date(data.ts).toLocaleString()}</div>
+      </div>
+      <button onClick={refetch} style={{ marginTop: 12, padding: "6px 10px", borderRadius: 8, border: "1px solid #ddd", background: "#fafafa" }}>
+        Refresh
+      </button>
     </div>
   );
 }

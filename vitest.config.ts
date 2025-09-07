@@ -6,6 +6,7 @@ export default defineConfig({
       'packages/agents/**/*.{test,spec}.ts',
       'packages/boundary-engine/**/*.{test,spec}.ts',
       'packages/api/**/*.{test,spec}.ts',
+      'packages/crep/**/*.{test,spec}.ts',
       'scripts/**/*.{test,spec,vitest}.ts',
       'tests/**/*.{test,spec}.ts',
       'src/adapters/tests/**/*.{test,spec}.ts',
