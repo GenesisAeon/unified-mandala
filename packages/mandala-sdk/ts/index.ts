@@ -1,53 +1,66 @@
-import Ajv from 'ajv';
-import schema from '../../../schemas/eventbus.message.schema.json';
-import personhoodPolicies from '../../../policies/personhood-levels.json';
-import { EventMessage, PersonhoodLevel } from './types';
+import fs from "fs";
+import path from "path";
+import Ajv from "ajv";
+import { MandalaEvent } from "./types.js";
 
-const ajv = new Ajv();
-const validate = ajv.compile<EventMessage>(schema);
+const ajv = new Ajv({allErrors:true, strict:false});
+const schemaPath = path.join(process.cwd(), "schemas", "eventbus.message.schema.json");
+const schema = JSON.parse(fs.readFileSync(schemaPath,"utf-8"));
+const validate = ajv.compile(schema as any);
 
-type Handler<T = any> = (payload: T) => void;
-const handlers: Record<string, Handler[]> = {};
-
-const LEVELS: PersonhoodLevel[] = ['P0', 'P1', 'P2', 'P3'];
-
-function levelAllowed(provided: PersonhoodLevel, required: PersonhoodLevel) {
-  return LEVELS.indexOf(provided) >= LEVELS.indexOf(required);
+function uuid() {
+  return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, c => {
+    const r = Math.random()*16|0, v = c=="x" ? r : (r&0x3|0x8);
+    return v.toString(16);
+  });
 }
 
-export function on(topic: string, handler: Handler) {
-  handlers[topic] = handlers[topic] || [];
-  handlers[topic].push(handler);
+function loadGate() {
+  const p = path.join(process.cwd(), "policies", "personhood-levels.json");
+  try {
+    return JSON.parse(fs.readFileSync(p, "utf-8"));
+  } catch {
+    return {gates:[]};
+  }
 }
 
-interface EmitOptions {
-  personhood?: PersonhoodLevel;
-  crep_resonance?: number;
-  sigil?: string;
-  governance?: EventMessage['governance'];
+function checkGate(topic: string, personhood?: string) {
+  const policy = loadGate();
+  const gate = (policy.gates||[]).find((g:any)=> {
+    if (g.topic.endsWith(".*")) {
+      const prefix = g.topic.slice(0,-2);
+      return topic.startsWith(prefix);
+    }
+    return g.topic === topic;
+  });
+  if (!gate) return;
+  const levels = ["P0","P1","P2","P3"];
+  const have = levels.indexOf((personhood||"P0") as string);
+  const need = levels.indexOf(gate.min_level);
+  if (have < need) throw new Error(`Personhood gate: topic '${topic}' requires >= ${gate.min_level}, have ${personhood||"P0"}`);
 }
 
-export function emit<T>(topic: string, payload: T, options: EmitOptions = {}) {
-  const message: EventMessage<T> = {
+const handlers = new Map<string, Array<(e: MandalaEvent)=>void>>();
+
+export async function emit<T=any>(topic: string, payload: T, opts?: {personhood?: string, actor?: {id:string, role:string}}): Promise<MandalaEvent<T>> {
+  checkGate(topic, opts?.personhood);
+  const evt: MandalaEvent<T> = {
+    id: uuid(),
     topic,
-    payload,
-    crep_resonance: options.crep_resonance,
-    sigil: options.sigil,
-    governance: options.governance,
+    actor: opts?.actor || { id: "system", role: "agent" },
+    ts: new Date().toISOString(),
+    personhood: (opts?.personhood as any),
+    payload
   };
-
-  if (!validate(message)) {
-    throw new Error('schema validation failed: ' + ajv.errorsText(validate.errors));
+  const ok = validate(evt);
+  if (!ok) {
+    throw new Error("Event schema invalid: " + JSON.stringify((validate as any).errors, null, 2));
   }
-
-  const required = (personhoodPolicies as Record<string, PersonhoodLevel>)[topic] || 'P0';
-  const provided = options.personhood || 'P0';
-  if (!levelAllowed(provided, required)) {
-    throw new Error(`personhood level ${provided} insufficient for topic ${topic}`);
-  }
-
-  (handlers[topic] || []).forEach((h) => h(payload));
-  return message;
+  (handlers.get(topic)||[]).forEach(fn => fn(evt));
+  return evt;
 }
 
-export type { EventMessage, GovernanceInfo, PersonhoodLevel } from './types';
+export function on<T=any>(topic: string, fn: (e: MandalaEvent<T>)=>void) {
+  const list = handlers.get(topic) || [];
+  list.push(fn as any); handlers.set(topic, list);
+}

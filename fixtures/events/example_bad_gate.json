@@ -1,12 +1,8 @@
 {
-  "topic": "governance.override",
-  "payload": { "action": "test" },
-  "crep_resonance": 0.4,
-  "sigil": "🚫",
-  "governance": {
-    "level": "P1",
-    "compliant": false,
-    "ethics_approval": false,
-    "notes": "bad"
-  }
+  "id":"00000000-0000-4000-8000-000000000000",
+  "topic":"governance.override",
+  "actor":{"id":"fixture","role":"test"},
+  "ts":"2025-01-01T00:00:00Z",
+  "personhood":"P1",
+  "payload":{"op":"force"}
 }
