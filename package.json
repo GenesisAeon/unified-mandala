@@ -75,7 +75,8 @@
     "feedback:plan": "node tools/feedback/plan.mjs feedback/aggregated.json",
     "feedback:apply": "node tools/feedback/apply2.mjs CHANGESET.yaml",
     "guardrails:check": "node tools/governance-guardrails.mjs",
-    "release:notes": "node tools/release/notes2.mjs"
+    "release:notes": "node tools/release/notes2.mjs",
+    "metrics:serve": "node tools/metrics/patch-metrics.mjs"
   },
   "dependencies": {
     "@automerge/automerge": "^3.1.1",
@@ -128,7 +129,8 @@
     "undici": "^7.15.0",
     "ws": "^8.17.0",
     "yaml": "^2.8.0",
-    "zod": "^3.23.8"
+    "zod": "^3.23.8",
+    "dotenv": "^16.4.5"
   },
   "devDependencies": {
     "@cypress/react": "^9.0.1",

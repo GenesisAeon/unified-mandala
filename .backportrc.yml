@@ -1,0 +1,4 @@
+branches:
+  - name: "stable/0.4.x"
+    labels: ["backport-to-0.4"]
+title_pattern: "^\\[Backport\\].+"

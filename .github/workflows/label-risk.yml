@@ -1,0 +1,24 @@
+name: "LLM: Auto Risk Labels"
+on:
+  pull_request:
+    types: [opened, synchronize]
+jobs:
+  risk:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: '20' }
+      - run: pnpm add yaml
+      - run: node -e "const fs=require('fs');const YAML=require('yaml');const y=YAML.parse(fs.readFileSync('CHANGESET.yaml','utf-8'));const r=new Set();(y.changespecs||[]).forEach(c=>{try{const s=YAML.parse(c.spec);(s.changes||[]).forEach(ch=>r.add(`risk:${(ch.risk||'low').toLowerCase()}`));}catch{}});fs.writeFileSync('RISK_LABELS.txt',Array.from(r).join(','));"
+      - name: Apply labels
+        if: hashFiles('RISK_LABELS.txt') != ''
+        uses: actions-ecosystem/action-add-labels@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          labels: ${{ steps.parse.outputs.labels }}
+        id: parse
+        env:
+          INPUT_LABELS: ${{ steps.parse.outputs.labels }}
+      - id: parse
+        run: echo "labels=$(cat RISK_LABELS.txt)" >> $GITHUB_OUTPUT
