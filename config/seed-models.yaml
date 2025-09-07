@@ -1,0 +1,5 @@
+models:
+  - name: emergence_predictor
+    input: features.csv
+  - name: consent_mesh_sim
+    input: mesh.json

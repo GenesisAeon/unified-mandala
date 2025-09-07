@@ -1,0 +1,17 @@
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: mandala-governance
+spec:
+  validationFailureAction: audit
+  rules:
+    - name: require-personhood-level
+      match:
+        any:
+          - resources:
+              kinds: ["MandalaEvent"]
+      validate:
+        message: "High-risk topics require personhood P3"
+        pattern:
+          (topic): "governance.override"
+          (personhood): "P3"

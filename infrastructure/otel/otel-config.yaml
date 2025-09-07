@@ -1,0 +1,22 @@
+receivers:
+  otlp:
+    protocols:
+      http:
+
+exporters:
+  jaeger:
+    endpoint: http://jaeger:14268/api/traces
+    tls:
+      insecure: true
+  logging:
+    loglevel: info
+
+processors:
+  batch:
+
+service:
+  pipelines:
+    traces:
+      receivers: [otlp]
+      processors: [batch]
+      exporters: [logging, jaeger]
