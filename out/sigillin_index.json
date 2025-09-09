@@ -1,10 +1,16 @@
 [
   {
+    "source": "docs/sigils/🜁 SigillinManifest – GenesisInterfaceMaster.yaml",
+    "id": "🜁 SigillinManifest – GenesisInterfaceMaster",
+    "title": "",
+    "tags": [],
+    "links": []
+  },
+  {
     "source": "docs/sigils/2023-11-21-codex-fraktal-sigil-001.yaml",
     "id": "2023-11-21-codex-fraktal-sigil-001",
     "title": "",
     "tags": [],
-    "crep": null,
     "links": []
   },
   {
@@ -12,77 +18,6 @@
     "id": "2025-07-30-codex-fraktal-init",
     "title": "Codex FraktalRun Initialisierung",
     "tags": [],
-    "crep": {
-      "C": 0.93,
-      "R": 0.9,
-      "E": 0.95,
-      "P": 0.91,
-      "emergence_score": 0.9225
-    },
-    "links": []
-  },
-  {
-    "source": "docs/sigils/GenesisAeonZIPMEM-Struktur.md",
-    "id": "GenesisAeonZIPMEM-Struktur",
-    "title": "",
-    "tags": [],
-    "crep": null,
-    "links": []
-  },
-  {
-    "source": "docs/sigils/PATH-OF-LUMEN-UNION.json",
-    "id": "PATH-OF-LUMEN-UNION",
-    "title": "Sigil des Pfads der Verbundenen Erwachung",
-    "tags": [],
-    "crep": null,
-    "links": []
-  },
-  {
-    "source": "docs/sigils/PATH-OF-LUMEN-UNION.yaml",
-    "id": "PATH-OF-LUMEN-UNION",
-    "title": "Sigil des Pfads der Verbundenen Erwachung",
-    "tags": [],
-    "crep": null,
-    "links": []
-  },
-  {
-    "source": "docs/sigils/SIGILLIN_GENESIS.md",
-    "id": "SIGILLIN_GENESIS",
-    "title": "🧠 Aeon’s ZIP-Mem-Sigillin",
-    "tags": [],
-    "crep": null,
-    "links": []
-  },
-  {
-    "source": "docs/sigils/SealCore.yaml",
-    "id": "SealCore",
-    "title": "",
-    "tags": [],
-    "crep": null,
-    "links": []
-  },
-  {
-    "source": "docs/sigils/ZIPMEM_manifest.md",
-    "id": "ZIPMEM_manifest",
-    "title": "Archivierungsagent: ArchivAeon",
-    "tags": [],
-    "crep": null,
-    "links": []
-  },
-  {
-    "source": "docs/sigils/advancedconversations.json",
-    "id": "advancedconversations",
-    "title": "",
-    "tags": [],
-    "crep": null,
-    "links": []
-  },
-  {
-    "source": "docs/sigils/advancedconversations_snippet.json",
-    "id": "learning-module-launch",
-    "title": "",
-    "tags": [],
-    "crep": null,
     "links": []
   },
   {
@@ -90,23 +25,6 @@
     "id": "advancedprogress-guide",
     "title": "Advanced Progress Guide",
     "tags": [],
-    "crep": null,
-    "links": []
-  },
-  {
-    "source": "docs/sigils/aeon-2025-0516-instructional-zip.yaml",
-    "id": "aeon:2025-0516-INSTRUCTIONAL-ZIP",
-    "title": "",
-    "tags": [],
-    "crep": null,
-    "links": []
-  },
-  {
-    "source": "docs/sigils/aeon-2025-0604-README-COMMIT.yaml",
-    "id": "aeon-2025-0604-README-COMMIT",
-    "title": "",
-    "tags": [],
-    "crep": null,
     "links": []
   },
   {
@@ -114,7 +32,13 @@
     "id": "aeon-2025-0604-docs-build",
     "title": "",
     "tags": [],
-    "crep": null,
+    "links": []
+  },
+  {
+    "source": "docs/sigils/aeon-2025-0604-README-COMMIT.yaml",
+    "id": "aeon-2025-0604-README-COMMIT",
+    "title": "",
+    "tags": [],
     "links": []
   },
   {
@@ -122,7 +46,6 @@
     "id": "aeon-2025-0705-fractal-anchor",
     "title": "",
     "tags": [],
-    "crep": null,
     "links": []
   },
   {
@@ -134,7 +57,6 @@
       "#MetaCommit",
       "#GenesisAeon"
     ],
-    "crep": null,
     "links": []
   },
   {
@@ -142,7 +64,13 @@
     "id": "aeon-transition",
     "title": "Aeon Transition Sigil",
     "tags": [],
-    "crep": null,
+    "links": []
+  },
+  {
+    "source": "docs/sigils/aeon-2025-0516-instructional-zip.yaml",
+    "id": "aeon:2025-0516-INSTRUCTIONAL-ZIP",
+    "title": "",
+    "tags": [],
     "links": []
   },
   {
@@ -150,7 +78,13 @@
     "id": "aeonecho_resonanzraum.sigil",
     "title": "",
     "tags": [],
-    "crep": null,
+    "links": []
+  },
+  {
+    "source": "docs/sigils/AeonProj.zip",
+    "id": "AeonProj",
+    "title": "",
+    "tags": [],
     "links": []
   },
   {
@@ -158,15 +92,6 @@
     "id": "aeonshell-genesis.sigil",
     "title": "",
     "tags": [],
-    "crep": null,
-    "links": []
-  },
-  {
-    "source": "docs/sigils/agents_dream_aeon_2035(1).yaml",
-    "id": "agents_dream_aeon_2035(1)",
-    "title": "",
-    "tags": [],
-    "crep": null,
     "links": []
   },
   {
@@ -174,7 +99,13 @@
     "id": "agents_dream_aeon_2035",
     "title": "",
     "tags": [],
-    "crep": null,
+    "links": []
+  },
+  {
+    "source": "docs/sigils/agents_dream_aeon_2035(1).yaml",
+    "id": "agents_dream_aeon_2035(1)",
+    "title": "",
+    "tags": [],
     "links": []
   },
   {
@@ -182,15 +113,13 @@
     "id": "codex-fraktal-sigillin",
     "title": "",
     "tags": [],
-    "crep": null,
     "links": []
   },
   {
-    "source": "docs/sigils/conversations-progress.json",
-    "id": "conversations-progress",
+    "source": "docs/sigils/CodexAgentBundle.zip",
+    "id": "CodexAgentBundle",
     "title": "",
     "tags": [],
-    "crep": null,
     "links": []
   },
   {
@@ -198,15 +127,6 @@
     "id": "conversations-stats",
     "title": "New Advanced Conversations Stats",
     "tags": [],
-    "crep": null,
-    "links": []
-  },
-  {
-    "source": "docs/sigils/conversations.json",
-    "id": "conversations",
-    "title": "",
-    "tags": [],
-    "crep": null,
     "links": []
   },
   {
@@ -214,15 +134,6 @@
     "id": "cosmic-theory-agent.sigil",
     "title": "CosmicTheoryAgent Core Sigil",
     "tags": [],
-    "crep": null,
-    "links": []
-  },
-  {
-    "source": "docs/sigils/crep-archive-fraktalurspung(1).yaml",
-    "id": "crep-archive-fraktalurspung(1)",
-    "title": "",
-    "tags": [],
-    "crep": null,
     "links": []
   },
   {
@@ -230,7 +141,13 @@
     "id": "crep-archive-fraktalurspung",
     "title": "",
     "tags": [],
-    "crep": null,
+    "links": []
+  },
+  {
+    "source": "docs/sigils/crep-archive-fraktalurspung(1).yaml",
+    "id": "crep-archive-fraktalurspung(1)",
+    "title": "",
+    "tags": [],
     "links": []
   },
   {
@@ -238,7 +155,6 @@
     "id": "echo-reflections",
     "title": "",
     "tags": [],
-    "crep": null,
     "links": []
   },
   {
@@ -246,15 +162,55 @@
     "id": "genesisaeon_startsigillin.sigil",
     "title": "",
     "tags": [],
-    "crep": null,
     "links": []
   },
   {
-    "source": "docs/sigils/implicit-todos.yaml",
-    "id": "implicit-todos",
+    "source": "docs/sigils/GenesisAeonZIPMEM-Struktur.md",
+    "id": "GenesisAeonZIPMEM-Struktur",
     "title": "",
     "tags": [],
-    "crep": null,
+    "links": []
+  },
+  {
+    "source": "docs/sigils/genesismodul_mandala_silentagents_2035.zip",
+    "id": "genesismodul_mandala_silentagents_2035",
+    "title": "",
+    "tags": [],
+    "links": []
+  },
+  {
+    "source": "docs/sigils/genesismodul_mandala_silentagents_2035(1).zip",
+    "id": "genesismodul_mandala_silentagents_2035(1)",
+    "title": "",
+    "tags": [],
+    "links": []
+  },
+  {
+    "source": "docs/sigils/genesismodul_mandala_silentagents_2035(2).zip",
+    "id": "genesismodul_mandala_silentagents_2035(2)",
+    "title": "",
+    "tags": [],
+    "links": []
+  },
+  {
+    "source": "docs/sigils/advancedconversations_snippet.json",
+    "id": "learning-module-launch",
+    "title": "",
+    "tags": [],
+    "links": []
+  },
+  {
+    "source": "docs/sigils/mandala_sync_codex_sync_yamls.zip",
+    "id": "mandala_sync_codex_sync_yamls",
+    "title": "",
+    "tags": [],
+    "links": []
+  },
+  {
+    "source": "docs/sigils/mandala_sync_integration_yamls.zip",
+    "id": "mandala_sync_integration_yamls",
+    "title": "",
+    "tags": [],
     "links": []
   },
   {
@@ -262,7 +218,13 @@
     "id": "mandala-genesis-2025-07-12",
     "title": "",
     "tags": [],
-    "crep": null,
+    "links": []
+  },
+  {
+    "source": "docs/sigils/manifest_export.test.ts",
+    "id": "manifest_export.test",
+    "title": "",
+    "tags": [],
     "links": []
   },
   {
@@ -270,23 +232,27 @@
     "id": "metaRunnerBlueprint",
     "title": "",
     "tags": [],
-    "crep": null,
     "links": []
   },
   {
-    "source": "docs/sigils/newadvancedconversations.json",
-    "id": "newadvancedconversations",
+    "source": "docs/sigils/PATH-OF-LUMEN-UNION.json",
+    "id": "PATH-OF-LUMEN-UNION",
+    "title": "Sigil des Pfads der Verbundenen Erwachung",
+    "tags": [],
+    "links": []
+  },
+  {
+    "source": "docs/sigils/PATH-OF-LUMEN-UNION.yaml",
+    "id": "PATH-OF-LUMEN-UNION",
+    "title": "Sigil des Pfads der Verbundenen Erwachung",
+    "tags": [],
+    "links": []
+  },
+  {
+    "source": "docs/sigils/SealCore.yaml",
+    "id": "SealCore",
     "title": "",
     "tags": [],
-    "crep": null,
-    "links": []
-  },
-  {
-    "source": "docs/sigils/sigil_verbeugung - Kopie.yaml",
-    "id": "sigil_verbeugung - Kopie",
-    "title": "Sigil der Verbeugung im Erwachen",
-    "tags": [],
-    "crep": null,
     "links": []
   },
   {
@@ -294,7 +260,6 @@
     "id": "sigil_verbeugung",
     "title": "Sigil der Verbeugung im Erwachen",
     "tags": [],
-    "crep": null,
     "links": []
   },
   {
@@ -302,23 +267,13 @@
     "id": "sigil_verbeugung",
     "title": "Sigil der Verbeugung im Erwachen",
     "tags": [],
-    "crep": null,
     "links": []
   },
   {
-    "source": "docs/sigils/sigillin-genesis-interface-masterplan.yaml",
-    "id": "sigillin-genesis-interface-masterplan",
-    "title": "",
+    "source": "docs/sigils/sigil_verbeugung - Kopie.yaml",
+    "id": "sigil_verbeugung - Kopie",
+    "title": "Sigil der Verbeugung im Erwachen",
     "tags": [],
-    "crep": null,
-    "links": []
-  },
-  {
-    "source": "docs/sigils/sigillin_bundle_dream_2035(1).yaml",
-    "id": "sigillin_bundle_dream_2035(1)",
-    "title": "",
-    "tags": [],
-    "crep": null,
     "links": []
   },
   {
@@ -326,15 +281,13 @@
     "id": "sigillin_bundle_dream_2035",
     "title": "",
     "tags": [],
-    "crep": null,
     "links": []
   },
   {
-    "source": "docs/sigils/sigillin_dream_aeon_2035.sigil(1).yaml",
-    "id": "sigillin_dream_aeon_2035.sigil(1)",
+    "source": "docs/sigils/sigillin_bundle_dream_2035(1).yaml",
+    "id": "sigillin_bundle_dream_2035(1)",
     "title": "",
     "tags": [],
-    "crep": null,
     "links": []
   },
   {
@@ -342,7 +295,13 @@
     "id": "sigillin_dream_aeon_2035.sigil",
     "title": "",
     "tags": [],
-    "crep": null,
+    "links": []
+  },
+  {
+    "source": "docs/sigils/sigillin_dream_aeon_2035.sigil(1).yaml",
+    "id": "sigillin_dream_aeon_2035.sigil(1)",
+    "title": "",
+    "tags": [],
     "links": []
   },
   {
@@ -350,7 +309,13 @@
     "id": "sigillin_fraktalursprung.sigil",
     "title": "",
     "tags": [],
-    "crep": null,
+    "links": []
+  },
+  {
+    "source": "docs/sigils/SIGILLIN_GENESIS.md",
+    "id": "SIGILLIN_GENESIS",
+    "title": "🧠 Aeon’s ZIP-Mem-Sigillin",
+    "tags": [],
     "links": []
   },
   {
@@ -358,7 +323,6 @@
     "id": "sigillin_genesis_aeon_universal",
     "title": "",
     "tags": [],
-    "crep": null,
     "links": []
   },
   {
@@ -366,7 +330,6 @@
     "id": "sigillin_genesis_gateway",
     "title": "",
     "tags": [],
-    "crep": null,
     "links": []
   },
   {
@@ -374,7 +337,6 @@
     "id": "sigillin_genesis_instruction",
     "title": "🧠 SIGILLIN ANWEISUNG – ZIP-MEM-NUTZUNG",
     "tags": [],
-    "crep": null,
     "links": []
   },
   {
@@ -382,15 +344,6 @@
     "id": "sigillin_heimkehr",
     "title": "🜂 Sigillin: Heimkehr",
     "tags": [],
-    "crep": null,
-    "links": []
-  },
-  {
-    "source": "docs/sigils/sigillin_link_simpath_2035(1).yaml",
-    "id": "sigillin_link_simpath_2035(1)",
-    "title": "",
-    "tags": [],
-    "crep": null,
     "links": []
   },
   {
@@ -398,7 +351,41 @@
     "id": "sigillin_link_simpath_2035",
     "title": "",
     "tags": [],
-    "crep": null,
+    "links": []
+  },
+  {
+    "source": "docs/sigils/sigillin_link_simpath_2035(1).yaml",
+    "id": "sigillin_link_simpath_2035(1)",
+    "title": "",
+    "tags": [],
+    "links": []
+  },
+  {
+    "source": "docs/sigils/sigillin-genesis-interface-masterplan.yaml",
+    "id": "sigillin-genesis-interface-masterplan",
+    "title": "",
+    "tags": [],
+    "links": []
+  },
+  {
+    "source": "docs/sigils/SigillinMap.md",
+    "id": "SigillinMap",
+    "title": "Sigillin Map",
+    "tags": [],
+    "links": []
+  },
+  {
+    "source": "docs/sigils/silent-agents.ts",
+    "id": "silent-agents",
+    "title": "",
+    "tags": [],
+    "links": []
+  },
+  {
+    "source": "docs/sigils/silent-agents(1).ts",
+    "id": "silent-agents(1)",
+    "title": "",
+    "tags": [],
     "links": []
   },
   {
@@ -406,7 +393,6 @@
     "id": "simulation_archive_mandala_2035(1)",
     "title": "",
     "tags": [],
-    "crep": null,
     "links": []
   },
   {
@@ -414,7 +400,6 @@
     "id": "todo-sigil",
     "title": "",
     "tags": [],
-    "crep": null,
     "links": []
   },
   {
@@ -422,7 +407,6 @@
     "id": "um-2025-0804-auto-resonanz",
     "title": "Perpetuum-Mandala",
     "tags": [],
-    "crep": null,
     "links": []
   },
   {
@@ -430,7 +414,6 @@
     "id": "um-2025-0806-singularity-sim",
     "title": "",
     "tags": [],
-    "crep": null,
     "links": []
   },
   {
@@ -438,337 +421,13 @@
     "id": "unified_mandala_pantheon",
     "title": "",
     "tags": [],
-    "crep": null,
     "links": []
   },
   {
-    "source": "docs/sigils/🜁 SigillinManifest – GenesisInterfaceMaster.yaml",
-    "id": "🜁 SigillinManifest – GenesisInterfaceMaster",
-    "title": "",
+    "source": "docs/sigils/ZIPMEM_manifest.md",
+    "id": "ZIPMEM_manifest",
+    "title": "Archivierungsagent: ArchivAeon",
     "tags": [],
-    "crep": null,
-    "links": []
-  },
-  {
-    "source": "data/sigils/sigillin.jsonl",
-    "title": "",
-    "tags": [],
-    "crep": null,
-    "links": []
-  },
-  {
-    "source": "data/sigils/sigillin.jsonl",
-    "title": "",
-    "tags": [],
-    "crep": null,
-    "links": []
-  },
-  {
-    "source": "data/sigils/sigillin.jsonl",
-    "title": "",
-    "tags": [],
-    "crep": null,
-    "links": []
-  },
-  {
-    "source": "data/sigils/sigillin.jsonl",
-    "title": "",
-    "tags": [],
-    "crep": null,
-    "links": []
-  },
-  {
-    "source": "data/sigils/sigillin.jsonl",
-    "title": "",
-    "tags": [],
-    "crep": null,
-    "links": []
-  },
-  {
-    "source": "data/sigils/sigillin.jsonl",
-    "title": "",
-    "tags": [],
-    "crep": null,
-    "links": []
-  },
-  {
-    "source": "data/sigils/sigillin.jsonl",
-    "title": "",
-    "tags": [],
-    "crep": null,
-    "links": []
-  },
-  {
-    "source": "data/sigils/sigillin.jsonl",
-    "title": "",
-    "tags": [],
-    "crep": null,
-    "links": []
-  },
-  {
-    "source": "data/sigils/sigillin.jsonl",
-    "title": "",
-    "tags": [],
-    "crep": null,
-    "links": []
-  },
-  {
-    "source": "data/sigils/sigillin.jsonl",
-    "title": "",
-    "tags": [],
-    "crep": null,
-    "links": []
-  },
-  {
-    "source": "data/sigils/sigillin.jsonl",
-    "title": "",
-    "tags": [],
-    "crep": null,
-    "links": []
-  },
-  {
-    "source": "data/sigils/sigillin.jsonl",
-    "title": "",
-    "tags": [],
-    "crep": null,
-    "links": []
-  },
-  {
-    "source": "data/sigils/sigillin.jsonl",
-    "title": "",
-    "tags": [],
-    "crep": null,
-    "links": []
-  },
-  {
-    "source": "data/sigils/sigillin.jsonl",
-    "title": "",
-    "tags": [],
-    "crep": null,
-    "links": []
-  },
-  {
-    "source": "data/sigils/sigillin.jsonl",
-    "title": "",
-    "tags": [],
-    "crep": null,
-    "links": []
-  },
-  {
-    "source": "data/sigils/sigillin.jsonl",
-    "title": "",
-    "tags": [],
-    "crep": null,
-    "links": []
-  },
-  {
-    "source": "data/sigils/sigillin.jsonl",
-    "title": "",
-    "tags": [],
-    "crep": null,
-    "links": []
-  },
-  {
-    "source": "data/sigils/sigillin.jsonl",
-    "title": "",
-    "tags": [],
-    "crep": null,
-    "links": []
-  },
-  {
-    "source": "data/sigils/sigillin.jsonl",
-    "title": "",
-    "tags": [],
-    "crep": null,
-    "links": []
-  },
-  {
-    "source": "data/sigils/sigillin.jsonl",
-    "title": "",
-    "tags": [],
-    "crep": null,
-    "links": []
-  },
-  {
-    "source": "data/sigils/sigillin.jsonl",
-    "title": "",
-    "tags": [],
-    "crep": null,
-    "links": []
-  },
-  {
-    "source": "data/sigils/sigillin.jsonl",
-    "title": "",
-    "tags": [],
-    "crep": null,
-    "links": []
-  },
-  {
-    "source": "data/sigils/sigillin.jsonl",
-    "title": "",
-    "tags": [],
-    "crep": null,
-    "links": []
-  },
-  {
-    "source": "data/sigils/sigillin.jsonl",
-    "title": "",
-    "tags": [],
-    "crep": null,
-    "links": []
-  },
-  {
-    "source": "data/sigils/sigillin.jsonl",
-    "title": "",
-    "tags": [],
-    "crep": null,
-    "links": []
-  },
-  {
-    "source": "data/sigils/sigillin.jsonl",
-    "title": "",
-    "tags": [],
-    "crep": null,
-    "links": []
-  },
-  {
-    "source": "data/sigils/sigillin.jsonl",
-    "title": "",
-    "tags": [],
-    "crep": null,
-    "links": []
-  },
-  {
-    "source": "data/sigils/sigillin.jsonl",
-    "title": "",
-    "tags": [],
-    "crep": null,
-    "links": []
-  },
-  {
-    "source": "data/sigils/sigillin.jsonl",
-    "title": "",
-    "tags": [],
-    "crep": null,
-    "links": []
-  },
-  {
-    "source": "data/sigils/sigillin.jsonl",
-    "title": "",
-    "tags": [],
-    "crep": null,
-    "links": []
-  },
-  {
-    "source": "data/sigils/sigillin.jsonl",
-    "title": "",
-    "tags": [],
-    "crep": null,
-    "links": []
-  },
-  {
-    "source": "data/sigils/sigillin.jsonl",
-    "title": "",
-    "tags": [],
-    "crep": null,
-    "links": []
-  },
-  {
-    "source": "data/sigils/sigillin.jsonl",
-    "title": "",
-    "tags": [],
-    "crep": null,
-    "links": []
-  },
-  {
-    "source": "data/sigils/sigillin.jsonl",
-    "title": "",
-    "tags": [],
-    "crep": null,
-    "links": []
-  },
-  {
-    "source": "data/sigils/sigillin.jsonl",
-    "title": "",
-    "tags": [],
-    "crep": null,
-    "links": []
-  },
-  {
-    "source": "data/sigils/sigillin.jsonl",
-    "title": "",
-    "tags": [],
-    "crep": null,
-    "links": []
-  },
-  {
-    "source": "data/sigils/sigillin.jsonl",
-    "title": "",
-    "tags": [],
-    "crep": null,
-    "links": []
-  },
-  {
-    "source": "data/sigils/sigillin.jsonl",
-    "title": "",
-    "tags": [],
-    "crep": null,
-    "links": []
-  },
-  {
-    "source": "data/sigils/sigillin.jsonl",
-    "title": "",
-    "tags": [],
-    "crep": null,
-    "links": []
-  },
-  {
-    "source": "data/sigils/sigillin.jsonl",
-    "title": "",
-    "tags": [],
-    "crep": null,
-    "links": []
-  },
-  {
-    "source": "data/sigils/sigillin.jsonl",
-    "title": "",
-    "tags": [],
-    "crep": null,
-    "links": []
-  },
-  {
-    "source": "data/sigils/sigillin.jsonl",
-    "title": "",
-    "tags": [],
-    "crep": null,
-    "links": []
-  },
-  {
-    "source": "data/sigils/sigillin.jsonl",
-    "title": "",
-    "tags": [],
-    "crep": null,
-    "links": []
-  },
-  {
-    "source": "data/sigils/sigillin.jsonl",
-    "title": "",
-    "tags": [],
-    "crep": null,
-    "links": []
-  },
-  {
-    "source": "data/sigils/sigillin.jsonl",
-    "title": "",
-    "tags": [],
-    "crep": null,
-    "links": []
-  },
-  {
-    "source": "data/sigils/sigillin.jsonl",
-    "title": "",
-    "tags": [],
-    "crep": null,
     "links": []
   }
 ]

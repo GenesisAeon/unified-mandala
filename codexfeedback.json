@@ -19,6 +19,11 @@
       "fraktalrun": "Fraktal12 SigillinMap",
       "status": "implemented",
       "notes": "Mermaid-SigillinMap generiert und CREPBadge in UI integriert."
+    },
+    {
+      "fraktalrun": "Fraktal13 SigilsLint",
+      "status": "implemented",
+      "notes": "Sigils-Validation-Script eingeführt; nächster Schritt CREP-Utility."
     }
   ]
 }
