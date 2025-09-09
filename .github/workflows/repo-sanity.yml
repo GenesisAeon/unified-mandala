@@ -1,0 +1,14 @@
+name: Repo Sanity
+on: [push, pull_request]
+jobs:
+  sanity:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: corepack enable && corepack prepare pnpm@8.15.6 --activate
+      - run: pnpm install --ignore-scripts
+      - run: pnpm maps:build && pnpm audit:ui-vr
+      - run: test -f analysis/repo-map.json && test -f analysis/ui-vr-audit.json

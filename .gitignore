@@ -146,3 +146,7 @@ mandala-chronik.yaml
 user-config/
 .aeoncache
 .venv/
+
+# repo-map analysis outputs
+analysis/repo-map.json
+analysis/repo-map.csv
