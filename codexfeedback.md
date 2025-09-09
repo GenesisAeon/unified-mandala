@@ -17,3 +17,4 @@
 - FR-UM-2025-08-31-Fraktal9: Alle Änderungen in einem Lauf umgesetzt – kein zweiter Lauf notwendig.
 - FR-UM-2025-09-01-Fraktal10: Sigillin-Index-Skript hinzugefügt und ausgeführt; nächster Schritt Personhood-UI.
 - FR-UM-2025-09-02-Fraktal11: Personhood-Buildfix und SigillinIndexPanel umgesetzt – kein weiterer Lauf notwendig.
+- FR-UM-2025-09-03-Fraktal12: SigillinMap und CREPBadge integriert – kein weiterer Lauf notwendig.
