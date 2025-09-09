@@ -1,0 +1,27 @@
+version: 0.4
+topic: personhood
+components:
+  scanners:
+    - name: "scan-conversations.ts"
+      files: ["scripts/personhood/scan-conversations.ts"]
+      role: "Scans dev chats for personhood references"
+    - name: "scan-conversations-jsonl.ts"
+      files: ["scripts/personhood/scan-conversations-jsonl.ts"]
+      role: "Outputs JSONL hits"
+    - name: "scan_conversations.py"
+      files: ["scripts/personhood/scan_conversations.py"]
+      role: "Python alternative scanner"
+  keywords:
+    - files: ["scripts/personhood/kw.ts","scripts/personhood/regexes.ts"]
+  utilities:
+    - files: ["scripts/personhood/util.ts"]
+  governance:
+    - "docs/personhood/PersonhoodProtocol.md"
+    - "governance/personhood.policy.yaml"
+  registry:
+    - "packages/personhood/ConsentRegistry.ts"
+    - "packages/personhood/PolicyGuard.ts"
+    - "packages/personhood/AuditTrail.ts"
+  outputs:
+    - "out/personhood_hits.csv"
+    - "out/personhood_hits.md"
