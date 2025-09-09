@@ -1,3 +1,7 @@
-fraktalrun: "Fraktal8 OrientationHub"
-status: "implemented"
-notes: "Alle Inhalte aus Fraktal8 integriert; weitere Fragmente können in Folgeläufen ergänzt werden."
+runs:
+  - fraktalrun: "Fraktal8 OrientationHub"
+    status: "implemented"
+    notes: "Alle Inhalte aus Fraktal8 integriert; weitere Fragmente können in Folgeläufen ergänzt werden."
+  - fraktalrun: "Fraktal10 SigillinIndex"
+    status: "implemented"
+    notes: "Sigillin-Index-Skript hinzugefügt; nächster Schritt Personhood-UI."

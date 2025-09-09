@@ -1,5 +1,2 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
-node scripts/update-code-todos.js
-node scripts/sync-todo-progress.js
-node scripts/update-advancedprogress.js
