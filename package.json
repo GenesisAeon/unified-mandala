@@ -8,7 +8,8 @@
     "apps/*"
   ],
   "scripts": {
-    "build": "tsc -b",
+    "build:agents": "tsc -p tsconfig.agents.json && node -e \"const fs=require('fs'),p='dist/agents/personhood/AIJuristicAgent.js';if(fs.existsSync(p))fs.renameSync(p,p.replace(/\\.js$/,'.cjs'));\"",
+    "build": "tsc -p tsconfig.json && pnpm build:agents",
     "build:ui": "pnpm -F mandala-ui build",
     "lint": "tsc -p tsconfig.json --noEmit",
     "test": "vitest run",
@@ -72,7 +73,7 @@
     "conversations:grep": "ts-node scripts/parse-newadvancedconversations.ts",
     "sigils:index": "ts-node scripts/build-sigillin-index.ts",
     "orchestrator:dev": "ts-node unifiedmandala-orchestrator/src/server.ts",
-    "personhood:test": "node -e \"import('file://'+process.cwd()+'/dist/agents/personhood/AIJuristicAgent.js').then(m=>console.log(JSON.stringify((m.default||m).analyze({subject:'ai',claims:['autonomy','contractual capacity']})))).catch(err=>console.error(err))\"",
+    "personhood:test": "pnpm build:agents && node -e \"console.log(require('./dist/agents/personhood/AIJuristicAgent.cjs').analyze({subject:'ai',claims:['autonomy','contractual capacity']}))\"",
     "maps:all": "pnpm maps:build",
     "llm:send:claude": "node tools/llm/send-claude.mjs",
     "llm:send:mistral": "node tools/llm/send-mistral.mjs",

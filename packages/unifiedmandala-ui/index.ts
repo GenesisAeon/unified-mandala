@@ -13,6 +13,7 @@ export { default as AeonTrigger } from './components/AeonTrigger';
 export { default as MandalaGalaxyView } from './components/MandalaGalaxyView';
 export { default as LogbuchPanel } from './components/LogbuchPanel';
 export { default as SigillinOverlay } from './components/SigillinOverlay';
+export { default as SigillinIndexPanel } from './components/SigillinIndexPanel';
 export * from './hooks/useCREPManager';
 export * from './hooks/useCREPHistory';
 export { default as MandalaCREPCircle } from './components/MandalaCREPCircle';
