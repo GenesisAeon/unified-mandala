@@ -5,3 +5,6 @@ runs:
   - fraktalrun: "Fraktal10 SigillinIndex"
     status: "implemented"
     notes: "Sigillin-Index-Skript hinzugefügt; nächster Schritt Personhood-UI."
+  - fraktalrun: "Fraktal11 PersonhoodBuild"
+    status: "implemented"
+    notes: "Personhood-Build und SigillinIndexPanel umgesetzt; Tests grün."
