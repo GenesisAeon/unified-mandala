@@ -8,3 +8,6 @@ runs:
   - fraktalrun: "Fraktal11 PersonhoodBuild"
     status: "implemented"
     notes: "Personhood-Build und SigillinIndexPanel umgesetzt; Tests grün."
+  - fraktalrun: "Fraktal12 SigillinMap"
+    status: "implemented"
+    notes: "Mermaid-SigillinMap generiert und CREPBadge in UI integriert."

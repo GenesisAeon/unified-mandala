@@ -1,13 +1,36 @@
 import React, { useEffect, useMemo, useState } from "react";
+import CREPBadge from "./CREPBadge";
+
+type CREPScore =
+  | number
+  | {
+      C?: number;
+      R?: number;
+      E?: number;
+      P?: number;
+      emergence_score?: number;
+    };
 
 type SigilEntry = {
   id: string;
   title?: string;
   tags?: string[];
-  crep?: number;
+  crep?: CREPScore;
   path?: string;
   summary?: string;
 };
+
+function extractScore(crep?: CREPScore): number | undefined {
+  if (typeof crep === "number") return crep;
+  if (crep && typeof crep === "object") {
+    if (typeof crep.emergence_score === "number") return crep.emergence_score;
+    const values = [crep.C, crep.R, crep.E, crep.P].filter(
+      (v): v is number => typeof v === "number"
+    );
+    if (values.length) return values.reduce((a, b) => a + b, 0) / values.length;
+  }
+  return undefined;
+}
 
 export default function SigillinIndexPanel() {
   const [data, setData] = useState<SigilEntry[]>([]);
@@ -74,11 +97,10 @@ export default function SigillinIndexPanel() {
               }}
             >
               <strong>{d.title || d.id}</strong>
-              {typeof d.crep === "number" && (
-                <span title="CREP" style={{ opacity: 0.8 }}>
-                  CREP: {d.crep.toFixed(2)}
-                </span>
-              )}
+              {(() => {
+                const s = extractScore(d.crep);
+                return typeof s === "number" ? <CREPBadge score={s} /> : null;
+              })()}
             </div>
             {d.summary && (
               <div style={{ opacity: 0.85, marginTop: 4 }}>{d.summary}</div>

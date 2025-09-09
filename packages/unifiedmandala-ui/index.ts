@@ -14,6 +14,7 @@ export { default as MandalaGalaxyView } from './components/MandalaGalaxyView';
 export { default as LogbuchPanel } from './components/LogbuchPanel';
 export { default as SigillinOverlay } from './components/SigillinOverlay';
 export { default as SigillinIndexPanel } from './components/SigillinIndexPanel';
+export { default as CREPBadge } from './components/CREPBadge';
 export * from './hooks/useCREPManager';
 export * from './hooks/useCREPHistory';
 export { default as MandalaCREPCircle } from './components/MandalaCREPCircle';
