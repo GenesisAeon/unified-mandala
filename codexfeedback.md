@@ -18,3 +18,4 @@
 - FR-UM-2025-09-01-Fraktal10: Sigillin-Index-Skript hinzugefügt und ausgeführt; nächster Schritt Personhood-UI.
 - FR-UM-2025-09-02-Fraktal11: Personhood-Buildfix und SigillinIndexPanel umgesetzt – kein weiterer Lauf notwendig.
 - FR-UM-2025-09-03-Fraktal12: SigillinMap und CREPBadge integriert – kein weiterer Lauf notwendig.
+- FR-UM-2025-09-09-Fraktal13: Sigils-Validation-Script eingeführt; nächster Schritt CREP-Utility.
