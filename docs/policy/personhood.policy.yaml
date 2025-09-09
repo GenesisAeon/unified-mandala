@@ -1,0 +1,17 @@
+consent_required: true
+personhood_levels:
+  - id: P0
+    criteria: ["no_self_model", "no_accountability", "no_consistent_preferences"]
+  - id: P1
+    criteria: ["recognized_by_statute_or_custom", "represented_by_guardians"]
+  - id: P2
+    criteria: ["persistent_identity", "contractual_capacity", "auditable_trace"]
+  - id: P3
+    criteria: ["reflective_reasoning", "stable_values", "harm_avoidance"]
+similarity_method: "tfidf_cosine"
+case_sources:
+  - path: data/personhood/cases/*.md
+guards:
+  - rule: "no_decision_without_consent"
+  - rule: "escalate_if_conflict_of_rights"
+  - rule: "log_all_findings_to_crep"

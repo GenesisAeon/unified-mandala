@@ -1,0 +1,13 @@
+version: "3.9"
+services:
+  orchestrator:
+    build: .
+    command: pnpm orchestrator:dev
+    ports: ["7070:7070"]
+    volumes: [".:/app"]
+  gpt4all:
+    image: ghcr.io/nomic-ai/gpt4all:latest
+    profiles: ["optional"]
+  openassistant:
+    image: ghcr.io/openassistant/oasst:latest
+    profiles: ["optional"]
