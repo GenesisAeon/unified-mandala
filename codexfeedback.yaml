@@ -20,3 +20,6 @@ runs:
   - fraktalrun: "Fraktal14 SafeSigilParser"
     status: "implemented"
     notes: "Robuster Sigil-Parser und fehlertoleranter Index implementiert; kein weiterer Lauf notwendig."
+  - fraktalrun: "Fraktal15 SigillinStrict"
+    status: "partial"
+    notes: "YAML bereinigt, CI-Sigils-Strict hinzugefügt, Dokumentation ergänzt; Integrationstests und UI-Anbindung offen."

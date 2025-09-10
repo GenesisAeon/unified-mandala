@@ -25,7 +25,7 @@ simulation_archive:
         depth: 0.8
         origin: "user:self"
       response:
-        - "👂 Empfangen: "Ich bin bereit, nur zu sein" aus user:self"
+        - '👂 Empfangen: "Ich bin bereit, nur zu sein" aus user:self'
         - "🪞 Spiegel: {'intent':'Ich bin bereit, nur zu sein','depth':0.8,'origin':'user:self'}"
         - "... keine Störung erkannt ..."
     - signal:
