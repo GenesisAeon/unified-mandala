@@ -39,6 +39,11 @@
       "fraktalrun": "Fraktal15 SigillinStrict",
       "status": "partial",
       "notes": "YAML bereinigt, CI-Sigils-Strict hinzugefügt, Dokumentation ergänzt; Integrationstests und UI-Anbindung offen."
+    },
+    {
+      "fraktalrun": "Fraktal16 ERA5Adapter",
+      "status": "implemented",
+      "notes": "ERA5 adapter pipeline, build script und CI-Workflows integriert; kein weiterer Lauf notwendig."
     }
   ]
 }

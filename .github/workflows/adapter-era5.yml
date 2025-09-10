@@ -1,0 +1,44 @@
+name: ERA5 Adapter Pipeline
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 2 * * *"   # täglich 02:00 UTC
+jobs:
+  era5:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+
+      - run: corepack enable && corepack prepare pnpm@8.15.6 --activate
+      - run: pnpm install --frozen-lockfile
+
+      - name: Strict Sigillin Index
+        run: pnpm sigils:index:strict
+
+      - name: Build ERA5 Adapter
+        env:
+          CDS_API_URL: ${{ secrets.CDS_API_URL }}
+          CDS_API_KEY: ${{ secrets.CDS_API_KEY }}
+          ERA5_VARIABLE: 2m_temperature
+          ERA5_YEAR: 2024
+          ERA5_MONTH: 9
+        run: pnpm adapter:build:era5
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: era5-data
+          path: |
+            data/mrv/*.parquet
+            data/stac/*.json
+            data/processed/*.nc
+            data/raw/*.nc
+            data/mrv/*.score.txt

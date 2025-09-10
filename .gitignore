@@ -150,3 +150,7 @@ user-config/
 # repo-map analysis outputs
 analysis/repo-map.json
 analysis/repo-map.csv
+# ERA5 adapter artifacts
+data/
+.cache/
+era5_cache.sqlite
