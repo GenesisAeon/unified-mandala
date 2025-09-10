@@ -22,3 +22,4 @@
 - FR-UM-2025-09-15-Fraktal13-CREPUtility: CREP-Normalisierung und Index-Fix umgesetzt – kein weiterer Lauf notwendig.
 - FR-UM-2025-09-26-Fraktal14: Robuster Sigil-Parser und fehlertoleranter Index implementiert – kein weiterer Lauf notwendig.
 - FR-UM-2025-09-27-Fraktal15: YAML bereinigt, CI-Sigils-Strict integriert, Dokumentation der Sigillin-Formate hinzugefügt; Integrationstests und UI-Anbindung noch offen.
+- FR-UM-2025-09-30-Fraktal16: ERA5 Adapter pipeline, Build-Script und CI integriert – kein weiterer Lauf notwendig.

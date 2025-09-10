@@ -85,9 +85,11 @@
     "guardrails:check": "node tools/governance-guardrails.mjs",
     "release:notes": "node tools/release/notes2.mjs",
     "metrics:serve": "node tools/metrics/patch-metrics.mjs",
-    "sigils:index:strict": "SIGILS_STRICT=1 ts-node scripts/sigils-index.ts",
+    "sigils:index:strict": "SIGILS_STRICT=1 pnpm sigils:index",
     "sigils:errors": "node -e \"console.log(require('./out/sigils_errors.json').length + ' error(s)');\"",
-    "sigils:scan": "ts-node scripts/find-bad-yaml.ts"
+    "sigils:scan": "node scripts/find-bad-yaml.cjs",
+    "adapter:build:era5": "node scripts/build-adapter-era5.mjs",
+    "adapter:test:era5": "pytest -q tests/adapters/test_era5.py"
   },
   "dependencies": {
     "@automerge/automerge": "^3.1.1",
