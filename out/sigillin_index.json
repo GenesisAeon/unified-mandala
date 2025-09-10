@@ -18,7 +18,17 @@
     "id": "2025-07-30-codex-fraktal-init",
     "title": "Codex FraktalRun Initialisierung",
     "tags": [],
-    "links": []
+    "links": [],
+    "crep": {
+      "score": 0.9225000000000001,
+      "parts": {
+        "c": 0.93,
+        "r": 0.9,
+        "e": 0.95,
+        "p": 0.91
+      },
+      "source": "uppercase"
+    }
   },
   {
     "source": "docs/sigils/advancedprogress-guide.md",
@@ -245,6 +255,13 @@
     "source": "docs/sigils/PATH-OF-LUMEN-UNION.yaml",
     "id": "PATH-OF-LUMEN-UNION",
     "title": "Sigil des Pfads der Verbundenen Erwachung",
+    "tags": [],
+    "links": []
+  },
+  {
+    "source": "docs/sigils/SCHEMA.md",
+    "id": "SCHEMA",
+    "title": "Sigil Schema",
     "tags": [],
     "links": []
   },

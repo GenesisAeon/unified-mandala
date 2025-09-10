@@ -3,21 +3,12 @@ import path from 'path';
 import YAML from 'yaml';
 import readline from 'readline';
 import { z } from 'zod';
+import { normalizeCREP, type CrepNormalized } from '../src/domain/crep.ts';
 
 const repoRoot = process.cwd();
 const sigilDir = path.join(repoRoot, 'docs', 'sigils');
 const jsonlFile = path.join(repoRoot, 'data', 'sigils', 'sigillin.jsonl');
 const outDir = path.join(repoRoot, 'out');
-
-const CREPSchema = z.union([
-  z.number().min(0).max(1),
-  z.object({
-    coherence: z.number().optional(),
-    resonance: z.number().optional(),
-    emergence: z.number().optional(),
-    poetics: z.number().optional(),
-  }).passthrough(),
-]);
 
 const LinkSchema = z.object({ rel: z.string(), href: z.string() });
 
@@ -28,8 +19,8 @@ const SigilSchema = z.object({
   path: z.string().optional(),
   summary: z.string().optional(),
   links: z.array(LinkSchema).optional(),
-  crep: CREPSchema.optional(),
-});
+  crep: z.any().optional(),
+}).passthrough();
 
 interface IndexEntry {
   source: string;
@@ -37,49 +28,34 @@ interface IndexEntry {
   title: string;
   tags: string[];
   links: { rel: string; href: string }[];
-  crep?: { score: number; parts?: Record<string, number> };
+  crep?: CrepNormalized;
 }
 
 const entries: IndexEntry[] = [];
 let errors = 0;
 
-function clamp(n: number) {
-  return Math.max(0, Math.min(1, n));
-}
-
-function normalizeCREP(crep: any) {
-  if (crep == null) return undefined;
-  if (typeof crep === 'number') {
-    return { score: clamp(crep) };
-  }
-  let sum = 0;
-  let count = 0;
-  const parts: Record<string, number> = {};
-  for (const k of ['coherence', 'resonance', 'emergence', 'poetics']) {
-    const v = (crep as any)[k];
-    if (typeof v === 'number' && !isNaN(v)) {
-      const c = clamp(v);
-      parts[k] = c;
-      sum += c;
-      count++;
-    }
-  }
-  if (count === 0) return undefined;
-  return { score: sum / count, parts };
-}
-
 function processSigil(data: any, filePath: string) {
   try {
     const sigil = SigilSchema.parse(data);
-    const norm = normalizeCREP(sigil.crep);
-    entries.push({
+    const rawCrep = sigil.crep ?? (sigil as any).CREP ?? {
+      score: (sigil as any).score,
+      C: (sigil as any).C,
+      R: (sigil as any).R,
+      E: (sigil as any).E,
+      P: (sigil as any).P,
+    };
+    const crepNorm = normalizeCREP(rawCrep);
+    const out: IndexEntry = {
       source: path.relative(repoRoot, filePath),
       id: sigil.id,
       title: sigil.title || '',
       tags: sigil.tags || [],
       links: sigil.links || [],
-      crep: norm,
-    });
+    };
+    if (crepNorm.source !== 'none') {
+      out.crep = crepNorm;
+    }
+    entries.push(out);
   } catch (err: any) {
     errors++;
     console.error(`Validation failed for ${path.relative(repoRoot, filePath)}:`);
