@@ -44,6 +44,11 @@
       "fraktalrun": "Fraktal16 ERA5Adapter",
       "status": "implemented",
       "notes": "ERA5 adapter pipeline, build script und CI-Workflows integriert; kein weiterer Lauf notwendig."
+    },
+    {
+      "fraktalrun": "Fraktal17 ValidatorHardening",
+      "status": "implemented",
+      "notes": "CI-Baseline mit striktem Sigil-Index, Adapter-Tests und UI-Erweiterung umgesetzt; kein weiterer Lauf notwendig."
     }
   ]
 }

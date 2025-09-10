@@ -17,6 +17,9 @@ corepack prepare pnpm@8.15.6 --activate
 # 2) Dependencies
 pnpm install
 
+# 2.1) Environment
+cp .env.example .env # set CDS_API_KEY
+
 # 3) UI (Dev, mit HMR, Port 5173)
 pnpm dev:ui
 # -> http://localhost:5173
