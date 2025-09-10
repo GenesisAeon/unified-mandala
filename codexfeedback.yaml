@@ -14,3 +14,6 @@ runs:
   - fraktalrun: "Fraktal13 SigilsLint"
     status: "implemented"
     notes: "Sigils-Validation-Script eingeführt; nächster Schritt CREP-Utility."
+  - fraktalrun: "Fraktal13 CREPUtility"
+    status: "implemented"
+    notes: "CREP-Normalisierung und Index-Fix umgesetzt; kein weiterer Lauf notwendig."
