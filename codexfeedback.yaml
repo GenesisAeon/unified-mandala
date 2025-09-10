@@ -17,3 +17,6 @@ runs:
   - fraktalrun: "Fraktal13 CREPUtility"
     status: "implemented"
     notes: "CREP-Normalisierung und Index-Fix umgesetzt; kein weiterer Lauf notwendig."
+  - fraktalrun: "Fraktal14 SafeSigilParser"
+    status: "implemented"
+    notes: "Robuster Sigil-Parser und fehlertoleranter Index implementiert; kein weiterer Lauf notwendig."
