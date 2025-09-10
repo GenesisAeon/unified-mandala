@@ -20,3 +20,4 @@
 - FR-UM-2025-09-03-Fraktal12: SigillinMap und CREPBadge integriert – kein weiterer Lauf notwendig.
 - FR-UM-2025-09-09-Fraktal13: Sigils-Validation-Script eingeführt; nächster Schritt CREP-Utility.
 - FR-UM-2025-09-15-Fraktal13-CREPUtility: CREP-Normalisierung und Index-Fix umgesetzt – kein weiterer Lauf notwendig.
+- FR-UM-2025-09-26-Fraktal14: Robuster Sigil-Parser und fehlertoleranter Index implementiert – kein weiterer Lauf notwendig.
