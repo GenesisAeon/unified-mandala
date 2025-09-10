@@ -20,6 +20,7 @@ jobs:
       - run: pnpm install
       - run: pnpm run update:code-todos
       - run: pnpm run validate:todos
+      - run: pnpm sigils:index:strict
       - run: pnpm audit --audit-level=moderate
       - run: pnpm --filter ./packages/crep-engine run lint test build
       - run: pnpm --filter ./packages/unifiedmandala-ui run lint test build
