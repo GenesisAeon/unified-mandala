@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import glob from 'glob';
+import { globSync } from 'glob';
 
 export function scanTodoComments(text: string): string[] {
   const regex = /TODO[:\s](.*)/g;
@@ -20,7 +20,7 @@ export interface TodoComment {
 
 export function scanTodoCommentsInDir(dir: string): TodoComment[] {
   const patterns = ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'];
-  const files = glob.sync(`{${patterns.join(',')}}`, {
+  const files = globSync(`{${patterns.join(',')}}`, {
     cwd: dir,
     ignore: ['node_modules/**', '**/node_modules/**', '**/dist/**'],
   });

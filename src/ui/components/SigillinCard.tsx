@@ -1,24 +1,14 @@
 import React from "react";
 import { CREPBadge } from "./CREPBadge";
+import { EmergenceBadge } from "./SigillinBadge";
 
 export function SigillinCard({ sigillin }: { sigillin: any }) {
-  const epClass = sigillin.metrics?.emergenceClass;
-  const badgeColor =
-    epClass === "high"
-      ? "bg-green-100 text-green-800"
-      : epClass === "medium"
-      ? "bg-amber-100 text-amber-800"
-      : "bg-red-100 text-red-800";
   return (
     <div className="border rounded p-3">
       <div className="flex items-center justify-between">
         <h3 className="font-semibold">{sigillin.name || sigillin.id}</h3>
         <div className="flex gap-2 items-center">
-          {epClass && (
-            <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${badgeColor}`}>
-              {epClass}
-            </span>
-          )}
+          <EmergenceBadge value={sigillin.metrics?.emergencePotential ?? 0} />
           {sigillin.crep?.score != null && <CREPBadge value={sigillin.crep.score} />}
         </div>
       </div>

@@ -1,9 +1,9 @@
-import glob from 'glob';
+import { globSync } from 'glob';
 import path from 'path';
 import { generateManifest } from './autoDocManifest';
 
 export function generateRepoDocs(patterns: string[] = ['packages/**/*.ts'], outDir = 'docs/autodoc', manifestPath = path.join(outDir, 'manifest.json')) {
-  const files = patterns.flatMap(p => glob.sync(p, { ignore: ['**/*.test.ts', '**/__tests__/**'] }));
+  const files = patterns.flatMap(p => globSync(p, { ignore: ['**/*.test.ts', '**/__tests__/**'] }));
   return generateManifest(files, outDir, manifestPath);
 }
 
