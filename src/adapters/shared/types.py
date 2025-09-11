@@ -1,8 +1,9 @@
 from __future__ import annotations
+# pyright: reportUnknownMemberType=false, reportInvalidTypeArguments=false, reportAttributeAccessIssue=false
 from pathlib import Path
 from typing import Protocol, TypedDict
-import numpy as np  # type: ignore
-import xarray as xr  # type: ignore
+import numpy as np
+import xarray as xr
 from numpy.typing import NDArray
 
 PathLike = str | Path

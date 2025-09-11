@@ -13,3 +13,11 @@ def fetch_oisst(year: int, month: int, output_dir: PathLike) -> str:
         return write_synthetic_cube(output, var="sea_surface_temperature")
     # ... live-path behutsam lassen (no-op/offline)
     return write_synthetic_cube(output, var="sea_surface_temperature")
+
+
+if __name__ == "__main__":
+    import sys
+    y = int(sys.argv[1])
+    m = int(sys.argv[2])
+    out = sys.argv[3]
+    fetch_oisst(y, m, out)

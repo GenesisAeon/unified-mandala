@@ -6,15 +6,18 @@ from adapters.shared.types import Dataset, PathLike
 
 def calculate_crep_score(input_path: PathLike) -> float:
     ds: Dataset = xr.open_dataset(str(input_path), engine="netcdf4")
-    time_var = next((k for k in ds.coords if "time" in k.lower()), None)
+    time_var = next((str(k) for k in ds.coords if "time" in str(k).lower()), None)
     recency = 1.0
     if time_var:
         times = xr.decode_cf(ds)[time_var].values
         if getattr(times, "size", 0) > 0:
-            latest = datetime.fromisoformat(str(times[-1])).replace(tzinfo=timezone.utc)
-            days = max((datetime.now(timezone.utc) - latest).days, 0)
-            recency = 1.0 - min(days / 30.0, 1.0)
-    sst_var = next((k for k in ds.data_vars if "sst" in k.lower()), None)
+            try:
+                latest = datetime.fromisoformat(str(times[-1])).replace(tzinfo=timezone.utc)
+                days = max((datetime.now(timezone.utc) - latest).days, 0)
+                recency = 1.0 - min(days / 30.0, 1.0)
+            except ValueError:
+                recency = 1.0
+    sst_var = next((str(k) for k in ds.data_vars if "sst" in str(k).lower()), None)
     if sst_var:
         total = float(ds[sst_var].size)
         missing = float(ds[sst_var].isnull().sum())

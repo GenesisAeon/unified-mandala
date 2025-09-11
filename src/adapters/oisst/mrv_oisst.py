@@ -1,5 +1,6 @@
 from __future__ import annotations
 from pathlib import Path
+# pyright: reportUnknownMemberType=false, reportUnknownVariableType=false, reportAttributeAccessIssue=false
 import xarray as xr  # type: ignore
 from adapters.shared.types import Dataset, PathLike
 

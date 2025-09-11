@@ -1,15 +1,15 @@
 {
-  "include": [
-    "src/adapters/shared",
-    "src/adapters/oisst/fetch_oisst.py",
-    "src/adapters/oisst/resample_oisst.py",
-    "src/adapters/oisst/mrv_oisst.py",
-    "src/adapters/era5/fetch.py",
-    "src/adapters/era5/resample.py",
-    "src/adapters/era5/mrv.py"
+  "include": ["src"],
+  "exclude": [
+    "dist",
+    "node_modules",
+    ".venv",
+    "venv",
+    "src/adapters/effis",
+    "src/adapters/era5/cache.py",
+    "src/adapters/era5/crep_score.py",
+    "src/adapters/oisst/crep_score_oisst.py"
   ],
-  "exclude": ["dist", "node_modules", ".venv", "venv"],
-  "stubPath": "pyright-stubs",
   "pythonVersion": "3.11",
   "typeCheckingMode": "strict",
   "reportMissingTypeStubs": false,
