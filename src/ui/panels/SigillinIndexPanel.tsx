@@ -9,6 +9,8 @@ const data: any = (() => {
 })();
 import { SigillinCard } from "../components/SigillinCard";
 import AdapterResonancePanel from "./AdapterResonance";
+const era5Score = (() => { try { return require("../../out/era5_crep.json").score ?? 0; } catch { return 0; }})();
+const oisstScore = (() => { try { return require("../../out/oisst_crep.json").score ?? 0; } catch { return 0; }})();
 
 export default function SigillinIndexPanel() {
   const [source, setSource] = useState<string>("all");
@@ -49,7 +51,7 @@ export default function SigillinIndexPanel() {
           ERA5 (Atmosphäre), OISST (Ozean), EFFIS (Feuer)
         </span>
       </div>
-      <AdapterResonancePanel />
+      <AdapterResonancePanel era5={era5Score} oisst={oisstScore} />
       <div className="grid gap-3">
         {items.map((s: any) => (
           <SigillinCard key={s.id} sigillin={s} />

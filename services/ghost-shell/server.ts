@@ -2,7 +2,7 @@ import express from 'express';
 import http from 'http';
 import { Server } from 'socket.io';
 import { socketAuth } from './auth';
-import * as ws from 'ws';
+import { WebSocketServer } from 'ws';
 import { rateLimit } from './ratelimit';
 import { logger } from './logger';
 import { listPlugins, getPlugin } from '../plugin-loader';
@@ -79,7 +79,7 @@ export function startServer(
   const server = http.createServer(app);
   let io: Server | null = null;
   if (enableSocket) {
-    io = new Server(server, { cors: { origin: "*" }, wsEngine: ws.Server });
+    io = new Server(server, { cors: { origin: "*" }, wsEngine: WebSocketServer });
     io.use(socketAuth(secret));
     io.use(rateLimit);
     io.on("connection", (socket) => {
