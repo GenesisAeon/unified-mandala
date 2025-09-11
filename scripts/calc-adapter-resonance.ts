@@ -1,5 +1,5 @@
 import fs from "fs";
-import { interAdapterResonance } from "../src/utils/crep/interAdapter";
+import { interAdapterResonance } from "../src/utils";
 
 type AdapterScore = { id: string; source: string; crepScore?: number };
 
@@ -15,7 +15,7 @@ for (const e of era5) {
     pairs.push({
       era5: e.id,
       oisst: o.id,
-      resonance: interAdapterResonance(e.crepScore, o.crepScore)
+      resonance: interAdapterResonance(e.crepScore ?? 0, o.crepScore ?? 0)
     });
   }
 }

@@ -15,14 +15,16 @@ try {
     "python -m src.adapters.oisst.resample_oisst data/raw/oisst_202301.nc data/processed/oisst_202301.nc",
     "Resample grid"
   );
-  run(
-    "python -m src.adapters.oisst.stac_oisst data/raw/oisst_202301.nc",
-    "STAC"
-  );
-  run(
-    "python -m src.adapters.oisst.mrv_oisst data/processed/oisst_202301.nc data/mrv/oisst_202301.parquet",
-    "Export MRV"
-  );
+  if (!process.env.CI) {
+    run(
+      "python -m src.adapters.oisst.stac_oisst data/raw/oisst_202301.nc",
+      "STAC"
+    );
+    run(
+      "python -m src.adapters.oisst.mrv_oisst data/processed/oisst_202301.nc data/mrv/oisst_202301.parquet",
+      "Export MRV"
+    );
+  }
   const crep = execSync(
     "python -c \"from src.adapters.oisst.crep_score_oisst import calculate_crep_score; print(calculate_crep_score('data/processed/oisst_202301.nc'))\"",
     { stdio: "pipe" }

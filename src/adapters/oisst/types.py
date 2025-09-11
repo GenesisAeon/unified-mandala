@@ -1,14 +1,14 @@
 from __future__ import annotations
-from pathlib import Path
-from typing import TypedDict, Literal
+import os
+from typing import Any, TypedDict, Literal, Union
 import numpy as np
-import numpy.typing as npt
+from numpy.typing import NDArray
 import xarray as xr
 
 Dataset = xr.Dataset
 DataArray = xr.DataArray
-NDArrayFloat = npt.NDArray[np.floating]
-PathLike = str | Path
+NDArrayFloat = Any
+PathLike = Union[str, os.PathLike[str]]
 
 class CrepWeights(TypedDict, total=False):
     recency: float

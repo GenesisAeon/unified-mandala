@@ -1,13 +1,14 @@
 import os
-import cdsapi
-
 try:
     from dotenv import load_dotenv  # type: ignore
     load_dotenv()
 except Exception:
-    pass
-CDS_API_URL = os.getenv("CDS_API_URL", "https://cds.climate.copernicus.eu/api/v2")
+    pass  # keep non-fatal for CI/offline
+
 CDS_API_KEY = os.getenv("CDS_API_KEY")
+CDS_API_URL = os.getenv("CDS_API_URL", "https://cds.climate.copernicus.eu/api/v2")
+
+import cdsapi  # type: ignore
 
 client = cdsapi.Client(url=CDS_API_URL, key=CDS_API_KEY, verify=True, timeout=600)
 

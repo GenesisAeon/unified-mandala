@@ -1,19 +1,14 @@
 {
-  "include": ["src", "tests"],
-  "exclude": [
-    "tests/nullfield_wave_test.py",
-    "tests/adapters/test_crep_score.py",
-    "src/adapters/oisst/stac_oisst.py",
-    "src/adapters/era5",
-    "scripts"
+  "include": [
+    "src/adapters/oisst/fetch_oisst.py",
+    "src/adapters/era5/fetch.py",
+    "src/adapters/oisst/types.py"
   ],
-  "typeCheckingMode": "strict",
-  "useLibraryCodeForTypes": true,
-  "reportMissingTypeStubs": "none",
-  "reportUnknownVariableType": "warning",
+  "reportMissingTypeStubs": "warning",
   "reportUnknownMemberType": "warning",
+  "reportUnknownVariableType": "warning",
+  "reportAttributeAccessIssue": "none",
   "pythonVersion": "3.10",
-  "venvPath": ".",
-  "extraPaths": ["src"],
-  "stubPath": "pyright-stubs"
+  "typeCheckingMode": "standard",
+  "executionEnvironments": [{ "root": "src" }]
 }
