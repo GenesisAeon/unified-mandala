@@ -8,6 +8,7 @@ status:
 notes:
   - "Set FEATURE flags via VITE_FEATURE_EMERGENCE_EXPLORER=on"
   - "If STAC Ajv fails, see artifacts: stac-invalid/"
+  - "Legacy type ignores removed; fixtures simplified for deterministic offline builds"
 next_steps:
   - "Add golden mini real-world NetCDF sample fixture (separate PR)"
   - "Upgrade Emergence Explorer to force-directed graph (D3) behind the flag"

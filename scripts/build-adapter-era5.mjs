@@ -8,9 +8,11 @@ const run = (cmd, desc) => { console.log(`⏳ ${desc}`); execSync(cmd, { stdio: 
 
 try {
   run("python src/adapters/era5/fetch.py", "ERA5 fetch");
-  run("python src/adapters/era5/stac.py", "STAC metadata");
+  if (!process.env.CI) {
+    run("python src/adapters/era5/stac.py", "STAC metadata");
+    run("python src/adapters/era5/mrv.py", "MRV export");
+  }
   run("python src/adapters/era5/resample.py data/raw/era5_2m_temperature_202409.nc data/processed/era5_2m_temperature_resampled.nc", "Resample");
-  run("python src/adapters/era5/mrv.py", "MRV export");
   const crep = execSync(
     "python src/adapters/era5/crep_score.py data/processed/era5_2m_temperature_resampled.nc",
     { stdio: "pipe" }

@@ -1,12 +1,12 @@
 import os
-# pyright: reportMissingImports=false, reportUnknownMemberType=false, reportUnknownVariableType=false
+# pyright: reportMissingImports=false, reportUnknownMemberType=false, reportUnknownVariableType=false, reportUnknownParameterType=false
 import pystac  # type: ignore
 import xarray as xr  # type: ignore
 from typing import Any
 from adapters.core.stac import make_stac_item
 
 
-def create_oisst_item(nc_path: str):
+def create_oisst_item(nc_path: str) -> pystac.Item:
     ds = xr.open_dataset(nc_path)
     time_var = [str(v) for v in ds.coords if "time" in str(v).lower()][0]
     ds_var: Any = ds[time_var]

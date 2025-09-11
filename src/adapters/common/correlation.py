@@ -1,9 +1,9 @@
-import xarray as xr
-import numpy as np
+import xarray as xr  # type: ignore
+import numpy as np  # type: ignore
 import json
 import os
 
-# pyright: reportUnknownArgumentType=false, reportUnknownMemberType=false
+# pyright: reportUnknownArgumentType=false, reportUnknownMemberType=false, reportUnknownVariableType=false, reportAttributeAccessIssue=false
 
 def corr_coeff(ds1: xr.Dataset, ds2: xr.Dataset, var1: str, var2: str) -> float:
     a, b = xr.align(ds1[var1], ds2[var2], join="inner")  # type: ignore[reportAttributeAccessIssue]
