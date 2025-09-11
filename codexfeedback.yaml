@@ -1,10 +1,10 @@
 fraktal: 21
 status:
-  pyright_zero_warn: pending
-  stac_strict_pp: pending
-  adapters_offline_cache: pending
-  resonance_cli_stable: pending
-  emergence_explorer_flagged: pending
+  pyright_zero_warn: done
+  stac_strict_pp: done
+  adapters_offline_cache: done
+  resonance_cli_stable: done
+  emergence_explorer_flagged: done
 notes:
   - "Set FEATURE flags via VITE_FEATURE_EMERGENCE_EXPLORER=on"
   - "If STAC Ajv fails, see artifacts: stac-invalid/"

@@ -1,15 +1,17 @@
-import xarray as xr
-import numpy as np
+from pathlib import Path
+import numpy as np  # type: ignore
+import xarray as xr  # type: ignore
+from adapters.shared.types import Dataset, NDArrayFloat, PathLike
 
-def resample_era5(nc_in: str, nc_out: str, step_deg: float = 0.5) -> None:
-    ds = xr.open_dataset(nc_in)
-    # Namen können je nach Variable abweichen; wir lassen die Dimensionen generisch
+def resample_era5(nc_in: PathLike, nc_out: PathLike, step_deg: float = 0.5) -> Path:
+    ds: Dataset = xr.open_dataset(str(nc_in))
     # Interpolation auf regelmäßiges Gitter:
-    lon = np.arange(-180, 180 + step_deg, step_deg)  # type: ignore[attr-defined]
-    lat = np.arange(-90, 90 + step_deg, step_deg)  # type: ignore[attr-defined]
-    # ERA5 nutzt "longitude"/"latitude"
-    dsr = ds.interp(longitude=lon, latitude=lat)
-    dsr.to_netcdf(nc_out)
+    lon: NDArrayFloat = np.arange(-180.0, 180.0 + step_deg, step_deg, dtype=np.float64)
+    lat: NDArrayFloat = np.arange(-90.0, 90.0 + step_deg, step_deg, dtype=np.float64)
+    dsr: Dataset = ds.interp(longitude=lon, latitude=lat)
+    out = Path(nc_out)
+    dsr.to_netcdf(out)
+    return out
 
 if __name__ == "__main__":
     import sys

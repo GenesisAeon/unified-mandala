@@ -1,7 +1,8 @@
 from __future__ import annotations
+# pyright: reportUnknownMemberType=false, reportUnknownVariableType=false
 from datetime import datetime, timezone
-import xarray as xr
-from .types import Dataset, PathLike
+import xarray as xr  # type: ignore
+from adapters.shared.types import Dataset, PathLike
 
 def calculate_crep_score(input_path: PathLike) -> float:
     ds: Dataset = xr.open_dataset(str(input_path), engine="netcdf4")

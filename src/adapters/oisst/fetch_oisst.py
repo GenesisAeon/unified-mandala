@@ -10,6 +10,6 @@ from adapters.shared.fixture import write_synthetic_cube
 def fetch_oisst(year: int, month: int, output_dir: PathLike) -> str:
     output = Path(output_dir) / f"oisst_{year}{month:02d}.nc"
     if os.getenv("CI") == "true":
-        return write_synthetic_cube(output, var="sst")
+        return write_synthetic_cube(output, var="sea_surface_temperature")
     # ... live-path behutsam lassen (no-op/offline)
-    return write_synthetic_cube(output, var="sst")
+    return write_synthetic_cube(output, var="sea_surface_temperature")
