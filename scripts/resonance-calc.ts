@@ -1,5 +1,9 @@
-import { interAdapterResonance } from "../src/utils/index.js";
-const era5 = Number(process.env.ERA5_CREP ?? "0.82");
-const oisst = Number(process.env.OISST_CREP ?? "0.91");
-const r = interAdapterResonance(era5, oisst);
-console.log(JSON.stringify({ era5, oisst, resonance: r }, null, 2));
+import { interAdapterResonance } from "../src/utils/resonance";
+import path from "node:path";
+import fs from "node:fs";
+
+const root = new URL("..", import.meta.url).pathname;
+const indexPath = path.join(root, "out", "sigillin_index.json");
+const index = JSON.parse(fs.readFileSync(indexPath, "utf8"));
+// minimal demo use…
+console.log(interAdapterResonance(0.86, 0.91).toFixed(3));

@@ -1,10 +1,11 @@
 import React from "react";
-import { interAdapterResonance } from "../../utils";
+import { interAdapterResonance } from "../../utils/resonance";
+import { FEATURES } from "../features";
 
 export default function ResonancePanel({
   era5, oisst
 }: { era5?: number; oisst?: number }) {
-  if (process.env.VITE_FEATURE_RESONANCE !== "true") return null;
+  if (!FEATURES.resonancePanel) return null;
   const score = interAdapterResonance(era5 ?? 0, oisst ?? 0);
   const klass = score > 0.8 ? "high" : score > 0.5 ? "medium" : "low";
   return (

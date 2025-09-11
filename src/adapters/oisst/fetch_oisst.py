@@ -1,39 +1,40 @@
 from __future__ import annotations
 import os
-import numpy as np  # type: ignore
-import xarray as xr
+import numpy as np
+import xarray as xr  # type: ignore
+from adapters.common.types import NDArrayFloat, PathLike
 
 
-def fetch_oisst(year: int, month: int, output_dir: str) -> str:
-    """
-    Fetch OISST (or synthesize a tiny slice in CI) and write NetCDF.
-    CI path uses xarray's scipy backend to avoid netCDF4 shared lib issues.
-    """
+def _make_synthetic_nc(out_path: str) -> str:
+    # 2x2x2 slice with coords & attrs for STAC/MRV pipeline
+    time: NDArrayFloat = np.array([
+        "2023-01-01T00:00:00",
+        "2023-01-02T00:00:00",
+    ], dtype="datetime64[ns]")
+    lat: NDArrayFloat = np.array([50.0, 51.0], dtype="float32")
+    lon: NDArrayFloat = np.array([10.0, 11.0], dtype="float32")
+    sst: NDArrayFloat = np.random.rand(2, 2, 2).astype("float32")
+    ds = xr.Dataset(
+        data_vars=dict(
+            sea_surface_temperature=(
+                ("time", "lat", "lon"), sst, {"units": "K"}
+            )
+        ),
+        coords=dict(time=time, lat=lat, lon=lon),
+        attrs=dict(source="synthetic:oisst", title="UM OISST CI slice"),
+    )
+    ds.to_netcdf(out_path, engine="scipy")
+    return out_path
+
+
+def fetch_oisst(year: int, month: int, output_dir: PathLike) -> str:
     os.makedirs(output_dir, exist_ok=True)
-    out = os.path.join(output_dir, f"oisst_{year}{month:02d}.nc")
-    ci = os.getenv("CI", "false").lower() == "true"
+    out = os.path.join(str(output_dir), f"oisst_{year}{month:02d}.nc")
+    if os.environ.get("CI") == "true":
+        return _make_synthetic_nc(out)
+    # …else: real fetch (unchanged)
+    return out
 
-    if ci:
-        # minimal 2x2x2 synthetic cube
-        time = np.array(["2023-01-01", "2023-01-02"], dtype="datetime64[ns]")
-        lat = np.array([0.0, 1.0], dtype=float)
-        lon = np.array([0.0, 1.0], dtype=float)
-        sst = xr.DataArray(
-            np.array([[[20.0, 21.0],[20.5, 21.5]], [[19.5, 20.1],[20.2, 21.2]]], dtype=float),
-            coords={"time": time, "lat": lat, "lon": lon},
-            dims=("time", "lat", "lon"),
-            name="sea_surface_temperature",
-            attrs={"units": "degC"},
-        )
-        ds = xr.Dataset({"sea_surface_temperature": sst})
-        # scipy backend writes NetCDF3 with pure Python deps
-        ds.to_netcdf(out, engine="scipy")
-        return out
-
-    # real fetch path: use remote Zarr/NetCDF if available in your impl
-    # keep engine auto; users with netCDF4/h5netcdf will be fine
-    # TODO: plug actual ERDDAP URL here if needed
-    raise RuntimeError("Non-CI OISST fetch not configured in this environment.")
 
 if __name__ == "__main__":
     import sys

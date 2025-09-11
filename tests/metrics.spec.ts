@@ -1,4 +1,5 @@
 import { describe, expect, test } from "vitest";
+import { interAdapterResonance } from "../src/utils/resonance";
 import { calculateMetrics } from "../src/utils/calculateMetrics";
 
 describe("metrics", () => {
@@ -9,4 +10,8 @@ describe("metrics", () => {
     );
     expect(m.emergencePotential).toBeCloseTo(0.8 * 0.2, 3);
   });
+});
+
+test("interAdapterResonance works", () => {
+  expect(interAdapterResonance(0.8, 0.9)).toBeGreaterThan(0);
 });

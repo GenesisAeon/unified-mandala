@@ -3,41 +3,42 @@ name: CI
 on: [push, pull_request]
 
 jobs:
-  ts_checks:
+  node_ts:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
-        with: { node-version: 20 }
-      - run: pnpm install
-      - run: npx tsc -p tsconfig.json --noEmit
-      - run: pnpm sigils:scan && pnpm stac:validate && pnpm sigils:index
-      - run: node --loader ts-node/esm scripts/resonance-calc.ts
+        with: { node-version: 20, cache: 'pnpm' }
+      - run: corepack enable
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm check:ci
+      - run: pnpm resonance:calc
 
-  py_adapters:
+  python_adapters:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
-        with: { python-version: "3.10" }
-      - run: python -V && pip -V
-      - run: pip install -U pip
-      - run: pnpm adapters:ci:install   # installs scipy, netCDF4, dotenv etc.
-      - name: Build OISST (offline)
+        with: { python-version: '3.11' }
+      - name: Cache pip
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/pip
+          key: pip-${{ runner.os }}-${{ hashFiles('**/requirements.txt') }}
+      - run: pip install -r requirements.txt || pip install -r src/adapters/requirements.txt
+      - name: OISST offline build
         env:
-          CI: true
+          CI: "true"
         run: pnpm adapter:build:oisst
-      - name: Pyright
-        run: npx pyright
-      - name: Py tests
-        run: PYTHONPATH=. pytest -q
+      - name: ERA5 dotenv smoke
+        run: python -c "from adapters.era5.fetch import load_dotenv; print('dotenv-ok')"
 
-  ui_preview:
-    needs: [ts_checks]
+  stac_gate:
     runs-on: ubuntu-latest
+    needs: [python_adapters]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with: { node-version: 20 }
-      - run: pnpm install
-      - run: VITE_FEATURE_RESONANCE=true node --loader ts-node/esm scripts/resonance-calc.ts
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm stac:validate

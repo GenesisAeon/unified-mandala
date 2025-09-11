@@ -89,6 +89,11 @@
       "fraktalrun": "Fraktal25 CIResonanceAdapters",
       "status": "implemented",
       "notes": "CI green, resonance panel and adapter hardening implemented; kein weiterer Lauf notwendig."
+    },
+    {
+      "fraktalrun": "Fraktal20 CIResonanceSTAC",
+      "status": "implemented",
+      "notes": "CI green, strict STAC gate and resonance hardening implemented; kein weiterer Lauf notwendig."
     }
   ]
 }

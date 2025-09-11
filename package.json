@@ -83,18 +83,19 @@
     "adapter:build:oisst": "node scripts/build-adapter-oisst.mjs",
     "adapter:build:effis": "node scripts/build-adapter-effis.mjs",
     "graph:build": "node scripts/build-sigillin-graph.mjs",
-    "resonance:calc": "node --loader ts-node/esm scripts/resonance-calc.ts",
+    "resonance:calc": "tsx scripts/resonance-calc.ts",
     "stac:validate": "node scripts/validate-stac.mjs",
     "ci:fast-checks": "pnpm -w -r exec -- npx tsc -p tsconfig.json --noEmit && npx pyright -p .",
     "ci:sigils": "pnpm sigils:index:strict && pnpm test:sigil tests/fixtures/sigillin/good.yaml && pnpm resonance:calc",
     "ci:adapters-offline": "CI=true pnpm adapter:build:oisst && CI=true pnpm adapter:build:era5 || true",
-    "test:ts": "tsc -p tsconfig.json --noEmit",
+    "test:ts": "vitest run",
     "test:py": "pytest -q",
     "test:sigil": "ts-node scripts/validate-sigil-cli.ts",
     "test:ui": "vitest run --passWithNoTests",
     "ci:verify": "pnpm test:ts && pnpm sigils:index:strict && pnpm adapter:build:era5",
     "scan:ingest": "node scripts/ingest-external-scan.mjs",
-    "adapters:ci:install": "pip install -r src/adapters/requirements.txt"
+    "adapters:ci:install": "pip install -r src/adapters/requirements.txt",
+    "check:ci": "pnpm -s tsc -p tsconfig.json --noEmit && npx pyright && pnpm sigils:scan && pnpm stac:validate && pnpm sigils:index"
   },
   "dependencies": {
     "@automerge/automerge": "^3.1.1",

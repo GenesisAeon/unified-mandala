@@ -1,4 +1,4 @@
-import { classifyEmergence } from "../../utils/emergenceClass";
+import { classifyEmergence } from "../../utils/resonance";
 export function EmergenceBadge({ value }: { value: number }) {
   const cls = classifyEmergence(value);
   const color = cls === "high" ? "bg-emerald-600"

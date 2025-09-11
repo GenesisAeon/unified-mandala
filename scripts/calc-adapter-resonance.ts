@@ -1,5 +1,5 @@
 import fs from "fs";
-import { interAdapterResonance } from "../src/utils";
+import { interAdapterResonance } from "../src/utils/resonance";
 
 type AdapterScore = { id: string; source: string; crepScore?: number };
 
