@@ -2,7 +2,7 @@ import React from "react";
 import { CREPBadge } from "./CREPBadge";
 
 export function SigillinCard({ sigillin }: { sigillin: any }) {
-  const epClass = sigillin.metrics?.class;
+  const epClass = sigillin.metrics?.emergenceClass;
   const badgeColor =
     epClass === "high"
       ? "bg-green-100 text-green-800"
@@ -31,6 +31,9 @@ export function SigillinCard({ sigillin }: { sigillin: any }) {
         <dt>Lifecycle</dt>
         <dd>{sigillin.metrics?.lifecycle ?? "beta"}</dd>
       </dl>
+      {sigillin.metrics?.emergencePotential !== undefined && (
+        <div className="text-xs opacity-80">r(ERA5, OISST): see correlations</div>
+      )}
     </div>
   );
 }

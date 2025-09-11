@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "STAC Item (minimal UM)",
+  "type": "object",
+  "required": ["type", "id", "bbox", "geometry", "properties", "assets"],
+  "properties": {
+    "type": { "const": "Feature" },
+    "id": { "type": "string", "minLength": 1 },
+    "bbox": { "type": "array", "minItems": 4, "items": { "type": "number" } },
+    "geometry": { "type": "object" },
+    "properties": {
+      "type": "object",
+      "required": ["datetime", "source", "processing_level"],
+      "properties": {
+        "datetime": { "type": "string" },
+        "source": { "type": "string" },
+        "processing_level": { "type": "string" }
+      },
+      "additionalProperties": true
+    },
+    "assets": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "object",
+        "required": ["href", "roles", "type"],
+        "properties": {
+          "href": { "type": "string" },
+          "roles": { "type": "array", "items": { "type": "string" } },
+          "type": { "type": "string" }
+        }
+      }
+    }
+  },
+  "additionalProperties": true
+}

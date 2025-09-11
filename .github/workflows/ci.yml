@@ -2,35 +2,55 @@ name: CI
 on: [push, pull_request]
 
 jobs:
-  pyright:
+  fast:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with: { python-version: "3.10" }
-      - run: pip install numpy xarray netCDF4 pandas pyarrow
-      - run: npx pyright
-
-  oisst:
-    needs: pyright
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with: { python-version: "3.10" }
-      - run: pip install numpy xarray netCDF4 pandas pyarrow
-      - run: pnpm adapter:build:oisst
+      - uses: actions/setup-node@v4
+        with: { node-version: 20, cache: 'pnpm' }
+      - run: corepack enable && pnpm install --frozen-lockfile
+      - run: pnpm ci:fast-checks
 
   sigils:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
-        with: { node-version: 20 }
-      - run: pnpm install
-      - run: pnpm sigils:index:strict
+        with: { node-version: 20, cache: 'pnpm' }
+      - run: corepack enable && pnpm install --frozen-lockfile
+      - run: pnpm ci:sigils
+      - run: pnpm graph:build
       - uses: actions/upload-artifact@v4
-        if: failure()
+        with: { name: sigil-graph, path: out/sigils_graph.* }
+
+  adapters-offline:
+    runs-on: ubuntu-latest
+    env:
+      CI: "true"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 20, cache: 'pnpm' }
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.10" }
+      - run: corepack enable && pnpm install --frozen-lockfile
+      - run: poetry install --with test
+      - run: pnpm ci:adapters-offline
+      - run: python scripts/run_correlation.py || true
+      - uses: actions/upload-artifact@v4
         with:
-          name: sigils-errors
-          path: out/sigils_errors*.json
+          name: correlations
+          path: out/correlations_era5_oisst.json
+
+  effis-offline:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 20, cache: 'pnpm' }
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.10" }
+      - run: corepack enable && pnpm install --frozen-lockfile
+      - run: poetry install --with test
+      - run: CI=true pnpm adapter:build:effis
+      - run: PYTHONPATH=. pytest -q tests/adapters/test_effis_fixture.py

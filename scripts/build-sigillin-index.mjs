@@ -2,7 +2,8 @@ import fs from 'fs';
 import path from 'path';
 import glob from 'fast-glob';
 import { normalizeCREP } from '../src/utils/normalizeCREP.js';
-import { calculateMetrics, classifyEmergence } from '../src/utils/calculateMetrics.js';
+import { calculateMetrics } from '../src/utils/calculateMetrics.js';
+import { emergenceClass } from '../src/utils/classify.js';
 import { safeParseSigilFile } from './lib/safeSigilParse.cjs';
 
 const ROOTS=["docs/sigils/**/*.{yaml,yml,json,md}","data/sigils/**/*.jsonl"];
@@ -19,11 +20,15 @@ for(const file of await glob(ROOTS,{dot:false,onlyFiles:true,unique:true})){
 const total=sigils.length;
 sigils=sigils.map(s=>{
   const metrics=calculateMetrics(s,total);
-  return {...s,metrics:{...metrics,class:classifyEmergence(metrics.emergencePotential??0)}};
+  return {...s,metrics:{...metrics,emergenceClass:emergenceClass(metrics.emergencePotential??0)}};
 });
 sigils.sort((a,b)=>(b?.metrics?.emergencePotential??0)-(a?.metrics?.emergencePotential??0));
+let adapters=[];
+if(fs.existsSync('out/adapters_index.json')){
+  try{adapters=JSON.parse(fs.readFileSync('out/adapters_index.json','utf8'));}catch{}
+}
 fs.mkdirSync('out',{recursive:true});
-fs.writeFileSync('out/sigillin_index.json',JSON.stringify({sigils},null,2));
+fs.writeFileSync('out/sigillin_index.json',JSON.stringify({sigils,adapters},null,2));
 fs.writeFileSync('out/sigils_errors.json',JSON.stringify(errors,null,2));
 if(process.env.SIGILS_STRICT==='true' && errors.length){
   console.error(`Sigil errors: ${errors.length}`); process.exit(1);

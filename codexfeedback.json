@@ -64,6 +64,11 @@
       "fraktalrun": "Fraktal20 PyrightOISSTRobust",
       "status": "implemented",
       "notes": "Pyright-Fixes und OISST-Pipeline gehärtet; kein weiterer Lauf notwendig."
+    },
+    {
+      "fraktalrun": "Fraktal21 STACResonance",
+      "status": "implemented",
+      "notes": "STAC-Schema, Adapter-Resonanz und Korrelationen integriert; kein weiterer Lauf notwendig."
     }
   ]
 }
