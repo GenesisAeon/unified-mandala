@@ -31,3 +31,4 @@
 - FR-UM-2025-10-30-Fraktal22: Archivist-Agent, CI-Fixes und Resonanz-Calc überarbeitet – kein weiterer Lauf notwendig.
 - FR-UM-2025-11-15-Fraktal23: Adapter-Offline-Deps, Resonanz-CLI, STAC-Validator und Emergenz-Badges umgesetzt – kein weiterer Lauf notwendig.
 - FR-UM-2025-11-20-Fraktal24: Repo-Sitemap, SOURCES-Landing und Release-Bundle umgesetzt – kein weiterer Lauf notwendig.
+- FR-UM-2025-11-25-Fraktal25: CI green, resonance panel and adapter hardening implemented – kein weiterer Lauf notwendig.

@@ -1,7 +1,14 @@
 {
   "type": "Feature",
+  "id": "era5-sample",
+  "bbox": [0, 0, 0, 0],
   "geometry": { "type": "Point", "coordinates": [0, 0] },
+  "properties": {
+    "datetime": "2023-01-01T00:00:00Z",
+    "source": "era5",
+    "processing_level": "level1"
+  },
   "assets": {
-    "data": { "href": "era5.nc" }
+    "data": { "href": "era5.nc", "roles": ["data"], "type": "application/netcdf" }
   }
 }

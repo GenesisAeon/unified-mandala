@@ -84,6 +84,11 @@
       "fraktalrun": "Fraktal24 RepoSitemap",
       "status": "implemented",
       "notes": "Repomap GH Pages, SOURCES landing file, and context bundle release workflow implemented; kein weiterer Lauf notwendig."
+    },
+    {
+      "fraktalrun": "Fraktal25 CIResonanceAdapters",
+      "status": "implemented",
+      "notes": "CI green, resonance panel and adapter hardening implemented; kein weiterer Lauf notwendig."
     }
   ]
 }

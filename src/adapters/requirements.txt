@@ -1,0 +1,6 @@
+xarray>=2024.1
+numpy>=1.26
+scipy>=1.11        # scipy backend for NetCDF3
+netCDF4>=1.6       # optional, used locally
+h5netcdf>=1.3      # optional alternative
+python-dotenv>=1.0 # dotenv for ERA5
