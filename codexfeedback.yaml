@@ -47,3 +47,6 @@ runs:
 - fraktalrun: Fraktal21 STACResonance
   status: implemented
   notes: STAC-Schema, Adapter-Resonanz und Korrelationen integriert; kein weiterer Lauf notwendig.
+- fraktalrun: Fraktal22 ArchivistCI
+  status: implemented
+  notes: Archivist-Agent eingebunden, CI-Abhängigkeiten und Resonanzberechnung angepasst.

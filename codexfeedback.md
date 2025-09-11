@@ -28,3 +28,4 @@
 - FR-UM-2025-10-15-Fraktal19: OISST Vollpipeline, Emergenz-Badges, CI-Matrix und Onboarding-Doku umgesetzt – kein weiterer Lauf notwendig.
 - FR-UM-2025-10-20-Fraktal20: Pyright-Fixes und OISST-Pipeline gehärtet – kein weiterer Lauf notwendig.
 - FR-UM-2025-09-11-Fraktal21: STAC-Schema, Resonanz & Korrelationen integriert – kein weiterer Lauf notwendig.
+- FR-UM-2025-10-30-Fraktal22: Archivist-Agent, CI-Fixes und Resonanz-Calc überarbeitet – kein weiterer Lauf notwendig.

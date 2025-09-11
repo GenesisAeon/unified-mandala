@@ -31,6 +31,26 @@ export function SigillinCard({ sigillin }: { sigillin: any }) {
         <dt>Lifecycle</dt>
         <dd>{sigillin.metrics?.lifecycle ?? "beta"}</dd>
       </dl>
+      {sigillin.metrics && (
+        <div className="mt-2 text-xs">
+          <span
+            className={`inline-block px-2 py-0.5 rounded ${
+              sigillin.metrics.class === "high"
+                ? "bg-green-600 text-white"
+                : sigillin.metrics.class === "medium"
+                ? "bg-amber-500 text-white"
+                : "bg-zinc-700 text-white"
+            }`}
+          >
+            {sigillin.metrics.class.toUpperCase()}
+          </span>
+          {typeof sigillin.metrics.interAdapterResonance === "number" && (
+            <span className="ml-2 opacity-80">
+              Res: {sigillin.metrics.interAdapterResonance.toFixed(2)}
+            </span>
+          )}
+        </div>
+      )}
       {sigillin.metrics?.emergencePotential !== undefined && (
         <div className="text-xs opacity-80">r(ERA5, OISST): see correlations</div>
       )}
