@@ -2,19 +2,24 @@ name: CI
 on: [push, pull_request]
 
 jobs:
-  adapters:
+  pyright:
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        name: [oisst]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with: { python-version: "3.10" }
-      - run: pip install -r requirements.txt || true
-      - run: echo "CI=true" >> $GITHUB_ENV
-      - run: pnpm adapter:build:${{ matrix.name }}
+      - run: pip install numpy xarray netCDF4 pandas pyarrow
+      - run: npx pyright
+
+  oisst:
+    needs: pyright
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.10" }
+      - run: pip install numpy xarray netCDF4 pandas pyarrow
+      - run: pnpm adapter:build:oisst
 
   sigils:
     runs-on: ubuntu-latest

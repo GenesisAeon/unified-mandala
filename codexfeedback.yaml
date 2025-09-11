@@ -40,3 +40,7 @@ runs:
 - fraktalrun: Fraktal19 OISSTPipeline
   status: implemented
   notes: OISST Vollpipeline, Emergenz-Badges, CI-Matrix und Onboarding-Doku umgesetzt; kein weiterer Lauf notwendig.
+
+- fraktalrun: Fraktal20 PyrightOISSTRobust
+  status: implemented
+  notes: Pyright-Fixes und OISST-Pipeline gehärtet; kein weiterer Lauf notwendig.

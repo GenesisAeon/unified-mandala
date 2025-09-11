@@ -1,32 +1,34 @@
 import { execSync } from "child_process";
-import { existsSync, mkdirSync } from "fs";
+import { mkdirSync, existsSync } from "fs";
 
 const dirs = ["data/raw", "data/processed", "data/stac", "data/mrv"];
 dirs.forEach((d) => !existsSync(d) && mkdirSync(d, { recursive: true }));
 
-const raw_path = "data/raw/oisst_202301.nc";
-const processed_path = "data/processed/oisst_202301_resampled.nc";
-const mrv_path = "data/mrv/oisst_202301.parquet";
+const run = (cmd, desc) => {
+  console.log(`⏳ ${desc}…`);
+  execSync(cmd, { stdio: "inherit", env: { ...process.env, CI: process.env.CI || "true" } });
+};
 
 try {
-  console.log("🌊 Fetching OISST...");
-  execSync(`python src/adapters/oisst/fetch_oisst.py 2023 1 data/raw`, { stdio: "inherit" });
-
-  console.log("📏 Resampling...");
-  execSync(`python src/adapters/oisst/resample_oisst.py ${raw_path} ${processed_path}`, { stdio: "inherit" });
-
-  console.log("🗃️  Generating STAC...");
-  execSync(`python src/adapters/oisst/stac_oisst.py ${raw_path}`, { stdio: "inherit" });
-
-  console.log("📊 Generating MRV...");
-  execSync(`python src/adapters/oisst/mrv_oisst.py ${processed_path} ${mrv_path}`, { stdio: "inherit" });
-
-  console.log("✨ Calculating CREP score...");
-  const score = execSync(`python src/adapters/oisst/crep_score_oisst.py ${processed_path}`).toString().trim();
-  console.log(`CREP Score: ${score}`);
-
-  console.log("✅ OISST pipeline completed");
+  run("python -m src.adapters.oisst.fetch_oisst 2023 1 data/raw", "Fetch OISST");
+  run(
+    "python -m src.adapters.oisst.resample_oisst data/raw/oisst_202301.nc data/processed/oisst_202301.nc",
+    "Resample grid"
+  );
+  run(
+    "python -m src.adapters.oisst.stac_oisst data/raw/oisst_202301.nc",
+    "STAC"
+  );
+  run(
+    "python -m src.adapters.oisst.mrv_oisst data/processed/oisst_202301.nc data/mrv/oisst_202301.parquet",
+    "Export MRV"
+  );
+  run(
+    "python -c \"from src.adapters.oisst.crep_score_oisst import calculate_crep_score; print('CREP', calculate_crep_score('data/processed/oisst_202301.nc'))\"",
+    "CREP score"
+  );
+  console.log("✅ OISST pipeline abgeschlossen");
 } catch (e) {
-  console.error("❌ OISST build failed:", e.message);
+  console.error("❌ OISST pipeline failed");
   process.exit(1);
 }
