@@ -1,16 +1,13 @@
-# OISST Adapter (Live → STAC → MRV → CREP)
-
-## Setup
-- Python 3.10+
-- `pip install -r src/adapters/oisst/requirements.txt`
-- Offline-Modus nutzt Fixture `tests/fixtures/oisst/oisst_sample.nc`
+# OISST Adapter
+**Datenquelle**: [NOAA MUR SST](https://coastwatch.pfeg.noaa.gov/erddap/griddap/jplMURSST41.html)
 
 ## Pipeline
-1. fetch_oisst.py → `data/raw/*.nc`
-2. stac.py → `data/stac/*.json`
-3. resample.py → `data/processed/*.nc`
-4. mrv.py → `data/mrv/*.parquet`
-5. crep_score.py → Score (0..1)
+1. **Fetch**: Lädt NetCDF von ERDDAP (oder nutzt Fixture in CI).
+2. **Resample**: Reduziert Auflösung auf 0.5° × 0.5°.
+3. **STAC**: Generiert Metadaten nach [SpatioTemporal Asset Catalog](https://stacspec.org).
+4. **MRV**: Konvertiert zu Parquet für Monitoring/Reporting/Verification.
+5. **CREP**: Bewertet Aktualität (70%) + Datenabdeckung (30%).
 
-## Ausführung
-`pnpm adapter:build:oisst` (siehe Scripts)
+## CI
+- Nutzt in GitHub Actions **immer Fixtures** (`CI=true`).
+- Fixture: `tests/fixtures/oisst_sample.nc`.

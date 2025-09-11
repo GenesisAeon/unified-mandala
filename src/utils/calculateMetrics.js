@@ -4,3 +4,8 @@ export function calculateMetrics(s, total) {
   const lifecycle = s.phase === "canonical" ? "production" : "beta";
   return { connectionDensity: cd, emergencePotential: ep, lifecycle };
 }
+export function classifyEmergence(v) {
+  if (v >= 0.25) return "high";
+  if (v >= 0.12) return "medium";
+  return "low";
+}

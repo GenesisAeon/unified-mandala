@@ -2,11 +2,25 @@ import React from "react";
 import { CREPBadge } from "./CREPBadge";
 
 export function SigillinCard({ sigillin }: { sigillin: any }) {
+  const epClass = sigillin.metrics?.class;
+  const badgeColor =
+    epClass === "high"
+      ? "bg-green-100 text-green-800"
+      : epClass === "medium"
+      ? "bg-amber-100 text-amber-800"
+      : "bg-red-100 text-red-800";
   return (
     <div className="border rounded p-3">
       <div className="flex items-center justify-between">
         <h3 className="font-semibold">{sigillin.name || sigillin.id}</h3>
-        {sigillin.crep?.score != null && <CREPBadge value={sigillin.crep.score} />}
+        <div className="flex gap-2 items-center">
+          {epClass && (
+            <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${badgeColor}`}>
+              {epClass}
+            </span>
+          )}
+          {sigillin.crep?.score != null && <CREPBadge value={sigillin.crep.score} />}
+        </div>
       </div>
       <pre className="text-xs opacity-70 overflow-auto">{JSON.stringify(sigillin.connections ?? [], null, 2)}</pre>
       <dl className="grid grid-cols-2 gap-2 text-sm">
