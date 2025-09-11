@@ -25,3 +25,4 @@
 - FR-UM-2025-09-30-Fraktal16: ERA5 Adapter pipeline, Build-Script und CI integriert – kein weiterer Lauf notwendig.
 - FR-UM-2025-10-05-Fraktal17: CI-Baseline mit striktem Sigil-Index, Adapter-Tests und UI-Erweiterung umgesetzt – kein weiterer Lauf notwendig.
 - FR-UM-2025-10-10-Fraktal18: OISST adapter scaffold und Sigillin-Metriken integriert – kein weiterer Lauf notwendig.
+- FR-UM-2025-10-15-Fraktal19: OISST Vollpipeline, Emergenz-Badges, CI-Matrix und Onboarding-Doku umgesetzt – kein weiterer Lauf notwendig.

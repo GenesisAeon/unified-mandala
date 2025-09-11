@@ -55,5 +55,10 @@
       "status": "implemented",
       "notes": "OISST adapter scaffold und Sigillin-Metriken integriert; weiterer Lauf optional."
     }
+    ,{
+      "fraktalrun": "Fraktal19 OISSTPipeline",
+      "status": "implemented",
+      "notes": "OISST Vollpipeline, Emergenz-Badges, CI-Matrix und Onboarding-Doku umgesetzt; kein weiterer Lauf notwendig."
+    }
   ]
 }
