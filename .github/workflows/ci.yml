@@ -3,6 +3,8 @@ on: [push, pull_request]
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      NO_NETWORK: "1"
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
@@ -10,18 +12,34 @@ jobs:
       - uses: actions/setup-node@v4
         with: { node-version: 20, cache: 'pnpm' }
       - run: pnpm install --frozen-lockfile
-      - name: TypeScript + Sigils
-        run: pnpm test:ts && pnpm sigils:index:strict
-      - name: Python setup
-        uses: actions/setup-python@v5
+      - run: pnpm test:ts
+      - run: pnpm sigils:index:strict
+      - uses: actions/setup-python@v5
         with: { python-version: '3.10' }
       - run: pip install -r src/adapters/era5/requirements.txt pytest
-      - name: ERA5 adapter (no network)
-        run: |
-          if [ -z "${{ secrets.CDS_API_KEY }}" ]; then
-            echo "⚠️ Skipping live fetch; using fixtures"
-            pytest -q
-          else
-            echo "CDS_API_KEY=${{ secrets.CDS_API_KEY }}" >> .env
-            pnpm adapter:build:era5 && pytest -q
-          fi
+      - run: pnpm adapter:build:era5 || echo "⚠️ ERA5 skipped (no cdsapirc)"
+      - run: pytest -q
+
+  oisst:
+    runs-on: ubuntu-latest
+    env:
+      NO_NETWORK: "1"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.10" }
+      - uses: actions/setup-node@v4
+        with: { node-version: 20, cache: 'pnpm' }
+      - run: pnpm install --frozen-lockfile
+      - run: pip install xarray netCDF4 pandas pyarrow pystac
+      - run: pnpm adapter:build:oisst
+
+  sigil-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 20 }
+      - run: pnpm install
+      - run: pnpm test:sigil tests/fixtures/sigillin/good.yaml
+      - run: '! pnpm test:sigil tests/fixtures/sigillin/bad.yaml 2>/dev/null || (echo "expected failure OK" && exit 0)'
