@@ -53,3 +53,6 @@ runs:
 - fraktalrun: Fraktal23 ResonanceHardening
   status: implemented
   notes: Adapter deps, resonance CLI ESM, emergence badges, and STAC validator added.
+- fraktalrun: Fraktal24 RepoSitemap
+  status: implemented
+  notes: Repomap GH Pages, SOURCES landing file, and context bundle release workflow implemented; kein weiterer Lauf notwendig.

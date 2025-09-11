@@ -1,0 +1,15 @@
+name: context-bundle
+on:
+  release:
+    types: [published]
+jobs:
+  bundle:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: node scripts/build-context-bundle.mjs
+      - uses: softprops/action-gh-release@v1
+        with:
+          files: out/context-bundle.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
