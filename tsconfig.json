@@ -19,6 +19,15 @@
     "paths": {
       "@src/*": [
         "src/*"
+      ],
+      "@utils/*": [
+        "src/utils/*"
+      ],
+      "@resonance": [
+        "src/utils/resonance/index.ts"
+      ],
+      "@resonance/*": [
+        "src/utils/resonance/*"
       ]
     }
   },

@@ -14,12 +14,13 @@ export function SigillinCard({ sigillin }: { sigillin: any }) {
       </div>
       <pre className="text-xs opacity-70 overflow-auto">{JSON.stringify(sigillin.connections ?? [], null, 2)}</pre>
       <dl className="grid grid-cols-2 gap-2 text-sm">
-        <dt>Connection Density</dt>
-        <dd>{(sigillin.metrics?.connectionDensity ?? 0).toFixed(2)}</dd>
-        <dt>Emergence Potential</dt>
-        <dd>{(sigillin.metrics?.emergencePotential ?? 0).toFixed(2)}</dd>
-        <dt>Lifecycle</dt>
-        <dd>{sigillin.metrics?.lifecycle ?? "beta"}</dd>
+        <dt>Connection Density:</dt>
+        <dd>{Number.isFinite(sigillin.metrics?.connectionDensity)
+          ? sigillin.metrics!.connectionDensity!.toFixed(2) : "—"}</dd>
+        <dt>Emergence Potential:</dt>
+        <dd>{Number.isFinite(sigillin.metrics?.emergencePotential)
+          ? sigillin.metrics!.emergencePotential!.toFixed(2) : "—"}</dd>
+        <dt>Lifecycle:</dt><dd>{sigillin.metrics?.lifecycle ?? "—"}</dd>
       </dl>
       {sigillin.metrics && (
         <div className="mt-2 text-xs">

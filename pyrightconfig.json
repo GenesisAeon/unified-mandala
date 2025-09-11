@@ -1,14 +1,13 @@
 {
   "include": [
+    "src/adapters/shared",
     "src/adapters/oisst/fetch_oisst.py",
-    "src/adapters/era5/fetch.py",
-    "src/adapters/oisst/types.py"
+    "src/adapters/oisst/types.py",
+    "src/adapters/era5/fetch.py"
   ],
-  "reportMissingTypeStubs": "warning",
-  "reportUnknownMemberType": "warning",
-  "reportUnknownVariableType": "warning",
-  "reportAttributeAccessIssue": "none",
-  "pythonVersion": "3.10",
-  "typeCheckingMode": "standard",
+  "exclude": ["dist", "node_modules", ".venv", "venv"],
+  "pythonVersion": "3.11",
+  "typeCheckingMode": "strict",
+  "reportMissingTypeStubs": false,
   "executionEnvironments": [{ "root": "src" }]
 }

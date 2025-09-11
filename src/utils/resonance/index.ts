@@ -1,2 +1,2 @@
 export * from "./interAdapterResonance";
-export * from "./classifyEmergence";
+export * from "./classification";

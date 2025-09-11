@@ -1,42 +1,24 @@
-import fs from "fs";
-import path from "path";
 import Ajv from "ajv";
 import addFormats from "ajv-formats";
-
-const ajv = new Ajv({ allErrors: true, strict: false });
-addFormats(ajv);
+import fs from "node:fs";
 
 const schema = JSON.parse(
-  fs.readFileSync("src/adapters/_schema/stac-item.schema.json", "utf8")
+  fs.readFileSync("src/adapters/_schema/stac-item.schema.json","utf8")
 );
+
+const ajv = new Ajv({ allErrors: true, strict: true });
+addFormats(ajv);
 const validate = ajv.compile(schema);
 
-function* walk(dir: string): Generator<string> {
-  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
-    const full = path.join(dir, entry.name);
-    if (entry.isDirectory()) yield* walk(full);
-    else if (entry.isFile() && entry.name.endsWith(".json")) yield full;
-  }
+const file = process.argv[2];
+if (!file) {
+  console.error("Usage: pnpm stac:validate:item <file>");
+  process.exit(2);
 }
 
-const targets = ["data/stac", "out/stac"].filter(fs.existsSync);
-let errors: Array<{ file: string; errors: any[] }> = [];
-
-for (const t of targets) {
-  for (const file of walk(t)) {
-    const obj = JSON.parse(fs.readFileSync(file, "utf8"));
-    const ok = validate(obj);
-    if (!ok) errors.push({ file, errors: validate.errors ?? [] });
-  }
-}
-
-if (errors.length) {
-  fs.mkdirSync("out", { recursive: true });
-  fs.writeFileSync(
-    "out/stac_validation_errors.json",
-    JSON.stringify(errors, null, 2)
-  );
-  console.error("❌ STAC validation failed. See out/stac_validation_errors.json");
+const data = JSON.parse(fs.readFileSync(file,"utf8"));
+if (!validate(data)) {
+  console.error("❌ STAC invalid:\n" + ajv.errorsText(validate.errors, { separator: "\n" }));
   process.exit(1);
 }
-console.log("✅ STAC validation passed");
+console.log("✅ STAC valid");
