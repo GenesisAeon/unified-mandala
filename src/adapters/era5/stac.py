@@ -1,35 +1,14 @@
 import os
-from datetime import datetime, timezone
 import pystac
-
-WORLD_GEOM = {
-    "type": "Polygon",
-    "coordinates": [[[-180, -90], [180, -90], [180, 90], [-180, 90], [-180, -90]]],
-}
-WORLD_BBOX = [-180.0, -90.0, 180.0, 90.0]
+from ..core.stac import make_stac_item
 
 def create_stac_item(nc_path: str, variable: str) -> pystac.Item:
-    item = pystac.Item(
-        id=f"era5-{variable}-{os.path.splitext(os.path.basename(nc_path))[0]}",
-        geometry=WORLD_GEOM,
-        bbox=WORLD_BBOX,
-        datetime=datetime.now(timezone.utc),
-        properties={
-            "era5:variable": variable,
-            "source": "Copernicus CDS (ERA5)",
-            "processing_level": "reanalysis",
-        },
+    item_dict = make_stac_item(
+        nc_path,
+        f"era5-{variable}-{os.path.splitext(os.path.basename(nc_path))[0]}",
+        variable,
     )
-    item.add_asset(
-        "data",
-        pystac.Asset(
-            href=os.path.abspath(nc_path),
-            media_type="application/netcdf",
-            roles=["data"],
-            title=f"ERA5 {variable}",
-        ),
-    )
-    return item
+    return pystac.Item.from_dict(item_dict)
 
 def save_item(item: pystac.Item, out_dir: str) -> str:
     os.makedirs(out_dir, exist_ok=True)

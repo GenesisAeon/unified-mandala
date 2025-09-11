@@ -1,5 +1,5 @@
 import { execSync } from "child_process";
-import { mkdirSync, existsSync } from "fs";
+import { mkdirSync, existsSync, readFileSync, writeFileSync } from "fs";
 
 const dirs = ["data/raw", "data/processed", "data/stac", "data/mrv"];
 dirs.forEach((d) => !existsSync(d) && mkdirSync(d, { recursive: true }));
@@ -23,10 +23,21 @@ try {
     "python -m src.adapters.oisst.mrv_oisst data/processed/oisst_202301.nc data/mrv/oisst_202301.parquet",
     "Export MRV"
   );
-  run(
-    "python -c \"from src.adapters.oisst.crep_score_oisst import calculate_crep_score; print('CREP', calculate_crep_score('data/processed/oisst_202301.nc'))\"",
-    "CREP score"
-  );
+  const crep = execSync(
+    "python -c \"from src.adapters.oisst.crep_score_oisst import calculate_crep_score; print(calculate_crep_score('data/processed/oisst_202301.nc'))\"",
+    { stdio: "pipe" }
+  )
+    .toString()
+    .trim();
+  const adapter = { id: "oisst_202301", source: "oisst", crepScore: Number(crep) };
+  const idxPath = "out/adapters_index.json";
+  let arr = [];
+  if (existsSync(idxPath)) arr = JSON.parse(readFileSync(idxPath, "utf8"));
+  arr = arr.filter((a) => a.id !== adapter.id);
+  arr.push(adapter);
+  mkdirSync("out", { recursive: true });
+  writeFileSync(idxPath, JSON.stringify(arr, null, 2));
+  console.log("CREP", crep);
   console.log("✅ OISST pipeline abgeschlossen");
 } catch (e) {
   console.error("❌ OISST pipeline failed");

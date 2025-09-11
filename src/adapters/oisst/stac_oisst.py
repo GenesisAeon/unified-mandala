@@ -1,29 +1,21 @@
 import pystac
 import os
-from datetime import datetime
 import xarray as xr
 from typing import Any
+from ..core.stac import make_stac_item
 
 
 def create_oisst_item(nc_path: str):
     ds = xr.open_dataset(nc_path)
     time_var = [str(v) for v in ds.coords if "time" in str(v).lower()][0]
     ds_var: Any = ds[time_var]
-    time_value = str(ds_var.values[0])
-    item = pystac.Item(
-        id=f"oisst_{os.path.basename(nc_path).replace('.nc', '')}",
-        geometry={"type": "Polygon", "coordinates": [[[-180, -90], [180, -90], [180, 90], [-180, 90], [-180, -90]]]},
-        bbox=[-180, -90, 180, 90],
-        datetime=datetime.fromisoformat(time_value.replace('T', ' ').split('.')[0]),
-        properties={
-            "source": "NOAA OISST / MUR SST",
-            "variable": "sea_surface_temperature",
-            "processing_level": "L4",
-            "resolution": "0.01°",
-        },
+    _ = str(ds_var.values[0])
+    item_dict = make_stac_item(
+        nc_path,
+        f"oisst_{os.path.basename(nc_path).replace('.nc', '')}",
+        "sst",
     )
-    item.add_asset("data", pystac.Asset(href=f"file://{nc_path}", media_type="application/netcdf", roles=["data"]))
-    return item
+    return pystac.Item.from_dict(item_dict)
 
 
 if __name__ == "__main__":

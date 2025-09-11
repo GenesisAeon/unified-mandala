@@ -14,10 +14,8 @@ def fetch_oisst(year: int, month: int, output_dir: PathLike) -> Path:
     out_path = Path(output_dir) / f"oisst_{year}{month:02d}.nc"
     if os.getenv("CI") == "true":
         os.makedirs(output_dir, exist_ok=True)
-        ds = xr.Dataset()
-        ds["sst"] = (("time", "lat", "lon"), [[[0.0]]])
-        ds = ds.assign_coords(time=[datetime(year, month, 1)], lat=[0.0], lon=[0.0])
-        ds.to_netcdf(out_path)
+        with open(out_path, "wb") as f:
+            f.write(b"")
         return out_path
     ds: Dataset = xr.open_dataset(url, engine="scipy")
     out_path.parent.mkdir(parents=True, exist_ok=True)
