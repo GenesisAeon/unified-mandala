@@ -77,8 +77,10 @@
     "sigils:scan": "ts-node scripts/validate-sigils.ts",
     "sigils:errors": "cat out/sigils_errors.json || echo 'no errors file'",
     "adapter:build:era5": "node scripts/build-adapter-era5.mjs",
+    "adapter:build:oisst": "node scripts/build-adapter-oisst.mjs",
     "test:ts": "tsc -p tsconfig.json --noEmit",
     "test:py": "pytest -q",
+    "test:sigil": "ts-node scripts/validate-sigil-cli.ts",
     "test:ui": "vitest run --passWithNoTests",
     "ci:verify": "pnpm test:ts && pnpm sigils:index:strict && pnpm adapter:build:era5"
   },

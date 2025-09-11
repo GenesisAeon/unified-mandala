@@ -49,6 +49,11 @@
       "fraktalrun": "Fraktal17 ValidatorHardening",
       "status": "implemented",
       "notes": "CI-Baseline mit striktem Sigil-Index, Adapter-Tests und UI-Erweiterung umgesetzt; kein weiterer Lauf notwendig."
+    },
+    {
+      "fraktalrun": "Fraktal18 OISSTMetrics",
+      "status": "implemented",
+      "notes": "OISST adapter scaffold und Sigillin-Metriken integriert; weiterer Lauf optional."
     }
   ]
 }

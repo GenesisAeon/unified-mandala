@@ -8,15 +8,15 @@ WORLD_GEOM = {
 }
 WORLD_BBOX = [-180.0, -90.0, 180.0, 90.0]
 
-def create_stac_item(nc_path: str, variable: str) -> pystac.Item:
+def create_stac_item(nc_path: str, variable: str = "sst") -> pystac.Item:
     item = pystac.Item(
-        id=f"era5-{variable}-{os.path.splitext(os.path.basename(nc_path))[0]}",
+        id=f"oisst-{variable}-{os.path.splitext(os.path.basename(nc_path))[0]}",
         geometry=WORLD_GEOM,
         bbox=WORLD_BBOX,
         datetime=datetime.now(timezone.utc),
         properties={
-            "era5:variable": variable,
-            "source": "Copernicus CDS (ERA5)",
+            "oisst:variable": variable,
+            "source": "NOAA OISST",
             "processing_level": "reanalysis",
         },
     )
@@ -26,7 +26,7 @@ def create_stac_item(nc_path: str, variable: str) -> pystac.Item:
             href=os.path.abspath(nc_path),
             media_type="application/netcdf",
             roles=["data"],
-            title=f"ERA5 {variable}",
+            title=f"OISST {variable}",
         ),
     )
     return item

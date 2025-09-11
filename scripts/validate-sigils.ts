@@ -6,7 +6,7 @@ const ROOTS=["docs/sigils/**/*.{yaml,yml,json,md}","data/sigils/**/*.jsonl"];
 
 async function main(){
   const errors: any[]=[];
-  const files=await glob(ROOTS,{dot:false,onlyFiles:true,unique:true,expandDirectories:false});
+  const files=await glob(ROOTS,{dot:false,onlyFiles:true,unique:true});
   for(const file of files){
     try{
       const content=fs.readFileSync(file,'utf8');

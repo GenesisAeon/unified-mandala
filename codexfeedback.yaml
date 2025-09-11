@@ -1,31 +1,39 @@
 runs:
-  - fraktalrun: "Fraktal8 OrientationHub"
-    status: "implemented"
-    notes: "Alle Inhalte aus Fraktal8 integriert; weitere Fragmente können in Folgeläufen ergänzt werden."
-  - fraktalrun: "Fraktal10 SigillinIndex"
-    status: "implemented"
-    notes: "Sigillin-Index-Skript hinzugefügt; nächster Schritt Personhood-UI."
-  - fraktalrun: "Fraktal11 PersonhoodBuild"
-    status: "implemented"
-    notes: "Personhood-Build und SigillinIndexPanel umgesetzt; Tests grün."
-  - fraktalrun: "Fraktal12 SigillinMap"
-    status: "implemented"
-    notes: "Mermaid-SigillinMap generiert und CREPBadge in UI integriert."
-  - fraktalrun: "Fraktal13 SigilsLint"
-    status: "implemented"
-    notes: "Sigils-Validation-Script eingeführt; nächster Schritt CREP-Utility."
-  - fraktalrun: "Fraktal13 CREPUtility"
-    status: "implemented"
-    notes: "CREP-Normalisierung und Index-Fix umgesetzt; kein weiterer Lauf notwendig."
-  - fraktalrun: "Fraktal14 SafeSigilParser"
-    status: "implemented"
-    notes: "Robuster Sigil-Parser und fehlertoleranter Index implementiert; kein weiterer Lauf notwendig."
-  - fraktalrun: "Fraktal15 SigillinStrict"
-    status: "partial"
-    notes: "YAML bereinigt, CI-Sigils-Strict hinzugefügt, Dokumentation ergänzt; Integrationstests und UI-Anbindung offen."
-  - fraktalrun: "Fraktal16 ERA5Adapter"
-    status: "implemented"
-    notes: "ERA5 adapter pipeline, Build-Script und CI-Workflows integriert; kein weiterer Lauf notwendig."
-  - fraktalrun: "Fraktal17 ValidatorHardening"
-    status: "implemented"
-    notes: "CI-Baseline mit striktem Sigil-Index, Adapter-Tests und UI-Erweiterung umgesetzt; kein weiterer Lauf notwendig."
+- fraktalrun: Fraktal8 OrientationHub
+  status: implemented
+  notes: "Alle Inhalte aus Fraktal8 integriert; weitere Fragmente k\xF6nnen in Folgel\xE4\
+    ufen erg\xE4nzt werden."
+- fraktalrun: Fraktal10 SigillinIndex
+  status: implemented
+  notes: "Sigillin-Index-Skript hinzugef\xFCgt; n\xE4chster Schritt Personhood-UI."
+- fraktalrun: Fraktal11 PersonhoodBuild
+  status: implemented
+  notes: "Personhood-Build und SigillinIndexPanel umgesetzt; Tests gr\xFCn."
+- fraktalrun: Fraktal12 SigillinMap
+  status: implemented
+  notes: Mermaid-SigillinMap generiert und CREPBadge in UI integriert.
+- fraktalrun: Fraktal13 SigilsLint
+  status: implemented
+  notes: "Sigils-Validation-Script eingef\xFChrt; n\xE4chster Schritt CREP-Utility."
+- fraktalrun: Fraktal13 CREPUtility
+  status: implemented
+  notes: CREP-Normalisierung und Index-Fix umgesetzt; kein weiterer Lauf notwendig.
+- fraktalrun: Fraktal14 SafeSigilParser
+  status: implemented
+  notes: Robuster Sigil-Parser und fehlertoleranter Index implementiert; kein weiterer
+    Lauf notwendig.
+- fraktalrun: Fraktal15 SigillinStrict
+  status: partial
+  notes: "YAML bereinigt, CI-Sigils-Strict hinzugef\xFCgt, Dokumentation erg\xE4nzt;\
+    \ Integrationstests und UI-Anbindung offen."
+- fraktalrun: Fraktal16 ERA5Adapter
+  status: implemented
+  notes: ERA5 adapter pipeline, Build-Script und CI-Workflows integriert; kein weiterer
+    Lauf notwendig.
+- fraktalrun: Fraktal17 ValidatorHardening
+  status: implemented
+  notes: CI-Baseline mit striktem Sigil-Index, Adapter-Tests und UI-Erweiterung umgesetzt;
+    kein weiterer Lauf notwendig.
+- fraktalrun: Fraktal18 OISSTMetrics
+  status: implemented
+  notes: OISST adapter scaffold und Sigillin-Metriken integriert; weiterer Lauf optional.

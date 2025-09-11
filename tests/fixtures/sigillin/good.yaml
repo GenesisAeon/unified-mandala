@@ -1,0 +1,9 @@
+id: test-sigil
+crep:
+  coherence: 0.8
+  resonance: 0.9
+  emergence: 0.7
+  poetics: 0.85
+connections:
+  - other-sigil
+phase: stable
