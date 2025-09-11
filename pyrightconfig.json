@@ -1,15 +1,6 @@
 {
   "include": ["src"],
-  "exclude": [
-    "dist",
-    "node_modules",
-    ".venv",
-    "venv",
-    "src/adapters/effis",
-    "src/adapters/era5/cache.py",
-    "src/adapters/era5/crep_score.py",
-    "src/adapters/oisst/crep_score_oisst.py"
-  ],
+  "exclude": ["dist", "node_modules", ".venv", "venv"],
   "pythonVersion": "3.11",
   "typeCheckingMode": "strict",
   "reportMissingTypeStubs": false,

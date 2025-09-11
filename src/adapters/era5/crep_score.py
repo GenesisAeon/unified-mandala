@@ -1,16 +1,19 @@
+from __future__ import annotations
 from datetime import datetime, timezone
-import xarray as xr  # type: ignore
-import numpy as np  # type: ignore
+from adapters.shared.types import Dataset, PathLike
+import xarray as xr
+import numpy as np
+# pyright: reportUnknownMemberType=false, reportUnknownVariableType=false, reportAttributeAccessIssue=false
 
-def _first_time(ds) -> str | None:
+def _first_time(ds: Dataset) -> str | None:
     t = ds.time.values[0]
     try:
-        return np.datetime_as_string(t).split(".")[0]  # type: ignore[attr-defined]
+        return np.datetime_as_string(t).split(".")[0]
     except Exception:
         return None
 
-def calculate_crep_score(nc_path: str) -> float:
-    ds = xr.open_dataset(nc_path)
+def calculate_crep_score(nc_path: PathLike) -> float:
+    ds: Dataset = xr.open_dataset(str(nc_path))
     # Aktualität
     t0 = _first_time(ds)
     recency = 1.0
