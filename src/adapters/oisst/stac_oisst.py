@@ -1,8 +1,9 @@
-import pystac
 import os
-import xarray as xr
+# pyright: reportMissingImports=false, reportUnknownMemberType=false, reportUnknownVariableType=false
+import pystac  # type: ignore
+import xarray as xr  # type: ignore
 from typing import Any
-from ..core.stac import make_stac_item
+from adapters.core.stac import make_stac_item
 
 
 def create_oisst_item(nc_path: str):

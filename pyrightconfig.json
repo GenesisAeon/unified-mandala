@@ -2,10 +2,14 @@
   "include": [
     "src/adapters/shared",
     "src/adapters/oisst/fetch_oisst.py",
-    "src/adapters/oisst/types.py",
-    "src/adapters/era5/fetch.py"
+    "src/adapters/oisst/resample_oisst.py",
+    "src/adapters/oisst/mrv_oisst.py",
+    "src/adapters/era5/fetch.py",
+    "src/adapters/era5/resample.py",
+    "src/adapters/era5/mrv.py"
   ],
   "exclude": ["dist", "node_modules", ".venv", "venv"],
+  "stubPath": "pyright-stubs",
   "pythonVersion": "3.11",
   "typeCheckingMode": "strict",
   "reportMissingTypeStubs": false,

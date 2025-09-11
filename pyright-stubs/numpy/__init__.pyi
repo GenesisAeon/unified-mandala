@@ -1,0 +1,6 @@
+from typing import Any
+
+float64: type
+
+def array(*args: Any, **kwargs: Any) -> Any: ...
+def arange(*args: Any, **kwargs: Any) -> Any: ...

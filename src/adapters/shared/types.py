@@ -1,13 +1,14 @@
 from __future__ import annotations
 from pathlib import Path
 from typing import Protocol, TypedDict
+import numpy as np  # type: ignore
 import xarray as xr  # type: ignore
 from numpy.typing import NDArray
 
 PathLike = str | Path
 Dataset = xr.Dataset
 DataArray = xr.DataArray
-NDArrayFloat = NDArray
+NDArrayFloat = NDArray[np.float64]
 
 class STACAsset(TypedDict):
     href: str

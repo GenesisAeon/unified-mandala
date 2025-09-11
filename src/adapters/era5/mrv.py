@@ -1,13 +1,16 @@
-import xarray as xr
-import pandas as pd
-import os
+from pathlib import Path
+import xarray as xr  # type: ignore
+import pandas as pd  # type: ignore
+from adapters.shared.types import Dataset, PathLike
 
 
-def to_mrv_parquet(nc_in: str, pq_out: str) -> None:
-    os.makedirs(os.path.dirname(pq_out), exist_ok=True)
-    ds = xr.open_dataset(nc_in)
-    df = ds.to_dataframe().reset_index()  # type: ignore[attr-defined]
-    df.to_parquet(pq_out, index=False)  # type: ignore[attr-defined]
+def to_mrv_parquet(nc_in: PathLike, pq_out: PathLike) -> Path:
+    out = Path(pq_out)
+    out.parent.mkdir(parents=True, exist_ok=True)
+    ds: Dataset = xr.open_dataset(str(nc_in))
+    df = ds.to_dataframe().reset_index()
+    df.to_parquet(out, index=False)
+    return out
 
 
 if __name__ == "__main__":
