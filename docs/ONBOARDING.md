@@ -26,3 +26,12 @@ node --loader ts-node/esm scripts/resonance-calc.ts
 pip install -r src/adapters/requirements.txt
 CI=true pnpm adapter:build:oisst
 ```
+
+### Quick CI Smoke
+```bash
+pnpm install
+pip install -r requirements.txt
+CI=true pnpm adapter:build:oisst
+pnpm stac:validate
+pnpm resonance:calc
+```

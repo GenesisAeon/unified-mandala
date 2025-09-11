@@ -23,3 +23,9 @@ gtts = "*"
 pytest = "*"
 [tool.poetry.group.test.dependencies]
 pytest = "*"
+[tool.pyright]
+include = ["src", "tests"]
+typeCheckingMode = "basic"
+reportMissingTypeStubs = false
+reportUnknownArgumentType = "warning"
+reportUnknownVariableType = "warning"
