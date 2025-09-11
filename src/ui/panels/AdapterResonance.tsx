@@ -1,5 +1,5 @@
 import React from "react";
-import { interAdapterResonance } from "../../utils/resonance";
+import { interAdapterResonance } from "@resonance";
 type P = { era5: number; oisst: number; minScore?: number };
 export default function AdapterResonance({ era5, oisst, minScore = 0 }: P) {
   const gap = interAdapterResonance(era5, oisst);

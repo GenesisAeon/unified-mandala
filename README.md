@@ -107,6 +107,23 @@ Siehe `docs/governance/HI-Compact.md` und `AI_POLICY.md`. Transparenz über `adv
 
 ---
 
+### Quick CI parity
+```bash
+# TypeScript
+npx tsc -p tsconfig.json --noEmit && pnpm vitest run
+
+# Python
+npx pyright && PYTHONPATH=src pytest -q
+
+# Adapters offline
+CI=true pnpm adapter:build:oisst && CI=true pnpm adapter:build:era5
+
+# STAC
+pnpm stac:validate && pnpm stac:validate:item out/item.json
+```
+
+---
+
 ## Contributing
 
 Kleine, thematische PRs (docs, adapters, agents). Vor Merge: `pnpm build:ui` + `pnpm dev` (Smoke: `/` → 200), Lint/Tests.

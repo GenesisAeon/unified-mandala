@@ -3,9 +3,9 @@ import path from "node:path";
 import Ajv from "ajv";
 import addFormats from "ajv-formats";
 
-const ajv = new Ajv({ allErrors: true, strict: false });
+const ajv = new Ajv({ allErrors: true, strict: true });
 addFormats(ajv);
-const schema = JSON.parse(fs.readFileSync("src/adapters/_schema/stac-item.json", "utf8"));
+const schema = JSON.parse(fs.readFileSync("src/adapters/_schema/stac-item.schema.json", "utf8"));
 const validate = ajv.compile(schema);
 
 const dir = "out/stac";

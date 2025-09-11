@@ -1,6 +1,6 @@
 import React from "react";
-import { interAdapterResonance } from "../../utils/resonance";
-import { FEATURES } from "../features";
+import { interAdapterResonance } from "@resonance";
+import { FEATURES } from "../../config/featureFlags";
 
 export default function ResonancePanel({
   era5, oisst
