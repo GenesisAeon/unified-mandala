@@ -1,8 +1,11 @@
 import os
-from dotenv import load_dotenv
 import cdsapi
 
-load_dotenv()
+try:
+    from dotenv import load_dotenv  # type: ignore
+    load_dotenv()
+except Exception:
+    pass
 CDS_API_URL = os.getenv("CDS_API_URL", "https://cds.climate.copernicus.eu/api/v2")
 CDS_API_KEY = os.getenv("CDS_API_KEY")
 

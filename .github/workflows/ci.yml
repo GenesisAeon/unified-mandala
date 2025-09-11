@@ -35,6 +35,10 @@ jobs:
         with: { python-version: "3.10" }
       - run: corepack enable && pnpm install --frozen-lockfile
       - run: poetry install --with test
+      - name: Python deps for adapters
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r src/adapters/_common/requirements.txt
       - run: pnpm ci:adapters-offline
       - run: python scripts/run_correlation.py || true
       - uses: actions/upload-artifact@v4
@@ -52,5 +56,9 @@ jobs:
         with: { python-version: "3.10" }
       - run: corepack enable && pnpm install --frozen-lockfile
       - run: poetry install --with test
+      - name: Python deps for adapters
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r src/adapters/_common/requirements.txt
       - run: CI=true pnpm adapter:build:effis
       - run: PYTHONPATH=. pytest -q tests/adapters/test_effis_fixture.py

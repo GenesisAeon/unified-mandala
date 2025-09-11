@@ -1,18 +1,22 @@
-# Liste registrierter Agenten (opt-in). Beispiel-Einträge auskommentiert.
 agents:
-  - id: "echo"
-    entry: "agents/echo/index.ts"
-    description: "Echoes back input for testing"
-  - id: "desert_tracker"
-    entry: "agents/desert_tracker/main.py"
-    description: "Tracks desertification indicators"
-  - id: "digital_twin"
-    entry: "agents/digital_twin/main.py"
-    description: "Synchronizes digital twin simulations"
-# Beispiel:
-#  - id: "hydro.cso"
-#    entry: "agents/hydro.cso/index.ts"
-#    description: "CSO-Regelungsagent (Shadow→AB)"
-#  - id: "climate.risk"
-#    entry: "agents/climate.risk/index.ts"
-#    description: "Klimarisiko-Synthese (ERA5/OISST/EFFIS)"
+  - id: codex
+    role: "Implementer"
+    tasks: ["patch", "scripts", "ci"]
+  - id: mistral
+    role: "Planner"
+    tasks: ["plans", "adapters", "bench"]
+  - id: claude
+    role: "Narrator"
+    tasks: ["docs", "onboarding", "ethics"]
+  - id: archivist
+    role: "Archivist"
+    model: "llama-3.1-70b-instruct"
+    tasks: ["emergence_scan", "schema_review", "repo_map"]
+  - id: cartographer
+    role: "Cartographer"
+    model: "qwen-2.5-72b"
+    tasks: ["schema_lint", "ts_refactor", "cross_language_review"]
+routing:
+  emergence_scan: ["archivist", "mistral"]
+  schema_review: ["archivist", "codex"]
+  docs_sync: ["claude", "codex"]
