@@ -20,5 +20,5 @@ def test_synthetic_attrs(tmp_path: Path) -> None:
     p = fetch_oisst(2023, 1, tmp_path.as_posix())
     import xarray as xr
     ds = xr.open_dataset(p, engine="scipy")
-    assert "sea_surface_temperature" in ds
+    assert "sst" in ds
     assert "source" in ds.attrs
