@@ -28,6 +28,9 @@
       ],
       "@resonance/*": [
         "src/utils/resonance/*"
+      ],
+      "@epistemic/*": [
+        "packages/epistemic/src/*"
       ]
     }
   },
