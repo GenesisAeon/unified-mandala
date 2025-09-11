@@ -1,0 +1,14 @@
+{
+  "type": "Feature",
+  "stac_version": "1.0.0",
+  "id": "example-item",
+  "bbox": [0,0,1,1],
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [[[0,0],[1,0],[1,1],[0,1],[0,0]]]
+  },
+  "properties": {"datetime": "2024-01-01T00:00:00Z"},
+  "assets": {
+    "data": {"href": "https://example.com/data.tif", "type": "image/tiff", "roles": ["data"]}
+  }
+}

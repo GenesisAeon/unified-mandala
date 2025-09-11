@@ -119,7 +119,10 @@ npx pyright && PYTHONPATH=src pytest -q
 CI=true pnpm adapter:build:oisst && CI=true pnpm adapter:build:era5
 
 # STAC
-pnpm stac:validate && pnpm stac:validate:item out/item.json
+pnpm stac:validate && pnpm stac:validate:item out/example.item.json
+
+# Prompt Coach (dry run)
+pnpm prompts:coach
 ```
 
 ---

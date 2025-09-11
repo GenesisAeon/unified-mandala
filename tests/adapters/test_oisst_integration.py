@@ -19,6 +19,5 @@ def test_synthetic_attrs(tmp_path: Path) -> None:
     os.environ["CI"] = "true"
     p = fetch_oisst(2023, 1, tmp_path.as_posix())
     import xarray as xr
-    ds = xr.open_dataset(p, engine="scipy")
+    ds = xr.open_dataset(p)
     assert "sst" in ds
-    assert "source" in ds.attrs

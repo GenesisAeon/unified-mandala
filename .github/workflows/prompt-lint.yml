@@ -1,0 +1,19 @@
+name: Prompt Lint
+on: [pull_request]
+jobs:
+  coach:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 20 }
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm prompts:coach
+      - name: Comment diffs
+        uses: thollander/actions-comment-pull-request@v2
+        with:
+          message: |
+            🤖 Prompt Coach (dry-run):
+            - Optimierte Prompts unter `prompts/.optimized/`
+            - Begründungen unter `prompts/.diff/`
+            Bitte menschlich sichten & ggf. übernehmen.
