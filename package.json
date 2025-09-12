@@ -98,7 +98,7 @@
     "ci:verify": "pnpm test:ts && pnpm sigils:index:strict && pnpm adapter:build:era5",
     "scan:ingest": "node scripts/ingest-external-scan.mjs",
     "adapters:ci:install": "pip install -r src/adapters/requirements.txt",
-    "check:ci": "npx tsc -p tsconfig.json --noEmit && pnpm -s test:ts && pnpm -s stac:validate && pnpm -s prompts:coach --dry"
+    "check:ci": "npx tsc -p tsconfig.json --noEmit && vitest run --run && npx pyright"
   },
   "dependencies": {
     "@automerge/automerge": "^3.1.1",

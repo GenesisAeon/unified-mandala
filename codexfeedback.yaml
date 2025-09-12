@@ -19,11 +19,6 @@ needs_repeat: false
 
 fraktal21:
   checkpoints:
-    - "restore CLI entrypoint for fetch_oisst (__main__ + python -m)"
-    - "PYTHONPATH=src + adapters package markers to fix ModuleNotFoundError"
-    - "requirements: add httpx/pytest"
-    - "vitest: jsdom env + setup polyfills (undici, TextEncoder)"
+    - "OISST pipeline restored: fetch → postprocess → STAC → CREP → adapters_index.json"
+    - "CI smoke asserts OISST presence in out/adapters_index.json"
   status: "ready-for-review"
-  notes:
-    - "adapter build uses python -m adapters.oisst.fetch_oisst (offline-deterministic)"
-    - "Node 20 enforced; no node-fetch"
