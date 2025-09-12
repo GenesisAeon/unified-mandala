@@ -27,3 +27,17 @@ fraktal21:
   status: "ready-for-review"
   notes:
     - "Bei Bedarf VITEST_WORKERS>1 lokal setzen; in CI bei 1 lassen."
+
+fraktal22:
+  status: "in_progress"
+  goals:
+    - ci_all_green: true
+    - prompt_lint_pr_comment: true
+    - adapters_offline_smoke_guard: true
+  checkpoints:
+    - "CI split: adapters-offline + type-and-tests + prompt-lint"
+    - "PR-Kommentar für Prompt-Coach (dry-run)"
+    - "Smoke-Test für adapters_index.json (OISST present)"
+  next:
+    - "ERA5 in offline-matrix aufnehmen"
+    - "Coverage wieder aktivieren (selektiv) wenn Stabilität erreicht"

@@ -87,7 +87,7 @@
     "resonance:calc": "tsx scripts/resonance-calc.ts",
     "stac:validate": "node scripts/validate-stac.mjs",
     "stac:validate:item": "tsx scripts/validate-stac.ts out/example.item.json",
-    "prompts:coach": "node scripts/prompt-coach.mjs",
+    "prompts:coach": "node --loader ts-node/esm scripts/prompt-coach.mjs --dry",
     "ci:fast-checks": "pnpm -w -r exec -- npx tsc -p tsconfig.json --noEmit && npx pyright -p .",
     "ci:sigils": "pnpm sigils:index:strict && pnpm test:sigil tests/fixtures/sigillin/good.yaml && pnpm resonance:calc",
     "ci:adapters-offline": "CI=true pnpm adapter:build:oisst && CI=true pnpm adapter:build:era5 || true",

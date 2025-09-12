@@ -1,0 +1,77 @@
+name: Fraktal22 CI
+
+on:
+  push:
+  pull_request:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  adapters-offline:
+    runs-on: ubuntu-latest
+    env:
+      CI: "true"
+      PYTHONPATH: "src"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: "20" }
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.11" }
+      - name: Install Python deps
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      - name: Install Node deps
+        run: pnpm install --frozen-lockfile
+      - name: Build OISST pipeline
+        run: pnpm adapter:build:oisst
+      - name: Smoke adapters_index.json contains OISST
+        run: |
+          test -f out/adapters_index.json
+          node -e "const j=require('./out/adapters_index.json'); if(!j.adapters?.some(a=>a.kind==='oisst')){console.error('OISST missing from adapters index');process.exit(2)}"
+      - name: Validate STAC (catalog & items)
+        run: |
+          pnpm stac:validate
+          pnpm stac:validate:item out/**/*.stac.json || true
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: stac-invalid
+          path: out/**/*.stac.json
+
+  type-and-tests:
+    runs-on: ubuntu-latest
+    env:
+      NODE_OPTIONS: "--max-old-space-size=4096"
+      VITEST_WORKERS: "1"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: "20" }
+      - run: pnpm install --frozen-lockfile
+      - name: TypeScript compile
+        run: npx tsc -p tsconfig.json --noEmit
+      - name: Vitest (low-memory)
+        run: pnpm test:ts:ci
+      - name: Pyright
+        run: npx pyright
+
+  prompt-lint:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: "20" }
+      - run: pnpm install --frozen-lockfile
+      - name: Prompt coach dry-run
+        run: pnpm prompts:coach --dry --outDir prompts/.optimized --diffDir prompts/.diff || true
+      - name: Comment Before/After on PR
+        if: ${{ github.event_name == 'pull_request' }}
+        run: |
+          node scripts/post-prompt-lint-comment.mjs prompts/.diff || echo "no prompt diffs"
