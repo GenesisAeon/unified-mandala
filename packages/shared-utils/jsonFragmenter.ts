@@ -1,7 +1,10 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import { parser } from 'stream-json';
-import { streamArray } from 'stream-json/streamers/StreamArray';
+import StreamJson from 'stream-json';
+import StreamArray from 'stream-json/streamers/StreamArray.js';
+
+const { parser } = StreamJson;
+const { streamArray } = StreamArray;
 
 /**
  * Splits an array into chunks of the given size.

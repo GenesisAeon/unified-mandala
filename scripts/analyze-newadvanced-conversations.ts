@@ -1,8 +1,11 @@
 #!/usr/bin/env ts-node
 import fs from 'fs';
 import path from 'path';
-import { parser } from 'stream-json';
-import { streamArray } from 'stream-json/streamers/StreamArray';
+import StreamJson from 'stream-json';
+import StreamArray from 'stream-json/streamers/StreamArray.js';
+
+const { parser } = StreamJson;
+const { streamArray } = StreamArray;
 
 export interface ConversationStats {
   conversationCount: number;
@@ -134,7 +137,7 @@ export async function analyzeNewAdvancedConversationsStream(
   });
 }
 
-if (require.main === module) {
+if (typeof require !== 'undefined' && require.main === module) {
   const args = process.argv.slice(2);
   const fileArgIndex = args.findIndex((a: string) => !a.startsWith('--'));
   const file =

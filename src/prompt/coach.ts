@@ -1,9 +1,13 @@
-export type PromptFinding = { type: "conflict"|"missing_role"|"vagueness"; where: string; note: string };
-export type PromptAdvice = { optimized: string; reasons: string[]; findings: PromptFinding[] };
+export type PromptFindingType = "conflict"|"missing_role"|"vagueness"|"missing_output";
+export type PromptAdvice = {
+  optimized: string;
+  reasons: string[];
+  findings: { type: PromptFindingType; where: string; note: string }[];
+};
 
 export function heuristicOptimize(raw: string): PromptAdvice {
-  const reasons: string[] = [];
-  const findings: PromptFinding[] = [];
+  const reasons:string[] = [];
+  const findings: PromptAdvice["findings"] = [];
   let out = raw;
 
   if (!/^(system|role)\s*:/im.test(raw)) {
@@ -16,8 +20,9 @@ export function heuristicOptimize(raw: string): PromptAdvice {
     findings.push({type:"conflict", where:"style", note:"Kurz & ausführlich"});
     out = out.replace(/ausführlich/ig, "prägnant aber vollständig");
   }
-  if (!/Output:\s+(`{3}|JSON|YAML)/i.test(raw)) {
+  if (!/Output:\s*(```|JSON|YAML)/i.test(raw)) {
     reasons.push("Explizites Output-Format hinzugefügt (JSON)");
+    findings.push({type:"missing_output", where:"end", note:"Output nicht spezifiziert"});
     out += `\n\nOutput: JSON mit Feldern { "answer": string, "citations": string[] }`;
   }
   return { optimized: out, reasons, findings };

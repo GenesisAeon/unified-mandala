@@ -12,7 +12,7 @@ exports.mergeJsonChunks = mergeJsonChunks;
 const fs_1 = require("fs");
 const path_1 = require("path");
 const stream_json_1 = require("stream-json");
-const StreamArray_1 = require("stream-json/streamers/StreamArray");
+const StreamArray_1 = require("stream-json/streamers/StreamArray.js");
 /**
  * Splits an array into chunks of the given size.
  * @param items Array of items to chunk.

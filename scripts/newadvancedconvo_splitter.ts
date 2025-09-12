@@ -1,8 +1,11 @@
 #!/usr/bin/env ts-node
 import fs from 'fs';
 import path from 'path';
-import { parser } from 'stream-json';
-import { streamArray } from 'stream-json/streamers/StreamArray';
+import StreamJson from 'stream-json';
+import StreamArray from 'stream-json/streamers/StreamArray.js';
+
+const { parser } = StreamJson;
+const { streamArray } = StreamArray;
 
 /**
  * Splits a large newadvancedconversations.json file into per-conversation
@@ -43,7 +46,7 @@ export function split(src: string, dest: string): Promise<number> {
   });
 }
 
-if (require.main === module) {
+if (typeof require !== 'undefined' && require.main === module) {
   const srcArg =
     process.argv[2] || path.join(__dirname, '../docs/sigils/newadvancedconversations.json');
   const destArg =

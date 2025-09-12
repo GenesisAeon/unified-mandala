@@ -2,8 +2,11 @@
 import fs from 'fs';
 import path from 'path';
 import yaml from 'js-yaml';
-import { parser } from 'stream-json';
-import { streamArray } from 'stream-json/streamers/StreamArray';
+import StreamJson from 'stream-json';
+import StreamArray from 'stream-json/streamers/StreamArray.js';
+
+const { parser } = StreamJson;
+const { streamArray } = StreamArray;
 
 export async function splitNewAdvancedConversations(
   srcPath: string,
@@ -75,7 +78,7 @@ export async function splitNewAdvancedConversations(
   });
 }
 
-if (require.main === module) {
+if (typeof require !== 'undefined' && require.main === module) {
   const args = process.argv.slice(2);
   const positional = args.filter((a: string) => !a.startsWith('--'));
   const flags = new Set(args.filter((a: string) => a.startsWith('--')));

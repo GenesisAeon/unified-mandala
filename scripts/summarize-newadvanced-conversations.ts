@@ -1,7 +1,10 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import { parser } from 'stream-json';
-import { streamArray } from 'stream-json/streamers/StreamArray';
+import StreamJson from 'stream-json';
+import StreamArray from 'stream-json/streamers/StreamArray.js';
+
+const { parser } = StreamJson;
+const { streamArray } = StreamArray;
 
 export interface ConversationSummary {
   title: string;
@@ -36,7 +39,7 @@ export function summarizeNewAdvancedConversations(filePath: string, limit?: numb
   });
 }
 
-if (require.main === module) {
+if (typeof require !== 'undefined' && require.main === module) {
   const args: string[] = process.argv.slice(2);
   const fileIndex = args.findIndex((a: string) => a === '--file' || a === '-f');
   const limitIndex = args.findIndex((a: string) => a === '--limit' || a === '-n');
