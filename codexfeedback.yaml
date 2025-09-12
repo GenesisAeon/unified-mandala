@@ -21,4 +21,9 @@ fraktal21:
   checkpoints:
     - "OISST pipeline restored: fetch → postprocess → STAC → CREP → adapters_index.json"
     - "CI smoke asserts OISST presence in out/adapters_index.json"
+    - "Vitest low-memory config (workers=1, heap 3-4GB) + jsdom polyfills"
+    - "check:ci → tsc + vitest(low-mem) + pyright"
+    - "CI splits: adapters-offline + type-and-tests"
   status: "ready-for-review"
+  notes:
+    - "Bei Bedarf VITEST_WORKERS>1 lokal setzen; in CI bei 1 lassen."

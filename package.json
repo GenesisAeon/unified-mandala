@@ -91,14 +91,15 @@
     "ci:fast-checks": "pnpm -w -r exec -- npx tsc -p tsconfig.json --noEmit && npx pyright -p .",
     "ci:sigils": "pnpm sigils:index:strict && pnpm test:sigil tests/fixtures/sigillin/good.yaml && pnpm resonance:calc",
     "ci:adapters-offline": "CI=true pnpm adapter:build:oisst && CI=true pnpm adapter:build:era5 || true",
-    "test:ts": "vitest run --run",
+    "test:ts": "NODE_OPTIONS='--max-old-space-size=3072' vitest run --config vitest.config.ts --reporter=dot",
+    "test:ts:ci": "NODE_OPTIONS='--max-old-space-size=4096' VITEST_WORKERS=1 vitest run --config vitest.config.ts --reporter=dot",
     "test:py": "pytest -q",
     "test:sigil": "ts-node scripts/validate-sigil-cli.ts",
     "test:ui": "vitest run --passWithNoTests",
     "ci:verify": "pnpm test:ts && pnpm sigils:index:strict && pnpm adapter:build:era5",
     "scan:ingest": "node scripts/ingest-external-scan.mjs",
     "adapters:ci:install": "pip install -r src/adapters/requirements.txt",
-    "check:ci": "npx tsc -p tsconfig.json --noEmit && vitest run --run && npx pyright"
+    "check:ci": "npx tsc -p tsconfig.json --noEmit && pnpm test:ts:ci && npx pyright"
   },
   "dependencies": {
     "@automerge/automerge": "^3.1.1",
@@ -150,7 +151,6 @@
     "tesseract.js": "^6.0.1",
     "three": "^0.161.0",
     "tone": "^15.1.22",
-    "undici": "^7.15.0",
     "ws": "^8.17.0",
     "yaml": "^2.8.0",
     "zod": "^3.23.8"
@@ -186,7 +186,7 @@
     "jest": "^30.0.2",
     "jest-environment-jsdom": "30.0.0-beta.3",
     "pino-pretty": "^13.0.0",
-    "stream-json": "1.9.1",
+    "stream-json": "^1.8.0",
     "supertest": "^7.1.1",
     "test-exclude": "^7.0.1",
     "ts-jest": "^29.1.1",
@@ -194,7 +194,8 @@
     "tsx": "^4.19.0",
     "typedoc": "^0.28.5",
     "typescript": "^5.4.0",
-    "vitest": "^3.2.4"
+    "undici": "^6.19.8",
+    "vitest": "^1.6.0"
   },
   "engines": {
     "node": ">=20"
