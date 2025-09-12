@@ -1,1 +1,2 @@
-# noop: marker for adapter package
+# package marker
+
