@@ -1,4 +1,3 @@
-import fetch from 'node-fetch';
 import { Agent, Task } from '../core/interfaces';
 import { withFSM } from '../core/fsmMixin';
 

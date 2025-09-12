@@ -8,9 +8,8 @@ import { TextEncoder, TextDecoder } from 'util';
 import router from './chat-proxy';
 import express from 'express';
 import request from 'supertest';
-import fetch from 'node-fetch';
-
-jest.mock('node-fetch', () => jest.fn());
+const fetch = jest.fn();
+(globalThis as any).fetch = fetch;
 
 const app = express();
 app.use(express.json());

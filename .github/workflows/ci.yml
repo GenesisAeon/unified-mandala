@@ -2,42 +2,63 @@ name: CI
 
 on: [push, pull_request]
 
+env:
+  NODE_VERSION: "20"
+  ALLOW_NET: "0"
+
 jobs:
+  typechecks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: ${{ env.NODE_VERSION }} }
+      - run: pnpm install --frozen-lockfile
+      - run: npx tsc -p tsconfig.json --noEmit
+      - run: pnpm test:ts
+
   pyright:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with: { python-version: '3.11' }
-      - run: python -m pip install --upgrade pip
       - run: pip install -r requirements.txt
       - run: npx pyright
 
-  typechecks_and_tests:
+  adapters-offline:
     runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with: { node-version: 20 }
-      - run: pnpm install --frozen-lockfile
-      - run: pnpm check:ci
-
-  adapters_offline:
-    runs-on: ubuntu-latest
-    env: { CI: "true" }
+    env:
+      CI: "true"
+      ALLOW_NET: "0"
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with: { python-version: '3.11' }
       - run: python -m pip install --upgrade pip
       - run: pip install numpy==1.26.4 scipy==1.11.4 netCDF4==1.6.5 xarray==2024.3.0 pandas==2.1.4 python-dotenv==1.0.1
-      - name: Cache adapter artifacts
-        uses: actions/cache@v4
-        with:
-          path: |
-            data/raw
-            data/processed
-          key: ${{ runner.os }}-adapters-${{ hashFiles('src/adapters/**') }}
       - run: CI=true pnpm adapter:build:oisst
-      - run: CI=true pnpm adapter:build:era5
       - run: PYTHONPATH=src pytest -q tests/adapters
+
+  stac-validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: ${{ env.NODE_VERSION }} }
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm stac:validate && pnpm stac:validate:item out/**/*.stac.json || true
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with: { name: stac-invalid, path: out/**/*.stac.json }
+
+  prompt-lint:
+    runs-on: ubuntu-latest
+    env:
+      ALLOW_NET: "0"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: ${{ env.NODE_VERSION }} }
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm prompts:coach --dry

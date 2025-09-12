@@ -2,7 +2,7 @@ version: 2
 tasks:
   - id: env.setup
     run:
-      - pnpm add -D ts-node yaml node-fetch nats ws ajv micromatch
+      - pnpm add -D ts-node yaml nats ws ajv micromatch
     verify:
       - node -v
       - pnpm -v
