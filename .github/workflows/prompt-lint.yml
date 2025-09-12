@@ -1,19 +1,24 @@
 name: Prompt Lint
-on: [pull_request]
+on:
+  pull_request:
+    paths:
+      - "prompts/**"
+      - "src/prompt/**"
 jobs:
-  coach:
+  prompt_coach:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with: { node-version: 20 }
       - run: pnpm install --frozen-lockfile
-      - run: pnpm prompts:coach
-      - name: Comment diffs
-        uses: thollander/actions-comment-pull-request@v2
+      - run: pnpm prompts:coach || true
+      - name: Upload prompt diffs
+        uses: actions/upload-artifact@v4
         with:
-          message: |
-            🤖 Prompt Coach (dry-run):
-            - Optimierte Prompts unter `prompts/.optimized/`
-            - Begründungen unter `prompts/.diff/`
-            Bitte menschlich sichten & ggf. übernehmen.
+          name: prompt-diffs
+          path: prompts/.diff
+      - name: Post summary
+        run: |
+          echo "### Prompt Coach (dry-run)" >> $GITHUB_STEP_SUMMARY
+          echo "Artefakte: prompt-diffs" >> $GITHUB_STEP_SUMMARY

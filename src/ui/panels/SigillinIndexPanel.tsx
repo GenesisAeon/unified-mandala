@@ -9,7 +9,7 @@ const data: any = (() => {
 })();
 import { SigillinCard } from "../components/SigillinCard";
 import AdapterResonancePanel from "./AdapterResonance";
-import { FEATURES } from "../../config/featureFlags";
+import { isOn } from "../../config/featureFlags";
 import EmergenceExplorer from "./EmergenceExplorer";
 const era5Score = (() => { try { return require("../../out/era5_crep.json").score ?? 0; } catch { return 0; }})();
 const oisstScore = (() => { try { return require("../../out/oisst_crep.json").score ?? 0; } catch { return 0; }})();
@@ -59,9 +59,9 @@ export default function SigillinIndexPanel() {
           <SigillinCard key={s.id} sigillin={s} />
         ))}
       </div>
-      {FEATURES.emergenceExplorer === "on" && (
+      {isOn("emergenceExplorer") && (
         <div className="mt-6">
-          <EmergenceExplorer data={filtered} />
+          <EmergenceExplorer />
         </div>
       )}
     </div>

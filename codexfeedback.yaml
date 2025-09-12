@@ -1,34 +1,18 @@
-fraktal: 25
-status:
-  pyright_zero_warn: done
-  stac_strict_pp: done
-  adapters_offline_cache: done
-  resonance_cli_stable: done
-  emergence_explorer_flagged: done
-notes:
-  - "Set FEATURE flags via VITE_FEATURE_EMERGENCE_EXPLORER=on"
-  - "If STAC Ajv fails, see artifacts: stac-invalid/"
-  - "Pyright config streamlined; OISST uses 'sst' variable"
-next_steps:
-  - "Add golden mini real-world NetCDF sample fixture (separate PR)"
-  - "Upgrade Emergence Explorer to force-directed graph (D3) behind the flag"
-fraktal21:
-  status: "in_progress"
-  goals:
-    - pyright_zero_warn: true
-    - stac_strict_pp: true
-    - offline_adapters_cache: true
-    - resonance_cli_esm_tsx: true
-    - emergence_explorer_flagged: true
-    - prompt_coach_cli_ci: true
-    - epistemic_layer_confidence: true
-  notes:
-    - "OISST erzeugt 'sst' (Codex Sync bestätigt)."
-    - "Pyright strict bleibt aktiv; zentrale Typaliases genutzt."
-    - "UI safeguarded for null/NaN metrics."
-  next:
-    - "EFFIS live-path & correlation batch"
-    - "Prompt Optimizer API switch (statt Heuristik)"
-  done_hooks:
-    - "check ci matrix green"
-    - "comment prompt-lint on PR"
+fraktal:
+  current: 21
+  history:
+    - id: 25
+      status: "done"
+      notes: "pyright strict grün; OISST var=sst normalisiert"
+    - id: 21
+      status: "in-progress"
+      checkpoints:
+        - "OISST fetch: deterministic offline (local & CI)"
+        - "Vitest: stream-json fix"
+        - "Prompt Coach: CLI + PR dry-run"
+        - "CI matrix: adapters cache + typechecks"
+      next:
+        - "STAC live items broaden (optional)"
+        - "Emergence Explorer wiring"
+owner: "Codex"
+needs_repeat: false

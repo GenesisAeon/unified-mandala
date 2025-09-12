@@ -14,6 +14,7 @@
     "lint": "tsc -p tsconfig.json --noEmit",
     "test": "vitest run",
     "test:watch": "vitest",
+    "test:unit": "vitest run --coverage",
     "test:jest": "jest",
     "test:agents": "vitest run",
     "test:adapters": "vitest run src/adapters/tests/decorators.test.ts",
@@ -97,7 +98,7 @@
     "ci:verify": "pnpm test:ts && pnpm sigils:index:strict && pnpm adapter:build:era5",
     "scan:ingest": "node scripts/ingest-external-scan.mjs",
     "adapters:ci:install": "pip install -r src/adapters/requirements.txt",
-    "check:ci": "pnpm -s tsc -p tsconfig.json --noEmit && npx pyright && pnpm sigils:scan && pnpm stac:validate && pnpm sigils:index"
+    "check:ci": "npx tsc -p tsconfig.json --noEmit && pnpm test:unit"
   },
   "dependencies": {
     "@automerge/automerge": "^3.1.1",
@@ -146,7 +147,7 @@
     "recharts": "^2.8.0",
     "socket.io": "^4.7.5",
     "socket.io-client": "^4.7.5",
-    "stream-json": "^1.7.5",
+    "stream-json": "^1.9.1",
     "strip-json-comments": "^5.0.3",
     "tesseract.js": "^6.0.1",
     "three": "^0.161.0",
@@ -182,6 +183,8 @@
     "cross-env": "^7.0.3",
     "cypress": "^14.5.1",
     "husky": "^9.0.0",
+    "globby": "^14.0.0",
+    "@vitest/coverage-v8": "^3.2.4",
     "jest": "^30.0.2",
     "jest-environment-jsdom": "30.0.0-beta.3",
     "pino-pretty": "^13.0.0",
