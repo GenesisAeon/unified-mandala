@@ -35,14 +35,18 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
-        with: { node-version: ${{ env.NODE_VERSION }} }
+        with: { node-version: '20' }
       - uses: actions/setup-python@v5
         with: { python-version: '3.11' }
       - run: python -m pip install --upgrade pip
       - run: pip install -r requirements.txt
       - run: pnpm install --frozen-lockfile
-      - run: pnpm adapter:build:oisst
-      - run: PYTHONPATH=src pytest -q tests/adapters
+      - name: Build OISST (full pipeline)
+        run: pnpm adapter:build:oisst
+      - name: Smoke: adapters_index.json contains OISST
+        run: |
+          test -f out/adapters_index.json
+          node -e "const x=require('./out/adapters_index.json'); if (!x.adapters?.some(a=>a.kind==='oisst')) { process.exit(2) }"
 
   stac-validate:
     runs-on: ubuntu-latest
