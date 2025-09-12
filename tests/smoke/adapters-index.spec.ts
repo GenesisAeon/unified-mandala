@@ -2,7 +2,7 @@ import { describe, it, expect } from "vitest";
 import fs from "node:fs";
 
 describe("adapters_index.json", () => {
-  it("contains OISST entry", () => {
+  it("contains OISST", () => {
     const p = "out/adapters_index.json";
     expect(fs.existsSync(p)).toBe(true);
     const j = JSON.parse(fs.readFileSync(p, "utf8"));
