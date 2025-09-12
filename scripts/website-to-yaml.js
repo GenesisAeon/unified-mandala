@@ -1,6 +1,5 @@
 const fs = require('fs');
 const yaml = require('js-yaml');
-const fetch = require('node-fetch');
 
 async function main() {
   const target = process.argv[2];

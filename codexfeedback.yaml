@@ -16,3 +16,11 @@ fraktal:
         - "Emergence Explorer wiring"
 owner: "Codex"
 needs_repeat: false
+
+fraktal21:
+  checkpoints:
+    - "Remove node-fetch; use native fetch w/ offline default"
+    - "Add stream-json devDep; vitest green"
+    - "Prompt-Coach dry-run in CI (ALLOW_NET=0)"
+    - "OISST: synthetic sst always written in offline mode"
+  status: "ready-for-review"
