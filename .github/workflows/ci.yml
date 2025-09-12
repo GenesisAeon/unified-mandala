@@ -7,25 +7,6 @@ env:
   ALLOW_NET: "0"
 
 jobs:
-  typechecks:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with: { node-version: ${{ env.NODE_VERSION }} }
-      - run: pnpm install --frozen-lockfile
-      - run: npx tsc -p tsconfig.json --noEmit
-      - run: pnpm test:ts
-
-  pyright:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with: { python-version: '3.11' }
-      - run: pip install -r requirements.txt
-      - run: npx pyright
-
   adapters-offline:
     runs-on: ubuntu-latest
     env:
@@ -46,7 +27,24 @@ jobs:
       - name: Smoke: adapters_index.json contains OISST
         run: |
           test -f out/adapters_index.json
-          node -e "const x=require('./out/adapters_index.json'); if (!x.adapters?.some(a=>a.kind==='oisst')) { process.exit(2) }"
+          node -e "const x=require('./out/adapters_index.json'); if (!x.adapters?.some(a=>a.kind==='oisst')) process.exit(2)"
+
+  type-and-tests:
+    runs-on: ubuntu-latest
+    env:
+      NODE_OPTIONS: "--max-old-space-size=4096"
+      VITEST_WORKERS: "1"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: '20' }
+      - run: pnpm install --frozen-lockfile
+      - name: TypeScript compile
+        run: npx tsc -p tsconfig.json --noEmit
+      - name: Vitest (low-memory)
+        run: pnpm test:ts:ci
+      - name: Pyright
+        run: npx pyright
 
   stac-validate:
     runs-on: ubuntu-latest
