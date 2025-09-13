@@ -41,3 +41,10 @@ fraktal22:
   next:
     - "ERA5 in offline-matrix aufnehmen"
     - "Coverage wieder aktivieren (selektiv) wenn Stabilität erreicht"
+
+fraktal23:
+  notes:
+    - "LowMem-Modus: VITE_LOW_MEM=on / LOW_MEM=1 → Membrane & Ringdown disabled"
+    - "UI blendet MembraneBadge aus; KPI-Bridge liefert trivialen Pfad"
+  next:
+    - "Membrane in separatem Job/opt-in Tests wieder aktivieren (no LowMem)"
