@@ -1,9 +1,12 @@
 import express from "express";
 import path from "node:path";
+import { ensureDefaultMetrics } from "../src/metrics/singleton";
 
 const app = express();
 const PORT = Number(process.env.PORT || 3000);
 const UI_DIST = process.env.UI_DIST || path.resolve("apps/mandala-ui/dist");
+
+ensureDefaultMetrics();
 
 app.use(express.static(UI_DIST, { index: "index.html", fallthrough: true }));
 

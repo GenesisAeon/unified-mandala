@@ -3,7 +3,7 @@ fraktal:
   history:
     - id: 32
       status: "in-progress"
-      notes: "Conscious-CI stabil: metrics singleton, Vitest offline, LowMem membrane"
+      notes: "Conscious-CI stabil: metrics singleton, Vitest offline (globals+fetch), LowMem membrane"
     - id: 25
       status: "done"
       notes: "pyright strict grün; OISST var=sst normalisiert"
@@ -21,6 +21,7 @@ fraktal:
   needs_repeat: false
 
 fraktal21:
+  status: "ready-for-review"
   checkpoints:
     - "OISST pipeline restored: fetch → postprocess → STAC → CREP → adapters_index.json"
     - "CI smoke asserts OISST presence in out/adapters_index.json"
@@ -28,7 +29,6 @@ fraktal21:
     - "check:ci → tsc + vitest(low-mem) + pyright"
     - "CI splits: adapters-offline + type-and-tests"
     - "Metrics: global Registry + getOrCreate-Helper verhindern Doppel-Registrierung"
-  status: "ready-for-review"
   notes:
     - "Bei Bedarf VITEST_WORKERS>1 lokal setzen; in CI bei 1 lassen."
     - "Fehler '...already been registered' behoben; HMR/ESM/Vitest sicher"
@@ -76,3 +76,4 @@ fraktal32:
   next:
     - "ERA5 offline-matrix"
     - "Nightly extended-tests (no LOW_MEM) with coverage"
+
