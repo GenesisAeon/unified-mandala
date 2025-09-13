@@ -94,6 +94,11 @@
       "fraktalrun": "Fraktal20 CIResonanceSTAC",
       "status": "implemented",
       "notes": "CI green, strict STAC gate and resonance hardening implemented; kein weiterer Lauf notwendig."
+    },
+    {
+      "fraktalrun": "Fraktal30 MetricsSingleton",
+      "status": "implemented",
+      "notes": "Globale Prometheus-Registry mit getOrCreate-Helpern und LowMem-CI-Variablen integriert."
     }
   ]
 }

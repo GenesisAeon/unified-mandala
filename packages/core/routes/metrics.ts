@@ -1,11 +1,11 @@
 import express from 'express';
-import { register } from '../../../services/metrics';
+import { REG, metricsText } from '../../../src/metrics/singleton';
 
 const router = express.Router();
 
 router.get('/metrics', async (_req, res) => {
-  res.set('Content-Type', register.contentType);
-  res.end(await register.metrics());
+  res.set('Content-Type', REG.contentType);
+  res.end(await metricsText());
 });
 
 export default router;

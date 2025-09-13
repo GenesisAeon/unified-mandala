@@ -24,9 +24,13 @@ fraktal21:
     - "Vitest low-memory config (workers=1, heap 3-4GB) + jsdom polyfills"
     - "check:ci → tsc + vitest(low-mem) + pyright"
     - "CI splits: adapters-offline + type-and-tests"
+    - "Metrics: global Registry + getOrCreate-Helper verhindern Doppel-Registrierung"
   status: "ready-for-review"
   notes:
     - "Bei Bedarf VITEST_WORKERS>1 lokal setzen; in CI bei 1 lassen."
+    - "Fehler '...already been registered' behoben; HMR/ESM/Vitest sicher"
+  next:
+    - "Nightly 'extended-tests' ohne LOW_MEM erwägen"
 
 fraktal22:
   status: "in_progress"

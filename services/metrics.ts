@@ -1,25 +1,22 @@
-import { Counter, collectDefaultMetrics, Registry } from 'prom-client';
+import { collectDefaultMetrics } from 'prom-client';
+import { REG, getOrCreateCounter } from '../src/metrics/singleton';
 
-export const register = new Registry();
-collectDefaultMetrics({ register });
+collectDefaultMetrics({ register: REG });
 
-export const patternCreateCounter = new Counter({
+export const patternCreateCounter = getOrCreateCounter({
   name: 'patterns_created_total',
   help: 'Number of patterns created',
-  registers: [register]
 });
 
-export const haikuVoteCounter = new Counter({
+export const haikuVoteCounter = getOrCreateCounter({
   name: 'haiku_votes_total',
   help: 'Number of haiku votes',
-  registers: [register]
 });
 
-const abVariantCounter = new Counter({
+const abVariantCounter = getOrCreateCounter({
   name: 'layout_variant_total',
   help: 'Count of AB layout variants',
-  labelNames: ['variant'],
-  registers: [register]
+  labelNames: ['variant'] as const,
 });
 
 export function recordABVariant(variant: 'A' | 'B') {
