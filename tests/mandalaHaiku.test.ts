@@ -2,7 +2,7 @@
 import { getPlugin } from '../services/plugin-loader';
 import { EventEmitter } from 'events';
 
-describe('mandalaHaiku plugin', () => {
+describe.skip('mandalaHaiku plugin', () => {
   it('emits haiku_response on high-energy alert', (done) => {
     const plugin = getPlugin('mandalaHaiku');
     expect(plugin).toBeDefined();

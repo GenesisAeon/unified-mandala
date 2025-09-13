@@ -1,5 +1,5 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const config = require('../.eslintrc.js');
+const config = require('../.eslintrc.cjs');
 
 test('ESLint config includes recommended rules', () => {
   expect(config.extends).toContain('eslint:recommended');

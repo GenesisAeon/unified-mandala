@@ -91,15 +91,15 @@
     "ci:fast-checks": "pnpm -w -r exec -- npx tsc -p tsconfig.json --noEmit && npx pyright -p .",
     "ci:sigils": "pnpm sigils:index:strict && pnpm test:sigil tests/fixtures/sigillin/good.yaml && pnpm resonance:calc",
     "ci:adapters-offline": "CI=true pnpm adapter:build:oisst && CI=true pnpm adapter:build:era5 || true",
-    "test:ts": "vitest run --pool=threads --poolOptions.threads.singleThread=true --coverage=false",
-    "test:ts:ci": "NODE_OPTIONS='--max-old-space-size=4096' VITEST_WORKERS=1 vitest run --config vitest.config.ts --reporter=dot",
+    "test:ts": "vitest run --config vitest.config.ts",
+    "test:ts:ci": "NODE_OPTIONS='--max-old-space-size=2048' vitest run --config vitest.config.ts",
     "test:py": "pytest -q",
     "test:sigil": "ts-node scripts/validate-sigil-cli.ts",
     "test:ui": "vitest run --passWithNoTests",
     "ci:verify": "pnpm test:ts && pnpm sigils:index:strict && pnpm adapter:build:era5",
     "scan:ingest": "node scripts/ingest-external-scan.mjs",
     "adapters:ci:install": "pip install -r src/adapters/requirements.txt",
-    "check:ci": "LOW_MEM=1 VITE_LOW_MEM=on npx tsc -p tsconfig.json --noEmit && pnpm test:ts && npx pyright"
+    "check:ci": "npx tsc -p tsconfig.json --noEmit && pnpm test:ts:ci && npx pyright"
   },
   "dependencies": {
     "@automerge/automerge": "^3.1.1",

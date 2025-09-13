@@ -1,6 +1,9 @@
 fraktal:
-  current: 21
+  current: 32
   history:
+    - id: 32
+      status: "in-progress"
+      notes: "Conscious-CI stabil: metrics singleton, Vitest offline, LowMem membrane"
     - id: 25
       status: "done"
       notes: "pyright strict grün; OISST var=sst normalisiert"
@@ -14,8 +17,8 @@ fraktal:
       next:
         - "STAC live items broaden (optional)"
         - "Emergence Explorer wiring"
-owner: "Codex"
-needs_repeat: false
+  owner: "Codex"
+  needs_repeat: false
 
 fraktal21:
   checkpoints:
@@ -47,7 +50,7 @@ fraktal22:
     - "Coverage wieder aktivieren (selektiv) wenn Stabilität erreicht"
 
 fraktal23:
-  status: "in_progress"
+  status: "done"
   checkpoints:
     - "Metrics defaults guarded: ensureDefaultMetrics() once"
     - "Vitest OFFLINE: fetch-stub + /tmp seeding"
@@ -59,6 +62,17 @@ fraktal23:
     - "pnpm test:ts passes offline (no network)"
     - "out/adapters_index.json contains OISST"
     - "tsc + pyright pass"
+  next:
+    - "ERA5 offline-matrix"
+    - "Nightly extended-tests (no LOW_MEM) with coverage"
+
+fraktal32:
+  status: "in_progress"
+  checkpoints:
+    - "Metrics defaults guarded: ensureDefaultMetrics() once"
+    - "Vitest OFFLINE: fetch-stub + /tmp seeding + globals"
+    - "LowMem membrane No-Op"
+    - "CI env OFFLINE/LOW_MEM global; OISST smoke present"
   next:
     - "ERA5 offline-matrix"
     - "Nightly extended-tests (no LOW_MEM) with coverage"
