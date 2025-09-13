@@ -1,12 +1,12 @@
-import { collectDefaultMetrics, register } from 'prom-client';
 import http from 'http';
+import { ensureDefaultMetrics, REG } from '../../src/metrics/singleton.cjs';
 
-collectDefaultMetrics();
+ensureDefaultMetrics();
 
 const server = http.createServer(async (req, res) => {
   if (req.url === '/metrics') {
-    res.setHeader('Content-Type', register.contentType);
-    res.end(await register.metrics());
+    res.setHeader('Content-Type', REG.contentType);
+    res.end(await REG.metrics());
   } else {
     res.statusCode = 404;
     res.end('not found');

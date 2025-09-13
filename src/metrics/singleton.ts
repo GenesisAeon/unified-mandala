@@ -9,6 +9,7 @@ type Cfg<T extends string = string> =
 
 type Store = {
   REG: client.Registry;
+  defaultsDone: boolean;
   C: Record<string, client.Counter<string>>;
   G: Record<string, client.Gauge<string>>;
   H: Record<string, client.Histogram<string>>;
@@ -18,12 +19,25 @@ type Store = {
 const G: any = globalThis as any;
 if (!G.__UM_METRICS__) {
   const REG = new client.Registry();
-  // Optional: Default-Label für Service/Env
   REG.setDefaultLabels({ service: "unified-mandala" });
-  G.__UM_METRICS__ = { REG, C: {}, G: {}, H: {}, S: {} } as Store;
+  G.__UM_METRICS__ = {
+    REG,
+    defaultsDone: false,
+    C: {},
+    G: {},
+    H: {},
+    S: {},
+  } as Store;
 }
-const store: Store = G.__UM_METRICS__;
+const store = G.__UM_METRICS__ as Store;
 export const REG = store.REG;
+
+export function ensureDefaultMetrics() {
+  if (!store.defaultsDone) {
+    client.collectDefaultMetrics({ register: REG });
+    store.defaultsDone = true;
+  }
+}
 
 // --- Helpers -------------------------------------------------------------
 

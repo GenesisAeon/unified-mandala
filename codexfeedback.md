@@ -34,3 +34,4 @@
 - FR-UM-2025-11-25-Fraktal25: CI green, resonance panel and adapter hardening implemented – kein weiterer Lauf notwendig.
 - FR-UM-2025-11-26-Fraktal20-CIResonanceSTAC: Alle Änderungen in einem Lauf umgesetzt – kein zweiter Lauf notwendig.
 - FR-UM-2025-01-17-Fraktal30: Globale Prometheus-Registry und getOrCreate-Helper implementiert – kein weiterer Lauf notwendig.
+- FR-UM-2025-02-16-Fraktal23: Metrics defaults guarded, Vitest offline Setup, LowMem Membrane No-Op – ERA5 offline-matrix offen.
