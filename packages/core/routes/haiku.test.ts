@@ -6,7 +6,7 @@ import express from 'express';
 import jwt from 'jsonwebtoken';
 import haikuRoutes from './haiku';
 import metricsRoutes from './metrics';
-import { register } from '../../../services/metrics';
+import { REG } from '../../../src/metrics/singleton';
 
 const SECRET = 'test-secret';
 const token = jwt.sign({ id: 'u1' }, SECRET);
@@ -15,7 +15,7 @@ app.use(metricsRoutes);
 app.use('/api/haiku', haikuRoutes(SECRET));
 
 beforeEach(() => {
-  register.resetMetrics();
+  REG.resetMetrics();
 });
 
 describe('Haiku vote API', () => {

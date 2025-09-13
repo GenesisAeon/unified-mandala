@@ -1,13 +1,13 @@
-import { Counter, Gauge } from 'prom-client';
+import { getOrCreateCounter, getOrCreateGauge } from '../../src/metrics/singleton';
 
-export const connectionCounter = new Counter({
+export const connectionCounter = getOrCreateCounter({
   name: 'ghost_connections_total',
-  help: 'Total WS connections'
+  help: 'Total WS connections',
 });
 
-export const responseLatencyGauge = new Gauge({
+export const responseLatencyGauge = getOrCreateGauge({
   name: 'ghost_response_latency_ms',
-  help: 'Response latency ms'
+  help: 'Response latency ms',
 });
 
 export function recordConnection(): void {

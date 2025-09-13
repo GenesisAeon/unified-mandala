@@ -5,6 +5,8 @@ on: [push, pull_request]
 env:
   NODE_VERSION: "20"
   ALLOW_NET: "0"
+  LOW_MEM: "1"
+  VITE_LOW_MEM: "on"
 
 jobs:
   adapters-offline:

@@ -91,7 +91,7 @@
     "ci:fast-checks": "pnpm -w -r exec -- npx tsc -p tsconfig.json --noEmit && npx pyright -p .",
     "ci:sigils": "pnpm sigils:index:strict && pnpm test:sigil tests/fixtures/sigillin/good.yaml && pnpm resonance:calc",
     "ci:adapters-offline": "CI=true pnpm adapter:build:oisst && CI=true pnpm adapter:build:era5 || true",
-    "test:ts": "vitest run --pool=threads --poolOptions.threads.singleThread=true",
+    "test:ts": "vitest run --pool=threads --poolOptions.threads.singleThread=true --coverage=false",
     "test:ts:ci": "NODE_OPTIONS='--max-old-space-size=4096' VITEST_WORKERS=1 vitest run --config vitest.config.ts --reporter=dot",
     "test:py": "pytest -q",
     "test:sigil": "ts-node scripts/validate-sigil-cli.ts",

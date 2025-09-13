@@ -6,7 +6,7 @@ import express from 'express';
 import jwt from 'jsonwebtoken';
 import patternRoutes from './patterns';
 import metricsRoutes from './metrics';
-import { register } from '../../../services/metrics';
+import { REG } from '../../../src/metrics/singleton';
 import fs from 'fs';
 
 const SECRET = 'test-secret';
@@ -19,7 +19,7 @@ beforeEach(() => {
   if (fs.existsSync('plugins/mandalaHaiku/customPatterns.json')) {
     fs.writeFileSync('plugins/mandalaHaiku/customPatterns.json', '[]');
   }
-  register.resetMetrics();
+  REG.resetMetrics();
 });
 
 describe('Community-Pattern API', () => {

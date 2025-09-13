@@ -1,15 +1,21 @@
-import { collectDefaultMetrics, Counter, Histogram, register } from 'prom-client';
+import { collectDefaultMetrics } from 'prom-client';
 import { Request, Response, NextFunction } from 'express';
+import {
+  REG,
+  getOrCreateCounter,
+  getOrCreateHistogram,
+  metricsText,
+} from '../../../src/metrics/singleton';
 
-collectDefaultMetrics();
+collectDefaultMetrics({ register: REG });
 
-const httpRequestCounter = new Counter({
+const httpRequestCounter = getOrCreateCounter({
   name: 'http_requests_total',
   help: 'Total number of HTTP requests',
   labelNames: ['method', 'route', 'status'] as const,
 });
 
-const httpRequestDuration = new Histogram({
+const httpRequestDuration = getOrCreateHistogram({
   name: 'http_request_duration_seconds',
   help: 'Duration of HTTP requests in seconds',
   labelNames: ['method', 'route', 'status'] as const,
@@ -26,6 +32,6 @@ export function metricsMiddleware(req: Request, res: Response, next: NextFunctio
 }
 
 export function metricsEndpoint(_req: Request, res: Response) {
-  res.set('Content-Type', register.contentType);
-  register.metrics().then(m => res.end(m));
+  res.set('Content-Type', REG.contentType);
+  metricsText().then(m => res.end(m));
 }
