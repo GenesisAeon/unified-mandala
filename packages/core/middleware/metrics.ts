@@ -1,4 +1,3 @@
-import { collectDefaultMetrics } from 'prom-client';
 import { Request, Response, NextFunction } from 'express';
 import {
   REG,
@@ -6,8 +5,6 @@ import {
   getOrCreateHistogram,
   metricsText,
 } from '../../../src/metrics/singleton';
-
-collectDefaultMetrics({ register: REG });
 
 const httpRequestCounter = getOrCreateCounter({
   name: 'http_requests_total',

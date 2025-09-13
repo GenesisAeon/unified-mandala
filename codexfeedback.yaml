@@ -47,8 +47,18 @@ fraktal22:
     - "Coverage wieder aktivieren (selektiv) wenn Stabilität erreicht"
 
 fraktal23:
-  notes:
-    - "LowMem-Modus: VITE_LOW_MEM=on / LOW_MEM=1 → Membrane & Ringdown disabled"
-    - "UI blendet MembraneBadge aus; KPI-Bridge liefert trivialen Pfad"
+  status: "in_progress"
+  checkpoints:
+    - "Metrics defaults guarded: ensureDefaultMetrics() once"
+    - "Vitest OFFLINE: fetch-stub + /tmp seeding"
+    - "LowMem No-Op for membrane/ringdown"
+    - "CI env OFFLINE/LOW_MEM global; OISST smoke present"
+    - "Conscious-CI docs: Core/Extended/Experimental"
+  definition_of_green:
+    - "No 'already been registered' at startup/test"
+    - "pnpm test:ts passes offline (no network)"
+    - "out/adapters_index.json contains OISST"
+    - "tsc + pyright pass"
   next:
-    - "Membrane in separatem Job/opt-in Tests wieder aktivieren (no LowMem)"
+    - "ERA5 offline-matrix"
+    - "Nightly extended-tests (no LOW_MEM) with coverage"

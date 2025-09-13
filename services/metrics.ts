@@ -1,7 +1,4 @@
-import { collectDefaultMetrics } from 'prom-client';
-import { REG, getOrCreateCounter } from '../src/metrics/singleton';
-
-collectDefaultMetrics({ register: REG });
+import { getOrCreateCounter } from '../src/metrics/singleton';
 
 export const patternCreateCounter = getOrCreateCounter({
   name: 'patterns_created_total',

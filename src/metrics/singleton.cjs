@@ -4,12 +4,18 @@ const client = require("prom-client");
 const G = global;
 if (!G.__UM_METRICS__) {
   const REG = new client.Registry();
-  // Optional: Default-Label für Service/Env
   REG.setDefaultLabels({ service: "unified-mandala" });
-  G.__UM_METRICS__ = { REG, C: {}, G: {}, H: {}, S: {} };
+  G.__UM_METRICS__ = { REG, defaultsDone: false, C: {}, G: {}, H: {}, S: {} };
 }
 const store = G.__UM_METRICS__;
 const REG = store.REG;
+
+function ensureDefaultMetrics() {
+  if (!store.defaultsDone) {
+    client.collectDefaultMetrics({ register: REG });
+    store.defaultsDone = true;
+  }
+}
 
 function getOrCreateCounter(cfg) {
   const name = cfg.name;
@@ -49,6 +55,7 @@ async function metricsText() {
 
 module.exports = {
   REG,
+  ensureDefaultMetrics,
   getOrCreateCounter,
   getOrCreateGauge,
   getOrCreateHistogram,
