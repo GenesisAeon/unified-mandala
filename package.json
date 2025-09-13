@@ -92,7 +92,7 @@
     "ci:sigils": "pnpm sigils:index:strict && pnpm test:sigil tests/fixtures/sigillin/good.yaml && pnpm resonance:calc",
     "ci:adapters-offline": "CI=true pnpm adapter:build:oisst && CI=true pnpm adapter:build:era5 || true",
     "test:ts": "vitest run --config vitest.config.ts",
-    "test:ts:ci": "NODE_OPTIONS='--max-old-space-size=2048' vitest run --config vitest.config.ts",
+    "test:ts:ci": "NODE_OPTIONS=--max-old-space-size=2048 vitest run --config vitest.config.ts",
     "test:py": "pytest -q",
     "test:sigil": "ts-node scripts/validate-sigil-cli.ts",
     "test:ui": "vitest run --passWithNoTests",

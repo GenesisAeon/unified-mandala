@@ -1,12 +1,15 @@
 name: fraktal-ci
 
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
 env:
   LOW_MEM: "1"
   VITE_LOW_MEM: "on"
   OFFLINE: "1"
   NODE_OPTIONS: "--max-old-space-size=2048"
-
-on: [push, pull_request]
 
 jobs:
   type-and-tests:
@@ -14,11 +17,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
-        with:
-          node-version: 20
+        with: { node-version: 20 }
+      - run: corepack enable
+      - run: pnpm --version
       - run: pnpm install --frozen-lockfile
       - run: npx tsc -p tsconfig.json --noEmit
       - run: pnpm test:ts:ci
+      - run: npx pyright
 
   adapters-offline:
     runs-on: ubuntu-latest
@@ -26,12 +31,22 @@ jobs:
       CI: "true"
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 20 }
+      - run: corepack enable
+      - run: pnpm install --frozen-lockfile
       - uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
-      - run: python -m pip install --upgrade pip && pip install -r requirements.txt
-      - run: PYTHONPATH=src pnpm adapter:build:oisst
-      - name: Smoke adapters_index
+        with: { python-version: '3.11' }
+      - run: python -m pip install --upgrade pip
+      - run: pip install -r requirements.txt
+      - name: Build OISST (offline)
+        run: PYTHONPATH=src pnpm adapter:build:oisst
+      - name: Smoke: adapters_index.json contains OISST
         run: |
           test -f out/adapters_index.json
-          jq -e '.adapters[] | select(.id | test("oisst"; "i"))' out/adapters_index.json >/dev/null
+          jq -e '.adapters[] | select((.id // .name) | tostring | test("oisst"; "i"))' out/adapters_index.json >/dev/null
+      - name: Upload out (on failure)
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with: { name: out, path: out }
+
