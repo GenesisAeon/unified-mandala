@@ -1,8 +1,11 @@
 fraktal:
-  current: 34
+  current: 35
   history:
-    - id: 34
+    - id: 35
       status: "in-progress"
+      notes: "Reality-Gate primitive, tsx dev server, Vite alias path, experimental CI Node setup"
+    - id: 34
+      status: "done"
       notes: "CI split (core/extended/experimental), UI alias fix, Node22 dev server"
     - id: 32
       status: "in-progress"
