@@ -43,7 +43,7 @@ docker compose -f docs/offline/docker-compose.yml up
 
 ## Mandala Climate Dashboard
 
-- **Konfiguration:** `src/config/climate-dashboard.yaml`  
+ - **Konfiguration:** `config/climate-dashboard.yaml`
 - **Adapter (Stub→Live):** `src/adapters` (ERA5, OISST, EFFIS, Pegel, Biodiversität, Radar, SPEI)  
 - **Utilities:** `src/utils` (Resampling, Z-Scores, MRV/STAC)
 

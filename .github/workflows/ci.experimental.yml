@@ -8,6 +8,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: '22.x', cache: 'pnpm' }
+      - run: corepack enable && corepack prepare pnpm@10.16.1 --activate
+      - run: pnpm install --frozen-lockfile
       - run: pnpm agents:dry-run --verbose > agents-dry-run.log || true
       - uses: actions/upload-artifact@v4
         with:
@@ -18,4 +22,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: '22.x', cache: 'pnpm' }
+      - run: corepack enable && corepack prepare pnpm@10.16.1 --activate
+      - run: pnpm install --frozen-lockfile
       - run: pnpm guardrails:validate || true
