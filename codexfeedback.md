@@ -38,3 +38,4 @@
 - FR-UM-2025-09-13-Fraktal33: Conscious-CI grün; OFFLINE-Vitest enforced, Metrics defaults singleton, Low-Mem No-Op – kein weiterer Lauf notwendig.
 - FR-UM-2025-09-14-Fraktal34: CI split (core/extended/experimental), Node22 dev-server ESM und UI alias fix – kein weiterer Lauf notwendig.
 - FR-UM-2025-09-15-Fraktal35: Reality-Gate primitive, tsx dev-server, UI alias and experimental CI setup – kein weiterer Lauf notwendig.
+- FR-UM-2025-09-16-Fraktal36: Dev-server autodetect dist, Vite `~config` alias, raw import fix, and default `UI_DIST` dev script – kein weiterer Lauf notwendig.

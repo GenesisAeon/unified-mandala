@@ -4,7 +4,7 @@ import { pollKpis, type KpiValue } from "../services/kpi-engine";
 import YAML from "yaml";
 import SigilBadge from "./SigilBadge";
 import CrepResonanceCard from "./CrepResonanceCard";
-// @ts-ignore
+// @ts-ignore – Vite raw loader
 import rawCfg from "~config/climate-dashboard.yaml?raw";
 const vizCfg = (() => { try { return YAML.parse(String(rawCfg))?.visualization || {}; } catch { return {}; } })();
 
