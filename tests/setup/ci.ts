@@ -20,17 +20,20 @@ process.env.VITE_LOW_MEM ??= "on";
   useRealTimers: vi.useRealTimers,
 };
 
-// OFFLINE erzwingen: existierendes fetch patchen (Node 18/20)
-const originalFetch = globalThis.fetch?.bind(globalThis);
-const { fetch: undiciFetch } = await import("undici");
-(globalThis as any).fetch = (async (input: any, init?: any) => {
-  const url = String(typeof input === "string" ? input : input?.url ?? input);
-  if (process.env.OFFLINE === "1" && /^https?:\/\//i.test(url)) {
-    throw new Error("OFFLINE: network calls are disabled in CI");
-  }
-  const impl = originalFetch ?? (undiciFetch as any);
-  return impl(input, init) as any;
-}) as any;
+// OFFLINE erzwingen: existierendes fetch immer patchen (Node 18+)
+{
+  const orig = globalThis.fetch;
+  const { fetch: undiciFetch } = await import("undici");
+  const base = typeof orig === "function" ? orig : (undiciFetch as any);
+  // @ts-expect-error assign global fetch
+  globalThis.fetch = (input: any, init?: any) => {
+    const url = String(input ?? "");
+    if (process.env.OFFLINE === "1" && /^https?:\/\//i.test(url)) {
+      return Promise.reject(new Error("OFFLINE: network calls are disabled in CI"));
+    }
+    return base(input as any, init as any) as any;
+  };
+}
 
 // Encoder/Decoder fallback (robust)
 try {

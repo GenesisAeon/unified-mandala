@@ -1,6 +1,9 @@
 fraktal:
-  current: 32
+  current: 34
   history:
+    - id: 34
+      status: "done"
+      notes: "CI split core/extended/experimental; Node22 ESM dev; YAML alias fix; offline adapters stable"
     - id: 32
       status: "in-progress"
       notes: "Conscious-CI stabil: metrics singleton, Vitest offline (globals+fetch), LowMem membrane"
@@ -76,4 +79,13 @@ fraktal32:
     - "ERA5 offline stub & smoke"
   next:
     - "Nightly extended-tests (no LOW_MEM) with coverage"
+
+fraktal34:
+  status: "done"
+  checkpoints:
+    - "CI split into core/extended/experimental workflows"
+    - "UI YAML import via ~config alias"
+    - "Dev server Node 22 ESM loader"
+    - "Vitest fetch patch always active"
+    - "Offline adapters OISST & ERA5 smoke"
 
