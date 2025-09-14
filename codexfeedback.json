@@ -104,6 +104,11 @@
       "fraktalrun": "Fraktal33 ConsciousCI",
       "status": "implemented",
       "notes": "Vitest OFFLINE enforced, metrics singleton, LowMem membrane No-Op; kein weiterer Lauf notwendig."
+    },
+    {
+      "fraktalrun": "Fraktal34 ConsciousCISplit",
+      "status": "implemented",
+      "notes": "CI split into core/extended/experimental, Node22 ESM dev, YAML alias fixed, offline adapters hardened."
     }
   ]
 }
