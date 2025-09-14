@@ -3,7 +3,7 @@ import YAML from "yaml";
 // Vite: '?raw' importiert Datei als String
 // Pfad: UI → (../../..) → src/config/...
 // @ts-ignore
-import raw from "../../../../src/config/climate-dashboard.yaml?raw";
+import raw from "~config/climate-dashboard.yaml?raw";
 
 export type KpiConfig = {
   id: string;
