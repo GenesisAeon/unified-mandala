@@ -53,18 +53,6 @@ beforeAll(() => {
   fs.writeFileSync(p, JSON.stringify({ ok: true, t: Date.now() }), "utf8");
   try { fs.copyFileSync(p, "/tmp/newadvanced-stats.json"); } catch {}
   process.env.UM_TMP_DIR = tmp;
-  try {
-    const outDir = path.resolve("out");
-    fs.mkdirSync(outDir, { recursive: true });
-    const adaptersPath = path.join(outDir, "adapters_index.json");
-    if (!fs.existsSync(adaptersPath)) {
-      fs.writeFileSync(
-        adaptersPath,
-        JSON.stringify({ adapters: [{ id: "oisst", kind: "oisst" }] }),
-        "utf8",
-      );
-    }
-  } catch {}
 });
 
 afterEach(() => vi.clearAllMocks());

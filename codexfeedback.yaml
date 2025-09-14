@@ -73,7 +73,7 @@ fraktal32:
     - "Vitest OFFLINE: fetch-stub + /tmp seeding + globals"
     - "LowMem membrane No-Op"
     - "CI env OFFLINE/LOW_MEM global; OISST smoke present"
+    - "ERA5 offline stub & smoke"
   next:
-    - "ERA5 offline-matrix"
     - "Nightly extended-tests (no LOW_MEM) with coverage"
 
