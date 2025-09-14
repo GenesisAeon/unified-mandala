@@ -1,0 +1,21 @@
+name: CI Experimental
+on:
+  pull_request:
+    types: [ labeled, synchronize ]
+jobs:
+  agents-and-governance:
+    if: contains(github.event.pull_request.labels.*.name, 'run-experimental')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: pnpm agents:dry-run --verbose > agents-dry-run.log || true
+      - uses: actions/upload-artifact@v4
+        with:
+          name: agents-dry-run-logs
+          path: agents-dry-run.log
+  kyverno-guardrails:
+    if: contains(github.event.pull_request.labels.*.name, 'run-experimental')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: pnpm guardrails:validate || true

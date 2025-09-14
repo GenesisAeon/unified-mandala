@@ -1,6 +1,9 @@
 fraktal:
-  current: 32
+  current: 34
   history:
+    - id: 34
+      status: "in-progress"
+      notes: "CI split (core/extended/experimental), UI alias fix, Node22 dev server"
     - id: 32
       status: "in-progress"
       notes: "Conscious-CI stabil: metrics singleton, Vitest offline (globals+fetch), LowMem membrane"
@@ -76,4 +79,12 @@ fraktal32:
     - "ERA5 offline stub & smoke"
   next:
     - "Nightly extended-tests (no LOW_MEM) with coverage"
+
+fraktal34:
+  status: "in_progress"
+  checkpoints:
+    - "CI split into core/extended/experimental"
+    - "UI alias ~config & Node22 dev-server ESM"
+  next:
+    - "Monitor extended/experimental label usage"
 

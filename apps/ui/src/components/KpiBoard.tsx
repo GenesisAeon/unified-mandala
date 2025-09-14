@@ -5,7 +5,7 @@ import YAML from "yaml";
 import SigilBadge from "./SigilBadge";
 import CrepResonanceCard from "./CrepResonanceCard";
 // @ts-ignore
-import rawCfg from "../../../src/config/climate-dashboard.yaml?raw";
+import rawCfg from "~config/climate-dashboard.yaml?raw";
 const vizCfg = (() => { try { return YAML.parse(String(rawCfg))?.visualization || {}; } catch { return {}; } })();
 
 const BASE_POLL_MS = Number((import.meta as any)?.env?.VITE_KPI_POLL_MS ?? 10000);
