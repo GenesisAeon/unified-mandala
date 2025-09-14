@@ -36,3 +36,4 @@
 - FR-UM-2025-01-17-Fraktal30: Globale Prometheus-Registry und getOrCreate-Helper implementiert – kein weiterer Lauf notwendig.
 - FR-UM-2025-02-16-Fraktal23: Metrics defaults guarded, Vitest offline Setup, LowMem Membrane No-Op – ERA5 offline-matrix offen.
 - FR-UM-2025-09-13-Fraktal33: Conscious-CI grün; OFFLINE-Vitest enforced, Metrics defaults singleton, Low-Mem No-Op – kein weiterer Lauf notwendig.
+- FR-UM-2025-09-14-Fraktal34: CI-Core/Extended/Experimental split, Node22 ESM dev server, UI config alias, fetch patch, metrics guard – kein weiterer Lauf notwendig.

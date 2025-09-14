@@ -1,6 +1,9 @@
 fraktal:
-  current: 32
+  current: 34
   history:
+    - id: 34
+      status: "done"
+      notes: "CI split Core/Extended/Experimental; UI path alias; Node22 ESM dev server; vitest fetch patch; metrics singleton"
     - id: 32
       status: "in-progress"
       notes: "Conscious-CI stabil: metrics singleton, Vitest offline (globals+fetch), LowMem membrane"
