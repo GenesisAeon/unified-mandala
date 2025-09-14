@@ -52,7 +52,7 @@ Sigil-Zyklen, CREP-Evaluation, Agenten-Aktionen (z. B. Climate-Alarmkette)
 Compose: `docs/offline/docker-compose.yml` → `up`
 
 ### 2.3 Climate-Adapter
-- Config: `src/config/climate-dashboard.yaml`  
+ - Config: `config/climate-dashboard.yaml`
 - ERA5/OISST/EFFIS/Pegel/Biodiv/Radar/SPEI → `src/adapters/*`  
 - Utils: `src/utils/*` (Resampling, Z-Scores, MRV/STAC)
 
