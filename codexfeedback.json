@@ -104,6 +104,11 @@
       "fraktalrun": "Fraktal33 ConsciousCI",
       "status": "implemented",
       "notes": "Vitest OFFLINE enforced, metrics singleton, LowMem membrane No-Op; kein weiterer Lauf notwendig."
+    },
+    {
+      "fraktalrun": "Fraktal34 ConsciousCI Split",
+      "status": "implemented",
+      "notes": "Core/Extended/Experimental CI split, UI alias fix, Node22 ESM dev-server, fetch patch."
     }
   ]
 }
