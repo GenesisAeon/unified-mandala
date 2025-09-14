@@ -1,5 +1,5 @@
 # Wiring: Config → UI (KPIs)
-- Quelle: `src/config/climate-dashboard.yaml`
+- Quelle: `config/climate-dashboard.yaml`
 - Loader: `apps/ui/src/config/useClimateConfig.ts` (YAML via `?raw` & `yaml.parse`)
 - Engine: `apps/ui/src/services/kpi-engine.ts` (Light/Mock zieht Werte aus ERA5/Pegel-Adaptern)
 - UI: `apps/ui/src/components/KpiBoard.tsx`
