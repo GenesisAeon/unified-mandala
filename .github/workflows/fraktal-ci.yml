@@ -41,10 +41,13 @@ jobs:
       - run: pip install -r requirements.txt
       - name: Build OISST (offline)
         run: PYTHONPATH=src pnpm adapter:build:oisst
-      - name: Smoke: adapters_index.json contains OISST
+      - name: Build ERA5 (offline)
+        run: PYTHONPATH=src pnpm adapter:build:era5
+      - name: Smoke: adapters_index.json contains OISST & ERA5
         run: |
           test -f out/adapters_index.json
           jq -e '.adapters[] | select((.id // .name) | tostring | test("oisst"; "i"))' out/adapters_index.json >/dev/null
+          jq -e '.adapters[] | select((.id // .name) | tostring | test("era5"; "i"))'  out/adapters_index.json >/dev/null
       - name: Upload out (on failure)
         if: failure()
         uses: actions/upload-artifact@v4

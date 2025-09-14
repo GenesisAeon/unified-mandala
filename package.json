@@ -80,7 +80,7 @@
     "sigils:scan": "node scripts/validate-sigils.ts",
     "sigils:errors": "cat out/sigils_errors.json || echo 'no errors file'",
     "emergence:scan": "pnpm sigils:index && pnpm agents:scan",
-    "adapter:build:era5": "node scripts/build-adapter-era5.mjs",
+    "adapter:build:era5": "PYTHONPATH=src python -c \"from adapters.era5.fixture import write_synthetic_era5 as w; import os; os.makedirs('data/raw', exist_ok=True); print(w('data/raw/era5_synth.nc'))\" && node scripts/adapter-postprocess.mjs era5",
     "adapter:build:oisst": "node scripts/build-adapter-oisst.mjs",
     "adapter:build:effis": "node scripts/build-adapter-effis.mjs",
     "graph:build": "node scripts/build-sigillin-graph.mjs",
