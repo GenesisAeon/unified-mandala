@@ -104,6 +104,11 @@
       "fraktalrun": "Fraktal33 ConsciousCI",
       "status": "implemented",
       "notes": "Vitest OFFLINE enforced, metrics singleton, LowMem membrane No-Op; kein weiterer Lauf notwendig."
+    },
+    {
+      "fraktalrun": "Fraktal35 RealityGate",
+      "status": "implemented",
+      "notes": "Reality-Gate primitive, tsx dev server, Vite alias fix und Experimental CI Node-Setup."
     }
   ]
 }
