@@ -13931,10 +13931,10 @@
     - adapters
   status: done
   acceptance:
-    - src/config/climate-dashboard.yaml vorhanden
+    - config/climate-dashboard.yaml vorhanden
     - src/adapters/* und src/utils/series.ts vorhanden
   changes:
-    - path: src/config/climate-dashboard.yaml
+    - path: config/climate-dashboard.yaml
     - path: src/adapters/
     - path: src/utils/series.ts
 - id: AGT-020

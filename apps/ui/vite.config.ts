@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
-      "~config": path.resolve(__dirname, "..", "..", "src", "config"),
+      "~config": path.resolve(__dirname, "..", "..", "..", "config"),
     },
   },
   server: { host: true, port: 5173 }
