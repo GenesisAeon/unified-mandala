@@ -1,0 +1,22 @@
+name: CI Core
+on:
+  pull_request:
+  push:
+    branches: [ main ]
+jobs:
+  type-and-tests:
+    runs-on: ubuntu-latest
+    env:
+      OFFLINE: "1"
+      LOW_MEM: "1"
+      VITE_LOW_MEM: "on"
+      NODE_OPTIONS: "--max-old-space-size=2048"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: '22.x', cache: 'pnpm' }
+      - run: corepack enable && corepack prepare pnpm@10.16.1 --activate
+      - run: pnpm install --frozen-lockfile
+      - run: npx tsc -p tsconfig.json --noEmit
+      - run: pnpm test:ts:ci
+      - run: npx pyright
