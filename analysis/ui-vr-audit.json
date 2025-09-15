@@ -21,6 +21,15 @@
       "props": []
     },
     {
+      "path": "/workspace/unified-mandala/node_modules/.pnpm/node_modules/mandala-ui/src/components/RealityBadge.tsx",
+      "name": "RealityBadge",
+      "hasTodo": false,
+      "props": [
+        "score",
+        "decision"
+      ]
+    },
+    {
       "path": "/workspace/unified-mandala/node_modules/.pnpm/node_modules/mandala-ui/src/components/SigilBadge.tsx",
       "name": "SigilBadge",
       "hasTodo": false,
@@ -128,9 +137,53 @@
       "name": "Component",
       "hasTodo": false,
       "props": []
+    },
+    {
+      "path": "/workspace/unified-mandala/src/ui/components/CREPBadge.tsx",
+      "name": "CREPBadge",
+      "hasTodo": false,
+      "props": []
+    },
+    {
+      "path": "/workspace/unified-mandala/src/ui/components/ConfidenceSigil.tsx",
+      "name": "Component",
+      "hasTodo": false,
+      "props": [
+        "strength"
+      ]
+    },
+    {
+      "path": "/workspace/unified-mandala/src/ui/components/MembraneBadge.tsx",
+      "name": "Component",
+      "hasTodo": false,
+      "props": [
+        "A",
+        "sigil"
+      ]
+    },
+    {
+      "path": "/workspace/unified-mandala/src/ui/components/SigillinBadge.tsx",
+      "name": "Component",
+      "hasTodo": false,
+      "props": [
+        "value"
+      ]
+    },
+    {
+      "path": "/workspace/unified-mandala/src/ui/components/SigillinCard.tsx",
+      "name": "Component",
+      "hasTodo": false,
+      "props": [
+        "sigillin"
+      ]
     }
   ],
   "vr": [
+    {
+      "path": "/workspace/unified-mandala/analysis/ui-vr-audit.json",
+      "type": "vr",
+      "name": "ui-vr-audit.json"
+    },
     {
       "path": "/workspace/unified-mandala/node_modules/.pnpm/@chevrotain+cst-dts-gen@11.0.3/node_modules/@chevrotain/cst-dts-gen/LICENSE.txt",
       "type": "vr",

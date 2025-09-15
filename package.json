@@ -52,6 +52,8 @@
     "ghost-shell:cluster": "ts-node services/ghost-shell/cluster.ts",
     "ghost-shell:server": "ts-node services/ghost-shell/server.ts",
     "generate:ghostshell-nginx": "ts-node scripts/generate-ghostshell-nginx.ts",
+    "guardrails:check": "node tools/governance-guardrails.mjs",
+    "guardrails:validate": "pnpm run guardrails:check",
     "store:commit-memory": "node GenesisAeonZIPMEM/commitMemory/commit-memory.js",
     "generate:changelog": "node scripts/generate-changelog.js",
     "compile:agents-manifest": "node scripts/compile_agents_manifest.js",

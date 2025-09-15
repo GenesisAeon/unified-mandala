@@ -1,4 +1,5 @@
 # Codex Feedback
+- FR-UM-2025-09-18-Fraktal37-Tech: CI Core Debug-Log eingebaut, Policy-Checks auf Node 22 + PNPM 10 vereinheitlicht, Guardrails/Kyverno vorübergehend audit-only geschaltet, Repo-Sanity entkoppelt und Smoke-Tests auf Main/Manuell verschoben. Follow-up: Governance-Daten bereinigen und Guardrails wieder scharf stellen.
 - FR-UM-2025-09-18-Fraktal37-CoreCI: Legacy-Workflows archiviert, CI-Core-Stabilität geprüft und Doku/Test-Guides aktualisiert – kein weiterer Lauf notwendig.
 - FR-UM-2025-08-27-C: Alle Änderungen in einem Lauf umgesetzt – kein zweiter Lauf notwendig.
 - FR-UM-2025-08-27-Agents-A: Alle Änderungen in einem Lauf umgesetzt – kein zweiter Lauf notwendig.

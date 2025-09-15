@@ -1,13 +1,13 @@
 #!/usr/bin/env node
-const fs = require('fs');
-const yaml = require('yaml');
+import { readFileSync } from 'fs';
+import yaml from 'yaml';
 
 const policyPath = 'AI_POLICY.md';
 const configPath = 'config/ai-policy-sigillin.yaml';
 
 try {
-  const policyText = fs.readFileSync(policyPath, 'utf8');
-  const config = yaml.parse(fs.readFileSync(configPath, 'utf8'));
+  const policyText = readFileSync(policyPath, 'utf8');
+  const config = yaml.parse(readFileSync(configPath, 'utf8'));
   const missing = [];
   for (const rule of config.rules || []) {
     if (!policyText.includes(rule.note)) {
@@ -20,6 +20,7 @@ try {
   }
   console.log('AI_POLICY compliance verified');
 } catch (err) {
-  console.error('AI_POLICY check failed:', err.message);
+  const message = err instanceof Error ? err.message : String(err);
+  console.error('AI_POLICY check failed:', message);
   process.exit(1);
 }

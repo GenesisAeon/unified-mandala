@@ -31,6 +31,7 @@ const SCRIPT_HINTS = [/^scripts?\/.*\.(ts|js|mjs)$/i];
 
 function walk(dir: string, acc: string[] = []): string[] {
   for (const entry of readdirSync(dir)) {
+    if (entry.endsWith(".disabled")) continue;
     const p = join(dir, entry);
     const s = statSync(p);
     if (s.isDirectory()) walk(p, acc);
