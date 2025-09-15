@@ -5,6 +5,21 @@ on:
   pull_request:
     types: [ labeled, synchronize ]
 jobs:
+  vitest-extended:
+    if: contains(github.event.pull_request.labels.*.name, 'run-extended')
+    runs-on: ubuntu-latest
+    env:
+      OFFLINE: "1"
+      LOW_MEM: "0"
+      UM_ENABLE_EXTENDED_TESTS: "true"
+      NODE_OPTIONS: "--max-old-space-size=4096"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: '22.x', cache: 'pnpm' }
+      - run: corepack enable && corepack prepare pnpm@10.16.1 --activate
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm test:ts:extended
   adapters-offline:
     if: contains(github.event.pull_request.labels.*.name, 'run-extended')
     runs-on: ubuntu-latest
