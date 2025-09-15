@@ -18,7 +18,7 @@
     "test:jest": "jest",
     "test:agents": "vitest run",
     "test:adapters": "vitest run src/adapters/tests/decorators.test.ts",
-    "dev": "tsx scripts/dev-server.ts",
+    "dev": "cross-env UI_DIST=apps/ui/dist tsx scripts/dev-server.ts",
     "start": "pnpm -s build:ui && pnpm -s dev",
     "start:light": "pnpm -s build:ui && node scripts/light-static-server.mjs",
     "start:all": "cross-env NODE_ENV=development concurrently \"ts-node scripts/rag-api.ts\" \"ts-node scripts/flags-api.ts\" \"ts-node scripts/experiments-api.ts\" \"ts-node scripts/share-api.ts\" \"ts-node scripts/realtime-hub.ts\"",

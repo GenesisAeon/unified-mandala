@@ -1,10 +1,36 @@
 import express from "express";
 import path from "node:path";
+import fs from "node:fs";
 import { ensureDefaultMetrics } from "../src/metrics/singleton";
 
 const app = express();
 const PORT = Number(process.env.PORT || 3000);
-const UI_DIST = process.env.UI_DIST || path.resolve("apps/mandala-ui/dist");
+
+// Prefer explicit env var; otherwise try common locations
+const candidates = [
+  process.env.UI_DIST,
+  path.resolve("apps/ui/dist"),
+  path.resolve("apps/mandala-ui/dist"),
+  path.resolve("apps/web/dist"),
+].filter(Boolean) as string[];
+
+const pick = candidates.find(p => {
+  try {
+    return fs.existsSync(path.join(p, "index.html"));
+  } catch {
+    return false;
+  }
+});
+
+const UI_DIST = pick || candidates[0];
+if (!UI_DIST || !fs.existsSync(path.join(UI_DIST, "index.html"))) {
+  console.error("[dev-server] No index.html found.");
+  console.error("Tried:", candidates.join(" | "));
+  console.error("Fixes:");
+  console.error("  1) Build UI:    pnpm -F mandala-ui build");
+  console.error("  2) Or set env:  UI_DIST=apps/ui/dist pnpm dev");
+  process.exit(1);
+}
 
 ensureDefaultMetrics();
 

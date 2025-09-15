@@ -109,6 +109,11 @@
       "fraktalrun": "Fraktal35 RealityGate",
       "status": "implemented",
       "notes": "Reality-Gate primitive, tsx dev server, UI alias and experimental CI setup; kein weiterer Lauf notwendig."
+    },
+    {
+      "fraktalrun": "Fraktal36 DevServerAlias",
+      "status": "implemented",
+      "notes": "Dev-server autodetect dist, Vite alias, raw import fix, and default UI_DIST dev script; kein weiterer Lauf notwendig."
     }
   ]
 }

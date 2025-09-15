@@ -1,6 +1,9 @@
 fraktal:
-  current: 35
+  current: 36
   history:
+    - id: 36
+      status: "done"
+      notes: "Dev-server autodetect dist, Vite ~config alias, raw import fix, default UI_DIST dev script"
     - id: 35
       status: "done"
       notes: "Reality-Gate primitive, tsx dev server, experimental CI setup, UI alias"
