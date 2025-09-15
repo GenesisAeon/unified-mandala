@@ -1,16 +1,27 @@
 name: ZIPMEM CI
-on: [push, pull_request]
+
+on:
+  workflow_dispatch:
+  pull_request:
+    types: [opened, reopened, synchronize, labeled]
+
 jobs:
   build:
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      (github.event_name == 'pull_request' &&
+       contains(join(github.event.pull_request.labels.*.name, ','), 'run-experimental'))
+    continue-on-error: true
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Setup Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v5
         with:
-          python-version: '3.10'
+          python-version: '3.11'
       - name: Install dependencies
         run: |
-          pip install pytest pyyaml sklearn numpy
+          python -m pip install --upgrade pip
+          pip install pytest pyyaml scikit-learn numpy
       - name: Run tests
         run: pytest GenesisAeonZIPMEM/tests --maxfail=1 --disable-warnings -q

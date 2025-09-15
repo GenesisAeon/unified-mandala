@@ -12,6 +12,10 @@ describe('RAGPipeline flow', () => {
     fs.rmSync(tmpDir, { recursive: true, force: true });
   });
 
+  afterAll(() => {
+    fs.rmSync(tmpDir, { recursive: true, force: true });
+  });
+
   it('indexes and queries documents', async () => {
     const router: ModelRouter = {
       async generate(prompt: string) {
