@@ -109,28 +109,36 @@ Siehe `docs/governance/HI-Compact.md` und `AI_POLICY.md`. Transparenz über `adv
 
 ### Quick CI parity
 
-**Core (required for every PR)**
+**Core · CI Core / type-and-tests (Pflicht bei jedem PR)**  
+Setze lokal `OFFLINE=1` und `LOW_MEM=1`, damit derselbe Testfilter wie in GitHub Actions greift.
 
 ```bash
 pnpm lint
-pnpm test:ts:ci
-pnpm test:py
+OFFLINE=1 pnpm test:ts:ci
+OFFLINE=1 pnpm test:py
 npx pyright
 ```
 
-**Extended (nightly or on demand)**
+**Extended · CI Extended (Nightly + Label `run-extended`)**
 
 ```bash
 pnpm test:ts:extended
 pnpm test:py:extended
-CI=true pnpm adapter:build:oisst
-CI=true pnpm adapter:build:era5
+PYTHONPATH=src pnpm adapter:build:oisst
+PYTHONPATH=src pnpm adapter:build:era5
 pnpm stac:validate
-pnpm stac:validate:item out/example.item.json
-pnpm prompts:coach --dry
 ```
 
-> ℹ️ `ENABLE_EXPERIMENTAL_TESTS=1` schaltet zusätzliche, instabile Suites frei (z.B. `pnpm test:ts:experimental`).
+**Experimental · CI Experimental (Label `run-experimental`)**
+
+```bash
+pnpm test:ts:experimental
+pnpm test:py:all
+pnpm agents:dry-run --verbose
+pnpm guardrails:validate
+```
+
+> Vitest-Suiten werden über `ENABLE_EXTENDED_TESTS` / `ENABLE_EXPERIMENTAL_TESTS` gesteuert; die pnpm-Skripte setzen die Flags automatisch. Legacy-Workflows (`fraktal21-ci`, `ci-fraktal22`, `fraktal-ci`, `agents`, `agents_ci`, `build-maps`) sind archiviert (`*.yml.disabled`). Aktiv bleiben `ci.core.yml`, `ci.extended.yml`, `ci.experimental.yml`, Policy/Governance Checks sowie ein nicht blockierender `zipmem-ci`.
 
 ---
 
