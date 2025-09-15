@@ -119,6 +119,11 @@
       "fraktalrun": "Fraktal37 UnifiedMandalaCore",
       "status": "implemented",
       "notes": "Test-Layering für Core/Extended, pytest Marker & Konsolidierungsfahrplan ergänzt; keine Wiederholung nötig."
+    },
+    {
+      "fraktalrun": "Fraktal37 LegacyCI",
+      "status": "implemented",
+      "notes": "Legacy-Workflows deaktiviert, CI-Core via PYTHONPATH stabilisiert und Dokumentation aktualisiert."
     }
   ]
 }
