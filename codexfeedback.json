@@ -114,6 +114,11 @@
       "fraktalrun": "Fraktal36 DevServerAlias",
       "status": "implemented",
       "notes": "Dev-server autodetect dist, Vite alias, raw import fix, and default UI_DIST dev script; kein weiterer Lauf notwendig."
+    },
+    {
+      "fraktalrun": "Fraktal37 UnifiedMandalaCore",
+      "status": "implemented",
+      "notes": "Test-Layering für Core/Extended, pytest Marker & Konsolidierungsfahrplan ergänzt; keine Wiederholung nötig."
     }
   ]
 }

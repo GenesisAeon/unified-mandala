@@ -1,8 +1,11 @@
 import os
 from pathlib import Path
+import pytest
 from adapters.oisst.fetch_oisst import fetch_oisst
 from adapters.oisst.resample_oisst import resample_oisst
 from adapters.oisst.crep_score_oisst import calculate_crep_score
+
+pytestmark = pytest.mark.slow
 
 def test_oisst_flow(tmp_path: Path) -> None:
     os.environ["CI"] = "true"

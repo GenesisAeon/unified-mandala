@@ -1,6 +1,9 @@
 fraktal:
-  current: 36
+  current: 37
   history:
+    - id: 37
+      status: "done"
+      notes: "Core/Extended Testlayering, pytest Marker, CI-Python-Step, Konsolidierungsfahrplan"
     - id: 36
       status: "done"
       notes: "Dev-server autodetect dist, Vite ~config alias, raw import fix, default UI_DIST dev script"
