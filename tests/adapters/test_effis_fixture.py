@@ -2,6 +2,9 @@ from src.adapters.effis.fetch_effis import fetch_effis
 from pathlib import Path
 from pytest import MonkeyPatch
 import os
+import pytest
+
+pytestmark = pytest.mark.slow
 
 
 def test_effis_offline(tmp_path: Path, monkeypatch: MonkeyPatch) -> None:
