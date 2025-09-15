@@ -11,13 +11,17 @@ jobs:
       LOW_MEM: "1"
       VITE_LOW_MEM: "on"
       NODE_OPTIONS: "--max-old-space-size=2048"
+      CI: "true"
+      PYTHONPATH: src
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: '22.x'
           cache: 'pnpm'
-      - run: corepack enable && corepack prepare pnpm@10.16.1 --activate
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.16.1
       - run: pnpm install --frozen-lockfile
       - uses: actions/setup-python@v5
         with:

@@ -109,7 +109,16 @@ Siehe `docs/governance/HI-Compact.md` und `AI_POLICY.md`. Transparenz über `adv
 
 ### Quick CI parity
 
-**Core (required for every PR)**
+Setze lokal die gleiche Umgebung, die auch im Workflow **CI Core / type-and-tests** aktiv ist:
+
+```bash
+export OFFLINE=1
+export LOW_MEM=1
+export VITE_LOW_MEM=on
+export PYTHONPATH=src
+```
+
+**Core (CI Core / type-and-tests, required for every PR)**
 
 ```bash
 pnpm lint
@@ -118,7 +127,7 @@ pnpm test:py
 npx pyright
 ```
 
-**Extended (nightly or on demand)**
+**Extended (CI Extended, nightly or label `run-extended`)**
 
 ```bash
 pnpm test:ts:extended
@@ -130,7 +139,7 @@ pnpm stac:validate:item out/example.item.json
 pnpm prompts:coach --dry
 ```
 
-> ℹ️ `ENABLE_EXPERIMENTAL_TESTS=1` schaltet zusätzliche, instabile Suites frei (z.B. `pnpm test:ts:experimental`).
+> ℹ️ `CI Experimental` läuft nur mit Label `run-experimental`. `ENABLE_EXPERIMENTAL_TESTS=1` schaltet zusätzliche, instabile Suites frei (z.B. `pnpm test:ts:experimental`).
 
 ---
 

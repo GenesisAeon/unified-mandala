@@ -1,4 +1,5 @@
 # Codex Feedback
+- FR-UM-2025-09-18-Fraktal37-CoreCI: Legacy-Workflows archiviert, CI-Core-Stabilität geprüft und Doku/Test-Guides aktualisiert – kein weiterer Lauf notwendig.
 - FR-UM-2025-08-27-C: Alle Änderungen in einem Lauf umgesetzt – kein zweiter Lauf notwendig.
 - FR-UM-2025-08-27-Agents-A: Alle Änderungen in einem Lauf umgesetzt – kein zweiter Lauf notwendig.
 - FR-UM-2025-08-27-Agents-B: Alle Änderungen in einem Lauf umgesetzt – kein zweiter Lauf notwendig.
