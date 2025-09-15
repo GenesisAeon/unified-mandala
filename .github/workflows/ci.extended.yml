@@ -4,9 +4,12 @@ on:
     - cron: '0 2 * * *'
   pull_request:
     types: [ labeled, synchronize ]
+concurrency:
+  group: ci-extended-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
   adapters-offline:
-    if: contains(github.event.pull_request.labels.*.name, 'run-extended')
+    if: ${{ github.event_name != 'pull_request' || contains(github.event.pull_request.labels.*.name, 'run-extended') }}
     runs-on: ubuntu-latest
     env:
       OFFLINE: "1"
@@ -25,9 +28,25 @@ jobs:
           test -f out/adapters_index.json
           jq -e '.adapters[] | select(.id | test("oisst|era5";"i"))' out/adapters_index.json >/dev/null
   stac-resonance:
-    if: contains(github.event.pull_request.labels.*.name, 'run-extended')
+    if: ${{ github.event_name != 'pull_request' || contains(github.event.pull_request.labels.*.name, 'run-extended') }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - run: pnpm stac:validate
       - run: pnpm resonance:smoke || true
+  vitest-extended:
+    if: ${{ github.event_name != 'pull_request' || contains(github.event.pull_request.labels.*.name, 'run-extended') }}
+    runs-on: ubuntu-latest
+    env:
+      OFFLINE: "1"
+      UM_TEST_SUITE: extended
+      NODE_OPTIONS: "--max-old-space-size=4096"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.x'
+          cache: 'pnpm'
+      - run: corepack enable && corepack prepare pnpm@10.16.1 --activate
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm test:ts:extended

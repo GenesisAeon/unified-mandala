@@ -2,9 +2,12 @@ name: CI Experimental
 on:
   pull_request:
     types: [ labeled, synchronize ]
+concurrency:
+  group: ci-experimental-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
   agents-and-governance:
-    if: contains(github.event.pull_request.labels.*.name, 'run-experimental')
+    if: ${{ github.event_name != 'pull_request' || contains(github.event.pull_request.labels.*.name, 'run-experimental') }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -18,7 +21,7 @@ jobs:
           name: agents-dry-run-logs
           path: agents-dry-run.log
   kyverno-guardrails:
-    if: contains(github.event.pull_request.labels.*.name, 'run-experimental')
+    if: ${{ github.event_name != 'pull_request' || contains(github.event.pull_request.labels.*.name, 'run-experimental') }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -27,3 +30,18 @@ jobs:
       - run: corepack enable && corepack prepare pnpm@10.16.1 --activate
       - run: pnpm install --frozen-lockfile
       - run: pnpm guardrails:validate || true
+  vitest-experimental:
+    if: ${{ github.event_name != 'pull_request' || contains(github.event.pull_request.labels.*.name, 'run-experimental') }}
+    runs-on: ubuntu-latest
+    env:
+      UM_TEST_SUITE: experimental
+      NODE_OPTIONS: "--max-old-space-size=4096"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.x'
+          cache: 'pnpm'
+      - run: corepack enable && corepack prepare pnpm@10.16.1 --activate
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm test:ts:experimental || true

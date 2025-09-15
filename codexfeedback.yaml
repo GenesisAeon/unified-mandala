@@ -1,6 +1,9 @@
 fraktal:
-  current: 36
+  current: 37
   history:
+    - id: 37
+      status: "done"
+      notes: "Core/Extended/Experimental Testlayer, Feature-Flags harmonisiert, Konsolidierungsplan dokumentiert"
     - id: 36
       status: "done"
       notes: "Dev-server autodetect dist, Vite ~config alias, raw import fix, default UI_DIST dev script"
@@ -93,4 +96,15 @@ fraktal34:
     - "UI alias ~config & Node22 dev-server ESM"
   next:
     - "Monitor extended/experimental label usage"
+
+fraktal37:
+  status: "implemented"
+  checkpoints:
+    - "Vitest suite filtering via UM_TEST_SUITE (core/extended/experimental)"
+    - "CI concurrency & extended/experimental vitest jobs"
+    - "Feature-Flags vereinheitlicht (UM_FEATURE_*)"
+    - "Roadmap-Dokument: docs/roadmap/unifiedmandala-konsolidierung.md"
+  notes:
+    - "Codexfeedback aktualisiert (json/md/yaml)"
+    - "README & CONTRIBUTING spiegeln neue Guardrails"
 

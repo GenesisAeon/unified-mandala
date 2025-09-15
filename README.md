@@ -53,11 +53,12 @@ Die Adapter sind initial als Stubs verfügbar und werden schrittweise an echte F
 
 ## Repository-Navigator
 
-- **Onboarding:** `scripts/onboarding-ritual.md`  
-- **Handbuch (Kanon):** `Handbuch.md`  
-- **Offline-Bundle:** `docs/offline/docker-compose.yml`  
-- **ToDo-System:** `advancedToDo.yaml` / `advancedToDo.json` (Sync: `node scripts/sync-todo-progress.js`)  
+- **Onboarding:** `scripts/onboarding-ritual.md`
+- **Handbuch (Kanon):** `Handbuch.md`
+- **Offline-Bundle:** `docs/offline/docker-compose.yml`
+- **ToDo-System:** `advancedToDo.yaml` / `advancedToDo.json` (Sync: `node scripts/sync-todo-progress.js`)
 - **Governance/Ethik:** `docs/governance/HI-Compact.md`, `AI_POLICY.md`, `agents.yaml`
+- **Konsolidierung:** `docs/roadmap/unifiedmandala-konsolidierung.md` fasst den Fraktal37-Plan in Sprints & Guardrails zusammen.
 
 ---
 
@@ -109,21 +110,28 @@ Siehe `docs/governance/HI-Compact.md` und `AI_POLICY.md`. Transparenz über `adv
 
 ### Quick CI parity
 ```bash
-# TypeScript
-npx tsc -p tsconfig.json --noEmit && pnpm vitest run
+# Core (Required Checks)
+pnpm test:ts:core
+npx tsc -p tsconfig.json --noEmit
+npx pyright
 
-# Python
-npx pyright && PYTHONPATH=src pytest -q
-
-# Adapters offline
+# Optional Layer 2 (Extended)
+pnpm test:ts:extended            # aktiviert langsame/optionale Tests
 CI=true pnpm adapter:build:oisst && CI=true pnpm adapter:build:era5
-
-# STAC
 pnpm stac:validate && pnpm stac:validate:item out/example.item.json
 
-# Prompt Coach (dry run)
-pnpm prompts:coach
+# Optional Layer 3 (Experimental)
+pnpm test:ts:experimental        # erlaubt Fehler; nutzt run-experimental Label in CI
+pnpm prompts:coach               # Prompt-Coach Dry-Run
 ```
+
+| Suite | CI-Workflow | Env / Flags |
+| --- | --- | --- |
+| Core (default) | `.github/workflows/ci.core.yml` | `UM_TEST_SUITE=core`, `LOW_MEM=1`, `OFFLINE=1` |
+| Extended | `.github/workflows/ci.extended.yml` | `UM_TEST_SUITE=extended` via Label `run-extended` oder Nightly |
+| Experimental | `.github/workflows/ci.experimental.yml` | `UM_TEST_SUITE=experimental`, Label `run-experimental`, darf failen |
+
+> `UM_TEST_SUITE` steuert die Vitest-Filter (`core`, `extended`, `experimental`). `.env.example` enthält die neuen Server-Feature-Flags (`UM_FEATURE_*`).
 
 ---
 
