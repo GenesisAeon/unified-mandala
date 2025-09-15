@@ -3,7 +3,7 @@ fraktal:
   history:
     - id: 37
       status: "done"
-      notes: "Core/Extended Testlayering, pytest Marker, CI-Python-Step, Konsolidierungsfahrplan"
+      notes: "Core/Extended Testlayering, pytest Marker, CI-Python-Step, Konsolidierungsfahrplan, Legacy-Workflows deaktiviert, CI Core grün"
     - id: 36
       status: "done"
       notes: "Dev-server autodetect dist, Vite ~config alias, raw import fix, default UI_DIST dev script"
@@ -31,6 +31,12 @@ fraktal:
         - "Emergence Explorer wiring"
   owner: "Codex"
   needs_repeat: false
+
+hooks:
+  fraktal37:
+    status: done
+    summary: "Legacy-Workflows archiviert (.disabled), Core-CI lokal geprüft, Doku/Codexfeedback aktualisiert"
+    next: []
 
 fraktal21:
   status: "ready-for-review"

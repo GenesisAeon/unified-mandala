@@ -118,6 +118,13 @@ pnpm test:py
 npx pyright
 ```
 
+**GitHub Actions Übersicht**
+
+- `CI Core` läuft auf jedem Push/PR und spiegelt den obigen Befehlssatz wider.
+- `CI Extended` wird nur über Labels/Manuellen Trigger gestartet und umfasst Adapter-Builds & STAC-Validierung.
+- `CI Experimental` sowie `ZIPMEM CI` reagieren auf das Label `run-experimental`; letzterer läuft außerdem `continue-on-error` und blockiert den Merge nicht mehr.
+- Historische Pipelines (`fraktal21/22`, `agents`, `build-maps`) wurden in `.yml.disabled` verschoben, um Lärm zu vermeiden. Bei Bedarf einfach zurückbenennen.
+
 **Extended (nightly or on demand)**
 
 ```bash
