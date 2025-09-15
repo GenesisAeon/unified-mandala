@@ -114,6 +114,11 @@
       "fraktalrun": "Fraktal36 DevServerAlias",
       "status": "implemented",
       "notes": "Dev-server autodetect dist, Vite alias, raw import fix, and default UI_DIST dev script; kein weiterer Lauf notwendig."
+    },
+    {
+      "fraktalrun": "Fraktal37 CoreScope",
+      "status": "implemented",
+      "notes": "Vitest Core-Scope, Extended-CI-Lauf und Minimal-Core-Roadmap dokumentiert; kein weiterer Lauf notwendig."
     }
   ]
 }

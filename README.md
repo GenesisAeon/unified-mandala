@@ -109,8 +109,11 @@ Siehe `docs/governance/HI-Compact.md` und `AI_POLICY.md`. Transparenz über `adv
 
 ### Quick CI parity
 ```bash
-# TypeScript
-npx tsc -p tsconfig.json --noEmit && pnpm vitest run
+# TypeScript (Core)
+npx tsc -p tsconfig.json --noEmit && pnpm test:ts:core
+
+# TypeScript (Extended, optional)
+pnpm test:ts:extended
 
 # Python
 npx pyright && PYTHONPATH=src pytest -q
@@ -124,6 +127,8 @@ pnpm stac:validate && pnpm stac:validate:item out/example.item.json
 # Prompt Coach (dry run)
 pnpm prompts:coach
 ```
+
+`pnpm test:ts:core` setzt `UM_TEST_SCOPE=core` und blendet alle als `extended` oder `experimental` markierten Tests aus. Für vollumfängliche Läufe stehen `pnpm test:ts:extended` und `pnpm test:ts:experimental` bereit.
 
 ---
 

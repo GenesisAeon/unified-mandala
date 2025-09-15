@@ -1,6 +1,9 @@
 fraktal:
-  current: 36
+  current: 37
   history:
+    - id: 37
+      status: "done"
+      notes: "Vitest Core-Scope, Extended-CI-Lauf und Minimal-Core-Roadmap dokumentiert"
     - id: 36
       status: "done"
       notes: "Dev-server autodetect dist, Vite ~config alias, raw import fix, default UI_DIST dev script"
@@ -26,6 +29,10 @@ fraktal:
       next:
         - "STAC live items broaden (optional)"
         - "Emergence Explorer wiring"
+  progress_hook:
+    core_scope: "pnpm test:ts:core"
+    extended_scope: "pnpm test:ts:extended"
+    roadmap: "docs/roadmap/minimal-core.md"
   owner: "Codex"
   needs_repeat: false
 
