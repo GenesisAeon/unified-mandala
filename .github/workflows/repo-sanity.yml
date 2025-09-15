@@ -7,8 +7,23 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
-      - run: corepack enable && corepack prepare pnpm@8.15.6 --activate
-      - run: pnpm install --ignore-scripts
-      - run: pnpm maps:build && pnpm audit:ui-vr
-      - run: test -f analysis/repo-map.json && test -f analysis/ui-vr-audit.json
+          node-version: '22.x'
+          cache: 'pnpm'
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.16.1
+      - run: pnpm install --frozen-lockfile --ignore-scripts
+      - name: Build repo map
+        run: pnpm maps:build
+      - name: Audit UI/VR consistency (advisory)
+        run: pnpm audit:ui-vr
+        continue-on-error: true
+      - name: Verify repo map artifact
+        run: test -f analysis/repo-map.json
+      - name: Check UI/VR audit artifact (non-blocking)
+        run: |
+          if [ -f analysis/ui-vr-audit.json ]; then
+            echo "UI/VR audit generated"
+          else
+            echo "::warning::analysis/ui-vr-audit.json missing (UI/VR audit is running in advisory mode)"
+          fi

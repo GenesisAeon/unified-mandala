@@ -5,6 +5,9 @@ Dieses Projekt nutzt GPT-Module als experimentelle Bausteine. Der Einsatz erfolg
 ## Verantwortungsvolle Anwendung
 - GPT-Outputs werden vor einer Veröffentlichung geprüft.
 - Automatisierte Entscheidungen sollten stets menschlich gegengeprüft werden.
+- GPT-Antworten müssen respektvoll und konstruktiv bleiben.
+- Die Module dürfen nicht manipulieren oder irreleiten.
+- Entscheidungen und Vorschläge sollen nachvollziehbar sein.
 
 ## Datenverarbeitung
 - Bei Tests oder Trainingsdaten achten wir auf minimale personenbezogene Informationen.

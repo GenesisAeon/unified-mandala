@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-ROOT_DIR=$(dirname "$0")/..
+ROOT_DIR="$(cd "$(dirname "$0")/.." && pwd)"
 SCHEMA="$ROOT_DIR/packages/genesis-sigillin-core/schemas/sigillin.schema.json"
 EXIT=0
 for file in "$ROOT_DIR"/docs/sigils/*.yaml; do
@@ -8,10 +8,11 @@ for file in "$ROOT_DIR"/docs/sigils/*.yaml; do
   echo "Validating $file"
   node - <<NODE || EXIT=1
 const fs = require('fs');
+const path = require('path');
 const Ajv = require('ajv');
 const addFormats = require('ajv-formats');
 const yaml = require('yaml');
-const schema = require('$SCHEMA');
+const schema = JSON.parse(fs.readFileSync(path.resolve('$SCHEMA'), 'utf8'));
 const ajv = new Ajv();
 addFormats(ajv);
 const validate = ajv.compile(schema);

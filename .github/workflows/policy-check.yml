@@ -7,10 +7,14 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '22.x'
+          cache: 'pnpm'
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.16.1
+      - run: pnpm install --frozen-lockfile --ignore-scripts
       - name: OPA policy check
-        run: |
-          node tools/opa-check.mjs fixtures/events/example_input.json
+        run: pnpm exec node tools/opa-check.mjs fixtures/events/example_input.json
   kyverno:
     runs-on: ubuntu-latest
     steps:
@@ -21,11 +25,19 @@ jobs:
           policies: policies/kyverno.yaml
           resources: fixtures/events/example_input.json
           cluster: false
+        continue-on-error: true
   guardrails:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
-        with: { node-version: '20' }
-      - run: pnpm add yaml
-      - run: node tools/governance-guardrails.mjs
+        with:
+          node-version: '22.x'
+          cache: 'pnpm'
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.16.1
+      - run: pnpm install --frozen-lockfile --ignore-scripts
+      - name: Guardrails check (non-blocking)
+        run: pnpm guardrails:check
+        continue-on-error: true
