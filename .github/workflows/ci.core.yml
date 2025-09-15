@@ -11,6 +11,7 @@ jobs:
       LOW_MEM: "1"
       VITE_LOW_MEM: "on"
       NODE_OPTIONS: "--max-old-space-size=2048"
+      PYTHONPATH: src
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4

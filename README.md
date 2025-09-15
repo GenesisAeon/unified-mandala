@@ -132,6 +132,9 @@ pnpm prompts:coach --dry
 
 > ℹ️ `ENABLE_EXPERIMENTAL_TESTS=1` schaltet zusätzliche, instabile Suites frei (z.B. `pnpm test:ts:experimental`).
 
+> 🧹 **Legacy CI bereinigt:** Die vorherigen Fraktal21/Fraktal22-, Agents- und Repo-Maps-Workflows wurden als `.disabled` archiviert.
+> GitHub Actions führt jetzt standardmäßig nur noch die neuen Pipelines **CI Core**, **CI Extended** und **CI Experimental** aus.
+
 ---
 
 ## Contributing

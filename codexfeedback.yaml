@@ -1,9 +1,14 @@
 fraktal:
   current: 37
+  hook:
+    stage: "Fraktal37-LegacyCI"
+    next:
+      - "Beobachte CI Core Läufe (type-and-tests) nach Workflow-Aufräumung"
+      - "Reaktivierung einzelner Legacy-Workflows bei Bedarf dokumentieren"
   history:
     - id: 37
       status: "done"
-      notes: "Core/Extended Testlayering, pytest Marker, CI-Python-Step, Konsolidierungsfahrplan"
+      notes: "Core/Extended Testlayering, pytest Marker, Legacy-CI deaktiviert, PYTHONPATH für Core-CI gesetzt"
     - id: 36
       status: "done"
       notes: "Dev-server autodetect dist, Vite ~config alias, raw import fix, default UI_DIST dev script"
