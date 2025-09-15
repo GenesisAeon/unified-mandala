@@ -1,6 +1,16 @@
 fraktal:
-  current: 36
+  current: 37
   history:
+    - id: 37
+      status: "in-progress"
+      notes: "Konsolidierungsplan (Core/Extended CI, Feature-Flags für Tests, README/Dev-Server Updates) angestoßen"
+      checkpoints:
+        - "pnpm ci:core als Pflichtlauf dokumentiert"
+        - "UM_ENABLE_EXTENDED_TESTS Filter in Vitest aktiv"
+        - "Dev-Server scannt apps/*/dist automatisch"
+      next:
+        - "Sprint 1 Definition of Done verifizieren"
+        - "CONSCIOUS_CI.md Verweis auf Konsolidierungsplan ergänzen"
     - id: 36
       status: "done"
       notes: "Dev-server autodetect dist, Vite ~config alias, raw import fix, default UI_DIST dev script"

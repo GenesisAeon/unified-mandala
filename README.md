@@ -37,7 +37,7 @@ docker compose -f docs/offline/docker-compose.yml up
 
 > **Hinweise:**  
 > • „Cannot GET /“ auf :3000 bedeutet: Backend servt keine HMR-UI. Entweder **Vite-Dev** (`pnpm dev:ui`) nutzen oder **statisch bauen** (`pnpm build:ui && pnpm dev`).  
-> • Windows: Lange Pfade aktivieren; `.dockerignore` im Repo-Root verhindert riesige Build-Kontexte.
+> • Windows: Lange Pfade aktivieren; `.dockerignore` im Repo-Root verhindert riesige Build-Kontexte. Falls der Dev-Server keinen Build findet: `set UI_DIST=apps\\ui\\dist && pnpm dev` (CMD) bzw. `$env:UI_DIST='apps/mandala-ui/dist'; pnpm dev` (PowerShell).
 
 ---
 
@@ -109,21 +109,20 @@ Siehe `docs/governance/HI-Compact.md` und `AI_POLICY.md`. Transparenz über `adv
 
 ### Quick CI parity
 ```bash
-# TypeScript
-npx tsc -p tsconfig.json --noEmit && pnpm vitest run
+# Pflichtlauf (Core)
+pnpm ci:core
 
-# Python
-npx pyright && PYTHONPATH=src pytest -q
+# Erweiterte Checks (on-demand)
+pnpm test:ts:extended
+pnpm test:py
 
-# Adapters offline
+# Datenpfade / STAC / Prompt Coach je nach Bedarf
 CI=true pnpm adapter:build:oisst && CI=true pnpm adapter:build:era5
-
-# STAC
 pnpm stac:validate && pnpm stac:validate:item out/example.item.json
-
-# Prompt Coach (dry run)
 pnpm prompts:coach
 ```
+
+Weitere Details zur Schichtung stehen im [Konsolidierungsplan](docs/Konsolidierungsplan-UnifiedMandala.md).
 
 ---
 

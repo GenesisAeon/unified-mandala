@@ -7,12 +7,29 @@ const app = express();
 const PORT = Number(process.env.PORT || 3000);
 
 // Prefer explicit env var; otherwise try common locations
-const candidates = [
-  process.env.UI_DIST,
-  path.resolve("apps/ui/dist"),
-  path.resolve("apps/mandala-ui/dist"),
-  path.resolve("apps/web/dist"),
-].filter(Boolean) as string[];
+const autoDiscoveredDistDirs = (() => {
+  const appsRoot = path.resolve("apps");
+  try {
+    return fs
+      .readdirSync(appsRoot, { withFileTypes: true })
+      .filter(entry => entry.isDirectory())
+      .map(entry => path.join(appsRoot, entry.name, "dist"));
+  } catch {
+    return [];
+  }
+})();
+
+const candidates = Array.from(
+  new Set(
+    [
+      process.env.UI_DIST ? path.resolve(process.env.UI_DIST) : undefined,
+      path.resolve("apps/ui/dist"),
+      path.resolve("apps/mandala-ui/dist"),
+      path.resolve("apps/web/dist"),
+      ...autoDiscoveredDistDirs,
+    ].filter(Boolean) as string[],
+  ),
+);
 
 const pick = candidates.find(p => {
   try {
@@ -29,6 +46,8 @@ if (!UI_DIST || !fs.existsSync(path.join(UI_DIST, "index.html"))) {
   console.error("Fixes:");
   console.error("  1) Build UI:    pnpm -F mandala-ui build");
   console.error("  2) Or set env:  UI_DIST=apps/ui/dist pnpm dev");
+  console.error("     Windows PowerShell:  $env:UI_DIST='apps/mandala-ui/dist'; pnpm dev");
+  console.error("     Windows Eingabeaufforderung:  set UI_DIST=apps\\ui\\dist && pnpm dev");
   process.exit(1);
 }
 

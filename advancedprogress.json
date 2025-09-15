@@ -6366,5 +6366,169 @@
   ],
   "changedFiles": [],
   "lastUpdated": "2025-09-04T13:48:52.382Z",
-  "commitHash": "743851c2bde0ad40d543d912aeebbbde384e43fd"
+  "commitHash": "743851c2bde0ad40d543d912aeebbbde384e43fd",
+  "consolidationPlan": {
+    "lastRefined": "2025-09-15T20:43:58Z",
+    "minimalCore": [
+      {
+        "name": "Sigillin Engine",
+        "status": "stabilize",
+        "definition": "Sigillin-Bundles validieren und indexieren (pnpm sigils:index) inklusive Fehlerresilienz"
+      },
+      {
+        "name": "CREP Kernel",
+        "status": "stabilize",
+        "definition": "CREP-Metriken konsistent berechnen, Resonanz-Badges normalisieren, Offline-Testabdeckung sichern"
+      },
+      {
+        "name": "Agenten-Grundfunktionen",
+        "status": "stabilize",
+        "definition": "Health-/Heartbeat-Endpunkte, Basis-Governance, Telemetrie nur wenn aktiviert"
+      },
+      {
+        "name": "Climate Dashboard",
+        "status": "stabilize",
+        "definition": "ERA5/OISST Offline-Pipelines erzeugen adapters_index.json inkl. Smoke-Tests"
+      },
+      {
+        "name": "Observability",
+        "status": "maintain",
+        "definition": "ensureDefaultMetrics Singleton, Prometheus-Scrapes ohne Doppel-Registrierung"
+      }
+    ],
+    "quickWins": [
+      {
+        "area": "ci",
+        "actions": [
+          "Triviale Vitest-Erwartungen/Snapshots korrigieren",
+          "Fehlende Fixtures ergänzen oder aktualisieren",
+          "Instabile Tests per Flag UM_ENABLE_EXTENDED_TESTS isolieren"
+        ],
+        "status": "in-progress"
+      },
+      {
+        "area": "dev-server",
+        "actions": [
+          "UI_DIST automatisch erkennen",
+          "Windows-Kommandos in README und Log-Hinweisen dokumentieren"
+        ],
+        "status": "done"
+      },
+      {
+        "area": "documentation",
+        "actions": [
+          "README Quick-CI-Sektion mit pnpm ci:core ergänzen",
+          "Konsolidierungsplan im docs/ Verzeichnis veröffentlichen"
+        ],
+        "status": "done"
+      }
+    ],
+    "ciStrata": {
+      "core": {
+        "workflow": ".github/workflows/ci.core.yml",
+        "command": "pnpm ci:core",
+        "required": true,
+        "scope": [
+          "tsc",
+          "vitest (core)",
+          "pyright"
+        ]
+      },
+      "extended": {
+        "workflow": ".github/workflows/ci.extended.yml",
+        "command": "pnpm test:ts:extended && pnpm test:py",
+        "required": false,
+        "trigger": "label run-extended oder nightly"
+      },
+      "experimental": {
+        "workflow": ".github/workflows/ci.experimental.yml",
+        "command": "pnpm agents:dry-run --verbose",
+        "required": false,
+        "trigger": "label run-experimental"
+      }
+    },
+    "sprintCadence": [
+      {
+        "name": "Sprint 1 – Kern stabilisieren",
+        "focus": [
+          "Minimal Core vollständig grün",
+          "Quick-Wins-Liste abarbeiten"
+        ],
+        "definitionOfDone": [
+          "ci.core.yml grün",
+          "README & Onboarding aktualisiert"
+        ]
+      },
+      {
+        "name": "Sprint 2 – Modularisierung",
+        "focus": [
+          "Feature-Flags vereinheitlichen",
+          "Core/Experimental Pakete trennen"
+        ],
+        "definitionOfDone": [
+          "Feature-Flags dokumentiert",
+          "Abhängigkeiten auditiert"
+        ]
+      },
+      {
+        "name": "Sprint 3 – Dokumentation",
+        "focus": [
+          "CONTRIBUTING/Onboarding pflegen",
+          "Setup-Prozess auf Windows/Linux/Mac testen"
+        ],
+        "definitionOfDone": [
+          "Troubleshooting-Sektion ergänzt",
+          "Known-Issues gepflegt"
+        ]
+      },
+      {
+        "name": "Sprint 4 – Kultur & Governance",
+        "focus": [
+          "Review-Rituale festigen",
+          "Extended-CI Zeitplan etablieren"
+        ],
+        "definitionOfDone": [
+          "Weekly Async-Update eingeführt",
+          "Community-Feedback ausgewertet"
+        ]
+      }
+    ],
+    "riskRegister": [
+      {
+        "risk": "Verdeckte Kopplungen zwischen Core und Experimental-Modulen",
+        "impact": "Build-/Runtime-Fehler nach Refactorings",
+        "mitigation": "Interface-Stubs + Feature-Flags, Contract-Tests vor Merge",
+        "status": "watch"
+      },
+      {
+        "risk": "Vitest-Laufzeiten schrecken Contributors ab",
+        "impact": "Tests werden lokal selten ausgeführt",
+        "mitigation": "Core/Extended-Trennung, Caching, klare Doku",
+        "status": "active"
+      },
+      {
+        "risk": "Offline-Datenpfade brechen (ERA5/OISST)",
+        "impact": "Adapter-Builds schlagen fehl",
+        "mitigation": "Synthetic Fixtures pflegen, nightly Smoke",
+        "status": "active"
+      },
+      {
+        "risk": "Einzelperson trägt Großteil der Arbeit",
+        "impact": "Zeitplan rutscht, Burnout-Gefahr",
+        "mitigation": "Priorisierung sichtbar machen, Community einladen",
+        "status": "watch"
+      }
+    ],
+    "documentation": {
+      "links": [
+        "docs/Konsolidierungsplan-UnifiedMandala.md",
+        "README.md"
+      ],
+      "nextActions": [
+        "Onboarding-Ritual auf neue Kommandos prüfen",
+        "Release Notes v1.0 Entwurf vorbereiten"
+      ]
+    },
+    "notes": "Fraktal37 Konsolidierungsplan initialisiert und mit CI-/Doku-Anpassungen verknüpft."
+  }
 }
