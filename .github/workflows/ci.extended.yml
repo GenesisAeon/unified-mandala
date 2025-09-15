@@ -5,8 +5,25 @@ on:
   pull_request:
     types: [ labeled, synchronize ]
 jobs:
+  vitest-extended:
+    if: github.event_name != 'pull_request' || (github.event.pull_request != null && contains(github.event.pull_request.labels.*.name, 'run-extended'))
+    runs-on: ubuntu-latest
+    env:
+      OFFLINE: "1"
+      LOW_MEM: "1"
+      VITE_LOW_MEM: "on"
+      NODE_OPTIONS: "--max-old-space-size=4096"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.x'
+          cache: 'pnpm'
+      - run: corepack enable && corepack prepare pnpm@10.16.1 --activate
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm test:ts:extended
   adapters-offline:
-    if: contains(github.event.pull_request.labels.*.name, 'run-extended')
+    if: github.event_name != 'pull_request' || (github.event.pull_request != null && contains(github.event.pull_request.labels.*.name, 'run-extended'))
     runs-on: ubuntu-latest
     env:
       OFFLINE: "1"
@@ -25,7 +42,7 @@ jobs:
           test -f out/adapters_index.json
           jq -e '.adapters[] | select(.id | test("oisst|era5";"i"))' out/adapters_index.json >/dev/null
   stac-resonance:
-    if: contains(github.event.pull_request.labels.*.name, 'run-extended')
+    if: github.event_name != 'pull_request' || (github.event.pull_request != null && contains(github.event.pull_request.labels.*.name, 'run-extended'))
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
