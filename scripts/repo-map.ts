@@ -29,12 +29,26 @@ const VR_HINTS = [/unifiedmandala-vr/i, /VR/i, /PyramidVRMeetingRoom\.tsx$/];
 const AGENT_HINTS = [/agents?\//i, /Agent\.(ts|js)$/i, /plugins?\//i];
 const SCRIPT_HINTS = [/^scripts?\/.*\.(ts|js|mjs)$/i];
 
+const SKIP_DIRS = new Set([
+  ".git",
+  "node_modules",
+  ".pnpm",
+  "dist",
+  "build",
+  "coverage",
+  "out"
+]);
+
 function walk(dir: string, acc: string[] = []): string[] {
   for (const entry of readdirSync(dir)) {
+    if (SKIP_DIRS.has(entry)) continue;
     const p = join(dir, entry);
     const s = statSync(p);
-    if (s.isDirectory()) walk(p, acc);
-    else acc.push(p);
+    if (s.isDirectory()) {
+      walk(p, acc);
+    } else if (!entry.endsWith(".disabled")) {
+      acc.push(p);
+    }
   }
   return acc;
 }

@@ -1,14 +1,24 @@
 name: smoke
-on: [pull_request]
+on:
+  pull_request:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
 jobs:
   smoke:
     runs-on: ubuntu-latest
+    if: github.event_name != 'pull_request'
     env:
       PORT: 3000
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+          cache: 'pnpm'
       - uses: pnpm/action-setup@v4
-        with: { version: 8.15.6 }
+        with:
+          version: 10.16.1
       - run: pnpm install --frozen-lockfile
       - run: pnpm build:ui || true
       - run: node scripts/dev-server.js & sleep 2 || true
