@@ -1,5 +1,15 @@
 {
+  "id": "evt-override-001",
   "topic": "governance.override",
+  "ts": "2025-09-18T00:00:00Z",
   "personhood": "P3",
-  "governance": {"compliant": true}
+  "actor": {
+    "id": "agent-governance",
+    "role": "guardian"
+  },
+  "governance": { "compliant": true },
+  "payload": {
+    "action": "override",
+    "reason": "emergency-route"
+  }
 }

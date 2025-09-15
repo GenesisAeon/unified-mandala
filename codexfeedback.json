@@ -1,6 +1,11 @@
 {
   "runs": [
     {
+      "fraktalrun": "Fraktal37 CoreCI RunB",
+      "status": "implemented",
+      "notes": "Node20 toolchain rollout, policy guardrails relaxed with non-blocking checks, repo-sanity stabilized."
+    },
+    {
       "fraktalrun": "Fraktal8 OrientationHub",
       "status": "implemented",
       "notes": "Alle Inhalte aus Fraktal8 integriert; weitere Fragmente können in Folgeläufen ergänzt werden."
