@@ -1,0 +1,33 @@
+name: MCP Server CI
+
+on:
+  push:
+    paths:
+      - 'servers/mandala-mcp/**'
+      - 'pnpm-workspace.yaml'
+      - '.github/workflows/mcp-ci.yml'
+  pull_request:
+    paths:
+      - 'servers/mandala-mcp/**'
+      - 'pnpm-workspace.yaml'
+      - '.github/workflows/mcp-ci.yml'
+
+jobs:
+  mcp:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Typecheck
+        run: pnpm --dir servers/mandala-mcp run typecheck
+      - name: Build
+        run: pnpm --dir servers/mandala-mcp run build
+      - name: Test
+        run: pnpm --dir servers/mandala-mcp run test

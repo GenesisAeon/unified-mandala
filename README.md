@@ -36,8 +36,18 @@ docker compose -f docs/offline/docker-compose.yml up
 ```
 
 > **Hinweise:**  
-> • „Cannot GET /“ auf :3000 bedeutet: Backend servt keine HMR-UI. Entweder **Vite-Dev** (`pnpm dev:ui`) nutzen oder **statisch bauen** (`pnpm build:ui && pnpm dev`).  
+> • „Cannot GET /“ auf :3000 bedeutet: Backend servt keine HMR-UI. Entweder **Vite-Dev** (`pnpm dev:ui`) nutzen oder **statisch bauen** (`pnpm build:ui && pnpm dev`).
 > • Windows: Lange Pfade aktivieren; `.dockerignore` im Repo-Root verhindert riesige Build-Kontexte.
+
+## MCP-Integration (Read-only KI-Kollaboration)
+
+| Zweck | Befehl |
+| --- | --- |
+| Entwicklung (Stdio) | `pnpm mcp:dev` |
+| Produktion | `pnpm --dir servers/mandala-mcp build && pnpm mcp:start` |
+| Verfügbare Tools | `health`, `get_kpi_list`, `get_crep_resonance`, `query_repo_map` |
+
+> Optional: `MANDALA_API=http://127.0.0.1:3000` und `MCP_ALLOWED_HOSTS=127.0.0.1,localhost` setzen, um Live-Daten zu beziehen.
 
 ---
 

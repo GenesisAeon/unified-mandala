@@ -5,7 +5,8 @@
   "type": "module",
   "workspaces": [
     "packages/*",
-    "apps/*"
+    "apps/*",
+    "servers/*"
   ],
   "scripts": {
     "build:agents": "tsc -p tsconfig.agents.json && node -e \"const fs=require('fs'),p='dist/agents/personhood/AIJuristicAgent.js';if(fs.existsSync(p))fs.renameSync(p,p.replace(/\\.js$/,'.cjs'));\"",
@@ -98,6 +99,8 @@
     "test:py": "pytest -m \"not slow and not experimental\" -q",
     "test:py:extended": "pytest -m \"not experimental\" -q",
     "test:py:all": "pytest -q",
+    "mcp:dev": "pnpm --dir servers/mandala-mcp dev",
+    "mcp:start": "pnpm --dir servers/mandala-mcp start",
     "test:sigil": "ts-node scripts/validate-sigil-cli.ts",
     "test:ui": "vitest run --passWithNoTests",
     "ci:verify": "pnpm test:ts && pnpm sigils:index:strict && pnpm adapter:build:era5",
