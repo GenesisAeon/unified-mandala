@@ -1,18 +1,49 @@
-
----
-
-### **`CONTRIBUTING.md`**
-```md
 # Beitragshinweise
 
-- Vor jedem PR laufen lassen:
-  - `pnpm lint`
-  - `pnpm test:ts:ci`
-  - `pnpm test:py`
-  - `npx pyright`
-- Erweiterte Suites optional (`pnpm test:ts:extended`, `pnpm test:py:extended`, Adapter-Builds) – z.B. bei Labels `run-extended`.
-- Feature-Branches nutzen (`feature/xyz`), dann Pull Request nach `main`.
-- Mindestens ein Review pro PR.
+## Core-Checks lokal spiegeln
+
+Um die **CI Core / type-and-tests** Jobs lokal nachzustellen, setze vor den Befehlen die gleichen Variablen wie im Workflow:
+
+```bash
+export OFFLINE=1
+export LOW_MEM=1
+export VITE_LOW_MEM=on
+export PYTHONPATH=src
+```
+
+Danach sollten folgende Schritte immer grün sein, bevor ein PR erstellt wird:
+
+- `pnpm lint`
+- `npx tsc -p tsconfig.json --noEmit`
+- `pnpm test:ts:ci`
+- `pnpm test:py`
+- `npx pyright`
+
+## Erweiterte und experimentelle Suites
+
+- **Extended** (Nightly oder Label `run-extended`):
+  - `pnpm test:ts:extended`
+  - `pnpm test:py:extended`
+  - `CI=true pnpm adapter:build:oisst`
+  - `CI=true pnpm adapter:build:era5`
+  - `pnpm stac:validate`
+  - `pnpm prompts:coach --dry`
+- **Experimental** (Label `run-experimental` oder manuell):
+  - `pnpm test:ts:experimental`
+  - Weitere Jobs nur nach Abstimmung, Ergebnisse werden toleriert (continue-on-error).
+
+## GitHub-Actions Überblick
+
+- `CI Core` läuft bei jedem Push/PR auf `main`.
+- `CI Extended` läuft nightly oder wenn der PR das Label `run-extended` trägt.
+- `CI Experimental` läuft nur bei gesetztem Label `run-experimental`.
+- Historische Pipelines (Fraktal21/22, Agents, Maps, ZIPMEM) sind unter `.github/workflows/*.disabled` archiviert und verursachen keine Checks mehr. Bei Bedarf einfach zurück benennen.
+
+## Workflow-Regeln
+
+- Feature-Branches (`feature/xyz`) anlegen und anschließend per PR nach `main` mergen.
 - Conventional Commits verwenden.
-- Siehe [AI_POLICY.md](AI_POLICY.md) für Richtlinien zu GPT-Einsatz und Datenumgang.
-- Experimentelle Features bitte hinter Feature-Flags (`ENABLE_EXPERIMENTAL_TESTS`, UI `FEATURES`) halten.
+- Mindestens ein Review pro PR.
+- `AI_POLICY.md` beachten (Einsatz von GPT, Datenumgang).
+- Experimentelle Features hinter Feature-Flags halten (`ENABLE_EXPERIMENTAL_TESTS`, UI `FEATURES`).
+- Vor Merge einmal `pnpm build:ui` + `pnpm dev` (Smoke `/` → 200) prüfen.
