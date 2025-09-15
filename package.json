@@ -91,6 +91,7 @@
     "ci:fast-checks": "pnpm -w -r exec -- npx tsc -p tsconfig.json --noEmit && npx pyright -p .",
     "ci:sigils": "pnpm sigils:index:strict && pnpm test:sigil tests/fixtures/sigillin/good.yaml && pnpm resonance:calc",
     "ci:adapters-offline": "CI=true pnpm adapter:build:oisst && CI=true pnpm adapter:build:era5 || true",
+    "guardrails:check": "node tools/governance-guardrails.mjs",
     "test:ts": "vitest run --config vitest.config.ts",
     "test:ts:ci": "NODE_OPTIONS=--max-old-space-size=2048 vitest run --config vitest.config.ts",
     "test:ts:extended": "cross-env ENABLE_EXTENDED_TESTS=1 vitest run --config vitest.config.ts",

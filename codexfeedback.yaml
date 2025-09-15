@@ -35,6 +35,9 @@ fraktal:
     legacy_workflows: disabled
     ci_core: green-local
     documentation: updated
+    governance_checks: audit-mode
+    repo_sanity: warnings_only
+    smoke_tests: push_only
 
 fraktal21:
   status: "ready-for-review"

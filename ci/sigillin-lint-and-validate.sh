@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-ROOT_DIR=$(dirname "$0")/..
+ROOT_DIR="$(cd "$(dirname "$0")/.." && pwd)"
 SCHEMA="$ROOT_DIR/packages/genesis-sigillin-core/schemas/sigillin.schema.json"
 EXIT=0
 for file in "$ROOT_DIR"/docs/sigils/*.yaml; do

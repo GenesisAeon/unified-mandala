@@ -23,6 +23,14 @@ const ROOT = process.cwd();
 const OUT_JSON = "analysis/repo-map.json";
 const OUT_CSV = "analysis/repo-map.csv";
 const OUT_CMDS = "analysis/scripts-and-commands.json";
+const SKIP_DIRS = new Set([
+  ".git",
+  "node_modules",
+  ".pnpm-store",
+  ".turbo",
+  "dist",
+  "out"
+]);
 
 const UI_HINTS = [/components\/.*\.(tsx|jsx)$/i, /packages\/.*ui.*\/components/i, /apps\/.*interface\/components/i];
 const VR_HINTS = [/unifiedmandala-vr/i, /VR/i, /PyramidVRMeetingRoom\.tsx$/];
@@ -31,10 +39,17 @@ const SCRIPT_HINTS = [/^scripts?\/.*\.(ts|js|mjs)$/i];
 
 function walk(dir: string, acc: string[] = []): string[] {
   for (const entry of readdirSync(dir)) {
+    if (entry === "." || entry === "..") continue;
+    if (SKIP_DIRS.has(entry)) continue;
+    if (entry.endsWith(".disabled")) continue;
     const p = join(dir, entry);
     const s = statSync(p);
-    if (s.isDirectory()) walk(p, acc);
-    else acc.push(p);
+    if (s.isDirectory()) {
+      walk(p, acc);
+    } else {
+      if (entry.endsWith(".disabled")) continue;
+      acc.push(p);
+    }
   }
   return acc;
 }

@@ -23,6 +23,12 @@ jobs:
         with:
           version: 10.16.1
       - run: pnpm install --frozen-lockfile
+      - name: Debug environment
+        run: |
+          echo "Node version: $(node -v)"
+          echo "PNPM version: $(pnpm -v)"
+          python --version
+          echo "CI=$CI OFFLINE=$OFFLINE LOW_MEM=$LOW_MEM VITE_LOW_MEM=$VITE_LOW_MEM"
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'

@@ -1,5 +1,20 @@
 {
+  "id": "evt-governance-override-sample",
   "topic": "governance.override",
+  "ts": "2025-01-01T00:00:00Z",
+  "actor": {
+    "id": "agent-governor",
+    "role": "governance.bot"
+  },
   "personhood": "P3",
-  "governance": {"compliant": true}
+  "governance": {
+    "level": "P3",
+    "compliant": true,
+    "notes": "Sample override approved in CI"
+  },
+  "payload": {
+    "action": "override",
+    "scope": "emergency",
+    "reason": "CI smoke example"
+  }
 }
