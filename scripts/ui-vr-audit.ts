@@ -10,8 +10,19 @@ const map = JSON.parse(readFileSync(join(process.cwd(), "analysis/repo-map.json"
   path: string;
   type: string;
 }[];
-const ui = map.filter(x => x.type === "ui" && x.path.endsWith(".tsx"));
-const vr = map.filter(x => x.type === "vr");
+const ui = map.filter(
+  x =>
+    x.type === "ui" &&
+    x.path.endsWith(".tsx") &&
+    !x.path.includes("/node_modules/") &&
+    !x.path.includes("/analysis/")
+);
+const vr = map.filter(
+  x =>
+    x.type === "vr" &&
+    !x.path.includes("/analysis/") &&
+    !x.path.includes("/scripts/")
+);
 
 function summarizeTSX(p: string) {
   const s = readFileSync(p, "utf8");

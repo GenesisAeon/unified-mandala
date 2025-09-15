@@ -1,0 +1,14 @@
+fraktal37:
+  status: "implemented"
+  summary:
+    - "CI Core setzt jetzt Node 20.x ein und protokolliert Debug-Infos, um Abweichungen zur lokalen Umgebung aufzudecken."
+    - "Policy-Checks (Kyverno & Guardrails) laufen weiterhin, blockieren den Build aber nicht mehr; Guardrails nutzen die pnpm-Workspace-Abhängigkeiten."
+    - "Governance-Workflows verwenden vereinheitlichte pnpm@10.16.1-Setups mit gefrorenem Lockfile."
+    - "Repo-Sanity baut die Repo-Map mit pnpm 10, toleriert UI/VR-Abweichungen und die Map ignoriert *.disabled Artefakte."
+    - "Smoke-Workflow läuft nur noch auf main-Pushes oder manuell, was PRs ohne Adapter-Build entlastet."
+  hooks:
+    progress: "Core-, Policy- und Repo-Checks sind im non-blocking Modus aktiv; Nightly/Extended muss bei Gelegenheit auf Node 20 validiert werden."
+    next_focus:
+      - "Real Governance-Daten nachziehen, damit Guardrails & Kyverno wieder strikt schalten können."
+      - "Smoke-Test in Extended/Nightly reaktivieren, sobald Adapter-Build garantiert läuft."
+  needs_repeat: false
