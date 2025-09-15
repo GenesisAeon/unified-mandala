@@ -151,6 +151,8 @@ user-config/
 analysis/repo-map.json
 analysis/repo-map.csv
 # ERA5 adapter artifacts
-data/
+data/*
+!data/kpis.json
+!data/crep-resonance.json
 .cache/
 era5_cache.sqlite
