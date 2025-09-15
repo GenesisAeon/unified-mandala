@@ -3,7 +3,17 @@ import fs from "fs"; import YAML from "yaml"; import cp from "child_process";
 const cfgPath="policies/merge-guardrails.yaml"; if(!fs.existsSync(cfgPath)){console.log("No guardrails config");process.exit(0);}
 const cfg=YAML.parse(fs.readFileSync(cfgPath,"utf-8")); let ok=true;
 const git=(cmd)=>cp.execSync(cmd,{encoding:"utf-8"});
-const touched=git(`git diff --name-only HEAD~1..HEAD`).split("\n").filter(Boolean);
+let touched=[];
+try {
+  touched = git(`git diff --name-only HEAD~1..HEAD`).split("\n").filter(Boolean);
+} catch (err) {
+  try {
+    touched = git(`git show --pretty=format: --name-only HEAD`).split("\n").filter(Boolean);
+  } catch (fallbackErr) {
+    console.warn("[Guardrail] Unable to determine touched files", fallbackErr.message);
+    touched = [];
+  }
+}
 
 function requiresDocForPolicyChange() {
   const policyTouched = touched.some(f => f.startsWith("policies/personhood-levels"));

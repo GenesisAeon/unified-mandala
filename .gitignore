@@ -57,6 +57,9 @@ web_modules/
 # Optional stylelint cache
 .stylelintcache
 qa-report.log
+__pycache__/
+*.pyc
+tests/tmp-rag/
 
 # Microbundle cache
 .rpt2_cache/

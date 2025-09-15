@@ -1,13 +1,13 @@
 #!/usr/bin/env node
-const fs = require('fs');
-const yaml = require('yaml');
+import { readFileSync } from 'node:fs';
+import YAML from 'yaml';
 
 const policyPath = 'AI_POLICY.md';
 const configPath = 'config/ai-policy-sigillin.yaml';
 
 try {
-  const policyText = fs.readFileSync(policyPath, 'utf8');
-  const config = yaml.parse(fs.readFileSync(configPath, 'utf8'));
+  const policyText = readFileSync(policyPath, 'utf8');
+  const config = YAML.parse(readFileSync(configPath, 'utf8'));
   const missing = [];
   for (const rule of config.rules || []) {
     if (!policyText.includes(rule.note)) {

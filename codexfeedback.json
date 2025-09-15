@@ -119,6 +119,11 @@
       "fraktalrun": "Fraktal37 UnifiedMandalaCore",
       "status": "implemented",
       "notes": "Test-Layering für Core/Extended, pytest Marker, Legacy-Workflows deaktiviert und Core-Doku/Test-Guides aktualisiert; keine Wiederholung nötig."
+    },
+    {
+      "fraktalrun": "Fraktal37 TechnicalHardening",
+      "status": "implemented",
+      "notes": "Governance-/Policy-Checks auditierbar gemacht, Repo-Sanity resilient, Smoke-Test auf Push entkoppelt."
     }
   ]
 }
