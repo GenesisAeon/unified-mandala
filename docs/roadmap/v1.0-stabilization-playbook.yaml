@@ -16,17 +16,22 @@ streams:
     checkpoints:
       - id: core-ci-hardening
         description: 'Fail-fast Verhalten und Nightly-Matrix in CI Core etablieren'
-        status: pending
+        status: in-progress
+        notes: 'Lint/Format-Gates aktiv; Nightly-Replikation noch ausstehend'
         success:
+          - pnpm lint:eslint
+          - pnpm format:check
           - pnpm test:ts:ci
           - pnpm test:py
           - npx pyright
       - id: experimental-signal
         description: 'Guardrails & Agent Dry-Runs ohne `|| true`; Ergebnisse als Checks publizieren'
-        status: pending
+        status: in-progress
         artifacts:
           - agents-dry-run.log
           - out/policy/policy-suite.json
+          - out/policy/policy-suite-report.md
+          - out/resonance/resonance-smoke.log
       - id: policy-suite-unify
         description: 'pnpm policy:check bündelt OPA, Guardrails und Kyverno'
         status: done
@@ -43,7 +48,7 @@ streams:
     checkpoints:
       - id: lint-doc-refresh
         description: 'README/CONTRIBUTING mit Dist-First und Hook-Hinweisen erweitern'
-        status: planned
+        status: in-progress
       - id: ts-node-retire
         description: 'Produktionspfade auf `node dist/...` umstellen'
         status: planned
@@ -76,7 +81,8 @@ streams:
         status: done
       - id: policy-docs
         description: 'AI_POLICY.md/Ai_POLICY.yaml mit Allow/Deny Beispielen ergänzen'
-        status: planned
+        status: in-progress
+        notes: 'Guardrail→Fix Mapping ergänzt; Beispiele weiter ausbauen'
   - key: observability
     objective: Prometheus/Grafana in den Release-Fluss integrieren.
     related_files:
@@ -89,7 +95,8 @@ streams:
         status: planned
       - id: prom-compose
         description: 'Compose-Profile für Prometheus/Grafana aktivieren'
-        status: planned
+        status: in-progress
+        notes: 'Profil `monitoring` in docker-compose.yml angelegt; Smoke-Test offen'
 milestones:
   - name: Sprint 0 – Playbook Review
     target: 2025-09-24

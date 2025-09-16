@@ -1,0 +1,35 @@
+schema: 1
+fraktal_run:
+  id: 42
+  name: 'Fraktal42 · Stabilisierungsschiene'
+  status: in-progress
+  last_update: 2025-09-21
+  summary: |
+    Folgeiteration von Fraktal41 mit Fokus auf CI-Härtung, Policy-Governance
+    und Monitoring-Profile. Dieser Tracker hält fest, welche Bausteine bereits
+    implementiert sind und welche Tasks im nächsten Lauf anstehen.
+  progress:
+    completed:
+      - key: ci-core
+        note: 'Lint + Format Checks in CI Core aktiv, Toolchain-Logging beibehalten'
+      - key: policy-suite
+        note: 'Policy-Suite-Exitcodes hart in allen Pipelines'
+    next:
+      - key: ci-extended-coverage
+        note: 'Coverage-Report nach Extended-Läufen archivieren'
+      - key: monitoring-profile
+        note: 'Prometheus/Grafana Compose-Profil lokal und in Docs dokumentieren'
+      - key: governance-primer
+        note: 'AI_POLICY.* mit Guardrail-Mappings ausbauen'
+  resume_hint: |
+    Folgearbeiten im Stabilization-Playbook prüfen:
+    - docs/roadmap/v1.0-stabilization-playbook.md → Kapitel 1 & 7
+    - docker-compose.yml → Monitoring-Profil aktivieren/testen
+    - README.md → Quickstart-Befehle mit policy:check und start:light
+  hooks:
+    - file: codexfeedback.md
+      action: 'Fraktal42 Abschnitt pflegen'
+    - file: codexfeedback.json
+      action: "Statusfeld auf 'in-progress' setzen"
+    - file: codexfeedback.yaml
+      action: 'fraktal.current aktualisieren'

@@ -3,15 +3,15 @@ on:
   schedule:
     - cron: '0 2 * * *'
   pull_request:
-    types: [ labeled, synchronize ]
+    types: [labeled, synchronize]
 jobs:
   extended-tests:
     if: github.event_name == 'schedule' || contains(github.event.pull_request.labels.*.name, 'run-extended')
     runs-on: ubuntu-latest
     env:
-      OFFLINE: "1"
-      LOW_MEM: "1"
-      VITE_LOW_MEM: "on"
+      OFFLINE: '1'
+      LOW_MEM: '1'
+      VITE_LOW_MEM: 'on'
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -28,13 +28,20 @@ jobs:
       - run: python -m pip install --upgrade pip
       - run: pip install -r requirements.txt
       - run: pnpm test:ts:extended
+      - run: pnpm test:ts:coverage
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: vitest-coverage
+          path: coverage/
+          if-no-files-found: ignore
       - run: pnpm test:py:extended
   adapters-offline:
     if: github.event_name == 'schedule' || contains(github.event.pull_request.labels.*.name, 'run-extended')
     runs-on: ubuntu-latest
     env:
-      OFFLINE: "1"
-      LOW_MEM: "1"
+      OFFLINE: '1'
+      LOW_MEM: '1'
       PYTHONPATH: src
     steps:
       - uses: actions/checkout@v4
@@ -53,5 +60,22 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: pnpm stac:validate
-      - run: pnpm resonance:smoke || true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.x'
+          cache: 'pnpm'
+      - run: corepack enable && corepack prepare pnpm@10.16.1 --activate
+      - run: pnpm install --frozen-lockfile
+      - name: Validate STAC bundle
+        run: pnpm stac:validate
+      - name: Resonance smoke
+        run: |
+          set -o pipefail
+          mkdir -p out/resonance
+          pnpm resonance:smoke | tee out/resonance/resonance-smoke.log
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: resonance-smoke
+          path: out/resonance/resonance-smoke.log
+          if-no-files-found: warn

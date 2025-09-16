@@ -9,34 +9,35 @@ UnifiedMandala ist ein holistisches, modulares Framework für symbolische KI, CR
 ## TL;DR – 5-Minuten-Quickstart
 
 ```bash
-# 1) Toolchain
+# 1) Toolchain (Node 20 + pnpm 10.16)
 node -v
 corepack enable
-corepack prepare pnpm@8.15.6 --activate
+corepack prepare pnpm@10.16.1 --activate
 
-# 2) Dependencies
-pnpm install
+# 2) Automatisiertes Setup (empfohlen)
+./scripts/setup-dev-env.sh
 
-# 2.1) Environment
-cp .env.example .env # set CDS_API_KEY
+# 3) Falls Schritt 2 übersprungen wurde
+pnpm install --frozen-lockfile
 
-# 3) UI (Dev, mit HMR, Port 5173)
+# 4) Policy & Fast Checks
+pnpm policy:check
+pnpm lint:eslint
+pnpm format:check
+
+# 5) Build & Light-Server-Smoketest
+pnpm build
+pnpm start:light
+# -> http://localhost:3000 (liefert komprimierte UI Assets aus)
+
+# 6) Dev-Modus (Vite HMR)
 pnpm dev:ui
 # -> http://localhost:5173
-
-# 4) Optional parallel: Backend/Dev-Server liefert UI (Port 3000)
-pnpm build:ui
-pnpm dev
-# -> http://localhost:3000  (liefert die gebaute UI aus)
-
-# 5) Offline-Bundle (Docker)
-docker compose -f docs/offline/docker-compose.yml build
-docker compose -f docs/offline/docker-compose.yml up
-# -> UI i. d. R. auf http://localhost:5173
 ```
 
-> **Hinweise:**  
-> • „Cannot GET /“ auf :3000 bedeutet: Backend servt keine HMR-UI. Entweder **Vite-Dev** (`pnpm dev:ui`) nutzen oder **statisch bauen** (`pnpm build:ui && pnpm dev`).  
+> **Hinweise:**
+> • `pnpm start:light` nutzt die dist-first Artefakte und testet Brotli/Gzip-Auslieferung automatisch.  
+> • Für parallelen Backend-Zugriff `pnpm dev` nutzen.  
 > • Windows: Lange Pfade aktivieren; `.dockerignore` im Repo-Root verhindert riesige Build-Kontexte.
 
 ---
@@ -123,8 +124,9 @@ export PYTHONPATH=src
 **Core (CI Core / type-and-tests, required for every PR)**
 
 ```bash
-pnpm lint
+pnpm lint:eslint
 pnpm format:check
+npx tsc -p tsconfig.json --noEmit
 pnpm test:ts:ci
 pnpm test:py
 npx pyright
@@ -134,12 +136,14 @@ npx pyright
 
 ```bash
 pnpm test:ts:extended
+pnpm test:ts:coverage
 pnpm test:py:extended
 CI=true pnpm adapter:build:oisst
 CI=true pnpm adapter:build:era5
 pnpm stac:validate
 pnpm stac:validate:item out/example.item.json
 pnpm prompts:coach --dry
+pnpm resonance:smoke
 ```
 
 > ℹ️ `CI Experimental` läuft nur mit Label `run-experimental`. `ENABLE_EXPERIMENTAL_TESTS=1` schaltet zusätzliche, instabile Suites frei (z.B. `pnpm test:ts:experimental`).

@@ -48,5 +48,6 @@ pnpm policy:check
 - Der lokale Fallback (`pnpm kyverno:validate`) kann bei Bedarf durch ein echtes CLI/Docker-Setup ersetzt werden (`POLICY_SUITE_SKIP_KYVERNO=1` deaktiviert den Node-Fallback für eigene Experimente).
 - Bei Policy-Änderungen unbedingt eine erläuternde Dokumentation im gleichen PR aktualisieren – die Guardrails achten darauf.
 - Die Summary-Datei eignet sich als Anhang für Fraktal-Protokolle oder Release-Notes (kopieren aus `out/policy/policy-suite-report.md`).
+- Typische Guardrail-Meldungen und passende Fixes sind in `AI_POLICY.md` dokumentiert (Tabelle „Guardrail-Fehler & Maßnahmen“).
 
 Damit ist der Governance-Check zentralisiert, transparent und CI-fest – im Sinne der Fraktalvorgabe „Stabilität vor Features“.

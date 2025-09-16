@@ -2,16 +2,16 @@ name: CI Core
 on:
   pull_request:
   push:
-    branches: [ main ]
+    branches: [main]
 jobs:
   type-and-tests:
     runs-on: ubuntu-latest
     env:
-      OFFLINE: "1"
-      LOW_MEM: "1"
-      VITE_LOW_MEM: "on"
-      NODE_OPTIONS: "--max-old-space-size=2048"
-      CI: "true"
+      OFFLINE: '1'
+      LOW_MEM: '1'
+      VITE_LOW_MEM: 'on'
+      NODE_OPTIONS: '--max-old-space-size=2048'
+      CI: 'true'
       PYTHONPATH: src
     steps:
       - uses: actions/checkout@v4
@@ -35,6 +35,8 @@ jobs:
           cache-dependency-path: requirements.txt
       - run: python -m pip install --upgrade pip
       - run: pip install -r requirements.txt
+      - run: pnpm lint:eslint
+      - run: pnpm format:check
       - run: npx tsc -p tsconfig.json --noEmit
       - run: pnpm test:ts:ci
       - run: pnpm test:py

@@ -25,3 +25,18 @@ Weitere Hinweise zu Modulen und Ordnerstruktur findest du im [Handbuch](Handbuch
 ## Onboarding Demo
 
 Eine kurze Schritt-für-Schritt-Anleitung zum Starten einer Demo inklusive Mistral Code Agent findest du in [docs/demo/onboarding-demo.md](demo/onboarding-demo.md).
+
+## AI Governance Primer
+
+- **Policy-Gates ausführen:**
+  ```bash
+  pnpm policy:check
+  ```
+  Der Lauf erzeugt `out/policy/policy-suite-report.md` und stoppt bei Guardrail-Verletzungen.
+- **Typische Guardrail-Fehler & Lösungen:**
+  | Meldung | Maßnahme |
+  | --- | --- |
+  | `Sensitive data detected` | Daten anonymisieren oder verschlüsseln, anschließend Commit aktualisieren |
+  | `Policy docs missing` | Relevanten Abschnitt in `AI_POLICY.md` oder `docs/governance/policy-suite.md` ergänzen |
+  | `Untracked policy change` | Sicherstellen, dass Policy-Änderungen + Dokumentation im selben PR landen |
+- **Weiterlesen:** `AI_POLICY.md`, `AI_POLICY.yaml` und `docs/governance/policy-suite.md` enthalten Allow/Deny-Beispiele sowie den vollständigen Guardrail-Katalog.
