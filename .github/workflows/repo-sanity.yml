@@ -1,29 +1,33 @@
-name: Repo Sanity
-on: [push, pull_request]
+name: Repo Sanity / sanity
+
+on:
+  pull_request: {}
+  push:
+    branches: [ main ]
+
 jobs:
   sanity:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-node@v4
         with:
-          node-version: '20.x'
+          node-version: '20'
           cache: 'pnpm'
-      - uses: pnpm/action-setup@v4
-        with:
-          version: 10.16.1
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile --ignore-scripts
-      - name: Build repo map
+
+      - name: Setup pnpm
+        run: corepack enable && corepack prepare pnpm@10.16.1 --activate
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Build Repo Map (skip vendor)
         run: pnpm maps:build
-      - name: Audit UI vs VR
-        run: pnpm audit:ui-vr
-        continue-on-error: true
+
+      - name: UI/VR Audit (non-blocking)
+        run: pnpm audit:ui-vr || true
+
       - name: Verify outputs
         run: |
           test -f analysis/repo-map.json
-          if [ -f analysis/ui-vr-audit.json ]; then
-            echo "ui-vr audit output present"
-          else
-            echo "::warning::analysis/ui-vr-audit.json missing"
-          fi
+          test -f analysis/ui-vr-audit.json || echo "ui-vr audit missing (tolerated)"

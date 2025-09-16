@@ -1,0 +1,25 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "types": [
+      "node",
+      "vitest/globals",
+      "vite/client"
+    ],
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "verbatimModuleSyntax": true,
+    "noEmit": true
+  },
+  "include": [
+    "vitest.setup.ts",
+    "tests",
+    "src",
+    "scripts"
+  ],
+  "exclude": [
+    "**/*.extended.*",
+    "**/*.e2e.*",
+    "tests/**/experimental/**"
+  ]
+}
