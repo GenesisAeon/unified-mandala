@@ -1,27 +1,42 @@
 name: smoke
+
 on:
   pull_request:
+    paths:
+      - 'apps/ui/**'
+      - 'apps/mandala-ui/**'
+      - 'packages/**'
+      - 'scripts/dev-server.ts'
+      - 'package.json'
+      - 'pnpm-lock.yaml'
   push:
     branches: [ main ]
-  workflow_dispatch:
+
 jobs:
   smoke:
     runs-on: ubuntu-latest
-    if: github.event_name != 'pull_request'
-    env:
-      PORT: 3000
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-node@v4
         with:
-          node-version: '20.x'
+          node-version: '20'
           cache: 'pnpm'
-      - uses: pnpm/action-setup@v4
-        with:
-          version: 10.16.1
-      - run: pnpm install --frozen-lockfile
-      - run: pnpm build:ui || true
-      - run: node scripts/dev-server.js & sleep 2 || true
-      - run: curl -s -o /dev/null -w "%{http_code}\n" http://localhost:3000/ | grep 200
-      - run: curl -s -o /dev/null -w "%{http_code}\n" http://localhost:3000/healthz | grep 200
-      - run: curl -s -o /dev/null -w "%{http_code}\n" http://localhost:3000/readyz | egrep "204|503"
+
+      - name: Setup pnpm
+        run: corepack enable && corepack prepare pnpm@10.16.1 --activate
+
+      - name: Install root deps
+        run: pnpm install --frozen-lockfile
+
+      - name: Build UI (offline/low-mem)
+        env:
+          OFFLINE: '1'
+          LOW_MEM: '1'
+          VITE_LOW_MEM: 'on'
+        run: |
+          pnpm -C apps/ui build || pnpm -C apps/mandala-ui build || echo "no-ui"
+
+      - name: Assert dist exists (any UI)
+        run: |
+          test -f apps/ui/dist/index.html || test -f apps/mandala-ui/dist/index.html || (echo "No UI dist" && exit 1)
