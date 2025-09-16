@@ -1,6 +1,18 @@
 fraktal:
-  current: 37
+  current: 38
   history:
+    - id: "38a"
+      status: "in-progress"
+      checkpoints:
+        - "ESLint baseline auf src/** & apps/ui (pnpm lint)"
+        - "Husky lint-staged für ESLint/Prettier auf Core-Verzeichnissen"
+        - "pnpm dev:services → tsx-multiplexer ersetzt ts-node"
+        - "CONTRIBUTING.md Code-Style-Richtlinien ergänzt"
+      backlog:
+        - "Prettier-Backlog in src/** (format:check zeigt offene Stellen)"
+        - "Governance-Report-Merge & dist-first Docker-Layer"
+        - "Automatisierte Nightly-Dry-Runs ohne continue-on-error"
+      notes: "ESLint+Prettier + husky lint-staged, dev:services tsx rollout, CONTRIBUTING guardrails"
     - id: "37b"
       status: "done"
       notes: "Node20 toolchain, policy guardrail audit-mode, repo-sanity warnings allowed"
@@ -33,13 +45,15 @@ fraktal:
         - "STAC live items broaden (optional)"
         - "Emergence Explorer wiring"
   owner: "Codex"
-  needs_repeat: false
+  needs_repeat: true
   progress:
     legacy_workflows: disabled
     ci_core: node20-green
     policy_checks: audit-only
     repo_sanity: tolerant
     documentation: updated
+    linting_stack: eslint-prettier-core
+    dev_services: tsx-bundled
 
 fraktal21:
   status: "ready-for-review"

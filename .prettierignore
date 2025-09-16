@@ -1,0 +1,13 @@
+# Build outputs
+node_modules
+coverage
+dist
+out
+.next
+build
+
+# Generated artifacts
+*.log
+*.lock
+*.min.js
+*.min.css

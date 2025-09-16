@@ -13,11 +13,20 @@ export PYTHONPATH=src
 
 Danach sollten folgende Schritte immer grün sein, bevor ein PR erstellt wird:
 
-- `pnpm lint`
-- `npx tsc -p tsconfig.json --noEmit`
+- `pnpm lint` – ESLint gegen `src/**` und `apps/ui/**`
+- `pnpm format:check` – Prettier-Konformität für `src/**` und `apps/ui/**` prüfen (Legacy-Abweichungen sind markiert und werden sukzessive bereinigt)
+- `pnpm typecheck` – `tsc` ohne Emit
 - `pnpm test:ts:ci`
 - `pnpm test:py`
 - `npx pyright`
+
+## Code-Style & Build-Disziplin
+
+- Husky führt bei jedem Commit automatisch `pnpm lint-staged` aus und überprüft dabei ESLint sowie Prettier auf den geänderten Dateien in `src/**` und `apps/ui/**`. Nutze bei Bedarf `pnpm lint:fix` und `pnpm format:write` lokal – beide Befehle sind auf die Core-Verzeichnisse begrenzt.
+- Für lokale Service-Stacks steht `pnpm dev:services` bereit. Das Kommando verwendet `tsx` statt `ts-node` und bündelt RAG-, Flag-, Experiments-, Share- und Realtime-Hubs.
+- Production-Builds laufen ausschließlich über vorkompilierte Artefakte (`pnpm build && node dist/...`). `ts-node` darf nicht in Produktions-Dockerfiles oder Compose-Services eingesetzt werden.
+- Redundante Scripts vermeiden: neue CLI-Utilities werden als Subcommands oder optionale Flags zu bestehenden Tools ergänzt statt als eigenständige Shell-Fragmente angelegt.
+- Feature-Flags dokumentieren (z. B. `ENABLE_EXPERIMENTAL_TESTS`) und in PR-Beschreibungen klar ausweisen.
 
 ## Erweiterte und experimentelle Suites
 
