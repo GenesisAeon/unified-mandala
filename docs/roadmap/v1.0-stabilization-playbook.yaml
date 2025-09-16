@@ -16,14 +16,14 @@ streams:
     checkpoints:
       - id: core-ci-hardening
         description: 'Fail-fast Verhalten und Nightly-Matrix in CI Core etablieren'
-        status: pending
+        status: in-progress
         success:
           - pnpm test:ts:ci
           - pnpm test:py
           - npx pyright
       - id: experimental-signal
         description: 'Guardrails & Agent Dry-Runs ohne `|| true`; Ergebnisse als Checks publizieren'
-        status: pending
+        status: in-progress
         artifacts:
           - agents-dry-run.log
           - out/policy/policy-suite.json
@@ -89,7 +89,7 @@ streams:
         status: planned
       - id: prom-compose
         description: 'Compose-Profile für Prometheus/Grafana aktivieren'
-        status: planned
+        status: done
 milestones:
   - name: Sprint 0 – Playbook Review
     target: 2025-09-24
