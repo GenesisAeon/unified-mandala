@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import YAML from 'yaml';
 import readline from 'readline';
-import { normalizeCREP, type CrepNormalized } from '../src/domain/crep.ts';
+import { normalizeCREP, type CrepNormalized } from '../src/domain/crep.js';
 
 interface SigilEntry {
   source: string;
@@ -34,8 +34,7 @@ const entries: {
 }[] = [];
 
 function pushEntry(entry: SigilEntry) {
-  const rawCrep =
-    entry.crep ??
+  const rawCrep = entry.crep ??
     entry.CREP ?? {
       score: entry.score,
       C: entry.C,
@@ -119,7 +118,8 @@ function walk(dir: string) {
   for (const item of fs.readdirSync(dir)) {
     const full = path.join(dir, item);
     const stat = fs.statSync(full);
-    if (stat.isDirectory()) walk(full); else processFile(full);
+    if (stat.isDirectory()) walk(full);
+    else processFile(full);
   }
 }
 
@@ -160,8 +160,7 @@ async function main() {
   console.log(`Wrote ${entries.length} entries to ${path.relative(repoRoot, outFile)}`);
 }
 
-main().catch(err => {
+main().catch((err) => {
   console.error(err);
   process.exit(1);
 });
-

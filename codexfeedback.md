@@ -1,4 +1,6 @@
 # Codex Feedback
+
+- FR-UM-2025-09-18-Fraktal38: ESLint/Prettier-Hook, Dist-First-Services und aktualisierte Doku produktiv gesetzt – bereit für den nächsten Fraktal-Sprint.
 - FR-UM-2025-09-18-Fraktal37-CoreCI-RunB: Node20 Toolchain fix, Policy-Checks entschärft, Repo-Sanity stabilisiert – kein weiterer Lauf notwendig.
 - FR-UM-2025-09-18-Fraktal37-CoreCI: Legacy-Workflows archiviert, CI-Core-Stabilität geprüft und Doku/Test-Guides aktualisiert – kein weiterer Lauf notwendig.
 - FR-UM-2025-08-27-C: Alle Änderungen in einem Lauf umgesetzt – kein zweiter Lauf notwendig.

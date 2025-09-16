@@ -1,0 +1,20 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noEmit": false,
+    "outDir": "dist",
+    "declaration": false,
+    "sourceMap": true,
+    "allowImportingTsExtensions": false
+  },
+  "include": [
+    "packages/**/*",
+    "services/**/*",
+    "agents/**/*",
+    "scripts/**/*.ts",
+    "aws/**/*",
+    "src/**/*",
+    "types/**/*.d.ts",
+    "cypress.d.ts"
+  ]
+}
