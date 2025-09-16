@@ -9,14 +9,22 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
-        with: { node-version: '22.x', cache: 'pnpm' }
-      - run: corepack enable && corepack prepare pnpm@10.16.1 --activate
+        with:
+          node-version: '20.x'
+          cache: 'pnpm'
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.16.1
       - run: pnpm install --frozen-lockfile
-      - name: Agents dry-run
+      - name: Debug toolchain versions
+        run: |
+          echo "Node $(node -v)"
+          echo "PNPM v$(pnpm -v)"
+      - name: Agents health sweep
         shell: bash
         run: |
           set -o pipefail
-          pnpm agents:dry-run --verbose | tee agents-dry-run.log
+          pnpm run agents:health | tee agents-dry-run.log
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -28,9 +36,17 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
-        with: { node-version: '22.x', cache: 'pnpm' }
-      - run: corepack enable && corepack prepare pnpm@10.16.1 --activate
+        with:
+          node-version: '20.x'
+          cache: 'pnpm'
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.16.1
       - run: pnpm install --frozen-lockfile
+      - name: Debug toolchain versions
+        run: |
+          echo "Node $(node -v)"
+          echo "PNPM v$(pnpm -v)"
       - name: Run policy suite
         id: policy_suite
         shell: bash

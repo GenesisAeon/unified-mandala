@@ -1,0 +1,22 @@
+fraktal_run:
+  id: 41
+  status: in-progress
+  summary:
+    - core_ci_hardening: done
+    - policy_suite: done
+    - dist_first_migration: partial
+    - observability_profile: done
+  blockers:
+    - name: policy_docs_examples
+      note: 'Allow/Deny-Beispiele in AI_POLICY.* fehlen noch (für Fraktal42 eingeplant).'
+    - name: dist_first_agents
+      note: 'Agenten-Skripte benötigen noch dist-basierte Wrapper statt ts-node.'
+  next_actions:
+    - 'Staging-Coverage dauerhaft aktivieren (ci.extended).'
+    - 'AI Governance Primer mit konkreten Response-Guidelines erweitern.'
+    - 'Prometheus/Grafana Smoke Tests automatisieren.'
+feedback_hook:
+  codexfeedback_md: true
+  codexfeedback_json: true
+  codexfeedback_yaml: true
+  advancedprogress_json: monitor

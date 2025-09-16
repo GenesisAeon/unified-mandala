@@ -2,16 +2,16 @@ name: CI Core
 on:
   pull_request:
   push:
-    branches: [ main ]
+    branches: [main]
 jobs:
   type-and-tests:
     runs-on: ubuntu-latest
     env:
-      OFFLINE: "1"
-      LOW_MEM: "1"
-      VITE_LOW_MEM: "on"
-      NODE_OPTIONS: "--max-old-space-size=2048"
-      CI: "true"
+      OFFLINE: '1'
+      LOW_MEM: '1'
+      VITE_LOW_MEM: 'on'
+      NODE_OPTIONS: '--max-old-space-size=2048'
+      CI: 'true'
       PYTHONPATH: src
     steps:
       - uses: actions/checkout@v4
@@ -28,6 +28,8 @@ jobs:
           echo "PNPM v$(pnpm -v)"
           python --version
       - run: pnpm install --frozen-lockfile
+      - run: pnpm format:check
+      - run: pnpm lint
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'

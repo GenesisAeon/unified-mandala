@@ -3,23 +3,29 @@ on:
   schedule:
     - cron: '0 2 * * *'
   pull_request:
-    types: [ labeled, synchronize ]
+    types: [labeled, synchronize]
 jobs:
   extended-tests:
     if: github.event_name == 'schedule' || contains(github.event.pull_request.labels.*.name, 'run-extended')
     runs-on: ubuntu-latest
     env:
-      OFFLINE: "1"
-      LOW_MEM: "1"
-      VITE_LOW_MEM: "on"
+      OFFLINE: '1'
+      LOW_MEM: '1'
+      VITE_LOW_MEM: 'on'
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: '22.x'
+          node-version: '20.x'
           cache: 'pnpm'
-      - run: corepack enable && corepack prepare pnpm@10.16.1 --activate
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.16.1
       - run: pnpm install --frozen-lockfile
+      - name: Debug toolchain versions
+        run: |
+          echo "Node $(node -v)"
+          echo "PNPM v$(pnpm -v)"
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
@@ -33,11 +39,23 @@ jobs:
     if: github.event_name == 'schedule' || contains(github.event.pull_request.labels.*.name, 'run-extended')
     runs-on: ubuntu-latest
     env:
-      OFFLINE: "1"
-      LOW_MEM: "1"
+      OFFLINE: '1'
+      LOW_MEM: '1'
       PYTHONPATH: src
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+          cache: 'pnpm'
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.16.1
+      - run: pnpm install --frozen-lockfile
+      - name: Debug toolchain versions
+        run: |
+          echo "Node $(node -v)"
+          echo "PNPM v$(pnpm -v)"
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
@@ -53,5 +71,40 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+          cache: 'pnpm'
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.16.1
+      - run: pnpm install --frozen-lockfile
+      - name: Debug toolchain versions
+        run: |
+          echo "Node $(node -v)"
+          echo "PNPM v$(pnpm -v)"
       - run: pnpm stac:validate
-      - run: pnpm resonance:smoke || true
+      - run: pnpm resonance:calc
+
+  coverage:
+    if: github.event_name == 'schedule' || contains(github.event.pull_request.labels.*.name, 'run-extended')
+    runs-on: ubuntu-latest
+    env:
+      OFFLINE: '1'
+      LOW_MEM: '1'
+      VITE_LOW_MEM: 'on'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+          cache: 'pnpm'
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.16.1
+      - run: pnpm install --frozen-lockfile
+      - name: Debug toolchain versions
+        run: |
+          echo "Node $(node -v)"
+          echo "PNPM v$(pnpm -v)"
+      - run: pnpm test:unit

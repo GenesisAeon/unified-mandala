@@ -1,5 +1,28 @@
 # Onboarding
 
+## ⚙️ Setup & Toolchain
+
+```bash
+# optional: geführtes Setup inkl. Python/Node Hooks
+./scripts/setup-dev-env.sh
+
+# manuell (falls benötigt)
+node -v                     # Node >= 20
+corepack enable
+corepack prepare pnpm@10.16.1 --activate
+pnpm install --frozen-lockfile
+pnpm build                  # dist-first Artefakte erzeugen
+cp .env.example .env        # eigene Secrets setzen
+```
+
+- **Policy-Suite** lokal prüfen:
+
+  ```bash
+  pnpm policy:check
+  ```
+
+  Ergebnisse landen unter `out/policy/` und spiegeln exakt die CI.
+
 ## 🧪 Test Your Sigil
 
 1. Erstelle eine Test-YAML in `tests/fixtures/sigillin/` (z. B. `my-sigil.yaml`).
@@ -39,6 +62,8 @@ pip install -r requirements.txt
 CI=true pnpm adapter:build:oisst
 pnpm stac:validate
 pnpm resonance:calc
+pnpm test:unit           # Coverage für Kernmodule
+pnpm policy:check        # Governance-Gates
 ```
 
 ### Services starten
@@ -49,4 +74,7 @@ pnpm dev:services
 
 # Production Preview (setzt pnpm build voraus)
 pnpm start:services
+
+# Monitoring-Profil (Prometheus/Grafana) aktivieren
+docker compose --profile monitoring up
 ```

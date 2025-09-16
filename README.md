@@ -9,13 +9,17 @@ UnifiedMandala ist ein holistisches, modulares Framework für symbolische KI, CR
 ## TL;DR – 5-Minuten-Quickstart
 
 ```bash
-# 1) Toolchain
+# 0) Optional: geführtes Setup (installiert Toolchain & Hooks)
+./scripts/setup-dev-env.sh
+
+# 1) Toolchain (Node >= 20, pnpm 10.16.1)
 node -v
 corepack enable
-corepack prepare pnpm@8.15.6 --activate
+corepack prepare pnpm@10.16.1 --activate
 
-# 2) Dependencies
-pnpm install
+# 2) Dependencies (dist-first Build-Pipeline)
+pnpm install --frozen-lockfile
+pnpm build
 
 # 2.1) Environment
 cp .env.example .env # set CDS_API_KEY
@@ -25,18 +29,23 @@ pnpm dev:ui
 # -> http://localhost:5173
 
 # 4) Optional parallel: Backend/Dev-Server liefert UI (Port 3000)
-pnpm build:ui
-pnpm dev
+pnpm start:light             # statische Assets (nach pnpm build:ui)
+pnpm dev                     # Node-Server mit gebauten Assets
 # -> http://localhost:3000  (liefert die gebaute UI aus)
 
 # 5) Offline-Bundle (Docker)
 docker compose -f docs/offline/docker-compose.yml build
 docker compose -f docs/offline/docker-compose.yml up
 # -> UI i. d. R. auf http://localhost:5173
+
+# 6) Observability-Profil (Prometheus/Grafana, optional)
+docker compose --profile monitoring up
+# -> Prometheus http://localhost:9090, Grafana http://localhost:3000 (admin/admin)
 ```
 
 > **Hinweise:**  
-> • „Cannot GET /“ auf :3000 bedeutet: Backend servt keine HMR-UI. Entweder **Vite-Dev** (`pnpm dev:ui`) nutzen oder **statisch bauen** (`pnpm build:ui && pnpm dev`).  
+> • „Cannot GET /“ auf :3000 bedeutet: Backend servt keine HMR-UI. Entweder **Vite-Dev** (`pnpm dev:ui`) nutzen oder **statisch bauen** (`pnpm build:ui && pnpm dev`).
+> • Für Observability mit Prometheus/Grafana das Compose-Profil `monitoring` starten (siehe `observability/README.md`).
 > • Windows: Lange Pfade aktivieren; `.dockerignore` im Repo-Root verhindert riesige Build-Kontexte.
 
 ---
@@ -128,6 +137,7 @@ pnpm format:check
 pnpm test:ts:ci
 pnpm test:py
 npx pyright
+pnpm policy:check
 ```
 
 **Extended (CI Extended, nightly or label `run-extended`)**
@@ -140,6 +150,7 @@ CI=true pnpm adapter:build:era5
 pnpm stac:validate
 pnpm stac:validate:item out/example.item.json
 pnpm prompts:coach --dry
+pnpm test:unit                # Coverage-Report der Kernmodule
 ```
 
 > ℹ️ `CI Experimental` läuft nur mit Label `run-experimental`. `ENABLE_EXPERIMENTAL_TESTS=1` schaltet zusätzliche, instabile Suites frei (z.B. `pnpm test:ts:experimental`).
