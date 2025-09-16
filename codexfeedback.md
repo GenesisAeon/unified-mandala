@@ -1,4 +1,5 @@
 # Codex Feedback
+- FR-UM-2025-09-18-Fraktal38: TS-Test-Lauf isoliert, neue CI-/Smoke-Workflows ausgerollt, Env-Shims ergänzt – nächster Check sichtet auf Restfehler nach Core-CI-Run.
 - FR-UM-2025-09-18-Fraktal37-CoreCI-RunB: Node20 Toolchain fix, Policy-Checks entschärft, Repo-Sanity stabilisiert – kein weiterer Lauf notwendig.
 - FR-UM-2025-09-18-Fraktal37-CoreCI: Legacy-Workflows archiviert, CI-Core-Stabilität geprüft und Doku/Test-Guides aktualisiert – kein weiterer Lauf notwendig.
 - FR-UM-2025-08-27-C: Alle Änderungen in einem Lauf umgesetzt – kein zweiter Lauf notwendig.

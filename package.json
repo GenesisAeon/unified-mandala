@@ -10,6 +10,7 @@
   "scripts": {
     "build:agents": "tsc -p tsconfig.agents.json && node -e \"const fs=require('fs'),p='dist/agents/personhood/AIJuristicAgent.js';if(fs.existsSync(p))fs.renameSync(p,p.replace(/\\.js$/,'.cjs'));\"",
     "build": "tsc -p tsconfig.json && pnpm build:agents",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
     "build:ui": "pnpm -F mandala-ui build",
     "lint": "tsc -p tsconfig.json --noEmit",
     "test": "vitest run",
@@ -92,7 +93,7 @@
     "ci:sigils": "pnpm sigils:index:strict && pnpm test:sigil tests/fixtures/sigillin/good.yaml && pnpm resonance:calc",
     "ci:adapters-offline": "CI=true pnpm adapter:build:oisst && CI=true pnpm adapter:build:era5 || true",
     "test:ts": "vitest run --config vitest.config.ts",
-    "test:ts:ci": "NODE_OPTIONS=--max-old-space-size=2048 vitest run --config vitest.config.ts",
+    "test:ts:ci": "vitest run --config scripts/vitest.ci.config.ts --reporter=basic",
     "test:ts:extended": "cross-env ENABLE_EXTENDED_TESTS=1 vitest run --config vitest.config.ts",
     "test:ts:experimental": "cross-env ENABLE_EXTENDED_TESTS=1 ENABLE_EXPERIMENTAL_TESTS=1 vitest run --config vitest.config.ts",
     "test:py": "pytest -m \"not slow and not experimental\" -q",
