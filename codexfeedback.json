@@ -1,6 +1,11 @@
 {
   "runs": [
     {
+      "fraktalrun": "Fraktal39 StabilizationAudit",
+      "status": "in-progress",
+      "notes": "Audit-Dossier für v1.0-Stabilisierung angelegt; Umsetzungsschritte (CI-Härtung, dist-first, Policy-Doku) für Folgeläufe eingeplant."
+    },
+    {
       "fraktalrun": "Fraktal38 BuildStabilization",
       "status": "implemented",
       "notes": "ESLint + Prettier hooks, dist-first service orchestrator und Dokumentations-Updates für die v1.0-Stabilisierungsphase."

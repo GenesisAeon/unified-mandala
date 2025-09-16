@@ -1,0 +1,96 @@
+schema: fractal-analysis.v1
+fraktal_id: 38
+status: delivered
+focus: v1.0-stabilization
+inputs:
+  repo: unified-mandala
+  reference_pr: 1668
+  artifacts:
+    - .github/workflows/ci.core.yml
+    - .github/workflows/ci.extended.yml
+    - .github/workflows/ci.experimental.yml
+    - .github/workflows/governance-check.yml
+    - .github/workflows/policy-check.yml
+    - package.json
+    - vitest.config.ts
+    - pytest.ini
+    - Dockerfile
+summary:
+  highlights:
+    - 'Core-, Extended- und Experimental-Layer existieren getrennt; Stabilität des Core-Workflows ist Voraussetzung für v1.0.'
+    - 'Extended- und Experimental-Läufe verwenden weiterhin continue-on-error-Pfade (resonance smoke, guardrails, kyverno).'
+    - 'Produktionsscripts nutzen teils ts-node – dist-first-Buildkette muss vervollständigt werden.'
+    - 'Dokumentation deckt neue Build-/Policy-Anforderungen noch nicht ausreichend ab.'
+  risks:
+    - id: flaky_extended
+      description: 'resonance:smoke, guardrails und kyverno liefern keine harten Fehler → echte Regressionsgefahr'
+      mitigation:
+        - 'Runbook für Extended-Läufe erstellen (Label run-extended, nightly cron)'
+        - 'continue-on-error deaktivieren, sobald Läufe 3x stabil waren'
+    - id: dist_gap
+      description: 'Services/Agents laufen via ts-node – Produktionsdeployments ohne Vorab-Build möglich'
+      mitigation:
+        - 'pnpm build erweitert um Agenten/Services'
+        - 'Docker/Compose auf dist-Artefakte umstellen'
+    - id: policy_fragmentation
+      description: 'OPA, Kyverno, Guardrails generieren getrennte Reports und blockieren Pipelines nicht'
+      mitigation:
+        - 'Policy-Report-Aggregator schreiben (Markdown/JSON)'
+        - 'CONTRIBUTING/AI_POLICY um Troubleshooting ergänzen'
+areas:
+  architecture:
+    observations:
+      - 'Monorepo via PNPM-Workspaces (`package.json` → apps/*, packages/*) mit zusätzlichen Top-Level-Services (`src/`, `services/`, `scripts/`).'
+      - 'UI-Build trennt sich über Dockerfile (Node 20 → pnpm install → NGINX deploy).'
+      - 'Polyglot: TypeScript (Vitest), Python (Pytest) und Go-Kerne.'
+    actions:
+      - 'Dist-Builds für Kernservices planen, CLI-Skripte bündeln.'
+      - 'Experimente/Demos markieren oder archivieren, um Fokus auf Minimal Viable Core zu halten.'
+  ci:
+    core:
+      workflow: .github/workflows/ci.core.yml
+      notes:
+        - 'Runs on push & PR; Node 20 + Python 3.11; tsc, vitest (ci), pytest, pyright.'
+        - 'OFFLINE/LOW_MEM Envs sichern Reproduzierbarkeit.'
+    extended:
+      workflow: .github/workflows/ci.extended.yml
+      notes:
+        - 'Trigger: nightly cron + run-extended label.'
+        - 'Adapter-Offlinesmoke (OISST, ERA5) + resonance smoke tolerant.'
+        - 'Python Extended Tests laufen ohne experimental marker.'
+    experimental:
+      workflow: .github/workflows/ci.experimental.yml
+      notes:
+        - 'Trigger: run-experimental label.'
+        - 'Agents dry-run & guardrails validate liefern Artefakte, brechen aber nicht.'
+    recommendations:
+      - 'continue-on-error entfernen, sobald Läufe stabil sind.'
+      - 'Nightly-Fails in Issues spiegeln (Label build-health/policy-check).'
+      - 'Unit-Tests für Agents/Policy-Funktionen ergänzen, um Testschulden abzubauen.'
+  build_release:
+    dist_first:
+      - 'pnpm build: tsc → agents build, dennoch verbleibende ts-node Skripte (scripts/agents/*.ts, scripts/export-depth-bundle.ts).'
+      - 'start:light nutzt light-static-server und benötigt vorab gebaute UI-Dist.'
+    actions:
+      - 'Build-Pipeline erweitern, damit Services dist-Artefakte erzeugen.'
+      - 'Docker/Compose Jobs in CI testen (pnpm build + pnpm start:light).'
+      - 'Prometheus/Grafana-Setups in Compose verankern.'
+  documentation:
+    gaps:
+      - 'README/ONBOARDING beschreiben Core/Extended/Experimental Trennung noch nicht.'
+      - 'AI_POLICY liefert keine Guardrails/Kyverno Troubleshooting-Guides.'
+    tasks:
+      - 'Doku um Build-Health-Layer, Label-Triggers und Offline-Anforderungen erweitern.'
+      - 'Policy-Guide mit Beispielen (OPA, Kyverno, Guardrails) erstellen.'
+  process:
+    checklist:
+      - 'Fraktal-IDs & codexfeedback aktualisieren (Fraktal39 vorbereitet).'
+      - 'Kanban/Jira-Board für Stabilitätsinitiativen pflegen.'
+      - 'Labels #build-health, #policy-check, #code-quality etablieren.'
+handover:
+  next_fraktal: 39
+  priority_backlog:
+    - 'Core-Builds dauerhaft grün halten.'
+    - 'Extended/Experimental Härten & continue-on-error entfernen.'
+    - 'Dist-First Releasepipeline fertigstellen.'
+    - 'Dokumentation & Policy-Playbooks aktualisieren.'
