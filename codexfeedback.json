@@ -1,6 +1,11 @@
 {
   "runs": [
     {
+      "fraktalrun": "Fraktal38 TSCIVitest",
+      "status": "implemented",
+      "notes": "TS core hardening, dedicated Vitest CI config, PR smoke gating restored; kein weiterer Lauf notwendig."
+    },
+    {
       "fraktalrun": "Fraktal37 CoreCI RunB",
       "status": "implemented",
       "notes": "Node20 toolchain rollout, policy guardrails relaxed with non-blocking checks, repo-sanity stabilized."

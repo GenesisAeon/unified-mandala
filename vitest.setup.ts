@@ -1,3 +1,4 @@
+// Vitest CI Setup: Polyfills & strict mode toggles
 import { TextEncoder, TextDecoder } from "node:util";
 import { createRequire } from "node:module";
 
@@ -16,3 +17,8 @@ if (!("fetch" in globalThis)) {
   const { fetch, Headers, Request, Response } = require("undici");
   Object.assign(globalThis, { fetch, Headers, Request, Response });
 }
+
+// Optional offline guardrail: enable to force tests to stub network requests in CI.
+// if (process.env.OFFLINE === "1") {
+//   globalThis.fetch = () => Promise.reject(new Error("Network access disabled in OFFLINE mode"));
+// }
