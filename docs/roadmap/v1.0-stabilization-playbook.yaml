@@ -29,7 +29,7 @@ streams:
           - out/policy/policy-suite.json
       - id: policy-suite-unify
         description: 'pnpm policy:check bündelt OPA, Guardrails und Kyverno'
-        status: pending
+        status: done
         output:
           - out/policy/policy-suite.json
           - out/policy/policy-suite.md
@@ -73,7 +73,7 @@ streams:
     checkpoints:
       - id: kyverno-integration
         description: 'Kyverno CLI in policy-suite aufnehmen'
-        status: pending
+        status: done
       - id: policy-docs
         description: 'AI_POLICY.md/Ai_POLICY.yaml mit Allow/Deny Beispielen ergänzen'
         status: planned

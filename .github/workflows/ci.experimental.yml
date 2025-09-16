@@ -1,7 +1,7 @@
 name: CI Experimental
 on:
   pull_request:
-    types: [ labeled, synchronize ]
+    types: [labeled, synchronize]
 jobs:
   agents-and-governance:
     if: contains(github.event.pull_request.labels.*.name, 'run-experimental')
@@ -12,8 +12,13 @@ jobs:
         with: { node-version: '22.x', cache: 'pnpm' }
       - run: corepack enable && corepack prepare pnpm@10.16.1 --activate
       - run: pnpm install --frozen-lockfile
-      - run: pnpm agents:dry-run --verbose > agents-dry-run.log || true
+      - name: Agents dry-run
+        shell: bash
+        run: |
+          set -o pipefail
+          pnpm agents:dry-run --verbose | tee agents-dry-run.log
       - uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: agents-dry-run-logs
           path: agents-dry-run.log
@@ -26,4 +31,29 @@ jobs:
         with: { node-version: '22.x', cache: 'pnpm' }
       - run: corepack enable && corepack prepare pnpm@10.16.1 --activate
       - run: pnpm install --frozen-lockfile
-      - run: pnpm guardrails:validate || true
+      - name: Run policy suite
+        id: policy_suite
+        shell: bash
+        run: |
+          set +e
+          pnpm policy:check
+          status=$?
+          echo "status=$status" >> "$GITHUB_OUTPUT"
+          echo "POLICY_SUITE_STATUS=$status" >> "$GITHUB_ENV"
+          exit 0
+      - name: Render policy report
+        if: always()
+        run: node scripts/render-policy-suite-report.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: policy-suite-report
+          path: out/policy/
+          if-no-files-found: ignore
+      - name: Fail on policy suite result
+        if: always()
+        run: |
+          if [ "${{ steps.policy_suite.outputs.status }}" != "0" ]; then
+            echo "::error::Policy suite failed with exit code ${{ steps.policy_suite.outputs.status }}"
+            exit 1
+          fi

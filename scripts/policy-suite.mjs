@@ -10,6 +10,11 @@ const outputDir = path.join(projectRoot, 'out', 'policy');
 fs.mkdirSync(outputDir, { recursive: true });
 
 const inputPath = process.env.POLICY_SUITE_INPUT || 'fixtures/events/example_input.json';
+const resolvedInputPath = path.isAbsolute(inputPath)
+  ? inputPath
+  : path.join(projectRoot, inputPath);
+const kyvernoScript = path.join(projectRoot, 'tools', 'kyverno-dry-run.mjs');
+const kyvernoPolicyPath = path.join(projectRoot, 'policies', 'kyverno.yaml');
 
 const checks = [
   {
@@ -51,6 +56,27 @@ const checks = [
     successNote: 'Repository guardrails satisfied (no policy drift detected)',
     failureHint: 'Guardrails flagged the latest commit. Review policies/merge-guardrails.yaml',
   },
+  {
+    name: 'Kyverno Dry-Run',
+    skip: () => {
+      const flag = (process.env.POLICY_SUITE_SKIP_KYVERNO || '').toLowerCase();
+      return flag === '1' || flag === 'true';
+    },
+    skipNote: 'Kyverno validation skipped via POLICY_SUITE_SKIP_KYVERNO',
+    command: () => ({
+      cmd: 'node',
+      args: [
+        kyvernoScript,
+        '--policy',
+        path.relative(projectRoot, kyvernoPolicyPath),
+        '--resource',
+        path.relative(projectRoot, resolvedInputPath),
+      ],
+    }),
+    successNote: 'Kyverno policies accepted the example fixture',
+    failureHint:
+      'Kyverno denied the input fixture. Inspect policies/kyverno.yaml or fixtures/events/example_input.json',
+  },
 ];
 
 const results = [];
@@ -85,6 +111,17 @@ function tailBuffer() {
 
 async function runCheck(definition) {
   const { name, command, successNote, failureHint } = definition;
+  if (typeof definition.skip === 'function' && definition.skip()) {
+    const note = definition.skipNote || 'Skipped by configuration.';
+    results.push({
+      name,
+      status: 'skipped',
+      logPath: null,
+      notes: note,
+      durationMs: 0,
+    });
+    return;
+  }
   const resolved = typeof command === 'function' ? command() : command;
   const logFileName = `${sanitize(name) || 'policy-check'}.log`;
   const logPath = path.join(outputDir, logFileName);
@@ -175,7 +212,7 @@ await main();
 
 const payload = {
   generatedAt: new Date().toISOString(),
-  input: path.relative(projectRoot, inputPath),
+  input: path.relative(projectRoot, resolvedInputPath),
   results,
 };
 
