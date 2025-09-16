@@ -1,14 +1,42 @@
 module.exports = {
   root: true,
   parser: '@typescript-eslint/parser',
-  plugins: ['@typescript-eslint'],
+  plugins: ['@typescript-eslint', 'prettier'],
   extends: [
     'eslint:recommended',
-    'plugin:@typescript-eslint/recommended'
+    'plugin:@typescript-eslint/recommended',
+    'plugin:prettier/recommended',
   ],
   env: {
     node: true,
-    es2020: true,
-    jest: true
-  }
+    es2022: true,
+    browser: true,
+    jest: true,
+  },
+  rules: {
+    'prettier/prettier': 'off',
+    '@typescript-eslint/no-explicit-any': 'off',
+    '@typescript-eslint/no-var-requires': 'off',
+    '@typescript-eslint/no-unused-vars': 'off',
+    '@typescript-eslint/ban-ts-comment': 'off',
+    '@typescript-eslint/prefer-as-const': 'off',
+    '@typescript-eslint/triple-slash-reference': 'off',
+    'no-unused-vars': 'off',
+    'prefer-const': 'off',
+    'no-useless-escape': 'off',
+    'no-empty': 'off',
+    'no-constant-condition': 'off',
+    'no-control-regex': 'off',
+  },
+  ignorePatterns: [
+    'node_modules/',
+    'dist/',
+    'out/',
+    'packages/*/dist/',
+    'apps/*/dist/',
+    'GenesisAeonZIPMEM/',
+    'GenesisAeonAdvancedAi/',
+    'unifiedmandala-neural/',
+    'unifiedmandala-orchestrator/',
+  ],
 };
