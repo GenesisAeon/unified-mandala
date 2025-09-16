@@ -1,0 +1,18 @@
+fraktal: 38
+status: in_progress
+implemented:
+  - 'ESLint + Prettier via lint-staged und Husky; `pnpm lint` kombiniert Typecheck & Lint.'
+  - 'Neuer Service-Orchestrator (`pnpm dev:services` / `pnpm start:services`) mit Dist-Fallback.'
+  - '`tsconfig.dist.json` + `pnpm build:dist` erzeugen vorcompilierte JS-Artefakte für Kernservices.'
+  - 'CI Extended enthält einen strikten Governance-Dry-Run ohne `continue-on-error`.'
+  - 'README/CONTRIBUTING/ONBOARDING/AI_POLICY dokumentieren Dist-First, Governance-Checks & Monitoring.'
+feedback:
+  - Prüfe in Folge-Läufen, ob weitere Workflows (`governance-check.yml`) von `continue-on-error` befreit werden können.
+  - Dead-Code-Inventur (alte Agenten & Prototyp-Services) steht weiterhin aus.
+  - Docker-Compose sollte nachziehen (`start:services` verwenden) → eigener Task.
+next_hook:
+  focus: dead-code-audit + docker-compose dist-first rollout
+  checklist:
+    - '[ ] Governance-Hauptworkflow auf strikt umstellen'
+    - '[ ] Docker-Compose-Servicebefehle auf `start:services` bzw. Dist-Skripte umbauen'
+    - '[ ] Agent/Service-Archiv aktualisieren'

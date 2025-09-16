@@ -1,14 +1,63 @@
 module.exports = {
   root: true,
+  env: {
+    es2022: true,
+    node: true,
+    browser: true,
+  },
   parser: '@typescript-eslint/parser',
+  parserOptions: {
+    ecmaVersion: 2022,
+    sourceType: 'module',
+  },
   plugins: ['@typescript-eslint'],
   extends: [
     'eslint:recommended',
-    'plugin:@typescript-eslint/recommended'
+    'plugin:@typescript-eslint/recommended',
+    'plugin:@typescript-eslint/stylistic',
+    'prettier',
   ],
-  env: {
-    node: true,
-    es2020: true,
-    jest: true
-  }
+  ignorePatterns: [
+    'dist/',
+    'out/',
+    'node_modules/',
+    '*.config.js',
+    '*.config.cjs',
+    '*.config.mjs',
+    '**/*.d.ts',
+    'apps/',
+    'packages/**/dist/',
+    'packages/**/build/',
+    'packages/**/DeepScience/',
+  ],
+  rules: {
+    'no-console': 'off',
+    '@typescript-eslint/no-explicit-any': 'off',
+    '@typescript-eslint/no-unused-vars': [
+      'warn',
+      { argsIgnorePattern: '^_', ignoreRestSiblings: true },
+    ],
+    '@typescript-eslint/consistent-type-imports': [
+      'warn',
+      { prefer: 'type-imports', disallowTypeAnnotations: false },
+    ],
+    '@typescript-eslint/no-empty-function': 'off',
+    '@typescript-eslint/no-empty-interface': 'off',
+    '@typescript-eslint/array-type': 'off',
+    '@typescript-eslint/no-var-requires': 'off',
+    '@typescript-eslint/consistent-type-definitions': 'off',
+    '@typescript-eslint/no-inferrable-types': 'off',
+    '@typescript-eslint/ban-ts-comment': 'off',
+    '@typescript-eslint/consistent-indexed-object-style': 'off',
+    'prefer-const': 'off',
+    'no-empty': 'off',
+    'no-control-regex': 'off',
+    'no-useless-escape': 'off',
+  },
+  overrides: [
+    {
+      files: ['**/*.test.ts', '**/*.spec.ts', '**/*.test.js'],
+      env: { jest: true },
+    },
+  ],
 };

@@ -1,0 +1,10 @@
+node_modules/
+dist/
+out/
+build/
+coverage/
+packages/**/dist/
+packages/**/build/
+packages/**/DeepScience/
+apps/
+pnpm-lock.yaml
