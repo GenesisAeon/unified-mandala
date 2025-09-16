@@ -1,6 +1,11 @@
 {
   "runs": [
     {
+      "fraktalrun": "Fraktal41 PolicyHardening",
+      "status": "in-progress",
+      "notes": "Kyverno dry-run fallback integrated into pnpm policy:check, experimental CI uploads artifacts before failing, documentation refreshed; remaining stabilization items tracked in playbook."
+    },
+    {
       "fraktalrun": "Fraktal40 V1Stabilization",
       "status": "analysis-ready",
       "notes": "Playbook + YAML blueprint for v1.0 stabilization (docs/roadmap/v1.0-stabilization-playbook.*). Implementation tasks pending."

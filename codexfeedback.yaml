@@ -1,6 +1,9 @@
 fraktal:
-  current: 40
+  current: 41
   history:
+    - id: 41
+      status: 'in-progress'
+      notes: 'Kyverno dry-run in policy-suite integriert, experimental CI fail-fast gestellt, Governance-Doku aktualisiert'
     - id: 40
       status: 'analysis-ready'
       notes: 'v1.0 Stabilization Playbook (docs/roadmap/v1.0-stabilization-playbook.*) vorbereitet; Umsetzung folgt in Folgefraktalen'

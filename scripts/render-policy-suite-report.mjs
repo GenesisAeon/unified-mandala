@@ -48,21 +48,24 @@ function mapStatus(conclusion) {
   }
 }
 
-const kyvernoConclusion = process.env.KYVERNO_CONCLUSION || process.env.KYVERNO_OUTCOME || '';
-const kyvernoStatus = mapStatus(kyvernoConclusion);
+const kyvernoSignal =
+  process.env.KYVERNO_CONCLUSION || process.env.KYVERNO_OUTCOME || process.env.KYVERNO_STATUS || '';
 const kyvernoNotes = process.env.KYVERNO_NOTES || 'See workflow logs for Kyverno output.';
 
-upsertResult({
-  name: 'Kyverno Dry-Run',
-  status: kyvernoStatus,
-  logPath: null,
-  notes:
-    kyvernoStatus === 'skipped'
-      ? `${kyvernoNotes} (Kyverno action marked as skipped)`
-      : kyvernoStatus === 'failed'
-        ? `${kyvernoNotes} (Kyverno action conclusion: ${kyvernoConclusion || 'failure'})`
-        : kyvernoNotes,
-});
+if (kyvernoSignal) {
+  const kyvernoStatus = mapStatus(kyvernoSignal);
+  upsertResult({
+    name: 'Kyverno Dry-Run',
+    status: kyvernoStatus,
+    logPath: null,
+    notes:
+      kyvernoStatus === 'skipped'
+        ? `${kyvernoNotes} (Kyverno action marked as skipped)`
+        : kyvernoStatus === 'failed'
+          ? `${kyvernoNotes} (Kyverno action conclusion: ${kyvernoSignal || 'failure'})`
+          : kyvernoNotes,
+  });
+}
 
 payload = {
   ...payload,

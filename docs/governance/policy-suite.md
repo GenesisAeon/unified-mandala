@@ -16,10 +16,16 @@ Die **Policy Suite** bündelt alle Governance-Prüfungen (OPA, Kyverno und Guard
 pnpm policy:check
 ```
 
-- Führt OPA & Guardrails identisch zur CI aus.
+- Führt OPA, Guardrails **und** den neuen Kyverno-Dry-Run-Fallback (`tools/kyverno-dry-run.mjs`) identisch zur CI aus.
 - Schreibt Logs und ein JSON-Ergebnis nach `out/policy/` (ignored).
 - Fehlende OPA-Binaries oder Docker werden als `Skipped` ausgewiesen – der Bericht markiert dies transparent.
-- Kyverno wird lokal nur ausgeführt, wenn der GitHub-Action-Schritt verwendet wird. Optional lässt sich ein Docker-basierter Lauf ergänzen (siehe TODO unten).
+- Der Kyverno-Fallback kann separat getestet werden:
+
+  ```bash
+  pnpm kyverno:validate -- --resource fixtures/events/example_input.json
+  ```
+
+  Der Runner simuliert die wichtigsten Pattern-Regeln der Policies und prüft das Fixture gegen `policies/kyverno.yaml`. Bei Abweichungen wird mit Exit-Code ≠ 0 abgebrochen.
 
 ### Artefakte
 
@@ -39,7 +45,7 @@ pnpm policy:check
 
 ## Hinweise & TODOs
 
-- Für vollautomatische Kyverno-Läufe außerhalb von GitHub sollte ein Docker-/CLI-Fallback ergänzt werden (`POLICY_SUITE_ENABLE_KYVERNO=docker`).
+- Der lokale Fallback (`pnpm kyverno:validate`) kann bei Bedarf durch ein echtes CLI/Docker-Setup ersetzt werden (`POLICY_SUITE_SKIP_KYVERNO=1` deaktiviert den Node-Fallback für eigene Experimente).
 - Bei Policy-Änderungen unbedingt eine erläuternde Dokumentation im gleichen PR aktualisieren – die Guardrails achten darauf.
 - Die Summary-Datei eignet sich als Anhang für Fraktal-Protokolle oder Release-Notes (kopieren aus `out/policy/policy-suite-report.md`).
 

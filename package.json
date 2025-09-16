@@ -108,6 +108,7 @@
     "test:sigil": "ts-node scripts/validate-sigil-cli.ts",
     "test:ui": "vitest run --passWithNoTests",
     "ci:verify": "pnpm test:ts && pnpm sigils:index:strict && pnpm adapter:build:era5",
+    "kyverno:validate": "node tools/kyverno-dry-run.mjs",
     "policy:check": "node scripts/policy-suite.mjs",
     "scan:ingest": "node scripts/ingest-external-scan.mjs",
     "adapters:ci:install": "pip install -r src/adapters/requirements.txt",

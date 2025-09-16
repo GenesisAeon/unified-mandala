@@ -41,8 +41,8 @@ Danach sollten folgende Schritte immer grün sein, bevor ein PR erstellt wird:
 
 ## Governance & Policy Suite
 
-- `pnpm policy:check` führt OPA (`policies/governance.rego`) und die Guardrails (`policies/merge-guardrails.yaml`) lokal zusammen aus und schreibt Ergebnisse nach `out/policy/`.
-- Kyverno läuft in GitHub via `policy-check.yml`. Für lokale Tests ist derzeit Docker notwendig; ansonsten genügt der CI-Durchlauf.
+- `pnpm policy:check` führt OPA (`policies/governance.rego`), Guardrails (`policies/merge-guardrails.yaml`) **und** den Kyverno-Dry-Run (`tools/kyverno-dry-run.mjs`) lokal aus und schreibt Ergebnisse nach `out/policy/`.
+- Falls der Node-basierte Kyverno-Fallback nicht genutzt werden soll, kann er über `POLICY_SUITE_SKIP_KYVERNO=1 pnpm policy:check` deaktiviert werden. Ein separater Lauf ist via `pnpm kyverno:validate` möglich.
 - Die Datei `out/policy/policy-suite-report.md` liefert eine Markdown-Zusammenfassung, die ebenfalls im GitHub Step Summary erscheint.
 - Policy-Änderungen benötigen weiterhin begleitende Dokumentation (Guardrail-Regel) – idealerweise im gleichen PR aktualisieren.
 
