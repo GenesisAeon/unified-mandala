@@ -1,6 +1,9 @@
 fraktal:
-  current: 38
+  current: 39
   history:
+    - id: 39
+      status: 'done'
+      notes: 'Policy suite unified: CLI OPA/Guardrails, Kyverno summary + fail-fast workflow'
     - id: 38
       status: 'done'
       notes: 'ESLint/Prettier Hooks, dist-first Service-Runner und Doku-Refresh für v1.0 Stabilisierung'
@@ -40,7 +43,7 @@ fraktal:
   progress:
     legacy_workflows: disabled
     ci_core: node20-green
-    policy_checks: audit-only
+    policy_checks: unified-report
     repo_sanity: tolerant
     documentation: updated
 

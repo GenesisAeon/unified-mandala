@@ -1,28 +1,7 @@
 name: Policy Checks
 on: [push, pull_request]
 jobs:
-  opa:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20.x'
-      - name: OPA policy check
-        run: |
-          node tools/opa-check.mjs fixtures/events/example_input.json
-  kyverno:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Kyverno validate (dry-run)
-        uses: kyverno/action@v0.4.0
-        with:
-          policies: policies/kyverno.yaml
-          resources: fixtures/events/example_input.json
-          cluster: false
-        continue-on-error: true
-  guardrails:
+  policy-suite:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -35,6 +14,38 @@ jobs:
           version: 10.16.1
       - name: Install dependencies
         run: pnpm install --frozen-lockfile --ignore-scripts
-      - name: Run guardrails check
-        run: pnpm exec node tools/governance-guardrails.mjs
+      - name: Run policy suite (OPA & Guardrails)
+        id: suite
+        run: pnpm policy:check
         continue-on-error: true
+      - name: Kyverno dry-run
+        id: kyverno
+        uses: kyverno/action@v0.4.0
+        with:
+          policies: policies/kyverno.yaml
+          resources: fixtures/events/example_input.json
+          cluster: false
+        continue-on-error: true
+      - name: Render policy summary
+        id: render
+        if: always()
+        run: node scripts/render-policy-suite-report.mjs
+        env:
+          KYVERNO_CONCLUSION: ${{ steps.kyverno.conclusion }}
+          KYVERNO_OUTCOME: ${{ steps.kyverno.outcome }}
+      - name: Upload policy artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: policy-suite-report
+          path: out/policy/
+          if-no-files-found: ignore
+      - name: Fail on policy violations
+        if: always()
+        run: |
+          status=$(cat out/policy/policy-suite-status.txt 2>/dev/null || echo "missing")
+          if [ "$status" != "passed" ]; then
+            echo "::error::Policy suite reported failures (${status})."
+            exit 1
+          fi
+          echo "Policy suite passed."
