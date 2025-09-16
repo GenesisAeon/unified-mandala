@@ -13,8 +13,8 @@ export PYTHONPATH=src
 
 Danach sollten folgende Schritte immer grün sein, bevor ein PR erstellt wird:
 
-- `pnpm lint`
-- `npx tsc -p tsconfig.json --noEmit`
+- `pnpm lint` (führt Typprüfung und ESLint zusammen aus)
+- `pnpm format:check`
 - `pnpm test:ts:ci`
 - `pnpm test:py`
 - `npx pyright`
@@ -47,3 +47,16 @@ Danach sollten folgende Schritte immer grün sein, bevor ein PR erstellt wird:
 - `AI_POLICY.md` beachten (Einsatz von GPT, Datenumgang).
 - Experimentelle Features hinter Feature-Flags halten (`ENABLE_EXPERIMENTAL_TESTS`, UI `FEATURES`).
 - Vor Merge einmal `pnpm build:ui` + `pnpm dev` (Smoke `/` → 200) prüfen.
+
+## Code-Style & Tooling
+
+- ESLint + Prettier laufen automatisch über Husky (`pnpm lint-staged`). Manuell: `pnpm lint` bzw. `pnpm format`.
+- Bitte keine manuellen `ts-node` Aufrufe für Produktionspfade einchecken. Services werden in `dist/` vorkompiliert.
+- Neue Skripte bevorzugt über `scripts/dev-services.mjs` einhängen, statt weitere `concurrently`-Aufrufe anzulegen.
+
+## Dist-First Services
+
+- `pnpm build` erstellt jetzt Node-Artefakte via `tsconfig.build.json`.
+- Entwicklungsmodus: `pnpm dev:services` (nutzt `tsx`).
+- Produktionsmodus: `pnpm start:services` (nutzt `node dist/...`).
+- Falls beim Start Artefakte fehlen, zuerst `pnpm build` ausführen.

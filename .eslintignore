@@ -1,0 +1,13 @@
+node_modules
+.dist
+./dist
+coverage
+out
+.build
+apps/ui/dist
+apps/
+packages/
+packages/unifiedmandala-ui/build
+**/generated/**
+scripts/post-prompt-lint-comment.mjs
+scripts/validate-newadvanced-conversations.ts
