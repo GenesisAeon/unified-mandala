@@ -107,6 +107,12 @@ Details im **Handbuch**.
 
 Siehe `docs/governance/HI-Compact.md` und `AI_POLICY.md`. Transparenz über `advancedprogress.json`.
 
+## Fraktal38 · Stabilisierungspfad
+
+- Der technische Fahrplan für die v1.0-Stabilisierung liegt in `docs/roadmap/unifiedmandala-stabilisierung-fraktal38.md`.
+- Die Codex-Perspektive samt Hooks für Folgeläufe ist in `codex/fraktal38.yaml` dokumentiert.
+- Updates zu diesem Fraktal werden im `codexfeedback.*`-Tagebuch festgehalten (aktueller Lauf Fraktal39).
+
 ---
 
 ### Quick CI parity
