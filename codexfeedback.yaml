@@ -1,8 +1,11 @@
 fraktal:
-  current: 41
+  current: 42
   history:
-    - id: 41
+    - id: 42
       status: 'in-progress'
+      notes: 'Monitoring-Profil (Prometheus/Grafana) aktiviert, Governance-Primer & Quickstarts aktualisiert, Observability-Checks vorbereitet'
+    - id: 41
+      status: 'done'
       notes: 'Kyverno dry-run in policy-suite integriert, experimental CI fail-fast gestellt, Governance-Doku aktualisiert'
     - id: 40
       status: 'analysis-ready'
@@ -62,6 +65,27 @@ fraktal40:
   next:
     - 'Owner pro Stream (stability/code-quality/build-release/governance/observability) festlegen'
     - 'Issues mit Playbook-Checkpoints anlegen und Status über codexfeedback synchronisieren'
+
+fraktal41:
+  status: 'done'
+  checkpoints:
+    - 'Policy suite vereint OPA/Guardrails/Kyverno und liefert Fail-Fast-Exit'
+    - 'CI Experimental lädt Artefakte hoch und stoppt ohne `|| true`'
+    - 'Codexfeedback & Governance-Doku mit Fraktal41-Notizen verknüpft'
+  notes:
+    - 'Restliche ts-node Aufrufe bleiben als technische Schuld markiert'
+    - 'Observability-Integration in Fraktal42 geplant'
+
+fraktal42:
+  status: 'in-progress'
+  checkpoints:
+    - 'Monitoring-Profil (Prometheus/Grafana) via docker-compose aktiviert'
+    - 'README/ONBOARDING/CommunityOnboarding um Stabilitäts-Quickstart ergänzt'
+    - 'AI_POLICY.md beschreibt Guardrail-Fehler und Maßnahmen'
+  next:
+    - 'Dist-First-Lücken schließen (ts-node Restpfade entfernen)'
+    - 'Metrics-Endpunkte via @um/health breit ausrollen'
+    - 'Smoke-Tests für `/metrics` und Start-Skripte automatisieren'
 
 fraktal21:
   status: 'ready-for-review'
