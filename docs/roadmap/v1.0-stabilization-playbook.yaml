@@ -1,0 +1,138 @@
+fraktal: 40
+release: v1.0
+owner: codex
+updated: 2025-09-20
+summary: |
+  Strukturierter Maßnahmenplan zur Umsetzung der Fraktal40-Besprechung.
+  Fokus auf stabile Kern-Builds, dist-first Services, verschärfte Governance
+  und dokumentierte Release-Drills.
+streams:
+  - key: stability
+    objective: Core- und Extended-Builds dauerhaft grün halten.
+    related_files:
+      - .github/workflows/ci.core.yml
+      - .github/workflows/ci.experimental.yml
+      - ci/agent.yml
+    checkpoints:
+      - id: core-ci-hardening
+        description: 'Fail-fast Verhalten und Nightly-Matrix in CI Core etablieren'
+        status: pending
+        success:
+          - pnpm test:ts:ci
+          - pnpm test:py
+          - npx pyright
+      - id: experimental-signal
+        description: 'Guardrails & Agent Dry-Runs ohne `|| true`; Ergebnisse als Checks publizieren'
+        status: pending
+        artifacts:
+          - agents-dry-run.log
+          - out/policy/policy-suite.json
+      - id: policy-suite-unify
+        description: 'pnpm policy:check bündelt OPA, Guardrails und Kyverno'
+        status: pending
+        output:
+          - out/policy/policy-suite.json
+          - out/policy/policy-suite.md
+  - key: code-quality
+    objective: Linting, Formatting und Skriptlandschaft konsolidieren.
+    related_files:
+      - package.json
+      - .husky/pre-commit
+      - scripts/dev-services.mjs
+      - docker-compose.yml
+    checkpoints:
+      - id: lint-doc-refresh
+        description: 'README/CONTRIBUTING mit Dist-First und Hook-Hinweisen erweitern'
+        status: planned
+      - id: ts-node-retire
+        description: 'Produktionspfade auf `node dist/...` umstellen'
+        status: planned
+  - key: build-release
+    objective: Dist-First-Builds, Docker-Drills und Smoke-Tests automatisieren.
+    related_files:
+      - Dockerfile
+      - Dockerfile.dev
+      - scripts/light-static-server.mjs
+      - docker-compose.yml
+    checkpoints:
+      - id: dist-first
+        description: '`pnpm build` liefert alle Artefakte für Prod-Start ohne ts-node'
+        status: pending
+      - id: compose-profiles
+        description: 'docker-compose Profile für core/newsbot/climate definieren'
+        status: planned
+      - id: runtime-smoke
+        description: '`pnpm start:light` + HTTP-Smoketest automatisieren'
+        status: planned
+  - key: governance
+    objective: Transparente Policy-Gates & Dokumentation.
+    related_files:
+      - scripts/policy-suite.mjs
+      - AI_POLICY.md
+      - policies/merge-guardrails.yaml
+    checkpoints:
+      - id: kyverno-integration
+        description: 'Kyverno CLI in policy-suite aufnehmen'
+        status: pending
+      - id: policy-docs
+        description: 'AI_POLICY.md/Ai_POLICY.yaml mit Allow/Deny Beispielen ergänzen'
+        status: planned
+  - key: observability
+    objective: Prometheus/Grafana in den Release-Fluss integrieren.
+    related_files:
+      - observability/prometheus.yml
+      - observability/grafana
+      - packages/health
+    checkpoints:
+      - id: metrics-endpoints
+        description: 'Alle Services exportieren `/metrics` via @um/health'
+        status: planned
+      - id: prom-compose
+        description: 'Compose-Profile für Prometheus/Grafana aktivieren'
+        status: planned
+milestones:
+  - name: Sprint 0 – Playbook Review
+    target: 2025-09-24
+    deliverables:
+      - Playbook im Team abgestimmt
+      - Aufgaben in Issue-Board gespiegelt
+  - name: Sprint 1 – Core Stabilization
+    target: 2025-10-01
+    deliverables:
+      - core-ci-hardening
+      - policy-suite-unify
+      - kyverno-integration
+  - name: Sprint 2 – Extended & Docs
+    target: 2025-10-08
+    deliverables:
+      - experimental-signal
+      - lint-doc-refresh
+      - runtime-smoke
+  - name: Sprint 3 – Release Drill
+    target: 2025-10-15
+    deliverables:
+      - dist-first
+      - compose-profiles
+      - prom-compose
+tracking:
+  codexfeedback_hook: 'fraktal40'
+  progress_log:
+    - file: codexfeedback.md
+      action: 'neue Laufnotizen hinzufügen'
+    - file: codexfeedback.json
+      action: 'statusflag aktualisieren'
+    - file: codexfeedback.yaml
+      action: 'current=40 setzen, checkpoints pflegen'
+  follow_up:
+    - file: advancedprogress.json
+      action: 'Sprint-Ergebnisse spiegeln'
+risks:
+  - id: ci-flakes
+    description: 'Persistente Vitest/Pytest-Flakes können Fail-Fast-Ansatz ausbremsen'
+    mitigation: 'Tests taggen, Retries nur in Nightlies zulassen, Flake-Issues pflegen'
+  - id: docker-toolchain-drift
+    description: 'Unterschiedliche Node-Versionen (Dockerfile vs Dockerfile.dev)'
+    mitigation: 'Baseline auf Node 20 angleichen, Renovate/Dependabot für Images erwägen'
+  - id: policy-tooling-gaps
+    description: 'Kyverno/OPA Binaries nicht auf Runner verfügbar'
+    mitigation: 'Fallback auf Containerized CLI, Preflight-Check in policy-suite'

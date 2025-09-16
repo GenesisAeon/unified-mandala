@@ -1,6 +1,11 @@
 {
   "runs": [
     {
+      "fraktalrun": "Fraktal40 V1Stabilization",
+      "status": "analysis-ready",
+      "notes": "Playbook + YAML blueprint for v1.0 stabilization (docs/roadmap/v1.0-stabilization-playbook.*). Implementation tasks pending."
+    },
+    {
       "fraktalrun": "Fraktal39 PolicySuite",
       "status": "implemented",
       "notes": "Policy suite unified: pnpm policy:check CLI, Kyverno summary integration, workflow summary + fail-fast gate."
