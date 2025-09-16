@@ -1,6 +1,9 @@
 fraktal:
-  current: 39
+  current: 40
   history:
+    - id: 40
+      status: 'analysis-ready'
+      notes: 'v1.0 Stabilization Playbook (docs/roadmap/v1.0-stabilization-playbook.*) vorbereitet; Umsetzung folgt in Folgefraktalen'
     - id: 39
       status: 'done'
       notes: 'Policy suite unified: CLI OPA/Guardrails, Kyverno summary + fail-fast workflow'
@@ -46,6 +49,16 @@ fraktal:
     policy_checks: unified-report
     repo_sanity: tolerant
     documentation: updated
+    v1_stabilization_playbook: prepared
+
+fraktal40:
+  status: 'analysis-ready'
+  checkpoints:
+    - 'Playbook veröffentlicht: docs/roadmap/v1.0-stabilization-playbook.md'
+    - 'Blueprint erstellt: docs/roadmap/v1.0-stabilization-playbook.yaml'
+  next:
+    - 'Owner pro Stream (stability/code-quality/build-release/governance/observability) festlegen'
+    - 'Issues mit Playbook-Checkpoints anlegen und Status über codexfeedback synchronisieren'
 
 fraktal21:
   status: 'ready-for-review'

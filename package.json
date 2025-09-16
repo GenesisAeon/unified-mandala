@@ -16,6 +16,7 @@
     "lint:eslint": "eslint \"{scripts,services,src,tests}/**/*.{ts,tsx,js,jsx,cjs,mjs}\" --max-warnings=0 --cache",
     "format": "prettier --write README.md CONTRIBUTING.md docs/ONBOARDING.md codexfeedback.* scripts/dev-services.mjs",
     "format:check": "prettier --check README.md CONTRIBUTING.md docs/ONBOARDING.md codexfeedback.* scripts/dev-services.mjs",
+    "lint-staged": "lint-staged",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:unit": "vitest run --coverage",
