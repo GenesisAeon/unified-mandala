@@ -1,9 +1,14 @@
 {
   "runs": [
     {
-      "fraktalrun": "Fraktal41 PolicyHardening",
+      "fraktalrun": "Fraktal42 Stabilization",
       "status": "in-progress",
-      "notes": "Kyverno dry-run fallback integrated into pnpm policy:check, experimental CI uploads artifacts before failing, documentation refreshed; remaining stabilization items tracked in playbook."
+      "notes": "CI Core erg\u00e4nzt lint/format checks, Extended pipeline bereitet Coverage und Monitoring-Profil vor."
+    },
+    {
+      "fraktalrun": "Fraktal41 PolicyHardening",
+      "status": "handoff",
+      "notes": "Kyverno dry-run fallback integriert, Experimental-CI fail-fast; Extended Coverage & Monitoring werden in Fraktal42 weitergef\u00fchrt."
     },
     {
       "fraktalrun": "Fraktal40 V1Stabilization",
@@ -18,7 +23,7 @@
     {
       "fraktalrun": "Fraktal38 BuildStabilization",
       "status": "implemented",
-      "notes": "ESLint + Prettier hooks, dist-first service orchestrator und Dokumentations-Updates für die v1.0-Stabilisierungsphase."
+      "notes": "ESLint + Prettier hooks, dist-first service orchestrator und Dokumentations-Updates f\u00fcr die v1.0-Stabilisierungsphase."
     },
     {
       "fraktalrun": "Fraktal37 CoreCI RunB",
@@ -28,17 +33,17 @@
     {
       "fraktalrun": "Fraktal8 OrientationHub",
       "status": "implemented",
-      "notes": "Alle Inhalte aus Fraktal8 integriert; weitere Fragmente können in Folgeläufen ergänzt werden."
+      "notes": "Alle Inhalte aus Fraktal8 integriert; weitere Fragmente k\u00f6nnen in Folgel\u00e4ufen erg\u00e4nzt werden."
     },
     {
       "fraktalrun": "Fraktal10 SigillinIndex",
       "status": "implemented",
-      "notes": "Sigillin-Index-Skript hinzugefügt; nächster Schritt Personhood-UI."
+      "notes": "Sigillin-Index-Skript hinzugef\u00fcgt; n\u00e4chster Schritt Personhood-UI."
     },
     {
       "fraktalrun": "Fraktal11 PersonhoodBuild",
       "status": "implemented",
-      "notes": "Personhood-Build und SigillinIndexPanel umgesetzt; Tests grün."
+      "notes": "Personhood-Build und SigillinIndexPanel umgesetzt; Tests gr\u00fcn."
     },
     {
       "fraktalrun": "Fraktal12 SigillinMap",
@@ -48,7 +53,7 @@
     {
       "fraktalrun": "Fraktal13 SigilsLint",
       "status": "implemented",
-      "notes": "Sigils-Validation-Script eingeführt; nächster Schritt CREP-Utility."
+      "notes": "Sigils-Validation-Script eingef\u00fchrt; n\u00e4chster Schritt CREP-Utility."
     },
     {
       "fraktalrun": "Fraktal13 CREPUtility",
@@ -63,7 +68,7 @@
     {
       "fraktalrun": "Fraktal15 SigillinStrict",
       "status": "partial",
-      "notes": "YAML bereinigt, CI-Sigils-Strict hinzugefügt, Dokumentation ergänzt; Integrationstests und UI-Anbindung offen."
+      "notes": "YAML bereinigt, CI-Sigils-Strict hinzugef\u00fcgt, Dokumentation erg\u00e4nzt; Integrationstests und UI-Anbindung offen."
     },
     {
       "fraktalrun": "Fraktal16 ERA5Adapter",
@@ -88,7 +93,7 @@
     {
       "fraktalrun": "Fraktal20 PyrightOISSTRobust",
       "status": "implemented",
-      "notes": "Pyright-Fixes und OISST-Pipeline gehärtet; kein weiterer Lauf notwendig."
+      "notes": "Pyright-Fixes und OISST-Pipeline geh\u00e4rtet; kein weiterer Lauf notwendig."
     },
     {
       "fraktalrun": "Fraktal21 STACResonance",
@@ -98,7 +103,7 @@
     {
       "fraktalrun": "Fraktal22 ArchivistCI",
       "status": "implemented",
-      "notes": "Archivist-Agent eingebunden, CI-Abhängigkeiten und Resonanzberechnung angepasst."
+      "notes": "Archivist-Agent eingebunden, CI-Abh\u00e4ngigkeiten und Resonanzberechnung angepasst."
     },
     {
       "fraktalrun": "Fraktal23 ResonanceHardening",
@@ -143,7 +148,7 @@
     {
       "fraktalrun": "Fraktal37 UnifiedMandalaCore",
       "status": "implemented",
-      "notes": "Test-Layering für Core/Extended, pytest Marker, Legacy-Workflows deaktiviert und Core-Doku/Test-Guides aktualisiert; keine Wiederholung nötig."
+      "notes": "Test-Layering f\u00fcr Core/Extended, pytest Marker, Legacy-Workflows deaktiviert und Core-Doku/Test-Guides aktualisiert; keine Wiederholung n\u00f6tig."
     }
   ]
 }

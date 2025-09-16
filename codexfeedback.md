@@ -1,7 +1,8 @@
 # Codex Feedback
 
+- FR-UM-2025-09-22-Fraktal42: CI-Core erweitert (Lint/Format), Extended-Coverage & Monitoring-Profil vorbereitet – Umsetzung läuft.
+- FR-UM-2025-09-21-Fraktal41: Kyverno-Dry-Run in `pnpm policy:check` integriert, Experimental-CI bricht bei Policy-Verstößen ab, Governance-Doku & Codexfeedback aktualisiert – Aufgaben an Fraktal42 übergeben.
 - FR-UM-2025-09-20-Fraktal40: v1.0-Stabilization-Playbook (docs/roadmap/v1.0-stabilization-playbook.md & .yaml) erstellt – Umsetzungsschritte offen, Folgefraktale erforderlich.
-- FR-UM-2025-09-21-Fraktal41: Kyverno-Dry-Run in `pnpm policy:check` integriert, Experimental-CI bricht bei Policy-Verstößen ab, Governance-Doku & Codexfeedback aktualisiert – weitere Stabilisierungsschritte offen.
 - FR-UM-2025-09-19-Fraktal39: Policy-Suite vereinheitlicht (OPA/Guardrails CLI, Kyverno-Report, Workflow ohne continue-on-error) – bereit für Folgeaufgaben.
 - FR-UM-2025-09-18-Fraktal38: ESLint/Prettier-Hook, Dist-First-Services und aktualisierte Doku produktiv gesetzt – bereit für den nächsten Fraktal-Sprint.
 - FR-UM-2025-09-18-Fraktal37-CoreCI-RunB: Node20 Toolchain fix, Policy-Checks entschärft, Repo-Sanity stabilisiert – kein weiterer Lauf notwendig.

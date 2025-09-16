@@ -6,7 +6,7 @@ services:
       dockerfile: Dockerfile.dev
     command: pnpm dev
     ports:
-      - "3000:3000"
+      - '3000:3000'
     volumes:
       - .:/workspace/unified-mandala
   test:
@@ -26,7 +26,7 @@ services:
     volumes:
       - .:/workspace/unified-mandala
     ports:
-      - "8100:8000"
+      - '8100:8000'
     depends_on:
       - news_fetcher_service
       - script_gen_service
@@ -40,73 +40,94 @@ services:
     build:
       context: ./services/newsbot/news_fetcher
     ports:
-      - "8101:8000"
+      - '8101:8000'
 
   script_gen_service:
     build:
       context: ./services/newsbot/script_gen
     ports:
-      - "8102:8000"
+      - '8102:8000'
 
   tts_service:
     build:
       context: ./services/newsbot/tts
     ports:
-      - "8103:8000"
+      - '8103:8000'
 
   avatar_renderer_service:
     build:
       context: ./services/newsbot/avatar_renderer
     ports:
-      - "8104:8000"
+      - '8104:8000'
 
   streamer_service:
     build:
       context: ./services/newsbot/streamer
     ports:
-      - "8105:8000"
+      - '8105:8000'
 
   finetune_service:
     build:
       context: ./services/finetune
     ports:
-      - "8106:8000"
+      - '8106:8000'
   review_service:
     build:
       context: ./agents/review_checkpoint
     ports:
-      - "8107:8000"
+      - '8107:8000'
   singularity_simulator_service:
     build:
       context: ./agents/singularity_simulator
     ports:
-      - "8108:8000"
+      - '8108:8000'
 
   # --- Open-source chat services ---
   gpt4all_service:
     image: ghcr.io/nomic-ai/gpt4all:latest
     ports:
-      - "8201:80"
+      - '8201:80'
 
   openassistant_service:
     image: ghcr.io/laion-ai/open-assistant:latest
     ports:
-      - "8202:80"
+      - '8202:80'
 
   h2ogpt_service:
     image: ghcr.io/h2oai/h2ogpt-server:latest
     ports:
-      - "8203:80"
+      - '8203:80'
 
   text_generation_webui_service:
     image: ghcr.io/oobabooga/text-generation-webui:latest
     ports:
-      - "8204:7860"
+      - '8204:7860'
 
   autogen_service:
     image: ghcr.io/microsoft/autogen:latest
     ports:
-      - "8205:80"
+      - '8205:80'
+
+  prometheus:
+    image: prom/prometheus:latest
+    profiles: ['monitoring']
+    volumes:
+      - ./observability/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+    ports:
+      - '9090:9090'
+
+  grafana:
+    image: grafana/grafana:latest
+    profiles: ['monitoring']
+    depends_on:
+      - prometheus
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    volumes:
+      - ./observability/grafana:/var/lib/grafana
+    ports:
+      - '3100:3000'
 
   # --- Climate news microservices ---
   climate_news_orchestrator:
@@ -117,7 +138,7 @@ services:
     volumes:
       - .:/workspace/unified-mandala
     ports:
-      - "8300:8000"
+      - '8300:8000'
     depends_on:
       - climate_service
       - forest_service
@@ -134,7 +155,7 @@ services:
     volumes:
       - .:/workspace/unified-mandala
     ports:
-      - "8301:8000"
+      - '8301:8000'
 
   forest_service:
     build:
@@ -144,7 +165,7 @@ services:
     volumes:
       - .:/workspace/unified-mandala
     ports:
-      - "8302:8000"
+      - '8302:8000'
 
   flood_service:
     build:
@@ -154,7 +175,7 @@ services:
     volumes:
       - .:/workspace/unified-mandala
     ports:
-      - "8303:8000"
+      - '8303:8000'
 
   economy_service:
     build:
@@ -164,7 +185,7 @@ services:
     volumes:
       - .:/workspace/unified-mandala
     ports:
-      - "8304:8000"
+      - '8304:8000'
 
   emissions_service:
     build:
@@ -174,7 +195,7 @@ services:
     volumes:
       - .:/workspace/unified-mandala
     ports:
-      - "8305:8000"
+      - '8305:8000'
 
   mitigation_service:
     build:
@@ -184,7 +205,7 @@ services:
     volumes:
       - .:/workspace/unified-mandala
     ports:
-      - "8306:8000"
+      - '8306:8000'
 
   # --- Global events microservices ---
   global_events_orchestrator:
@@ -195,7 +216,7 @@ services:
     volumes:
       - .:/workspace/unified-mandala
     ports:
-      - "8400:8000"
+      - '8400:8000'
     depends_on:
       - science_service
       - tech_service
@@ -209,7 +230,7 @@ services:
     volumes:
       - .:/workspace/unified-mandala
     ports:
-      - "8401:8000"
+      - '8401:8000'
 
   tech_service:
     build:
@@ -219,7 +240,7 @@ services:
     volumes:
       - .:/workspace/unified-mandala
     ports:
-      - "8402:8000"
+      - '8402:8000'
 
   environment_service:
     build:
@@ -229,16 +250,16 @@ services:
     volumes:
       - .:/workspace/unified-mandala
     ports:
-      - "8403:8000"
+      - '8403:8000'
 
   digital_twin_agent:
     build:
       context: ./agents/digital_twin
     ports:
-      - "8404:8000"
+      - '8404:8000'
 
   gamification_agent:
     build:
       context: ./agents/gamification
     ports:
-      - "8405:8000"
+      - '8405:8000'
