@@ -1,110 +1,114 @@
 fraktal:
-  current: 38
+  current: 39
   history:
+    - id: 39
+      status: analysis
+      notes: Stabilisierungsaudit, Dist-First-Backlog und Governance-Hooks dokumentiert;
+        Umsetzung folgt in Fraktal40.
     - id: 38
-      status: 'done'
-      notes: 'ESLint/Prettier Hooks, dist-first Service-Runner und Doku-Refresh für v1.0 Stabilisierung'
-    - id: '37b'
-      status: 'done'
-      notes: 'Node20 toolchain, policy guardrail audit-mode, repo-sanity warnings allowed'
+      status: done
+      notes: "ESLint/Prettier Hooks, dist-first Service-Runner und Doku-Refresh f\xFC\
+        r v1.0 Stabilisierung"
+    - id: 37b
+      status: done
+      notes: Node20 toolchain, policy guardrail audit-mode, repo-sanity warnings allowed
     - id: 37
-      status: 'done'
-      notes: 'Core/Extended Testlayering, pytest Marker, CI-Python-Step, Legacy-Workflows archiviert, Core-Doku aktualisiert'
+      status: done
+      notes: Core/Extended Testlayering, pytest Marker, CI-Python-Step, Legacy-Workflows
+        archiviert, Core-Doku aktualisiert
     - id: 36
-      status: 'done'
-      notes: 'Dev-server autodetect dist, Vite ~config alias, raw import fix, default UI_DIST dev script'
+      status: done
+      notes: Dev-server autodetect dist, Vite ~config alias, raw import fix, default
+        UI_DIST dev script
     - id: 35
-      status: 'done'
-      notes: 'Reality-Gate primitive, tsx dev server, experimental CI setup, UI alias'
+      status: done
+      notes: Reality-Gate primitive, tsx dev server, experimental CI setup, UI alias
     - id: 34
-      status: 'done'
-      notes: 'CI split (core/extended/experimental), UI alias fix, Node22 dev server'
+      status: done
+      notes: CI split (core/extended/experimental), UI alias fix, Node22 dev server
     - id: 32
-      status: 'in-progress'
-      notes: 'Conscious-CI stabil: metrics singleton, Vitest offline (globals+fetch), LowMem membrane'
+      status: in-progress
+      notes: 'Conscious-CI stabil: metrics singleton, Vitest offline (globals+fetch),
+        LowMem membrane'
     - id: 25
-      status: 'done'
-      notes: 'pyright strict grün; OISST var=sst normalisiert'
+      status: done
+      notes: "pyright strict gr\xFCn; OISST var=sst normalisiert"
     - id: 21
-      status: 'in-progress'
+      status: in-progress
       checkpoints:
         - 'OISST fetch: deterministic offline (local & CI)'
         - 'Vitest: stream-json fix'
         - 'Prompt Coach: CLI + PR dry-run'
         - 'CI matrix: adapters cache + typechecks'
       next:
-        - 'STAC live items broaden (optional)'
-        - 'Emergence Explorer wiring'
-  owner: 'Codex'
-  needs_repeat: false
+        - STAC live items broaden (optional)
+        - Emergence Explorer wiring
+  owner: Codex
+  needs_repeat: true
   progress:
     legacy_workflows: disabled
     ci_core: node20-green
-    policy_checks: audit-only
+    policy_checks: audit-only (guardrails script fehlt)
     repo_sanity: tolerant
     documentation: updated
-
 fraktal21:
-  status: 'ready-for-review'
+  status: ready-for-review
   checkpoints:
-    - 'OISST pipeline restored: fetch → postprocess → STAC → CREP → adapters_index.json'
-    - 'CI smoke asserts OISST presence in out/adapters_index.json'
-    - 'Vitest low-memory config (workers=1, heap 3-4GB) + jsdom polyfills'
-    - 'check:ci → tsc + vitest(low-mem) + pyright'
+    - "OISST pipeline restored: fetch \u2192 postprocess \u2192 STAC \u2192 CREP \u2192\
+      \ adapters_index.json"
+    - CI smoke asserts OISST presence in out/adapters_index.json
+    - Vitest low-memory config (workers=1, heap 3-4GB) + jsdom polyfills
+    - "check:ci \u2192 tsc + vitest(low-mem) + pyright"
     - 'CI splits: adapters-offline + type-and-tests'
     - 'Metrics: global Registry + getOrCreate-Helper verhindern Doppel-Registrierung'
   notes:
-    - 'Bei Bedarf VITEST_WORKERS>1 lokal setzen; in CI bei 1 lassen.'
-    - "Fehler '...already been registered' behoben; HMR/ESM/Vitest sicher"
+    - Bei Bedarf VITEST_WORKERS>1 lokal setzen; in CI bei 1 lassen.
+    - Fehler '...already been registered' behoben; HMR/ESM/Vitest sicher
   next:
-    - "Nightly 'extended-tests' ohne LOW_MEM erwägen"
-
+    - "Nightly 'extended-tests' ohne LOW_MEM erw\xE4gen"
 fraktal22:
-  status: 'in_progress'
+  status: in_progress
   goals:
     - ci_all_green: true
     - prompt_lint_pr_comment: true
     - adapters_offline_smoke_guard: true
   checkpoints:
     - 'CI split: adapters-offline + type-and-tests + prompt-lint'
-    - 'PR-Kommentar für Prompt-Coach (dry-run)'
-    - 'Smoke-Test für adapters_index.json (OISST present)'
+    - "PR-Kommentar f\xFCr Prompt-Coach (dry-run)"
+    - "Smoke-Test f\xFCr adapters_index.json (OISST present)"
   next:
-    - 'ERA5 in offline-matrix aufnehmen'
-    - 'Coverage wieder aktivieren (selektiv) wenn Stabilität erreicht'
-
+    - ERA5 in offline-matrix aufnehmen
+    - "Coverage wieder aktivieren (selektiv) wenn Stabilit\xE4t erreicht"
 fraktal23:
-  status: 'done'
+  status: done
   checkpoints:
     - 'Metrics defaults guarded: ensureDefaultMetrics() once'
     - 'Vitest OFFLINE: fetch-stub + /tmp seeding'
-    - 'LowMem No-Op for membrane/ringdown'
-    - 'CI env OFFLINE/LOW_MEM global; OISST smoke present'
+    - LowMem No-Op for membrane/ringdown
+    - CI env OFFLINE/LOW_MEM global; OISST smoke present
     - 'Conscious-CI docs: Core/Extended/Experimental'
   definition_of_green:
-    - "No 'already been registered' at startup/test"
-    - 'pnpm test:ts passes offline (no network)'
-    - 'out/adapters_index.json contains OISST'
-    - 'tsc + pyright pass'
+    - No 'already been registered' at startup/test
+    - pnpm test:ts passes offline (no network)
+    - out/adapters_index.json contains OISST
+    - tsc + pyright pass
   next:
-    - 'ERA5 offline-matrix'
-    - 'Nightly extended-tests (no LOW_MEM) with coverage'
-
+    - ERA5 offline-matrix
+    - Nightly extended-tests (no LOW_MEM) with coverage
 fraktal32:
-  status: 'in_progress'
+  status: in_progress
   checkpoints:
     - 'Metrics defaults guarded: ensureDefaultMetrics() once'
     - 'Vitest OFFLINE: fetch-stub + /tmp seeding + globals'
-    - 'LowMem membrane No-Op'
-    - 'CI env OFFLINE/LOW_MEM global; OISST smoke present'
-    - 'ERA5 offline stub & smoke'
+    - LowMem membrane No-Op
+    - CI env OFFLINE/LOW_MEM global; OISST smoke present
+    - ERA5 offline stub & smoke
   next:
-    - 'Nightly extended-tests (no LOW_MEM) with coverage'
-
+    - Nightly extended-tests (no LOW_MEM) with coverage
 fraktal34:
-  status: 'in_progress'
+  status: in_progress
   checkpoints:
-    - 'CI split into core/extended/experimental'
-    - 'UI alias ~config & Node22 dev-server ESM'
+    - CI split into core/extended/experimental
+    - UI alias ~config & Node22 dev-server ESM
   next:
-    - 'Monitor extended/experimental label usage'
+    - Monitor extended/experimental label usage
