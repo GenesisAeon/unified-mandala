@@ -43,8 +43,8 @@ docker compose -f docs/offline/docker-compose.yml up
 
 ## Mandala Climate Dashboard
 
- - **Konfiguration:** `config/climate-dashboard.yaml`
-- **Adapter (Stub→Live):** `src/adapters` (ERA5, OISST, EFFIS, Pegel, Biodiversität, Radar, SPEI)  
+- **Konfiguration:** `config/climate-dashboard.yaml`
+- **Adapter (Stub→Live):** `src/adapters` (ERA5, OISST, EFFIS, Pegel, Biodiversität, Radar, SPEI)
 - **Utilities:** `src/utils` (Resampling, Z-Scores, MRV/STAC)
 
 Die Adapter sind initial als Stubs verfügbar und werden schrittweise an echte Feeds gebunden.
@@ -53,10 +53,10 @@ Die Adapter sind initial als Stubs verfügbar und werden schrittweise an echte F
 
 ## Repository-Navigator
 
-- **Onboarding:** `scripts/onboarding-ritual.md`  
-- **Handbuch (Kanon):** `Handbuch.md`  
-- **Offline-Bundle:** `docs/offline/docker-compose.yml`  
-- **ToDo-System:** `advancedToDo.yaml` / `advancedToDo.json` (Sync: `node scripts/sync-todo-progress.js`)  
+- **Onboarding:** `scripts/onboarding-ritual.md`
+- **Handbuch (Kanon):** `Handbuch.md`
+- **Offline-Bundle:** `docs/offline/docker-compose.yml`
+- **ToDo-System:** `advancedToDo.yaml` / `advancedToDo.json` (Sync: `node scripts/sync-todo-progress.js`)
 - **Governance/Ethik:** `docs/governance/HI-Compact.md`, `AI_POLICY.md`, `agents.yaml`
 
 ---
@@ -71,12 +71,13 @@ Die Adapter sind initial als Stubs verfügbar und werden schrittweise an echte F
     "dev:ui": "pnpm -F mandala-ui dev",
     "build:ui": "pnpm -F mandala-ui build",
     "dev": "cross-env NODE_ENV=development ts-node scripts/dev-server.ts",
-    "dev:all": "pnpm -r --parallel dev"
-  }
+    "dev:all": "pnpm -r --parallel dev",
+  },
 }
 ```
 
 **Docker-Hygiene:** `.dockerignore` im Root:
+
 ```
 node_modules
 **/node_modules
@@ -91,10 +92,10 @@ build
 
 ## Architektur (Skizze)
 
-- **Sigillin-Ebene** · Symbolische Interaktion, Rituale  
-- **CREP-Kernel** · Kohärenz/Resonanz/Emergenz/Poetik  
-- **Agenten** · Ingest, Analyse, Synthese, Governance  
-- **UIs/Dashboards** · Climate, Archive, Frequency  
+- **Sigillin-Ebene** · Symbolische Interaktion, Rituale
+- **CREP-Kernel** · Kohärenz/Resonanz/Emergenz/Poetik
+- **Agenten** · Ingest, Analyse, Synthese, Governance
+- **UIs/Dashboards** · Climate, Archive, Frequency
 - **Pipelines** · Normalisierung → MRV/STAC → Exporte
 
 Details im **Handbuch**.
@@ -122,6 +123,7 @@ export PYTHONPATH=src
 
 ```bash
 pnpm lint
+pnpm format:check
 pnpm test:ts:ci
 pnpm test:py
 npx pyright
@@ -147,6 +149,9 @@ pnpm prompts:coach --dry
 
 Kleine, thematische PRs (docs, adapters, agents). Vor Merge: `pnpm build:ui` + `pnpm dev` (Smoke: `/` → 200), Lint/Tests.
 
+- `pnpm lint` führt den TypeScript-Lauf aus; `pnpm lint:eslint` fokussiert `apps/`, `packages/`, `services/`, `scripts/`, `src/`, `tests/`. `pnpm format:check` liest Git-Diffs (Default `HEAD`, `-- --staged` nur Stage).
+- Produktionspfade laufen auf kompilierten `dist`-Artefakten – keine `ts-node`/`tsx`-Kommandos im Release-Betrieb.
+
 ---
 
 ## Lizenz
@@ -154,7 +159,7 @@ Kleine, thematische PRs (docs, adapters, agents). Vor Merge: `pnpm build:ui` + `
 MIT. Datenquellen: jeweilige Nutzungsbedingungen beachten.
 
 ## Repo-Kartografie & Flüsse
+
 - **RepoMap**: `docs/maps/RepoMap.yaml` → `pnpm maps:build` erzeugt JSON
 - **ProgramFlow**: `docs/maps/ProgramFlow.yaml` → Mermaid SVG unter `docs/diagrams/`
 - **Pre-Rituale**: `docs/rituals/pre-rituale.md`
-
