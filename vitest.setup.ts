@@ -1,3 +1,5 @@
+// Vitest CI Setup: Polyfills & strict mode toggles
+// Optional: globalThis.fetch = undefined; // falls Tests unabsichtlich Netz ziehen
 import { TextEncoder, TextDecoder } from "node:util";
 import { createRequire } from "node:module";
 

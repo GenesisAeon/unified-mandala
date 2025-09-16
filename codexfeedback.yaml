@@ -1,6 +1,9 @@
 fraktal:
-  current: 37
+  current: 38
   history:
+    - id: 38
+      status: "done"
+      notes: "TS-Core hardening, dedicated Vitest CI config, PR smoke restored"
     - id: "37b"
       status: "done"
       notes: "Node20 toolchain, policy guardrail audit-mode, repo-sanity warnings allowed"
@@ -36,7 +39,7 @@ fraktal:
   needs_repeat: false
   progress:
     legacy_workflows: disabled
-    ci_core: node20-green
+    ci_core: node20-green (vitest ci config)
     policy_checks: audit-only
     repo_sanity: tolerant
     documentation: updated
