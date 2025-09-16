@@ -109,7 +109,8 @@
     "ci:verify": "pnpm test:ts && pnpm sigils:index:strict && pnpm adapter:build:era5",
     "scan:ingest": "node scripts/ingest-external-scan.mjs",
     "adapters:ci:install": "pip install -r src/adapters/requirements.txt",
-    "check:ci": "npx tsc -p tsconfig.json --noEmit && pnpm test:ts:ci && npx pyright"
+    "check:ci": "npx tsc -p tsconfig.json --noEmit && pnpm test:ts:ci && npx pyright",
+    "lint-staged": "lint-staged"
   },
   "dependencies": {
     "@automerge/automerge": "^3.1.1",

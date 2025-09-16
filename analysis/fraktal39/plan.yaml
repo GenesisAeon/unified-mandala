@@ -1,0 +1,92 @@
+fraktal: 39
+status: analysis-complete
+last_updated: 2025-09-19
+summary:
+  focus: 'Stabilisierung unified-mandala v1.0 (Dist-First, Governance-Härtung, CI-Reliability)'
+  outcome: 'Deep-dive erstellt, Arbeitspakete priorisiert, Follow-up-Hooks gesetzt.'
+
+dist_first:
+  status: pending
+  owners: ['platform', 'infra']
+  notes:
+    - 'Runtime-Skripte laufen teilweise noch via ts-node/tsx.'
+    - 'Docker-Artefakte müssen auf dist/ umgestellt werden.'
+  targets:
+    - path: scripts/qa-test-runner.ts
+      action: 'Build-Step erzeugt dist/scripts/qa-test-runner.js; package.json start-kommandos auf node dist/... umstellen.'
+    - path: services/ghost-shell/server.ts
+      action: 'Bundle als dist/services/ghost-shell/server.js; Docker Compose aktualisieren.'
+    - path: scripts/dev-services.mjs
+      action: 'Prod-Modus nutzt aktuell ts-node-Service-Loader; Dist-Multiplexer ergänzen.'
+  definition_of_done:
+    - 'Alle production scripts in package.json nutzen node dist/*.js.'
+    - 'Dockerfile(.service) baut und startet aus dist/.'
+
+governance:
+  status: needs-implementation
+  gaps:
+    - name: guardrails:validate
+      description: 'Fehlendes pnpm-Script für Kyverno/Guardrails Dry-Run; Workflow läuft ohne Wirkung.'
+      workflow: .github/workflows/ci.experimental.yml
+    - name: resonance:smoke
+      description: 'Extended Resonanz-Job referenziert nicht existente CLI; Test endet via || true.'
+      workflow: .github/workflows/ci.extended.yml
+    - name: policy-report
+      description: 'Outputs aus OPA/Kyverno/Guardrails nicht konsolidiert; Entwickler erhalten kein einheitliches Artefakt.'
+  actions:
+    - 'CLI-Skripte in package.json hinzufügen, Tests in ci/ Storybook abbilden.'
+    - 'continue-on-error entfernen, sobald Skripte deterministisch laufen.'
+    - 'AI_POLICY.md mit Failure-Typen und Eskalationspfad erweitern.'
+
+ci_reliability:
+  status: tracking
+  metrics:
+    - name: core_green_streak_days
+      current: 6
+      target: 21
+    - name: extended_trigger_rate
+      current: 'manuell (label run-extended)'
+      target: 'Nightly + Feature Labels'
+  tasks:
+    - 'Nightly check:ci dry-run als GitHub Workflow hinzufügen.'
+    - 'Adapters-Smoke um Fixture-Hash-Prüfung ergänzen (ERA5/OISST).'
+    - 'Prometheus-/metrics Smoke in Core aufnehmen (curl http://localhost:9100/metrics).'
+
+docs:
+  status: planned
+  updates:
+    - file: README.md
+      changes:
+        - 'Build-Health Badges (CI Core/Extended) ergänzen.'
+        - 'Dist-First- und Label-Workflows dokumentieren.'
+    - file: docs/ONBOARDING.md
+      changes:
+        - 'Core vs. Extended/Experimental Lauf erklärt + lokale check:ci Routine.'
+    - file: AI_POLICY.md
+      changes:
+        - 'Guardrail-Failure-Beispiele, Developer-Handbuch.'
+    - file: CONTRIBUTING.md
+      changes:
+        - 'Keine ts-node in Production, Lint/Format Pflicht, Pre-merge Checkliste.'
+
+process:
+  status: ongoing
+  steps:
+    - 'Build-Health Badge automatisieren (README).'
+    - 'Nightly-Failures lösen Issue mit Log-Artefakt-Anhang aus.'
+    - 'Fraktal-Tagebuch (codexfeedback.*) pro Lauf aktualisieren.'
+
+risks:
+  - id: dist-cache-drift
+    impact: 'Build-Ergebnis ≠ Runtime, falls ts-node und dist parallel gepflegt werden.'
+    mitigation: 'Dist als einzige Quelle, Pre-commit Build-Smoke.'
+  - id: policy-silence
+    impact: 'Kyverno/Guardrails liefern keine Fehlermeldung → Sicherheitsregeln werden umgangen.'
+    mitigation: 'Fehlende Skripte nachziehen, Workflows fail-fast konfigurieren.'
+  - id: extended-flakes
+    impact: 'ERA5/OISST Offline-Builds brechen sporadisch durch Download-/Cache-Instabilität.'
+    mitigation: 'Deterministische Fixtures + Hash-Check; continue-on-error abschalten.'
+
+next_check_in:
+  trigger: 'Fraktal40 oder sobald Dist-First-Branch bereit zum Merge ist.'
+  owner: 'ChefDevAI'
