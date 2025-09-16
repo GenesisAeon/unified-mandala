@@ -14,6 +14,7 @@ export PYTHONPATH=src
 Danach sollten folgende Schritte immer grün sein, bevor ein PR erstellt wird:
 
 - `pnpm lint`
+- `pnpm format:check`
 - `npx tsc -p tsconfig.json --noEmit`
 - `pnpm test:ts:ci`
 - `pnpm test:py`
@@ -28,6 +29,8 @@ Danach sollten folgende Schritte immer grün sein, bevor ein PR erstellt wird:
   - `CI=true pnpm adapter:build:era5`
   - `pnpm stac:validate`
   - `pnpm prompts:coach --dry`
+  - `pnpm exec node tools/schema-validate.mjs`
+  - `pnpm exec node tools/governance-check.mjs`
 - **Experimental** (Label `run-experimental` oder manuell):
   - `pnpm test:ts:experimental`
   - Weitere Jobs nur nach Abstimmung, Ergebnisse werden toleriert (continue-on-error).
@@ -47,3 +50,6 @@ Danach sollten folgende Schritte immer grün sein, bevor ein PR erstellt wird:
 - `AI_POLICY.md` beachten (Einsatz von GPT, Datenumgang).
 - Experimentelle Features hinter Feature-Flags halten (`ENABLE_EXPERIMENTAL_TESTS`, UI `FEATURES`).
 - Vor Merge einmal `pnpm build:ui` + `pnpm dev` (Smoke `/` → 200) prüfen.
+- `pnpm lint:staged` wird automatisch als Pre-Commit-Hook ausgeführt; bei Bedarf manuell starten.
+- Services für Production-Tests ausschließlich über Dist-Artefakte betreiben (`pnpm build:dist`, danach `pnpm start:services`). Kein `ts-node`/`tsx` im Release-Image.
+- Governance-Dry-Runs (`pnpm exec node tools/schema-validate.mjs`, `pnpm exec node tools/governance-check.mjs`) müssen im Extended-Lauf grün sein – die Workflows brechen nun ohne `continue-on-error` ab.
