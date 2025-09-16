@@ -39,6 +39,13 @@ Danach sollten folgende Schritte immer grün sein, bevor ein PR erstellt wird:
 - `CI Experimental` läuft nur bei gesetztem Label `run-experimental`.
 - Historische Pipelines (Fraktal21/22, Agents, Maps, ZIPMEM) sind unter `.github/workflows/*.disabled` archiviert und verursachen keine Checks mehr. Bei Bedarf einfach zurück benennen.
 
+## Governance & Policy Suite
+
+- `pnpm policy:check` führt OPA (`policies/governance.rego`) und die Guardrails (`policies/merge-guardrails.yaml`) lokal zusammen aus und schreibt Ergebnisse nach `out/policy/`.
+- Kyverno läuft in GitHub via `policy-check.yml`. Für lokale Tests ist derzeit Docker notwendig; ansonsten genügt der CI-Durchlauf.
+- Die Datei `out/policy/policy-suite-report.md` liefert eine Markdown-Zusammenfassung, die ebenfalls im GitHub Step Summary erscheint.
+- Policy-Änderungen benötigen weiterhin begleitende Dokumentation (Guardrail-Regel) – idealerweise im gleichen PR aktualisieren.
+
 ## Workflow-Regeln
 
 - Feature-Branches (`feature/xyz`) anlegen und anschließend per PR nach `main` mergen.

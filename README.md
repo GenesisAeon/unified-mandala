@@ -57,7 +57,7 @@ Die Adapter sind initial als Stubs verfügbar und werden schrittweise an echte F
 - **Handbuch (Kanon):** `Handbuch.md`
 - **Offline-Bundle:** `docs/offline/docker-compose.yml`
 - **ToDo-System:** `advancedToDo.yaml` / `advancedToDo.json` (Sync: `node scripts/sync-todo-progress.js`)
-- **Governance/Ethik:** `docs/governance/HI-Compact.md`, `AI_POLICY.md`, `agents.yaml`
+- **Governance/Ethik:** `docs/governance/HI-Compact.md`, `docs/governance/policy-suite.md`, `AI_POLICY.md`, `agents.yaml`
 
 ---
 

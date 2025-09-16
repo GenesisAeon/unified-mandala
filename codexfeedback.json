@@ -1,6 +1,11 @@
 {
   "runs": [
     {
+      "fraktalrun": "Fraktal39 PolicySuite",
+      "status": "implemented",
+      "notes": "Policy suite unified: pnpm policy:check CLI, Kyverno summary integration, workflow summary + fail-fast gate."
+    },
+    {
       "fraktalrun": "Fraktal38 BuildStabilization",
       "status": "implemented",
       "notes": "ESLint + Prettier hooks, dist-first service orchestrator und Dokumentations-Updates für die v1.0-Stabilisierungsphase."
