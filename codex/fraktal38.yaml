@@ -1,0 +1,83 @@
+# 🌀 codex-fraktal38.yaml
+fraktal:
+  id: 38
+  codename: 'Stabilisierung'
+  status: 'in-progress'
+  scope:
+    repo: 'GenesisAeon/unified-mandala'
+    release: 'v1.0'
+  summary: |
+    Fokus auf stabile Core-Builds, klare Governance-Checks und dokumentierte
+    Dist-First-Workflows. Fraktal38 bildet den Brückenschlag zwischen den
+    Konsolidierungsarbeiten aus Fraktal37 und der produktionsreifen Mandala-
+    Plattform.
+  ci_layers:
+    core:
+      workflow: '.github/workflows/ci.core.yml'
+      expectations:
+        - 'npx tsc -p tsconfig.json --noEmit'
+        - 'pnpm test:ts:ci'
+        - 'pnpm test:py'
+        - 'npx pyright'
+    extended:
+      workflow: '.github/workflows/ci.extended.yml'
+      expectations:
+        - 'pnpm test:ts:extended'
+        - 'pnpm test:py:extended'
+        - 'pnpm adapter:build:oisst'
+        - 'pnpm adapter:build:era5'
+        - 'pnpm stac:validate'
+    experimental:
+      workflow: '.github/workflows/ci.experimental.yml'
+      notes:
+        - 'Skripte agents:dry-run und guardrails:validate in package.json ergänzen'
+        - 'continue-on-error entfernen, sobald Flakes beseitigt'
+  policy_checks:
+    workflow: '.github/workflows/policy-check.yml'
+    actions:
+      - 'OPA prüft fixtures/events/example_input.json'
+      - 'Kyverno dry-run aktuell continue-on-error'
+      - 'Guardrails via tools/governance-guardrails.mjs'
+    todo:
+      - 'Outputs zu einem kombinierten Policy-Report bündeln'
+      - 'Kyverno/Guardrails strikt schalten'
+  build_release:
+    dist_first:
+      scripts:
+        - 'pnpm build'
+        - 'pnpm start:services'
+        - 'pnpm start:light'
+      docker:
+        - 'Dockerfile'
+        - 'docker-compose.yml'
+    monitoring:
+      todo:
+        - 'Prometheus/Grafana Setup aus grafana/ & observability/ aktivieren'
+  documentation:
+    references:
+      - 'docs/roadmap/unifiedmandala-stabilisierung-fraktal38.md'
+      - 'CONTRIBUTING.md'
+      - 'AI_POLICY.md'
+  backlog:
+    - area: 'stability'
+      tasks:
+        - 'Nightly Dry-Runs für Core/Extended'
+        - 'Build-Health Badge oder Issue-Template'
+    - area: 'governance'
+      tasks:
+        - 'Policy-Checks zusammenführen'
+        - 'Guardrail-Fehlerbeispiele dokumentieren'
+    - area: 'testing'
+      tasks:
+        - 'Agenten-Unit-Tests ergänzen'
+        - 'Extended Suites regelmäßig fahren'
+    - area: 'tooling'
+      tasks:
+        - 'Husky/Lint-Staged behalten, Guidelines nachschärfen'
+        - 'Skripte konsolidieren (CLI statt Einzel-Commands)'
+  follow_up:
+    next_fraktal: 39
+    hooks:
+      - 'codexfeedback.* aktualisieren'
+      - 'AI_POLICY.md Beispiele verlinken'
+      - 'README.md auf neuen Fahrplan hinweisen'
