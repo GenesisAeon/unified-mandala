@@ -1,5 +1,6 @@
 # Codex Feedback
 
+- FR-UM-2025-09-22-Fraktal42: Monitoring-Profil (Prometheus/Grafana) ergänzt, Quickstart-/Governance-Dokumente synchronisiert und AI_POLICY mit Guardrail-Matrix erweitert – Dist-First-Refactor folgt.
 - FR-UM-2025-09-20-Fraktal40: v1.0-Stabilization-Playbook (docs/roadmap/v1.0-stabilization-playbook.md & .yaml) erstellt – Umsetzungsschritte offen, Folgefraktale erforderlich.
 - FR-UM-2025-09-21-Fraktal41: Kyverno-Dry-Run in `pnpm policy:check` integriert, Experimental-CI bricht bei Policy-Verstößen ab, Governance-Doku & Codexfeedback aktualisiert – weitere Stabilisierungsschritte offen.
 - FR-UM-2025-09-19-Fraktal39: Policy-Suite vereinheitlicht (OPA/Guardrails CLI, Kyverno-Report, Workflow ohne continue-on-error) – bereit für Folgeaufgaben.

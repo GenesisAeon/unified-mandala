@@ -6,38 +6,34 @@ UnifiedMandala ist ein holistisches, modulares Framework für symbolische KI, CR
 
 ---
 
-## TL;DR – 5-Minuten-Quickstart
+## TL;DR – Stabiler Quickstart (v1.0 Vorbereitung)
 
 ```bash
-# 1) Toolchain
-node -v
-corepack enable
-corepack prepare pnpm@8.15.6 --activate
+# 1) Toolchain & Basis-Setup (optional, führt pnpm install aus)
+./scripts/setup-dev-env.sh
 
-# 2) Dependencies
-pnpm install
+# 2) Build & Smoke-Test (Dist-First)
+pnpm build
+pnpm start:light               # liefert dist/ auf http://127.0.0.1:3000 (Ctrl+C zum Beenden)
 
-# 2.1) Environment
-cp .env.example .env # set CDS_API_KEY
+# 3) Governance & Kern-Checks
+pnpm policy:check              # OPA + Guardrails + Kyverno
+pnpm test:ts:ci
+pnpm test:py
+npx pyright
 
-# 3) UI (Dev, mit HMR, Port 5173)
-pnpm dev:ui
-# -> http://localhost:5173
+# 4) Monitoring-Profil (optional)
+docker compose --profile monitoring up -d
+# → Prometheus: http://localhost:9090, Grafana: http://localhost:3001
 
-# 4) Optional parallel: Backend/Dev-Server liefert UI (Port 3000)
-pnpm build:ui
-pnpm dev
-# -> http://localhost:3000  (liefert die gebaute UI aus)
-
-# 5) Offline-Bundle (Docker)
-docker compose -f docs/offline/docker-compose.yml build
-docker compose -f docs/offline/docker-compose.yml up
-# -> UI i. d. R. auf http://localhost:5173
+# 5) Hot-Reload UI (optional)
+pnpm dev:ui                    # http://localhost:5173
 ```
 
-> **Hinweise:**  
-> • „Cannot GET /“ auf :3000 bedeutet: Backend servt keine HMR-UI. Entweder **Vite-Dev** (`pnpm dev:ui`) nutzen oder **statisch bauen** (`pnpm build:ui && pnpm dev`).  
-> • Windows: Lange Pfade aktivieren; `.dockerignore` im Repo-Root verhindert riesige Build-Kontexte.
+> **Hinweise:**
+> • `pnpm start:light` verwendet ausschließlich gebaute Artefakte aus `dist/` und prüft Content-Encoding (Brotli/Gzip).
+> • Für produktive Vorschauen `pnpm build:ui && pnpm dev` ausführen; HMR bleibt über `pnpm dev:ui` verfügbar.
+> • Windows: Lange Pfade aktivieren; `.dockerignore` im Repo-Root verhindert große Build-Kontexte.
 
 ---
 
@@ -120,7 +116,7 @@ export VITE_LOW_MEM=on
 export PYTHONPATH=src
 ```
 
-**Core (CI Core / type-and-tests, required for every PR)**
+**Core (CI Core / type-and-tests, verpflichtend für jeden PR)**
 
 ```bash
 pnpm lint
@@ -128,6 +124,7 @@ pnpm format:check
 pnpm test:ts:ci
 pnpm test:py
 npx pyright
+pnpm policy:check
 ```
 
 **Extended (CI Extended, nightly or label `run-extended`)**
