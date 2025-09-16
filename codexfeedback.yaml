@@ -1,6 +1,9 @@
 fraktal:
-  current: 37
+  current: 38
   history:
+    - id: 38
+      status: "done"
+      notes: "TS core hardening, Vitest CI config isolation, PR smoke build restored"
     - id: "37b"
       status: "done"
       notes: "Node20 toolchain, policy guardrail audit-mode, repo-sanity warnings allowed"
