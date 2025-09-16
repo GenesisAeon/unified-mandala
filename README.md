@@ -43,8 +43,8 @@ docker compose -f docs/offline/docker-compose.yml up
 
 ## Mandala Climate Dashboard
 
- - **Konfiguration:** `config/climate-dashboard.yaml`
-- **Adapter (Stub→Live):** `src/adapters` (ERA5, OISST, EFFIS, Pegel, Biodiversität, Radar, SPEI)  
+- **Konfiguration:** `config/climate-dashboard.yaml`
+- **Adapter (Stub→Live):** `src/adapters` (ERA5, OISST, EFFIS, Pegel, Biodiversität, Radar, SPEI)
 - **Utilities:** `src/utils` (Resampling, Z-Scores, MRV/STAC)
 
 Die Adapter sind initial als Stubs verfügbar und werden schrittweise an echte Feeds gebunden.
@@ -53,10 +53,10 @@ Die Adapter sind initial als Stubs verfügbar und werden schrittweise an echte F
 
 ## Repository-Navigator
 
-- **Onboarding:** `scripts/onboarding-ritual.md`  
-- **Handbuch (Kanon):** `Handbuch.md`  
-- **Offline-Bundle:** `docs/offline/docker-compose.yml`  
-- **ToDo-System:** `advancedToDo.yaml` / `advancedToDo.json` (Sync: `node scripts/sync-todo-progress.js`)  
+- **Onboarding:** `scripts/onboarding-ritual.md`
+- **Handbuch (Kanon):** `Handbuch.md`
+- **Offline-Bundle:** `docs/offline/docker-compose.yml`
+- **ToDo-System:** `advancedToDo.yaml` / `advancedToDo.json` (Sync: `node scripts/sync-todo-progress.js`)
 - **Governance/Ethik:** `docs/governance/HI-Compact.md`, `AI_POLICY.md`, `agents.yaml`
 
 ---
@@ -70,13 +70,15 @@ Die Adapter sind initial als Stubs verfügbar und werden schrittweise an echte F
   "scripts": {
     "dev:ui": "pnpm -F mandala-ui dev",
     "build:ui": "pnpm -F mandala-ui build",
-    "dev": "cross-env NODE_ENV=development ts-node scripts/dev-server.ts",
-    "dev:all": "pnpm -r --parallel dev"
-  }
+    "dev": "cross-env UI_DIST=apps/ui/dist tsx scripts/dev-server.ts",
+    "dev:services": "node scripts/dev-services.mjs --mode=dev",
+    "start:services": "pnpm -s build && NODE_ENV=production node scripts/dev-services.mjs --mode=prod",
+  },
 }
 ```
 
 **Docker-Hygiene:** `.dockerignore` im Root:
+
 ```
 node_modules
 **/node_modules
@@ -91,10 +93,10 @@ build
 
 ## Architektur (Skizze)
 
-- **Sigillin-Ebene** · Symbolische Interaktion, Rituale  
-- **CREP-Kernel** · Kohärenz/Resonanz/Emergenz/Poetik  
-- **Agenten** · Ingest, Analyse, Synthese, Governance  
-- **UIs/Dashboards** · Climate, Archive, Frequency  
+- **Sigillin-Ebene** · Symbolische Interaktion, Rituale
+- **CREP-Kernel** · Kohärenz/Resonanz/Emergenz/Poetik
+- **Agenten** · Ingest, Analyse, Synthese, Governance
+- **UIs/Dashboards** · Climate, Archive, Frequency
 - **Pipelines** · Normalisierung → MRV/STAC → Exporte
 
 Details im **Handbuch**.
@@ -104,6 +106,9 @@ Details im **Handbuch**.
 ## Governance & Ethik
 
 Siehe `docs/governance/HI-Compact.md` und `AI_POLICY.md`. Transparenz über `advancedprogress.json`.
+
+- **Policy-Report:** `pnpm policy:check -- --report out/policy-report.json` bündelt OPA, Kyverno und Guardrails.
+- **Analysen:** `analysis/fraktal38-deep-dive.md` fasst Architektur, Governance-Checks und Lessons Learned aus Fraktal38 zusammen.
 
 ---
 
@@ -122,9 +127,17 @@ export PYTHONPATH=src
 
 ```bash
 pnpm lint
+pnpm format:check
 pnpm test:ts:ci
 pnpm test:py
 npx pyright
+```
+
+**Governance (Policy Suite, required for policy changes)**
+
+```bash
+pnpm policy:check -- --quiet
+# erzeugt out/policy-report.json mit Status für OPA, Kyverno und Guardrails
 ```
 
 **Extended (CI Extended, nightly or label `run-extended`)**
@@ -154,7 +167,7 @@ Kleine, thematische PRs (docs, adapters, agents). Vor Merge: `pnpm build:ui` + `
 MIT. Datenquellen: jeweilige Nutzungsbedingungen beachten.
 
 ## Repo-Kartografie & Flüsse
+
 - **RepoMap**: `docs/maps/RepoMap.yaml` → `pnpm maps:build` erzeugt JSON
 - **ProgramFlow**: `docs/maps/ProgramFlow.yaml` → Mermaid SVG unter `docs/diagrams/`
 - **Pre-Rituale**: `docs/rituals/pre-rituale.md`
-

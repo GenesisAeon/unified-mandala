@@ -1,9 +1,13 @@
 {
   "/workspace/unified-mandala": {
     "build:agents": "tsc -p tsconfig.agents.json && node -e \"const fs=require('fs'),p='dist/agents/personhood/AIJuristicAgent.js';if(fs.existsSync(p))fs.renameSync(p,p.replace(/\\.js$/,'.cjs'));\"",
-    "build": "tsc -p tsconfig.json && pnpm build:agents",
+    "build": "tsc -p tsconfig.build.json && pnpm build:agents",
     "build:ui": "pnpm -F mandala-ui build",
-    "lint": "tsc -p tsconfig.json --noEmit",
+    "lint": "pnpm lint:types && pnpm lint:eslint",
+    "lint:types": "tsc -p tsconfig.json --noEmit",
+    "lint:eslint": "eslint \"{scripts,services,src,tests}/**/*.{ts,tsx,js,jsx,cjs,mjs}\" --max-warnings=0 --cache",
+    "format": "prettier --write README.md CONTRIBUTING.md docs/ONBOARDING.md codexfeedback.* scripts/dev-services.mjs",
+    "format:check": "prettier --check README.md CONTRIBUTING.md docs/ONBOARDING.md codexfeedback.* scripts/dev-services.mjs",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:unit": "vitest run --coverage",
@@ -13,7 +17,9 @@
     "dev": "cross-env UI_DIST=apps/ui/dist tsx scripts/dev-server.ts",
     "start": "pnpm -s build:ui && pnpm -s dev",
     "start:light": "pnpm -s build:ui && node scripts/light-static-server.mjs",
-    "start:all": "cross-env NODE_ENV=development concurrently \"ts-node scripts/rag-api.ts\" \"ts-node scripts/flags-api.ts\" \"ts-node scripts/experiments-api.ts\" \"ts-node scripts/share-api.ts\" \"ts-node scripts/realtime-hub.ts\"",
+    "start:all": "pnpm dev:services",
+    "dev:services": "node scripts/dev-services.mjs --mode=dev",
+    "start:services": "pnpm -s build && NODE_ENV=production node scripts/dev-services.mjs --mode=prod",
     "docs:build": "typedoc",
     "docs:auto": "node scripts/generate-api-docs.js",
     "prepare": "husky install",
@@ -95,6 +101,8 @@
     "ci:verify": "pnpm test:ts && pnpm sigils:index:strict && pnpm adapter:build:era5",
     "scan:ingest": "node scripts/ingest-external-scan.mjs",
     "adapters:ci:install": "pip install -r src/adapters/requirements.txt",
-    "check:ci": "npx tsc -p tsconfig.json --noEmit && pnpm test:ts:ci && npx pyright"
+    "check:ci": "npx tsc -p tsconfig.json --noEmit && pnpm test:ts:ci && npx pyright",
+    "policy:build": "tsc -p tsconfig.policy.json",
+    "policy:check": "pnpm -s policy:build && node dist/scripts/policy-suite.js"
   }
 }

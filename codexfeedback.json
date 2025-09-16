@@ -1,6 +1,16 @@
 {
   "runs": [
     {
+      "fraktalrun": "Fraktal38 BuildStabilization",
+      "status": "implemented",
+      "notes": "ESLint + Prettier hooks, dist-first service orchestrator und Dokumentations-Updates für die v1.0-Stabilisierungsphase."
+    },
+    {
+      "fraktalrun": "Fraktal38 PolicySuite",
+      "status": "implemented",
+      "notes": "Policy suite aggregiert OPA/Kyverno/Guardrails, Kyverno-Evaluator samt Tests und Report-Workflow dokumentiert."
+    },
+    {
       "fraktalrun": "Fraktal37 CoreCI RunB",
       "status": "implemented",
       "notes": "Node20 toolchain rollout, policy guardrails relaxed with non-blocking checks, repo-sanity stabilized."

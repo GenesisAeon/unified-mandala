@@ -1,5 +1,5 @@
 import { BusTransport, EmitOptions } from "./transport.js";
-import { validateEvent, checkPersonhood } from "./util.ts";
+import { validateEvent, checkPersonhood } from "./util.js";
 import { connect, StringCodec, NatsConnection } from "nats";
 
 function uuid() {

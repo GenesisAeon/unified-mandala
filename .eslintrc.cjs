@@ -1,14 +1,80 @@
 module.exports = {
   root: true,
   parser: '@typescript-eslint/parser',
-  plugins: ['@typescript-eslint'],
+  parserOptions: {
+    ecmaVersion: 2022,
+    sourceType: 'module'
+  },
+  plugins: ['import', '@typescript-eslint'],
   extends: [
     'eslint:recommended',
-    'plugin:@typescript-eslint/recommended'
+    'plugin:@typescript-eslint/recommended',
+    'plugin:import/recommended',
+    'plugin:import/typescript',
+    'prettier'
   ],
   env: {
     node: true,
     es2020: true,
     jest: true
-  }
+  },
+  ignorePatterns: [
+    'node_modules',
+    '.dist',
+    'dist',
+    'coverage',
+    'out',
+    '.build',
+    'apps/ui/dist',
+    'apps/',
+    'packages/',
+    'packages/unifiedmandala-ui/build',
+    '**/generated/**',
+    'scripts/post-prompt-lint-comment.mjs',
+    'scripts/validate-newadvanced-conversations.ts'
+  ],
+  settings: {
+    'import/resolver': {
+      typescript: {
+        project: ['./tsconfig.json']
+      }
+    }
+  },
+  rules: {
+    'import/no-unresolved': 'error',
+    'import/no-named-as-default': 'off',
+    'import/no-named-as-default-member': 'off',
+    'import/no-duplicates': 'off',
+    'no-unused-vars': 'off',
+    '@typescript-eslint/no-unused-vars': 'off',
+    '@typescript-eslint/no-var-requires': 'off',
+    'no-undef': 'off',
+    'no-empty': 'off',
+    'no-constant-condition': 'off',
+    'prefer-const': 'off',
+    'no-useless-escape': 'off'
+  },
+  overrides: [
+    {
+      files: ['**/*.ts', '**/*.tsx'],
+      rules: {
+        '@typescript-eslint/ban-ts-comment': 'off',
+        '@typescript-eslint/consistent-generic-constructors': 'off',
+        '@typescript-eslint/consistent-indexed-object-style': 'off',
+        '@typescript-eslint/consistent-type-definitions': 'off',
+        '@typescript-eslint/no-empty-function': 'off',
+        '@typescript-eslint/no-explicit-any': 'off',
+        '@typescript-eslint/no-inferrable-types': 'off',
+        '@typescript-eslint/no-unused-vars': 'off',
+        '@typescript-eslint/prefer-as-const': 'off',
+        '@typescript-eslint/triple-slash-reference': 'off'
+      }
+    },
+    {
+      files: ['**/*.js', '**/*.cjs', '**/*.mjs'],
+      rules: {
+        '@typescript-eslint/no-var-requires': 'off'
+      }
+    }
+  ]
 };
