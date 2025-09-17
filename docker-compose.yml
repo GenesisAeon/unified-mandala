@@ -10,7 +10,7 @@ x-node-dev: &node_dev
 services:
   ui:
     <<: *node_dev
-    command: pnpm dev
+    command: pnpm dev:services
     ports:
       - '3000:3000'
     profiles:

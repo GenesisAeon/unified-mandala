@@ -1,14 +1,15 @@
 {
-  "schema_version": "1.0",
-  "id": "SIG-GENESIS-PLATFORM-START",
-  "type": "poetic-root",
-  "status": "draft",
-  "creator": "Aeon",
-  "created_at": "2025-05-25T07:53:05.608313Z",
-  "related_sigils": [
-    { "id": "SIG-GENESIS-PLATFORM-SOCIALHELP", "relation": "follows" }
-  ],
-  "changes": [
-    "Initial project sigil"
-  ]
+  "sigillin": {
+    "id": "SIG-GENESIS-PLATFORM-START",
+    "title": "Starter Example Sigillin",
+    "sigillin_type": "example",
+    "audience": "Project Leads",
+    "essenz": "Demonstriert, wie ein Start-Sigillin mit CREP-, Trikāya- und Next-Action-Bezug aufgebaut wird.",
+    "links": ["../SigilRitualbuch.md"],
+    "content": {
+      "text": "Coherence verbindet die Projektvision mit operativen Aufgaben, Resonance sorgt für Feedback-Schleifen, Emergence dokumentiert neue Erkenntnisse und Poetics hält die symbolische Ausrichtung. Die Trikāya-Referenz (Dharmakāya, Sambhogakāya, Nirmāṇakāya) erinnert daran, jede Handlung sowohl strukturell als auch bewusst zu begleiten. nächster Schritt: Roadmap abgleichen und Sigillin-Team informieren.",
+      "highlights": ["Projektvision teilen", "CREP-Score dokumentieren", "Trikāya-Balance prüfen"],
+      "next_action": "nächster Schritt: Status-Update im Team posten"
+    }
+  }
 }

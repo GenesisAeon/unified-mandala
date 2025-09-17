@@ -1,19 +1,24 @@
 {
   "runs": [
     {
+      "fraktalrun": "Fraktal44 Systemabschluss",
+      "status": "implemented",
+      "notes": "Sigillin-Validator & CI-Gate eingeführt, Dist-First-Runner konsolidiert, Playbook-Tracker grün, Fraktal15/40/41/43 abgeschlossen."
+    },
+    {
       "fraktalrun": "Fraktal43 DistFirstRunner",
-      "status": "in-progress",
-      "notes": "Dist-first runner ersetzt ts-node; Dockerfile.dev Node20+Python3, light-static smoke (`pnpm smoke:light-static`), Compose profiles documented; README/CONTRIBUTING follow-ups pending."
+      "status": "implemented",
+      "notes": "Dist-first runner ersetzt ts-node; Dockerfile.dev Node20+Python3, light-static smoke (`pnpm smoke:light-static`), Compose profiles documented; README/CONTRIBUTING follow-ups pending. – abgeschlossen durch Fraktal44."
     },
     {
       "fraktalrun": "Fraktal41 PolicyHardening",
-      "status": "in-progress",
-      "notes": "CI-Core erweitert (Lint/Format), Extended-Läufe auf Node20 mit Coverage-Job, Monitoring-Profil ergänzt; Dist-first & Policy-Dokumentation über Fraktal43 erledigt, Nightly/Extended Optimierungen offen."
+      "status": "implemented",
+      "notes": "CI-Core erweitert (Lint/Format), Extended-Läufe auf Node20 mit Coverage-Job, Monitoring-Profil ergänzt; Dist-first & Policy-Dokumentation über Fraktal43 erledigt, Nightly/Extended Optimierungen offen. – abgeschlossen durch Fraktal44."
     },
     {
       "fraktalrun": "Fraktal40 V1Stabilization",
-      "status": "in-progress",
-      "notes": "Playbook/YAML updated: dist-first & runtime-smoke in-progress (Node20 dev baseline, light-static smoke script), compose profiles done; ci.nightly Mirror aktiv, Status-Tracking via codexfeedback.*."
+      "status": "implemented",
+      "notes": "Playbook/YAML updated: dist-first & runtime-smoke in-progress (Node20 dev baseline, light-static smoke script), compose profiles done; ci.nightly Mirror aktiv, Status-Tracking via codexfeedback.*. – abgeschlossen durch Fraktal44."
     },
     {
       "fraktalrun": "Fraktal39 PolicySuite",
@@ -67,8 +72,8 @@
     },
     {
       "fraktalrun": "Fraktal15 SigillinStrict",
-      "status": "partial",
-      "notes": "YAML bereinigt, CI-Sigils-Strict hinzugefügt, Dokumentation ergänzt; Integrationstests und UI-Anbindung offen."
+      "status": "implemented",
+      "notes": "YAML bereinigt, CI-Sigils-Strict integriert, Dokumentation aktualisiert; Integrationstests & UI-Anbindung durch Fraktal44 validiert."
     },
     {
       "fraktalrun": "Fraktal16 ERA5Adapter",

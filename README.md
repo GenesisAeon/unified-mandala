@@ -28,10 +28,16 @@ cp .env.example .env # set CDS_API_KEY
 pnpm dev:ui
 # -> http://localhost:5173
 
-# 4) Optional parallel: Backend/Dev-Server liefert UI (Port 3000)
-pnpm start:light             # statische Assets (nach pnpm build:ui)
-pnpm dev                     # Node-Server mit gebauten Assets
-# -> http://localhost:3000  (liefert die gebaute UI aus)
+# 4) Services & UI-Lauf
+pnpm dev:stack               # Backend/Services (Port 3000, erwartet UI_DIST)
+# -> http://localhost:3000  (Proxy für API & UI)
+
+# 4.1) Zweite Shell: UI mit HMR (Port 5173)
+pnpm dev                     # liefert UI-Hot-Reload, setzt UI_DIST=http://localhost:5173
+
+# 4.2) Statische Vorschau (nach pnpm build:ui)
+pnpm start:light             # leichter Static-Server
+pnpm dev:services            # Node-Server mit gebauten Assets auf :3000
 
 # 5) Offline-Bundle (Docker)
 docker compose -f docs/offline/docker-compose.yml build
@@ -44,7 +50,7 @@ docker compose --profile monitoring up
 ```
 
 > **Hinweise:**  
-> • „Cannot GET /“ auf :3000 bedeutet: Backend servt keine HMR-UI. Entweder **Vite-Dev** (`pnpm dev:ui`) nutzen oder **statisch bauen** (`pnpm build:ui && pnpm dev`).
+> • „Cannot GET /“ auf :3000 bedeutet: Backend servt keine HMR-UI. Entweder **Vite-Dev** (`pnpm dev`) parallel laufen lassen oder **statisch bauen** (`pnpm build:ui && pnpm dev:services`).
 > • Für Observability mit Prometheus/Grafana das Compose-Profil `monitoring` starten (siehe `observability/README.md`).
 > • Windows: Lange Pfade aktivieren; `.dockerignore` im Repo-Root verhindert riesige Build-Kontexte.
 
@@ -79,8 +85,9 @@ Die Adapter sind initial als Stubs verfügbar und werden schrittweise an echte F
   "scripts": {
     "dev:ui": "pnpm -F mandala-ui dev",
     "build:ui": "pnpm -F mandala-ui build",
-    "dev": "cross-env UI_DIST=apps/ui/dist tsx scripts/dev-server.ts",
-    "dev:services": "node scripts/dev-services.mjs --mode=dev",
+    "dev": "cross-env UI_DIST=http://localhost:5173 pnpm -F mandala-ui dev",
+    "dev:services": "tsx scripts/dev-server.ts",
+    "dev:stack": "node scripts/dev-services.mjs --mode=dev",
     "start:services": "pnpm -s build && NODE_ENV=production node scripts/dev-services.mjs --mode=prod",
   },
 }
@@ -166,7 +173,7 @@ pnpm test:unit                # Coverage-Report der Kernmodule
 
 ## Contributing
 
-Kleine, thematische PRs (docs, adapters, agents). Vor Merge: `pnpm build:ui` + `pnpm dev` (Smoke: `/` → 200), Lint/Tests.
+Kleine, thematische PRs (docs, adapters, agents). Vor Merge: `pnpm build:ui` + `pnpm dev:services` (Smoke: `/` → 200), Lint/Tests.
 
 ---
 

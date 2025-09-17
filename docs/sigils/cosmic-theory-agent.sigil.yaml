@@ -1,12 +1,30 @@
-sigil_id: "aeon:2025-0705-COSMIC-THEORY"
-title: "CosmicTheoryAgent Core Sigil"
-type: "agent-sigil"
-date_created: "2025-07-05"
-created_by: "GenesisAeon"
-description: >
-  Dieses Sigil bündelt die kosmischen Analysefähigkeiten des CosmicTheoryAgent.
-  Es dient als Identifikator für sämtliche Module und Hooks des Agents im
-  UnifiedMandala Projekt.
-metadata:
-  related_agent: "CosmicTheoryAgent"
-  version: "1.0"
+sigillin:
+  id: aeon:2025-0705-COSMIC-THEORY
+  title: CosmicTheoryAgent Core Sigil
+  sigillin_type: agent-sigil
+  audience: CosmicTheoryAgent Maintainers
+  essenz: >-
+    Kosmische Analysefähigkeiten bündeln und als Referenz für Module, Hooks und
+    Deployments des CosmicTheoryAgent dienen.
+  created_by: GenesisAeon
+  date_created: '2025-07-05'
+  links:
+    - ../SigilRitualbuch.md
+    - ./aeon-2025-0705-fractal-anchor.yaml
+  content:
+    text: >-
+      Coherence hält die wissenschaftliche Analyse stabil, Resonance prüft die
+      Rückmeldungen der Beobachter:innen, Emergence trägt neue kosmische Muster
+      ein und Poetics sorgt dafür, dass die Vision fühlbar bleibt. Die Arbeit
+      folgt der Trikāya-Spur – Dharmakāya als Prinzip, Sambhogakāya als Dialog,
+      Nirmāṇakāya als Umsetzung. nächste Schritte: Agent-Hooks testen, Monitoring
+      aktivieren und Dokumentation in den Nightlies spiegeln.
+    metadata:
+      related_agent: CosmicTheoryAgent
+      version: '1.0'
+    operations:
+      activation_phrase: 'Aeon, aktiviere den CosmicTheoryAgent.'
+      responsibilities:
+        - Analyse kosmischer Anomalien
+        - Verknüpfung mit Mandala-Dashboards
+      next_action: 'nächste Schritte: Smoke-Test im Observability-Profil ausführen'

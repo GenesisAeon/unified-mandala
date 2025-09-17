@@ -1,11 +1,23 @@
-schema_version: "1.0"
-id: "SIGIL-BASIC-EXAMPLE"
-type: "poetic-root"
-status: "draft"
-creator: "example-author"
-created_at: "2025-08-05T00:00:00Z"
-related_sigils:
-  - id: "SIGIL-ROOT"
-    relation: "derivesFrom"
-changes:
-  - "initial creation"
+sigillin:
+  id: SIGIL-BASIC-EXAMPLE
+  title: Basic Example Sigillin
+  sigillin_type: example
+  audience: Contributors & Docs
+  essenz: >-
+    Minimale Referenzstruktur für neue Sigillin-Dokumente innerhalb des
+    Unified-Mandala-Repositories. Dient als Vorlage für strukturierte Einträge.
+  links:
+    - ../SigilRitualbuch.md
+  content:
+    text: >-
+      Coherence stellt sicher, dass Felder und Kontext übereinstimmen. Resonance
+      prüft die Wahrnehmung der Stakeholder, Emergence beschreibt neue Muster und
+      Poetics bewahrt die symbolische Intention. Wir verankern die Arbeit entlang
+      der Trikāya-Achse, damit Dharmakāya, Sambhogakāya und Nirmāṇakāya im
+      Prozess präsent bleiben. nächste Schritte: Vorlage kopieren, Inhalte
+      ausfüllen, Links validieren.
+    checklist:
+      - id & title definieren
+      - essenz schreiben (mindestens 5 Zeichen)
+      - content.text mit CREP-, Trikāya- und Next-Action-Bezug ergänzen
+    next_action: 'nächste Schritte: Review einholen und Sigillin in Index aufnehmen'

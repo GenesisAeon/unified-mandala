@@ -69,11 +69,17 @@ pnpm policy:check        # Governance-Gates
 ### Services starten
 
 ```bash
-# Development (Hot Reload via tsx)
-pnpm dev:services
+# Development (Backend/Services Stack)
+pnpm dev:stack
+
+# UI Hot Reload (zweite Shell)
+pnpm dev
 
 # Production Preview (setzt pnpm build voraus)
 pnpm start:services
+
+# Static Preview nach Build
+pnpm dev:services
 
 # Monitoring-Profil (Prometheus/Grafana) aktivieren
 docker compose --profile monitoring up

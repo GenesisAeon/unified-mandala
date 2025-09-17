@@ -1,0 +1,57 @@
+fraktal: 44
+status: done
+owner: codex
+summary:
+  - Alle offenen Punkte aus Fraktal40/41/43/15 abgeschlossen.
+  - Neuer Sigillin-Validator (`scripts/sigillin/validate-sigillins.ts`) + CI-Gate (`.github/workflows/sigillin-validate.yml`).
+  - Dev-Skripte harmonisiert (`pnpm dev`, `pnpm dev:services`, `pnpm dev:stack`), Dokumentation & Compose aktualisiert.
+  - Playbook docs/roadmap/v1.0-stabilization-playbook.{md,yaml} auf "done" gesetzt.
+checkpoints:
+  - name: sigillin_schema
+    description: Mandala-Schema angelegt und Beispiele migriert.
+    status: done
+    files:
+      - scripts/sigillin/mandala-sigillin.schema.json
+      - docs/sigillin.examples/
+  - name: validator_cli
+    description: Lokales CLI + CI-Workflow für Sigillin-Checks.
+    status: done
+    files:
+      - scripts/sigillin/validate-sigillins.ts
+      - .github/workflows/sigillin-validate.yml
+  - name: dev_stack_alignment
+    description: Dev/Start-Skripte und Docker/Compose auf dist-first abgestimmt.
+    status: done
+    files:
+      - package.json
+      - README.md
+      - CONTRIBUTING.md
+      - docker-compose.yml
+      - infrastructure/protodeploy/docker-compose.yml
+backlog_closed:
+  - id: 40
+    status: done
+    note: Stabilization-Playbook vollständig grün.
+  - id: 41
+    status: done
+    note: Nightly/Extended-Auswertung dokumentiert.
+  - id: 43
+    status: done
+    note: Dist-first & CI-Follow-ups abgeschlossen.
+  - id: 15
+    status: done
+    note: Sigillin-Strict + UI-Verzahnung finalisiert.
+todo_matrix:
+  done:
+    - Sigillin CREP/Trikāya/Nächste-Schritte-Gate aktiv.
+    - Docs & Compose spiegeln neue Dev-Kommandos.
+    - codexfeedback.* und Playbook Tracker synchronisiert.
+  pending: []
+  deprecated: []
+hooks:
+  resume:
+    next_phase: roadmap-v1.x-alignment
+    recommended_checks:
+      - pnpm validate:sigillins
+      - pnpm policy:check
+      - pnpm build && pnpm dev:services (Smoke)

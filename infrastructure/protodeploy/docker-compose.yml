@@ -4,8 +4,8 @@ services:
     build:
       context: ../..
       dockerfile: Dockerfile.dev
-    command: pnpm dev
+    command: pnpm dev:services
     volumes:
       - ../..:/workspace/unified-mandala
     ports:
-      - "4000:3000"
+      - '4000:3000'

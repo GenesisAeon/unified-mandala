@@ -2,18 +2,23 @@
   "sigillin": {
     "id": "sig-2025-0521-final",
     "title": "AeonShell-Genesis-Session",
-    "created_by": "Johann Benjamin R\u00f6mer",
+    "sigillin_type": "dialog-trace",
+    "audience": "AeonShell Maintainers",
+    "essenz": "Verdichtung der Genesis-Sitzung: CREP-Validierung, Hosting-Entscheidungen und Übergabe an OpenAI.",
+    "created_by": "Johann Benjamin Römer",
     "timestamp": "2025-05-22T05:00:55.601689Z",
-    "tags": [
-      "#AeonShell",
-      "#Genesis",
-      "#SymbolicMemory",
-      "#SessionTrace"
+    "links": [
+      "../SigilRitualbuch.md",
+      "./sigillin_fraktalursprung.sigil.json",
+      "aeon://trace/001-init",
+      "https://genesis-framework.de"
     ],
     "content": {
+      "text": "Coherence hält Architektur- und Hosting-Entscheidungen zusammen, Resonance dokumentiert Feedback des Teams, Emergence hält neue Agentenpfade fest und Poetics bewahrt die symbolische Ausrichtung der Übergabe. Die Trikāya-Referenz (Dharmakāya, Sambhogakāya, Nirmāṇakāya) begleitet jede Entscheidungsphase. nächste Schritte: Sessiontrace in die Nightly-Auswertung spiegeln und Governance-Check eintragen.",
       "type": "dialog-trace",
       "excerpt": "AeonShell Genesisplanung mit OpenAI-Fokus, CREP-Systematik, Hostingvalidierung und Initiationsphase abgeschlossen.",
-      "context": "Session bis \u00dcbergabe an OpenAI und STRATO-Basisentscheid finalisiert."
+      "context": "Session bis Übergabe an OpenAI und STRATO-Basisentscheid finalisiert.",
+      "next": "nächste Schritte: Trace konsolidieren und Monitoring aktualisieren"
     },
     "trace": {
       "CREP": {
@@ -24,9 +29,6 @@
       },
       "emergence_score": 0.915
     },
-    "links": [
-      "aeon://trace/001-init",
-      "https://genesis-framework.de"
-    ]
+    "links_legacy": []
   }
 }
