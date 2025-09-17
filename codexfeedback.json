@@ -1,6 +1,11 @@
 {
   "runs": [
     {
+      "fraktalrun": "Fraktal45 CIJobRepair",
+      "status": "implemented",
+      "notes": "pnpm test:ts:ci scheiterte an fehlender plugin:@typescript-eslint/recommended-Erweiterung; ESLint-Konfiguration angepasst und Konfliktregeln deaktiviert. pnpm format:check, pnpm lint, pnpm test:ts:ci, pnpm test:py und npx pyright lokal grün."
+    },
+    {
       "fraktalrun": "Fraktal44 StabilizationFinale",
       "status": "implemented",
       "notes": "Fraktal40/41/43 Backlog geschlossen; Sigillin-Validator + CI-Workflow hinzugefügt; Dev-Skripte reorganisiert (`pnpm dev`, `pnpm dev:services`, `pnpm dev:stack`); Release-Drill inkl. Monitoring-Smoke verifiziert."

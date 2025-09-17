@@ -8,6 +8,7 @@ module.exports = {
   plugins: ['import', '@typescript-eslint'],
   extends: [
     'eslint:recommended',
+    'plugin:@typescript-eslint/recommended',
     'plugin:import/recommended',
     'plugin:import/typescript',
     'prettier'
@@ -30,6 +31,8 @@ module.exports = {
     'import/no-named-as-default-member': 'off',
     'import/no-duplicates': 'off',
     'no-unused-vars': 'off',
+    '@typescript-eslint/no-unused-vars': 'off',
+    '@typescript-eslint/no-var-requires': 'off',
     'no-undef': 'off',
     'no-empty': 'off',
     'no-constant-condition': 'off',
