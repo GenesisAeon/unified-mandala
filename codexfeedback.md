@@ -1,5 +1,6 @@
 # Codex Feedback
 
+- FR-UM-2025-10-02-Fraktal45-CIJobs: Typ-und-Test-Lauf (`pnpm test:ts:ci`) scheiterte an fehlendem `plugin:@typescript-eslint/recommended`; ESLint-Config erweitert, Job erneut ausgeführt und grün bestätigt.
 - FR-UM-2025-10-01-Fraktal44-StabilizationFinale: Fraktal40/41/43 Backlog geschlossen, neue Sigillin-Validierung (`scripts/sigillin/validate-sigillins.ts`, `pnpm validate:sigillins`, CI-Workflow) aktiv, Dev-Skripte in `package.json`/README/CONTRIBUTING neu sortiert (`pnpm dev`, `pnpm dev:services`, `pnpm dev:stack`), Release-Drill inkl. Monitoring-Smokes dokumentiert.
 - FR-UM-2025-09-24-Fraktal43-BuildRelease: Dockerfile.dev jetzt Node20+Python3 (Compose parity), docker-compose Profile (core/newsbot/climate/llm/global/agents/monitoring) + Grafana 3300, Light-Static-Server mit Health/Vary/Cache-Control, neues `pnpm smoke:light-static` für Brotli/Gzip; Playbook/YAML-Tracker aktualisiert (dist-first/runtime-smoke in-progress, compose-profiles done).
 - FR-UM-2025-09-23-Fraktal43-Nightly: CI-Nightly (`ci.nightly.yml`) spiegelt den Core-Lauf inkl. Toolchain-Artefakt, README/CONTRIBUTING beschreiben den Dist-First-Runner `scripts/run-dist.mjs`, Playbook-Owner-Map + codexfeedback-Tracker aktualisiert – Extended/Nightly Optimierungen laufen weiter über Fraktal41.
