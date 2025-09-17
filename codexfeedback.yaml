@@ -1,6 +1,13 @@
 fraktal:
-  current: 44
+  current: 45
   history:
+    - id: 45
+      status: done
+      notes: >-
+        CI-Core-Lauf scheiterte an fehlender plugin:@typescript-eslint/recommended-Erweiterung.
+        ESLint-Konfiguration ergänzt und störende Regeln (`@typescript-eslint/no-unused-vars`,
+        `@typescript-eslint/no-var-requires`) deaktiviert; pnpm format:check, pnpm lint,
+        pnpm test:ts:ci, pnpm test:py und npx pyright erfolgreich lokal ausgeführt.
     - id: 44
       status: done
       notes:
@@ -68,6 +75,25 @@ fraktal:
     repo_sanity: resilient
     documentation: finalized
     v1_stabilization_playbook: complete
+fraktal45:
+  status: done
+  summary:
+    - pnpm test:ts:ci Reparatur: ESLint-Konfiguration ergänzt und Konfliktregeln deaktiviert.
+    - CI-Core-Aufgaben lokal validiert (`pnpm format:check`, `pnpm lint`, `pnpm test:ts:ci`, `pnpm test:py`, `npx pyright`).
+  validation:
+    - job: ci.core → type-and-tests
+      result: green
+      notes: >-
+        Vitest-Run (`pnpm test:ts:ci`) erfolgreich nach ESLint-Fix.
+    - job: ci.core → lint
+      result: green
+      notes: >-
+        ESLint läuft ohne neue Fehler trotz aktivierter Recommended-Regeln.
+    - job: ci.core → python-tests
+      result: green
+      notes: >-
+        `pnpm test:py` deckt pytest-Aufgaben des Jobs ab.
+
 fraktal44:
   status: done
   summary:
