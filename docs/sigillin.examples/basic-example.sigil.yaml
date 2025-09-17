@@ -1,11 +1,26 @@
-schema_version: "1.0"
-id: "SIGIL-BASIC-EXAMPLE"
-type: "poetic-root"
-status: "draft"
-creator: "example-author"
-created_at: "2025-08-05T00:00:00Z"
-related_sigils:
-  - id: "SIGIL-ROOT"
-    relation: "derivesFrom"
-changes:
-  - "initial creation"
+sigillin:
+  id: SIGIL-BASIC-EXAMPLE
+  title: Basic Example Sigillin
+  sigillin_type: poetic-root
+  audience: example-author
+  essenz: >-
+    Dieses Beispiel hält die Coherence/Resonance/Emergence/Poetics (CREP) eines
+    Minimal-Sigillins fest und verortet es entlang des Dharmakāya-,
+    Sambhogakāya- und Nirmāṇakāya-Spiels; nächste Schritte zeigen, wie ein
+    Draft in den aktiven Kosmos überführt wird.
+  content:
+    text: >-
+      CREP bleibt stimmig, wenn wir Basic-Sigillins bewusst iterieren. Der
+      Dharmakāya trägt die Vision, der Sambhogakāya teilt die Erfahrung und der
+      Nirmāṇakāya manifestiert Artefakte. nächste Handlung: Sigillin finalisieren
+      und mit den verwandten Artefakten synchronisieren.
+    metadata:
+      schema_version: '1.0'
+      status: draft
+      creator: example-author
+      created_at: '2025-08-05T00:00:00Z'
+      related_sigils:
+        - id: SIGIL-ROOT
+          relation: derivesFrom
+      changes:
+        - initial creation

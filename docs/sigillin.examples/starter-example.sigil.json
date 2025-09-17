@@ -1,14 +1,20 @@
 {
-  "schema_version": "1.0",
-  "id": "SIG-GENESIS-PLATFORM-START",
-  "type": "poetic-root",
-  "status": "draft",
-  "creator": "Aeon",
-  "created_at": "2025-05-25T07:53:05.608313Z",
-  "related_sigils": [
-    { "id": "SIG-GENESIS-PLATFORM-SOCIALHELP", "relation": "follows" }
-  ],
-  "changes": [
-    "Initial project sigil"
-  ]
+  "sigillin": {
+    "id": "SIG-GENESIS-PLATFORM-START",
+    "title": "Genesis Platform Start",
+    "sigillin_type": "poetic-root",
+    "audience": "Aeon",
+    "essenz": "Coherence, Resonance, Emergence und Poetics (CREP) vereinen sich für den Start der Genesis-Plattform; wir ehren Dharmakāya, Sambhogakāya und Nirmāṇakāya und formulieren klare nächste Schritte.",
+    "content": {
+      "text": "CREP bleibt lebendig, wenn wir das Starter-Sigillin bewusst pflegen. Dharmakāya trägt die Vision, Sambhogakāya teilt die Freude und Nirmāṇakāya manifestiert konkrete Services. nächste Schritte: Draft reviewen, Governance synchronisieren, Launch-Meilensteine bestätigen.",
+      "metadata": {
+        "schema_version": "1.0",
+        "status": "draft",
+        "creator": "Aeon",
+        "created_at": "2025-05-25T07:53:05.608313Z",
+        "related_sigils": [{ "id": "SIG-GENESIS-PLATFORM-SOCIALHELP", "relation": "follows" }],
+        "changes": ["Initial project sigil"]
+      }
+    }
+  }
 }

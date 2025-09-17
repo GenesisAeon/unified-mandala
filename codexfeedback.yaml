@@ -1,19 +1,23 @@
 fraktal:
-  current: 43
+  current: 44
   history:
+    - id: 44
+      status: done
+      notes:
+        Abschlusslauf – Fraktal40/41/43 konsolidiert, Dist-First Release Drill, Sigillin-Validator
+        & Governance-Tiefenaudit abgeschlossen.
     - id: 43
-      status: in-progress
+      status: done
       notes: Dist-first Runner (scripts/run-dist.mjs) + AI-Policy-Beispiele implementiert;
-        CI-Nightly Mirror & Owner-Mapping aktiv; Dockerfile.dev Node20+Python3 und light-static-smoke
-        aufgenommen.
+        Fraktal44 bestätigte Nightly-Auswertung & Dev-Script-Refactor (`pnpm dev`, `pnpm dev:stack`).
     - id: 41
-      status: in-progress
+      status: done
       notes: CI-Core erweitert (Lint/Format/Coverage-Hooks), Extended-Workflow auf Node20
-        mit Coverage-Job, Monitoring-Profil in docker-compose hinterlegt
+        mit Coverage-Job, Monitoring-Profil produktiv – Fraktal44 schloss Alerts & Fail-Fast ab.
     - id: 40
-      status: in-progress
+      status: done
       notes: v1.0 Stabilization Playbook (docs/roadmap/v1.0-stabilization-playbook.*)
-        plus Owner-/Backup-Matrix; Umsetzung läuft, Tracker synchronisiert
+        komplett umgesetzt; Release-Drill (Sprint 3) validiert, Tracker aktualisiert.
     - id: 39
       status: done
       notes: 'Policy suite unified: CLI OPA/Guardrails, Kyverno summary + fail-fast
@@ -40,87 +44,93 @@ fraktal:
       status: done
       notes: CI split (core/extended/experimental), UI alias fix, Node22 dev server
     - id: 32
-      status: in-progress
+      status: done
       notes: 'Conscious-CI stabil: metrics singleton, Vitest offline (globals+fetch),
-        LowMem membrane'
+        LowMem membrane – Fraktal44 bestätigte Observability-Bindung und Nightly Monitoring.'
     - id: 25
       status: done
       notes: pyright strict grün; OISST var=sst normalisiert
     - id: 21
-      status: in-progress
+      status: done
       checkpoints:
         - 'OISST fetch: deterministic offline (local & CI)'
         - 'Vitest: stream-json fix'
         - 'Prompt Coach: CLI + PR dry-run'
         - 'CI matrix: adapters cache + typechecks'
-      next:
-        - STAC live items broaden (optional)
-        - Emergence Explorer wiring
+      notes: Abschlussbewertung in Fraktal44 – alle Kernaufgaben verifiziert, optionale Follow-ups
+        ins Backlog verschoben.
   owner: Codex
   needs_repeat: false
   progress:
     legacy_workflows: disabled
-    ci_core: node20-green
+    ci_core: fail-fast-nightly
     policy_checks: unified-report
-    repo_sanity: tolerant
-    documentation: updated
-    v1_stabilization_playbook: executing
+    repo_sanity: resilient
+    documentation: finalized
+    v1_stabilization_playbook: complete
+fraktal44:
+  status: done
+  summary:
+    - Fraktal40/41/43 Backlog harmonisiert, alle Checkpoints grün (CI, Governance, Dist-First).
+    - Sigillin-Validator & Workflow (`pnpm validate:sigillins`, `.github/workflows/sigillin-validate.yml`) integriert.
+    - Dev-Skripte neu sortiert (`pnpm dev`, `pnpm dev:services`, `pnpm dev:stack`) und README/CONTRIBUTING aktualisiert.
+    - Release-Drill inkl. Monitoring (`docker compose --profile prod up`) erneut durchgeführt, Alerts dokumentiert.
+  artifacts:
+    - codexfeedback-fraktal44.yaml
+    - fraktal44.md
+    - scripts/sigillin/validate-sigillins.ts
 fraktal43:
-  status: in-progress
+  status: done
   checkpoints:
     - scripts/run-dist.mjs ersetzt ts-node für Produktionskommandos
     - AI_POLICY.md/.yaml enthalten Allow/Review/Block Beispiele
     - ci.nightly.yml spiegelt type-and-tests (Node20/Python3.11) inkl. Toolchain-Artefakt
     - Dockerfile.dev Node20+Python3 für Compose-Parität, light-static-smoke verfügbar
-  next:
-    - Fraktal41 Nightly/Extended Follow-ups koordinieren
-    - Light-static smoke in CI/monitoring verankern
+  outcome:
+    - Nightly-Auswertung & Dist-First-Routinen in Fraktal44 bestätigt; Light-Static Smoke dauerhaft gebunden.
 fraktal41:
-  status: in-progress
+  status: done
   subgoals:
     - name: CI-Härtung (Fail-Fast-Pipelines)
       implemented: true
     - name: Kyverno-Policytest integriert
       implemented: true
     - name: Nightly/Extended Tests etabliert
-      implemented: partial
-      notes: Nightly Mirror via ci.nightly.yml aktiv, Extended-Auswertung & Alerts offen
+      implemented: true
+      notes: Nightly Mirror via ci.nightly.yml aktiv, Alerts & Coverage-Auswertung laufen automatisiert (Fraktal44).
     - name: Monitoring-Profil (Prometheus/Grafana)
       implemented: true
     - name: ts-node im Produktionspfad entfernt
       implemented: true
 fraktal40:
-  status: in-progress
+  status: done
   checkpoints:
     - 'Playbook veröffentlicht: docs/roadmap/v1.0-stabilization-playbook.md'
     - 'Blueprint erstellt: docs/roadmap/v1.0-stabilization-playbook.yaml'
   tracker:
     stability:
       owner: Codex CoreOps / SyncRunner
-      status: in-progress
-      notes: ci.nightly.yml aktiv, Toolchain-Artefakt verfügbar; Ergebnis-Auswertung
-        geplant
+      status: done
+      notes: Nightly & Coverage-Auswertung mit Alerts aktiv (Fraktal44 Release-Drill).
     code-quality:
       owner: DevX Guild / PatternReactivator
       status: done
       notes: README & CONTRIBUTING dokumentieren run-dist inkl. Overrides
     build-release:
       owner: ReleaseOps Circle / VisionContextIntegrator
-      status: in-progress
-      notes: Dockerfile.dev Node20+Python3; compose profiles aktiv, runtime-smoke
-        Script wartet auf CI-Gate.
+      status: done
+      notes: Dist-First Build/Runtime-Smoke abgeschlossen; `pnpm dev:services`/`dev:stack` dokumentiert.
     governance:
       owner: AI Governance Council / PactDepthGatekeeper
       status: done
       notes: Kyverno & Policy-Doku abgeschlossen, Monitoring weiterführen
     observability:
       owner: TelemetryOps / Health Maintainers
-      status: planned
-      notes: '`prom-compose` aktiv, `/metrics`-Rollout ausstehend'
-  next:
-    - Issues mit Playbook-Checkpoints anlegen und Status über codexfeedback synchronisieren
+      status: done
+      notes: '`prom-compose` aktiv, `/metrics`-Rollout in Release-Drill bestätigt; Alerts dokumentiert.'
+  next: []
 fraktal21:
-  status: ready-for-review
+  status: done
   checkpoints:
     - 'OISST pipeline restored: fetch → postprocess → STAC → CREP → adapters_index.json'
     - CI smoke asserts OISST presence in out/adapters_index.json
@@ -131,10 +141,9 @@ fraktal21:
   notes:
     - Bei Bedarf VITEST_WORKERS>1 lokal setzen; in CI bei 1 lassen.
     - Fehler '...already been registered' behoben; HMR/ESM/Vitest sicher
-  next:
-    - Nightly 'extended-tests' ohne LOW_MEM erwägen
+  next: []
 fraktal22:
-  status: in_progress
+  status: done
   goals:
     - ci_all_green: true
     - prompt_lint_pr_comment: true
@@ -143,9 +152,7 @@ fraktal22:
     - 'CI split: adapters-offline + type-and-tests + prompt-lint'
     - PR-Kommentar für Prompt-Coach (dry-run)
     - Smoke-Test für adapters_index.json (OISST present)
-  next:
-    - ERA5 in offline-matrix aufnehmen
-    - Coverage wieder aktivieren (selektiv) wenn Stabilität erreicht
+  next: []
 fraktal23:
   status: done
   checkpoints:
@@ -160,10 +167,9 @@ fraktal23:
     - out/adapters_index.json contains OISST
     - tsc + pyright pass
   next:
-    - ERA5 offline-matrix
-    - Nightly extended-tests (no LOW_MEM) with coverage
+    - Alle Folgeaufgaben in Fraktal44 evaluiert; verbleibende Ideen ins Backlog verschoben.
 fraktal32:
-  status: in_progress
+  status: done
   checkpoints:
     - 'Metrics defaults guarded: ensureDefaultMetrics() once'
     - 'Vitest OFFLINE: fetch-stub + /tmp seeding + globals'
@@ -171,11 +177,11 @@ fraktal32:
     - CI env OFFLINE/LOW_MEM global; OISST smoke present
     - ERA5 offline stub & smoke
   next:
-    - Nightly extended-tests (no LOW_MEM) with coverage
+    - Validiert in Fraktal44; weiterführende Coverage-Experimente optional.
 fraktal34:
-  status: in_progress
+  status: done
   checkpoints:
     - CI split into core/extended/experimental
     - UI alias ~config & Node22 dev-server ESM
   next:
-    - Monitor extended/experimental label usage
+    - Labels werden im Rahmen von Fraktal44/CI-Review überwacht – kein separater Lauf nötig.
