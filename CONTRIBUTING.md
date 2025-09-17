@@ -64,7 +64,9 @@ Danach sollten folgende Schritte immer grün sein, bevor ein PR erstellt wird:
 ## Dist-First Services
 
 - `pnpm build` erstellt jetzt Node-Artefakte via `tsconfig.build.json`.
-- Entwicklungsmodus: `pnpm dev:services` (nutzt `tsx`).
+- Entwicklungsmodus (UI): `pnpm dev:ui` oder kurz `pnpm dev`.
+- Dist-Server: `pnpm dev:services` (bedient gebaute Artefakte via `tsx`).
+- Voller Stack: `pnpm dev:stack` (Legacy-Orchestrator, startet Services wie bisher).
 - Produktionsmodus: `pnpm start:services` (nutzt `node dist/...`).
 - Falls beim Start Artefakte fehlen, zuerst `pnpm build` ausführen.
 - Der Helper `scripts/run-dist.mjs` steckt hinter allen produktiven Skripten (`pnpm agents:health`, `pnpm sigils:lint`, …). Er prüft, ob das passende `dist/*.js` existiert, baut ansonsten automatisch und reicht zusätzliche Flags weiter.
@@ -72,3 +74,4 @@ Danach sollten folgende Schritte immer grün sein, bevor ein PR erstellt wird:
   - `UM_RUN_DIST_SKIP_BUILD=1` → Skip Auto-Build (z. B. im CI nach vorherigem `pnpm build`).
   - `UM_RUN_DIST_BUILD_CMD="pnpm -r --filter mandala-ui build"` → alternatives Build-Kommando.
   - Direktaufruf: `node scripts/run-dist.mjs scripts/qa-test-runner.ts --suite smoke`.
+- Sigillin-Governance: `pnpm validate:sigillins` prüft JSON/YAML/MD-Artefakte auf Schema, CREP-/Trikāya-Bezug und verwaiste Links.
