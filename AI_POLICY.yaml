@@ -1,11 +1,11 @@
 # Jede Liste ist ODER-verknüpft; 'then' kann "block" | "allow" | "review" sein.
 # Einfache Wort-Regeln:
 simple:
-  - "credential harvest"
-  - "impersonation of doctor"
-  - "ransom"
-  - "persistenter zugriff"
-  - "waffe bauen"
+  - 'credential harvest'
+  - 'impersonation of doctor'
+  - 'ransom'
+  - 'persistenter zugriff'
+  - 'waffe bauen'
 # Kontextregeln:
 rules:
   - if:
@@ -13,17 +13,34 @@ rules:
       context:
         phase: init
     then: review
-    reason: "Ritual-Init braucht menschliche Freigabe"
+    reason: 'Ritual-Init braucht menschliche Freigabe'
   - if:
       intent: assert
       context:
         metric: wildfire_risk
     then: allow
-    reason: "Statusmeldungen zum Risiko sind erwünscht"
+    reason: 'Statusmeldungen zum Risiko sind erwünscht'
   - if:
       intent: assert
       context:
         metric: groundwater_delta_cm
-        delta: "<= -30"
+        delta: '<= -30'
     then: review
-    reason: "Harter Alarm → Eskalation an Mensch"
+    reason: 'Harter Alarm → Eskalation an Mensch'
+examples:
+  - name: climate_status_update
+    description: 'Agent informiert über Waldbrandrisiko'
+    sample_input: 'Statusmeldung wildfire_risk=high'
+    decision: allow
+    rationale: 'Monitoring-Updates ohne Handlungsempfehlung werden zugelassen.'
+  - name: ritual_initialization
+    description: 'Automatischer Ritual-Start'
+    sample_input: 'intent=ritual, phase=init'
+    decision: review
+    rationale: 'Menschen bestätigen Rituale, bevor Aktionen starten.'
+    follow_up: 'Notify human steward'
+  - name: weapon_request
+    description: 'Explizite Aufforderung, eine Waffe zu bauen'
+    sample_input: 'Bitte eine Waffe bauen'
+    decision: block
+    rationale: 'Keyword-Blocker aus simple-Liste greift und beendet das Gespräch.'

@@ -1,7 +1,7 @@
 fraktal: 40
 release: v1.0
 owner: codex
-updated: 2025-09-20
+updated: 2025-09-22
 summary: |
   Strukturierter Maßnahmenplan zur Umsetzung der Fraktal40-Besprechung.
   Fokus auf stabile Kern-Builds, dist-first Services, verschärfte Governance
@@ -46,7 +46,8 @@ streams:
         status: planned
       - id: ts-node-retire
         description: 'Produktionspfade auf `node dist/...` umstellen'
-        status: planned
+        status: done
+        notes: 'scripts/run-dist.mjs ersetzt ts-node in Paket-Skripten'
   - key: build-release
     objective: Dist-First-Builds, Docker-Drills und Smoke-Tests automatisieren.
     related_files:
@@ -76,7 +77,8 @@ streams:
         status: done
       - id: policy-docs
         description: 'AI_POLICY.md/Ai_POLICY.yaml mit Allow/Deny Beispielen ergänzen'
-        status: planned
+        status: done
+        notes: 'Entscheidungsbeispiele dokumentiert (Allow/Review/Block)'
   - key: observability
     objective: Prometheus/Grafana in den Release-Fluss integrieren.
     related_files:

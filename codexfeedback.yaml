@@ -1,6 +1,9 @@
 fraktal:
-  current: 41
+  current: 43
   history:
+    - id: 43
+      status: 'in-progress'
+      notes: 'Dist-first Runner (scripts/run-dist.mjs) + AI-Policy-Beispiele implementiert; V1-Playbook Sync laufend'
     - id: 41
       status: 'in-progress'
       notes: 'CI-Core erweitert (Lint/Format/Coverage-Hooks), Extended-Workflow auf Node20 mit Coverage-Job, Monitoring-Profil in docker-compose hinterlegt'
@@ -52,7 +55,16 @@ fraktal:
     policy_checks: unified-report
     repo_sanity: tolerant
     documentation: updated
-    v1_stabilization_playbook: prepared
+    v1_stabilization_playbook: executing
+
+fraktal43:
+  status: 'in-progress'
+  checkpoints:
+    - 'scripts/run-dist.mjs ersetzt ts-node für Produktionskommandos'
+    - 'AI_POLICY.md/.yaml enthalten Allow/Review/Block Beispiele'
+  next:
+    - 'Dist-first Rollout dokumentieren (README/CONTRIBUTING)'
+    - 'Fraktal41 Nightly/Extended Follow-ups koordinieren'
 
 fraktal41:
   status: 'in-progress'
@@ -66,7 +78,7 @@ fraktal41:
     - name: 'Monitoring-Profil (Prometheus/Grafana)'
       implemented: yes
     - name: 'ts-node im Produktionspfad entfernt'
-      implemented: no
+      implemented: yes
 
 fraktal40:
   status: 'analysis-ready'
