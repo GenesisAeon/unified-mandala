@@ -1,0 +1,8 @@
+{
+  "extends": "./tsconfig.build.json",
+  "compilerOptions": {
+    "incremental": true,
+    "tsBuildInfoFile": "dist/.tsbuildinfo-agents-cli"
+  },
+  "include": ["agents/**/*", "scripts/agents/**/*.ts"]
+}

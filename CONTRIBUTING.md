@@ -67,3 +67,4 @@ Danach sollten folgende Schritte immer grün sein, bevor ein PR erstellt wird:
 - Entwicklungsmodus: `pnpm dev:services` (nutzt `tsx`).
 - Produktionsmodus: `pnpm start:services` (nutzt `node dist/...`).
 - Falls beim Start Artefakte fehlen, zuerst `pnpm build` ausführen.
+- Agenten-CLI: `pnpm agents:build` erzeugt `dist/scripts/agents/*.js`; Aufrufe laufen über `pnpm agents:run -- --id <agent>` ohne `ts-node`.

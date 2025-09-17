@@ -1,5 +1,7 @@
 # Codex Feedback
 
+- V1ready (Fraktal43 · 2025-09-23): Dist-first Agent CLI aktiviert, AI-Policy-Beispiele ergänzt, Playbook-Owner hinterlegt.
+- FR-UM-2025-09-23-Fraktal43: Agenten-Skripte laufen aus `dist/` (`pnpm agents:run`), README/CONTRIBUTING aktualisiert, AI_POLICY.\* mit Allow/Review/Block-Templates & Guardrail-Hinweisen ergänzt – Ghost-Shell/QA noch auf Follow-up notiert.
 - FR-UM-2025-09-20-Fraktal40: v1.0-Stabilization-Playbook (docs/roadmap/v1.0-stabilization-playbook.md & .yaml) erstellt – Umsetzungsschritte offen, Folgefraktale erforderlich.
 - FR-UM-2025-09-21-Fraktal41: CI-Core mit Lint/Format erweitert, Extended-Nightly auf Node20 mit Coverage-Job aktiviert, Monitoring-Profil (Prometheus/Grafana) ergänzt – Dist-first Agent-Skripte & AI-Policy-Beispiele folgen.
 - FR-UM-2025-09-19-Fraktal39: Policy-Suite vereinheitlicht (OPA/Guardrails CLI, Kyverno-Report, Workflow ohne continue-on-error) – bereit für Folgeaufgaben.

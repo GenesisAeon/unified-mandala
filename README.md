@@ -50,6 +50,27 @@ docker compose --profile monitoring up
 
 ---
 
+### Agent CLI (dist-first)
+
+Die Agenten-Werkzeuge laufen jetzt ausschließlich aus dem vorcompilierten `dist/`-Verzeichnis. Vor einem Lauf einmalig bauen:
+
+```bash
+pnpm agents:build
+```
+
+Danach stehen die Befehle wie gewohnt zur Verfügung – jetzt aber ohne `ts-node`:
+
+```bash
+pnpm agents:health
+pnpm agents:run -- --id codex --input tmp/prompt.json
+pnpm agents:metrics
+```
+
+> ℹ️ `pnpm agents:build` verwendet eine inkrementelle Build-Info (`dist/.tsbuildinfo-agents-cli`) und ist deshalb auch bei
+> häufigen Läufen schnell. Falls nach einem Refactor Artefakte fehlen, bitte erneut bauen.
+
+---
+
 ## Mandala Climate Dashboard
 
 - **Konfiguration:** `config/climate-dashboard.yaml`
