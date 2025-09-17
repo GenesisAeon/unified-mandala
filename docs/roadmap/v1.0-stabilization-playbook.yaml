@@ -43,10 +43,12 @@ streams:
     checkpoints:
       - id: lint-doc-refresh
         description: 'README/CONTRIBUTING mit Dist-First und Hook-Hinweisen erweitern'
-        status: planned
+        status: in-progress
+        status_note: 'README & CONTRIBUTING beschreiben scripts/run-dist-entry.mjs und Dist-first-Richtlinien'
       - id: ts-node-retire
         description: 'Produktionspfade auf `node dist/...` umstellen'
-        status: planned
+        status: in-progress
+        status_note: 'scripts/run-dist-entry.mjs ersetzt ts-node für Produktionsskripte'
   - key: build-release
     objective: Dist-First-Builds, Docker-Drills und Smoke-Tests automatisieren.
     related_files:
@@ -57,7 +59,8 @@ streams:
     checkpoints:
       - id: dist-first
         description: '`pnpm build` liefert alle Artefakte für Prod-Start ohne ts-node'
-        status: pending
+        status: in-progress
+        status_note: 'Dist-Runner baut fehlende Artefakte und startet node dist/...'
       - id: compose-profiles
         description: 'docker-compose Profile für core/newsbot/climate definieren'
         status: planned
@@ -76,7 +79,8 @@ streams:
         status: done
       - id: policy-docs
         description: 'AI_POLICY.md/Ai_POLICY.yaml mit Allow/Deny Beispielen ergänzen'
-        status: planned
+        status: in-progress
+        status_note: 'Allow/Review/Deny-Beispiele und Guardrail-Erklärungen ergänzt'
   - key: observability
     objective: Prometheus/Grafana in den Release-Fluss integrieren.
     related_files:

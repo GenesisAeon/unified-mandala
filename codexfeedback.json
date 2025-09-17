@@ -1,14 +1,19 @@
 {
   "runs": [
     {
+      "fraktalrun": "Fraktal43 DistFirstDocs",
+      "status": "in-progress",
+      "notes": "Dist-first runner scripts/run-dist-entry.mjs for agents/ghost-shell/qa/export bundles, README & CONTRIBUTING updated, AI_POLICY docs include allow/review/deny guidance."
+    },
+    {
       "fraktalrun": "Fraktal41 PolicyHardening",
       "status": "in-progress",
-      "notes": "CI-Core erweitert (Lint/Format), Extended-Läufe auf Node20 mit Coverage-Job, Monitoring-Profil ergänzt; Dist-first Skripte & AI-Policy-Beispiele folgen in Fraktal42."
+      "notes": "CI-Core erweitert (Lint/Format), Extended-Läufe auf Node20 mit Coverage-Job, Monitoring-Profil ergänzt; Dist-first runner entfernt ts-node aus Produktionsskripten."
     },
     {
       "fraktalrun": "Fraktal40 V1Stabilization",
-      "status": "analysis-ready",
-      "notes": "Playbook + YAML blueprint for v1.0 stabilization (docs/roadmap/v1.0-stabilization-playbook.*). Implementation tasks pending."
+      "status": "in-progress",
+      "notes": "Playbook execution underway: dist-first runner active, README/CONTRIBUTING refreshed, AI policy examples shipped."
     },
     {
       "fraktalrun": "Fraktal39 PolicySuite",

@@ -1,5 +1,6 @@
 # Codex Feedback
 
+- FR-UM-2025-09-22-Fraktal43: Dist-first Runner (`scripts/run-dist-entry.mjs`) ersetzt Produktions-`ts-node`, Paket-Skripte für Agents/Ghost-Shell/QA auf `node dist/...` umgestellt, README & CONTRIBUTING mit Dist-Guidelines ergänzt, AI_POLICY.\* um Allow/Review/Deny-Beispiele und Guardrail-Hinweise erweitert.
 - FR-UM-2025-09-20-Fraktal40: v1.0-Stabilization-Playbook (docs/roadmap/v1.0-stabilization-playbook.md & .yaml) erstellt – Umsetzungsschritte offen, Folgefraktale erforderlich.
 - FR-UM-2025-09-21-Fraktal41: CI-Core mit Lint/Format erweitert, Extended-Nightly auf Node20 mit Coverage-Job aktiviert, Monitoring-Profil (Prometheus/Grafana) ergänzt – Dist-first Agent-Skripte & AI-Policy-Beispiele folgen.
 - FR-UM-2025-09-19-Fraktal39: Policy-Suite vereinheitlicht (OPA/Guardrails CLI, Kyverno-Report, Workflow ohne continue-on-error) – bereit für Folgeaufgaben.
