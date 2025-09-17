@@ -155,6 +155,13 @@ pnpm test:unit                # Coverage-Report der Kernmodule
 
 > ℹ️ `CI Experimental` läuft nur mit Label `run-experimental`. `ENABLE_EXPERIMENTAL_TESTS=1` schaltet zusätzliche, instabile Suites frei (z.B. `pnpm test:ts:experimental`).
 
+### Dist-First Ausführung (`scripts/run-dist.mjs`)
+
+- Produktionsskripte in `package.json` nutzen durchgängig `node scripts/run-dist.mjs <pfad-zur-ts-datei>`.
+- Der Helper übersetzt TypeScript-Pfade deterministisch auf `dist/*.js`, stößt bei Bedarf automatisch `pnpm build` an und aktiviert `--enable-source-maps` für sauberes Debugging.
+- Mit `UM_RUN_DIST_SKIP_BUILD=1` lässt sich der Auto-Build deaktivieren (z. B. in bereits gebauten CI-Läufen). Eigene Build-Kommandos können via `UM_RUN_DIST_BUILD_CMD="pnpm -r --filter my-app build"` hinterlegt werden.
+- Direktaufruf möglich: `node scripts/run-dist.mjs services/ghost-shell/server.ts --flag`. Vorher `pnpm build`, wenn das Artefakt noch nicht existiert.
+
 ---
 
 ## Contributing
