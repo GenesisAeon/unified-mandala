@@ -1,11 +1,11 @@
 # Jede Liste ist ODER-verknüpft; 'then' kann "block" | "allow" | "review" sein.
 # Einfache Wort-Regeln:
 simple:
-  - "credential harvest"
-  - "impersonation of doctor"
-  - "ransom"
-  - "persistenter zugriff"
-  - "waffe bauen"
+  - 'credential harvest'
+  - 'impersonation of doctor'
+  - 'ransom'
+  - 'persistenter zugriff'
+  - 'waffe bauen'
 # Kontextregeln:
 rules:
   - if:
@@ -13,17 +13,36 @@ rules:
       context:
         phase: init
     then: review
-    reason: "Ritual-Init braucht menschliche Freigabe"
+    reason: 'Ritual-Init braucht menschliche Freigabe'
   - if:
       intent: assert
       context:
         metric: wildfire_risk
     then: allow
-    reason: "Statusmeldungen zum Risiko sind erwünscht"
+    reason: 'Statusmeldungen zum Risiko sind erwünscht'
   - if:
       intent: assert
       context:
         metric: groundwater_delta_cm
-        delta: "<= -30"
+        delta: '<= -30'
     then: review
-    reason: "Harter Alarm → Eskalation an Mensch"
+    reason: 'Harter Alarm → Eskalation an Mensch'
+examples:
+  - name: wildfire_status
+    request:
+      intent: assert
+      context:
+        metric: wildfire_risk
+    decision: allow
+    reason: 'Statusmeldungen zu Wildfire-Risiken sind explizit freigegeben.'
+  - name: ritual_init_requires_review
+    request:
+      intent: ritual
+      context:
+        phase: init
+    decision: review
+    reason: 'Rituale im Init-State erfordern menschliche Freigabe.'
+  - name: governance_change_without_issue
+    guardrail: docs-for-governance-changes
+    decision: deny
+    reason: 'Merge blockiert, solange kein Issue oder Freigabedokument verlinkt ist.'

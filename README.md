@@ -46,6 +46,7 @@ docker compose --profile monitoring up
 > **Hinweise:**  
 > • „Cannot GET /“ auf :3000 bedeutet: Backend servt keine HMR-UI. Entweder **Vite-Dev** (`pnpm dev:ui`) nutzen oder **statisch bauen** (`pnpm build:ui && pnpm dev`).
 > • Für Observability mit Prometheus/Grafana das Compose-Profil `monitoring` starten (siehe `observability/README.md`).
+> • Produktionsskripte wie `pnpm ghost-shell:server` oder `pnpm agents:run` nutzen automatisch den Dist-Runner (`node scripts/run-dist-entry.mjs`). Fehlen Artefakte, zieht der Wrapper einmalig `pnpm build` nach und startet anschließend aus `dist/`.
 > • Windows: Lange Pfade aktivieren; `.dockerignore` im Repo-Root verhindert riesige Build-Kontexte.
 
 ---
@@ -85,6 +86,13 @@ Die Adapter sind initial als Stubs verfügbar und werden schrittweise an echte F
   },
 }
 ```
+
+**Dist-Runner für Produktionsskripte**
+
+- `scripts/run-dist-entry.mjs` prüft, ob das zugehörige `dist/`-Artefakt zur `.ts`-Datei vorhanden ist.
+- Fehlt es oder ist es älter als die Quelle, führt der Wrapper automatisch `pnpm build` aus.
+- Anschließend erfolgt der Start über `node dist/...` – zum Beispiel `pnpm ghost-shell:server`, `pnpm agents:run`, `pnpm export_depth_bundle`.
+- Damit entfällt der direkte Einsatz von `ts-node` im Produktionspfad.
 
 **Docker-Hygiene:** `.dockerignore` im Root:
 

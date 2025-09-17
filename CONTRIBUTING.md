@@ -58,7 +58,7 @@ Danach sollten folgende Schritte immer grün sein, bevor ein PR erstellt wird:
 ## Code-Style & Tooling
 
 - ESLint + Prettier laufen automatisch über Husky (`pnpm lint-staged`). Manuell: `pnpm lint` bzw. `pnpm format`.
-- Bitte keine manuellen `ts-node` Aufrufe für Produktionspfade einchecken. Services werden in `dist/` vorkompiliert.
+- Bitte keine manuellen `ts-node` Aufrufe für Produktionspfade einchecken. Services werden in `dist/` vorkompiliert – Standard ist `node scripts/run-dist-entry.mjs <ts-datei>` bzw. das entsprechende `pnpm`-Script.
 - Neue Skripte bevorzugt über `scripts/dev-services.mjs` einhängen, statt weitere `concurrently`-Aufrufe anzulegen.
 
 ## Dist-First Services
@@ -67,3 +67,4 @@ Danach sollten folgende Schritte immer grün sein, bevor ein PR erstellt wird:
 - Entwicklungsmodus: `pnpm dev:services` (nutzt `tsx`).
 - Produktionsmodus: `pnpm start:services` (nutzt `node dist/...`).
 - Falls beim Start Artefakte fehlen, zuerst `pnpm build` ausführen.
+- Produktionsskripte (`pnpm ghost-shell:*`, `pnpm agents:*`, `pnpm export_depth_bundle`, `pnpm qa*`) laufen über `scripts/run-dist-entry.mjs`. Der Wrapper gleicht `dist/` gegen die `.ts`-Quellen ab, baut bei Bedarf und startet anschließend `node dist/...`.
