@@ -1,11 +1,18 @@
-schema_version: "1.0"
-id: "SIGIL-BASIC-EXAMPLE"
-type: "poetic-root"
-status: "draft"
-creator: "example-author"
-created_at: "2025-08-05T00:00:00Z"
-related_sigils:
-  - id: "SIGIL-ROOT"
-    relation: "derivesFrom"
-changes:
-  - "initial creation"
+sigillin:
+  id: SIGIL-BASIC-EXAMPLE
+  title: Beispiel-Sigillin (Minimal)
+  sigillin_type: reference
+  audience: Neue Sigillin-Autor:innen
+  essenz: >-
+    Dieses Beispiel zeigt das Mindestformat für ein Mandala-Sigillin mit
+    CREP- und Trikāya-Bezug sowie einer klaren nächsten Handlung.
+  links: []
+  content:
+    text: >-
+      CREP strukturiert dieses Beispiel über Coherence und Resonance, damit
+      Emergence und Poetics in eine Trikāya-Perspektive münden; die nächste
+      Handlung besteht darin, das Muster auf reale Artefakte anzuwenden.
+    checklist:
+      - Dharmakāya: Kernbedeutung reflektieren
+      - Sambhogakāya: Resonanz im Team abgleichen
+      - Nirmāṇakāya: Artefakt veröffentlichen

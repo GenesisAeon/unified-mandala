@@ -1,0 +1,46 @@
+fraktal: 44
+status: done
+summary: |
+  Fraktal44 schließt die Stabilisierungsschleife ab: Sigillin-Schema & Validator
+  wurden produktiv gesetzt (inkl. CI-Gate), alle offenen Playbook-/Governance-Tracker
+  auf "done" gestellt und die Dokumentation synchronisiert.
+streams:
+  stability:
+    state: done
+    notes: Nightly- und Core-Gates laufen fail-fast, Toolchain-Artefakte werden
+      automatisch ausgewertet.
+  build_release:
+    state: done
+    notes: Dist-first Workflow, Smoke-Tests und Compose-Profile sind durchgängig
+      dokumentiert und in CI/Drills eingebunden.
+  governance:
+    state: done
+    notes: AI_POLICY Primer, Response-Guidelines und Sigillin-Governance (Validator)
+      sind aktiv.
+  observability:
+    state: done
+    notes: '/metrics-Smoke-Checks via @um/health und Monitoring-Profil sind Teil des Release-Drills.'
+validator:
+  schema: scripts/sigillin/mandala-sigillin.schema.json
+  script: scripts/sigillin/validate-sigillins.ts
+  workflow: .github/workflows/sigillin-validate.yml
+  keywords:
+    - CREP
+    - Trikāya
+    - nächste Handlung
+codexfeedback_sync:
+  md: codexfeedback.md
+  yaml: codexfeedback.yaml
+  json: codexfeedback.json
+playbook:
+  markdown: docs/roadmap/v1.0-stabilization-playbook.md
+  yaml: docs/roadmap/v1.0-stabilization-playbook.yaml
+  status: closed
+checklist:
+  - label: Sigillin-Dateien aktualisiert
+    state: done
+  - label: Package Scripts und Workflow ergänzt
+    state: done
+  - label: Dokumentation & Tracker synchronisiert
+    state: done
+next_steps: []

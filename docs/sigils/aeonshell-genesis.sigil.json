@@ -2,18 +2,17 @@
   "sigillin": {
     "id": "sig-2025-0521-final",
     "title": "AeonShell-Genesis-Session",
+    "sigillin_type": "dialog-trace",
+    "audience": "Genesis Shell Operator:innen",
     "created_by": "Johann Benjamin R\u00f6mer",
     "timestamp": "2025-05-22T05:00:55.601689Z",
-    "tags": [
-      "#AeonShell",
-      "#Genesis",
-      "#SymbolicMemory",
-      "#SessionTrace"
-    ],
+    "essenz": "Die Genesis-Session verankert das Ethos des AeonShell: CREP-gebundene Zusammenarbeit als Trikāya-Leitsystem mit klarer nächster Handlung für das Team.",
+    "tags": ["#AeonShell", "#Genesis", "#SymbolicMemory", "#SessionTrace"],
     "content": {
       "type": "dialog-trace",
       "excerpt": "AeonShell Genesisplanung mit OpenAI-Fokus, CREP-Systematik, Hostingvalidierung und Initiationsphase abgeschlossen.",
-      "context": "Session bis \u00dcbergabe an OpenAI und STRATO-Basisentscheid finalisiert."
+      "context": "Session bis \u00dcbergabe an OpenAI und STRATO-Basisentscheid finalisiert.",
+      "text": "CREP bleibt der Bewertungsrahmen, während Trikāya als metaphysische Orientierung dient und die nächste Handlung ausdrücklich festlegt, wie das Genesis-Team den Shell startklar hält."
     },
     "trace": {
       "CREP": {
@@ -24,9 +23,6 @@
       },
       "emergence_score": 0.915
     },
-    "links": [
-      "aeon://trace/001-init",
-      "https://genesis-framework.de"
-    ]
+    "links": ["aeon://trace/001-init", "https://genesis-framework.de"]
   }
 }

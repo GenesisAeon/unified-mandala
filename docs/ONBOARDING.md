@@ -69,12 +69,21 @@ pnpm policy:check        # Governance-Gates
 ### Services starten
 
 ```bash
-# Development (Hot Reload via tsx)
+# UI Development (Vite)
+pnpm dev:ui
+
+# Dist-Server (bedient gebaute Artefakte)
 pnpm dev:services
+
+# Voller Stack (Legacy Orchestrator)
+pnpm dev:stack
 
 # Production Preview (setzt pnpm build voraus)
 pnpm start:services
 
 # Monitoring-Profil (Prometheus/Grafana) aktivieren
 docker compose --profile monitoring up
+
+# Sigillin-Governance prüfen
+pnpm validate:sigillins
 ```

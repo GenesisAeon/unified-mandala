@@ -1,14 +1,20 @@
 {
-  "schema_version": "1.0",
-  "id": "SIG-GENESIS-PLATFORM-START",
-  "type": "poetic-root",
-  "status": "draft",
-  "creator": "Aeon",
-  "created_at": "2025-05-25T07:53:05.608313Z",
-  "related_sigils": [
-    { "id": "SIG-GENESIS-PLATFORM-SOCIALHELP", "relation": "follows" }
-  ],
-  "changes": [
-    "Initial project sigil"
-  ]
+  "sigillin": {
+    "id": "SIG-STARTER-EXAMPLE",
+    "title": "Starter-Sigillin",
+    "sigillin_type": "poetic-root",
+    "audience": "Onboarding",
+    "essenz": "Ein minimales JSON-Beispiel, das CREP, Trikāya und eine nächste Handlung demonstriert.",
+    "links": [],
+    "content": {
+      "text": "CREP hält Coherence und Resonance auch bei simplen Artefakten, Emergence und Poetics verweisen auf die Trikāya-Wirkung; die nächste Handlung beschreibt, wie neue Mitglieder das Muster anwenden.",
+      "related_sigils": [{ "id": "SIG-GENESIS-PLATFORM-SOCIALHELP", "relation": "follows" }],
+      "changes": ["Initial project sigil"]
+    },
+    "metadata": {
+      "creator": "Aeon",
+      "status": "draft",
+      "created_at": "2025-05-25T07:53:05.608313Z"
+    }
+  }
 }
