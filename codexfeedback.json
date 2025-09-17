@@ -1,9 +1,14 @@
 {
   "runs": [
     {
+      "fraktalrun": "Fraktal43 DistFirstRunner",
+      "status": "in-progress",
+      "notes": "Dist-first runner (scripts/run-dist.mjs) ersetzt ts-node Kommandos, AI-Policy-Beispiele veröffentlicht; README/CONTRIBUTING Follow-up geplant."
+    },
+    {
       "fraktalrun": "Fraktal41 PolicyHardening",
       "status": "in-progress",
-      "notes": "CI-Core erweitert (Lint/Format), Extended-Läufe auf Node20 mit Coverage-Job, Monitoring-Profil ergänzt; Dist-first Skripte & AI-Policy-Beispiele folgen in Fraktal42."
+      "notes": "CI-Core erweitert (Lint/Format), Extended-Läufe auf Node20 mit Coverage-Job, Monitoring-Profil ergänzt; Dist-first & Policy-Dokumentation über Fraktal43 erledigt, Nightly/Extended Optimierungen offen."
     },
     {
       "fraktalrun": "Fraktal40 V1Stabilization",
