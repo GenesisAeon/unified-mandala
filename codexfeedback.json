@@ -3,12 +3,17 @@
     {
       "fraktalrun": "Fraktal41 PolicyHardening",
       "status": "in-progress",
-      "notes": "CI-Core erweitert (Lint/Format), Extended-Läufe auf Node20 mit Coverage-Job, Monitoring-Profil ergänzt; Dist-first Skripte & AI-Policy-Beispiele folgen in Fraktal42."
+      "notes": "CI-Core erweitert (Lint/Format), Extended-Läufe auf Node20 mit Coverage-Job, Monitoring-Profil ergänzt; Dist-first Agent-CLI und Policy-Doku seit Fraktal43 aktiv, Rollout auf übrige Skripte noch offen."
     },
     {
       "fraktalrun": "Fraktal40 V1Stabilization",
-      "status": "analysis-ready",
-      "notes": "Playbook + YAML blueprint for v1.0 stabilization (docs/roadmap/v1.0-stabilization-playbook.*). Implementation tasks pending."
+      "status": "in-progress",
+      "notes": "Playbook + YAML blueprint umgesetzt; erste Maßnahmen (dist-first agents, policy docs, Node20 Agent-Workflow) live, weitere Etappen folgen."
+    },
+    {
+      "fraktalrun": "Fraktal43 DistFirstAgents",
+      "status": "implemented",
+      "notes": "scripts/run-dist.mjs eingeführt, Agent-Workflows auf Node20 + pnpm policy:check gehärtet, AI_POLICY.* um Allow/Review/Deny ergänzt."
     },
     {
       "fraktalrun": "Fraktal39 PolicySuite",

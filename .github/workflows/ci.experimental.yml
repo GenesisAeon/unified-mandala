@@ -20,6 +20,8 @@ jobs:
         run: |
           echo "Node $(node -v)"
           echo "PNPM v$(pnpm -v)"
+      - name: Build dist artifacts
+        run: pnpm run build
       - name: Agents health sweep
         shell: bash
         run: |

@@ -1,7 +1,8 @@
 # Codex Feedback
 
-- FR-UM-2025-09-20-Fraktal40: v1.0-Stabilization-Playbook (docs/roadmap/v1.0-stabilization-playbook.md & .yaml) erstellt – Umsetzungsschritte offen, Folgefraktale erforderlich.
-- FR-UM-2025-09-21-Fraktal41: CI-Core mit Lint/Format erweitert, Extended-Nightly auf Node20 mit Coverage-Job aktiviert, Monitoring-Profil (Prometheus/Grafana) ergänzt – Dist-first Agent-Skripte & AI-Policy-Beispiele folgen.
+- FR-UM-2025-09-22-Fraktal43: Dist-first Runner (`scripts/run-dist.mjs`) aktiviert Agent-CLI aus `dist/`, CI-Agent-Workflow nutzt Node20 + `pnpm policy:check`, AI-Policy-Doku mit Allow/Review/Deny-Beispielen ergänzt; nächster Schritt: übrige ts-node-Kommandos migrieren und Coverage-Fokus finalisieren.
+- FR-UM-2025-09-20-Fraktal40: v1.0-Stabilization-Playbook (docs/roadmap/v1.0-stabilization-playbook.md & .yaml) erstellt – Umsetzungsschritte gestartet (Dist-first Agent-CLI, Policy-Doku); weitere Etappen folgen.
+- FR-UM-2025-09-21-Fraktal41: CI-Core mit Lint/Format erweitert, Extended-Nightly auf Node20 mit Coverage-Job aktiviert, Monitoring-Profil (Prometheus/Grafana) ergänzt – Dist-first Agent-Skripte & AI-Policy-Beispiele in Fraktal43 umgesetzt (Rollout auf weitere CLIs offen).
 - FR-UM-2025-09-19-Fraktal39: Policy-Suite vereinheitlicht (OPA/Guardrails CLI, Kyverno-Report, Workflow ohne continue-on-error) – bereit für Folgeaufgaben.
 - FR-UM-2025-09-18-Fraktal38: ESLint/Prettier-Hook, Dist-First-Services und aktualisierte Doku produktiv gesetzt – bereit für den nächsten Fraktal-Sprint.
 - FR-UM-2025-09-18-Fraktal37-CoreCI-RunB: Node20 Toolchain fix, Policy-Checks entschärft, Repo-Sanity stabilisiert – kein weiterer Lauf notwendig.
