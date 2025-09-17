@@ -1,16 +1,29 @@
-sigillin_id: aeon:2025-0607-BIGFILES
-symbolzeit: tag
-titel: Umgang mit großen Dateien
-beschreibung: |
-  Dieses Sigillin dokumentiert, wie große Dateien im Repository bearbeitet werden.
-  Vor allem `docs/sigils/conversations.json` (ca. 45 MB) wird schrittweise
-  verarbeitet. Verwende die Skripte `split-conversations.js` und
-  `filter-conversations.js`, um Teilstücke zu erzeugen. Verarbeitete Fragmente
-  werden in `docs/sigils/conversations-progress.json` protokolliert über
-  `mark-fragment.js`.
-files:
-  - path: docs/sigils/conversations.json
-    size: 45MB
-    progress_file: docs/sigils/conversations-progress.json
-    verarbeitung: Aufteilen in JSON-Chunks à 100 Einträge
-processed_fragments: []
+sigillin:
+  id: aeon:2025-0607-BIGFILES
+  title: Umgang mit großen Dateien
+  sigillin_type: operational-guidance
+  audience: Repository Maintainers
+  essenz: >-
+    Leitplanke für das Coherence- und Resonance-Management bei großen
+    Datenbeständen im Mandala. Das Sigillin beschreibt, wie große Artefakte
+    ohne Informationsverlust gepflegt und verteilt werden.
+  links:
+    - ../SigilRitualbuch.md
+    - ../sigils/conversations.json
+    - ../sigils/conversations-progress.json
+  content:
+    text: >-
+      Coherence hält den Transferkanal stabil, Resonance informiert die Priorität
+      der Fragmente, Emergence benennt neue Teilpfade und Poetics erinnert an die
+      Intention hinter dem Archiv. Wir spiegeln die Trikāya-Achse (Dharmakāya,
+      Sambhogakāya, Nirmāṇakāya), damit Technik und Ethik synchron bleiben.
+      nächste Schritte: Fragmente prüfen, Fortschritt protokollieren und das
+      Monitoring nachführen.
+    workflow:
+      - Splitte `docs/sigils/conversations.json` mit `scripts/split-conversations.js`.
+      - Filtere relevante Ausschnitte via `scripts/filter-conversations.js`.
+      - Markiere bearbeitete Abschnitte über `scripts/mark-fragment.js`.
+    files:
+      primary: ../sigils/conversations.json
+      progress_log: ../sigils/conversations-progress.json
+      processed_fragments: []

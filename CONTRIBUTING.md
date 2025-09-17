@@ -53,7 +53,7 @@ Danach sollten folgende Schritte immer grün sein, bevor ein PR erstellt wird:
 - Mindestens ein Review pro PR.
 - `AI_POLICY.md` beachten (Einsatz von GPT, Datenumgang).
 - Experimentelle Features hinter Feature-Flags halten (`ENABLE_EXPERIMENTAL_TESTS`, UI `FEATURES`).
-- Vor Merge einmal `pnpm build:ui` + `pnpm dev` (Smoke `/` → 200) prüfen.
+- Vor Merge einmal `pnpm build:ui` + `pnpm dev:services` (Smoke `/` → 200) prüfen.
 
 ## Code-Style & Tooling
 
@@ -64,7 +64,9 @@ Danach sollten folgende Schritte immer grün sein, bevor ein PR erstellt wird:
 ## Dist-First Services
 
 - `pnpm build` erstellt jetzt Node-Artefakte via `tsconfig.build.json`.
-- Entwicklungsmodus: `pnpm dev:services` (nutzt `tsx`).
+- Entwicklungsmodus Backend: `pnpm dev:stack` (nutzt `node scripts/dev-services.mjs`).
+- UI-Hot-Reload: `pnpm dev` (setzt `UI_DIST=http://localhost:5173`).
+- Statische Vorschau: `pnpm dev:services` (nutzt `tsx`).
 - Produktionsmodus: `pnpm start:services` (nutzt `node dist/...`).
 - Falls beim Start Artefakte fehlen, zuerst `pnpm build` ausführen.
 - Der Helper `scripts/run-dist.mjs` steckt hinter allen produktiven Skripten (`pnpm agents:health`, `pnpm sigils:lint`, …). Er prüft, ob das passende `dist/*.js` existiert, baut ansonsten automatisch und reicht zusätzliche Flags weiter.

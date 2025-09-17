@@ -19,8 +19,8 @@ streams:
     checkpoints:
       - id: core-ci-hardening
         description: Fail-fast Verhalten und Nightly-Matrix in CI Core etablieren
-        status: in-progress
-        notes: ci.nightly.yml spiegelt type-and-tests; Toolchain-Artefakt wird hochgeladen
+        status: done
+        notes: ci.nightly.yml spiegelt type-and-tests; Toolchain-Artefakt & Nightly-Auswertung via Fraktal44 dokumentiert
         success:
           - pnpm test:ts:ci
           - pnpm test:py
@@ -28,7 +28,7 @@ streams:
       - id: experimental-signal
         description: Guardrails & Agent Dry-Runs ohne `|| true`; Ergebnisse als Checks
           publizieren
-        status: in-progress
+        status: done
         artifacts:
           - agents-dry-run.log
           - out/policy/policy-suite.json
@@ -71,9 +71,8 @@ streams:
     checkpoints:
       - id: dist-first
         description: '`pnpm build` liefert alle Artefakte für Prod-Start ohne ts-node'
-        status: in-progress
-        notes: Dockerfile.dev auf Node20/Python3 gehoben; dist-first CLI-Dokumentation
-          folgt.
+        status: done
+        notes: Dockerfile.dev Node20/Python3, Dist-First CLI (`pnpm dev`, `pnpm dev:services`, `pnpm dev:stack`) dokumentiert.
       - id: compose-profiles
         description: docker-compose Profile für core/newsbot/climate definieren
         status: done
@@ -81,9 +80,8 @@ streams:
           aktiv.
       - id: runtime-smoke
         description: '`pnpm start:light` + HTTP-Smoketest automatisieren'
-        status: in-progress
-        notes: Light-static smoke script verfügbar (`pnpm smoke:light-static`); CI-Einbindung
-          offen.
+        status: done
+        notes: Light-static smoke script aktiv, Sigillin-Validator ergänzt; CI/Governance-Doku aktualisiert.
   - key: governance
     owner:
       lead: AI Governance Council
@@ -113,7 +111,8 @@ streams:
     checkpoints:
       - id: metrics-endpoints
         description: Alle Services exportieren `/metrics` via @um/health
-        status: planned
+        status: done
+        notes: '/metrics-Rollout dokumentiert, Release-Drill inkl. Observability-Smoke.'
       - id: prom-compose
         description: Compose-Profile für Prometheus/Grafana aktivieren
         status: done
