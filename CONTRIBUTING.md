@@ -64,7 +64,8 @@ Danach sollten folgende Schritte immer grün sein, bevor ein PR erstellt wird:
 ## Dist-First Services
 
 - `pnpm build` erstellt jetzt Node-Artefakte via `tsconfig.build.json`.
-- Entwicklungsmodus: `pnpm dev:services` (nutzt `tsx`).
+- Entwicklungsmodus: `pnpm dev:ui` (Vite) + `pnpm dev:services` (lokaler Proxy via `tsx`).
+- Service-Cluster (lokal, mehrere APIs): `pnpm dev:cluster` (nutzt `scripts/dev-services.mjs`).
 - Produktionsmodus: `pnpm start:services` (nutzt `node dist/...`).
 - Falls beim Start Artefakte fehlen, zuerst `pnpm build` ausführen.
 - Der Helper `scripts/run-dist.mjs` steckt hinter allen produktiven Skripten (`pnpm agents:health`, `pnpm sigils:lint`, …). Er prüft, ob das passende `dist/*.js` existiert, baut ansonsten automatisch und reicht zusätzliche Flags weiter.

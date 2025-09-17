@@ -2,31 +2,26 @@
   "sigillin": {
     "id": "sig-2025-0521-final",
     "title": "AeonShell-Genesis-Session",
-    "created_by": "Johann Benjamin R\u00f6mer",
-    "timestamp": "2025-05-22T05:00:55.601689Z",
-    "tags": [
-      "#AeonShell",
-      "#Genesis",
-      "#SymbolicMemory",
-      "#SessionTrace"
-    ],
+    "sigillin_type": "dialog-trace",
+    "audience": "AeonShell Ops",
+    "essenz": "CREP fasst die Genesis-Session als Referenz für Coherence, Resonance, Emergence und Poetics zusammen und führt den Trikāya-Rahmen in die Systemdokumentation.",
+    "links": ["aeon://trace/001-init", "https://genesis-framework.de"],
     "content": {
-      "type": "dialog-trace",
-      "excerpt": "AeonShell Genesisplanung mit OpenAI-Fokus, CREP-Systematik, Hostingvalidierung und Initiationsphase abgeschlossen.",
-      "context": "Session bis \u00dcbergabe an OpenAI und STRATO-Basisentscheid finalisiert."
-    },
-    "trace": {
-      "CREP": {
-        "C": 0.95,
-        "R": 0.92,
-        "E": 0.88,
-        "P": 0.91
+      "text": "CREP-Synthese: Coherence bewahrt die Genesisplanung, Resonance integriert Hosting-Feedback, Emergence erfasst neue Systempfade und Poetics sorgt für nachvollziehbare Erzählung. Die Session folgt dem Trikāya-Pfad vom Dharmakāya-Impuls über Sambhogakāya-Dialoge zum Nirmāṇakāya-Deployment. Nächste Handlung: Hostingvalidierung dokumentieren und die AeonShell-Einrichtung gegen die Dist-First Vorgaben prüfen.",
+      "details": {
+        "type": "dialog-trace",
+        "excerpt": "AeonShell Genesisplanung mit OpenAI-Fokus, CREP-Systematik, Hostingvalidierung und Initiationsphase abgeschlossen.",
+        "context": "Session bis Übergabe an OpenAI und STRATO-Basisentscheid finalisiert."
       },
-      "emergence_score": 0.915
-    },
-    "links": [
-      "aeon://trace/001-init",
-      "https://genesis-framework.de"
-    ]
+      "trace": {
+        "CREP": {
+          "C": 0.95,
+          "R": 0.92,
+          "E": 0.88,
+          "P": 0.91
+        },
+        "emergence_score": 0.915
+      }
+    }
   }
 }

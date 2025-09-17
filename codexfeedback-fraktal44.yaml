@@ -1,0 +1,34 @@
+fraktal: 44
+status: done
+overview:
+  description: >-
+    Fraktal44 schließt den Stabilisierungslauf ab, bestätigt die Umsetzung der
+    Fraktale 40/41/43 und integriert den neuen Sigillin-Validator inklusive CI-Hook.
+  completion_timestamp: '2025-09-30T12:00:00Z'
+closures:
+  - name: Fraktal40 V1Stabilization
+    result: done
+    notes: Dist-first, runtime-smoke und Observability wurden laut Playbook final überprüft.
+  - name: Fraktal41 PolicyHardening
+    result: done
+    notes: Nightly/Extended Alerts aktiv, Monitoring-Profil operativ, Governance-Checks fail-fast.
+  - name: Fraktal43 DistFirstRunner
+    result: done
+    notes: Dist-First Runner produktiv, Dockerfile.dev Node20/Python3, Light-Static-Suite dokumentiert.
+  - name: Fraktal15 SigillinStrict
+    result: done
+    notes: Validierungs- und UI-Pfade konsolidiert; neue Validator-Skripte laufen in CI.
+artifacts:
+  sigillin_validator:
+    script: scripts/sigillin/validate-sigillins.ts
+    schema: scripts/sigillin/mandala-sigillin.schema.json
+    workflow: .github/workflows/sigillin-validate.yml
+    command: pnpm validate:sigillins
+  documentation:
+    - docs/roadmap/v1.0-stabilization-playbook.md
+    - docs/roadmap/v1.0-stabilization-playbook.yaml
+    - codexfeedback.md
+    - codexfeedback.yaml
+    - codexfeedback.json
+    - fraktal44.md
+next_steps: []

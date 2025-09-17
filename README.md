@@ -79,8 +79,9 @@ Die Adapter sind initial als Stubs verfügbar und werden schrittweise an echte F
   "scripts": {
     "dev:ui": "pnpm -F mandala-ui dev",
     "build:ui": "pnpm -F mandala-ui build",
-    "dev": "cross-env UI_DIST=apps/ui/dist tsx scripts/dev-server.ts",
-    "dev:services": "node scripts/dev-services.mjs --mode=dev",
+    "dev": "cross-env UI_DIST=http://localhost:5173 pnpm -F mandala-ui dev",
+    "dev:services": "tsx scripts/dev-server.ts",
+    "dev:cluster": "node scripts/dev-services.mjs --mode=dev",
     "start:services": "pnpm -s build && NODE_ENV=production node scripts/dev-services.mjs --mode=prod",
   },
 }
