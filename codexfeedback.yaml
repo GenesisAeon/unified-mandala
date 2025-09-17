@@ -1,12 +1,12 @@
 fraktal:
-  current: 41
+  current: 40
   history:
     - id: 41
-      status: 'in-progress'
-      notes: 'CI-Core erweitert (Lint/Format/Coverage-Hooks), Extended-Workflow auf Node20 mit Coverage-Job, Monitoring-Profil in docker-compose hinterlegt'
+      status: 'done'
+      notes: 'Dist-first Agent CLI & AI-Policy-Templates geliefert; Monitoring-Profil weiterhin aktiv.'
     - id: 40
-      status: 'analysis-ready'
-      notes: 'v1.0 Stabilization Playbook (docs/roadmap/v1.0-stabilization-playbook.*) vorbereitet; Umsetzung folgt in Folgefraktalen'
+      status: 'in-progress'
+      notes: 'Ownership/Tracking ergänzt; verbleibende Sprints laufen gemäß Playbook.'
     - id: 39
       status: 'done'
       notes: 'Policy suite unified: CLI OPA/Guardrails, Kyverno summary + fail-fast workflow'
@@ -52,10 +52,11 @@ fraktal:
     policy_checks: unified-report
     repo_sanity: tolerant
     documentation: updated
-    v1_stabilization_playbook: prepared
+    v1_stabilization_playbook: owner-assigned
+    agents_cli: dist-first
 
 fraktal41:
-  status: 'in-progress'
+  status: 'stabilized'
   subgoals:
     - name: 'CI-Härtung (Fail-Fast-Pipelines)'
       implemented: yes
@@ -66,16 +67,16 @@ fraktal41:
     - name: 'Monitoring-Profil (Prometheus/Grafana)'
       implemented: yes
     - name: 'ts-node im Produktionspfad entfernt'
-      implemented: no
+      implemented: yes
 
 fraktal40:
-  status: 'analysis-ready'
+  status: 'in-progress'
   checkpoints:
     - 'Playbook veröffentlicht: docs/roadmap/v1.0-stabilization-playbook.md'
     - 'Blueprint erstellt: docs/roadmap/v1.0-stabilization-playbook.yaml'
   next:
-    - 'Owner pro Stream (stability/code-quality/build-release/governance/observability) festlegen'
     - 'Issues mit Playbook-Checkpoints anlegen und Status über codexfeedback synchronisieren'
+    - 'Nightly-Matrix & Ghost-Shell dist-first als Follow-up tracken'
 
 fraktal21:
   status: 'ready-for-review'
