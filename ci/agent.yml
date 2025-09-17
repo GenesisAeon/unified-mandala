@@ -16,11 +16,19 @@ jobs:
           go test ./services/vector-indexer
       - name: Package Lambda@Edge
         run: ./scripts/package-lambda-edge.sh
-      - uses: actions/setup-node@v2
+      - uses: actions/setup-node@v4
         with:
-          node-version: '18'
-      - run: pnpm install
-      - name: Build ML plugins
-        run: npx ts-node scripts/generate-plugin-manifest.ts
+          node-version: '20.x'
+          cache: 'pnpm'
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.16.1
+      - run: pnpm install --frozen-lockfile
+      - name: Build dist artifacts
+        run: pnpm run build
+      - name: Build ML plugins manifest
+        run: node scripts/run-dist.mjs scripts/generate-plugin-manifest
+      - name: Run policy suite
+        run: pnpm run policy:check
       - name: Lint AI policy
         run: node scripts/check-ai-policy.js

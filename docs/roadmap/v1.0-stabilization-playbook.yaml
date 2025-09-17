@@ -46,7 +46,9 @@ streams:
         status: planned
       - id: ts-node-retire
         description: 'Produktionspfade auf `node dist/...` umstellen'
-        status: planned
+        status: in-progress
+        notes:
+          - 'scripts/run-dist.mjs eingeführt; `agents:*` Befehle nutzen Dist-Artefakte'
   - key: build-release
     objective: Dist-First-Builds, Docker-Drills und Smoke-Tests automatisieren.
     related_files:
@@ -57,7 +59,9 @@ streams:
     checkpoints:
       - id: dist-first
         description: '`pnpm build` liefert alle Artefakte für Prod-Start ohne ts-node'
-        status: pending
+        status: in-progress
+        notes:
+          - 'CI Experimental baut Dist vor Agent-Health-Checks'
       - id: compose-profiles
         description: 'docker-compose Profile für core/newsbot/climate definieren'
         status: planned
@@ -76,7 +80,10 @@ streams:
         status: done
       - id: policy-docs
         description: 'AI_POLICY.md/Ai_POLICY.yaml mit Allow/Deny Beispielen ergänzen'
-        status: planned
+        status: done
+        output:
+          - AI_POLICY.md
+          - AI_POLICY.yaml
   - key: observability
     objective: Prometheus/Grafana in den Release-Fluss integrieren.
     related_files:
