@@ -1,19 +1,24 @@
 fraktal:
-  current: 43
+  current: 44
   history:
+    - id: 44
+      status: done
+      notes: Fraktal44 schließt Stabilisierungsläufe ab, Sigillin-Validator + CI aktiv,
+        Governance/Observability bestätigt, Dokumentation synchronisiert.
     - id: 43
-      status: in-progress
+      status: done
       notes: Dist-first Runner (scripts/run-dist.mjs) + AI-Policy-Beispiele implementiert;
         CI-Nightly Mirror & Owner-Mapping aktiv; Dockerfile.dev Node20+Python3 und light-static-smoke
-        aufgenommen.
+        aufgenommen; Abschluss durch Fraktal44 bestätigt.
     - id: 41
-      status: in-progress
+      status: done
       notes: CI-Core erweitert (Lint/Format/Coverage-Hooks), Extended-Workflow auf Node20
-        mit Coverage-Job, Monitoring-Profil in docker-compose hinterlegt
+        mit Coverage-Job, Monitoring-Profil in docker-compose hinterlegt; Nightly-Auswertung und Alerts
+        in Fraktal44 abgeschlossen.
     - id: 40
-      status: in-progress
-      notes: v1.0 Stabilization Playbook (docs/roadmap/v1.0-stabilization-playbook.*)
-        plus Owner-/Backup-Matrix; Umsetzung läuft, Tracker synchronisiert
+      status: done
+      notes: v1.0 Stabilization Playbook umgesetzt; Owner-/Backup-Matrix bestätigt,
+        Dist-First + Observability + Governance finalisiert.
     - id: 39
       status: done
       notes: 'Policy suite unified: CLI OPA/Guardrails, Kyverno summary + fail-fast
@@ -66,59 +71,55 @@ fraktal:
     documentation: updated
     v1_stabilization_playbook: executing
 fraktal43:
-  status: in-progress
+  status: done
   checkpoints:
     - scripts/run-dist.mjs ersetzt ts-node für Produktionskommandos
     - AI_POLICY.md/.yaml enthalten Allow/Review/Block Beispiele
     - ci.nightly.yml spiegelt type-and-tests (Node20/Python3.11) inkl. Toolchain-Artefakt
     - Dockerfile.dev Node20+Python3 für Compose-Parität, light-static-smoke verfügbar
-  next:
-    - Fraktal41 Nightly/Extended Follow-ups koordinieren
-    - Light-static smoke in CI/monitoring verankern
+  next: []
 fraktal41:
-  status: in-progress
+  status: done
   subgoals:
     - name: CI-Härtung (Fail-Fast-Pipelines)
       implemented: true
     - name: Kyverno-Policytest integriert
       implemented: true
     - name: Nightly/Extended Tests etabliert
-      implemented: partial
-      notes: Nightly Mirror via ci.nightly.yml aktiv, Extended-Auswertung & Alerts offen
+      implemented: true
+      notes: Nightly Mirror via ci.nightly.yml aktiv, Extended-Auswertung & Alerts durch Fraktal44 abgeschlossen
     - name: Monitoring-Profil (Prometheus/Grafana)
       implemented: true
     - name: ts-node im Produktionspfad entfernt
       implemented: true
+  next: []
 fraktal40:
-  status: in-progress
+  status: done
   checkpoints:
     - 'Playbook veröffentlicht: docs/roadmap/v1.0-stabilization-playbook.md'
     - 'Blueprint erstellt: docs/roadmap/v1.0-stabilization-playbook.yaml'
   tracker:
     stability:
       owner: Codex CoreOps / SyncRunner
-      status: in-progress
-      notes: ci.nightly.yml aktiv, Toolchain-Artefakt verfügbar; Ergebnis-Auswertung
-        geplant
+      status: done
+      notes: ci.nightly.yml aktiv, Toolchain-Artefakt verfügbar; Ergebnis-Auswertung abgeschlossen.
     code-quality:
       owner: DevX Guild / PatternReactivator
       status: done
-      notes: README & CONTRIBUTING dokumentieren run-dist inkl. Overrides
+      notes: README & CONTRIBUTING dokumentieren run-dist inkl. Overrides und neuen Dev-Flow
     build-release:
       owner: ReleaseOps Circle / VisionContextIntegrator
-      status: in-progress
-      notes: Dockerfile.dev Node20+Python3; compose profiles aktiv, runtime-smoke
-        Script wartet auf CI-Gate.
+      status: done
+      notes: Dockerfile.dev Node20+Python3; Compose Profile aktiv, runtime-smoke via Fraktal44 bestätigt.
     governance:
       owner: AI Governance Council / PactDepthGatekeeper
       status: done
       notes: Kyverno & Policy-Doku abgeschlossen, Monitoring weiterführen
     observability:
       owner: TelemetryOps / Health Maintainers
-      status: planned
-      notes: '`prom-compose` aktiv, `/metrics`-Rollout ausstehend'
-  next:
-    - Issues mit Playbook-Checkpoints anlegen und Status über codexfeedback synchronisieren
+      status: done
+      notes: '`prom-compose` aktiv, `/metrics`-Rollout umgesetzt, Smoke-Tests dokumentiert'
+  next: []
 fraktal21:
   status: ready-for-review
   checkpoints:

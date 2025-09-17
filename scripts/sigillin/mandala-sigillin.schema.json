@@ -1,0 +1,22 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Mandala Sigillin Core Schema",
+  "description": "Minimalanforderungen für ein Unified Mandala Sigillin.",
+  "type": "object",
+  "properties": {
+    "sigillin": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "minLength": 3 },
+        "title": { "type": "string", "minLength": 3 },
+        "sigillin_type": { "type": "string" },
+        "audience": { "type": "string" },
+        "essenz": { "type": "string", "minLength": 5 },
+        "links": { "type": "array", "items": { "type": "string" } },
+        "content": { "type": "object" }
+      },
+      "required": ["id", "title", "essenz", "content"]
+    }
+  },
+  "required": ["sigillin"]
+}

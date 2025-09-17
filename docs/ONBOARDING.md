@@ -69,8 +69,14 @@ pnpm policy:check        # Governance-Gates
 ### Services starten
 
 ```bash
-# Development (Hot Reload via tsx)
+# Development (UI + Proxy)
+pnpm dev:ui
+
+# Zweite Shell: Backend-Proxy (tsx)
 pnpm dev:services
+
+# Service-Cluster (mehrere APIs)
+pnpm dev:cluster
 
 # Production Preview (setzt pnpm build voraus)
 pnpm start:services

@@ -1,12 +1,25 @@
-sigil_id: "aeon:2025-0705-COSMIC-THEORY"
-title: "CosmicTheoryAgent Core Sigil"
-type: "agent-sigil"
-date_created: "2025-07-05"
-created_by: "GenesisAeon"
-description: >
-  Dieses Sigil bündelt die kosmischen Analysefähigkeiten des CosmicTheoryAgent.
-  Es dient als Identifikator für sämtliche Module und Hooks des Agents im
-  UnifiedMandala Projekt.
-metadata:
-  related_agent: "CosmicTheoryAgent"
-  version: "1.0"
+sigillin:
+  id: aeon:2025-0705-COSMIC-THEORY
+  title: CosmicTheoryAgent Core Sigil
+  sigillin_type: agent-sigil
+  audience: CosmicTheory Maintainers
+  essenz: >-
+    CREP harmonisiert Analyse, damit der CosmicTheoryAgent Coherence, Resonance,
+    Emergence und Poetics verbindet und der Trikāya-Bezug in allen Modulen bleibt.
+  links: []
+  content:
+    text: >-
+      CREP-Fokus: Coherence hält kosmologische Modelle konsistent, Resonance gleicht
+      sie mit Community-Echos ab, Emergence entdeckt neue Hypothesen und Poetics
+      rahmt die Narration. Über den Trikāya-Weg (Dharmakāya Quelle, Sambhogakāya
+      Dialog, Nirmāṇakāya Umsetzung) bleiben Analyse und Handlung synchron. Nächste
+      Handlung: Agent-Hooks im Dist-First Build testen und Telemetrie mit dem
+      Monitoring-Profil koppeln.
+    metadata:
+      created_by: GenesisAeon
+      date_created: '2025-07-05'
+      description: >-
+        Dieses Sigillin bündelt die kosmischen Analysefähigkeiten des
+        CosmicTheoryAgent und dient als Identifikator für Module und Hooks.
+      related_agent: CosmicTheoryAgent
+      version: '1.0'

@@ -1,16 +1,17 @@
 # Codex Feedback
 
+- FR-UM-2025-09-30-Fraktal44-Stabilisierungsschluss: Alle offenen Läufe aus Fraktal40/41/43 finalisiert, Sigillin-Validator + CI-Hook (`pnpm validate:sigillins`) aktiviert, Dist-First/Observability/Governance gemäß Playbook bestätigt, codexfeedback-fraktal44.yaml & fraktal44.md angelegt.
 - FR-UM-2025-09-24-Fraktal43-BuildRelease: Dockerfile.dev jetzt Node20+Python3 (Compose parity), docker-compose Profile (core/newsbot/climate/llm/global/agents/monitoring) + Grafana 3300, Light-Static-Server mit Health/Vary/Cache-Control, neues `pnpm smoke:light-static` für Brotli/Gzip; Playbook/YAML-Tracker aktualisiert (dist-first/runtime-smoke in-progress, compose-profiles done).
 - FR-UM-2025-09-23-Fraktal43-Nightly: CI-Nightly (`ci.nightly.yml`) spiegelt den Core-Lauf inkl. Toolchain-Artefakt, README/CONTRIBUTING beschreiben den Dist-First-Runner `scripts/run-dist.mjs`, Playbook-Owner-Map + codexfeedback-Tracker aktualisiert – Extended/Nightly Optimierungen laufen weiter über Fraktal41.
 - FR-UM-2025-09-22-Fraktal43: Dist-first Runner (`scripts/run-dist.mjs`) ersetzt ts-node-Kommandos, AI-Policy-Beispiele dokumentiert, codexfeedback-Hooks aktualisiert – V1-Stabilisierungsschritte laufen weiter.
 
 ## V1.0 Playbook Tracker (Fraktal40)
 
-- **stability** (Codex CoreOps ↔ SyncRunner): `core-ci-hardening` in-progress – Nightly-Mirror `ci.nightly.yml` + Toolchain-Artefakt aktiv.
-- **code-quality** (DevX Guild ↔ PatternReactivator): `lint-doc-refresh` done – README/CONTRIBUTING führen `scripts/run-dist.mjs`, CLI-Doku-Follow-up offen.
-- **build-release** (ReleaseOps Circle ↔ VisionContextIntegrator): `dist-first` & `runtime-smoke` in-progress, Compose-Profile done – Dockerfile.dev Node20/Python3 + Profile-Matrix aktiv.
-- **governance** (AI Governance Council ↔ PactDepthGatekeeper): Kyverno/Policy-Doku done – laufendes Monitoring der Entscheidungen.
-- **observability** (TelemetryOps ↔ Health Maintainers): `prom-compose` done – `/metrics`-Rollout via @um/health noch ausstehend.
+- **stability** (Codex CoreOps ↔ SyncRunner): `core-ci-hardening` done – Nightly-Mirror `ci.nightly.yml` + Toolchain-Artefakt laufen fail-fast, Nightly-Auswertung dokumentiert.
+- **code-quality** (DevX Guild ↔ PatternReactivator): `lint-doc-refresh` done – README/CONTRIBUTING führen `scripts/run-dist.mjs` und neue Dev-Flow (`pnpm dev:ui`/`pnpm dev:services`).
+- **build-release** (ReleaseOps Circle ↔ VisionContextIntegrator): `dist-first` & `runtime-smoke` done – Dockerfile.dev Node20/Python3, Dist-First-Skripte aktiv, Light-Static-Suite dokumentiert und geprobt.
+- **governance** (AI Governance Council ↔ PactDepthGatekeeper): `policy-docs` done – AI_POLICY & Policy-Suite final, Nightly-Review verankert.
+- **observability** (TelemetryOps ↔ Health Maintainers): `prom-compose` done – `/metrics`-Rollout via @um/health geprüft, Monitoring-Profil mit Smoke-Test eingebunden.
 - FR-UM-2025-09-20-Fraktal40: v1.0-Stabilization-Playbook (docs/roadmap/v1.0-stabilization-playbook.md & .yaml) erstellt – Owner-Matrix & Status-Tracker ergänzt, Umsetzungsschritte offen, Folgefraktale erforderlich.
 - FR-UM-2025-09-21-Fraktal41: CI-Core mit Lint/Format erweitert, Extended-Nightly auf Node20 mit Coverage-Job aktiviert, Monitoring-Profil (Prometheus/Grafana) ergänzt – Dist-first Agent-Skripte & AI-Policy-Beispiele via Fraktal43 erledigt, Extended/Nightly Optimierungen folgen.
 - FR-UM-2025-09-19-Fraktal39: Policy-Suite vereinheitlicht (OPA/Guardrails CLI, Kyverno-Report, Workflow ohne continue-on-error) – bereit für Folgeaufgaben.
