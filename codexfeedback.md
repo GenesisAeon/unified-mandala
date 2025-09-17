@@ -1,5 +1,6 @@
 # Codex Feedback
 
+- FR-UM-2025-09-24-Fraktal43-BuildRelease: Dockerfile.dev jetzt Node20+Python3 (Compose parity), docker-compose Profile (core/newsbot/climate/llm/global/agents/monitoring) + Grafana 3300, Light-Static-Server mit Health/Vary/Cache-Control, neues `pnpm smoke:light-static` für Brotli/Gzip; Playbook/YAML-Tracker aktualisiert (dist-first/runtime-smoke in-progress, compose-profiles done).
 - FR-UM-2025-09-23-Fraktal43-Nightly: CI-Nightly (`ci.nightly.yml`) spiegelt den Core-Lauf inkl. Toolchain-Artefakt, README/CONTRIBUTING beschreiben den Dist-First-Runner `scripts/run-dist.mjs`, Playbook-Owner-Map + codexfeedback-Tracker aktualisiert – Extended/Nightly Optimierungen laufen weiter über Fraktal41.
 - FR-UM-2025-09-22-Fraktal43: Dist-first Runner (`scripts/run-dist.mjs`) ersetzt ts-node-Kommandos, AI-Policy-Beispiele dokumentiert, codexfeedback-Hooks aktualisiert – V1-Stabilisierungsschritte laufen weiter.
 
@@ -7,7 +8,7 @@
 
 - **stability** (Codex CoreOps ↔ SyncRunner): `core-ci-hardening` in-progress – Nightly-Mirror `ci.nightly.yml` + Toolchain-Artefakt aktiv.
 - **code-quality** (DevX Guild ↔ PatternReactivator): `lint-doc-refresh` done – README/CONTRIBUTING führen `scripts/run-dist.mjs`, CLI-Doku-Follow-up offen.
-- **build-release** (ReleaseOps Circle ↔ VisionContextIntegrator): `dist-first` & Compose-Profile pending – nächste Sprintplanung.
+- **build-release** (ReleaseOps Circle ↔ VisionContextIntegrator): `dist-first` & `runtime-smoke` in-progress, Compose-Profile done – Dockerfile.dev Node20/Python3 + Profile-Matrix aktiv.
 - **governance** (AI Governance Council ↔ PactDepthGatekeeper): Kyverno/Policy-Doku done – laufendes Monitoring der Entscheidungen.
 - **observability** (TelemetryOps ↔ Health Maintainers): `prom-compose` done – `/metrics`-Rollout via @um/health noch ausstehend.
 - FR-UM-2025-09-20-Fraktal40: v1.0-Stabilization-Playbook (docs/roadmap/v1.0-stabilization-playbook.md & .yaml) erstellt – Owner-Matrix & Status-Tracker ergänzt, Umsetzungsschritte offen, Folgefraktale erforderlich.
