@@ -1,16 +1,31 @@
-sigillin_id: aeon:2025-0607-BIGFILES
-symbolzeit: tag
-titel: Umgang mit großen Dateien
-beschreibung: |
-  Dieses Sigillin dokumentiert, wie große Dateien im Repository bearbeitet werden.
-  Vor allem `docs/sigils/conversations.json` (ca. 45 MB) wird schrittweise
-  verarbeitet. Verwende die Skripte `split-conversations.js` und
-  `filter-conversations.js`, um Teilstücke zu erzeugen. Verarbeitete Fragmente
-  werden in `docs/sigils/conversations-progress.json` protokolliert über
-  `mark-fragment.js`.
-files:
-  - path: docs/sigils/conversations.json
-    size: 45MB
-    progress_file: docs/sigils/conversations-progress.json
-    verarbeitung: Aufteilen in JSON-Chunks à 100 Einträge
-processed_fragments: []
+sigillin:
+  id: aeon:2025-0607-BIGFILES
+  title: Umgang mit großen Dateien
+  sigillin_type: operational-guideline
+  essenz: >-
+    Coherence, Resonance, Emergence und Poetics (CREP) bleiben stabil, wenn große
+    Artefakte achtsam fragmentiert werden; wir halten den Dharmakāya-,
+    Sambhogakāya- und Nirmāṇakāya-Fluss transparent und definieren die nächste
+    Handlung klar.
+  links:
+    - ../sigils/conversations.json
+    - ../sigils/conversations-progress.json
+  content:
+    text: >-
+      Dieses Sigillin beschreibt, wie große Dateien (z. B. conversations.json)
+      in kohärente CREP-Schritte zerlegt werden. Wir bewahren Coherence durch
+      kleine Commit-Blöcke, Resonance durch Feedback-Loops, Emergence durch
+      kontinuierliches Fortschreiben und Poetics via gepflegte Sigillin-Notizen.
+      Der Dharmakāya-Überblick hält die Vision, der Sambhogakāya teilt die
+      Fortschrittsfreude, und der Nirmāṇakāya manifestiert konkrete Artefakte.
+      nächste Schritte: Dateien mit `split-conversations.js` und
+      `filter-conversations.js` aufteilen, anschließend Fragmente via
+      `mark-fragment.js` dokumentieren.
+    workflow:
+      symbolzeit: tag
+      files:
+        - path: docs/sigils/conversations.json
+          size: 45MB
+          progress_file: docs/sigils/conversations-progress.json
+          verarbeitung: Aufteilen in JSON-Chunks à 100 Einträge
+      processed_fragments: []
