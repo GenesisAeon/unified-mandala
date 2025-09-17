@@ -3,13 +3,13 @@ fraktal:
   history:
     - id: 43
       status: 'in-progress'
-      notes: 'Dist-first Runner (scripts/run-dist.mjs) + AI-Policy-Beispiele implementiert; V1-Playbook Sync laufend'
+      notes: 'Dist-first Runner (scripts/run-dist.mjs) + AI-Policy-Beispiele implementiert; CI-Nightly Mirror & Owner-Mapping aktiv'
     - id: 41
       status: 'in-progress'
       notes: 'CI-Core erweitert (Lint/Format/Coverage-Hooks), Extended-Workflow auf Node20 mit Coverage-Job, Monitoring-Profil in docker-compose hinterlegt'
     - id: 40
-      status: 'analysis-ready'
-      notes: 'v1.0 Stabilization Playbook (docs/roadmap/v1.0-stabilization-playbook.*) vorbereitet; Umsetzung folgt in Folgefraktalen'
+      status: 'in-progress'
+      notes: 'v1.0 Stabilization Playbook (docs/roadmap/v1.0-stabilization-playbook.*) plus Owner-/Backup-Matrix; Umsetzung läuft, Tracker synchronisiert'
     - id: 39
       status: 'done'
       notes: 'Policy suite unified: CLI OPA/Guardrails, Kyverno summary + fail-fast workflow'
@@ -62,8 +62,8 @@ fraktal43:
   checkpoints:
     - 'scripts/run-dist.mjs ersetzt ts-node für Produktionskommandos'
     - 'AI_POLICY.md/.yaml enthalten Allow/Review/Block Beispiele'
+    - 'ci.nightly.yml spiegelt type-and-tests (Node20/Python3.11) inkl. Toolchain-Artefakt'
   next:
-    - 'Dist-first Rollout dokumentieren (README/CONTRIBUTING)'
     - 'Fraktal41 Nightly/Extended Follow-ups koordinieren'
 
 fraktal41:
@@ -75,18 +75,39 @@ fraktal41:
       implemented: yes
     - name: 'Nightly/Extended Tests etabliert'
       implemented: partial
+      notes: 'Nightly Mirror via ci.nightly.yml aktiv, Extended-Auswertung & Alerts offen'
     - name: 'Monitoring-Profil (Prometheus/Grafana)'
       implemented: yes
     - name: 'ts-node im Produktionspfad entfernt'
       implemented: yes
 
 fraktal40:
-  status: 'analysis-ready'
+  status: 'in-progress'
   checkpoints:
     - 'Playbook veröffentlicht: docs/roadmap/v1.0-stabilization-playbook.md'
     - 'Blueprint erstellt: docs/roadmap/v1.0-stabilization-playbook.yaml'
+  tracker:
+    stability:
+      owner: 'Codex CoreOps / SyncRunner'
+      status: 'in-progress'
+      notes: 'ci.nightly.yml aktiv, Toolchain-Artefakt verfügbar; Ergebnis-Auswertung geplant'
+    code-quality:
+      owner: 'DevX Guild / PatternReactivator'
+      status: 'done'
+      notes: 'README & CONTRIBUTING dokumentieren run-dist inkl. Overrides'
+    build-release:
+      owner: 'ReleaseOps Circle / VisionContextIntegrator'
+      status: 'planned'
+      notes: 'dist-first Checkpoint & Compose-Profile offen'
+    governance:
+      owner: 'AI Governance Council / PactDepthGatekeeper'
+      status: 'done'
+      notes: 'Kyverno & Policy-Doku abgeschlossen, Monitoring weiterführen'
+    observability:
+      owner: 'TelemetryOps / Health Maintainers'
+      status: 'planned'
+      notes: '`prom-compose` aktiv, `/metrics`-Rollout ausstehend'
   next:
-    - 'Owner pro Stream (stability/code-quality/build-release/governance/observability) festlegen'
     - 'Issues mit Playbook-Checkpoints anlegen und Status über codexfeedback synchronisieren'
 
 fraktal21:

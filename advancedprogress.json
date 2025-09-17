@@ -33,6 +33,10 @@
   ],
   "progress": [
     {
+      "commit": "Fraktal43: nightly mirror + dist-first docs",
+      "status": "in-progress"
+    },
+    {
       "commit": "Fraktal41: Kyverno policy suite fallback",
       "status": "in-progress"
     },
@@ -6364,6 +6368,6 @@
     }
   ],
   "changedFiles": [],
-  "lastUpdated": "2025-09-04T13:48:52.382Z",
+  "lastUpdated": "2025-09-23T09:00:00Z",
   "commitHash": "743851c2bde0ad40d543d912aeebbbde384e43fd"
 }

@@ -3,7 +3,7 @@
     {
       "fraktalrun": "Fraktal43 DistFirstRunner",
       "status": "in-progress",
-      "notes": "Dist-first runner (scripts/run-dist.mjs) ersetzt ts-node Kommandos, AI-Policy-Beispiele veröffentlicht; README/CONTRIBUTING Follow-up geplant."
+      "notes": "Dist-first runner ersetzt ts-node; README/CONTRIBUTING dokumentieren run-dist, Nightly-Core-Mirror vorbereitet."
     },
     {
       "fraktalrun": "Fraktal41 PolicyHardening",
@@ -12,8 +12,8 @@
     },
     {
       "fraktalrun": "Fraktal40 V1Stabilization",
-      "status": "analysis-ready",
-      "notes": "Playbook + YAML blueprint for v1.0 stabilization (docs/roadmap/v1.0-stabilization-playbook.*). Implementation tasks pending."
+      "status": "in-progress",
+      "notes": "Playbook + YAML blueprint für v1.0 Stabilisierung; Owner/Backup je Stream gesetzt, ci.nightly Mirror aktiv, Status-Tracking über codexfeedback.*."
     },
     {
       "fraktalrun": "Fraktal39 PolicySuite",

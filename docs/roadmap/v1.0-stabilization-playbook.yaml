@@ -1,13 +1,16 @@
 fraktal: 40
 release: v1.0
 owner: codex
-updated: 2025-09-22
+updated: 2025-09-23
 summary: |
   Strukturierter Maßnahmenplan zur Umsetzung der Fraktal40-Besprechung.
   Fokus auf stabile Kern-Builds, dist-first Services, verschärfte Governance
   und dokumentierte Release-Drills.
 streams:
   - key: stability
+    owner:
+      lead: Codex CoreOps / CodexAuditAgent
+      backup: SyncRunner Nightly Stewardship
     objective: Core- und Extended-Builds dauerhaft grün halten.
     related_files:
       - .github/workflows/ci.core.yml
@@ -17,6 +20,7 @@ streams:
       - id: core-ci-hardening
         description: 'Fail-fast Verhalten und Nightly-Matrix in CI Core etablieren'
         status: in-progress
+        notes: 'ci.nightly.yml spiegelt type-and-tests; Toolchain-Artefakt wird hochgeladen'
         success:
           - pnpm test:ts:ci
           - pnpm test:py
@@ -34,6 +38,9 @@ streams:
           - out/policy/policy-suite.json
           - out/policy/policy-suite.md
   - key: code-quality
+    owner:
+      lead: DevX Guild
+      backup: PatternReactivator Collective
     objective: Linting, Formatting und Skriptlandschaft konsolidieren.
     related_files:
       - package.json
@@ -43,12 +50,16 @@ streams:
     checkpoints:
       - id: lint-doc-refresh
         description: 'README/CONTRIBUTING mit Dist-First und Hook-Hinweisen erweitern'
-        status: planned
+        status: done
+        notes: 'README & CONTRIBUTING beschreiben scripts/run-dist.mjs inkl. `UM_RUN_DIST_*` Overrides'
       - id: ts-node-retire
         description: 'Produktionspfade auf `node dist/...` umstellen'
         status: done
         notes: 'scripts/run-dist.mjs ersetzt ts-node in Paket-Skripten'
   - key: build-release
+    owner:
+      lead: ReleaseOps Circle
+      backup: VisionContextIntegrator
     objective: Dist-First-Builds, Docker-Drills und Smoke-Tests automatisieren.
     related_files:
       - Dockerfile
@@ -66,6 +77,9 @@ streams:
         description: '`pnpm start:light` + HTTP-Smoketest automatisieren'
         status: planned
   - key: governance
+    owner:
+      lead: AI Governance Council
+      backup: PactDepthGatekeeper
     objective: Transparente Policy-Gates & Dokumentation.
     related_files:
       - scripts/policy-suite.mjs
@@ -80,6 +94,9 @@ streams:
         status: done
         notes: 'Entscheidungsbeispiele dokumentiert (Allow/Review/Block)'
   - key: observability
+    owner:
+      lead: TelemetryOps / GenesisAeonNavigator
+      backup: Health Package Maintainers
     objective: Prometheus/Grafana in den Release-Fluss integrieren.
     related_files:
       - observability/prometheus.yml
