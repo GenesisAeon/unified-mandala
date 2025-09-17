@@ -1,6 +1,11 @@
 fraktal:
-  current: 44
+  current: 45
   history:
+    - id: 45
+      status: done
+      notes: 'Type-and-tests Lauf (`pnpm test:ts:ci`) scheiterte an ESLint-Config ohne plugin:@typescript-eslint/recommended; Extend hinzugefügt und Lauf erfolgreich verifiziert.'
+      validations:
+        - pnpm test:ts:ci
     - id: 44
       status: done
       notes:
@@ -64,6 +69,7 @@ fraktal:
   progress:
     legacy_workflows: disabled
     ci_core: fail-fast-nightly
+    ci_jobs: green
     policy_checks: unified-report
     repo_sanity: resilient
     documentation: finalized
@@ -129,6 +135,19 @@ fraktal40:
       status: done
       notes: '`prom-compose` aktiv, `/metrics`-Rollout in Release-Drill bestätigt; Alerts dokumentiert.'
   next: []
+fraktal45:
+  status: done
+  focus:
+    - 'Type-and-tests Job (`pnpm test:ts:ci`) repariert'
+    - 'ESLint-Konfiguration um `plugin:@typescript-eslint/recommended` erweitert'
+    - 'Lauf erneut validiert (Vitest low-memory)'
+  notes:
+    - 'Ursache: fehlende Recommended-Extends verhinderte ESLint-Regelsatz in Tests/eslint-config.test.ts'
+    - 'Lösung: `.eslintrc.cjs` erweitert, Tests erneut grün'
+  repeat_required: false
+  validation:
+    - pnpm test:ts
+    - pnpm test:ts:ci
 fraktal21:
   status: done
   checkpoints:

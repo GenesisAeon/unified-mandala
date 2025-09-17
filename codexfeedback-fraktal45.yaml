@@ -1,0 +1,20 @@
+fraktal: 45
+status: done
+owner: Codex
+summary:
+  - 'Type-and-tests Job (`pnpm test:ts:ci`) schlug fehl, weil `plugin:@typescript-eslint/recommended` im ESLint-Extends fehlte.'
+  - '`.eslintrc.cjs` um das Recommended-Set ergänzt, damit Vitest/ESLint-Prüfung in CI wieder greift.'
+  - 'Läufe `pnpm test:ts` und `pnpm test:ts:ci` ausgeführt; beide grün und bestätigen die Reparatur.'
+ci_jobs:
+  name: type-and-tests
+  workflow: .github/workflows/ci.core.yml
+  failure_mode: Tests/eslint-config.test.ts erwartete fehlendes Recommended-Extends.
+  remediation:
+    file: .eslintrc.cjs
+    change: 'Added `plugin:@typescript-eslint/recommended` to extends array.'
+  validation:
+    - pnpm test:ts
+    - pnpm test:ts:ci
+hooks:
+  repeat_required: false
+  follow_up: Beobachte Nightly-Run (`ci.nightly.yml`) auf erneute ESLint-Divergenzen.

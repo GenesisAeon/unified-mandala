@@ -1,6 +1,11 @@
 {
   "runs": [
     {
+      "fraktalrun": "Fraktal45 CIJobs",
+      "status": "implemented",
+      "notes": "Type-and-tests job scheiterte an fehlendem plugin:@typescript-eslint/recommended; ESLint-Config erweitert und pnpm test:ts:ci erneut erfolgreich ausgeführt."
+    },
+    {
       "fraktalrun": "Fraktal44 StabilizationFinale",
       "status": "implemented",
       "notes": "Fraktal40/41/43 Backlog geschlossen; Sigillin-Validator + CI-Workflow hinzugefügt; Dev-Skripte reorganisiert (`pnpm dev`, `pnpm dev:services`, `pnpm dev:stack`); Release-Drill inkl. Monitoring-Smoke verifiziert."
