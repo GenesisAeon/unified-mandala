@@ -1,7 +1,7 @@
 fraktal: 40
 release: v1.0
 owner: codex
-updated: 2025-09-23
+updated: '2025-09-24'
 summary: |
   Strukturierter Maßnahmenplan zur Umsetzung der Fraktal40-Besprechung.
   Fokus auf stabile Kern-Builds, dist-first Services, verschärfte Governance
@@ -18,21 +18,22 @@ streams:
       - ci/agent.yml
     checkpoints:
       - id: core-ci-hardening
-        description: 'Fail-fast Verhalten und Nightly-Matrix in CI Core etablieren'
+        description: Fail-fast Verhalten und Nightly-Matrix in CI Core etablieren
         status: in-progress
-        notes: 'ci.nightly.yml spiegelt type-and-tests; Toolchain-Artefakt wird hochgeladen'
+        notes: ci.nightly.yml spiegelt type-and-tests; Toolchain-Artefakt wird hochgeladen
         success:
           - pnpm test:ts:ci
           - pnpm test:py
           - npx pyright
       - id: experimental-signal
-        description: 'Guardrails & Agent Dry-Runs ohne `|| true`; Ergebnisse als Checks publizieren'
+        description: Guardrails & Agent Dry-Runs ohne `|| true`; Ergebnisse als Checks
+          publizieren
         status: in-progress
         artifacts:
           - agents-dry-run.log
           - out/policy/policy-suite.json
       - id: policy-suite-unify
-        description: 'pnpm policy:check bündelt OPA, Guardrails und Kyverno'
+        description: pnpm policy:check bündelt OPA, Guardrails und Kyverno
         status: done
         output:
           - out/policy/policy-suite.json
@@ -49,13 +50,14 @@ streams:
       - docker-compose.yml
     checkpoints:
       - id: lint-doc-refresh
-        description: 'README/CONTRIBUTING mit Dist-First und Hook-Hinweisen erweitern'
+        description: README/CONTRIBUTING mit Dist-First und Hook-Hinweisen erweitern
         status: done
-        notes: 'README & CONTRIBUTING beschreiben scripts/run-dist.mjs inkl. `UM_RUN_DIST_*` Overrides'
+        notes: README & CONTRIBUTING beschreiben scripts/run-dist.mjs inkl. `UM_RUN_DIST_*`
+          Overrides
       - id: ts-node-retire
-        description: 'Produktionspfade auf `node dist/...` umstellen'
+        description: Produktionspfade auf `node dist/...` umstellen
         status: done
-        notes: 'scripts/run-dist.mjs ersetzt ts-node in Paket-Skripten'
+        notes: scripts/run-dist.mjs ersetzt ts-node in Paket-Skripten
   - key: build-release
     owner:
       lead: ReleaseOps Circle
@@ -69,13 +71,19 @@ streams:
     checkpoints:
       - id: dist-first
         description: '`pnpm build` liefert alle Artefakte für Prod-Start ohne ts-node'
-        status: pending
+        status: in-progress
+        notes: Dockerfile.dev auf Node20/Python3 gehoben; dist-first CLI-Dokumentation
+          folgt.
       - id: compose-profiles
-        description: 'docker-compose Profile für core/newsbot/climate definieren'
-        status: planned
+        description: docker-compose Profile für core/newsbot/climate definieren
+        status: done
+        notes: docker-compose Profile für core/newsbot/climate/llm/global/agents/monitoring
+          aktiv.
       - id: runtime-smoke
         description: '`pnpm start:light` + HTTP-Smoketest automatisieren'
-        status: planned
+        status: in-progress
+        notes: Light-static smoke script verfügbar (`pnpm smoke:light-static`); CI-Einbindung
+          offen.
   - key: governance
     owner:
       lead: AI Governance Council
@@ -87,12 +95,12 @@ streams:
       - policies/merge-guardrails.yaml
     checkpoints:
       - id: kyverno-integration
-        description: 'Kyverno CLI in policy-suite aufnehmen'
+        description: Kyverno CLI in policy-suite aufnehmen
         status: done
       - id: policy-docs
-        description: 'AI_POLICY.md/Ai_POLICY.yaml mit Allow/Deny Beispielen ergänzen'
+        description: AI_POLICY.md/Ai_POLICY.yaml mit Allow/Deny Beispielen ergänzen
         status: done
-        notes: 'Entscheidungsbeispiele dokumentiert (Allow/Review/Block)'
+        notes: Entscheidungsbeispiele dokumentiert (Allow/Review/Block)
   - key: observability
     owner:
       lead: TelemetryOps / GenesisAeonNavigator
@@ -104,10 +112,10 @@ streams:
       - packages/health
     checkpoints:
       - id: metrics-endpoints
-        description: 'Alle Services exportieren `/metrics` via @um/health'
+        description: Alle Services exportieren `/metrics` via @um/health
         status: planned
       - id: prom-compose
-        description: 'Compose-Profile für Prometheus/Grafana aktivieren'
+        description: Compose-Profile für Prometheus/Grafana aktivieren
         status: done
 milestones:
   - name: Sprint 0 – Playbook Review
@@ -134,24 +142,24 @@ milestones:
       - compose-profiles
       - prom-compose
 tracking:
-  codexfeedback_hook: 'fraktal40'
+  codexfeedback_hook: fraktal40
   progress_log:
     - file: codexfeedback.md
-      action: 'neue Laufnotizen hinzufügen'
+      action: neue Laufnotizen hinzufügen
     - file: codexfeedback.json
-      action: 'statusflag aktualisieren'
+      action: statusflag aktualisieren
     - file: codexfeedback.yaml
-      action: 'current=40 setzen, checkpoints pflegen'
+      action: current=40 setzen, checkpoints pflegen
   follow_up:
     - file: advancedprogress.json
-      action: 'Sprint-Ergebnisse spiegeln'
+      action: Sprint-Ergebnisse spiegeln
 risks:
   - id: ci-flakes
-    description: 'Persistente Vitest/Pytest-Flakes können Fail-Fast-Ansatz ausbremsen'
-    mitigation: 'Tests taggen, Retries nur in Nightlies zulassen, Flake-Issues pflegen'
+    description: Persistente Vitest/Pytest-Flakes können Fail-Fast-Ansatz ausbremsen
+    mitigation: Tests taggen, Retries nur in Nightlies zulassen, Flake-Issues pflegen
   - id: docker-toolchain-drift
-    description: 'Unterschiedliche Node-Versionen (Dockerfile vs Dockerfile.dev)'
-    mitigation: 'Baseline auf Node 20 angleichen, Renovate/Dependabot für Images erwägen'
+    description: Unterschiedliche Node-Versionen (Dockerfile vs Dockerfile.dev)
+    mitigation: Baseline auf Node 20 angleichen, Renovate/Dependabot für Images erwägen
   - id: policy-tooling-gaps
-    description: 'Kyverno/OPA Binaries nicht auf Runner verfügbar'
-    mitigation: 'Fallback auf Containerized CLI, Preflight-Check in policy-suite'
+    description: Kyverno/OPA Binaries nicht auf Runner verfügbar
+    mitigation: Fallback auf Containerized CLI, Preflight-Check in policy-suite

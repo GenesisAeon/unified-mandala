@@ -3,7 +3,7 @@
     {
       "fraktalrun": "Fraktal43 DistFirstRunner",
       "status": "in-progress",
-      "notes": "Dist-first runner ersetzt ts-node; README/CONTRIBUTING dokumentieren run-dist, Nightly-Core-Mirror vorbereitet."
+      "notes": "Dist-first runner ersetzt ts-node; Dockerfile.dev Node20+Python3, light-static smoke (`pnpm smoke:light-static`), Compose profiles documented; README/CONTRIBUTING follow-ups pending."
     },
     {
       "fraktalrun": "Fraktal41 PolicyHardening",
@@ -13,7 +13,7 @@
     {
       "fraktalrun": "Fraktal40 V1Stabilization",
       "status": "in-progress",
-      "notes": "Playbook + YAML blueprint für v1.0 Stabilisierung; Owner/Backup je Stream gesetzt, ci.nightly Mirror aktiv, Status-Tracking über codexfeedback.*."
+      "notes": "Playbook/YAML updated: dist-first & runtime-smoke in-progress (Node20 dev baseline, light-static smoke script), compose profiles done; ci.nightly Mirror aktiv, Status-Tracking via codexfeedback.*."
     },
     {
       "fraktalrun": "Fraktal39 PolicySuite",
