@@ -1,0 +1,1258 @@
+{
+  "meta": {
+    "title": "Unified Mandala Command Catalog",
+    "fraktal": 51,
+    "generated": "2025-10-10T12:00:00Z",
+    "description": "Konsolidierter Befehlsindex für pnpm-Skripte, Shell-Werkzeuge und AI-gesteuerte\nHilfsprogramme im Unified-Mandala-Repository. Die Sammlung ergänzt\ndocs/roadmap/v1.0-stabilization-playbook.* und MandalaMap.* um eine\nausführbare Perspektive und erleichtert Fraktalläufe, QA-Checks sowie\nGovernance-Reviews.\n",
+    "reference_docs": [
+      "docs/roadmap/v1.0-stabilization-playbook.md",
+      "docs/roadmap/v1.0-stabilization-playbook.yaml",
+      "MandalaMap.md"
+    ],
+    "source_files": ["package.json", "scripts/", "tools/"]
+  },
+  "categories": [
+    {
+      "key": "environment_setup",
+      "title": "Environment & Setup",
+      "stewards": ["DevX Guild", "Codex CoreOps"],
+      "entries": [
+        {
+          "id": "pnpm-install",
+          "name": "pnpm install",
+          "command": "pnpm install",
+          "type": "workspace",
+          "description": "Installiert alle Node-Abhängigkeiten des Monorepos via pnpm Workspace-Resolution.",
+          "source": "pnpm workspace root",
+          "tags": ["setup", "node"],
+          "related": ["scripts/setup-dev-env.sh"]
+        },
+        {
+          "id": "pnpm-prepare",
+          "name": "pnpm prepare",
+          "command": "pnpm prepare",
+          "type": "workspace",
+          "description": "Initialisiert Husky und installiert Git-Hooks für lint-staged/Prettier.",
+          "source": "package.json:scripts.prepare",
+          "tags": ["setup", "git-hooks"],
+          "notes": [
+            "Automatisch nach pnpm install via npm lifecycle, bei Bedarf manuell aufrufbar."
+          ]
+        },
+        {
+          "id": "adapters-ci-install",
+          "name": "pnpm adapters:ci:install",
+          "command": "pnpm adapters:ci:install",
+          "type": "workspace",
+          "description": "Installiert Python-Abhängigkeiten der Adapter-Suite (requirements.txt) für lokale Läufe und CI.",
+          "source": "package.json:scripts['adapters:ci:install']",
+          "tags": ["python", "adapters", "setup"],
+          "related": ["src/adapters/requirements.txt"]
+        },
+        {
+          "id": "poetry-install-test",
+          "name": "poetry install --with test",
+          "command": "poetry install --with test",
+          "type": "python",
+          "description": "Erzeugt ein Poetry-Environment inklusive Test-Abhängigkeiten für Python-Komponenten.",
+          "source": "AGENTS.md",
+          "tags": ["python", "setup"]
+        },
+        {
+          "id": "setup-dev-env",
+          "name": "./scripts/setup-dev-env.sh",
+          "command": "./scripts/setup-dev-env.sh",
+          "type": "shell",
+          "description": "Automatisiert OS-Paketinstallation, Git-Konfiguration, Python-Venv und pnpm-Setup für neue Arbeitsplätze.",
+          "source": "scripts/setup-dev-env.sh",
+          "tags": ["bootstrap", "setup"],
+          "notes": [
+            "Erkennt apt oder brew, richtet Venv & Node-Abhängigkeiten ein und installiert VS Code Erweiterungen optional."
+          ]
+        },
+        {
+          "id": "npx-pyright",
+          "name": "npx pyright",
+          "command": "npx pyright",
+          "type": "node-cli",
+          "description": "Führt statische Typprüfungen für das Python/TypeScript-Hybrid-Repo mit Pyright aus.",
+          "source": "AGENTS.md",
+          "tags": ["python", "types", "ci"]
+        },
+        {
+          "id": "npx-tsc-noemit",
+          "name": "npx tsc -p tsconfig.json --noEmit",
+          "command": "npx tsc -p tsconfig.json --noEmit",
+          "type": "node-cli",
+          "description": "Validiert den TypeScript-Quellcode ohne Artefakte zu generieren; identisch mit pnpm lint:types.",
+          "source": "AGENTS.md",
+          "tags": ["typescript", "types"]
+        }
+      ]
+    },
+    {
+      "key": "build_release",
+      "title": "Build & Release",
+      "stewards": ["ReleaseOps Circle", "VisionContextIntegrator"],
+      "entries": [
+        {
+          "id": "pnpm-build",
+          "name": "pnpm build",
+          "command": "pnpm build",
+          "type": "workspace",
+          "description": "Transpiliert den TypeScript-Code via tsconfig.build.json und triggert anschliessend pnpm build:agents.",
+          "source": "package.json:scripts.build",
+          "tags": ["build", "dist-first"],
+          "related": ["tsconfig.build.json", "dist/"]
+        },
+        {
+          "id": "pnpm-build-agents",
+          "name": "pnpm build:agents",
+          "command": "pnpm build:agents",
+          "type": "workspace",
+          "description": "Kompiliert Agents-Code mit tsconfig.agents.json und konvertiert AIJuristicAgent nach CJS für Node18-Kompatibilität.",
+          "source": "package.json:scripts['build:agents']",
+          "tags": ["build", "agents"],
+          "related": ["tsconfig.agents.json"]
+        },
+        {
+          "id": "pnpm-build-ui",
+          "name": "pnpm build:ui",
+          "command": "pnpm build:ui",
+          "type": "workspace",
+          "description": "Erzeugt das Frontend-Bundle im Workspace apps/ui via pnpm -F mandala-ui build.",
+          "source": "package.json:scripts['build:ui']",
+          "tags": ["build", "ui"],
+          "related": ["apps/ui/"]
+        },
+        {
+          "id": "pnpm-build-windows-tools",
+          "name": "pnpm build:windows-tools",
+          "command": "pnpm build:windows-tools",
+          "type": "workspace",
+          "description": "Startet das PowerShell-Buildskript für Windows-Hilfsprogramme (tools/windows/build-windows-tools.ps1).",
+          "source": "package.json:scripts['build:windows-tools']",
+          "tags": ["windows", "build"],
+          "related": ["tools/windows/build-windows-tools.ps1"]
+        },
+        {
+          "id": "pnpm-export-depth-bundle",
+          "name": "pnpm export_depth_bundle",
+          "command": "pnpm export_depth_bundle",
+          "type": "workspace",
+          "description": "Erstellt mit scripts/export-depth-bundle.ts ein Sigillin-Tiefenbundle (JSON) und einen Markdown-Index im exports/-Verzeichnis.",
+          "source": "package.json:scripts.export_depth_bundle",
+          "tags": ["release", "sigils"],
+          "related": ["scripts/export-depth-bundle.ts", "exports/"]
+        },
+        {
+          "id": "pnpm-generate-changelog",
+          "name": "pnpm generate:changelog",
+          "command": "pnpm generate:changelog",
+          "type": "workspace",
+          "description": "Generiert CHANGELOG-Einträge aus Commit-Historie über scripts/generate-changelog.js.",
+          "source": "package.json:scripts['generate:changelog']",
+          "tags": ["release", "docs"],
+          "related": ["CHANGELOG.md"]
+        }
+      ]
+    },
+    {
+      "key": "development_runtime",
+      "title": "Development & Runtime",
+      "stewards": ["DevX Guild", "Repositorypflege Collective"],
+      "entries": [
+        {
+          "id": "pnpm-dev-ui-dist",
+          "name": "pnpm dev",
+          "command": "pnpm dev",
+          "type": "workspace",
+          "description": "Startet den Mandala-UI-Entwicklungsserver mit UI_DIST=http://localhost:5173 für dist-first Flows.",
+          "source": "package.json:scripts.dev",
+          "tags": ["dev-server", "ui"],
+          "related": ["apps/ui/"]
+        },
+        {
+          "id": "pnpm-dev-ui",
+          "name": "pnpm dev:ui",
+          "command": "pnpm dev:ui",
+          "type": "workspace",
+          "description": "Direkter pnpm -F mandala-ui dev Aufruf für isolierte UI-Entwicklung ohne Proxy-Override.",
+          "source": "package.json:scripts['dev:ui']",
+          "tags": ["dev-server", "ui"]
+        },
+        {
+          "id": "pnpm-dev-services",
+          "name": "pnpm dev:services",
+          "command": "pnpm dev:services",
+          "type": "workspace",
+          "description": "Startet Node-Serviceprozesse via tsx scripts/dev-server.ts im Entwicklungsmodus (rag-api, flags-api, experiments-api, share-api, realtime-hub).",
+          "source": "package.json:scripts['dev:services']",
+          "tags": ["services", "dev-server"],
+          "related": ["scripts/dev-services.mjs"]
+        },
+        {
+          "id": "pnpm-dev-stack",
+          "name": "pnpm dev:stack",
+          "command": "pnpm dev:stack",
+          "type": "workspace",
+          "description": "Wrapper um scripts/dev-services.mjs --mode=dev zum simultanen Start aller lokalen Services.",
+          "source": "package.json:scripts['dev:stack']",
+          "tags": ["services", "orchestration"],
+          "notes": [
+            "Stoppt alle Kindprozesse sauber bei SIGINT/SIGTERM (siehe scripts/dev-services.mjs)."
+          ]
+        },
+        {
+          "id": "pnpm-start",
+          "name": "pnpm start",
+          "command": "pnpm start",
+          "type": "workspace",
+          "description": "Baut das UI (pnpm build:ui) und startet anschliessend den Entwicklungsserver (pnpm dev).",
+          "source": "package.json:scripts.start",
+          "tags": ["dev-server", "ui"]
+        },
+        {
+          "id": "pnpm-start-light",
+          "name": "pnpm start:light",
+          "command": "pnpm start:light",
+          "type": "workspace",
+          "description": "Erzeugt das UI-Bundle und startet den Light Static Server (scripts/light-static-server.mjs) für Brotli/Gzip-Bereitstellung.",
+          "source": "package.json:scripts['start:light']",
+          "tags": ["static-serve", "dist"],
+          "related": ["scripts/light-static-server.mjs"]
+        },
+        {
+          "id": "pnpm-start-all",
+          "name": "pnpm start:all",
+          "command": "pnpm start:all",
+          "type": "workspace",
+          "description": "Alias für pnpm dev:stack um alle lokalen Services in einem Schritt zu booten.",
+          "source": "package.json:scripts['start:all']",
+          "tags": ["services", "orchestration"]
+        },
+        {
+          "id": "pnpm-start-services",
+          "name": "pnpm start:services",
+          "command": "pnpm start:services",
+          "type": "workspace",
+          "description": "Startet die Service-Orchestrierung im Produktionsmodus (node dist/... --mode=prod) – erfordert vorherigen Build.",
+          "source": "package.json:scripts['start:services']",
+          "tags": ["services", "production"],
+          "related": ["dist/scripts/dev-services.mjs"]
+        },
+        {
+          "id": "pnpm-dev-voiceos",
+          "name": "pnpm dev:voiceos",
+          "command": "pnpm dev:voiceos",
+          "type": "workspace",
+          "description": "Führt scripts/voice-os-control-api.ts über run-dist aus, um VoiceOS-Steuerbefehle lokal bereitzustellen.",
+          "source": "package.json:scripts['dev:voiceos']",
+          "tags": ["voice", "services"]
+        },
+        {
+          "id": "pnpm-ghost-shell-cluster",
+          "name": "pnpm ghost-shell:cluster",
+          "command": "pnpm ghost-shell:cluster",
+          "type": "workspace",
+          "description": "Startet das Ghost-Shell-Cluster (services/ghost-shell/cluster.ts) via run-dist für Multinode-Simulationen.",
+          "source": "package.json:scripts['ghost-shell:cluster']",
+          "tags": ["ghost-shell", "services"]
+        },
+        {
+          "id": "pnpm-ghost-shell-server",
+          "name": "pnpm ghost-shell:server",
+          "command": "pnpm ghost-shell:server",
+          "type": "workspace",
+          "description": "Startet den Ghost-Shell-HTTP-Server (services/ghost-shell/server.ts) im Dist-First-Modus.",
+          "source": "package.json:scripts['ghost-shell:server']",
+          "tags": ["ghost-shell", "services"]
+        },
+        {
+          "id": "pnpm-generate-ghostshell-nginx",
+          "name": "pnpm generate:ghostshell-nginx",
+          "command": "pnpm generate:ghostshell-nginx",
+          "type": "workspace",
+          "description": "Erzeugt Nginx-Konfigurationen für Ghost-Shell-Deployments über scripts/generate-ghostshell-nginx.ts.",
+          "source": "package.json:scripts['generate:ghostshell-nginx']",
+          "tags": ["ghost-shell", "deployment"]
+        }
+      ]
+    },
+    {
+      "key": "lint_and_format",
+      "title": "Linting & Formatting",
+      "stewards": ["DevX Guild", "QualityAssuranceAgent"],
+      "entries": [
+        {
+          "id": "pnpm-lint",
+          "name": "pnpm lint",
+          "command": "pnpm lint",
+          "type": "workspace",
+          "description": "Aggregiert pnpm lint:types und pnpm lint:eslint für TypeScript- und ESLint-Prüfungen.",
+          "source": "package.json:scripts.lint",
+          "tags": ["lint", "typescript"]
+        },
+        {
+          "id": "pnpm-lint-types",
+          "name": "pnpm lint:types",
+          "command": "pnpm lint:types",
+          "type": "workspace",
+          "description": "Führt tsc -p tsconfig.json --noEmit aus, um TypeScript-Typfehler früh zu erkennen.",
+          "source": "package.json:scripts['lint:types']",
+          "tags": ["lint", "typescript"]
+        },
+        {
+          "id": "pnpm-lint-eslint",
+          "name": "pnpm lint:eslint",
+          "command": "pnpm lint:eslint",
+          "type": "workspace",
+          "description": "Prüft {scripts,services,src,tests} mit ESLint inkl. Cache und max-warnings=0.",
+          "source": "package.json:scripts['lint:eslint']",
+          "tags": ["lint", "eslint"]
+        },
+        {
+          "id": "pnpm-format",
+          "name": "pnpm format",
+          "command": "pnpm format",
+          "type": "workspace",
+          "description": "Formatiert zentrale Dokumente (README, CONTRIBUTING, ONBOARDING, codexfeedback.*, scripts/dev-services.mjs) mit Prettier.",
+          "source": "package.json:scripts.format",
+          "tags": ["format", "prettier"]
+        },
+        {
+          "id": "pnpm-format-check",
+          "name": "pnpm format:check",
+          "command": "pnpm format:check",
+          "type": "workspace",
+          "description": "Überprüft Prettier-Formatierung ohne Änderungen zu schreiben.",
+          "source": "package.json:scripts['format:check']",
+          "tags": ["format", "prettier"]
+        },
+        {
+          "id": "pnpm-lint-staged",
+          "name": "pnpm lint-staged",
+          "command": "pnpm lint-staged",
+          "type": "workspace",
+          "description": "Führt lint-staged Konfiguration (Prettier/ESLint) im Git-Staging-Kontext aus – verwendet von Husky.",
+          "source": "package.json:scripts['lint-staged']",
+          "tags": ["lint", "git-hooks"]
+        }
+      ]
+    },
+    {
+      "key": "testing_and_ci",
+      "title": "Testing & CI Verification",
+      "stewards": ["QualityAssuranceAgent", "Codex CoreOps"],
+      "entries": [
+        {
+          "id": "pnpm-test",
+          "name": "pnpm test",
+          "command": "pnpm test",
+          "type": "workspace",
+          "description": "Führt Vitest im Batch-Modus (vitest run) über das Default-Konfigurationsprofil aus.",
+          "source": "package.json:scripts.test",
+          "tags": ["vitest", "unit"]
+        },
+        {
+          "id": "pnpm-test-watch",
+          "name": "pnpm test:watch",
+          "command": "pnpm test:watch",
+          "type": "workspace",
+          "description": "Startet Vitest im Watch-Modus für interaktives Testen.",
+          "source": "package.json:scripts['test:watch']",
+          "tags": ["vitest", "dev"]
+        },
+        {
+          "id": "pnpm-test-unit",
+          "name": "pnpm test:unit",
+          "command": "pnpm test:unit",
+          "type": "workspace",
+          "description": "Vitest run --coverage für gezielte Unit-Coverage-Auswertung.",
+          "source": "package.json:scripts['test:unit']",
+          "tags": ["vitest", "coverage"]
+        },
+        {
+          "id": "pnpm-test-jest",
+          "name": "pnpm test:jest",
+          "command": "pnpm test:jest",
+          "type": "workspace",
+          "description": "Startet die Jest-Suite (legacy/kompatibilitäts Tests).",
+          "source": "package.json:scripts['test:jest']",
+          "tags": ["jest", "legacy"]
+        },
+        {
+          "id": "pnpm-test-agents",
+          "name": "pnpm test:agents",
+          "command": "pnpm test:agents",
+          "type": "workspace",
+          "description": "Vitest-Läufe für Agentenmodule (Standardkonfiguration).",
+          "source": "package.json:scripts['test:agents']",
+          "tags": ["agents", "vitest"]
+        },
+        {
+          "id": "pnpm-test-adapters",
+          "name": "pnpm test:adapters",
+          "command": "pnpm test:adapters",
+          "type": "workspace",
+          "description": "Führt Vitest gezielt für src/adapters/tests/decorators.test.ts aus.",
+          "source": "package.json:scripts['test:adapters']",
+          "tags": ["adapters", "vitest"]
+        },
+        {
+          "id": "pnpm-test-ts",
+          "name": "pnpm test:ts",
+          "command": "pnpm test:ts",
+          "type": "workspace",
+          "description": "Vitest run mit vitest.config.ts (Standard, ohne Heap-Limits).",
+          "source": "package.json:scripts['test:ts']",
+          "tags": ["vitest", "typescript"]
+        },
+        {
+          "id": "pnpm-test-ts-ci",
+          "name": "pnpm test:ts:ci",
+          "command": "pnpm test:ts:ci",
+          "type": "workspace",
+          "description": "Vitest run mit NODE_OPTIONS=--max-old-space-size=2048 für CI-freundliche Speichernutzung.",
+          "source": "package.json:scripts['test:ts:ci']",
+          "tags": ["vitest", "ci"]
+        },
+        {
+          "id": "pnpm-test-ts-extended",
+          "name": "pnpm test:ts:extended",
+          "command": "pnpm test:ts:extended",
+          "type": "workspace",
+          "description": "Vitest-Extended-Läufe mit ENABLE_EXTENDED_TESTS=1.",
+          "source": "package.json:scripts['test:ts:extended']",
+          "tags": ["vitest", "extended"]
+        },
+        {
+          "id": "pnpm-test-ts-experimental",
+          "name": "pnpm test:ts:experimental",
+          "command": "pnpm test:ts:experimental",
+          "type": "workspace",
+          "description": "Aktiviert Extended- und Experimental-Vitest-Suites (ENABLE_EXTENDED_TESTS/ENABLE_EXPERIMENTAL_TESTS).",
+          "source": "package.json:scripts['test:ts:experimental']",
+          "tags": ["vitest", "experimental"]
+        },
+        {
+          "id": "pnpm-test-py",
+          "name": "pnpm test:py",
+          "command": "pnpm test:py",
+          "type": "workspace",
+          "description": "Pytest Lauf mit Marker not slow and not experimental (-q).",
+          "source": "package.json:scripts['test:py']",
+          "tags": ["pytest", "python"]
+        },
+        {
+          "id": "pnpm-test-py-extended",
+          "name": "pnpm test:py:extended",
+          "command": "pnpm test:py:extended",
+          "type": "workspace",
+          "description": "Pytest mit deaktivierten experimental Markern (-q).",
+          "source": "package.json:scripts['test:py:extended']",
+          "tags": ["pytest", "python"]
+        },
+        {
+          "id": "pnpm-test-py-all",
+          "name": "pnpm test:py:all",
+          "command": "pnpm test:py:all",
+          "type": "workspace",
+          "description": "Vollständiger Pytest-Lauf (pytest -q).",
+          "source": "package.json:scripts['test:py:all']",
+          "tags": ["pytest", "python"]
+        },
+        {
+          "id": "pnpm-test-sigil",
+          "name": "pnpm test:sigil",
+          "command": "pnpm test:sigil",
+          "type": "workspace",
+          "description": "Validiert Sigillin-Dateien via scripts/validate-sigil-cli.ts (run-dist).",
+          "source": "package.json:scripts['test:sigil']",
+          "tags": ["sigils", "validation"]
+        },
+        {
+          "id": "pnpm-test-ui",
+          "name": "pnpm test:ui",
+          "command": "pnpm test:ui",
+          "type": "workspace",
+          "description": "Vitest run --passWithNoTests für UI-bezogene Tests/Sanity Checks.",
+          "source": "package.json:scripts['test:ui']",
+          "tags": ["vitest", "ui"]
+        },
+        {
+          "id": "pnpm-qa",
+          "name": "pnpm qa",
+          "command": "pnpm qa",
+          "type": "workspace",
+          "description": "führt scripts/qa-test-runner.ts via run-dist aus und protokolliert Ergebnisse in qa-report.log.",
+          "source": "package.json:scripts.qa",
+          "tags": ["qa", "automation"],
+          "related": ["qa-report.log"]
+        },
+        {
+          "id": "pnpm-qa-gpt5",
+          "name": "pnpm qa:gpt5",
+          "command": "pnpm qa:gpt5",
+          "type": "workspace",
+          "description": "QA-Lauf mit zusätzlicher Prompts-Analyse (scripts/qa-gpt5.json) für PantheonPortalAnalytics.",
+          "source": "package.json:scripts['qa:gpt5']",
+          "tags": ["qa", "prompts"]
+        },
+        {
+          "id": "pnpm-ci-fast-checks",
+          "name": "pnpm ci:fast-checks",
+          "command": "pnpm ci:fast-checks",
+          "type": "workspace",
+          "description": "Führt zentrale TypeScript- und Pyright-Prüfungen via pnpm -w -r exec aus (tsc + pyright).",
+          "source": "package.json:scripts['ci:fast-checks']",
+          "tags": ["ci", "lint"]
+        },
+        {
+          "id": "pnpm-ci-sigils",
+          "name": "pnpm ci:sigils",
+          "command": "pnpm ci:sigils",
+          "type": "workspace",
+          "description": "Kombiniert sigils:index:strict, pnpm test:sigil und resonance:calc für Sigillin-Gates.",
+          "source": "package.json:scripts['ci:sigils']",
+          "tags": ["ci", "sigils"]
+        },
+        {
+          "id": "pnpm-ci-adapters-offline",
+          "name": "pnpm ci:adapters-offline",
+          "command": "pnpm ci:adapters-offline",
+          "type": "workspace",
+          "description": "Erzeugt OISST- und ERA5-Adapter-Artefakte im CI (Fehler toleriert via || true).",
+          "source": "package.json:scripts['ci:adapters-offline']",
+          "tags": ["ci", "adapters"]
+        },
+        {
+          "id": "pnpm-ci-verify",
+          "name": "pnpm ci:verify",
+          "command": "pnpm ci:verify",
+          "type": "workspace",
+          "description": "Runs pnpm test:ts, sigils:index:strict und adapter:build:era5 als kombinierte CI-Verifikation.",
+          "source": "package.json:scripts['ci:verify']",
+          "tags": ["ci", "verification"]
+        },
+        {
+          "id": "pnpm-check-ci",
+          "name": "pnpm check:ci",
+          "command": "pnpm check:ci",
+          "type": "workspace",
+          "description": "Führt tsc --noEmit, pnpm test:ts:ci und pyright hintereinander aus (manueller CI-Spiegel).",
+          "source": "package.json:scripts['check:ci']",
+          "tags": ["ci", "verification"]
+        },
+        {
+          "id": "pnpm-cy-run",
+          "name": "pnpm cy:run",
+          "command": "pnpm cy:run",
+          "type": "workspace",
+          "description": "Startet Cypress E2E Tests (cypress run).",
+          "source": "package.json:scripts['cy:run']",
+          "tags": ["cypress", "e2e"]
+        }
+      ]
+    },
+    {
+      "key": "smoke_and_monitoring",
+      "title": "Smoke Tests & Runtime Health",
+      "stewards": ["TelemetryOps", "QualityAssuranceAgent"],
+      "entries": [
+        {
+          "id": "pnpm-smoke-ui",
+          "name": "pnpm smoke:ui",
+          "command": "pnpm smoke:ui",
+          "type": "workspace",
+          "description": "UI-Entwicklungs-Smoke (scripts/smoke/ui-dev-smoke.mjs) prüft Statuscode & Asset-Lieferung.",
+          "source": "package.json:scripts['smoke:ui']",
+          "tags": ["smoke", "ui"]
+        },
+        {
+          "id": "pnpm-smoke-dev",
+          "name": "pnpm smoke:dev",
+          "command": "pnpm smoke:dev",
+          "type": "workspace",
+          "description": "Kontrolliert den Dev-Service-Stack via scripts/smoke/dev-server-smoke.mjs (Health-Endpoints).",
+          "source": "package.json:scripts['smoke:dev']",
+          "tags": ["smoke", "services"]
+        },
+        {
+          "id": "pnpm-smoke-mrv",
+          "name": "pnpm smoke:mrv",
+          "command": "pnpm smoke:mrv",
+          "type": "workspace",
+          "description": "MRV-spezifischer Smoke-Test zur Validierung von Monitoring-/Reporting-Views.",
+          "source": "package.json:scripts['smoke:mrv']",
+          "tags": ["smoke", "monitoring"]
+        },
+        {
+          "id": "pnpm-smoke-light-static",
+          "name": "pnpm smoke:light-static",
+          "command": "pnpm smoke:light-static",
+          "type": "workspace",
+          "description": "Startet den Light-Static-Server temporär und prüft Brotli/Gzip Header sowie Cache-Control.",
+          "source": "package.json:scripts['smoke:light-static']",
+          "tags": ["smoke", "dist"],
+          "related": ["scripts/smoke/light-static-smoke.mjs"]
+        },
+        {
+          "id": "pnpm-smoke-ttfb",
+          "name": "pnpm smoke:ttfb",
+          "command": "pnpm smoke:ttfb",
+          "type": "workspace",
+          "description": "Baut das UI und misst Time-to-First-Byte Kennzahlen (scripts/smoke/ttfb-smoke.mjs).",
+          "source": "package.json:scripts['smoke:ttfb']",
+          "tags": ["smoke", "performance"]
+        },
+        {
+          "id": "pnpm-smoke-agents",
+          "name": "pnpm smoke:agents",
+          "command": "pnpm smoke:agents",
+          "type": "workspace",
+          "description": "Leichtgewichtiger Agenten-Smoke (scripts/smoke/agents-smoke.mjs) zur Validierung von Routing/Health Checks.",
+          "source": "package.json:scripts['smoke:agents']",
+          "tags": ["smoke", "agents"]
+        },
+        {
+          "id": "pnpm-agents-health",
+          "name": "pnpm agents:health",
+          "command": "pnpm agents:health",
+          "type": "workspace",
+          "description": "Führt scripts/agents/runner.ts mit --health-all aus und aggregiert Statusberichte.",
+          "source": "package.json:scripts['agents:health']",
+          "tags": ["agents", "health"]
+        },
+        {
+          "id": "pnpm-agents-metrics",
+          "name": "pnpm agents:metrics",
+          "command": "pnpm agents:metrics",
+          "type": "workspace",
+          "description": "Aggregiert Agentenmetriken via scripts/agents/metrics-aggregate.ts (run-dist).",
+          "source": "package.json:scripts['agents:metrics']",
+          "tags": ["agents", "metrics"]
+        },
+        {
+          "id": "pnpm-audit-ui-vr",
+          "name": "pnpm audit:ui-vr",
+          "command": "pnpm audit:ui-vr",
+          "type": "workspace",
+          "description": "Führt scripts/ui-vr-audit.ts aus, um UI/VR-Assets zu prüfen (dist-first).",
+          "source": "package.json:scripts['audit:ui-vr']",
+          "tags": ["audit", "ui"]
+        },
+        {
+          "id": "pnpm-agents-audit-domains",
+          "name": "pnpm agents:audit:domains",
+          "command": "pnpm agents:audit:domains",
+          "type": "workspace",
+          "description": "Überprüft Agenten-Domain-Mappings mittels scripts/agents/domain-audit.ts.",
+          "source": "package.json:scripts['agents:audit:domains']",
+          "tags": ["agents", "audit"]
+        }
+      ]
+    },
+    {
+      "key": "policy_and_mapping",
+      "title": "Policy, Governance & Mapping",
+      "stewards": ["AI Governance Council", "PactDepthGatekeeper"],
+      "entries": [
+        {
+          "id": "pnpm-policy-check",
+          "name": "pnpm policy:check",
+          "command": "pnpm policy:check",
+          "type": "workspace",
+          "description": "Führt die Policy-Suite (OPA, Guardrails, Kyverno) via scripts/policy-suite.mjs aus und schreibt Reports nach out/policy/.",
+          "source": "package.json:scripts['policy:check']",
+          "tags": ["policy", "governance"],
+          "related": ["out/policy/"]
+        },
+        {
+          "id": "pnpm-kyverno-validate",
+          "name": "pnpm kyverno:validate",
+          "command": "pnpm kyverno:validate",
+          "type": "workspace",
+          "description": "Kyverno-Dry-Run CLI (tools/kyverno-dry-run.mjs) mit MandalaEvent-Fallback-Fixture.",
+          "source": "package.json:scripts['kyverno:validate']",
+          "tags": ["policy", "kyverno"]
+        },
+        {
+          "id": "pnpm-prompts-coach",
+          "name": "pnpm prompts:coach",
+          "command": "pnpm prompts:coach",
+          "type": "workspace",
+          "description": "Trockenlauf für Prompt-Governance (scripts/prompt-coach.mjs --dry).",
+          "source": "package.json:scripts['prompts:coach']",
+          "tags": ["prompts", "governance"]
+        },
+        {
+          "id": "pnpm-compile-agents-manifest",
+          "name": "pnpm compile:agents-manifest",
+          "command": "pnpm compile:agents-manifest",
+          "type": "workspace",
+          "description": "Generiert agents_manifest.json via scripts/compile_agents_manifest.js.",
+          "source": "package.json:scripts['compile:agents-manifest']",
+          "tags": ["agents", "docs"]
+        },
+        {
+          "id": "pnpm-generate-agents-diagram",
+          "name": "pnpm generate:agents-diagram",
+          "command": "pnpm generate:agents-diagram",
+          "type": "workspace",
+          "description": "Erzeugt Diagramme in docs/agents/ mittels scripts/generate-agents-diagram.js.",
+          "source": "package.json:scripts['generate:agents-diagram']",
+          "tags": ["agents", "diagrams"]
+        },
+        {
+          "id": "pnpm-generate-agent-docs",
+          "name": "pnpm generate:agent-docs",
+          "command": "pnpm generate:agent-docs",
+          "type": "workspace",
+          "description": "Synthesisiert Agenten-Dokumentation (Markdown) aus Metadaten via scripts/generate-agent-docs.js.",
+          "source": "package.json:scripts['generate:agent-docs']",
+          "tags": ["agents", "docs"]
+        },
+        {
+          "id": "pnpm-export-crep-docs",
+          "name": "pnpm export:crep-docs",
+          "command": "pnpm export:crep-docs",
+          "type": "workspace",
+          "description": "Exportiert CREP-Dokumente und Metriken (scripts/export-crep-docs.js).",
+          "source": "package.json:scripts['export:crep-docs']",
+          "tags": ["crep", "docs"]
+        },
+        {
+          "id": "pnpm-symbolzeit-run",
+          "name": "pnpm symbolzeit:run",
+          "command": "pnpm symbolzeit:run",
+          "type": "workspace",
+          "description": "Ausführung von scripts/symbolzeit-runner.js zur Aktualisierung symbolischer Zeitachsen.",
+          "source": "package.json:scripts['symbolzeit:run']",
+          "tags": ["governance", "rituals"]
+        },
+        {
+          "id": "pnpm-aeon-transition",
+          "name": "pnpm aeon:transition",
+          "command": "pnpm aeon:transition",
+          "type": "workspace",
+          "description": "Orchestriert Aeon-Transitionspfade (scripts/aeon-transition-workflow.js).",
+          "source": "package.json:scripts['aeon:transition']",
+          "tags": ["aeon", "governance"]
+        },
+        {
+          "id": "pnpm-map-mandala",
+          "name": "pnpm map:mandala",
+          "command": "pnpm map:mandala",
+          "type": "workspace",
+          "description": "Validiert MandalaMap-Artefakte (scripts/mandala-map-validate.mjs).",
+          "source": "package.json:scripts['map:mandala']",
+          "tags": ["mapping", "governance"]
+        },
+        {
+          "id": "pnpm-maps-validate",
+          "name": "pnpm maps:validate",
+          "command": "pnpm maps:validate",
+          "type": "workspace",
+          "description": "Prüft Karten-/Indexdateien via scripts/maps/validate-maps.mjs.",
+          "source": "package.json:scripts['maps:validate']",
+          "tags": ["mapping", "validation"]
+        },
+        {
+          "id": "pnpm-maps-build",
+          "name": "pnpm maps:build",
+          "command": "pnpm maps:build",
+          "type": "workspace",
+          "description": "Generiert Repository-Karten mittels scripts/repo-map.ts (run-dist).",
+          "source": "package.json:scripts['maps:build']",
+          "tags": ["mapping", "automation"]
+        },
+        {
+          "id": "pnpm-maps-list",
+          "name": "pnpm maps:list",
+          "command": "pnpm maps:list",
+          "type": "workspace",
+          "description": "Listet Einträge aus analysis/repo-map.json (Node-Einzeiler).",
+          "source": "package.json:scripts['maps:list']",
+          "tags": ["mapping", "inspection"]
+        },
+        {
+          "id": "pnpm-fraktalrun-import",
+          "name": "pnpm fraktalrun:import",
+          "command": "pnpm fraktalrun:import",
+          "type": "workspace",
+          "description": "Importiert Fraktal-Laufdaten via scripts/fraktalrun-import.ts (Dist-Runner).",
+          "source": "package.json:scripts['fraktalrun:import']",
+          "tags": ["fraktal", "governance"]
+        }
+      ]
+    },
+    {
+      "key": "sigillin_and_emergence",
+      "title": "Sigillin, Emergenz & Resonanz",
+      "stewards": ["CodexAuditAgent", "EvolverGPT"],
+      "entries": [
+        {
+          "id": "pnpm-sigils-lint",
+          "name": "pnpm sigils:lint",
+          "command": "pnpm sigils:lint",
+          "type": "workspace",
+          "description": "Validiert Sigils via scripts/sigils-validate.ts (Dist-Runner).",
+          "source": "package.json:scripts['sigils:lint']",
+          "tags": ["sigils", "lint"]
+        },
+        {
+          "id": "pnpm-sigils-index",
+          "name": "pnpm sigils:index",
+          "command": "pnpm sigils:index",
+          "type": "workspace",
+          "description": "Baut den Sigillin-Index über scripts/build-sigillin-index.mjs.",
+          "source": "package.json:scripts['sigils:index']",
+          "tags": ["sigils", "index"]
+        },
+        {
+          "id": "pnpm-sigils-index-strict",
+          "name": "pnpm sigils:index:strict",
+          "command": "pnpm sigils:index:strict",
+          "type": "workspace",
+          "description": "Strenger Sigillin-Lauf (find-bad-yaml, sigils:scan, stac:validate, sigils:index).",
+          "source": "package.json:scripts['sigils:index:strict']",
+          "tags": ["sigils", "ci"]
+        },
+        {
+          "id": "pnpm-sigils-scan",
+          "name": "pnpm sigils:scan",
+          "command": "pnpm sigils:scan",
+          "type": "workspace",
+          "description": "Scannt Sigillin-Dateien via scripts/validate-sigils.ts (Dist).",
+          "source": "package.json:scripts['sigils:scan']",
+          "tags": ["sigils", "validation"]
+        },
+        {
+          "id": "pnpm-sigils-errors",
+          "name": "pnpm sigils:errors",
+          "command": "pnpm sigils:errors",
+          "type": "workspace",
+          "description": "Zeigt out/sigils_errors.json an oder meldet 'no errors file'.",
+          "source": "package.json:scripts['sigils:errors']",
+          "tags": ["sigils", "inspection"]
+        },
+        {
+          "id": "pnpm-validate-sigillins",
+          "name": "pnpm validate:sigillins",
+          "command": "pnpm validate:sigillins",
+          "type": "workspace",
+          "description": "Validiert Sigillin-Bridges anhand von scripts/validate-sigillins.mjs und mandala-sigillin.schema.json.",
+          "source": "package.json:scripts['validate:sigillins']",
+          "tags": ["sigils", "schema"]
+        },
+        {
+          "id": "pnpm-sigillins-scaffold",
+          "name": "pnpm sigillins:scaffold",
+          "command": "pnpm sigillins:scaffold",
+          "type": "workspace",
+          "description": "Gerüstet Inter-AI-Bridges mittels scripts/scaffold-interai-bridges.mjs.",
+          "source": "package.json:scripts['sigillins:scaffold']",
+          "tags": ["sigils", "scaffolding"]
+        },
+        {
+          "id": "pnpm-sigillins-authoring",
+          "name": "pnpm sigillins:authoring",
+          "command": "pnpm sigillins:authoring",
+          "type": "workspace",
+          "description": "CLI zur Erstellung/Bearbeitung von Bridges (scripts/sigillin-authoring.mjs).",
+          "source": "package.json:scripts['sigillins:authoring']",
+          "tags": ["sigils", "cli"]
+        },
+        {
+          "id": "pnpm-sigillins-build",
+          "name": "pnpm sigillins:build",
+          "command": "pnpm sigillins:build",
+          "type": "workspace",
+          "description": "Packt Sigillin-Archive via scripts/build-sigillin-archive.mjs.",
+          "source": "package.json:scripts['sigillins:build']",
+          "tags": ["sigils", "archive"]
+        },
+        {
+          "id": "pnpm-emergence-scan",
+          "name": "pnpm emergence:scan",
+          "command": "pnpm emergence:scan",
+          "type": "workspace",
+          "description": "Verknüpft sigils:index und agents:scan zur Emergenzanalyse.",
+          "source": "package.json:scripts['emergence:scan']",
+          "tags": ["emergence", "agents"]
+        },
+        {
+          "id": "pnpm-resonance-calc",
+          "name": "pnpm resonance:calc",
+          "command": "pnpm resonance:calc",
+          "type": "workspace",
+          "description": "Berechnet Resonanzmetriken via scripts/resonance-calc.ts (run-dist).",
+          "source": "package.json:scripts['resonance:calc']",
+          "tags": ["resonance", "metrics"]
+        },
+        {
+          "id": "pnpm-graph-build",
+          "name": "pnpm graph:build",
+          "command": "pnpm graph:build",
+          "type": "workspace",
+          "description": "Erstellt Sigillin-Graphen mittels scripts/build-sigillin-graph.mjs.",
+          "source": "package.json:scripts['graph:build']",
+          "tags": ["sigils", "graph"]
+        },
+        {
+          "id": "pnpm-generate-next-sigil",
+          "name": "pnpm generate:next-sigil",
+          "command": "pnpm generate:next-sigil",
+          "type": "workspace",
+          "description": "Erzeugt nächste Sigillin-Vorlagen via scripts/generate-next-sigil.js.",
+          "source": "package.json:scripts['generate:next-sigil']",
+          "tags": ["sigils", "generation"]
+        },
+        {
+          "id": "pnpm-agents-run",
+          "name": "pnpm agents:run",
+          "command": "pnpm agents:run",
+          "type": "workspace",
+          "description": "Allgemeiner Agentenrunner (scripts/agents/runner.ts) für orchestrierte Ausführungen.",
+          "source": "package.json:scripts['agents:run']",
+          "tags": ["agents", "orchestration"]
+        },
+        {
+          "id": "pnpm-agents-scan",
+          "name": "pnpm agents:scan",
+          "command": "pnpm agents:scan",
+          "type": "workspace",
+          "description": "Emergenzscan der Agenten (scripts/agents/emergence-scan.ts).",
+          "source": "package.json:scripts['agents:scan']",
+          "tags": ["agents", "emergence"]
+        },
+        {
+          "id": "pnpm-agents-test-golden",
+          "name": "pnpm agents:test:golden",
+          "command": "pnpm agents:test:golden",
+          "type": "workspace",
+          "description": "Führt Golden-File-Tests für Agenten via scripts/agents/golden-runner.ts aus.",
+          "source": "package.json:scripts['agents:test:golden']",
+          "tags": ["agents", "testing"]
+        },
+        {
+          "id": "pnpm-agents-route",
+          "name": "pnpm agents:route",
+          "command": "pnpm agents:route",
+          "type": "workspace",
+          "description": "Interaktive Router-CLI (scripts/agents/router.mjs) für Agentenpfad-Tests.",
+          "source": "package.json:scripts['agents:route']",
+          "tags": ["agents", "cli"]
+        }
+      ]
+    },
+    {
+      "key": "data_and_ingest",
+      "title": "Datenpipelines & Ingestion",
+      "stewards": ["Climate Lab", "Resonance Lab"],
+      "entries": [
+        {
+          "id": "pnpm-adapter-build-era5",
+          "name": "pnpm adapter:build:era5",
+          "command": "pnpm adapter:build:era5",
+          "type": "workspace",
+          "description": "Generiert synthetische ERA5-Daten (Python Fixture) und führt adapter-postprocess.mjs aus.",
+          "source": "package.json:scripts['adapter:build:era5']",
+          "tags": ["adapters", "era5"]
+        },
+        {
+          "id": "pnpm-adapter-build-oisst",
+          "name": "pnpm adapter:build:oisst",
+          "command": "pnpm adapter:build:oisst",
+          "type": "workspace",
+          "description": "Baut den OISST-Adapter über scripts/build-adapter-oisst.mjs.",
+          "source": "package.json:scripts['adapter:build:oisst']",
+          "tags": ["adapters", "oisst"]
+        },
+        {
+          "id": "pnpm-adapter-build-effis",
+          "name": "pnpm adapter:build:effis",
+          "command": "pnpm adapter:build:effis",
+          "type": "workspace",
+          "description": "Erzeugt Effis-Adapter-Artefakte via scripts/build-adapter-effis.mjs.",
+          "source": "package.json:scripts['adapter:build:effis']",
+          "tags": ["adapters", "effis"]
+        },
+        {
+          "id": "pnpm-scan-ingest",
+          "name": "pnpm scan:ingest",
+          "command": "pnpm scan:ingest",
+          "type": "workspace",
+          "description": "Durchsucht externe Ingest-Pfade via scripts/ingest-external-scan.mjs.",
+          "source": "package.json:scripts['scan:ingest']",
+          "tags": ["ingest", "scan"]
+        },
+        {
+          "id": "pnpm-stac-validate",
+          "name": "pnpm stac:validate",
+          "command": "pnpm stac:validate",
+          "type": "workspace",
+          "description": "Validiert STAC-Kollektionen über scripts/validate-stac.mjs.",
+          "source": "package.json:scripts['stac:validate']",
+          "tags": ["stac", "validation"]
+        },
+        {
+          "id": "pnpm-stac-validate-item",
+          "name": "pnpm stac:validate:item",
+          "command": "pnpm stac:validate:item",
+          "type": "workspace",
+          "description": "Validiert einzelne STAC-Items via scripts/validate-stac.ts (run-dist) und Fixturepfad.",
+          "source": "package.json:scripts['stac:validate:item']",
+          "tags": ["stac", "validation"]
+        },
+        {
+          "id": "pnpm-split-conversations",
+          "name": "pnpm split:conversations",
+          "command": "pnpm split:conversations",
+          "type": "workspace",
+          "description": "Teilt Konversationsdatensätze mittels scripts/split-conversations.js.",
+          "source": "package.json:scripts['split:conversations']",
+          "tags": ["conversations", "data"]
+        },
+        {
+          "id": "pnpm-grep-conversations",
+          "name": "pnpm grep:conversations",
+          "command": "pnpm grep:conversations",
+          "type": "workspace",
+          "description": "Filtert Konversationen (node scripts/filter-conversations.js).",
+          "source": "package.json:scripts['grep:conversations']",
+          "tags": ["conversations", "data"]
+        },
+        {
+          "id": "pnpm-analyze-conversations",
+          "name": "pnpm analyze:conversations",
+          "command": "pnpm analyze:conversations",
+          "type": "workspace",
+          "description": "Analyisiert Konversationsstreams via scripts/analyze-conversations.js.",
+          "source": "package.json:scripts['analyze:conversations']",
+          "tags": ["conversations", "analytics"]
+        },
+        {
+          "id": "pnpm-parse-newconversations",
+          "name": "pnpm parse:newconversations",
+          "command": "pnpm parse:newconversations",
+          "type": "workspace",
+          "description": "Parst New-Advanced-Konversationen (scripts/parse-newadvanced-conversations.js).",
+          "source": "package.json:scripts['parse:newconversations']",
+          "tags": ["conversations", "data"]
+        },
+        {
+          "id": "pnpm-conversations-grep",
+          "name": "pnpm conversations:grep",
+          "command": "pnpm conversations:grep",
+          "type": "workspace",
+          "description": "Dist-First Parser für new advanced conversations (scripts/parse-newadvancedconversations.ts).",
+          "source": "package.json:scripts['conversations:grep']",
+          "tags": ["conversations", "cli"]
+        }
+      ]
+    },
+    {
+      "key": "backlog_and_automation",
+      "title": "Backlog, Feedback & Automatisierung",
+      "stewards": ["Repositorypflege Collective", "PatternReactivator"],
+      "entries": [
+        {
+          "id": "pnpm-update-advanced-todo",
+          "name": "pnpm update:advanced-todo",
+          "command": "pnpm update:advanced-todo",
+          "type": "workspace",
+          "description": "Synchronisiert advancedToDo Listen über scripts/update-advanced-todo.js.",
+          "source": "package.json:scripts['update:advanced-todo']",
+          "tags": ["automation", "backlog"]
+        },
+        {
+          "id": "pnpm-update-code-todos",
+          "name": "pnpm update:code-todos",
+          "command": "pnpm update:code-todos",
+          "type": "workspace",
+          "description": "Aktualisiert ToDo-Kommentare mit scripts/update-code-todos.cjs.",
+          "source": "package.json:scripts['update:code-todos']",
+          "tags": ["automation", "backlog"]
+        },
+        {
+          "id": "pnpm-update-newadvanced-todo",
+          "name": "pnpm update:newadvanced-todo",
+          "command": "pnpm update:newadvanced-todo",
+          "type": "workspace",
+          "description": "Pflegt new advanced TODO Artefakte via scripts/update-newadvanced-todo.js.",
+          "source": "package.json:scripts['update:newadvanced-todo']",
+          "tags": ["automation", "backlog"]
+        },
+        {
+          "id": "pnpm-update-fractal-todo",
+          "name": "pnpm update:fractal-todo",
+          "command": "pnpm update:fractal-todo",
+          "type": "workspace",
+          "description": "Aktualisiert Fraktal TODO Manifeste (scripts/update-fractal-todo.js).",
+          "source": "package.json:scripts['update:fractal-todo']",
+          "tags": ["automation", "fractal"]
+        },
+        {
+          "id": "pnpm-update-todo-sigil",
+          "name": "pnpm update:todo-sigil",
+          "command": "pnpm update:todo-sigil",
+          "type": "workspace",
+          "description": "Verknüpft TODOs mit Sigillin-Metadaten (scripts/update-todo-sigil.js).",
+          "source": "package.json:scripts['update:todo-sigil']",
+          "tags": ["sigils", "backlog"]
+        },
+        {
+          "id": "pnpm-update-advanced-progress",
+          "name": "pnpm update:advanced-progress",
+          "command": "pnpm update:advanced-progress",
+          "type": "workspace",
+          "description": "Aktualisiert advancedprogress.json via repositorypflege/update-advanced-progress.js.",
+          "source": "package.json:scripts['update:advanced-progress']",
+          "tags": ["automation", "progress"]
+        },
+        {
+          "id": "pnpm-generate-initial-tasks",
+          "name": "pnpm generate:initial-tasks",
+          "command": "pnpm generate:initial-tasks",
+          "type": "workspace",
+          "description": "Erzeugt Startaufgaben durch repositorypflege/generate-initial-tasks.js.",
+          "source": "package.json:scripts['generate:initial-tasks']",
+          "tags": ["automation", "tasks"]
+        },
+        {
+          "id": "pnpm-validate-todos",
+          "name": "pnpm validate:todos",
+          "command": "pnpm validate:todos",
+          "type": "workspace",
+          "description": "Validiert implizite Todos mit scripts/validate-implicit-todos.js.",
+          "source": "package.json:scripts['validate:todos']",
+          "tags": ["validation", "backlog"]
+        },
+        {
+          "id": "pnpm-validate-advancedtodo",
+          "name": "pnpm validate:advancedtodo",
+          "command": "pnpm validate:advancedtodo",
+          "type": "workspace",
+          "description": "Prüft advanced ToDo-Listen via scripts/validate-advancedtodo.js.",
+          "source": "package.json:scripts['validate:advancedtodo']",
+          "tags": ["validation", "backlog"]
+        },
+        {
+          "id": "pnpm-store-commit-memory",
+          "name": "pnpm store:commit-memory",
+          "command": "pnpm store:commit-memory",
+          "type": "workspace",
+          "description": "Persistiert Agenten-Memory über GenesisAeonZIPMEM/commitMemory/commit-memory.js.",
+          "source": "package.json:scripts['store:commit-memory']",
+          "tags": ["memory", "agents"]
+        }
+      ]
+    },
+    {
+      "key": "documentation_and_dashboards",
+      "title": "Dokumentation & Dashboards",
+      "stewards": ["VisionContextIntegrator", "DevX Guild"],
+      "entries": [
+        {
+          "id": "pnpm-docs-build",
+          "name": "pnpm docs:build",
+          "command": "pnpm docs:build",
+          "type": "workspace",
+          "description": "Erzeugt Typedoc-Dokumentation für TypeScript-Pakete.",
+          "source": "package.json:scripts['docs:build']",
+          "tags": ["docs", "typedoc"]
+        },
+        {
+          "id": "pnpm-docs-auto",
+          "name": "pnpm docs:auto",
+          "command": "pnpm docs:auto",
+          "type": "workspace",
+          "description": "Generiert API-Dokumentation automatisch via scripts/generate-api-docs.js.",
+          "source": "package.json:scripts['docs:auto']",
+          "tags": ["docs", "automation"]
+        },
+        {
+          "id": "pnpm-trikaya-dashboard",
+          "name": "pnpm trikaya:dashboard",
+          "command": "pnpm trikaya:dashboard",
+          "type": "workspace",
+          "description": "Erstellt Trikāya-Dashboards (analysis/trikaya-dashboard.*) über scripts/generate-trikaya-dashboard.mjs.",
+          "source": "package.json:scripts['trikaya:dashboard']",
+          "tags": ["dashboard", "sigils"]
+        }
+      ]
+    },
+    {
+      "key": "platform_tools",
+      "title": "Plattform-Werkzeuge & Direktaufrufe",
+      "stewards": ["Dev Infrastructure", "SyncRunner"],
+      "entries": [
+        {
+          "id": "node-run-dist",
+          "name": "node scripts/run-dist.mjs <source> [...args]",
+          "command": "node scripts/run-dist.mjs <source> [...args]",
+          "type": "node-cli",
+          "description": "Dist-First Runner: validiert Source-Pfade, prüft dist-Artefakte und startet Node mit --enable-source-maps.",
+          "source": "scripts/run-dist.mjs",
+          "tags": ["dist-first", "cli"]
+        },
+        {
+          "id": "node-dev-services-prod",
+          "name": "node scripts/dev-services.mjs --mode=prod",
+          "command": "node scripts/dev-services.mjs --mode=prod",
+          "type": "node-cli",
+          "description": "Direkter Aufruf für Service-Orchestrierung im Produktionsmodus (setzt dist/ Artefakte voraus).",
+          "source": "scripts/dev-services.mjs",
+          "tags": ["services", "orchestration"]
+        },
+        {
+          "id": "bash-setup-unifiedmandala",
+          "name": "./scripts/setup-unifiedmandala.sh",
+          "command": "./scripts/setup-unifiedmandala.sh",
+          "type": "shell",
+          "description": "Schnelles Bootstrap-Skript (apt, pnpm install, poetry install) für Unified-Mandala-Umgebungen.",
+          "source": "scripts/setup-unifiedmandala.sh",
+          "tags": ["setup", "bootstrap"]
+        },
+        {
+          "id": "bash-setup-mtls",
+          "name": "./scripts/setup-mtls.sh",
+          "command": "./scripts/setup-mtls.sh",
+          "type": "shell",
+          "description": "Erzeugt selbstsignierte Zertifikate (certs/server.{crt,key}) für MTLS-Tests.",
+          "source": "scripts/setup-mtls.sh",
+          "tags": ["mtls", "certificates"]
+        },
+        {
+          "id": "bash-setup-kong-jwt",
+          "name": "./scripts/setup-kong-jwt.sh",
+          "command": "./scripts/setup-kong-jwt.sh",
+          "type": "shell",
+          "description": "Platzhalter-Skript für KONG JWT Gateway-Konfiguration (Echo).",
+          "source": "scripts/setup-kong-jwt.sh",
+          "tags": ["kong", "placeholder"]
+        },
+        {
+          "id": "ts-setup-wizard",
+          "name": "pnpm dlx tsx scripts/setup-wizard.ts",
+          "command": "pnpm dlx tsx scripts/setup-wizard.ts",
+          "type": "node-cli",
+          "description": "Interaktiver Setup-Wizard für Spaces/Peers (derzeit Mock-Ausgaben).",
+          "source": "scripts/setup-wizard.ts",
+          "tags": ["wizard", "cli"]
+        },
+        {
+          "id": "ts-js-setup",
+          "name": "pnpm dlx tsx scripts/js-setup.ts",
+          "command": "pnpm dlx tsx scripts/js-setup.ts",
+          "type": "node-cli",
+          "description": "Initialisiert NATS JetStream Streams anhand von Umgebungsvariablen.",
+          "source": "scripts/js-setup.ts",
+          "tags": ["nats", "infrastructure"]
+        }
+      ]
+    }
+  ]
+}

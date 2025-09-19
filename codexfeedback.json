@@ -1,6 +1,11 @@
 {
   "runs": [
     {
+      "fraktalrun": "Fraktal51 CommandCatalog",
+      "status": "implemented",
+      "notes": "CommandCatalog.(md|json|yaml) bündelt alle pnpm-Skripte, Smoke-/Setup-Tools und Plattform-Hooks; docs/scripts/COMMANDS.md verweist auf den neuen Index."
+    },
+    {
       "fraktalrun": "Fraktal50 Validator Windows Parity",
       "status": "in-progress",
       "notes": "Sigillin validator normalizes relative paths for Windows, extends bridge matchers and clarifies skip logs; Windows validation feedback & Docker follow-up pending."
