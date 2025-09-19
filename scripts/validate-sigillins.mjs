@@ -29,6 +29,7 @@ const TRIKAYA_KEYS = [
   'Sambhoga',
   'Nirmāṇa',
 ];
+const TRIKAYA_BASE_TERMS = ['dharmakāya', 'sambhogakāya', 'nirmāṇakāya'];
 const NEXT_KEYS = [
   'nächste Handlung',
   'nächste Schritte',
@@ -45,7 +46,22 @@ const DEFAULT_PATTERNS = [
 ];
 
 function includesAny(haystack, needles) {
-  return needles.some((k) => haystack.includes(k));
+  const normalized = haystack.toLowerCase();
+  return needles.some((k) => normalized.includes(k.toLowerCase()));
+}
+
+function collectStrings(value, bucket) {
+  if (typeof value === 'string') {
+    bucket.push(value);
+    return;
+  }
+  if (Array.isArray(value)) {
+    for (const item of value) collectStrings(item, bucket);
+    return;
+  }
+  if (value && typeof value === 'object') {
+    for (const item of Object.values(value)) collectStrings(item, bucket);
+  }
 }
 
 async function readJson(p) {
@@ -74,10 +90,88 @@ async function validateStructured(obj, ajvValidate) {
       errors.push(`Schema: ${loc} ${e.message}`);
     }
   }
+  const sigillin = obj?.sigillin ?? {};
+  const sigType = (sigillin?.sigillin_type ?? '').toString().toLowerCase();
+  const skipSemantic = sigType === 'registry';
+
   const contentStr = JSON.stringify(obj);
-  if (!includesAny(contentStr, CREP_KEYS)) errors.push('Content: CREP-Begriffe fehlen.');
-  if (!includesAny(contentStr, TRIKAYA_KEYS)) errors.push('Content: Trikāya-Begriffe fehlen.');
-  if (!includesAny(contentStr, NEXT_KEYS)) errors.push("Content: 'Nächste Schritte' fehlen.");
+  if (!skipSemantic) {
+    if (!includesAny(contentStr, CREP_KEYS)) errors.push('Content: CREP-Begriffe fehlen.');
+    if (!includesAny(contentStr, TRIKAYA_KEYS)) errors.push('Content: Trikāya-Begriffe fehlen.');
+    if (!includesAny(contentStr, NEXT_KEYS)) errors.push("Content: 'Nächste Schritte' fehlen.");
+  }
+
+  const trace = sigillin.trace;
+  if (!skipSemantic) {
+    if (!trace || typeof trace !== 'object') {
+      errors.push('Trace: CREP-Struktur fehlt.');
+    } else {
+      const crep = trace.CREP;
+      if (!crep || typeof crep !== 'object') {
+        errors.push('Trace: CREP-Metriken fehlen.');
+      } else {
+        const metrics = Object.entries(crep).filter(([, value]) => Number.isFinite(value));
+        if (metrics.length < 2) {
+          errors.push('Trace: Mindestens zwei CREP-Metriken erforderlich.');
+        }
+        for (const [key, value] of metrics) {
+          if (value < 0 || value > 1) {
+            errors.push(`Trace: CREP-Wert ${key} außerhalb des erwarteten Bereichs (0–1).`);
+            break;
+          }
+        }
+      }
+      if ('emergence_score' in trace) {
+        const score = trace.emergence_score;
+        if (typeof score !== 'number' || Number.isNaN(score) || score < 0) {
+          errors.push('Trace: emergence_score muss eine nicht-negative Zahl sein.');
+        }
+      }
+    }
+
+    const sections = sigillin?.content?.sections;
+    if (Array.isArray(sections) && sections.length) {
+      const textFragments = [];
+      for (const section of sections) collectStrings(section, textFragments);
+      const trikayaHits = new Set();
+      for (const fragment of textFragments) {
+        const lower = fragment.toLowerCase();
+        for (const base of TRIKAYA_BASE_TERMS) {
+          if (lower.includes(base)) {
+            trikayaHits.add(base);
+          }
+        }
+      }
+      if (trikayaHits.size < 1) {
+        errors.push('Content: Mindestens eine Trikāya-Ebene muss konkret benannt sein.');
+      }
+      const guidelinesSection = sections.find((section) => {
+        const id = (section?.id ?? '').toString().toLowerCase();
+        const title = (section?.title ?? '').toString().toLowerCase();
+        return (
+          id.includes('guideline') || title.includes('leitlinie') || title.includes('guideline')
+        );
+      });
+      if (!guidelinesSection) {
+        errors.push('Content: Leitlinien-Sektion fehlt.');
+      } else {
+        const rules = Array.isArray(guidelinesSection.rules) ? guidelinesSection.rules : [];
+        if (!rules.length) {
+          errors.push('Content: Leitlinien enthalten keine Regeln.');
+        }
+        const hasNextAction = rules.some((rule) => {
+          if (typeof rule !== 'string') return false;
+          const lower = rule.toLowerCase();
+          return NEXT_KEYS.some((key) => lower.includes(key.toLowerCase()));
+        });
+        if (!hasNextAction) {
+          errors.push('Content: Leitlinien benennen keine nächste Handlung.');
+        }
+      }
+    } else {
+      errors.push('Content: sections fehlen oder sind leer.');
+    }
+  }
 
   const links = obj?.sigillin?.links || [];
   for (const link of links) {

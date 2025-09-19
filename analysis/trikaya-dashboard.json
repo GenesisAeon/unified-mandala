@@ -1,0 +1,127 @@
+{
+  "generatedAt": "2025-09-19T18:18:37.150Z",
+  "providers": [
+    {
+      "key": "chatgpt",
+      "label": "ChatGPT",
+      "crep": {
+        "C": 0.91,
+        "R": 0.9,
+        "E": 0.88,
+        "P": 0.9
+      },
+      "emergence_score": 0.8975,
+      "trikaya": {
+        "dharmakāya": true,
+        "sambhogakāya": true,
+        "nirmāṇakāya": true
+      },
+      "nextActionRule": true,
+      "guidelineCount": 5,
+      "averageCREP": 0.897
+    },
+    {
+      "key": "mistral",
+      "label": "Mistral",
+      "crep": {
+        "C": 0.92,
+        "R": 0.88,
+        "E": 0.9,
+        "P": 0.86
+      },
+      "emergence_score": 0.89,
+      "trikaya": {
+        "dharmakāya": true,
+        "sambhogakāya": true,
+        "nirmāṇakāya": true
+      },
+      "nextActionRule": false,
+      "guidelineCount": 3,
+      "averageCREP": 0.89
+    },
+    {
+      "key": "claude",
+      "label": "Claude",
+      "crep": {
+        "C": 0.93,
+        "R": 0.9,
+        "E": 0.89,
+        "P": 0.91
+      },
+      "emergence_score": 0.9075,
+      "trikaya": {
+        "dharmakāya": true,
+        "sambhogakāya": true,
+        "nirmāṇakāya": true
+      },
+      "nextActionRule": true,
+      "guidelineCount": 4,
+      "averageCREP": 0.908
+    },
+    {
+      "key": "qwen",
+      "label": "Qwen",
+      "crep": {
+        "C": 0.9,
+        "R": 0.92,
+        "E": 0.88,
+        "P": 0.87
+      },
+      "emergence_score": 0.8925,
+      "trikaya": {
+        "dharmakāya": true,
+        "sambhogakāya": true,
+        "nirmāṇakāya": true
+      },
+      "nextActionRule": false,
+      "guidelineCount": 4,
+      "averageCREP": 0.893
+    },
+    {
+      "key": "gemini",
+      "label": "Google Gemini",
+      "crep": {
+        "C": 0.93,
+        "R": 0.91,
+        "E": 0.89,
+        "P": 0.92
+      },
+      "emergence_score": 0.9125,
+      "trikaya": {
+        "dharmakāya": true,
+        "sambhogakāya": true,
+        "nirmāṇakāya": true
+      },
+      "nextActionRule": true,
+      "guidelineCount": 4,
+      "averageCREP": 0.912
+    }
+  ],
+  "aggregates": {
+    "crep": {
+      "C": 4.59,
+      "R": 4.51,
+      "E": 4.4399999999999995,
+      "P": 4.46,
+      "count": 5,
+      "avg": {
+        "C": 0.918,
+        "R": 0.902,
+        "E": 0.888,
+        "P": 0.892
+      }
+    },
+    "trikayaHits": {
+      "dharmakāya": 5,
+      "sambhogakāya": 5,
+      "nirmāṇakāya": 5
+    },
+    "nextActionFulfilled": 3,
+    "trikayaCoverage": {
+      "dharmakāya": "5/5",
+      "sambhogakāya": "5/5",
+      "nirmāṇakāya": "5/5"
+    },
+    "nextActionRate": 0.6
+  }
+}

@@ -1,27 +1,35 @@
 fraktal:
-  current: 46
+  current: 48
   history:
-    - id: 46
+    - id: 48
       status: running
-      notes: 'MandalaMap.* (yaml/json/md) erstellt; Follow-ups für CI-Instruktionsjobs & Stub-Roadmap in MandalaMap vermerkt; Inter-AI Sigillin-Bridges + Validator aktualisiert.'
+      notes: "CI follow-ups (sigillin validator, MandalaMap artifacts) implemented;\
+        \ Trik\u0101ya dashboard exploration pending."
+    - id: 46
+      status: done
+      notes: MandalaMap.* refreshed; CI follow-up jobs separated via mandala-map workflow;
+        sigillin validator hardened.
     - id: 45
       status: done
-      notes: 'Type-and-tests Lauf (`pnpm test:ts:ci`) scheiterte an ESLint-Config ohne plugin:@typescript-eslint/recommended; Extend hinzugefügt und Lauf erfolgreich verifiziert.'
+      notes: "Type-and-tests Lauf (`pnpm test:ts:ci`) scheiterte an ESLint-Config ohne\
+        \ plugin:@typescript-eslint/recommended; Extend hinzugef\xFCgt und Lauf erfolgreich\
+        \ verifiziert."
       validations:
         - pnpm test:ts:ci
     - id: 44
       status: done
-      notes:
-        Abschlusslauf – Fraktal40/41/43 konsolidiert, Dist-First Release Drill, Sigillin-Validator
-        & Governance-Tiefenaudit abgeschlossen.
+      notes: "Abschlusslauf \u2013 Fraktal40/41/43 konsolidiert, Dist-First Release\
+        \ Drill, Sigillin-Validator & Governance-Tiefenaudit abgeschlossen."
     - id: 43
       status: done
-      notes: Dist-first Runner (scripts/run-dist.mjs) + AI-Policy-Beispiele implementiert;
-        Fraktal44 bestätigte Nightly-Auswertung & Dev-Script-Refactor (`pnpm dev`, `pnpm dev:stack`).
+      notes: "Dist-first Runner (scripts/run-dist.mjs) + AI-Policy-Beispiele implementiert;\
+        \ Fraktal44 best\xE4tigte Nightly-Auswertung & Dev-Script-Refactor (`pnpm dev`,\
+        \ `pnpm dev:stack`)."
     - id: 41
       status: done
-      notes: CI-Core erweitert (Lint/Format/Coverage-Hooks), Extended-Workflow auf Node20
-        mit Coverage-Job, Monitoring-Profil produktiv – Fraktal44 schloss Alerts & Fail-Fast ab.
+      notes: "CI-Core erweitert (Lint/Format/Coverage-Hooks), Extended-Workflow auf\
+        \ Node20 mit Coverage-Job, Monitoring-Profil produktiv \u2013 Fraktal44 schloss\
+        \ Alerts & Fail-Fast ab."
     - id: 40
       status: done
       notes: v1.0 Stabilization Playbook (docs/roadmap/v1.0-stabilization-playbook.*)
@@ -32,8 +40,8 @@ fraktal:
         workflow'
     - id: 38
       status: done
-      notes: ESLint/Prettier Hooks, dist-first Service-Runner und Doku-Refresh für v1.0
-        Stabilisierung
+      notes: "ESLint/Prettier Hooks, dist-first Service-Runner und Doku-Refresh f\xFC\
+        r v1.0 Stabilisierung"
     - id: 37b
       status: done
       notes: Node20 toolchain, policy guardrail audit-mode, repo-sanity warnings allowed
@@ -53,11 +61,12 @@ fraktal:
       notes: CI split (core/extended/experimental), UI alias fix, Node22 dev server
     - id: 32
       status: done
-      notes: 'Conscious-CI stabil: metrics singleton, Vitest offline (globals+fetch),
-        LowMem membrane – Fraktal44 bestätigte Observability-Bindung und Nightly Monitoring.'
+      notes: "Conscious-CI stabil: metrics singleton, Vitest offline (globals+fetch),\
+        \ LowMem membrane \u2013 Fraktal44 best\xE4tigte Observability-Bindung und Nightly\
+        \ Monitoring."
     - id: 25
       status: done
-      notes: pyright strict grün; OISST var=sst normalisiert
+      notes: "pyright strict gr\xFCn; OISST var=sst normalisiert"
     - id: 21
       status: done
       checkpoints:
@@ -65,8 +74,8 @@ fraktal:
         - 'Vitest: stream-json fix'
         - 'Prompt Coach: CLI + PR dry-run'
         - 'CI matrix: adapters cache + typechecks'
-      notes: Abschlussbewertung in Fraktal44 – alle Kernaufgaben verifiziert, optionale Follow-ups
-        ins Backlog verschoben.
+      notes: "Abschlussbewertung in Fraktal44 \u2013 alle Kernaufgaben verifiziert,\
+        \ optionale Follow-ups ins Backlog verschoben."
   owner: Codex
   needs_repeat: false
   progress:
@@ -80,10 +89,14 @@ fraktal:
 fraktal44:
   status: done
   summary:
-    - Fraktal40/41/43 Backlog harmonisiert, alle Checkpoints grün (CI, Governance, Dist-First).
-    - Sigillin-Validator & Workflow (`pnpm validate:sigillins`, `.github/workflows/sigillin-validate.yml`) integriert.
-    - Dev-Skripte neu sortiert (`pnpm dev`, `pnpm dev:services`, `pnpm dev:stack`) und README/CONTRIBUTING aktualisiert.
-    - Release-Drill inkl. Monitoring (`docker compose --profile prod up`) erneut durchgeführt, Alerts dokumentiert.
+    - "Fraktal40/41/43 Backlog harmonisiert, alle Checkpoints gr\xFCn (CI, Governance,\
+      \ Dist-First)."
+    - Sigillin-Validator & Workflow (`pnpm validate:sigillins`, `.github/workflows/sigillin-validate.yml`)
+      integriert.
+    - Dev-Skripte neu sortiert (`pnpm dev`, `pnpm dev:services`, `pnpm dev:stack`) und
+      README/CONTRIBUTING aktualisiert.
+    - "Release-Drill inkl. Monitoring (`docker compose --profile prod up`) erneut durchgef\xFC\
+      hrt, Alerts dokumentiert."
   artifacts:
     - codexfeedback-fraktal44.yaml
     - fraktal44.md
@@ -91,22 +104,25 @@ fraktal44:
 fraktal43:
   status: done
   checkpoints:
-    - scripts/run-dist.mjs ersetzt ts-node für Produktionskommandos
+    - "scripts/run-dist.mjs ersetzt ts-node f\xFCr Produktionskommandos"
     - AI_POLICY.md/.yaml enthalten Allow/Review/Block Beispiele
     - ci.nightly.yml spiegelt type-and-tests (Node20/Python3.11) inkl. Toolchain-Artefakt
-    - Dockerfile.dev Node20+Python3 für Compose-Parität, light-static-smoke verfügbar
+    - "Dockerfile.dev Node20+Python3 f\xFCr Compose-Parit\xE4t, light-static-smoke verf\xFC\
+      gbar"
   outcome:
-    - Nightly-Auswertung & Dist-First-Routinen in Fraktal44 bestätigt; Light-Static Smoke dauerhaft gebunden.
+    - "Nightly-Auswertung & Dist-First-Routinen in Fraktal44 best\xE4tigt; Light-Static\
+      \ Smoke dauerhaft gebunden."
 fraktal41:
   status: done
   subgoals:
-    - name: CI-Härtung (Fail-Fast-Pipelines)
+    - name: "CI-H\xE4rtung (Fail-Fast-Pipelines)"
       implemented: true
     - name: Kyverno-Policytest integriert
       implemented: true
     - name: Nightly/Extended Tests etabliert
       implemented: true
-      notes: Nightly Mirror via ci.nightly.yml aktiv, Alerts & Coverage-Auswertung laufen automatisiert (Fraktal44).
+      notes: Nightly Mirror via ci.nightly.yml aktiv, Alerts & Coverage-Auswertung laufen
+        automatisiert (Fraktal44).
     - name: Monitoring-Profil (Prometheus/Grafana)
       implemented: true
     - name: ts-node im Produktionspfad entfernt
@@ -114,7 +130,7 @@ fraktal41:
 fraktal40:
   status: done
   checkpoints:
-    - 'Playbook veröffentlicht: docs/roadmap/v1.0-stabilization-playbook.md'
+    - "Playbook ver\xF6ffentlicht: docs/roadmap/v1.0-stabilization-playbook.md"
     - 'Blueprint erstellt: docs/roadmap/v1.0-stabilization-playbook.yaml'
   tracker:
     stability:
@@ -128,40 +144,42 @@ fraktal40:
     build-release:
       owner: ReleaseOps Circle / VisionContextIntegrator
       status: done
-      notes: Dist-First Build/Runtime-Smoke abgeschlossen; `pnpm dev:services`/`dev:stack` dokumentiert.
+      notes: Dist-First Build/Runtime-Smoke abgeschlossen; `pnpm dev:services`/`dev:stack`
+        dokumentiert.
     governance:
       owner: AI Governance Council / PactDepthGatekeeper
       status: done
-      notes: Kyverno & Policy-Doku abgeschlossen, Monitoring weiterführen
+      notes: "Kyverno & Policy-Doku abgeschlossen, Monitoring weiterf\xFChren"
     observability:
       owner: TelemetryOps / Health Maintainers
       status: done
-      notes: '`prom-compose` aktiv, `/metrics`-Rollout in Release-Drill bestätigt; Alerts dokumentiert.'
+      notes: "`prom-compose` aktiv, `/metrics`-Rollout in Release-Drill best\xE4tigt;\
+        \ Alerts dokumentiert."
   next: []
 fraktal46:
-  status: running
+  status: done
   summary:
-    - 'MandalaMap.yaml/json/md als Mandala-Baseline erzeugt; 68 Top-Level-Verzeichnisse kategorisiert.'
-    - 'Inter-AI Sigillin-Bridges scaffolded (ChatGPT/Mistral/Claude/Qwen/Gemini) + Validator/CI/Corepack-Setup & README/Codexfeedback aktualisiert.'
-    - 'Follow-ups im MandalaMap follow_up-Abschnitt festgehalten (CI-Instruktionsjobs, Stub-Roadmap, Map-Pflege).'
+    - MandalaMap.yaml/json/md refreshed with bridge registry index and updated follow-ups.
+    - "Sigillin validator tightened (CREP metrics, Trik\u0101ya, next actions) and workflow\
+      \ marked required."
+    - Mandala-map CI workflow added to publish artifacts without blocking merges.
   artifacts:
     - MandalaMap.yaml
     - MandalaMap.json
     - MandalaMap.md
   follow_up:
-    - '.github/ & ci/: Instruktionsjobs von aktiven CI-Schritten trennen.'
     - 'stubs/ & keys/: Ersatz-/Secret-Strategie abstimmen.'
-    - 'MandalaMap.* nach jedem Fraktal aktualisieren.'
-  repeat_required: true
+    - MandalaMap.* nach jedem Fraktal aktualisieren.
+  repeat_required: false
 fraktal45:
   status: done
   focus:
-    - 'Type-and-tests Job (`pnpm test:ts:ci`) repariert'
-    - 'ESLint-Konfiguration um `plugin:@typescript-eslint/recommended` erweitert'
-    - 'Lauf erneut validiert (Vitest low-memory)'
+    - Type-and-tests Job (`pnpm test:ts:ci`) repariert
+    - ESLint-Konfiguration um `plugin:@typescript-eslint/recommended` erweitert
+    - Lauf erneut validiert (Vitest low-memory)
   notes:
     - 'Ursache: fehlende Recommended-Extends verhinderte ESLint-Regelsatz in Tests/eslint-config.test.ts'
-    - 'Lösung: `.eslintrc.cjs` erweitert, Tests erneut grün'
+    - "L\xF6sung: `.eslintrc.cjs` erweitert, Tests erneut gr\xFCn"
   repeat_required: false
   validation:
     - pnpm test:ts
@@ -169,10 +187,11 @@ fraktal45:
 fraktal21:
   status: done
   checkpoints:
-    - 'OISST pipeline restored: fetch → postprocess → STAC → CREP → adapters_index.json'
+    - "OISST pipeline restored: fetch \u2192 postprocess \u2192 STAC \u2192 CREP \u2192\
+      \ adapters_index.json"
     - CI smoke asserts OISST presence in out/adapters_index.json
     - Vitest low-memory config (workers=1, heap 3-4GB) + jsdom polyfills
-    - check:ci → tsc + vitest(low-mem) + pyright
+    - "check:ci \u2192 tsc + vitest(low-mem) + pyright"
     - 'CI splits: adapters-offline + type-and-tests'
     - 'Metrics: global Registry + getOrCreate-Helper verhindern Doppel-Registrierung'
   notes:
@@ -187,8 +206,8 @@ fraktal22:
     - adapters_offline_smoke_guard: true
   checkpoints:
     - 'CI split: adapters-offline + type-and-tests + prompt-lint'
-    - PR-Kommentar für Prompt-Coach (dry-run)
-    - Smoke-Test für adapters_index.json (OISST present)
+    - "PR-Kommentar f\xFCr Prompt-Coach (dry-run)"
+    - "Smoke-Test f\xFCr adapters_index.json (OISST present)"
   next: []
 fraktal23:
   status: done
@@ -214,11 +233,23 @@ fraktal32:
     - CI env OFFLINE/LOW_MEM global; OISST smoke present
     - ERA5 offline stub & smoke
   next:
-    - Validiert in Fraktal44; weiterführende Coverage-Experimente optional.
+    - "Validiert in Fraktal44; weiterf\xFChrende Coverage-Experimente optional."
 fraktal34:
   status: done
   checkpoints:
     - CI split into core/extended/experimental
     - UI alias ~config & Node22 dev-server ESM
   next:
-    - Labels werden im Rahmen von Fraktal44/CI-Review überwacht – kein separater Lauf nötig.
+    - "Labels werden im Rahmen von Fraktal44/CI-Review \xFCberwacht \u2013 kein separater\
+      \ Lauf n\xF6tig."
+fraktal48:
+  status: running
+  summary:
+    - 'CI follow-ups delivered: wait-on in smoke workflow, required sigillin validation,
+      MandalaMap artifact job.'
+    - MandalaMap.* updated with bridge registry visibility and follow-up status adjustments.
+    - Sigillin authoring CLI & Trikāya dashboard generator verfügbar (analysis/trikaya-dashboard.(json|md|yaml)); Stub-Roadmap in docs/roadmap/stub-replacement-roadmap.(md|yaml) abgelegt.
+  hooks:
+    - 'Stub-Usage Audit (scripts/check-stub-usage.mjs) als optionaler MandalaMap-Hook.'
+    - Kyverno/OPA Policy für keys/-Automation vorbereiten.
+  repeat_required: false

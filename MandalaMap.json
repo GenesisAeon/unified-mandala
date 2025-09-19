@@ -1,8 +1,8 @@
 {
   "meta": {
     "version": "1.0",
-    "generated": "2025-09-19T12:37:23Z",
-    "fraktal": 46,
+    "generated": "2025-09-19T18:00:00Z",
+    "fraktal": 48,
     "repo": "unified-mandala",
     "source": "ChefDevAI MandalaMap bootstrap",
     "reference_docs": [
@@ -97,7 +97,8 @@
       "description": "Workflow definitions (core, nightly, experimental) and community health files.",
       "notes": [
         "Audit instructions encoded as jobs; isolate non-actionable tasks to stop false CI failures.",
-        "Core/extended workflows documented in docs/roadmap/v1.0-stabilization-playbook.md."
+        "Core/extended workflows documented in docs/roadmap/v1.0-stabilization-playbook.md.",
+        "Sigillin validator is required on main; mandala-map workflow uploads artifacts without blocking CI."
       ],
       "links": [
         {
@@ -107,6 +108,14 @@
         {
           "label": "Nightly Mirror",
           "path": ".github/workflows/ci.nightly.yml"
+        },
+        {
+          "label": "Sigillin validate",
+          "path": ".github/workflows/sigillin-validate.yml"
+        },
+        {
+          "label": "Mandala map job",
+          "path": ".github/workflows/mandala-map.yml"
         }
       ]
     },
@@ -196,12 +205,17 @@
       "title": "Analytics outputs",
       "description": "Generated datasets (conversation filters, repo-map JSON/CSV, audits).",
       "notes": [
-        "scripts/repo-map.ts writes analysis/repo-map.json and CSV; keep artifacts in sync with MandalaMap.*"
+        "scripts/repo-map.ts writes analysis/repo-map.json and CSV; keep artifacts in sync with MandalaMap.*",
+        "scripts/generate-trikaya-dashboard.mjs produziert analysis/trikaya-dashboard.(json|md|yaml) für CREP/Trikāya-Governance."
       ],
       "links": [
         {
           "label": "Repo map script",
           "path": "scripts/repo-map.ts"
+        },
+        {
+          "label": "Trikāya dashboard script",
+          "path": "scripts/generate-trikaya-dashboard.mjs"
         }
       ]
     },
@@ -373,12 +387,17 @@
       "title": "Documentation",
       "description": "Core documentation including stabilization playbooks, onboarding, agents, governance.",
       "notes": [
-        "MandalaMap references docs/roadmap/v1.0-stabilization-playbook.* for CI/Release context."
+        "MandalaMap references docs/roadmap/v1.0-stabilization-playbook.* for CI/Release context.",
+        "Stub-Replacement-Roadmap ergänzt Support-Migrationen in docs/roadmap/stub-replacement-roadmap.(md|yaml)."
       ],
       "links": [
         {
           "label": "v1.0 Playbook",
           "path": "docs/roadmap/v1.0-stabilization-playbook.md"
+        },
+        {
+          "label": "Stub roadmap",
+          "path": "docs/roadmap/stub-replacement-roadmap.md"
         }
       ]
     },
@@ -760,8 +779,16 @@
       "status": "stub",
       "title": "Python stub packages",
       "description": "Placeholder modules for kan_network, liquid_time_constant_network, torch_geometric, etc.",
-      "notes": ["Replace with real implementations or upstream packages when available."],
-      "links": []
+      "notes": [
+        "Roadmap in docs/roadmap/stub-replacement-roadmap.(md|yaml) beschreibt Ablösung und Keys-Governance.",
+        "Bis Phase B abgeschlossen ist, stubs/ nur als Typ-Fallback nutzen; keys/ bleibt automation-only."
+      ],
+      "links": [
+        {
+          "label": "Stub replacement roadmap",
+          "path": "docs/roadmap/stub-replacement-roadmap.md"
+        }
+      ]
     },
     {
       "path": "tasks/",
@@ -843,20 +870,37 @@
       "description": "Mandala worldview YAML encoding narrative/ethical positioning.",
       "notes": ["Align updates with manifest/ and AI policy documentation."],
       "links": []
+    },
+    {
+      "path": "sigils/bridges/bridges.index.yaml",
+      "category": "governance",
+      "status": "active",
+      "title": "Bridge registry index",
+      "description": "Registry listing all inter-AI bridge sigillins for discovery tooling.",
+      "notes": [
+        "Generated alongside bridge scaffolds; keep in sync with pnpm validate:sigillins outputs.",
+        "Consumed by map:mandala validation and future dashboards for CREP/Trik\u0101ya coverage."
+      ],
+      "links": [
+        {
+          "label": "bridges/",
+          "path": "sigils/bridges"
+        }
+      ]
     }
   ],
   "follow_up": [
     {
       "title": "Separate instructional jobs from actionable CI",
-      "detail": "Review .github/ and ci/ workflows so narrative instructions do not execute as failing jobs.",
+      "detail": "Mandala-map workflow now runs continue-on-error and uploads artifacts; instructional jobs decoupled.",
       "related": [".github/", "ci/"],
-      "status": "todo"
+      "status": "done"
     },
     {
       "title": "Stub replacement roadmap",
-      "detail": "Plan replacements for stubs/ and ensure keys/ remains secrets-only via deployment automation.",
+      "detail": "Roadmap dokumentiert in docs/roadmap/stub-replacement-roadmap.(md|yaml); Umsetzungsschritte für stubs/ und keys/ eingeplant.",
       "related": ["stubs/", "keys/"],
-      "status": "todo"
+      "status": "in-progress"
     },
     {
       "title": "MandalaMap upkeep",

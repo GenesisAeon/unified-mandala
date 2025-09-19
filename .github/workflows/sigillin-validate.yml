@@ -2,27 +2,35 @@ name: sigillin-validate
 
 on:
   pull_request:
+    paths:
+      - 'sigils/**'
+      - 'scripts/validate-sigillins.mjs'
+      - 'scripts/schemas/**'
+      - '.github/workflows/sigillin-validate.yml'
   push:
     branches: [main]
+    paths:
+      - 'sigils/**'
+      - 'scripts/validate-sigillins.mjs'
+      - 'scripts/schemas/**'
+      - '.github/workflows/sigillin-validate.yml'
 
 jobs:
   sigillin:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-
-      - name: Enable corepack & prepare pnpm
+      - name: Enable corepack
         run: |
           corepack enable
           corepack prepare pnpm@10.16.1 --activate
-
-      - name: Install deps
+          pnpm --version
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+          cache: 'pnpm'
+      - name: Install dependencies
         run: pnpm install --frozen-lockfile
-
       - name: Validate Sigillins
         run: pnpm validate:sigillins

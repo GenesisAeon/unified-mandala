@@ -1,6 +1,6 @@
-# Mandala Map · Fraktal46
+# Mandala Map · Fraktal48
 
-Generated: 2025-09-19T12:37:23Z
+Generated: 2025-09-19T18:00:00Z
 Repository: unified-mandala
 
 ## Reference Docs
@@ -53,9 +53,12 @@ Repository: unified-mandala
   - Vendored type stubs (numpy, xarray) supporting strict pyright checks.
   - Notes: Update when upstream versions change; referenced by pyrightconfig.json.
 
-- `stubs/` — **stub** Python stub packages
-  - Placeholder modules for kan_network, liquid_time_constant_network, torch_geometric, etc.
-  - Notes: Replace with real implementations or upstream packages when available.
+  - `stubs/` — **stub** Python stub packages
+    - Placeholder modules for kan_network, liquid_time_constant_network, torch_geometric, etc.
+    - Notes:
+      - Roadmap in docs/roadmap/stub-replacement-roadmap.(md|yaml) beschreibt Ablösung und Keys-Governance.
+      - Bis Phase B abgeschlossen ist, stubs/ nur als Typ-Fallback nutzen; keys/ bleibt automation-only.
+    - Links: [Stub replacement roadmap](docs/roadmap/stub-replacement-roadmap.md)
 
 - `typings/` — **stable** Typing shims
   - Third-party typing shims (aiohttp, fastapi, numpy, pandas, etc.) for cross-language tooling.
@@ -65,8 +68,8 @@ Repository: unified-mandala
 
 - `.github/` — **active** GitHub workflows & templates
   - Workflow definitions (core, nightly, experimental) and community health files.
-  - Notes: Audit instructions encoded as jobs; isolate non-actionable tasks to stop false CI failures.; Core/extended workflows documented in docs/roadmap/v1.0-stabilization-playbook.md.
-  - Links: [CI Core](.github/workflows/ci.core.yml), [Nightly Mirror](.github/workflows/ci.nightly.yml)
+  - Notes: Audit instructions encoded as jobs; isolate non-actionable tasks to stop false CI failures.; Core/extended workflows documented in docs/roadmap/v1.0-stabilization-playbook.md.; Sigillin validator is required on main; mandala-map workflow uploads artifacts without blocking CI.
+  - Links: [CI Core](.github/workflows/ci.core.yml), [Nightly Mirror](.github/workflows/ci.nightly.yml), [Sigillin validate](.github/workflows/sigillin-validate.yml), [Mandala map job](.github/workflows/mandala-map.yml)
 
 - `.husky/` — **active** Git hooks
   - Pre-commit automation enforcing lint-staged and formatting policies.
@@ -204,8 +207,10 @@ Repository: unified-mandala
 
 - `analysis/` — **generated** Analytics outputs
   - Generated datasets (conversation filters, repo-map JSON/CSV, audits).
-  - Notes: scripts/repo-map.ts writes analysis/repo-map.json and CSV; keep artifacts in sync with MandalaMap.\*
-  - Links: [Repo map script](scripts/repo-map.ts)
+  - Notes:
+    - scripts/repo-map.ts writes analysis/repo-map.json and CSV; keep artifacts in sync with MandalaMap.\*
+    - scripts/generate-trikaya-dashboard.mjs produziert analysis/trikaya-dashboard.(json\|md\|yaml) für CREP/Trikāya-Governance.
+  - Links: [Repo map script](scripts/repo-map.ts) · [Trikāya dashboard script](scripts/generate-trikaya-dashboard.mjs)
 
 - `data/` — **active** Data lake
   - Raw/processed datasets (agents, MRV, personhood, sigils, simulations).
@@ -264,8 +269,8 @@ Repository: unified-mandala
 
 - `docs/` — **active** Documentation
   - Core documentation including stabilization playbooks, onboarding, agents, governance.
-  - Notes: MandalaMap references docs/roadmap/v1.0-stabilization-playbook.\* for CI/Release context.
-  - Links: [v1.0 Playbook](docs/roadmap/v1.0-stabilization-playbook.md)
+  - Notes: MandalaMap references docs/roadmap/v1.0-stabilization-playbook.\* für CI/Release Kontext und die Stub-Roadmap für Support-Migrationen.
+  - Links: [v1.0 Playbook](docs/roadmap/v1.0-stabilization-playbook.md) · [Stub roadmap](docs/roadmap/stub-replacement-roadmap.md)
 
 - `governance/` — **active** Governance policies
   - Governance policy documents and nested policy definitions.
@@ -295,6 +300,11 @@ Repository: unified-mandala
 - `sigils/` — **active** Sigillin bridges & archives
   - Machine-readable Sigillin briefs (JSON/YAML) and bridging bundles für AI-Orchestrierung.
   - Notes: Generated via scripts/scaffold-interai-bridges.mjs; validate via pnpm validate:sigillins.
+
+- `sigils/bridges/bridges.index.yaml` — **active** Bridge registry index
+  - Registry listing all inter-AI bridge sigillins for discovery tooling.
+  - Notes: Generated alongside bridge scaffolds; keep in sync with pnpm validate:sigillins outputs.; Consumed by map:mandala validation and upcoming CREP/Trikāya dashboards.
+  - Links: [bridges/](sigils/bridges)
 
 - `worldview/` — **active** Worldview manifests
   - Mandala worldview YAML encoding narrative/ethical positioning.
@@ -357,6 +367,6 @@ Repository: unified-mandala
 
 ## Follow-ups
 
-- **Separate instructional jobs from actionable CI** (todo) — Review .github/ and ci/ workflows so narrative instructions do not execute as failing jobs. · Related: .github/, ci/
-- **Stub replacement roadmap** (todo) — Plan replacements for stubs/ and ensure keys/ remains secrets-only via deployment automation. · Related: stubs/, keys/
+- **Separate instructional jobs from actionable CI** (done) — Mandala-map workflow runs continue-on-error and publishes artifacts; instructional notes no longer block required checks. · Related: .github/, ci/
+- **Stub replacement roadmap** (in-progress) — Roadmap dokumentiert in docs/roadmap/stub-replacement-roadmap.(md|yaml); Umsetzungsschritte für stubs/ und keys/ eingeplant. · Related: stubs/, keys/
 - **MandalaMap upkeep** (ongoing) — Update MandalaMap.\* after each fractal iteration to capture structural changes. · Related: MandalaMap.yaml, MandalaMap.json, MandalaMap.md

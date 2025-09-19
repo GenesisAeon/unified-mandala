@@ -80,6 +80,7 @@
     "agents:route": "node scripts/agents/router.mjs",
     "fraktalrun:import": "node scripts/run-dist.mjs scripts/fraktalrun-import.ts",
     "maps:validate": "node scripts/maps/validate-maps.mjs",
+    "map:mandala": "node scripts/mandala-map-validate.mjs",
     "maps:build": "node scripts/run-dist.mjs scripts/repo-map.ts",
     "maps:list": "node -e \"console.log(require('./analysis/repo-map.json').length+' files')\"",
     "audit:ui-vr": "node scripts/run-dist.mjs scripts/ui-vr-audit.ts",
@@ -118,7 +119,9 @@
     "adapters:ci:install": "pip install -r src/adapters/requirements.txt",
     "check:ci": "npx tsc -p tsconfig.json --noEmit && pnpm test:ts:ci && npx pyright",
     "sigillins:scaffold": "node scripts/scaffold-interai-bridges.mjs",
-    "sigillins:build": "node scripts/build-sigillin-archive.mjs"
+    "sigillins:authoring": "node scripts/sigillin-authoring.mjs",
+    "sigillins:build": "node scripts/build-sigillin-archive.mjs",
+    "trikaya:dashboard": "node scripts/generate-trikaya-dashboard.mjs"
   },
   "dependencies": {
     "@automerge/automerge": "^3.1.1",
@@ -222,7 +225,8 @@
     "typedoc": "^0.28.5",
     "typescript": "^5.4.0",
     "undici": "^6.19.8",
-    "vitest": "^1.6.0"
+    "vitest": "^1.6.0",
+    "wait-on": "^7.2.0"
   },
   "lint-staged": {
     "{scripts,services,src,tests}/**/*.{ts,tsx,js,jsx,cjs,mjs}": [

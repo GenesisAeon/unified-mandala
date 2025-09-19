@@ -1,5 +1,8 @@
 # Codex Feedback
 
+- FR-UM-2025-10-07-Fraktal48-Dashboard+CLI: Sigillin-Authoring CLI (`scripts/sigillin-authoring.mjs`) und Trikāya-Dashboard-Generator (`scripts/generate-trikaya-dashboard.mjs`) liefern analysis/trikaya-dashboard.(json|md|yaml); Stub-Replacement-Roadmap in `docs/roadmap/stub-replacement-roadmap.(md|yaml)` verankert, MandalaMap-Follow-up auf „in-progress“ gesetzt.
+- FR-UM-2025-09-19-Fraktal48-CI+MandalaMap: Sigillin-Validator verschärft (Schema + Semantik), MandalaMap-Workflow ergänzt (continue-on-error + Artefakt), Smoke-Build wartet auf apps/ui/dist/index.html; MandalaMap.\* mit Bridge-Registry aktualisiert und Follow-ups angepasst.
+
 - FR-UM-2025-10-05-Fraktal46-SigillinBridges: Inter-AI Bridges (ChatGPT/Mistral/Claude/Qwen/Gemini) + Validator aktualisiert (`scripts/validate-sigillins.mjs`, `scripts/schemas/mandala-sigillin.schema.json`), CI-Workflow auf Corepack umgestellt, README ergänzt, `codexfeedback/fraktal44.yaml` angelegt; `pnpm sigillins:scaffold` + `pnpm validate:sigillins` grün.
 - FR-UM-2025-10-04-Fraktal46-RepoMap: MandalaMap.yaml/json/md erstellt, 68 Top-Level-Verzeichnisse samt Status & Follow-ups dokumentiert (CI-Instruktionsjobs isolieren, Stub-Ersetzungen planen, MandalaMap pflegen); dient als Baseline für Folgefragmente.
 - FR-UM-2025-10-02-Fraktal45-CIJobs: Typ-und-Test-Lauf (`pnpm test:ts:ci`) scheiterte an fehlendem `plugin:@typescript-eslint/recommended`; ESLint-Config erweitert, Job erneut ausgeführt und grün bestätigt.

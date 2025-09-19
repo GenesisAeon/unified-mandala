@@ -2,7 +2,7 @@ name: smoke
 on:
   pull_request:
   push:
-    branches: [ main ]
+    branches: [main]
   workflow_dispatch:
 jobs:
   smoke:
@@ -20,7 +20,9 @@ jobs:
         with:
           version: 10.16.1
       - run: pnpm install --frozen-lockfile
-      - run: pnpm build:ui || true
+      - run: pnpm build:ui
+      - name: Ensure UI dist ready
+        run: npx wait-on "file:apps/ui/dist/index.html"
       - run: node scripts/dev-server.js & sleep 2 || true
       - run: curl -s -o /dev/null -w "%{http_code}\n" http://localhost:3000/ | grep 200
       - run: curl -s -o /dev/null -w "%{http_code}\n" http://localhost:3000/healthz | grep 200
