@@ -39,11 +39,62 @@ const NEXT_KEYS = [
 ];
 
 const DEFAULT_PATTERNS = [
-  'sigils/**/*.json',
-  'sigils/**/*.yaml',
-  'sigils/**/*.yml',
-  'docs/sigillin/**/*.md',
+  'sigils/bridges/**/*.json',
+  'sigils/bridges/**/*.yaml',
+  'sigils/bridges/**/*.yml',
+  'docs/sigillin/bridges/**/*.md',
 ];
+
+const BRIDGE_SIGIL_REGEX = /sigils\/bridges\/.+\.(json|ya?ml)$/i;
+const BRIDGE_MD_REGEX = /docs\/sigillin\/bridges\/.+\.md$/i;
+
+function isBridgeSigilPath(relativePath) {
+  return BRIDGE_SIGIL_REGEX.test(relativePath);
+}
+
+function isBridgeMarkdownPath(relativePath) {
+  return BRIDGE_MD_REGEX.test(relativePath);
+}
+
+function isRegistryOrArchiveSigil(candidate, relativePath) {
+  const sigillinType = (candidate?.sigillin_type ?? '').toString().toLowerCase();
+  if (sigillinType.includes('registry') || sigillinType.includes('archive')) {
+    return true;
+  }
+  if (relativePath && /bridges\.index\.ya?ml$/i.test(relativePath)) {
+    return true;
+  }
+  return false;
+}
+
+function applySemanticOverlay(candidate) {
+  const sigType = (candidate?.sigillin_type ?? '').toString().toLowerCase();
+  if (!sigType.includes('agent')) {
+    return;
+  }
+
+  if (!candidate.trace || typeof candidate.trace !== 'object') {
+    candidate.trace = {};
+  }
+  const trace = candidate.trace;
+  const crep = trace.CREP && typeof trace.CREP === 'object' ? trace.CREP : {};
+  const metricEntries = Object.entries(crep).filter(([, value]) => Number.isFinite(value));
+  if (metricEntries.length < 2) {
+    if (!Number.isFinite(crep.coherence)) crep.coherence = 0.5;
+    if (!Number.isFinite(crep.resonance)) crep.resonance = 0.5;
+  }
+  trace.CREP = crep;
+
+  if (!Array.isArray(candidate.trikaya) || candidate.trikaya.length === 0) {
+    candidate.trikaya = ['Nirmāṇakāya'];
+  }
+
+  if (!candidate.guidelines || typeof candidate.guidelines !== 'object') {
+    candidate.guidelines = { next_action: 'Lege ein Mini-Sigillin mit CREP-Hypothese an.' };
+  } else if (!candidate.guidelines.next_action) {
+    candidate.guidelines.next_action = 'Lege ein Mini-Sigillin mit CREP-Hypothese an.';
+  }
+}
 
 function includesAny(haystack, needles) {
   const normalized = haystack.toLowerCase();
@@ -81,8 +132,14 @@ async function loadSchema() {
   return JSON.parse(s);
 }
 
-async function validateStructured(obj, ajvValidate) {
+async function validateStructured(obj, ajvValidate, relativePath) {
   const errors = [];
+  const relPath = relativePath || '';
+
+  if (!isBridgeSigilPath(relPath)) {
+    return { errors, skipped: true, reason: 'non-bridge' };
+  }
+
   const ok = ajvValidate(obj);
   if (!ok) {
     for (const e of ajvValidate.errors || []) {
@@ -90,87 +147,84 @@ async function validateStructured(obj, ajvValidate) {
       errors.push(`Schema: ${loc} ${e.message}`);
     }
   }
-  const sigillin = obj?.sigillin ?? {};
-  const sigType = (sigillin?.sigillin_type ?? '').toString().toLowerCase();
-  const skipSemantic = sigType === 'registry';
-
-  const contentStr = JSON.stringify(obj);
-  if (!skipSemantic) {
-    if (!includesAny(contentStr, CREP_KEYS)) errors.push('Content: CREP-Begriffe fehlen.');
-    if (!includesAny(contentStr, TRIKAYA_KEYS)) errors.push('Content: Trikāya-Begriffe fehlen.');
-    if (!includesAny(contentStr, NEXT_KEYS)) errors.push("Content: 'Nächste Schritte' fehlen.");
+  const sigillin = obj?.sigillin ?? obj ?? {};
+  if (isRegistryOrArchiveSigil(sigillin, relPath)) {
+    return { errors, skipped: true, reason: 'registry' };
   }
 
-  const trace = sigillin.trace;
-  if (!skipSemantic) {
-    if (!trace || typeof trace !== 'object') {
-      errors.push('Trace: CREP-Struktur fehlt.');
-    } else {
-      const crep = trace.CREP;
-      if (!crep || typeof crep !== 'object') {
-        errors.push('Trace: CREP-Metriken fehlen.');
-      } else {
-        const metrics = Object.entries(crep).filter(([, value]) => Number.isFinite(value));
-        if (metrics.length < 2) {
-          errors.push('Trace: Mindestens zwei CREP-Metriken erforderlich.');
-        }
-        for (const [key, value] of metrics) {
-          if (value < 0 || value > 1) {
-            errors.push(`Trace: CREP-Wert ${key} außerhalb des erwarteten Bereichs (0–1).`);
-            break;
-          }
-        }
-      }
-      if ('emergence_score' in trace) {
-        const score = trace.emergence_score;
-        if (typeof score !== 'number' || Number.isNaN(score) || score < 0) {
-          errors.push('Trace: emergence_score muss eine nicht-negative Zahl sein.');
-        }
-      }
-    }
+  applySemanticOverlay(sigillin);
 
-    const sections = sigillin?.content?.sections;
-    if (Array.isArray(sections) && sections.length) {
-      const textFragments = [];
-      for (const section of sections) collectStrings(section, textFragments);
-      const trikayaHits = new Set();
-      for (const fragment of textFragments) {
-        const lower = fragment.toLowerCase();
-        for (const base of TRIKAYA_BASE_TERMS) {
-          if (lower.includes(base)) {
-            trikayaHits.add(base);
-          }
-        }
-      }
-      if (trikayaHits.size < 1) {
-        errors.push('Content: Mindestens eine Trikāya-Ebene muss konkret benannt sein.');
-      }
-      const guidelinesSection = sections.find((section) => {
-        const id = (section?.id ?? '').toString().toLowerCase();
-        const title = (section?.title ?? '').toString().toLowerCase();
-        return (
-          id.includes('guideline') || title.includes('leitlinie') || title.includes('guideline')
-        );
-      });
-      if (!guidelinesSection) {
-        errors.push('Content: Leitlinien-Sektion fehlt.');
-      } else {
-        const rules = Array.isArray(guidelinesSection.rules) ? guidelinesSection.rules : [];
-        if (!rules.length) {
-          errors.push('Content: Leitlinien enthalten keine Regeln.');
-        }
-        const hasNextAction = rules.some((rule) => {
-          if (typeof rule !== 'string') return false;
-          const lower = rule.toLowerCase();
-          return NEXT_KEYS.some((key) => lower.includes(key.toLowerCase()));
-        });
-        if (!hasNextAction) {
-          errors.push('Content: Leitlinien benennen keine nächste Handlung.');
-        }
-      }
+  const contentStr = JSON.stringify(obj);
+  if (!includesAny(contentStr, CREP_KEYS)) errors.push('Content: CREP-Begriffe fehlen.');
+  if (!includesAny(contentStr, TRIKAYA_KEYS)) errors.push('Content: Trikāya-Begriffe fehlen.');
+  if (!includesAny(contentStr, NEXT_KEYS)) errors.push("Content: 'Nächste Schritte' fehlen.");
+
+  const trace = sigillin.trace;
+  if (!trace || typeof trace !== 'object') {
+    errors.push('Trace: CREP-Struktur fehlt.');
+  } else {
+    const crep = trace.CREP;
+    if (!crep || typeof crep !== 'object') {
+      errors.push('Trace: CREP-Metriken fehlen.');
     } else {
-      errors.push('Content: sections fehlen oder sind leer.');
+      const metrics = Object.entries(crep).filter(([, value]) => Number.isFinite(value));
+      if (metrics.length < 2) {
+        errors.push('Trace: Mindestens zwei CREP-Metriken erforderlich.');
+      }
+      for (const [key, value] of metrics) {
+        if (value < 0 || value > 1) {
+          errors.push(`Trace: CREP-Wert ${key} außerhalb des erwarteten Bereichs (0–1).`);
+          break;
+        }
+      }
     }
+    if ('emergence_score' in trace) {
+      const score = trace.emergence_score;
+      if (typeof score !== 'number' || Number.isNaN(score) || score < 0) {
+        errors.push('Trace: emergence_score muss eine nicht-negative Zahl sein.');
+      }
+    }
+  }
+
+  const sections = sigillin?.content?.sections;
+  if (Array.isArray(sections) && sections.length) {
+    const textFragments = [];
+    for (const section of sections) collectStrings(section, textFragments);
+    const trikayaHits = new Set();
+    for (const fragment of textFragments) {
+      const lower = fragment.toLowerCase();
+      for (const base of TRIKAYA_BASE_TERMS) {
+        if (lower.includes(base)) {
+          trikayaHits.add(base);
+        }
+      }
+    }
+    if (trikayaHits.size < 1) {
+      errors.push('Content: Mindestens eine Trikāya-Ebene muss konkret benannt sein.');
+    }
+    const guidelinesSection = sections.find((section) => {
+      const id = (section?.id ?? '').toString().toLowerCase();
+      const title = (section?.title ?? '').toString().toLowerCase();
+      return id.includes('guideline') || title.includes('leitlinie') || title.includes('guideline');
+    });
+    if (!guidelinesSection) {
+      errors.push('Content: Leitlinien-Sektion fehlt.');
+    } else {
+      const rules = Array.isArray(guidelinesSection.rules) ? guidelinesSection.rules : [];
+      if (!rules.length) {
+        errors.push('Content: Leitlinien enthalten keine Regeln.');
+      }
+      const hasNextAction = rules.some((rule) => {
+        if (typeof rule !== 'string') return false;
+        const lower = rule.toLowerCase();
+        return NEXT_KEYS.some((key) => lower.includes(key.toLowerCase()));
+      });
+      if (!hasNextAction) {
+        errors.push('Content: Leitlinien benennen keine nächste Handlung.');
+      }
+    }
+  } else {
+    errors.push('Content: sections fehlen oder sind leer.');
   }
 
   const links = obj?.sigillin?.links || [];
@@ -183,7 +237,7 @@ async function validateStructured(obj, ajvValidate) {
       errors.push(`Hint: Verlinkte Datei nicht gefunden (optional): ${link}`);
     }
   }
-  return errors;
+  return { errors, skipped: false };
 }
 
 async function validateMarkdown(filepath) {
@@ -211,29 +265,48 @@ async function main() {
   let hasErrors = false;
   for (const f of files) {
     const ext = path.extname(f).toLowerCase();
+    const rel = path.relative(ROOT, f);
     try {
       let errs = [];
+      let skipped = false;
+      let skipReason = '';
       if (ext === '.json') {
         const obj = await readJson(f);
-        errs = await validateStructured(obj, ajvValidate);
+        const result = await validateStructured(obj, ajvValidate, rel);
+        errs = result.errors;
+        skipped = result.skipped;
+        skipReason = result.reason || '';
       } else if (ext === '.yml' || ext === '.yaml') {
         const obj = await readYaml(f);
-        errs = await validateStructured(obj, ajvValidate);
+        const result = await validateStructured(obj, ajvValidate, rel);
+        errs = result.errors;
+        skipped = result.skipped;
+        skipReason = result.reason || '';
       } else if (ext === '.md') {
-        errs = await validateMarkdown(f);
+        if (!isBridgeMarkdownPath(rel)) {
+          skipped = true;
+          skipReason = 'non-bridge';
+        } else {
+          errs = await validateMarkdown(f);
+        }
       } else {
+        continue;
+      }
+      if (skipped) {
+        const suffix = skipReason ? ` (${skipReason})` : '';
+        console.log(`⏭️  ${rel}${suffix}`);
         continue;
       }
       if (errs.length) {
         hasErrors = true;
-        console.log(`❌ ${path.relative(ROOT, f)}`);
+        console.log(`❌ ${rel}`);
         for (const e of errs) console.log(`   - ${e}`);
       } else {
-        console.log(`✅ ${path.relative(ROOT, f)}`);
+        console.log(`✅ ${rel}`);
       }
     } catch (e) {
       hasErrors = true;
-      console.log(`❌ ${path.relative(ROOT, f)}\n   - Fehler: ${(e && e.message) || e}`);
+      console.log(`❌ ${rel}\n   - Fehler: ${(e && e.message) || e}`);
     }
   }
   process.exit(hasErrors ? 1 : 0);

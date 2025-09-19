@@ -1,0 +1,23 @@
+fraktal: 49
+status: running
+owner: ChefDevAI
+summary:
+  - 'Sigillin validator fokussiert jetzt sigils/bridges, Registry/Archive werden übersprungen und Agent-Overlays stehen bereit für Legacy-Sigills.'
+  - 'Repo-Sanity baut die UI-Assets mit wait-on, AgentWorkflowEngine setzt ethical_guardrails standardmäßig und ist mit Vitest abgesichert.'
+  - 'MandalaMap- und Codexfeedback-Artefakte auf Fraktal49 aktualisiert, inkl. Hinweis auf neue CI-Gates.'
+deliverables:
+  - scripts/validate-sigillins.mjs
+  - .github/workflows/repo-sanity.yml
+  - packages/agents/AgentWorkflowEngine.ts
+  - packages/agents/AgentWorkflowEngine.test.ts
+  - MandalaMap.md
+  - MandalaMap.json
+  - MandalaMap.yaml
+follow_up:
+  policy_scope_tightening:
+    description: 'OPA/Kyverno-Policies um spezifische Excludes für analytics-Artefakte erweitern und Tests anpassen.'
+    status: planned
+  agent_runner_dist_first:
+    description: 'ts-node Shebangs in agents/system-start Pipeline schrittweise durch dist-first Runner ersetzen.'
+    status: planned
+repeat_required: false

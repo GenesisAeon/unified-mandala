@@ -1,8 +1,11 @@
 fraktal:
-  current: 48
+  current: 49
   history:
-    - id: 48
+    - id: 49
       status: running
+      notes: 'Validator scope konzentriert sich auf sigils/bridges, Repo-Sanity wartet auf den UI-Build und AgentWorkflowEngine setzt ethical_guardrails standardmäßig.'
+    - id: 48
+      status: done
       notes: "CI follow-ups (sigillin validator, MandalaMap artifacts) implemented;\
         \ Trik\u0101ya dashboard exploration pending."
     - id: 46
