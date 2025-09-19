@@ -1,6 +1,9 @@
 fraktal:
-  current: 50
+  current: 51
   history:
+    - id: 51
+      status: done
+      notes: 'CommandCatalog.(md|json|yaml) sammelt pnpm-Kommandos, Smoke-/Setup-Werkzeuge und verweist aus docs/scripts/COMMANDS.md auf den neuen Index.'
     - id: 50
       status: running
       notes: 'Fraktal50 Windows-Pfadnormalisierung für sigillin validator aktiv, Skip-Logs mit Gründen; Windows-Feedback & Docker-Follow-up offen.'
