@@ -1,6 +1,11 @@
 {
   "runs": [
     {
+      "fraktalrun": "Fraktal46 RepoMap",
+      "status": "running",
+      "notes": "MandalaMap.yaml/json/md baseline created; follow-ups logged (CI instruction job audit, stub roadmap, map upkeep)."
+    },
+    {
       "fraktalrun": "Fraktal45 CIJobs",
       "status": "implemented",
       "notes": "Type-and-tests job scheiterte an fehlendem plugin:@typescript-eslint/recommended; ESLint-Config erweitert und pnpm test:ts:ci erneut erfolgreich ausgeführt."

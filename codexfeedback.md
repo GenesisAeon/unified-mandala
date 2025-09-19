@@ -1,5 +1,6 @@
 # Codex Feedback
 
+- FR-UM-2025-10-04-Fraktal46-RepoMap: MandalaMap.yaml/json/md erstellt, 68 Top-Level-Verzeichnisse samt Status & Follow-ups dokumentiert (CI-Instruktionsjobs isolieren, Stub-Ersetzungen planen, MandalaMap pflegen); dient als Baseline für Folgefragmente.
 - FR-UM-2025-10-02-Fraktal45-CIJobs: Typ-und-Test-Lauf (`pnpm test:ts:ci`) scheiterte an fehlendem `plugin:@typescript-eslint/recommended`; ESLint-Config erweitert, Job erneut ausgeführt und grün bestätigt.
 - FR-UM-2025-10-01-Fraktal44-StabilizationFinale: Fraktal40/41/43 Backlog geschlossen, neue Sigillin-Validierung (`scripts/sigillin/validate-sigillins.ts`, `pnpm validate:sigillins`, CI-Workflow) aktiv, Dev-Skripte in `package.json`/README/CONTRIBUTING neu sortiert (`pnpm dev`, `pnpm dev:services`, `pnpm dev:stack`), Release-Drill inkl. Monitoring-Smokes dokumentiert.
 - FR-UM-2025-09-24-Fraktal43-BuildRelease: Dockerfile.dev jetzt Node20+Python3 (Compose parity), docker-compose Profile (core/newsbot/climate/llm/global/agents/monitoring) + Grafana 3300, Light-Static-Server mit Health/Vary/Cache-Control, neues `pnpm smoke:light-static` für Brotli/Gzip; Playbook/YAML-Tracker aktualisiert (dist-first/runtime-smoke in-progress, compose-profiles done).
