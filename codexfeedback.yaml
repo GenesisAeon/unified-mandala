@@ -1,6 +1,9 @@
 fraktal:
-  current: 49
+  current: 50
   history:
+    - id: 50
+      status: running
+      notes: 'Fraktal50 Windows-Pfadnormalisierung für sigillin validator aktiv, Skip-Logs mit Gründen; Windows-Feedback & Docker-Follow-up offen.'
     - id: 49
       status: running
       notes: 'Validator scope konzentriert sich auf sigils/bridges, Repo-Sanity wartet auf den UI-Build und AgentWorkflowEngine setzt ethical_guardrails standardmäßig.'

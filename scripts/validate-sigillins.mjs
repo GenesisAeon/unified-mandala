@@ -45,8 +45,12 @@ const DEFAULT_PATTERNS = [
   'docs/sigillin/bridges/**/*.md',
 ];
 
-const BRIDGE_SIGIL_REGEX = /sigils\/bridges\/.+\.(json|ya?ml)$/i;
-const BRIDGE_MD_REGEX = /docs\/sigillin\/bridges\/.+\.md$/i;
+const BRIDGE_SIGIL_REGEX = /(^|\/)sigils\/bridges\/.+\.(json|ya?ml)$/i;
+const BRIDGE_MD_REGEX = /(^|\/)docs\/sigillin\/bridges\/.+\.md$/i;
+
+function toPosix(p) {
+  return (p || '').replaceAll('\\', '/');
+}
 
 function isBridgeSigilPath(relativePath) {
   return BRIDGE_SIGIL_REGEX.test(relativePath);
@@ -134,10 +138,10 @@ async function loadSchema() {
 
 async function validateStructured(obj, ajvValidate, relativePath) {
   const errors = [];
-  const relPath = relativePath || '';
+  const relPath = toPosix(relativePath || '');
 
   if (!isBridgeSigilPath(relPath)) {
-    return { errors, skipped: true, reason: 'non-bridge' };
+    return { errors, skipped: true, reason: 'not bridge path' };
   }
 
   const ok = ajvValidate(obj);
@@ -149,7 +153,7 @@ async function validateStructured(obj, ajvValidate, relativePath) {
   }
   const sigillin = obj?.sigillin ?? obj ?? {};
   if (isRegistryOrArchiveSigil(sigillin, relPath)) {
-    return { errors, skipped: true, reason: 'registry' };
+    return { errors, skipped: true, reason: 'registry/archive' };
   }
 
   applySemanticOverlay(sigillin);
@@ -266,26 +270,27 @@ async function main() {
   for (const f of files) {
     const ext = path.extname(f).toLowerCase();
     const rel = path.relative(ROOT, f);
+    const relNorm = toPosix(rel);
     try {
       let errs = [];
       let skipped = false;
       let skipReason = '';
       if (ext === '.json') {
         const obj = await readJson(f);
-        const result = await validateStructured(obj, ajvValidate, rel);
+        const result = await validateStructured(obj, ajvValidate, relNorm);
         errs = result.errors;
         skipped = result.skipped;
         skipReason = result.reason || '';
       } else if (ext === '.yml' || ext === '.yaml') {
         const obj = await readYaml(f);
-        const result = await validateStructured(obj, ajvValidate, rel);
+        const result = await validateStructured(obj, ajvValidate, relNorm);
         errs = result.errors;
         skipped = result.skipped;
         skipReason = result.reason || '';
       } else if (ext === '.md') {
-        if (!isBridgeMarkdownPath(rel)) {
+        if (!isBridgeMarkdownPath(relNorm)) {
           skipped = true;
-          skipReason = 'non-bridge';
+          skipReason = 'not bridge path';
         } else {
           errs = await validateMarkdown(f);
         }
@@ -293,20 +298,20 @@ async function main() {
         continue;
       }
       if (skipped) {
-        const suffix = skipReason ? ` (${skipReason})` : '';
-        console.log(`⏭️  ${rel}${suffix}`);
+        const suffix = skipReason ? ` (skip: ${skipReason})` : '';
+        console.log(`⏭️  ${relNorm}${suffix}`);
         continue;
       }
       if (errs.length) {
         hasErrors = true;
-        console.log(`❌ ${rel}`);
+        console.log(`❌ ${relNorm}`);
         for (const e of errs) console.log(`   - ${e}`);
       } else {
-        console.log(`✅ ${rel}`);
+        console.log(`✅ ${relNorm}`);
       }
     } catch (e) {
       hasErrors = true;
-      console.log(`❌ ${rel}\n   - Fehler: ${(e && e.message) || e}`);
+      console.log(`❌ ${relNorm}\n   - Fehler: ${(e && e.message) || e}`);
     }
   }
   process.exit(hasErrors ? 1 : 0);
