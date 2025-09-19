@@ -1,5 +1,6 @@
 # Codex Feedback
 
+- FR-UM-2025-10-09-Fraktal50-Validator-Windows: Sigillin-Validator normalisiert relative Pfade für Windows, erweitert Bridge-Matcher um (^|/) Präfixe und protokolliert Skip-Gründe; Windows-Bestätigung & Docker-WSL-Check folgen als nächste Schritte.
 - FR-UM-2025-10-08-Fraktal49-Validator+CI: Sigillin-Validator prüft ausschließlich sigils/bridges (Registry/Archive skipped, Agent-Overlay-Hook vorbereitet), Repo-Sanity wartet auf apps/ui/dist/index.html nach pnpm build:ui und AgentWorkflowEngine defaultet ethical_guardrails (inkl. neuem Vitest-Test).
 - FR-UM-2025-10-07-Fraktal48-Dashboard+CLI: Sigillin-Authoring CLI (`scripts/sigillin-authoring.mjs`) und Trikāya-Dashboard-Generator (`scripts/generate-trikaya-dashboard.mjs`) liefern analysis/trikaya-dashboard.(json|md|yaml); Stub-Replacement-Roadmap in `docs/roadmap/stub-replacement-roadmap.(md|yaml)` verankert, MandalaMap-Follow-up auf „in-progress“ gesetzt.
 - FR-UM-2025-09-19-Fraktal48-CI+MandalaMap: Sigillin-Validator verschärft (Schema + Semantik), MandalaMap-Workflow ergänzt (continue-on-error + Artefakt), Smoke-Build wartet auf apps/ui/dist/index.html; MandalaMap.\* mit Bridge-Registry aktualisiert und Follow-ups angepasst.

@@ -1,6 +1,11 @@
 {
   "runs": [
     {
+      "fraktalrun": "Fraktal50 Validator Windows Parity",
+      "status": "in-progress",
+      "notes": "Sigillin validator normalizes relative paths for Windows, extends bridge matchers and clarifies skip logs; Windows validation feedback & Docker follow-up pending."
+    },
+    {
       "fraktalrun": "Fraktal49 Validator+CI Guardrails",
       "status": "in-progress",
       "notes": "Validator scope fokussiert sigils/bridges, Repo-Sanity wartet auf apps/ui/dist/index.html und AgentWorkflowEngine setzt ethical_guardrails standardmäßig (inkl. Vitest-Abdeckung)."
