@@ -1,18 +1,18 @@
 # 🌐 Sigillin – Mistral Bridge (Unified Mandala)
 
-**Zielbild**  
-Unified Mandala ist ein symbolisches Betriebssystem. Es macht **Bedeutungsqualität** mess- und gestaltbar über **CREP** (Coherence, Resonance, Emergence, Poetics) und **Trikāya** (Dharma/Sambhoga/Nirmāṇa).
+**Objective**
+Explain UM via **CREP** + **Trikāya** with crisp bullets.
 
-**Kernpunkte**
+**Key Points**
 
-- **CREP**: Qualität > Quantität; Beispiele je Metrik.
-- **Trikāya**: Prinzipien • Erlebnis • Implementierung.
-- **Arbeitszyklus**: Ziel → CREP-Hypothese → Experiment (Fraktalrun) → Feedback.
+- CREP: C/R/E/P with 1-line examples.
+- Trikāya: Dharmakāya • Sambhogakāya • Nirmāṇakāya.
+- EventHub/Fourier orchestrate flow & metrics.
 
-**Nächste Schritte**
+**Nächste Schritte / Next Steps**
 
-1. Mini-Sigillin anlegen (Ziel, CREP-Hypothese, Messpunkte).
-2. Fraktalrun starten; Ergebnisse in Mandala-UI spiegeln.
-   _Hinweis: nächste Schritte bleiben Mini-Sigillin + Fraktalrun-Feedback._
+- Create mini-sigil (goal + hypothesis + metric).
+- Run a Fraktalrun; report CREP deltas.
+  _Hinweis: nächste Schritte nach jedem Run kurz protokollieren, um CREP-Delta pro Ebene zu sehen._
 
-_Safety_: Keine sensiblen Daten erfinden; Unklarheit markieren; Kohärenz vor Geschwindigkeit.
+_Safety_: No invented facts; mark uncertainty explicitly.

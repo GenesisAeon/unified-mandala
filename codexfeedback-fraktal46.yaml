@@ -5,10 +5,14 @@ summary:
   - 'Inter-AI Sigillin-Bridges (ChatGPT/Mistral/Claude/Qwen/Gemini) via scripts/scaffold-interai-bridges.mjs erzeugt; validator auf scripts/validate-sigillins.mjs + Corepack CI migriert.'
   - 'MandalaMap.yaml/json/md erzeugt und als Mandala-Baseline für alle 68 Top-Level-Verzeichnisse dokumentiert.'
   - 'Follow-ups markiert: CI-Instruktionsjobs entschärfen, Stub-/Secret-Roadmap planen, MandalaMap fortlaufend pflegen.'
+  - 'Fraktal46: Bridges auf Aeon-Stand gebracht (YAML/JSON/MD synchronisiert, Index registriert) + neues Google-Gemini-Briefing Sigillin (JSON/Markdown) angelegt.'
 deliverables:
   - MandalaMap.yaml
   - MandalaMap.json
   - MandalaMap.md
+  - sigils/google-gemini-briefing.sigil.json
+  - docs/sigillin/GOOGLEGEMINI_SIGILLIN.md
+  - sigils/bridges/bridges.index.yaml
 follow_up:
   ci_instruction_audit:
     description: '.github/ & ci/ nach narrativen Jobs durchsuchen und aus aktiven Pipelines entfernen.'
@@ -19,4 +23,7 @@ follow_up:
   mandala_map_upkeep:
     description: 'MandalaMap.* nach jedem Fraktal aktualisieren und neue Artefakte verknüpfen.'
     status: ongoing
-repeat_required: true
+  sigillin_validator_tool:
+    description: 'Optionales Skript fix-sigillin.ts evaluieren/integrieren, falls Follow-up gewünscht.'
+    status: pending
+repeat_required: false

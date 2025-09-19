@@ -1,0 +1,42 @@
+sigillin:
+  id: sig-2025-0917-bridges-index
+  title: Sigillin Registry – Inter-AI Bridges
+  created_by: Aeon
+  timestamp: '2025-09-17T00:00:00Z'
+  sigillin_type: registry
+  audience: Codex
+  essenz: Verzeichnis aktiver Bridges für CREP-synchronisierte Zusammenarbeit entlang der Trikāya-Schichten inklusive nächste Schritte zur Pflege.
+  trigger_phrase: 'Synchronisiere Bridges und aktualisiere nächste Schritte.'
+  tags: ['#Registry', '#Bridges', '#CREP', '#Trikāya']
+  content:
+    type: registry
+    text: 'Dieses Registry-Sigillin hält alle Inter-AI-Bridges fest. CREP-Abdeckung und Trikāya-Verortung ermöglichen schnelle Governance; nächste Schritte: Validator laufen lassen, Diff prüfen, MandalaMap aktualisieren.'
+    sections:
+      - id: bridge_registry
+        title: Bridge-Verzeichnis
+        bridges:
+          - id: sig-2025-0917-interai-chatgpt
+            provider: ChatGPT
+            yaml: sigils/bridges/chatgpt/chatgpt-bridge.sigil.yaml
+            json: sigils/bridges/chatgpt/chatgpt-bridge.sigil.json
+            md: docs/sigillin/bridges/CHATGPT_SIGILLIN.md
+          - id: sig-2025-0917-interai-mistral
+            provider: Mistral
+            yaml: sigils/bridges/mistral/mistral-bridge.sigil.yaml
+            json: sigils/bridges/mistral/mistral-bridge.sigil.json
+            md: docs/sigillin/bridges/MISTRAL_SIGILLIN.md
+          - id: sig-2025-0917-interai-claude
+            provider: Claude
+            yaml: sigils/bridges/claude/claude-bridge.sigil.yaml
+            json: sigils/bridges/claude/claude-bridge.sigil.json
+            md: docs/sigillin/bridges/CLAUDE_SIGILLIN.md
+          - id: sig-2025-0917-interai-qwen
+            provider: Qwen
+            yaml: sigils/bridges/qwen/qwen-bridge.sigil.yaml
+            json: sigils/bridges/qwen/qwen-bridge.sigil.json
+            md: docs/sigillin/bridges/QWEN_SIGILLIN.md
+          - id: sig-2025-0917-interai-gemini
+            provider: Google Gemini
+            yaml: sigils/bridges/gemini/gemini-bridge.sigil.yaml
+            json: sigils/bridges/gemini/gemini-bridge.sigil.json
+            md: docs/sigillin/bridges/GEMINI_SIGILLIN.md
