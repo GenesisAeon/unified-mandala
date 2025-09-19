@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Mandala Sigillin Core Validation Schema",
+  "type": "object",
+  "properties": {
+    "sigillin": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "id": { "type": "string", "minLength": 3 },
+        "title": { "type": "string", "minLength": 3 },
+        "created_by": { "type": "string" },
+        "timestamp": { "type": "string" },
+        "sigillin_type": { "type": "string", "minLength": 3 },
+        "audience": { "type": "string" },
+        "essenz": { "type": "string", "minLength": 3 },
+        "trigger_phrase": { "type": "string" },
+        "tags": { "type": "array", "items": { "type": "string" } },
+        "links": { "type": "array", "items": { "type": "string" } },
+        "trace": { "type": "object", "additionalProperties": true },
+        "content": {
+          "type": "object",
+          "additionalProperties": true,
+          "properties": {
+            "type": { "type": "string" },
+            "text": { "type": "string" },
+            "sections": { "type": "array" }
+          },
+          "required": ["sections"]
+        }
+      },
+      "required": ["id", "title", "sigillin_type", "audience", "essenz", "content"]
+    }
+  },
+  "required": ["sigillin"]
+}

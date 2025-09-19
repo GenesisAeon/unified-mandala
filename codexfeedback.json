@@ -1,6 +1,11 @@
 {
   "runs": [
     {
+      "fraktalrun": "Fraktal46 SigillinBridges",
+      "status": "in-review",
+      "notes": "Inter-AI bridges (ChatGPT/Mistral/Claude/Qwen/Gemini) scaffolded via scripts/scaffold-interai-bridges.mjs; validator now scripts/validate-sigillins.mjs + scripts/schemas/mandala-sigillin.schema.json; CI workflow uses Corepack; README & codexfeedback/fraktal44.yaml updated."
+    },
+    {
       "fraktalrun": "Fraktal46 RepoMap",
       "status": "running",
       "notes": "MandalaMap.yaml/json/md baseline created; follow-ups logged (CI instruction job audit, stub roadmap, map upkeep)."

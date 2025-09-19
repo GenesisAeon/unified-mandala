@@ -27,8 +27,8 @@ closed_fraktale:
     outcome: Sigillin-Strict End-to-End (Validator + UI-Review) abgeschlossen bzw. Alt-UI obsolet.
 sigillin_validator:
   command: pnpm validate:sigillins
-  schema: scripts/sigillin/mandala-sigillin.schema.json
-  script: scripts/sigillin/validate-sigillins.ts
+  schema: scripts/schemas/mandala-sigillin.schema.json
+  script: scripts/validate-sigillins.mjs
   workflow: .github/workflows/sigillin-validate.yml
   checks:
     structural:

@@ -3,7 +3,7 @@ fraktal:
   history:
     - id: 46
       status: running
-      notes: 'MandalaMap.* (yaml/json/md) erstellt; Follow-ups für CI-Instruktionsjobs & Stub-Roadmap in MandalaMap vermerkt.'
+      notes: 'MandalaMap.* (yaml/json/md) erstellt; Follow-ups für CI-Instruktionsjobs & Stub-Roadmap in MandalaMap vermerkt; Inter-AI Sigillin-Bridges + Validator aktualisiert.'
     - id: 45
       status: done
       notes: 'Type-and-tests Lauf (`pnpm test:ts:ci`) scheiterte an ESLint-Config ohne plugin:@typescript-eslint/recommended; Extend hinzugefügt und Lauf erfolgreich verifiziert.'
@@ -87,7 +87,7 @@ fraktal44:
   artifacts:
     - codexfeedback-fraktal44.yaml
     - fraktal44.md
-    - scripts/sigillin/validate-sigillins.ts
+    - scripts/validate-sigillins.mjs
 fraktal43:
   status: done
   checkpoints:
@@ -142,6 +142,7 @@ fraktal46:
   status: running
   summary:
     - 'MandalaMap.yaml/json/md als Mandala-Baseline erzeugt; 68 Top-Level-Verzeichnisse kategorisiert.'
+    - 'Inter-AI Sigillin-Bridges scaffolded (ChatGPT/Mistral/Claude/Qwen/Gemini) + Validator/CI/Corepack-Setup & README/Codexfeedback aktualisiert.'
     - 'Follow-ups im MandalaMap follow_up-Abschnitt festgehalten (CI-Instruktionsjobs, Stub-Roadmap, Map-Pflege).'
   artifacts:
     - MandalaMap.yaml

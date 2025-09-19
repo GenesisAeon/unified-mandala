@@ -156,6 +156,17 @@ pnpm test:unit                # Coverage-Report der Kernmodule
 
 > ℹ️ `CI Experimental` läuft nur mit Label `run-experimental`. `ENABLE_EXPERIMENTAL_TESTS=1` schaltet zusätzliche, instabile Suites frei (z.B. `pnpm test:ts:experimental`).
 
+### Sigillin (Inter-AI Bridges) & Validator
+
+- Brücken-Dateien (je Provider):  
+  `sigils/bridges/<provider>/<provider>-bridge.sigil.yaml|json` +  
+  `docs/sigillin/bridges/<PROVIDER>_SIGILLIN.md`
+
+- Lokal prüfen: `pnpm validate:sigillins`  
+  → validiert Struktur (JSON/YAML), **CREP/Trikāya/Nächste Schritte** und referenzierte Dateien (soft).
+
+- CI: `.github/workflows/sigillin-validate.yml` prüft bei PR/Push.
+
 ### Dist-First Ausführung (`scripts/run-dist.mjs`)
 
 - Produktionsskripte in `package.json` nutzen durchgängig `node scripts/run-dist.mjs <pfad-zur-ts-datei>`.

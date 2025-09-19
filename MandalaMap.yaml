@@ -594,6 +594,16 @@ entries:
     notes:
       - Run via pnpm dev:services / pnpm start:services as documented in release drills.
     links: []
+  - path: sigils/
+    category: governance
+    status: active
+    title: Sigillin bridges & archives
+    description: Machine-readable Sigillin briefs and bridge artifacts (JSON/YAML) for AI integrations.
+    notes:
+      - Generated via scripts/scaffold-interai-bridges.mjs; validate with pnpm validate:sigillins.
+    links:
+      - label: interai bridges
+        path: sigils/bridges
   - path: sims/
     category: research
     status: experimental

@@ -2,6 +2,7 @@ fraktal: 46
 status: running
 owner: Codex
 summary:
+  - 'Inter-AI Sigillin-Bridges (ChatGPT/Mistral/Claude/Qwen/Gemini) via scripts/scaffold-interai-bridges.mjs erzeugt; validator auf scripts/validate-sigillins.mjs + Corepack CI migriert.'
   - 'MandalaMap.yaml/json/md erzeugt und als Mandala-Baseline für alle 68 Top-Level-Verzeichnisse dokumentiert.'
   - 'Follow-ups markiert: CI-Instruktionsjobs entschärfen, Stub-/Secret-Roadmap planen, MandalaMap fortlaufend pflegen.'
 deliverables:
