@@ -1,6 +1,16 @@
 fraktal:
-  current: 50
+  current: 51
   history:
+    - id: 51
+      status: done
+      notes: 'Fraktal51 CommandCatalog bündelt pnpm-Kommandos, Docker-Profile und Tooling-Hooks in docs/runbooks/command-catalog.(md|json|yaml); Tracker auf Fraktal51 aktualisiert.'
+      deliverables:
+        - docs/runbooks/command-catalog.md
+        - docs/runbooks/command-catalog.yaml
+        - docs/runbooks/command-catalog.json
+      hook:
+        progress: 'Command-Inventar liegt vor; Folgefragmente können neue Skripte direkt ergänzen.'
+        next_step: 'Bei neuen Services die Tabelle erweitern und MandalaMap-Verweis prüfen.'
     - id: 50
       status: running
       notes: 'Fraktal50 Windows-Pfadnormalisierung für sigillin validator aktiv, Skip-Logs mit Gründen; Windows-Feedback & Docker-Follow-up offen.'
