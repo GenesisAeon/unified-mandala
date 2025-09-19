@@ -1,11 +1,11 @@
 fraktal: 46
-status: running
+status: done
 owner: Codex
 summary:
-  - 'Inter-AI Sigillin-Bridges (ChatGPT/Mistral/Claude/Qwen/Gemini) via scripts/scaffold-interai-bridges.mjs erzeugt; validator auf scripts/validate-sigillins.mjs + Corepack CI migriert.'
-  - 'MandalaMap.yaml/json/md erzeugt und als Mandala-Baseline für alle 68 Top-Level-Verzeichnisse dokumentiert.'
-  - 'Follow-ups markiert: CI-Instruktionsjobs entschärfen, Stub-/Secret-Roadmap planen, MandalaMap fortlaufend pflegen.'
-  - 'Fraktal46: Bridges auf Aeon-Stand gebracht (YAML/JSON/MD synchronisiert, Index registriert) + neues Google-Gemini-Briefing Sigillin (JSON/Markdown) angelegt.'
+  - MandalaMap Baseline refreshed with bridge registry entry and follow-up updates.
+  - "Sigillin validator hardened (CREP metrics, Trik\u0101ya, next action) and CI workflow\
+    \ set to required."
+  - New mandala-map workflow publishes artifacts without blocking merges.
 deliverables:
   - MandalaMap.yaml
   - MandalaMap.json
@@ -14,16 +14,13 @@ deliverables:
   - docs/sigillin/GOOGLEGEMINI_SIGILLIN.md
   - sigils/bridges/bridges.index.yaml
 follow_up:
-  ci_instruction_audit:
-    description: '.github/ & ci/ nach narrativen Jobs durchsuchen und aus aktiven Pipelines entfernen.'
-    status: open
   stub_replacement_plan:
-    description: 'stubs/ (kan/liquid/torch_geometric) & keys/ mit belastbaren Artefakten/Secrets-Strategie ergänzen.'
+    description:
+      "stubs/ (kan/liquid/torch_geometric) & keys/ mit belastbaren Artefakten/Secrets-Strategie\
+      \ erg\xE4nzen."
     status: open
   mandala_map_upkeep:
-    description: 'MandalaMap.* nach jedem Fraktal aktualisieren und neue Artefakte verknüpfen.'
+    description: "MandalaMap.* nach jedem Fraktal aktualisieren und neue Artefakte\
+      \ verkn\xFCpfen."
     status: ongoing
-  sigillin_validator_tool:
-    description: 'Optionales Skript fix-sigillin.ts evaluieren/integrieren, falls Follow-up gewünscht.'
-    status: pending
 repeat_required: false

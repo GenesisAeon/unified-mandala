@@ -150,6 +150,7 @@ user-config/
 # repo-map analysis outputs
 analysis/repo-map.json
 analysis/repo-map.csv
+analysis/mandala-map-summary.json
 # ERA5 adapter artifacts
 data/
 .cache/

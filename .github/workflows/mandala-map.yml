@@ -1,0 +1,46 @@
+name: mandala-map
+
+on:
+  pull_request:
+    paths:
+      - 'MandalaMap.*'
+      - 'scripts/**'
+      - 'docs/roadmap/**'
+      - '.github/workflows/mandala-map.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'MandalaMap.*'
+      - 'scripts/**'
+      - 'docs/roadmap/**'
+      - '.github/workflows/mandala-map.yml'
+
+jobs:
+  map:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+      - name: Enable corepack
+        run: |
+          corepack enable
+          corepack prepare pnpm@10.16.1 --activate
+          pnpm --version
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+          cache: 'pnpm'
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Validate MandalaMap
+        run: pnpm map:mandala
+      - name: Upload map artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mandala-map
+          path: |
+            MandalaMap.json
+            MandalaMap.yaml
+            MandalaMap.md

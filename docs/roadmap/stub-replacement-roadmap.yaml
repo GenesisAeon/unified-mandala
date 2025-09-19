@@ -1,0 +1,84 @@
+fraktal: 48
+title: Stub Replacement Roadmap
+updated: '2025-10-07'
+overview:
+  goal: Stubs durch produktive Adapter ersetzen und keys/ nur automatisiert befüllen.
+  scope:
+    - stubs/kan_network.py
+    - stubs/liquid_time_constant_network.py
+    - stubs/norse/
+    - stubs/torch_geometric/
+    - keys/
+inventory:
+  - path: stubs/kan_network.py
+    type: python-stub
+    description: Platzhalterklasse KANLayer für Forschungsadapter.
+    owner: DevX Guild
+  - path: stubs/liquid_time_constant_network.py
+    type: python-stub
+    description: Minimaler LTC Wrapper für Offline-CI.
+    owner: DevX Guild
+  - path: stubs/norse/
+    type: package-stub
+    description: Reduzierte Norse API als Fallback für Spiking-Experimente.
+    owner: Research Collective
+  - path: stubs/torch_geometric/
+    type: package-stub
+    description: Torch-Geometric Interface ohne native Abhängigkeiten.
+    owner: Research Collective
+  - path: keys/
+    type: secrets-dir
+    description: Deployment Secrets Mount, darf nur Automation enthalten.
+    owner: AI Governance Council
+phases:
+  - name: Phase A – Analyse & Tooling
+    window: 'KW 42'
+    tasks:
+      - id: stub-usage-audit
+        description: scripts/check-stub-usage.mjs prototypisieren und in MandalaMap verlinken.
+        status: planned
+      - id: dashboard-integration
+        description: Sigillin status CLI in Mandala dashboards spiegeln.
+        status: planned
+  - name: Phase B – Ersatzimplementierungen
+    window: 'KW 43-44'
+    tasks:
+      - id: kan-adapter
+        description: Optionales Paket packages/agents-kan mit realer KAN Implementation.
+        status: planned
+      - id: ltc-adapter
+        description: Extras-abhängigkeit liquid_time_constant_network via pip extras.
+        status: planned
+      - id: neuro-profiles
+        description: Compose Profile experimental-neuro (Norse/Torch Geometric Wheels).
+        status: planned
+  - name: Phase C – Governance & Keys
+    window: 'KW 45'
+    tasks:
+      - id: kyverno-keys
+        description: Kyverno/OPA Policy, die commits unter keys/ blockiert (außer .gitkeep).
+        status: planned
+      - id: runtime-secrets
+        description: Deployment Pipelines mounten Secrets zur Laufzeit (kein Git check-in).
+        status: planned
+hooks:
+  mandala_map: follow_up.stub_replacement_roadmap
+  ci_guard: optional check-stub-usage (continue-on-error)
+  dashboards:
+    - analysis/trikaya-dashboard.md
+    - scripts/sigillin-authoring.mjs
+responsibilities:
+  DevX Guild:
+    - phase: Phase B – Ersatzimplementierungen
+    - deliverables:
+        - kan-adapter
+        - ltc-adapter
+  ReleaseOps Circle:
+    - phase: Phase B – Ersatzimplementierungen
+    - deliverables:
+        - neuro-profiles
+  AI Governance Council:
+    - phase: Phase C – Governance & Keys
+    - deliverables:
+        - kyverno-keys
+        - runtime-secrets
