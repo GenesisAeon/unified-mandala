@@ -1,18 +1,18 @@
 # 🌐 Sigillin – Qwen Bridge (Unified Mandala)
 
-**Zielbild**  
-Unified Mandala ist ein symbolisches Betriebssystem. Es macht **Bedeutungsqualität** mess- und gestaltbar über **CREP** (Coherence, Resonance, Emergence, Poetics) und **Trikāya** (Dharma/Sambhoga/Nirmāṇa).
+**Objective**
+Explain Unified Mandala with **CREP** and **Trikāya**; keep it technical and concise.
 
-**Kernpunkte**
+**Key Points**
 
-- **CREP**: Qualität > Quantität; Beispiele je Metrik.
-- **Trikāya**: Prinzipien • Erlebnis • Implementierung.
-- **Arbeitszyklus**: Ziel → CREP-Hypothese → Experiment (Fraktalrun) → Feedback.
+- **CREP**: C/R/E/P → quality axis with 1-line examples.
+- **Trikāya**: Dharmakāya • Sambhogakāya • Nirmāṇakāya.
+- **Flow**: Goal → Hypothesis → Experiment (Fraktalrun) → Feedback (UI/Fourier).
 
-**Nächste Schritte**
+**Nächste Schritte / Next Steps**
 
-1. Mini-Sigillin anlegen (Ziel, CREP-Hypothese, Messpunkte).
-2. Fraktalrun starten; Ergebnisse in Mandala-UI spiegeln.
-   _Hinweis: nächste Schritte bleiben Mini-Sigillin + Fraktalrun-Feedback._
+1. Create mini-sigil (goal, hypothesis, metrics & timeframe).
+2. Execute 1 experiment; report CREP deltas.
+   _Hinweis: nächste Schritte dokumentieren, damit CREP-Feedback pro Trikāya-Schicht sichtbar bleibt._
 
-_Safety_: Keine sensiblen Daten erfinden; Unklarheit markieren; Kohärenz vor Geschwindigkeit.
+_Safety_: No sensitive inventions; mark uncertainty; keep examples verifiable.

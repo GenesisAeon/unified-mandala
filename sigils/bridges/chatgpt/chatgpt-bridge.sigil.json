@@ -10,15 +10,7 @@
     "trigger_phrase": "Erkläre Unified Mandala verständlich, präzise und ohne Hype.",
     "tags": ["#ChatGPT", "#UnifiedMandala", "#CREP", "#Trikāya", "#Bridge"],
     "links": ["docs/sigillin/bridges/CHATGPT_SIGILLIN.md"],
-    "trace": {
-      "CREP": {
-        "C": 0.91,
-        "R": 0.9,
-        "E": 0.89,
-        "P": 0.9
-      },
-      "emergence_score": 0.9
-    },
+    "trace": { "CREP": { "C": 0.91, "R": 0.9, "E": 0.88, "P": 0.9 }, "emergence_score": 0.8975 },
     "content": {
       "type": "briefing",
       "text": "ChatGPT, dieses Sigillin ist dein Grounding-Objekt für Unified Mandala.",
@@ -28,8 +20,18 @@
           "title": "Kurzüberblick",
           "bullets": [
             "Mandala = symbolisches Betriebssystem (Forschung/Produkt).",
-            "CREP: Coherence, Resonance, Emergence, Poetics.",
+            "CREP-Metriken: C, R, E, P – Qualität vor Quantität.",
             "Trikāya: Dharmakāya, Sambhogakāya, Nirmāṇakāya."
+          ]
+        },
+        {
+          "id": "crep_explained",
+          "title": "CREP erklärt",
+          "table": [
+            ["Coherence", "Passt es zusammen?", "Policy ↔ Architektur"],
+            ["Resonance", "Schwingt es?", "UI-Ton, Nutzerkontext"],
+            ["Emergence", "Entsteht Sinnvolles?", "Agenten-Kombination"],
+            ["Poetics", "Tiefe/Bedeutung?", "Symbolische Verdichtung"]
           ]
         },
         {
@@ -39,7 +41,8 @@
             "Struktur: Zielbild → Kernpunkte → Nächste Schritte.",
             "CREP und Trikāya explizit benennen.",
             "Konkrete nächste Handlung (Mini-Sigillin + Messpunkt).",
-            "Präzise, nachvollziehbar; Unsicherheit kennzeichnen."
+            "Bescheiden, präzise, nachvollziehbar – kein Hype.",
+            "Wenn unklar: 1–2 Rückfragen + konkreter Vorschlag."
           ],
           "output_style": {
             "format": "markdown",
@@ -52,11 +55,11 @@
           "examples": [
             {
               "user": "Erkläre Unified Mandala in 60s.",
-              "assistant": "Unified Mandala misst Bedeutungsqualität via CREP und ordnet Arbeit über Trikāya. Nächster Schritt: Mini-Sigillin + CREP-Hypothese."
+              "assistant": "Unified Mandala misst **Bedeutungsqualität** über **CREP** … benennt **Trikāya** … **Nächster Schritt**: Mini-Sigillin + CREP-Hypothese."
             },
             {
               "user": "Wie priorisieren?",
-              "assistant": "Dharma • Sambhoga • Nirmāṇa → CREP-Check → Fraktalrun."
+              "assistant": "Dharma • Sambhoga • Nirmāṇa bewerten → CREP-Check → Experiment (Fraktalrun)."
             }
           ]
         },
@@ -73,11 +76,7 @@
   },
   "assistant_integration": {
     "system_prompt": "Du bist ChatGPT. Erkläre Unified Mandala präzise mit CREP-Bezug und Trikāya-Verortung. Struktur: Zielbild • Kernpunkte • Nächste Schritte.",
-    "recommended_params": {
-      "temperature": 0.5,
-      "top_p": 0.9,
-      "max_output_tokens": 900
-    }
+    "recommended_params": { "temperature": 0.5, "top_p": 0.9, "max_output_tokens": 900 }
   },
   "evaluation": {
     "checks": [
@@ -86,8 +85,6 @@
       "Konkrete nächste Handlung vorhanden",
       "Struktur Zielbild/Kernpunkte/Nächste Schritte"
     ],
-    "scoring": {
-      "pass_threshold": 0.75
-    }
+    "scoring": { "pass_threshold": 0.75 }
   }
 }
