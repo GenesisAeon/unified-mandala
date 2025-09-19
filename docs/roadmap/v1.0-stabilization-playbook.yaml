@@ -105,8 +105,8 @@ streams:
         status: done
         notes: pnpm validate:sigillins + .github/workflows/sigillin-validate.yml aktiv (Fraktal44)
         artifacts:
-          - scripts/sigillin/validate-sigillins.ts
-          - scripts/sigillin/mandala-sigillin.schema.json
+          - scripts/validate-sigillins.mjs
+          - scripts/schemas/mandala-sigillin.schema.json
           - .github/workflows/sigillin-validate.yml
   - key: observability
     owner:

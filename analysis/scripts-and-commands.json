@@ -79,7 +79,7 @@
     "sigils:index:strict": "pnpm find-bad-yaml && pnpm sigils:scan && pnpm stac:validate && pnpm sigils:index",
     "sigils:scan": "node scripts/run-dist.mjs scripts/validate-sigils.ts",
     "sigils:errors": "cat out/sigils_errors.json || echo 'no errors file'",
-    "validate:sigillins": "tsx scripts/sigillin/validate-sigillins.ts",
+    "validate:sigillins": "node scripts/validate-sigillins.mjs",
     "emergence:scan": "pnpm sigils:index && pnpm agents:scan",
     "adapter:build:era5": "PYTHONPATH=src python -c \"from adapters.era5.fixture import write_synthetic_era5 as w; import os; os.makedirs('data/raw', exist_ok=True); print(w('data/raw/era5_synth.nc'))\" && node scripts/adapter-postprocess.mjs era5",
     "adapter:build:oisst": "node scripts/build-adapter-oisst.mjs",
@@ -104,6 +104,8 @@
     "ci:verify": "pnpm test:ts && pnpm sigils:index:strict && pnpm adapter:build:era5",
     "scan:ingest": "node scripts/ingest-external-scan.mjs",
     "adapters:ci:install": "pip install -r src/adapters/requirements.txt",
-    "check:ci": "npx tsc -p tsconfig.json --noEmit && pnpm test:ts:ci && npx pyright"
+    "check:ci": "npx tsc -p tsconfig.json --noEmit && pnpm test:ts:ci && npx pyright",
+    "sigillins:scaffold": "node scripts/scaffold-interai-bridges.mjs",
+    "sigillins:build": "node scripts/build-sigillin-archive.mjs"
   }
 }

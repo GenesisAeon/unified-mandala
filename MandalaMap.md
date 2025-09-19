@@ -292,6 +292,10 @@ Repository: unified-mandala
   - JSON schemas (eventbus.message.schema.json) referenced by validation scripts.
   - Notes: Keep versioned with tools/kyverno-dry-run.mjs expectations.
 
+- `sigils/` — **active** Sigillin bridges & archives
+  - Machine-readable Sigillin briefs (JSON/YAML) and bridging bundles für AI-Orchestrierung.
+  - Notes: Generated via scripts/scaffold-interai-bridges.mjs; validate via pnpm validate:sigillins.
+
 - `worldview/` — **active** Worldview manifests
   - Mandala worldview YAML encoding narrative/ethical positioning.
   - Notes: Align updates with manifest/ and AI policy documentation.

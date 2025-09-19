@@ -46,8 +46,8 @@
 
 ### Sigillin-Validator
 
-- Schema: `scripts/sigillin/mandala-sigillin.schema.json` (Pflichtfelder id/title/essenz/content).
-- Validator: `scripts/sigillin/validate-sigillins.ts` prüft JSON/YAML/Markdown, Content-Checks für CREP/Trikāya/NEXT, Link-Existenz.
+- Schema: `scripts/schemas/mandala-sigillin.schema.json` (Pflichtfelder id/title/essenz/content).
+- Validator: `scripts/validate-sigillins.mjs` prüft JSON/YAML/Markdown, Content-Checks für CREP/Trikāya/NEXT, Link-Existenz.
 - CI-Hook: `.github/workflows/sigillin-validate.yml` nutzt Node 20 + pnpm 10.16.1, ruft `pnpm validate:sigillins`.
 - `package.json` Script `validate:sigillins` ergänzt, README/CONTRIBUTING verlinkt Workflow.
 
