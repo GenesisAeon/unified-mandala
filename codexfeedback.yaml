@@ -1,6 +1,9 @@
 fraktal:
-  current: 45
+  current: 46
   history:
+    - id: 46
+      status: running
+      notes: 'MandalaMap.* (yaml/json/md) erstellt; Follow-ups für CI-Instruktionsjobs & Stub-Roadmap in MandalaMap vermerkt.'
     - id: 45
       status: done
       notes: 'Type-and-tests Lauf (`pnpm test:ts:ci`) scheiterte an ESLint-Config ohne plugin:@typescript-eslint/recommended; Extend hinzugefügt und Lauf erfolgreich verifiziert.'
@@ -135,6 +138,20 @@ fraktal40:
       status: done
       notes: '`prom-compose` aktiv, `/metrics`-Rollout in Release-Drill bestätigt; Alerts dokumentiert.'
   next: []
+fraktal46:
+  status: running
+  summary:
+    - 'MandalaMap.yaml/json/md als Mandala-Baseline erzeugt; 68 Top-Level-Verzeichnisse kategorisiert.'
+    - 'Follow-ups im MandalaMap follow_up-Abschnitt festgehalten (CI-Instruktionsjobs, Stub-Roadmap, Map-Pflege).'
+  artifacts:
+    - MandalaMap.yaml
+    - MandalaMap.json
+    - MandalaMap.md
+  follow_up:
+    - '.github/ & ci/: Instruktionsjobs von aktiven CI-Schritten trennen.'
+    - 'stubs/ & keys/: Ersatz-/Secret-Strategie abstimmen.'
+    - 'MandalaMap.* nach jedem Fraktal aktualisieren.'
+  repeat_required: true
 fraktal45:
   status: done
   focus:

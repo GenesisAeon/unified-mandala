@@ -1,0 +1,21 @@
+fraktal: 46
+status: running
+owner: Codex
+summary:
+  - 'MandalaMap.yaml/json/md erzeugt und als Mandala-Baseline für alle 68 Top-Level-Verzeichnisse dokumentiert.'
+  - 'Follow-ups markiert: CI-Instruktionsjobs entschärfen, Stub-/Secret-Roadmap planen, MandalaMap fortlaufend pflegen.'
+deliverables:
+  - MandalaMap.yaml
+  - MandalaMap.json
+  - MandalaMap.md
+follow_up:
+  ci_instruction_audit:
+    description: '.github/ & ci/ nach narrativen Jobs durchsuchen und aus aktiven Pipelines entfernen.'
+    status: open
+  stub_replacement_plan:
+    description: 'stubs/ (kan/liquid/torch_geometric) & keys/ mit belastbaren Artefakten/Secrets-Strategie ergänzen.'
+    status: open
+  mandala_map_upkeep:
+    description: 'MandalaMap.* nach jedem Fraktal aktualisieren und neue Artefakte verknüpfen.'
+    status: ongoing
+repeat_required: true
