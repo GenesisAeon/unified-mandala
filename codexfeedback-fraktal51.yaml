@@ -1,0 +1,21 @@
+fraktal: 51
+status: done
+owner: ChefDevAI
+summary:
+  - 'Command catalog in docs/runbooks/command-catalog.(md|json|yaml) fasst pnpm-Skripte, Docker-Profile und Tool-Verknüpfungen zusammen.'
+  - 'codexfeedback.(md|json|yaml) auf Fraktal51 gehoben; Hook dokumentiert wie Folgefragmente Erweiterungen eintragen.'
+deliverables:
+  - docs/runbooks/command-catalog.md
+  - docs/runbooks/command-catalog.yaml
+  - docs/runbooks/command-catalog.json
+  - codexfeedback.md
+  - codexfeedback.json
+  - codexfeedback.yaml
+follow_up:
+  command_catalog_extension:
+    description: 'Neue Services/Skripte im Katalog ergänzen und MandalaMap-Abgleich bei zukünftigen Fraktal-Läufen vornehmen.'
+    status: planned
+hook:
+  progress: 'Kommandos, Tools und Skripte sind inventarisiert; MandalaMap-Referenzen sind gesetzt.'
+  next_step: 'Bei neuen Pipelines Kategorie-Übersichten erweitern (z.B. Observability, Go-Services).'
+repeat_required: false
