@@ -1,8 +1,8 @@
 {
   "meta": {
     "version": "1.0",
-    "generated": "2025-09-19T18:00:00Z",
-    "fraktal": 48,
+    "generated": "2025-10-08T12:00:00Z",
+    "fraktal": 49,
     "repo": "unified-mandala",
     "source": "ChefDevAI MandalaMap bootstrap",
     "reference_docs": [
@@ -98,7 +98,8 @@
       "notes": [
         "Audit instructions encoded as jobs; isolate non-actionable tasks to stop false CI failures.",
         "Core/extended workflows documented in docs/roadmap/v1.0-stabilization-playbook.md.",
-        "Sigillin validator is required on main; mandala-map workflow uploads artifacts without blocking CI."
+        "Sigillin validator is required on main; mandala-map workflow uploads artifacts without blocking CI.",
+        "Repo Sanity builds the UI dist and waits on apps/ui/dist/index.html before running map/audit checks to avoid race conditions."
       ],
       "links": [
         {
@@ -737,7 +738,8 @@
       "title": "Sigillin bridges & archives",
       "description": "Machine-readable Sigillin briefs and bridge artifacts (JSON/YAML) for AI integrations.",
       "notes": [
-        "Generated via scripts/scaffold-interai-bridges.mjs; validate with pnpm validate:sigillins."
+        "Generated via scripts/scaffold-interai-bridges.mjs; validate with pnpm validate:sigillins.",
+        "Validator scope targets sigils/bridges (registry/archives skipped) with agent overlays supplying minimal semantics for legacy entries."
       ],
       "links": [
         {

@@ -1,8 +1,13 @@
 {
   "runs": [
     {
-      "fraktalrun": "Fraktal48 MandalaMap/Dashboard",
+      "fraktalrun": "Fraktal49 Validator+CI Guardrails",
       "status": "in-progress",
+      "notes": "Validator scope fokussiert sigils/bridges, Repo-Sanity wartet auf apps/ui/dist/index.html und AgentWorkflowEngine setzt ethical_guardrails standardmäßig (inkl. Vitest-Abdeckung)."
+    },
+    {
+      "fraktalrun": "Fraktal48 MandalaMap/Dashboard",
+      "status": "implemented",
       "notes": "MandalaMap workflow + validator hardening delivered; Trik\u0101ya dashboard artifacts, sigillin authoring CLI, und Stub-Replacement-Roadmap sind veröffentlicht (docs/roadmap/stub-replacement-roadmap.*)."
     },
     {

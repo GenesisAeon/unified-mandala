@@ -1,6 +1,6 @@
-# Mandala Map · Fraktal48
+# Mandala Map · Fraktal49
 
-Generated: 2025-09-19T18:00:00Z
+Generated: 2025-10-08T12:00:00Z
 Repository: unified-mandala
 
 ## Reference Docs
@@ -68,7 +68,7 @@ Repository: unified-mandala
 
 - `.github/` — **active** GitHub workflows & templates
   - Workflow definitions (core, nightly, experimental) and community health files.
-  - Notes: Audit instructions encoded as jobs; isolate non-actionable tasks to stop false CI failures.; Core/extended workflows documented in docs/roadmap/v1.0-stabilization-playbook.md.; Sigillin validator is required on main; mandala-map workflow uploads artifacts without blocking CI.
+  - Notes: Audit instructions encoded as jobs; isolate non-actionable tasks to stop false CI failures.; Core/extended workflows documented in docs/roadmap/v1.0-stabilization-playbook.md.; Sigillin validator is required on main; mandala-map workflow uploads artifacts without blocking CI.; Repo Sanity builds the UI dist and waits on apps/ui/dist/index.html before running map/audit checks to avoid race conditions.
   - Links: [CI Core](.github/workflows/ci.core.yml), [Nightly Mirror](.github/workflows/ci.nightly.yml), [Sigillin validate](.github/workflows/sigillin-validate.yml), [Mandala map job](.github/workflows/mandala-map.yml)
 
 - `.husky/` — **active** Git hooks
@@ -299,7 +299,7 @@ Repository: unified-mandala
 
 - `sigils/` — **active** Sigillin bridges & archives
   - Machine-readable Sigillin briefs (JSON/YAML) and bridging bundles für AI-Orchestrierung.
-  - Notes: Generated via scripts/scaffold-interai-bridges.mjs; validate via pnpm validate:sigillins.
+  - Notes: Generated via scripts/scaffold-interai-bridges.mjs; validate via pnpm validate:sigillins.; Validator scope targets sigils/bridges with registry/archives skipped and agent overlays adding minimal semantics for legacy entries.
 
 - `sigils/bridges/bridges.index.yaml` — **active** Bridge registry index
   - Registry listing all inter-AI bridge sigillins for discovery tooling.

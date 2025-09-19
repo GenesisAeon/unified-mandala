@@ -7,31 +7,20 @@
     "noEmit": true,
     "strict": true,
     "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
     "skipLibCheck": true,
     "resolveJsonModule": true,
     "jsx": "react-jsx",
     "allowImportingTsExtensions": true,
-    "types": [
-      "node"
-    ],
+    "types": ["node"],
     "moduleResolution": "Bundler",
     "baseUrl": ".",
     "paths": {
-      "@src/*": [
-        "src/*"
-      ],
-      "@utils/*": [
-        "src/utils/*"
-      ],
-      "@resonance": [
-        "src/utils/resonance/index.ts"
-      ],
-      "@resonance/*": [
-        "src/utils/resonance/*"
-      ],
-      "@epistemic/*": [
-        "packages/epistemic/src/*"
-      ]
+      "@src/*": ["src/*"],
+      "@utils/*": ["src/utils/*"],
+      "@resonance": ["src/utils/resonance/index.ts"],
+      "@resonance/*": ["src/utils/resonance/*"],
+      "@epistemic/*": ["packages/epistemic/src/*"]
     }
   },
   "include": [
