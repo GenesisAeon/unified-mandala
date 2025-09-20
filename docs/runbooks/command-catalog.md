@@ -9,16 +9,19 @@ Diese Sammlung bündelt pnpm-Skripte, Shell-Kommandos sowie wiederverwendbare To
 
 > Bootstrap developer workstations and core tooling parity.
 
-| Command                            | Type     | Runs                                         | Beschreibung                                                                                            |
-| ---------------------------------- | -------- | -------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
-| `./scripts/setup-dev-env.sh`       | `shell`  | `./scripts/setup-dev-env.sh`                 | Installs system packages, configures git, provisions a Python venv, and installs Node dependencies.     |
-| `pnpm install`                     | `pnpm`   | `pnpm install`                               | Installs Node dependencies across the pnpm workspace.                                                   |
-| `poetry install --with test`       | `poetry` | `poetry install --with test`                 | Sets up Python dependencies including optional test extras.                                             |
-| `pnpm store:commit-memory`         | `pnpm`   | `pnpm store:commit-memory`                   | Runs Genesis ZIP memory bridge to persist dependency store metadata during first commit of a session.   |
-| `pnpm prepare`                     | `pnpm`   | `husky install`                              | Installs Husky Git hooks for lint-staged and formatting policies.                                       |
-| `pnpm build:windows-tools`         | `pnpm`   | `pwsh tools/windows/build-windows-tools.ps1` | Invokes PowerShell tooling bundle for Windows parity tasks.                                             |
-| `docker compose --profile core up` | `docker` | `docker compose --profile core up`           | Bootstraps the core service stack with Docker Compose profiles described in the stabilization playbook. |
-| `docker compose --profile prod up` | `docker` | `docker compose --profile prod up`           | Runs the production simulation profile used during release drills.                                      |
+| Command                                    | Type     | Runs                                         | Beschreibung                                                                                            |
+| ------------------------------------------ | -------- | -------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
+| `./scripts/setup-dev-env.sh`               | `shell`  | `./scripts/setup-dev-env.sh`                 | Installs system packages, configures git, provisions a Python venv, and installs Node dependencies.     |
+| `corepack enable`                          | `shell`  | `corepack enable`                            | Activates Corepack so pnpm can be managed and pinned via Node's package manager shim.                   |
+| `corepack prepare pnpm@10.17.0 --activate` | `shell`  | `corepack prepare pnpm@10.17.0 --activate`   | Downloads and activates pnpm 10.17.0 to mirror the Windows validation run.                              |
+| `corepack pnpm install --frozen-lockfile`  | `pnpm`   | `corepack pnpm install --frozen-lockfile`    | Installs workspace dependencies using the frozen lockfile for deterministic parity on Windows.          |
+| `pnpm install`                             | `pnpm`   | `pnpm install`                               | Installs Node dependencies across the pnpm workspace.                                                   |
+| `poetry install --with test`               | `poetry` | `poetry install --with test`                 | Sets up Python dependencies including optional test extras.                                             |
+| `pnpm store:commit-memory`                 | `pnpm`   | `pnpm store:commit-memory`                   | Runs Genesis ZIP memory bridge to persist dependency store metadata during first commit of a session.   |
+| `pnpm prepare`                             | `pnpm`   | `husky install`                              | Installs Husky Git hooks for lint-staged and formatting policies.                                       |
+| `pnpm build:windows-tools`                 | `pnpm`   | `pwsh tools/windows/build-windows-tools.ps1` | Invokes PowerShell tooling bundle for Windows parity tasks.                                             |
+| `docker compose --profile core up`         | `docker` | `docker compose --profile core up`           | Bootstraps the core service stack with Docker Compose profiles described in the stabilization playbook. |
+| `docker compose --profile prod up`         | `docker` | `docker compose --profile prod up`           | Runs the production simulation profile used during release drills.                                      |
 
 ## Linting & Static Analysis
 
@@ -36,6 +39,9 @@ Diese Sammlung bündelt pnpm-Skripte, Shell-Kommandos sowie wiederverwendbare To
 | `pnpm ci:fast-checks`               | `pnpm` | `pnpm -w -r exec -- npx tsc -p tsconfig.json --noEmit && npx pyright -p .`                               | Runs distributed TypeScript checks and Pyright across the workspace for CI smoke coverage. |
 | `npx pyright`                       | `node` | `npx pyright`                                                                                            | Performs static type analysis for Python adapters using the Node Pyright CLI.              |
 | `npx tsc -p tsconfig.json --noEmit` | `node` | `npx tsc -p tsconfig.json --noEmit`                                                                      | Standalone invocation of the TypeScript compiler with no emit for quick verification.      |
+
+| `pnpm exec tsc -p tsconfig.build.json` | `pnpm` | `pnpm exec tsc -p tsconfig.build.json`
+| Runs the TypeScript compiler via pnpm exec so Windows shells resolve the local `tsc` binary. |
 
 ## Testing & Coverage
 
@@ -67,21 +73,22 @@ Diese Sammlung bündelt pnpm-Skripte, Shell-Kommandos sowie wiederverwendbare To
 
 > Build pipelines, documentation exporters, and release assets.
 
-| Command                        | Type   | Runs                                                       | Beschreibung                                                       |
-| ------------------------------ | ------ | ---------------------------------------------------------- | ------------------------------------------------------------------ |
-| `pnpm build`                   | `pnpm` | `tsc -p tsconfig.build.json && pnpm build:agents`          | Builds the TypeScript workspace and agent bundle artifacts.        |
-| `pnpm build:agents`            | `pnpm` | `tsc -p tsconfig.agents.json && node -e ...`               | Compiles agent TypeScript and normalizes CommonJS outputs.         |
-| `pnpm build:ui`                | `pnpm` | `pnpm -F mandala-ui build`                                 | Generates the UI distribution bundle via the mandala-ui workspace. |
-| `pnpm docs:build`              | `pnpm` | `typedoc`                                                  | Builds API documentation via TypeDoc.                              |
-| `pnpm docs:auto`               | `pnpm` | `node scripts/generate-api-docs.js`                        | Generates API documentation with custom script automation.         |
-| `pnpm generate:changelog`      | `pnpm` | `node scripts/generate-changelog.js`                       | Outputs changelog entries from commit metadata.                    |
-| `pnpm compile:agents-manifest` | `pnpm` | `node scripts/compile_agents_manifest.js`                  | Assembles the consolidated agents manifest for documentation.      |
-| `pnpm export:crep-docs`        | `pnpm` | `node scripts/export-crep-docs.js`                         | Generates CREP documentation artifacts.                            |
-| `pnpm export_depth_bundle`     | `pnpm` | `node scripts/run-dist.mjs scripts/export-depth-bundle.ts` | Creates Sigillin depth bundles and related media artifacts.        |
-| `pnpm generate:next-sigil`     | `pnpm` | `node scripts/generate-next-sigil.js`                      | Produces the next sigil candidate and updates indices.             |
-| `pnpm generate:agents-diagram` | `pnpm` | `node scripts/generate-agents-diagram.js`                  | Creates Mermaid diagrams documenting the agent network.            |
-| `pnpm generate:agent-docs`     | `pnpm` | `node scripts/generate-agent-docs.js`                      | Materializes agent documentation files.                            |
-| `pnpm trikaya:dashboard`       | `pnpm` | `node scripts/generate-trikaya-dashboard.mjs`              | Generates the Trikāya dashboard artifacts under analysis/.         |
+| Command                        | Type   | Runs                                                       | Beschreibung                                                                                       |
+| ------------------------------ | ------ | ---------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| `pnpm build`                   | `pnpm` | `tsc -p tsconfig.build.json && pnpm build:agents`          | Builds the TypeScript workspace and agent bundle artifacts.                                        |
+| `pnpm -w -r build`             | `pnpm` | `pnpm -w -r build`                                         | Runs the workspace build script across all packages via pnpm recursive mode (Windows parity flow). |
+| `pnpm build:agents`            | `pnpm` | `tsc -p tsconfig.agents.json && node -e ...`               | Compiles agent TypeScript and normalizes CommonJS outputs.                                         |
+| `pnpm build:ui`                | `pnpm` | `pnpm -F mandala-ui build`                                 | Generates the UI distribution bundle via the mandala-ui workspace.                                 |
+| `pnpm docs:build`              | `pnpm` | `typedoc`                                                  | Builds API documentation via TypeDoc.                                                              |
+| `pnpm docs:auto`               | `pnpm` | `node scripts/generate-api-docs.js`                        | Generates API documentation with custom script automation.                                         |
+| `pnpm generate:changelog`      | `pnpm` | `node scripts/generate-changelog.js`                       | Outputs changelog entries from commit metadata.                                                    |
+| `pnpm compile:agents-manifest` | `pnpm` | `node scripts/compile_agents_manifest.js`                  | Assembles the consolidated agents manifest for documentation.                                      |
+| `pnpm export:crep-docs`        | `pnpm` | `node scripts/export-crep-docs.js`                         | Generates CREP documentation artifacts.                                                            |
+| `pnpm export_depth_bundle`     | `pnpm` | `node scripts/run-dist.mjs scripts/export-depth-bundle.ts` | Creates Sigillin depth bundles and related media artifacts.                                        |
+| `pnpm generate:next-sigil`     | `pnpm` | `node scripts/generate-next-sigil.js`                      | Produces the next sigil candidate and updates indices.                                             |
+| `pnpm generate:agents-diagram` | `pnpm` | `node scripts/generate-agents-diagram.js`                  | Creates Mermaid diagrams documenting the agent network.                                            |
+| `pnpm generate:agent-docs`     | `pnpm` | `node scripts/generate-agent-docs.js`                      | Materializes agent documentation files.                                                            |
+| `pnpm trikaya:dashboard`       | `pnpm` | `node scripts/generate-trikaya-dashboard.mjs`              | Generates the Trikāya dashboard artifacts under analysis/.                                         |
 
 ## Runtime & Developer Services
 

@@ -1,6 +1,19 @@
 fraktal:
-  current: 52
+  current: 53
   history:
+    - id: 53
+      status: running
+      notes: 'Fraktal53 DevTalkPart5 WindowsFlow: Command-Catalog ergänzt Corepack-Bootstrap, pnpm exec tsc fallback und pnpm -w -r build für Windows-Verifikation; codexfeedback-Hook auf 53 gehoben.'
+      deliverables:
+        - docs/runbooks/command-catalog.md
+        - docs/runbooks/command-catalog.yaml
+        - docs/runbooks/command-catalog.json
+        - codexfeedback.md
+        - codexfeedback.json
+        - codexfeedback.yaml
+      hook:
+        progress: 'DevTalk Part5 analysiert – Windows-Corepack-Fluss dokumentiert, tsc-Fallback beschrieben.'
+        next_step: 'Validierungsschritte aus späteren DevTalk53-Fragmenten ergänzen und MandalaMap-Notizen prüfen.'
     - id: 52
       status: done
       notes: 'Fraktal52 DevStack Windows: UI-Smoke liest UI_DEV_URL, dev-services setzen Port-Defaults und Share/RAG/Experiments/Realtime-Hub achten auf dedizierte Ports; cross-env NODE_OPTIONS und smoke:ui:5174 dokumentiert.'
