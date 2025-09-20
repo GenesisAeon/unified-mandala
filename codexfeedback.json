@@ -8,7 +8,7 @@
     {
       "fraktalrun": "Fraktal56 WindowsBootstrap",
       "status": "in-progress",
-      "notes": "PowerShell setup script (`scripts/setup-dev-env.ps1`) now tracks InstallState (Git/Node/Python/Corepack/pnpm/Docker/NATS) with PowerShell 5.1 fallback; Node wrapper (`scripts/run-powershell.mjs`) covers pwsh/powershell and docs/command catalog/playbook remain updated."
+      "notes": "PowerShell setup script (`scripts/setup-dev-env.ps1`) now tracks InstallState (Git/Node/Python/Corepack/pnpm/Docker/NATS), exports out/setup/install-state.json, fixes the PowerShell parser error by wrapping `(Test-CommandExists ...)` in `-and` checks, and keeps a pwsh/powershell wrapper plus docs/playbook references."
     },
     {
       "fraktalrun": "Fraktal55 DevTalk Windows Hardening",

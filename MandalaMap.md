@@ -147,7 +147,7 @@ Repository: unified-mandala
 
 - `scripts/` — **active** Automation scripts
   - Extensive Node/TS automation: dev servers, exports, QA, smoke tests, repo map, etc.
-  - Notes: Dist-first convention via scripts/run-dist.mjs; Sigillin-Fix-CLI (`scripts/fix-sigillin.ts`) ergänzt Bridge-Tooling; Windows-Parität via `scripts/setup-dev-env.ps1` + `scripts/run-powershell.mjs` dokumentiert; PowerShell-Setup exportiert Installationsstatus nach `out/setup/install-state.json`.
+- Notes: Dist-first convention via scripts/run-dist.mjs; Sigillin-Fix-CLI (`scripts/fix-sigillin.ts`) ergänzt Bridge-Tooling; Windows-Parität via `scripts/setup-dev-env.ps1` + `scripts/run-powershell.mjs` dokumentiert; PowerShell-Setup exportiert Installationsstatus nach `out/setup/install-state.json`; ParserFix `(Test-CommandExists ...)` + Bool-Cast heben PowerShell 7.5 ParserError auf.
   - Links: [run-dist](scripts/run-dist.mjs), [dev-services](scripts/dev-services.mjs), [sigil-fix](scripts/fix-sigillin.ts), [setup-dev-env.ps1](scripts/setup-dev-env.ps1), [run-powershell](scripts/run-powershell.mjs)
 
 - `tasks/` — **active** Task manifests

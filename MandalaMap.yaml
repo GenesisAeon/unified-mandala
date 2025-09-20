@@ -597,6 +597,7 @@ entries:
       - Sigillin-Fix-CLI (`scripts/fix-sigillin.ts`) unterstützt Bridges bei Trikāya/CREP/Nächste-Schritt-Korrekturen.
       - Windows-Parität über `scripts/setup-dev-env.ps1` + `scripts/run-powershell.mjs` dokumentiert (PowerShell-Fallback).
       - PowerShell-Setup exportiert Installationsstatus nach `out/setup/install-state.json` für Codexfeedback-Reports.
+      - 'ParserFix: `(Test-CommandExists ...)` jetzt geklammert und Installationsresultate zu Bool gecastet, damit PowerShell 7.5 den Dev-Setup ohne ParserError ausführt.'
     links:
       - label: run-dist
         path: scripts/run-dist.mjs

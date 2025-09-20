@@ -56,7 +56,8 @@ streams:
         notes: README & CONTRIBUTING beschreiben scripts/run-dist.mjs inkl. `UM_RUN_DIST_*`
           Overrides; Windows-Onboarding referenziert `scripts/setup-dev-env.ps1` und
           `scripts/run-powershell.mjs`. PowerShell-Setup exportiert den Installationsstatus
-          nach `out/setup/install-state.json` für Codexfeedback-Läufe.
+          nach `out/setup/install-state.json` für Codexfeedback-Läufe; ParserFix `(Test-CommandExists ...)`
+          + Bool-Cast beheben den PowerShell 7 ParserError aus DevTalk 55.
       - id: ts-node-retire
         description: Produktionspfade auf `node dist/...` umstellen
         status: done
