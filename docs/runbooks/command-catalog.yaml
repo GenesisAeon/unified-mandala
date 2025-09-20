@@ -17,6 +17,30 @@ categories:
         description: 'Installs system packages, configures git, provisions a Python venv, and installs Node dependencies.'
         source:
           - scripts/setup-dev-env.sh
+      - id: setup.corepack-enable
+        name: 'Enable Corepack'
+        command: 'corepack enable'
+        type: shell
+        runs: 'corepack enable'
+        description: "Activates Corepack so pnpm can be managed and pinned via Node's package manager shim."
+        source:
+          - DevTalk.txt#DevTalkPart5
+      - id: setup.corepack-prepare-pnpm
+        name: 'Activate pnpm 10.17.0'
+        command: 'corepack prepare pnpm@10.17.0 --activate'
+        type: shell
+        runs: 'corepack prepare pnpm@10.17.0 --activate'
+        description: 'Downloads and activates pnpm 10.17.0 to match the Windows validation run.'
+        source:
+          - DevTalk.txt#DevTalkPart5
+      - id: setup.corepack-install-frozen
+        name: 'Install workspace (frozen lockfile)'
+        command: 'corepack pnpm install --frozen-lockfile'
+        type: pnpm
+        runs: 'corepack pnpm install --frozen-lockfile'
+        description: 'Installs pnpm workspace dependencies using the frozen lockfile for deterministic Windows parity.'
+        source:
+          - DevTalk.txt#DevTalkPart5
       - id: setup.pnpm-install
         name: 'Install PNPM workspace'
         command: 'pnpm install'
@@ -157,6 +181,14 @@ categories:
         description: 'Standalone invocation of the TypeScript compiler with no emit for quick verification.'
         source:
           - package.json#scripts.lint:types
+      - id: quality.tsc-build-pnpm
+        name: 'TypeScript build via pnpm exec'
+        command: 'pnpm exec tsc -p tsconfig.build.json'
+        type: pnpm
+        runs: 'pnpm exec tsc -p tsconfig.build.json'
+        description: 'Runs the TypeScript compiler through pnpm exec to ensure Windows shells resolve the local tsc binary.'
+        source:
+          - DevTalk.txt#DevTalkPart5
   - key: testing
     title: Testing & Coverage
     description: 'Unit, integration, and regression test commands.'
@@ -325,6 +357,14 @@ categories:
         description: 'Builds the TypeScript workspace and agent bundle artifacts.'
         source:
           - package.json#scripts.build
+      - id: build.build-recursive
+        name: 'Workspace build (recursive)'
+        command: 'pnpm -w -r build'
+        type: pnpm
+        runs: 'pnpm -w -r build'
+        description: 'Runs the build script across all workspaces using pnpm recursive mode (mirrors Windows verification flow).'
+        source:
+          - DevTalk.txt#DevTalkPart5
       - id: build.build-agents
         name: 'Compile agents'
         command: 'pnpm build:agents'

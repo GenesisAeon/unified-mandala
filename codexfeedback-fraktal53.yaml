@@ -1,0 +1,21 @@
+fraktal: 53
+status: running
+owner: ChefDevAI
+summary:
+  - 'Command catalog dokumentiert Corepack-Bootstrap (`corepack enable`, `corepack prepare pnpm@10.17.0 --activate`, `corepack pnpm install --frozen-lockfile`) für Windows-Parität aus DevTalk Part5.'
+  - 'Neue Einträge `pnpm exec tsc -p tsconfig.build.json` und `pnpm -w -r build` beschreiben Windows-sichere Buildpfade im Command-Catalog.'
+deliverables:
+  - docs/runbooks/command-catalog.md
+  - docs/runbooks/command-catalog.yaml
+  - docs/runbooks/command-catalog.json
+  - codexfeedback.md
+  - codexfeedback.json
+  - codexfeedback.yaml
+follow_up:
+  devtalk53_next:
+    description: 'Weitere DevTalk Part5/Fraktal53 Fragmente auswerten und ggf. Smoke-/MandalaMap-Schritte ergänzen.'
+    status: planned
+hook:
+  progress: 'Corepack-Setup und pnpm exec tsc-Fallback sind dokumentiert; Windows-Recursive-Build notiert.'
+  next_step: 'Nächste Fragmente prüfen (UI-Smokes, MandalaMap) und Command-Catalog bzw. Hooks erweitern.'
+repeat_required: false

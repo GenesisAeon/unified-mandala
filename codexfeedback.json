@@ -1,6 +1,11 @@
 {
   "runs": [
     {
+      "fraktalrun": "Fraktal53 DevTalkPart5 WindowsFlow",
+      "status": "implemented",
+      "notes": "Command catalog documents Corepack bootstrap, pnpm exec tsc fallback, and pnpm -w -r build per DevTalk Part 5 verification; codexfeedback tracker raised to 53."
+    },
+    {
       "fraktalrun": "Fraktal52 DevStack Windows",
       "status": "implemented",
       "notes": "UI dev smoke akzeptiert UI_DEV_URL-Overrides und autodetektiert Vite-Ports; dev stack setzt Service-Defaults (SHARE/EXPERIMENTS/RAG/REALTIME) und APIs lesen spezifische Ports; .env example sowie package.json dokumentieren cross-env NODE_OPTIONS und ESLint-Override reduziert legacy require noise."
