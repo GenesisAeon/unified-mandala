@@ -5,9 +5,14 @@ import { ResearchHubWS } from '../packages/realtime';
 import { RAGPipeline } from '../packages/rag/RAGPipeline';
 import { ModelRouter } from '../packages/rag/AnswerComposer';
 
+function resolvePort(value: string | undefined, fallback: number): number {
+  const parsed = Number(value);
+  return Number.isFinite(parsed) && parsed > 0 ? parsed : fallback;
+}
+
 async function main() {
   const bus = new LocalEventBus();
-  const wsPort = parseInt(process.env.WS_PORT || '4021', 10);
+  const wsPort = resolvePort(process.env.REALTIME_WS_PORT ?? process.env.WS_PORT, 4021);
   new ResearchHubWS({ port: wsPort, bus });
 
   const STORE_DIR = process.env.RAG_STORE_DIR || path.join('data', 'rag');
@@ -55,9 +60,9 @@ async function main() {
     res.json(answer);
   });
 
-  const port = parseInt(process.env.PORT || '4020', 10);
-  app.listen(port, () => {
-    console.log(`Realtime hub listening on ${port}`);
+  const hubPort = resolvePort(process.env.REALTIME_HUB_PORT ?? process.env.PORT, 4020);
+  app.listen(hubPort, () => {
+    console.log(`Realtime hub listening on ${hubPort}`);
   });
 }
 
@@ -65,4 +70,3 @@ main().catch((err) => {
   console.error(err);
   process.exit(1);
 });
-

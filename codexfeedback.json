@@ -1,6 +1,11 @@
 {
   "runs": [
     {
+      "fraktalrun": "Fraktal52 DevStack Windows",
+      "status": "implemented",
+      "notes": "UI dev smoke akzeptiert UI_DEV_URL-Overrides und autodetektiert Vite-Ports; dev stack setzt Service-Defaults (SHARE/EXPERIMENTS/RAG/REALTIME) und APIs lesen spezifische Ports; .env example sowie package.json dokumentieren cross-env NODE_OPTIONS und ESLint-Override reduziert legacy require noise."
+    },
+    {
       "fraktalrun": "Fraktal51 CommandCatalog",
       "status": "implemented",
       "notes": "Command catalog in docs/runbooks/command-catalog.(md|json|yaml) tracks pnpm scripts, Docker profiles, and tooling references; codexfeedback trackers raised to Fraktal51."

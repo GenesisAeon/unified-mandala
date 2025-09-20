@@ -1,5 +1,6 @@
 import express from 'express';
 import http from 'http';
+import { WebSocketServer } from 'ws';
 import { metricsMiddleware, metricsEndpoint } from '../../packages/core/middleware/metrics';
 import { FourierLayerEvents, EmergenceMetrics } from '../../packages/analysis/FourierLayer';
 
@@ -14,9 +15,8 @@ export function startServer(port = 4100) {
     res.json(latestMetrics);
   });
 
-  const { Server } = require('ws');
   const server = http.createServer(app);
-  const wss = new Server({ server });
+  const wss = new WebSocketServer({ server });
 
   wss.on('connection', (socket: any) => {
     // send the most recent metrics to new clients immediately

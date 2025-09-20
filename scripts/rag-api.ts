@@ -6,6 +6,11 @@ import { createEmbedder } from '../packages/rag/Embedder';
 import { VectorStore } from '../packages/rag/VectorStore';
 import { DocStore } from '../packages/rag/DocStore';
 
+function resolvePort(value: string | undefined, fallback: number): number {
+  const parsed = Number(value);
+  return Number.isFinite(parsed) && parsed > 0 ? parsed : fallback;
+}
+
 const STORE_DIR = process.env.RAG_STORE_DIR || path.join('data', 'rag');
 const DOC_PATH = path.join(STORE_DIR, 'docs.json');
 const VECTOR_PATH = path.join(STORE_DIR, 'vectors.json');
@@ -82,8 +87,7 @@ app.post('/ask', async (req, res) => {
   res.json(answer);
 });
 
-const port = parseInt(process.env.PORT || '3000', 10);
-app.listen(port, () => {
-  console.log(`RAG API server listening on ${port}`);
+const ragPort = resolvePort(process.env.RAG_API_PORT ?? process.env.PORT, 3000);
+app.listen(ragPort, () => {
+  console.log(`RAG API server listening on ${ragPort}`);
 });
-
