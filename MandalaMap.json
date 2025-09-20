@@ -713,7 +713,8 @@
       "notes": [
         "Dist-first convention via scripts/run-dist.mjs; referenced throughout docs.",
         "Sigillin-Fix-CLI (scripts/fix-sigillin.ts) unterstützt Bridges bei Trikāya/CREP/Nächste-Schritt-Korrekturen.",
-        "Windows-Parität über scripts/setup-dev-env.ps1 + scripts/run-powershell.mjs dokumentiert (PowerShell-Fallback)."
+        "Windows-Parität über scripts/setup-dev-env.ps1 + scripts/run-powershell.mjs dokumentiert (PowerShell-Fallback).",
+        "PowerShell-Setup exportiert Installationsstatus nach out/setup/install-state.json für Codexfeedback-Reports."
       ],
       "links": [
         {

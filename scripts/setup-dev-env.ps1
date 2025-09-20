@@ -2,7 +2,8 @@
 param(
   [switch]$SkipPackageInstall,
   [switch]$SkipPythonSetup,
-  [switch]$SkipNodeSetup
+  [switch]$SkipNodeSetup,
+  [string]$StateOutput = 'out/setup/install-state.json'
 )
 
 Set-StrictMode -Version Latest
@@ -11,6 +12,12 @@ $ErrorActionPreference = 'Stop'
 if (-not (Get-Variable InstallState -Scope Script -ErrorAction SilentlyContinue)) {
   $script:InstallState = @{}
 }
+
+if (-not (Get-Variable InstallMetadata -Scope Script -ErrorAction SilentlyContinue)) {
+  $script:InstallMetadata = @{}
+}
+
+$script:StateOutput = if ($StateOutput) { $StateOutput } else { $null }
 
 function Write-Step {
   param([string]$Message)
@@ -33,6 +40,74 @@ function Update-InstallState {
   }
 
   $script:InstallState[$Key] = $Present
+}
+
+function Resolve-StatePath {
+  param([string]$Path)
+
+  if (-not $Path) {
+    return $null
+  }
+
+  $target = $Path
+  if (-not [System.IO.Path]::IsPathRooted($target)) {
+    $base = $PSScriptRoot
+    if ($base) {
+      $repoRoot = Resolve-Path -LiteralPath (Join-Path $base '..') -ErrorAction SilentlyContinue
+      if ($repoRoot) {
+        $target = Join-Path $repoRoot.Path $target
+      } else {
+        $target = Join-Path (Get-Location).Path $target
+      }
+    } else {
+      $target = Join-Path (Get-Location).Path $target
+    }
+  }
+
+  $directory = Split-Path -Path $target -Parent
+  if ($directory -and -not (Test-Path $directory)) {
+    New-Item -ItemType Directory -Path $directory -Force | Out-Null
+  }
+
+  return $target
+}
+
+function Export-InstallReport {
+  param([string]$OutputPath)
+
+  if (-not $OutputPath) {
+    return
+  }
+
+  $resolved = Resolve-StatePath -Path $OutputPath
+  if (-not $resolved) {
+    return
+  }
+
+  $report = [ordered]@{
+    timestamp      = (Get-Date).ToString('o')
+    shellVersion   = $PSVersionTable.PSVersion.ToString()
+    workingDir     = (Get-Location).Path
+    packageManager = $script:PackageManager
+    options        = [ordered]@{
+      skipPackageInstall = [bool]$SkipPackageInstall
+      skipPythonSetup    = [bool]$SkipPythonSetup
+      skipNodeSetup      = [bool]$SkipNodeSetup
+    }
+    installState   = $script:InstallState
+  }
+
+  if ($script:InstallMetadata.Keys.Count -gt 0) {
+    $report['metadata'] = $script:InstallMetadata
+  }
+
+  try {
+    $json = $report | ConvertTo-Json -Depth 6
+    Set-Content -LiteralPath $resolved -Value $json -Encoding UTF8
+    Write-Step "Installationsstatus exportiert nach $resolved"
+  } catch {
+    Write-Warning "Konnte Installationsstatus nicht nach $resolved schreiben: $($_.Exception.Message)"
+  }
 }
 
 function Get-PackageManager {
@@ -123,6 +198,7 @@ function Resolve-PythonCommand {
 Write-Step "Windows Entwicklungsumgebung initialisieren"
 
 $script:PackageManager = Get-PackageManager
+$script:InstallMetadata['packageManager'] = $script:PackageManager
 if ($SkipPackageInstall) {
   Write-Host "(Paketinstallation übersprungen)"
 } elseif (-not $script:PackageManager) {
@@ -139,6 +215,20 @@ if ($SkipPackageInstall) {
 
 if (-not $SkipPythonSetup) {
   $pythonCommand = Resolve-PythonCommand
+  $script:InstallMetadata['pythonCommand'] = $pythonCommand
+  if ($pythonCommand) {
+    try {
+      $pythonVersionOutput = & $pythonCommand --version 2>&1
+      if ($pythonVersionOutput) {
+        if ($pythonVersionOutput -is [System.Array]) {
+          $pythonVersionOutput = $pythonVersionOutput | Select-Object -First 1
+        }
+        $script:InstallMetadata['pythonVersion'] = $pythonVersionOutput.ToString().Trim()
+      }
+    } catch {
+      # ignore version errors
+    }
+  }
   if (-not $pythonCommand) {
     Write-Warning 'Python wurde nicht gefunden. Überspringe virtuellen Python-Umgebungsschritt.'
     Update-InstallState -Key 'python-venv' -Present $false
@@ -203,6 +293,48 @@ Update-InstallState -Key 'pnpm' -Present (Test-CommandExists 'pnpm')
 Update-InstallState -Key 'nats-server' -Present (Test-CommandExists 'nats-server')
 Update-InstallState -Key 'docker' -Present (Test-CommandExists 'docker')
 
+if (Test-CommandExists 'node') {
+  try {
+    $nodeVersionOutput = & node --version 2>&1
+    if ($nodeVersionOutput) {
+      if ($nodeVersionOutput -is [System.Array]) {
+        $nodeVersionOutput = $nodeVersionOutput | Select-Object -First 1
+      }
+      $script:InstallMetadata['nodeVersion'] = $nodeVersionOutput.ToString().Trim()
+    }
+  } catch {
+    # ignore node version errors
+  }
+}
+
+if (Test-CommandExists 'pnpm') {
+  try {
+    $pnpmVersionOutput = & pnpm --version 2>&1
+    if ($pnpmVersionOutput) {
+      if ($pnpmVersionOutput -is [System.Array]) {
+        $pnpmVersionOutput = $pnpmVersionOutput | Select-Object -First 1
+      }
+      $script:InstallMetadata['pnpmVersion'] = $pnpmVersionOutput.ToString().Trim()
+    }
+  } catch {
+    # ignore pnpm version errors
+  }
+}
+
+if (Test-CommandExists 'corepack') {
+  try {
+    $corepackVersionOutput = & corepack --version 2>&1
+    if ($corepackVersionOutput) {
+      if ($corepackVersionOutput -is [System.Array]) {
+        $corepackVersionOutput = $corepackVersionOutput | Select-Object -First 1
+      }
+      $script:InstallMetadata['corepackVersion'] = $corepackVersionOutput.ToString().Trim()
+    }
+  } catch {
+    # ignore corepack version errors
+  }
+}
+
 if (Test-CommandExists 'git') {
   Write-Step 'Git Konfiguration überprüfen'
   try {
@@ -239,4 +371,5 @@ function Write-InstallSummary {
 }
 
 Write-InstallSummary
+Export-InstallReport -OutputPath $script:StateOutput
 Write-Step 'Setup abgeschlossen. Öffne eine neue PowerShell für aktivierte PATH-Einstellungen bei Bedarf.'
