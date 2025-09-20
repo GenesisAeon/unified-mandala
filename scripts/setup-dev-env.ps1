@@ -177,8 +177,8 @@ function Ensure-Tool {
     return $false
   }
 
-  $installed = Invoke-PackageInstall -Manager $script:PackageManager -FriendlyName $FriendlyName -WingetId $WingetId -ChocoPackage $ChocoPackage -ScoopPackage $ScoopPackage
-  if ($installed -and Test-CommandExists $Command) {
+  $installed = [bool](Invoke-PackageInstall -Manager $script:PackageManager -FriendlyName $FriendlyName -WingetId $WingetId -ChocoPackage $ChocoPackage -ScoopPackage $ScoopPackage)
+  if ($installed -and (Test-CommandExists $Command)) {
     Write-Host "✓ $FriendlyName erfolgreich installiert"
     Update-InstallState -Key $StateKey -Present $true
     return $true
