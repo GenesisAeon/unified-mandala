@@ -55,7 +55,8 @@ streams:
         status: done
         notes: README & CONTRIBUTING beschreiben scripts/run-dist.mjs inkl. `UM_RUN_DIST_*`
           Overrides; Windows-Onboarding referenziert `scripts/setup-dev-env.ps1` und
-          `scripts/run-powershell.mjs`.
+          `scripts/run-powershell.mjs`. PowerShell-Setup exportiert den Installationsstatus
+          nach `out/setup/install-state.json` für Codexfeedback-Läufe.
       - id: ts-node-retire
         description: Produktionspfade auf `node dist/...` umstellen
         status: done

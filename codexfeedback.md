@@ -1,5 +1,6 @@
 # Codex Feedback
 
+- FR-UM-2025-10-15-Fraktal56-InstallStateExport: `scripts/setup-dev-env.ps1` schreibt nach Abschluss eine JSON-Zusammenfassung (`out/setup/install-state.json`) inklusive Shell-/Tool-Versionsinfo und Skip-Flags; MandalaMap & Playbook dokumentieren den Export für Codexfeedback-Auswertungen.
 - FR-UM-2025-10-14-Fraktal56-WindowsBootstrap: PowerShell-Setup (`scripts/setup-dev-env.ps1`) trackt InstallState (Git/Node/Python/Corepack/pnpm/Docker/NATS) und funktioniert unter PowerShell 5.1 via `powershell -NoProfile -ExecutionPolicy Bypass`; `scripts/run-powershell.mjs` bleibt Wrapper für pwsh/powershell und README/Onboarding/Command-Catalog/MandalaMap spiegeln Windows-Parität.
 - FR-UM-2025-10-13-Fraktal55-DevTalkWindowsHardening: `pnpm find-bad-yaml` nutzt yaml-lint für Strict-Läufe, `pnpm audit:ui-vr` generiert fehlende repo-map-Artefakte automatisch und `scripts/generate-agents-diagram.js` läuft als ESM ohne require.
 - FR-UM-2025-10-12-Fraktal54-SigillinFix: Neues CLI `pnpm sigil:fix` analysiert Bridges (Trikāya/CREP/Nächste Schritte) und kann fehlende Elemente automatisch ergänzen; README verweist auf den Fix-Guide (`docs/sigillin/FIX_GUIDE.md`), MandalaMap & codexfeedback aktualisiert.

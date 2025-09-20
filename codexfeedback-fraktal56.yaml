@@ -6,6 +6,7 @@ summary:
   - 'PowerShell-Bootstrap `scripts/setup-dev-env.ps1` installiert Git/Node/Python, aktiviert Corepack und führt pnpm install auf Windows aus.'
   - 'Node-Wrapper `scripts/run-powershell.mjs` sucht pwsh oder Windows PowerShell, sodass `pnpm build:windows-tools` ohne pwsh-Laufzeit funktioniert.'
   - 'Dokumentation (README/ONBOARDING/CommunityOnboarding), Command-Catalog & MandalaMap verweisen jetzt auf Windows-Parität; Playbook-Notizen ergänzt.'
+  - 'Setup-Skript schreibt nach Abschluss eine JSON-Zusammenfassung unter `out/setup/install-state.json` (Shell-Version, Tool-Status, Skip-Flags) für Codexfeedback-Auswertungen.'
 deliverables:
   - scripts/setup-dev-env.ps1
   - scripts/run-powershell.mjs
@@ -29,6 +30,6 @@ follow_up:
     description: 'Docker Compose Windows-Dokumentation ergänzen (z. B. `--build`, WSL vs. Hyper-V) sobald Image-Build bestätigt ist.'
     status: planned
 hook:
-  progress: 'Windows-Bootstrap + PowerShell-Fallback stehen; Setup-Skript liefert Installationsübersicht und pnpm build:windows-tools nutzt den Node-Wrapper.'
+  progress: 'Windows-Bootstrap + PowerShell-Fallback stehen; Setup-Skript exportiert Installationsübersicht (`out/setup/install-state.json`) und pnpm build:windows-tools nutzt den Node-Wrapper.'
   next_step: 'Verifizierung auf Windows-Hosts (PowerShell 5.1/7) durchführen und Compose-Profil-Notizen ergänzen.'
 repeat_required: false
