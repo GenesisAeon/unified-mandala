@@ -30,6 +30,7 @@
     "start:all": "pnpm dev:stack",
     "dev:services": "tsx scripts/dev-server.ts",
     "dev:stack": "node scripts/dev-services.mjs --mode=dev",
+    "dev:breath": "node scripts/emergence-breath.mjs",
     "start:services": "pnpm -s build && NODE_ENV=production node scripts/dev-services.mjs --mode=prod",
     "docs:build": "typedoc",
     "docs:auto": "node scripts/generate-api-docs.js",

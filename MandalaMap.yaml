@@ -1,6 +1,6 @@
 meta:
   version: '1.0'
-  generated: '2025-10-08T12:00:00Z'
+  generated: '2025-10-19T12:00:00Z'
   fraktal: 49
   repo: unified-mandala
   source: ChefDevAI MandalaMap bootstrap
@@ -599,6 +599,7 @@ entries:
       - PowerShell-Setup exportiert Installationsstatus nach `out/setup/install-state.json` für Codexfeedback-Reports.
       - 'ParserFix: `(Test-CommandExists ...)` jetzt geklammert und Installationsresultate zu Bool gecastet, damit PowerShell 7.5 den Dev-Setup ohne ParserError ausführt.'
       - 'Corepack-Admin-Check vermeidet EPERM, setzt Benutzeraktivierung wenn keine Admin-Rechte vorliegen und ergänzt NATS-Installationshinweise für `pnpm start:all`.'
+      - Emergence-Breath (`scripts/emergence-breath.mjs`) koppelt `pnpm dev:breath` an `validate:sigillins` und das Trikāya-Dashboard; Ausgabe enthält Coverage-Metriken für Bridges.
     links:
       - label: run-dist
         path: scripts/run-dist.mjs
@@ -610,6 +611,8 @@ entries:
         path: scripts/setup-dev-env.ps1
       - label: run-powershell
         path: scripts/run-powershell.mjs
+      - label: emergence-breath
+        path: scripts/emergence-breath.mjs
   - path: services/
     category: core-runtime
     status: active

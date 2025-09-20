@@ -1,6 +1,6 @@
 # Mandala Map · Fraktal49
 
-Generated: 2025-10-08T12:00:00Z
+Generated: 2025-10-19T12:00:00Z
 Repository: unified-mandala
 
 ## Reference Docs
@@ -147,7 +147,7 @@ Repository: unified-mandala
 
 - `scripts/` — **active** Automation scripts
   - Extensive Node/TS automation: dev servers, exports, QA, smoke tests, repo map, etc.
-- Notes: Dist-first convention via scripts/run-dist.mjs; Sigillin-Fix-CLI (`scripts/fix-sigillin.ts`) ergänzt Bridge-Tooling; Windows-Parität via `scripts/setup-dev-env.ps1` + `scripts/run-powershell.mjs` dokumentiert; PowerShell-Setup exportiert Installationsstatus nach `out/setup/install-state.json`; ParserFix `(Test-CommandExists ...)` + Bool-Cast heben PowerShell 7.5 ParserError auf; Corepack-Admin-Check vermeidet EPERM und liefert Benutzeraktivierung samt NATS-Installationshinweis.
+- Notes: Dist-first convention via scripts/run-dist.mjs; Sigillin-Fix-CLI (`scripts/fix-sigillin.ts`) ergänzt Bridge-Tooling; Windows-Parität via `scripts/setup-dev-env.ps1` + `scripts/run-powershell.mjs` dokumentiert; PowerShell-Setup exportiert Installationsstatus nach `out/setup/install-state.json`; ParserFix `(Test-CommandExists ...)` + Bool-Cast heben PowerShell 7.5 ParserError auf; Corepack-Admin-Check vermeidet EPERM und liefert Benutzeraktivierung samt NATS-Installationshinweis; Emergence-Breath (`scripts/emergence-breath.mjs`) koppelt `pnpm dev:breath` an `validate:sigillins` + Trikāya-Dashboard und protokolliert Coverage-Metriken.
   - Links: [run-dist](scripts/run-dist.mjs), [dev-services](scripts/dev-services.mjs), [sigil-fix](scripts/fix-sigillin.ts), [setup-dev-env.ps1](scripts/setup-dev-env.ps1), [run-powershell](scripts/run-powershell.mjs)
 
 - `tasks/` — **active** Task manifests
