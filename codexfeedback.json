@@ -1,6 +1,11 @@
 {
   "runs": [
     {
+      "fraktalrun": "Fraktal55 DevTalk Windows Hardening",
+      "status": "implemented",
+      "notes": "`pnpm find-bad-yaml` wraps yaml-lint for strict sigil pipelines, audit:ui-vr auto-generates repo-map data, and generate-agents-diagram.js uses pure ESM for Node 20."
+    },
+    {
       "fraktalrun": "Fraktal54 SigillinFix",
       "status": "in-progress",
       "notes": "CLI \"pnpm sigil:fix\" prüft Trikāya/CREP/Nächste-Schritte, README & Fix-Guide aktualisiert; Folgefragmente (Reports/Hooks) offen."
@@ -8,7 +13,7 @@
     {
       "fraktalrun": "Fraktal53 DevTalkPart5 WindowsFlow",
       "status": "implemented",
-      "notes": "Command catalog documents Corepack bootstrap, pnpm exec tsc fallback, and pnpm -w -r build per DevTalk Part 5 verification; codexfeedback tracker raised to 53."
+      "notes": "Command catalog documents Corepack bootstrap, pnpm exec tsc fallback, pnpm -w -r build per DevTalk Part 5 verification, and yaml-lint via `pnpm find-bad-yaml` extends strict Windows linting."
     },
     {
       "fraktalrun": "Fraktal52 DevStack Windows",

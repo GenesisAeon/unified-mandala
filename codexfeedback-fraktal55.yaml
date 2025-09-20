@@ -1,0 +1,28 @@
+fraktal: 55
+status: done
+owner: ChefDevAI
+summary:
+  - 'yaml-lint Integration: `pnpm find-bad-yaml` nutzt yaml-lint für Strict-Sigillin-Läufe auf allen Plattformen.'
+  - 'Repo-Map Autogen: `scripts/ui-vr-audit.ts` erzeugt `analysis/repo-map.json` automatisch über dist/scripts/repo-map.js.'
+  - 'Agents-Diagramm: Skript läuft als ESM (`scripts/generate-agents-diagram.js`) und vermeidet require in type:module Umgebungen.'
+deliverables:
+  - package.json
+  - pnpm-lock.yaml
+  - scripts/ui-vr-audit.ts
+  - scripts/generate-agents-diagram.js
+  - scripts/find-bad-yaml.mjs
+  - analysis/scripts-and-commands.json
+  - docs/runbooks/command-catalog.md
+  - docs/runbooks/command-catalog.yaml
+  - docs/runbooks/command-catalog.json
+follow_up:
+  validator_windows_feedback:
+    description: 'Windows-Sigillinläufe nach yaml-lint-Einbindung beobachten und Feedback einpflegen.'
+    status: ongoing
+  audit_ui_vr_extended:
+    description: 'Audit-Output erweitern (z. B. Props/VR-Heatmap), sobald Repo-Map-Autogen stabil gemeldet wird.'
+    status: planned
+hook:
+  progress: 'Strict-Pipeline läuft cross-platform; audit:ui-vr blockiert nicht mehr auf fehlender repo-map.'
+  next_step: 'Windows-Feedback einsammeln und kommende Fix-Pack-Fragmente evaluieren.'
+repeat_required: false

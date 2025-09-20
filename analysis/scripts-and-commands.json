@@ -77,6 +77,7 @@
     "sigils:lint": "node scripts/run-dist.mjs scripts/sigils-validate.ts",
     "sigils:index": "node scripts/build-sigillin-index.mjs",
     "sigils:index:strict": "pnpm find-bad-yaml && pnpm sigils:scan && pnpm stac:validate && pnpm sigils:index",
+    "find-bad-yaml": "node scripts/find-bad-yaml.mjs",
     "sigils:scan": "node scripts/run-dist.mjs scripts/validate-sigils.ts",
     "sigils:errors": "cat out/sigils_errors.json || echo 'no errors file'",
     "validate:sigillins": "node scripts/validate-sigillins.mjs",
