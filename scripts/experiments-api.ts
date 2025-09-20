@@ -4,6 +4,11 @@ import ExperimentRegistry, { ExperimentRecord } from '../packages/experiments/Ex
 import { enforcePolicy, PolicyOptions } from '../packages/personhood/PolicyGuard';
 import { ConsentRegistry } from '../packages/personhood/ConsentRegistry';
 
+function resolvePort(value: string | undefined, fallback: number): number {
+  const parsed = Number(value);
+  return Number.isFinite(parsed) && parsed > 0 ? parsed : fallback;
+}
+
 async function initRegistry(): Promise<ExperimentRegistry> {
   try {
     const nc = await connect({ servers: process.env.NATS_URL || 'nats://localhost:4222' });
@@ -18,7 +23,7 @@ function verifyPersonhood(req: express.Request): void {
     personId: req.header('x-person-id') || 'anon',
     region: req.header('x-region') || 'us',
     model: req.header('x-model') || 'gpt-4o',
-    reviewed: req.header('x-reviewed') === 'true'
+    reviewed: req.header('x-reviewed') === 'true',
   };
   // Demo: automatically grant consent for provided person
   ConsentRegistry.grant(opts.personId);
@@ -49,7 +54,7 @@ async function main() {
       const record: ExperimentRecord = {
         id,
         metadata,
-        artifact: artifact ? Buffer.from(artifact, 'base64') : undefined
+        artifact: artifact ? Buffer.from(artifact, 'base64') : undefined,
       };
       await registry.register(record);
       res.json({ status: 'ok' });
@@ -85,9 +90,9 @@ async function main() {
     }
   });
 
-  const port = parseInt(process.env.PORT || '3000', 10);
-  app.listen(port, () => {
-    console.log(`Experiments API server listening on ${port}`);
+  const experimentsPort = resolvePort(process.env.EXPERIMENTS_API_PORT ?? process.env.PORT, 3000);
+  app.listen(experimentsPort, () => {
+    console.log(`Experiments API server listening on ${experimentsPort}`);
   });
 }
 
@@ -95,4 +100,3 @@ main().catch((err) => {
   console.error(err);
   process.exit(1);
 });
-

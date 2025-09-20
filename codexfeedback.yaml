@@ -1,6 +1,25 @@
 fraktal:
-  current: 51
+  current: 52
   history:
+    - id: 52
+      status: done
+      notes: 'Fraktal52 DevStack Windows: UI-Smoke liest UI_DEV_URL, dev-services setzen Port-Defaults und Share/RAG/Experiments/Realtime-Hub achten auf dedizierte Ports; cross-env NODE_OPTIONS und smoke:ui:5174 dokumentiert.'
+      deliverables:
+        - scripts/smoke/ui-dev-smoke.mjs
+        - scripts/dev-services.mjs
+        - scripts/share-api.ts
+        - scripts/rag-api.ts
+        - scripts/experiments-api.ts
+        - scripts/realtime-hub.ts
+        - .env.example
+        - package.json
+        - .eslintrc.cjs
+        - codexfeedback.md
+        - codexfeedback.json
+        - codexfeedback.yaml
+      hook:
+        progress: 'Windows-/PowerShell-Lauf stabilisiert: Ports werden per Default getrennt, Smoke-Skript akzeptiert UI_DEV_URL.'
+        next_step: 'Optional MandalaMap-Port-Matrix ergänzen und Fraktal52-Tests in Nightly spiegeln.'
     - id: 51
       status: done
       notes: 'Fraktal51 CommandCatalog bündelt pnpm-Kommandos, Docker-Profile und Tooling-Hooks in docs/runbooks/command-catalog.(md|json|yaml); Tracker auf Fraktal51 aktualisiert.'

@@ -24,6 +24,7 @@ const serviceDefinitions = [
   {
     name: 'rag-api',
     script: 'scripts/rag-api.ts',
+    envDefaults: { RAG_API_PORT: '3003' },
   },
   {
     name: 'flags-api',
@@ -32,14 +33,17 @@ const serviceDefinitions = [
   {
     name: 'experiments-api',
     script: 'scripts/experiments-api.ts',
+    envDefaults: { EXPERIMENTS_API_PORT: '3002' },
   },
   {
     name: 'share-api',
     script: 'scripts/share-api.ts',
+    envDefaults: { SHARE_API_PORT: '3001' },
   },
   {
     name: 'realtime-hub',
     script: 'scripts/realtime-hub.ts',
+    envDefaults: { REALTIME_HUB_PORT: '4020', REALTIME_WS_PORT: '4021' },
   },
 ];
 
@@ -69,6 +73,15 @@ function spawnService(service) {
     SERVICE_NAME: service.name,
     UM_SERVICE_MODE: resolvedMode,
   };
+
+  if (service.envDefaults) {
+    for (const [key, value] of Object.entries(service.envDefaults)) {
+      const current = env[key];
+      if (current === undefined || current === '') {
+        env[key] = value;
+      }
+    }
+  }
 
   if (resolvedMode === 'prod') {
     const entry = path.resolve(repoRoot, 'dist', service.script.replace(/\.ts$/, '.js'));

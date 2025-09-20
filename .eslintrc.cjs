@@ -58,6 +58,19 @@ module.exports = {
       rules: {
         '@typescript-eslint/no-var-requires': 'off'
       }
+    },
+    {
+      files: [
+        'scripts/**/__tests__/**/*.{ts,tsx}',
+        'scripts/**/*.test.{ts,tsx}',
+        'scripts/**/*.spec.{ts,tsx}',
+        'tests/**/*.{ts,tsx}',
+        'services/**/*.{test,spec}.ts',
+        'src/ui/panels/SigillinIndexPanel.tsx'
+      ],
+      rules: {
+        '@typescript-eslint/no-var-requires': 'off'
+      }
     }
   ]
 };

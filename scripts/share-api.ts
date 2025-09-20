@@ -1,6 +1,11 @@
 import express from 'express';
 import { SignedURL } from '../packages/security/SignedURL';
 
+function resolvePort(value: string | undefined, fallback: number): number {
+  const parsed = Number(value);
+  return Number.isFinite(parsed) && parsed > 0 ? parsed : fallback;
+}
+
 async function main() {
   const app = express();
   app.use(express.json());
@@ -26,9 +31,9 @@ async function main() {
     res.json({ valid });
   });
 
-  const port = parseInt(process.env.PORT || '3000', 10);
-  app.listen(port, () => {
-    console.log(`Share API server listening on ${port}`);
+  const sharePort = resolvePort(process.env.SHARE_API_PORT ?? process.env.PORT, 3000);
+  app.listen(sharePort, () => {
+    console.log(`Share API server listening on ${sharePort}`);
   });
 }
 
@@ -36,4 +41,3 @@ main().catch((err) => {
   console.error(err);
   process.exit(1);
 });
-

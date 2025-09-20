@@ -1,5 +1,6 @@
 # Codex Feedback
 
+- FR-UM-2025-10-10-Fraktal52-DevStack-Windows: UI-Dev-Smoke akzeptiert `UI_DEV_URL` und autodetektiert Vite-Ports, `pnpm dev:stack` setzt Service-Defaults (`SHARE_API_PORT` 3001, `EXPERIMENTS_API_PORT` 3002, `RAG_API_PORT` 3003, `REALTIME_HUB_PORT` 4020/4021) und Share/RAG/Experiments/Realtime-Hub lesen nun dedizierte Ports; `.env.example` + `package.json` dokumentieren Windows-kompatible Flows (`cross-env NODE_OPTIONS`, `smoke:ui:5174`), ESLint-Override entfernt `no-var-requires`-Noise in Script-/Test-Typings.
 - FR-UM-2025-09-19-Fraktal51-CommandCatalog: Command-Katalog (`docs/runbooks/command-catalog.(md|json|yaml)`) bündelt pnpm-Skripte, Docker-Profile sowie Tooling-Hooks; codexfeedback-Tracker auf Fraktal51 gehoben und Hook für Folgefragmente notiert.
 - FR-UM-2025-10-09-Fraktal50-Validator-Windows: Sigillin-Validator normalisiert relative Pfade für Windows, erweitert Bridge-Matcher um (^|/) Präfixe und protokolliert Skip-Gründe; Windows-Bestätigung & Docker-WSL-Check folgen als nächste Schritte.
 - FR-UM-2025-10-08-Fraktal49-Validator+CI: Sigillin-Validator prüft ausschließlich sigils/bridges (Registry/Archive skipped, Agent-Overlay-Hook vorbereitet), Repo-Sanity wartet auf apps/ui/dist/index.html nach pnpm build:ui und AgentWorkflowEngine defaultet ethical_guardrails (inkl. neuem Vitest-Test).
