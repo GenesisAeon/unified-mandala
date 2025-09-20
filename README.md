@@ -162,8 +162,11 @@ pnpm test:unit                # Coverage-Report der Kernmodule
   `sigils/bridges/<provider>/<provider>-bridge.sigil.yaml|json` +  
   `docs/sigillin/bridges/<PROVIDER>_SIGILLIN.md`
 
-- Lokal prüfen: `pnpm validate:sigillins`  
+- Lokal prüfen: `pnpm validate:sigillins`
   → validiert Struktur (JSON/YAML), **CREP/Trikāya/Nächste Schritte** und referenzierte Dateien (soft).
+
+- Korrekturen: `pnpm sigil:fix --dry-run` zeigt Vorschläge, `--auto` übernimmt fixbare Anpassungen.
+  Leitfaden: `docs/sigillin/FIX_GUIDE.md`.
 
 - CI: `.github/workflows/sigillin-validate.yml` prüft bei PR/Push.
 

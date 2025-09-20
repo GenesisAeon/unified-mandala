@@ -147,8 +147,8 @@ Repository: unified-mandala
 
 - `scripts/` — **active** Automation scripts
   - Extensive Node/TS automation: dev servers, exports, QA, smoke tests, repo map, etc.
-  - Notes: Dist-first convention via scripts/run-dist.mjs; referenced throughout docs.
-  - Links: [run-dist](scripts/run-dist.mjs), [dev-services](scripts/dev-services.mjs)
+  - Notes: Dist-first convention via scripts/run-dist.mjs; Sigillin-Fix-CLI (`scripts/fix-sigillin.ts`) ergänzt Bridge-Tooling.
+  - Links: [run-dist](scripts/run-dist.mjs), [dev-services](scripts/dev-services.mjs), [sigil-fix](scripts/fix-sigillin.ts)
 
 - `tasks/` — **active** Task manifests
   - Codex task definitions and sigillin skeleton specs driving automation flows.

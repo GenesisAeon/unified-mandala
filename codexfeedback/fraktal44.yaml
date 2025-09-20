@@ -1,7 +1,7 @@
 fraktal: 44
 title: Abschluss Inter-AI Sigillin Bridges + Validator
 owner: Codex
-status: in-review
+status: done
 milestones:
   - id: F44-1
     name: Scaffold 5 Bridges (YAML/JSON/MD)
@@ -17,15 +17,12 @@ milestones:
     notes: .github/workflows/sigillin-validate.yml
   - id: F44-4
     name: README Update
-    done: pending
-    notes: Kurzabschnitt ergänzt; Review offen
+    done: true
+    notes: README verweist auf `pnpm sigil:fix` + Fix-Guide; Abschnitt eingespielt.
 summary:
   crep:
     coherence: 'Erhöht – einheitliche Brücken & Prüfung.'
     resonance: 'Erhöht – klare, prüfbare AI-Kommunikation.'
     emergence: 'Erhöht – Format-Verzahnung (JSON/YAML/MD).'
     poetics: 'Erhöht – Sigillin als sinntragendes Artefakt.'
-next_actions:
-  - 'README Abschnitt mergen.'
-  - 'Optional: pre-commit Hook → pnpm validate:sigillins (nur geänderte Pfade).'
-  - 'Optional: Governance-Report um Sigillin-Compliance erweitern.'
+next_actions: []

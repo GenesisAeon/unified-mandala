@@ -594,11 +594,14 @@ entries:
       repo map, etc.'
     notes:
       - Dist-first convention via scripts/run-dist.mjs; referenced throughout docs.
+      - Sigillin-Fix-CLI (`scripts/fix-sigillin.ts`) unterstützt Bridges bei Trikāya/CREP/Nächste-Schritt-Korrekturen.
     links:
       - label: run-dist
         path: scripts/run-dist.mjs
       - label: dev-services
         path: scripts/dev-services.mjs
+      - label: sigil-fix
+        path: scripts/fix-sigillin.ts
   - path: services/
     category: core-runtime
     status: active
