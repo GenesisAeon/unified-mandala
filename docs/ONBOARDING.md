@@ -4,9 +4,9 @@
 
 ```bash
 # optional: geführtes Setup inkl. Python/Node Hooks
-./scripts/setup-dev-env.sh            # Linux/macOS
-pwsh -File ./scripts/setup-dev-env.ps1  # Windows (PowerShell 7+)
-# alternativ: powershell -ExecutionPolicy Bypass -File .\scripts\setup-dev-env.ps1
+./scripts/setup-dev-env.sh                 # Linux/macOS
+pwsh -NoProfile -File ./scripts/setup-dev-env.ps1  # Windows (PowerShell 7+)
+# fallback: powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\setup-dev-env.ps1
 
 # manuell (falls benötigt)
 node -v                     # Node >= 20

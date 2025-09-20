@@ -9,7 +9,8 @@ Dieses Dokument erleichtert neuen Mitwirkenden den Einstieg in UnifiedMandala.
    git clone https://github.com/GenesisAeon/unified-mandala.git
    cd unified-mandala
    ./scripts/setup-dev-env.sh            # optional: Linux/macOS Setup
-   pwsh -File ./scripts/setup-dev-env.ps1  # optional: Windows Setup (PowerShell 7+)
+   pwsh -NoProfile -File ./scripts/setup-dev-env.ps1  # optional: Windows Setup (PowerShell 7+)
+   # fallback: powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\setup-dev-env.ps1
    corepack enable && corepack prepare pnpm@10.17.0 --activate
    pnpm install --frozen-lockfile
    pnpm build
