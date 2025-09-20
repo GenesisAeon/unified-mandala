@@ -91,6 +91,7 @@
     "sigils:lint": "node scripts/run-dist.mjs scripts/sigils-validate.ts",
     "sigils:index": "node scripts/build-sigillin-index.mjs",
     "sigils:index:strict": "pnpm find-bad-yaml && pnpm sigils:scan && pnpm stac:validate && pnpm sigils:index",
+    "find-bad-yaml": "node scripts/find-bad-yaml.mjs",
     "sigils:scan": "node scripts/run-dist.mjs scripts/validate-sigils.ts",
     "sigils:errors": "cat out/sigils_errors.json || echo 'no errors file'",
     "validate:sigillins": "node scripts/validate-sigillins.mjs",
@@ -202,9 +203,9 @@
     "@types/supertest": "^6.0.3",
     "@types/three": "^0.164.0",
     "@types/ws": "^8.5.10",
-    "@vitest/coverage-v8": "^3.2.4",
     "@typescript-eslint/eslint-plugin": "^7.17.0",
     "@typescript-eslint/parser": "^7.17.0",
+    "@vitest/coverage-v8": "^3.2.4",
     "concurrently": "^8.2.2",
     "cross-env": "^7.0.3",
     "cypress": "^14.5.1",
@@ -229,7 +230,8 @@
     "typescript": "^5.4.0",
     "undici": "^6.19.8",
     "vitest": "^1.6.0",
-    "wait-on": "^7.2.0"
+    "wait-on": "^7.2.0",
+    "yaml-lint": "^1.7.0"
   },
   "lint-staged": {
     "{scripts,services,src,tests}/**/*.{ts,tsx,js,jsx,cjs,mjs}": [

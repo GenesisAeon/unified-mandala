@@ -717,6 +717,14 @@ categories:
         description: 'Generates the sigil index artifacts.'
         source:
           - package.json#scripts.sigils:index
+      - id: sigils.find-bad-yaml
+        name: 'Lint YAML manifests'
+        command: 'pnpm find-bad-yaml'
+        type: pnpm
+        runs: 'node scripts/find-bad-yaml.mjs'
+        description: 'Lints sigil YAML files via yaml-lint and fast-glob before strict indexing.'
+        source:
+          - package.json#scripts.find-bad-yaml
       - id: sigils.index-strict
         name: 'Strict sigil index'
         command: 'pnpm sigils:index:strict'
