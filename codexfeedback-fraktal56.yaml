@@ -7,6 +7,7 @@ summary:
   - 'Node-Wrapper `scripts/run-powershell.mjs` sucht pwsh oder Windows PowerShell, sodass `pnpm build:windows-tools` ohne pwsh-Laufzeit funktioniert.'
   - 'Dokumentation (README/ONBOARDING/CommunityOnboarding), Command-Catalog & MandalaMap verweisen jetzt auf Windows-Parität; Playbook-Notizen ergänzt.'
   - 'Setup-Skript schreibt nach Abschluss eine JSON-Zusammenfassung unter `out/setup/install-state.json` (Shell-Version, Tool-Status, Skip-Flags) für Codexfeedback-Auswertungen.'
+  - 'Corepack-Admin-Erkennung vermeidet EPERM, protokolliert Aktivierungsmodus (`system`, `user`, `system-fallback`, `skipped`) und blendet NATS-Installationshinweise (winget/Docker) ein.'
   - 'PowerShell 7.5 ParserError behoben: `Ensure-Tool` nutzt jetzt `(Test-CommandExists ...)` in `-and`-Ausdrücken und castet Installationsresultate zu Bool, sodass der Dev-Setup-Lauf auf Windows wieder durchläuft.'
 deliverables:
   - scripts/setup-dev-env.ps1
@@ -31,6 +32,6 @@ follow_up:
     description: 'Docker Compose Windows-Dokumentation ergänzen (z. B. `--build`, WSL vs. Hyper-V) sobald Image-Build bestätigt ist.'
     status: planned
 hook:
-  progress: 'Windows-Bootstrap + PowerShell-Fallback stehen; ParserError (Test-CommandExists ohne Klammern) beseitigt, Setup-Skript exportiert Installationsübersicht (`out/setup/install-state.json`) und pnpm build:windows-tools nutzt den Node-Wrapper.'
+  progress: 'Windows-Bootstrap + PowerShell-Fallback stehen; ParserError (Test-CommandExists ohne Klammern) beseitigt, Setup-Skript exportiert Installationsübersicht (`out/setup/install-state.json`), dokumentiert Corepack-Aktivierungsmodus/NATS-Hinweis und pnpm build:windows-tools nutzt den Node-Wrapper.'
   next_step: 'Verifizierung auf Windows-Hosts (PowerShell 5.1/7) durchführen und Compose-Profil-Notizen ergänzen; ParserFix in DevTalk-Track bestätigen.'
 repeat_required: false

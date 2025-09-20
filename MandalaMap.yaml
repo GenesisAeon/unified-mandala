@@ -598,6 +598,7 @@ entries:
       - Windows-Parität über `scripts/setup-dev-env.ps1` + `scripts/run-powershell.mjs` dokumentiert (PowerShell-Fallback).
       - PowerShell-Setup exportiert Installationsstatus nach `out/setup/install-state.json` für Codexfeedback-Reports.
       - 'ParserFix: `(Test-CommandExists ...)` jetzt geklammert und Installationsresultate zu Bool gecastet, damit PowerShell 7.5 den Dev-Setup ohne ParserError ausführt.'
+      - 'Corepack-Admin-Check vermeidet EPERM, setzt Benutzeraktivierung wenn keine Admin-Rechte vorliegen und ergänzt NATS-Installationshinweise für `pnpm start:all`.'
     links:
       - label: run-dist
         path: scripts/run-dist.mjs
