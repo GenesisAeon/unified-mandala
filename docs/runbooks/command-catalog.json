@@ -24,10 +24,10 @@
         {
           "id": "setup.dev-env-windows",
           "name": "Setup development environment (Windows)",
-          "command": "pwsh -File ./scripts/setup-dev-env.ps1",
+          "command": "pwsh -NoProfile -File ./scripts/setup-dev-env.ps1",
           "type": "powershell",
-          "runs": "pwsh -File ./scripts/setup-dev-env.ps1",
-          "description": "Installs Git, Node.js, and Python on Windows, enables Corepack, and runs pnpm using PowerShell 7+ (falls back to Windows PowerShell with ExecutionPolicy Bypass).",
+          "runs": "pwsh -NoProfile -File ./scripts/setup-dev-env.ps1",
+          "description": "Installs Git, Node.js, and Python on Windows, enables Corepack, and runs pnpm using PowerShell 7+ (fallback: powershell -NoProfile -ExecutionPolicy Bypass -File .\\scripts\\setup-dev-env.ps1).",
           "source": ["scripts/setup-dev-env.ps1"]
         },
         {

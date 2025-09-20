@@ -3,7 +3,7 @@ fraktal:
   history:
     - id: 56
       status: running
-      notes: 'Fraktal56 WindowsBootstrap: PowerShell-Setup (`scripts/setup-dev-env.ps1`) + Node-Wrapper (`scripts/run-powershell.mjs`) sichern Windows-Parität; Docs/MandalaMap/Command-Catalog aktualisiert.'
+      notes: 'Fraktal56 WindowsBootstrap: PowerShell-Setup (`scripts/setup-dev-env.ps1`) trackt InstallState (Git/Node/Python/Corepack/pnpm/Docker/NATS) und unterstützt PowerShell 5.1; Node-Wrapper (`scripts/run-powershell.mjs`) sichert pwsh/powershell-Fallback; Docs/MandalaMap/Command-Catalog aktualisiert.'
       deliverables:
         - scripts/setup-dev-env.ps1
         - scripts/run-powershell.mjs
@@ -21,8 +21,8 @@ fraktal:
         - docs/roadmap/v1.0-stabilization-playbook.yaml
         - codexfeedback-fraktal56.yaml
       hook:
-        progress: 'Windows-Bootstrap dokumentiert; `pnpm build:windows-tools` nutzt Node-Wrapper statt direktem pwsh-Aufruf.'
-        next_step: 'Feedback von Windows-Hosts einsammeln und Docker Compose Flow (\`--build\`/WSL) ergänzen.'
+        progress: 'Windows-Bootstrap dokumentiert; Setup-Skript gibt Installationsstatus aus und `pnpm build:windows-tools` nutzt den Node-Wrapper statt direktem pwsh-Aufruf.'
+        next_step: 'Feedback von Windows-Hosts (PowerShell 5.1/7) einsammeln und Docker Compose Flow (\`--build\`/WSL) ergänzen.'
     - id: 55
       status: done
       notes: 'Fraktal55 DevTalk Windows Hardening: yaml-lint powered `pnpm find-bad-yaml`, repo-map auto-generation for `audit:ui-vr`, und ESM-Update für `scripts/generate-agents-diagram.js`.'

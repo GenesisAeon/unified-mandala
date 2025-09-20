@@ -10,9 +10,9 @@ UnifiedMandala ist ein holistisches, modulares Framework für symbolische KI, CR
 
 ```bash
 # 0) Optional: geführtes Setup (installiert Toolchain & Hooks)
-./scripts/setup-dev-env.sh            # Linux/macOS
-pwsh -File ./scripts/setup-dev-env.ps1  # Windows (PowerShell 7+)
-# alternativ: powershell -ExecutionPolicy Bypass -File .\scripts\setup-dev-env.ps1
+./scripts/setup-dev-env.sh                 # Linux/macOS
+pwsh -NoProfile -File ./scripts/setup-dev-env.ps1  # Windows (PowerShell 7+)
+# fallback: powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\setup-dev-env.ps1
 
 # 1) Toolchain (Node >= 20, pnpm 10.17.0)
 node -v

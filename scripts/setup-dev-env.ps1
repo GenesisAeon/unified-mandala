@@ -8,6 +8,10 @@ param(
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
 
+if (-not (Get-Variable InstallState -Scope Script -ErrorAction SilentlyContinue)) {
+  $script:InstallState = @{}
+}
+
 function Write-Step {
   param([string]$Message)
   Write-Host "`n==> $Message" -ForegroundColor Cyan
@@ -16,6 +20,19 @@ function Write-Step {
 function Test-CommandExists {
   param([string]$Name)
   return $null -ne (Get-Command -Name $Name -ErrorAction SilentlyContinue)
+}
+
+function Update-InstallState {
+  param(
+    [string]$Key,
+    [bool]$Present
+  )
+
+  if (-not $Key) {
+    return
+  }
+
+  $script:InstallState[$Key] = $Present
 }
 
 function Get-PackageManager {
@@ -69,26 +86,31 @@ function Ensure-Tool {
     [string]$FriendlyName,
     [string]$WingetId,
     [string]$ChocoPackage,
-    [string]$ScoopPackage
+    [string]$ScoopPackage,
+    [string]$StateKey
   )
 
   if (Test-CommandExists $Command) {
     Write-Host "✓ $FriendlyName verfügbar ($Command)"
+    Update-InstallState -Key $StateKey -Present $true
     return $true
   }
 
   if (-not $script:PackageManager) {
     Write-Warning "Kein unterstützter Paketmanager gefunden, um $FriendlyName zu installieren. Bitte manuell installieren."
+    Update-InstallState -Key $StateKey -Present $false
     return $false
   }
 
   $installed = Invoke-PackageInstall -Manager $script:PackageManager -FriendlyName $FriendlyName -WingetId $WingetId -ChocoPackage $ChocoPackage -ScoopPackage $ScoopPackage
   if ($installed -and Test-CommandExists $Command) {
     Write-Host "✓ $FriendlyName erfolgreich installiert"
+    Update-InstallState -Key $StateKey -Present $true
     return $true
   }
 
   Write-Warning "$FriendlyName konnte nicht automatisch installiert werden. Bitte manuell installieren und Skript erneut starten."
+  Update-InstallState -Key $StateKey -Present $false
   return $false
 }
 
@@ -106,10 +128,10 @@ if ($SkipPackageInstall) {
 } elseif (-not $script:PackageManager) {
   Write-Warning "Weder winget, Chocolatey noch Scoop gefunden. Installiere Git, Node.js und Python manuell und führe das Skript erneut aus."
 } else {
-  Ensure-Tool -Command 'git' -FriendlyName 'Git' -WingetId 'Git.Git' -ChocoPackage 'git' -ScoopPackage 'git'
-  Ensure-Tool -Command 'node' -FriendlyName 'Node.js (LTS)' -WingetId 'OpenJS.NodeJS.LTS' -ChocoPackage 'nodejs-lts' -ScoopPackage 'nodejs-lts'
+  Ensure-Tool -Command 'git' -FriendlyName 'Git' -WingetId 'Git.Git' -ChocoPackage 'git' -ScoopPackage 'git' -StateKey 'git'
+  Ensure-Tool -Command 'node' -FriendlyName 'Node.js (LTS)' -WingetId 'OpenJS.NodeJS.LTS' -ChocoPackage 'nodejs-lts' -ScoopPackage 'nodejs-lts' -StateKey 'node'
   # Python check uses python - prefer 3.11+ packages
-  $pythonInstalled = Ensure-Tool -Command 'python' -FriendlyName 'Python 3 (inkl. Pip)' -WingetId 'Python.Python.3.11' -ChocoPackage 'python' -ScoopPackage 'python'
+  $pythonInstalled = Ensure-Tool -Command 'python' -FriendlyName 'Python 3 (inkl. Pip)' -WingetId 'Python.Python.3.11' -ChocoPackage 'python' -ScoopPackage 'python' -StateKey 'python'
   if (-not $pythonInstalled -and -not (Resolve-PythonCommand)) {
     Write-Warning 'Python konnte nicht ermittelt werden. Stelle sicher, dass Python 3.11 installiert ist.'
   }
@@ -119,10 +141,13 @@ if (-not $SkipPythonSetup) {
   $pythonCommand = Resolve-PythonCommand
   if (-not $pythonCommand) {
     Write-Warning 'Python wurde nicht gefunden. Überspringe virtuellen Python-Umgebungsschritt.'
+    Update-InstallState -Key 'python-venv' -Present $false
   } else {
     Write-Step "Python Virtual Environment (.venv) einrichten"
     & $pythonCommand -m venv .venv
     $venvActivate = Join-Path (Resolve-Path '.venv').Path 'Scripts\Activate.ps1'
+    $venvCreated = Test-Path $venvActivate
+    Update-InstallState -Key 'python-venv' -Present $venvCreated
     if (Test-Path $venvActivate) {
       . $venvActivate
       Write-Step "pip aktualisieren"
@@ -152,6 +177,7 @@ if (-not $SkipNodeSetup) {
   if (Test-CommandExists 'corepack') {
     Write-Step 'Corepack aktivieren'
     & corepack enable
+    Update-InstallState -Key 'corepack' -Present (Test-CommandExists 'corepack')
     Write-Step 'pnpm 10.17.0 vorbereiten'
     & corepack prepare pnpm@10.17.0 --activate
     Write-Step 'pnpm install --frozen-lockfile ausführen'
@@ -165,11 +191,17 @@ if (-not $SkipNodeSetup) {
       }
     }
   } else {
-    Write-Warning 'Corepack ist nicht verfügbar; installiere pnpm manuell (npm install -g pnpm).' 
+    Write-Warning 'Corepack ist nicht verfügbar; installiere pnpm manuell (npm install -g pnpm).'
+    Update-InstallState -Key 'corepack' -Present $false
   }
 } else {
   Write-Host "(Node Setup übersprungen)"
 }
+
+Update-InstallState -Key 'corepack' -Present (Test-CommandExists 'corepack')
+Update-InstallState -Key 'pnpm' -Present (Test-CommandExists 'pnpm')
+Update-InstallState -Key 'nats-server' -Present (Test-CommandExists 'nats-server')
+Update-InstallState -Key 'docker' -Present (Test-CommandExists 'docker')
 
 if (Test-CommandExists 'git') {
   Write-Step 'Git Konfiguration überprüfen'
@@ -192,4 +224,19 @@ if (Test-CommandExists 'git') {
   }
 }
 
+function Write-InstallSummary {
+  if ($script:InstallState.Keys.Count -eq 0) {
+    return
+  }
+
+  Write-Step 'Installationsstatus'
+  $script:InstallState.GetEnumerator() |
+    Sort-Object -Property Name |
+    ForEach-Object {
+      $status = if ($_.Value) { 'ok' } else { 'fehlend' }
+      Write-Host ("  {0,-16} : {1}" -f $_.Key, $status)
+    }
+}
+
+Write-InstallSummary
 Write-Step 'Setup abgeschlossen. Öffne eine neue PowerShell für aktivierte PATH-Einstellungen bei Bedarf.'
