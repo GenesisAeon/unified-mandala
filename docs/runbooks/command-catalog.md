@@ -9,19 +9,20 @@ Diese Sammlung bündelt pnpm-Skripte, Shell-Kommandos sowie wiederverwendbare To
 
 > Bootstrap developer workstations and core tooling parity.
 
-| Command                                    | Type     | Runs                                         | Beschreibung                                                                                            |
-| ------------------------------------------ | -------- | -------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
-| `./scripts/setup-dev-env.sh`               | `shell`  | `./scripts/setup-dev-env.sh`                 | Installs system packages, configures git, provisions a Python venv, and installs Node dependencies.     |
-| `corepack enable`                          | `shell`  | `corepack enable`                            | Activates Corepack so pnpm can be managed and pinned via Node's package manager shim.                   |
-| `corepack prepare pnpm@10.17.0 --activate` | `shell`  | `corepack prepare pnpm@10.17.0 --activate`   | Downloads and activates pnpm 10.17.0 to mirror the Windows validation run.                              |
-| `corepack pnpm install --frozen-lockfile`  | `pnpm`   | `corepack pnpm install --frozen-lockfile`    | Installs workspace dependencies using the frozen lockfile for deterministic parity on Windows.          |
-| `pnpm install`                             | `pnpm`   | `pnpm install`                               | Installs Node dependencies across the pnpm workspace.                                                   |
-| `poetry install --with test`               | `poetry` | `poetry install --with test`                 | Sets up Python dependencies including optional test extras.                                             |
-| `pnpm store:commit-memory`                 | `pnpm`   | `pnpm store:commit-memory`                   | Runs Genesis ZIP memory bridge to persist dependency store metadata during first commit of a session.   |
-| `pnpm prepare`                             | `pnpm`   | `husky install`                              | Installs Husky Git hooks for lint-staged and formatting policies.                                       |
-| `pnpm build:windows-tools`                 | `pnpm`   | `pwsh tools/windows/build-windows-tools.ps1` | Invokes PowerShell tooling bundle for Windows parity tasks.                                             |
-| `docker compose --profile core up`         | `docker` | `docker compose --profile core up`           | Bootstraps the core service stack with Docker Compose profiles described in the stabilization playbook. |
-| `docker compose --profile prod up`         | `docker` | `docker compose --profile prod up`           | Runs the production simulation profile used during release drills.                                      |
+| Command                                    | Type         | Runs                                                                    | Beschreibung                                                                                                      |
+| ------------------------------------------ | ------------ | ----------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| `./scripts/setup-dev-env.sh`               | `shell`      | `./scripts/setup-dev-env.sh`                                            | Installs system packages, configures git, provisions a Python venv, and installs Node dependencies (Linux/macOS). |
+| `pwsh -File ./scripts/setup-dev-env.ps1`   | `powershell` | `pwsh -File ./scripts/setup-dev-env.ps1`                                | Windows-guided setup installing Git/Node/Python, enabling Corepack, and running pnpm with PowerShell 7+.          |
+| `corepack enable`                          | `shell`      | `corepack enable`                                                       | Activates Corepack so pnpm can be managed and pinned via Node's package manager shim.                             |
+| `corepack prepare pnpm@10.17.0 --activate` | `shell`      | `corepack prepare pnpm@10.17.0 --activate`                              | Downloads and activates pnpm 10.17.0 to mirror the Windows validation run.                                        |
+| `corepack pnpm install --frozen-lockfile`  | `pnpm`       | `corepack pnpm install --frozen-lockfile`                               | Installs workspace dependencies using the frozen lockfile for deterministic parity on Windows.                    |
+| `pnpm install`                             | `pnpm`       | `pnpm install`                                                          | Installs Node dependencies across the pnpm workspace.                                                             |
+| `poetry install --with test`               | `poetry`     | `poetry install --with test`                                            | Sets up Python dependencies including optional test extras.                                                       |
+| `pnpm store:commit-memory`                 | `pnpm`       | `pnpm store:commit-memory`                                              | Runs Genesis ZIP memory bridge to persist dependency store metadata during first commit of a session.             |
+| `pnpm prepare`                             | `pnpm`       | `husky install`                                                         | Installs Husky Git hooks for lint-staged and formatting policies.                                                 |
+| `pnpm build:windows-tools`                 | `pnpm`       | `node scripts/run-powershell.mjs tools/windows/build-windows-tools.ps1` | Invokes Windows tooling build via Node wrapper that falls back to PowerShell 5 when pwsh is unavailable.          |
+| `docker compose --profile core up`         | `docker`     | `docker compose --profile core up`                                      | Bootstraps the core service stack with Docker Compose profiles described in the stabilization playbook.           |
+| `docker compose --profile prod up`         | `docker`     | `docker compose --profile prod up`                                      | Runs the production simulation profile used during release drills.                                                |
 
 ## Linting & Static Analysis
 
@@ -245,13 +246,14 @@ Diese Sammlung bündelt pnpm-Skripte, Shell-Kommandos sowie wiederverwendbare To
 
 ## Weitere Skripte & Artefakte
 
-| ID                          | Pfad                        | Beschreibung                                                     |
-| --------------------------- | --------------------------- | ---------------------------------------------------------------- |
-| script.setup-dev-env        | `scripts/setup-dev-env.sh`  | Shell bootstrap script for local developer workstations.         |
-| script.build_pr_e_tree      | `build_pr_E_tree.sh`        | Helper script for building PR tree visualizations (variant E).   |
-| script.build_pr_f_tree      | `build_pr_F_tree.sh`        | Helper script for building PR tree visualizations (variant F).   |
-| script.build_pr_g_tree      | `build_pr_G_tree.sh`        | Helper script for building PR tree visualizations (variant G).   |
-| script.codex-sync           | `codex-sync.sh`             | Synchronizes codex states across environments.                   |
-| script.docker-compose-local | `docker-compose.local.yaml` | Docker Compose definition for local offline stack parity.        |
-| script.docker-compose       | `docker-compose.yml`        | Primary Docker Compose file with multiple service profiles.      |
-| script.setup-dev-container  | `Dockerfile.dev`            | Dev container definition aligning Node 20 + Python 3 toolchains. |
+| ID                          | Pfad                                                    | Beschreibung                                                                               |
+| --------------------------- | ------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
+| script.setup-dev-env        | `scripts/setup-dev-env.sh`, `scripts/setup-dev-env.ps1` | Guided bootstrap scripts for local developer workstations (Bash & PowerShell).             |
+| script.run-powershell       | `scripts/run-powershell.mjs`                            | Node helper selecting `pwsh`/Windows PowerShell before invoking repository `.ps1` tooling. |
+| script.build_pr_e_tree      | `build_pr_E_tree.sh`                                    | Helper script for building PR tree visualizations (variant E).                             |
+| script.build_pr_f_tree      | `build_pr_F_tree.sh`                                    | Helper script for building PR tree visualizations (variant F).                             |
+| script.build_pr_g_tree      | `build_pr_G_tree.sh`                                    | Helper script for building PR tree visualizations (variant G).                             |
+| script.codex-sync           | `codex-sync.sh`                                         | Synchronizes codex states across environments.                                             |
+| script.docker-compose-local | `docker-compose.local.yaml`                             | Docker Compose definition for local offline stack parity.                                  |
+| script.docker-compose       | `docker-compose.yml`                                    | Primary Docker Compose file with multiple service profiles.                                |
+| script.setup-dev-container  | `Dockerfile.dev`                                        | Dev container definition aligning Node 20 + Python 3 toolchains.                           |

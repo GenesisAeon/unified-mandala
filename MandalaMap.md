@@ -147,8 +147,8 @@ Repository: unified-mandala
 
 - `scripts/` — **active** Automation scripts
   - Extensive Node/TS automation: dev servers, exports, QA, smoke tests, repo map, etc.
-  - Notes: Dist-first convention via scripts/run-dist.mjs; Sigillin-Fix-CLI (`scripts/fix-sigillin.ts`) ergänzt Bridge-Tooling.
-  - Links: [run-dist](scripts/run-dist.mjs), [dev-services](scripts/dev-services.mjs), [sigil-fix](scripts/fix-sigillin.ts)
+  - Notes: Dist-first convention via scripts/run-dist.mjs; Sigillin-Fix-CLI (`scripts/fix-sigillin.ts`) ergänzt Bridge-Tooling; Windows-Parität via `scripts/setup-dev-env.ps1` + `scripts/run-powershell.mjs` dokumentiert.
+  - Links: [run-dist](scripts/run-dist.mjs), [dev-services](scripts/dev-services.mjs), [sigil-fix](scripts/fix-sigillin.ts), [setup-dev-env.ps1](scripts/setup-dev-env.ps1), [run-powershell](scripts/run-powershell.mjs)
 
 - `tasks/` — **active** Task manifests
   - Codex task definitions and sigillin skeleton specs driving automation flows.
@@ -156,7 +156,7 @@ Repository: unified-mandala
 
 - `tools/` — **active** Tooling
   - Auxiliary tools (fraktal lab CLI, governance checks, Kyverno runner).
-  - Notes: Used by policy:check and governance automation.
+  - Notes: Used by policy:check and governance automation; Windows helper builds laufen via `pnpm build:windows-tools` → `scripts/run-powershell.mjs`.
 
 ## Agent Complexes & AI Programs (`agents`)
 

@@ -14,12 +14,21 @@
       "entries": [
         {
           "id": "setup.dev-env",
-          "name": "Setup development environment",
+          "name": "Setup development environment (Linux/macOS)",
           "command": "./scripts/setup-dev-env.sh",
           "type": "shell",
           "runs": "./scripts/setup-dev-env.sh",
-          "description": "Installs system packages, configures git, provisions a Python venv, and installs Node dependencies.",
+          "description": "Installs system packages, configures git, provisions a Python venv, and installs Node dependencies on Linux/macOS.",
           "source": ["scripts/setup-dev-env.sh"]
+        },
+        {
+          "id": "setup.dev-env-windows",
+          "name": "Setup development environment (Windows)",
+          "command": "pwsh -File ./scripts/setup-dev-env.ps1",
+          "type": "powershell",
+          "runs": "pwsh -File ./scripts/setup-dev-env.ps1",
+          "description": "Installs Git, Node.js, and Python on Windows, enables Corepack, and runs pnpm using PowerShell 7+ (falls back to Windows PowerShell with ExecutionPolicy Bypass).",
+          "source": ["scripts/setup-dev-env.ps1"]
         },
         {
           "id": "setup.corepack-enable",
@@ -89,8 +98,8 @@
           "name": "Build Windows helper binaries",
           "command": "pnpm build:windows-tools",
           "type": "pnpm",
-          "runs": "pwsh tools/windows/build-windows-tools.ps1",
-          "description": "Invokes PowerShell tooling bundle for Windows parity tasks.",
+          "runs": "node scripts/run-powershell.mjs tools/windows/build-windows-tools.ps1",
+          "description": "Invokes the Windows tooling build via Node wrapper that selects pwsh or Windows PowerShell when pwsh is unavailable.",
           "source": ["package.json#scripts.build:windows-tools"]
         },
         {
@@ -1345,7 +1354,17 @@
     {
       "id": "script.setup-dev-env",
       "path": "scripts/setup-dev-env.sh",
-      "description": "Shell bootstrap script for local developer workstations."
+      "description": "Bash bootstrap script for Linux/macOS developer workstations."
+    },
+    {
+      "id": "script.setup-dev-env-windows",
+      "path": "scripts/setup-dev-env.ps1",
+      "description": "PowerShell bootstrap script for Windows developer workstations."
+    },
+    {
+      "id": "script.run-powershell",
+      "path": "scripts/run-powershell.mjs",
+      "description": "Node helper selecting pwsh or Windows PowerShell before invoking repository PowerShell tooling."
     },
     {
       "id": "script.build_pr_e_tree",

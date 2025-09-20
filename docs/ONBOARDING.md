@@ -4,12 +4,14 @@
 
 ```bash
 # optional: geführtes Setup inkl. Python/Node Hooks
-./scripts/setup-dev-env.sh
+./scripts/setup-dev-env.sh            # Linux/macOS
+pwsh -File ./scripts/setup-dev-env.ps1  # Windows (PowerShell 7+)
+# alternativ: powershell -ExecutionPolicy Bypass -File .\scripts\setup-dev-env.ps1
 
 # manuell (falls benötigt)
 node -v                     # Node >= 20
 corepack enable
-corepack prepare pnpm@10.16.1 --activate
+corepack prepare pnpm@10.17.0 --activate
 pnpm install --frozen-lockfile
 pnpm build                  # dist-first Artefakte erzeugen
 cp .env.example .env        # eigene Secrets setzen

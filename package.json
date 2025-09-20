@@ -56,7 +56,7 @@
     "generate:agent-docs": "node scripts/generate-agent-docs.js",
     "qa": "node scripts/run-dist.mjs scripts/qa-test-runner.ts",
     "qa:gpt5": "node scripts/run-dist.mjs scripts/qa-test-runner.ts scripts/qa-gpt5.json",
-    "build:windows-tools": "pwsh tools/windows/build-windows-tools.ps1",
+    "build:windows-tools": "node scripts/run-powershell.mjs tools/windows/build-windows-tools.ps1",
     "dev:voiceos": "node scripts/run-dist.mjs scripts/voice-os-control-api.ts",
     "ghost-shell:cluster": "node scripts/run-dist.mjs services/ghost-shell/cluster.ts",
     "ghost-shell:server": "node scripts/run-dist.mjs services/ghost-shell/server.ts",
