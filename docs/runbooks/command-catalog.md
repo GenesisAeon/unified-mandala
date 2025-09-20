@@ -95,34 +95,36 @@ Diese Sammlung bündelt pnpm-Skripte, Shell-Kommandos sowie wiederverwendbare To
 
 > Commands for launching dev servers, stacks, and runtime utilities.
 
-| Command                          | Type   | Runs                                                                             | Beschreibung                                                              |
-| -------------------------------- | ------ | -------------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
-| `pnpm dev`                       | `pnpm` | `cross-env UI_DIST=http://localhost:5173 pnpm -F mandala-ui dev`                 | Starts the mandala-ui dev server with UI_DIST override.                   |
-| `pnpm dev:ui`                    | `pnpm` | `pnpm -F mandala-ui dev`                                                         | Runs the UI workspace dev server without overrides.                       |
-| `pnpm dev:services`              | `pnpm` | `tsx scripts/dev-server.ts`                                                      | Launches backend/dev services via the TypeScript dev server orchestrator. |
-| `pnpm dev:stack`                 | `pnpm` | `node scripts/dev-services.mjs --mode=dev`                                       | Starts the dev stack orchestrator with default dev profiles.              |
-| `pnpm start`                     | `pnpm` | `pnpm -s build:ui && pnpm -s dev`                                                | Builds the UI then launches the dev server.                               |
-| `pnpm start:light`               | `pnpm` | `pnpm -s build:ui && node scripts/light-static-server.mjs`                       | Serves the built UI via the light static Node server.                     |
-| `pnpm start:services`            | `pnpm` | `pnpm -s build && NODE_ENV=production node scripts/dev-services.mjs --mode=prod` | Builds the workspace and starts services in production mode.              |
-| `pnpm start:all`                 | `pnpm` | `pnpm dev:stack`                                                                 | Convenience alias to boot the full dev stack.                             |
-| `pnpm dev:voiceos`               | `pnpm` | `node scripts/run-dist.mjs scripts/voice-os-control-api.ts`                      | Launches the Voice OS control API for voice interaction workflows.        |
-| `pnpm ghost-shell:cluster`       | `pnpm` | `node scripts/run-dist.mjs services/ghost-shell/cluster.ts`                      | Starts the Ghost Shell clustering process.                                |
-| `pnpm ghost-shell:server`        | `pnpm` | `node scripts/run-dist.mjs services/ghost-shell/server.ts`                       | Runs the Ghost Shell server entrypoint.                                   |
-| `pnpm generate:ghostshell-nginx` | `pnpm` | `node scripts/run-dist.mjs scripts/generate-ghostshell-nginx.ts`                 | Generates Nginx configuration for Ghost Shell deployments.                |
-| `pnpm audit:ui-vr`               | `pnpm` | `node scripts/run-dist.mjs scripts/ui-vr-audit.ts`                               | Audits UI and VR integration paths via Node runner.                       |
+| Command                                                                                                            | Type   | Runs                                                                             | Beschreibung                                                              |
+| ------------------------------------------------------------------------------------------------------------------ | ------ | -------------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| `pnpm dev`                                                                                                         | `pnpm` | `cross-env UI_DIST=http://localhost:5173 pnpm -F mandala-ui dev`                 | Starts the mandala-ui dev server with UI_DIST override.                   |
+| `pnpm dev:ui`                                                                                                      | `pnpm` | `pnpm -F mandala-ui dev`                                                         | Runs the UI workspace dev server without overrides.                       |
+| `pnpm dev:services`                                                                                                | `pnpm` | `tsx scripts/dev-server.ts`                                                      | Launches backend/dev services via the TypeScript dev server orchestrator. |
+| `pnpm dev:stack`                                                                                                   | `pnpm` | `node scripts/dev-services.mjs --mode=dev`                                       | Starts the dev stack orchestrator with default dev profiles.              |
+| `pnpm dev:breath`                                                                                                  | `pnpm` | `node scripts/emergence-breath.mjs`                                              |
+| Watches sigils/UI/scripts, reruns `validate:sigillins`, rebuilds the Trikāya dashboard, and prints coverage stats. |
+| `pnpm start`                                                                                                       | `pnpm` | `pnpm -s build:ui && pnpm -s dev`                                                | Builds the UI then launches the dev server.                               |
+| `pnpm start:light`                                                                                                 | `pnpm` | `pnpm -s build:ui && node scripts/light-static-server.mjs`                       | Serves the built UI via the light static Node server.                     |
+| `pnpm start:services`                                                                                              | `pnpm` | `pnpm -s build && NODE_ENV=production node scripts/dev-services.mjs --mode=prod` | Builds the workspace and starts services in production mode.              |
+| `pnpm start:all`                                                                                                   | `pnpm` | `pnpm dev:stack`                                                                 | Convenience alias to boot the full dev stack.                             |
+| `pnpm dev:voiceos`                                                                                                 | `pnpm` | `node scripts/run-dist.mjs scripts/voice-os-control-api.ts`                      | Launches the Voice OS control API for voice interaction workflows.        |
+| `pnpm ghost-shell:cluster`                                                                                         | `pnpm` | `node scripts/run-dist.mjs services/ghost-shell/cluster.ts`                      | Starts the Ghost Shell clustering process.                                |
+| `pnpm ghost-shell:server`                                                                                          | `pnpm` | `node scripts/run-dist.mjs services/ghost-shell/server.ts`                       | Runs the Ghost Shell server entrypoint.                                   |
+| `pnpm generate:ghostshell-nginx`                                                                                   | `pnpm` | `node scripts/run-dist.mjs scripts/generate-ghostshell-nginx.ts`                 | Generates Nginx configuration for Ghost Shell deployments.                |
+| `pnpm audit:ui-vr`                                                                                                 | `pnpm` | `node scripts/run-dist.mjs scripts/ui-vr-audit.ts`                               | Audits UI and VR integration paths via Node runner.                       |
 
 ## Smoke & Monitoring
 
 > Operational smoke tests and monitoring helpers.
 
-| Command                   | Type   | Runs                                                    | Beschreibung                                               |
-| ------------------------- | ------ | ------------------------------------------------------- | ---------------------------------------------------------- |
-| `pnpm smoke:ui`           | `pnpm` | `node scripts/smoke/ui-dev-smoke.mjs`                   | Performs smoke testing against the UI dev server.          |
-| `pnpm smoke:dev`          | `pnpm` | `node scripts/smoke/dev-server-smoke.mjs`               | Checks dev server readiness endpoints.                     |
-| `pnpm smoke:mrv`          | `pnpm` | `node scripts/smoke/mrv-smoke.mjs`                      | Executes MRV smoke validation routine.                     |
-| `pnpm smoke:light-static` | `pnpm` | `node scripts/smoke/light-static-smoke.mjs`             | Validates the light static server responses (Brotli/Gzip). |
-| `pnpm smoke:ttfb`         | `pnpm` | `pnpm -s build:ui && node scripts/smoke/ttfb-smoke.mjs` | Measures time-to-first-byte after building the UI.         |
-| `pnpm smoke:agents`       | `pnpm` | `node scripts/smoke/agents-smoke.mjs`                   | Runs smoke tests across agent services.                    |
+| Command                   | Type   | Runs                                                    | Beschreibung                                                                                                     |
+| ------------------------- | ------ | ------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| `pnpm smoke:ui`           | `pnpm` | `node scripts/smoke/ui-dev-smoke.mjs`                   | Performs smoke testing against the UI dev server (respects `UI_DEV_URL` without spawning another Vite instance). |
+| `pnpm smoke:dev`          | `pnpm` | `node scripts/smoke/dev-server-smoke.mjs`               | Checks dev server readiness endpoints.                                                                           |
+| `pnpm smoke:mrv`          | `pnpm` | `node scripts/smoke/mrv-smoke.mjs`                      | Executes MRV smoke validation routine.                                                                           |
+| `pnpm smoke:light-static` | `pnpm` | `node scripts/smoke/light-static-smoke.mjs`             | Validates the light static server responses (Brotli/Gzip).                                                       |
+| `pnpm smoke:ttfb`         | `pnpm` | `pnpm -s build:ui && node scripts/smoke/ttfb-smoke.mjs` | Measures time-to-first-byte after building the UI.                                                               |
+| `pnpm smoke:agents`       | `pnpm` | `node scripts/smoke/agents-smoke.mjs`                   | Runs smoke tests across agent services.                                                                          |
 
 ## Agents & Emergence
 

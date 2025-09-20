@@ -581,6 +581,15 @@
           "source": ["package.json#scripts.dev:stack"]
         },
         {
+          "id": "runtime.dev-breath",
+          "name": "Emergence breath watcher",
+          "command": "pnpm dev:breath",
+          "type": "pnpm",
+          "runs": "node scripts/emergence-breath.mjs",
+          "description": "Watches sigils, apps/ui, and scripts to rerun `validate:sigillins`, rebuild the Trikāya dashboard, and print coverage metrics.",
+          "source": ["package.json#scripts.dev:breath"]
+        },
+        {
           "id": "runtime.start",
           "name": "Start UI & dev",
           "command": "pnpm start",
@@ -674,7 +683,7 @@
           "command": "pnpm smoke:ui",
           "type": "pnpm",
           "runs": "node scripts/smoke/ui-dev-smoke.mjs",
-          "description": "Performs smoke testing against the UI dev server.",
+          "description": "Performs smoke testing against the UI dev server and respects `UI_DEV_URL` without spawning a new Vite instance.",
           "source": ["package.json#scripts.smoke:ui"]
         },
         {

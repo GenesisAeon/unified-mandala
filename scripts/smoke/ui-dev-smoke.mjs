@@ -55,18 +55,75 @@ function logError(message) {
   console.error(`${LOG_PREFIX} ${message}`);
 }
 
-const child = spawn('pnpm', ['-s', 'dev:ui'], {
-  stdio: ['inherit', 'pipe', 'pipe'],
-  env: process.env,
-  shell: process.platform === 'win32',
-});
-
 let resolvedUrl = null;
 let fallbackCandidate = null;
 let fallbackTimer = null;
 let pollTimer = null;
 let timeoutTimer = null;
 let finished = false;
+let child = null;
+
+function startDevServer() {
+  if (child) return;
+  const pnpmBin = process.platform === 'win32' ? 'pnpm.cmd' : 'pnpm';
+  child = spawn(pnpmBin, ['-s', 'dev:ui'], {
+    stdio: ['inherit', 'pipe', 'pipe'],
+    env: process.env,
+    shell: process.platform === 'win32',
+  });
+
+  child.stdout.setEncoding('utf8');
+  child.stdout.on('data', (chunk) => {
+    process.stdout.write(chunk);
+    if (overrideUrl || resolvedUrl || finished) {
+      return;
+    }
+    const matches = stripAnsi(chunk).match(/https?:\/\/[^\s]+/g);
+    if (!matches) return;
+    let networkCandidate = null;
+    for (const raw of matches) {
+      const candidate = parseUrl(raw);
+      if (!candidate) continue;
+      const hostname = candidate.hostname.toLowerCase();
+      if (hostname === 'localhost' || hostname === '127.0.0.1') {
+        beginPolling(candidate, 'vite-output');
+        return;
+      }
+      if (!networkCandidate) {
+        networkCandidate = candidate;
+      }
+    }
+    if (networkCandidate && !fallbackCandidate) {
+      fallbackCandidate = networkCandidate;
+      fallbackTimer = setTimeout(() => {
+        if (!resolvedUrl && fallbackCandidate && !finished) {
+          beginPolling(fallbackCandidate, 'vite-network');
+        }
+      }, 300);
+    }
+  });
+
+  child.stderr.setEncoding('utf8');
+  child.stderr.on('data', (chunk) => {
+    process.stderr.write(chunk);
+  });
+
+  child.on('error', (err) => {
+    if (!finished) {
+      finish(1, `Failed to launch dev server: ${err.message}`);
+    }
+  });
+
+  child.on('exit', (code, signal) => {
+    if (finished) return;
+    if (signal) {
+      finish(1, `Dev server terminated due to ${signal}`);
+      return;
+    }
+    const exitCode = code ?? 1;
+    finish(exitCode, `Dev server exited with code ${exitCode}`);
+  });
+}
 
 function clearTimers() {
   if (pollTimer) {
@@ -101,7 +158,7 @@ function finish(code, message) {
     }
   }
   try {
-    if (!child.killed) {
+    if (child && !child.killed) {
       child.kill('SIGTERM');
     }
   } catch {
@@ -140,62 +197,20 @@ function checkServer() {
   });
 }
 
-const override = (process.env.UI_DEV_URL ?? '').trim();
-if (override) {
-  const parsed = parseUrl(override);
-  if (!parsed) {
-    finish(1, `Invalid UI_DEV_URL override: ${override}`);
+const overrideRaw = (process.env.UI_DEV_URL ?? '').trim();
+const overrideUrl = overrideRaw ? parseUrl(overrideRaw) : null;
+if (overrideRaw) {
+  if (!overrideUrl) {
+    finish(1, `Invalid UI_DEV_URL override: ${overrideRaw}`);
   } else {
-    log(`Using UI_DEV_URL override: ${parsed.href}`);
-    beginPolling(parsed, 'UI_DEV_URL');
+    log(`Using UI_DEV_URL override: ${overrideUrl.href}`);
+    beginPolling(overrideUrl, 'UI_DEV_URL');
   }
 }
 
-child.stdout.setEncoding('utf8');
-child.stdout.on('data', (chunk) => {
-  process.stdout.write(chunk);
-  if (override || resolvedUrl || finished) {
-    return;
-  }
-  const matches = stripAnsi(chunk).match(/https?:\/\/[^\s]+/g);
-  if (!matches) return;
-  let networkCandidate = null;
-  for (const raw of matches) {
-    const candidate = parseUrl(raw);
-    if (!candidate) continue;
-    const hostname = candidate.hostname.toLowerCase();
-    if (hostname === 'localhost' || hostname === '127.0.0.1') {
-      beginPolling(candidate, 'vite-output');
-      return;
-    }
-    if (!networkCandidate) {
-      networkCandidate = candidate;
-    }
-  }
-  if (networkCandidate && !fallbackCandidate) {
-    fallbackCandidate = networkCandidate;
-    fallbackTimer = setTimeout(() => {
-      if (!resolvedUrl && fallbackCandidate && !finished) {
-        beginPolling(fallbackCandidate, 'vite-network');
-      }
-    }, 300);
-  }
-});
-
-child.stderr.setEncoding('utf8');
-child.stderr.on('data', (chunk) => {
-  process.stderr.write(chunk);
-});
-
-child.on('exit', (code, signal) => {
-  if (finished) return;
-  if (signal) {
-    finish(1, `Dev server terminated due to ${signal}`);
-    return;
-  }
-  const exitCode = code ?? 1;
-  finish(exitCode, `Dev server exited with code ${exitCode}`);
-});
+if (!overrideUrl) {
+  startDevServer();
+}
 
 process.on('SIGINT', () => {
   finish(130, 'Received SIGINT');

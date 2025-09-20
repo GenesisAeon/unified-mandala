@@ -12,8 +12,8 @@
     },
     {
       "fraktalrun": "Fraktal56 WindowsBootstrap",
-      "status": "in-progress",
-      "notes": "PowerShell setup script (`scripts/setup-dev-env.ps1`) now tracks InstallState (Git/Node/Python/Corepack/pnpm/Docker/NATS), exports out/setup/install-state.json, fixes the PowerShell parser error by wrapping `(Test-CommandExists ...)` in `-and` checks, and keeps a pwsh/powershell wrapper plus docs/playbook references."
+      "status": "implemented",
+      "notes": "PowerShell setup validates InstallState export on Windows, pnpm dev:breath (`scripts/emergence-breath.mjs`) watches sigils/apps/ui/scripts to rerun validate:sigillins & trikaya dashboard with coverage logs, and the UI smoke respects UI_DEV_URL without spawning another Vite instance."
     },
     {
       "fraktalrun": "Fraktal55 DevTalk Windows Hardening",

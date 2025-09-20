@@ -1,7 +1,7 @@
 fraktal: 40
 release: v1.0
 owner: codex
-updated: '2025-10-01'
+updated: '2025-10-19'
 summary: 'Strukturierter Maßnahmenplan zur Umsetzung der Fraktal40-Besprechung.
 
   Fokus auf stabile Kern-Builds, dist-first Services, verschärfte Governance
@@ -114,8 +114,7 @@ streams:
       - id: sigillin-validator
         description: Sigillin-Validator + CI-Workflow etablieren
         status: done
-        notes: pnpm validate:sigillins + .github/workflows/sigillin-validate.yml aktiv
-          (Fraktal44)
+        notes: pnpm validate:sigillins + .github/workflows/sigillin-validate.yml aktiv (Fraktal44); pnpm dev:breath koppelt validate:sigillins & trikaya:dashboard an Dateiänderungen und meldet Coverage.
         artifacts:
           - scripts/validate-sigillins.mjs
           - scripts/schemas/mandala-sigillin.schema.json

@@ -2,11 +2,13 @@ fraktal:
   current: 56
   history:
     - id: 56
-      status: running
-      notes: 'Fraktal56 WindowsBootstrap: PowerShell-Setup (`scripts/setup-dev-env.ps1`) trackt InstallState (Git/Node/Python/Corepack/pnpm/Docker/NATS), exportiert eine JSON-Zusammenfassung (`out/setup/install-state.json`), fixt den PowerShell-ParserError via `(Test-CommandExists ...)` in `-and`-Checks und unterstützt PowerShell 5.1; Node-Wrapper (`scripts/run-powershell.mjs`) sichert pwsh/powershell-Fallback; Docs/MandalaMap/Command-Catalog aktualisiert; Corepack-Admin-Check überspringt `corepack enable` ohne Elevation, protokolliert Aktivierungsmodus und ergänzt NATS-Installationshinweise.'
+      status: done
+      notes: 'Fraktal56 WindowsBootstrap: PowerShell-Setup (`scripts/setup-dev-env.ps1`) trackt InstallState (Git/Node/Python/Corepack/pnpm/Docker/NATS), exportiert eine JSON-Zusammenfassung (`out/setup/install-state.json`), fixt den PowerShell-ParserError via `(Test-CommandExists ...)` in `-and`-Checks und unterstützt PowerShell 5.1; Node-Wrapper (`scripts/run-powershell.mjs`) sichert pwsh/powershell-Fallback; Docs/MandalaMap/Command-Catalog aktualisiert; Corepack-Admin-Check überspringt `corepack enable` ohne Elevation, protokolliert Aktivierungsmodus und ergänzt NATS-Installationshinweise; pnpm dev:breath (`scripts/emergence-breath.mjs`) automatisiert Sigillin/Trikāya-Checks und das UI-Smoke-Skript respektiert `UI_DEV_URL` ohne zusätzliche Vite-Instanz.'
       deliverables:
         - scripts/setup-dev-env.ps1
         - scripts/run-powershell.mjs
+        - scripts/emergence-breath.mjs
+        - scripts/smoke/ui-dev-smoke.mjs
         - package.json
         - README.md
         - docs/ONBOARDING.md
@@ -14,6 +16,9 @@ fraktal:
         - docs/runbooks/command-catalog.md
         - docs/runbooks/command-catalog.yaml
         - docs/runbooks/command-catalog.json
+        - codexfeedback.md
+        - codexfeedback.json
+        - codexfeedback.yaml
         - MandalaMap.md
         - MandalaMap.yaml
         - MandalaMap.json
@@ -21,8 +26,8 @@ fraktal:
         - docs/roadmap/v1.0-stabilization-playbook.yaml
         - codexfeedback-fraktal56.yaml
       hook:
-        progress: 'Windows-Bootstrap dokumentiert; ParserError (Test-CommandExists ohne Klammern) behoben, Setup-Skript exportiert Installationszustand nach `out/setup/install-state.json`, dokumentiert Corepack-Aktivierungsmodus und blendet NATS-Installationshinweise ein; `pnpm build:windows-tools` nutzt den Node-Wrapper statt direktem pwsh-Aufruf.'
-        next_step: 'Feedback von Windows-Hosts (PowerShell 5.1/7) einsammeln, ParserFix im DevTalk-Track spiegeln und Docker Compose Flow (`--build`/WSL) ergänzen.'
+        progress: 'Windows-Bootstrap dokumentiert; ParserFix + InstallState-Export bestätigt, `pnpm dev:breath` verbindet Sigillin-Validator & Trikāya-Dashboard mit Watcher-Cycle und das UI-Smoke-Skript respektiert `UI_DEV_URL` ohne zusätzliche Vite-Instanz.'
+        next_step: 'Compose-/Docker-Windows-Flows dokumentieren (`docker_windows_profile`) und DevTalk-Track um Emergence-Breath-Status ergänzen.'
     - id: 55
       status: done
       notes: 'Fraktal55 DevTalk Windows Hardening: yaml-lint powered `pnpm find-bad-yaml`, repo-map auto-generation for `audit:ui-vr`, und ESM-Update für `scripts/generate-agents-diagram.js`.'

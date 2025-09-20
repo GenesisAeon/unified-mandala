@@ -1,7 +1,7 @@
 {
   "meta": {
     "version": "1.0",
-    "generated": "2025-10-08T12:00:00Z",
+    "generated": "2025-10-19T12:00:00Z",
     "fraktal": 49,
     "repo": "unified-mandala",
     "source": "ChefDevAI MandalaMap bootstrap",
@@ -715,7 +715,8 @@
         "Sigillin-Fix-CLI (scripts/fix-sigillin.ts) unterstützt Bridges bei Trikāya/CREP/Nächste-Schritt-Korrekturen.",
         "Windows-Parität über scripts/setup-dev-env.ps1 + scripts/run-powershell.mjs dokumentiert (PowerShell-Fallback).",
         "PowerShell-Setup exportiert Installationsstatus nach out/setup/install-state.json für Codexfeedback-Reports.; Corepack-Admin-Check vermeidet EPERM, bietet Benutzeraktivierung ohne Admin-Rechte und ergänzt NATS-Installationshinweise für `pnpm start:all`.",
-        "ParserFix: (Test-CommandExists ...) jetzt geklammert und Installationsresultate werden zu Bool gecastet, damit PowerShell 7.5 den Dev-Setup ohne ParserError ausführt."
+        "ParserFix: (Test-CommandExists ...) jetzt geklammert und Installationsresultate werden zu Bool gecastet, damit PowerShell 7.5 den Dev-Setup ohne ParserError ausführt.",
+        "Emergence-Breath (scripts/emergence-breath.mjs) koppelt pnpm dev:breath an validate:sigillins + trikaya:dashboard und meldet Coverage-Metriken nach jedem Lauf."
       ],
       "links": [
         {
@@ -737,6 +738,10 @@
         {
           "label": "run-powershell",
           "path": "scripts/run-powershell.mjs"
+        },
+        {
+          "label": "emergence-breath",
+          "path": "scripts/emergence-breath.mjs"
         }
       ]
     },
