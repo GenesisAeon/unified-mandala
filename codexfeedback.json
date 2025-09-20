@@ -1,6 +1,11 @@
 {
   "runs": [
     {
+      "fraktalrun": "Fraktal56 WindowsBootstrap",
+      "status": "in-progress",
+      "notes": "PowerShell setup script (`scripts/setup-dev-env.ps1`) and Node wrapper (`scripts/run-powershell.mjs`) unblock Windows flows; docs, command catalog, MandalaMap, and playbook entries updated."
+    },
+    {
       "fraktalrun": "Fraktal55 DevTalk Windows Hardening",
       "status": "implemented",
       "notes": "`pnpm find-bad-yaml` wraps yaml-lint for strict sigil pipelines, audit:ui-vr auto-generates repo-map data, and generate-agents-diagram.js uses pure ESM for Node 20."

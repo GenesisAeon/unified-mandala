@@ -1,0 +1,33 @@
+fraktal: 56
+status: running
+owner: ChefDevAI
+summary:
+  - 'PowerShell-Bootstrap `scripts/setup-dev-env.ps1` installiert Git/Node/Python, aktiviert Corepack und führt pnpm install auf Windows aus.'
+  - 'Node-Wrapper `scripts/run-powershell.mjs` sucht pwsh oder Windows PowerShell, sodass `pnpm build:windows-tools` ohne pwsh-Laufzeit funktioniert.'
+  - 'Dokumentation (README/ONBOARDING/CommunityOnboarding), Command-Catalog & MandalaMap verweisen jetzt auf Windows-Parität; Playbook-Notizen ergänzt.'
+deliverables:
+  - scripts/setup-dev-env.ps1
+  - scripts/run-powershell.mjs
+  - package.json
+  - README.md
+  - docs/ONBOARDING.md
+  - docs/CommunityOnboarding.md
+  - docs/runbooks/command-catalog.md
+  - docs/runbooks/command-catalog.yaml
+  - docs/runbooks/command-catalog.json
+  - MandalaMap.md
+  - MandalaMap.yaml
+  - MandalaMap.json
+  - docs/roadmap/v1.0-stabilization-playbook.md
+  - docs/roadmap/v1.0-stabilization-playbook.yaml
+follow_up:
+  windows_script_validation:
+    description: 'Windows-Terminallauf für scripts/setup-dev-env.ps1 validieren (winget/choco fallback) und Feedback sammeln.'
+    status: planned
+  docker_windows_profile:
+    description: 'Docker Compose Windows-Dokumentation ergänzen (z. B. `--build`, WSL vs. Hyper-V) sobald Image-Build bestätigt ist.'
+    status: planned
+hook:
+  progress: 'Windows-Bootstrap + PowerShell-Fallback stehen; pnpm build:windows-tools nutzt jetzt den Node-Wrapper.'
+  next_step: 'Verifizierung auf Windows-Hosts durchführen und Compose-Profil-Notizen ergänzen.'
+repeat_required: false

@@ -595,6 +595,7 @@ entries:
     notes:
       - Dist-first convention via scripts/run-dist.mjs; referenced throughout docs.
       - Sigillin-Fix-CLI (`scripts/fix-sigillin.ts`) unterstützt Bridges bei Trikāya/CREP/Nächste-Schritt-Korrekturen.
+      - Windows-Parität über `scripts/setup-dev-env.ps1` + `scripts/run-powershell.mjs` dokumentiert (PowerShell-Fallback).
     links:
       - label: run-dist
         path: scripts/run-dist.mjs
@@ -602,6 +603,10 @@ entries:
         path: scripts/dev-services.mjs
       - label: sigil-fix
         path: scripts/fix-sigillin.ts
+      - label: setup-dev-env.ps1
+        path: scripts/setup-dev-env.ps1
+      - label: run-powershell
+        path: scripts/run-powershell.mjs
   - path: services/
     category: core-runtime
     status: active
@@ -689,6 +694,7 @@ entries:
     description: Auxiliary tools (fraktal lab CLI, governance checks, Kyverno runner).
     notes:
       - Used by policy:check and governance automation.
+      - Windows helper builds laufen via `pnpm build:windows-tools` → `scripts/run-powershell.mjs`.
     links: []
   - path: types/
     category: core-runtime
