@@ -29,6 +29,20 @@ function Test-CommandExists {
   return $null -ne (Get-Command -Name $Name -ErrorAction SilentlyContinue)
 }
 
+function Test-IsAdministrator {
+  try {
+    $identity = [Security.Principal.WindowsIdentity]::GetCurrent()
+    if (-not $identity) {
+      return $false
+    }
+
+    $principal = [Security.Principal.WindowsPrincipal]::new($identity)
+    return $principal.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
+  } catch {
+    return $false
+  }
+}
+
 function Update-InstallState {
   param(
     [string]$Key,
@@ -198,6 +212,8 @@ function Resolve-PythonCommand {
 Write-Step "Windows Entwicklungsumgebung initialisieren"
 
 $script:PackageManager = Get-PackageManager
+$script:IsAdministrator = Test-IsAdministrator
+$script:InstallMetadata['isAdministrator'] = [bool]$script:IsAdministrator
 $script:InstallMetadata['packageManager'] = $script:PackageManager
 if ($SkipPackageInstall) {
   Write-Host "(Paketinstallation übersprungen)"
@@ -265,11 +281,42 @@ if (-not $SkipNodeSetup) {
   }
 
   if (Test-CommandExists 'corepack') {
-    Write-Step 'Corepack aktivieren'
-    & corepack enable
+    if ($script:IsAdministrator) {
+      Write-Step 'Corepack aktivieren'
+      try {
+        & corepack enable | Out-Null
+        if ($LASTEXITCODE -ne 0) {
+          Write-Warning "corepack enable endete mit Exit-Code $LASTEXITCODE. Verwende Benutzeraktivierung."
+          $script:InstallMetadata['corepackEnableResult'] = "system-exit-$LASTEXITCODE"
+          $script:InstallMetadata['corepackActivationMode'] = 'system-fallback'
+        } else {
+          $script:InstallMetadata['corepackEnableResult'] = 'system'
+          $script:InstallMetadata['corepackActivationMode'] = 'system'
+        }
+      } catch {
+        Write-Warning "corepack enable fehlgeschlagen: $($_.Exception.Message). Verwende Benutzeraktivierung."
+        $script:InstallMetadata['corepackEnableResult'] = 'system-error'
+        $script:InstallMetadata['corepackEnableError'] = $_.Exception.Message
+        $script:InstallMetadata['corepackActivationMode'] = 'system-fallback'
+      }
+    } else {
+      Write-Step 'Corepack aktivieren (per Benutzer)'
+      Write-Host 'Nicht als Administrator – überspringe persistentes `corepack enable`. Verwende Benutzeraktivierung via `corepack prepare --activate`.' -ForegroundColor Yellow
+      $script:InstallMetadata['corepackEnableResult'] = 'skipped-non-admin'
+      $script:InstallMetadata['corepackActivationMode'] = 'user'
+    }
+
     Update-InstallState -Key 'corepack' -Present (Test-CommandExists 'corepack')
+
     Write-Step 'pnpm 10.17.0 vorbereiten'
-    & corepack prepare pnpm@10.17.0 --activate
+    try {
+      & corepack prepare pnpm@10.17.0 --activate | Out-Null
+      $script:InstallMetadata['corepackPrepare'] = 'pnpm@10.17.0'
+    } catch {
+      Write-Warning "corepack prepare pnpm@10.17.0 --activate schlug fehl: $($_.Exception.Message)"
+      $script:InstallMetadata['corepackPrepareError'] = $_.Exception.Message
+    }
+
     Write-Step 'pnpm install --frozen-lockfile ausführen'
     & corepack pnpm install --frozen-lockfile
     if ($LASTEXITCODE -ne 0) {
@@ -283,14 +330,27 @@ if (-not $SkipNodeSetup) {
   } else {
     Write-Warning 'Corepack ist nicht verfügbar; installiere pnpm manuell (npm install -g pnpm).'
     Update-InstallState -Key 'corepack' -Present $false
+    $script:InstallMetadata['corepackEnableResult'] = 'corepack-not-found'
+    $script:InstallMetadata['corepackActivationMode'] = 'unavailable'
   }
 } else {
   Write-Host "(Node Setup übersprungen)"
+  $script:InstallMetadata['corepackActivationMode'] = 'skipped'
 }
 
 Update-InstallState -Key 'corepack' -Present (Test-CommandExists 'corepack')
 Update-InstallState -Key 'pnpm' -Present (Test-CommandExists 'pnpm')
-Update-InstallState -Key 'nats-server' -Present (Test-CommandExists 'nats-server')
+
+$hasNats = [bool](Test-CommandExists 'nats-server')
+Update-InstallState -Key 'nats-server' -Present $hasNats
+$script:InstallMetadata['natsServerPresent'] = $hasNats
+if (-not $hasNats) {
+  $script:InstallMetadata['natsServerHint'] = @(
+    'winget install --id Synadia.NATS-Server -e',
+    'docker run --name nats -p 4222:4222 -p 8222:8222 -d nats:latest'
+  )
+}
+
 Update-InstallState -Key 'docker' -Present (Test-CommandExists 'docker')
 
 if (Test-CommandExists 'node') {
@@ -371,5 +431,11 @@ function Write-InstallSummary {
 }
 
 Write-InstallSummary
+if (-not $hasNats) {
+  Write-Host ""
+  Write-Warning 'nats-server wurde nicht gefunden. Einige Dev-Stacks (z. B. `pnpm start:all`) erwarten einen laufenden NATS-Broker.'
+  Write-Host '  Option A (Windows, winget): winget install --id Synadia.NATS-Server -e'
+  Write-Host '  Option B (Docker): docker run --name nats -p 4222:4222 -p 8222:8222 -d nats:latest'
+}
 Export-InstallReport -OutputPath $script:StateOutput
 Write-Step 'Setup abgeschlossen. Öffne eine neue PowerShell für aktivierte PATH-Einstellungen bei Bedarf.'

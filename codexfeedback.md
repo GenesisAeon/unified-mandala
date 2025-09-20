@@ -1,5 +1,6 @@
 # Codex Feedback
 
+- FR-UM-2025-10-17-Fraktal56-CorepackAdmin: `scripts/setup-dev-env.ps1` erkennt Administrator-Rechte, überspringt `corepack enable` ohne Elevation, dokumentiert Aktivierungsmodus im InstallReport und weist auf fehlende `nats-server`-Installationen (winget/Docker) hin; README/Onboarding/Command-Catalog/MandalaMap aktualisiert.
 - FR-UM-2025-10-16-Fraktal56-PowerShellParserFix: `scripts/setup-dev-env.ps1` castet Installationsresultate zu Bool und setzt `(Test-CommandExists ...)` in `-and`-Bedingungen, sodass PowerShell 7.5 ParserError 181 verschwindet; DevTalk-Fragment bestätigt und Codexfeedback/MandalaMap/Playbook spiegeln den Fix.
 - FR-UM-2025-10-15-Fraktal56-InstallStateExport: `scripts/setup-dev-env.ps1` schreibt nach Abschluss eine JSON-Zusammenfassung (`out/setup/install-state.json`) inklusive Shell-/Tool-Versionsinfo und Skip-Flags; MandalaMap & Playbook dokumentieren den Export für Codexfeedback-Auswertungen.
 - FR-UM-2025-10-14-Fraktal56-WindowsBootstrap: PowerShell-Setup (`scripts/setup-dev-env.ps1`) trackt InstallState (Git/Node/Python/Corepack/pnpm/Docker/NATS) und funktioniert unter PowerShell 5.1 via `powershell -NoProfile -ExecutionPolicy Bypass`; `scripts/run-powershell.mjs` bleibt Wrapper für pwsh/powershell und README/Onboarding/Command-Catalog/MandalaMap spiegeln Windows-Parität.

@@ -17,6 +17,9 @@ pnpm build                  # dist-first Artefakte erzeugen
 cp .env.example .env        # eigene Secrets setzen
 ```
 
+> **Hinweise:** `corepack enable` benötigt Administratorrechte. Ohne erhöhte Rechte übernimmt `scripts/setup-dev-env.ps1` automatisch die Benutzeraktivierung via `corepack prepare pnpm@10.17.0 --activate`.
+> Für komplette Dev-Stacks (`pnpm start:all`) ist ein `nats-server` erforderlich. Installiere ihn via `winget install --id Synadia.NATS-Server -e` oder starte `docker run --name nats -p 4222:4222 -p 8222:8222 -d nats:latest`.
+
 - **Policy-Suite** lokal prüfen:
 
   ```bash

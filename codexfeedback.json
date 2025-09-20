@@ -1,6 +1,11 @@
 {
   "runs": [
     {
+      "fraktalrun": "Fraktal56 Corepack Admin",
+      "status": "implemented",
+      "notes": "PowerShell setup skips corepack enable without elevation, records activation mode in install-state metadata, and prints NATS install hints (winget/docker); docs updated (README, onboarding, command catalog, MandalaMap)."
+    },
+    {
       "fraktalrun": "Fraktal56 InstallState Export",
       "status": "implemented",
       "notes": "PowerShell setup writes out/setup/install-state.json with shell/tool versions and skip flags; roadmap & MandalaMap reference the export for codexfeedback analysis."
