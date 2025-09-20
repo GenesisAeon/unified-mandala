@@ -710,7 +710,10 @@
       "status": "active",
       "title": "Automation scripts",
       "description": "Extensive Node/TS automation: dev servers, exports, QA, smoke tests, repo map, etc.",
-      "notes": ["Dist-first convention via scripts/run-dist.mjs; referenced throughout docs."],
+      "notes": [
+        "Dist-first convention via scripts/run-dist.mjs; referenced throughout docs.",
+        "Sigillin-Fix-CLI (scripts/fix-sigillin.ts) unterstützt Bridges bei Trikāya/CREP/Nächste-Schritt-Korrekturen."
+      ],
       "links": [
         {
           "label": "run-dist",
@@ -719,6 +722,10 @@
         {
           "label": "dev-services",
           "path": "scripts/dev-services.mjs"
+        },
+        {
+          "label": "sigil-fix",
+          "path": "scripts/fix-sigillin.ts"
         }
       ]
     },

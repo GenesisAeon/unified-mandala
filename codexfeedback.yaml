@@ -1,6 +1,21 @@
 fraktal:
-  current: 53
+  current: 54
   history:
+    - id: 54
+      status: running
+      notes: 'Fraktal54 SigillinFix: neues CLI `pnpm sigil:fix` prüft Bridges auf Trikāya, CREP und Nächste Schritte; README/Doku aktualisiert.'
+      deliverables:
+        - scripts/fix-sigillin.ts
+        - package.json
+        - README.md
+        - docs/sigillin/FIX_GUIDE.md
+        - codexfeedback/fraktal44.yaml
+        - MandalaMap.md
+        - MandalaMap.yaml
+        - MandalaMap.json
+      hook:
+        progress: 'Fix-Skript einsatzbereit, README-Abschnitt ergänzt; Fraktal44 auf done gesetzt.'
+        next_step: 'Weitere Fraktal54-Fragmente beobachten (Governance-Report, pre-commit-Hook) und Feedback in codexfeedback.* spiegeln.'
     - id: 53
       status: running
       notes: 'Fraktal53 DevTalkPart5 WindowsFlow: Command-Catalog ergänzt Corepack-Bootstrap, pnpm exec tsc fallback und pnpm -w -r build für Windows-Verifikation; codexfeedback-Hook auf 53 gehoben.'
