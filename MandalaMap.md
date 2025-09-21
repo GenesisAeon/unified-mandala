@@ -269,7 +269,7 @@ Repository: unified-mandala
 
 - `docs/` — **active** Documentation
   - Core documentation including stabilization playbooks, onboarding, agents, governance.
-  - Notes: MandalaMap references docs/roadmap/v1.0-stabilization-playbook.\* für CI/Release Kontext und die Stub-Roadmap für Support-Migrationen.; JetStream-Runbook (`docs/runbooks/MaxBundle.md`) beschreibt Setup & Selfchecks (`pnpm nats:doctor`, `pnpm test:jetstream`) (Fraktal57); docs/runbooks/tests.md listet `pnpm nats:docker` sowie den SIGILLIN_GENESIS-Fallback für Emergence-Scans.
+  - Notes: MandalaMap references docs/roadmap/v1.0-stabilization-playbook.\* für CI/Release Kontext und die Stub-Roadmap für Support-Migrationen.; JetStream-Runbooks (`docs/runbooks/nats-jetstream.md`, `docs/runbooks/MaxBundle.md`) beschreiben Setup, `$JS.API.INFO`-Fallbacks sowie `pnpm nats:doctor`/`pnpm test:jetstream`; docs/runbooks/tests.md listet `pnpm nats:docker` samt Emergence-SIGILLIN-Fallback; README Quickstart (Windows · PowerShell) dokumentiert `UI_DEV_URL`-Overrides und JetStream-Setup; `SIGILLIN_GENESIS.md` liegt als Placeholder im Repo.
   - Links: [v1.0 Playbook](docs/roadmap/v1.0-stabilization-playbook.md) · [Stub roadmap](docs/roadmap/stub-replacement-roadmap.md)
 
 - `governance/` — **active** Governance policies
