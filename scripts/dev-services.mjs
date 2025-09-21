@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import { spawn } from 'node:child_process';
 import fs from 'node:fs';
+import net from 'node:net';
 import path from 'node:path';
 import process from 'node:process';
 import { fileURLToPath } from 'node:url';
@@ -25,25 +26,31 @@ const serviceDefinitions = [
     name: 'rag-api',
     script: 'scripts/rag-api.ts',
     envDefaults: { RAG_API_PORT: '3003' },
+    portKeys: ['RAG_API_PORT'],
   },
   {
     name: 'flags-api',
     script: 'scripts/flags-api.ts',
+    envDefaults: { FLAGS_API_PORT: '3004' },
+    portKeys: ['FLAGS_API_PORT', 'PORT'],
   },
   {
     name: 'experiments-api',
     script: 'scripts/experiments-api.ts',
     envDefaults: { EXPERIMENTS_API_PORT: '3002' },
+    portKeys: ['EXPERIMENTS_API_PORT'],
   },
   {
     name: 'share-api',
     script: 'scripts/share-api.ts',
     envDefaults: { SHARE_API_PORT: '3001' },
+    portKeys: ['SHARE_API_PORT'],
   },
   {
     name: 'realtime-hub',
     script: 'scripts/realtime-hub.ts',
     envDefaults: { REALTIME_HUB_PORT: '4020', REALTIME_WS_PORT: '4021' },
+    portKeys: ['REALTIME_HUB_PORT', 'REALTIME_WS_PORT'],
   },
 ];
 
@@ -65,9 +72,11 @@ if (resolvedMode === 'prod') {
   }
 }
 
+const skipPortChecks = process.env.UM_DEV_SERVICES_SKIP_PORT_CHECK === '1';
+
 const processes = [];
 
-function spawnService(service) {
+async function spawnService(service) {
   const env = {
     ...process.env,
     SERVICE_NAME: service.name,
@@ -81,6 +90,10 @@ function spawnService(service) {
         env[key] = value;
       }
     }
+  }
+
+  if (!skipPortChecks) {
+    await ensurePortsAvailable(service, env);
   }
 
   if (resolvedMode === 'prod') {
@@ -135,5 +148,66 @@ console.log(
   `[dev-services] Starting ${serviceDefinitions.length} services in ${resolvedMode} mode...`,
 );
 for (const service of serviceDefinitions) {
-  spawnService(service);
+  await spawnService(service);
+}
+
+function collectPortCandidates(service, env) {
+  const keys = service.portKeys ?? [];
+  const explicit = new Set(keys);
+  const envKeys = new Set([
+    ...explicit,
+    ...Object.keys(service.envDefaults ?? {}).filter((key) => /PORT$/i.test(key)),
+  ]);
+
+  const results = [];
+  for (const key of envKeys) {
+    const raw = env[key];
+    if (!raw) continue;
+    const port = Number.parseInt(String(raw), 10);
+    if (Number.isNaN(port)) continue;
+    results.push({ key, port });
+  }
+  return results;
+}
+
+async function ensurePortsAvailable(service, env) {
+  const candidates = collectPortCandidates(service, env);
+  if (candidates.length === 0) return;
+
+  const conflicts = [];
+  for (const candidate of candidates) {
+    const available = await isPortAvailable(candidate.port);
+    if (!available) {
+      conflicts.push(candidate);
+    }
+  }
+
+  if (conflicts.length > 0) {
+    console.error(`[dev-services] Port check failed for ${service.name}:`);
+    for (const conflict of conflicts) {
+      console.error(
+        `  - ${conflict.key}=${conflict.port} already in use. Override the env var or run "pnpm dev:ports:free" / "pnpm dlx kill-port ${conflict.port}" first.`,
+      );
+    }
+    process.exit(1);
+  }
+}
+
+function isPortAvailable(port) {
+  return new Promise((resolve) => {
+    const tester = net.createServer();
+    tester.once('error', (err) => {
+      if ('code' in err && err.code === 'EADDRINUSE') {
+        resolve(false);
+      } else {
+        resolve(true);
+      }
+    });
+    tester.once('listening', () => {
+      tester.close(() => {
+        resolve(true);
+      });
+    });
+    tester.listen({ port, host: '127.0.0.1' });
+  });
 }

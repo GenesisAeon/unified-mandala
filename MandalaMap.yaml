@@ -322,7 +322,115 @@ entries:
     notes:
       - MandalaMap references docs/roadmap/v1.0-stabilization-playbook.* für CI/Release
         Kontext und die Stub-Roadmap für Support-Migrationen.
-      - JetStream-Runbook (`docs/runbooks/MaxBundle.md`) dokumentiert Setup & Selfchecks (`pnpm nats:doctor`, `pnpm test:jetstream`) für den Bus (Fraktal57).
+      - JetStream-Runbook (`docs/runbooks/MaxBundle.md`) dokumentiert Setup & Selfchecks
+        (`pnpm nats:doctor`, `pnpm test:jetstream`) für den Bus (Fraktal57).
+      - ;
+      - ' '
+      - d
+      - o
+      - c
+      - s
+      - /
+      - r
+      - u
+      - n
+      - b
+      - o
+      - o
+      - k
+      - s
+      - /
+      - t
+      - e
+      - s
+      - t
+      - s
+      - .
+      - m
+      - d
+      - ' '
+      - l
+      - i
+      - s
+      - t
+      - e
+      - t
+      - ' '
+      - '`'
+      - p
+      - n
+      - p
+      - m
+      - ' '
+      - n
+      - a
+      - t
+      - s
+      - ':'
+      - d
+      - o
+      - c
+      - k
+      - e
+      - r
+      - '`'
+      - ' '
+      - s
+      - o
+      - w
+      - i
+      - e
+      - ' '
+      - d
+      - e
+      - n
+      - ' '
+      - S
+      - I
+      - G
+      - I
+      - L
+      - L
+      - I
+      - N
+      - _
+      - G
+      - E
+      - N
+      - E
+      - S
+      - I
+      - S
+      - '-'
+      - F
+      - a
+      - l
+      - l
+      - b
+      - a
+      - c
+      - k
+      - ' '
+      - f
+      - ü
+      - r
+      - ' '
+      - E
+      - m
+      - e
+      - r
+      - g
+      - e
+      - n
+      - c
+      - e
+      - '-'
+      - S
+      - c
+      - a
+      - n
+      - s
+      - .
     links:
       - label: v1.0 Playbook
         path: docs/roadmap/v1.0-stabilization-playbook.md
@@ -598,11 +706,178 @@ entries:
     notes:
       - Dist-first convention via scripts/run-dist.mjs; referenced throughout docs.
       - Sigillin-Fix-CLI (`scripts/fix-sigillin.ts`) unterstützt Bridges bei Trikāya/CREP/Nächste-Schritt-Korrekturen.
-      - Windows-Parität über `scripts/setup-dev-env.ps1` + `scripts/run-powershell.mjs` dokumentiert (PowerShell-Fallback).
-      - PowerShell-Setup exportiert Installationsstatus nach `out/setup/install-state.json` für Codexfeedback-Reports.
-      - 'ParserFix: `(Test-CommandExists ...)` jetzt geklammert und Installationsresultate zu Bool gecastet, damit PowerShell 7.5 den Dev-Setup ohne ParserError ausführt.'
-      - 'Corepack-Admin-Check vermeidet EPERM, setzt Benutzeraktivierung wenn keine Admin-Rechte vorliegen und ergänzt NATS-Installationshinweise für `pnpm start:all`.'
-      - Emergence-Breath (`scripts/emergence-breath.mjs`) koppelt `pnpm dev:breath` an `validate:sigillins` und das Trikāya-Dashboard; Ausgabe enthält Coverage-Metriken für Bridges.
+      - Windows-Parität über `scripts/setup-dev-env.ps1` + `scripts/run-powershell.mjs`
+        dokumentiert (PowerShell-Fallback).
+      - PowerShell-Setup exportiert Installationsstatus nach `out/setup/install-state.json`
+        für Codexfeedback-Reports.
+      - 'ParserFix: `(Test-CommandExists ...)` jetzt geklammert und Installationsresultate
+        zu Bool gecastet, damit PowerShell 7.5 den Dev-Setup ohne ParserError ausführt.'
+      - Corepack-Admin-Check vermeidet EPERM, setzt Benutzeraktivierung wenn keine Admin-Rechte
+        vorliegen und ergänzt NATS-Installationshinweise für `pnpm start:all`.
+      - Emergence-Breath (`scripts/emergence-breath.mjs`) koppelt `pnpm dev:breath` an
+        `validate:sigillins` und das Trikāya-Dashboard; Ausgabe enthält Coverage-Metriken
+        für Bridges.
+      - ' '
+      - D
+      - e
+      - v
+      - '-'
+      - S
+      - t
+      - a
+      - c
+      - k
+      - ' '
+      - p
+      - r
+      - ü
+      - f
+      - t
+      - ' '
+      - P
+      - o
+      - r
+      - t
+      - s
+      - ' '
+      - a
+      - u
+      - t
+      - o
+      - m
+      - a
+      - t
+      - i
+      - s
+      - c
+      - h
+      - ' '
+      - u
+      - n
+      - d
+      - ' '
+      - v
+      - e
+      - r
+      - w
+      - e
+      - i
+      - s
+      - t
+      - ' '
+      - a
+      - u
+      - f
+      - ' '
+      - '`'
+      - p
+      - n
+      - p
+      - m
+      - ' '
+      - d
+      - e
+      - v
+      - ':'
+      - p
+      - o
+      - r
+      - t
+      - s
+      - ':'
+      - f
+      - r
+      - e
+      - e
+      - '`'
+      - ;
+      - ' '
+      - '`'
+      - s
+      - c
+      - r
+      - i
+      - p
+      - t
+      - s
+      - /
+      - n
+      - a
+      - t
+      - s
+      - '-'
+      - d
+      - o
+      - c
+      - k
+      - e
+      - r
+      - .
+      - m
+      - j
+      - s
+      - '`'
+      - ' '
+      - s
+      - t
+      - a
+      - r
+      - t
+      - e
+      - t
+      - ' '
+      - b
+      - z
+      - w
+      - .
+      - ' '
+      - ü
+      - b
+      - e
+      - r
+      - w
+      - a
+      - c
+      - h
+      - t
+      - ' '
+      - J
+      - e
+      - t
+      - S
+      - t
+      - r
+      - e
+      - a
+      - m
+      - '-'
+      - C
+      - o
+      - n
+      - t
+      - a
+      - i
+      - n
+      - e
+      - r
+      - ' '
+      - f
+      - ü
+      - r
+      - ' '
+      - l
+      - o
+      - k
+      - a
+      - l
+      - e
+      - ' '
+      - T
+      - e
+      - s
+      - t
+      - s
+      - .
     links:
       - label: run-dist
         path: scripts/run-dist.mjs
@@ -671,8 +946,8 @@ entries:
     description: Placeholder modules for kan_network, liquid_time_constant_network,
       torch_geometric, etc.
     notes:
-      - Roadmap in docs/roadmap/stub-replacement-roadmap.(md|yaml) beschreibt Ablösung und
-        Keys-Governance.
+      - Roadmap in docs/roadmap/stub-replacement-roadmap.(md|yaml) beschreibt Ablösung
+        und Keys-Governance.
       - Bis Phase B abgeschlossen ist, stubs/ nur als Typ-Fallback nutzen; keys/ bleibt
         automation-only.
     links:
@@ -765,8 +1040,7 @@ entries:
     notes:
       - Generated alongside bridge scaffolds; keep in sync with pnpm validate:sigillins
         outputs.
-      - "Consumed by map:mandala validation and future dashboards for CREP/Trik\u0101\
-        ya coverage."
+      - Consumed by map:mandala validation and future dashboards for CREP/Trikāya coverage.
     links:
       - label: bridges/
         path: sigils/bridges
@@ -779,9 +1053,8 @@ follow_up:
       - ci/
     status: done
   - title: Stub replacement roadmap
-    detail:
-      Roadmap dokumentiert in docs/roadmap/stub-replacement-roadmap.(md|yaml); Umsetzungsschritte
-      für stubs/ und keys/ eingeplant.
+    detail: Roadmap dokumentiert in docs/roadmap/stub-replacement-roadmap.(md|yaml);
+      Umsetzungsschritte für stubs/ und keys/ eingeplant.
     related:
       - stubs/
       - keys/

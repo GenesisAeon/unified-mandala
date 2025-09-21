@@ -23,9 +23,16 @@ streams:
       - id: core-ci-hardening
         description: Fail-fast Verhalten und Nightly-Matrix in CI Core etablieren
         status: done
-        notes: |
-          ci.nightly.yml spiegelt type-and-tests; Toolchain-Artefakt + Alert-Auswertung aktiv (Fraktal44).
-          JetStream-Bus-Test läuft unter Vitest; CI-Core startet einen Docker-basierten NATS-Server und ruft `pnpm nats:doctor` sowie `pnpm test:jetstream` im type-and-tests-Gate auf (Fraktal57).
+        notes: 'ci.nightly.yml spiegelt type-and-tests; Toolchain-Artefakt + Alert-Auswertung
+          aktiv (Fraktal44).
+
+          JetStream-Bus-Test läuft unter Vitest; CI-Core startet einen Docker-basierten
+          NATS-Server und ruft `pnpm nats:doctor` sowie `pnpm test:jetstream` im type-and-tests-Gate
+          auf (Fraktal57). Lokale Workflows verwenden `pnpm nats:docker` für JetStream-Container
+          und `pnpm dev:ports:free`/Port-Wächter im Dev-Stack, um Windows-Portkollisionen
+          früh zu erkennen.
+
+          '
         success:
           - pnpm test:ts:ci
           - pnpm test:py
@@ -58,13 +65,16 @@ streams:
       - id: lint-doc-refresh
         description: README/CONTRIBUTING mit Dist-First und Hook-Hinweisen erweitern
         status: done
-        notes: README & CONTRIBUTING beschreiben scripts/run-dist.mjs inkl. `UM_RUN_DIST_*`
-          Overrides; Windows-Onboarding referenziert `scripts/setup-dev-env.ps1` und `scripts/run-powershell.mjs`.
-          PowerShell-Setup exportiert den Installationsstatus nach `out/setup/install-state.json`
-          für Codexfeedback-Läufe; ParserFix `(Test-CommandExists ...)` + Bool-Cast beheben
-          den PowerShell 7 ParserError aus DevTalk 55. Corepack-Admin-Detection vermeidet
-          EPERM, protokolliert den Aktivierungsmodus im InstallReport und ergänzt README/Onboarding/Command-Catalog
-          um NATS-Hinweise (winget/Docker) für `pnpm start:all`.
+        notes: "README & CONTRIBUTING beschreiben scripts/run-dist.mjs inkl. `UM_RUN_DIST_*`\
+          \ Overrides; Windows-Onboarding referenziert `scripts/setup-dev-env.ps1` und\
+          \ `scripts/run-powershell.mjs`. PowerShell-Setup exportiert den Installationsstatus\
+          \ nach `out/setup/install-state.json` für Codexfeedback-Läufe; ParserFix `(Test-CommandExists\
+          \ ...)` + Bool-Cast beheben den PowerShell 7 ParserError aus DevTalk 55. Corepack-Admin-Detection\
+          \ vermeidet EPERM, protokolliert den Aktivierungsmodus im InstallReport und\
+          \ ergänzt README/Onboarding/Command-Catalog um NATS-Hinweise (winget/Docker)\
+          \ für `pnpm start:all`.\n           README & Tests-Runbook listen `pnpm nats:docker`\
+          \ sowie `pnpm dev:ports:free`; Emergence-Scan fällt auf docs/sigillin/GENESIS.md\
+          \ zurück, wenn SIGILLIN_GENESIS.md fehlt."
       - id: ts-node-retire
         description: Produktionspfade auf `node dist/...` umstellen
         status: done
@@ -84,7 +94,9 @@ streams:
         description: '`pnpm build` liefert alle Artefakte für Prod-Start ohne ts-node'
         status: done
         notes: Dockerfile.dev auf Node20/Python3 gehoben; Dist-First CLI & Dev-Skripte
-          aktualisiert (Fraktal44).
+          aktualisiert (Fraktal44). Adapter-Build-Kommandos verwenden `scripts/lib/python.mjs`
+          und `scripts/adapter-build-era5.mjs`, sodass `pnpm adapter:build:*` die Projekt-venv
+          auch unter Windows findet (Fraktal57).
       - id: compose-profiles
         description: docker-compose Profile für core/newsbot/climate definieren
         status: done
@@ -115,7 +127,9 @@ streams:
       - id: sigillin-validator
         description: Sigillin-Validator + CI-Workflow etablieren
         status: done
-        notes: pnpm validate:sigillins + .github/workflows/sigillin-validate.yml aktiv (Fraktal44); pnpm dev:breath koppelt validate:sigillins & trikaya:dashboard an Dateiänderungen und meldet Coverage.
+        notes: pnpm validate:sigillins + .github/workflows/sigillin-validate.yml aktiv
+          (Fraktal44); pnpm dev:breath koppelt validate:sigillins & trikaya:dashboard
+          an Dateiänderungen und meldet Coverage.
         artifacts:
           - scripts/validate-sigillins.mjs
           - scripts/schemas/mandala-sigillin.schema.json

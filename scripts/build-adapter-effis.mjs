@@ -1,11 +1,52 @@
-import { execSync } from "child_process";
-import { existsSync, mkdirSync } from "fs";
+import { existsSync, mkdirSync } from 'node:fs';
+import { join, resolve } from 'node:path';
+import process from 'node:process';
+import { spawnPython, pythonEnv } from './lib/python.mjs';
 
-["data/raw","data/processed","data/stac","data/mrv"].forEach(d=>!existsSync(d)&&mkdirSync(d,{recursive:true}));
+const repoRoot = resolve(process.cwd());
+const env = pythonEnv({
+  CI: process.env.CI ?? 'true',
+  ALLOW_NET: process.env.ALLOW_NET ?? '0',
+});
 
-const run = (cmd, desc) => { console.log(`⏳ ${desc}`); execSync(cmd, { stdio: "inherit" }); };
+['data/raw', 'data/processed', 'data/stac', 'data/mrv'].forEach((dir) => {
+  const full = join(repoRoot, dir);
+  if (!existsSync(full)) {
+    mkdirSync(full, { recursive: true });
+  }
+});
 
-run("python src/adapters/effis/fetch_effis.py 2024 6 data/raw", "Fetch/fixture EFFIS");
-run("python src/adapters/era5/resample.py data/raw/effis_202406.nc data/processed/effis_resampled.nc", "Resample");
-run("python - <<'PY'\nfrom src.adapters.core.stac import make_stac_item\nimport json\nprint(json.dumps(make_stac_item('data/processed/effis_resampled.nc','effis_202406','fwi')))\nPY", "STAC item");
-console.log("✅ EFFIS pipeline (offline) done");
+runPython(['src/adapters/effis/fetch_effis.py', '2024', '6', 'data/raw'], 'Fetch EFFIS fixture');
+runPython(
+  [
+    'src/adapters/era5/resample.py',
+    'data/raw/effis_202406.nc',
+    'data/processed/effis_resampled.nc',
+  ],
+  'Resample ERA5 grid',
+);
+runPython(
+  [
+    '-c',
+    [
+      'from src.adapters.core.stac import make_stac_item',
+      'import json',
+      "print(json.dumps(make_stac_item('data/processed/effis_resampled.nc','effis_202406','fwi')))",
+    ].join('; '),
+  ],
+  'Generate STAC metadata',
+);
+
+console.log('✅ EFFIS pipeline (offline) done');
+
+function runPython(args, label) {
+  console.log(`⏳ ${label}`);
+  const result = spawnPython(args, {
+    cwd: repoRoot,
+    env,
+    stdio: 'inherit',
+  });
+  if ((result.status ?? 1) !== 0) {
+    process.exit(result.status ?? 1);
+  }
+}

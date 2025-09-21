@@ -25,7 +25,26 @@ const distAbsolute = path.join(repoRoot, 'dist', distRelative);
 ensureSourceExists(sourceRelative);
 ensureDistReady(distRelative, distAbsolute);
 
-const nodeArgs = ['--enable-source-maps', distAbsolute, ...forwarded];
+const specifierResolution = (process.env.UM_RUN_DIST_SPECIFIER_RESOLUTION ?? 'node')
+  .toLowerCase()
+  .trim();
+
+const nodeArgs = ['--enable-source-maps'];
+if (specifierResolution === 'node') {
+  nodeArgs.push('--experimental-specifier-resolution=node');
+} else if (
+  specifierResolution &&
+  specifierResolution !== 'default' &&
+  specifierResolution !== 'none' &&
+  specifierResolution !== 'off' &&
+  specifierResolution !== 'disable'
+) {
+  console.warn(
+    `[run-dist] Unknown UM_RUN_DIST_SPECIFIER_RESOLUTION="${specifierResolution}" – falling back to default Node resolution.`,
+  );
+}
+
+nodeArgs.push(distAbsolute, ...forwarded);
 const runResult = spawnSync(nodeCommand, nodeArgs, {
   cwd: repoRoot,
   stdio: 'inherit',
