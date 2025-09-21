@@ -1,6 +1,40 @@
 fraktal:
-  current: 57
+  current: 58
   history:
+    - id: 58
+      status: done
+      notes: |
+        Fraktal58 AdapterHardening: adapters.shared.xarray_utils.open_dataset bevorzugt
+        `netcdf4`/`h5netcdf`, sodass ERA5/OISST Pipelines ohne manuelle Engine-Flags
+        laufen und Datensätze geschlossen werden; STAC-Assets liefern `file://`-URIs.
+        Ghostshell-NGINX erzeugt Platzhalter-Einträge (`${PORT_BASE:-3000}` …) und
+        akzeptiert optional statische Ports. CLI-Skripte (generate-api-docs,
+        generate-next-sigil, generate-agent-docs) sind nun reine ES-Module – passend zu
+        `"type": "module"` – und `@vitest/coverage-v8` wurde auf ^1.6.0 synchronisiert.
+      deliverables:
+        - src/adapters/shared/xarray_utils.py
+        - src/adapters/era5/resample.py
+        - src/adapters/era5/mrv.py
+        - src/adapters/era5/crep_score.py
+        - src/adapters/common/correlation.py
+        - src/adapters/oisst/postprocess_oisst.py
+        - src/adapters/oisst/stac_oisst.py
+        - src/adapters/core/stac.py
+        - scripts/generate-ghostshell-nginx.ts
+        - scripts/generate-api-docs.js
+        - scripts/generate-next-sigil.js
+        - scripts/generate-agent-docs.js
+        - package.json
+        - pnpm-lock.yaml
+        - codexfeedback-fraktal58.yaml
+        - codexfeedback.yaml
+        - codexfeedback.json
+        - codexfeedback.md
+      hook:
+        progress: Adapterpipelines öffnen NetCDF-Dateien plattformstabil; Ghostshell
+          Config behält die erwarteten Platzhalter; CLI-Skripte laufen mit Node ESM.
+        next_step: STAC-Validator erneut ausführen (`pnpm stac:validate`) und Windows
+          README-Snippets aktualisieren, falls weitere Hinweise nötig sind.
     - id: 57
       status: done
       notes:

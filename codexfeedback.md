@@ -1,5 +1,12 @@
 # Codex Feedback
 
+- FR-UM-2025-10-22-Fraktal58-AdapterHardening: NetCDF-Pipelines nutzen
+  `adapters.shared.xarray_utils.open_dataset` mit Engine-Fallback (netcdf4/h5netcdf),
+  schließen Datensätze sauber und STAC-Assets liefern `file://`-URIs; das
+  Ghostshell-NGINX-Skript generiert standardmäßig `${PORT_BASE:-3000}`-Platzhalter
+  (Opt-out via `GHOSTSHELL_PLACEHOLDERS=0`). Node-Utilities laufen als ES-Module
+  (`generate-api-docs`, `generate-next-sigil`, `generate-agent-docs`) und
+  `@vitest/coverage-v8` ist auf ^1.6.0 abgestimmt.
 - FR-UM-2025-10-21-Fraktal57-MapsMetadata: `docs/maps/RepoMap.yaml` trägt `repo`, `docs/maps/ProgramFlow.yaml` führt einen `meta`-Block ein; `pnpm maps:validate` läuft wieder grün und README Quickstart (PowerShell) dokumentiert `Get-Content`/`type` sowie `$env:`-Zuweisungen.
 - FR-UM-2025-10-20-Fraktal57-Autofree: `scripts/dev-services.mjs` räumt belegte Standard-Ports automatisch via `pnpm dlx kill-port` (Opt-out `UM_DEV_SERVICES_AUTOFREE_PORTS=0`) und protokolliert klarere Hinweise; `scripts/nats-doctor.mjs` analysiert JetStream-Fehler (fehlendes `-js`, Timeout/Proxy, Berechtigungen) mit `$JS.API.INFO`-Fallback; README, Runbooks, MandalaMap.\* und Command-Catalog referenzieren Auto-Cleanup & neue Troubleshooting-Tipps.
 - FR-UM-2025-10-19-Fraktal57-JetStream: JetStream-Bus-Test läuft unter Vitest; ci.core startet Docker-NATS und führt `pnpm nats:doctor` (mit `$JS.API.INFO`-Fallback) + `pnpm test:jetstream`; README (Windows-Quickstart), MandalaMap und Command-Catalog spiegeln den Flow, neues `docs/runbooks/nats-jetstream.md` bündelt Setup/Diagnose; `scripts/dev-services.mjs` meldet Portkollisionen (`pnpm dev:ports:free`), `pnpm nats:docker` steht für lokale Läufe bereit, Emergence-Scan nutzt einen eingecheckten `SIGILLIN_GENESIS.md`-Placeholder bzw. Fallback auf `docs/sigillin/GENESIS.md` und die Adapter-Builds greifen via `scripts/lib/python.mjs`/`scripts/adapter-build-era5.mjs` auf die Projekt-venv (Windows-kompatibel).

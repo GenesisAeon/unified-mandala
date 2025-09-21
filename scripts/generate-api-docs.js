@@ -1,13 +1,17 @@
 #!/usr/bin/env node
-const { execSync } = require('child_process');
+import { execSync } from 'node:child_process';
+import { fileURLToPath } from 'node:url';
+import { resolve } from 'node:path';
 
-function runTypedoc() {
+export function runTypedoc() {
   execSync('npx typedoc', { stdio: 'inherit' });
   console.log('API docs generated in docs/api');
 }
 
-if (require.main === module) {
+const invokedFromCli =
+  typeof process.argv[1] === 'string' &&
+  fileURLToPath(import.meta.url) === resolve(process.argv[1]);
+
+if (invokedFromCli) {
   runTypedoc();
 }
-
-module.exports = { runTypedoc };

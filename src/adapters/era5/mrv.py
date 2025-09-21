@@ -1,15 +1,18 @@
 from pathlib import Path
 # pyright: reportUnknownMemberType=false, reportUnknownVariableType=false, reportAttributeAccessIssue=false
-import xarray as xr  # type: ignore
 import pandas as pd  # type: ignore
 from adapters.shared.types import Dataset, PathLike
+from adapters.shared.xarray_utils import open_dataset
 
 
 def to_mrv_parquet(nc_in: PathLike, pq_out: PathLike) -> Path:
     out = Path(pq_out)
     out.parent.mkdir(parents=True, exist_ok=True)
-    ds: Dataset = xr.open_dataset(str(nc_in))
-    df = ds.to_dataframe().reset_index()
+    ds: Dataset = open_dataset(str(nc_in))
+    try:
+        df = ds.to_dataframe().reset_index()
+    finally:
+        ds.close()
     df.to_parquet(out, index=False)
     return out
 

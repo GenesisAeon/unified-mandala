@@ -1,29 +1,41 @@
 #!/usr/bin/env node
-const fs = require('fs');
-const path = require('path');
-const agentsFile = path.join(__dirname, '../AGENTS.md');
-const docsDir = path.join(__dirname, '../docs/agents');
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { dirname, join, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-function extractAgents() {
-  const text = fs.readFileSync(agentsFile, 'utf8');
-  const lines = text.split(/\r?\n/);
-  return lines.filter(l => l.includes('Agent:')).map(l => l.split('Agent:')[1].trim());
+const scriptDir = dirname(fileURLToPath(import.meta.url));
+const agentsFile = join(scriptDir, '../AGENTS.md');
+const docsDir = join(scriptDir, '../docs/agents');
+
+export function extractAgents() {
+  const text = readFileSync(agentsFile, 'utf8');
+  return text
+    .split(/\r?\n/)
+    .filter((line) => line.includes('Agent:'))
+    .map((line) => line.split('Agent:')[1].trim())
+    .filter(Boolean);
 }
 
-function ensureDocs(agent) {
-  const file = path.join(docsDir, `${agent}.md`);
-  if (!fs.existsSync(file)) {
+export function ensureDocs(agent) {
+  const file = join(docsDir, `${agent}.md`);
+  if (!existsSync(file)) {
     const content = `# ${agent}\n\nDokumentation in Arbeit.`;
-    fs.writeFileSync(file, content);
+    writeFileSync(file, content);
     console.log(`Created ${file}`);
   }
 }
 
-function run() {
-  if (!fs.existsSync(docsDir)) fs.mkdirSync(docsDir, { recursive: true });
+export function run() {
+  if (!existsSync(docsDir)) {
+    mkdirSync(docsDir, { recursive: true });
+  }
   extractAgents().forEach(ensureDocs);
 }
 
-if (require.main === module) run();
+const invokedFromCli =
+  typeof process.argv[1] === 'string' &&
+  fileURLToPath(import.meta.url) === resolve(process.argv[1]);
 
-module.exports = { run };
+if (invokedFromCli) {
+  run();
+}
