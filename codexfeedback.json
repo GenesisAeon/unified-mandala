@@ -1,6 +1,11 @@
 {
   "runs": [
     {
+      "fraktalrun": "Fraktal57 JetStream Stabilisierung",
+      "status": "running",
+      "notes": "JetStream-Bus-Test läuft jetzt unter Vitest; ci.core startet Docker-NATS, ruft pnpm nats:doctor und pnpm test:jetstream; README/MandalaMap/Command-Catalog spiegeln den Flow."
+    },
+    {
       "fraktalrun": "Fraktal56 Corepack Admin",
       "status": "implemented",
       "notes": "PowerShell setup skips corepack enable without elevation, records activation mode in install-state metadata, and prints NATS install hints (winget/docker); docs updated (README, onboarding, command catalog, MandalaMap)."

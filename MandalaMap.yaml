@@ -104,6 +104,8 @@ entries:
         without blocking CI.
       - Repo Sanity builds the UI dist and waits on apps/ui/dist/index.html before map
         and audit checks to avoid race conditions.
+      - CI-Core startet einen Docker-basierten NATS-Server und ruft `pnpm nats:doctor`
+        sowie `pnpm test:jetstream` im type-and-tests-Gate auf (Fraktal57).
     links:
       - label: CI Core
         path: .github/workflows/ci.core.yml
@@ -320,6 +322,7 @@ entries:
     notes:
       - MandalaMap references docs/roadmap/v1.0-stabilization-playbook.* für CI/Release
         Kontext und die Stub-Roadmap für Support-Migrationen.
+      - JetStream-Runbook (`docs/runbooks/MaxBundle.md`) dokumentiert Setup & Selfchecks (`pnpm nats:doctor`, `pnpm test:jetstream`) für den Bus (Fraktal57).
     links:
       - label: v1.0 Playbook
         path: docs/roadmap/v1.0-stabilization-playbook.md

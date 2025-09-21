@@ -27,7 +27,7 @@
           "command": "pwsh -NoProfile -File ./scripts/setup-dev-env.ps1",
           "type": "powershell",
           "runs": "pwsh -NoProfile -File ./scripts/setup-dev-env.ps1",
-          "description": "Installs Git, Node.js, and Python on Windows, enables Corepack with admin detection (non-admin → user activation), reminds about missing nats-server, and runs pnpm using PowerShell 7+ (fallback: powershell -NoProfile -ExecutionPolicy Bypass -File .\\scripts\\setup-dev-env.ps1).",
+          "description": "Installs Git, Node.js, and Python on Windows, enables Corepack with admin detection (non-admin \u2192 user activation), reminds about missing nats-server, and runs pnpm using PowerShell 7+ (fallback: powershell -NoProfile -ExecutionPolicy Bypass -File .\\scripts\\setup-dev-env.ps1).",
           "source": ["scripts/setup-dev-env.ps1"]
         },
         {
@@ -186,8 +186,8 @@
           "name": "Combined CI gate",
           "command": "pnpm check:ci",
           "type": "pnpm",
-          "runs": "npx tsc -p tsconfig.json --noEmit && pnpm test:ts:ci && npx pyright",
-          "description": "Runs TypeScript compilation, CI Vitest suite, and Pyright in a single pass.",
+          "runs": "npx tsc -p tsconfig.json --noEmit && pnpm nats:doctor && pnpm test:ts:ci && pnpm test:jetstream && npx pyright",
+          "description": "Runs TypeScript compilation, JetStream readiness, CI Vitest suites, and Pyright in a single pass.",
           "source": ["package.json#scripts.check:ci"]
         },
         {
@@ -265,8 +265,8 @@
           "name": "Legacy Jest tests",
           "command": "pnpm test:jest",
           "type": "pnpm",
-          "runs": "jest",
-          "description": "Runs Jest-based suites for legacy compatibility.",
+          "runs": "echo \"(Jest deaktiviert \u2013 nutze vitest)\" && exit 0",
+          "description": "Legacy alias that prints a Vitest migration hint (Jest disabled).",
           "source": ["package.json#scripts.test:jest"]
         },
         {
@@ -304,6 +304,15 @@
           "runs": "NODE_OPTIONS=--max-old-space-size=2048 vitest run --config vitest.config.ts",
           "description": "Vitest run tuned for CI memory constraints.",
           "source": ["package.json#scripts.test:ts:ci"]
+        },
+        {
+          "id": "testing.test-jetstream",
+          "name": "JetStream bus test",
+          "command": "pnpm test:jetstream",
+          "type": "pnpm",
+          "runs": "vitest run --config vitest.config.ts --reporter=default tests/event-bus/jetstream-bus.test.ts",
+          "description": "Executes the JetStream bus contract test via Vitest (migrated from Jest).",
+          "source": ["package.json#scripts.test:jetstream"]
         },
         {
           "id": "testing.test-ts-extended",
@@ -530,11 +539,11 @@
         },
         {
           "id": "build.trikaya-dashboard",
-          "name": "Trikāya dashboard",
+          "name": "Trik\u0101ya dashboard",
           "command": "pnpm trikaya:dashboard",
           "type": "pnpm",
           "runs": "node scripts/generate-trikaya-dashboard.mjs",
-          "description": "Generates the Trikāya dashboard artifacts under analysis/.",
+          "description": "Generates the Trik\u0101ya dashboard artifacts under analysis/.",
           "source": ["package.json#scripts.trikaya:dashboard"]
         }
       ]
@@ -586,7 +595,7 @@
           "command": "pnpm dev:breath",
           "type": "pnpm",
           "runs": "node scripts/emergence-breath.mjs",
-          "description": "Watches sigils, apps/ui, and scripts to rerun `validate:sigillins`, rebuild the Trikāya dashboard, and print coverage metrics.",
+          "description": "Watches sigils, apps/ui, and scripts to rerun `validate:sigillins`, rebuild the Trik\u0101ya dashboard, and print coverage metrics.",
           "source": ["package.json#scripts.dev:breath"]
         },
         {
@@ -712,6 +721,15 @@
           "runs": "node scripts/smoke/light-static-smoke.mjs",
           "description": "Validates the light static server responses (Brotli/Gzip).",
           "source": ["package.json#scripts.smoke:light-static"]
+        },
+        {
+          "id": "smoke.nats-doctor",
+          "name": "NATS JetStream doctor",
+          "command": "pnpm nats:doctor",
+          "type": "pnpm",
+          "runs": "node scripts/nats-doctor.mjs",
+          "description": "Checks JetStream readiness with retries before JetStream-dependent tests run.",
+          "source": ["package.json#scripts.nats:doctor", "scripts/nats-doctor.mjs"]
         },
         {
           "id": "smoke.ttfb",

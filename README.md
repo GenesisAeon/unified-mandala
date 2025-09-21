@@ -51,6 +51,7 @@ docker compose --profile monitoring up
 > • Windows: Lange Pfade aktivieren; `.dockerignore` im Repo-Root verhindert riesige Build-Kontexte.
 > • `corepack enable` benötigt Administratorrechte. Wenn du ohne Admin-Rechte arbeitest, führt `scripts/setup-dev-env.ps1` automatisch die Benutzeraktivierung via `corepack prepare pnpm@10.17.0 --activate` aus und überspringt das persistente Enable.
 > • `pnpm start:all` erwartet einen laufenden `nats-server`. Installiere ihn bei Bedarf via `winget install --id Synadia.NATS-Server -e` oder starte `docker run --name nats -p 4222:4222 -p 8222:8222 -d nats:latest`.
+> • JetStream-Betrieb & Self-Check: `docs/runbooks/MaxBundle.md` bündelt den Setup-Flow inkl. `pnpm nats:doctor` & `pnpm test:jetstream` Troubleshooting.
 
 ---
 
@@ -139,7 +140,9 @@ export PYTHONPATH=src
 ```bash
 pnpm lint
 pnpm format:check
+pnpm nats:doctor
 pnpm test:ts:ci
+pnpm test:jetstream
 pnpm test:py
 npx pyright
 pnpm policy:check
