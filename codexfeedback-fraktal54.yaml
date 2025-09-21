@@ -1,9 +1,10 @@
 fraktal: 54
-status: running
+status: done
 owner: ChefDevAI
 summary:
   - 'Sigillin-Fix CLI (`pnpm sigil:fix`) analysiert Bridges auf Trikāya/CREP/Nächste Schritte und bietet automatische Korrekturen.'
   - 'README & docs/sigillin/FIX_GUIDE.md beschreiben Nutzung, MandalaMap & Codexfeedback-Tracker auf Fraktal54 gehoben.'
+  - '2025-10-21 Evaluierung: Governance-Report auf deferred gesetzt, pre-commit Hook bleibt optional – Fraktal54 abgeschlossen.'
 deliverables:
   - scripts/fix-sigillin.ts
   - docs/sigillin/FIX_GUIDE.md
@@ -19,11 +20,11 @@ deliverables:
 follow_up:
   governance_report:
     description: 'Governance-/JUnit-Reports für Sigillin-Compliance evaluieren (DevTalk Anregung).'
-    status: planned
+    status: deferred
   precommit_hook:
     description: 'Optionalen pre-commit Hook vorbereiten (`pnpm sigil:fix --dry-run` für geänderte Pfade).'
     status: optional
 hook:
-  progress: 'Fix-Skript aktiv, README-Milestone abgeschlossen; MandalaMap verweist auf neues Tool.'
-  next_step: 'Weitere Fraktal54-Fragmente beobachten (Reports, Poetik-Checks) und Feedbackdateien synchron halten.'
+  progress: 'Fix-Skript aktiv, Dokumentation vollständig; Governance-Report auf deferred, pre-commit Hook optional – Fraktal54 geschlossen.'
+  next_step: 'Keine weiteren Fraktal54-Aufgaben offen; Monitoring erfolgt über neue Fragmente bei Bedarf.'
 repeat_required: false

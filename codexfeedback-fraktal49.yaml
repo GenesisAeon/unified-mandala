@@ -1,10 +1,11 @@
 fraktal: 49
-status: running
+status: done
 owner: ChefDevAI
 summary:
   - 'Sigillin validator fokussiert jetzt sigils/bridges, Registry/Archive werden übersprungen und Agent-Overlays stehen bereit für Legacy-Sigills.'
   - 'Repo-Sanity baut die UI-Assets mit wait-on, AgentWorkflowEngine setzt ethical_guardrails standardmäßig und ist mit Vitest abgesichert.'
   - 'MandalaMap- und Codexfeedback-Artefakte auf Fraktal49 aktualisiert, inkl. Hinweis auf neue CI-Gates.'
+  - '2025-10-21 Evaluierung: Policy-Scope-Tightening & dist-first Runner in Folgefraktalen adressiert – Fraktal49 geschlossen.'
 deliverables:
   - scripts/validate-sigillins.mjs
   - .github/workflows/repo-sanity.yml
@@ -16,8 +17,11 @@ deliverables:
 follow_up:
   policy_scope_tightening:
     description: 'OPA/Kyverno-Policies um spezifische Excludes für analytics-Artefakte erweitern und Tests anpassen.'
-    status: planned
+    status: deferred
   agent_runner_dist_first:
     description: 'ts-node Shebangs in agents/system-start Pipeline schrittweise durch dist-first Runner ersetzen.'
-    status: planned
+    status: deferred
+hook:
+  progress: 'Validator-Fokus & Repo-Sanity stabil, OPA/Kyverno sowie dist-first Runner werden in Folgefraktalen verfolgt – Fraktal49 geschlossen.'
+  next_step: 'Weitere Arbeiten fließen in neue Fragmente (policy_scope/dist-first) bei Bedarf.'
 repeat_required: false

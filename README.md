@@ -80,6 +80,7 @@ pnpm smoke:ui
 
 > Wenn Vite auf einen freien Port ausweicht (z. B. 5174), setze `UI_DEV_URL` entsprechend (`http://localhost:5174`).
 > Ports räumt der Dev-Stack standardmäßig automatisch (Kill-Port). Falls Prozesse hartnäckig sind, hilft `pnpm dlx kill-port 3001 3002 3003 3004 4020 4021` manuell oder `setx UM_DEV_SERVICES_AUTOFREE_PORTS 0` zum Deaktivieren des Auto-Cleanup.
+> 🪟 **PowerShell-Tipp:** Dateien via `Get-Content` oder `type` anzeigen (`cat` ist Alias, aber ohne Pipe-Verhalten); Umgebungsvariablen vor dem Kommando mit `$env:NAME = 'Wert'` setzen – Inline-Syntax `NAME=value pnpm …` funktioniert in PowerShell nicht.
 
 ---
 

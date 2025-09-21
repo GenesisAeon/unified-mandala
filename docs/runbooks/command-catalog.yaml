@@ -904,7 +904,7 @@ categories:
         command: pnpm maps:validate
         type: pnpm
         runs: node scripts/maps/validate-maps.mjs
-        description: Runs validation against map artifacts.
+        description: Validates map artifacts (`RepoMap.yaml` braucht `repo`, `ProgramFlow.yaml` `meta`).
         source:
           - package.json#scripts.maps:validate
       - id: sigils.maps-list
