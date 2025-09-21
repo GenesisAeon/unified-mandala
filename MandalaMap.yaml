@@ -1,6 +1,6 @@
 meta:
   version: '1.0'
-  generated: '2025-10-19T12:00:00Z'
+  generated: 2025-10-20T12:00:00Z
   fraktal: 49
   repo: unified-mandala
   source: ChefDevAI MandalaMap bootstrap
@@ -94,18 +94,20 @@ entries:
     category: ci-infra
     status: active
     title: GitHub workflows & templates
-    description: Workflow definitions (core, nightly, experimental) and community health
-      files.
+    description: Workflow definitions (core, nightly, experimental) and community
+      health files.
     notes:
-      - Audit instructions encoded as jobs; isolate non-actionable tasks to stop false
-        CI failures.
-      - Core/extended workflows documented in docs/roadmap/v1.0-stabilization-playbook.md.
-      - Sigillin validator is required on main; mandala-map workflow uploads artifacts
-        without blocking CI.
-      - Repo Sanity builds the UI dist and waits on apps/ui/dist/index.html before map
-        and audit checks to avoid race conditions.
-      - CI-Core startet einen Docker-basierten NATS-Server und ruft `pnpm nats:doctor`
-        sowie `pnpm test:jetstream` im type-and-tests-Gate auf (Fraktal57).
+      - Audit instructions encoded as jobs; isolate non-actionable tasks to stop
+        false CI failures.
+      - Core/extended workflows documented in
+        docs/roadmap/v1.0-stabilization-playbook.md.
+      - Sigillin validator is required on main; mandala-map workflow uploads
+        artifacts without blocking CI.
+      - Repo Sanity builds the UI dist and waits on apps/ui/dist/index.html
+        before running map/audit checks to avoid race conditions.
+      - CI-Core startet einen Docker-basierten NATS-Server und ruft `pnpm
+        nats:doctor` sowie `pnpm test:jetstream` im type-and-tests-Gate auf
+        (Fraktal57).
     links:
       - label: CI Core
         path: .github/workflows/ci.core.yml
@@ -129,7 +131,8 @@ entries:
     category: automation
     status: active
     title: Plugin registry cache
-    description: Static registry for published Mandala plugins consumed by public/plugins.html.
+    description: Static registry for published Mandala plugins consumed by
+      public/plugins.html.
     notes:
       - Update via scripts when plugin definitions in plugins/ change.
     links:
@@ -139,10 +142,11 @@ entries:
     category: agents
     status: active
     title: Genesis Aeon Advanced AI
-    description: Python agent stack with CLI, adaptive thresholding, and visualization
-      modules.
+    description: Python agent stack with CLI, adaptive thresholding, and
+      visualization modules.
     notes:
-      - Extensive pytest coverage (test_*.py) validates archetype and sigil tooling.
+      - Extensive pytest coverage (test_*.py) validates archetype and sigil
+        tooling.
     links:
       - label: Masterplan
         path: GenesisAeonAdvancedAi/masterplan.md
@@ -150,8 +154,8 @@ entries:
     category: agents
     status: active
     title: Genesis Aeon ZIPMEM
-    description: Self-organizing memory orchestration with commitMemory utilities and
-      agent pipelines.
+    description: Self-organizing memory orchestration with commitMemory utilities
+      and agent pipelines.
     notes:
       - Contains fractal agent scripts and tests ensuring memory consistency.
     links:
@@ -161,17 +165,18 @@ entries:
     category: backlog
     status: backlog
     title: Advanced ToDo fragments
-    description: Chunked advanced ToDo datasets (.json/.yaml) referenced by repositorypflege
-      automation.
+    description: Chunked advanced ToDo datasets (.json/.yaml) referenced by
+      repositorypflege automation.
     notes:
-      - Use repositorypflege/advanced-todo-report.js to rebuild consolidated views.
+      - Use repositorypflege/advanced-todo-report.js to rebuild consolidated
+        views.
     links: []
   - path: agents/
     category: agents
     status: active
     title: Python agent modules
-    description: Domain-specific agent implementations (art, contrastive training, defensive
-      shield, etc.).
+    description: Domain-specific agent implementations (art, contrastive training,
+      defensive shield, etc.).
     notes:
       - Integrated with scripts/agents runner pipeline and policy checks.
     links:
@@ -183,10 +188,10 @@ entries:
     title: Analytics outputs
     description: Generated datasets (conversation filters, repo-map JSON/CSV, audits).
     notes:
-      - scripts/repo-map.ts writes analysis/repo-map.json and CSV; keep artifacts in sync
-        with MandalaMap.*
-      - scripts/generate-trikaya-dashboard.mjs produziert analysis/trikaya-dashboard.(json|md|yaml)
-        für CREP/Trikāya-Governance.
+      - scripts/repo-map.ts writes analysis/repo-map.json and CSV; keep
+        artifacts in sync with MandalaMap.*
+      - scripts/generate-trikaya-dashboard.mjs produziert
+        analysis/trikaya-dashboard.(json|md|yaml) für CREP/Trikāya-Governance.
     links:
       - label: Repo map script
         path: scripts/repo-map.ts
@@ -208,10 +213,11 @@ entries:
     category: ci-infra
     status: active
     title: AWS deployment stubs
-    description: Lambda@Edge and related infrastructure definitions aligning with deployment
-      ready stacks.
+    description: Lambda@Edge and related infrastructure definitions aligning with
+      deployment ready stacks.
     notes:
-      - Coordinate changes with deployment/ and infrastructure/ to maintain parity.
+      - Coordinate changes with deployment/ and infrastructure/ to maintain
+        parity.
     links:
       - label: lambda-edge
         path: aws/lambda-edge
@@ -231,8 +237,10 @@ entries:
     title: CI support scripts
     description: Reusable CI scripts/tests (agent.yml, sigillin validators, OTEL wiring).
     notes:
-      - Review shell helpers to make sure instructions are not executed as failing jobs.
-      - See docs/roadmap/v1.0-stabilization-playbook.yaml checkpoints for CI ownership.
+      - Review shell helpers to make sure instructions are not executed as
+        failing jobs.
+      - See docs/roadmap/v1.0-stabilization-playbook.yaml checkpoints for CI
+        ownership.
     links:
       - label: agent workflow
         path: ci/agent.yml
@@ -261,9 +269,11 @@ entries:
     category: ci-infra
     status: active
     title: Codex build manifests
-    description: Build definitions for aeon, sharedream-interface, unified-mandala packaging.
+    description: Build definitions for aeon, sharedream-interface, unified-mandala
+      packaging.
     notes:
-      - Connect to release automation and ensure versions align with pnpm workspace state.
+      - Connect to release automation and ensure versions align with pnpm
+        workspace state.
     links:
       - label: unified-mandala build
         path: codexbuild/unified-mandala.build.yaml
@@ -308,8 +318,8 @@ entries:
     category: ci-infra
     status: active
     title: Deployment blueprints
-    description: Deployment manifests (fractal-ci, keda, pantheon, pyramid-ui) bridging
-      to ops stacks.
+    description: Deployment manifests (fractal-ci, keda, pantheon, pyramid-ui)
+      bridging to ops stacks.
     notes:
       - Sync with k8s/ and docker-compose profiles when updating services.
     links: []
@@ -317,15 +327,18 @@ entries:
     category: governance
     status: active
     title: Documentation
-    description: Core documentation including stabilization playbooks, onboarding, agents,
-      governance.
+    description: Core documentation including stabilization playbooks, onboarding,
+      agents, governance.
     notes:
-      - MandalaMap references docs/roadmap/v1.0-stabilization-playbook.* für CI/Release
-        Kontext und die Stub-Roadmap für Support-Migrationen.
-      - JetStream-Runbooks (`docs/runbooks/nats-jetstream.md`, `docs/runbooks/MaxBundle.md`)
-        beschreiben Setup, `$JS.API.INFO`-Fallbacks sowie `pnpm nats:doctor`/`pnpm test:jetstream`.
-      - docs/runbooks/tests.md listet `pnpm nats:docker` und dokumentiert den Emergence-SIGILLIN-Fallback.
-      - README Quickstart (Windows · PowerShell) erklärt `UI_DEV_URL`-Overrides und
+      - MandalaMap references docs/roadmap/v1.0-stabilization-playbook.* für
+        CI/Release Kontext und die Stub-Roadmap für Support-Migrationen.;
+        JetStream-Runbooks (docs/runbooks/nats-jetstream.md,
+        docs/runbooks/MaxBundle.md) beschreiben Setup, `$JS.API.INFO`-Fallbacks
+        sowie `pnpm nats:doctor`/`pnpm test:jetstream` inklusive Fehlertipps
+        (kein `-js`, Timeout, Berechtigungen); docs/runbooks/tests.md listet
+        `pnpm nats:docker` samt Emergence-SIGILLIN-Fallback; README Quickstart
+        (Windows · PowerShell) dokumentiert `UI_DEV_URL`-Overrides,
+        Auto-Port-Cleanup (`UM_DEV_SERVICES_AUTOFREE_PORTS`) und
         JetStream-Setup; `SIGILLIN_GENESIS.md` liegt als Placeholder im Repo.
     links:
       - label: v1.0 Playbook
@@ -346,7 +359,8 @@ entries:
     title: Experiments
     description: Research prototypes (A/B tests, emergence studies, self tuning).
     notes:
-      - Results feed into Resonance and Climate labs; validate before productionizing.
+      - Results feed into Resonance and Climate labs; validate before
+        productionizing.
     links: []
   - path: fixtures/
     category: testing
@@ -372,7 +386,8 @@ entries:
     title: Go agent runtime
     description: Go-based agent implementation with cmd/internal packages and CI harness.
     notes:
-      - Ensure Go tooling aligns with Node/TS orchestrators for metrics integration.
+      - Ensure Go tooling aligns with Node/TS orchestrators for metrics
+        integration.
     links:
       - label: go.mod
         path: go-agent/go.mod
@@ -408,7 +423,8 @@ entries:
     title: Infrastructure modules
     description: Infrastructure stacks (nats, otel, protodeploy) for service deployment.
     notes:
-      - Ensure Compose/K8s manifests stay aligned with infrastructure definitions.
+      - Ensure Compose/K8s manifests stay aligned with infrastructure
+        definitions.
     links: []
   - path: ingest/
     category: data-intel
@@ -472,7 +488,8 @@ entries:
     title: Observability package
     description: Prometheus config, golden signals scripts, Grafana integrations.
     notes:
-      - Part of release drills described in docs/roadmap/v1.0-stabilization-playbook.md.
+      - Part of release drills described in
+        docs/roadmap/v1.0-stabilization-playbook.md.
     links: []
   - path: orchestrator/
     category: agents
@@ -494,8 +511,8 @@ entries:
     category: core-runtime
     status: active
     title: Workspace packages
-    description: Primary TypeScript/Node packages grouped by domains (aeon-*, unifiedmandala-*,
-      etc.).
+    description: Primary TypeScript/Node packages grouped by domains (aeon-*,
+      unifiedmandala-*, etc.).
     notes:
       - Cover core libs, agents, domain modules, UI components, CLI tools.
       - Validated via pnpm test:ts:ci and pnpm lint commands.
@@ -506,7 +523,8 @@ entries:
     title: Pipeline manifests
     description: Pipelines (e.g., universe_pulse.yaml) orchestrating data/analysis flows.
     notes:
-      - Reference in docs/roadmap and release drills when scheduling pipeline runs.
+      - Reference in docs/roadmap and release drills when scheduling pipeline
+        runs.
     links: []
   - path: plugins/
     category: governance
@@ -562,8 +580,8 @@ entries:
     category: automation
     status: active
     title: Repository maintenance
-    description: Scripts and tests for repo health (advanced progress summaries, todo
-      parsing).
+    description: Scripts and tests for repo health (advanced progress summaries,
+      todo parsing).
     notes:
       - Use to regenerate advancedprogress.json and ToDo trackers.
     links: []
@@ -571,8 +589,8 @@ entries:
     category: observability
     status: in-progress
     title: Real User Monitoring
-    description: RUM instrumentation (otel-web.js) awaiting integration with observability
-      stack.
+    description: RUM instrumentation (otel-web.js) awaiting integration with
+      observability stack.
     notes:
       - Connect with observability/ golden signals once ready.
     links: []
@@ -588,8 +606,8 @@ entries:
     category: governance
     status: active
     title: Schema definitions
-    description: JSON schemas (eventbus.message.schema.json) referenced by validation
-      scripts.
+    description: JSON schemas (eventbus.message.schema.json) referenced by
+      validation scripts.
     notes:
       - Keep versioned with tools/kyverno-dry-run.mjs expectations.
     links: []
@@ -597,183 +615,32 @@ entries:
     category: automation
     status: active
     title: Automation scripts
-    description: 'Extensive Node/TS automation: dev servers, exports, QA, smoke tests,
-      repo map, etc.'
+    description: 'Extensive Node/TS automation: dev servers, exports, QA, smoke
+      tests, repo map, etc.'
     notes:
-      - Dist-first convention via scripts/run-dist.mjs; referenced throughout docs.
-      - Sigillin-Fix-CLI (`scripts/fix-sigillin.ts`) unterstützt Bridges bei Trikāya/CREP/Nächste-Schritt-Korrekturen.
-      - Windows-Parität über `scripts/setup-dev-env.ps1` + `scripts/run-powershell.mjs`
-        dokumentiert (PowerShell-Fallback).
-      - PowerShell-Setup exportiert Installationsstatus nach `out/setup/install-state.json`
-        für Codexfeedback-Reports.
-      - 'ParserFix: `(Test-CommandExists ...)` jetzt geklammert und Installationsresultate
-        zu Bool gecastet, damit PowerShell 7.5 den Dev-Setup ohne ParserError ausführt.'
-      - Corepack-Admin-Check vermeidet EPERM, setzt Benutzeraktivierung wenn keine Admin-Rechte
-        vorliegen und ergänzt NATS-Installationshinweise für `pnpm start:all`.
-      - Emergence-Breath (`scripts/emergence-breath.mjs`) koppelt `pnpm dev:breath` an
-        `validate:sigillins` und das Trikāya-Dashboard; Ausgabe enthält Coverage-Metriken
-        für Bridges.
-      - ' '
-      - D
-      - e
-      - v
-      - '-'
-      - S
-      - t
-      - a
-      - c
-      - k
-      - ' '
-      - p
-      - r
-      - ü
-      - f
-      - t
-      - ' '
-      - P
-      - o
-      - r
-      - t
-      - s
-      - ' '
-      - a
-      - u
-      - t
-      - o
-      - m
-      - a
-      - t
-      - i
-      - s
-      - c
-      - h
-      - ' '
-      - u
-      - n
-      - d
-      - ' '
-      - v
-      - e
-      - r
-      - w
-      - e
-      - i
-      - s
-      - t
-      - ' '
-      - a
-      - u
-      - f
-      - ' '
-      - '`'
-      - p
-      - n
-      - p
-      - m
-      - ' '
-      - d
-      - e
-      - v
-      - ':'
-      - p
-      - o
-      - r
-      - t
-      - s
-      - ':'
-      - f
-      - r
-      - e
-      - e
-      - '`'
-      - ;
-      - ' '
-      - '`'
-      - s
-      - c
-      - r
-      - i
-      - p
-      - t
-      - s
-      - /
-      - n
-      - a
-      - t
-      - s
-      - '-'
-      - d
-      - o
-      - c
-      - k
-      - e
-      - r
-      - .
-      - m
-      - j
-      - s
-      - '`'
-      - ' '
-      - s
-      - t
-      - a
-      - r
-      - t
-      - e
-      - t
-      - ' '
-      - b
-      - z
-      - w
-      - .
-      - ' '
-      - ü
-      - b
-      - e
-      - r
-      - w
-      - a
-      - c
-      - h
-      - t
-      - ' '
-      - J
-      - e
-      - t
-      - S
-      - t
-      - r
-      - e
-      - a
-      - m
-      - '-'
-      - C
-      - o
-      - n
-      - t
-      - a
-      - i
-      - n
-      - e
-      - r
-      - ' '
-      - f
-      - ü
-      - r
-      - ' '
-      - l
-      - o
-      - k
-      - a
-      - l
-      - e
-      - ' '
-      - T
-      - e
-      - s
-      - t
-      - s
-      - .
+      - Dist-first convention via scripts/run-dist.mjs; referenced throughout
+        docs.
+      - Sigillin-Fix-CLI (scripts/fix-sigillin.ts) unterstützt Bridges bei
+        Trikāya/CREP/Nächste-Schritt-Korrekturen.
+      - Windows-Parität über scripts/setup-dev-env.ps1 +
+        scripts/run-powershell.mjs dokumentiert (PowerShell-Fallback).
+      - PowerShell-Setup exportiert Installationsstatus nach
+        out/setup/install-state.json für Codexfeedback-Reports.;
+        Corepack-Admin-Check vermeidet EPERM, bietet Benutzeraktivierung ohne
+        Admin-Rechte und ergänzt NATS-Installationshinweise für `pnpm
+        start:all`.
+      - 'ParserFix: (Test-CommandExists ...) jetzt geklammert und
+        Installationsresultate werden zu Bool gecastet, damit PowerShell 7.5 den
+        Dev-Setup ohne ParserError ausführt.'
+      - Emergence-Breath (scripts/emergence-breath.mjs) koppelt pnpm dev:breath
+        an validate:sigillins + trikaya:dashboard und meldet Coverage-Metriken
+        nach jedem Lauf.
+      - 'Dev-Stack prüft Ports automatisch, räumt Standard-Ports via `pnpm dlx
+        kill-port` auf (Opt-out: `UM_DEV_SERVICES_AUTOFREE_PORTS=0`) und
+        verweist bei Bedarf auf `pnpm dev:ports:free`.'
+      - '`scripts/nats-doctor.mjs` liefert JetStream-Hinweise (fehlendes `-js`,
+        Timeout, Berechtigungen) und `scripts/nats-docker.mjs` startet bzw.
+        überwacht JetStream-Container für lokale Tests.'
     links:
       - label: run-dist
         path: scripts/run-dist.mjs
@@ -791,21 +658,22 @@ entries:
     category: core-runtime
     status: active
     title: Service implementations
-    description: Node/TS services (ghost-shell, chat proxy, codex memory kernel) with
-      tests.
+    description: Node/TS services (ghost-shell, chat proxy, codex memory kernel) with tests.
     notes:
-      - Run via pnpm dev:services / pnpm start:services as documented in release drills.
+      - Run via pnpm dev:services / pnpm start:services as documented in release
+        drills.
     links: []
   - path: sigils/
     category: governance
     status: active
     title: Sigillin bridges & archives
-    description: Machine-readable Sigillin briefs and bridge artifacts (JSON/YAML) for
-      AI integrations.
+    description: Machine-readable Sigillin briefs and bridge artifacts (JSON/YAML)
+      for AI integrations.
     notes:
-      - Generated via scripts/scaffold-interai-bridges.mjs; validate with pnpm validate:sigillins.
-      - Validator scope targets sigils/bridges (registry/archives skipped) with agent
-        overlays supplying minimal semantics for legacy entries.
+      - Generated via scripts/scaffold-interai-bridges.mjs; validate with pnpm
+        validate:sigillins.
+      - Validator scope targets sigils/bridges (registry/archives skipped) with
+        agent overlays supplying minimal semantics for legacy entries.
     links:
       - label: interai bridges
         path: sigils/bridges
@@ -821,8 +689,8 @@ entries:
     category: research
     status: experimental
     title: Simulation configs
-    description: Simulation definitions (YAML, Python) for universe modelling and wave
-      studies.
+    description: Simulation definitions (YAML, Python) for universe modelling and
+      wave studies.
     notes:
       - Coordinate with sims/ when running end-to-end experiments.
     links: []
@@ -830,10 +698,11 @@ entries:
     category: core-runtime
     status: active
     title: Python source
-    description: Python modules (adapters, metrics, membrane, middleware) powering data
-      pipelines.
+    description: Python modules (adapters, metrics, membrane, middleware) powering
+      data pipelines.
     notes:
-      - Validated via pnpm test:py and npx pyright; keep ERA5/OISST adapters green.
+      - Validated via pnpm test:py and npx pyright; keep ERA5/OISST adapters
+        green.
     links: []
   - path: stubs/
     category: support
@@ -842,10 +711,10 @@ entries:
     description: Placeholder modules for kan_network, liquid_time_constant_network,
       torch_geometric, etc.
     notes:
-      - Roadmap in docs/roadmap/stub-replacement-roadmap.(md|yaml) beschreibt Ablösung
-        und Keys-Governance.
-      - Bis Phase B abgeschlossen ist, stubs/ nur als Typ-Fallback nutzen; keys/ bleibt
-        automation-only.
+      - Roadmap in docs/roadmap/stub-replacement-roadmap.(md|yaml) beschreibt
+        Ablösung und Keys-Governance.
+      - Bis Phase B abgeschlossen ist, stubs/ nur als Typ-Fallback nutzen; keys/
+        bleibt automation-only.
     links:
       - label: Stub replacement roadmap
         path: docs/roadmap/stub-replacement-roadmap.md
@@ -853,8 +722,8 @@ entries:
     category: automation
     status: active
     title: Task manifests
-    description: Codex task definitions and sigillin skeleton specs driving automation
-      flows.
+    description: Codex task definitions and sigillin skeleton specs driving
+      automation flows.
     notes:
       - Keep synchronized with codexfeedback hooks and fractal analysis.
     links: []
@@ -874,14 +743,15 @@ entries:
     description: Auxiliary tools (fraktal lab CLI, governance checks, Kyverno runner).
     notes:
       - Used by policy:check and governance automation.
-      - Windows helper builds laufen via `pnpm build:windows-tools` → `scripts/run-powershell.mjs`.
+      - Windows helper builds laufen via pnpm build:windows-tools →
+        scripts/run-powershell.mjs.
     links: []
   - path: types/
     category: core-runtime
     status: stable
     title: Type definitions
-    description: TypeScript declaration overrides (automerge, geotiff, node, pdf-parse,
-      stream-json).
+    description: TypeScript declaration overrides (automerge, geotiff, node,
+      pdf-parse, stream-json).
     notes:
       - Support workspace TypeScript builds; keep in sync with dependencies.
     links: []
@@ -889,8 +759,8 @@ entries:
     category: support
     status: stable
     title: Typing shims
-    description: Third-party typing shims (aiohttp, fastapi, numpy, pandas, etc.) for
-      cross-language tooling.
+    description: Third-party typing shims (aiohttp, fastapi, numpy, pandas, etc.)
+      for cross-language tooling.
     notes:
       - Used by pyright and type checkers for mixed-language stack.
     links: []
@@ -907,8 +777,8 @@ entries:
     category: agents
     status: experimental
     title: Unified Mandala Orchestrator
-    description: Orchestrator workspace (nets, orchestrator, src) for coordinating agent
-      nets.
+    description: Orchestrator workspace (nets, orchestrator, src) for coordinating
+      agent nets.
     notes:
       - Ensure compatibility with top-level orchestrator/ Python modules.
     links: []
@@ -934,16 +804,17 @@ entries:
     title: Bridge registry index
     description: Registry listing all inter-AI bridge sigillins for discovery tooling.
     notes:
-      - Generated alongside bridge scaffolds; keep in sync with pnpm validate:sigillins
-        outputs.
-      - Consumed by map:mandala validation and future dashboards for CREP/Trikāya coverage.
+      - Generated alongside bridge scaffolds; keep in sync with pnpm
+        validate:sigillins outputs.
+      - Consumed by map:mandala validation and future dashboards for
+        CREP/Trikāya coverage.
     links:
       - label: bridges/
         path: sigils/bridges
 follow_up:
   - title: Separate instructional jobs from actionable CI
-    detail: Mandala-map workflow now runs continue-on-error and uploads artifacts; instructional
-      jobs decoupled.
+    detail: Mandala-map workflow now runs continue-on-error and uploads artifacts;
+      instructional jobs decoupled.
     related:
       - .github/
       - ci/
@@ -956,7 +827,8 @@ follow_up:
       - keys/
     status: in-progress
   - title: MandalaMap upkeep
-    detail: Update MandalaMap.* after each fractal iteration to capture structural changes.
+    detail: Update MandalaMap.* after each fractal iteration to capture structural
+      changes.
     related:
       - MandalaMap.yaml
       - MandalaMap.json

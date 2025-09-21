@@ -32,6 +32,8 @@ pnpm nats:doctor
 pnpm test:jetstream
 ```
 
+`pnpm nats:doctor` liefert bei Fehlschlägen konkrete Hinweise (z. B. JetStream fehlt, Timeout, fehlende Berechtigung) und nutzt `$JS.API.INFO` als Fallback für ältere/limitierte Deployments.
+
 ### Direkte API-Abfrage
 
 ```bash
@@ -42,16 +44,18 @@ docker run --rm --network host natsio/nats-box:latest \
 
 ### Typische Fehlerbilder
 
-| Symptom                               | Ursache                                         | Abhilfe                                                                                       |
-| ------------------------------------- | ----------------------------------------------- | --------------------------------------------------------------------------------------------- |
-| `ECONNREFUSED` in `nats:doctor`       | Container läuft nicht oder Port 4222 ist belegt | `pnpm nats:docker restart` oder `pnpm dlx kill-port 4222` ausführen.                          |
-| `no responders available for request` | JetStream nicht aktiviert (`-js` fehlt)         | Container neu starten mit `-js` Flag oder lokale Installation mit `nats-server -js`.          |
-| Timeout nach mehreren Attempts        | Corporate Proxy/Firewall blockt Verbindung      | `NATS_URL=nats://127.0.0.1:4222 pnpm nats:doctor` setzen, ggf. Proxy-Ausnahmen konfigurieren. |
+| Symptom                                                     | Ursache                                         | Abhilfe                                                                                       |
+| ----------------------------------------------------------- | ----------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| `ECONNREFUSED` in `nats:doctor`                             | Container läuft nicht oder Port 4222 ist belegt | `pnpm nats:docker restart` oder `pnpm dlx kill-port 4222` ausführen.                          |
+| `no responders available for request`                       | JetStream nicht aktiviert (`-js` fehlt)         | Container neu starten mit `-js` Flag oder lokale Installation mit `nats-server -js`.          |
+| `Connected server ... does not advertise JetStream support` | Server meldet kein JetStream in `INFO`          | NATS mit JetStream starten (`nats-server -js`, Docker-Flag `-js`) oder Konfiguration prüfen.  |
+| Timeout nach mehreren Attempts                              | Corporate Proxy/Firewall blockt Verbindung      | `NATS_URL=nats://127.0.0.1:4222 pnpm nats:doctor` setzen, ggf. Proxy-Ausnahmen konfigurieren. |
+| `authorization violation` / `permission denied`             | Account hat keine JetStream-Rechte              | JetStream-User/Token prüfen und Zugriff auf `$JS.API.INFO` bzw. Streams freischalten.         |
 
 ## Windows-spezifische Hinweise
 
 - PowerShell Quickstart siehe README („Quickstart (Windows · PowerShell)“).
-- Ports mit `pnpm dev:ports:free` freimachen, bevor `pnpm dev:stack` oder `pnpm start:all` läuft.
+- `pnpm dev:stack` bereinigt belegte Standard-Ports automatisch via `kill-port`. Bei Bedarf manuell `pnpm dev:ports:free` bzw. `pnpm dlx kill-port ...` ausführen oder Auto-Cleanup mit `UM_DEV_SERVICES_AUTOFREE_PORTS=0` deaktivieren.
 - `winget install --id Synadia.NATS-Server -e` installiert einen lokalen Dienst; beim Start immer `-js` ergänzen.
 
 ## CI-Integration

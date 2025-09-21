@@ -1,7 +1,7 @@
 fraktal: 40
 release: v1.0
 owner: codex
-updated: '2025-10-19'
+updated: '2025-10-20'
 summary: 'Strukturierter Maßnahmenplan zur Umsetzung der Fraktal40-Besprechung.
 
   Fokus auf stabile Kern-Builds, dist-first Services, verschärfte Governance
@@ -28,10 +28,12 @@ streams:
 
           JetStream-Bus-Test läuft unter Vitest; CI-Core startet einen Docker-basierten
           NATS-Server und ruft `pnpm nats:doctor` sowie `pnpm test:jetstream` im type-and-tests-Gate
-          auf (Fraktal57). Lokale Workflows verwenden `pnpm nats:docker` für JetStream-Container
-          und `pnpm dev:ports:free`/Port-Wächter im Dev-Stack, um Windows-Portkollisionen
-          früh zu erkennen. Runbook `docs/runbooks/nats-jetstream.md` beschreibt Setup,
-          Diagnose und `$JS.API.INFO`-Fallbacks für lokale/CI-Umgebungen.
+          auf (Fraktal57). `pnpm nats:doctor` liefert detaillierte Hinweise (fehlendes `-js`,
+          Timeout/Proxy, Berechtigungen) und nutzt `$JS.API.INFO` als Fallback. Lokale Workflows
+          verwenden `pnpm nats:docker` für JetStream-Container, `pnpm dev:stack` prüft Ports
+          und räumt sie standardmäßig via kill-port auf (Opt-out: `UM_DEV_SERVICES_AUTOFREE_PORTS=0`)
+          und verweist bei Bedarf auf `pnpm dev:ports:free`. Runbook `docs/runbooks/nats-jetstream.md`
+          dokumentiert Setup und Troubleshooting, README & Tests-Runbook spiegeln die neuen Hinweise.
 
           '
         success:
