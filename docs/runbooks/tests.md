@@ -4,7 +4,7 @@
 pnpm test        # einmalig
 pnpm test:watch  # dev-modus
 pnpm test:jetstream  # JetStream-Bus Vitest (mocked NATS contract)
-pnpm nats:doctor     # vor Integrationsläufen: prüft JetStream-Erreichbarkeit
+pnpm nats:doctor     # JetStream-Check mit `$JS.API.INFO`-Fallback & Fehlerspuren (Timeout, fehlendes -js, Rechte)
 pnpm nats:docker     # startet/verwaltet den lokalen JetStream-Container (nats:latest -js)
 ```
 

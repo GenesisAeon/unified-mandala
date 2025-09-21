@@ -1,6 +1,11 @@
 {
   "runs": [
     {
+      "fraktalrun": "Fraktal57 AutoCleanup",
+      "status": "implemented",
+      "notes": "`scripts/dev-services.mjs` auto-cleans default ports via `pnpm dlx kill-port` (configurable via UM_DEV_SERVICES_AUTOFREE_PORTS), logs richer guidance, and `scripts/nats-doctor.mjs` surfaces JetStream troubleshooting hints (missing -js, timeout/proxy, permissions) while falling back to `$JS.API.INFO`; README, runbooks, MandalaMap.*, and the command catalog document the new behaviour."
+    },
+    {
       "fraktalrun": "Fraktal57 JetStream Stabilisierung",
       "status": "implemented",
       "notes": "JetStream-Bus-Test läuft jetzt unter Vitest; ci.core startet Docker-NATS, ruft pnpm nats:doctor mit `$JS.API.INFO`-Fallback sowie pnpm test:jetstream; README (Windows-Quickstart) und docs/runbooks/nats-jetstream.md dokumentieren Setup/Diagnose. Dev-Stack prüft Ports (`pnpm dev:ports:free`), pnpm nats:docker orchestriert JetStream lokal und Emergence-Scan nutzt einen eingecheckten SIGILLIN_GENESIS.md-Placeholder bzw. Fallback auf docs/sigillin/GENESIS.md. Adapter-Builds nutzen scripts/lib/python.mjs, sodass pnpm adapter:build:* die Projekt-venv auch unter Windows findet."

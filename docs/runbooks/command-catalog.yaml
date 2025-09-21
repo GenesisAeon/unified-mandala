@@ -538,8 +538,9 @@ categories:
         command: pnpm dev:stack
         type: pnpm
         runs: node scripts/dev-services.mjs --mode=dev
-        description: Starts the dev stack orchestrator with default dev profiles and enforces
-          port availability (set `UM_DEV_SERVICES_SKIP_PORT_CHECK=1` to bypass the guard).
+        description: Starts the dev stack orchestrator, enforces port availability, and auto-frees
+          default ports via kill-port (disable with `UM_DEV_SERVICES_AUTOFREE_PORTS=0` or skip
+          with `UM_DEV_SERVICES_SKIP_PORT_CHECK=1`).
         source:
           - package.json#scripts.dev:stack
       - id: runtime.dev-ports-free
@@ -707,8 +708,9 @@ categories:
         command: pnpm nats:doctor
         type: pnpm
         runs: node scripts/nats-doctor.mjs
-        description: Checks JetStream readiness with retries before JetStream-dependent
-          tests run (expects `nats:docker` or equivalent to be up).
+        description: Checks JetStream readiness with retries, uses `$JS.API.INFO` as fallback,
+          and prints troubleshooting hints (missing `-js`, timeout, permissions; expects
+          `nats:docker` or equivalent to be up).
         source:
           - package.json#scripts.nats:doctor
           - scripts/nats-doctor.mjs

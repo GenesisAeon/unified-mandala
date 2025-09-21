@@ -51,8 +51,9 @@ docker compose --profile monitoring up
 > • Windows: Lange Pfade aktivieren; `.dockerignore` im Repo-Root verhindert riesige Build-Kontexte.
 > • `corepack enable` benötigt Administratorrechte. Wenn du ohne Admin-Rechte arbeitest, führt `scripts/setup-dev-env.ps1` automatisch die Benutzeraktivierung via `corepack prepare pnpm@10.17.0 --activate` aus und überspringt das persistente Enable.
 > • `pnpm start:all` erwartet einen laufenden JetStream-fähigen `nats-server`. Nutze `pnpm nats:docker` für einen vorkonfigurierten Docker-Container (`nats:latest -js`) oder installiere lokal via `winget install --id Synadia.NATS-Server -e` und starte ihn mit der Option `-js`.
-> • Bevor du den Dev-Stack startest, kannst du blockierte Ports mit `pnpm dev:ports:free` oder `pnpm dlx kill-port <port>` freigeben; `pnpm dev:stack` prüft Ports automatisch und verweist auf das Skript.
+> • `pnpm dev:stack` prüft Ports automatisch und versucht belegte Standard-Ports via `pnpm dlx kill-port` freizugeben. Bei Bedarf manuell nachhelfen (`pnpm dev:ports:free` oder `pnpm dlx kill-port <port>`); Auto-Cleanup lässt sich mit `UM_DEV_SERVICES_AUTOFREE_PORTS=0` deaktivieren.
 > • JetStream-Betrieb & Self-Check: `docs/runbooks/nats-jetstream.md` und `docs/runbooks/MaxBundle.md` bündeln Setup, Docker-Profile sowie `pnpm nats:doctor`/`pnpm test:jetstream` Troubleshooting.
+> • `pnpm nats:doctor` liefert bei Fehlern direkte Hinweise (z. B. JetStream nicht aktiviert, Timeout/Firewall, fehlende Berechtigung) und nutzt `$JS.API.INFO` als Fallback.
 
 ## Quickstart (Windows · PowerShell)
 
@@ -78,7 +79,7 @@ pnpm smoke:ui
 ```
 
 > Wenn Vite auf einen freien Port ausweicht (z. B. 5174), setze `UI_DEV_URL` entsprechend (`http://localhost:5174`).
-> Ports lassen sich vorab mit `pnpm dlx kill-port 3001 3002 3003 3004 4020 4021` freimachen.
+> Ports räumt der Dev-Stack standardmäßig automatisch (Kill-Port). Falls Prozesse hartnäckig sind, hilft `pnpm dlx kill-port 3001 3002 3003 3004 4020 4021` manuell oder `setx UM_DEV_SERVICES_AUTOFREE_PORTS 0` zum Deaktivieren des Auto-Cleanup.
 
 ---
 

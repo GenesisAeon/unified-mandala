@@ -9,6 +9,7 @@ import { fileURLToPath } from 'node:url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const repoRoot = path.resolve(__dirname, '..');
+const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 const modeArg = process.argv.find((arg) => arg.startsWith('--mode='));
 const explicitMode = modeArg ? modeArg.split('=')[1]?.toLowerCase() : undefined;
@@ -73,6 +74,8 @@ if (resolvedMode === 'prod') {
 }
 
 const skipPortChecks = process.env.UM_DEV_SERVICES_SKIP_PORT_CHECK === '1';
+const autoFreePortsEnabled = process.env.UM_DEV_SERVICES_AUTOFREE_PORTS !== '0';
+const attemptedAutoFree = new Set();
 
 const processes = [];
 
@@ -174,19 +177,44 @@ async function ensurePortsAvailable(service, env) {
   const candidates = collectPortCandidates(service, env);
   if (candidates.length === 0) return;
 
-  const conflicts = [];
-  for (const candidate of candidates) {
-    const available = await isPortAvailable(candidate.port);
-    if (!available) {
-      conflicts.push(candidate);
-    }
-  }
+  let conflicts = await findPortConflicts(candidates);
 
   if (conflicts.length > 0) {
+    if (autoFreePortsEnabled) {
+      const portsToFree = [...new Set(conflicts.map((entry) => entry.port))].filter(
+        (port) => !attemptedAutoFree.has(port),
+      );
+      if (portsToFree.length > 0) {
+        for (const port of portsToFree) {
+          attemptedAutoFree.add(port);
+        }
+        const freed = await attemptAutoFreePorts(portsToFree);
+        if (freed) {
+          await sleep(150);
+          conflicts = await findPortConflicts(candidates);
+          if (conflicts.length === 0) {
+            console.log(
+              `[dev-services] Freed occupied ports (${portsToFree.join(', ')}) automatically for ${service.name}.`,
+            );
+            return;
+          }
+        }
+      }
+    }
+
     console.error(`[dev-services] Port check failed for ${service.name}:`);
     for (const conflict of conflicts) {
       console.error(
         `  - ${conflict.key}=${conflict.port} already in use. Override the env var or run "pnpm dev:ports:free" / "pnpm dlx kill-port ${conflict.port}" first.`,
+      );
+    }
+    if (!autoFreePortsEnabled) {
+      console.error(
+        '[dev-services] Hint: set UM_DEV_SERVICES_AUTOFREE_PORTS=1 (default) to let the orchestrator attempt automatic cleanup via `pnpm dlx kill-port`.',
+      );
+    } else {
+      console.error(
+        '[dev-services] Automatic cleanup via `pnpm dlx kill-port` did not resolve the conflicts. Verify running processes or rerun with UM_DEV_SERVICES_AUTOFREE_PORTS=0 to disable auto-free.',
       );
     }
     process.exit(1);
@@ -209,5 +237,48 @@ function isPortAvailable(port) {
       });
     });
     tester.listen({ port, host: '127.0.0.1' });
+  });
+}
+
+async function findPortConflicts(candidates) {
+  const conflicts = [];
+  for (const candidate of candidates) {
+    const available = await isPortAvailable(candidate.port);
+    if (!available) {
+      conflicts.push(candidate);
+    }
+  }
+  return conflicts;
+}
+
+async function attemptAutoFreePorts(ports) {
+  if (ports.length === 0) {
+    return false;
+  }
+
+  console.warn(
+    `[dev-services] Attempting to free occupied ports via "pnpm dlx kill-port": ${ports.join(', ')}`,
+  );
+
+  return new Promise((resolve) => {
+    const child = spawn('pnpm', ['dlx', 'kill-port', ...ports.map((port) => String(port))], {
+      stdio: 'inherit',
+      cwd: repoRoot,
+      shell: process.platform === 'win32',
+    });
+
+    child.on('exit', (code) => {
+      if (code === 0) {
+        resolve(true);
+      } else {
+        console.error(`[dev-services] pnpm dlx kill-port exited with code ${code}.`);
+        resolve(false);
+      }
+    });
+
+    child.on('error', (error) => {
+      console.error(`[dev-services] Failed to run pnpm dlx kill-port: ${error.message}`);
+      resolve(false);
+    });
   });
 }

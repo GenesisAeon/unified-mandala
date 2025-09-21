@@ -8,17 +8,19 @@ summary:
     (-js) und führt `pnpm nats:doctor`, `pnpm test:ts:ci` sowie `pnpm test:jetstream`
     sequenziell aus.
   - '`scripts/nats-doctor.mjs` validiert JetStream mit konfigurierbaren Retries/Delays,
-    fällt bei API-Drift auf `$JS.API.INFO` zurück und formatiert Fehlermeldungen für CI-Logs.'
+    fällt bei API-Drift auf `$JS.API.INFO` zurück und liefert Troubleshooting-Hinweise
+    (fehlendes `-js`, Timeout/Proxy, Berechtigungen) für CI-Logs und lokale Läufe.'
   - '`package.json` ergänzt `test:jetstream`, `nats:doctor`, aktualisiert `check:ci`
     und deklariert `test:jest` als Vitest-Hinweis.'
   - Dokumentationsartefakte (README inkl. Windows-Quickstart, docs/runbooks/tests.md,
     neues docs/runbooks/nats-jetstream.md, command-catalog.*, MandalaMap.*, Playbook)
     spiegeln den JetStream-Flow; `analysis/scripts-and-commands.json` & `codexfeedback.yaml`
     synchronisiert.
-  - '`scripts/dev-services.mjs` prüft Ports vor dem Start und verlinkt `pnpm dev:ports:free`;
-    neues `scripts/nats-docker.mjs` orchestriert JetStream-Container (`pnpm nats:docker`),
-    `scripts/flags-api.ts` nutzt dedizierten Port und der Emergence-Scan nutzt einen eingecheckten
-    `SIGILLIN_GENESIS.md`-Placeholder bzw. Fallback auf `docs/sigillin/GENESIS.md`.'
+  - '`scripts/dev-services.mjs` prüft Ports vor dem Start, räumt Standard-Ports automatisch
+    via `pnpm dlx kill-port` auf (Opt-out `UM_DEV_SERVICES_AUTOFREE_PORTS=0`) und verlinkt
+    `pnpm dev:ports:free`; neues `scripts/nats-docker.mjs` orchestriert JetStream-Container
+    (`pnpm nats:docker`), `scripts/flags-api.ts` nutzt dedizierten Port und der Emergence-Scan
+    nutzt einen eingecheckten `SIGILLIN_GENESIS.md`-Placeholder bzw. Fallback auf `docs/sigillin/GENESIS.md`.'
   - 'Adapter-Builds sind Windows-tauglich: `scripts/lib/python.mjs` lokalisiert .venv-Interpreter, `pnpm adapter:build:era5` läuft über `scripts/adapter-build-era5.mjs` und die OISST/EFFIS-Skripte verwenden denselben Helper für Cross-Platform-Spawns.'
 deliverables:
   - tests/event-bus/jetstream-bus.test.ts
@@ -62,12 +64,13 @@ follow_up:
       bei Bedarf prüfen.
     status: done
 hook:
-  progress: Vitest-Test grün, CI startet Docker-NATS + Selfcheck; Dev-Stack meldet
-    Portkollisionen (`pnpm dev:ports:free`), `pnpm nats:docker` steht bereit, das
-    neue JetStream-Runbook (`docs/runbooks/nats-jetstream.md`) bündelt Setup/Diagnose
-    und README (Windows-Quickstart) + `SIGILLIN_GENESIS.md`-Placeholder sichern
-    Emergence-Läufe ab; Adapter-Builds greifen via `scripts/lib/python.mjs` weiter
-    automatisch auf die Projekt-venv zu.
+  progress: Vitest-Test grün, CI startet Docker-NATS + Selfcheck; Dev-Stack räumt
+    Ports automatisch via `pnpm dlx kill-port` (Opt-out `UM_DEV_SERVICES_AUTOFREE_PORTS=0`),
+    verweist bei Bedarf auf `pnpm dev:ports:free`, `pnpm nats:docker` steht bereit,
+    das JetStream-Runbook (`docs/runbooks/nats-jetstream.md`) bündelt Setup, `$JS.API.INFO`-Fallback
+    und Fehlertipps (kein `-js`, Timeout, Berechtigungen); README (Windows-Quickstart), MandalaMap.*
+    und Command-Catalog spiegeln Auto-Cleanup & Troubleshooting, Adapter-Builds greifen via
+    `scripts/lib/python.mjs` weiter automatisch auf die Projekt-venv zu.
   next_step: Extended-/Experimental-CI auf JetStream-Checks synchronisieren und
     policy-suite ggf. um Runbook-Hinweise ergänzen.
 repeat_required: false
