@@ -50,7 +50,8 @@ docker compose --profile monitoring up
 > • Für Observability mit Prometheus/Grafana das Compose-Profil `monitoring` starten (siehe `observability/README.md`).
 > • Windows: Lange Pfade aktivieren; `.dockerignore` im Repo-Root verhindert riesige Build-Kontexte.
 > • `corepack enable` benötigt Administratorrechte. Wenn du ohne Admin-Rechte arbeitest, führt `scripts/setup-dev-env.ps1` automatisch die Benutzeraktivierung via `corepack prepare pnpm@10.17.0 --activate` aus und überspringt das persistente Enable.
-> • `pnpm start:all` erwartet einen laufenden `nats-server`. Installiere ihn bei Bedarf via `winget install --id Synadia.NATS-Server -e` oder starte `docker run --name nats -p 4222:4222 -p 8222:8222 -d nats:latest`.
+> • `pnpm start:all` erwartet einen laufenden JetStream-fähigen `nats-server`. Nutze `pnpm nats:docker` für einen vorkonfigurierten Docker-Container (`nats:latest -js`) oder installiere lokal via `winget install --id Synadia.NATS-Server -e` und starte ihn mit der Option `-js`.
+> • Bevor du den Dev-Stack startest, kannst du blockierte Ports mit `pnpm dev:ports:free` oder `pnpm dlx kill-port <port>` freigeben; `pnpm dev:stack` prüft Ports automatisch und verweist auf das Skript.
 > • JetStream-Betrieb & Self-Check: `docs/runbooks/MaxBundle.md` bündelt den Setup-Flow inkl. `pnpm nats:doctor` & `pnpm test:jetstream` Troubleshooting.
 
 ---
@@ -87,6 +88,7 @@ Die Adapter sind initial als Stubs verfügbar und werden schrittweise an echte F
     "dev": "cross-env UI_DIST=http://localhost:5173 pnpm -F mandala-ui dev",
     "dev:services": "tsx scripts/dev-server.ts",
     "dev:stack": "node scripts/dev-services.mjs --mode=dev",
+    "dev:ports:free": "pnpm dlx kill-port 3001 3002 3003 3004 4020 4021",
     "start:services": "pnpm -s build && NODE_ENV=production node scripts/dev-services.mjs --mode=prod",
   },
 }

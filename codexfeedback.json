@@ -3,7 +3,7 @@
     {
       "fraktalrun": "Fraktal57 JetStream Stabilisierung",
       "status": "running",
-      "notes": "JetStream-Bus-Test läuft jetzt unter Vitest; ci.core startet Docker-NATS, ruft pnpm nats:doctor und pnpm test:jetstream; README/MandalaMap/Command-Catalog spiegeln den Flow."
+      "notes": "JetStream-Bus-Test l\u00e4uft jetzt unter Vitest; ci.core startet Docker-NATS, ruft pnpm nats:doctor und pnpm test:jetstream; README/MandalaMap/Command-Catalog spiegeln den Flow. Dev-Stack pr\u00fcft Ports (`pnpm dev:ports:free`), `pnpm nats:docker` f\u00fcr lokale JetStream-L\u00e4ufe und Emergence-Scan verwendet docs/sigillin/GENESIS.md als Fallback. Adapter-Builds nutzen `scripts/lib/python.mjs` und `scripts/adapter-build-era5.mjs`, sodass `pnpm adapter:build:*` die Projekt-venv auch unter Windows findet."
     },
     {
       "fraktalrun": "Fraktal56 Corepack Admin",
@@ -28,7 +28,7 @@
     {
       "fraktalrun": "Fraktal54 SigillinFix",
       "status": "in-progress",
-      "notes": "CLI \"pnpm sigil:fix\" prüft Trikāya/CREP/Nächste-Schritte, README & Fix-Guide aktualisiert; Folgefragmente (Reports/Hooks) offen."
+      "notes": "CLI \"pnpm sigil:fix\" pr\u00fcft Trik\u0101ya/CREP/N\u00e4chste-Schritte, README & Fix-Guide aktualisiert; Folgefragmente (Reports/Hooks) offen."
     },
     {
       "fraktalrun": "Fraktal53 DevTalkPart5 WindowsFlow",
@@ -53,12 +53,12 @@
     {
       "fraktalrun": "Fraktal49 Validator+CI Guardrails",
       "status": "in-progress",
-      "notes": "Validator scope fokussiert sigils/bridges, Repo-Sanity wartet auf apps/ui/dist/index.html und AgentWorkflowEngine setzt ethical_guardrails standardmäßig (inkl. Vitest-Abdeckung)."
+      "notes": "Validator scope fokussiert sigils/bridges, Repo-Sanity wartet auf apps/ui/dist/index.html und AgentWorkflowEngine setzt ethical_guardrails standardm\u00e4\u00dfig (inkl. Vitest-Abdeckung)."
     },
     {
       "fraktalrun": "Fraktal48 MandalaMap/Dashboard",
       "status": "implemented",
-      "notes": "MandalaMap workflow + validator hardening delivered; Trikāya dashboard artifacts, sigillin authoring CLI, und Stub-Replacement-Roadmap sind veröffentlicht (docs/roadmap/stub-replacement-roadmap.*)."
+      "notes": "MandalaMap workflow + validator hardening delivered; Trik\u0101ya dashboard artifacts, sigillin authoring CLI, und Stub-Replacement-Roadmap sind ver\u00f6ffentlicht (docs/roadmap/stub-replacement-roadmap.*)."
     },
     {
       "fraktalrun": "Fraktal46 SigillinBridges",
@@ -73,12 +73,12 @@
     {
       "fraktalrun": "Fraktal45 CIJobs",
       "status": "implemented",
-      "notes": "Type-and-tests job scheiterte an fehlendem plugin:@typescript-eslint/recommended; ESLint-Config erweitert und pnpm test:ts:ci erneut erfolgreich ausgeführt."
+      "notes": "Type-and-tests job scheiterte an fehlendem plugin:@typescript-eslint/recommended; ESLint-Config erweitert und pnpm test:ts:ci erneut erfolgreich ausgef\u00fchrt."
     },
     {
       "fraktalrun": "Fraktal44 StabilizationFinale",
       "status": "implemented",
-      "notes": "Fraktal40/41/43 Backlog geschlossen; Sigillin-Validator + CI-Workflow hinzugefügt; Dev-Skripte reorganisiert (`pnpm dev`, `pnpm dev:services`, `pnpm dev:stack`); Release-Drill inkl. Monitoring-Smoke verifiziert."
+      "notes": "Fraktal40/41/43 Backlog geschlossen; Sigillin-Validator + CI-Workflow hinzugef\u00fcgt; Dev-Skripte reorganisiert (`pnpm dev`, `pnpm dev:services`, `pnpm dev:stack`); Release-Drill inkl. Monitoring-Smoke verifiziert."
     },
     {
       "fraktalrun": "Fraktal43 DistFirstRunner",
@@ -88,12 +88,12 @@
     {
       "fraktalrun": "Fraktal41 PolicyHardening",
       "status": "implemented",
-      "notes": "CI-Core erweitert (Lint/Format), Extended-Läufe auf Node20 mit Coverage-Job, Monitoring-Profil ergänzt; Nightly/Extended Alerts & Coverage-Auswertung via Fraktal44 abgeschlossen."
+      "notes": "CI-Core erweitert (Lint/Format), Extended-L\u00e4ufe auf Node20 mit Coverage-Job, Monitoring-Profil erg\u00e4nzt; Nightly/Extended Alerts & Coverage-Auswertung via Fraktal44 abgeschlossen."
     },
     {
       "fraktalrun": "Fraktal40 V1Stabilization",
       "status": "implemented",
-      "notes": "Playbook/YAML aktualisiert: dist-first & runtime-smoke jetzt grün, Compose-Profile produktiv; Nightly Mirror + Alerts dokumentiert, Codexfeedback Tracker geschlossen (Fraktal44)."
+      "notes": "Playbook/YAML aktualisiert: dist-first & runtime-smoke jetzt gr\u00fcn, Compose-Profile produktiv; Nightly Mirror + Alerts dokumentiert, Codexfeedback Tracker geschlossen (Fraktal44)."
     },
     {
       "fraktalrun": "Fraktal39 PolicySuite",
@@ -103,7 +103,7 @@
     {
       "fraktalrun": "Fraktal38 BuildStabilization",
       "status": "implemented",
-      "notes": "ESLint + Prettier hooks, dist-first service orchestrator und Dokumentations-Updates für die v1.0-Stabilisierungsphase."
+      "notes": "ESLint + Prettier hooks, dist-first service orchestrator und Dokumentations-Updates f\u00fcr die v1.0-Stabilisierungsphase."
     },
     {
       "fraktalrun": "Fraktal37 CoreCI RunB",
@@ -113,17 +113,17 @@
     {
       "fraktalrun": "Fraktal8 OrientationHub",
       "status": "implemented",
-      "notes": "Alle Inhalte aus Fraktal8 integriert; weitere Fragmente können in Folgeläufen ergänzt werden."
+      "notes": "Alle Inhalte aus Fraktal8 integriert; weitere Fragmente k\u00f6nnen in Folgel\u00e4ufen erg\u00e4nzt werden."
     },
     {
       "fraktalrun": "Fraktal10 SigillinIndex",
       "status": "implemented",
-      "notes": "Sigillin-Index-Skript hinzugefügt; nächster Schritt Personhood-UI."
+      "notes": "Sigillin-Index-Skript hinzugef\u00fcgt; n\u00e4chster Schritt Personhood-UI."
     },
     {
       "fraktalrun": "Fraktal11 PersonhoodBuild",
       "status": "implemented",
-      "notes": "Personhood-Build und SigillinIndexPanel umgesetzt; Tests grün."
+      "notes": "Personhood-Build und SigillinIndexPanel umgesetzt; Tests gr\u00fcn."
     },
     {
       "fraktalrun": "Fraktal12 SigillinMap",
@@ -133,7 +133,7 @@
     {
       "fraktalrun": "Fraktal13 SigilsLint",
       "status": "implemented",
-      "notes": "Sigils-Validation-Script eingeführt; nächster Schritt CREP-Utility."
+      "notes": "Sigils-Validation-Script eingef\u00fchrt; n\u00e4chster Schritt CREP-Utility."
     },
     {
       "fraktalrun": "Fraktal13 CREPUtility",
@@ -148,7 +148,7 @@
     {
       "fraktalrun": "Fraktal15 SigillinStrict",
       "status": "implemented",
-      "notes": "YAML bereinigt, CI-Sigils-Strict hinzugefügt, Dokumentation ergänzt; Fraktal44 schloss fehlende Integrationsprüfungen (Validator + UI-Review) bzw. markierte Alt-UI als obsolet."
+      "notes": "YAML bereinigt, CI-Sigils-Strict hinzugef\u00fcgt, Dokumentation erg\u00e4nzt; Fraktal44 schloss fehlende Integrationspr\u00fcfungen (Validator + UI-Review) bzw. markierte Alt-UI als obsolet."
     },
     {
       "fraktalrun": "Fraktal16 ERA5Adapter",
@@ -173,7 +173,7 @@
     {
       "fraktalrun": "Fraktal20 PyrightOISSTRobust",
       "status": "implemented",
-      "notes": "Pyright-Fixes und OISST-Pipeline gehärtet; kein weiterer Lauf notwendig."
+      "notes": "Pyright-Fixes und OISST-Pipeline geh\u00e4rtet; kein weiterer Lauf notwendig."
     },
     {
       "fraktalrun": "Fraktal21 STACResonance",
@@ -183,7 +183,7 @@
     {
       "fraktalrun": "Fraktal22 ArchivistCI",
       "status": "implemented",
-      "notes": "Archivist-Agent eingebunden, CI-Abhängigkeiten und Resonanzberechnung angepasst."
+      "notes": "Archivist-Agent eingebunden, CI-Abh\u00e4ngigkeiten und Resonanzberechnung angepasst."
     },
     {
       "fraktalrun": "Fraktal23 ResonanceHardening",
@@ -228,7 +228,7 @@
     {
       "fraktalrun": "Fraktal37 UnifiedMandalaCore",
       "status": "implemented",
-      "notes": "Test-Layering für Core/Extended, pytest Marker, Legacy-Workflows deaktiviert und Core-Doku/Test-Guides aktualisiert; keine Wiederholung nötig."
+      "notes": "Test-Layering f\u00fcr Core/Extended, pytest Marker, Legacy-Workflows deaktiviert und Core-Doku/Test-Guides aktualisiert; keine Wiederholung n\u00f6tig."
     }
   ]
 }

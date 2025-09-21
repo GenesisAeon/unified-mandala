@@ -4,7 +4,11 @@ fraktal:
     - id: 57
       status: running
       notes: 'Fraktal57 JetStream-Bus stabilisiert: Vitest-Migration, `pnpm nats:doctor`,
-        Docker-NATS im CI type-and-tests.'
+        Docker-NATS im CI type-and-tests. Dev-Stack prüft Ports (`pnpm dev:ports:free`),
+        `pnpm nats:docker` orchestriert JetStream lokal und Emergence-Scan nutzt bei
+        fehlender SIGILLIN_GENESIS.md den Dokumentations-Fallback. Adapter-Builds nutzen
+        nun `scripts/lib/python.mjs`, wodurch `pnpm adapter:build:*` die Projekt-venv
+        auch unter Windows findet.'
       deliverables:
         - tests/event-bus/jetstream-bus.test.ts
         - package.json
@@ -22,9 +26,24 @@ fraktal:
         - README.md
         - analysis/scripts-and-commands.json
         - codexfeedback-fraktal57.yaml
+        - scripts/dev-services.mjs
+        - scripts/nats-docker.mjs
+        - scripts/flags-api.ts
+        - scripts/agents/emergence-scan.ts
+        - codexfeedback.yaml
+        - codexfeedback.json
+        - codexfeedback.md
+        - .env.example
+        - scripts/lib/python.mjs
+        - scripts/adapter-build-era5.mjs
+        - scripts/build-adapter-oisst.mjs
+        - scripts/build-adapter-effis.mjs
       hook:
-        progress: Vitest-Test läuft grün, CI startet JetStream-Container + `pnpm nats:doctor`/`pnpm
-          test:jetstream`; Dokumentation und MandalaMap verlinken das JetStream-Runbook.
+        progress: Vitest-Test grün, CI startet Docker-NATS + Selfcheck; Dev-Stack meldet
+          Portkollisionen (`pnpm dev:ports:free`), `pnpm nats:docker` steht bereit und
+          Emergence-Scan nutzt Dokumentations-Fallbacks bei fehlender SIGILLIN_GENESIS.
+          Adapter-Builds greifen via `scripts/lib/python.mjs` auf die .venv zu, so dass
+          `pnpm adapter:build:*` auf Windows funktioniert.
         next_step:
           JetStream-Runbook-Drills & policy-suite Hooks evaluieren, Extended-/Experimental-Workflows
           synchronisieren.

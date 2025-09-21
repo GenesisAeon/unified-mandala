@@ -7,7 +7,7 @@ async function main() {
 
   const ff = new FeatureFlags({
     servers: process.env.NATS_URL || 'nats://localhost:4222',
-    bucket: process.env.NATS_FEATURE_FLAGS_BUCKET || 'featureflags'
+    bucket: process.env.NATS_FEATURE_FLAGS_BUCKET || 'featureflags',
   });
   await ff.connect();
 
@@ -33,7 +33,9 @@ async function main() {
     res.json({ status: 'deleted' });
   });
 
-  const port = parseInt(process.env.PORT || '3000', 10);
+  const rawPort = process.env.FLAGS_API_PORT ?? process.env.PORT ?? '3004';
+  const parsed = Number.parseInt(rawPort, 10);
+  const port = Number.isNaN(parsed) ? 3004 : parsed;
   app.listen(port, () => {
     console.log(`Flags API server listening on ${port}`);
   });

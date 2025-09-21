@@ -586,8 +586,17 @@
           "command": "pnpm dev:stack",
           "type": "pnpm",
           "runs": "node scripts/dev-services.mjs --mode=dev",
-          "description": "Starts the dev stack orchestrator with default dev profiles.",
+          "description": "Starts the dev stack orchestrator with default dev profiles and enforces port availability (set `UM_DEV_SERVICES_SKIP_PORT_CHECK=1` to bypass the guard).",
           "source": ["package.json#scripts.dev:stack"]
+        },
+        {
+          "id": "runtime.dev-ports-free",
+          "name": "Free dev stack ports",
+          "command": "pnpm dev:ports:free",
+          "type": "pnpm",
+          "runs": "pnpm dlx kill-port 3001 3002 3003 3004 4020 4021",
+          "description": "Frees the default Share/Experiments/RAG/Realtime ports before booting the dev stack.",
+          "source": ["package.json#scripts.dev:ports:free"]
         },
         {
           "id": "runtime.dev-breath",
@@ -723,12 +732,48 @@
           "source": ["package.json#scripts.smoke:light-static"]
         },
         {
+          "id": "smoke.nats-docker-up",
+          "name": "Docker JetStream (up)",
+          "command": "pnpm nats:docker",
+          "type": "pnpm",
+          "runs": "node scripts/nats-docker.mjs up",
+          "description": "Starts or reuses the JetStream-enabled Docker container (`nats:latest -js`) on ports 4222/8222.",
+          "source": ["package.json#scripts.nats:docker"]
+        },
+        {
+          "id": "smoke.nats-docker-restart",
+          "name": "Docker JetStream (restart)",
+          "command": "pnpm nats:docker:restart",
+          "type": "pnpm",
+          "runs": "node scripts/nats-docker.mjs restart",
+          "description": "Recreates the JetStream container (helpful after configuration changes).",
+          "source": ["package.json#scripts.nats:docker:restart"]
+        },
+        {
+          "id": "smoke.nats-docker-down",
+          "name": "Docker JetStream (down)",
+          "command": "pnpm nats:docker:down",
+          "type": "pnpm",
+          "runs": "node scripts/nats-docker.mjs down",
+          "description": "Stops and removes the local JetStream container.",
+          "source": ["package.json#scripts.nats:docker:down"]
+        },
+        {
+          "id": "smoke.nats-docker-status",
+          "name": "Docker JetStream (status)",
+          "command": "pnpm nats:docker:status",
+          "type": "pnpm",
+          "runs": "node scripts/nats-docker.mjs status",
+          "description": "Prints the state of the managed JetStream container.",
+          "source": ["package.json#scripts.nats:docker:status"]
+        },
+        {
           "id": "smoke.nats-doctor",
           "name": "NATS JetStream doctor",
           "command": "pnpm nats:doctor",
           "type": "pnpm",
           "runs": "node scripts/nats-doctor.mjs",
-          "description": "Checks JetStream readiness with retries before JetStream-dependent tests run.",
+          "description": "Checks JetStream readiness with retries before JetStream-dependent tests run (expects `nats:docker` or equivalent to be up).",
           "source": ["package.json#scripts.nats:doctor", "scripts/nats-doctor.mjs"]
         },
         {
@@ -982,8 +1027,8 @@
           "name": "Build ERA5 adapter",
           "command": "pnpm adapter:build:era5",
           "type": "pnpm",
-          "runs": "PYTHONPATH=src python -c ... && node scripts/adapter-postprocess.mjs era5",
-          "description": "Builds ERA5 adapter artifacts using Python helpers and post-processing.",
+          "runs": "node scripts/adapter-build-era5.mjs",
+          "description": "Builds ERA5 fixtures via the Python helper with `.venv` auto-detection and runs the post-processor.",
           "source": ["package.json#scripts.adapter:build:era5"]
         },
         {
@@ -1230,8 +1275,8 @@
           "name": "Adapters offline build",
           "command": "pnpm ci:adapters-offline",
           "type": "pnpm",
-          "runs": "CI=true pnpm adapter:build:oisst && CI=true pnpm adapter:build:era5 || true",
-          "description": "Runs offline adapter builds in CI with non-blocking fallback.",
+          "runs": "cross-env CI=true pnpm adapter:build:oisst && cross-env CI=true pnpm adapter:build:era5 || true",
+          "description": "Runs offline adapter builds in CI with non-blocking fallback (cross-platform env export).",
           "source": ["package.json#scripts.ci:adapters-offline"]
         }
       ]

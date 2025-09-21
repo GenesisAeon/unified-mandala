@@ -96,37 +96,42 @@ Diese Sammlung bündelt pnpm-Skripte, Shell-Kommandos sowie wiederverwendbare To
 
 > Commands for launching dev servers, stacks, and runtime utilities.
 
-| Command                                                                                                            | Type   | Runs                                                                             | Beschreibung                                                              |
-| ------------------------------------------------------------------------------------------------------------------ | ------ | -------------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
-| `pnpm dev`                                                                                                         | `pnpm` | `cross-env UI_DIST=http://localhost:5173 pnpm -F mandala-ui dev`                 | Starts the mandala-ui dev server with UI_DIST override.                   |
-| `pnpm dev:ui`                                                                                                      | `pnpm` | `pnpm -F mandala-ui dev`                                                         | Runs the UI workspace dev server without overrides.                       |
-| `pnpm dev:services`                                                                                                | `pnpm` | `tsx scripts/dev-server.ts`                                                      | Launches backend/dev services via the TypeScript dev server orchestrator. |
-| `pnpm dev:stack`                                                                                                   | `pnpm` | `node scripts/dev-services.mjs --mode=dev`                                       | Starts the dev stack orchestrator with default dev profiles.              |
-| `pnpm dev:breath`                                                                                                  | `pnpm` | `node scripts/emergence-breath.mjs`                                              |
-| Watches sigils/UI/scripts, reruns `validate:sigillins`, rebuilds the Trikāya dashboard, and prints coverage stats. |
-| `pnpm start`                                                                                                       | `pnpm` | `pnpm -s build:ui && pnpm -s dev`                                                | Builds the UI then launches the dev server.                               |
-| `pnpm start:light`                                                                                                 | `pnpm` | `pnpm -s build:ui && node scripts/light-static-server.mjs`                       | Serves the built UI via the light static Node server.                     |
-| `pnpm start:services`                                                                                              | `pnpm` | `pnpm -s build && NODE_ENV=production node scripts/dev-services.mjs --mode=prod` | Builds the workspace and starts services in production mode.              |
-| `pnpm start:all`                                                                                                   | `pnpm` | `pnpm dev:stack`                                                                 | Convenience alias to boot the full dev stack.                             |
-| `pnpm dev:voiceos`                                                                                                 | `pnpm` | `node scripts/run-dist.mjs scripts/voice-os-control-api.ts`                      | Launches the Voice OS control API for voice interaction workflows.        |
-| `pnpm ghost-shell:cluster`                                                                                         | `pnpm` | `node scripts/run-dist.mjs services/ghost-shell/cluster.ts`                      | Starts the Ghost Shell clustering process.                                |
-| `pnpm ghost-shell:server`                                                                                          | `pnpm` | `node scripts/run-dist.mjs services/ghost-shell/server.ts`                       | Runs the Ghost Shell server entrypoint.                                   |
-| `pnpm generate:ghostshell-nginx`                                                                                   | `pnpm` | `node scripts/run-dist.mjs scripts/generate-ghostshell-nginx.ts`                 | Generates Nginx configuration for Ghost Shell deployments.                |
-| `pnpm audit:ui-vr`                                                                                                 | `pnpm` | `node scripts/run-dist.mjs scripts/ui-vr-audit.ts`                               | Audits UI and VR integration paths via Node runner.                       |
+| Command               | Type   | Runs                                                                             | Beschreibung                                                                                                                                              |
+| --------------------- | ------ | -------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `pnpm dev`            | `pnpm` | `cross-env UI_DIST=http://localhost:5173 pnpm -F mandala-ui dev`                 | Starts the mandala-ui dev server with UI_DIST override.                                                                                                   |
+| `pnpm dev:ui`         | `pnpm` | `pnpm -F mandala-ui dev`                                                         | Runs the UI workspace dev server without overrides.                                                                                                       |
+| `pnpm dev:services`   | `pnpm` | `tsx scripts/dev-server.ts`                                                      | Launches backend/dev services via the TypeScript dev server orchestrator.                                                                                 |
+| `pnpm dev:stack`      | `pnpm` | `node scripts/dev-services.mjs --mode=dev`                                       | Starts the dev stack orchestrator with default dev profiles and enforces port availability (set `UM_DEV_SERVICES_SKIP_PORT_CHECK=1` to bypass the guard). |
+| `pnpm dev:ports:free` | `pnpm` | `pnpm dlx kill-port 3001 3002 3003 3004 4020 4021`                               | Frees the default Share/Experiments/RAG/Realtime ports before booting the dev stack.                                                                      |
+| `pnpm dev:breath`     | `pnpm` | `node scripts/emergence-breath.mjs`                                              | Watches sigils/UI/scripts, reruns `validate:sigillins`, rebuilds the Trikāya dashboard, and prints coverage stats.                                        |
+| `pnpm start`          | `pnpm` | `pnpm -s build:ui && pnpm -s dev`                                                | Builds the UI then launches the dev server.                                                                                                               |
+| `pnpm start:light`    | `pnpm` | `pnpm -s build:ui && node scripts/light-static-server.mjs`                       | Serves the built UI via the light static Node server.                                                                                                     |
+| `pnpm start:services` | `pnpm` | `pnpm -s build && NODE_ENV=production node scripts/dev-services.mjs --mode=prod` | Builds the workspace and starts services in production mode.                                                                                              |
+| `pnpm start:all`      | `pnpm` | `pnpm dev:stack`                                                                 | Convenience alias to boot the full dev stack.                                                                                                             |
+
+| `pnpm dev:voiceos` | `pnpm` | `node scripts/run-dist.mjs scripts/voice-os-control-api.ts` | Launches the Voice OS control API for voice interaction workflows. |
+| `pnpm ghost-shell:cluster` | `pnpm` | `node scripts/run-dist.mjs services/ghost-shell/cluster.ts` | Starts the Ghost Shell clustering process. |
+| `pnpm ghost-shell:server` | `pnpm` | `node scripts/run-dist.mjs services/ghost-shell/server.ts` | Runs the Ghost Shell server entrypoint. |
+| `pnpm generate:ghostshell-nginx` | `pnpm` | `node scripts/run-dist.mjs scripts/generate-ghostshell-nginx.ts` | Generates Nginx configuration for Ghost Shell deployments. |
+| `pnpm audit:ui-vr` | `pnpm` | `node scripts/run-dist.mjs scripts/ui-vr-audit.ts` | Audits UI and VR integration paths via Node runner. |
 
 ## Smoke & Monitoring
 
 > Operational smoke tests and monitoring helpers.
 
-| Command                   | Type   | Runs                                                    | Beschreibung                                                                                                     |
-| ------------------------- | ------ | ------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
-| `pnpm smoke:ui`           | `pnpm` | `node scripts/smoke/ui-dev-smoke.mjs`                   | Performs smoke testing against the UI dev server (respects `UI_DEV_URL` without spawning another Vite instance). |
-| `pnpm smoke:dev`          | `pnpm` | `node scripts/smoke/dev-server-smoke.mjs`               | Checks dev server readiness endpoints.                                                                           |
-| `pnpm smoke:mrv`          | `pnpm` | `node scripts/smoke/mrv-smoke.mjs`                      | Executes MRV smoke validation routine.                                                                           |
-| `pnpm smoke:light-static` | `pnpm` | `node scripts/smoke/light-static-smoke.mjs`             | Validates the light static server responses (Brotli/Gzip).                                                       |
-| `pnpm nats:doctor`        | `pnpm` | `node scripts/nats-doctor.mjs`                          | Checks JetStream readiness with retries before JetStream-dependent tests run.                                    |
-| `pnpm smoke:ttfb`         | `pnpm` | `pnpm -s build:ui && node scripts/smoke/ttfb-smoke.mjs` | Measures time-to-first-byte after building the UI.                                                               |
-| `pnpm smoke:agents`       | `pnpm` | `node scripts/smoke/agents-smoke.mjs`                   | Runs smoke tests across agent services.                                                                          |
+| Command                    | Type   | Runs                                                    | Beschreibung                                                                                                                 |
+| -------------------------- | ------ | ------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| `pnpm smoke:ui`            | `pnpm` | `node scripts/smoke/ui-dev-smoke.mjs`                   | Performs smoke testing against the UI dev server (respects `UI_DEV_URL` without spawning another Vite instance).             |
+| `pnpm smoke:dev`           | `pnpm` | `node scripts/smoke/dev-server-smoke.mjs`               | Checks dev server readiness endpoints.                                                                                       |
+| `pnpm smoke:mrv`           | `pnpm` | `node scripts/smoke/mrv-smoke.mjs`                      | Executes MRV smoke validation routine.                                                                                       |
+| `pnpm smoke:light-static`  | `pnpm` | `node scripts/smoke/light-static-smoke.mjs`             | Validates the light static server responses (Brotli/Gzip).                                                                   |
+| `pnpm nats:docker`         | `pnpm` | `node scripts/nats-docker.mjs up`                       | Starts or reuses the JetStream-enabled Docker container (`nats:latest -js`) on ports 4222/8222.                              |
+| `pnpm nats:docker:restart` | `pnpm` | `node scripts/nats-docker.mjs restart`                  | Recreates the JetStream container (helpful after configuration changes).                                                     |
+| `pnpm nats:docker:down`    | `pnpm` | `node scripts/nats-docker.mjs down`                     | Stops and removes the local JetStream container.                                                                             |
+| `pnpm nats:docker:status`  | `pnpm` | `node scripts/nats-docker.mjs status`                   | Prints the state of the managed JetStream container.                                                                         |
+| `pnpm nats:doctor`         | `pnpm` | `node scripts/nats-doctor.mjs`                          | Checks JetStream readiness with retries before JetStream-dependent tests run (expects `nats:docker` or equivalent to be up). |
+| `pnpm smoke:ttfb`          | `pnpm` | `pnpm -s build:ui && node scripts/smoke/ttfb-smoke.mjs` | Measures time-to-first-byte after building the UI.                                                                           |
+| `pnpm smoke:agents`        | `pnpm` | `node scripts/smoke/agents-smoke.mjs`                   | Runs smoke tests across agent services.                                                                                      |
 
 ## Agents & Emergence
 
@@ -169,16 +174,16 @@ Diese Sammlung bündelt pnpm-Skripte, Shell-Kommandos sowie wiederverwendbare To
 
 > Dataset builders, adapter workflows, and resonance tooling.
 
-| Command                    | Type   | Runs                                                                        | Beschreibung                                                            |
-| -------------------------- | ------ | --------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
-| `pnpm adapter:build:era5`  | `pnpm` | `PYTHONPATH=src python -c ... && node scripts/adapter-postprocess.mjs era5` | Builds ERA5 adapter artifacts using Python helpers and post-processing. |
-| `pnpm adapter:build:oisst` | `pnpm` | `node scripts/build-adapter-oisst.mjs`                                      | Generates OISST adapter data bundles.                                   |
-| `pnpm adapter:build:effis` | `pnpm` | `node scripts/build-adapter-effis.mjs`                                      | Builds EFFIS adapter outputs.                                           |
-| `pnpm adapters:ci:install` | `pnpm` | `pip install -r src/adapters/requirements.txt`                              | Installs Python requirements for adapters in CI.                        |
-| `pnpm resonance:calc`      | `pnpm` | `node scripts/run-dist.mjs scripts/resonance-calc.ts`                       | Runs the resonance calculator for sigillin analytics.                   |
-| `pnpm scan:ingest`         | `pnpm` | `node scripts/ingest-external-scan.mjs`                                     | Scans and ingests external dataset manifests.                           |
-| `pnpm stac:validate`       | `pnpm` | `node scripts/validate-stac.mjs`                                            | Validates STAC catalog outputs.                                         |
-| `pnpm stac:validate:item`  | `pnpm` | `node scripts/run-dist.mjs scripts/validate-stac.ts out/example.item.json`  | Validates a single STAC item artifact.                                  |
+| Command                    | Type   | Runs                                                                       | Beschreibung                                                                                        |
+| -------------------------- | ------ | -------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| `pnpm adapter:build:era5`  | `pnpm` | `node scripts/adapter-build-era5.mjs`                                      | Builds ERA5 fixtures via the Python helper with `.venv` auto-detection and runs the post-processor. |
+| `pnpm adapter:build:oisst` | `pnpm` | `node scripts/build-adapter-oisst.mjs`                                     | Generates OISST adapter data bundles.                                                               |
+| `pnpm adapter:build:effis` | `pnpm` | `node scripts/build-adapter-effis.mjs`                                     | Builds EFFIS adapter outputs.                                                                       |
+| `pnpm adapters:ci:install` | `pnpm` | `pip install -r src/adapters/requirements.txt`                             | Installs Python requirements for adapters in CI.                                                    |
+| `pnpm resonance:calc`      | `pnpm` | `node scripts/run-dist.mjs scripts/resonance-calc.ts`                      | Runs the resonance calculator for sigillin analytics.                                               |
+| `pnpm scan:ingest`         | `pnpm` | `node scripts/ingest-external-scan.mjs`                                    | Scans and ingests external dataset manifests.                                                       |
+| `pnpm stac:validate`       | `pnpm` | `node scripts/validate-stac.mjs`                                           | Validates STAC catalog outputs.                                                                     |
+| `pnpm stac:validate:item`  | `pnpm` | `node scripts/run-dist.mjs scripts/validate-stac.ts out/example.item.json` | Validates a single STAC item artifact.                                                              |
 
 ## Conversations & Task Automation
 
@@ -206,12 +211,12 @@ Diese Sammlung bündelt pnpm-Skripte, Shell-Kommandos sowie wiederverwendbare To
 
 > Policy validation and CI governance gates.
 
-| Command                    | Type   | Runs                                                                                                   | Beschreibung                                                                  |
-| -------------------------- | ------ | ------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------- |
-| `pnpm policy:check`        | `pnpm` | `node scripts/policy-suite.mjs`                                                                        | Runs the unified policy suite (OPA, Guardrails, Kyverno).                     |
-| `pnpm kyverno:validate`    | `pnpm` | `node tools/kyverno-dry-run.mjs`                                                                       | Executes Kyverno validation across manifests.                                 |
-| `pnpm ci:sigils`           | `pnpm` | `pnpm sigils:index:strict && pnpm test:sigil tests/fixtures/sigillin/good.yaml && pnpm resonance:calc` | CI pipeline for sigils combining strict index, CLI tests, and resonance calc. |
-| `pnpm ci:adapters-offline` | `pnpm` | `CI=true pnpm adapter:build:oisst && CI=true pnpm adapter:build:era5 \|\| true`                        | Runs offline adapter builds in CI with non-blocking fallback.                 |
+| Command                    | Type   | Runs                                                                                                   | Beschreibung                                                                              |
+| -------------------------- | ------ | ------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------- |
+| `pnpm policy:check`        | `pnpm` | `node scripts/policy-suite.mjs`                                                                        | Runs the unified policy suite (OPA, Guardrails, Kyverno).                                 |
+| `pnpm kyverno:validate`    | `pnpm` | `node tools/kyverno-dry-run.mjs`                                                                       | Executes Kyverno validation across manifests.                                             |
+| `pnpm ci:sigils`           | `pnpm` | `pnpm sigils:index:strict && pnpm test:sigil tests/fixtures/sigillin/good.yaml && pnpm resonance:calc` | CI pipeline for sigils combining strict index, CLI tests, and resonance calc.             |
+| `pnpm ci:adapters-offline` | `pnpm` | `cross-env CI=true pnpm adapter:build:oisst && cross-env CI=true pnpm adapter:build:era5 \|\| true`    | Runs offline adapter builds in CI with non-blocking fallback (cross-platform env export). |
 
 ## Aeon & Symbolic Operations
 

@@ -147,7 +147,7 @@ Repository: unified-mandala
 
 - `scripts/` — **active** Automation scripts
   - Extensive Node/TS automation: dev servers, exports, QA, smoke tests, repo map, etc.
-- Notes: Dist-first convention via scripts/run-dist.mjs; Sigillin-Fix-CLI (`scripts/fix-sigillin.ts`) ergänzt Bridge-Tooling; Windows-Parität via `scripts/setup-dev-env.ps1` + `scripts/run-powershell.mjs` dokumentiert; PowerShell-Setup exportiert Installationsstatus nach `out/setup/install-state.json`; ParserFix `(Test-CommandExists ...)` + Bool-Cast heben PowerShell 7.5 ParserError auf; Corepack-Admin-Check vermeidet EPERM und liefert Benutzeraktivierung samt NATS-Installationshinweis; Emergence-Breath (`scripts/emergence-breath.mjs`) koppelt `pnpm dev:breath` an `validate:sigillins` + Trikāya-Dashboard und protokolliert Coverage-Metriken.
+- Notes: Dist-first convention via scripts/run-dist.mjs; Sigillin-Fix-CLI (`scripts/fix-sigillin.ts`) ergänzt Bridge-Tooling; Windows-Parität via `scripts/setup-dev-env.ps1` + `scripts/run-powershell.mjs` dokumentiert; PowerShell-Setup exportiert Installationsstatus nach `out/setup/install-state.json`; ParserFix `(Test-CommandExists ...)` + Bool-Cast heben PowerShell 7.5 ParserError auf; Corepack-Admin-Check vermeidet EPERM und liefert Benutzeraktivierung samt NATS-Installationshinweis; Emergence-Breath (`scripts/emergence-breath.mjs`) koppelt `pnpm dev:breath` an `validate:sigillins` + Trikāya-Dashboard und protokolliert Coverage-Metriken; Dev-Stack prüft Ports automatisch und verweist auf `pnpm dev:ports:free`; `scripts/nats-docker.mjs` startet bzw. überwacht JetStream-Container für lokale Tests.
   - Links: [run-dist](scripts/run-dist.mjs), [dev-services](scripts/dev-services.mjs), [sigil-fix](scripts/fix-sigillin.ts), [setup-dev-env.ps1](scripts/setup-dev-env.ps1), [run-powershell](scripts/run-powershell.mjs)
 
 - `tasks/` — **active** Task manifests
@@ -269,7 +269,7 @@ Repository: unified-mandala
 
 - `docs/` — **active** Documentation
   - Core documentation including stabilization playbooks, onboarding, agents, governance.
-  - Notes: MandalaMap references docs/roadmap/v1.0-stabilization-playbook.\* für CI/Release Kontext und die Stub-Roadmap für Support-Migrationen.; JetStream-Runbook (`docs/runbooks/MaxBundle.md`) beschreibt Setup & Selfchecks (`pnpm nats:doctor`, `pnpm test:jetstream`) (Fraktal57).
+  - Notes: MandalaMap references docs/roadmap/v1.0-stabilization-playbook.\* für CI/Release Kontext und die Stub-Roadmap für Support-Migrationen.; JetStream-Runbook (`docs/runbooks/MaxBundle.md`) beschreibt Setup & Selfchecks (`pnpm nats:doctor`, `pnpm test:jetstream`) (Fraktal57); docs/runbooks/tests.md listet `pnpm nats:docker` sowie den SIGILLIN_GENESIS-Fallback für Emergence-Scans.
   - Links: [v1.0 Playbook](docs/roadmap/v1.0-stabilization-playbook.md) · [Stub roadmap](docs/roadmap/stub-replacement-roadmap.md)
 
 - `governance/` — **active** Governance policies
