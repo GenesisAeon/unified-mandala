@@ -23,8 +23,9 @@ streams:
       - id: core-ci-hardening
         description: Fail-fast Verhalten und Nightly-Matrix in CI Core etablieren
         status: done
-        notes: ci.nightly.yml spiegelt type-and-tests; Toolchain-Artefakt + Alert-Auswertung
-          aktiv (Fraktal44)
+        notes: |
+          ci.nightly.yml spiegelt type-and-tests; Toolchain-Artefakt + Alert-Auswertung aktiv (Fraktal44).
+          JetStream-Bus-Test läuft unter Vitest; CI-Core startet einen Docker-basierten NATS-Server und ruft `pnpm nats:doctor` sowie `pnpm test:jetstream` im type-and-tests-Gate auf (Fraktal57).
         success:
           - pnpm test:ts:ci
           - pnpm test:py

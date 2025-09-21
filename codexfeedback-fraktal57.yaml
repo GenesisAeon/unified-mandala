@@ -1,0 +1,37 @@
+fraktal: 57
+status: running
+owner: ChefDevAI
+summary:
+  - 'JetStream-Bus-Test von Jest nach Vitest migriert (`tests/event-bus/jetstream-bus.test.ts`), inklusive Durable/ManualAck-Assertion und Vitest-Mock für `nats`.'
+  - 'CI-Core (`.github/workflows/ci.core.yml`) startet einen Docker-basierten NATS-Server (-js) und führt `pnpm nats:doctor`, `pnpm test:ts:ci` sowie `pnpm test:jetstream` sequenziell aus.'
+  - '`scripts/nats-doctor.mjs` validiert JetStream mit konfigurierbaren Retries/Delays und formatiert Fehlermeldungen für CI-Logs.'
+  - '`package.json` ergänzt `test:jetstream`, `nats:doctor`, aktualisiert `check:ci` und deklariert `test:jest` als Vitest-Hinweis.'
+  - 'Dokumentationsartefakte (README, docs/runbooks/tests.md, command-catalog.*, MandalaMap.*, Playbook) spiegeln den neuen JetStream-Flow; `analysis/scripts-and-commands.json` & `codexfeedback.yaml` synchronisiert.'
+deliverables:
+  - tests/event-bus/jetstream-bus.test.ts
+  - package.json
+  - scripts/nats-doctor.mjs
+  - .github/workflows/ci.core.yml
+  - README.md
+  - docs/runbooks/tests.md
+  - docs/runbooks/command-catalog.md
+  - docs/runbooks/command-catalog.yaml
+  - docs/runbooks/command-catalog.json
+  - docs/roadmap/v1.0-stabilization-playbook.md
+  - docs/roadmap/v1.0-stabilization-playbook.yaml
+  - MandalaMap.md
+  - MandalaMap.yaml
+  - MandalaMap.json
+  - analysis/scripts-and-commands.json
+  - codexfeedback.yaml
+follow_up:
+  ci_extended_sync:
+    description: 'Extended/Experimental Workflows auf JetStream-Checks prüfen (`pnpm nats:doctor` & Docker-NATS) und ggf. MandalaMap aktualisieren.'
+    status: planned
+  runbook_drill:
+    description: 'JetStream-Runbook (`docs/runbooks/MaxBundle.md`) um praktischen Drill mit `pnpm nats:doctor`/`pnpm test:jetstream` erweitern.'
+    status: planned
+hook:
+  progress: 'Vitest-JetStream-Test grün, type-and-tests startet Docker-NATS + Selfcheck; Command-Catalog & MandalaMap referenzieren Runbook.'
+  next_step: 'Follow-ups für Extended-CI und Runbook-Drills aufgreifen, policy-suite ggf. um JetStream-Checks ergänzen.'
+repeat_required: false

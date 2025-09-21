@@ -68,7 +68,7 @@ Repository: unified-mandala
 
 - `.github/` — **active** GitHub workflows & templates
   - Workflow definitions (core, nightly, experimental) and community health files.
-  - Notes: Audit instructions encoded as jobs; isolate non-actionable tasks to stop false CI failures.; Core/extended workflows documented in docs/roadmap/v1.0-stabilization-playbook.md.; Sigillin validator is required on main; mandala-map workflow uploads artifacts without blocking CI.; Repo Sanity builds the UI dist and waits on apps/ui/dist/index.html before running map/audit checks to avoid race conditions.
+  - Notes: Audit instructions encoded as jobs; isolate non-actionable tasks to stop false CI failures.; Core/extended workflows documented in docs/roadmap/v1.0-stabilization-playbook.md.; Sigillin validator is required on main; mandala-map workflow uploads artifacts without blocking CI.; Repo Sanity builds the UI dist and waits on apps/ui/dist/index.html before running map/audit checks to avoid race conditions.; CI-Core startet einen Docker-basierten NATS-Server und ruft `pnpm nats:doctor` + `pnpm test:jetstream` im type-and-tests-Gate auf (Fraktal57).
   - Links: [CI Core](.github/workflows/ci.core.yml), [Nightly Mirror](.github/workflows/ci.nightly.yml), [Sigillin validate](.github/workflows/sigillin-validate.yml), [Mandala map job](.github/workflows/mandala-map.yml)
 
 - `.husky/` — **active** Git hooks
@@ -269,7 +269,7 @@ Repository: unified-mandala
 
 - `docs/` — **active** Documentation
   - Core documentation including stabilization playbooks, onboarding, agents, governance.
-  - Notes: MandalaMap references docs/roadmap/v1.0-stabilization-playbook.\* für CI/Release Kontext und die Stub-Roadmap für Support-Migrationen.
+  - Notes: MandalaMap references docs/roadmap/v1.0-stabilization-playbook.\* für CI/Release Kontext und die Stub-Roadmap für Support-Migrationen.; JetStream-Runbook (`docs/runbooks/MaxBundle.md`) beschreibt Setup & Selfchecks (`pnpm nats:doctor`, `pnpm test:jetstream`) (Fraktal57).
   - Links: [v1.0 Playbook](docs/roadmap/v1.0-stabilization-playbook.md) · [Stub roadmap](docs/roadmap/stub-replacement-roadmap.md)
 
 - `governance/` — **active** Governance policies

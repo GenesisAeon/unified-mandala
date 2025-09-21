@@ -161,8 +161,8 @@ categories:
         name: 'Combined CI gate'
         command: 'pnpm check:ci'
         type: pnpm
-        runs: 'npx tsc -p tsconfig.json --noEmit && pnpm test:ts:ci && npx pyright'
-        description: 'Runs TypeScript compilation, CI Vitest suite, and Pyright in a single pass.'
+        runs: 'npx tsc -p tsconfig.json --noEmit && pnpm nats:doctor && pnpm test:ts:ci && pnpm test:jetstream && npx pyright'
+        description: 'Runs TypeScript compilation, JetStream readiness, CI Vitest suites, and Pyright in a single pass.'
         source:
           - package.json#scripts.check:ci
       - id: quality.ci-fast-checks
@@ -229,8 +229,8 @@ categories:
         name: 'Legacy Jest tests'
         command: 'pnpm test:jest'
         type: pnpm
-        runs: 'jest'
-        description: 'Runs Jest-based suites for legacy compatibility.'
+        runs: 'echo "(Jest deaktiviert – nutze vitest)" && exit 0'
+        description: 'Legacy alias that prints a Vitest migration hint (Jest disabled).'
         source:
           - package.json#scripts.test:jest
       - id: testing.test-agents
@@ -265,6 +265,14 @@ categories:
         description: 'Vitest run tuned for CI memory constraints.'
         source:
           - package.json#scripts.test:ts:ci
+      - id: testing.test-jetstream
+        name: 'JetStream bus test'
+        command: 'pnpm test:jetstream'
+        type: pnpm
+        runs: 'vitest run --config vitest.config.ts --reporter=default tests/event-bus/jetstream-bus.test.ts'
+        description: 'Executes the JetStream bus contract test via Vitest (migrated from Jest).'
+        source:
+          - package.json#scripts.test:jetstream
       - id: testing.test-ts-extended
         name: 'Extended TS suite'
         command: 'pnpm test:ts:extended'
@@ -621,6 +629,15 @@ categories:
         description: 'Validates the light static server responses (Brotli/Gzip).'
         source:
           - package.json#scripts.smoke:light-static
+      - id: smoke.nats-doctor
+        name: 'NATS JetStream doctor'
+        command: 'pnpm nats:doctor'
+        type: pnpm
+        runs: 'node scripts/nats-doctor.mjs'
+        description: 'Checks JetStream readiness with retries before JetStream-dependent tests run.'
+        source:
+          - package.json#scripts.nats:doctor
+          - scripts/nats-doctor.mjs
       - id: smoke.ttfb
         name: 'TTFB smoke'
         command: 'pnpm smoke:ttfb'

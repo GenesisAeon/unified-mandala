@@ -99,7 +99,8 @@
         "Audit instructions encoded as jobs; isolate non-actionable tasks to stop false CI failures.",
         "Core/extended workflows documented in docs/roadmap/v1.0-stabilization-playbook.md.",
         "Sigillin validator is required on main; mandala-map workflow uploads artifacts without blocking CI.",
-        "Repo Sanity builds the UI dist and waits on apps/ui/dist/index.html before running map/audit checks to avoid race conditions."
+        "Repo Sanity builds the UI dist and waits on apps/ui/dist/index.html before running map/audit checks to avoid race conditions.",
+        "CI-Core startet einen Docker-basierten NATS-Server und ruft `pnpm nats:doctor` sowie `pnpm test:jetstream` im type-and-tests-Gate auf (Fraktal57)."
       ],
       "links": [
         {
@@ -207,7 +208,7 @@
       "description": "Generated datasets (conversation filters, repo-map JSON/CSV, audits).",
       "notes": [
         "scripts/repo-map.ts writes analysis/repo-map.json and CSV; keep artifacts in sync with MandalaMap.*",
-        "scripts/generate-trikaya-dashboard.mjs produziert analysis/trikaya-dashboard.(json|md|yaml) für CREP/Trikāya-Governance."
+        "scripts/generate-trikaya-dashboard.mjs produziert analysis/trikaya-dashboard.(json|md|yaml) f\u00fcr CREP/Trik\u0101ya-Governance."
       ],
       "links": [
         {
@@ -215,7 +216,7 @@
           "path": "scripts/repo-map.ts"
         },
         {
-          "label": "Trikāya dashboard script",
+          "label": "Trik\u0101ya dashboard script",
           "path": "scripts/generate-trikaya-dashboard.mjs"
         }
       ]
@@ -389,7 +390,8 @@
       "description": "Core documentation including stabilization playbooks, onboarding, agents, governance.",
       "notes": [
         "MandalaMap references docs/roadmap/v1.0-stabilization-playbook.* for CI/Release context.",
-        "Stub-Replacement-Roadmap ergänzt Support-Migrationen in docs/roadmap/stub-replacement-roadmap.(md|yaml)."
+        "Stub-Replacement-Roadmap erg\u00e4nzt Support-Migrationen in docs/roadmap/stub-replacement-roadmap.(md|yaml).",
+        "JetStream-Runbook (`docs/runbooks/MaxBundle.md`) beschreibt Setup & Selfchecks (`pnpm nats:doctor`, `pnpm test:jetstream`) (Fraktal57)."
       ],
       "links": [
         {
@@ -712,10 +714,10 @@
       "description": "Extensive Node/TS automation: dev servers, exports, QA, smoke tests, repo map, etc.",
       "notes": [
         "Dist-first convention via scripts/run-dist.mjs; referenced throughout docs.",
-        "Sigillin-Fix-CLI (scripts/fix-sigillin.ts) unterstützt Bridges bei Trikāya/CREP/Nächste-Schritt-Korrekturen.",
-        "Windows-Parität über scripts/setup-dev-env.ps1 + scripts/run-powershell.mjs dokumentiert (PowerShell-Fallback).",
-        "PowerShell-Setup exportiert Installationsstatus nach out/setup/install-state.json für Codexfeedback-Reports.; Corepack-Admin-Check vermeidet EPERM, bietet Benutzeraktivierung ohne Admin-Rechte und ergänzt NATS-Installationshinweise für `pnpm start:all`.",
-        "ParserFix: (Test-CommandExists ...) jetzt geklammert und Installationsresultate werden zu Bool gecastet, damit PowerShell 7.5 den Dev-Setup ohne ParserError ausführt.",
+        "Sigillin-Fix-CLI (scripts/fix-sigillin.ts) unterst\u00fctzt Bridges bei Trik\u0101ya/CREP/N\u00e4chste-Schritt-Korrekturen.",
+        "Windows-Parit\u00e4t \u00fcber scripts/setup-dev-env.ps1 + scripts/run-powershell.mjs dokumentiert (PowerShell-Fallback).",
+        "PowerShell-Setup exportiert Installationsstatus nach out/setup/install-state.json f\u00fcr Codexfeedback-Reports.; Corepack-Admin-Check vermeidet EPERM, bietet Benutzeraktivierung ohne Admin-Rechte und erg\u00e4nzt NATS-Installationshinweise f\u00fcr `pnpm start:all`.",
+        "ParserFix: (Test-CommandExists ...) jetzt geklammert und Installationsresultate werden zu Bool gecastet, damit PowerShell 7.5 den Dev-Setup ohne ParserError ausf\u00fchrt.",
         "Emergence-Breath (scripts/emergence-breath.mjs) koppelt pnpm dev:breath an validate:sigillins + trikaya:dashboard und meldet Coverage-Metriken nach jedem Lauf."
       ],
       "links": [
@@ -805,7 +807,7 @@
       "title": "Python stub packages",
       "description": "Placeholder modules for kan_network, liquid_time_constant_network, torch_geometric, etc.",
       "notes": [
-        "Roadmap in docs/roadmap/stub-replacement-roadmap.(md|yaml) beschreibt Ablösung und Keys-Governance.",
+        "Roadmap in docs/roadmap/stub-replacement-roadmap.(md|yaml) beschreibt Abl\u00f6sung und Keys-Governance.",
         "Bis Phase B abgeschlossen ist, stubs/ nur als Typ-Fallback nutzen; keys/ bleibt automation-only."
       ],
       "links": [
@@ -841,7 +843,7 @@
       "description": "Auxiliary tools (fraktal lab CLI, governance checks, Kyverno runner).",
       "notes": [
         "Used by policy:check and governance automation.",
-        "Windows helper builds laufen via pnpm build:windows-tools → scripts/run-powershell.mjs."
+        "Windows helper builds laufen via pnpm build:windows-tools \u2192 scripts/run-powershell.mjs."
       ],
       "links": []
     },
@@ -926,7 +928,7 @@
     },
     {
       "title": "Stub replacement roadmap",
-      "detail": "Roadmap dokumentiert in docs/roadmap/stub-replacement-roadmap.(md|yaml); Umsetzungsschritte für stubs/ und keys/ eingeplant.",
+      "detail": "Roadmap dokumentiert in docs/roadmap/stub-replacement-roadmap.(md|yaml); Umsetzungsschritte f\u00fcr stubs/ und keys/ eingeplant.",
       "related": ["stubs/", "keys/"],
       "status": "in-progress"
     },

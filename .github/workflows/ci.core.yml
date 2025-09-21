@@ -44,12 +44,18 @@ jobs:
             echo "PNPM v$(pnpm -v)"
             echo "Python $(python --version 2>&1)"
           } > toolchain-versions.txt
+      - name: Start NATS JetStream (Docker)
+        run: |
+          docker rm -f nats-jetstream 2>/dev/null || true
+          docker run -d --name nats-jetstream -p 4222:4222 nats:2.10-alpine -js
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: toolchain-versions
           path: toolchain-versions.txt
       - run: npx tsc -p tsconfig.json --noEmit
+      - run: pnpm nats:doctor
       - run: pnpm test:ts:ci
+      - run: pnpm test:jetstream
       - run: pnpm test:py
       - run: npx pyright
