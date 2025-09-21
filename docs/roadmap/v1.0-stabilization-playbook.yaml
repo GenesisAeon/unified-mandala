@@ -30,7 +30,8 @@ streams:
           NATS-Server und ruft `pnpm nats:doctor` sowie `pnpm test:jetstream` im type-and-tests-Gate
           auf (Fraktal57). Lokale Workflows verwenden `pnpm nats:docker` für JetStream-Container
           und `pnpm dev:ports:free`/Port-Wächter im Dev-Stack, um Windows-Portkollisionen
-          früh zu erkennen.
+          früh zu erkennen. Runbook `docs/runbooks/nats-jetstream.md` beschreibt Setup,
+          Diagnose und `$JS.API.INFO`-Fallbacks für lokale/CI-Umgebungen.
 
           '
         success:
@@ -74,7 +75,9 @@ streams:
           \ ergänzt README/Onboarding/Command-Catalog um NATS-Hinweise (winget/Docker)\
           \ für `pnpm start:all`.\n           README & Tests-Runbook listen `pnpm nats:docker`\
           \ sowie `pnpm dev:ports:free`; Emergence-Scan fällt auf docs/sigillin/GENESIS.md\
-          \ zurück, wenn SIGILLIN_GENESIS.md fehlt."
+          \ zurück, wenn SIGILLIN_GENESIS.md fehlt; Quickstart (Windows · PowerShell)\
+          \ erklärt `UI_DEV_URL`-Overrides und JetStream-Setup, `SIGILLIN_GENESIS.md` liegt\
+          \ als Placeholder im Repo."
       - id: ts-node-retire
         description: Produktionspfade auf `node dist/...` umstellen
         status: done

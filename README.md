@@ -52,7 +52,33 @@ docker compose --profile monitoring up
 > • `corepack enable` benötigt Administratorrechte. Wenn du ohne Admin-Rechte arbeitest, führt `scripts/setup-dev-env.ps1` automatisch die Benutzeraktivierung via `corepack prepare pnpm@10.17.0 --activate` aus und überspringt das persistente Enable.
 > • `pnpm start:all` erwartet einen laufenden JetStream-fähigen `nats-server`. Nutze `pnpm nats:docker` für einen vorkonfigurierten Docker-Container (`nats:latest -js`) oder installiere lokal via `winget install --id Synadia.NATS-Server -e` und starte ihn mit der Option `-js`.
 > • Bevor du den Dev-Stack startest, kannst du blockierte Ports mit `pnpm dev:ports:free` oder `pnpm dlx kill-port <port>` freigeben; `pnpm dev:stack` prüft Ports automatisch und verweist auf das Skript.
-> • JetStream-Betrieb & Self-Check: `docs/runbooks/MaxBundle.md` bündelt den Setup-Flow inkl. `pnpm nats:doctor` & `pnpm test:jetstream` Troubleshooting.
+> • JetStream-Betrieb & Self-Check: `docs/runbooks/nats-jetstream.md` und `docs/runbooks/MaxBundle.md` bündeln Setup, Docker-Profile sowie `pnpm nats:doctor`/`pnpm test:jetstream` Troubleshooting.
+
+## Quickstart (Windows · PowerShell)
+
+```powershell
+corepack prepare pnpm@10.17.0 --activate
+pnpm install --frozen-lockfile
+
+# JetStream Container starten
+docker rm -f nats 2>$null
+docker run --name nats -p 4222:4222 -p 8222:8222 -d nats:latest -js
+pnpm nats:doctor
+
+# UI Dev-Server (Terminal A)
+pnpm -F mandala-ui dev -- --port 5173
+
+# Dev-Stack (Terminal B)
+$env:NATS_URL = "nats://127.0.0.1:4222"
+pnpm dev:stack
+
+# UI-Smoke gegen laufende Instanz (Vite-Auto-Port via Env)
+$env:UI_DEV_URL = "http://localhost:5173"
+pnpm smoke:ui
+```
+
+> Wenn Vite auf einen freien Port ausweicht (z. B. 5174), setze `UI_DEV_URL` entsprechend (`http://localhost:5174`).
+> Ports lassen sich vorab mit `pnpm dlx kill-port 3001 3002 3003 3004 4020 4021` freimachen.
 
 ---
 

@@ -1,5 +1,5 @@
 fraktal: 57
-status: running
+status: done
 owner: ChefDevAI
 summary:
   - JetStream-Bus-Test von Jest nach Vitest migriert (`tests/event-bus/jetstream-bus.test.ts`),
@@ -7,17 +7,18 @@ summary:
   - CI-Core (`.github/workflows/ci.core.yml`) startet einen Docker-basierten NATS-Server
     (-js) und führt `pnpm nats:doctor`, `pnpm test:ts:ci` sowie `pnpm test:jetstream`
     sequenziell aus.
-  - '`scripts/nats-doctor.mjs` validiert JetStream mit konfigurierbaren Retries/Delays
-    und formatiert Fehlermeldungen für CI-Logs.'
+  - '`scripts/nats-doctor.mjs` validiert JetStream mit konfigurierbaren Retries/Delays,
+    fällt bei API-Drift auf `$JS.API.INFO` zurück und formatiert Fehlermeldungen für CI-Logs.'
   - '`package.json` ergänzt `test:jetstream`, `nats:doctor`, aktualisiert `check:ci`
     und deklariert `test:jest` als Vitest-Hinweis.'
-  - Dokumentationsartefakte (README, docs/runbooks/tests.md, command-catalog.*, MandalaMap.*,
-    Playbook) spiegeln den neuen JetStream-Flow; `analysis/scripts-and-commands.json`
-    & `codexfeedback.yaml` synchronisiert.
+  - Dokumentationsartefakte (README inkl. Windows-Quickstart, docs/runbooks/tests.md,
+    neues docs/runbooks/nats-jetstream.md, command-catalog.*, MandalaMap.*, Playbook)
+    spiegeln den JetStream-Flow; `analysis/scripts-and-commands.json` & `codexfeedback.yaml`
+    synchronisiert.
   - '`scripts/dev-services.mjs` prüft Ports vor dem Start und verlinkt `pnpm dev:ports:free`;
     neues `scripts/nats-docker.mjs` orchestriert JetStream-Container (`pnpm nats:docker`),
-    `scripts/flags-api.ts` nutzt dedizierten Port und der Emergence-Scan fällt auf `docs/sigillin/GENESIS.md`
-    zurück, wenn die Root-Datei fehlt.'
+    `scripts/flags-api.ts` nutzt dedizierten Port und der Emergence-Scan nutzt einen eingecheckten
+    `SIGILLIN_GENESIS.md`-Placeholder bzw. Fallback auf `docs/sigillin/GENESIS.md`.'
   - 'Adapter-Builds sind Windows-tauglich: `scripts/lib/python.mjs` lokalisiert .venv-Interpreter, `pnpm adapter:build:era5` läuft über `scripts/adapter-build-era5.mjs` und die OISST/EFFIS-Skripte verwenden denselben Helper für Cross-Platform-Spawns.'
 deliverables:
   - tests/event-bus/jetstream-bus.test.ts
@@ -35,6 +36,7 @@ deliverables:
   - .github/workflows/ci.core.yml
   - README.md
   - docs/runbooks/tests.md
+  - docs/runbooks/nats-jetstream.md
   - docs/runbooks/command-catalog.md
   - docs/runbooks/command-catalog.yaml
   - docs/runbooks/command-catalog.json
@@ -47,21 +49,25 @@ deliverables:
   - codexfeedback.yaml
   - codexfeedback.json
   - codexfeedback.md
+  - SIGILLIN_GENESIS.md
+  - tools/windows/build-windows-tools.ps1
 follow_up:
   ci_extended_sync:
     description: Extended/Experimental Workflows auf JetStream-Checks prüfen (`pnpm
       nats:doctor` & Docker-NATS) und ggf. MandalaMap aktualisieren.
     status: planned
   runbook_drill:
-    description: JetStream-Runbook (`docs/runbooks/MaxBundle.md`) um praktischen Drill
-      mit `pnpm nats:doctor`/`pnpm test:jetstream` erweitern.
-    status: planned
+    description: JetStream-Runbook (`docs/runbooks/nats-jetstream.md`) dokumentiert Setup,
+      Diagnose und Drill (`pnpm nats:doctor`/`pnpm test:jetstream`); MaxBundle-Appendix
+      bei Bedarf prüfen.
+    status: done
 hook:
   progress: Vitest-Test grün, CI startet Docker-NATS + Selfcheck; Dev-Stack meldet
-    Portkollisionen (`pnpm dev:ports:free`), `pnpm nats:docker` steht bereit und
-    Emergence-Scan nutzt Dokumentations-Fallbacks bei fehlender SIGILLIN_GENESIS –
-    dazu greifen die Adapter-Builds via `scripts/lib/python.mjs` automatisch auf die
-    Projekt-venv zu, so dass `pnpm adapter:build:*` auch unter Windows funktioniert.
-  next_step: Follow-ups für Extended-CI und Runbook-Drills aufgreifen, policy-suite
-    ggf. um JetStream-Checks ergänzen.
+    Portkollisionen (`pnpm dev:ports:free`), `pnpm nats:docker` steht bereit, das
+    neue JetStream-Runbook (`docs/runbooks/nats-jetstream.md`) bündelt Setup/Diagnose
+    und README (Windows-Quickstart) + `SIGILLIN_GENESIS.md`-Placeholder sichern
+    Emergence-Läufe ab; Adapter-Builds greifen via `scripts/lib/python.mjs` weiter
+    automatisch auf die Projekt-venv zu.
+  next_step: Extended-/Experimental-CI auf JetStream-Checks synchronisieren und
+    policy-suite ggf. um Runbook-Hinweise ergänzen.
 repeat_required: false

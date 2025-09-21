@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { connect } from 'nats';
+import { connect, StringCodec } from 'nats';
 
 const url = process.env.NATS_URL ?? 'nats://127.0.0.1:4222';
 const attempts = Number.parseInt(process.env.NATS_DOCTOR_ATTEMPTS ?? '5', 10);
@@ -7,6 +7,7 @@ const delayMs = Number.parseInt(process.env.NATS_DOCTOR_DELAY_MS ?? '500', 10);
 const timeout = Number.parseInt(process.env.NATS_DOCTOR_TIMEOUT ?? '2000', 10);
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+const codec = StringCodec();
 
 const formatError = (error) => {
   if (!error) return 'unknown error';
@@ -25,19 +26,73 @@ const run = async () => {
   let lastError;
 
   for (let attempt = 1; attempt <= attempts; attempt += 1) {
+    let nc;
+    let ready = false;
+    let attemptError;
+
     try {
-      const nc = await connect({ servers: url, timeout });
-      const jsm = await nc.jetstreamManager();
-      await jsm.info();
-      console.log(`✓ NATS JetStream ready at ${url} (attempt ${attempt}/${attempts})`);
-      await nc.close();
-      return 0;
-    } catch (error) {
-      lastError = error;
-      console.warn(`Attempt ${attempt} failed: ${formatError(error)}`);
-      if (attempt < attempts) {
-        await sleep(delayMs);
+      nc = await connect({ servers: url, timeout });
+
+      try {
+        if (typeof nc.jetstreamManager === 'function') {
+          const manager = await nc.jetstreamManager();
+          if (manager && typeof manager.info === 'function') {
+            await manager.info();
+            ready = true;
+          }
+        }
+      } catch (error) {
+        attemptError = error;
       }
+
+      if (!ready) {
+        try {
+          const response = await nc.request('$JS.API.INFO', codec.encode(''), { timeout });
+          const decoded = codec.decode(response.data);
+          const payload = decoded ? JSON.parse(decoded) : {};
+          if (
+            payload &&
+            typeof payload.type === 'string' &&
+            payload.type.includes('account_info_response')
+          ) {
+            ready = true;
+          } else {
+            attemptError = new Error(
+              'JetStream info responded without account_info_response payload',
+            );
+          }
+        } catch (error) {
+          attemptError = error;
+        }
+      }
+
+      if (ready) {
+        console.log(`✓ NATS JetStream ready at ${url} (attempt ${attempt}/${attempts})`);
+        return 0;
+      }
+    } catch (error) {
+      attemptError = error;
+    } finally {
+      if (nc) {
+        try {
+          await nc.drain();
+        } catch (drainError) {
+          try {
+            await nc.close();
+          } catch {
+            // ignore secondary close errors
+          }
+          if (!attemptError) {
+            attemptError = drainError;
+          }
+        }
+      }
+    }
+
+    lastError = attemptError;
+    console.warn(`Attempt ${attempt} failed: ${formatError(attemptError)}`);
+    if (attempt < attempts) {
+      await sleep(delayMs);
     }
   }
 

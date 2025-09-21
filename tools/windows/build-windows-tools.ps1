@@ -9,12 +9,15 @@ if (-not (Test-Path $Output)) {
 }
 
 Get-ChildItem -Path $PSScriptRoot -Filter *.cs | ForEach-Object {
-  $name = $_.BaseName
+  $file = $_
+  $name = $file.BaseName
   Write-Host "Compiling $name"
   try {
-    dotnet build $_.FullName -o (Join-Path $Output $name) | Out-Null
+    dotnet build $file.FullName -o (Join-Path $Output $name) | Out-Null
   } catch {
-    Write-Warning "Failed to compile $_: $_"
+    $errorRecord = $_
+    $message = if ($errorRecord.Exception) { $errorRecord.Exception.Message } else { $errorRecord.ToString() }
+    Write-Warning ("Failed to compile {0}: {1}" -f $file.FullName, $message)
   }
 }
 
