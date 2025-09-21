@@ -3,7 +3,17 @@ fraktal:
   history:
     - id: 56
       status: done
-      notes: 'Fraktal56 WindowsBootstrap: PowerShell-Setup (`scripts/setup-dev-env.ps1`) trackt InstallState (Git/Node/Python/Corepack/pnpm/Docker/NATS), exportiert eine JSON-Zusammenfassung (`out/setup/install-state.json`), fixt den PowerShell-ParserError via `(Test-CommandExists ...)` in `-and`-Checks und unterstützt PowerShell 5.1; Node-Wrapper (`scripts/run-powershell.mjs`) sichert pwsh/powershell-Fallback; Docs/MandalaMap/Command-Catalog aktualisiert; Corepack-Admin-Check überspringt `corepack enable` ohne Elevation, protokolliert Aktivierungsmodus und ergänzt NATS-Installationshinweise; pnpm dev:breath (`scripts/emergence-breath.mjs`) automatisiert Sigillin/Trikāya-Checks und das UI-Smoke-Skript respektiert `UI_DEV_URL` ohne zusätzliche Vite-Instanz.'
+      notes: "Fraktal56 WindowsBootstrap: PowerShell-Setup (`scripts/setup-dev-env.ps1`)\
+        \ trackt InstallState (Git/Node/Python/Corepack/pnpm/Docker/NATS), exportiert\
+        \ eine JSON-Zusammenfassung (`out/setup/install-state.json`), fixt den PowerShell-ParserError\
+        \ via `(Test-CommandExists ...)` in `-and`-Checks und unterst\xFCtzt PowerShell\
+        \ 5.1; Node-Wrapper (`scripts/run-powershell.mjs`) sichert pwsh/powershell-Fallback;\
+        \ Docs/MandalaMap/Command-Catalog aktualisiert; Corepack-Admin-Check \xFCberspringt\
+        \ `corepack enable` ohne Elevation, protokolliert Aktivierungsmodus und erg\xE4\
+        nzt NATS-Installationshinweise; pnpm dev:breath (`scripts/emergence-breath.mjs`)\
+        \ automatisiert Sigillin/Trik\u0101ya-Checks und das UI-Smoke-Skript respektiert\
+        \ `UI_DEV_URL` ohne zus\xE4tzliche Vite-Instanz. JetStream-W\xE4chter (`packages/event-bus/jetstream-utils.ts`)\
+        \ + `pnpm nats:doctor` dokumentieren das Setup inkl. docs/runbooks/nats-jetstream.md."
       deliverables:
         - scripts/setup-dev-env.ps1
         - scripts/run-powershell.mjs
@@ -25,12 +35,28 @@ fraktal:
         - docs/roadmap/v1.0-stabilization-playbook.md
         - docs/roadmap/v1.0-stabilization-playbook.yaml
         - codexfeedback-fraktal56.yaml
+        - packages/event-bus/jetstream-utils.ts
+        - packages/event-bus/JetStreamBus.ts
+        - packages/event-bus/JetStreamKV.ts
+        - packages/event-bus/JetStreamObjectStore.ts
+        - packages/event-bus/JetStreamBus.test.ts
+        - scripts/nats-dev-check.mjs
+        - docs/runbooks/nats-jetstream.md
+        - docs/snippets/ENV_NATS.example
       hook:
-        progress: 'Windows-Bootstrap dokumentiert; ParserFix + InstallState-Export bestätigt, `pnpm dev:breath` verbindet Sigillin-Validator & Trikāya-Dashboard mit Watcher-Cycle und das UI-Smoke-Skript respektiert `UI_DEV_URL` ohne zusätzliche Vite-Instanz.'
-        next_step: 'Compose-/Docker-Windows-Flows dokumentieren (`docker_windows_profile`) und DevTalk-Track um Emergence-Breath-Status ergänzen.'
+        progress: "Windows-Bootstrap dokumentiert; ParserFix + InstallState-Export best\xE4\
+          tigt, `pnpm dev:breath` verbindet Sigillin-Validator & Trik\u0101ya-Dashboard\
+          \ mit Watcher-Cycle und das UI-Smoke-Skript respektiert `UI_DEV_URL` ohne\
+          \ zus\xE4tzliche Vite-Instanz. JetStream-Ready-Check (`pnpm nats:doctor`)\
+          \ + Runbook verankert; Event-Bus-Wrapper liefern Hilfetexte bei fehlendem\
+          \ JetStream."
+        next_step: "Compose-/Docker-Windows-Flows dokumentieren (`docker_windows_profile`)\
+          \ und DevTalk-Track um Emergence-Breath-Status erg\xE4nzen. JetStream-Dokumentation\
+          \ weiter beobachten."
     - id: 55
       status: done
-      notes: 'Fraktal55 DevTalk Windows Hardening: yaml-lint powered `pnpm find-bad-yaml`, repo-map auto-generation for `audit:ui-vr`, und ESM-Update für `scripts/generate-agents-diagram.js`.'
+      notes: "Fraktal55 DevTalk Windows Hardening: yaml-lint powered `pnpm find-bad-yaml`,\
+        \ repo-map auto-generation for `audit:ui-vr`, und ESM-Update f\xFCr `scripts/generate-agents-diagram.js`."
       deliverables:
         - package.json
         - pnpm-lock.yaml
@@ -43,11 +69,14 @@ fraktal:
         - docs/runbooks/command-catalog.json
         - codexfeedback-fraktal55.yaml
       hook:
-        progress: 'yaml-lint integriert (`pnpm find-bad-yaml`), audit:ui-vr erzeugt repo-map bei Bedarf, Agents-Diagramm läuft ohne require.'
-        next_step: 'Windows-Feedback zum Sigillin-Validator beobachten und weitere Fix-Pack-Fragmente einspeisen, sobald sie eintreffen.'
+        progress: "yaml-lint integriert (`pnpm find-bad-yaml`), audit:ui-vr erzeugt\
+          \ repo-map bei Bedarf, Agents-Diagramm l\xE4uft ohne require."
+        next_step: Windows-Feedback zum Sigillin-Validator beobachten und weitere Fix-Pack-Fragmente
+          einspeisen, sobald sie eintreffen.
     - id: 54
       status: running
-      notes: 'Fraktal54 SigillinFix: neues CLI `pnpm sigil:fix` prüft Bridges auf Trikāya, CREP und Nächste Schritte; README/Doku aktualisiert.'
+      notes: "Fraktal54 SigillinFix: neues CLI `pnpm sigil:fix` pr\xFCft Bridges auf\
+        \ Trik\u0101ya, CREP und N\xE4chste Schritte; README/Doku aktualisiert."
       deliverables:
         - scripts/fix-sigillin.ts
         - package.json
@@ -58,11 +87,15 @@ fraktal:
         - MandalaMap.yaml
         - MandalaMap.json
       hook:
-        progress: 'Fix-Skript einsatzbereit, README-Abschnitt ergänzt; Fraktal44 auf done gesetzt.'
-        next_step: 'Weitere Fraktal54-Fragmente beobachten (Governance-Report, pre-commit-Hook) und Feedback in codexfeedback.* spiegeln.'
+        progress: "Fix-Skript einsatzbereit, README-Abschnitt erg\xE4nzt; Fraktal44\
+          \ auf done gesetzt."
+        next_step: Weitere Fraktal54-Fragmente beobachten (Governance-Report, pre-commit-Hook)
+          und Feedback in codexfeedback.* spiegeln.
     - id: 53
       status: done
-      notes: 'Fraktal53 DevTalkPart5 WindowsFlow: Command-Catalog ergänzt Corepack-Bootstrap, pnpm exec tsc fallback und pnpm -w -r build für Windows-Verifikation; yaml-lint (`pnpm find-bad-yaml`) ergänzt Windows-Lint-Tooling.'
+      notes: "Fraktal53 DevTalkPart5 WindowsFlow: Command-Catalog erg\xE4nzt Corepack-Bootstrap,\
+        \ pnpm exec tsc fallback und pnpm -w -r build f\xFCr Windows-Verifikation; yaml-lint\
+        \ (`pnpm find-bad-yaml`) erg\xE4nzt Windows-Lint-Tooling."
       deliverables:
         - docs/runbooks/command-catalog.md
         - docs/runbooks/command-catalog.yaml
@@ -71,11 +104,15 @@ fraktal:
         - codexfeedback.json
         - codexfeedback.yaml
       hook:
-        progress: 'DevTalk Part5 analysiert – Windows-Corepack-Fluss dokumentiert, tsc-Fallback beschrieben, yaml-lint für Strict-Läufe ergänzt.'
-        next_step: 'Weitere Fragmente prüfen (UI-Smokes, MandalaMap) und Command-Catalog bei Bedarf ergänzen.'
+        progress: "DevTalk Part5 analysiert \u2013 Windows-Corepack-Fluss dokumentiert,\
+          \ tsc-Fallback beschrieben, yaml-lint f\xFCr Strict-L\xE4ufe erg\xE4nzt."
+        next_step: "Weitere Fragmente pr\xFCfen (UI-Smokes, MandalaMap) und Command-Catalog\
+          \ bei Bedarf erg\xE4nzen."
     - id: 52
       status: done
-      notes: 'Fraktal52 DevStack Windows: UI-Smoke liest UI_DEV_URL, dev-services setzen Port-Defaults und Share/RAG/Experiments/Realtime-Hub achten auf dedizierte Ports; cross-env NODE_OPTIONS und smoke:ui:5174 dokumentiert.'
+      notes: 'Fraktal52 DevStack Windows: UI-Smoke liest UI_DEV_URL, dev-services setzen
+        Port-Defaults und Share/RAG/Experiments/Realtime-Hub achten auf dedizierte Ports;
+        cross-env NODE_OPTIONS und smoke:ui:5174 dokumentiert.'
       deliverables:
         - scripts/smoke/ui-dev-smoke.mjs
         - scripts/dev-services.mjs
@@ -90,24 +127,33 @@ fraktal:
         - codexfeedback.json
         - codexfeedback.yaml
       hook:
-        progress: 'Windows-/PowerShell-Lauf stabilisiert: Ports werden per Default getrennt, Smoke-Skript akzeptiert UI_DEV_URL.'
-        next_step: 'Optional MandalaMap-Port-Matrix ergänzen und Fraktal52-Tests in Nightly spiegeln.'
+        progress: 'Windows-/PowerShell-Lauf stabilisiert: Ports werden per Default getrennt,
+          Smoke-Skript akzeptiert UI_DEV_URL.'
+        next_step: "Optional MandalaMap-Port-Matrix erg\xE4nzen und Fraktal52-Tests\
+          \ in Nightly spiegeln."
     - id: 51
       status: done
-      notes: 'Fraktal51 CommandCatalog bündelt pnpm-Kommandos, Docker-Profile und Tooling-Hooks in docs/runbooks/command-catalog.(md|json|yaml); Tracker auf Fraktal51 aktualisiert.'
+      notes: "Fraktal51 CommandCatalog b\xFCndelt pnpm-Kommandos, Docker-Profile und\
+        \ Tooling-Hooks in docs/runbooks/command-catalog.(md|json|yaml); Tracker auf\
+        \ Fraktal51 aktualisiert."
       deliverables:
         - docs/runbooks/command-catalog.md
         - docs/runbooks/command-catalog.yaml
         - docs/runbooks/command-catalog.json
       hook:
-        progress: 'Command-Inventar liegt vor; Folgefragmente können neue Skripte direkt ergänzen.'
-        next_step: 'Bei neuen Services die Tabelle erweitern und MandalaMap-Verweis prüfen.'
+        progress: "Command-Inventar liegt vor; Folgefragmente k\xF6nnen neue Skripte\
+          \ direkt erg\xE4nzen."
+        next_step: "Bei neuen Services die Tabelle erweitern und MandalaMap-Verweis\
+          \ pr\xFCfen."
     - id: 50
       status: running
-      notes: 'Fraktal50 Windows-Pfadnormalisierung für sigillin validator aktiv, Skip-Logs mit Gründen; Windows-Feedback & Docker-Follow-up offen.'
+      notes: "Fraktal50 Windows-Pfadnormalisierung f\xFCr sigillin validator aktiv,\
+        \ Skip-Logs mit Gr\xFCnden; Windows-Feedback & Docker-Follow-up offen."
     - id: 49
       status: running
-      notes: 'Validator scope konzentriert sich auf sigils/bridges, Repo-Sanity wartet auf den UI-Build und AgentWorkflowEngine setzt ethical_guardrails standardmäßig.'
+      notes: "Validator scope konzentriert sich auf sigils/bridges, Repo-Sanity wartet\
+        \ auf den UI-Build und AgentWorkflowEngine setzt ethical_guardrails standardm\xE4\
+        \xDFig."
     - id: 48
       status: done
       notes: "CI follow-ups (sigillin validator, MandalaMap artifacts) implemented;\
@@ -355,8 +401,9 @@ fraktal48:
     - 'CI follow-ups delivered: wait-on in smoke workflow, required sigillin validation,
       MandalaMap artifact job.'
     - MandalaMap.* updated with bridge registry visibility and follow-up status adjustments.
-    - Sigillin authoring CLI & Trikāya dashboard generator verfügbar (analysis/trikaya-dashboard.(json|md|yaml)); Stub-Roadmap in docs/roadmap/stub-replacement-roadmap.(md|yaml) abgelegt.
+    - "Sigillin authoring CLI & Trik\u0101ya dashboard generator verf\xFCgbar (analysis/trikaya-dashboard.(json|md|yaml));\
+      \ Stub-Roadmap in docs/roadmap/stub-replacement-roadmap.(md|yaml) abgelegt."
   hooks:
-    - 'Stub-Usage Audit (scripts/check-stub-usage.mjs) als optionaler MandalaMap-Hook.'
-    - Kyverno/OPA Policy für keys/-Automation vorbereiten.
+    - Stub-Usage Audit (scripts/check-stub-usage.mjs) als optionaler MandalaMap-Hook.
+    - "Kyverno/OPA Policy f\xFCr keys/-Automation vorbereiten."
   repeat_required: false

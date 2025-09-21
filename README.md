@@ -50,7 +50,7 @@ docker compose --profile monitoring up
 > • Für Observability mit Prometheus/Grafana das Compose-Profil `monitoring` starten (siehe `observability/README.md`).
 > • Windows: Lange Pfade aktivieren; `.dockerignore` im Repo-Root verhindert riesige Build-Kontexte.
 > • `corepack enable` benötigt Administratorrechte. Wenn du ohne Admin-Rechte arbeitest, führt `scripts/setup-dev-env.ps1` automatisch die Benutzeraktivierung via `corepack prepare pnpm@10.17.0 --activate` aus und überspringt das persistente Enable.
-> • `pnpm start:all` erwartet einen laufenden `nats-server`. Installiere ihn bei Bedarf via `winget install --id Synadia.NATS-Server -e` oder starte `docker run --name nats -p 4222:4222 -p 8222:8222 -d nats:latest`.
+> • `pnpm start:all` erwartet einen NATS-Server **mit JetStream**. Installiere ihn via `winget install --id Synadia.NATS-Server -e` oder starte `docker run --name nats --restart unless-stopped -p 4222:4222 -p 8222:8222 -v nats-js:/data -d nats:latest -js -sd /data`. Nutze `pnpm nats:doctor` (siehe `docs/runbooks/nats-jetstream.md`) für einen lokalen JetStream-Check.
 
 ---
 

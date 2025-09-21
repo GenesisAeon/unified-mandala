@@ -8,12 +8,24 @@ const mockSubscribe = jest.fn(() => ({
 }));
 const mockClose = jest.fn();
 const mockJetstream = jest.fn(() => ({ publish: mockPublish, subscribe: mockSubscribe }));
+const mockGetAccountInfo = jest.fn(() => Promise.resolve({}));
+const mockJetstreamManager = jest.fn(() =>
+  Promise.resolve({
+    getAccountInfo: mockGetAccountInfo,
+  }),
+);
 
 jest.mock('nats', () => {
   const actual = jest.requireActual('nats');
   return {
     ...actual,
-    connect: jest.fn(() => Promise.resolve({ jetstream: mockJetstream, close: mockClose })),
+    connect: jest.fn(() =>
+      Promise.resolve({
+        jetstream: mockJetstream,
+        jetstreamManager: mockJetstreamManager,
+        close: mockClose,
+      }),
+    ),
     StringCodec: jest.fn(() => ({ encode: (v: string) => Buffer.from(v), decode: (b: Uint8Array) => Buffer.from(b).toString() })),
     consumerOpts: jest.fn(() => ({ durable: jest.fn(), manualAck: jest.fn() })),
   };
@@ -28,6 +40,8 @@ describe('JetStreamBus', () => {
     mockPublish.mockClear();
     mockSubscribe.mockClear();
     mockConsumerOpts.mockClear();
+    mockJetstreamManager.mockClear();
+    mockGetAccountInfo.mockClear();
   });
 
   it('connects with default url', async () => {

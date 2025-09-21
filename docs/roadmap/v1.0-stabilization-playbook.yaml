@@ -64,6 +64,7 @@ streams:
           den PowerShell 7 ParserError aus DevTalk 55. Corepack-Admin-Detection vermeidet
           EPERM, protokolliert den Aktivierungsmodus im InstallReport und ergänzt README/Onboarding/Command-Catalog
           um NATS-Hinweise (winget/Docker) für `pnpm start:all`.
+          JetStream-Runbook (`docs/runbooks/nats-jetstream.md`) + `pnpm nats:doctor` dokumentieren lokale JetStream-Parität.
       - id: ts-node-retire
         description: Produktionspfade auf `node dist/...` umstellen
         status: done

@@ -1,6 +1,11 @@
 {
   "runs": [
     {
+      "fraktalrun": "Fraktal56 JetStream Ready",
+      "status": "implemented",
+      "notes": "JetStream guards in packages/event-bus (jetstream-utils) provide actionable errors; pnpm nats:doctor and docs/runbooks/nats-jetstream.md document readiness checks; README/Onboarding/Command Catalog/MandalaMap reference the workflow."
+    },
+    {
       "fraktalrun": "Fraktal56 Corepack Admin",
       "status": "implemented",
       "notes": "PowerShell setup skips corepack enable without elevation, records activation mode in install-state metadata, and prints NATS install hints (winget/docker); docs updated (README, onboarding, command catalog, MandalaMap)."

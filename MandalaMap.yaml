@@ -183,12 +183,12 @@ entries:
     notes:
       - scripts/repo-map.ts writes analysis/repo-map.json and CSV; keep artifacts in sync
         with MandalaMap.*
-      - scripts/generate-trikaya-dashboard.mjs produziert analysis/trikaya-dashboard.(json|md|yaml)
-        für CREP/Trikāya-Governance.
+      - "scripts/generate-trikaya-dashboard.mjs produziert analysis/trikaya-dashboard.(json|md|yaml)\
+        \ f\xFCr CREP/Trik\u0101ya-Governance."
     links:
       - label: Repo map script
         path: scripts/repo-map.ts
-      - label: Trikāya dashboard script
+      - label: "Trik\u0101ya dashboard script"
         path: scripts/generate-trikaya-dashboard.mjs
   - path: apps/
     category: core-runtime
@@ -318,13 +318,15 @@ entries:
     description: Core documentation including stabilization playbooks, onboarding, agents,
       governance.
     notes:
-      - MandalaMap references docs/roadmap/v1.0-stabilization-playbook.* für CI/Release
-        Kontext und die Stub-Roadmap für Support-Migrationen.
+      - "MandalaMap references docs/roadmap/v1.0-stabilization-playbook.* f\xFCr CI/Release\
+        \ Kontext und die Stub-Roadmap f\xFCr Support-Migrationen."
     links:
       - label: v1.0 Playbook
         path: docs/roadmap/v1.0-stabilization-playbook.md
       - label: Stub roadmap
         path: docs/roadmap/stub-replacement-roadmap.md
+      - label: NATS JetStream runbook
+        path: docs/runbooks/nats-jetstream.md
   - path: examples/
     category: research
     status: experimental
@@ -594,12 +596,22 @@ entries:
       repo map, etc.'
     notes:
       - Dist-first convention via scripts/run-dist.mjs; referenced throughout docs.
-      - Sigillin-Fix-CLI (`scripts/fix-sigillin.ts`) unterstützt Bridges bei Trikāya/CREP/Nächste-Schritt-Korrekturen.
-      - Windows-Parität über `scripts/setup-dev-env.ps1` + `scripts/run-powershell.mjs` dokumentiert (PowerShell-Fallback).
-      - PowerShell-Setup exportiert Installationsstatus nach `out/setup/install-state.json` für Codexfeedback-Reports.
-      - 'ParserFix: `(Test-CommandExists ...)` jetzt geklammert und Installationsresultate zu Bool gecastet, damit PowerShell 7.5 den Dev-Setup ohne ParserError ausführt.'
-      - 'Corepack-Admin-Check vermeidet EPERM, setzt Benutzeraktivierung wenn keine Admin-Rechte vorliegen und ergänzt NATS-Installationshinweise für `pnpm start:all`.'
-      - Emergence-Breath (`scripts/emergence-breath.mjs`) koppelt `pnpm dev:breath` an `validate:sigillins` und das Trikāya-Dashboard; Ausgabe enthält Coverage-Metriken für Bridges.
+      - "Sigillin-Fix-CLI (`scripts/fix-sigillin.ts`) unterst\xFCtzt Bridges bei Trik\u0101\
+        ya/CREP/N\xE4chste-Schritt-Korrekturen."
+      - "Windows-Parit\xE4t \xFCber `scripts/setup-dev-env.ps1` + `scripts/run-powershell.mjs`\
+        \ dokumentiert (PowerShell-Fallback)."
+      - "PowerShell-Setup exportiert Installationsstatus nach `out/setup/install-state.json`\
+        \ f\xFCr Codexfeedback-Reports."
+      - "ParserFix: `(Test-CommandExists ...)` jetzt geklammert und Installationsresultate\
+        \ zu Bool gecastet, damit PowerShell 7.5 den Dev-Setup ohne ParserError ausf\xFC\
+        hrt."
+      - "Corepack-Admin-Check vermeidet EPERM, setzt Benutzeraktivierung wenn keine Admin-Rechte\
+        \ vorliegen und erg\xE4nzt NATS-Installationshinweise f\xFCr `pnpm start:all`."
+      - "Emergence-Breath (`scripts/emergence-breath.mjs`) koppelt `pnpm dev:breath` an\
+        \ `validate:sigillins` und das Trik\u0101ya-Dashboard; Ausgabe enth\xE4lt Coverage-Metriken\
+        \ f\xFCr Bridges."
+      - "JetStream-Doctor (`scripts/nats-dev-check.mjs`) pr\xFCft Verbindung, Standard-Stream\
+        \ & Feature-Flag-Bucket und verweist auf docs/runbooks/nats-jetstream.md."
     links:
       - label: run-dist
         path: scripts/run-dist.mjs
@@ -613,6 +625,8 @@ entries:
         path: scripts/run-powershell.mjs
       - label: emergence-breath
         path: scripts/emergence-breath.mjs
+      - label: nats-doctor
+        path: scripts/nats-dev-check.mjs
   - path: services/
     category: core-runtime
     status: active
@@ -668,8 +682,8 @@ entries:
     description: Placeholder modules for kan_network, liquid_time_constant_network,
       torch_geometric, etc.
     notes:
-      - Roadmap in docs/roadmap/stub-replacement-roadmap.(md|yaml) beschreibt Ablösung und
-        Keys-Governance.
+      - "Roadmap in docs/roadmap/stub-replacement-roadmap.(md|yaml) beschreibt Abl\xF6\
+        sung und Keys-Governance."
       - Bis Phase B abgeschlossen ist, stubs/ nur als Typ-Fallback nutzen; keys/ bleibt
         automation-only.
     links:
@@ -700,7 +714,7 @@ entries:
     description: Auxiliary tools (fraktal lab CLI, governance checks, Kyverno runner).
     notes:
       - Used by policy:check and governance automation.
-      - Windows helper builds laufen via `pnpm build:windows-tools` → `scripts/run-powershell.mjs`.
+      - "Windows helper builds laufen via `pnpm build:windows-tools` \u2192 `scripts/run-powershell.mjs`."
     links: []
   - path: types/
     category: core-runtime
@@ -776,9 +790,8 @@ follow_up:
       - ci/
     status: done
   - title: Stub replacement roadmap
-    detail:
-      Roadmap dokumentiert in docs/roadmap/stub-replacement-roadmap.(md|yaml); Umsetzungsschritte
-      für stubs/ und keys/ eingeplant.
+    detail: "Roadmap dokumentiert in docs/roadmap/stub-replacement-roadmap.(md|yaml);\
+      \ Umsetzungsschritte f\xFCr stubs/ und keys/ eingeplant."
     related:
       - stubs/
       - keys/

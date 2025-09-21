@@ -1366,6 +1366,11 @@
       "description": "Bash bootstrap script for Linux/macOS developer workstations."
     },
     {
+      "id": "script.nats-doctor",
+      "path": "scripts/nats-dev-check.mjs",
+      "description": "JetStream readiness probe validating connection, default stream and feature flag KV bucket; prints setup hints and references docs/runbooks/nats-jetstream.md."
+    },
+    {
       "id": "script.setup-dev-env-windows",
       "path": "scripts/setup-dev-env.ps1",
       "description": "PowerShell bootstrap script for Windows developer workstations; skips corepack enable without admin rights and prints NATS installation hints."

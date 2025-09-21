@@ -70,6 +70,7 @@
     "smoke:ui:5174": "cross-env UI_DEV_URL=http://localhost:5174 node scripts/smoke/ui-dev-smoke.mjs",
     "smoke:dev": "node scripts/smoke/dev-server-smoke.mjs",
     "smoke:mrv": "node scripts/smoke/mrv-smoke.mjs",
+    "nats:doctor": "node scripts/nats-dev-check.mjs",
     "smoke:light-static": "node scripts/smoke/light-static-smoke.mjs",
     "smoke:ttfb": "pnpm -s build:ui && node scripts/smoke/ttfb-smoke.mjs",
     "agents:health": "node scripts/run-dist.mjs scripts/agents/runner.ts --health-all",

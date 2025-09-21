@@ -2,1198 +2,1235 @@ schema: command-catalog/v1
 generated: '2025-09-19T20:12:41Z'
 owner: ChefDevAI
 notes:
-  - 'Aggregates pnpm scripts, shell helpers, and governance tools exposed in the unified-mandala repository.'
-  - 'Use pnpm run <script> to execute workspace commands unless a direct shell invocation is provided.'
+  - Aggregates pnpm scripts, shell helpers, and governance tools exposed in the unified-mandala
+    repository.
+  - Use pnpm run <script> to execute workspace commands unless a direct shell invocation
+    is provided.
 categories:
   - key: setup
     title: Setup & Environment
-    description: 'Bootstrap developer workstations and core tooling parity.'
+    description: Bootstrap developer workstations and core tooling parity.
     entries:
       - id: setup.dev-env
-        name: 'Setup development environment (Linux/macOS)'
-        command: './scripts/setup-dev-env.sh'
+        name: Setup development environment (Linux/macOS)
+        command: ./scripts/setup-dev-env.sh
         type: shell
-        runs: './scripts/setup-dev-env.sh'
-        description: 'Installs system packages, configures git, provisions a Python venv, and installs Node dependencies on Linux/macOS.'
+        runs: ./scripts/setup-dev-env.sh
+        description: Installs system packages, configures git, provisions a Python venv,
+          and installs Node dependencies on Linux/macOS.
         source:
           - scripts/setup-dev-env.sh
       - id: setup.dev-env-windows
-        name: 'Setup development environment (Windows)'
-        command: 'pwsh -NoProfile -File ./scripts/setup-dev-env.ps1'
+        name: Setup development environment (Windows)
+        command: pwsh -NoProfile -File ./scripts/setup-dev-env.ps1
         type: powershell
-        runs: 'pwsh -NoProfile -File ./scripts/setup-dev-env.ps1'
-        description: 'Installs Git, Node.js, and Python on Windows, enables Corepack with admin detection (non-admin → user activation), reminds about missing nats-server, and runs pnpm using PowerShell 7+ (fallback: powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\setup-dev-env.ps1).'
+        runs: pwsh -NoProfile -File ./scripts/setup-dev-env.ps1
+        description: "Installs Git, Node.js, and Python on Windows, enables Corepack with\
+          \ admin detection (non-admin \u2192 user activation), reminds about missing\
+          \ nats-server, and runs pnpm using PowerShell 7+ (fallback: powershell -NoProfile\
+          \ -ExecutionPolicy Bypass -File .\\scripts\\setup-dev-env.ps1)."
         source:
           - scripts/setup-dev-env.ps1
       - id: setup.corepack-enable
-        name: 'Enable Corepack'
-        command: 'corepack enable'
+        name: Enable Corepack
+        command: corepack enable
         type: shell
-        runs: 'corepack enable'
-        description: "Activates Corepack so pnpm can be managed and pinned via Node's package manager shim."
+        runs: corepack enable
+        description: Activates Corepack so pnpm can be managed and pinned via Node's package
+          manager shim.
         source:
           - DevTalk.txt#DevTalkPart5
       - id: setup.corepack-prepare-pnpm
-        name: 'Activate pnpm 10.17.0'
-        command: 'corepack prepare pnpm@10.17.0 --activate'
+        name: Activate pnpm 10.17.0
+        command: corepack prepare pnpm@10.17.0 --activate
         type: shell
-        runs: 'corepack prepare pnpm@10.17.0 --activate'
-        description: 'Downloads and activates pnpm 10.17.0 to match the Windows validation run.'
+        runs: corepack prepare pnpm@10.17.0 --activate
+        description: Downloads and activates pnpm 10.17.0 to match the Windows validation
+          run.
         source:
           - DevTalk.txt#DevTalkPart5
       - id: setup.corepack-install-frozen
-        name: 'Install workspace (frozen lockfile)'
-        command: 'corepack pnpm install --frozen-lockfile'
+        name: Install workspace (frozen lockfile)
+        command: corepack pnpm install --frozen-lockfile
         type: pnpm
-        runs: 'corepack pnpm install --frozen-lockfile'
-        description: 'Installs pnpm workspace dependencies using the frozen lockfile for deterministic Windows parity.'
+        runs: corepack pnpm install --frozen-lockfile
+        description: Installs pnpm workspace dependencies using the frozen lockfile for
+          deterministic Windows parity.
         source:
           - DevTalk.txt#DevTalkPart5
       - id: setup.pnpm-install
-        name: 'Install PNPM workspace'
-        command: 'pnpm install'
+        name: Install PNPM workspace
+        command: pnpm install
         type: pnpm
-        runs: 'pnpm install'
-        description: 'Installs Node dependencies across the pnpm workspace.'
+        runs: pnpm install
+        description: Installs Node dependencies across the pnpm workspace.
         source:
           - package.json#scripts
       - id: setup.poetry-install
-        name: 'Install Python tooling'
-        command: 'poetry install --with test'
+        name: Install Python tooling
+        command: poetry install --with test
         type: poetry
-        runs: 'poetry install --with test'
-        description: 'Sets up Python dependencies including optional test extras.'
+        runs: poetry install --with test
+        description: Sets up Python dependencies including optional test extras.
         source:
           - pyproject.toml
       - id: setup.store-commit-memory
-        name: 'Persist pnpm store snapshot'
-        command: 'pnpm store:commit-memory'
+        name: Persist pnpm store snapshot
+        command: pnpm store:commit-memory
         type: pnpm
-        runs: 'pnpm store:commit-memory'
-        description: 'Runs Genesis ZIP memory bridge to persist dependency store metadata during first commit of a session.'
+        runs: pnpm store:commit-memory
+        description: Runs Genesis ZIP memory bridge to persist dependency store metadata
+          during first commit of a session.
         source:
           - package.json#scripts.store:commit-memory
       - id: setup.prepare-husky
-        name: 'Install Husky hooks'
-        command: 'pnpm prepare'
+        name: Install Husky hooks
+        command: pnpm prepare
         type: pnpm
-        runs: 'husky install'
-        description: 'Installs Husky Git hooks for lint-staged and formatting policies.'
+        runs: husky install
+        description: Installs Husky Git hooks for lint-staged and formatting policies.
         source:
           - package.json#scripts.prepare
       - id: setup.build-windows-tools
-        name: 'Build Windows helper binaries'
-        command: 'pnpm build:windows-tools'
+        name: Build Windows helper binaries
+        command: pnpm build:windows-tools
         type: pnpm
-        runs: 'node scripts/run-powershell.mjs tools/windows/build-windows-tools.ps1'
-        description: 'Invokes the Windows tooling build via Node wrapper that selects pwsh or Windows PowerShell when pwsh is unavailable.'
+        runs: node scripts/run-powershell.mjs tools/windows/build-windows-tools.ps1
+        description: Invokes the Windows tooling build via Node wrapper that selects pwsh
+          or Windows PowerShell when pwsh is unavailable.
         source:
           - package.json#scripts.build:windows-tools
       - id: setup.docker-core
-        name: 'Start core Docker profile'
-        command: 'docker compose --profile core up'
+        name: Start core Docker profile
+        command: docker compose --profile core up
         type: docker
-        runs: 'docker compose --profile core up'
-        description: 'Bootstraps the core service stack with Docker Compose profiles described in the stabilization playbook.'
+        runs: docker compose --profile core up
+        description: Bootstraps the core service stack with Docker Compose profiles described
+          in the stabilization playbook.
         source:
           - docs/roadmap/v1.0-stabilization-playbook.md
       - id: setup.docker-prod
-        name: 'Start production Docker drill'
-        command: 'docker compose --profile prod up'
+        name: Start production Docker drill
+        command: docker compose --profile prod up
         type: docker
-        runs: 'docker compose --profile prod up'
-        description: 'Runs the production simulation profile used during release drills.'
+        runs: docker compose --profile prod up
+        description: Runs the production simulation profile used during release drills.
         source:
           - docs/roadmap/v1.0-stabilization-playbook.md
   - key: quality
     title: Linting & Static Analysis
-    description: 'Static type safety, linting, and formatting commands.'
+    description: Static type safety, linting, and formatting commands.
     entries:
       - id: quality.lint
-        name: 'Workspace lint'
-        command: 'pnpm lint'
+        name: Workspace lint
+        command: pnpm lint
         type: pnpm
-        runs: 'pnpm lint:types && pnpm lint:eslint'
-        description: 'Aggregates TypeScript type checks and ESLint analysis with zero-warning enforcement.'
+        runs: pnpm lint:types && pnpm lint:eslint
+        description: Aggregates TypeScript type checks and ESLint analysis with zero-warning
+          enforcement.
         source:
           - package.json#scripts.lint
       - id: quality.lint-types
-        name: 'TypeScript project check'
-        command: 'pnpm lint:types'
+        name: TypeScript project check
+        command: pnpm lint:types
         type: pnpm
-        runs: 'tsc -p tsconfig.json --noEmit'
-        description: 'Ensures the workspace TypeScript configuration passes without emitting artifacts.'
+        runs: tsc -p tsconfig.json --noEmit
+        description: Ensures the workspace TypeScript configuration passes without emitting
+          artifacts.
         source:
           - package.json#scripts.lint:types
       - id: quality.lint-eslint
-        name: 'ESLint check'
-        command: 'pnpm lint:eslint'
+        name: ESLint check
+        command: pnpm lint:eslint
         type: pnpm
-        runs: 'eslint "{scripts,services,src,tests}/**/*.{ts,tsx,js,jsx,cjs,mjs}" --max-warnings=0 --cache'
-        description: 'Runs ESLint over scripts, services, source, and tests with caching enabled.'
+        runs: eslint "{scripts,services,src,tests}/**/*.{ts,tsx,js,jsx,cjs,mjs}" --max-warnings=0
+          --cache
+        description: Runs ESLint over scripts, services, source, and tests with caching
+          enabled.
         source:
           - package.json#scripts.lint:eslint
       - id: quality.format
-        name: 'Format workspace docs'
-        command: 'pnpm format'
+        name: Format workspace docs
+        command: pnpm format
         type: pnpm
-        runs: 'prettier --write README.md CONTRIBUTING.md docs/ONBOARDING.md codexfeedback.* scripts/dev-services.mjs'
-        description: 'Applies Prettier formatting to key documentation and service scripts.'
+        runs: prettier --write README.md CONTRIBUTING.md docs/ONBOARDING.md codexfeedback.*
+          scripts/dev-services.mjs
+        description: Applies Prettier formatting to key documentation and service scripts.
         source:
           - package.json#scripts.format
       - id: quality.format-check
-        name: 'Check formatting'
-        command: 'pnpm format:check'
+        name: Check formatting
+        command: pnpm format:check
         type: pnpm
-        runs: 'prettier --check README.md CONTRIBUTING.md docs/ONBOARDING.md codexfeedback.* scripts/dev-services.mjs'
-        description: 'Validates Prettier compliance without modifying files.'
+        runs: prettier --check README.md CONTRIBUTING.md docs/ONBOARDING.md codexfeedback.*
+          scripts/dev-services.mjs
+        description: Validates Prettier compliance without modifying files.
         source:
           - package.json#scripts.format:check
       - id: quality.lint-staged
-        name: 'Run lint-staged'
-        command: 'pnpm lint-staged'
+        name: Run lint-staged
+        command: pnpm lint-staged
         type: pnpm
-        runs: 'lint-staged'
-        description: 'Executes lint-staged against staged files via Husky.'
+        runs: lint-staged
+        description: Executes lint-staged against staged files via Husky.
         source:
           - package.json#scripts.lint-staged
       - id: quality.check-ci
-        name: 'Combined CI gate'
-        command: 'pnpm check:ci'
+        name: Combined CI gate
+        command: pnpm check:ci
         type: pnpm
-        runs: 'npx tsc -p tsconfig.json --noEmit && pnpm test:ts:ci && npx pyright'
-        description: 'Runs TypeScript compilation, CI Vitest suite, and Pyright in a single pass.'
+        runs: npx tsc -p tsconfig.json --noEmit && pnpm test:ts:ci && npx pyright
+        description: Runs TypeScript compilation, CI Vitest suite, and Pyright in a single
+          pass.
         source:
           - package.json#scripts.check:ci
       - id: quality.ci-fast-checks
-        name: 'Fast CI checks'
-        command: 'pnpm ci:fast-checks'
+        name: Fast CI checks
+        command: pnpm ci:fast-checks
         type: pnpm
-        runs: 'pnpm -w -r exec -- npx tsc -p tsconfig.json --noEmit && npx pyright -p .'
-        description: 'Runs distributed TypeScript checks and Pyright across the workspace for CI smoke coverage.'
+        runs: pnpm -w -r exec -- npx tsc -p tsconfig.json --noEmit && npx pyright -p .
+        description: Runs distributed TypeScript checks and Pyright across the workspace
+          for CI smoke coverage.
         source:
           - package.json#scripts.ci:fast-checks
       - id: quality.pyright
-        name: 'Run Pyright'
-        command: 'npx pyright'
+        name: Run Pyright
+        command: npx pyright
         type: node
-        runs: 'npx pyright'
-        description: 'Performs static type analysis for Python adapters using the Node Pyright CLI.'
+        runs: npx pyright
+        description: Performs static type analysis for Python adapters using the Node
+          Pyright CLI.
         source:
           - AGENTS.md
       - id: quality.tsc-no-emit
-        name: 'Standalone TypeScript check'
-        command: 'npx tsc -p tsconfig.json --noEmit'
+        name: Standalone TypeScript check
+        command: npx tsc -p tsconfig.json --noEmit
         type: node
-        runs: 'npx tsc -p tsconfig.json --noEmit'
-        description: 'Standalone invocation of the TypeScript compiler with no emit for quick verification.'
+        runs: npx tsc -p tsconfig.json --noEmit
+        description: Standalone invocation of the TypeScript compiler with no emit for
+          quick verification.
         source:
           - package.json#scripts.lint:types
       - id: quality.tsc-build-pnpm
-        name: 'TypeScript build via pnpm exec'
-        command: 'pnpm exec tsc -p tsconfig.build.json'
+        name: TypeScript build via pnpm exec
+        command: pnpm exec tsc -p tsconfig.build.json
         type: pnpm
-        runs: 'pnpm exec tsc -p tsconfig.build.json'
-        description: 'Runs the TypeScript compiler through pnpm exec to ensure Windows shells resolve the local tsc binary.'
+        runs: pnpm exec tsc -p tsconfig.build.json
+        description: Runs the TypeScript compiler through pnpm exec to ensure Windows
+          shells resolve the local tsc binary.
         source:
           - DevTalk.txt#DevTalkPart5
   - key: testing
     title: Testing & Coverage
-    description: 'Unit, integration, and regression test commands.'
+    description: Unit, integration, and regression test commands.
     entries:
       - id: testing.test
-        name: 'Vitest run'
-        command: 'pnpm test'
+        name: Vitest run
+        command: pnpm test
         type: pnpm
-        runs: 'vitest run'
-        description: 'Runs the default Vitest suite.'
+        runs: vitest run
+        description: Runs the default Vitest suite.
         source:
           - package.json#scripts.test
       - id: testing.test-watch
-        name: 'Vitest watch'
-        command: 'pnpm test:watch'
+        name: Vitest watch
+        command: pnpm test:watch
         type: pnpm
-        runs: 'vitest'
-        description: 'Starts Vitest in watch mode.'
+        runs: vitest
+        description: Starts Vitest in watch mode.
         source:
           - package.json#scripts.test:watch
       - id: testing.test-unit
-        name: 'Vitest with coverage'
-        command: 'pnpm test:unit'
+        name: Vitest with coverage
+        command: pnpm test:unit
         type: pnpm
-        runs: 'vitest run --coverage'
-        description: 'Executes Vitest with coverage reporting enabled.'
+        runs: vitest run --coverage
+        description: Executes Vitest with coverage reporting enabled.
         source:
           - package.json#scripts.test:unit
       - id: testing.test-jest
-        name: 'Legacy Jest tests'
-        command: 'pnpm test:jest'
+        name: Legacy Jest tests
+        command: pnpm test:jest
         type: pnpm
-        runs: 'jest'
-        description: 'Runs Jest-based suites for legacy compatibility.'
+        runs: jest
+        description: Runs Jest-based suites for legacy compatibility.
         source:
           - package.json#scripts.test:jest
       - id: testing.test-agents
-        name: 'Agents Vitest suite'
-        command: 'pnpm test:agents'
+        name: Agents Vitest suite
+        command: pnpm test:agents
         type: pnpm
-        runs: 'vitest run'
-        description: 'Executes tests scoped to agent modules.'
+        runs: vitest run
+        description: Executes tests scoped to agent modules.
         source:
           - package.json#scripts.test:agents
       - id: testing.test-adapters
-        name: 'Adapter decorators test'
-        command: 'pnpm test:adapters'
+        name: Adapter decorators test
+        command: pnpm test:adapters
         type: pnpm
-        runs: 'vitest run src/adapters/tests/decorators.test.ts'
-        description: 'Runs targeted adapter decorator tests.'
+        runs: vitest run src/adapters/tests/decorators.test.ts
+        description: Runs targeted adapter decorator tests.
         source:
           - package.json#scripts.test:adapters
       - id: testing.test-ts
-        name: 'TypeScript Vitest suite'
-        command: 'pnpm test:ts'
+        name: TypeScript Vitest suite
+        command: pnpm test:ts
         type: pnpm
-        runs: 'vitest run --config vitest.config.ts'
-        description: 'Executes the TypeScript Vitest configuration.'
+        runs: vitest run --config vitest.config.ts
+        description: Executes the TypeScript Vitest configuration.
         source:
           - package.json#scripts.test:ts
       - id: testing.test-ts-ci
-        name: 'CI TypeScript tests'
-        command: 'pnpm test:ts:ci'
+        name: CI TypeScript tests
+        command: pnpm test:ts:ci
         type: pnpm
-        runs: 'NODE_OPTIONS=--max-old-space-size=2048 vitest run --config vitest.config.ts'
-        description: 'Vitest run tuned for CI memory constraints.'
+        runs: NODE_OPTIONS=--max-old-space-size=2048 vitest run --config vitest.config.ts
+        description: Vitest run tuned for CI memory constraints.
         source:
           - package.json#scripts.test:ts:ci
       - id: testing.test-ts-extended
-        name: 'Extended TS suite'
-        command: 'pnpm test:ts:extended'
+        name: Extended TS suite
+        command: pnpm test:ts:extended
         type: pnpm
-        runs: 'cross-env ENABLE_EXTENDED_TESTS=1 vitest run --config vitest.config.ts'
-        description: 'Runs the extended TypeScript Vitest matrix.'
+        runs: cross-env ENABLE_EXTENDED_TESTS=1 vitest run --config vitest.config.ts
+        description: Runs the extended TypeScript Vitest matrix.
         source:
           - package.json#scripts.test:ts:extended
       - id: testing.test-ts-experimental
-        name: 'Experimental TS suite'
-        command: 'pnpm test:ts:experimental'
+        name: Experimental TS suite
+        command: pnpm test:ts:experimental
         type: pnpm
-        runs: 'cross-env ENABLE_EXTENDED_TESTS=1 ENABLE_EXPERIMENTAL_TESTS=1 vitest run --config vitest.config.ts'
-        description: 'Executes experimental TypeScript tests gated by feature flags.'
+        runs: cross-env ENABLE_EXTENDED_TESTS=1 ENABLE_EXPERIMENTAL_TESTS=1 vitest run
+          --config vitest.config.ts
+        description: Executes experimental TypeScript tests gated by feature flags.
         source:
           - package.json#scripts.test:ts:experimental
       - id: testing.test-py
-        name: 'Pytest baseline'
-        command: 'pnpm test:py'
+        name: Pytest baseline
+        command: pnpm test:py
         type: pnpm
-        runs: 'pytest -m "not slow and not experimental" -q'
-        description: 'Runs the default Python adapter test selection.'
+        runs: pytest -m "not slow and not experimental" -q
+        description: Runs the default Python adapter test selection.
         source:
           - package.json#scripts.test:py
       - id: testing.test-py-extended
-        name: 'Extended Pytest'
-        command: 'pnpm test:py:extended'
+        name: Extended Pytest
+        command: pnpm test:py:extended
         type: pnpm
-        runs: 'pytest -m "not experimental" -q'
-        description: 'Runs extended Python adapter tests including slow markers.'
+        runs: pytest -m "not experimental" -q
+        description: Runs extended Python adapter tests including slow markers.
         source:
           - package.json#scripts.test:py:extended
       - id: testing.test-py-all
-        name: 'Full Pytest'
-        command: 'pnpm test:py:all'
+        name: Full Pytest
+        command: pnpm test:py:all
         type: pnpm
-        runs: 'pytest -q'
-        description: 'Executes the entire Python test suite.'
+        runs: pytest -q
+        description: Executes the entire Python test suite.
         source:
           - package.json#scripts.test:py:all
       - id: testing.test-sigil
-        name: 'Sigil CLI test'
-        command: 'pnpm test:sigil'
+        name: Sigil CLI test
+        command: pnpm test:sigil
         type: pnpm
-        runs: 'node scripts/run-dist.mjs scripts/validate-sigil-cli.ts'
-        description: 'Validates the sigil CLI over sample fixtures.'
+        runs: node scripts/run-dist.mjs scripts/validate-sigil-cli.ts
+        description: Validates the sigil CLI over sample fixtures.
         source:
           - package.json#scripts.test:sigil
       - id: testing.test-ui
-        name: 'UI smoke tests'
-        command: 'pnpm test:ui'
+        name: UI smoke tests
+        command: pnpm test:ui
         type: pnpm
-        runs: 'vitest run --passWithNoTests'
-        description: 'Runs UI-targeted Vitest suite tolerant to empty spec sets.'
+        runs: vitest run --passWithNoTests
+        description: Runs UI-targeted Vitest suite tolerant to empty spec sets.
         source:
           - package.json#scripts.test:ui
       - id: testing.test-unit-coverage
-        name: 'CI verification'
-        command: 'pnpm ci:verify'
+        name: CI verification
+        command: pnpm ci:verify
         type: pnpm
-        runs: 'pnpm test:ts && pnpm sigils:index:strict && pnpm adapter:build:era5'
-        description: 'Composite CI gate combining tests, sigil indexing, and ERA5 adapter build.'
+        runs: pnpm test:ts && pnpm sigils:index:strict && pnpm adapter:build:era5
+        description: Composite CI gate combining tests, sigil indexing, and ERA5 adapter
+          build.
         source:
           - package.json#scripts.ci:verify
       - id: testing.qa
-        name: 'QA regression suite'
-        command: 'pnpm qa'
+        name: QA regression suite
+        command: pnpm qa
         type: pnpm
-        runs: 'node scripts/run-dist.mjs scripts/qa-test-runner.ts'
-        description: 'Runs the QA orchestrator over prioritized checks.'
+        runs: node scripts/run-dist.mjs scripts/qa-test-runner.ts
+        description: Runs the QA orchestrator over prioritized checks.
         source:
           - package.json#scripts.qa
       - id: testing.qa-gpt5
-        name: 'QA GPT-5 configuration'
-        command: 'pnpm qa:gpt5'
+        name: QA GPT-5 configuration
+        command: pnpm qa:gpt5
         type: pnpm
-        runs: 'node scripts/run-dist.mjs scripts/qa-test-runner.ts scripts/qa-gpt5.json'
-        description: 'Executes QA runner using the GPT-5 scenario manifest.'
+        runs: node scripts/run-dist.mjs scripts/qa-test-runner.ts scripts/qa-gpt5.json
+        description: Executes QA runner using the GPT-5 scenario manifest.
         source:
           - package.json#scripts.qa:gpt5
       - id: testing.cy-run
-        name: 'Cypress run'
-        command: 'pnpm cy:run'
+        name: Cypress run
+        command: pnpm cy:run
         type: pnpm
-        runs: 'cypress run'
-        description: 'Starts Cypress end-to-end tests.'
+        runs: cypress run
+        description: Starts Cypress end-to-end tests.
         source:
           - package.json#scripts.cy:run
   - key: build_docs
     title: Build & Documentation
-    description: 'Build pipelines, documentation exporters, and release assets.'
+    description: Build pipelines, documentation exporters, and release assets.
     entries:
       - id: build.build
-        name: 'Workspace build'
-        command: 'pnpm build'
+        name: Workspace build
+        command: pnpm build
         type: pnpm
-        runs: 'tsc -p tsconfig.build.json && pnpm build:agents'
-        description: 'Builds the TypeScript workspace and agent bundle artifacts.'
+        runs: tsc -p tsconfig.build.json && pnpm build:agents
+        description: Builds the TypeScript workspace and agent bundle artifacts.
         source:
           - package.json#scripts.build
       - id: build.build-recursive
-        name: 'Workspace build (recursive)'
-        command: 'pnpm -w -r build'
+        name: Workspace build (recursive)
+        command: pnpm -w -r build
         type: pnpm
-        runs: 'pnpm -w -r build'
-        description: 'Runs the build script across all workspaces using pnpm recursive mode (mirrors Windows verification flow).'
+        runs: pnpm -w -r build
+        description: Runs the build script across all workspaces using pnpm recursive
+          mode (mirrors Windows verification flow).
         source:
           - DevTalk.txt#DevTalkPart5
       - id: build.build-agents
-        name: 'Compile agents'
-        command: 'pnpm build:agents'
+        name: Compile agents
+        command: pnpm build:agents
         type: pnpm
-        runs: 'tsc -p tsconfig.agents.json && node -e ...'
-        description: 'Compiles agent TypeScript and normalizes CommonJS outputs.'
+        runs: tsc -p tsconfig.agents.json && node -e ...
+        description: Compiles agent TypeScript and normalizes CommonJS outputs.
         source:
           - package.json#scripts.build:agents
       - id: build.build-ui
-        name: 'Build Mandala UI'
-        command: 'pnpm build:ui'
+        name: Build Mandala UI
+        command: pnpm build:ui
         type: pnpm
-        runs: 'pnpm -F mandala-ui build'
-        description: 'Generates the UI distribution bundle via the mandala-ui workspace.'
+        runs: pnpm -F mandala-ui build
+        description: Generates the UI distribution bundle via the mandala-ui workspace.
         source:
           - package.json#scripts.build:ui
       - id: build.docs-build
-        name: 'Generate Typedoc'
-        command: 'pnpm docs:build'
+        name: Generate Typedoc
+        command: pnpm docs:build
         type: pnpm
-        runs: 'typedoc'
-        description: 'Builds API documentation via TypeDoc.'
+        runs: typedoc
+        description: Builds API documentation via TypeDoc.
         source:
           - package.json#scripts.docs:build
       - id: build.docs-auto
-        name: 'Auto-generate API docs'
-        command: 'pnpm docs:auto'
+        name: Auto-generate API docs
+        command: pnpm docs:auto
         type: pnpm
-        runs: 'node scripts/generate-api-docs.js'
-        description: 'Generates API documentation with custom script automation.'
+        runs: node scripts/generate-api-docs.js
+        description: Generates API documentation with custom script automation.
         source:
           - package.json#scripts.docs:auto
       - id: build.generate-changelog
-        name: 'Generate changelog'
-        command: 'pnpm generate:changelog'
+        name: Generate changelog
+        command: pnpm generate:changelog
         type: pnpm
-        runs: 'node scripts/generate-changelog.js'
-        description: 'Outputs changelog entries from commit metadata.'
+        runs: node scripts/generate-changelog.js
+        description: Outputs changelog entries from commit metadata.
         source:
           - package.json#scripts.generate:changelog
       - id: build.compile-agents-manifest
-        name: 'Compile agents manifest'
-        command: 'pnpm compile:agents-manifest'
+        name: Compile agents manifest
+        command: pnpm compile:agents-manifest
         type: pnpm
-        runs: 'node scripts/compile_agents_manifest.js'
-        description: 'Assembles the consolidated agents manifest for documentation.'
+        runs: node scripts/compile_agents_manifest.js
+        description: Assembles the consolidated agents manifest for documentation.
         source:
           - package.json#scripts.compile:agents-manifest
       - id: build.export-crep-docs
-        name: 'Export CREP docs'
-        command: 'pnpm export:crep-docs'
+        name: Export CREP docs
+        command: pnpm export:crep-docs
         type: pnpm
-        runs: 'node scripts/export-crep-docs.js'
-        description: 'Generates CREP documentation artifacts.'
+        runs: node scripts/export-crep-docs.js
+        description: Generates CREP documentation artifacts.
         source:
           - package.json#scripts.export:crep-docs
       - id: build.export-depth-bundle
-        name: 'Export depth bundle'
-        command: 'pnpm export_depth_bundle'
+        name: Export depth bundle
+        command: pnpm export_depth_bundle
         type: pnpm
-        runs: 'node scripts/run-dist.mjs scripts/export-depth-bundle.ts'
-        description: 'Creates Sigillin depth bundles and related media artifacts.'
+        runs: node scripts/run-dist.mjs scripts/export-depth-bundle.ts
+        description: Creates Sigillin depth bundles and related media artifacts.
         source:
           - package.json#scripts.export_depth_bundle
       - id: build.generate-next-sigil
-        name: 'Generate next sigil'
-        command: 'pnpm generate:next-sigil'
+        name: Generate next sigil
+        command: pnpm generate:next-sigil
         type: pnpm
-        runs: 'node scripts/generate-next-sigil.js'
-        description: 'Produces the next sigil candidate and updates indices.'
+        runs: node scripts/generate-next-sigil.js
+        description: Produces the next sigil candidate and updates indices.
         source:
           - package.json#scripts.generate:next-sigil
       - id: build.generate-agents-diagram
-        name: 'Generate agents diagram'
-        command: 'pnpm generate:agents-diagram'
+        name: Generate agents diagram
+        command: pnpm generate:agents-diagram
         type: pnpm
-        runs: 'node scripts/generate-agents-diagram.js'
-        description: 'Creates Mermaid diagrams documenting the agent network.'
+        runs: node scripts/generate-agents-diagram.js
+        description: Creates Mermaid diagrams documenting the agent network.
         source:
           - package.json#scripts.generate:agents-diagram
       - id: build.generate-agent-docs
-        name: 'Generate agent docs'
-        command: 'pnpm generate:agent-docs'
+        name: Generate agent docs
+        command: pnpm generate:agent-docs
         type: pnpm
-        runs: 'node scripts/generate-agent-docs.js'
-        description: 'Materializes agent documentation files.'
+        runs: node scripts/generate-agent-docs.js
+        description: Materializes agent documentation files.
         source:
           - package.json#scripts.generate:agent-docs
       - id: build.trikaya-dashboard
-        name: 'Trikāya dashboard'
-        command: 'pnpm trikaya:dashboard'
+        name: "Trik\u0101ya dashboard"
+        command: pnpm trikaya:dashboard
         type: pnpm
-        runs: 'node scripts/generate-trikaya-dashboard.mjs'
-        description: 'Generates the Trikāya dashboard artifacts under analysis/.'
+        runs: node scripts/generate-trikaya-dashboard.mjs
+        description: "Generates the Trik\u0101ya dashboard artifacts under analysis/."
         source:
           - package.json#scripts.trikaya:dashboard
   - key: runtime
     title: Runtime & Developer Services
-    description: 'Commands for launching dev servers, stacks, and runtime utilities.'
+    description: Commands for launching dev servers, stacks, and runtime utilities.
     entries:
       - id: runtime.dev
-        name: 'UI dev server'
-        command: 'pnpm dev'
+        name: UI dev server
+        command: pnpm dev
         type: pnpm
-        runs: 'cross-env UI_DIST=http://localhost:5173 pnpm -F mandala-ui dev'
-        description: 'Starts the mandala-ui dev server with UI_DIST override.'
+        runs: cross-env UI_DIST=http://localhost:5173 pnpm -F mandala-ui dev
+        description: Starts the mandala-ui dev server with UI_DIST override.
         source:
           - package.json#scripts.dev
       - id: runtime.dev-ui
-        name: 'Mandala UI dev'
-        command: 'pnpm dev:ui'
+        name: Mandala UI dev
+        command: pnpm dev:ui
         type: pnpm
-        runs: 'pnpm -F mandala-ui dev'
-        description: 'Runs the UI workspace dev server without overrides.'
+        runs: pnpm -F mandala-ui dev
+        description: Runs the UI workspace dev server without overrides.
         source:
           - package.json#scripts.dev:ui
       - id: runtime.dev-services
-        name: 'Service development runner'
-        command: 'pnpm dev:services'
+        name: Service development runner
+        command: pnpm dev:services
         type: pnpm
-        runs: 'tsx scripts/dev-server.ts'
-        description: 'Launches backend/dev services via the TypeScript dev server orchestrator.'
+        runs: tsx scripts/dev-server.ts
+        description: Launches backend/dev services via the TypeScript dev server orchestrator.
         source:
           - package.json#scripts.dev:services
       - id: runtime.dev-stack
-        name: 'Full dev stack'
-        command: 'pnpm dev:stack'
+        name: Full dev stack
+        command: pnpm dev:stack
         type: pnpm
-        runs: 'node scripts/dev-services.mjs --mode=dev'
-        description: 'Starts the dev stack orchestrator with default dev profiles.'
+        runs: node scripts/dev-services.mjs --mode=dev
+        description: Starts the dev stack orchestrator with default dev profiles.
         source:
           - package.json#scripts.dev:stack
       - id: runtime.dev-breath
-        name: 'Emergence breath watcher'
-        command: 'pnpm dev:breath'
+        name: Emergence breath watcher
+        command: pnpm dev:breath
         type: pnpm
-        runs: 'node scripts/emergence-breath.mjs'
-        description: 'Watches sigils, apps/ui, and scripts to rerun `validate:sigillins`, rebuild the Trikāya dashboard, and print coverage metrics.'
+        runs: node scripts/emergence-breath.mjs
+        description: "Watches sigils, apps/ui, and scripts to rerun `validate:sigillins`,\
+          \ rebuild the Trik\u0101ya dashboard, and print coverage metrics."
         source:
           - package.json#scripts.dev:breath
       - id: runtime.start
-        name: 'Start UI & dev'
-        command: 'pnpm start'
+        name: Start UI & dev
+        command: pnpm start
         type: pnpm
-        runs: 'pnpm -s build:ui && pnpm -s dev'
-        description: 'Builds the UI then launches the dev server.'
+        runs: pnpm -s build:ui && pnpm -s dev
+        description: Builds the UI then launches the dev server.
         source:
           - package.json#scripts.start
       - id: runtime.start-light
-        name: 'Light static server'
-        command: 'pnpm start:light'
+        name: Light static server
+        command: pnpm start:light
         type: pnpm
-        runs: 'pnpm -s build:ui && node scripts/light-static-server.mjs'
-        description: 'Serves the built UI via the light static Node server.'
+        runs: pnpm -s build:ui && node scripts/light-static-server.mjs
+        description: Serves the built UI via the light static Node server.
         source:
           - package.json#scripts.start:light
       - id: runtime.start-services
-        name: 'Production services'
-        command: 'pnpm start:services'
+        name: Production services
+        command: pnpm start:services
         type: pnpm
-        runs: 'pnpm -s build && NODE_ENV=production node scripts/dev-services.mjs --mode=prod'
-        description: 'Builds the workspace and starts services in production mode.'
+        runs: pnpm -s build && NODE_ENV=production node scripts/dev-services.mjs --mode=prod
+        description: Builds the workspace and starts services in production mode.
         source:
           - package.json#scripts.start:services
       - id: runtime.start-all
-        name: 'Start full stack'
-        command: 'pnpm start:all'
+        name: Start full stack
+        command: pnpm start:all
         type: pnpm
-        runs: 'pnpm dev:stack'
-        description: 'Convenience alias to boot the full dev stack.'
+        runs: pnpm dev:stack
+        description: Convenience alias to boot the full dev stack.
         source:
           - package.json#scripts.start:all
       - id: runtime.dev-voiceos
-        name: 'Voice OS control API'
-        command: 'pnpm dev:voiceos'
+        name: Voice OS control API
+        command: pnpm dev:voiceos
         type: pnpm
-        runs: 'node scripts/run-dist.mjs scripts/voice-os-control-api.ts'
-        description: 'Launches the Voice OS control API for voice interaction workflows.'
+        runs: node scripts/run-dist.mjs scripts/voice-os-control-api.ts
+        description: Launches the Voice OS control API for voice interaction workflows.
         source:
           - package.json#scripts.dev:voiceos
       - id: runtime.ghost-shell-cluster
-        name: 'Ghost Shell cluster'
-        command: 'pnpm ghost-shell:cluster'
+        name: Ghost Shell cluster
+        command: pnpm ghost-shell:cluster
         type: pnpm
-        runs: 'node scripts/run-dist.mjs services/ghost-shell/cluster.ts'
-        description: 'Starts the Ghost Shell clustering process.'
+        runs: node scripts/run-dist.mjs services/ghost-shell/cluster.ts
+        description: Starts the Ghost Shell clustering process.
         source:
           - package.json#scripts.ghost-shell:cluster
       - id: runtime.ghost-shell-server
-        name: 'Ghost Shell server'
-        command: 'pnpm ghost-shell:server'
+        name: Ghost Shell server
+        command: pnpm ghost-shell:server
         type: pnpm
-        runs: 'node scripts/run-dist.mjs services/ghost-shell/server.ts'
-        description: 'Runs the Ghost Shell server entrypoint.'
+        runs: node scripts/run-dist.mjs services/ghost-shell/server.ts
+        description: Runs the Ghost Shell server entrypoint.
         source:
           - package.json#scripts.ghost-shell:server
       - id: runtime.generate-ghostshell-nginx
-        name: 'Ghost Shell Nginx config'
-        command: 'pnpm generate:ghostshell-nginx'
+        name: Ghost Shell Nginx config
+        command: pnpm generate:ghostshell-nginx
         type: pnpm
-        runs: 'node scripts/run-dist.mjs scripts/generate-ghostshell-nginx.ts'
-        description: 'Generates Nginx configuration for Ghost Shell deployments.'
+        runs: node scripts/run-dist.mjs scripts/generate-ghostshell-nginx.ts
+        description: Generates Nginx configuration for Ghost Shell deployments.
         source:
           - package.json#scripts.generate:ghostshell-nginx
       - id: runtime.audit-ui-vr
-        name: 'UI VR audit'
-        command: 'pnpm audit:ui-vr'
+        name: UI VR audit
+        command: pnpm audit:ui-vr
         type: pnpm
-        runs: 'node scripts/run-dist.mjs scripts/ui-vr-audit.ts'
-        description: 'Audits UI and VR integration paths via Node runner.'
+        runs: node scripts/run-dist.mjs scripts/ui-vr-audit.ts
+        description: Audits UI and VR integration paths via Node runner.
         source:
           - package.json#scripts.audit:ui-vr
   - key: smoke
     title: Smoke & Monitoring
-    description: 'Operational smoke tests and monitoring helpers.'
+    description: Operational smoke tests and monitoring helpers.
     entries:
       - id: smoke.ui
-        name: 'UI dev smoke'
-        command: 'pnpm smoke:ui'
+        name: UI dev smoke
+        command: pnpm smoke:ui
         type: pnpm
-        runs: 'node scripts/smoke/ui-dev-smoke.mjs'
-        description: 'Performs smoke testing against the UI dev server and respects `UI_DEV_URL` without spawning a new Vite instance.'
+        runs: node scripts/smoke/ui-dev-smoke.mjs
+        description: Performs smoke testing against the UI dev server and respects `UI_DEV_URL`
+          without spawning a new Vite instance.
         source:
           - package.json#scripts.smoke:ui
       - id: smoke.dev
-        name: 'Dev server smoke'
-        command: 'pnpm smoke:dev'
+        name: Dev server smoke
+        command: pnpm smoke:dev
         type: pnpm
-        runs: 'node scripts/smoke/dev-server-smoke.mjs'
-        description: 'Checks dev server readiness endpoints.'
+        runs: node scripts/smoke/dev-server-smoke.mjs
+        description: Checks dev server readiness endpoints.
         source:
           - package.json#scripts.smoke:dev
       - id: smoke.mrv
-        name: 'MRV smoke'
-        command: 'pnpm smoke:mrv'
+        name: MRV smoke
+        command: pnpm smoke:mrv
         type: pnpm
-        runs: 'node scripts/smoke/mrv-smoke.mjs'
-        description: 'Executes MRV smoke validation routine.'
+        runs: node scripts/smoke/mrv-smoke.mjs
+        description: Executes MRV smoke validation routine.
         source:
           - package.json#scripts.smoke:mrv
       - id: smoke.light-static
-        name: 'Light static smoke'
-        command: 'pnpm smoke:light-static'
+        name: Light static smoke
+        command: pnpm smoke:light-static
         type: pnpm
-        runs: 'node scripts/smoke/light-static-smoke.mjs'
-        description: 'Validates the light static server responses (Brotli/Gzip).'
+        runs: node scripts/smoke/light-static-smoke.mjs
+        description: Validates the light static server responses (Brotli/Gzip).
         source:
           - package.json#scripts.smoke:light-static
       - id: smoke.ttfb
-        name: 'TTFB smoke'
-        command: 'pnpm smoke:ttfb'
+        name: TTFB smoke
+        command: pnpm smoke:ttfb
         type: pnpm
-        runs: 'pnpm -s build:ui && node scripts/smoke/ttfb-smoke.mjs'
-        description: 'Measures time-to-first-byte after building the UI.'
+        runs: pnpm -s build:ui && node scripts/smoke/ttfb-smoke.mjs
+        description: Measures time-to-first-byte after building the UI.
         source:
           - package.json#scripts.smoke:ttfb
       - id: smoke.agents
-        name: 'Agents smoke'
-        command: 'pnpm smoke:agents'
+        name: Agents smoke
+        command: pnpm smoke:agents
         type: pnpm
-        runs: 'node scripts/smoke/agents-smoke.mjs'
-        description: 'Runs smoke tests across agent services.'
+        runs: node scripts/smoke/agents-smoke.mjs
+        description: Runs smoke tests across agent services.
         source:
           - package.json#scripts.smoke:agents
   - key: agents
     title: Agents & Emergence
-    description: 'Agent orchestration, health checks, and emergence scanning.'
+    description: Agent orchestration, health checks, and emergence scanning.
     entries:
       - id: agents.run
-        name: 'Run agents'
-        command: 'pnpm agents:run'
+        name: Run agents
+        command: pnpm agents:run
         type: pnpm
-        runs: 'node scripts/run-dist.mjs scripts/agents/runner.ts'
-        description: 'Launches the primary agent runner.'
+        runs: node scripts/run-dist.mjs scripts/agents/runner.ts
+        description: Launches the primary agent runner.
         source:
           - package.json#scripts.agents:run
       - id: agents.health
-        name: 'Agents health'
-        command: 'pnpm agents:health'
+        name: Agents health
+        command: pnpm agents:health
         type: pnpm
-        runs: 'node scripts/run-dist.mjs scripts/agents/runner.ts --health-all'
-        description: 'Executes health checks across all registered agents.'
+        runs: node scripts/run-dist.mjs scripts/agents/runner.ts --health-all
+        description: Executes health checks across all registered agents.
         source:
           - package.json#scripts.agents:health
       - id: agents.metrics
-        name: 'Agents metrics aggregation'
-        command: 'pnpm agents:metrics'
+        name: Agents metrics aggregation
+        command: pnpm agents:metrics
         type: pnpm
-        runs: 'node scripts/run-dist.mjs scripts/agents/metrics-aggregate.ts'
-        description: 'Aggregates metrics emitted by agents.'
+        runs: node scripts/run-dist.mjs scripts/agents/metrics-aggregate.ts
+        description: Aggregates metrics emitted by agents.
         source:
           - package.json#scripts.agents:metrics
       - id: agents.audit-domains
-        name: 'Agents domain audit'
-        command: 'pnpm agents:audit:domains'
+        name: Agents domain audit
+        command: pnpm agents:audit:domains
         type: pnpm
-        runs: 'node scripts/run-dist.mjs scripts/agents/domain-audit.ts'
-        description: 'Audits domain assignments across agent network.'
+        runs: node scripts/run-dist.mjs scripts/agents/domain-audit.ts
+        description: Audits domain assignments across agent network.
         source:
           - package.json#scripts.agents:audit:domains
       - id: agents.test-golden
-        name: 'Agents golden tests'
-        command: 'pnpm agents:test:golden'
+        name: Agents golden tests
+        command: pnpm agents:test:golden
         type: pnpm
-        runs: 'node scripts/run-dist.mjs scripts/agents/golden-runner.ts'
-        description: 'Runs golden record verification for agents.'
+        runs: node scripts/run-dist.mjs scripts/agents/golden-runner.ts
+        description: Runs golden record verification for agents.
         source:
           - package.json#scripts.agents:test:golden
       - id: agents.scan
-        name: 'Agents emergence scan'
-        command: 'pnpm agents:scan'
+        name: Agents emergence scan
+        command: pnpm agents:scan
         type: pnpm
-        runs: 'node scripts/run-dist.mjs scripts/agents/emergence-scan.ts'
-        description: 'Scans agents for emergence signals.'
+        runs: node scripts/run-dist.mjs scripts/agents/emergence-scan.ts
+        description: Scans agents for emergence signals.
         source:
           - package.json#scripts.agents:scan
       - id: agents.route
-        name: 'Agents router'
-        command: 'pnpm agents:route'
+        name: Agents router
+        command: pnpm agents:route
         type: pnpm
-        runs: 'node scripts/agents/router.mjs'
-        description: 'Runs the agents router for message routing scenarios.'
+        runs: node scripts/agents/router.mjs
+        description: Runs the agents router for message routing scenarios.
         source:
           - package.json#scripts.agents:route
       - id: agents.emergence-scan
-        name: 'Composite emergence scan'
-        command: 'pnpm emergence:scan'
+        name: Composite emergence scan
+        command: pnpm emergence:scan
         type: pnpm
-        runs: 'pnpm sigils:index && pnpm agents:scan'
-        description: 'Indexes sigils then performs an agent emergence scan.'
+        runs: pnpm sigils:index && pnpm agents:scan
+        description: Indexes sigils then performs an agent emergence scan.
         source:
           - package.json#scripts.emergence:scan
   - key: sigils
     title: Sigils, Maps & Mandala
-    description: 'Sigil validation, map generation, and mandala topology helpers.'
+    description: Sigil validation, map generation, and mandala topology helpers.
     entries:
       - id: sigils.lint
-        name: 'Sigils lint'
-        command: 'pnpm sigils:lint'
+        name: Sigils lint
+        command: pnpm sigils:lint
         type: pnpm
-        runs: 'node scripts/run-dist.mjs scripts/sigils-validate.ts'
-        description: 'Validates sigil definitions via dist runner.'
+        runs: node scripts/run-dist.mjs scripts/sigils-validate.ts
+        description: Validates sigil definitions via dist runner.
         source:
           - package.json#scripts.sigils:lint
       - id: sigils.scan
-        name: 'Sigils scan'
-        command: 'pnpm sigils:scan'
+        name: Sigils scan
+        command: pnpm sigils:scan
         type: pnpm
-        runs: 'node scripts/run-dist.mjs scripts/validate-sigils.ts'
-        description: 'Scans sigil manifests for consistency.'
+        runs: node scripts/run-dist.mjs scripts/validate-sigils.ts
+        description: Scans sigil manifests for consistency.
         source:
           - package.json#scripts.sigils:scan
       - id: sigils.index
-        name: 'Build sigil index'
-        command: 'pnpm sigils:index'
+        name: Build sigil index
+        command: pnpm sigils:index
         type: pnpm
-        runs: 'node scripts/build-sigillin-index.mjs'
-        description: 'Generates the sigil index artifacts.'
+        runs: node scripts/build-sigillin-index.mjs
+        description: Generates the sigil index artifacts.
         source:
           - package.json#scripts.sigils:index
       - id: sigils.find-bad-yaml
-        name: 'Lint YAML manifests'
-        command: 'pnpm find-bad-yaml'
+        name: Lint YAML manifests
+        command: pnpm find-bad-yaml
         type: pnpm
-        runs: 'node scripts/find-bad-yaml.mjs'
-        description: 'Lints sigil YAML files via yaml-lint and fast-glob before strict indexing.'
+        runs: node scripts/find-bad-yaml.mjs
+        description: Lints sigil YAML files via yaml-lint and fast-glob before strict
+          indexing.
         source:
           - package.json#scripts.find-bad-yaml
       - id: sigils.index-strict
-        name: 'Strict sigil index'
-        command: 'pnpm sigils:index:strict'
+        name: Strict sigil index
+        command: pnpm sigils:index:strict
         type: pnpm
-        runs: 'pnpm find-bad-yaml && pnpm sigils:scan && pnpm stac:validate && pnpm sigils:index'
-        description: 'Runs strict sigil validation pipeline prior to indexing.'
+        runs: pnpm find-bad-yaml && pnpm sigils:scan && pnpm stac:validate && pnpm sigils:index
+        description: Runs strict sigil validation pipeline prior to indexing.
         source:
           - package.json#scripts.sigils:index:strict
       - id: sigils.errors
-        name: 'Inspect sigil errors'
-        command: 'pnpm sigils:errors'
+        name: Inspect sigil errors
+        command: pnpm sigils:errors
         type: pnpm
-        runs: "cat out/sigils_errors.json || echo 'no errors file'"
-        description: 'Prints the last sigil error report if available.'
+        runs: cat out/sigils_errors.json || echo 'no errors file'
+        description: Prints the last sigil error report if available.
         source:
           - package.json#scripts.sigils:errors
       - id: sigils.sigillins-scaffold
-        name: 'Scaffold inter-AI bridges'
-        command: 'pnpm sigillins:scaffold'
+        name: Scaffold inter-AI bridges
+        command: pnpm sigillins:scaffold
         type: pnpm
-        runs: 'node scripts/scaffold-interai-bridges.mjs'
-        description: 'Creates scaffold files for inter-AI sigillin bridges.'
+        runs: node scripts/scaffold-interai-bridges.mjs
+        description: Creates scaffold files for inter-AI sigillin bridges.
         source:
           - package.json#scripts.sigillins:scaffold
       - id: sigils.sigillins-authoring
-        name: 'Sigillin authoring CLI'
-        command: 'pnpm sigillins:authoring'
+        name: Sigillin authoring CLI
+        command: pnpm sigillins:authoring
         type: pnpm
-        runs: 'node scripts/sigillin-authoring.mjs'
-        description: 'Interactive authoring CLI for sigillin records.'
+        runs: node scripts/sigillin-authoring.mjs
+        description: Interactive authoring CLI for sigillin records.
         source:
           - package.json#scripts.sigillins:authoring
       - id: sigils.sigillins-build
-        name: 'Build sigillin archive'
-        command: 'pnpm sigillins:build'
+        name: Build sigillin archive
+        command: pnpm sigillins:build
         type: pnpm
-        runs: 'node scripts/build-sigillin-archive.mjs'
-        description: 'Constructs sigillin archive bundles.'
+        runs: node scripts/build-sigillin-archive.mjs
+        description: Constructs sigillin archive bundles.
         source:
           - package.json#scripts.sigillins:build
       - id: sigils.validate-sigillins
-        name: 'Validate sigillins'
-        command: 'pnpm validate:sigillins'
+        name: Validate sigillins
+        command: pnpm validate:sigillins
         type: pnpm
-        runs: 'node scripts/validate-sigillins.mjs'
-        description: 'Runs the sigillin validator with schema and semantic checks.'
+        runs: node scripts/validate-sigillins.mjs
+        description: Runs the sigillin validator with schema and semantic checks.
         source:
           - package.json#scripts.validate:sigillins
       - id: sigils.map-mandala
-        name: 'Validate Mandala map'
-        command: 'pnpm map:mandala'
+        name: Validate Mandala map
+        command: pnpm map:mandala
         type: pnpm
-        runs: 'node scripts/mandala-map-validate.mjs'
-        description: 'Validates Mandala map artifacts prior to publication.'
+        runs: node scripts/mandala-map-validate.mjs
+        description: Validates Mandala map artifacts prior to publication.
         source:
           - package.json#scripts.map:mandala
       - id: sigils.maps-build
-        name: 'Build repository map'
-        command: 'pnpm maps:build'
+        name: Build repository map
+        command: pnpm maps:build
         type: pnpm
-        runs: 'node scripts/run-dist.mjs scripts/repo-map.ts'
-        description: 'Regenerates repository map datasets.'
+        runs: node scripts/run-dist.mjs scripts/repo-map.ts
+        description: Regenerates repository map datasets.
         source:
           - package.json#scripts.maps:build
       - id: sigils.maps-validate
-        name: 'Validate repository maps'
-        command: 'pnpm maps:validate'
+        name: Validate repository maps
+        command: pnpm maps:validate
         type: pnpm
-        runs: 'node scripts/maps/validate-maps.mjs'
-        description: 'Runs validation against map artifacts.'
+        runs: node scripts/maps/validate-maps.mjs
+        description: Runs validation against map artifacts.
         source:
           - package.json#scripts.maps:validate
       - id: sigils.maps-list
-        name: 'List mapped files'
-        command: 'pnpm maps:list'
+        name: List mapped files
+        command: pnpm maps:list
         type: pnpm
-        runs: 'node -e "console.log(require(''./analysis/repo-map.json'').length+'' files'')"'
-        description: 'Prints the repository map file count.'
+        runs: node -e "console.log(require('./analysis/repo-map.json').length+' files')"
+        description: Prints the repository map file count.
         source:
           - package.json#scripts.maps:list
       - id: sigils.graph-build
-        name: 'Build sigillin graph'
-        command: 'pnpm graph:build'
+        name: Build sigillin graph
+        command: pnpm graph:build
         type: pnpm
-        runs: 'node scripts/build-sigillin-graph.mjs'
-        description: 'Generates graph representations of sigillin relationships.'
+        runs: node scripts/build-sigillin-graph.mjs
+        description: Generates graph representations of sigillin relationships.
         source:
           - package.json#scripts.graph:build
   - key: data
     title: Data, Adapters & Ingestion
-    description: 'Dataset builders, adapter workflows, and resonance tooling.'
+    description: Dataset builders, adapter workflows, and resonance tooling.
     entries:
       - id: data.adapter-era5
-        name: 'Build ERA5 adapter'
-        command: 'pnpm adapter:build:era5'
+        name: Build ERA5 adapter
+        command: pnpm adapter:build:era5
         type: pnpm
-        runs: 'PYTHONPATH=src python -c ... && node scripts/adapter-postprocess.mjs era5'
-        description: 'Builds ERA5 adapter artifacts using Python helpers and post-processing.'
+        runs: PYTHONPATH=src python -c ... && node scripts/adapter-postprocess.mjs era5
+        description: Builds ERA5 adapter artifacts using Python helpers and post-processing.
         source:
           - package.json#scripts.adapter:build:era5
       - id: data.adapter-oisst
-        name: 'Build OISST adapter'
-        command: 'pnpm adapter:build:oisst'
+        name: Build OISST adapter
+        command: pnpm adapter:build:oisst
         type: pnpm
-        runs: 'node scripts/build-adapter-oisst.mjs'
-        description: 'Generates OISST adapter data bundles.'
+        runs: node scripts/build-adapter-oisst.mjs
+        description: Generates OISST adapter data bundles.
         source:
           - package.json#scripts.adapter:build:oisst
       - id: data.adapter-effis
-        name: 'Build EFFIS adapter'
-        command: 'pnpm adapter:build:effis'
+        name: Build EFFIS adapter
+        command: pnpm adapter:build:effis
         type: pnpm
-        runs: 'node scripts/build-adapter-effis.mjs'
-        description: 'Builds EFFIS adapter outputs.'
+        runs: node scripts/build-adapter-effis.mjs
+        description: Builds EFFIS adapter outputs.
         source:
           - package.json#scripts.adapter:build:effis
       - id: data.adapters-ci-install
-        name: 'Install adapter Python deps'
-        command: 'pnpm adapters:ci:install'
+        name: Install adapter Python deps
+        command: pnpm adapters:ci:install
         type: pnpm
-        runs: 'pip install -r src/adapters/requirements.txt'
-        description: 'Installs Python requirements for adapters in CI.'
+        runs: pip install -r src/adapters/requirements.txt
+        description: Installs Python requirements for adapters in CI.
         source:
           - package.json#scripts.adapters:ci:install
       - id: data.resonance-calc
-        name: 'Resonance calculation'
-        command: 'pnpm resonance:calc'
+        name: Resonance calculation
+        command: pnpm resonance:calc
         type: pnpm
-        runs: 'node scripts/run-dist.mjs scripts/resonance-calc.ts'
-        description: 'Runs the resonance calculator for sigillin analytics.'
+        runs: node scripts/run-dist.mjs scripts/resonance-calc.ts
+        description: Runs the resonance calculator for sigillin analytics.
         source:
           - package.json#scripts.resonance:calc
       - id: data.scan-ingest
-        name: 'Ingest external scan'
-        command: 'pnpm scan:ingest'
+        name: Ingest external scan
+        command: pnpm scan:ingest
         type: pnpm
-        runs: 'node scripts/ingest-external-scan.mjs'
-        description: 'Scans and ingests external dataset manifests.'
+        runs: node scripts/ingest-external-scan.mjs
+        description: Scans and ingests external dataset manifests.
         source:
           - package.json#scripts.scan:ingest
       - id: data.stac-validate
-        name: 'Validate STAC'
-        command: 'pnpm stac:validate'
+        name: Validate STAC
+        command: pnpm stac:validate
         type: pnpm
-        runs: 'node scripts/validate-stac.mjs'
-        description: 'Validates STAC catalog outputs.'
+        runs: node scripts/validate-stac.mjs
+        description: Validates STAC catalog outputs.
         source:
           - package.json#scripts.stac:validate
       - id: data.stac-validate-item
-        name: 'Validate STAC item'
-        command: 'pnpm stac:validate:item'
+        name: Validate STAC item
+        command: pnpm stac:validate:item
         type: pnpm
-        runs: 'node scripts/run-dist.mjs scripts/validate-stac.ts out/example.item.json'
-        description: 'Validates a single STAC item artifact.'
+        runs: node scripts/run-dist.mjs scripts/validate-stac.ts out/example.item.json
+        description: Validates a single STAC item artifact.
         source:
           - package.json#scripts.stac:validate:item
   - key: tasks
     title: Conversations & Task Automation
-    description: 'Conversation parsing, to-do curation, and fractal task orchestration.'
+    description: Conversation parsing, to-do curation, and fractal task orchestration.
     entries:
       - id: tasks.split-conversations
-        name: 'Split conversations'
-        command: 'pnpm split:conversations'
+        name: Split conversations
+        command: pnpm split:conversations
         type: pnpm
-        runs: 'node scripts/split-conversations.js'
-        description: 'Splits long conversation logs into manageable segments.'
+        runs: node scripts/split-conversations.js
+        description: Splits long conversation logs into manageable segments.
         source:
           - package.json#scripts.split:conversations
       - id: tasks.analyze-conversations
-        name: 'Analyze conversations'
-        command: 'pnpm analyze:conversations'
+        name: Analyze conversations
+        command: pnpm analyze:conversations
         type: pnpm
-        runs: 'node scripts/analyze-conversations.js'
-        description: 'Runs analytics over conversation datasets.'
+        runs: node scripts/analyze-conversations.js
+        description: Runs analytics over conversation datasets.
         source:
           - package.json#scripts.analyze:conversations
       - id: tasks.grep-conversations
-        name: 'Grep conversations'
-        command: 'pnpm grep:conversations'
+        name: Grep conversations
+        command: pnpm grep:conversations
         type: pnpm
-        runs: 'node scripts/filter-conversations.js'
-        description: 'Filters conversations by pattern.'
+        runs: node scripts/filter-conversations.js
+        description: Filters conversations by pattern.
         source:
           - package.json#scripts.grep:conversations
       - id: tasks.parse-newconversations
-        name: 'Parse new advanced conversations'
-        command: 'pnpm parse:newconversations'
+        name: Parse new advanced conversations
+        command: pnpm parse:newconversations
         type: pnpm
-        runs: 'node scripts/parse-newadvanced-conversations.js'
-        description: 'Parses new advanced conversation exports into structured data.'
+        runs: node scripts/parse-newadvanced-conversations.js
+        description: Parses new advanced conversation exports into structured data.
         source:
           - package.json#scripts.parse:newconversations
       - id: tasks.conversations-grep-dist
-        name: 'Run dist conversation parser'
-        command: 'pnpm conversations:grep'
+        name: Run dist conversation parser
+        command: pnpm conversations:grep
         type: pnpm
-        runs: 'node scripts/run-dist.mjs scripts/parse-newadvancedconversations.ts'
-        description: 'Executes the TypeScript conversation parser via dist runner.'
+        runs: node scripts/run-dist.mjs scripts/parse-newadvancedconversations.ts
+        description: Executes the TypeScript conversation parser via dist runner.
         source:
           - package.json#scripts.conversations:grep
       - id: tasks.update-advanced-todo
-        name: 'Update advanced to-do'
-        command: 'pnpm update:advanced-todo'
+        name: Update advanced to-do
+        command: pnpm update:advanced-todo
         type: pnpm
-        runs: 'node scripts/update-advanced-todo.js'
-        description: 'Refreshes the advanced to-do manifest.'
+        runs: node scripts/update-advanced-todo.js
+        description: Refreshes the advanced to-do manifest.
         source:
           - package.json#scripts.update:advanced-todo
       - id: tasks.update-code-todos
-        name: 'Update code TODOs'
-        command: 'pnpm update:code-todos'
+        name: Update code TODOs
+        command: pnpm update:code-todos
         type: pnpm
-        runs: 'node scripts/update-code-todos.cjs'
-        description: 'Extracts and updates in-code TODO references.'
+        runs: node scripts/update-code-todos.cjs
+        description: Extracts and updates in-code TODO references.
         source:
           - package.json#scripts.update:code-todos
       - id: tasks.update-newadvanced-todo
-        name: 'Update new advanced to-do'
-        command: 'pnpm update:newadvanced-todo'
+        name: Update new advanced to-do
+        command: pnpm update:newadvanced-todo
         type: pnpm
-        runs: 'node scripts/update-newadvanced-todo.js'
-        description: 'Updates the new advanced to-do dataset.'
+        runs: node scripts/update-newadvanced-todo.js
+        description: Updates the new advanced to-do dataset.
         source:
           - package.json#scripts.update:newadvanced-todo
       - id: tasks.update-fractal-todo
-        name: 'Update fractal to-do'
-        command: 'pnpm update:fractal-todo'
+        name: Update fractal to-do
+        command: pnpm update:fractal-todo
         type: pnpm
-        runs: 'node scripts/update-fractal-todo.js'
-        description: 'Refreshes fractal to-do manifests.'
+        runs: node scripts/update-fractal-todo.js
+        description: Refreshes fractal to-do manifests.
         source:
           - package.json#scripts.update:fractal-todo
       - id: tasks.update-advanced-progress
-        name: 'Update advanced progress'
-        command: 'pnpm update:advanced-progress'
+        name: Update advanced progress
+        command: pnpm update:advanced-progress
         type: pnpm
-        runs: 'node repositorypflege/update-advanced-progress.js'
-        description: 'Regenerates advanced progress summary.'
+        runs: node repositorypflege/update-advanced-progress.js
+        description: Regenerates advanced progress summary.
         source:
           - package.json#scripts.update:advanced-progress
       - id: tasks.update-todo-sigil
-        name: 'Update todo sigil'
-        command: 'pnpm update:todo-sigil'
+        name: Update todo sigil
+        command: pnpm update:todo-sigil
         type: pnpm
-        runs: 'node scripts/update-todo-sigil.js'
-        description: 'Syncs sigil references in todo manifests.'
+        runs: node scripts/update-todo-sigil.js
+        description: Syncs sigil references in todo manifests.
         source:
           - package.json#scripts.update:todo-sigil
       - id: tasks.validate-todos
-        name: 'Validate implicit todos'
-        command: 'pnpm validate:todos'
+        name: Validate implicit todos
+        command: pnpm validate:todos
         type: pnpm
-        runs: 'node scripts/validate-implicit-todos.js'
-        description: 'Validates implicit TODO extraction results.'
+        runs: node scripts/validate-implicit-todos.js
+        description: Validates implicit TODO extraction results.
         source:
           - package.json#scripts.validate:todos
       - id: tasks.validate-advancedtodo
-        name: 'Validate advanced todo'
-        command: 'pnpm validate:advancedtodo'
+        name: Validate advanced todo
+        command: pnpm validate:advancedtodo
         type: pnpm
-        runs: 'node scripts/validate-advancedtodo.js'
-        description: 'Checks the advanced to-do manifest for consistency.'
+        runs: node scripts/validate-advancedtodo.js
+        description: Checks the advanced to-do manifest for consistency.
         source:
           - package.json#scripts.validate:advancedtodo
       - id: tasks.generate-initial-tasks
-        name: 'Generate initial tasks'
-        command: 'pnpm generate:initial-tasks'
+        name: Generate initial tasks
+        command: pnpm generate:initial-tasks
         type: pnpm
-        runs: 'node repositorypflege/generate-initial-tasks.js'
-        description: 'Seeds task manifests from repository state.'
+        runs: node repositorypflege/generate-initial-tasks.js
+        description: Seeds task manifests from repository state.
         source:
           - package.json#scripts.generate:initial-tasks
       - id: tasks.fraktalrun-import
-        name: 'Fraktalrun import'
-        command: 'pnpm fraktalrun:import'
+        name: Fraktalrun import
+        command: pnpm fraktalrun:import
         type: pnpm
-        runs: 'node scripts/run-dist.mjs scripts/fraktalrun-import.ts'
-        description: 'Imports fractal run data into the repository manifests.'
+        runs: node scripts/run-dist.mjs scripts/fraktalrun-import.ts
+        description: Imports fractal run data into the repository manifests.
         source:
           - package.json#scripts.fraktalrun:import
   - key: policy
     title: Governance & Policy
-    description: 'Policy validation and CI governance gates.'
+    description: Policy validation and CI governance gates.
     entries:
       - id: policy.policy-check
-        name: 'Policy suite'
-        command: 'pnpm policy:check'
+        name: Policy suite
+        command: pnpm policy:check
         type: pnpm
-        runs: 'node scripts/policy-suite.mjs'
-        description: 'Runs the unified policy suite (OPA, Guardrails, Kyverno).'
+        runs: node scripts/policy-suite.mjs
+        description: Runs the unified policy suite (OPA, Guardrails, Kyverno).
         source:
           - package.json#scripts.policy:check
       - id: policy.kyverno-validate
-        name: 'Kyverno dry run'
-        command: 'pnpm kyverno:validate'
+        name: Kyverno dry run
+        command: pnpm kyverno:validate
         type: pnpm
-        runs: 'node tools/kyverno-dry-run.mjs'
-        description: 'Executes Kyverno validation across manifests.'
+        runs: node tools/kyverno-dry-run.mjs
+        description: Executes Kyverno validation across manifests.
         source:
           - package.json#scripts.kyverno:validate
       - id: policy.ci-sigils
-        name: 'CI sigils gate'
-        command: 'pnpm ci:sigils'
+        name: CI sigils gate
+        command: pnpm ci:sigils
         type: pnpm
-        runs: 'pnpm sigils:index:strict && pnpm test:sigil tests/fixtures/sigillin/good.yaml && pnpm resonance:calc'
-        description: 'CI pipeline for sigils combining strict index, CLI tests, and resonance calc.'
+        runs: pnpm sigils:index:strict && pnpm test:sigil tests/fixtures/sigillin/good.yaml
+          && pnpm resonance:calc
+        description: CI pipeline for sigils combining strict index, CLI tests, and resonance
+          calc.
         source:
           - package.json#scripts.ci:sigils
       - id: policy.ci-adapters-offline
-        name: 'Adapters offline build'
-        command: 'pnpm ci:adapters-offline'
+        name: Adapters offline build
+        command: pnpm ci:adapters-offline
         type: pnpm
-        runs: 'CI=true pnpm adapter:build:oisst && CI=true pnpm adapter:build:era5 || true'
-        description: 'Runs offline adapter builds in CI with non-blocking fallback.'
+        runs: CI=true pnpm adapter:build:oisst && CI=true pnpm adapter:build:era5 || true
+        description: Runs offline adapter builds in CI with non-blocking fallback.
         source:
           - package.json#scripts.ci:adapters-offline
   - key: aeon
     title: Aeon & Symbolic Operations
-    description: 'Aeon transitions, memory persistence, and symbolic rituals.'
+    description: Aeon transitions, memory persistence, and symbolic rituals.
     entries:
       - id: aeon.aeon-transition
-        name: 'Aeon transition workflow'
-        command: 'pnpm aeon:transition'
+        name: Aeon transition workflow
+        command: pnpm aeon:transition
         type: pnpm
-        runs: 'node scripts/aeon-transition-workflow.js'
-        description: 'Handles Aeon transition orchestration tasks.'
+        runs: node scripts/aeon-transition-workflow.js
+        description: Handles Aeon transition orchestration tasks.
         source:
           - package.json#scripts.aeon:transition
       - id: aeon.symbolzeit
-        name: 'Symbolzeit run'
-        command: 'pnpm symbolzeit:run'
+        name: Symbolzeit run
+        command: pnpm symbolzeit:run
         type: pnpm
-        runs: 'node scripts/symbolzeit-runner.js'
-        description: 'Executes the Symbolzeit ritual workflow.'
+        runs: node scripts/symbolzeit-runner.js
+        description: Executes the Symbolzeit ritual workflow.
         source:
           - package.json#scripts.symbolzeit:run
       - id: aeon.export-depth-bundle
-        name: 'Depth bundle export'
-        command: 'pnpm export_depth_bundle'
+        name: Depth bundle export
+        command: pnpm export_depth_bundle
         type: pnpm
-        runs: 'node scripts/run-dist.mjs scripts/export-depth-bundle.ts'
-        description: 'Exports depth bundle artifacts referenced by sigillin governance.'
+        runs: node scripts/run-dist.mjs scripts/export-depth-bundle.ts
+        description: Exports depth bundle artifacts referenced by sigillin governance.
         source:
           - package.json#scripts.export_depth_bundle
       - id: aeon.store-commit-memory
-        name: 'Commit memory store'
-        command: 'pnpm store:commit-memory'
+        name: Commit memory store
+        command: pnpm store:commit-memory
         type: pnpm
-        runs: 'node GenesisAeonZIPMEM/commitMemory/commit-memory.js'
-        description: 'Persists Genesis Aeon ZIP memory state as part of symbolic continuity.'
+        runs: node GenesisAeonZIPMEM/commitMemory/commit-memory.js
+        description: Persists Genesis Aeon ZIP memory state as part of symbolic continuity.
         source:
           - package.json#scripts.store:commit-memory
       - id: aeon.generate-next-sigil
-        name: 'Generate next sigil'
-        command: 'pnpm generate:next-sigil'
+        name: Generate next sigil
+        command: pnpm generate:next-sigil
         type: pnpm
-        runs: 'node scripts/generate-next-sigil.js'
-        description: 'Derives the next sigil entry for symbolic governance.'
+        runs: node scripts/generate-next-sigil.js
+        description: Derives the next sigil entry for symbolic governance.
         source:
           - package.json#scripts.generate:next-sigil
   - key: prompts
     title: Prompts & Coaching
-    description: 'Prompt management and coaching utilities.'
+    description: Prompt management and coaching utilities.
     entries:
       - id: prompts.coach
-        name: 'Prompt coach dry run'
-        command: 'pnpm prompts:coach'
+        name: Prompt coach dry run
+        command: pnpm prompts:coach
         type: pnpm
-        runs: 'node --enable-source-maps scripts/prompt-coach.mjs --dry'
-        description: 'Runs the prompt coach in dry-run mode for prompt evaluations.'
+        runs: node --enable-source-maps scripts/prompt-coach.mjs --dry
+        description: Runs the prompt coach in dry-run mode for prompt evaluations.
         source:
           - package.json#scripts.prompts:coach
-
 tools:
   - id: tool.run-dist
-    name: 'Dist-first runner'
-    location: 'scripts/run-dist.mjs'
-    usage: 'node scripts/run-dist.mjs <entry.ts>'
-    description: 'Executes TypeScript entrypoints via compiled dist artifacts ensuring production parity.'
+    name: Dist-first runner
+    location: scripts/run-dist.mjs
+    usage: node scripts/run-dist.mjs <entry.ts>
+    description: Executes TypeScript entrypoints via compiled dist artifacts ensuring
+      production parity.
   - id: tool.light-static-server
-    name: 'Light static server'
-    location: 'scripts/light-static-server.mjs'
-    usage: 'node scripts/light-static-server.mjs'
-    description: 'Serves built UI assets with Brotli/Gzip checks and health endpoints.'
+    name: Light static server
+    location: scripts/light-static-server.mjs
+    usage: node scripts/light-static-server.mjs
+    description: Serves built UI assets with Brotli/Gzip checks and health endpoints.
   - id: tool.policy-suite
-    name: 'Policy suite orchestrator'
-    location: 'scripts/policy-suite.mjs'
-    usage: 'node scripts/policy-suite.mjs'
-    description: 'Aggregates OPA, Guardrails, and Kyverno validation routines.'
+    name: Policy suite orchestrator
+    location: scripts/policy-suite.mjs
+    usage: node scripts/policy-suite.mjs
+    description: Aggregates OPA, Guardrails, and Kyverno validation routines.
   - id: tool.kyverno-dry-run
-    name: 'Kyverno dry-run helper'
-    location: 'tools/kyverno-dry-run.mjs'
-    usage: 'node tools/kyverno-dry-run.mjs'
-    description: 'Runs Kyverno CLI simulations for policy enforcement.'
+    name: Kyverno dry-run helper
+    location: tools/kyverno-dry-run.mjs
+    usage: node tools/kyverno-dry-run.mjs
+    description: Runs Kyverno CLI simulations for policy enforcement.
   - id: tool.dev-services
-    name: 'Dev services orchestrator'
-    location: 'scripts/dev-services.mjs'
-    usage: 'node scripts/dev-services.mjs --mode=<dev|prod>'
-    description: 'Controls composite dev/prod service stacks for runtime parity.'
+    name: Dev services orchestrator
+    location: scripts/dev-services.mjs
+    usage: node scripts/dev-services.mjs --mode=<dev|prod>
+    description: Controls composite dev/prod service stacks for runtime parity.
   - id: tool.dev-server
-    name: 'Dev server TypeScript entry'
-    location: 'scripts/dev-server.ts'
-    usage: 'tsx scripts/dev-server.ts'
-    description: 'Starts TypeScript-based dev services via tsx runtime.'
+    name: Dev server TypeScript entry
+    location: scripts/dev-server.ts
+    usage: tsx scripts/dev-server.ts
+    description: Starts TypeScript-based dev services via tsx runtime.
   - id: tool.qa-runner
-    name: 'QA test runner'
-    location: 'scripts/qa-test-runner.ts'
-    usage: 'node scripts/run-dist.mjs scripts/qa-test-runner.ts [config]'
-    description: 'Runs QA regression scenarios defined in JSON manifests.'
+    name: QA test runner
+    location: scripts/qa-test-runner.ts
+    usage: node scripts/run-dist.mjs scripts/qa-test-runner.ts [config]
+    description: Runs QA regression scenarios defined in JSON manifests.
   - id: tool.smoke-suite
-    name: 'Smoke test suite'
-    location: 'scripts/smoke/'
-    usage: 'node scripts/smoke/<name>.mjs'
-    description: 'Collection of smoke test entrypoints for UI, dev, MRV, agents, and static flows.'
+    name: Smoke test suite
+    location: scripts/smoke/
+    usage: node scripts/smoke/<name>.mjs
+    description: Collection of smoke test entrypoints for UI, dev, MRV, agents, and
+      static flows.
   - id: tool.adapter-postprocess
-    name: 'Adapter post-process'
-    location: 'scripts/adapter-postprocess.mjs'
-    usage: 'node scripts/adapter-postprocess.mjs <adapter>'
-    description: 'Normalizes adapter outputs after Python generation steps.'
+    name: Adapter post-process
+    location: scripts/adapter-postprocess.mjs
+    usage: node scripts/adapter-postprocess.mjs <adapter>
+    description: Normalizes adapter outputs after Python generation steps.
   - id: tool.fraktalrun-import
-    name: 'Fraktalrun importer'
-    location: 'scripts/fraktalrun-import.ts'
-    usage: 'node scripts/run-dist.mjs scripts/fraktalrun-import.ts'
-    description: 'Imports fractal run fragments into codex manifests.'
-
+    name: Fraktalrun importer
+    location: scripts/fraktalrun-import.ts
+    usage: node scripts/run-dist.mjs scripts/fraktalrun-import.ts
+    description: Imports fractal run fragments into codex manifests.
 scripts:
   - id: script.setup-dev-env
-    path: 'scripts/setup-dev-env.sh'
-    description: 'Bash bootstrap script for Linux/macOS developer workstations.'
+    path: scripts/setup-dev-env.sh
+    description: Bash bootstrap script for Linux/macOS developer workstations.
+  - id: script.nats-doctor
+    path: scripts/nats-dev-check.mjs
+    description: JetStream readiness probe validating connection, default stream and
+      feature flag KV bucket; prints setup hints and references docs/runbooks/nats-jetstream.md.
   - id: script.setup-dev-env-windows
-    path: 'scripts/setup-dev-env.ps1'
-    description: 'PowerShell bootstrap script for Windows developer workstations; skips corepack enable without admin rights and prints NATS installation hints.'
+    path: scripts/setup-dev-env.ps1
+    description: PowerShell bootstrap script for Windows developer workstations; skips
+      corepack enable without admin rights and prints NATS installation hints.
   - id: script.run-powershell
-    path: 'scripts/run-powershell.mjs'
-    description: 'Node helper selecting pwsh or Windows PowerShell before invoking repository PowerShell tooling.'
+    path: scripts/run-powershell.mjs
+    description: Node helper selecting pwsh or Windows PowerShell before invoking repository
+      PowerShell tooling.
   - id: script.build_pr_e_tree
-    path: 'build_pr_E_tree.sh'
-    description: 'Helper script for building PR tree visualizations (variant E).'
+    path: build_pr_E_tree.sh
+    description: Helper script for building PR tree visualizations (variant E).
   - id: script.build_pr_f_tree
-    path: 'build_pr_F_tree.sh'
-    description: 'Helper script for building PR tree visualizations (variant F).'
+    path: build_pr_F_tree.sh
+    description: Helper script for building PR tree visualizations (variant F).
   - id: script.build_pr_g_tree
-    path: 'build_pr_G_tree.sh'
-    description: 'Helper script for building PR tree visualizations (variant G).'
+    path: build_pr_G_tree.sh
+    description: Helper script for building PR tree visualizations (variant G).
   - id: script.codex-sync
-    path: 'codex-sync.sh'
-    description: 'Synchronizes codex states across environments.'
+    path: codex-sync.sh
+    description: Synchronizes codex states across environments.
   - id: script.docker-compose-local
-    path: 'docker-compose.local.yaml'
-    description: 'Docker Compose definition for local offline stack parity.'
+    path: docker-compose.local.yaml
+    description: Docker Compose definition for local offline stack parity.
   - id: script.docker-compose
-    path: 'docker-compose.yml'
-    description: 'Primary Docker Compose file with multiple service profiles.'
+    path: docker-compose.yml
+    description: Primary Docker Compose file with multiple service profiles.
   - id: script.setup-dev-container
-    path: 'Dockerfile.dev'
-    description: 'Dev container definition aligning Node 20 + Python 3 toolchains.'
+    path: Dockerfile.dev
+    description: Dev container definition aligning Node 20 + Python 3 toolchains.

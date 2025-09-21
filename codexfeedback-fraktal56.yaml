@@ -2,15 +2,31 @@ fraktal: 56
 status: done
 owner: ChefDevAI
 summary:
-  - 'Installationsstatus-Tracking ergänzt: `scripts/setup-dev-env.ps1` initialisiert eine InstallState-Map, fasst Git/Node/Python/Corepack/pnpm/Docker/NATS zusammen und unterstützt Windows PowerShell 5.1 via ExecutionPolicy Bypass.'
-  - 'PowerShell-Bootstrap `scripts/setup-dev-env.ps1` installiert Git/Node/Python, aktiviert Corepack und führt pnpm install auf Windows aus.'
-  - 'Node-Wrapper `scripts/run-powershell.mjs` sucht pwsh oder Windows PowerShell, sodass `pnpm build:windows-tools` ohne pwsh-Laufzeit funktioniert.'
-  - 'Dokumentation (README/ONBOARDING/CommunityOnboarding), Command-Catalog & MandalaMap verweisen jetzt auf Windows-Parität; Playbook-Notizen ergänzt.'
-  - 'Setup-Skript schreibt nach Abschluss eine JSON-Zusammenfassung unter `out/setup/install-state.json` (Shell-Version, Tool-Status, Skip-Flags) für Codexfeedback-Auswertungen.'
-  - 'Corepack-Admin-Erkennung vermeidet EPERM, protokolliert Aktivierungsmodus (`system`, `user`, `system-fallback`, `skipped`) und blendet NATS-Installationshinweise (winget/Docker) ein.'
-  - 'PowerShell 7.5 ParserError behoben: `Ensure-Tool` nutzt jetzt `(Test-CommandExists ...)` in `-and`-Ausdrücken und castet Installationsresultate zu Bool, sodass der Dev-Setup-Lauf auf Windows wieder durchläuft.'
-  - 'Emergence-Breath (`scripts/emergence-breath.mjs`) koppelt `pnpm dev:breath` an `validate:sigillins` + `trikaya:dashboard`, überwacht sigils/, apps/ui/ und scripts/ und meldet Coverage-Metriken nach jedem Lauf.'
-  - '`scripts/smoke/ui-dev-smoke.mjs` respektiert `UI_DEV_URL` und vermeidet zusätzliche Vite-Instanzen, wodurch Windows-Portkonflikte (5173→5174) verschwinden.'
+  - "JetStream-W\xE4chter (`packages/event-bus/jetstream-utils.ts`) liefern verst\xE4\
+    ndliche Hinweise, `pnpm nats:doctor` + `docs/runbooks/nats-jetstream.md` dokumentieren\
+    \ Setup & Checks; Command-Catalog/MandalaMap/README/Onboarding verlinken den Flow."
+  - "Installationsstatus-Tracking erg\xE4nzt: `scripts/setup-dev-env.ps1` initialisiert\
+    \ eine InstallState-Map, fasst Git/Node/Python/Corepack/pnpm/Docker/NATS zusammen\
+    \ und unterst\xFCtzt Windows PowerShell 5.1 via ExecutionPolicy Bypass."
+  - "PowerShell-Bootstrap `scripts/setup-dev-env.ps1` installiert Git/Node/Python, aktiviert\
+    \ Corepack und f\xFChrt pnpm install auf Windows aus."
+  - Node-Wrapper `scripts/run-powershell.mjs` sucht pwsh oder Windows PowerShell, sodass
+    `pnpm build:windows-tools` ohne pwsh-Laufzeit funktioniert.
+  - "Dokumentation (README/ONBOARDING/CommunityOnboarding), Command-Catalog & MandalaMap\
+    \ verweisen jetzt auf Windows-Parit\xE4t; Playbook-Notizen erg\xE4nzt."
+  - "Setup-Skript schreibt nach Abschluss eine JSON-Zusammenfassung unter `out/setup/install-state.json`\
+    \ (Shell-Version, Tool-Status, Skip-Flags) f\xFCr Codexfeedback-Auswertungen."
+  - Corepack-Admin-Erkennung vermeidet EPERM, protokolliert Aktivierungsmodus (`system`,
+    `user`, `system-fallback`, `skipped`) und blendet NATS-Installationshinweise (winget/Docker)
+    ein.
+  - "PowerShell 7.5 ParserError behoben: `Ensure-Tool` nutzt jetzt `(Test-CommandExists\
+    \ ...)` in `-and`-Ausdr\xFCcken und castet Installationsresultate zu Bool, sodass\
+    \ der Dev-Setup-Lauf auf Windows wieder durchl\xE4uft."
+  - "Emergence-Breath (`scripts/emergence-breath.mjs`) koppelt `pnpm dev:breath` an\
+    \ `validate:sigillins` + `trikaya:dashboard`, \xFCberwacht sigils/, apps/ui/ und\
+    \ scripts/ und meldet Coverage-Metriken nach jedem Lauf."
+  - "`scripts/smoke/ui-dev-smoke.mjs` respektiert `UI_DEV_URL` und vermeidet zus\xE4\
+    tzliche Vite-Instanzen, wodurch Windows-Portkonflikte (5173\u21925174) verschwinden."
 deliverables:
   - scripts/setup-dev-env.ps1
   - scripts/run-powershell.mjs
@@ -32,14 +48,31 @@ deliverables:
   - docs/roadmap/v1.0-stabilization-playbook.md
   - docs/roadmap/v1.0-stabilization-playbook.yaml
   - codexfeedback-fraktal56.yaml
+  - packages/event-bus/jetstream-utils.ts
+  - packages/event-bus/JetStreamBus.ts
+  - packages/event-bus/JetStreamKV.ts
+  - packages/event-bus/JetStreamObjectStore.ts
+  - packages/event-bus/JetStreamBus.test.ts
+  - scripts/nats-dev-check.mjs
+  - docs/runbooks/nats-jetstream.md
+  - docs/snippets/ENV_NATS.example
 follow_up:
   windows_script_validation:
-    description: 'Windows-Terminallauf für scripts/setup-dev-env.ps1 (inkl. Installationsstatus-Output + winget/choco fallback) validieren und Feedback sammeln.'
+    description:
+      "Windows-Terminallauf f\xFCr scripts/setup-dev-env.ps1 (inkl. Installationsstatus-Output\
+      \ + winget/choco fallback) validieren und Feedback sammeln."
     status: done
   docker_windows_profile:
-    description: 'Docker Compose Windows-Dokumentation ergänzen (z. B. `--build`, WSL vs. Hyper-V) sobald Image-Build bestätigt ist.'
+    description: "Docker Compose Windows-Dokumentation erg\xE4nzen (z. B. `--build`,\
+      \ WSL vs. Hyper-V) sobald Image-Build best\xE4tigt ist."
     status: planned
 hook:
-  progress: 'Windows-Bootstrap + PowerShell-Fallback stehen; Windows-Lauf bestätigt InstallState-Export, `pnpm dev:breath` automatisiert Sigillin/Trikāya-Checks und UI-Smoke respektiert `UI_DEV_URL` ohne zusätzliche Vite-Instanz.'
-  next_step: 'Compose-/Docker-Windows-Profil dokumentieren (`docker_windows_profile`) und DevTalk-Track um Emergence-Breath-Status ergänzen.'
+  progress: "Windows-Bootstrap + PowerShell-Fallback stehen; Windows-Lauf best\xE4\
+    tigt InstallState-Export, `pnpm dev:breath` automatisiert Sigillin/Trik\u0101\
+    ya-Checks und UI-Smoke respektiert `UI_DEV_URL` ohne zus\xE4tzliche Vite-Instanz.\
+    \ JetStream-Ready-Check (`pnpm nats:doctor`) + Runbook verankert; Event-Bus-Wrapper\
+    \ liefern Hilfetexte bei fehlendem JetStream."
+  next_step: "Compose-/Docker-Windows-Profil dokumentieren (`docker_windows_profile`)\
+    \ und DevTalk-Track um Emergence-Breath-Status erg\xE4nzen. JetStream-Dokumentation\
+    \ weiter beobachten."
 repeat_required: false

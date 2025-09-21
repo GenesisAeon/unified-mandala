@@ -18,7 +18,7 @@ cp .env.example .env        # eigene Secrets setzen
 ```
 
 > **Hinweise:** `corepack enable` benötigt Administratorrechte. Ohne erhöhte Rechte übernimmt `scripts/setup-dev-env.ps1` automatisch die Benutzeraktivierung via `corepack prepare pnpm@10.17.0 --activate`.
-> Für komplette Dev-Stacks (`pnpm start:all`) ist ein `nats-server` erforderlich. Installiere ihn via `winget install --id Synadia.NATS-Server -e` oder starte `docker run --name nats -p 4222:4222 -p 8222:8222 -d nats:latest`.
+> Für komplette Dev-Stacks (`pnpm start:all`) ist ein NATS-Server **mit JetStream** erforderlich. Installiere ihn via `winget install --id Synadia.NATS-Server -e` oder starte `docker run --name nats --restart unless-stopped -p 4222:4222 -p 8222:8222 -v nats-js:/data -d nats:latest -js -sd /data`. Mit `pnpm nats:doctor` (dokumentiert in `docs/runbooks/nats-jetstream.md`) prüfst du JetStream-Status und Bucket-Verfügbarkeit.
 
 - **Policy-Suite** lokal prüfen:
 

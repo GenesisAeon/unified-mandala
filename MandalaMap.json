@@ -399,6 +399,10 @@
         {
           "label": "Stub roadmap",
           "path": "docs/roadmap/stub-replacement-roadmap.md"
+        },
+        {
+          "label": "NATS JetStream runbook",
+          "path": "docs/runbooks/nats-jetstream.md"
         }
       ]
     },
@@ -716,7 +720,8 @@
         "Windows-Parität über scripts/setup-dev-env.ps1 + scripts/run-powershell.mjs dokumentiert (PowerShell-Fallback).",
         "PowerShell-Setup exportiert Installationsstatus nach out/setup/install-state.json für Codexfeedback-Reports.; Corepack-Admin-Check vermeidet EPERM, bietet Benutzeraktivierung ohne Admin-Rechte und ergänzt NATS-Installationshinweise für `pnpm start:all`.",
         "ParserFix: (Test-CommandExists ...) jetzt geklammert und Installationsresultate werden zu Bool gecastet, damit PowerShell 7.5 den Dev-Setup ohne ParserError ausführt.",
-        "Emergence-Breath (scripts/emergence-breath.mjs) koppelt pnpm dev:breath an validate:sigillins + trikaya:dashboard und meldet Coverage-Metriken nach jedem Lauf."
+        "Emergence-Breath (scripts/emergence-breath.mjs) koppelt pnpm dev:breath an validate:sigillins + trikaya:dashboard und meldet Coverage-Metriken nach jedem Lauf.",
+        "JetStream-Doctor (`scripts/nats-dev-check.mjs`) prüft Verbindung, Standard-Stream & Feature-Flag-Bucket und verweist auf docs/runbooks/nats-jetstream.md."
       ],
       "links": [
         {
@@ -742,6 +747,10 @@
         {
           "label": "emergence-breath",
           "path": "scripts/emergence-breath.mjs"
+        },
+        {
+          "label": "nats-doctor",
+          "path": "scripts/nats-dev-check.mjs"
         }
       ]
     },
@@ -907,7 +916,7 @@
       "description": "Registry listing all inter-AI bridge sigillins for discovery tooling.",
       "notes": [
         "Generated alongside bridge scaffolds; keep in sync with pnpm validate:sigillins outputs.",
-        "Consumed by map:mandala validation and future dashboards for CREP/Trik\u0101ya coverage."
+        "Consumed by map:mandala validation and future dashboards for CREP/Trikāya coverage."
       ],
       "links": [
         {
