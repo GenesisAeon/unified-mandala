@@ -1,4 +1,12 @@
-import { connect, StringCodec, type ConnectionOptions, type JetStreamClient, type NatsConnection, type ObjectStore } from 'nats';
+import {
+  connect,
+  StringCodec,
+  type ConnectionOptions,
+  type JetStreamClient,
+  type NatsConnection,
+  type ObjectStore,
+} from 'nats';
+import { ensureJetStream, jetStreamHelpMessage } from './jetstream-utils';
 
 export interface JetStreamObjectStoreOptions extends ConnectionOptions {
   bucket: string;
@@ -18,8 +26,23 @@ export class JetStreamObjectStore {
   async connect() {
     const { bucket, ...conn } = this.opts;
     this.nc = await connect(conn);
-    this.js = this.nc.jetstream();
-    this.os = await this.js.views.os(bucket);
+    try {
+      const { js } = await ensureJetStream(this.nc, `JetStreamObjectStore bucket "${bucket}"`);
+      this.js = js;
+    } catch (error) {
+      await this.nc.close();
+      throw error;
+    }
+
+    try {
+      this.os = await this.js.views.os(bucket);
+    } catch (error) {
+      await this.nc.close();
+      const message = error instanceof Error ? error.message : String(error);
+      throw new Error(
+        `JetStreamObjectStore failed to access bucket "${bucket}". ${jetStreamHelpMessage()}\nOriginal error: ${message}`,
+      );
+    }
   }
 
   private ensure() {

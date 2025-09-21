@@ -6,3 +6,4 @@ export * from './WebSocketHub';
 export * from './JetStreamBus';
 export * from './JetStreamKV';
 export * from './JetStreamObjectStore';
+export * from './jetstream-utils';

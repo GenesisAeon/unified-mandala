@@ -1,5 +1,14 @@
-import { connect, consumerOpts, type JetStreamClient, type JetStreamSubscription, type NatsConnection, StringCodec, type ConnectionOptions } from 'nats';
+import {
+  connect,
+  consumerOpts,
+  type JetStreamClient,
+  type JetStreamSubscription,
+  type NatsConnection,
+  StringCodec,
+  type ConnectionOptions,
+} from 'nats';
 import { Subjects } from './subjects';
+import { ensureJetStream } from './jetstream-utils';
 
 export interface JetStreamBusOptions {
   url?: string;
@@ -28,7 +37,13 @@ export class JetStreamBus {
       (connectOpts as any).maxReconnectAttempts = maxReconnects;
     }
     this.nc = await connect(connectOpts);
-    this.js = this.nc.jetstream();
+    try {
+      const { js } = await ensureJetStream(this.nc, 'JetStreamBus');
+      this.js = js;
+    } catch (error) {
+      await this.nc.close();
+      throw error;
+    }
   }
 
   async publish(subject: Subjects, payload: unknown): Promise<void> {

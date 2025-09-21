@@ -1,6 +1,6 @@
 # Example environment variables for NATS messaging
 
-# NATS server endpoint
+# NATS server endpoint (JetStream enabled server: see docs/runbooks/nats-jetstream.md)
 NATS_URL=nats://localhost:4222
 
 # Optional credentials

@@ -148,7 +148,8 @@ Repository: unified-mandala
 - `scripts/` — **active** Automation scripts
   - Extensive Node/TS automation: dev servers, exports, QA, smoke tests, repo map, etc.
 - Notes: Dist-first convention via scripts/run-dist.mjs; Sigillin-Fix-CLI (`scripts/fix-sigillin.ts`) ergänzt Bridge-Tooling; Windows-Parität via `scripts/setup-dev-env.ps1` + `scripts/run-powershell.mjs` dokumentiert; PowerShell-Setup exportiert Installationsstatus nach `out/setup/install-state.json`; ParserFix `(Test-CommandExists ...)` + Bool-Cast heben PowerShell 7.5 ParserError auf; Corepack-Admin-Check vermeidet EPERM und liefert Benutzeraktivierung samt NATS-Installationshinweis; Emergence-Breath (`scripts/emergence-breath.mjs`) koppelt `pnpm dev:breath` an `validate:sigillins` + Trikāya-Dashboard und protokolliert Coverage-Metriken.
-  - Links: [run-dist](scripts/run-dist.mjs), [dev-services](scripts/dev-services.mjs), [sigil-fix](scripts/fix-sigillin.ts), [setup-dev-env.ps1](scripts/setup-dev-env.ps1), [run-powershell](scripts/run-powershell.mjs)
+- Notes: Dist-first convention via scripts/run-dist.mjs; Sigillin-Fix-CLI (`scripts/fix-sigillin.ts`) ergänzt Bridge-Tooling; Windows-Parität via `scripts/setup-dev-env.ps1` + `scripts/run-powershell.mjs` dokumentiert; PowerShell-Setup exportiert Installationsstatus nach `out/setup/install-state.json`; ParserFix `(Test-CommandExists ...)` + Bool-Cast heben PowerShell 7.5 ParserError auf; Corepack-Admin-Check vermeidet EPERM und liefert Benutzeraktivierung samt NATS-Installationshinweis; Emergence-Breath (`scripts/emergence-breath.mjs`) koppelt `pnpm dev:breath` an `validate:sigillins` + Trikāya-Dashboard und protokolliert Coverage-Metriken.; JetStream-Doctor (`scripts/nats-dev-check.mjs`) prüft Verbindung, Standard-Stream & Feature-Flag-Bucket und verweist auf `docs/runbooks/nats-jetstream.md`.
+- Links: [run-dist](scripts/run-dist.mjs), [dev-services](scripts/dev-services.mjs), [sigil-fix](scripts/fix-sigillin.ts), [setup-dev-env.ps1](scripts/setup-dev-env.ps1), [run-powershell](scripts/run-powershell.mjs), [nats-doctor](scripts/nats-dev-check.mjs)
 
 - `tasks/` — **active** Task manifests
   - Codex task definitions and sigillin skeleton specs driving automation flows.
@@ -270,7 +271,7 @@ Repository: unified-mandala
 - `docs/` — **active** Documentation
   - Core documentation including stabilization playbooks, onboarding, agents, governance.
   - Notes: MandalaMap references docs/roadmap/v1.0-stabilization-playbook.\* für CI/Release Kontext und die Stub-Roadmap für Support-Migrationen.
-  - Links: [v1.0 Playbook](docs/roadmap/v1.0-stabilization-playbook.md) · [Stub roadmap](docs/roadmap/stub-replacement-roadmap.md)
+  - Links: [v1.0 Playbook](docs/roadmap/v1.0-stabilization-playbook.md) · [Stub roadmap](docs/roadmap/stub-replacement-roadmap.md) · [NATS JetStream runbook](docs/runbooks/nats-jetstream.md)
 
 - `governance/` — **active** Governance policies
   - Governance policy documents and nested policy definitions.
