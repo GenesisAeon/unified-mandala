@@ -22,7 +22,7 @@ def make_stac_item(nc_path: PathLike, item_id: str, variable: str) -> STACItem:
         },
         "assets": {
             "data": {
-                "href": str(p.resolve()),
+                "href": p.resolve().as_uri(),
                 "type": "application/netcdf",
                 "roles": ["data"],
             }

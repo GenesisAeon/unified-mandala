@@ -4,19 +4,23 @@ import pystac  # type: ignore
 import xarray as xr  # type: ignore
 from typing import Any
 from adapters.core.stac import make_stac_item
+from adapters.shared.xarray_utils import open_dataset
 
 
 def create_oisst_item(nc_path: str) -> pystac.Item:
-    ds = xr.open_dataset(nc_path)
-    time_var = [str(v) for v in ds.coords if "time" in str(v).lower()][0]
-    ds_var: Any = ds[time_var]
-    _ = str(ds_var.values[0])
-    item_dict = make_stac_item(
-        nc_path,
-        f"oisst_{os.path.basename(nc_path).replace('.nc', '')}",
-        "sst",
-    )
-    return pystac.Item.from_dict(item_dict)
+    ds = open_dataset(nc_path)
+    try:
+        time_var = [str(v) for v in ds.coords if "time" in str(v).lower()][0]
+        ds_var: Any = ds[time_var]
+        _ = str(ds_var.values[0])
+        item_dict = make_stac_item(
+            nc_path,
+            f"oisst_{os.path.basename(nc_path).replace('.nc', '')}",
+            "sst",
+        )
+        return pystac.Item.from_dict(item_dict)
+    finally:
+        ds.close()
 
 
 if __name__ == "__main__":

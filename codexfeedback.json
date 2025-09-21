@@ -1,6 +1,11 @@
 {
   "runs": [
     {
+      "fraktalrun": "Fraktal58 AdapterHardening",
+      "status": "implemented",
+      "notes": "xarray helper prefers netcdf4/h5netcdf, closes datasets cleanly and emits file:// URIs in STAC assets; ghostshell nginx config now generates ${PORT_BASE:-3000} style placeholders by default with an opt-out; Node utility scripts run as ES modules and @vitest/coverage-v8 aligns with vitest 1.6.x."
+    },
+    {
       "fraktalrun": "Fraktal57 AutoCleanup",
       "status": "implemented",
       "notes": "`scripts/dev-services.mjs` auto-cleans default ports via `pnpm dlx kill-port` (configurable via UM_DEV_SERVICES_AUTOFREE_PORTS), logs richer guidance, and `scripts/nats-doctor.mjs` surfaces JetStream troubleshooting hints (missing -js, timeout/proxy, permissions) while falling back to `$JS.API.INFO`; README, runbooks, MandalaMap.*, and the command catalog document the new behaviour."

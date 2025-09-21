@@ -5,6 +5,7 @@ from pathlib import Path
 import numpy as np
 import xarray as xr
 from datetime import datetime, timezone
+from adapters.shared.xarray_utils import open_dataset
 
 
 def _crep_from_stats(ds: xr.Dataset) -> dict[str, object]:
@@ -70,39 +71,47 @@ def main(argv: list[str] | None = None) -> int:
     if not raw_nc.exists():
         print(f"raw not found: {raw_nc}", file=sys.stderr); return 3
 
-    ds = xr.open_dataset(raw_nc)
-    # Offline „Resample“: sichere Dimensionen/Encoding; Zeitkoordinate sortieren
-    if "time" in ds:
-        ds = ds.sortby("time")
+    ds = open_dataset(str(raw_nc))
+    try:
+        # Offline „Resample“: sichere Dimensionen/Encoding; Zeitkoordinate sortieren
+        if "time" in ds:
+            ds = ds.sortby("time")
 
-    # Schreibe processed .nc
-    stamp = raw_nc.stem.split("_")[-1] if "_" in raw_nc.stem else datetime.now(timezone.utc).strftime("%Y%m")
-    proc_nc = out_proc / f"oisst_{stamp}.nc"
-    ds.to_netcdf(proc_nc)
+        # Schreibe processed .nc
+        stamp = (
+            raw_nc.stem.split("_")[-1]
+            if "_" in raw_nc.stem
+            else datetime.now(timezone.utc).strftime("%Y%m")
+        )
+        proc_nc = out_proc / f"oisst_{stamp}.nc"
+        ds.to_netcdf(proc_nc)
 
-    # STAC
-    lat: np.ndarray = ds.coords["lat"].values
-    lon: np.ndarray = ds.coords["lon"].values
-    bbox = _bbox_from_coords(lat, lon)
-    dt_iso = datetime.now(timezone.utc).isoformat()
-    item_id = f"oisst-{stamp}"
-    stac: dict[str, object] = _stac_item(item_id, bbox, str(proc_nc), dt_iso)
-    stac_path = out_stac / f"{item_id}.item.json"
-    with open(stac_path, "w") as f:
-        json.dump(stac, f, indent=2)
+        # STAC
+        lat: np.ndarray = ds.coords["lat"].values
+        lon: np.ndarray = ds.coords["lon"].values
+        bbox = _bbox_from_coords(lat, lon)
+        dt_iso = datetime.now(timezone.utc).isoformat()
+        item_id = f"oisst-{stamp}"
+        href = proc_nc.resolve().as_uri()
+        stac: dict[str, object] = _stac_item(item_id, bbox, href, dt_iso)
+        stac_path = out_stac / f"{item_id}.item.json"
+        with open(stac_path, "w") as f:
+            json.dump(stac, f, indent=2)
 
-    # CREP/Metrics
-    crep: dict[str, object] = _crep_from_stats(ds)
-    metrics: dict[str, object] = {
-        "id": item_id,
-        "adapter": "oisst",
-        "stamp": stamp,
-        "crep": crep,
-        "shape": {k: int(v) for k, v in ds.sizes.items()},
-    }
-    metrics_path = out_metrics / f"{item_id}.metrics.json"
-    with open(metrics_path, "w") as f:
-        json.dump(metrics, f, indent=2)
+        # CREP/Metrics
+        crep: dict[str, object] = _crep_from_stats(ds)
+        metrics: dict[str, object] = {
+            "id": item_id,
+            "adapter": "oisst",
+            "stamp": stamp,
+            "crep": crep,
+            "shape": {k: int(v) for k, v in ds.sizes.items()},
+        }
+        metrics_path = out_metrics / f"{item_id}.metrics.json"
+        with open(metrics_path, "w") as f:
+            json.dump(metrics, f, indent=2)
+    finally:
+        ds.close()
 
     print(str(proc_nc))
     return 0
