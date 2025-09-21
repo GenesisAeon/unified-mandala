@@ -79,7 +79,10 @@ streams:
           \ sowie `pnpm dev:ports:free`; Emergence-Scan fällt auf docs/sigillin/GENESIS.md\
           \ zurück, wenn SIGILLIN_GENESIS.md fehlt; Quickstart (Windows · PowerShell)\
           \ erklärt `UI_DEV_URL`-Overrides und JetStream-Setup, `SIGILLIN_GENESIS.md` liegt\
-          \ als Placeholder im Repo."
+          \ als Placeholder im Repo.; README Quickstart (PowerShell) ergänzt Hinweise zu\
+          \ `Get-Content`/`type` und `$env:`-Zuweisungen; docs/maps/RepoMap.yaml führt\
+          \ `repo`, ProgramFlow.yaml einen `meta`-Block, wodurch `pnpm maps:validate` wieder\
+          \ grün läuft."
       - id: ts-node-retire
         description: Produktionspfade auf `node dist/...` umstellen
         status: done

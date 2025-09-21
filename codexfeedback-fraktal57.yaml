@@ -16,6 +16,9 @@ summary:
     neues docs/runbooks/nats-jetstream.md, command-catalog.*, MandalaMap.*, Playbook)
     spiegeln den JetStream-Flow; `analysis/scripts-and-commands.json` & `codexfeedback.yaml`
     synchronisiert.
+  - '`docs/maps/RepoMap.yaml` ergänzt `repo`, `docs/maps/ProgramFlow.yaml` trägt einen
+    `meta`-Block; `pnpm maps:validate` läuft grün und README Quickstart notiert
+    PowerShell-Hinweise zu `Get-Content`/`type` sowie `$env:`-Zuweisungen.'
   - '`scripts/dev-services.mjs` prüft Ports vor dem Start, räumt Standard-Ports automatisch
     via `pnpm dlx kill-port` auf (Opt-out `UM_DEV_SERVICES_AUTOFREE_PORTS=0`) und verlinkt
     `pnpm dev:ports:free`; neues `scripts/nats-docker.mjs` orchestriert JetStream-Container

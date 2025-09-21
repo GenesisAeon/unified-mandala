@@ -1,27 +1,28 @@
-version: 1
+repo: unified-mandala
 meta:
-  name: "UnifiedMandala RepoMap"
-  generated: "on build"
+  version: 1
+  name: 'UnifiedMandala RepoMap'
+  generated: 'on build'
 packages:
-  - name: "crep"
-    path: "packages/crep"
-    kind: "lib"
-  - name: "logging"
-    path: "packages/logging"
-    kind: "lib"
+  - name: 'crep'
+    path: 'packages/crep'
+    kind: 'lib'
+  - name: 'logging'
+    path: 'packages/logging'
+    kind: 'lib'
 services:
-  - name: "api-demo"
-    path: "services/api-demo"
+  - name: 'api-demo'
+    path: 'services/api-demo'
     port: 3001
-  - name: "static-lite"
-    path: "services/static-lite"
+  - name: 'static-lite'
+    path: 'services/static-lite'
     port: 3000
 ui:
-  - name: "mandala-ui"
-    path: "apps/mandala-ui"
+  - name: 'mandala-ui'
+    path: 'apps/mandala-ui'
     devPort: 5173
 adapters:
-  - name: "ERA5"
-    status: "stub"
-  - name: "OISST"
-    status: "stub"
+  - name: 'ERA5'
+    status: 'stub'
+  - name: 'OISST'
+    status: 'stub'

@@ -152,23 +152,23 @@ Diese Sammlung bündelt pnpm-Skripte, Shell-Kommandos sowie wiederverwendbare To
 
 > Sigil validation, map generation, and mandala topology helpers.
 
-| Command                    | Type   | Runs                                                                                | Beschreibung                                                               |
-| -------------------------- | ------ | ----------------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
-| `pnpm sigils:lint`         | `pnpm` | `node scripts/run-dist.mjs scripts/sigils-validate.ts`                              | Validates sigil definitions via dist runner.                               |
-| `pnpm sigils:scan`         | `pnpm` | `node scripts/run-dist.mjs scripts/validate-sigils.ts`                              | Scans sigil manifests for consistency.                                     |
-| `pnpm sigils:index`        | `pnpm` | `node scripts/build-sigillin-index.mjs`                                             | Generates the sigil index artifacts.                                       |
-| `pnpm find-bad-yaml`       | `pnpm` | `node scripts/find-bad-yaml.mjs`                                                    | Lints sigil YAML files via yaml-lint and fast-glob before strict indexing. |
-| `pnpm sigils:index:strict` | `pnpm` | `pnpm find-bad-yaml && pnpm sigils:scan && pnpm stac:validate && pnpm sigils:index` | Runs strict sigil validation pipeline prior to indexing.                   |
-| `pnpm sigils:errors`       | `pnpm` | `cat out/sigils_errors.json \|\| echo 'no errors file'`                             | Prints the last sigil error report if available.                           |
-| `pnpm sigillins:scaffold`  | `pnpm` | `node scripts/scaffold-interai-bridges.mjs`                                         | Creates scaffold files for inter-AI sigillin bridges.                      |
-| `pnpm sigillins:authoring` | `pnpm` | `node scripts/sigillin-authoring.mjs`                                               | Interactive authoring CLI for sigillin records.                            |
-| `pnpm sigillins:build`     | `pnpm` | `node scripts/build-sigillin-archive.mjs`                                           | Constructs sigillin archive bundles.                                       |
-| `pnpm validate:sigillins`  | `pnpm` | `node scripts/validate-sigillins.mjs`                                               | Runs the sigillin validator with schema and semantic checks.               |
-| `pnpm map:mandala`         | `pnpm` | `node scripts/mandala-map-validate.mjs`                                             | Validates Mandala map artifacts prior to publication.                      |
-| `pnpm maps:build`          | `pnpm` | `node scripts/run-dist.mjs scripts/repo-map.ts`                                     | Regenerates repository map datasets.                                       |
-| `pnpm maps:validate`       | `pnpm` | `node scripts/maps/validate-maps.mjs`                                               | Runs validation against map artifacts.                                     |
-| `pnpm maps:list`           | `pnpm` | `node -e "console.log(require('./analysis/repo-map.json').length+' files')"`        | Prints the repository map file count.                                      |
-| `pnpm graph:build`         | `pnpm` | `node scripts/build-sigillin-graph.mjs`                                             | Generates graph representations of sigillin relationships.                 |
+| Command                    | Type   | Runs                                                                                | Beschreibung                                                                        |
+| -------------------------- | ------ | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| `pnpm sigils:lint`         | `pnpm` | `node scripts/run-dist.mjs scripts/sigils-validate.ts`                              | Validates sigil definitions via dist runner.                                        |
+| `pnpm sigils:scan`         | `pnpm` | `node scripts/run-dist.mjs scripts/validate-sigils.ts`                              | Scans sigil manifests for consistency.                                              |
+| `pnpm sigils:index`        | `pnpm` | `node scripts/build-sigillin-index.mjs`                                             | Generates the sigil index artifacts.                                                |
+| `pnpm find-bad-yaml`       | `pnpm` | `node scripts/find-bad-yaml.mjs`                                                    | Lints sigil YAML files via yaml-lint and fast-glob before strict indexing.          |
+| `pnpm sigils:index:strict` | `pnpm` | `pnpm find-bad-yaml && pnpm sigils:scan && pnpm stac:validate && pnpm sigils:index` | Runs strict sigil validation pipeline prior to indexing.                            |
+| `pnpm sigils:errors`       | `pnpm` | `cat out/sigils_errors.json \|\| echo 'no errors file'`                             | Prints the last sigil error report if available.                                    |
+| `pnpm sigillins:scaffold`  | `pnpm` | `node scripts/scaffold-interai-bridges.mjs`                                         | Creates scaffold files for inter-AI sigillin bridges.                               |
+| `pnpm sigillins:authoring` | `pnpm` | `node scripts/sigillin-authoring.mjs`                                               | Interactive authoring CLI for sigillin records.                                     |
+| `pnpm sigillins:build`     | `pnpm` | `node scripts/build-sigillin-archive.mjs`                                           | Constructs sigillin archive bundles.                                                |
+| `pnpm validate:sigillins`  | `pnpm` | `node scripts/validate-sigillins.mjs`                                               | Runs the sigillin validator with schema and semantic checks.                        |
+| `pnpm map:mandala`         | `pnpm` | `node scripts/mandala-map-validate.mjs`                                             | Validates Mandala map artifacts prior to publication.                               |
+| `pnpm maps:build`          | `pnpm` | `node scripts/run-dist.mjs scripts/repo-map.ts`                                     | Regenerates repository map datasets.                                                |
+| `pnpm maps:validate`       | `pnpm` | `node scripts/maps/validate-maps.mjs`                                               | Validates map artifacts (`RepoMap.yaml` braucht `repo`, `ProgramFlow.yaml` `meta`). |
+| `pnpm maps:list`           | `pnpm` | `node -e "console.log(require('./analysis/repo-map.json').length+' files')"`        | Prints the repository map file count.                                               |
+| `pnpm graph:build`         | `pnpm` | `node scripts/build-sigillin-graph.mjs`                                             | Generates graph representations of sigillin relationships.                          |
 
 ## Data, Adapters & Ingestion
 

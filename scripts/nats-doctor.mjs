@@ -114,41 +114,37 @@ const run = async () => {
         );
       }
 
+      let infoSource = '';
       try {
-        if (typeof nc.jetstreamManager === 'function') {
-          const manager = await nc.jetstreamManager();
-          if (manager && typeof manager.info === 'function') {
-            await manager.info();
-            ready = true;
-          }
+        const response = await nc.request('$JS.API.INFO', codec.encode(''), { timeout });
+        const decoded = codec.decode(response.data ?? new Uint8Array());
+        const trimmed = typeof decoded === 'string' ? decoded.trim() : '';
+        const payload = trimmed ? JSON.parse(trimmed) : {};
+        if (
+          payload &&
+          typeof payload.type === 'string' &&
+          payload.type.toLowerCase().includes('account_info_response')
+        ) {
+          ready = true;
+          infoSource = '$JS.API.INFO';
+        } else {
+          attemptError = new Error(
+            'JetStream account info responded without account_info_response payload',
+          );
+          analyzeError(attemptError);
         }
       } catch (error) {
         attemptError = error;
         analyzeError(error);
-      }
-
-      let fallbackUsed = false;
-      if (!ready) {
-        try {
-          const response = await nc.request('$JS.API.INFO', codec.encode(''), { timeout });
-          const decoded = codec.decode(response.data);
-          const payload = decoded ? JSON.parse(decoded) : {};
-          if (
-            payload &&
-            typeof payload.type === 'string' &&
-            payload.type.includes('account_info_response')
-          ) {
-            ready = true;
-            fallbackUsed = true;
-          } else {
-            attemptError = new Error(
-              'JetStream info responded without account_info_response payload',
-            );
-            analyzeError(attemptError);
+        if (typeof nc.jetstreamManager === 'function') {
+          try {
+            await nc.jetstreamManager();
+          } catch (managerError) {
+            analyzeError(managerError);
+            if (!attemptError) {
+              attemptError = managerError;
+            }
           }
-        } catch (error) {
-          attemptError = error;
-          analyzeError(error);
         }
       }
 
@@ -161,9 +157,9 @@ const run = async () => {
 
       if (ready) {
         const labelSuffix = serverLabel ? ` [${serverLabel}]` : '';
-        const fallbackSuffix = fallbackUsed ? ' via $JS.API.INFO fallback' : '';
+        const infoSuffix = infoSource ? ` via ${infoSource}` : '';
         console.log(
-          `✓ NATS JetStream ready at ${url}${labelSuffix} (attempt ${attempt}/${attempts})${fallbackSuffix}`,
+          `✓ NATS JetStream ready at ${url}${labelSuffix} (attempt ${attempt}/${attempts})${infoSuffix}`,
         );
         return 0;
       }

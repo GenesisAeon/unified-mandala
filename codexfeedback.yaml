@@ -54,6 +54,9 @@ fraktal:
           README (Windows-Quickstart), MandalaMap.* und Command-Catalog spiegeln Auto-Cleanup
           & Troubleshooting; Adapter-Builds greifen via `scripts/lib/python.mjs` weiterhin
           automatisch auf die Projekt-venv zu.
+          README-Quickstart ergänzt PowerShell-Hinweise (`Get-Content`/`type`, `$env:`);
+          docs/maps/RepoMap.yaml führt `repo`, ProgramFlow.yaml `meta`, womit `pnpm maps:validate`
+          Pflichtfelder prüft.
         next_step:
           Extended-/Experimental-Workflows auf JetStream-Checks synchronisieren und policy-suite
           ggf. um Runbook-Hinweise ergänzen.
@@ -117,9 +120,10 @@ fraktal:
         next_step: Windows-Feedback zum Sigillin-Validator beobachten und weitere Fix-Pack-Fragmente
           einspeisen, sobald sie eintreffen.
     - id: 54
-      status: running
+      status: done
       notes: 'Fraktal54 SigillinFix: neues CLI `pnpm sigil:fix` prüft Bridges auf Trikāya,
-        CREP und Nächste Schritte; README/Doku aktualisiert.'
+        CREP und Nächste Schritte; README/Doku aktualisiert. 2025-10-21: Governance-Report
+        auf deferred gesetzt, pre-commit Hook bleibt optional – Lauf geschlossen.'
       deliverables:
         - scripts/fix-sigillin.ts
         - package.json
@@ -130,10 +134,10 @@ fraktal:
         - MandalaMap.yaml
         - MandalaMap.json
       hook:
-        progress: Fix-Skript einsatzbereit, README-Abschnitt ergänzt; Fraktal44 auf
-          done gesetzt.
-        next_step: Weitere Fraktal54-Fragmente beobachten (Governance-Report, pre-commit-Hook)
-          und Feedback in codexfeedback.* spiegeln.
+        progress: Fix-Skript einsatzbereit, README-Abschnitt ergänzt; Governance-Report
+          deferred, pre-commit Hook optional – Fraktal54 abgeschlossen.
+        next_step: Keine weiteren Fraktal54-spezifischen Aufgaben; Monitoring über neue
+          Fragmente.
     - id: 53
       status: done
       notes: 'Fraktal53 DevTalkPart5 WindowsFlow: Command-Catalog ergänzt Corepack-Bootstrap,
@@ -187,13 +191,24 @@ fraktal:
           ergänzen.
         next_step: Bei neuen Services die Tabelle erweitern und MandalaMap-Verweis prüfen.
     - id: 50
-      status: running
-      notes: Fraktal50 Windows-Pfadnormalisierung für sigillin validator aktiv, Skip-Logs
-        mit Gründen; Windows-Feedback & Docker-Follow-up offen.
+      status: done
+      notes: 'Fraktal50 Windows-Pfadnormalisierung für sigillin validator aktiv, Skip-Logs
+        mit Gründen; 2025-10-21 Evaluierung: Windows-Feedback ohne neue Findings,
+        Docker-Follow-up vertagt – Lauf geschlossen.'
+      hook:
+        progress: Windows-/PowerShell-Lauf stabilisiert; Validator-Feedback geprüft,
+          Docker-Follow-up vertagt.
+        next_step: Docker-Setup bei Bedarf in neuem Fragment adressieren.
     - id: 49
-      status: running
-      notes: Validator scope konzentriert sich auf sigils/bridges, Repo-Sanity wartet
+      status: done
+      notes: 'Validator scope konzentriert sich auf sigils/bridges, Repo-Sanity wartet
         auf den UI-Build und AgentWorkflowEngine setzt ethical_guardrails standardmäßig.
+        2025-10-21 Evaluierung: Policy-Scope & dist-first Runner in Folgefraktalen –
+        Lauf geschlossen.'
+      hook:
+        progress: Validator-Fokus & Repo-Sanity stabil; Folgearbeiten (Policy, dist-first)
+          werden bei Bedarf in neuen Fragmenten verfolgt.
+        next_step: Keine direkten Aufgaben – Monitoring via künftige Fragmente.
     - id: 48
       status: done
       notes: CI follow-ups (sigillin validator, MandalaMap artifacts) implemented; Trikāya

@@ -1,33 +1,37 @@
 version: 1
+meta:
+  version: 1
+  generated: '2025-10-20T00:00:00Z'
+  description: 'Dev bootstrap & KPI demo flows'
 flows:
-  - id: "boot"
-    title: "Boot & Health"
+  - id: 'boot'
+    title: 'Boot & Health'
     edges:
-      - from: "user"
-        to: "static-lite"
-        note: "GET /"
-      - from: "probe"
-        to: "static-lite"
-        note: "GET /healthz,/readyz"
-  - id: "kpi-demo"
-    title: "KPI Demo"
+      - from: 'user'
+        to: 'static-lite'
+        note: 'GET /'
+      - from: 'probe'
+        to: 'static-lite'
+        note: 'GET /healthz,/readyz'
+  - id: 'kpi-demo'
+    title: 'KPI Demo'
     edges:
-      - from: "ui"
-        to: "api-demo"
-        note: "GET /api/kpi/list"
-      - from: "api-demo"
-        to: "adapters"
-        note: "ERA5/OISST (stub)"
+      - from: 'ui'
+        to: 'api-demo'
+        note: 'GET /api/kpi/list'
+      - from: 'api-demo'
+        to: 'adapters'
+        note: 'ERA5/OISST (stub)'
 nodes:
-  - id: "user"
-    type: "actor"
-  - id: "probe"
-    type: "actor"
-  - id: "ui"
-    type: "app"
-  - id: "static-lite"
-    type: "service"
-  - id: "api-demo"
-    type: "service"
-  - id: "adapters"
-    type: "pkg"
+  - id: 'user'
+    type: 'actor'
+  - id: 'probe'
+    type: 'actor'
+  - id: 'ui'
+    type: 'app'
+  - id: 'static-lite'
+    type: 'service'
+  - id: 'api-demo'
+    type: 'service'
+  - id: 'adapters'
+    type: 'pkg'
