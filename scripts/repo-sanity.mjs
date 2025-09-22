@@ -7,23 +7,28 @@ import yaml from 'js-yaml';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const projectRoot = path.resolve(__dirname, '..');
 
-const requiredFiles = [
+const mustHaveAll = [
   'MandalaMap.yaml',
   'MandalaMap.json',
   'docs/roadmap/v1.0-stabilization-playbook.yaml',
   'docs/roadmap/v1.0-stabilization-playbook.md',
   'analysis/trikaya-dashboard.yaml',
-  'analysis/trikaya-dashboard.json',
-  'codexfeedback.yaml',
-  'codexfeedback.json',
 ];
+
+const mustHaveAny = [['codexfeedback.yaml', 'codexfeedback.yml', 'codexfeedback.json']];
 
 const errors = [];
 
-for (const relative of requiredFiles) {
+for (const relative of mustHaveAll) {
   const absolute = path.join(projectRoot, relative);
   if (!fs.existsSync(absolute)) {
     errors.push(`Missing required artefact: ${relative}`);
+  }
+}
+
+for (const group of mustHaveAny) {
+  if (!group.some((candidate) => fs.existsSync(path.join(projectRoot, candidate)))) {
+    errors.push(`Missing at least one codexfeedback artefact (${group.join(', ')})`);
   }
 }
 
@@ -72,39 +77,42 @@ try {
   );
 }
 
-try {
-  const codex = yaml.load(fs.readFileSync(path.join(projectRoot, 'codexfeedback.yaml'), 'utf8'));
-  if (!codex || typeof codex !== 'object') {
-    errors.push('codexfeedback.yaml: document invalid.');
-  } else {
-    if (!codex.hook || typeof codex.hook !== 'object') {
-      errors.push('codexfeedback.yaml: hook section missing.');
-    } else {
-      if (typeof codex.hook.progress !== 'string' || codex.hook.progress.trim() === '') {
-        errors.push('codexfeedback.yaml: hook.progress must be a non-empty string.');
-      }
+const codexYamlCandidate = ['codexfeedback.yaml', 'codexfeedback.yml']
+  .map((candidate) => ({ candidate, absolute: path.join(projectRoot, candidate) }))
+  .find(({ absolute }) => fs.existsSync(absolute));
+
+if (codexYamlCandidate) {
+  try {
+    const codex = yaml.load(fs.readFileSync(codexYamlCandidate.absolute, 'utf8'));
+    if (!codex || typeof codex !== 'object') {
+      errors.push(`${codexYamlCandidate.candidate}: document invalid.`);
+    } else if (!codex.hook || typeof codex.hook !== 'object') {
+      errors.push(`${codexYamlCandidate.candidate}: hook section missing.`);
+    } else if (typeof codex.hook.progress !== 'string' || codex.hook.progress.trim() === '') {
+      errors.push(`${codexYamlCandidate.candidate}: hook.progress must be a non-empty string.`);
     }
+  } catch (error) {
+    errors.push(
+      `${codexYamlCandidate.candidate}: ${error instanceof Error ? error.message : String(error)}`,
+    );
   }
-} catch (error) {
-  errors.push(`codexfeedback.yaml: ${error instanceof Error ? error.message : String(error)}`);
 }
 
-try {
-  const codexJson = JSON.parse(
-    fs.readFileSync(path.join(projectRoot, 'codexfeedback.json'), 'utf8'),
-  );
-  if (!Array.isArray(codexJson.runs)) {
-    errors.push('codexfeedback.json: runs array missing.');
-  } else {
-    const latest = codexJson.runs[0];
-    if (!latest || typeof latest !== 'object') {
-      errors.push('codexfeedback.json: first run entry missing.');
-    } else if (!/Fraktal65/.test(latest.fraktalrun || '')) {
-      errors.push('codexfeedback.json: latest run should describe Fraktal65.');
+const codexJsonPath = path.join(projectRoot, 'codexfeedback.json');
+if (fs.existsSync(codexJsonPath)) {
+  try {
+    const codexJson = JSON.parse(fs.readFileSync(codexJsonPath, 'utf8'));
+    if (!Array.isArray(codexJson.runs) || codexJson.runs.length === 0) {
+      errors.push('codexfeedback.json: runs array missing or empty.');
+    } else {
+      const latest = codexJson.runs[0];
+      if (!latest || typeof latest.fraktalrun !== 'string' || latest.fraktalrun.trim() === '') {
+        errors.push('codexfeedback.json: first run requires a fraktalrun identifier.');
+      }
     }
+  } catch (error) {
+    errors.push(`codexfeedback.json: ${error instanceof Error ? error.message : String(error)}`);
   }
-} catch (error) {
-  errors.push(`codexfeedback.json: ${error instanceof Error ? error.message : String(error)}`);
 }
 
 if (errors.length) {

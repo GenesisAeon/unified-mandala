@@ -1,6 +1,40 @@
 fraktal:
-  current: 65
+  current: 66
   history:
+    - id: 66
+      status: done
+      notes: |
+        Fraktal66 MetaHardening: Policy-Suite behandelt Kyverno/Sigillin als optionale Schritte
+        (`PANTHEON_DISABLE=1` Standard), loggt Skip-Warnungen, wenn Kyverno-CLI oder
+        `sigillins:report` fehlen, `pnpm repomap:*` erzeugt Fallback-Artefakte, wenn
+        `dist` nicht materialisiert ist, Repo-Sanity akzeptiert Codexfeedback als YAML oder JSON
+        und das Cheat Sheet `docs/cheatsheets/unified-mandala-workflows.md` bündelt Kern-Workflows
+        für Dev/CI/Governance.
+      deliverables:
+        - scripts/policy-suite.mjs
+        - scripts/validate-schemas.mjs
+        - scripts/repo-sanity.mjs
+        - scripts/generate-repomap.mjs
+        - scripts/validate-repomap.mjs
+        - docs/cheatsheets/unified-mandala-workflows.md
+        - MandalaMap.md
+        - MandalaMap.json
+        - MandalaMap.yaml
+        - analysis/trikaya-dashboard.md
+        - analysis/trikaya-dashboard.json
+        - analysis/trikaya-dashboard.yaml
+        - docs/roadmap/v1.0-stabilization-playbook.md
+        - docs/roadmap/v1.0-stabilization-playbook.yaml
+        - codexfeedback.md
+        - codexfeedback.json
+        - codexfeedback.yaml
+      commands:
+        - pnpm policy:check
+        - pnpm schema:validate
+        - pnpm maps:validate
+        - pnpm sanity
+        - pnpm repomap:build
+        - pnpm repomap:validate
     - id: 65
       status: done
       notes: |
@@ -689,7 +723,7 @@ fraktal34:
     - Labels werden im Rahmen von Fraktal44/CI-Review überwacht – kein separater Lauf
       nötig.
 fraktal48:
-  status: running
+  status: done
   summary:
     - 'CI follow-ups delivered: wait-on in smoke workflow, required sigillin validation,
       MandalaMap artifact job.'
@@ -701,5 +735,5 @@ fraktal48:
     - Kyverno/OPA Policy für keys/-Automation vorbereiten.
   repeat_required: false
 hook:
-  progress: 'Fraktal65 Meta-Lauf grün: CI-Core/Repo-Sanity/Repomap aktualisiert, Governance-Schemas und Artefakte validiert.'
-  next_step: 'Folgelauf für zusätzliche Adapter-HREF-Anpassungen (Fraktal66) vorbereiten.'
+  progress: 'Fraktal66 MetaHardening: Policy-Suite optional-safe mit Skip-Warnungen für fehlende Kyverno-/Sigillin-Tools, Repomap-Fallbacks aktiv, Cheat Sheet veröffentlicht, Repo-Sanity/Codexfeedback aktualisiert.'
+  next_step: 'Stub-Usage Audit & Keys-Governance (Fraktal67) evaluieren; optionale Adapter-Finetunes priorisieren.'

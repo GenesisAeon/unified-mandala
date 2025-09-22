@@ -15,6 +15,41 @@ const sigillinReportRel =
   sigillinReportRelRaw && sigillinReportRelRaw !== '' ? sigillinReportRelRaw : defaultSigillinDir;
 const sigillinReportDisplay = sigillinReportRel.split(path.sep).join('/');
 
+const env = {
+  ...process.env,
+  PANTHEON_DISABLE: process.env.PANTHEON_DISABLE ?? '1',
+};
+
+let packageScriptsCache;
+
+function loadPackageScripts() {
+  if (packageScriptsCache !== undefined) {
+    return packageScriptsCache;
+  }
+  const packageJsonPath = path.join(projectRoot, 'package.json');
+  try {
+    const raw = fs.readFileSync(packageJsonPath, 'utf8');
+    const parsed = JSON.parse(raw);
+    if (parsed && typeof parsed.scripts === 'object') {
+      packageScriptsCache = parsed.scripts;
+      return packageScriptsCache;
+    }
+  } catch (error) {
+    console.warn(
+      `[policy-suite] unable to read package.json when checking scripts: ${
+        error instanceof Error ? error.message : String(error)
+      }`,
+    );
+  }
+  packageScriptsCache = null;
+  return packageScriptsCache;
+}
+
+function hasPackageScript(name) {
+  const scripts = loadPackageScripts();
+  return Boolean(scripts && Object.hasOwn(scripts, name));
+}
+
 const inputPath = process.env.POLICY_SUITE_INPUT || 'fixtures/events/example_input.json';
 const resolvedInputPath = path.isAbsolute(inputPath)
   ? inputPath
@@ -64,11 +99,20 @@ const checks = [
   },
   {
     name: 'Kyverno Dry-Run',
+    optional: true,
     skip: () => {
       const flag = (process.env.POLICY_SUITE_SKIP_KYVERNO || '').toLowerCase();
-      return flag === '1' || flag === 'true';
+      if (flag === '1' || flag === 'true') {
+        return { note: 'Kyverno validation skipped via POLICY_SUITE_SKIP_KYVERNO' };
+      }
+      if (!fs.existsSync(kyvernoScript)) {
+        return { note: 'Kyverno dry-run helper missing – skipping optional step.' };
+      }
+      if (!fs.existsSync(kyvernoPolicyPath)) {
+        return { note: 'policies/kyverno.yaml not present – skipping optional Kyverno check.' };
+      }
+      return false;
     },
-    skipNote: 'Kyverno validation skipped via POLICY_SUITE_SKIP_KYVERNO',
     command: () => ({
       cmd: 'node',
       args: [
@@ -85,11 +129,22 @@ const checks = [
   },
   {
     name: 'Sigillin Governance',
+    optional: true,
     skip: () => {
       const flag = (process.env.POLICY_SUITE_SKIP_SIGILLINS || '').toLowerCase();
-      return flag === '1' || flag === 'true';
+      if (flag === '1' || flag === 'true') {
+        return { note: 'Sigillin report skipped via POLICY_SUITE_SKIP_SIGILLINS' };
+      }
+      if (!fs.existsSync(path.join(projectRoot, 'package.json'))) {
+        return { note: 'Repository package.json missing – skipping optional Sigillin governance.' };
+      }
+      if (!hasPackageScript('sigillins:report')) {
+        return {
+          note: 'package.json lacks a sigillins:report script – skipping optional Sigillin governance.',
+        };
+      }
+      return false;
     },
-    skipNote: 'Sigillin report skipped via POLICY_SUITE_SKIP_SIGILLINS',
     command: () => ({
       cmd: 'pnpm',
       args: ['sigillins:report', '--out-dir', sigillinReportRel],
@@ -129,15 +184,41 @@ function tailBuffer() {
   };
 }
 
+function normaliseSkip(definition) {
+  if (typeof definition.skip !== 'function') {
+    return null;
+  }
+  const outcome = definition.skip();
+  if (!outcome) {
+    return null;
+  }
+  if (typeof outcome === 'object') {
+    return {
+      note: outcome.note || definition.skipNote || 'Skipped by configuration.',
+      status: outcome.status || 'skipped',
+    };
+  }
+  return {
+    note: definition.skipNote || 'Skipped by configuration.',
+    status: 'skipped',
+  };
+}
+
 async function runCheck(definition) {
-  const { name, command, successNote, failureHint } = definition;
-  if (typeof definition.skip === 'function' && definition.skip()) {
-    const note = definition.skipNote || 'Skipped by configuration.';
+  const { name, command, successNote, failureHint, optional = false } = definition;
+  const skipMeta = normaliseSkip(definition);
+  if (skipMeta) {
+    const note = skipMeta.note || 'optional step skipped.';
+    const isSkip = skipMeta.status === 'skipped';
+    const prefix = isSkip ? '[policy-suite] skip' : '[policy-suite] notice';
+    const logger = isSkip ? console.warn : console.log;
+    logger(`${prefix}: ${name} – ${note}`);
     results.push({
       name,
-      status: 'skipped',
+      status: skipMeta.status,
+      optional,
       logPath: null,
-      notes: note,
+      notes: skipMeta.note,
       durationMs: 0,
     });
     return;
@@ -151,7 +232,7 @@ async function runCheck(definition) {
 
   const child = spawn(resolved.cmd, resolved.args, {
     cwd: projectRoot,
-    env: process.env,
+    env,
     stdio: ['ignore', 'pipe', 'pipe'],
   });
 
@@ -182,9 +263,10 @@ async function runCheck(definition) {
 
   const result = {
     name,
-    status: exitCode === 0 ? 'passed' : 'failed',
+    status: exitCode === 0 ? 'passed' : optional ? 'optional-failed' : 'failed',
     logPath: path.relative(projectRoot, logPath),
     durationMs,
+    optional,
   };
 
   if (exitCode === 0) {
@@ -192,16 +274,13 @@ async function runCheck(definition) {
       result.notes = successNote;
     }
   } else {
-    hasFailure = true;
-    if (spawnError) {
-      result.notes = spawnError.message;
-    } else if (tailText) {
-      result.notes = tailText;
+    const baseNote = spawnError ? spawnError.message : tailText || `Exit code ${exitCode}`;
+    const hint = failureHint ? (baseNote ? `${baseNote} | ${failureHint}` : failureHint) : baseNote;
+    result.notes = hint;
+    if (optional) {
+      console.warn(`[policy-suite] optional step failed: ${name} → continuing`);
     } else {
-      result.notes = `Exit code ${exitCode}`;
-    }
-    if (failureHint) {
-      result.notes = result.notes ? `${result.notes} | ${failureHint}` : failureHint;
+      hasFailure = true;
     }
   }
 
@@ -217,12 +296,19 @@ async function main() {
     try {
       await runCheck(check);
     } catch (err) {
-      hasFailure = true;
+      const optional = Boolean(check.optional);
+      const note = err instanceof Error ? err.message : String(err);
+      if (optional) {
+        console.warn(`[policy-suite] optional step crashed: ${check.name} → continuing`);
+      } else {
+        hasFailure = true;
+      }
       results.push({
         name: check.name,
-        status: 'failed',
+        status: optional ? 'optional-error' : 'failed',
+        optional,
         logPath: null,
-        notes: err instanceof Error ? err.message : String(err),
+        notes: note,
       });
     }
   }

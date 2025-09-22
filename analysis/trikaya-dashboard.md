@@ -25,6 +25,7 @@ _Generated: 2025-10-27T09:30:00.000Z_
 - Use `pnpm sigillins:authoring status --json` for CLI-friendly output.
 - Refresh 2025-10-27 synchronisiert mit Fraktal64-Fixes (NetCDF-Engine-Fallback, STAC-HREF-Regression, QA-Analytics-Opt-out).
 - Governance-Checks validieren `ciBehaviour`-Felder via `pnpm schema:validate`, `pnpm maps:validate`, `pnpm policy:check` und `pnpm sanity` (Fraktal65).
+- Fraktal66: Policy-Suite behandelt Kyverno/Sigillin als optionale Schritte (`PANTHEON_DISABLE=1`), loggt Skip-Warnungen für fehlende Kyverno-CLI bzw. `sigillins:report`, Repo-Sanity akzeptiert Codexfeedback als YAML oder JSON und Repomap baut fallback-Artefakte bei fehlendem dist.
 
 ## CI Behaviour Snapshot
 
