@@ -1,12 +1,28 @@
 name: repomap
-on: [push]
+on:
+  push:
+    branches: [main]
+  pull_request:
 jobs:
   map:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: node scripts/build-repomap.mjs
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+          cache: 'pnpm'
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.16.1
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Build repo map
+        run: pnpm repomap:build
+      - name: Validate repo map
+        run: pnpm repomap:validate
       - uses: peaceiris/actions-gh-pages@v3
+        if: github.event_name == 'push'
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: out

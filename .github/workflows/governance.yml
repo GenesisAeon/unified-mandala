@@ -2,12 +2,14 @@ name: Governance Workflow
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
 
 jobs:
   governance:
     runs-on: ubuntu-latest
+    env:
+      PANTHEON_DISABLE: '1'
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -19,6 +21,12 @@ jobs:
           version: 10.16.1
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
+      - name: Validate schemas
+        run: pnpm schema:validate
+      - name: Validate maps
+        run: pnpm maps:validate
+      - name: Policy suite
+        run: pnpm policy:check
       - name: Check AI_POLICY
         run: node scripts/check-ai-policy.js
       - name: Sigillin Lint

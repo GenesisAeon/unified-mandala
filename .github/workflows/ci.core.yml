@@ -55,10 +55,11 @@ jobs:
         with:
           name: toolchain-versions
           path: toolchain-versions.txt
-      - run: npx tsc -p tsconfig.json --noEmit
+      - run: pnpm typecheck
       - run: pnpm nats:doctor
       - run: pnpm test:ts:ci
       - run: pnpm test:jetstream
+      - run: pnpm test:unit
       - name: Run Vitest coverage
         run: |
           rm -rf coverage

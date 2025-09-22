@@ -8,6 +8,12 @@ Repository: unified-mandala
 - `docs/roadmap/v1.0-stabilization-playbook.md`
 - `docs/roadmap/v1.0-stabilization-playbook.yaml`
 
+## CI Behaviour
+
+- **Analytics toggle**: `PANTHEON_DISABLE=1` in CI keeps QA analytics off while documentation retains the default `true` state for local runs.
+- **Adapter backends in CI**: NetCDF4, h5netcdf und SciPy werden über `src/adapters/requirements.txt` installiert.
+- **Governance checks**: `pnpm schema:validate`, `pnpm maps:validate` und `pnpm policy:check` laufen als fester Bestandteil der Governance-Pipeline; `pnpm sanity` validiert die neuen `ciBehaviour`-Felder.
+
 ## Legend
 
 ### Status Codes
@@ -69,6 +75,7 @@ Repository: unified-mandala
 - `.github/` — **active** GitHub workflows & templates
   - Workflow definitions (core, nightly, experimental) and community health files.
   - Notes: Audit instructions encoded as jobs; isolate non-actionable tasks to stop false CI failures.; Core/extended workflows documented in docs/roadmap/v1.0-stabilization-playbook.md.; Sigillin validator is required on main; mandala-map workflow uploads artifacts without blocking CI.; Repo Sanity builds the UI dist and waits on apps/ui/dist/index.html before running map/audit checks to avoid race conditions.; CI-Core startet einen Docker-basierten NATS-Server und ruft `pnpm nats:doctor` + `pnpm test:jetstream` im type-and-tests-Gate auf (Fraktal57). CI-Core erzeugt zusätzlich Coverage via `pnpm test:unit:coverage` (Artefakt `coverage-vitest`), und `policy-check.yml` veröffentlicht die Sigillin-Governance als separates Artefakt `policy-sigillins`; Python-Jobs installieren `src/adapters/requirements.txt` für NetCDF-Engines und `PANTHEON_DISABLE=1` schaltet QA-Analytics in CI ab.
+  - Notes (continued): Governance-Workflow ruft `pnpm schema:validate`, `pnpm maps:validate` und `pnpm policy:check` auf; `pnpm sanity` prüft `ciBehaviour`-Blöcke als Teil der Repo-Sanity-Gates (Fraktal65).
   - Links: [CI Core](.github/workflows/ci.core.yml), [Nightly Mirror](.github/workflows/ci.nightly.yml), [Sigillin validate](.github/workflows/sigillin-validate.yml), [Mandala map job](.github/workflows/mandala-map.yml)
 
 - `.husky/` — **active** Git hooks

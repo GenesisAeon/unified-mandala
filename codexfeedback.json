@@ -1,6 +1,11 @@
 {
   "runs": [
     {
+      "fraktalrun": "Fraktal65 MetaGreen",
+      "status": "implemented",
+      "notes": "CI core now uses pnpm typecheck/test:unit/test:unit:coverage aliases; governance pipelines run pnpm schema:validate, pnpm maps:validate, pnpm policy:check and repo-sanity/repomap enforce ciBehaviour metadata via pnpm sanity and pnpm repomap:* commands."
+    },
+    {
       "fraktalrun": "Fraktal65 CIAdaptersStac",
       "status": "implemented",
       "notes": "CI core/extended/nightly install src/adapters/requirements.txt for NetCDF4/h5netcdf/scipy, `_normalise_href` now resolves assets relative to STAC item directories with a file:// fallback, the QA test runner honours PANTHEON_DISABLE and MandalaMap/Playbook/Trikaya dashboard highlight the regression coverage."
