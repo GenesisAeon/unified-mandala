@@ -110,6 +110,7 @@ entries:
         (Fraktal57).
       - 'CI-Core erzeugt Coverage via `pnpm test:unit:coverage` und publiziert das Artefakt `coverage-vitest`.'
       - '`policy-check.yml` lädt Sigillin-Governance-Berichte als separates GitHub-Artefakt `policy-sigillins`.'
+      - 'Python-Jobs installieren zusätzlich `src/adapters/requirements.txt`, sodass NetCDF4/h5netcdf/scipy offline verfügbar sind; `PANTHEON_DISABLE=1` hält QA-Analytics in CI ausgeschaltet.'
     links:
       - label: CI Core
         path: .github/workflows/ci.core.yml
@@ -654,6 +655,7 @@ entries:
         schreibt die Artefakte automatisch nach `out/policy/sigillins/`.
       - '`scripts/lib/python.mjs` setzt `PYTHONPATH` wieder auf das Repo-Wurzel-
         `src`, sodass Adapter-Builds ohne manuelle Overrides laufen.'
+      - QA-Test-Runner lädt Pantheon Analytics nur bei Bedarf und respektiert `PANTHEON_DISABLE`, damit CI ohne zusätzliche Artefakte bleibt.
     links:
       - label: run-dist
         path: scripts/run-dist.mjs
@@ -716,8 +718,8 @@ entries:
     notes:
       - Validated via pnpm test:py and npx pyright; keep ERA5/OISST adapters
         green.
-      - NetCDF adapters use deterministic engine fallbacks (netcdf4 → h5netcdf) for Windows parity.
-      - STAC helpers emit POSIX/relative hrefs so schema validation stays green across platforms.
+      - NetCDF adapters use deterministic engine fallbacks (netcdf4 → h5netcdf → scipy) for Windows parity and offline CI.
+      - STAC helpers berechnen relative hrefs gegen das Item-Verzeichnis (Fallback auf `file://`), sodass Konsumenten keine Fehlpfade erhalten.
       - EFFIS offline builder writes a minimal NetCDF grid and pytest guards
         relative vs. absolute href normalization for STAC items.
     links: []

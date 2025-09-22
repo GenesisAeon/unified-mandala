@@ -1,6 +1,6 @@
 # Trikāya Dashboard Prototype
 
-_Generated: 2025-09-19T18:18:37.150Z_
+_Generated: 2025-10-27T09:30:00.000Z_
 
 ## CREP Coverage
 
@@ -23,3 +23,4 @@ _Generated: 2025-09-19T18:18:37.150Z_
 - Data source: sigils/bridges/_/_.sigil.json processed via scripts/generate-trikaya-dashboard.mjs.
 - CREP/Trikāya compliance reflects schema + semantic validation outcomes.
 - Use `pnpm sigillins:authoring status --json` for CLI-friendly output.
+- Refresh 2025-10-27 synchronisiert mit Fraktal64-Fixes (NetCDF-Engine-Fallback, STAC-HREF-Regression, QA-Analytics-Opt-out).

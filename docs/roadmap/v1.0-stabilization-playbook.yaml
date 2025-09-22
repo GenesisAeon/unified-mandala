@@ -1,7 +1,7 @@
 fraktal: 40
 release: v1.0
 owner: codex
-updated: '2025-10-25'
+updated: '2025-10-27'
 summary: 'Strukturierter Maßnahmenplan zur Umsetzung der Fraktal40-Besprechung.
 
   Fokus auf stabile Kern-Builds, dist-first Services, verschärfte Governance
@@ -37,6 +37,11 @@ streams:
 
           Fraktal61: CI-Core führt zusätzlich `pnpm test:unit:coverage` mit Coverage aus und veröffentlicht
           den Report als Artefakt (`coverage-vitest`).
+
+          Fraktal64+: Core-, Extended- und Nightly-Jobs installieren `src/adapters/requirements.txt`, sodass
+          NetCDF4/h5netcdf/scipy offline verfügbar sind; `PANTHEON_DISABLE=1` deaktiviert Pantheon-Analytics
+          in QA-Läufen, Coverage-Jobs nutzen `pnpm test:unit:coverage` konsistent und Pytests sichern die
+          STAC-HREF-Normalisierung gegen Item-Verzeichnisse ab.
 
           '
         success:
@@ -114,7 +119,10 @@ streams:
         notes: Dockerfile.dev auf Node20/Python3 gehoben; Dist-First CLI & Dev-Skripte
           aktualisiert (Fraktal44). Adapter-Build-Kommandos verwenden `scripts/lib/python.mjs`
           und `scripts/adapter-build-era5.mjs`, sodass `pnpm adapter:build:*` die Projekt-venv
-          auch unter Windows findet (Fraktal57).
+          auch unter Windows findet (Fraktal57). `_normalise_href` berechnet Asset-HREFs relativ
+          zum STAC-Item-Verzeichnis (Fallback auf `file://`), die Engine-Präferenz umfasst nun
+          `netcdf4 → h5netcdf → scipy`, und Root-Requirements pinnen `h5netcdf`, damit Offline-Builds
+          stabil bleiben.
       - id: compose-profiles
         description: docker-compose Profile für core/newsbot/climate definieren
         status: done
