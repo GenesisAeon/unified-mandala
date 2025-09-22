@@ -52,6 +52,8 @@ pnpm policy:check
 ## Hinweise & TODOs
 
 - Der lokale Fallback (`pnpm kyverno:validate`) kann bei Bedarf durch ein echtes CLI/Docker-Setup ersetzt werden (`POLICY_SUITE_SKIP_KYVERNO=1` deaktiviert den Node-Fallback für eigene Experimente).
+- Der Kyverno-Fallback reichert das Fixture um Repository-Zustände (z. B. `repo.keys`) an; die Regel `enforce-empty-keys`
+  schlägt fehl, sobald Dateien außerhalb von `.gitignore/.gitkeep` auftauchen.
 - Bei Policy-Änderungen unbedingt eine erläuternde Dokumentation im gleichen PR aktualisieren – die Guardrails achten darauf.
 - Die Summary-Datei eignet sich als Anhang für Fraktal-Protokolle oder Release-Notes (kopieren aus `out/policy/policy-suite-report.md`).
 - Sigillin-Reports lassen sich für schnelle Tests deaktivieren (`POLICY_SUITE_SKIP_SIGILLINS=1`), z. B. wenn lokal keine Bridge-Artefakte vorliegen.

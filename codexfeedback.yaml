@@ -1,6 +1,41 @@
 fraktal:
-  current: 67
+  current: 68
   history:
+    - id: 68
+      status: done
+      notes: |
+        Fraktal68 KeysGovernanceLint: keys/ enthält `.gitignore` + `.gitkeep`, Repo-Sanity meldet
+        fehlende oder unerwartete Dateien und der Kyverno-Dry-Run injiziert den Keys-Status, sodass
+        `policies/kyverno.yaml` unerlaubte Artefakte erkennt. Stub-Roadmap, MandalaMap und das
+        Stabilization-Playbook dokumentieren den Abschluss; Lint-Funde in den Scripts wurden bereinigt.
+      deliverables:
+        - keys/.gitignore
+        - keys/.gitkeep
+        - scripts/repo-sanity.mjs
+        - tools/kyverno-dry-run.mjs
+        - policies/kyverno.yaml
+        - docs/roadmap/stub-replacement-roadmap.md
+        - docs/roadmap/stub-replacement-roadmap.yaml
+        - MandalaMap.md
+        - MandalaMap.yaml
+        - MandalaMap.json
+        - docs/roadmap/v1.0-stabilization-playbook.md
+        - docs/roadmap/v1.0-stabilization-playbook.yaml
+        - scripts/advice/merge.mjs
+        - scripts/analyze-conversations.js
+        - scripts/check-meta-score-layer.js
+        - scripts/generate-chronopoem.js
+        - codexfeedback.md
+        - codexfeedback.json
+        - codexfeedback.yaml
+        - codexfeedback-fraktal68.yaml
+      commands:
+        - pnpm lint:eslint
+        - pnpm policy:check
+        - pnpm sanity
+      hook:
+        progress: 'Keys-Governance enforced via Repo-Sanity & Kyverno; lint debt beseitigt.'
+        next_step: 'Stub-Ersatzimplementierungen (KAN/LTC/Norse/Torch Geometric) angehen.'
     - id: 67
       status: done
       notes: |

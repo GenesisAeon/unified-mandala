@@ -49,7 +49,8 @@ Repository: unified-mandala
 
 - `keys/` — **stub** Keys placeholder
   - Empty directory reserved for secrets/keys (kept out of version control).
-  - Notes: Populate via deployment automation only; keep empty in repo.
+  - Notes: Automation markers `.gitignore`/`.gitkeep` liegen im Repo (Repo-Sanity prüft Marker);
+    Kyverno (`policies/kyverno.yaml`) meldet unerwartete Dateien.
 
 - `node_modules/` — **generated** Node modules
   - Installed dependencies for pnpm workspace.
@@ -378,5 +379,5 @@ Repository: unified-mandala
 ## Follow-ups
 
 - **Separate instructional jobs from actionable CI** (done) — Mandala-map workflow runs continue-on-error and publishes artifacts; instructional notes no longer block required checks. · Related: .github/, ci/
-- **Stub replacement roadmap** (in-progress) — Roadmap dokumentiert in docs/roadmap/stub-replacement-roadmap.(md|yaml); Umsetzungsschritte für stubs/ und keys/ eingeplant. · Related: stubs/, keys/
+- **Stub replacement roadmap** (in-progress) — Roadmap dokumentiert in docs/roadmap/stub-replacement-roadmap.(md|yaml); keys/ ist via Repo-Sanity & Kyverno abgesichert, Ersatzimplementierungen für stubs/ stehen aus. · Related: stubs/, keys/
 - **MandalaMap upkeep** (ongoing) — Update MandalaMap.\* after each fractal iteration to capture structural changes. · Related: MandalaMap.yaml, MandalaMap.json, MandalaMap.md

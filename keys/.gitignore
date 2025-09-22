@@ -1,2 +1,4 @@
+# Only automation markers belong in this directory.
 *
 !.gitignore
+!.gitkeep

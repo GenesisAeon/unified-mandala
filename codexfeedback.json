@@ -1,6 +1,11 @@
 {
   "runs": [
     {
+      "fraktalrun": "Fraktal68 KeysGovernanceLint",
+      "status": "implemented",
+      "notes": "keys/ carries .gitignore/.gitkeep automation markers, repo-sanity now fails on missing/unexpected files, Kyverno dry-run enriches resources so policies/kyverno.yaml blocks stray secrets; stub roadmap, MandalaMap and stabilization playbook capture the change and lint debt in meta scripts is cleared."
+    },
+    {
       "fraktalrun": "Fraktal67 DevTalkCheatSheet",
       "status": "implemented",
       "notes": "DevTalk67 evaluated; the workflow cheat sheet now lists pnpm check:ci, pnpm ci:verify, monitoring/offline bundle guidance and the Windows setup script. MandalaMap, the stabilization playbook and codexfeedback-fraktal67 reflect the expanded scope."

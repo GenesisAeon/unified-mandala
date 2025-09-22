@@ -86,6 +86,38 @@ function normalizeResource(resource) {
   return normalized;
 }
 
+function collectKeysState() {
+  const keysDir = path.join(projectRoot, 'keys');
+  const allowed = ['.gitignore', '.gitkeep'];
+  const state = {
+    present: false,
+    files: [],
+    unexpected: [],
+    allowed,
+  };
+  if (!fs.existsSync(keysDir) || !fs.statSync(keysDir).isDirectory()) {
+    return state;
+  }
+  state.present = true;
+  const entries = fs.readdirSync(keysDir, { withFileTypes: true });
+  const files = entries.filter((entry) => entry.isFile()).map((entry) => entry.name).sort();
+  state.files = files;
+  state.unexpected = files.filter((name) => !allowed.includes(name));
+  const directories = entries.filter((entry) => entry.isDirectory()).map((entry) => entry.name);
+  if (directories.length > 0) {
+    state.unexpected.push(...directories.map((dir) => `${dir}/`));
+    state.unexpected.sort();
+  }
+  return state;
+}
+
+function enrichResource(resource) {
+  const enriched = { ...resource };
+  enriched.repo = enriched.repo || {};
+  enriched.repo.keys = collectKeysState();
+  return enriched;
+}
+
 function matchesKind(ruleMatch, resource) {
   if (!ruleMatch) {
     return true;
@@ -195,7 +227,7 @@ async function main() {
       return;
     }
     const rawResource = readResource(resourcePath);
-    const resource = normalizeResource(rawResource);
+    const resource = enrichResource(normalizeResource(rawResource));
     const { failed, messages } = evaluatePolicyDocuments(policies, resource);
     messages.forEach((line) => console.log(line));
     if (failed) {
