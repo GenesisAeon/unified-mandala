@@ -353,7 +353,7 @@ entries:
         JetStream-Setup; `SIGILLIN_GENESIS.md` liegt als Placeholder im Repo.
       - docs/maps/RepoMap.yaml deklariert `repo`, ProgramFlow.yaml führt einen
         `meta`-Block, damit `pnpm maps:validate` Pflichtfelder prüft (Fraktal57).
-      - Cheat Sheet `docs/cheatsheets/unified-mandala-workflows.md` bündelt Kern-Workflows (Dev, CI, Adapter, Governance, Demo) – erstellt in Fraktal66.
+      - Cheat Sheet `docs/cheatsheets/unified-mandala-workflows.md` bündelt Kern-Workflows (Dev, CI, Adapter, Governance, Demo) – in Fraktal67 um `pnpm check:ci`, `pnpm ci:verify`, Windows-Setup sowie Monitoring-/Offline-Bundle-Hinweise erweitert.
     links:
       - label: v1.0 Playbook
         path: docs/roadmap/v1.0-stabilization-playbook.md

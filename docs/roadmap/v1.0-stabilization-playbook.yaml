@@ -102,7 +102,8 @@ streams:
           \ als Placeholder im Repo.; README Quickstart (PowerShell) ergänzt Hinweise zu\
           \ `Get-Content`/`type` und `$env:`-Zuweisungen; docs/maps/RepoMap.yaml führt\
           \ `repo`, ProgramFlow.yaml einen `meta`-Block, wodurch `pnpm maps:validate` wieder\
-          \ grün läuft."
+          \ grün läuft.; Fraktal67 erweitert das Cheat Sheet um `pnpm check:ci`, `pnpm ci:verify`,\
+          \ Monitoring-/Offline-Bundle-Hinweise und verweist explizit auf `scripts/setup-dev-env.ps1`."
       - id: ts-node-retire
         description: Produktionspfade auf `node dist/...` umstellen
         status: done
