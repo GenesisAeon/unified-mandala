@@ -1,7 +1,7 @@
 fraktal: 40
 release: v1.0
 owner: codex
-updated: '2025-10-27'
+updated: '2025-10-31'
 summary: 'Strukturierter Maßnahmenplan zur Umsetzung der Fraktal40-Besprechung.
 
   Fokus auf stabile Kern-Builds, dist-first Services, verschärfte Governance
@@ -67,6 +67,7 @@ streams:
           Fraktal60: policy:check ruft sigillins:report auf und erzeugt Artefakte in out/policy/sigillins/.
           Fraktal61: policy-check.yml lädt die Sigillin-Governance-Berichte als separates GitHub-Artefakt (`policy-sigillins`).
           Fraktal65: Governance-Workflow ruft zusätzlich `pnpm schema:validate` und `pnpm maps:validate` auf; Repo-Sanity nutzt `pnpm sanity`, um `ciBehaviour`-Metadaten zu prüfen.
+          Fraktal66: Policy-Suite markiert Kyverno/Sigillin als optionale Schritte (`PANTHEON_DISABLE=1`), loggt Skip-Warnungen wenn Kyverno-CLI oder `sigillins:report` fehlen, `pnpm repomap:*` erzeugt Fallback-Artefakte bei fehlendem dist und das Cheat Sheet `docs/cheatsheets/unified-mandala-workflows.md` bündelt die Kern-Workflows.
         output:
           - out/policy/policy-suite.json
           - out/policy/policy-suite.md

@@ -37,50 +37,61 @@ function loadSchema(relativePath) {
   return validator;
 }
 
-const tasks = [
-  {
-    schema: 'schemas/mandala-map.schema.json',
-    target: 'MandalaMap.yaml',
-    loader: readYaml,
-  },
-  {
-    schema: 'schemas/mandala-map.schema.json',
-    target: 'MandalaMap.json',
-    loader: readJson,
-  },
-  {
-    schema: 'schemas/codexfeedback.schema.json',
-    target: 'codexfeedback.yaml',
-    loader: readYaml,
-  },
-  {
-    schema: 'schemas/codexfeedback.schema.json',
-    target: 'codexfeedback.json',
-    loader: readJson,
-  },
-];
-
 let hasFailure = false;
-
-for (const task of tasks) {
-  const { schema, target, loader } = task;
+function validateDocument(schemaPath, targetPath, loader) {
   try {
-    const validate = loadSchema(schema);
-    const data = loader(target);
-    const valid = validate(data);
-    if (valid) {
-      console.log(`✅ ${target} conforms to ${schema}`);
-    } else {
-      hasFailure = true;
-      console.error(`❌ ${target} failed validation against ${schema}`);
-      for (const err of validate.errors ?? []) {
-        console.error(`  • ${err.instancePath || '<root>'} ${err.message}`);
-      }
+    const validate = loadSchema(schemaPath);
+    const data = loader(targetPath);
+    if (validate(data)) {
+      console.log(`✅ ${targetPath} conforms to ${schemaPath}`);
+      return;
+    }
+    hasFailure = true;
+    console.error(`❌ ${targetPath} failed validation against ${schemaPath}`);
+    for (const err of validate.errors ?? []) {
+      console.error(`  • ${err.instancePath || '<root>'} ${err.message}`);
     }
   } catch (error) {
     hasFailure = true;
-    console.error(`❌ Error validating ${target} against ${schema}`);
+    console.error(`❌ Error validating ${targetPath} against ${schemaPath}`);
     console.error(`   ${error instanceof Error ? error.message : String(error)}`);
+  }
+}
+
+const mandalaTargets = [
+  { path: 'MandalaMap.yaml', loader: readYaml },
+  { path: 'MandalaMap.json', loader: readJson },
+];
+
+for (const target of mandalaTargets) {
+  const absolute = path.join(projectRoot, target.path);
+  if (!fs.existsSync(absolute)) {
+    hasFailure = true;
+    console.error(`❌ Missing MandalaMap artefact: ${target.path}`);
+    continue;
+  }
+  validateDocument('schemas/mandala-map.schema.json', target.path, target.loader);
+}
+
+const codexCandidates = [
+  { path: 'codexfeedback.yaml', loader: readYaml },
+  { path: 'codexfeedback.yml', loader: readYaml },
+  { path: 'codexfeedback.json', loader: readJson },
+  { path: 'docs/codexfeedback.yaml', loader: readYaml },
+  { path: 'docs/codexfeedback.yml', loader: readYaml },
+  { path: 'docs/codexfeedback.json', loader: readJson },
+];
+
+const seenCodexTargets = codexCandidates.filter((candidate) =>
+  fs.existsSync(path.join(projectRoot, candidate.path)),
+);
+
+if (seenCodexTargets.length === 0) {
+  hasFailure = true;
+  console.error('❌ No codexfeedback.(json|yaml) artefact found.');
+} else {
+  for (const candidate of seenCodexTargets) {
+    validateDocument('schemas/codexfeedback.schema.json', candidate.path, candidate.loader);
   }
 }
 

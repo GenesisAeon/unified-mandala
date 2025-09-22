@@ -108,7 +108,8 @@
         "CI-Core erzeugt Coverage via `pnpm test:unit:coverage` und publiziert das Artefakt `coverage-vitest`.",
         "`policy-check.yml` lädt Sigillin-Governance-Berichte als separates GitHub-Artefakt `policy-sigillins`.",
         "Python-Jobs installieren zusätzlich `src/adapters/requirements.txt`, sodass NetCDF4/h5netcdf/scipy offline verfügbar sind; `PANTHEON_DISABLE=1` hält QA-Analytics in CI ausgeschaltet.",
-        "Governance-Workflow ruft `pnpm schema:validate`, `pnpm maps:validate` und `pnpm policy:check` mit deaktivierten Analytics auf; Repo-Sanity prüft `ciBehaviour`-Felder via `pnpm sanity` (Fraktal65)."
+        "Governance-Workflow ruft `pnpm schema:validate`, `pnpm maps:validate` und `pnpm policy:check` mit deaktivierten Analytics auf; Repo-Sanity prüft `ciBehaviour`-Felder via `pnpm sanity` (Fraktal65).",
+        "Fraktal66: Policy-Suite markiert Kyverno/Sigillin als optionale Schritte, loggt Skip-Warnungen wenn Kyverno-CLI oder `sigillins:report` fehlen, setzt `PANTHEON_DISABLE=1` und der Repomap-Workflow erzeugt Fallback-Artefakte, falls dist nicht materialisiert ist."
       ],
       "links": [
         {
@@ -398,7 +399,8 @@
       "description": "Core documentation including stabilization playbooks, onboarding, agents, governance.",
       "notes": [
         "MandalaMap references docs/roadmap/v1.0-stabilization-playbook.* für CI/Release Kontext und die Stub-Roadmap für Support-Migrationen.; JetStream-Runbooks (docs/runbooks/nats-jetstream.md, docs/runbooks/MaxBundle.md) beschreiben Setup, `$JS.API.INFO`-Fallbacks sowie `pnpm nats:doctor`/`pnpm test:jetstream` inklusive Fehlertipps (kein `-js`, Timeout, Berechtigungen); docs/runbooks/tests.md listet `pnpm nats:docker` samt Emergence-SIGILLIN-Fallback; README Quickstart (Windows · PowerShell) dokumentiert `UI_DEV_URL`-Overrides, Auto-Port-Cleanup (`UM_DEV_SERVICES_AUTOFREE_PORTS`) und JetStream-Setup; `SIGILLIN_GENESIS.md` liegt als Placeholder im Repo.",
-        "docs/maps/RepoMap.yaml deklariert `repo`, ProgramFlow.yaml führt einen `meta`-Block, wodurch `pnpm maps:validate` Pflichtfelder prüft (Fraktal57)."
+        "docs/maps/RepoMap.yaml deklariert `repo`, ProgramFlow.yaml führt einen `meta`-Block, wodurch `pnpm maps:validate` Pflichtfelder prüft (Fraktal57).",
+        "Cheat Sheet `docs/cheatsheets/unified-mandala-workflows.md` bündelt Dev-/CI-/Governance-Flows für schnelle Orientierung (Fraktal66)."
       ],
       "links": [
         {
