@@ -48,28 +48,28 @@ Diese Sammlung bündelt pnpm-Skripte, Shell-Kommandos sowie wiederverwendbare To
 
 > Unit, integration, and regression test commands.
 
-| Command                     | Type   | Runs                                                                                                 | Beschreibung                                                               |
-| --------------------------- | ------ | ---------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
-| `pnpm test`                 | `pnpm` | `vitest run`                                                                                         | Runs the default Vitest suite.                                             |
-| `pnpm test:watch`           | `pnpm` | `vitest`                                                                                             | Starts Vitest in watch mode.                                               |
-| `pnpm test:unit`            | `pnpm` | `vitest run --coverage`                                                                              | Executes Vitest with coverage reporting enabled.                           |
-| `pnpm test:jest`            | `pnpm` | `echo "(Jest deaktiviert – nutze vitest)" && exit 0`                                                 | Legacy alias that prints a Vitest migration hint (Jest disabled).          |
-| `pnpm test:agents`          | `pnpm` | `vitest run`                                                                                         | Executes tests scoped to agent modules.                                    |
-| `pnpm test:adapters`        | `pnpm` | `vitest run src/adapters/tests/decorators.test.ts`                                                   | Runs targeted adapter decorator tests.                                     |
-| `pnpm test:ts`              | `pnpm` | `vitest run --config vitest.config.ts`                                                               | Executes the TypeScript Vitest configuration.                              |
-| `pnpm test:ts:ci`           | `pnpm` | `NODE_OPTIONS=--max-old-space-size=2048 vitest run --config vitest.config.ts`                        | Vitest run tuned for CI memory constraints.                                |
-| `pnpm test:jetstream`       | `pnpm` | `vitest run --config vitest.config.ts --reporter=default tests/event-bus/jetstream-bus.test.ts`      | Executes the JetStream bus contract test via Vitest (migrated from Jest).  |
-| `pnpm test:ts:extended`     | `pnpm` | `cross-env ENABLE_EXTENDED_TESTS=1 vitest run --config vitest.config.ts`                             | Runs the extended TypeScript Vitest matrix.                                |
-| `pnpm test:ts:experimental` | `pnpm` | `cross-env ENABLE_EXTENDED_TESTS=1 ENABLE_EXPERIMENTAL_TESTS=1 vitest run --config vitest.config.ts` | Executes experimental TypeScript tests gated by feature flags.             |
-| `pnpm test:py`              | `pnpm` | `pytest -m "not slow and not experimental" -q`                                                       | Runs the default Python adapter test selection.                            |
-| `pnpm test:py:extended`     | `pnpm` | `pytest -m "not experimental" -q`                                                                    | Runs extended Python adapter tests including slow markers.                 |
-| `pnpm test:py:all`          | `pnpm` | `pytest -q`                                                                                          | Executes the entire Python test suite.                                     |
-| `pnpm test:sigil`           | `pnpm` | `node scripts/run-dist.mjs scripts/validate-sigil-cli.ts`                                            | Validates the sigil CLI over sample fixtures.                              |
-| `pnpm test:ui`              | `pnpm` | `vitest run --passWithNoTests`                                                                       | Runs UI-targeted Vitest suite tolerant to empty spec sets.                 |
-| `pnpm ci:verify`            | `pnpm` | `pnpm test:ts && pnpm sigils:index:strict && pnpm adapter:build:era5`                                | Composite CI gate combining tests, sigil indexing, and ERA5 adapter build. |
-| `pnpm qa`                   | `pnpm` | `node scripts/run-dist.mjs scripts/qa-test-runner.ts`                                                | Runs the QA orchestrator over prioritized checks.                          |
-| `pnpm qa:gpt5`              | `pnpm` | `node scripts/run-dist.mjs scripts/qa-test-runner.ts scripts/qa-gpt5.json`                           | Executes QA runner using the GPT-5 scenario manifest.                      |
-| `pnpm cy:run`               | `pnpm` | `cypress run`                                                                                        | Starts Cypress end-to-end tests.                                           |
+| Command                     | Type   | Runs                                                                                                 | Beschreibung                                                                                                     |
+| --------------------------- | ------ | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| `pnpm test`                 | `pnpm` | `vitest run`                                                                                         | Runs the default Vitest suite.                                                                                   |
+| `pnpm test:watch`           | `pnpm` | `vitest`                                                                                             | Starts Vitest in watch mode.                                                                                     |
+| `pnpm test:unit`            | `pnpm` | `vitest run --coverage`                                                                              | Executes Vitest with coverage reporting enabled; CI Core publishes the `coverage-vitest` artifact from this run. |
+| `pnpm test:jest`            | `pnpm` | `echo "(Jest deaktiviert – nutze vitest)" && exit 0`                                                 | Legacy alias that prints a Vitest migration hint (Jest disabled).                                                |
+| `pnpm test:agents`          | `pnpm` | `vitest run`                                                                                         | Executes tests scoped to agent modules.                                                                          |
+| `pnpm test:adapters`        | `pnpm` | `vitest run src/adapters/tests/decorators.test.ts`                                                   | Runs targeted adapter decorator tests.                                                                           |
+| `pnpm test:ts`              | `pnpm` | `vitest run --config vitest.config.ts`                                                               | Executes the TypeScript Vitest configuration.                                                                    |
+| `pnpm test:ts:ci`           | `pnpm` | `NODE_OPTIONS=--max-old-space-size=2048 vitest run --config vitest.config.ts`                        | Vitest run tuned for CI memory constraints.                                                                      |
+| `pnpm test:jetstream`       | `pnpm` | `vitest run --config vitest.config.ts --reporter=default tests/event-bus/jetstream-bus.test.ts`      | Executes the JetStream bus contract test via Vitest (migrated from Jest).                                        |
+| `pnpm test:ts:extended`     | `pnpm` | `cross-env ENABLE_EXTENDED_TESTS=1 vitest run --config vitest.config.ts`                             | Runs the extended TypeScript Vitest matrix.                                                                      |
+| `pnpm test:ts:experimental` | `pnpm` | `cross-env ENABLE_EXTENDED_TESTS=1 ENABLE_EXPERIMENTAL_TESTS=1 vitest run --config vitest.config.ts` | Executes experimental TypeScript tests gated by feature flags.                                                   |
+| `pnpm test:py`              | `pnpm` | `pytest -m "not slow and not experimental" -q`                                                       | Runs the default Python adapter test selection.                                                                  |
+| `pnpm test:py:extended`     | `pnpm` | `pytest -m "not experimental" -q`                                                                    | Runs extended Python adapter tests including slow markers.                                                       |
+| `pnpm test:py:all`          | `pnpm` | `pytest -q`                                                                                          | Executes the entire Python test suite.                                                                           |
+| `pnpm test:sigil`           | `pnpm` | `node scripts/run-dist.mjs scripts/validate-sigil-cli.ts`                                            | Validates the sigil CLI over sample fixtures.                                                                    |
+| `pnpm test:ui`              | `pnpm` | `vitest run --passWithNoTests`                                                                       | Runs UI-targeted Vitest suite tolerant to empty spec sets.                                                       |
+| `pnpm ci:verify`            | `pnpm` | `pnpm test:ts && pnpm sigils:index:strict && pnpm adapter:build:era5`                                | Composite CI gate combining tests, sigil indexing, and ERA5 adapter build.                                       |
+| `pnpm qa`                   | `pnpm` | `node scripts/run-dist.mjs scripts/qa-test-runner.ts`                                                | Runs the QA orchestrator over prioritized checks.                                                                |
+| `pnpm qa:gpt5`              | `pnpm` | `node scripts/run-dist.mjs scripts/qa-test-runner.ts scripts/qa-gpt5.json`                           | Executes QA runner using the GPT-5 scenario manifest.                                                            |
+| `pnpm cy:run`               | `pnpm` | `cypress run`                                                                                        | Starts Cypress end-to-end tests.                                                                                 |
 
 ## Build & Documentation
 
@@ -152,23 +152,25 @@ Diese Sammlung bündelt pnpm-Skripte, Shell-Kommandos sowie wiederverwendbare To
 
 > Sigil validation, map generation, and mandala topology helpers.
 
-| Command                    | Type   | Runs                                                                                | Beschreibung                                                                        |
-| -------------------------- | ------ | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
-| `pnpm sigils:lint`         | `pnpm` | `node scripts/run-dist.mjs scripts/sigils-validate.ts`                              | Validates sigil definitions via dist runner.                                        |
-| `pnpm sigils:scan`         | `pnpm` | `node scripts/run-dist.mjs scripts/validate-sigils.ts`                              | Scans sigil manifests for consistency.                                              |
-| `pnpm sigils:index`        | `pnpm` | `node scripts/build-sigillin-index.mjs`                                             | Generates the sigil index artifacts.                                                |
-| `pnpm find-bad-yaml`       | `pnpm` | `node scripts/find-bad-yaml.mjs`                                                    | Lints sigil YAML files via yaml-lint and fast-glob before strict indexing.          |
-| `pnpm sigils:index:strict` | `pnpm` | `pnpm find-bad-yaml && pnpm sigils:scan && pnpm stac:validate && pnpm sigils:index` | Runs strict sigil validation pipeline prior to indexing.                            |
-| `pnpm sigils:errors`       | `pnpm` | `cat out/sigils_errors.json \|\| echo 'no errors file'`                             | Prints the last sigil error report if available.                                    |
-| `pnpm sigillins:scaffold`  | `pnpm` | `node scripts/scaffold-interai-bridges.mjs`                                         | Creates scaffold files for inter-AI sigillin bridges.                               |
-| `pnpm sigillins:authoring` | `pnpm` | `node scripts/sigillin-authoring.mjs`                                               | Interactive authoring CLI for sigillin records.                                     |
-| `pnpm sigillins:build`     | `pnpm` | `node scripts/build-sigillin-archive.mjs`                                           | Constructs sigillin archive bundles.                                                |
-| `pnpm validate:sigillins`  | `pnpm` | `node scripts/validate-sigillins.mjs`                                               | Runs the sigillin validator with schema and semantic checks.                        |
-| `pnpm map:mandala`         | `pnpm` | `node scripts/mandala-map-validate.mjs`                                             | Validates Mandala map artifacts prior to publication.                               |
-| `pnpm maps:build`          | `pnpm` | `node scripts/run-dist.mjs scripts/repo-map.ts`                                     | Regenerates repository map datasets.                                                |
-| `pnpm maps:validate`       | `pnpm` | `node scripts/maps/validate-maps.mjs`                                               | Validates map artifacts (`RepoMap.yaml` braucht `repo`, `ProgramFlow.yaml` `meta`). |
-| `pnpm maps:list`           | `pnpm` | `node -e "console.log(require('./analysis/repo-map.json').length+' files')"`        | Prints the repository map file count.                                               |
-| `pnpm graph:build`         | `pnpm` | `node scripts/build-sigillin-graph.mjs`                                             | Generates graph representations of sigillin relationships.                          |
+| Command                           | Type   | Runs                                                                                | Beschreibung                                                                                         |
+| --------------------------------- | ------ | ----------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| `pnpm sigils:lint`                | `pnpm` | `node scripts/run-dist.mjs scripts/sigils-validate.ts`                              | Validates sigil definitions via dist runner.                                                         |
+| `pnpm sigils:scan`                | `pnpm` | `node scripts/run-dist.mjs scripts/validate-sigils.ts`                              | Scans sigil manifests for consistency.                                                               |
+| `pnpm sigils:index`               | `pnpm` | `node scripts/build-sigillin-index.mjs`                                             | Generates the sigil index artifacts.                                                                 |
+| `pnpm find-bad-yaml`              | `pnpm` | `node scripts/find-bad-yaml.mjs`                                                    | Lints sigil YAML files via yaml-lint and fast-glob before strict indexing.                           |
+| `pnpm sigils:index:strict`        | `pnpm` | `pnpm find-bad-yaml && pnpm sigils:scan && pnpm stac:validate && pnpm sigils:index` | Runs strict sigil validation pipeline prior to indexing.                                             |
+| `pnpm sigils:errors`              | `pnpm` | `cat out/sigils_errors.json \|\| echo 'no errors file'`                             | Prints the last sigil error report if available.                                                     |
+| `pnpm sigillins:scaffold`         | `pnpm` | `node scripts/scaffold-interai-bridges.mjs`                                         | Creates scaffold files for inter-AI sigillin bridges.                                                |
+| `pnpm sigillins:authoring`        | `pnpm` | `node scripts/sigillin-authoring.mjs`                                               | Interactive authoring CLI for sigillin records.                                                      |
+| `pnpm sigillins:build`            | `pnpm` | `node scripts/build-sigillin-archive.mjs`                                           | Constructs sigillin archive bundles.                                                                 |
+| `pnpm validate:sigillins`         | `pnpm` | `node scripts/validate-sigillins.mjs`                                               | Runs the sigillin validator with schema and semantic checks.                                         |
+| `pnpm validate:sigillins:changed` | `pnpm` | `node scripts/sigillins-validate-changed.mjs`                                       | Validates only staged Sigillin bridge files (Git hook friendly).                                     |
+| `pnpm sigillins:report`           | `pnpm` | `node scripts/sigillins-generate-reports.mjs`                                       | Produces JUnit XML + Markdown summaries for governance reporting (default: `out/policy/sigillins/`). |
+| `pnpm map:mandala`                | `pnpm` | `node scripts/mandala-map-validate.mjs`                                             | Validates Mandala map artifacts prior to publication.                                                |
+| `pnpm maps:build`                 | `pnpm` | `node scripts/run-dist.mjs scripts/repo-map.ts`                                     | Regenerates repository map datasets.                                                                 |
+| `pnpm maps:validate`              | `pnpm` | `node scripts/maps/validate-maps.mjs`                                               | Validates map artifacts (`RepoMap.yaml` braucht `repo`, `ProgramFlow.yaml` `meta`).                  |
+| `pnpm maps:list`                  | `pnpm` | `node -e "console.log(require('./analysis/repo-map.json').length+' files')"`        | Prints the repository map file count.                                                                |
+| `pnpm graph:build`                | `pnpm` | `node scripts/build-sigillin-graph.mjs`                                             | Generates graph representations of sigillin relationships.                                           |
 
 ## Data, Adapters & Ingestion
 
@@ -211,12 +213,12 @@ Diese Sammlung bündelt pnpm-Skripte, Shell-Kommandos sowie wiederverwendbare To
 
 > Policy validation and CI governance gates.
 
-| Command                    | Type   | Runs                                                                                                   | Beschreibung                                                                              |
-| -------------------------- | ------ | ------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------- |
-| `pnpm policy:check`        | `pnpm` | `node scripts/policy-suite.mjs`                                                                        | Runs the unified policy suite (OPA, Guardrails, Kyverno).                                 |
-| `pnpm kyverno:validate`    | `pnpm` | `node tools/kyverno-dry-run.mjs`                                                                       | Executes Kyverno validation across manifests.                                             |
-| `pnpm ci:sigils`           | `pnpm` | `pnpm sigils:index:strict && pnpm test:sigil tests/fixtures/sigillin/good.yaml && pnpm resonance:calc` | CI pipeline for sigils combining strict index, CLI tests, and resonance calc.             |
-| `pnpm ci:adapters-offline` | `pnpm` | `cross-env CI=true pnpm adapter:build:oisst && cross-env CI=true pnpm adapter:build:era5 \|\| true`    | Runs offline adapter builds in CI with non-blocking fallback (cross-platform env export). |
+| Command                    | Type   | Runs                                                                                                   | Beschreibung                                                                                                         |
+| -------------------------- | ------ | ------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------- |
+| `pnpm policy:check`        | `pnpm` | `node scripts/policy-suite.mjs`                                                                        | Runs the unified policy suite (OPA, Guardrails, Kyverno) and persists `sigillins:report` to `out/policy/sigillins/`. |
+| `pnpm kyverno:validate`    | `pnpm` | `node tools/kyverno-dry-run.mjs`                                                                       | Executes Kyverno validation across manifests.                                                                        |
+| `pnpm ci:sigils`           | `pnpm` | `pnpm sigils:index:strict && pnpm test:sigil tests/fixtures/sigillin/good.yaml && pnpm resonance:calc` | CI pipeline for sigils combining strict index, CLI tests, and resonance calc.                                        |
+| `pnpm ci:adapters-offline` | `pnpm` | `cross-env CI=true pnpm adapter:build:oisst && cross-env CI=true pnpm adapter:build:era5 \|\| true`    | Runs offline adapter builds in CI with non-blocking fallback (cross-platform env export).                            |
 
 ## Aeon & Symbolic Operations
 

@@ -1,6 +1,21 @@
 {
   "runs": [
     {
+      "fraktalrun": "Fraktal61 CIArtifacts",
+      "status": "implemented",
+      "notes": "ci.core runs `pnpm test:unit` with coverage and uploads the `coverage-vitest` artifact; policy-check.yml publishes sigillin governance as a dedicated `policy-sigillins` artifact; docs (command catalog, MandalaMap, stabilization playbook, policy suite) highlight the new outputs."
+    },
+    {
+      "fraktalrun": "Fraktal60 PolicySuiteSigillin",
+      "status": "implemented",
+      "notes": "policy-suite.mjs now invokes pnpm sigillins:report, storing JUnit/Markdown outputs in out/policy/sigillins/; docs (policy-suite, command catalog, MandalaMap, stabilization playbook) highlight the new reports and the POLICY_SUITE_SKIP_SIGILLINS flag."
+    },
+    {
+      "fraktalrun": "Fraktal59 SigillinGovernance",
+      "status": "implemented",
+      "notes": "Shared validator module (scripts/lib/sigillin-validator.mjs) powers validate-sigillins + new CLIs; staged bridge checks run via pnpm validate:sigillins:changed and pnpm sigillins:report emits JUnit/Markdown summaries. Command catalog and MandalaMap link to the new tooling."
+    },
+    {
       "fraktalrun": "Fraktal58 AdapterHardening",
       "status": "implemented",
       "notes": "xarray helper prefers netcdf4/h5netcdf, closes datasets cleanly and emits file:// URIs in STAC assets; ghostshell nginx config now generates ${PORT_BASE:-3000} style placeholders by default with an opt-out; Node utility scripts run as ES modules and @vitest/coverage-v8 aligns with vitest 1.6.x."

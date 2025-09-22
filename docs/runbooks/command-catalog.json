@@ -257,7 +257,7 @@
           "command": "pnpm test:unit",
           "type": "pnpm",
           "runs": "vitest run --coverage",
-          "description": "Executes Vitest with coverage reporting enabled.",
+          "description": "Executes Vitest with coverage reporting enabled; CI Core publishes the `coverage-vitest` artifact from this run.",
           "source": ["package.json#scripts.test:unit"]
         },
         {
@@ -971,6 +971,24 @@
           "source": ["package.json#scripts.validate:sigillins"]
         },
         {
+          "id": "sigils.validate-sigillins-changed",
+          "name": "Validate staged sigillins",
+          "command": "pnpm validate:sigillins:changed",
+          "type": "pnpm",
+          "runs": "node scripts/sigillins-validate-changed.mjs",
+          "description": "Validates only staged Sigillin bridge files (Git hook friendly).",
+          "source": ["package.json#scripts.validate:sigillins:changed"]
+        },
+        {
+          "id": "sigils.sigillins-report",
+          "name": "Generate sigillin reports",
+          "command": "pnpm sigillins:report",
+          "type": "pnpm",
+          "runs": "node scripts/sigillins-generate-reports.mjs",
+          "description": "Produces JUnit XML and Markdown summaries for governance review (default output: out/policy/sigillins/).",
+          "source": ["package.json#scripts.sigillins:report"]
+        },
+        {
           "id": "sigils.map-mandala",
           "name": "Validate Mandala map",
           "command": "pnpm map:mandala",
@@ -1249,7 +1267,7 @@
           "command": "pnpm policy:check",
           "type": "pnpm",
           "runs": "node scripts/policy-suite.mjs",
-          "description": "Runs the unified policy suite (OPA, Guardrails, Kyverno).",
+          "description": "Runs the unified policy suite (OPA, Guardrails, Kyverno) and persists sigillin governance reports to out/policy/sigillins/.",
           "source": ["package.json#scripts.policy:check"]
         },
         {

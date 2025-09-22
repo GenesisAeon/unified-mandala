@@ -103,6 +103,7 @@
     "sigils:scan": "node scripts/run-dist.mjs scripts/validate-sigils.ts",
     "sigils:errors": "cat out/sigils_errors.json || echo 'no errors file'",
     "validate:sigillins": "node scripts/validate-sigillins.mjs",
+    "validate:sigillins:changed": "node scripts/sigillins-validate-changed.mjs",
     "emergence:scan": "pnpm sigils:index && pnpm agents:scan",
     "adapter:build:era5": "node scripts/adapter-build-era5.mjs",
     "adapter:build:oisst": "node scripts/build-adapter-oisst.mjs",
@@ -132,6 +133,7 @@
     "check:ci": "npx tsc -p tsconfig.json --noEmit && pnpm nats:doctor && pnpm test:ts:ci && pnpm test:jetstream && npx pyright",
     "sigillins:scaffold": "node scripts/scaffold-interai-bridges.mjs",
     "sigillins:authoring": "node scripts/sigillin-authoring.mjs",
+    "sigillins:report": "node scripts/sigillins-generate-reports.mjs",
     "sigillins:build": "node scripts/build-sigillin-archive.mjs",
     "trikaya:dashboard": "node scripts/generate-trikaya-dashboard.mjs"
   },

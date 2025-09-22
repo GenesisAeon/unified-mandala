@@ -8,6 +8,12 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const projectRoot = path.resolve(__dirname, '..');
 const outputDir = path.join(projectRoot, 'out', 'policy');
 fs.mkdirSync(outputDir, { recursive: true });
+const defaultSigillinDir = path.join('out', 'policy', 'sigillins');
+const sigillinReportDir = path.join(outputDir, 'sigillins');
+const sigillinReportRelRaw = path.relative(projectRoot, sigillinReportDir);
+const sigillinReportRel =
+  sigillinReportRelRaw && sigillinReportRelRaw !== '' ? sigillinReportRelRaw : defaultSigillinDir;
+const sigillinReportDisplay = sigillinReportRel.split(path.sep).join('/');
 
 const inputPath = process.env.POLICY_SUITE_INPUT || 'fixtures/events/example_input.json';
 const resolvedInputPath = path.isAbsolute(inputPath)
@@ -76,6 +82,20 @@ const checks = [
     successNote: 'Kyverno policies accepted the example fixture',
     failureHint:
       'Kyverno denied the input fixture. Inspect policies/kyverno.yaml or fixtures/events/example_input.json',
+  },
+  {
+    name: 'Sigillin Governance',
+    skip: () => {
+      const flag = (process.env.POLICY_SUITE_SKIP_SIGILLINS || '').toLowerCase();
+      return flag === '1' || flag === 'true';
+    },
+    skipNote: 'Sigillin report skipped via POLICY_SUITE_SKIP_SIGILLINS',
+    command: () => ({
+      cmd: 'pnpm',
+      args: ['sigillins:report', '--out-dir', sigillinReportRel],
+    }),
+    successNote: `Sigillin governance reports saved to ${sigillinReportDisplay}`,
+    failureHint: `Sigillin report failed – inspect ${sigillinReportDisplay} for Markdown/JUnit output.`,
   },
 ];
 
@@ -210,10 +230,19 @@ async function main() {
 
 await main();
 
+const artifacts = {
+  sigillins: {
+    reportDir: sigillinReportDisplay,
+    junit: `${sigillinReportDisplay}/sigillins-junit-report.xml`,
+    markdown: `${sigillinReportDisplay}/sigillins-report.md`,
+  },
+};
+
 const payload = {
   generatedAt: new Date().toISOString(),
   input: path.relative(projectRoot, resolvedInputPath),
   results,
+  artifacts,
 };
 
 const jsonPath = path.join(outputDir, 'policy-suite.json');

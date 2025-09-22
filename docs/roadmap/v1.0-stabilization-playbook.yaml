@@ -1,7 +1,7 @@
 fraktal: 40
 release: v1.0
 owner: codex
-updated: '2025-10-20'
+updated: '2025-10-25'
 summary: 'Strukturierter Maßnahmenplan zur Umsetzung der Fraktal40-Besprechung.
 
   Fokus auf stabile Kern-Builds, dist-first Services, verschärfte Governance
@@ -35,9 +35,13 @@ streams:
           und verweist bei Bedarf auf `pnpm dev:ports:free`. Runbook `docs/runbooks/nats-jetstream.md`
           dokumentiert Setup und Troubleshooting, README & Tests-Runbook spiegeln die neuen Hinweise.
 
+          Fraktal61: CI-Core führt zusätzlich `pnpm test:unit` mit Coverage aus und veröffentlicht
+          den Report als Artefakt (`coverage-vitest`).
+
           '
         success:
           - pnpm test:ts:ci
+          - pnpm test:unit
           - pnpm test:py
           - npx pyright
       - id: experimental-signal
@@ -51,9 +55,15 @@ streams:
       - id: policy-suite-unify
         description: pnpm policy:check bündelt OPA, Guardrails und Kyverno
         status: done
+        notes: |-
+          Fraktal60: policy:check ruft sigillins:report auf und erzeugt Artefakte in out/policy/sigillins/.
+          Fraktal61: policy-check.yml lädt die Sigillin-Governance-Berichte als separates GitHub-Artefakt (`policy-sigillins`).
         output:
           - out/policy/policy-suite.json
           - out/policy/policy-suite.md
+          - out/policy/sigillins/sigillins-junit-report.xml
+          - out/policy/sigillins/sigillins-report.md
+          - policy-sigillins (GitHub artifact)
   - key: code-quality
     owner:
       lead: DevX Guild

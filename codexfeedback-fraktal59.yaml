@@ -1,0 +1,38 @@
+fraktal: 59
+status: done
+owner: ChefDevAI
+summary:
+  - 'Shared sigillin validator logic lives in scripts/lib/sigillin-validator.mjs; validate-sigillins.mjs
+    now wraps the module and exposes structured results for other tooling.'
+  - 'New CLI scripts validate staged bridges (scripts/sigillins-validate-changed.mjs)
+    and generate JUnit + Markdown governance reports (scripts/sigillins-generate-reports.mjs);
+    package.json & Husky hook invoke them via pnpm validate:sigillins:changed and pnpm
+    sigillins:report.'
+  - 'Command catalog + MandalaMap entries updated to document the staged validator, reporting
+    workflow, and link to the new scripts (including MandalaMap.* links).'
+deliverables:
+  - scripts/lib/sigillin-validator.mjs
+  - scripts/validate-sigillins.mjs
+  - scripts/sigillins-validate-changed.mjs
+  - scripts/sigillins-generate-reports.mjs
+  - package.json
+  - .husky/pre-commit
+  - docs/runbooks/command-catalog.md
+  - docs/runbooks/command-catalog.yaml
+  - docs/runbooks/command-catalog.json
+  - MandalaMap.md
+  - MandalaMap.yaml
+  - MandalaMap.json
+follow_up:
+  governance_report_ci:
+    description: Wire pnpm sigillins:report into CI governance pipeline and archive
+      reports as build artifacts. (Artefakte landen jetzt unter out/policy/sigillins/).
+    status: done
+hook:
+  progress: |
+    Staged sigillin changes are auto-validated before commit and governance
+    reviewers get ready-to-consume JUnit/Markdown summaries.
+  next_step: |
+    Optional: CI-Artefakt-Upload für die Sigillin-Reports evaluieren oder in
+    PR-Kommentaren verlinken.
+repeat_required: false

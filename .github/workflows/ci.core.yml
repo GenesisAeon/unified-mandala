@@ -57,5 +57,16 @@ jobs:
       - run: pnpm nats:doctor
       - run: pnpm test:ts:ci
       - run: pnpm test:jetstream
+      - name: Run Vitest coverage
+        run: |
+          rm -rf coverage
+          pnpm test:unit
+      - name: Upload coverage report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-vitest
+          path: coverage/
+          if-no-files-found: ignore
       - run: pnpm test:py
       - run: npx pyright

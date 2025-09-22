@@ -108,6 +108,8 @@ entries:
       - CI-Core startet einen Docker-basierten NATS-Server und ruft `pnpm
         nats:doctor` sowie `pnpm test:jetstream` im type-and-tests-Gate auf
         (Fraktal57).
+      - 'CI-Core erzeugt Coverage via `pnpm test:unit` und publiziert das Artefakt `coverage-vitest`.'
+      - '`policy-check.yml` lädt Sigillin-Governance-Berichte als separates GitHub-Artefakt `policy-sigillins`.'
     links:
       - label: CI Core
         path: .github/workflows/ci.core.yml
@@ -507,7 +509,9 @@ entries:
     title: Generated outputs
     description: Build artifacts such as sigillin_index.json and validation error exports.
     notes:
-      - Cleared/rebuilt by validation scripts (pnpm validate:sigillins, etc.).
+      - Cleared/rebuilt by validation scripts (pnpm validate:sigillins, etc.);
+        `pnpm policy:check` legt Sigillin-Reports unter `out/policy/sigillins/`
+        ab.
     links: []
   - path: packages/
     category: core-runtime
@@ -643,6 +647,11 @@ entries:
       - '`scripts/nats-doctor.mjs` liefert JetStream-Hinweise (fehlendes `-js`,
         Timeout, Berechtigungen) und `scripts/nats-docker.mjs` startet bzw.
         überwacht JetStream-Container für lokale Tests.'
+      - Git-Hook-Validator (`scripts/sigillins-validate-changed.mjs`) prüft nur
+        geänderte Bridges vor dem Commit.
+      - Governance-Reports (`scripts/sigillins-generate-reports.mjs`) erzeugen
+        JUnit-XML und Markdown für Policy-Auswertungen; `pnpm policy:check`
+        schreibt die Artefakte automatisch nach `out/policy/sigillins/`.
     links:
       - label: run-dist
         path: scripts/run-dist.mjs

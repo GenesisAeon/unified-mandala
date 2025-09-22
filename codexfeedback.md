@@ -1,5 +1,16 @@
 # Codex Feedback
 
+- FR-UM-2025-10-25-Fraktal61-CIArtifacts: ci.core führt `pnpm test:unit` mit Coverage aus und lädt das Artefakt `coverage-vitest`; policy-check.yml publiziert die Sigillin-Governance separat als `policy-sigillins`; Command-Catalog, MandalaMap und das Stabilization-Playbook verweisen auf die neuen CI-Artefakte.
+- FR-UM-2025-10-24-Fraktal60-PolicySuiteSigillin: `pnpm policy:check` ruft jetzt
+  `pnpm sigillins:report` auf, legt JUnit-/Markdown-Reports unter
+  `out/policy/sigillins/` ab und dokumentiert den Skip-Flag
+  `POLICY_SUITE_SKIP_SIGILLINS`; Policy-Suite-Doku, Command-Catalog,
+  MandalaMap.\* und das Stabilization-Playbook verweisen auf den neuen Pfad.
+- FR-UM-2025-10-23-Fraktal59-SigillinGovernance: Validatorlogik steckt jetzt in
+  `scripts/lib/sigillin-validator.mjs`, `pnpm validate:sigillins:changed` prüft
+  geänderte Bridges vor dem Commit und `pnpm sigillins:report` erzeugt JUnit- und
+  Markdown-Governance-Reports; Command-Catalog und MandalaMap verlinken die neuen
+  Workflows.
 - FR-UM-2025-10-22-Fraktal58-AdapterHardening: NetCDF-Pipelines nutzen
   `adapters.shared.xarray_utils.open_dataset` mit Engine-Fallback (netcdf4/h5netcdf),
   schließen Datensätze sauber und STAC-Assets liefern `file://`-URIs; das
