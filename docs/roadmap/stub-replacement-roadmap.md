@@ -18,7 +18,9 @@ Unified Mandala führt weiterhin mehrere Python-Typstubs, um Forschungsabhängig
    - dynamische Importpfade (`importlib`) + Feature-Flags (`UM_ENABLE_EXPERIMENTAL_KAN`).
    - Fallback-Implementierungen mit klaren Capability-Flächen (z. B. `NotAvailableError`).
 2. **CI-konforme Typen** – Stubs werden durch generierte Typinformationen ersetzt (`stubgen` + `pyright --createstub`).
-3. **Secret Isolation** – `keys/` enthält lediglich `.gitkeep` + Automation-Markierungen; PRs mit manuellen Dateien blocken.
+3. **Secret Isolation** – `keys/` enthält `.gitignore` + `.gitkeep` als Automation-Markierungen;
+   Repo-Sanity und die Kyverno-Policy `policies/kyverno.yaml` markieren unerwartete Dateien
+   als Fehler, sodass PRs mit manuellen Artefakten blocken.
 
 ## 3. Umsetzungsetappen
 
@@ -36,7 +38,8 @@ Unified Mandala führt weiterhin mehrere Python-Typstubs, um Forschungsabhängig
 
 ### Phase C – Governance & Keys (Fraktal50 → Fraktal51)
 
-- [ ] `ci/policy.keys.yaml`: Kyverno-Regel, die PRs mit Dateien unter `keys/` ablehnt (außer `.gitkeep`).
+- [x] Kyverno-Governance: `policies/kyverno.yaml` erzwingt, dass `keys/` nur `.gitignore/.gitkeep`
+      enthält; Repo-Sanity prüft zusätzlich auf fehlende oder unerwartete Marker.
 - [ ] Deployment-Pipeline aktualisieren: Secrets werden zur Laufzeit eingehängt (`kubectl create secret`), nicht committed.
 - [ ] MandalaMap Follow-up → `done` sobald Kyverno/OPA-Policies greifen.
 

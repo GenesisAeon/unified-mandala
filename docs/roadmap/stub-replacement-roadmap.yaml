@@ -57,7 +57,9 @@ phases:
     tasks:
       - id: kyverno-keys
         description: Kyverno/OPA Policy, die commits unter keys/ blockiert (außer .gitkeep).
-        status: planned
+        status: done
+        notes: 'policies/kyverno.yaml erzwingt einen leeren keys/-Ordner (nur .gitignore/.gitkeep);
+          scripts/repo-sanity.mjs meldet fehlende Marker oder unerwartete Dateien.'
       - id: runtime-secrets
         description: Deployment Pipelines mounten Secrets zur Laufzeit (kein Git check-in).
         status: planned

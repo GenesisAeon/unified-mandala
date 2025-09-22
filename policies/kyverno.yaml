@@ -9,9 +9,20 @@ spec:
       match:
         any:
           - resources:
-              kinds: ["MandalaEvent"]
+              kinds: ['MandalaEvent']
       validate:
-        message: "High-risk topics require personhood P3"
+        message: 'High-risk topics require personhood P3'
         pattern:
-          (topic): "governance.override"
-          (personhood): "P3"
+          (topic): 'governance.override'
+          (personhood): 'P3'
+    - name: enforce-empty-keys
+      match:
+        any:
+          - resources:
+              kinds: ['MandalaEvent']
+      validate:
+        message: 'keys/ directory must remain automation-only (.gitignore/.gitkeep).'
+        pattern:
+          repo:
+            keys:
+              unexpected: []

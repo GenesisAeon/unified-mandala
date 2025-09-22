@@ -1,16 +1,15 @@
 #!/usr/bin/env node
-import fs from "fs";
-import path from "path";
-import yaml from "yaml";
+import fs from 'fs';
+import path from 'path';
 
 // Placeholder merge script: reads external advice rows from existing JSON
 // and produces grouped markdown summary by area.
 
 function loadRows() {
-  const p = path.resolve("advancedToDo.json");
+  const p = path.resolve('advancedToDo.json');
   if (!fs.existsSync(p)) return [];
   try {
-    const j = JSON.parse(fs.readFileSync(p, "utf8"));
+    const j = JSON.parse(fs.readFileSync(p, 'utf8'));
     if (Array.isArray(j)) return j;
     if (Array.isArray(j.rows)) return j.rows;
     return [];
@@ -35,10 +34,10 @@ function main() {
     }
     md += `\n`;
   }
-  const outDir = path.resolve("data/plans");
+  const outDir = path.resolve('data/plans');
   fs.mkdirSync(outDir, { recursive: true });
-  fs.writeFileSync(path.join(outDir, "advancedToDo.by-area.md"), md);
-  console.log("→ wrote data/plans/advancedToDo.by-area.md");
+  fs.writeFileSync(path.join(outDir, 'advancedToDo.by-area.md'), md);
+  console.log('→ wrote data/plans/advancedToDo.by-area.md');
 }
 
 main();

@@ -115,6 +115,27 @@ if (fs.existsSync(codexJsonPath)) {
   }
 }
 
+const keysDir = path.join(projectRoot, 'keys');
+const allowedKeyFiles = new Set(['.gitignore', '.gitkeep']);
+if (!fs.existsSync(keysDir) || !fs.statSync(keysDir).isDirectory()) {
+  errors.push('keys/: directory missing.');
+} else {
+  const entries = fs.readdirSync(keysDir, { withFileTypes: true });
+  const keyFiles = entries.filter((entry) => entry.isFile()).map((entry) => entry.name);
+  const missingMarkers = [...allowedKeyFiles].filter((marker) => !keyFiles.includes(marker));
+  if (missingMarkers.length > 0) {
+    errors.push(`keys/: missing automation markers (${missingMarkers.join(', ')}).`);
+  }
+  const unexpected = keyFiles.filter((name) => !allowedKeyFiles.has(name));
+  if (unexpected.length > 0) {
+    errors.push(`keys/: unexpected files committed (${unexpected.join(', ')}).`);
+  }
+  const extraneousDirs = entries.filter((entry) => entry.isDirectory()).map((entry) => entry.name);
+  if (extraneousDirs.length > 0) {
+    errors.push(`keys/: unexpected directories present (${extraneousDirs.join(', ')}).`);
+  }
+}
+
 if (errors.length) {
   console.error('Repo sanity checks failed:');
   for (const err of errors) {

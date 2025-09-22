@@ -68,6 +68,7 @@ streams:
           Fraktal61: policy-check.yml lädt die Sigillin-Governance-Berichte als separates GitHub-Artefakt (`policy-sigillins`).
           Fraktal65: Governance-Workflow ruft zusätzlich `pnpm schema:validate` und `pnpm maps:validate` auf; Repo-Sanity nutzt `pnpm sanity`, um `ciBehaviour`-Metadaten zu prüfen.
           Fraktal66: Policy-Suite markiert Kyverno/Sigillin als optionale Schritte (`PANTHEON_DISABLE=1`), loggt Skip-Warnungen wenn Kyverno-CLI oder `sigillins:report` fehlen, `pnpm repomap:*` erzeugt Fallback-Artefakte bei fehlendem dist und das Cheat Sheet `docs/cheatsheets/unified-mandala-workflows.md` bündelt die Kern-Workflows.
+          Fraktal68: keys/ bleibt automation-only; Repo-Sanity prüft `.gitignore`/`.gitkeep` und `policies/kyverno.yaml` meldet unerwartete Dateien.
         output:
           - out/policy/policy-suite.json
           - out/policy/policy-suite.md

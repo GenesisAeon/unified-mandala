@@ -542,7 +542,10 @@
       "status": "stub",
       "title": "Keys placeholder",
       "description": "Empty directory reserved for secrets/keys (kept out of version control).",
-      "notes": ["Populate via deployment automation only; keep empty in repo."],
+      "notes": [
+        "Automation markers (.gitignore/.gitkeep) live in repo and are validated by repo-sanity.",
+        "Kyverno policy (policies/kyverno.yaml) flags unexpected files."
+      ],
       "links": []
     },
     {
@@ -958,7 +961,7 @@
     },
     {
       "title": "Stub replacement roadmap",
-      "detail": "Roadmap dokumentiert in docs/roadmap/stub-replacement-roadmap.(md|yaml); Umsetzungsschritte für stubs/ und keys/ eingeplant.",
+      "detail": "Roadmap dokumentiert in docs/roadmap/stub-replacement-roadmap.(md|yaml); keys/ ist via Repo-Sanity & Kyverno abgesichert, Ersatzimplementierungen für stubs/ stehen aus.",
       "related": ["stubs/", "keys/"],
       "status": "in-progress"
     },

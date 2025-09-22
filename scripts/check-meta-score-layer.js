@@ -1,30 +1,34 @@
 const fs = require('fs');
 const path = require('path');
 
-const requiredFiles = [
-  'apps/sharedream-interface/hooks/useMetaScores.ts',
-  'apps/sharedream-interface/hooks/useMetaScores.test.ts',
-  'apps/sharedream-interface/pages/api/meta-scores.ts',
-  'apps/sharedream-interface/pages/api/meta-scores.test.ts',
-  'apps/sharedream-interface/components/MetaScoreChart.tsx',
-  'apps/sharedream-interface/components/MetaScoreChart.test.tsx',
-  'apps/sharedream-interface/components/MetaScoreChart.stories.tsx',
-  'apps/sharedream-interface/components/MetaScoreDisplay.tsx',
-  'apps/sharedream-interface/components/MetaScoreDisplay.stories.tsx'
+const rootDir = path.resolve(__dirname, '..');
+const requiredSegments = [
+  ['apps', 'sharedream-interface', 'hooks', 'useMetaScores.ts'],
+  ['apps', 'sharedream-interface', 'hooks', 'useMetaScores.test.ts'],
+  ['apps', 'sharedream-interface', 'pages', 'api', 'meta-scores.ts'],
+  ['apps', 'sharedream-interface', 'pages', 'api', 'meta-scores.test.ts'],
+  ['apps', 'sharedream-interface', 'components', 'MetaScoreChart.tsx'],
+  ['apps', 'sharedream-interface', 'components', 'MetaScoreChart.test.tsx'],
+  ['apps', 'sharedream-interface', 'components', 'MetaScoreChart.stories.tsx'],
+  ['apps', 'sharedream-interface', 'components', 'MetaScoreDisplay.tsx'],
+  ['apps', 'sharedream-interface', 'components', 'MetaScoreDisplay.stories.tsx'],
 ];
+const requiredFiles = requiredSegments.map((segments) => path.join(rootDir, ...segments));
+const requiredDisplay = requiredSegments.map((segments) => segments.join('/'));
 
 function checkFiles() {
   let allPresent = true;
-  for (const file of requiredFiles) {
+  requiredFiles.forEach((file, index) => {
     const exists = fs.existsSync(file);
-    console.log(`${file}: ${exists ? 'OK' : 'FEHLT'}`);
+    const label = requiredDisplay[index];
+    console.log(`${label}: ${exists ? 'OK' : 'FEHLT'}`);
     if (!exists) allPresent = false;
-  }
+  });
   return allPresent;
 }
 
 function checkHookEndpoint() {
-  const hookPath = 'apps/sharedream-interface/hooks/useMetaScores.ts';
+  const hookPath = path.join(rootDir, 'apps', 'sharedream-interface', 'hooks', 'useMetaScores.ts');
   const content = fs.readFileSync(hookPath, 'utf8');
   const usesEndpoint = content.includes('/api/meta-scores');
   console.log(`useMetaScores fetches /api/meta-scores: ${usesEndpoint ? 'OK' : 'FEHLT'}`);
@@ -40,4 +44,3 @@ if (require.main === module) {
 }
 
 module.exports = { checkFiles, checkHookEndpoint };
-

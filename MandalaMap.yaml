@@ -470,7 +470,8 @@ entries:
     title: Keys placeholder
     description: Empty directory reserved for secrets/keys (kept out of version control).
     notes:
-      - Populate via deployment automation only; keep empty in repo.
+      - Automation markers `.gitignore` und `.gitkeep` liegen im Repo und werden von Repo-Sanity validiert.
+      - Kyverno-Policy `policies/kyverno.yaml` markiert unerwartete Dateien als Fehler.
     links: []
   - path: localhost-offline/
     category: ci-infra
@@ -849,7 +850,8 @@ follow_up:
     status: done
   - title: Stub replacement roadmap
     detail: Roadmap dokumentiert in docs/roadmap/stub-replacement-roadmap.(md|yaml);
-      Umsetzungsschritte für stubs/ und keys/ eingeplant.
+      keys/ ist durch Repo-Sanity & Kyverno abgesichert, Ersatzimplementierungen für stubs/
+      bleiben offen.
     related:
       - stubs/
       - keys/
