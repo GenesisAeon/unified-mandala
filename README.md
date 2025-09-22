@@ -199,7 +199,7 @@ CI=true pnpm adapter:build:era5
 pnpm stac:validate
 pnpm stac:validate:item out/example.item.json
 pnpm prompts:coach --dry
-pnpm test:unit                # Coverage-Report der Kernmodule
+pnpm test:unit:coverage       # Coverage-Report der Kernmodule
 ```
 
 > ℹ️ `CI Experimental` läuft nur mit Label `run-experimental`. `ENABLE_EXPERIMENTAL_TESTS=1` schaltet zusätzliche, instabile Suites frei (z.B. `pnpm test:ts:experimental`).

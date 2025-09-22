@@ -26,7 +26,7 @@ const raw = readDirFirst(
 );
 if (!raw) die('no raw oisst_*.nc produced');
 
-const rawPath = join('data/raw', raw);
+const rawPath = toPosix(join('data/raw', raw));
 runPython(
   ['-m', 'adapters.oisst.postprocess_oisst', rawPath, 'data/processed', 'out/stac', 'out/metrics'],
   'Postprocess OISST data',
@@ -34,8 +34,8 @@ runPython(
 
 const stamp = raw.replace('oisst_', '').replace('.nc', '');
 const itemId = `oisst-${stamp}`;
-const stacPath = `out/stac/${itemId}.item.json`;
-const metricsPath = `out/metrics/${itemId}.metrics.json`;
+const stacPath = toPosix(`out/stac/${itemId}.item.json`);
+const metricsPath = toPosix(`out/metrics/${itemId}.metrics.json`);
 if (!existsSync(stacPath)) die(`missing STAC: ${stacPath}`);
 if (!existsSync(metricsPath)) die(`missing metrics: ${metricsPath}`);
 
@@ -53,21 +53,28 @@ index.adapters.push({
   kind: 'oisst',
   stac: stacPath,
   crep: metrics.crep,
-  processed: `data/processed/oisst_${stamp}.nc`,
+  processed: toPosix(`data/processed/oisst_${stamp}.nc`),
 });
 writeFileSync(indexPath, JSON.stringify(index, null, 2));
 console.log('✅ OISST pipeline complete');
 
 function runPython(args, label) {
   console.log(`⏳ ${label}`);
-  const result = spawnPython(args, {
-    cwd: repoRoot,
-    env,
-    stdio: 'inherit',
-  });
+  const result = spawnPython(
+    args.map((value) => toPosix(value)),
+    {
+      cwd: repoRoot,
+      env,
+      stdio: 'inherit',
+    },
+  );
   if ((result.status ?? 1) !== 0) {
     process.exit(result.status ?? 1);
   }
+}
+
+function toPosix(value) {
+  return typeof value === 'string' ? value.replace(/\\/g, '/') : value;
 }
 
 function readDirFirst(dir, predicate) {

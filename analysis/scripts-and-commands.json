@@ -93,7 +93,7 @@
     "test": "vitest run",
     "test:adapters": "vitest run src/adapters/tests/decorators.test.ts",
     "test:agents": "vitest run",
-    "test:jest": "echo \"(Jest deaktiviert \u2013 nutze vitest)\" && exit 0",
+    "test:jest": "echo \"(Jest deaktiviert – nutze vitest)\" && exit 0",
     "test:jetstream": "vitest run --config vitest.config.ts --reporter=default tests/event-bus/jetstream-bus.test.ts",
     "test:py": "pytest -m \"not slow and not experimental\" -q",
     "test:py:all": "pytest -q",
@@ -104,7 +104,7 @@
     "test:ts:experimental": "cross-env ENABLE_EXTENDED_TESTS=1 ENABLE_EXPERIMENTAL_TESTS=1 vitest run --config vitest.config.ts",
     "test:ts:extended": "cross-env ENABLE_EXTENDED_TESTS=1 vitest run --config vitest.config.ts",
     "test:ui": "vitest run --passWithNoTests",
-    "test:unit": "vitest run --coverage",
+    "test:unit": "vitest run",
     "test:watch": "vitest",
     "update:advanced-progress": "node repositorypflege/update-advanced-progress.js",
     "update:advanced-todo": "node scripts/update-advanced-todo.js",
@@ -114,6 +114,7 @@
     "update:todo-sigil": "node scripts/update-todo-sigil.js",
     "validate:advancedtodo": "node scripts/validate-advancedtodo.js",
     "validate:sigillins": "node scripts/validate-sigillins.mjs",
-    "validate:todos": "node scripts/validate-implicit-todos.js"
+    "validate:todos": "node scripts/validate-implicit-todos.js",
+    "test:unit:coverage": "vitest run --coverage"
   }
 }

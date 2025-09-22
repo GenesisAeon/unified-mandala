@@ -67,7 +67,7 @@ pip install -r requirements.txt
 CI=true pnpm adapter:build:oisst
 pnpm stac:validate
 pnpm resonance:calc
-pnpm test:unit           # Coverage für Kernmodule
+pnpm test:unit:coverage  # Coverage für Kernmodule
 pnpm policy:check        # Governance-Gates
 ```
 

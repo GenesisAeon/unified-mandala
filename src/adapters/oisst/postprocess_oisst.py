@@ -6,6 +6,7 @@ import numpy as np
 import xarray as xr
 from datetime import datetime, timezone
 from adapters.shared.xarray_utils import open_dataset
+from adapters.core.stac import _normalise_href
 
 
 def _crep_from_stats(ds: xr.Dataset) -> dict[str, object]:
@@ -92,7 +93,7 @@ def main(argv: list[str] | None = None) -> int:
         bbox = _bbox_from_coords(lat, lon)
         dt_iso = datetime.now(timezone.utc).isoformat()
         item_id = f"oisst-{stamp}"
-        href = proc_nc.resolve().as_uri()
+        href = _normalise_href(proc_nc)
         stac: dict[str, object] = _stac_item(item_id, bbox, href, dt_iso)
         stac_path = out_stac / f"{item_id}.item.json"
         with open(stac_path, "w") as f:

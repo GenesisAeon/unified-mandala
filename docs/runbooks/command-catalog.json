@@ -271,12 +271,21 @@
         },
         {
           "id": "testing.test-unit",
-          "name": "Vitest with coverage",
+          "name": "Vitest unit suite",
           "command": "pnpm test:unit",
+          "type": "pnpm",
+          "runs": "vitest run",
+          "description": "Runs the Vitest unit suite without generating coverage reports for faster local feedback.",
+          "source": ["package.json#scripts.test:unit"]
+        },
+        {
+          "id": "testing.test-unit-coverage",
+          "name": "Vitest coverage suite",
+          "command": "pnpm test:unit:coverage",
           "type": "pnpm",
           "runs": "vitest run --coverage",
           "description": "Executes Vitest with coverage reporting enabled; CI Core publishes the `coverage-vitest` artifact from this run.",
-          "source": ["package.json#scripts.test:unit"]
+          "source": ["package.json#scripts.test:unit:coverage"]
         },
         {
           "id": "testing.test-jest",
