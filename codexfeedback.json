@@ -1,6 +1,11 @@
 {
   "runs": [
     {
+      "fraktalrun": "Fraktal65 CIAdaptersStac",
+      "status": "implemented",
+      "notes": "CI core/extended/nightly install src/adapters/requirements.txt for NetCDF4/h5netcdf/scipy, `_normalise_href` now resolves assets relative to STAC item directories with a file:// fallback, the QA test runner honours PANTHEON_DISABLE and MandalaMap/Playbook/Trikaya dashboard highlight the regression coverage."
+    },
+    {
       "fraktalrun": "Fraktal64 PythonEnvParity",
       "status": "implemented",
       "notes": "pythonEnv resolves the repository root so PYTHONPATH is correct during adapter builds, the EFFIS fixture now emits a valid NetCDF grid offline, and STAC helpers gained regression tests for relative and absolute hrefs."

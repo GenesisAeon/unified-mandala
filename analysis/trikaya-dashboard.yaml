@@ -1,4 +1,4 @@
-generatedAt: '2025-09-19T18:18:37.150Z'
+generatedAt: '2025-10-27T09:30:00.000Z'
 providers:
   - key: chatgpt
     label: ChatGPT
@@ -97,3 +97,5 @@ aggregates:
     sambhogakāya: 5/5
     nirmāṇakāya: 5/5
   nextActionRate: 0.6
+notes:
+  - Refresh 2025-10-27 synchronisiert mit Fraktal64-Fixes (NetCDF-Engine-Fallback, STAC-HREF-Regression, QA-Analytics-Opt-out).

@@ -93,7 +93,7 @@ def main(argv: list[str] | None = None) -> int:
         bbox = _bbox_from_coords(lat, lon)
         dt_iso = datetime.now(timezone.utc).isoformat()
         item_id = f"oisst-{stamp}"
-        href = _normalise_href(proc_nc)
+        href = _normalise_href(proc_nc, stac_item_dir=out_stac)
         stac: dict[str, object] = _stac_item(item_id, bbox, href, dt_iso)
         stac_path = out_stac / f"{item_id}.item.json"
         with open(stac_path, "w") as f:

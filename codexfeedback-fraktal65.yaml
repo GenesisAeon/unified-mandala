@@ -1,0 +1,38 @@
+fraktal: 65
+status: done
+owner: ChefDevAI
+summary:
+  - 'CI Core, Extended und Nightly installieren `src/adapters/requirements.txt`, damit NetCDF4/h5netcdf/scipy offline verfügbar bleiben.'
+  - '`_normalise_href` berechnet hrefs relativ zum STAC-Item-Verzeichnis (Fallback `file://`) und Pytests sichern die Regression.'
+  - 'QA-Test-Runner respektiert `PANTHEON_DISABLE`; MandalaMap, Stabilization-Playbook und Trikāya-Dashboard dokumentieren die Änderungen.'
+deliverables:
+  - requirements.txt
+  - src/adapters/shared/xarray_utils.py
+  - src/adapters/core/stac.py
+  - src/adapters/oisst/postprocess_oisst.py
+  - tests/adapters/test_stac_paths.py
+  - scripts/qa-test-runner.ts
+  - .github/workflows/ci.core.yml
+  - .github/workflows/ci.yml
+  - .github/workflows/ci.extended.yml
+  - .github/workflows/ci.nightly.yml
+  - MandalaMap.md
+  - MandalaMap.yaml
+  - MandalaMap.json
+  - docs/roadmap/v1.0-stabilization-playbook.md
+  - docs/roadmap/v1.0-stabilization-playbook.yaml
+  - analysis/trikaya-dashboard.json
+  - analysis/trikaya-dashboard.md
+  - analysis/trikaya-dashboard.yaml
+  - codexfeedback.md
+  - codexfeedback.json
+  - codexfeedback.yaml
+commands:
+  - pnpm adapter:build:oisst
+  - pnpm stac:validate
+  - pytest tests/adapters/test_stac_paths.py
+  - pnpm test:unit
+hook:
+  progress: 'Relative STAC-Assets werden korrekt aufgelöst, NetCDF-Backends stehen in CI bereit und QA-Analytics bleiben standardmäßig deaktiviert.'
+  next_step: 'Weitere Adapter auf die neue HREF-Logik heben und Governance-Schemas auf zusätzliche Felder prüfen.'
+repeat_required: false

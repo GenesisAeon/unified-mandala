@@ -10,6 +10,20 @@ type PantheonPortalAnalyticsCtor =
 
 let analyticsCtorPromise: Promise<PantheonPortalAnalyticsCtor> | null = null;
 
+function analyticsDisabled(): boolean {
+  const raw = process.env.PANTHEON_DISABLE ?? '';
+  if (!raw) return false;
+  switch (raw.trim().toLowerCase()) {
+    case '1':
+    case 'true':
+    case 'yes':
+    case 'on':
+      return true;
+    default:
+      return false;
+  }
+}
+
 function fourierPeak(text: string): number {
   const n = text.length;
   let peak = 0;
@@ -42,7 +56,7 @@ export async function runQA(
   try {
     execSync(lintCommand, options);
     execSync(testCommand, options);
-    if (promptsFile && fs.existsSync(promptsFile)) {
+    if (!analyticsDisabled() && promptsFile && fs.existsSync(promptsFile)) {
       const Analytics = await resolveAnalyticsCtor();
       const analytics = new Analytics();
       const data = JSON.parse(fs.readFileSync(promptsFile, 'utf-8'));

@@ -1,5 +1,6 @@
 # Codex Feedback
 
+- FR-UM-2025-10-29-Fraktal65-CIAdaptersStac: CI-Core/Extended/Nightly installieren `src/adapters/requirements.txt`, `_normalise_href` berechnet hrefs relativ zum STAC-Item-Verzeichnis (Fallback `file://`), der QA-Test-Runner respektiert `PANTHEON_DISABLE` und MandalaMap/Playbook/Trikāya-Dashboard spiegeln die Regressionstests.
 - FR-UM-2025-10-28-Fraktal64-PythonEnvParity: `pythonEnv` setzt `PYTHONPATH` wieder auf das Repo-Wurzelverzeichnis, der EFFIS-Offline-Builder erzeugt ein gültiges NetCDF-Gitter und neue STAC-Tests sichern relative/absolute `href`-Normalisierung.
 - FR-UM-2025-10-27-Fraktal63-AdapterInterop: `open_dataset` bevorzugt netcdf4→h5netcdf mit klaren Fehlermeldungen, STAC-Assets nutzen POSIX/relative hrefs (Schema `uri-reference`), Adapter-Builds normalisieren Windows-Pfade, der QA-Runner lädt PantheonPortalAnalytics lazy (dist/src) und Coverage läuft über `pnpm test:unit:coverage`; README/Onboarding/Command-Catalog/MandalaMap/Playbook referenzieren den Split.
 - FR-UM-2025-10-26-Fraktal62-WindowsDocs: README & CONTRIBUTING führen Windows-sichere Pytest-Kommandos sowie Puppeteer-/Cypress-Installation auf; Command-Catalog (MD/YAML/JSON) listet die neuen Helferbefehle.
