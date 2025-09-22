@@ -1,6 +1,11 @@
 {
   "runs": [
     {
+      "fraktalrun": "Fraktal67 DevTalkCheatSheet",
+      "status": "implemented",
+      "notes": "DevTalk67 evaluated; the workflow cheat sheet now lists pnpm check:ci, pnpm ci:verify, monitoring/offline bundle guidance and the Windows setup script. MandalaMap, the stabilization playbook and codexfeedback-fraktal67 reflect the expanded scope."
+    },
+    {
       "fraktalrun": "Fraktal66 MetaHardening",
       "status": "implemented",
       "notes": "Policy-suite treats Kyverno/Sigillin as optional with PANTHEON_DISABLE=1, logs skip warnings when Kyverno tooling or sigillins:report are absent, repomap build/validate produce fallback artefacts when dist is missing, repo-sanity accepts codexfeedback YAML/JSON, and the new cheat sheet docs/cheatsheets/unified-mandala-workflows.md summarises core workflows."
