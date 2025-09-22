@@ -1,6 +1,60 @@
 fraktal:
-  current: 62
+  current: 64
   history:
+    - id: 64
+      status: done
+      notes: |
+        Fraktal64 PythonEnvParity: `pythonEnv` resolves the repository root so
+        adapter builds set `PYTHONPATH` correctly, the EFFIS fixture now emits a
+        valid NetCDF grid for offline runs, and STAC helpers have regression
+        tests covering relative vs. absolute href generation.
+      deliverables:
+        - scripts/lib/python.mjs
+        - src/adapters/effis/fetch_effis.py
+        - tests/adapters/test_stac_paths.py
+      commands:
+        - pnpm adapter:build:effis
+        - pytest tests/adapters/test_stac_paths.py
+      hook:
+        progress: Python adapter tooling no longer needs manual PYTHONPATH fixes; offline fixtures and STAC tests cover hrefs.
+    - id: 63
+      status: done
+      notes: |
+        Fraktal63 AdapterInterop: `open_dataset` prefers netcdf4→h5netcdf with
+        clearer error propagation, STAC builders emit POSIX/relative hrefs and
+        schema accepts `uri-reference`, adapter scripts normalisieren Windows-Pfade,
+        der QA-Runner lädt PantheonPortalAnalytics nun lazy (dist/src) und die
+        Coverage-Suite läuft über das neue `pnpm test:unit:coverage`-Skript.
+      deliverables:
+        - src/adapters/shared/xarray_utils.py
+        - src/adapters/core/stac.py
+        - src/adapters/oisst/postprocess_oisst.py
+        - src/adapters/_schema/stac-item.schema.json
+        - scripts/build-adapter-oisst.mjs
+        - scripts/build-adapter-effis.mjs
+        - scripts/qa-test-runner.ts
+        - .github/workflows/ci.core.yml
+        - package.json
+        - README.md
+        - docs/CommunityOnboarding.md
+        - docs/ONBOARDING.md
+        - docs/roadmap/v1.0-stabilization-playbook.md
+        - docs/roadmap/v1.0-stabilization-playbook.yaml
+        - docs/runbooks/command-catalog.md
+        - docs/runbooks/command-catalog.yaml
+        - docs/runbooks/command-catalog.json
+        - analysis/scripts-and-commands.json
+        - MandalaMap.md
+        - MandalaMap.yaml
+        - MandalaMap.json
+        - codexfeedback-fraktal63.yaml
+      commands:
+        - pnpm adapter:build:effis
+        - pnpm stac:validate
+        - pnpm test:unit
+      hook:
+        progress: Coverage-Artefakte laufen jetzt über `pnpm test:unit:coverage`, STAC- und Adapterpfade sind Windows-sicher.
+        next_step: Coverage-Gate beobachten und STAC/POSIX-Normalisierung auf weitere Pipelines ausweiten.
     - id: 62
       status: done
       notes: |

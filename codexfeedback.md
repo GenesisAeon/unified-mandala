@@ -1,5 +1,7 @@
 # Codex Feedback
 
+- FR-UM-2025-10-28-Fraktal64-PythonEnvParity: `pythonEnv` setzt `PYTHONPATH` wieder auf das Repo-Wurzelverzeichnis, der EFFIS-Offline-Builder erzeugt ein gültiges NetCDF-Gitter und neue STAC-Tests sichern relative/absolute `href`-Normalisierung.
+- FR-UM-2025-10-27-Fraktal63-AdapterInterop: `open_dataset` bevorzugt netcdf4→h5netcdf mit klaren Fehlermeldungen, STAC-Assets nutzen POSIX/relative hrefs (Schema `uri-reference`), Adapter-Builds normalisieren Windows-Pfade, der QA-Runner lädt PantheonPortalAnalytics lazy (dist/src) und Coverage läuft über `pnpm test:unit:coverage`; README/Onboarding/Command-Catalog/MandalaMap/Playbook referenzieren den Split.
 - FR-UM-2025-10-26-Fraktal62-WindowsDocs: README & CONTRIBUTING führen Windows-sichere Pytest-Kommandos sowie Puppeteer-/Cypress-Installation auf; Command-Catalog (MD/YAML/JSON) listet die neuen Helferbefehle.
 - FR-UM-2025-10-25-Fraktal61-CIArtifacts: ci.core führt `pnpm test:unit` mit Coverage aus und lädt das Artefakt `coverage-vitest`; policy-check.yml publiziert die Sigillin-Governance separat als `policy-sigillins`; Command-Catalog, MandalaMap und das Stabilization-Playbook verweisen auf die neuen CI-Artefakte.
 - FR-UM-2025-10-24-Fraktal60-PolicySuiteSigillin: `pnpm policy:check` ruft jetzt

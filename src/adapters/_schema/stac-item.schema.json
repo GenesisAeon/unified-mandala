@@ -3,7 +3,7 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "STAC Item (strict++)",
   "type": "object",
-  "required": ["type","stac_version","id","bbox","geometry","properties","assets"],
+  "required": ["type", "stac_version", "id", "bbox", "geometry", "properties", "assets"],
   "additionalProperties": false,
   "properties": {
     "type": { "const": "Feature" },
@@ -15,7 +15,7 @@
       "required": ["type", "coordinates"],
       "additionalProperties": false,
       "properties": {
-        "type": { "enum": ["Polygon","MultiPolygon"] },
+        "type": { "enum": ["Polygon", "MultiPolygon"] },
         "coordinates": { "type": "array" }
       }
     },
@@ -30,10 +30,10 @@
       "minProperties": 1,
       "additionalProperties": {
         "type": "object",
-        "required": ["href","type","roles"],
+        "required": ["href", "type", "roles"],
         "additionalProperties": true,
         "properties": {
-          "href": { "type": "string", "format": "uri" },
+          "href": { "type": "string", "format": "uri-reference" },
           "type": { "type": "string", "pattern": "^(application|image|text)/" },
           "roles": { "type": "array", "minItems": 1, "items": { "type": "string" } }
         }

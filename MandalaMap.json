@@ -101,7 +101,7 @@
         "Sigillin validator is required on main; mandala-map workflow uploads artifacts without blocking CI.",
         "Repo Sanity builds the UI dist and waits on apps/ui/dist/index.html before running map/audit checks to avoid race conditions.",
         "CI-Core startet einen Docker-basierten NATS-Server und ruft `pnpm nats:doctor` sowie `pnpm test:jetstream` im type-and-tests-Gate auf (Fraktal57).",
-        "CI-Core erzeugt Coverage via `pnpm test:unit` und publiziert das Artefakt `coverage-vitest`.",
+        "CI-Core erzeugt Coverage via `pnpm test:unit:coverage` und publiziert das Artefakt `coverage-vitest`.",
         "`policy-check.yml` lädt Sigillin-Governance-Berichte als separates GitHub-Artefakt `policy-sigillins`."
       ],
       "links": [
@@ -725,7 +725,8 @@
         "Dev-Stack prüft Ports automatisch, räumt Standard-Ports via `pnpm dlx kill-port` auf (Opt-out: `UM_DEV_SERVICES_AUTOFREE_PORTS=0`) und verweist bei Bedarf auf `pnpm dev:ports:free`.",
         "`scripts/nats-doctor.mjs` liefert JetStream-Hinweise (fehlendes `-js`, Timeout, Berechtigungen) und `scripts/nats-docker.mjs` startet bzw. überwacht JetStream-Container für lokale Tests.",
         "Git-Hook-Validator (scripts/sigillins-validate-changed.mjs) prüft nur geänderte Bridges vor dem Commit.",
-        "Governance-Reports (scripts/sigillins-generate-reports.mjs) erzeugen JUnit-XML und Markdown für Policy-Auswertungen; pnpm policy:check schreibt die Artefakte automatisch nach out/policy/sigillins/."
+        "Governance-Reports (scripts/sigillins-generate-reports.mjs) erzeugen JUnit-XML und Markdown für Policy-Auswertungen; pnpm policy:check schreibt die Artefakte automatisch nach out/policy/sigillins/.",
+        "scripts/lib/python.mjs setzt den PYTHONPATH wieder auf das Repo-src, damit Adapter-Builds ohne manuelle Overrides laufen."
       ],
       "links": [
         {
@@ -812,7 +813,12 @@
       "status": "active",
       "title": "Python source",
       "description": "Python modules (adapters, metrics, membrane, middleware) powering data pipelines.",
-      "notes": ["Validated via pnpm test:py and npx pyright; keep ERA5/OISST adapters green."],
+      "notes": [
+        "Validated via pnpm test:py and npx pyright; keep ERA5/OISST adapters green.",
+        "NetCDF adapters use deterministic engine fallbacks (netcdf4 → h5netcdf) for Windows parity.",
+        "STAC helpers emit POSIX/relative hrefs so schema validation stays green across platforms.",
+        "EFFIS offline builder erstellt ein minimales NetCDF-Gitter und Pytests sichern relative/absolute STAC-href-Normalisierung."
+      ],
       "links": []
     },
     {

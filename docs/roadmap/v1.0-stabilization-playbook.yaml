@@ -35,13 +35,13 @@ streams:
           und verweist bei Bedarf auf `pnpm dev:ports:free`. Runbook `docs/runbooks/nats-jetstream.md`
           dokumentiert Setup und Troubleshooting, README & Tests-Runbook spiegeln die neuen Hinweise.
 
-          Fraktal61: CI-Core führt zusätzlich `pnpm test:unit` mit Coverage aus und veröffentlicht
+          Fraktal61: CI-Core führt zusätzlich `pnpm test:unit:coverage` mit Coverage aus und veröffentlicht
           den Report als Artefakt (`coverage-vitest`).
 
           '
         success:
           - pnpm test:ts:ci
-          - pnpm test:unit
+          - pnpm test:unit:coverage
           - pnpm test:py
           - npx pyright
       - id: experimental-signal

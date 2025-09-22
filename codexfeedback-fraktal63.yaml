@@ -1,0 +1,38 @@
+fraktal: 63
+status: done
+owner: ChefDevAI
+summary:
+  - 'NetCDF adapters call `open_dataset` with deterministic engine fallbacks (netcdf4→h5netcdf) and raise clearer errors when all attempts fail; STAC helpers emit POSIX/relative hrefs so validation succeeds across Windows and Linux.'
+  - 'Adapter build scripts normalise Python arguments and manifest paths to POSIX form, preventing `data\processed` href regressions on Windows.'
+  - 'QA runner lazily resolves `PantheonPortalAnalytics` with dist/src fallbacks and async guard handling so pnpm qa works both pre- and post-build.'
+  - 'Vitest coverage split: `pnpm test:unit` is now a fast run, `pnpm test:unit:coverage` feeds CI; workflows and docs (README, onboarding, command catalog, MandalaMap, stabilization playbook) reference the new command.'
+deliverables:
+  - src/adapters/shared/xarray_utils.py
+  - src/adapters/core/stac.py
+  - src/adapters/oisst/postprocess_oisst.py
+  - src/adapters/_schema/stac-item.schema.json
+  - scripts/build-adapter-oisst.mjs
+  - scripts/build-adapter-effis.mjs
+  - scripts/qa-test-runner.ts
+  - .github/workflows/ci.core.yml
+  - package.json
+  - README.md
+  - docs/CommunityOnboarding.md
+  - docs/ONBOARDING.md
+  - docs/roadmap/v1.0-stabilization-playbook.md
+  - docs/roadmap/v1.0-stabilization-playbook.yaml
+  - docs/runbooks/command-catalog.md
+  - docs/runbooks/command-catalog.yaml
+  - docs/runbooks/command-catalog.json
+  - analysis/scripts-and-commands.json
+  - MandalaMap.md
+  - MandalaMap.yaml
+  - MandalaMap.json
+commands:
+  - pnpm adapter:build:effis
+  - pnpm stac:validate
+  - pnpm test:unit
+hook:
+  progress: Coverage artifacts now use `pnpm test:unit:coverage`; STAC outputs store portable hrefs and adapter scripts run cleanly on Windows.
+  next_step: Monitor CI coverage thresholds after the script split and extend the POSIX/STAC normalisation to remaining adapter pipelines.
+repeat_required: false

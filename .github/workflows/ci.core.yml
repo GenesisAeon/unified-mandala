@@ -60,7 +60,7 @@ jobs:
       - name: Run Vitest coverage
         run: |
           rm -rf coverage
-          pnpm test:unit
+          pnpm test:unit:coverage
       - name: Upload coverage report
         if: always()
         uses: actions/upload-artifact@v4

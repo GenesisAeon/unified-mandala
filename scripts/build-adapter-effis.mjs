@@ -41,12 +41,19 @@ console.log('✅ EFFIS pipeline (offline) done');
 
 function runPython(args, label) {
   console.log(`⏳ ${label}`);
-  const result = spawnPython(args, {
-    cwd: repoRoot,
-    env,
-    stdio: 'inherit',
-  });
+  const result = spawnPython(
+    args.map((value) => toPosix(value)),
+    {
+      cwd: repoRoot,
+      env,
+      stdio: 'inherit',
+    },
+  );
   if ((result.status ?? 1) !== 0) {
     process.exit(result.status ?? 1);
   }
+}
+
+function toPosix(value) {
+  return typeof value === 'string' ? value.replace(/\\/g, '/') : value;
 }

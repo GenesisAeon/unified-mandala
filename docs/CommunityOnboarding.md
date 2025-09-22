@@ -26,7 +26,7 @@ Dieses Dokument erleichtert neuen Mitwirkenden den Einstieg in UnifiedMandala.
    pnpm test                      # führt Unit- und UI-Tests aus
    pnpm docs:auto                 # generiert TypeDoc-API-Dokumentation
    pnpm policy:check              # OPA + Guardrails + Kyverno
-   pnpm test:unit                 # Coverage-Report (Vitest)
+   pnpm test:unit:coverage        # Coverage-Report (Vitest)
    docker compose --profile monitoring up   # Prometheus + Grafana Profil
    ```
 

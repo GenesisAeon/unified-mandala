@@ -1,6 +1,7 @@
 from __future__ import annotations
 # pyright: reportUnknownMemberType=false, reportUnknownArgumentType=false
 
+from os import fspath
 from typing import Iterable, Sequence, Any
 
 import xarray as xr
@@ -24,20 +25,27 @@ def open_dataset(
     portable we try a list of known engines (defaulting to ``netcdf4`` and
     ``h5netcdf``) before falling back to the standard xarray resolution logic.
     """
+    path_str = fspath(path)
+
     if "engine" in kwargs:
-        return xr.open_dataset(path, **kwargs)
+        return xr.open_dataset(path_str, **kwargs)
 
     engines: Iterable[str] = prefer_engines or _PREFERRED_ENGINES
-    last_error: Exception | None = None
+    failures: list[tuple[str, Exception]] = []
     for engine in engines:
         try:
-            return xr.open_dataset(path, engine=engine, **kwargs)
+            return xr.open_dataset(path_str, engine=engine, **kwargs)
         except Exception as err:  # pragma: no cover - error aggregation only
-            last_error = err
+            failures.append((engine, err))
 
     try:
-        return xr.open_dataset(path, **kwargs)
+        return xr.open_dataset(path_str, **kwargs)
     except Exception as err:  # pragma: no cover - propagate combined failure
-        if last_error is not None and err is not last_error:
-            err = type(err)(f"{err}. Previous engine attempts failed with: {last_error}")
+        if failures:
+            attempted = ", ".join(f"{name}: {type(exc).__name__}" for name, exc in failures)
+            message = (
+                f"Unable to open dataset {path_str!r}. Attempted engines {attempted}. "
+                "Falling back to xarray default also failed."
+            )
+            raise RuntimeError(message) from err
         raise

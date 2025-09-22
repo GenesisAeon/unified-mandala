@@ -108,7 +108,7 @@ entries:
       - CI-Core startet einen Docker-basierten NATS-Server und ruft `pnpm
         nats:doctor` sowie `pnpm test:jetstream` im type-and-tests-Gate auf
         (Fraktal57).
-      - 'CI-Core erzeugt Coverage via `pnpm test:unit` und publiziert das Artefakt `coverage-vitest`.'
+      - 'CI-Core erzeugt Coverage via `pnpm test:unit:coverage` und publiziert das Artefakt `coverage-vitest`.'
       - '`policy-check.yml` lädt Sigillin-Governance-Berichte als separates GitHub-Artefakt `policy-sigillins`.'
     links:
       - label: CI Core
@@ -652,6 +652,8 @@ entries:
       - Governance-Reports (`scripts/sigillins-generate-reports.mjs`) erzeugen
         JUnit-XML und Markdown für Policy-Auswertungen; `pnpm policy:check`
         schreibt die Artefakte automatisch nach `out/policy/sigillins/`.
+      - '`scripts/lib/python.mjs` setzt `PYTHONPATH` wieder auf das Repo-Wurzel-
+        `src`, sodass Adapter-Builds ohne manuelle Overrides laufen.'
     links:
       - label: run-dist
         path: scripts/run-dist.mjs
@@ -714,6 +716,10 @@ entries:
     notes:
       - Validated via pnpm test:py and npx pyright; keep ERA5/OISST adapters
         green.
+      - NetCDF adapters use deterministic engine fallbacks (netcdf4 → h5netcdf) for Windows parity.
+      - STAC helpers emit POSIX/relative hrefs so schema validation stays green across platforms.
+      - EFFIS offline builder writes a minimal NetCDF grid and pytest guards
+        relative vs. absolute href normalization for STAC items.
     links: []
   - path: stubs/
     category: support
