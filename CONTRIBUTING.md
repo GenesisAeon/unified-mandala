@@ -32,6 +32,13 @@ Danach sollten folgende Schritte immer grün sein, bevor ein PR erstellt wird:
   - `pnpm test:ts:experimental`
   - Weitere Jobs nur nach Abstimmung, Ergebnisse werden toleriert (continue-on-error).
 
+### Windows-spezifische Test-Hinweise
+
+- `.\.venv\Scripts\python.exe -m pytest -q` ruft Pytest sicher über die Projekt-venv auf, falls PowerShell das `pytest`-CLI nicht im `%PATH%` findet.
+- Alternativ funktioniert `.\.venv\Scripts\pytest.exe -q`, sofern das CLI im virtuellen Environment installiert wurde.
+- Für Mermaid- und Sigillin-Generierung benötigt `@mermaid-js/mermaid-cli` eine lokale Chrome-Binary: `pnpm exec puppeteer browsers install chrome-headless-shell` lädt die Headless-Version repositoryweit nutzbar.
+- End-to-End-Tests via Cypress erwarten eine vorbereitete Binary: `pnpm dlx cypress install` sollte einmalig vor `pnpm cy:run` ausgeführt werden.
+
 ## GitHub-Actions Überblick
 
 - `CI Core` läuft bei jedem Push/PR auf `main`.

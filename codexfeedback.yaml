@@ -1,6 +1,23 @@
 fraktal:
-  current: 61
+  current: 62
   history:
+    - id: 62
+      status: done
+      notes: |
+        Fraktal62 WindowsDocs: README/CONTRIBUTING beschreiben Pytest via venv sowie Puppeteer-/Cypress-Installation; Command-Catalog listet die neuen Befehle.
+      deliverables:
+        - README.md
+        - CONTRIBUTING.md
+        - docs/runbooks/command-catalog.md
+        - docs/runbooks/command-catalog.yaml
+        - docs/runbooks/command-catalog.json
+        - codexfeedback-fraktal62.yaml
+        - codexfeedback.md
+        - codexfeedback.json
+        - codexfeedback.yaml
+      hook:
+        progress: Windows-Doku nennt jetzt Pytest- und Tool-Installationsbefehle explizit.
+        next_step: Windows-Builds nach Toolinstallation einmalig mit `pnpm adapter:build:effis` und `pnpm cy:run` verifizieren.
     - id: 61
       status: done
       notes: |

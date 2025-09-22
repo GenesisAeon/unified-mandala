@@ -1,6 +1,11 @@
 {
   "runs": [
     {
+      "fraktalrun": "Fraktal62 WindowsDocs",
+      "status": "implemented",
+      "notes": "README & CONTRIBUTING document Windows-specific Pytest invocation and Puppeteer/Cypress installs; command catalog (md/json/yaml) exposes the new helper commands for tooling parity."
+    },
+    {
       "fraktalrun": "Fraktal61 CIArtifacts",
       "status": "implemented",
       "notes": "ci.core runs `pnpm test:unit` with coverage and uploads the `coverage-vitest` artifact; policy-check.yml publishes sigillin governance as a dedicated `policy-sigillins` artifact; docs (command catalog, MandalaMap, stabilization playbook, policy suite) highlight the new outputs."

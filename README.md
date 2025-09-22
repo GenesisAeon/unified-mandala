@@ -82,6 +82,17 @@ pnpm smoke:ui
 > Ports räumt der Dev-Stack standardmäßig automatisch (Kill-Port). Falls Prozesse hartnäckig sind, hilft `pnpm dlx kill-port 3001 3002 3003 3004 4020 4021` manuell oder `setx UM_DEV_SERVICES_AUTOFREE_PORTS 0` zum Deaktivieren des Auto-Cleanup.
 > 🪟 **PowerShell-Tipp:** Dateien via `Get-Content` oder `type` anzeigen (`cat` ist Alias, aber ohne Pipe-Verhalten); Umgebungsvariablen vor dem Kommando mit `$env:NAME = 'Wert'` setzen – Inline-Syntax `NAME=value pnpm …` funktioniert in PowerShell nicht.
 
+### Windows: Zusätzliche Tools & Tests
+
+> Häufige Stolperfallen auf Windows lassen sich mit ein paar gezielten Kommandos vermeiden.
+
+| Zweck                                 | Kommando                                                     | Hinweis                                                                                                                  |
+| ------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
+| Pytest über die Projekt-venv aufrufen | `.\.venv\Scripts\python.exe -m pytest -q`                    | Nutzt garantiert die im Repository provisionierte Umgebung und funktioniert auch, wenn `pytest` nicht im `%PATH%` liegt. |
+| Alternativer Pytest-Starter           | `.\.venv\Scripts\pytest.exe -q`                              | Direktaufruf des `pytest`-CLI, falls PowerShell keine Modul-Ausführung erlaubt.                                          |
+| Headless Chrome für Mermaid CLI       | `pnpm exec puppeteer browsers install chrome-headless-shell` | Installiert die von `@mermaid-js/mermaid-cli` erwartete Chrome-Binary lokal im pnpm-Store.                               |
+| Cypress-Binary vorbereiten            | `pnpm dlx cypress install`                                   | Lädt die aktuelle Cypress-Version (inkl. Browser) herunter, damit `pnpm cy:run` ohne Fehlversuch startet.                |
+
 ---
 
 ## Mandala Climate Dashboard
