@@ -24,3 +24,10 @@ _Generated: 2025-10-27T09:30:00.000Z_
 - CREP/Trikāya compliance reflects schema + semantic validation outcomes.
 - Use `pnpm sigillins:authoring status --json` for CLI-friendly output.
 - Refresh 2025-10-27 synchronisiert mit Fraktal64-Fixes (NetCDF-Engine-Fallback, STAC-HREF-Regression, QA-Analytics-Opt-out).
+- Governance-Checks validieren `ciBehaviour`-Felder via `pnpm schema:validate`, `pnpm maps:validate`, `pnpm policy:check` und `pnpm sanity` (Fraktal65).
+
+## CI Behaviour Snapshot
+
+- Analytics toggle: `PANTHEON_DISABLE=1` deaktiviert QA-Analytics in CI-Jobs.
+- Adapter-Backends: `netcdf4`, `h5netcdf` und `scipy` werden in Core/Extended/Nightly installiert.
+- Governance Hooks: `pnpm schema:validate`, `pnpm maps:validate`, `pnpm policy:check` und `pnpm sanity` sichern die neuen Felder.

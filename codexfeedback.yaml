@@ -9,6 +9,9 @@ fraktal:
         relativ zum STAC-Item-Verzeichnis (Fallback `file://`), der QA-Test-Runner
         respektiert `PANTHEON_DISABLE` und MandalaMap/Stabilization-Playbook/
         Trikāya-Dashboard dokumentieren die Regressionstests.
+        Fraktal65 Meta-Fix: CI-Core nutzt `pnpm typecheck`, `pnpm test:unit`, `pnpm test:unit:coverage`; Governance-Workflow führt
+        `pnpm schema:validate`, `pnpm maps:validate`, `pnpm policy:check` aus und `pnpm sanity` validiert `ciBehaviour`-Felder in
+        MandalaMap/Trikāya-Dashboard/codexfeedback. RepoMap-Workflow baut/validiert über `pnpm repomap:*`.
       deliverables:
         - requirements.txt
         - src/adapters/shared/xarray_utils.py
@@ -20,6 +23,9 @@ fraktal:
         - .github/workflows/ci.yml
         - .github/workflows/ci.extended.yml
         - .github/workflows/ci.nightly.yml
+        - .github/workflows/governance.yml
+        - .github/workflows/repo-sanity.yml
+        - .github/workflows/repomap.yml
         - MandalaMap.md
         - MandalaMap.yaml
         - MandalaMap.json
@@ -28,15 +34,30 @@ fraktal:
         - analysis/trikaya-dashboard.json
         - analysis/trikaya-dashboard.md
         - analysis/trikaya-dashboard.yaml
+        - scripts/validate-schemas.mjs
+        - scripts/repo-sanity.mjs
+        - scripts/generate-repomap.mjs
+        - scripts/validate-repomap.mjs
+        - schemas/mandala-map.schema.json
+        - schemas/codexfeedback.schema.json
+        - codexfeedback.yaml
+        - codexfeedback.json
+        - codexfeedback.md
         - codexfeedback-fraktal65.yaml
       commands:
         - pnpm adapter:build:oisst
         - pnpm stac:validate
         - pytest tests/adapters/test_stac_paths.py
         - pnpm test:unit
+        - pnpm schema:validate
+        - pnpm maps:validate
+        - pnpm policy:check
+        - pnpm sanity
+        - pnpm repomap:build
+        - pnpm repomap:validate
       hook:
-        progress: 'Relative STAC-Assets werden korrekt aufgelöst, NetCDF-Backends stehen in CI bereit und QA-Analytics bleiben deaktiviert.'
-        next_step: 'Weitere Adapter und Governance-Schemas auf die neue HREF-/Backend-Logik ausweiten.'
+        progress: 'CI-Core nutzt die neuen Skript-Aliase; Governance, Repo-Sanity und Repomap laufen mit schema/maps/policy/sanity Checks grün.'
+        next_step: 'Weitere Adapter und Governance-Schemas auf die neue HREF-/Backend-Logik ausweiten; Fraktal66 fokussiert auf restliche Adapter.'
     - id: 64
       status: done
       notes: |
@@ -679,3 +700,6 @@ fraktal48:
     - Stub-Usage Audit (scripts/check-stub-usage.mjs) als optionaler MandalaMap-Hook.
     - Kyverno/OPA Policy für keys/-Automation vorbereiten.
   repeat_required: false
+hook:
+  progress: 'Fraktal65 Meta-Lauf grün: CI-Core/Repo-Sanity/Repomap aktualisiert, Governance-Schemas und Artefakte validiert.'
+  next_step: 'Folgelauf für zusätzliche Adapter-HREF-Anpassungen (Fraktal66) vorbereiten.'

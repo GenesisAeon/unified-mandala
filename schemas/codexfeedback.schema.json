@@ -1,0 +1,75 @@
+{
+  "title": "Codex Feedback Tracker",
+  "type": "object",
+  "properties": {
+    "fraktal": {
+      "type": "object",
+      "properties": {
+        "current": {
+          "type": "integer"
+        },
+        "history": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "oneOf": [{ "type": "integer" }, { "type": "string" }]
+              },
+              "status": {
+                "type": "string"
+              },
+              "notes": {
+                "type": "string"
+              }
+            },
+            "required": ["id", "status"],
+            "additionalProperties": true
+          }
+        }
+      },
+      "additionalProperties": true
+    },
+    "runs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "fraktalrun": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "notes": {
+            "type": "string"
+          }
+        },
+        "required": ["fraktalrun", "status"],
+        "additionalProperties": true
+      }
+    },
+    "hook": {
+      "type": "object",
+      "properties": {
+        "progress": {
+          "type": "string"
+        },
+        "next_step": {
+          "type": "string"
+        }
+      },
+      "required": ["progress"],
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true,
+  "anyOf": [
+    {
+      "required": ["fraktal"]
+    },
+    {
+      "required": ["runs"]
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "title": "Mandala Map",
+  "type": "object",
+  "properties": {
+    "meta": {
+      "type": "object"
+    },
+    "legend": {
+      "type": "object"
+    },
+    "entries": {
+      "type": "array"
+    },
+    "follow_up": {
+      "type": "array"
+    },
+    "ciBehaviour": {
+      "type": "object",
+      "properties": {
+        "analyticsToggle": {
+          "type": "boolean",
+          "default": true
+        },
+        "adapterBackends": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "default": ["netcdf4", "h5netcdf", "scipy"]
+        }
+      },
+      "required": ["analyticsToggle", "adapterBackends"],
+      "additionalProperties": false
+    }
+  },
+  "required": ["meta", "legend", "entries"],
+  "additionalProperties": true
+}

@@ -13,21 +13,17 @@ jobs:
         with:
           version: 10.16.1
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile --ignore-scripts
+        run: pnpm install --frozen-lockfile
       - name: Build UI dist
         run: pnpm build:ui
       - name: Wait for UI dist assets
         run: npx wait-on "file:apps/ui/dist/index.html"
       - name: Build repo map
-        run: pnpm maps:build
+        run: pnpm repomap:build
+      - name: Validate repo map
+        run: pnpm repomap:validate
       - name: Audit UI vs VR
         run: pnpm audit:ui-vr
         continue-on-error: true
-      - name: Verify outputs
-        run: |
-          test -f analysis/repo-map.json
-          if [ -f analysis/ui-vr-audit.json ]; then
-            echo "ui-vr audit output present"
-          else
-            echo "::warning::analysis/ui-vr-audit.json missing"
-          fi
+      - name: Repo sanity assertions
+        run: pnpm sanity

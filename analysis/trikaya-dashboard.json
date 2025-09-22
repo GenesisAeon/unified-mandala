@@ -123,5 +123,13 @@
       "nirmāṇakāya": "5/5"
     },
     "nextActionRate": 0.6
-  }
+  },
+  "ciBehaviour": {
+    "analyticsToggle": false,
+    "adapterBackends": ["netcdf4", "h5netcdf", "scipy"]
+  },
+  "notes": [
+    "Refresh 2025-10-27 synchronisiert mit Fraktal64-Fixes (NetCDF-Engine-Fallback, STAC-HREF-Regression, QA-Analytics-Opt-out).",
+    "Governance-Checks validieren ciBehaviour-Felder via pnpm schema:validate, pnpm maps:validate, pnpm policy:check und pnpm sanity (Fraktal65)."
+  ]
 }
