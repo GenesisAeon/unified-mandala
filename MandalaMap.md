@@ -68,7 +68,7 @@ Repository: unified-mandala
 
 - `.github/` — **active** GitHub workflows & templates
   - Workflow definitions (core, nightly, experimental) and community health files.
-  - Notes: Audit instructions encoded as jobs; isolate non-actionable tasks to stop false CI failures.; Core/extended workflows documented in docs/roadmap/v1.0-stabilization-playbook.md.; Sigillin validator is required on main; mandala-map workflow uploads artifacts without blocking CI.; Repo Sanity builds the UI dist and waits on apps/ui/dist/index.html before running map/audit checks to avoid race conditions.; CI-Core startet einen Docker-basierten NATS-Server und ruft `pnpm nats:doctor` + `pnpm test:jetstream` im type-and-tests-Gate auf (Fraktal57).
+  - Notes: Audit instructions encoded as jobs; isolate non-actionable tasks to stop false CI failures.; Core/extended workflows documented in docs/roadmap/v1.0-stabilization-playbook.md.; Sigillin validator is required on main; mandala-map workflow uploads artifacts without blocking CI.; Repo Sanity builds the UI dist and waits on apps/ui/dist/index.html before running map/audit checks to avoid race conditions.; CI-Core startet einen Docker-basierten NATS-Server und ruft `pnpm nats:doctor` + `pnpm test:jetstream` im type-and-tests-Gate auf (Fraktal57). CI-Core erzeugt zusätzlich Coverage via `pnpm test:unit` (Artefakt `coverage-vitest`), und `policy-check.yml` veröffentlicht die Sigillin-Governance als separates Artefakt `policy-sigillins`.
   - Links: [CI Core](.github/workflows/ci.core.yml), [Nightly Mirror](.github/workflows/ci.nightly.yml), [Sigillin validate](.github/workflows/sigillin-validate.yml), [Mandala map job](.github/workflows/mandala-map.yml)
 
 - `.husky/` — **active** Git hooks
@@ -147,7 +147,7 @@ Repository: unified-mandala
 
 - `scripts/` — **active** Automation scripts
   - Extensive Node/TS automation: dev servers, exports, QA, smoke tests, repo map, etc.
-- Notes: Dist-first convention via scripts/run-dist.mjs; Sigillin-Fix-CLI (`scripts/fix-sigillin.ts`) ergänzt Bridge-Tooling; Windows-Parität via `scripts/setup-dev-env.ps1` + `scripts/run-powershell.mjs` dokumentiert; PowerShell-Setup exportiert Installationsstatus nach `out/setup/install-state.json`; ParserFix `(Test-CommandExists ...)` + Bool-Cast heben PowerShell 7.5 ParserError auf; Corepack-Admin-Check vermeidet EPERM und liefert Benutzeraktivierung samt NATS-Installationshinweis; Emergence-Breath (`scripts/emergence-breath.mjs`) koppelt `pnpm dev:breath` an `validate:sigillins` + Trikāya-Dashboard und protokolliert Coverage-Metriken; Dev-Stack prüft Ports automatisch, räumt Standard-Ports via `pnpm dlx kill-port` auf (Opt-out: `UM_DEV_SERVICES_AUTOFREE_PORTS=0`) und verweist bei Bedarf auf `pnpm dev:ports:free`; `scripts/nats-doctor.mjs` liefert JetStream-Hinweise (fehlendes `-js`, Timeout, Berechtigungen) und `scripts/nats-docker.mjs` startet bzw. überwacht JetStream-Container für lokale Tests.
+- Notes: Dist-first convention via scripts/run-dist.mjs; Sigillin-Fix-CLI (`scripts/fix-sigillin.ts`) ergänzt Bridge-Tooling; Windows-Parität via `scripts/setup-dev-env.ps1` + `scripts/run-powershell.mjs` dokumentiert; PowerShell-Setup exportiert Installationsstatus nach `out/setup/install-state.json`; ParserFix `(Test-CommandExists ...)` + Bool-Cast heben PowerShell 7.5 ParserError auf; Corepack-Admin-Check vermeidet EPERM und liefert Benutzeraktivierung samt NATS-Installationshinweis; Emergence-Breath (`scripts/emergence-breath.mjs`) koppelt `pnpm dev:breath` an `validate:sigillins` + Trikāya-Dashboard und protokolliert Coverage-Metriken; Dev-Stack prüft Ports automatisch, räumt Standard-Ports via `pnpm dlx kill-port` auf (Opt-out: `UM_DEV_SERVICES_AUTOFREE_PORTS=0`) und verweist bei Bedarf auf `pnpm dev:ports:free`; `scripts/nats-doctor.mjs` liefert JetStream-Hinweise (fehlendes `-js`, Timeout, Berechtigungen) und `scripts/nats-docker.mjs` startet bzw. überwacht JetStream-Container für lokale Tests; staged Bridge-Checks laufen via `scripts/sigillins-validate-changed.mjs`, Governance-Reports (`JUnit`/Markdown) entstehen durch `scripts/sigillins-generate-reports.mjs` und werden über `pnpm policy:check` nach `out/policy/sigillins/` geschrieben.
   - Links: [run-dist](scripts/run-dist.mjs), [dev-services](scripts/dev-services.mjs), [sigil-fix](scripts/fix-sigillin.ts), [setup-dev-env.ps1](scripts/setup-dev-env.ps1), [run-powershell](scripts/run-powershell.mjs)
 
 - `tasks/` — **active** Task manifests
@@ -222,7 +222,7 @@ Repository: unified-mandala
 
 - `out/` — **generated** Generated outputs
   - Build artifacts such as sigillin_index.json and validation error exports.
-  - Notes: Cleared/rebuilt by validation scripts (pnpm validate:sigillins, etc.).
+- Notes: Cleared/rebuilt by validation scripts (pnpm validate:sigillins, etc.); `pnpm policy:check` legt Sigillin-Reports unter `out/policy/sigillins/` ab.
 
 - `pipelines/` — **active** Pipeline manifests
   - Pipelines (e.g., universe_pulse.yaml) orchestrating data/analysis flows.

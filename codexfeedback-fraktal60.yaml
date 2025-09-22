@@ -1,0 +1,29 @@
+fraktal: 60
+status: done
+owner: ChefDevAI
+summary:
+  - 'Policy suite integriert Sigillin-Governance: `scripts/policy-suite.mjs` ruft `pnpm sigillins:report` auf und legt JUnit/Markdown unter `out/policy/sigillins/` ab.'
+  - 'Docs (docs/governance/policy-suite.md, Command-Catalog, MandalaMap, Stabilization-Playbook) beschreiben den neuen Speicherort sowie `POLICY_SUITE_SKIP_SIGILLINS`.'
+  - 'Codexfeedback-Tracker auf Fraktal60 gehoben, Follow-up "governance_report_ci" abgeschlossen.'
+deliverables:
+  - scripts/policy-suite.mjs
+  - docs/governance/policy-suite.md
+  - docs/runbooks/command-catalog.md
+  - docs/runbooks/command-catalog.yaml
+  - docs/runbooks/command-catalog.json
+  - docs/roadmap/v1.0-stabilization-playbook.md
+  - docs/roadmap/v1.0-stabilization-playbook.yaml
+  - MandalaMap.md
+  - MandalaMap.yaml
+  - MandalaMap.json
+  - codexfeedback.md
+  - codexfeedback.json
+  - codexfeedback.yaml
+commands:
+  - pnpm policy:check
+  - pnpm sigillins:report --out-dir out/policy/sigillins
+notes:
+  skip_flags:
+    - name: POLICY_SUITE_SKIP_SIGILLINS
+      description: Kann Sigillin-Report-Läufe bewusst überspringen (lokale Schnelltests)
+repeat_required: false

@@ -2,4 +2,5 @@
 . "$(dirname "$0")/_/husky.sh"
 
 pnpm store:commit-memory >/dev/null 2>&1 || true
+pnpm validate:sigillins:changed
 pnpm lint-staged

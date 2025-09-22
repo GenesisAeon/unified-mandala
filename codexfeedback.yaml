@@ -1,6 +1,86 @@
 fraktal:
-  current: 58
+  current: 61
   history:
+    - id: 61
+      status: done
+      notes: |
+        Fraktal61 CIArtifacts: ci.core führt nun `pnpm test:unit` mit Coverage aus und veröffentlicht das Artefakt `coverage-vitest`; policy-check.yml lädt die Sigillin-Governance separat als GitHub-Artefakt `policy-sigillins`. Dokumentation (Command-Catalog, MandalaMap, Stabilization-Playbook) beschreibt die neuen Artefakte.
+      deliverables:
+        - .github/workflows/ci.core.yml
+        - .github/workflows/policy-check.yml
+        - docs/governance/policy-suite.md
+        - docs/roadmap/v1.0-stabilization-playbook.md
+        - docs/roadmap/v1.0-stabilization-playbook.yaml
+        - docs/runbooks/command-catalog.md
+        - docs/runbooks/command-catalog.yaml
+        - docs/runbooks/command-catalog.json
+        - MandalaMap.md
+        - MandalaMap.yaml
+        - MandalaMap.json
+        - codexfeedback-fraktal61.yaml
+        - codexfeedback.md
+        - codexfeedback.json
+        - codexfeedback.yaml
+      hook:
+        progress: Coverage- und Sigillin-Artefakte werden jetzt automatisch in den CI-Workflows veröffentlicht.
+        next_step: Coverage-Schwellenwerte evaluieren und optional als Gate in ci.core verankern.
+    - id: 60
+      status: done
+      notes: |
+        Fraktal60 PolicySuiteSigillin: `scripts/policy-suite.mjs` ruft jetzt
+        `pnpm sigillins:report` auf, legt JUnit/Markdown unter
+        `out/policy/sigillins/` ab und vermerkt die Artefakte im JSON-Payload;
+        Docs (Policy-Suite, Command-Catalog, MandalaMap, Playbook) zeigen den
+        neuen Pfad und vermerken den Skip-Schalter
+        `POLICY_SUITE_SKIP_SIGILLINS`.
+      deliverables:
+        - scripts/policy-suite.mjs
+        - docs/governance/policy-suite.md
+        - docs/runbooks/command-catalog.md
+        - docs/runbooks/command-catalog.yaml
+        - docs/runbooks/command-catalog.json
+        - docs/roadmap/v1.0-stabilization-playbook.md
+        - docs/roadmap/v1.0-stabilization-playbook.yaml
+        - MandalaMap.md
+        - MandalaMap.yaml
+        - MandalaMap.json
+        - codexfeedback-fraktal60.yaml
+        - codexfeedback.md
+        - codexfeedback.json
+        - codexfeedback.yaml
+      hook:
+        progress: Policy suite Artefakte enthalten jetzt Sigillin-Reports unter
+          out/policy/sigillins/; Governance hat eine einheitliche Ablagestelle.
+        next_step: CI policy-check Workflow optional erweitern, um die
+          Sigillin-Reports als Upload-Artefakt zu veröffentlichen.
+    - id: 59
+      status: done
+      notes: |
+        Fraktal59 SigillinGovernance: validatorlogik wurde in
+        scripts/lib/sigillin-validator.mjs zentralisiert; validate-sigillins.mjs
+        nutzt den Helper und neue CLIs prüfen nur geänderte Bridges bzw.
+        generieren JUnit/Markdown-Reports für Governance-Flows. Husky ruft
+        `pnpm validate:sigillins:changed` vor lint-staged auf und `pnpm
+        sigillins:report` liefert Berichte, Command-Catalog + MandalaMap
+        dokumentieren den Flow samt Link auf die neuen Skripte.
+      deliverables:
+        - scripts/lib/sigillin-validator.mjs
+        - scripts/validate-sigillins.mjs
+        - scripts/sigillins-validate-changed.mjs
+        - scripts/sigillins-generate-reports.mjs
+        - package.json
+        - .husky/pre-commit
+        - docs/runbooks/command-catalog.md
+        - docs/runbooks/command-catalog.yaml
+        - docs/runbooks/command-catalog.json
+        - MandalaMap.md
+        - MandalaMap.yaml
+        - MandalaMap.json
+      hook:
+        progress: Git-Hooks prüfen Sigillin-Änderungen automatisch und Governance
+          erhält JUnit/Markdown-Reports ohne manuellen Schritt.
+        next_step: sigillins:report in CI policy:check einhängen und Reports als
+          Artefakt publizieren.
     - id: 58
       status: done
       notes: |
