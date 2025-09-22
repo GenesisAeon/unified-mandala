@@ -1,5 +1,5 @@
 schema: command-catalog/v1
-generated: '2025-09-19T20:12:41Z'
+generated: '2025-10-26T00:00:00Z'
 owner: ChefDevAI
 notes:
   - Aggregates pnpm scripts, shell helpers, and governance tools exposed in the unified-mandala
@@ -100,6 +100,23 @@ categories:
           or Windows PowerShell when pwsh is unavailable.
         source:
           - package.json#scripts.build:windows-tools
+      - id: setup.install-puppeteer-chrome
+        name: Install Puppeteer Chrome shell
+        command: pnpm exec puppeteer browsers install chrome-headless-shell
+        type: pnpm
+        runs: pnpm exec puppeteer browsers install chrome-headless-shell
+        description: Installs the headless Chrome binary expected by @mermaid-js/mermaid-cli for Mermaid rendering on Windows.
+        source:
+          - DevTalk.txt#Fraktal60
+      - id: setup.install-cypress
+        name: Install Cypress binary
+        command: pnpm dlx cypress install
+        type: pnpm
+        runs: pnpm dlx cypress install
+        description: Pre-downloads the Cypress test runner (including browser) so `pnpm cy:run` skips interactive installation on Windows.
+        source:
+          - DevTalk.txt#Fraktal60
+
       - id: setup.docker-core
         name: Start core Docker profile
         command: docker compose --profile core up
@@ -339,6 +356,23 @@ categories:
         description: Executes the entire Python test suite.
         source:
           - package.json#scripts.test:py:all
+      - id: testing.test-py-venv-python
+        name: Pytest via python.exe (Windows)
+        command: .\.venv\Scripts\python.exe -m pytest -q
+        type: powershell
+        runs: .\.venv\Scripts\python.exe -m pytest -q
+        description: Launches Pytest through the repository virtual environment so Windows shells do not rely on PATH lookups.
+        source:
+          - DevTalk.txt#Fraktal60
+      - id: testing.test-py-venv-cli
+        name: Pytest via CLI shim (Windows)
+        command: .\.venv\Scripts\pytest.exe -q
+        type: powershell
+        runs: .\.venv\Scripts\pytest.exe -q
+        description: Directly invokes the Pytest console script generated inside the virtualenv as an alternative to `python -m`.
+        source:
+          - DevTalk.txt#Fraktal60
+
       - id: testing.test-sigil
         name: Sigil CLI test
         command: pnpm test:sigil

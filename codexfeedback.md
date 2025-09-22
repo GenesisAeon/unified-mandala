@@ -1,5 +1,6 @@
 # Codex Feedback
 
+- FR-UM-2025-10-26-Fraktal62-WindowsDocs: README & CONTRIBUTING führen Windows-sichere Pytest-Kommandos sowie Puppeteer-/Cypress-Installation auf; Command-Catalog (MD/YAML/JSON) listet die neuen Helferbefehle.
 - FR-UM-2025-10-25-Fraktal61-CIArtifacts: ci.core führt `pnpm test:unit` mit Coverage aus und lädt das Artefakt `coverage-vitest`; policy-check.yml publiziert die Sigillin-Governance separat als `policy-sigillins`; Command-Catalog, MandalaMap und das Stabilization-Playbook verweisen auf die neuen CI-Artefakte.
 - FR-UM-2025-10-24-Fraktal60-PolicySuiteSigillin: `pnpm policy:check` ruft jetzt
   `pnpm sigillins:report` auf, legt JUnit-/Markdown-Reports unter
