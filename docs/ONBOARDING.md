@@ -83,3 +83,5 @@ pnpm start:services
 # Monitoring-Profil (Prometheus/Grafana) aktivieren
 docker compose --profile monitoring up
 ```
+
+`pnpm observability:check` prüft anschließend Prometheus `/api/v1/targets` und Grafana `/api/health` (Host-Port 3300) und schlägt bei fehlenden aktiven Targets fehl (Override: `PROMETHEUS_REQUIRE_ACTIVE=0`).

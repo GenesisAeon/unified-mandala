@@ -1,11 +1,14 @@
 fraktal: 71
-status: in-progress
+status: done
 owner: ChefDevAI
 summary:
-  - 'Realtime-Module harmonisiert: Shared Helper `_cosmic-rt.mjs` definiert Subject/Server-Defaults und Queue-Parsing für Publisher & Subscriber.'
-  - 'Subscriber & Publisher aligniert auf Standard-Subject `demo.cosmic`, unterstützen Multi-Server-Listen + Queue-Groups und loggen konsistente Ziele.'
-  - 'Docs (README, docs/demos/cosmic-web.md, Stabilization-Playbook, MandalaMap.*, codexfeedback.*) spiegeln Alias `pnpm sub:cosmic` sowie neue Defaults; package.json enthält Shortcut.'
-  - 'Neuer Feedback-Hook dokumentiert Fortschritt & Follow-up innerhalb von Fraktal71.'
+  - 'Realtime-Module harmonisiert: Shared Helper `_cosmic-rt.mjs` definiert Subject/Server-Defaults
+    und Queue-Parsing für Publisher & Subscriber.'
+  - Subscriber & Publisher aligniert auf Standard-Subject `demo.cosmic`, unterstützen
+    Multi-Server-Listen + Queue-Groups und loggen konsistente Ziele.
+  - Docs (README, docs/demos/cosmic-web.md, Stabilization-Playbook, MandalaMap.*, codexfeedback.*)
+    spiegeln Alias `pnpm sub:cosmic` sowie neue Defaults; package.json enthält Shortcut.
+  - Neuer Feedback-Hook dokumentiert Fortschritt & Follow-up innerhalb von Fraktal71.
 deliverables:
   - scripts/realtime/_cosmic-rt.mjs
   - scripts/realtime/sub-cosmic.mjs
@@ -25,6 +28,7 @@ deliverables:
 commands:
   - pnpm lint:eslint
 hook:
-  progress: 'Subscriber/Pub Defaults & Docs aktualisiert; Cosmic-Realtime Pfad nutzt nun gemeinsamen Helper.'
-  next_step: 'Optionale Bridge UI ↔ NATS evaluieren, weitere DevTalk71-Punkte sammeln.'
+  progress: Subscriber/Pub Defaults & Docs aktualisiert; Cosmic-Realtime Pfad nutzt
+    nun gemeinsamen Helper.
+  next_step: Optionale Bridge UI ↔ NATS evaluieren, weitere DevTalk71-Punkte sammeln.
 repeat_required: false

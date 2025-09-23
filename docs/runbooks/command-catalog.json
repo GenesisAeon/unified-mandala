@@ -27,7 +27,7 @@
           "command": "pwsh -NoProfile -File ./scripts/setup-dev-env.ps1",
           "type": "powershell",
           "runs": "pwsh -NoProfile -File ./scripts/setup-dev-env.ps1",
-          "description": "Installs Git, Node.js, and Python on Windows, enables Corepack with admin detection (non-admin \u2192 user activation), reminds about missing nats-server, and runs pnpm using PowerShell 7+ (fallback: powershell -NoProfile -ExecutionPolicy Bypass -File .\\scripts\\setup-dev-env.ps1).",
+          "description": "Installs Git, Node.js, and Python on Windows, enables Corepack with admin detection (non-admin → user activation), reminds about missing nats-server, and runs pnpm using PowerShell 7+ (fallback: powershell -NoProfile -ExecutionPolicy Bypass -File .\\scripts\\setup-dev-env.ps1).",
           "source": ["scripts/setup-dev-env.ps1"]
         },
         {
@@ -114,10 +114,10 @@
         {
           "id": "setup.install-cypress",
           "name": "Install Cypress binary",
-          "command": "pnpm dlx cypress install",
+          "command": "pnpm exec cypress install",
           "type": "pnpm",
-          "runs": "pnpm dlx cypress install",
-          "description": "Pre-downloads the Cypress test runner (including browser) so `pnpm cy:run` skips interactive installation on Windows.",
+          "runs": "pnpm exec cypress install",
+          "description": "Installs the repo-pinned Cypress release (14.5.1) ahead of `pnpm cy:run` to avoid version mismatches or runtime prompts.",
           "source": ["DevTalk.txt#Fraktal60"]
         },
         {
@@ -292,7 +292,7 @@
           "name": "Legacy Jest tests",
           "command": "pnpm test:jest",
           "type": "pnpm",
-          "runs": "echo \"(Jest deaktiviert \u2013 nutze vitest)\" && exit 0",
+          "runs": "echo \"(Jest deaktiviert – nutze vitest)\" && exit 0",
           "description": "Legacy alias that prints a Vitest migration hint (Jest disabled).",
           "source": ["package.json#scripts.test:jest"]
         },
@@ -364,8 +364,8 @@
           "name": "Pytest baseline",
           "command": "pnpm test:py",
           "type": "pnpm",
-          "runs": "pytest -m \"not slow and not experimental\" -q",
-          "description": "Runs the default Python adapter test selection.",
+          "runs": "node scripts/run-pytest.mjs",
+          "description": "Launches pytest via the repo resolver; defaults to -m \"not slow and not experimental\" -q.",
           "source": ["package.json#scripts.test:py"]
         },
         {
@@ -373,8 +373,8 @@
           "name": "Extended Pytest",
           "command": "pnpm test:py:extended",
           "type": "pnpm",
-          "runs": "pytest -m \"not experimental\" -q",
-          "description": "Runs extended Python adapter tests including slow markers.",
+          "runs": "cross-env UM_PYTEST_MARK=\"not experimental\" node scripts/run-pytest.mjs",
+          "description": "Uses the run-pytest wrapper with the extended marker and venv path resolution.",
           "source": ["package.json#scripts.test:py:extended"]
         },
         {
@@ -382,8 +382,8 @@
           "name": "Full Pytest",
           "command": "pnpm test:py:all",
           "type": "pnpm",
-          "runs": "pytest -q",
-          "description": "Executes the entire Python test suite.",
+          "runs": "node scripts/run-pytest.mjs -q",
+          "description": "Executes the full pytest suite in quiet mode without the default marker filter.",
           "source": ["package.json#scripts.test:py:all"]
         },
         {
@@ -584,11 +584,11 @@
         },
         {
           "id": "build.trikaya-dashboard",
-          "name": "Trik\u0101ya dashboard",
+          "name": "Trikāya dashboard",
           "command": "pnpm trikaya:dashboard",
           "type": "pnpm",
           "runs": "node scripts/generate-trikaya-dashboard.mjs",
-          "description": "Generates the Trik\u0101ya dashboard artifacts under analysis/.",
+          "description": "Generates the Trikāya dashboard artifacts under analysis/.",
           "source": ["package.json#scripts.trikaya:dashboard"]
         }
       ]
@@ -649,7 +649,7 @@
           "command": "pnpm dev:breath",
           "type": "pnpm",
           "runs": "node scripts/emergence-breath.mjs",
-          "description": "Watches sigils, apps/ui, and scripts to rerun `validate:sigillins`, rebuild the Trik\u0101ya dashboard, and print coverage metrics.",
+          "description": "Watches sigils, apps/ui, and scripts to rerun `validate:sigillins`, rebuild the Trikāya dashboard, and print coverage metrics.",
           "source": ["package.json#scripts.dev:breath"]
         },
         {
@@ -944,6 +944,18 @@
           "source": ["package.json#scripts.sigils:scan"]
         },
         {
+          "id": "sigils.validate-mini",
+          "name": "Validate Mandala explanation",
+          "command": "pnpm sigils:validate:mini",
+          "type": "pnpm",
+          "runs": "node scripts/run-dist.mjs scripts/sigils/mini-sigillin-validator.ts",
+          "description": "Validates Mandala explanations for CREP, Trikāya and next-step references; supports --input/--text/--json.",
+          "source": [
+            "package.json#scripts.sigils:validate:mini",
+            "scripts/sigils/mini-sigillin-validator.ts"
+          ]
+        },
+        {
           "id": "sigils.index",
           "name": "Build sigil index",
           "command": "pnpm sigils:index",
@@ -1156,6 +1168,25 @@
           "runs": "node scripts/run-dist.mjs scripts/validate-stac.ts out/example.item.json",
           "description": "Validates a single STAC item artifact.",
           "source": ["package.json#scripts.stac:validate:item"]
+        }
+      ]
+    },
+    {
+      "key": "observability",
+      "title": "Observability & Monitoring",
+      "description": "Prometheus/Grafana smoke checks and monitoring utilities.",
+      "entries": [
+        {
+          "id": "observability.check",
+          "name": "Verify Prometheus/Grafana stack",
+          "command": "pnpm observability:check",
+          "type": "pnpm",
+          "runs": "node scripts/run-dist.mjs scripts/observability/prometheus-target-check.ts",
+          "description": "Verifies Prometheus `/api/v1/targets` and Grafana `/api/health` (Port 3300); `PROMETHEUS_REQUIRE_ACTIVE=0` erlaubt leere Targets, `OBSERVABILITY_SKIP_GRAFANA=1` überspringt den Grafana-Teil.",
+          "source": [
+            "package.json#scripts.observability:check",
+            "scripts/observability/prometheus-target-check.ts"
+          ]
         }
       ]
     },
@@ -1406,8 +1437,8 @@
           "name": "Prompt coach dry run",
           "command": "pnpm prompts:coach",
           "type": "pnpm",
-          "runs": "node --enable-source-maps scripts/prompt-coach.mjs --dry",
-          "description": "Runs the prompt coach in dry-run mode for prompt evaluations.",
+          "runs": "node scripts/run-dist.mjs scripts/prompt-coach.ts",
+          "description": "Dist-first prompt coach runner; append `--dry` to preview suggestions without writing.",
           "source": ["package.json#scripts.prompts:coach"]
         }
       ]

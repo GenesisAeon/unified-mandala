@@ -56,7 +56,7 @@ Schwerpunkte:
 ### 4. Observability
 
 - Neues Compose-Profil `monitoring` aktiviert Prometheus (Port 9090) und
-  Grafana (Port 3000). Konfigurationen liegen unter `observability/` und
+  Grafana (Port 3300). Konfigurationen liegen unter `observability/` und
   werden in der Dokumentation erläutert.
 - Workspace-Paket `@um/health` stellt `/metrics`-Endpoints bereit; für
   nicht-Node-Services sind Sidecars geplant.
@@ -76,4 +76,4 @@ Schwerpunkte:
 - Policy-Dokumentation um konkrete Allow-/Deny-Cases erweitern.
 - Dist-First-Builds für alle Agenten- und Ghost-Shell-Skripte abschließen.
 - Observability-Signale (Prometheus Targets, Grafana Dashboards) als
-  CI-Smoke integrieren.
+  CI-Smoke integrieren (`pnpm observability:check`).

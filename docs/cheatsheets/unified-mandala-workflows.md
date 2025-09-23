@@ -94,9 +94,9 @@ Dieses Cheat Sheet fasst die Kernabläufe für das Unified-Mandala-Repo zusammen
 - Statische UI für Offline-Demos: `pnpm build:ui` → `pnpm start:light`
 - Komplettsystem lokal: `pnpm dev:stack` oder `pnpm start:all` (nach NATS-Start)
 - Offline-Bundle via Docker: `docker compose -f docs/offline/docker-compose.yml build` & `docker compose -f docs/offline/docker-compose.yml up`
-- Monitoring optional: `docker compose --profile monitoring up` (Prometheus 9090, Grafana 3000)
+- Monitoring optional: `docker compose --profile monitoring up` (Prometheus 9090, Grafana 3300)
 - Smoke-Tests vor Präsentationen: `pnpm smoke:ui`, `pnpm smoke:light-static`
-- Monitoring-Check: `curl http://localhost:9090/api/v1/targets` validiert Prometheus-Ziele
+- Monitoring-Check: `pnpm observability:check` nutzt Prometheus `/api/v1/targets` und Grafana `/api/health`; alternativ `curl http://localhost:9090/api/v1/targets`
 
 ## Hinweise & Ressourcen
 

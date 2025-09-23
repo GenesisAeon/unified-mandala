@@ -58,3 +58,8 @@ _Hinweis: nächste Schritte immer kurz dokumentieren, damit CREP-Delta sichtbar 
 - **Form:** Markdown, klare Überschriften, kurze Listen
 - **Ton:** freundlich, präzise, bescheiden
 - **Schluss:** immer mit **nächster Handlung** (z. B. Mini-Sigillin + CREP-Hypothese)
+
+### Validierung
+
+- `pnpm sigils:validate:mini -- --text "Zielbild …"` prüft Antworten auf CREP-Vokabular, Trikāya-Verortung, nächste Handlung und Safety.
+- Für Artefakte (Markdown/Textdateien) steht `--input <pfad>` sowie `--json` für strukturierte Reports zur Verfügung.

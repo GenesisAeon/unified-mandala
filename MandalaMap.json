@@ -401,7 +401,8 @@
         "MandalaMap references docs/roadmap/v1.0-stabilization-playbook.* für CI/Release Kontext und die Stub-Roadmap für Support-Migrationen.; JetStream-Runbooks (docs/runbooks/nats-jetstream.md, docs/runbooks/MaxBundle.md) beschreiben Setup, `$JS.API.INFO`-Fallbacks sowie `pnpm nats:doctor`/`pnpm test:jetstream` inklusive Fehlertipps (kein `-js`, Timeout, Berechtigungen); docs/runbooks/tests.md listet `pnpm nats:docker` samt Emergence-SIGILLIN-Fallback; README Quickstart (Windows · PowerShell) dokumentiert `UI_DEV_URL`-Overrides, Auto-Port-Cleanup (`UM_DEV_SERVICES_AUTOFREE_PORTS`) und JetStream-Setup; `SIGILLIN_GENESIS.md` liegt als Placeholder im Repo.",
         "docs/maps/RepoMap.yaml deklariert `repo`, ProgramFlow.yaml führt einen `meta`-Block, wodurch `pnpm maps:validate` Pflichtfelder prüft (Fraktal57).",
         "Cheat Sheet `docs/cheatsheets/unified-mandala-workflows.md` bündelt Dev-/CI-/Governance-Flows für schnelle Orientierung; Fraktal67 ergänzt `pnpm check:ci`, `pnpm ci:verify`, Windows-Setup und Monitoring-/Offline-Bundle-Hinweise.",
-        "Fraktal70 ergänzt README & `docs/demos/cosmic-web.md` um eine plattformfreundliche Cosmic-Web-Anleitung, verweist auf den NATS-TCP-Port 4222 und den Subscriber `scripts/realtime/sub-cosmic.mjs` (`pnpm sub:cosmic`, Default-Subject `demo.cosmic`, Multi-Server & Queue-Option)."
+        "Fraktal70 ergänzt README & `docs/demos/cosmic-web.md` um eine plattformfreundliche Cosmic-Web-Anleitung, verweist auf den NATS-TCP-Port 4222 und den Subscriber `scripts/realtime/sub-cosmic.mjs` (`pnpm sub:cosmic`, Default-Subject `demo.cosmic`, Multi-Server & Queue-Option).",
+        "Fraktal72 pinnt `pnpm exec cypress install`, ergänzt einen PowerShell-Hinweis für `pnpm test:py` und führt `pnpm prompts:coach` über den Dist-First-Runner mit Command-Catalog-Updates."
       ],
       "links": [
         {
@@ -586,7 +587,10 @@
       "status": "active",
       "title": "Observability package",
       "description": "Prometheus config, golden signals scripts, Grafana integrations.",
-      "notes": ["Part of release drills described in docs/roadmap/v1.0-stabilization-playbook.md."],
+      "notes": [
+        "Part of release drills described in docs/roadmap/v1.0-stabilization-playbook.md.",
+        "`pnpm observability:check` prüft Prometheus `/api/v1/targets` und Grafana `/api/health` (Host-Port 3300); Flags `PROMETHEUS_REQUIRE_ACTIVE` bzw. `OBSERVABILITY_SKIP_GRAFANA` steuern die Strenge."
+      ],
       "links": []
     },
     {
@@ -744,7 +748,8 @@
         "Governance-Reports (scripts/sigillins-generate-reports.mjs) erzeugen JUnit-XML und Markdown für Policy-Auswertungen; pnpm policy:check schreibt die Artefakte automatisch nach out/policy/sigillins/.",
         "scripts/lib/python.mjs setzt den PYTHONPATH wieder auf das Repo-src, damit Adapter-Builds ohne manuelle Overrides laufen.",
         "QA-Test-Runner lädt Pantheon Analytics nur bei Bedarf und respektiert `PANTHEON_DISABLE`, damit CI ohne zusätzliche Artefakte bleibt.",
-        "Fraktal70 führt `scripts/realtime/sub-cosmic.mjs` als NATS-Subscriber ein (Alias `pnpm sub:cosmic`, Standard-Subject `demo.cosmic`, Multi-Server & Queue-Option), um Cosmic-Web-Ticks lokal zu beobachten und erinnert daran, dass Port 4222 ein TCP-Endpunkt ist."
+        "Fraktal70 führt `scripts/realtime/sub-cosmic.mjs` als NATS-Subscriber ein (Alias `pnpm sub:cosmic`, Standard-Subject `demo.cosmic`, Multi-Server & Queue-Option), um Cosmic-Web-Ticks lokal zu beobachten und erinnert daran, dass Port 4222 ein TCP-Endpunkt ist.",
+        "Fraktal72 portiert `scripts/prompt-coach` nach TypeScript, bindet es via `scripts/run-dist.mjs scripts/prompt-coach.ts` ein und aktualisiert Command-Catalog sowie analysis/scripts-and-commands auf den Dist-First-Runner."
       ],
       "links": [
         {
@@ -839,7 +844,8 @@
         "Validated via pnpm test:py and npx pyright; keep ERA5/OISST adapters green.",
         "NetCDF adapters use deterministic engine fallbacks (netcdf4 → h5netcdf → scipy) for Windows parity and offline CI.",
         "STAC helpers berechnen relative hrefs gegen das Item-Verzeichnis (Fallback auf `file://`), sodass Konsumenten keine Fehlpfade erhalten.",
-        "EFFIS offline builder erstellt ein minimales NetCDF-Gitter und Pytests sichern relative/absolute STAC-href-Normalisierung."
+        "EFFIS offline builder erstellt ein minimales NetCDF-Gitter und Pytests sichern relative/absolute STAC-href-Normalisierung.",
+        "Fraktal72 schärft Typannotationen im Cosmic-Web-Mock (deterministischer RNG, strukturierte Points/Features) und deaktiviert Pyright-PrivateUsage-Warnungen für `_normalise_href` im OISST-Postprocessing."
       ],
       "links": []
     },
