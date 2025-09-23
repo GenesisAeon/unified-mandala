@@ -1,7 +1,7 @@
 fraktal: 40
 release: v1.0
 owner: codex
-updated: '2025-10-31'
+updated: '2025-11-07'
 summary: 'Strukturierter Maßnahmenplan zur Umsetzung der Fraktal40-Besprechung.
 
   Fokus auf stabile Kern-Builds, dist-first Services, verschärfte Governance
@@ -104,7 +104,10 @@ streams:
           \ `Get-Content`/`type` und `$env:`-Zuweisungen; docs/maps/RepoMap.yaml führt\
           \ `repo`, ProgramFlow.yaml einen `meta`-Block, wodurch `pnpm maps:validate` wieder\
           \ grün läuft.; Fraktal67 erweitert das Cheat Sheet um `pnpm check:ci`, `pnpm ci:verify`,\
-          \ Monitoring-/Offline-Bundle-Hinweise und verweist explizit auf `scripts/setup-dev-env.ps1`."
+          \ Monitoring-/Offline-Bundle-Hinweise und verweist explizit auf `scripts/setup-dev-env.ps1`.\n           \
+          \ Fraktal70 erweitert README sowie `docs/demos/cosmic-web.md` um eine plattformfreundliche Cosmic-Web-Anleitung,\
+          \ warnt vor HTTP-Requests auf Port 4222, verlinkt `scripts/realtime/sub-cosmic.mjs` und nennt das neue Testskript\
+          \ `pnpm test:unit:crep`."
       - id: ts-node-retire
         description: Produktionspfade auf `node dist/...` umstellen
         status: done

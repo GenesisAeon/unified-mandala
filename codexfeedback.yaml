@@ -1,6 +1,54 @@
 fraktal:
-  current: 68
+  current: 70
   history:
+    - id: 70
+      status: in-progress
+      notes: |
+        Fraktal70 CosmicDocs: README & `docs/demos/cosmic-web.md` bieten plattformfreundliche Cosmic-Web-Anleitungen, der Hinweis auf NATS-Port 4222 (kein HTTP) ist dokumentiert, `scripts/realtime/sub-cosmic.mjs` ermöglicht lokale Tick-Inspektion und `pnpm test:unit:crep` deckt das neue Workspace ab. MandalaMap.*, das Stabilization-Playbook und codexfeedback\* spiegeln die Ergänzungen.
+      deliverables:
+        - README.md
+        - docs/demos/cosmic-web.md
+        - scripts/realtime/sub-cosmic.mjs
+        - package.json
+        - docs/roadmap/v1.0-stabilization-playbook.md
+        - docs/roadmap/v1.0-stabilization-playbook.yaml
+        - MandalaMap.md
+        - MandalaMap.yaml
+        - MandalaMap.json
+        - codexfeedback.md
+        - codexfeedback.json
+        - codexfeedback.yaml
+        - codexfeedback-fraktal69.yaml
+        - codexfeedback-fraktal70.yaml
+      commands:
+        - pnpm lint:eslint
+        - pnpm schema:validate
+      hook:
+        progress: 'Dokumentation & Tools aktualisiert; Cosmic-Web Demo besitzt jetzt plattformfreundliche Leitplanken.'
+        next_step: 'Realtime-Brücke (NATS → UI) evaluieren und weitere Fraktal70-Inputs integrieren.'
+    - id: 69
+      status: done
+      notes: |
+        Fraktal69 Cosmic-Web Demo: Artefakte (analysis/cosmic-web), Sigillin, STAC-Item und UI-Route `/demo/cosmic-web` wurden umgesetzt; deterministische CREP-Helfer im Workspace `@mandala/crep` sowie Repo-Map-Fallbacks sichern den Lauf. Dokumentation & Windows-Hinweise folgen in Fraktal70.
+      deliverables:
+        - src/adapters/cosmic_web/mock.py
+        - analysis/cosmic-web/
+        - scripts/demos/build-cosmic-web-stac.mjs
+        - scripts/demos/publish-cosmic-web.mjs
+        - scripts/realtime/cosmic-publisher.mjs
+        - sigils/demos/cosmic-web.sigill.json
+        - schemas/sigillin-demo.schema.json
+        - packages/crep/
+        - apps/ui/src/components/CosmicWebDemo.tsx
+        - apps/ui/src/shell/App.tsx
+        - tests/demos/cosmic-web.spec.ts
+      commands:
+        - pnpm demo:cosmic
+        - pnpm test:unit
+        - pnpm schema:validate
+      hook:
+        progress: 'Artefakte & UI stabil; Doc-Follow-up läuft über Fraktal70.'
+        next_step: 'Realtime-Brücke (NATS → UI) optional umsetzen; Policy-Suite Soft-Skip beobachten.'
     - id: 68
       status: done
       notes: |

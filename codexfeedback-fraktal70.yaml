@@ -1,0 +1,29 @@
+fraktal: 70
+status: in-progress
+owner: ChefDevAI
+summary:
+  - 'README Cosmic-Web Abschnitt plattformfreundlich erweitert (Windows/macOS, Port 4222 Hinweis, Live-Event-Checks).'
+  - 'docs/demos/cosmic-web.md als dedizierter Quickstart angelegt; NATS-Subscriber `scripts/realtime/sub-cosmic.mjs` ergänzt.'
+  - 'MandalaMap.*, Stabilization-Playbook & codexfeedback aktualisiert; neues Skript-Alias `pnpm test:unit:crep` verfügbar.'
+deliverables:
+  - README.md
+  - docs/demos/cosmic-web.md
+  - scripts/realtime/sub-cosmic.mjs
+  - package.json
+  - docs/roadmap/v1.0-stabilization-playbook.md
+  - docs/roadmap/v1.0-stabilization-playbook.yaml
+  - MandalaMap.yaml
+  - MandalaMap.md
+  - MandalaMap.json
+  - codexfeedback.md
+  - codexfeedback.json
+  - codexfeedback.yaml
+  - codexfeedback-fraktal69.yaml
+  - codexfeedback-fraktal70.yaml
+commands:
+  - pnpm lint:eslint
+  - pnpm schema:validate
+hook:
+  progress: 'Dokumentation & Tooling für Cosmic-Web (Demo, Tests, Subscriber) aktualisiert; CI-Skripte reflektieren neues Alias.'
+  next_step: 'Optional: Realtime-Brücke (NATS → UI) evaluieren und weitere Fraktal70-Inputs einsammeln.'
+repeat_required: false
