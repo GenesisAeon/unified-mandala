@@ -1,0 +1,41 @@
+name: check:ci
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    env:
+      PANTHEON_DISABLE: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+      - name: Enable corepack
+        run: corepack enable
+      - name: Use pnpm 10.x
+        run: corepack prepare pnpm@10.17.0 --activate
+      - name: Install dependencies (JS)
+        run: pnpm install --frozen-lockfile
+      - name: Setup Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install dependencies (Python)
+        run: |
+          python -m pip install -r requirements.txt
+          python -m pip install -r src/adapters/requirements.txt
+      - name: Run gates
+        run: |
+          pnpm typecheck
+          pnpm test:unit
+          pnpm schema:validate
+          pnpm maps:validate
+          pnpm repomap:build
+          pnpm repomap:validate
+          pnpm sanity
+          pnpm policy:check

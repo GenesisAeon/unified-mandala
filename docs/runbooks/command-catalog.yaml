@@ -85,12 +85,12 @@ categories:
           - package.json#scripts.store:commit-memory
       - id: setup.prepare-husky
         name: Install Husky hooks
-        command: pnpm prepare
+        command: pnpm postinstall
         type: pnpm
-        runs: husky install
-        description: Installs Husky Git hooks for lint-staged and formatting policies.
+        runs: husky
+        description: Runs Husky's installer via the postinstall script (triggered by pnpm install).
         source:
-          - package.json#scripts.prepare
+          - package.json#scripts.postinstall
       - id: setup.build-windows-tools
         name: Build Windows helper binaries
         command: pnpm build:windows-tools
@@ -192,14 +192,35 @@ categories:
         description: Executes lint-staged against staged files via Husky.
         source:
           - package.json#scripts.lint-staged
+      - id: quality.check-precommit
+        name: Pre-commit gate
+        command: pnpm check:precommit
+        type: pnpm
+        runs: pnpm lint-staged && pnpm typecheck && pnpm test:unit && pnpm schema:validate
+          && pnpm maps:validate && pnpm repomap:build && pnpm repomap:validate && pnpm
+          sanity && pnpm policy:check
+        description: Mirrors the Husky pre-commit hook; set `UM_SKIP_HEAVY_HOOKS=1` to
+          execute lint-staged only.
+        source:
+          - package.json#scripts.check:precommit
+      - id: quality.check-prepush
+        name: Pre-push gate
+        command: pnpm check:prepush
+        type: pnpm
+        runs: pnpm test:unit:coverage && pnpm policy:check
+        description: Local mirror of the pre-push hook (coverage + policy suite with
+          analytics disabled).
+        source:
+          - package.json#scripts.check:prepush
       - id: quality.check-ci
         name: Combined CI gate
         command: pnpm check:ci
         type: pnpm
-        runs: npx tsc -p tsconfig.json --noEmit && pnpm nats:doctor && pnpm test:ts:ci
-          && pnpm test:jetstream && npx pyright
-        description: Runs TypeScript compilation, JetStream readiness, CI Vitest suites,
-          and Pyright in a single pass.
+        runs: pnpm typecheck && pnpm test:unit && pnpm schema:validate && pnpm
+          maps:validate && pnpm repomap:build && pnpm repomap:validate && pnpm sanity &&
+          pnpm policy:check
+        description: Aggregates the CI gates used by check-ci.yml for quick local
+          verification.
         source:
           - package.json#scripts.check:ci
       - id: quality.ci-fast-checks
@@ -401,11 +422,12 @@ categories:
         name: CI verification
         command: pnpm ci:verify
         type: pnpm
-        runs: pnpm test:ts && pnpm sigils:index:strict && pnpm adapter:build:era5
-        description: Composite CI gate combining tests, sigil indexing, and ERA5 adapter
-          build.
+        runs: node scripts/ci-verify.mjs
+        description: Runs the CI aggregator (Typecheck, Unit, Coverage, Schema/Map/Sanity,
+          Policy) used by `ci-verify.yml`.
         source:
           - package.json#scripts.ci:verify
+          - scripts/ci-verify.mjs
       - id: testing.qa
         name: QA regression suite
         command: pnpm qa

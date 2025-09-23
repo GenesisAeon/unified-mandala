@@ -64,8 +64,10 @@ Dieses Cheat Sheet fasst die Kernabläufe für das Unified-Mandala-Repo zusammen
 
 ### Meta-Bundles
 
-- `pnpm check:ci` bündelt TypeScript-Emit, `pnpm nats:doctor`, `pnpm test:ts:ci`, `pnpm test:jetstream` und `npx pyright`
-- `pnpm ci:verify` kombiniert `pnpm test:ts`, `pnpm sigils:index:strict` sowie `pnpm adapter:build:era5` für einen strengen Release-Drill
+- `pnpm check:precommit` spiegelt die Husky-Gates: `pnpm lint-staged`, `pnpm typecheck`, `pnpm test:unit`, Schema/Maps/Repo-Map (`pnpm schema:validate`, `pnpm maps:validate`, `pnpm repomap:build`, `pnpm repomap:validate`), `pnpm sanity` und `pnpm policy:check`. Setze `UM_SKIP_HEAVY_HOOKS=1`, um nur `lint-staged` auszuführen.
+- `pnpm check:prepush` führt `pnpm test:unit:coverage` sowie `pnpm policy:check` mit `PANTHEON_DISABLE=1` aus.
+- `pnpm check:ci` fasst die Kern-Gates für PRs zusammen: `pnpm typecheck`, `pnpm test:unit`, `pnpm schema:validate`, `pnpm maps:validate`, `pnpm repomap:build`, `pnpm repomap:validate`, `pnpm sanity` und `pnpm policy:check`.
+- `pnpm ci:verify` ruft das Skript `scripts/ci-verify.mjs` auf (Typecheck, Unit-Tests, Coverage, Schema/Map/Repo-Sanity und Policy-Suite) – identisch mit dem GitHub-Workflow `ci:verify`.
 
 ### Python & Adapter-Abhängigkeiten
 
