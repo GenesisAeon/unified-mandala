@@ -3,7 +3,14 @@ fraktal:
   history:
     - id: 74
       status: done
-      notes: 'Fraktal74 CIGateUnification: Husky-Hooks erzwingen auf Wunsch schwere Gates (`pnpm check:precommit`/`pnpm check:prepush`), `postinstall: husky` ersetzt prepare, neue Aggregatoren (`scripts/ci-verify.mjs`, `scripts/sanity/index.mjs`) sowie Workflows `check:ci`/`ci-verify` bündeln Typecheck, Unit-, Coverage-, Schema-, Maps-, Repomap-, Sanity- und Policy-Prüfungen; Command-Catalog, MandalaMap.*, Stabilization-Playbook und codexfeedback* spiegeln die aktualisierten Bundles.'
+      notes: 'Fraktal74 CIGateUnification: Husky-Hooks erzwingen auf Wunsch schwere
+        Gates (`pnpm check:precommit`/`pnpm check:prepush`), `postinstall: husky` ersetzt
+        prepare, neue Aggregatoren (`scripts/ci-verify.mjs`, `scripts/sanity/index.mjs`)
+        sowie Workflows `check:ci`/`ci-verify` bündeln Typecheck, Unit-, Coverage-,
+        Schema-, Maps-, Repomap-, Sanity- und Policy-Prüfungen; Command-Catalog, MandalaMap.*,
+        Stabilization-Playbook und codexfeedback* spiegeln die aktualisierten Bundles.
+        DevTalk.txt Review bestätigt die Umsetzung und ist in analysis/devtalk74-evaluation.md
+        sowie im README-Bereich "Build, Test & Policy Bundles" dokumentiert.'
       deliverables:
         - .husky/pre-commit
         - .husky/pre-push
@@ -40,15 +47,17 @@ fraktal:
         - pnpm check:ci
         - pnpm ci:verify
       hook:
-        progress: Husky-/CI-Gates konsolidiert (`check:*` Bundles, Workflows), Docs & Maps spiegeln neue Aggregatoren.
-        next_step: Optional weitere DevTalk74-Impulse evaluieren (z. B. CREP-Realtime-Brücke).
+        progress: CI-/Governance-Gates konsolidiert; DevTalk74 Review dokumentiert (README-Bundle,
+          analysis/devtalk74-evaluation.md).
+        next_step: Optional Coverage-Badge automatisieren oder neue DevTalk-Impulse
+          aufnehmen.
     - id: 73
       status: done
       notes: 'Fraktal73 NATSSetupGuidance: `scripts/setup-dev-env.ps1` erkennt Docker-basierte
-        `nats`-Container, exportiert Status-/Start-Hinweise im InstallReport und
-        behandelt laufende Container als erfüllt; README, Community-/PowerShell-Onboarding
-        sowie `docs/runbooks/nats-jetstream.md` dokumentieren `docker ps -a`, `docker
-        start nats`, `docker logs --tail=50 nats` und den Windows-Portcheck `Test-NetConnection
+        `nats`-Container, exportiert Status-/Start-Hinweise im InstallReport und behandelt
+        laufende Container als erfüllt; README, Community-/PowerShell-Onboarding sowie
+        `docs/runbooks/nats-jetstream.md` dokumentieren `docker ps -a`, `docker start
+        nats`, `docker logs --tail=50 nats` und den Windows-Portcheck `Test-NetConnection
         127.0.0.1 -Port 4222`. Command-Catalog, MandalaMap.* und das Stabilization-Playbook
         spiegeln die aktualisierte Guidance.'
       deliverables:
