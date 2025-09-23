@@ -106,8 +106,8 @@ streams:
           \ grün läuft.; Fraktal67 erweitert das Cheat Sheet um `pnpm check:ci`, `pnpm ci:verify`,\
           \ Monitoring-/Offline-Bundle-Hinweise und verweist explizit auf `scripts/setup-dev-env.ps1`.\n           \
           \ Fraktal70 erweitert README sowie `docs/demos/cosmic-web.md` um eine plattformfreundliche Cosmic-Web-Anleitung,\
-          \ warnt vor HTTP-Requests auf Port 4222, verlinkt `scripts/realtime/sub-cosmic.mjs` und nennt das neue Testskript\
-          \ `pnpm test:unit:crep`."
+          \ warnt vor HTTP-Requests auf Port 4222, verlinkt `scripts/realtime/sub-cosmic.mjs` (`pnpm sub:cosmic`, Default-Subject\
+          \ `demo.cosmic`) und nennt das neue Testskript `pnpm test:unit:crep`."
       - id: ts-node-retire
         description: Produktionspfade auf `node dist/...` umstellen
         status: done

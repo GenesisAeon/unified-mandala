@@ -1,8 +1,14 @@
 import { connect, StringCodec } from 'nats';
+import {
+  describeServers,
+  parseNatsServers,
+  resolveCosmicQueue,
+  resolveCosmicSubject,
+} from './_cosmic-rt.mjs';
 
-const servers = process.env.NATS_URL?.split(/[,\s]+/g).filter(Boolean) ?? ['nats://localhost:4222'];
-const subject = process.env.COSMIC_SUBJECT ?? 'demo.cosmic.tick';
-const queue = process.env.COSMIC_QUEUE;
+const servers = parseNatsServers();
+const subject = resolveCosmicSubject();
+const queue = resolveCosmicQueue();
 const sc = StringCodec();
 let draining = false;
 
@@ -23,7 +29,7 @@ function decodePayload(data) {
 async function main() {
   const nc = await connect({ servers });
   console.log(
-    `listening on ${subject}${queue ? ` (queue: ${queue})` : ''} @ ${servers.join(', ')}`,
+    `listening on ${subject}${queue ? ` (queue: ${queue})` : ''} @ ${describeServers(servers)}`,
   );
 
   async function shutdown(signal) {

@@ -60,17 +60,18 @@ pnpm demo:cosmic:tick           # publiziert Live-Ticks
 ### Node Subscriber
 
 ```bash
-node scripts/realtime/sub-cosmic.mjs
+pnpm sub:cosmic
 # Variablen anpassbar:
-# COSMIC_SUBJECT=demo.cosmic.tick NATS_URL=nats://localhost:4222 node scripts/realtime/sub-cosmic.mjs
+# COSMIC_SUBJECT=demo.cosmic NATS_URL="nats://localhost:4222 nats://backup:4223" pnpm sub:cosmic
+# COSMIC_QUEUE=cosmic-workers pnpm sub:cosmic
 ```
 
-Der Subscriber dekodiert JSON-Payloads lesbar und beendet die Verbindung sauber via `Ctrl+C` (`SIGINT`).
+Der Subscriber dekodiert JSON-Payloads lesbar, akzeptiert mehrere NATS-Server (Komma oder Leerzeichen getrennt), nutzt standardmäßig das Subject `demo.cosmic` (Publisher sendet identisch) und beendet die Verbindung sauber via `Ctrl+C` (`SIGINT`).
 
 ### NATS CLI (Alternative)
 
 ```bash
-nats sub "demo.cosmic.tick" -s nats://localhost:4222
+nats sub "demo.cosmic" -s nats://localhost:4222
 ```
 
 ## 5. Dev-Tipps

@@ -160,9 +160,9 @@ pnpm demo:cosmic:tick           # publiziert Live-Ticks
 
 ### Live-Events inspizieren
 
-- Node-Subscriber: `node scripts/realtime/sub-cosmic.mjs`
-  - Variablen: `COSMIC_SUBJECT=demo.cosmic.tick` & `NATS_URL=nats://localhost:4222` anpassbar.
-- NATS CLI (falls installiert): `nats sub "demo.cosmic.tick" -s nats://localhost:4222`
+- Node-Subscriber: `pnpm sub:cosmic`
+  - Variablen: `COSMIC_SUBJECT` (Standard: `demo.cosmic`), `NATS_URL` (Komma/Leerzeichen-separierte Liste) und optional `COSMIC_QUEUE` für Queue-Groups.
+- NATS CLI (falls installiert): `nats sub "demo.cosmic" -s nats://localhost:4222`
 
 Die UI nutzt dieselben Subjects; stimmen keine Events, vergleiche die Angaben in `scripts/realtime/cosmic-publisher.mjs`.
 

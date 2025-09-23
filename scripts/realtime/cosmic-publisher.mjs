@@ -1,8 +1,9 @@
 #!/usr/bin/env node
 import { connect, StringCodec } from 'nats';
+import { describeServers, parseNatsServers, resolveCosmicSubject } from './_cosmic-rt.mjs';
 
-const servers = process.env.NATS_URL || 'nats://127.0.0.1:4222';
-const subject = process.env.COSMIC_SUBJECT || 'demo.cosmic';
+const servers = parseNatsServers();
+const subject = resolveCosmicSubject();
 
 const encoder = StringCodec();
 
@@ -34,7 +35,7 @@ const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 (async () => {
   const connection = await connect({ servers });
-  console.log(`[cosmic-publisher] connected to ${servers}`);
+  console.log(`[cosmic-publisher] streaming ${subject} via ${describeServers(servers)}`);
   let graph = seedGraph();
   for (;;) {
     graph = perturb(graph);
