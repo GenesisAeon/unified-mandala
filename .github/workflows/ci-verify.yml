@@ -1,0 +1,35 @@
+name: ci:verify
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    env:
+      PANTHEON_DISABLE: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+      - name: Enable corepack
+        run: corepack enable
+      - name: Use pnpm 10.x
+        run: corepack prepare pnpm@10.17.0 --activate
+      - name: Install deps (JS)
+        run: pnpm i --frozen-lockfile
+      - name: Setup Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install deps (Python)
+        run: |
+          python -m pip install -r requirements.txt
+          python -m pip install -r src/adapters/requirements.txt
+      - name: Verify (coverage + policy)
+        run: |
+          pnpm test:unit:coverage
+          pnpm policy:check

@@ -1,6 +1,11 @@
 {
   "runs": [
     {
+      "fraktalrun": "Fraktal74 HuskyCIGates",
+      "status": "done",
+      "notes": "Husky pre-commit/pre-push now run pnpm check:precommit/check:prepush (opt-out via UM_SKIP_HEAVY_HOOKS=1); new pnpm aliases check:ci/ci:verify call scripts/ci-verify.mjs, GitHub workflows check-ci.yml and ci-verify.yml mirror the same gates with PANTHEON_DISABLE=1, and scripts/sanity/check-keys-empty.mjs keeps keys/ empty. scripts/sigils/mini-sigillin-validator.ts now guards CLI argv detection and types stdin chunks so pnpm typecheck passes again."
+    },
+    {
       "fraktalrun": "Fraktal73 NATSSetupGuidance",
       "status": "done",
       "notes": "scripts/setup-dev-env.ps1 recognises Docker-backed nats containers, exports status/start hints into the install report, and README/Onboarding/NATS runbooks document docker ps -a, docker start nats, docker logs --tail=50 nats and the Windows Test-NetConnection check; command catalogs, MandalaMap and the stabilisation playbook record the updated guidance."

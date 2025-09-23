@@ -1,0 +1,49 @@
+fraktal: 74
+status: done
+owner: ChefDevAI
+summary:
+  - Husky-Pre-Commit/-Pre-Push nutzen jetzt `pnpm check:precommit` bzw. `pnpm check:prepush`
+    (optional `UM_SKIP_HEAVY_HOOKS=1`), wodurch lint-staged, Typecheck, Unit, Schema/Maps,
+    Repomap, Sanity und Policy konsistent laufen.
+  - Neue PNPM-Aliase `check:ci`/`ci:verify` rufen `scripts/ci-verify.mjs` auf; GitHub-Workflows
+    `check-ci.yml` und `ci-verify.yml` spiegeln dieselben Gates mit `PANTHEON_DISABLE=1`.
+  - '`scripts/sanity/check-keys-empty.mjs` verankert Repo-Sanity für `keys/`; MandalaMap.*,
+    Stabilization-Playbook und Command-Catalog dokumentieren die neuen Abläufe.'
+  - Der Mini-Sigillin-Validator schützt jetzt CLI-Abrufe (argv-Guard, typisierte stdin-Chunks),
+    womit `pnpm typecheck` wieder grün läuft.
+deliverables:
+  - package.json
+  - .husky/pre-commit
+  - .husky/pre-push
+  - scripts/ci-verify.mjs
+  - scripts/sanity/check-keys-empty.mjs
+  - scripts/sanity/index.mjs
+  - scripts/schema/validate-all.mjs
+  - scripts/validate-schemas.mjs
+  - .github/workflows/check-ci.yml
+  - .github/workflows/ci-verify.yml
+  - README.md
+  - CONTRIBUTING.md
+  - docs/roadmap/v1.0-stabilization-playbook.md
+  - docs/roadmap/v1.0-stabilization-playbook.yaml
+  - MandalaMap.json
+  - MandalaMap.yaml
+  - MandalaMap.md
+  - docs/runbooks/command-catalog.md
+  - docs/runbooks/command-catalog.json
+  - docs/runbooks/command-catalog.yaml
+  - analysis/scripts-and-commands.json
+  - codexfeedback.yaml
+  - codexfeedback.json
+  - codexfeedback.md
+  - scripts/sigils/mini-sigillin-validator.ts
+commands:
+  - pnpm check:ci
+  - pnpm ci:verify
+hook:
+  progress: Husky-Gates und CI-Workflows greifen nun auf dieselbe Sequenz zurück;
+    Repo-Sanity prüft `keys/` via Skript. Mini-Sigillin-Validator ist abgesichert,
+    Typecheck läuft wieder grün.
+  next_step: Weitere Sanity-Steps (z. B. docs/) prüfen oder Hook-Split für große Repos
+    in Erwägung ziehen.
+repeat_required: false

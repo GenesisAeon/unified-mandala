@@ -203,6 +203,14 @@ Die UI nutzt dieselben Subjects; stimmen keine Events, vergleiche die Angaben in
 }
 ```
 
+### Local Hooks & CI Mirrors
+
+- `pnpm check:precommit` spiegelt die Husky-Pre-Commit-Gates (lint-staged, Typecheck, Unit-Tests, Schema/Maps, Repomap Build/Validierung, Sanity und Policy-Suite).
+- `pnpm check:prepush` wiederholt die Pre-Push-Gates (Coverage + Policy) ohne Git-Hook-Kontext.
+- `pnpm check:ci` bzw. `pnpm ci:verify` bündeln alle Kern-Gates in einem Durchlauf und aktivieren automatisch `PANTHEON_DISABLE=1`.
+
+> 💡 **Bypass:** Für große Refactors kannst du `UM_SKIP_HEAVY_HOOKS=1 git commit ...` setzen, um im Hook nur `lint-staged` auszuführen.
+
 **Docker-Hygiene:** `.dockerignore` im Root:
 
 ```

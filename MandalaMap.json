@@ -109,7 +109,9 @@
         "`policy-check.yml` lädt Sigillin-Governance-Berichte als separates GitHub-Artefakt `policy-sigillins`.",
         "Python-Jobs installieren zusätzlich `src/adapters/requirements.txt`, sodass NetCDF4/h5netcdf/scipy offline verfügbar sind; `PANTHEON_DISABLE=1` hält QA-Analytics in CI ausgeschaltet.",
         "Governance-Workflow ruft `pnpm schema:validate`, `pnpm maps:validate` und `pnpm policy:check` mit deaktivierten Analytics auf; Repo-Sanity prüft `ciBehaviour`-Felder via `pnpm sanity` (Fraktal65).",
-        "Fraktal66: Policy-Suite markiert Kyverno/Sigillin als optionale Schritte, loggt Skip-Warnungen wenn Kyverno-CLI oder `sigillins:report` fehlen, setzt `PANTHEON_DISABLE=1` und der Repomap-Workflow erzeugt Fallback-Artefakte, falls dist nicht materialisiert ist."
+        "Fraktal66: Policy-Suite markiert Kyverno/Sigillin als optionale Schritte, loggt Skip-Warnungen wenn Kyverno-CLI oder `sigillins:report` fehlen, setzt `PANTHEON_DISABLE=1` und der Repomap-Workflow erzeugt Fallback-Artefakte, falls dist nicht materialisiert ist.",
+        "Workflows `check-ci.yml` und `ci-verify.yml` bündeln die pnpm-Gates (typecheck, unit, coverage, schema/maps, repomap, sanity, policy) mit deaktiviertem Analytics (`PANTHEON_DISABLE=1`).",
+        "Mini-Sigillin-Validator CLI guard keeps pnpm typecheck passing after Husky gates."
       ],
       "links": [
         {
@@ -127,6 +129,14 @@
         {
           "label": "Mandala map job",
           "path": ".github/workflows/mandala-map.yml"
+        },
+        {
+          "label": "check:ci workflow",
+          "path": ".github/workflows/check-ci.yml"
+        },
+        {
+          "label": "ci:verify workflow",
+          "path": ".github/workflows/ci-verify.yml"
         }
       ]
     },
@@ -135,12 +145,19 @@
       "category": "ci-infra",
       "status": "active",
       "title": "Git hooks",
-      "description": "Pre-commit automation enforcing lint-staged and formatting policies.",
-      "notes": ["Keep hooks aligned with pnpm scripts and policy suite."],
+      "description": "Pre-commit and pre-push gates wrapping lint-staged and repository sanity checks.",
+      "notes": [
+        "Husky pre-commit runs `pnpm check:precommit` (lint-staged, typecheck, unit, schema/maps, repomap build/validate, sanity, policy).",
+        "Pre-push runs `pnpm check:prepush` (coverage + policy); `UM_SKIP_HEAVY_HOOKS=1` limits the hook to lint-staged only."
+      ],
       "links": [
         {
           "label": "Pre-commit",
           "path": ".husky/pre-commit"
+        },
+        {
+          "label": "Pre-push",
+          "path": ".husky/pre-push"
         }
       ]
     },
