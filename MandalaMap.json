@@ -749,6 +749,7 @@
         "scripts/lib/python.mjs setzt den PYTHONPATH wieder auf das Repo-src, damit Adapter-Builds ohne manuelle Overrides laufen.",
         "QA-Test-Runner lädt Pantheon Analytics nur bei Bedarf und respektiert `PANTHEON_DISABLE`, damit CI ohne zusätzliche Artefakte bleibt.",
         "Fraktal70 führt `scripts/realtime/sub-cosmic.mjs` als NATS-Subscriber ein (Alias `pnpm sub:cosmic`, Standard-Subject `demo.cosmic`, Multi-Server & Queue-Option), um Cosmic-Web-Ticks lokal zu beobachten und erinnert daran, dass Port 4222 ein TCP-Endpunkt ist.",
+        "Fraktal73 lässt scripts/setup-dev-env.ps1 Docker-`nats`-Container erkennen, Status/Start-Hinweise exportieren und laufende Container als erfüllt markieren.",
         "Fraktal72 portiert `scripts/prompt-coach` nach TypeScript, bindet es via `scripts/run-dist.mjs scripts/prompt-coach.ts` ein und aktualisiert Command-Catalog sowie analysis/scripts-and-commands auf den Dist-First-Runner."
       ],
       "links": [

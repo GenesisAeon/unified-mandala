@@ -43,6 +43,42 @@ function Test-IsAdministrator {
   }
 }
 
+function Get-DockerContainerInfo {
+  param([string]$Name)
+
+  if (-not $Name) {
+    return $null
+  }
+
+  if (-not (Test-CommandExists 'docker')) {
+    return $null
+  }
+
+  try {
+    $args = @('ps', '-a', '--filter', "name=^/$Name$", '--format', '{{json .}}')
+    $output = & docker @args 2>$null
+    if (-not $output) {
+      return $null
+    }
+
+    $line = if ($output -is [System.Array]) {
+      $output | Select-Object -First 1
+    } else {
+      $output
+    }
+
+    $jsonText = $line.ToString().Trim()
+    if (-not $jsonText) {
+      return $null
+    }
+
+    return $jsonText | ConvertFrom-Json -ErrorAction Stop
+  } catch {
+    $script:InstallMetadata['natsDockerInspectError'] = $_.Exception.Message
+    return $null
+  }
+}
+
 function Update-InstallState {
   param(
     [string]$Key,
@@ -341,14 +377,67 @@ if (-not $SkipNodeSetup) {
 Update-InstallState -Key 'corepack' -Present (Test-CommandExists 'corepack')
 Update-InstallState -Key 'pnpm' -Present (Test-CommandExists 'pnpm')
 
-$hasNats = [bool](Test-CommandExists 'nats-server')
-Update-InstallState -Key 'nats-server' -Present $hasNats
-$script:InstallMetadata['natsServerPresent'] = $hasNats
-if (-not $hasNats) {
-  $script:InstallMetadata['natsServerHint'] = @(
-    'winget install --id Synadia.NATS-Server -e',
-    'docker run --name nats -p 4222:4222 -p 8222:8222 -d nats:latest'
-  )
+$hasNatsBinary = [bool](Test-CommandExists 'nats-server')
+$dockerNatsInfo = Get-DockerContainerInfo -Name 'nats'
+$dockerNatsRunning = $false
+
+if ($dockerNatsInfo -and $dockerNatsInfo.Status) {
+  $statusText = $dockerNatsInfo.Status.ToString()
+  if ($statusText -match '^(?i)up') {
+    $dockerNatsRunning = $true
+  }
+}
+
+$overallHasNats = $hasNatsBinary -or $dockerNatsRunning
+Update-InstallState -Key 'nats-server' -Present $overallHasNats
+$script:InstallMetadata['natsServerPresent'] = $overallHasNats
+$script:InstallMetadata['natsServerBinary'] = $hasNatsBinary
+$script:InstallMetadata['natsServerSource'] = if ($hasNatsBinary -and $dockerNatsRunning) {
+  'binary+docker'
+} elseif ($hasNatsBinary) {
+  'binary'
+} elseif ($dockerNatsRunning) {
+  'docker'
+} else {
+  'missing'
+}
+
+$script:InstallMetadata['natsServerDocker'] = [ordered]@{
+  present = [bool]$dockerNatsInfo
+  running = $dockerNatsRunning
+}
+
+if ($dockerNatsInfo) {
+  $script:InstallMetadata['natsDocker'] = [ordered]@{
+    name   = $dockerNatsInfo.Names
+    status = $dockerNatsInfo.Status
+    ports  = $dockerNatsInfo.Ports
+  }
+}
+
+$natsHints = @()
+
+if ($dockerNatsRunning -and -not $hasNatsBinary) {
+  $status = $dockerNatsInfo.Status
+  Write-Host "✓ NATS läuft über Docker-Container 'nats' (Status: $status)." -ForegroundColor Green
+  $natsHints += 'docker ps -a --filter name=^/nats$ --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}"'
+  $natsHints += 'Test-NetConnection 127.0.0.1 -Port 4222'
+} elseif ($dockerNatsInfo -and -not $dockerNatsRunning) {
+  $status = $dockerNatsInfo.Status
+  Write-Warning "Docker-Container 'nats' gefunden (Status: $status). Starte ihn mit `docker start nats` oder setze ihn mit `docker rm -f nats` neu auf."
+  $natsHints += 'docker ps -a --filter name=^/nats$ --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}"'
+  $natsHints += 'docker start nats'
+  $natsHints += 'docker logs --tail=50 -f nats'
+  $natsHints += 'Test-NetConnection 127.0.0.1 -Port 4222'
+} elseif (-not $hasNatsBinary) {
+  $natsHints += 'winget install --id Synadia.NATS-Server -e'
+  $natsHints += 'docker run --name nats --restart unless-stopped -p 4222:4222 -p 8222:8222 -d nats:latest -js'
+  $natsHints += 'docker ps -a --filter name=^/nats$ --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}"'
+  $natsHints += 'Test-NetConnection 127.0.0.1 -Port 4222'
+}
+
+if ($natsHints.Count -gt 0) {
+  $script:InstallMetadata['natsServerHint'] = $natsHints
 }
 
 Update-InstallState -Key 'docker' -Present (Test-CommandExists 'docker')

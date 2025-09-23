@@ -26,9 +26,9 @@ categories:
         type: powershell
         runs: pwsh -NoProfile -File ./scripts/setup-dev-env.ps1
         description: "Installs Git, Node.js, and Python on Windows, enables Corepack with\
-          \ admin detection (non-admin \u2192 user activation), reminds about missing\
-          \ nats-server, and runs pnpm using PowerShell 7+ (fallback: powershell -NoProfile\
-          \ -ExecutionPolicy Bypass -File .\\scripts\\setup-dev-env.ps1)."
+          \ admin detection (non-admin \u2192 user activation), recognises Docker-managed\
+          \ `nats` containers (status + start hints) and runs pnpm using PowerShell 7+\
+          \ (fallback: powershell -NoProfile -ExecutionPolicy Bypass -File .\\scripts\\setup-dev-env.ps1)."
         source:
           - scripts/setup-dev-env.ps1
       - id: setup.corepack-enable
@@ -1349,7 +1349,8 @@ scripts:
   - id: script.setup-dev-env-windows
     path: scripts/setup-dev-env.ps1
     description: PowerShell bootstrap script for Windows developer workstations; skips
-      corepack enable without admin rights and prints NATS installation hints.
+      corepack enable without admin rights, recognises Docker-managed NATS container
+      status (inkl. Start-Hinweise) und hält NATS-Installationsbefehle bereit.
   - id: script.run-powershell
     path: scripts/run-powershell.mjs
     description: Node helper selecting pwsh or Windows PowerShell before invoking repository

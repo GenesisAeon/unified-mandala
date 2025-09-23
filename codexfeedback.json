@@ -1,6 +1,11 @@
 {
   "runs": [
     {
+      "fraktalrun": "Fraktal73 NATSSetupGuidance",
+      "status": "done",
+      "notes": "scripts/setup-dev-env.ps1 recognises Docker-backed nats containers, exports status/start hints into the install report, and README/Onboarding/NATS runbooks document docker ps -a, docker start nats, docker logs --tail=50 nats and the Windows Test-NetConnection check; command catalogs, MandalaMap and the stabilisation playbook record the updated guidance."
+    },
+    {
       "fraktalrun": "Fraktal72 PytestSigillinValidator",
       "notes": "`pnpm test:py` nutzt den Wrapper `scripts/run-pytest.mjs` (Auto-.venv + Default-Marker); README/CONTRIBUTING/Command-Catalog spiegeln die neuen Befehle. Mini-Sigillin-Validator (`pnpm sigils:validate:mini` + Schema + Vitest) prüft CREP/Trikāya/Nächste Schritte; Docs listen `--input`/`--json`. MandalaMap.*, Stabilization-Playbook & codexfeedback* aktualisieren Fraktal72 (Wrapper + Validator) und halten `pnpm exec cypress install` präsent; Observability-Skript `pnpm observability:check` prüft Prometheus/Grafana (Port 3300) und die Docs harmonisieren das Monitoring-Profil.",
       "status": "done"

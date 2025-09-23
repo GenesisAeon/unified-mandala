@@ -17,7 +17,7 @@ Dieses Dokument erleichtert neuen Mitwirkenden den Einstieg in UnifiedMandala.
    pnpm dev
    ```
    > **Hinweis:** `corepack enable` benötigt Administratorrechte. Falls du ohne erhöhte Rechte arbeitest, erledigt `scripts/setup-dev-env.ps1` die Benutzeraktivierung automatisch über `corepack prepare pnpm@10.17.0 --activate` und überspringt das persistente Enable.
-   > Für `pnpm start:all` wird ein laufender `nats-server` erwartet; installiere ihn bei Bedarf via `winget install --id Synadia.NATS-Server -e` oder starte `docker run --name nats -p 4222:4222 -p 8222:8222 -d nats:latest`.
+   > Für `pnpm start:all` wird ein laufender `nats-server` erwartet; installiere ihn bei Bedarf via `winget install --id Synadia.NATS-Server -e` oder starte `docker run --name nats -p 4222:4222 -p 8222:8222 -d nats:latest -js`. Bestehende Docker-Container prüfst du mit `docker ps -a --filter name=^/nats$ --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}"` und aktivierst sie bei Bedarf mit `docker start nats`; `scripts/setup-dev-env.ps1` meldet laufende Container als erfüllt und erinnert bei `Exited`-Status an diese Befehle (PowerShell-Portcheck: `Test-NetConnection 127.0.0.1 -Port 4222`).
 2. Überblick über wichtige CLI-Befehle verschaffen:
    ```bash
    ./scripts/aeon.sh help         # zeigt alle poetischen und technischen Befehle

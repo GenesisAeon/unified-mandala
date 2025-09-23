@@ -676,6 +676,7 @@ entries:
         `src`, sodass Adapter-Builds ohne manuelle Overrides laufen.'
       - QA-Test-Runner lädt Pantheon Analytics nur bei Bedarf und respektiert `PANTHEON_DISABLE`, damit CI ohne zusätzliche Artefakte bleibt.
       - Fraktal70 ergänzt `scripts/realtime/sub-cosmic.mjs` als NATS-Subscriber (Alias `pnpm sub:cosmic`, Standard-Subject `demo.cosmic`, Multi-Server & Queue-Option), um Cosmic-Web-Ticks lokal zu prüfen und erinnert daran, dass Port 4222 ein TCP-Endpunkt ist.
+      - Fraktal73 erkennt Docker-`nats`-Container im Windows-Setup (`scripts/setup-dev-env.ps1`), exportiert Status & Start-Hinweise und behandelt laufende Container als erfüllt.
     links:
       - label: run-dist
         path: scripts/run-dist.mjs
