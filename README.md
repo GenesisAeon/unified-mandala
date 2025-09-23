@@ -98,6 +98,19 @@ pnpm smoke:ui
 | Headless Chrome für Mermaid CLI       | `pnpm exec puppeteer browsers install chrome-headless-shell` | Installiert die von `@mermaid-js/mermaid-cli` erwartete Chrome-Binary lokal im pnpm-Store.                               |
 | Cypress-Binary vorbereiten            | `pnpm exec cypress install`                                  | Lädt die im Repo gepinnte Cypress-Version (14.5.1) und stellt sicher, dass `pnpm cy:run` ohne Versionskonflikt startet.  |
 
+## Build, Test & Policy Bundles
+
+Nutze die gebündelten pnpm-Kommandos, um die in DevTalk74 beschriebenen CI-/Governance-Gates lokal nachzufahren:
+
+| Zweck                     | Kommando                   | Enthaltene Checks                                                                                                                      |
+| ------------------------- | -------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| Pre-Commit Heavy Gate     | `pnpm check:precommit`     | lint-staged, TypeScript-Linting, Vitest-Unit-Tests, Schema-, Maps- und Repomap-Validierung, Repo-Sanity, Policy-Suite                  |
+| Pre-Push Heavy Gate       | `pnpm check:prepush`       | Vitest-Coverage-Lauf plus Policy-Suite                                                                                                 |
+| CI Core Parität           | `pnpm check:ci`            | Typecheck, Vitest-Unit-Tests, Schema-/Maps-/Repomap-Validierung, Repo-Sanity, Policy-Suite                                             |
+| CI Verification Bundle    | `pnpm ci:verify`           | Aggregator-Skript (`scripts/ci-verify.mjs`) führt Type-, Test-, Coverage-, Policy- und Sanity-Gates aus                                |
+| Governance & Policy Sweep | `pnpm policy:check`        | OPA, Guardrails, Kyverno sowie Sigillin-Reports (`out/policy/`)                                                                        |
+| Observability Smoke       | `pnpm observability:check` | Prometheus `/api/v1/targets` und Grafana `/api/health` Checks (respektiert `PROMETHEUS_REQUIRE_ACTIVE` & `OBSERVABILITY_SKIP_GRAFANA`) |
+
 ---
 
 ## Mandala Climate Dashboard

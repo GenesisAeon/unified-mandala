@@ -2,9 +2,16 @@ fraktal: 74
 status: done
 owner: ChefDevAI
 summary:
-  - 'Husky-Pre-Commit/-Push-Gates spiegeln jetzt die CI-Ketten (`pnpm check:precommit`, `pnpm check:prepush`) mit Heavy-Opt-out über `UM_SKIP_HEAVY_HOOKS`.'
-  - '`package.json` nutzt `postinstall: husky`; neue Aggregatoren `scripts/ci-verify.mjs` und `scripts/sanity/index.mjs` bündeln Typecheck, Unit-, Coverage-, Schema-, Maps-, Repomap-, Sanity- und Policy-Prüfungen.'
-  - 'GitHub-Workflows `check:ci`/`ci-verify` spiegeln die Bundles; Command-Catalog, MandalaMap.*, Stabilization-Playbook und codexfeedback.* verweisen auf die neuen `check:*`-Kommandos.'
+  - DevTalk74 Review dokumentiert Umsetzung (README-Abschnitt 'Build, Test & Policy
+    Bundles', analysis/devtalk74-evaluation.md) und bestätigt, dass keine offenen Aufgaben
+    verbleiben; optional Coverage-Badge follow-up.
+  - Husky-Pre-Commit/-Push-Gates spiegeln jetzt die CI-Ketten (`pnpm check:precommit`,
+    `pnpm check:prepush`) mit Heavy-Opt-out über `UM_SKIP_HEAVY_HOOKS`.
+  - '`package.json` nutzt `postinstall: husky`; neue Aggregatoren `scripts/ci-verify.mjs`
+    und `scripts/sanity/index.mjs` bündeln Typecheck, Unit-, Coverage-, Schema-, Maps-,
+    Repomap-, Sanity- und Policy-Prüfungen.'
+  - GitHub-Workflows `check:ci`/`ci-verify` spiegeln die Bundles; Command-Catalog, MandalaMap.*,
+    Stabilization-Playbook und codexfeedback.* verweisen auf die neuen `check:*`-Kommandos.
 deliverables:
   - .husky/pre-commit
   - .husky/pre-push
@@ -34,6 +41,8 @@ deliverables:
   - scripts/check-meta-score-layer.js
   - scripts/generate-chronopoem.js
   - scripts/sigils/mini-sigillin-validator.ts
+  - analysis/devtalk74-evaluation.md
+  - README.md
 commands:
   - pnpm check:precommit
   - pnpm check:prepush
