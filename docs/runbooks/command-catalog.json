@@ -27,7 +27,7 @@
           "command": "pwsh -NoProfile -File ./scripts/setup-dev-env.ps1",
           "type": "powershell",
           "runs": "pwsh -NoProfile -File ./scripts/setup-dev-env.ps1",
-          "description": "Installs Git, Node.js, and Python on Windows, enables Corepack with admin detection (non-admin → user activation), recognises Docker-managed `nats` containers (status + start hints) and runs pnpm using PowerShell 7+ (fallback: powershell -NoProfile -ExecutionPolicy Bypass -File .\\scripts\\setup-dev-env.ps1).",
+          "description": "Installs Git, Node.js, and Python on Windows, enables Corepack with admin detection (non-admin \u2192 user activation), recognises Docker-managed `nats` containers (status + start hints) and runs pnpm using PowerShell 7+ (fallback: powershell -NoProfile -ExecutionPolicy Bypass -File .\\scripts\\setup-dev-env.ps1).",
           "source": ["scripts/setup-dev-env.ps1"]
         },
         {
@@ -83,15 +83,6 @@
           "runs": "pnpm store:commit-memory",
           "description": "Runs Genesis ZIP memory bridge to persist dependency store metadata during first commit of a session.",
           "source": ["package.json#scripts.store:commit-memory"]
-        },
-        {
-          "id": "setup.prepare-husky",
-          "name": "Install Husky hooks",
-          "command": "pnpm prepare",
-          "type": "pnpm",
-          "runs": "husky install",
-          "description": "Installs Husky Git hooks for lint-staged and formatting policies.",
-          "source": ["package.json#scripts.prepare"]
         },
         {
           "id": "setup.build-windows-tools",
@@ -204,8 +195,8 @@
           "name": "Combined CI gate",
           "command": "pnpm check:ci",
           "type": "pnpm",
-          "runs": "npx tsc -p tsconfig.json --noEmit && pnpm nats:doctor && pnpm test:ts:ci && pnpm test:jetstream && npx pyright",
-          "description": "Runs TypeScript compilation, JetStream readiness, CI Vitest suites, and Pyright in a single pass.",
+          "runs": "pnpm ci:verify",
+          "description": "Alias that executes the aggregated CI gates defined in scripts/ci-verify.mjs.",
           "source": ["package.json#scripts.check:ci"]
         },
         {
@@ -243,6 +234,33 @@
           "runs": "pnpm exec tsc -p tsconfig.build.json",
           "description": "Runs the TypeScript compiler through pnpm exec to ensure Windows shells resolve the local tsc binary.",
           "source": ["DevTalk.txt#DevTalkPart5"]
+        },
+        {
+          "id": "quality.check-precommit",
+          "name": "Pre-commit gate mirror",
+          "command": "pnpm check:precommit",
+          "type": "pnpm",
+          "runs": "pnpm lint-staged && pnpm typecheck && pnpm test:unit && pnpm schema:validate && pnpm maps:validate && pnpm repomap:build && pnpm repomap:validate && pnpm sanity && pnpm policy:check",
+          "description": "Mirrors the Husky pre-commit sequence (lint-staged, typecheck, unit tests, schema/maps, repomap build/validate, sanity, policy).",
+          "source": ["package.json#scripts.check:precommit"]
+        },
+        {
+          "id": "quality.check-prepush",
+          "name": "Pre-push gate mirror",
+          "command": "pnpm check:prepush",
+          "type": "pnpm",
+          "runs": "pnpm test:unit:coverage && pnpm policy:check",
+          "description": "Runs the pre-push coverage and policy suite without relying on Git hooks.",
+          "source": ["package.json#scripts.check:prepush"]
+        },
+        {
+          "id": "quality.sanity",
+          "name": "Repository sanity checks",
+          "command": "pnpm sanity",
+          "type": "pnpm",
+          "runs": "node scripts/repo-sanity.mjs && node scripts/sanity/index.mjs",
+          "description": "Validates MandalaMap/codexfeedback artefacts and enforces the empty `keys/` guard.",
+          "source": ["package.json#scripts.sanity"]
         }
       ]
     },
@@ -292,7 +310,7 @@
           "name": "Legacy Jest tests",
           "command": "pnpm test:jest",
           "type": "pnpm",
-          "runs": "echo \"(Jest deaktiviert – nutze vitest)\" && exit 0",
+          "runs": "echo \"(Jest deaktiviert \u2013 nutze vitest)\" && exit 0",
           "description": "Legacy alias that prints a Vitest migration hint (Jest disabled).",
           "source": ["package.json#scripts.test:jest"]
         },
@@ -584,11 +602,11 @@
         },
         {
           "id": "build.trikaya-dashboard",
-          "name": "Trikāya dashboard",
+          "name": "Trik\u0101ya dashboard",
           "command": "pnpm trikaya:dashboard",
           "type": "pnpm",
           "runs": "node scripts/generate-trikaya-dashboard.mjs",
-          "description": "Generates the Trikāya dashboard artifacts under analysis/.",
+          "description": "Generates the Trik\u0101ya dashboard artifacts under analysis/.",
           "source": ["package.json#scripts.trikaya:dashboard"]
         }
       ]
@@ -649,7 +667,7 @@
           "command": "pnpm dev:breath",
           "type": "pnpm",
           "runs": "node scripts/emergence-breath.mjs",
-          "description": "Watches sigils, apps/ui, and scripts to rerun `validate:sigillins`, rebuild the Trikāya dashboard, and print coverage metrics.",
+          "description": "Watches sigils, apps/ui, and scripts to rerun `validate:sigillins`, rebuild the Trik\u0101ya dashboard, and print coverage metrics.",
           "source": ["package.json#scripts.dev:breath"]
         },
         {
@@ -949,7 +967,7 @@
           "command": "pnpm sigils:validate:mini",
           "type": "pnpm",
           "runs": "node scripts/run-dist.mjs scripts/sigils/mini-sigillin-validator.ts",
-          "description": "Validates Mandala explanations for CREP, Trikāya and next-step references; supports --input/--text/--json.",
+          "description": "Validates Mandala explanations for CREP, Trik\u0101ya and next-step references; supports --input/--text/--json.",
           "source": [
             "package.json#scripts.sigils:validate:mini",
             "scripts/sigils/mini-sigillin-validator.ts"
@@ -1182,7 +1200,7 @@
           "command": "pnpm observability:check",
           "type": "pnpm",
           "runs": "node scripts/run-dist.mjs scripts/observability/prometheus-target-check.ts",
-          "description": "Verifies Prometheus `/api/v1/targets` and Grafana `/api/health` (Port 3300); `PROMETHEUS_REQUIRE_ACTIVE=0` erlaubt leere Targets, `OBSERVABILITY_SKIP_GRAFANA=1` überspringt den Grafana-Teil.",
+          "description": "Verifies Prometheus `/api/v1/targets` and Grafana `/api/health` (Port 3300); `PROMETHEUS_REQUIRE_ACTIVE=0` erlaubt leere Targets, `OBSERVABILITY_SKIP_GRAFANA=1` \u00fcberspringt den Grafana-Teil.",
           "source": [
             "package.json#scripts.observability:check",
             "scripts/observability/prometheus-target-check.ts"

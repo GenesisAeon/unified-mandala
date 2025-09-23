@@ -65,6 +65,7 @@ Danach sollten folgende Schritte immer grün sein, bevor ein PR erstellt wird:
 
 ## Code-Style & Tooling
 
+- Husky führt `pnpm check:precommit` (lint-staged, Typecheck, Unit-Tests, Schema/Maps, Repomap, Sanity, Policy) und `pnpm check:prepush` (Coverage + Policy) automatisch aus. Für Ausnahmesituationen kann `UM_SKIP_HEAVY_HOOKS=1 git commit ...` gesetzt werden, um im Hook ausschließlich `lint-staged` zu fahren.
 - ESLint + Prettier laufen automatisch über Husky (`pnpm lint-staged`). Manuell: `pnpm lint` bzw. `pnpm format`.
 - Bitte keine manuellen `ts-node` Aufrufe für Produktionspfade einchecken. Services werden in `dist/` vorkompiliert.
 - Neue Skripte bevorzugt über `scripts/dev-services.mjs` einhängen, statt weitere `concurrently`-Aufrufe anzulegen.

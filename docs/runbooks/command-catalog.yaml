@@ -83,14 +83,6 @@ categories:
           during first commit of a session.
         source:
           - package.json#scripts.store:commit-memory
-      - id: setup.prepare-husky
-        name: Install Husky hooks
-        command: pnpm prepare
-        type: pnpm
-        runs: husky install
-        description: Installs Husky Git hooks for lint-staged and formatting policies.
-        source:
-          - package.json#scripts.prepare
       - id: setup.build-windows-tools
         name: Build Windows helper binaries
         command: pnpm build:windows-tools
@@ -192,16 +184,44 @@ categories:
         description: Executes lint-staged against staged files via Husky.
         source:
           - package.json#scripts.lint-staged
+      - id: quality.check-precommit
+        name: Pre-commit gate mirror
+        command: pnpm check:precommit
+        type: pnpm
+        runs: pnpm lint-staged && pnpm typecheck && pnpm test:unit && pnpm schema:validate
+          && pnpm maps:validate && pnpm repomap:build && pnpm repomap:validate && pnpm sanity
+          && pnpm policy:check
+        description: Mirrors the Husky pre-commit sequence (lint-staged, typecheck, unit,
+          schema/maps, repomap build/validate, sanity, policy).
+        source:
+          - package.json#scripts.check:precommit
+      - id: quality.check-prepush
+        name: Pre-push gate mirror
+        command: pnpm check:prepush
+        type: pnpm
+        runs: pnpm test:unit:coverage && pnpm policy:check
+        description: Runs the pre-push coverage and policy suite without relying on Git
+          hooks.
+        source:
+          - package.json#scripts.check:prepush
       - id: quality.check-ci
         name: Combined CI gate
         command: pnpm check:ci
         type: pnpm
-        runs: npx tsc -p tsconfig.json --noEmit && pnpm nats:doctor && pnpm test:ts:ci
-          && pnpm test:jetstream && npx pyright
-        description: Runs TypeScript compilation, JetStream readiness, CI Vitest suites,
-          and Pyright in a single pass.
+        runs: pnpm ci:verify
+        description: Alias that executes the aggregated CI gates defined in
+          scripts/ci-verify.mjs.
         source:
           - package.json#scripts.check:ci
+      - id: quality.sanity
+        name: Repository sanity checks
+        command: pnpm sanity
+        type: pnpm
+        runs: node scripts/repo-sanity.mjs && node scripts/sanity/index.mjs
+        description: Validates MandalaMap/codexfeedback artefacts and enforces the empty
+          `keys/` guard.
+        source:
+          - package.json#scripts.sanity
       - id: quality.ci-fast-checks
         name: Fast CI checks
         command: pnpm ci:fast-checks
@@ -401,9 +421,9 @@ categories:
         name: CI verification
         command: pnpm ci:verify
         type: pnpm
-        runs: pnpm test:ts && pnpm sigils:index:strict && pnpm adapter:build:era5
-        description: Composite CI gate combining tests, sigil indexing, and ERA5 adapter
-          build.
+        runs: node scripts/ci-verify.mjs
+        description: Sequentially runs typecheck, unit, coverage, schema/maps, repomap
+          build/validate, sanity and policy with `PANTHEON_DISABLE=1`.
         source:
           - package.json#scripts.ci:verify
       - id: testing.qa

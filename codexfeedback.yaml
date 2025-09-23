@@ -1,13 +1,57 @@
 fraktal:
-  current: 73
+  current: 74
   history:
+    - id: 74
+      status: done
+      notes:
+        'Fraktal74 HuskyCIGates: Husky-Pre-Commit/-Pre-Push laufen über `pnpm check:precommit`/`pnpm
+        check:prepush` (optional `UM_SKIP_HEAVY_HOOKS=1`), neue Aliase `check:ci`/`ci:verify`
+        spiegeln die gebündelten Gates, `scripts/ci-verify.mjs` sowie `scripts/sanity/check-keys-empty.mjs`
+        sichern Repo-Sanity und GitHub Workflows `check-ci.yml`/`ci-verify.yml` aktivieren
+        dieselben Pfade mit `PANTHEON_DISABLE=1`. `scripts/sigils/mini-sigillin-validator.ts`
+        erhielt einen CLI-Guard (argv-Check + typisierte stdin-Events), sodass `pnpm
+        typecheck` wieder grün läuft.'
+      deliverables:
+        - package.json
+        - .husky/pre-commit
+        - .husky/pre-push
+        - scripts/ci-verify.mjs
+        - scripts/sanity/check-keys-empty.mjs
+        - scripts/sanity/index.mjs
+        - scripts/schema/validate-all.mjs
+        - scripts/validate-schemas.mjs
+        - .github/workflows/check-ci.yml
+        - .github/workflows/ci-verify.yml
+        - README.md
+        - CONTRIBUTING.md
+        - docs/roadmap/v1.0-stabilization-playbook.md
+        - docs/roadmap/v1.0-stabilization-playbook.yaml
+        - MandalaMap.json
+        - MandalaMap.yaml
+        - MandalaMap.md
+        - docs/runbooks/command-catalog.md
+        - docs/runbooks/command-catalog.json
+        - docs/runbooks/command-catalog.yaml
+        - analysis/scripts-and-commands.json
+        - codexfeedback.yaml
+        - codexfeedback.json
+        - codexfeedback.md
+        - codexfeedback-fraktal74.yaml
+      commands:
+        - pnpm check:ci
+        - pnpm ci:verify
+      hook:
+        progress: Husky-Hooks und CI-Workflows spiegeln jetzt dieselben Gate-Sequenzen;
+          Repo-Sanity prüft `keys/` via Skript.
+        next_step: Optional weitere sanity-Checks (z. B. docs/) hinzufügen oder `pnpm
+          check:precommit` für große Repos in leichte/schwere Segmente teilen.
     - id: 73
       status: done
       notes: 'Fraktal73 NATSSetupGuidance: `scripts/setup-dev-env.ps1` erkennt Docker-basierte
-        `nats`-Container, exportiert Status-/Start-Hinweise im InstallReport und
-        behandelt laufende Container als erfüllt; README, Community-/PowerShell-Onboarding
-        sowie `docs/runbooks/nats-jetstream.md` dokumentieren `docker ps -a`, `docker
-        start nats`, `docker logs --tail=50 nats` und den Windows-Portcheck `Test-NetConnection
+        `nats`-Container, exportiert Status-/Start-Hinweise im InstallReport und behandelt
+        laufende Container als erfüllt; README, Community-/PowerShell-Onboarding sowie
+        `docs/runbooks/nats-jetstream.md` dokumentieren `docker ps -a`, `docker start
+        nats`, `docker logs --tail=50 nats` und den Windows-Portcheck `Test-NetConnection
         127.0.0.1 -Port 4222`. Command-Catalog, MandalaMap.* und das Stabilization-Playbook
         spiegeln die aktualisierte Guidance.'
       deliverables:

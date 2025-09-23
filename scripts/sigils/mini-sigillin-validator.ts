@@ -185,7 +185,7 @@ function readFromStdin(): Promise<string> {
   return new Promise((resolve, reject) => {
     let data = '';
     process.stdin.setEncoding('utf8');
-    process.stdin.on('data', (chunk) => {
+    process.stdin.on('data', (chunk: string) => {
       data += chunk;
     });
     process.stdin.on('error', reject);
@@ -259,7 +259,11 @@ function formatUnsafe(matches: string[]): string {
 }
 
 const currentFile = fileURLToPath(import.meta.url);
-const invokedAsCli = !!process.argv[1] && path.resolve(process.argv[1]) === currentFile;
+const invokedAsCli = (() => {
+  const maybeScriptPath = process.argv[1];
+  if (typeof maybeScriptPath !== 'string') return false;
+  return path.resolve(maybeScriptPath) === currentFile;
+})();
 
 if (invokedAsCli) {
   main().catch((error) => {

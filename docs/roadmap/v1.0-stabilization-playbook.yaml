@@ -50,6 +50,11 @@ streams:
           Start-Hinweise im InstallReport und Runbooks/README dokumentieren `docker ps -a ...`, `docker start nats`,
           `docker logs --tail=50 nats` sowie den PowerShell-Portcheck `Test-NetConnection 127.0.0.1 -Port 4222`.
 
+          Fraktal74: Husky-Hooks führen `pnpm check:precommit`/`pnpm check:prepush` mit optionalem `UM_SKIP_HEAVY_HOOKS=1`-Bypass,
+          neue Aliase `check:ci`/`ci:verify` bündeln die Gates und die Workflows `check-ci.yml`/`ci-verify.yml` spiegeln den Lauf;
+          `scripts/ci-verify.mjs` plus `scripts/sanity/check-keys-empty.mjs` sichern Repo-Sanity (`keys/` leer) im CI; der Mini-Sigillin-Validator
+          besitzt jetzt einen CLI-Guard (argv + stdin-Typisierung), womit `pnpm typecheck` grün bleibt.
+
           '
         success:
           - pnpm test:ts:ci
