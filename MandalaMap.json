@@ -400,7 +400,8 @@
       "notes": [
         "MandalaMap references docs/roadmap/v1.0-stabilization-playbook.* für CI/Release Kontext und die Stub-Roadmap für Support-Migrationen.; JetStream-Runbooks (docs/runbooks/nats-jetstream.md, docs/runbooks/MaxBundle.md) beschreiben Setup, `$JS.API.INFO`-Fallbacks sowie `pnpm nats:doctor`/`pnpm test:jetstream` inklusive Fehlertipps (kein `-js`, Timeout, Berechtigungen); docs/runbooks/tests.md listet `pnpm nats:docker` samt Emergence-SIGILLIN-Fallback; README Quickstart (Windows · PowerShell) dokumentiert `UI_DEV_URL`-Overrides, Auto-Port-Cleanup (`UM_DEV_SERVICES_AUTOFREE_PORTS`) und JetStream-Setup; `SIGILLIN_GENESIS.md` liegt als Placeholder im Repo.",
         "docs/maps/RepoMap.yaml deklariert `repo`, ProgramFlow.yaml führt einen `meta`-Block, wodurch `pnpm maps:validate` Pflichtfelder prüft (Fraktal57).",
-        "Cheat Sheet `docs/cheatsheets/unified-mandala-workflows.md` bündelt Dev-/CI-/Governance-Flows für schnelle Orientierung; Fraktal67 ergänzt `pnpm check:ci`, `pnpm ci:verify`, Windows-Setup und Monitoring-/Offline-Bundle-Hinweise."
+        "Cheat Sheet `docs/cheatsheets/unified-mandala-workflows.md` bündelt Dev-/CI-/Governance-Flows für schnelle Orientierung; Fraktal67 ergänzt `pnpm check:ci`, `pnpm ci:verify`, Windows-Setup und Monitoring-/Offline-Bundle-Hinweise.",
+        "Fraktal70 ergänzt README & `docs/demos/cosmic-web.md` um eine plattformfreundliche Cosmic-Web-Anleitung, verweist auf den NATS-TCP-Port 4222 und den Subscriber `scripts/realtime/sub-cosmic.mjs`."
       ],
       "links": [
         {
@@ -410,6 +411,10 @@
         {
           "label": "Stub roadmap",
           "path": "docs/roadmap/stub-replacement-roadmap.md"
+        },
+        {
+          "label": "Cosmic-Web Quickstart",
+          "path": "docs/demos/cosmic-web.md"
         }
       ]
     },
@@ -738,7 +743,8 @@
         "Git-Hook-Validator (scripts/sigillins-validate-changed.mjs) prüft nur geänderte Bridges vor dem Commit.",
         "Governance-Reports (scripts/sigillins-generate-reports.mjs) erzeugen JUnit-XML und Markdown für Policy-Auswertungen; pnpm policy:check schreibt die Artefakte automatisch nach out/policy/sigillins/.",
         "scripts/lib/python.mjs setzt den PYTHONPATH wieder auf das Repo-src, damit Adapter-Builds ohne manuelle Overrides laufen.",
-        "QA-Test-Runner lädt Pantheon Analytics nur bei Bedarf und respektiert `PANTHEON_DISABLE`, damit CI ohne zusätzliche Artefakte bleibt."
+        "QA-Test-Runner lädt Pantheon Analytics nur bei Bedarf und respektiert `PANTHEON_DISABLE`, damit CI ohne zusätzliche Artefakte bleibt.",
+        "Fraktal70 führt `scripts/realtime/sub-cosmic.mjs` als NATS-Subscriber ein, um Cosmic-Web-Ticks lokal zu beobachten und erinnert daran, dass Port 4222 ein TCP-Endpunkt ist."
       ],
       "links": [
         {
@@ -772,6 +778,10 @@
         {
           "label": "sigillins-generate-reports",
           "path": "scripts/sigillins-generate-reports.mjs"
+        },
+        {
+          "label": "sub-cosmic",
+          "path": "scripts/realtime/sub-cosmic.mjs"
         }
       ]
     },

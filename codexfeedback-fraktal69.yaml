@@ -1,5 +1,5 @@
 fraktal: 69
-status: in-progress
+status: done
 owner: ChefDevAI
 summary:
   - 'Cosmic-Web Demo implementiert: synthetische Tracer-Daten, STAC-Item und Sigillin inklusive UI-Route /demo/cosmic-web.'
@@ -22,6 +22,6 @@ commands:
   - pnpm test:unit
   - pnpm schema:validate
 hook:
-  progress: 'Cosmic-Web Lauf aktiv; UI-Route + Artefakte vorhanden.'
+  progress: 'Artefakte & UI für Cosmic-Web stehen stabil; Dokumentation folgt über Fraktal70.'
   next_step: 'Realtime-Brücke (NATS → SSE/WS) optional in Infrastruktur einhängen und Policy-Suite-Soft-Skip finalisieren.'
 repeat_required: false

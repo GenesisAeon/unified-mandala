@@ -21,6 +21,7 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:unit": "vitest run",
+    "test:unit:crep": "pnpm -F @mandala/crep vitest run",
     "test:unit:coverage": "vitest run --coverage",
     "test:jest": "echo \"(Jest deaktiviert – nutze vitest)\" && exit 0",
     "test:jetstream": "vitest run --config vitest.config.ts --reporter=default tests/event-bus/jetstream-bus.test.ts",
