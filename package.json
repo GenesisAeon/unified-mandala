@@ -32,6 +32,7 @@
     "start": "pnpm -s build:ui && pnpm -s dev",
     "start:light": "pnpm -s build:ui && node scripts/light-static-server.mjs",
     "start:all": "pnpm dev:stack",
+    "sub:cosmic": "node scripts/realtime/sub-cosmic.mjs",
     "demo:cosmic:generate": "python src/adapters/cosmic_web/mock.py",
     "demo:cosmic:stac": "node scripts/demos/build-cosmic-web-stac.mjs",
     "demo:cosmic:publish": "node scripts/demos/publish-cosmic-web.mjs",

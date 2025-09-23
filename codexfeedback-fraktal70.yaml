@@ -3,7 +3,7 @@ status: in-progress
 owner: ChefDevAI
 summary:
   - 'README Cosmic-Web Abschnitt plattformfreundlich erweitert (Windows/macOS, Port 4222 Hinweis, Live-Event-Checks).'
-  - 'docs/demos/cosmic-web.md als dedizierter Quickstart angelegt; NATS-Subscriber `scripts/realtime/sub-cosmic.mjs` ergänzt.'
+  - 'docs/demos/cosmic-web.md als dedizierter Quickstart angelegt; NATS-Subscriber `scripts/realtime/sub-cosmic.mjs` (`pnpm sub:cosmic`, Default-Subject `demo.cosmic`) ergänzt.'
   - 'MandalaMap.*, Stabilization-Playbook & codexfeedback aktualisiert; neues Skript-Alias `pnpm test:unit:crep` verfügbar.'
 deliverables:
   - README.md

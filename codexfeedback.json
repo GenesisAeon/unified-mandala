@@ -3,7 +3,7 @@
     {
       "fraktalrun": "Fraktal70 CosmicDocs",
       "status": "in-progress",
-      "notes": "README + docs/demos/cosmic-web.md liefern plattformfreundliche Cosmic-Web-Schritte, Port-4222-Hinweis und NATS-Subscriber; MandalaMap.*, Stabilization-Playbook und codexfeedback\\* aktualisiert; pnpm test:unit:crep alias verfügbar."
+      "notes": "README + docs/demos/cosmic-web.md liefern plattformfreundliche Cosmic-Web-Schritte, Port-4222-Hinweis und Subscriber `scripts/realtime/sub-cosmic.mjs` (`pnpm sub:cosmic`, Default-Subject `demo.cosmic`); MandalaMap.*, Stabilization-Playbook und codexfeedback\\* aktualisiert; pnpm test:unit:crep alias verfügbar."
     },
     {
       "fraktalrun": "Fraktal68 KeysGovernanceLint",

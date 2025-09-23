@@ -354,7 +354,7 @@ entries:
       - docs/maps/RepoMap.yaml deklariert `repo`, ProgramFlow.yaml führt einen
         `meta`-Block, damit `pnpm maps:validate` Pflichtfelder prüft (Fraktal57).
       - Cheat Sheet `docs/cheatsheets/unified-mandala-workflows.md` bündelt Kern-Workflows (Dev, CI, Adapter, Governance, Demo) – in Fraktal67 um `pnpm check:ci`, `pnpm ci:verify`, Windows-Setup sowie Monitoring-/Offline-Bundle-Hinweise erweitert.
-      - Fraktal70 ergänzt README & `docs/demos/cosmic-web.md` um einen plattformfreundlichen Cosmic-Web-Quickstart, verweist auf den TCP-Port 4222 und bindet den Subscriber `scripts/realtime/sub-cosmic.mjs` ein.
+      - Fraktal70 ergänzt README & `docs/demos/cosmic-web.md` um einen plattformfreundlichen Cosmic-Web-Quickstart, verweist auf den TCP-Port 4222 und bindet den Subscriber `scripts/realtime/sub-cosmic.mjs` (`pnpm sub:cosmic`, Default-Subject `demo.cosmic`, Multi-Server & Queue-Option) ein.
     links:
       - label: v1.0 Playbook
         path: docs/roadmap/v1.0-stabilization-playbook.md
@@ -669,7 +669,7 @@ entries:
       - '`scripts/lib/python.mjs` setzt `PYTHONPATH` wieder auf das Repo-Wurzel-
         `src`, sodass Adapter-Builds ohne manuelle Overrides laufen.'
       - QA-Test-Runner lädt Pantheon Analytics nur bei Bedarf und respektiert `PANTHEON_DISABLE`, damit CI ohne zusätzliche Artefakte bleibt.
-      - Fraktal70 ergänzt `scripts/realtime/sub-cosmic.mjs` als NATS-Subscriber, um Cosmic-Web-Ticks lokal zu prüfen und erinnert daran, dass Port 4222 ein TCP-Endpunkt ist.
+      - Fraktal70 ergänzt `scripts/realtime/sub-cosmic.mjs` als NATS-Subscriber (Alias `pnpm sub:cosmic`, Standard-Subject `demo.cosmic`, Multi-Server & Queue-Option), um Cosmic-Web-Ticks lokal zu prüfen und erinnert daran, dass Port 4222 ein TCP-Endpunkt ist.
     links:
       - label: run-dist
         path: scripts/run-dist.mjs

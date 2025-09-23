@@ -4,7 +4,7 @@ fraktal:
     - id: 70
       status: in-progress
       notes: |
-        Fraktal70 CosmicDocs: README & `docs/demos/cosmic-web.md` bieten plattformfreundliche Cosmic-Web-Anleitungen, der Hinweis auf NATS-Port 4222 (kein HTTP) ist dokumentiert, `scripts/realtime/sub-cosmic.mjs` ermöglicht lokale Tick-Inspektion und `pnpm test:unit:crep` deckt das neue Workspace ab. MandalaMap.*, das Stabilization-Playbook und codexfeedback\* spiegeln die Ergänzungen.
+        Fraktal70 CosmicDocs: README & `docs/demos/cosmic-web.md` bieten plattformfreundliche Cosmic-Web-Anleitungen, der Hinweis auf NATS-Port 4222 (kein HTTP) ist dokumentiert, `scripts/realtime/sub-cosmic.mjs` (`pnpm sub:cosmic`, Default-Subject `demo.cosmic`, Multi-Server & Queue-Option) ermöglicht lokale Tick-Inspektion und `pnpm test:unit:crep` deckt das neue Workspace ab. MandalaMap.*, das Stabilization-Playbook und codexfeedback\* spiegeln die Ergänzungen.
       deliverables:
         - README.md
         - docs/demos/cosmic-web.md
