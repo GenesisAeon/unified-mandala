@@ -46,6 +46,10 @@ streams:
           Governance-Workflows laufen mit `pnpm schema:validate`, `pnpm maps:validate`, `pnpm policy:check`, und Repo-Sanity
           prüft `ciBehaviour`-Felder via `pnpm sanity`.
 
+          Fraktal73: Windows-Setup (`scripts/setup-dev-env.ps1`) erkennt Docker-basierte `nats`-Container, exportiert Status /
+          Start-Hinweise im InstallReport und Runbooks/README dokumentieren `docker ps -a ...`, `docker start nats`,
+          `docker logs --tail=50 nats` sowie den PowerShell-Portcheck `Test-NetConnection 127.0.0.1 -Port 4222`.
+
           '
         success:
           - pnpm test:ts:ci

@@ -22,6 +22,24 @@ DOCKER_DEFAULT_PLATFORM=linux/amd64 docker run --name nats \
 
 > ℹ️ `pnpm nats:docker` kapselt diese Schritte. Das Skript startet, stoppt oder prüft den Containerstatus (siehe `package.json`).
 
+## Status & Laufzeit prüfen
+
+```bash
+docker ps -a --filter name=^/nats$ --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}"
+# Container erneut starten, falls `Status` "Exited" zeigt
+docker start nats
+# Logauszug für Diagnose
+docker logs --tail=50 nats
+```
+
+```powershell
+# Windows-Portcheck (PowerShell)
+Test-NetConnection 127.0.0.1 -Port 4222
+```
+
+`scripts/setup-dev-env.ps1` erkennt laufende Docker-Container automatisch. Ein `Exited`-Status löst weiterhin einen Hinweis aus,
+damit `docker start nats` bzw. `docker rm -f nats` + Neuaufbau angestossen werden können.
+
 ## Diagnose & Readiness
 
 ```bash

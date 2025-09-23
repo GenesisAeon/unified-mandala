@@ -27,7 +27,7 @@
           "command": "pwsh -NoProfile -File ./scripts/setup-dev-env.ps1",
           "type": "powershell",
           "runs": "pwsh -NoProfile -File ./scripts/setup-dev-env.ps1",
-          "description": "Installs Git, Node.js, and Python on Windows, enables Corepack with admin detection (non-admin → user activation), reminds about missing nats-server, and runs pnpm using PowerShell 7+ (fallback: powershell -NoProfile -ExecutionPolicy Bypass -File .\\scripts\\setup-dev-env.ps1).",
+          "description": "Installs Git, Node.js, and Python on Windows, enables Corepack with admin detection (non-admin → user activation), recognises Docker-managed `nats` containers (status + start hints) and runs pnpm using PowerShell 7+ (fallback: powershell -NoProfile -ExecutionPolicy Bypass -File .\\scripts\\setup-dev-env.ps1).",
           "source": ["scripts/setup-dev-env.ps1"]
         },
         {
