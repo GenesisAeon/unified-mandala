@@ -4,16 +4,19 @@ from __future__ import annotations
 import json
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Iterable, List
-
-import numpy as np
+from random import Random
+from typing import Any, Iterable
 
 ROOT = Path(__file__).resolve().parents[3]
 OUT_DIR = ROOT / "analysis" / "cosmic-web"
 OUT_DIR.mkdir(parents=True, exist_ok=True)
 
 EPOCHS = ("z2_4", "z3_1", "z4_5")
-RNG = np.random.default_rng(seed=42)
+RNG = Random(42)
+
+Point = dict[str, float]
+Feature = dict[str, Any]
+FeatureCollection = dict[str, Any]
 
 
 @dataclass(frozen=True)
@@ -24,16 +27,19 @@ class ClusterCenter:
   y: float
 
 
-def gaussian_points(center: ClusterCenter, count: int, sigma: float) -> List[dict]:
-  raw = RNG.normal(loc=(center.x, center.y), scale=sigma, size=(count, 2))
-  points = []
-  for x, y in raw:
+def gaussian_points(center: ClusterCenter, count: int, sigma: float) -> list[Point]:
+  points: list[Point] = []
+  attempts = 0
+  while len(points) < count and attempts < count * 6:
+    attempts += 1
+    x = RNG.gauss(center.x, sigma)
+    y = RNG.gauss(center.y, sigma)
     if 0.0 <= x <= 10.0 and 0.0 <= y <= 10.0:
       points.append({"x": float(x), "y": float(y)})
   return points
 
 
-def drift_centers(base: Iterable[ClusterCenter], epoch_index: int) -> List[ClusterCenter]:
+def drift_centers(base: Iterable[ClusterCenter], epoch_index: int) -> list[ClusterCenter]:
   return [
     ClusterCenter(
       x=center.x + 0.3 * epoch_index,
@@ -43,8 +49,8 @@ def drift_centers(base: Iterable[ClusterCenter], epoch_index: int) -> List[Clust
   ]
 
 
-def build_feature_collection(epoch: str, centers: Iterable[ClusterCenter]) -> dict:
-  features = []
+def build_feature_collection(epoch: str, centers: Iterable[ClusterCenter]) -> FeatureCollection:
+  features: list[Feature] = []
   for cluster_id, center in enumerate(centers):
     for point in gaussian_points(center, count=60, sigma=0.25):
       features.append(
@@ -61,7 +67,7 @@ def build_feature_collection(epoch: str, centers: Iterable[ClusterCenter]) -> di
   return {"type": "FeatureCollection", "name": f"cosmic-web-{epoch}", "features": features}
 
 
-def write_json(path: Path, payload: dict) -> None:
+def write_json(path: Path, payload: dict[str, Any]) -> None:
   path.write_text(json.dumps(payload, indent=2))
 
 
@@ -72,15 +78,19 @@ def main() -> None:
     ClusterCenter(5.5, 7.0),
   ]
 
-  all_features = []
-  epoch_meta = {}
+  all_features: list[Feature] = []
+  epoch_meta: dict[str, FeatureCollection] = {}
   for index, epoch in enumerate(EPOCHS):
     centers = drift_centers(base_centers, index)
     collection = build_feature_collection(epoch, centers)
     epoch_meta[epoch] = collection
     all_features.extend(collection["features"])
 
-  feature_collection = {"type": "FeatureCollection", "name": "cosmic-web", "features": all_features}
+  feature_collection: FeatureCollection = {
+    "type": "FeatureCollection",
+    "name": "cosmic-web",
+    "features": all_features,
+  }
   write_json(OUT_DIR / "clusters.geojson", feature_collection)
 
   meta = {

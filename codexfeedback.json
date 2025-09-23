@@ -1,8 +1,13 @@
 {
   "runs": [
     {
+      "fraktalrun": "Fraktal72 PytestSigillinValidator",
+      "notes": "`pnpm test:py` nutzt den Wrapper `scripts/run-pytest.mjs` (Auto-.venv + Default-Marker); README/CONTRIBUTING/Command-Catalog spiegeln die neuen Befehle. Mini-Sigillin-Validator (`pnpm sigils:validate:mini` + Schema + Vitest) prüft CREP/Trikāya/Nächste Schritte; Docs listen `--input`/`--json`. MandalaMap.*, Stabilization-Playbook & codexfeedback* aktualisieren Fraktal72 (Wrapper + Validator) und halten `pnpm exec cypress install` präsent; Observability-Skript `pnpm observability:check` prüft Prometheus/Grafana (Port 3300) und die Docs harmonisieren das Monitoring-Profil.",
+      "status": "done"
+    },
+    {
       "fraktalrun": "Fraktal70 CosmicDocs",
-      "status": "in-progress",
+      "status": "done",
       "notes": "README + docs/demos/cosmic-web.md liefern plattformfreundliche Cosmic-Web-Schritte, Port-4222-Hinweis und Subscriber `scripts/realtime/sub-cosmic.mjs` (`pnpm sub:cosmic`, Default-Subject `demo.cosmic`); MandalaMap.*, Stabilization-Playbook und codexfeedback\\* aktualisiert; pnpm test:unit:crep alias verfügbar."
     },
     {

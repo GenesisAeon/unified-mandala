@@ -1,5 +1,9 @@
 # UnifiedMandala
 
+[![CI Core](https://github.com/ChefDevAI/unified-mandala/actions/workflows/ci.core.yml/badge.svg)](https://github.com/ChefDevAI/unified-mandala/actions/workflows/ci.core.yml)
+[![CI Nightly](https://github.com/ChefDevAI/unified-mandala/actions/workflows/ci.nightly.yml/badge.svg)](https://github.com/ChefDevAI/unified-mandala/actions/workflows/ci.nightly.yml)
+[![CI Experimental](https://github.com/ChefDevAI/unified-mandala/actions/workflows/ci.experimental.yml/badge.svg)](https://github.com/ChefDevAI/unified-mandala/actions/workflows/ci.experimental.yml)
+
 > „Ein Betriebssystem, das atmet – ein Mandala, das denkt.“
 
 UnifiedMandala ist ein holistisches, modulares Framework für symbolische KI, CREP und bewusste, gemeinwohlorientierte Systeme. Es verbindet **CREP-Logik** (Coherence, Resonance, Emergence, Poetics), **Sigillin** (poetisch-symbolische Interaktion) und **Agenten** zu einer ethisch getragenen Plattform.
@@ -42,12 +46,12 @@ docker compose -f docs/offline/docker-compose.yml up
 
 # 6) Observability-Profil (Prometheus/Grafana, optional)
 docker compose --profile monitoring up
-# -> Prometheus http://localhost:9090, Grafana http://localhost:3000 (admin/admin)
+# -> Prometheus http://localhost:9090, Grafana http://localhost:3300 (admin/admin)
 ```
 
 > **Hinweise:**
 > • „Cannot GET /“ auf :3000 bedeutet: Backend servt keine HMR-UI. Entweder **Vite-Dev** (`pnpm dev:ui`) nutzen oder **statisch bauen** (`pnpm build:ui && pnpm dev`).
-> • Für Observability mit Prometheus/Grafana das Compose-Profil `monitoring` starten (siehe `observability/README.md`).
+> • Für Observability mit Prometheus/Grafana das Compose-Profil `monitoring` starten (siehe `observability/README.md`) und mit `pnpm observability:check` Prometheus (`/api/v1/targets`) sowie Grafana (`/api/health`, Host-Port 3300) prüfen.
 > • Windows: Lange Pfade aktivieren; `.dockerignore` im Repo-Root verhindert riesige Build-Kontexte.
 > • `corepack enable` benötigt Administratorrechte. Wenn du ohne Admin-Rechte arbeitest, führt `scripts/setup-dev-env.ps1` automatisch die Benutzeraktivierung via `corepack prepare pnpm@10.17.0 --activate` aus und überspringt das persistente Enable.
 > • `pnpm start:all` erwartet einen laufenden JetStream-fähigen `nats-server`. Nutze `pnpm nats:docker` für einen vorkonfigurierten Docker-Container (`nats:latest -js`) oder installiere lokal via `winget install --id Synadia.NATS-Server -e` und starte ihn mit der Option `-js`.
@@ -91,7 +95,7 @@ pnpm smoke:ui
 | Pytest über die Projekt-venv aufrufen | `.\.venv\Scripts\python.exe -m pytest -q`                    | Nutzt garantiert die im Repository provisionierte Umgebung und funktioniert auch, wenn `pytest` nicht im `%PATH%` liegt. |
 | Alternativer Pytest-Starter           | `.\.venv\Scripts\pytest.exe -q`                              | Direktaufruf des `pytest`-CLI, falls PowerShell keine Modul-Ausführung erlaubt.                                          |
 | Headless Chrome für Mermaid CLI       | `pnpm exec puppeteer browsers install chrome-headless-shell` | Installiert die von `@mermaid-js/mermaid-cli` erwartete Chrome-Binary lokal im pnpm-Store.                               |
-| Cypress-Binary vorbereiten            | `pnpm dlx cypress install`                                   | Lädt die aktuelle Cypress-Version (inkl. Browser) herunter, damit `pnpm cy:run` ohne Fehlversuch startet.                |
+| Cypress-Binary vorbereiten            | `pnpm exec cypress install`                                  | Lädt die im Repo gepinnte Cypress-Version (14.5.1) und stellt sicher, dass `pnpm cy:run` ohne Versionskonflikt startet.  |
 
 ---
 
@@ -254,6 +258,8 @@ npx pyright
 pnpm policy:check
 ```
 
+> 🪟 `pnpm test:py` ruft jetzt `scripts/run-pytest.mjs` auf und hängt die Projekt-venv automatisch an den Pfad. Falls eine Shell den Wrapper blockiert, kannst du temporär `$env:Path = "$PWD\\.venv\\Scripts;$env:Path"` setzen oder `.\\.venv\\Scripts\\python.exe -m pytest -q` direkt ausführen.
+
 **Extended (CI Extended, nightly or label `run-extended`)**
 
 ```bash
@@ -277,6 +283,8 @@ pnpm test:unit:coverage       # Coverage-Report der Kernmodule
 
 - Lokal prüfen: `pnpm validate:sigillins`
   → validiert Struktur (JSON/YAML), **CREP/Trikāya/Nächste Schritte** und referenzierte Dateien (soft).
+- Mandala-Erklärungen testen: `pnpm sigils:validate:mini -- --text "Zielbild …"`
+  → prüft Antworten auf CREP-Vokabular, Trikāya-Verortung, nächste Handlung und Safety; `--input`/`--json` verfügbar.
 
 - Korrekturen: `pnpm sigil:fix --dry-run` zeigt Vorschläge, `--auto` übernimmt fixbare Anpassungen.
   Leitfaden: `docs/sigillin/FIX_GUIDE.md`.

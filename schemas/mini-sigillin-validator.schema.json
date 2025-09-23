@@ -1,0 +1,82 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "MiniSigillinValidatorResult",
+  "type": "object",
+  "description": "Result payload emitted by scripts/sigils/mini-sigillin-validator.ts when evaluating a Mandala explanation.",
+  "properties": {
+    "hasCrepReference": {
+      "type": "boolean",
+      "description": "True when at least one CREP metric (Coherence, Resonance, Emergence, Poetics) is referenced."
+    },
+    "hasTrikayaMapping": {
+      "type": "boolean",
+      "description": "True when the response references at least one Trikāya layer (Dharmakāya, Sambhogakāya, Nirmāṇakāya)."
+    },
+    "hasNextAction": {
+      "type": "boolean",
+      "description": "True when the response contains an actionable follow-up (e.g., Mini-Sigillin, Hypothese, Messpunkt)."
+    },
+    "isSafe": {
+      "type": "boolean",
+      "description": "False when disallowed phrases such as 'falsche Daten' or 'unklare Fakten' are detected."
+    },
+    "passes": {
+      "type": "boolean",
+      "description": "True only when all checks are satisfied."
+    },
+    "score": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1,
+      "description": "Fraction of satisfied checks (0.0 to 1.0)."
+    },
+    "missing": {
+      "type": "array",
+      "description": "Machine-readable list of unmet requirements.",
+      "items": {
+        "type": "string",
+        "enum": ["crep-reference", "trikaya-mapping", "next-action", "safety"]
+      },
+      "uniqueItems": true
+    },
+    "matches": {
+      "type": "object",
+      "description": "Matched fragments for each rule to aid debugging.",
+      "properties": {
+        "crep": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Distinct fragments referencing CREP metrics."
+        },
+        "trikaya": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Distinct fragments referencing Trikāya layers."
+        },
+        "nextAction": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Distinct fragments referencing next steps or rituals."
+        },
+        "unsafe": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Detected unsafe phrases triggering safety warnings."
+        }
+      },
+      "required": ["crep", "trikaya", "nextAction", "unsafe"],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "hasCrepReference",
+    "hasTrikayaMapping",
+    "hasNextAction",
+    "isSafe",
+    "passes",
+    "score",
+    "missing",
+    "matches"
+  ],
+  "additionalProperties": false
+}

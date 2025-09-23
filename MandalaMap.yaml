@@ -355,6 +355,7 @@ entries:
         `meta`-Block, damit `pnpm maps:validate` Pflichtfelder prüft (Fraktal57).
       - Cheat Sheet `docs/cheatsheets/unified-mandala-workflows.md` bündelt Kern-Workflows (Dev, CI, Adapter, Governance, Demo) – in Fraktal67 um `pnpm check:ci`, `pnpm ci:verify`, Windows-Setup sowie Monitoring-/Offline-Bundle-Hinweise erweitert.
       - Fraktal70 ergänzt README & `docs/demos/cosmic-web.md` um einen plattformfreundlichen Cosmic-Web-Quickstart, verweist auf den TCP-Port 4222 und bindet den Subscriber `scripts/realtime/sub-cosmic.mjs` (`pnpm sub:cosmic`, Default-Subject `demo.cosmic`, Multi-Server & Queue-Option) ein.
+      - Fraktal72 beschreibt den Pytest-Wrapper `scripts/run-pytest.mjs` (auto `.venv`), empfiehlt weiterhin `pnpm exec cypress install`, ergänzt `pnpm sigils:validate:mini` als Mandala-Erklärungscheck und synchronisiert Command-Catalog/README/CONTRIBUTING mit dem Dist-First-Runner für `pnpm prompts:coach`.
     links:
       - label: v1.0 Playbook
         path: docs/roadmap/v1.0-stabilization-playbook.md
@@ -508,6 +509,11 @@ entries:
     notes:
       - Part of release drills described in
         docs/roadmap/v1.0-stabilization-playbook.md.
+      - >
+        `pnpm observability:check` prüft Prometheus `/api/v1/targets` und Grafana
+        `/api/health` (Host-Port 3300) nach dem Monitoring-Profil; Flags wie
+        `PROMETHEUS_REQUIRE_ACTIVE=0` oder `OBSERVABILITY_SKIP_GRAFANA=1` steuern die
+        Strenge.
     links: []
   - path: orchestrator/
     category: agents
@@ -738,6 +744,7 @@ entries:
       - STAC helpers berechnen relative hrefs gegen das Item-Verzeichnis (Fallback auf `file://`), sodass Konsumenten keine Fehlpfade erhalten.
       - EFFIS offline builder writes a minimal NetCDF grid and pytest guards
         relative vs. absolute href normalization for STAC items.
+      - Fraktal72 schärft Typannotationen im Cosmic-Web-Mock (deterministischer RNG, strukturierte Points/Features) und unterdrückt Pyright-PrivateUsage-Warnungen für `_normalise_href` im OISST-Postprocessing.
     links: []
   - path: stubs/
     category: support

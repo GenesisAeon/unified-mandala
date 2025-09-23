@@ -42,5 +42,5 @@ Eine kurze Schritt-für-Schritt-Anleitung zum Starten einer Demo inklusive Mistr
   - Typische Meldung _"sensitive-data"_ → sensitives Material entfernen oder verschlüsseln.
   - _"policy-doc-missing"_ → Doku in `docs/governance/` bzw. `AI_POLICY.md` ergänzen.
 - **Merge-Gates**: Pull-Requests schlagen fehl, wenn Governance-Checks nicht grün sind.
-- **Metrics-Verpflichtung**: Services sollen `/metrics` via `@um/health` anbieten; Monitoring-Profil (`docker compose --profile monitoring up`) prüft Prometheus/Grafana lokal.
+- **Metrics-Verpflichtung**: Services sollen `/metrics` via `@um/health` anbieten; Monitoring-Profil (`docker compose --profile monitoring up`) prüft Prometheus/Grafana lokal – `pnpm observability:check` validiert Prometheus `/api/v1/targets` und Grafana `/api/health` (Port 3300).
 - Weitere Details liefert `docs/governance/policy-suite.md` und `AI_POLICY.yaml`.
