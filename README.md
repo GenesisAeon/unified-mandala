@@ -113,19 +113,60 @@ Die Adapter sind initial als Stubs verfügbar und werden schrittweise an echte F
 - Live CREP-Bewertung über das neue Workspace-Paket `@mandala/crep`.
 - Sigillin & STAC-Artefakte bilden die Governance-/Daten-Story (`sigils/demos/cosmic-web.sigill.json`, `out/stac/cosmic-web/item.json`).
 
-**Start (lokal):**
+### Prereqs
 
-```bash
-pnpm demo:cosmic           # Daten generieren + STAC-Item + Artefakte für die UI publizieren
-pnpm demo:cosmic:ui        # Vite-Dev-Server (http://localhost:5173)
-# optional, zweites Terminal: Realtime-Ticks über NATS
-pnpm nats:docker           # JetStream-Server (falls nicht bereits gestartet)
-pnpm demo:cosmic:tick
+Einmalig die gleiche Toolchain herstellen wie im Quickstart (Node ≥ 20, pnpm via Corepack, optionale Python-Adapter). Die folgenden Snippets spiegeln die offiziellen Setup-Skripte wider und sind plattformfreundlich formuliert.
+
+#### Windows PowerShell (v5+)
+
+> PowerShell 5 akzeptiert kein `&&`. Verwende neue Zeilen oder `;`.
+
+```powershell
+corepack enable; corepack prepare pnpm@10.17.0 --activate
+pnpm i --frozen-lockfile
+python -m pip install -r requirements.txt
+python -m pip install -r src/adapters/requirements.txt
+$env:PANTHEON_DISABLE = '1'      # optional: Analytics ausschalten
 ```
 
-Danach im Browser: `http://localhost:5173/demo/cosmic-web`
+#### macOS / Linux (bash/zsh)
 
-> Ohne NATS-Verbindung fällt die Demo automatisch auf einen lokalen Tick-Generator zurück.
+```bash
+corepack enable && corepack prepare pnpm@10.17.0 --activate
+pnpm i --frozen-lockfile
+python -m pip install -r requirements.txt
+python -m pip install -r src/adapters/requirements.txt
+export PANTHEON_DISABLE=1       # optional
+```
+
+### Demo starten
+
+```bash
+pnpm demo:cosmic                # Daten, Sigillin, STAC-Item generieren & publizieren
+# optional: separater Vite-Start, falls das Kombiscript keinen Port öffnet
+pnpm -F mandala-ui dev -- --port 5173
+```
+
+Im Browser anschließend `http://localhost:5173/demo/cosmic-web` laden.
+
+### Realtime-Telemetrie (optional)
+
+```bash
+pnpm nats:docker                # startet NATS/JetStream auf nats://localhost:4222
+pnpm demo:cosmic:tick           # publiziert Live-Ticks
+```
+
+> Hinweis: Port **4222** ist der NATS-TCP-Port. Ein Browser-Request liefert erwartungsgemäß `-ERR 'Unknown Protocol Operation'`.
+
+### Live-Events inspizieren
+
+- Node-Subscriber: `node scripts/realtime/sub-cosmic.mjs`
+  - Variablen: `COSMIC_SUBJECT=demo.cosmic.tick` & `NATS_URL=nats://localhost:4222` anpassbar.
+- NATS CLI (falls installiert): `nats sub "demo.cosmic.tick" -s nats://localhost:4222`
+
+Die UI nutzt dieselben Subjects; stimmen keine Events, vergleiche die Angaben in `scripts/realtime/cosmic-publisher.mjs`.
+
+> 🎯 Tipp: Mit `pnpm test:unit:crep` lässt sich das Workspace-Paket `@mandala/crep` gezielt testen.
 
 ---
 
