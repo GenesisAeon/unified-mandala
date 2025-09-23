@@ -18,19 +18,23 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: '20.x'
-          cache: 'pnpm'
-      - uses: pnpm/action-setup@v4
-        with:
-          version: 10.16.1
+          node-version: 20
+          cache: pnpm
+      - name: Enable corepack
+        run: corepack enable
+      - name: Use pnpm 10.x
+        run: corepack prepare pnpm@10.17.0 --activate
       - name: Debug toolchain versions
         run: |
           echo "Node $(node -v)"
           echo "PNPM v$(pnpm -v)"
           python --version
-      - run: pnpm install --frozen-lockfile
-      - run: pnpm format:check
-      - run: pnpm lint
+      - name: Install dependencies (JS)
+        run: pnpm install --frozen-lockfile
+      - name: Lint & format checks
+        run: |
+          pnpm format:check
+          pnpm lint
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
@@ -56,10 +60,9 @@ jobs:
           name: toolchain-versions
           path: toolchain-versions.txt
       - run: pnpm typecheck
-      - run: pnpm nats:doctor
-      - run: pnpm test:ts:ci
-      - run: pnpm test:jetstream
       - run: pnpm test:unit
+      - run: pnpm nats:doctor
+      - run: pnpm test:jetstream
       - name: Run Vitest coverage
         run: |
           rm -rf coverage
@@ -73,3 +76,11 @@ jobs:
           if-no-files-found: ignore
       - run: pnpm test:py
       - run: npx pyright
+      - name: Governance & maps & policy
+        run: |
+          pnpm schema:validate
+          pnpm maps:validate
+          pnpm repomap:build
+          pnpm repomap:validate
+          pnpm sanity
+          pnpm policy:check

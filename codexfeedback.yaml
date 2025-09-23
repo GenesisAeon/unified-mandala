@@ -1,6 +1,47 @@
 fraktal:
-  current: 73
+  current: 74
   history:
+    - id: 74
+      status: done
+      notes: 'Fraktal74 CIGateUnification: Husky-Hooks erzwingen auf Wunsch schwere Gates (`pnpm check:precommit`/`pnpm check:prepush`), `postinstall: husky` ersetzt prepare, neue Aggregatoren (`scripts/ci-verify.mjs`, `scripts/sanity/index.mjs`) sowie Workflows `check:ci`/`ci-verify` bündeln Typecheck, Unit-, Coverage-, Schema-, Maps-, Repomap-, Sanity- und Policy-Prüfungen; Command-Catalog, MandalaMap.*, Stabilization-Playbook und codexfeedback* spiegeln die aktualisierten Bundles.'
+      deliverables:
+        - .husky/pre-commit
+        - .husky/pre-push
+        - .lintstagedrc.cjs
+        - .github/workflows/check-ci.yml
+        - .github/workflows/ci-verify.yml
+        - .github/workflows/ci.core.yml
+        - analysis/scripts-and-commands.json
+        - docs/cheatsheets/unified-mandala-workflows.md
+        - docs/runbooks/command-catalog.json
+        - docs/runbooks/command-catalog.md
+        - docs/runbooks/command-catalog.yaml
+        - docs/roadmap/v1.0-stabilization-playbook.md
+        - docs/roadmap/v1.0-stabilization-playbook.yaml
+        - MandalaMap.json
+        - MandalaMap.md
+        - MandalaMap.yaml
+        - codexfeedback.md
+        - codexfeedback.json
+        - codexfeedback.yaml
+        - codexfeedback-fraktal74.yaml
+        - package.json
+        - scripts/ci-verify.mjs
+        - scripts/sanity/check-keys-empty.mjs
+        - scripts/sanity/index.mjs
+        - scripts/advice/merge.mjs
+        - scripts/analyze-conversations.js
+        - scripts/check-meta-score-layer.js
+        - scripts/generate-chronopoem.js
+        - scripts/sigils/mini-sigillin-validator.ts
+      commands:
+        - pnpm check:precommit
+        - pnpm check:prepush
+        - pnpm check:ci
+        - pnpm ci:verify
+      hook:
+        progress: Husky-/CI-Gates konsolidiert (`check:*` Bundles, Workflows), Docs & Maps spiegeln neue Aggregatoren.
+        next_step: Optional weitere DevTalk74-Impulse evaluieren (z. B. CREP-Realtime-Brücke).
     - id: 73
       status: done
       notes: 'Fraktal73 NATSSetupGuidance: `scripts/setup-dev-env.ps1` erkennt Docker-basierte

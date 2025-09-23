@@ -353,7 +353,7 @@ entries:
         JetStream-Setup; `SIGILLIN_GENESIS.md` liegt als Placeholder im Repo.
       - docs/maps/RepoMap.yaml deklariert `repo`, ProgramFlow.yaml führt einen
         `meta`-Block, damit `pnpm maps:validate` Pflichtfelder prüft (Fraktal57).
-      - Cheat Sheet `docs/cheatsheets/unified-mandala-workflows.md` bündelt Kern-Workflows (Dev, CI, Adapter, Governance, Demo) – in Fraktal67 um `pnpm check:ci`, `pnpm ci:verify`, Windows-Setup sowie Monitoring-/Offline-Bundle-Hinweise erweitert.
+      - Cheat Sheet `docs/cheatsheets/unified-mandala-workflows.md` bündelt Kern-Workflows (Dev, CI, Adapter, Governance, Demo) – Fraktal67/74 listen `pnpm check:precommit`, `pnpm check:prepush`, `pnpm check:ci`, `pnpm ci:verify`, Windows-Setup sowie Monitoring-/Offline-Bundle-Hinweise.
       - Fraktal70 ergänzt README & `docs/demos/cosmic-web.md` um einen plattformfreundlichen Cosmic-Web-Quickstart, verweist auf den TCP-Port 4222 und bindet den Subscriber `scripts/realtime/sub-cosmic.mjs` (`pnpm sub:cosmic`, Default-Subject `demo.cosmic`, Multi-Server & Queue-Option) ein.
       - Fraktal72 beschreibt den Pytest-Wrapper `scripts/run-pytest.mjs` (auto `.venv`), empfiehlt weiterhin `pnpm exec cypress install`, ergänzt `pnpm sigils:validate:mini` als Mandala-Erklärungscheck und synchronisiert Command-Catalog/README/CONTRIBUTING mit dem Dist-First-Runner für `pnpm prompts:coach`.
     links:
