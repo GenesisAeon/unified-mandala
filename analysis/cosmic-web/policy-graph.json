@@ -1,0 +1,31 @@
+{
+  "nodes": [
+    {
+      "id": "policy:A",
+      "role": "ethics"
+    },
+    {
+      "id": "policy:B",
+      "role": "data"
+    },
+    {
+      "id": "policy:C",
+      "role": "access"
+    },
+    {
+      "id": "policy:D",
+      "role": "audit"
+    },
+    {
+      "id": "policy:E",
+      "role": "review"
+    }
+  ],
+  "edges": [
+    ["policy:A", "policy:B"],
+    ["policy:B", "policy:C"],
+    ["policy:C", "policy:D"],
+    ["policy:D", "policy:E"],
+    ["policy:A", "policy:D"]
+  ]
+}

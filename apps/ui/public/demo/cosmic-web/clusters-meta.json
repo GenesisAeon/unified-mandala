@@ -1,0 +1,5 @@
+{
+  "epochs": ["z2_4", "z3_1", "z4_5"],
+  "bbox": [0.0, 0.0, 10.0, 10.0],
+  "note": "Synthetic tracer dataset inspired by LAE clustering studies."
+}

@@ -1,0 +1,27 @@
+{
+  "$schema": "../../schemas/sigillin-demo.schema.json",
+  "id": "sigill:demo:cosmic-web:0001",
+  "kind": "demo-sigillin",
+  "title": "Cosmic-Web Demo Sigillin",
+  "source": "synthetic",
+  "version": "0.1.0",
+  "intents": ["trace-latent-structure-from-proxies", "educate-stakeholders"],
+  "governance": {
+    "ethics": ["open-demo-only", "no-personal-data"],
+    "license": "CC-BY-4.0"
+  },
+  "inputs": {
+    "clusters": "analysis/cosmic-web/clusters.geojson",
+    "policyGraph": "analysis/cosmic-web/policy-graph.json"
+  },
+  "outputs": {
+    "stacItem": "out/stac/cosmic-web/item.json",
+    "uiRoute": "/demo/cosmic-web"
+  },
+  "crep": {
+    "coherence": null,
+    "resonance": null,
+    "emergence": null,
+    "poetics": null
+  }
+}

@@ -105,6 +105,30 @@ Die Adapter sind initial als Stubs verfügbar und werden schrittweise an echte F
 
 ---
 
+## Cosmic-Web Demo (Sigillin × CREP)
+
+**Was wird gezeigt?**
+
+- Synthetic tracer dataset (`analysis/cosmic-web/`) visualisiert als animiertes Canvas im Fourier-Layer.
+- Live CREP-Bewertung über das neue Workspace-Paket `@mandala/crep`.
+- Sigillin & STAC-Artefakte bilden die Governance-/Daten-Story (`sigils/demos/cosmic-web.sigill.json`, `out/stac/cosmic-web/item.json`).
+
+**Start (lokal):**
+
+```bash
+pnpm demo:cosmic           # Daten generieren + STAC-Item + Artefakte für die UI publizieren
+pnpm demo:cosmic:ui        # Vite-Dev-Server (http://localhost:5173)
+# optional, zweites Terminal: Realtime-Ticks über NATS
+pnpm nats:docker           # JetStream-Server (falls nicht bereits gestartet)
+pnpm demo:cosmic:tick
+```
+
+Danach im Browser: `http://localhost:5173/demo/cosmic-web`
+
+> Ohne NATS-Verbindung fällt die Demo automatisch auf einen lokalen Tick-Generator zurück.
+
+---
+
 ## Repository-Navigator
 
 - **Onboarding:** `scripts/onboarding-ritual.md`

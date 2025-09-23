@@ -38,7 +38,10 @@ export default defineConfig({
     pool: "threads",
     poolOptions: { threads: { singleThread: true } },
     coverage: { enabled: false },
-    include: ["tests/**/*.{test,spec}.ts"],
+    include: [
+      "tests/**/*.{test,spec}.ts",
+      "packages/**/test/**/*.{test,spec}.ts",
+    ],
     exclude: Array.from(exclude),
   },
 });
