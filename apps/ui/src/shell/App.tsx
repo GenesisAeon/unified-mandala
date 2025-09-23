@@ -1,8 +1,23 @@
+import { useMemo } from "react";
 import { useClimateConfig } from "../config/useClimateConfig";
 import KpiBoard from "../components/KpiBoard";
 import OpsPanel from "../components/OpsPanel";
+import { CosmicWebDemo } from "../components/CosmicWebDemo";
 
 export default function App() {
+  const route = useMemo(() => {
+    if (typeof window === "undefined") return "/";
+    return window.location.pathname;
+  }, []);
+
+  if (route.startsWith("/demo/cosmic-web")) {
+    return (
+      <main className="min-h-screen bg-slate-100 p-6">
+        <CosmicWebDemo />
+      </main>
+    );
+  }
+
   const cfg = useClimateConfig();
   return (
     <div style={{ padding: 16 }}>

@@ -1,0 +1,58 @@
+{
+  "$id": "https://unified-mandala.local/schemas/sigillin-demo.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["id", "kind", "title", "source", "version", "inputs", "outputs"],
+  "properties": {
+    "id": { "type": "string" },
+    "$schema": { "type": "string" },
+    "kind": { "const": "demo-sigillin" },
+    "title": { "type": "string" },
+    "source": { "enum": ["synthetic", "real-world"] },
+    "version": { "type": "string" },
+    "intents": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "governance": {
+      "type": "object",
+      "properties": {
+        "ethics": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "license": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "inputs": {
+      "type": "object",
+      "required": ["clusters", "policyGraph"],
+      "properties": {
+        "clusters": { "type": "string" },
+        "policyGraph": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "outputs": {
+      "type": "object",
+      "required": ["stacItem", "uiRoute"],
+      "properties": {
+        "stacItem": { "type": "string" },
+        "uiRoute": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "crep": {
+      "type": "object",
+      "properties": {
+        "coherence": { "type": ["number", "null"] },
+        "resonance": { "type": ["number", "null"] },
+        "emergence": { "type": ["number", "null"] },
+        "poetics": { "type": ["number", "null"] }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

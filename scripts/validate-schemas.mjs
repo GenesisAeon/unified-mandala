@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import yaml from 'js-yaml';
-import Ajv from 'ajv';
+import Ajv from 'ajv/dist/2020.js';
 import addFormats from 'ajv-formats';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -93,6 +93,14 @@ if (seenCodexTargets.length === 0) {
   for (const candidate of seenCodexTargets) {
     validateDocument('schemas/codexfeedback.schema.json', candidate.path, candidate.loader);
   }
+}
+
+const cosmicSigill = 'sigils/demos/cosmic-web.sigill.json';
+const cosmicSigillPath = path.join(projectRoot, cosmicSigill);
+if (fs.existsSync(cosmicSigillPath)) {
+  validateDocument('schemas/sigillin-demo.schema.json', cosmicSigill, readJson);
+} else {
+  console.warn(`⚠️ Optional demo sigillin missing: ${cosmicSigill}`);
 }
 
 if (hasFailure) {

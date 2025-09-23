@@ -1,0 +1,11 @@
+{
+  "name": "@mandala/crep",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": "./src/crep.ts",
+  "types": "./src/crep.ts",
+  "devDependencies": {
+    "vitest": "^1.6.0"
+  }
+}
