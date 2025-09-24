@@ -270,7 +270,9 @@
       "notes": [
         "Primary UI served from apps/ui (workspace name mandala-ui).",
         "Dev entrypoints: pnpm -F mandala-ui dev | pnpm -F mandala-ui build.",
-        "apps/api bietet `/api/ai/chat` (Responses direkt oder via `AI_TRANSPORT=nats`); MandalaAIPlayground in apps/web/components dient als manueller Responses-Test."
+        "apps/api bietet `/api/ai/chat` (Responses direkt oder via `AI_TRANSPORT=nats`); MandalaAIPlayground in apps/web/components dient als manueller Responses-Test.",
+        "Fraktal79 ergänzt `pnpm start:cosmic-web` als orchestrierten Demo-Starter (NATS, Artefakte, Services, UI, Smoke) und schaltet mandala-ui direkt auf `/demo/ai-playground`.",
+        "mandala-ui bedient `/demo/ai-playground` jetzt selbst; der Vite-Dev-Server proxyt `/api/ai` auf Port 3002 für den Playground."
       ],
       "links": [
         {
@@ -785,7 +787,8 @@
         "Fraktal70 führt `scripts/realtime/sub-cosmic.mjs` als NATS-Subscriber ein (Alias `pnpm sub:cosmic`, Standard-Subject `demo.cosmic`, Multi-Server & Queue-Option), um Cosmic-Web-Ticks lokal zu beobachten und erinnert daran, dass Port 4222 ein TCP-Endpunkt ist.",
         "Fraktal73 lässt scripts/setup-dev-env.ps1 Docker-`nats`-Container erkennen, Status/Start-Hinweise exportieren und laufende Container als erfüllt markieren.",
         "Fraktal72 portiert `scripts/prompt-coach` nach TypeScript, bindet es via `scripts/run-dist.mjs scripts/prompt-coach.ts` ein und aktualisiert Command-Catalog sowie analysis/scripts-and-commands auf den Dist-First-Runner.",
-        "Fraktal76 ergänzt `scripts/ci/ai-commit-guard.mjs`, das Bot-Pushes auf `main` blockt und `.ai-scratch/`-Artefakte stoppt; Agenten speichern Runtime-Dateien dadurch konsequent unter `scratch://` oder `data://`."
+        "Fraktal76 ergänzt `scripts/ci/ai-commit-guard.mjs`, das Bot-Pushes auf `main` blockt und `.ai-scratch/`-Artefakte stoppt; Agenten speichern Runtime-Dateien dadurch konsequent unter `scratch://` oder `data://`.",
+        "Fraktal79 führt `scripts/start-cosmic-web.mjs` als One-Command-Orchestrator (NATS, Artefakte, Services, UI, Smoke) ein und `scripts/ci/no-local-path-leaks.mjs` verhindert versehentliche Windows-Pfade oder Secrets im Staging-Bereich."
       ],
       "links": [
         {
@@ -827,6 +830,14 @@
         {
           "label": "ai-commit-guard",
           "path": "scripts/ci/ai-commit-guard.mjs"
+        },
+        {
+          "label": "start-cosmic-web",
+          "path": "scripts/start-cosmic-web.mjs"
+        },
+        {
+          "label": "no-local-paths guard",
+          "path": "scripts/ci/no-local-path-leaks.mjs"
         }
       ]
     },

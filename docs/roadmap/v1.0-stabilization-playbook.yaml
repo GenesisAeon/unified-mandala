@@ -51,6 +51,7 @@ streams:
           `docker logs --tail=50 nats` sowie den PowerShell-Portcheck `Test-NetConnection 127.0.0.1 -Port 4222`.
 
           Fraktal78: `ci.core.yml` bündelt `pnpm test:unit:coverage`, `pnpm schema:validate`, `pnpm maps:validate`, `pnpm sanity` und `pnpm policy:check` als Pflicht-Gates; das Artefakt `coverage-vitest` wird hochgeladen und die Advisory-Lane (`ci:advisory`) ruft `pnpm check:ci` als Soft-Fail-Bundle auf.
+          Fraktal79: `pnpm start:cosmic-web` orchestriert NATS, Demo-Artefakte, Dev-Services, Vite und den Cosmic-Ticker in einem Kommando, triggert `pnpm smoke:ui` mit dynamischem Port; mandala-ui liefert `/demo/ai-playground` via Vite-Proxy (Port 3002) und `scripts/ci/no-local-path-leaks.mjs` blockt Windows-Pfade/Secrets im Staging-Bereich.
 
           '
         success:

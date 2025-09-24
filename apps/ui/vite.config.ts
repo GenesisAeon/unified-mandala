@@ -11,5 +11,14 @@ export default defineConfig({
       "~config": path.resolve(__dirname, "../../config"),
     },
   },
-  server: { host: true, port: 5173 },
+  server: {
+    host: true,
+    port: 5173,
+    proxy: {
+      "/api/ai": {
+        target: "http://localhost:3002",
+        changeOrigin: true,
+      },
+    },
+  },
 });

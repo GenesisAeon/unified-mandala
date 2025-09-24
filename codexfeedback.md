@@ -1,5 +1,11 @@
 # Codex Feedback
 
+- FR-UM-2025-11-22-Fraktal79-CosmicStarter: `pnpm start:cosmic-web` bootet NATS, baut die
+  Cosmic-Web-Artefakte, startet Dev-Services/Vite/NATS-Ticker und triggert automatisch
+  `pnpm smoke:ui` mit dynamischer `UI_DEV_URL`; mandala-ui hostet `/demo/ai-playground`
+  inklusive Navigation und Vite-Proxy auf Port 3002, während `scripts/ci/no-local-path-leaks.mjs`
+  Windows-Pfade/Secrets im Staging blockt. MandalaMap._, Stabilization-Playbook (MD/YAML)
+  sowie codexfeedback_ verweisen auf den Lauf.
 - FR-UM-2025-11-19-Fraktal78-CoreCoveragePolicy: ci.core.yml bündelt jetzt `pnpm test:unit:coverage`, `pnpm schema:validate`, `pnpm maps:validate`, `pnpm sanity` und `pnpm policy:check` im type_and_tests-Gate, lädt `coverage-vitest` als Artefakt hoch und setzt das Advisory-Label `ci:advisory` auf `pnpm check:ci` (Soft-Fail). docs/START-HERE.md, das Workflow-Cheat-Sheet, Stabilization-Playbook (MD/YAML) sowie MandalaMap.(md|json|yaml) wurden aktualisiert; codexfeedback\* und analysis/devtalk78-evaluation.md dokumentieren den Lauf.
 - FR-UM-2025-11-17-Fraktal77-StatusGate: Workflow `status-gate.yml` prüft das Label **ready-to-merge** (Draft, ReviewDecision, Mergeability, Status-Rollup) und setzt Auto-Merge/Merge-Queue nur bei grünen Checks; MandalaMap.\*, Stabilization-Playbook.(md|yaml), Workflow-Cheat-Sheet, Command-Catalog.(md|json|yaml) sowie analysis/devtalk77-evaluation.md dokumentieren das Gate inklusive manueller `workflow_dispatch`-Option.
 - FR-UM-2025-11-18-Fraktal77-ProvenanceGate: `auto-provenance.yml` vergibt automatisch `source:*` Labels (human/human-docs/mandala-ai/external-ai), `provenance-gate.yml` prüft Pfade & Schutzbereiche (packages/\*\*/core, Guard-Skripte, Deploy/Infra) und `ci.runtime.yml` wird nur via Label `ci:runtime` aktiviert; `on-demand.yml` bietet Slash-Commands (`/run repomap`, `/run governance`), `docs/START-HERE.md` erklärt Golden Path & Labelmatrix und `pnpm labels:setup` (scripts/repo/setup-labels.mjs) legt Labels via GitHub CLI an. MandalaMap.\*, Stabilization-Playbook.(md|yaml), Command-Catalog.(md|json|yaml) und codexfeedback\* spiegeln die neuen Guards.

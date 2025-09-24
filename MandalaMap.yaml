@@ -251,6 +251,9 @@ entries:
         oder via `AI_TRANSPORT=nats`).'
       - '`apps/web/src/components/MandalaAIPlayground.tsx` testet den Responses-Bridge
         Flow manuell.'
+      - 'Fraktal79 ergänzt `pnpm start:cosmic-web` als orchestrierten Demo-Starter (NATS,
+        Artefakte, Services, UI, Smoke) und verdrahtet mandala-ui direkt auf `/demo/ai-playground`.'
+      - 'mandala-ui rendert den Playground selbst; der Dev-Server proxyt `/api/ai` auf Port 3002.'
     links:
       - label: apps/ui package.json
         path: apps/ui/package.json
@@ -717,6 +720,9 @@ entries:
       - "Fraktal76 erg\xE4nzt `scripts/ci/ai-commit-guard.mjs`, das Bot-Pushes auf `main`\
         \ blockt und `.ai-scratch/`-Artefakte stoppt; Agenten speichern Runtime-Dateien\
         \ dadurch konsequent unter `scratch://` oder `data://`."
+      - "Fraktal79 liefert `scripts/start-cosmic-web.mjs` als One-Command-Orchestrator (NATS,\
+        \ Artefakte, Services, UI, Smoke) und `scripts/ci/no-local-path-leaks.mjs` verhindert\
+        \ versehentliche Windows-Pfade oder Secrets im Staging-Bereich."
     links:
       - label: run-dist
         path: scripts/run-dist.mjs
@@ -734,6 +740,10 @@ entries:
         path: scripts/realtime/sub-cosmic.mjs
       - label: ai-commit-guard
         path: scripts/ci/ai-commit-guard.mjs
+      - label: start-cosmic-web
+        path: scripts/start-cosmic-web.mjs
+      - label: no-local-paths guard
+        path: scripts/ci/no-local-path-leaks.mjs
   - path: services/
     category: core-runtime
     status: active
