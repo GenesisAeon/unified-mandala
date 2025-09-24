@@ -3,16 +3,23 @@
 ## Summary
 
 - [ ] Kurzbeschreibung der Änderung(en)
-- [ ] Verlinke relevante Fraktal-/DevTalk-Notizen (falls vorhanden)
+- [ ] Relevante Fraktal-/DevTalk-Notizen verlinkt (falls vorhanden)
+
+## Provenance (genau **ein** Label setzen)
+
+- [ ] `source:human` – menschlich erstellter Code / Workflows
+- [ ] `source:human-docs` – ausschließlich Dokumentation/Analysen/Artefakte
+- [ ] `source:mandala-ai` – Mandala-interne Automationen (AI-Workspace, scratch/data)
+- [ ] `source:external-ai` – Externe AI (z. B. Codex/GPT); nur scratch/docs/.github erlaubt
+
+> CI schlägt fehl, wenn das gesetzte Label nicht zu den geänderten Pfaden passt.
 
 ## Plane (bitte markieren)
 
 - [ ] CODE — Änderungen am Repository (Dateien im Repo, Tests, Workflows)
 - [ ] RUNTIME — Änderungen an Laufzeit/Infra (NATS, HTTP, scratch:// Artefakte)
 
-> Nutze **CODE** wenn Dateien im Repo angepasst werden. Nutze **RUNTIME** für Runtime-Deployments ohne Repo-Diff.
-
-## Verification (mindestens die relevanten Punkte abhaken)
+## Verification (relevante Punkte abhaken oder `n/a` begründen)
 
 - [ ] `pnpm typecheck`
 - [ ] `pnpm test:unit`
@@ -26,9 +33,9 @@
 
 ## Two-Plane Guardrails
 
-- [ ] Keine Dateien unter `.ai-scratch/` im Commit enthalten (runtime Artefakte → scratch://)
-- [ ] Laufzeit-Ausgaben oder Zwischenergebnisse ausschließlich unter `scratch://` oder `data://` gespeichert
-- [ ] Falls der PR durch einen Bot erstellt wurde: mindestens ein menschlicher Reviewer eingetragen
+- [ ] Keine Dateien unter `.ai-scratch/` im Commit enthalten (Runtime-Artefakte → scratch://)
+- [ ] Laufzeit-Ausgaben ausschließlich unter `scratch://` oder `data://`
+- [ ] Bei Bot-PRs mindestens ein menschlicher Reviewer eingetragen
 
 ## Follow-up Notes
 

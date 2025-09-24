@@ -1,0 +1,97 @@
+name: provenance-gate
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, labeled, unlabeled]
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Collect changed files
+        id: diff
+        shell: bash
+        run: |
+          git fetch origin "${GITHUB_BASE_REF}" --depth=1
+          git diff --name-only "origin/${GITHUB_BASE_REF}"...HEAD > changed.txt
+          cat changed.txt
+      - name: Enforce provenance and planes
+        env:
+          PROVENANCE_LABELS: ${{ join(github.event.pull_request.labels.*.name, ',') }}
+        run: |
+          python - <<'PY'
+          import os, re, sys
+
+          labels = [label.strip() for label in os.environ.get('PROVENANCE_LABELS', '').split(',') if label.strip()]
+          source_labels = [label for label in labels if label.startswith('source:')]
+
+          if len(source_labels) != 1:
+              print('❌ PR needs exactly one source:* label.')
+              sys.exit(1)
+
+          label = source_labels[0]
+
+          with open('changed.txt', encoding='utf-8') as fh:
+              files = [line.strip() for line in fh if line.strip()]
+
+          if not files:
+              print('No files changed; provenance gate passing.')
+              sys.exit(0)
+
+          protected = re.compile(r'^(packages/.+/core/|scripts/ci/.+guard|\.github/workflows/.+guard|infra/prod/|deploy/|packages/.+/release\.mjs)')
+
+          def matches(patterns, path):
+              return any(re.match(pattern, path) for pattern in patterns)
+
+          if label == 'source:human-docs':
+              allowed = [
+                  r'^docs/', r'^analysis/', r'^out/', r'^\.github/',
+                  r'^MandalaMap', r'^codexfeedback', r'^CHANGELOG', r'^README', r'^SOURCES',
+              ]
+              if any(not matches(allowed, f) for f in files):
+                  print('❌ source:human-docs PRs may only touch documentation and analysis artifacts.')
+                  sys.exit(1)
+              sys.exit(0)
+
+          if label == 'source:human':
+              if any(f.startswith('scratch/') or f.startswith('data/') for f in files):
+                  print('❌ Runtime artifacts belong under scratch:// or data:// and must not be committed.')
+                  sys.exit(1)
+              sys.exit(0)
+
+          if label == 'source:mandala-ai':
+              allowed = [
+                  r'^packages/ai', r'^apps/.+ai', r'^docs/', r'^scratch/', r'^data/',
+                  r'^\.github/', r'^analysis/', r'^out/', r'^MandalaMap', r'^codexfeedback'
+              ]
+              if any(not matches(allowed, f) for f in files):
+                  print('❌ source:mandala-ai changes are limited to AI workspaces, docs, or runtime planes.')
+                  sys.exit(1)
+              if any(protected.match(f) for f in files):
+                  print('❌ source:mandala-ai may not touch protected core/guard/deploy paths.')
+                  sys.exit(1)
+              sys.exit(0)
+
+          if label == 'source:external-ai':
+              allowed = [
+                  r'^scratch/', r'^docs/', r'^analysis/', r'^out/', r'^\.github/',
+                  r'^MandalaMap', r'^codexfeedback'
+              ]
+              if any(not matches(allowed, f) for f in files):
+                  print('❌ source:external-ai PRs are limited to scratch/docs/analysis/out/.github.')
+                  sys.exit(1)
+              if any(protected.match(f) for f in files):
+                  print('❌ source:external-ai may not modify protected zones.')
+                  sys.exit(1)
+              sys.exit(0)
+
+          print('❌ Unknown provenance label.')
+          sys.exit(1)
+          PY

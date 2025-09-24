@@ -1,7 +1,7 @@
 fraktal: 40
 release: v1.0
 owner: codex
-updated: '2025-11-17'
+updated: '2025-11-18'
 summary: 'Strukturierter Maßnahmenplan zur Umsetzung der Fraktal40-Besprechung.
 
   Fokus auf stabile Kern-Builds, dist-first Services, verschärfte Governance
@@ -50,6 +50,8 @@ streams:
           Start-Hinweise im InstallReport und Runbooks/README dokumentieren `docker ps -a ...`, `docker start nats`,
           `docker logs --tail=50 nats` sowie den PowerShell-Portcheck `Test-NetConnection 127.0.0.1 -Port 4222`.
 
+          Fraktal78: `ci.core.yml` bündelt `pnpm test:unit:coverage`, `pnpm schema:validate`, `pnpm maps:validate`, `pnpm sanity` und `pnpm policy:check` als Pflicht-Gates; das Artefakt `coverage-vitest` wird hochgeladen und die Advisory-Lane (`ci:advisory`) ruft `pnpm check:ci` als Soft-Fail-Bundle auf.
+
           '
         success:
           - pnpm typecheck
@@ -73,6 +75,7 @@ streams:
           Fraktal65: Governance-Workflow ruft zusätzlich `pnpm schema:validate` und `pnpm maps:validate` auf; Repo-Sanity nutzt `pnpm sanity`, um `ciBehaviour`-Metadaten zu prüfen.
           Fraktal66: Policy-Suite markiert Kyverno/Sigillin als optionale Schritte (`PANTHEON_DISABLE=1`), loggt Skip-Warnungen wenn Kyverno-CLI oder `sigillins:report` fehlen, `pnpm repomap:*` erzeugt Fallback-Artefakte bei fehlendem dist und das Cheat Sheet `docs/cheatsheets/unified-mandala-workflows.md` bündelt die Kern-Workflows.
           Fraktal68: keys/ bleibt automation-only; Repo-Sanity prüft `.gitignore`/`.gitkeep` und `policies/kyverno.yaml` meldet unerwartete Dateien.
+          Fraktal78: Policy-Suite läuft direkt im `ci.core`-Gate; Schema-/Map-Validation und Repo-Sanity teilen sich den Lauf, optionales Label `ci:advisory` ruft `pnpm check:ci` (Soft-Fail) auf.
         output:
           - out/policy/policy-suite.json
           - out/policy/policy-suite.md
@@ -90,6 +93,23 @@ streams:
           inklusive manueller `workflow_dispatch`-Option.
         output:
           - .github/workflows/status-gate.yml
+      - id: provenance-guard
+        description: Automatisches Provenance-Labeling (`source:*`) + Pfad-Gate einführen
+        status: done
+        notes: |-
+          Fraktal77: `auto-provenance.yml` vergibt automatisch `source:human`, `source:human-docs`, `source:mandala-ai`
+          oder `source:external-ai`. `provenance-gate.yml` vergleicht Labels mit Pfad-Matrix, schützt `packages/**/core`,
+          Guard-Skripte, Deploy/Infra und verhindert Runtime-Artefakte im Repo. `/run repomap` und `/run governance`
+          hängen Labels (`run:repomap`, `ci:advisory`) an; `ci.runtime.yml` startet NATS + AI-Smoketest nur bei `ci:runtime`.
+          `docs/START-HERE.md` erklärt Golden Path & Two-Plane-Modell, `scripts/repo/setup-labels.mjs` + `pnpm labels:setup`
+          erzeugen die benötigten GitHub-Labels.
+        output:
+          - .github/workflows/auto-provenance.yml
+          - .github/workflows/provenance-gate.yml
+          - .github/workflows/on-demand.yml
+          - .github/workflows/ci.runtime.yml
+          - scripts/repo/setup-labels.mjs
+          - docs/START-HERE.md
   - key: code-quality
     owner:
       lead: DevX Guild

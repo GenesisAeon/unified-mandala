@@ -1,31 +1,75 @@
 fraktal:
-  current: 77
+  current: 78
   history:
-    - id: 77
+    - id: 78
       status: done
-      notes: 'Fraktal77 StatusGate: Workflow `status-gate.yml` prüft das Label **ready-to-merge** (Draft, ReviewDecision, Mergeability, Status-Rollup) und aktiviert Auto-Merge/Merge Queue nur bei grünen Checks; MandalaMap.*, Stabilization-Playbook.(md|yaml), Workflow-Cheat-Sheet, Command-Catalog.(md|json|yaml), analysis/devtalk77-evaluation.md sowie codexfeedback* dokumentieren den Gate-Lauf und die manuelle `workflow_dispatch`-Option.'
+      notes: 'Fraktal78 CoreCoveragePolicy: ci.core.yml bündelt `pnpm test:unit:coverage`, `pnpm schema:validate`, `pnpm maps:validate`, `pnpm sanity` und `pnpm policy:check` im type_and_tests-Gate, lädt `coverage-vitest` als Artefakt hoch; Label `ci:advisory` triggert `pnpm check:ci` (Soft-Fail). docs/START-HERE.md, Workflow-Cheat-Sheet, Stabilization-Playbook (MD/YAML) sowie MandalaMap.(md|json|yaml) und codexfeedback* + analysis/devtalk78-evaluation.md dokumentieren den Lauf.'
       deliverables:
-        - .github/workflows/status-gate.yml
+        - .github/workflows/ci.core.yml
+        - analysis/devtalk78-evaluation.md
+        - codexfeedback-fraktal78.yaml
+        - codexfeedback.md
+        - codexfeedback.json
+        - codexfeedback.yaml
+        - docs/START-HERE.md
+        - docs/cheatsheets/unified-mandala-workflows.md
+        - docs/roadmap/v1.0-stabilization-playbook.md
+        - docs/roadmap/v1.0-stabilization-playbook.yaml
         - MandalaMap.md
         - MandalaMap.yaml
         - MandalaMap.json
-        - docs/roadmap/v1.0-stabilization-playbook.md
-        - docs/roadmap/v1.0-stabilization-playbook.yaml
-        - docs/cheatsheets/unified-mandala-workflows.md
-        - docs/runbooks/command-catalog.md
-        - docs/runbooks/command-catalog.yaml
-        - docs/runbooks/command-catalog.json
-        - analysis/scripts-and-commands.json
+      commands:
+        - pnpm check:ci
+      hook:
+        progress:
+          Core-Gates laufen jetzt mit Coverage + Schema/Map/Sanity/Policy fail-fast; Dokumentation
+          und MandalaMap spiegeln Fraktal78.
+        next_step:
+          Monitoring der Laufzeiten & mögliche Bündelung der pnpm install-Phase evaluieren, um
+          doppelte Installationen im type_and_tests-Job zu vermeiden.
+      repeat_required: false
+    - id: 77
+      status: done
+      notes: 'Fraktal77 StatusGate & Provenance: `status-gate.yml` überwacht **ready-to-merge**
+        (Draft/Review/Mergeability/Status-Rollup), `auto-provenance.yml` vergibt `source:*`
+        Labels, `provenance-gate.yml` schützt packages/**/core & Guard-Skripte, `ci.runtime.yml`
+        läuft nur via Label `ci:runtime`, `on-demand.yml` liefert Slash-Commands und
+        docs/START-HERE.md + `pnpm labels:setup` (scripts/repo/setup-labels.mjs) erklären
+        Golden Path & Labelmatrix; MandalaMap.*, Stabilization-Playbook.(md|yaml), Command-Catalog.(md|json|yaml)
+        sowie codexfeedback* dokumentieren die neuen Gates.'
+      deliverables:
+        - .github/CODEOWNERS
+        - .github/workflows/auto-provenance.yml
+        - .github/workflows/ci.runtime.yml
+        - .github/workflows/on-demand.yml
+        - .github/workflows/provenance-gate.yml
+        - .github/workflows/status-gate.yml
+        - MandalaMap.json
+        - MandalaMap.md
+        - MandalaMap.yaml
         - analysis/devtalk77-evaluation.md
+        - analysis/scripts-and-commands.json
+        - codexfeedback-fraktal77.yaml
+        - codexfeedback.json
         - codexfeedback.md
         - codexfeedback.yaml
-        - codexfeedback.json
-        - codexfeedback-fraktal77.yaml
+        - docs/START-HERE.md
+        - docs/cheatsheets/unified-mandala-workflows.md
+        - docs/roadmap/v1.0-stabilization-playbook.md
+        - docs/roadmap/v1.0-stabilization-playbook.yaml
+        - docs/runbooks/command-catalog.json
+        - docs/runbooks/command-catalog.md
+        - docs/runbooks/command-catalog.yaml
+        - package.json
+        - scripts/repo/setup-labels.mjs
       commands:
         - gh workflow run status-gate -f pr=<nummer>
+        - pnpm labels:setup
       hook:
-        progress: Status-Gate aktiv; Ready-to-merge Label löst Auto-/Merge-Queue nur bei SUCCESS aus.
-        next_step: Optionale Ergänzung automatisierter Tests für status-gate Skript (z. B. Mock-basierte CI-Checks) evaluieren.
+        progress: Status-Gate aktiv; Ready-to-merge Label löst Auto-/Merge-Queue nur
+          bei SUCCESS aus.
+        next_step: Optionale Ergänzung automatisierter Tests für status-gate Skript
+          (z. B. Mock-basierte CI-Checks) evaluieren.
       repeat_required: false
     - id: 76
       status: done

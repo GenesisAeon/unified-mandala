@@ -1,0 +1,6 @@
+# Core areas requiring human review
+/packages/**/core/**        @GenesisAeon
+/.github/workflows/**guard** @GenesisAeon
+/scripts/ci/**guard**       @GenesisAeon
+/infra/prod/**              @GenesisAeon
+/deploy/**                  @GenesisAeon

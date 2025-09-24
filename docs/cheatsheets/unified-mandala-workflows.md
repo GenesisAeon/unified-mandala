@@ -54,20 +54,36 @@ Dieses Cheat Sheet fasst die Kernabläufe für das Unified-Mandala-Repo zusammen
 
 ### Core-Gates
 
-- TypeScript-Checks: `pnpm typecheck`
-- Unit-Tests: `pnpm test:unit`
-- Coverage: `pnpm test:unit:coverage` (Artefakt `coverage-vitest`)
+- GitHub Workflow `ci.core.yml` (Job _type_and_tests_) führt auf PRs/Pushes automatisch aus:
+  - `pnpm typecheck` (TypeScript ohne Emit)
+  - `pnpm lint:eslint`
+  - `pnpm -F @unified-mandala/api build`
+  - `pnpm test:unit:coverage` (Artefakt `coverage-vitest` wird hochgeladen)
+  - `pnpm schema:validate`
+  - `pnpm maps:validate`
+  - `pnpm sanity`
+  - `pnpm policy:check`
 - JetStream-Test: `pnpm test:jetstream` (erfordert lokalen oder Docker-NATS)
+
+### Provenance & Label-Gates
+
+- GitHub-Workflow `auto-provenance.yml` vergibt automatisch ein `source:*` Label (human, human-docs, mandala-ai, external-ai).
+- `provenance-gate.yml` blockiert PRs mit fehlendem oder falschem `source:*` Label und schützt `packages/**/core`, Guard-Skripte sowie Deploy-/Infra-Verzeichnisse.
+- Slash-Commands: `/run repomap` hängt das Label `run:repomap` an, `/run governance` aktiviert das Advisory-Label `ci:advisory` (Workflow `on-demand.yml`).
+- Runtime-Lane: `ci.runtime.yml` startet NATS + AI-Smoketest, ausgelöst durch Label `ci:runtime`.
+- Labels initialisieren oder aktualisieren: `pnpm labels:setup` (ruft `scripts/repo/setup-labels.mjs` via GitHub CLI `gh` auf).
+- Quickstart + Two-Plane/Label-Matrix: siehe `docs/START-HERE.md` (Golden Path, scratch:// vs repo://, Label-Übersicht).
 
 ### Governance / Meta-Jobs
 
-- Schema-Validierung: `pnpm schema:validate` (MandalaMap & Codexfeedback)
-- Maps-Validierung: `pnpm maps:validate`
-- Policy-Suite: `pnpm policy:check`
-  - Optional-Schritte (Kyverno, Sigillin) überspringen bei fehlenden Tools automatisch; `PANTHEON_DISABLE=1` wird gesetzt
-- Repo-Sanity: `pnpm sanity` (prüft MandalaMap/Trikāya-Hooks & Codexfeedback)
+- CI-Core deckt Schema-, Map-, Sanity- und Policy-Suite bereits ab; für manuelle Läufe:
+  - `pnpm schema:validate`
+  - `pnpm maps:validate`
+  - `pnpm sanity`
+  - `pnpm policy:check` (Kyverno/Sigillin-Schritte werden bei fehlenden Tools mit Warnung übersprungen, `PANTHEON_DISABLE=1` schützt Analytics)
 - Repo-Map: `pnpm repomap:build && pnpm repomap:validate`
   - Fällt auf Fallback-Artefakte zurück, falls `run-dist` nicht verfügbar ist
+- Advisory-Lane: Label `ci:advisory` triggert weiterhin das optionale Bundle `pnpm check:ci` (Soft-Fail) für aggregierte Ausgaben.
 
 ### Meta-Bundles
 
