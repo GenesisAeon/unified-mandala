@@ -15,6 +15,10 @@ pids
 *.pid
 *.seed
 *.pid.lock
+runtime/
+scratch/
+tmp/
+*.tmp
 
 # Agent scratch space
 .ai-scratch/
@@ -93,6 +97,7 @@ qa-report.log
 # Next.js build output
 .next
 out
+.out/
 
 # Nuxt.js build / generate output
 .nuxt
@@ -152,6 +157,10 @@ mandala-chronik.yaml
 user-config/
 .aeoncache
 .venv/
+
+# Cosmic-web demo artefacts (published via start:cosmic-web)
+apps/ui/public/demo/cosmic-web/
+!apps/ui/public/demo/cosmic-web/.gitkeep
 
 # repo-map analysis outputs
 analysis/repo-map.json

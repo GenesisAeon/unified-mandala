@@ -1,6 +1,11 @@
 {
   "runs": [
     {
+      "fraktalrun": "Fraktal79 CosmicStarter",
+      "status": "done",
+      "notes": "pnpm start:cosmic-web orchestrates NATS (ensure/start), rebuilds cosmic-web artefacts, launches dev-services + mandala-ui (port autodetect) and the cosmic tick publisher, and triggers pnpm smoke:ui with the detected UI_DEV_URL; mandala-ui now serves /demo/ai-playground with navigation and a Vite proxy to port 3002, and scripts/ci/no-local-path-leaks.mjs blocks staged Windows paths/secrets. MandalaMap.*, stabilization playbook (MD/YAML) and codexfeedback* record the run."
+    },
+    {
       "fraktalrun": "Fraktal78 CoreCoveragePolicy",
       "status": "done",
       "notes": "ci.core.yml bündelt `pnpm test:unit:coverage`, `pnpm schema:validate`, `pnpm maps:validate`, `pnpm sanity` und `pnpm policy:check` im type_and_tests-Gate, lädt `coverage-vitest` als Artefakt hoch; Label `ci:advisory` triggert `pnpm check:ci` (Soft-Fail). docs/START-HERE.md, Workflow-Cheat-Sheet, Stabilization-Playbook (MD/YAML), MandalaMap.(md|json|yaml) sowie codexfeedback* & analysis/devtalk78-evaluation.md dokumentieren den Lauf."

@@ -1,6 +1,41 @@
 fraktal:
-  current: 78
+  current: 79
   history:
+    - id: 79
+      status: done
+      notes:
+        'Fraktal79 CosmicStarter: `pnpm start:cosmic-web` orchestriert NATS, Cosmic-Web-Artefakte,
+        Dev-Services, mandala-ui (Port autodetect) und den Live-Ticker in einem Kommando,
+        triggert `pnpm smoke:ui` mit dynamischer `UI_DEV_URL`; mandala-ui rendert `/demo/ai-playground`
+        inklusive Navigation & Vite-Proxy (Port 3002) und `scripts/ci/no-local-path-leaks.mjs`
+        blockt Windows-Pfade/Secrets im Staging. MandalaMap.*, Stabilization-Playbook
+        (MD/YAML) und codexfeedback* spiegeln den Lauf.'
+      deliverables:
+        - .gitignore
+        - .husky/pre-commit
+        - apps/ui/public/demo/cosmic-web/.gitkeep
+        - apps/ui/src/components/MandalaAIPlayground.tsx
+        - apps/ui/src/shell/App.tsx
+        - apps/ui/vite.config.ts
+        - codexfeedback-fraktal79.yaml
+        - codexfeedback.md
+        - codexfeedback.json
+        - codexfeedback.yaml
+        - docs/roadmap/v1.0-stabilization-playbook.md
+        - docs/roadmap/v1.0-stabilization-playbook.yaml
+        - MandalaMap.md
+        - MandalaMap.yaml
+        - MandalaMap.json
+        - package.json
+        - scripts/ci/no-local-path-leaks.mjs
+        - scripts/smoke/ui-dev-smoke.mjs
+        - scripts/start-cosmic-web.mjs
+      commands:
+        - pnpm start:cosmic-web
+      hook:
+        progress: One-command Cosmic-Web Starter + `/demo/ai-playground` Route aktiv; Smoke prüft den Playground.
+        next_step: Optional Cypress/Playwright-Szenario für den Playground oder Docker-Cleanup im Starter ergänzen.
+      repeat_required: false
     - id: 78
       status: done
       notes: 'Fraktal78 CoreCoveragePolicy: ci.core.yml bündelt `pnpm test:unit:coverage`, `pnpm schema:validate`, `pnpm maps:validate`, `pnpm sanity` und `pnpm policy:check` im type_and_tests-Gate, lädt `coverage-vitest` als Artefakt hoch; Label `ci:advisory` triggert `pnpm check:ci` (Soft-Fail). docs/START-HERE.md, Workflow-Cheat-Sheet, Stabilization-Playbook (MD/YAML) sowie MandalaMap.(md|json|yaml) und codexfeedback* + analysis/devtalk78-evaluation.md dokumentieren den Lauf.'

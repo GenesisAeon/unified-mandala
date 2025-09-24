@@ -1,5 +1,3 @@
-import http from 'node:http';
-import https from 'node:https';
 import { spawn } from 'node:child_process';
 import process from 'node:process';
 import { URL } from 'node:url';
@@ -143,7 +141,9 @@ function clearTimers() {
 function schedulePoll(delay = DEFAULT_POLL_INTERVAL_MS) {
   if (finished || !resolvedUrl) return;
   if (pollTimer) clearTimeout(pollTimer);
-  pollTimer = setTimeout(checkServer, delay);
+  pollTimer = setTimeout(() => {
+    void checkServer();
+  }, delay);
 }
 
 function finish(code, message) {
@@ -180,21 +180,53 @@ function beginPolling(url, reason) {
   schedulePoll(DEFAULT_INITIAL_DELAY_MS);
 }
 
-function checkServer() {
+async function verifyAdditionalRoutes(baseUrl) {
+  if (process.env.UI_SMOKE_SKIP_PLAYGROUND === '1') {
+    return;
+  }
+  const aiUrl = new URL('/demo/ai-playground', `${baseUrl.protocol}//${baseUrl.host}`);
+  const response = await fetch(aiUrl.href, { redirect: 'manual' });
+  if (response.body) {
+    try {
+      response.body.cancel();
+    } catch {
+      // ignore
+    }
+  }
+  if (response.status < 200 || response.status >= 400) {
+    throw new Error(`/demo/ai-playground responded with status ${response.status}`);
+  }
+  log(`[smoke:ui] /demo/ai-playground reachable (${response.status})`);
+}
+
+async function checkServer() {
   if (!resolvedUrl || finished) return;
-  const client = resolvedUrl.protocol === 'https:' ? https : http;
-  const request = client.get(resolvedUrl, (response) => {
-    response.resume();
-    const status = response.statusCode ?? 0;
+  try {
+    const response = await fetch(resolvedUrl.href, { redirect: 'manual' });
+    if (response.body) {
+      try {
+        response.body.cancel();
+      } catch {
+        // ignore
+      }
+    }
+    const status = response.status;
     if (status >= 200 && status < 400) {
-      finish(0, `UI dev server ready at ${resolvedUrl.href}`);
+      try {
+        await verifyAdditionalRoutes(resolvedUrl);
+        finish(0, `UI dev server ready at ${resolvedUrl.href}`);
+      } catch (error) {
+        finish(
+          1,
+          `Route verification failed: ${error instanceof Error ? error.message : String(error)}`,
+        );
+      }
     } else {
       schedulePoll();
     }
-  });
-  request.on('error', () => {
+  } catch {
     schedulePoll();
-  });
+  }
 }
 
 const overrideRaw = (process.env.UI_DEV_URL ?? '').trim();

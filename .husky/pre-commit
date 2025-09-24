@@ -18,3 +18,4 @@ pnpm repomap:build || exit $?
 pnpm repomap:validate || exit $?
 pnpm sanity || exit $?
 pnpm policy:check || exit $?
+pnpm guard:no-local-paths || exit $?
