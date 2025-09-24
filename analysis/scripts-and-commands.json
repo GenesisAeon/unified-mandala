@@ -39,6 +39,7 @@
     "docs:build": "typedoc",
     "docs:auto": "node scripts/generate-api-docs.js",
     "postinstall": "husky",
+    "labels:setup": "node scripts/repo/setup-labels.mjs",
     "check:precommit": "pnpm lint-staged && pnpm typecheck && pnpm test:unit && pnpm schema:validate && pnpm maps:validate && pnpm repomap:build && pnpm repomap:validate && pnpm sanity && pnpm policy:check",
     "check:prepush": "pnpm test:unit:coverage && pnpm policy:check",
     "split:conversations": "node scripts/split-conversations.js",
@@ -145,7 +146,6 @@
     "sigillins:authoring": "node scripts/sigillin-authoring.mjs",
     "sigillins:report": "node scripts/sigillins-generate-reports.mjs",
     "sigillins:build": "node scripts/build-sigillin-archive.mjs",
-    "trikaya:dashboard": "node scripts/generate-trikaya-dashboard.mjs",
-    "status-gate:run": "gh workflow run status-gate -f pr=<nummer>"
+    "trikaya:dashboard": "node scripts/generate-trikaya-dashboard.mjs"
   }
 }

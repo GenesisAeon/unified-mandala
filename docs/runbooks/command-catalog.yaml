@@ -25,10 +25,10 @@ categories:
         command: pwsh -NoProfile -File ./scripts/setup-dev-env.ps1
         type: powershell
         runs: pwsh -NoProfile -File ./scripts/setup-dev-env.ps1
-        description: "Installs Git, Node.js, and Python on Windows, enables Corepack with\
-          \ admin detection (non-admin \u2192 user activation), recognises Docker-managed\
-          \ `nats` containers (status + start hints) and runs pnpm using PowerShell 7+\
-          \ (fallback: powershell -NoProfile -ExecutionPolicy Bypass -File .\\scripts\\setup-dev-env.ps1)."
+        description: 'Installs Git, Node.js, and Python on Windows, enables Corepack with
+          admin detection (non-admin → user activation), recognises Docker-managed `nats`
+          containers (status + start hints) and runs pnpm using PowerShell 7+ (fallback:
+          powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\setup-dev-env.ps1).'
         source:
           - scripts/setup-dev-env.ps1
       - id: setup.corepack-enable
@@ -88,9 +88,20 @@ categories:
         command: pnpm postinstall
         type: pnpm
         runs: husky
-        description: Runs Husky's installer via the postinstall script (triggered by pnpm install).
+        description: Runs Husky's installer via the postinstall script (triggered by pnpm
+          install).
         source:
           - package.json#scripts.postinstall
+      - id: setup.labels-bootstrap
+        name: Ensure provenance & CI labels
+        command: pnpm labels:setup
+        type: pnpm
+        runs: node scripts/repo/setup-labels.mjs
+        description: Bootstrap or refresh `source:*` and CI labels via GitHub CLI (gh
+          label create/edit).
+        source:
+          - scripts/repo/setup-labels.mjs
+          - package.json#scripts.labels:setup
       - id: setup.build-windows-tools
         name: Build Windows helper binaries
         command: pnpm build:windows-tools
@@ -105,7 +116,8 @@ categories:
         command: pnpm exec puppeteer browsers install chrome-headless-shell
         type: pnpm
         runs: pnpm exec puppeteer browsers install chrome-headless-shell
-        description: Installs the headless Chrome binary expected by @mermaid-js/mermaid-cli for Mermaid rendering on Windows.
+        description: Installs the headless Chrome binary expected by @mermaid-js/mermaid-cli
+          for Mermaid rendering on Windows.
         source:
           - DevTalk.txt#Fraktal60
       - id: setup.install-cypress
@@ -113,10 +125,10 @@ categories:
         command: pnpm exec cypress install
         type: pnpm
         runs: pnpm exec cypress install
-        description: Installs the repo-pinned Cypress release (14.5.1) ahead of `pnpm cy:run` to avoid version mismatches or runtime prompts.
+        description: Installs the repo-pinned Cypress release (14.5.1) ahead of `pnpm
+          cy:run` to avoid version mismatches or runtime prompts.
         source:
           - DevTalk.txt#Fraktal60
-
       - id: setup.docker-core
         name: Start core Docker profile
         command: docker compose --profile core up
@@ -208,19 +220,17 @@ categories:
         command: pnpm check:prepush
         type: pnpm
         runs: pnpm test:unit:coverage && pnpm policy:check
-        description: Local mirror of the pre-push hook (coverage + policy suite with
-          analytics disabled).
+        description: Local mirror of the pre-push hook (coverage + policy suite with analytics
+          disabled).
         source:
           - package.json#scripts.check:prepush
       - id: quality.check-ci
         name: Combined CI gate
         command: pnpm check:ci
         type: pnpm
-        runs: pnpm typecheck && pnpm test:unit && pnpm schema:validate && pnpm
-          maps:validate && pnpm repomap:build && pnpm repomap:validate && pnpm sanity &&
-          pnpm policy:check
-        description: Aggregates the CI gates used by check-ci.yml for quick local
-          verification.
+        runs: pnpm typecheck && pnpm test:unit && pnpm schema:validate && pnpm maps:validate
+          && pnpm repomap:build && pnpm repomap:validate && pnpm sanity && pnpm policy:check
+        description: Aggregates the CI gates used by check-ci.yml for quick local verification.
         source:
           - package.json#scripts.check:ci
       - id: quality.ci-fast-checks
@@ -303,7 +313,8 @@ categories:
         command: pnpm test:unit
         type: pnpm
         runs: vitest run
-        description: Runs the Vitest unit suite without generating coverage reports for faster local feedback.
+        description: Runs the Vitest unit suite without generating coverage reports for
+          faster local feedback.
         source:
           - package.json#scripts.test:unit
       - id: testing.test-unit-coverage
@@ -311,14 +322,15 @@ categories:
         command: pnpm test:unit:coverage
         type: pnpm
         runs: vitest run --coverage
-        description: Executes Vitest with coverage reporting enabled; CI Core publishes the `coverage-vitest` artifact from this run.
+        description: Executes Vitest with coverage reporting enabled; CI Core publishes
+          the `coverage-vitest` artifact from this run.
         source:
           - package.json#scripts.test:unit:coverage
       - id: testing.test-jest
         name: Legacy Jest tests
         command: pnpm test:jest
         type: pnpm
-        runs: "echo \"(Jest deaktiviert \u2013 nutze vitest)\" && exit 0"
+        runs: echo "(Jest deaktiviert – nutze vitest)" && exit 0
         description: Legacy alias that prints a Vitest migration hint (Jest disabled).
         source:
           - package.json#scripts.test:jest
@@ -385,7 +397,8 @@ categories:
         command: pnpm test:py
         type: pnpm
         runs: node scripts/run-pytest.mjs
-        description: Launches pytest via the repo resolver; defaults to -m "not slow and not experimental" -q.
+        description: Launches pytest via the repo resolver; defaults to -m "not slow and
+          not experimental" -q.
         source:
           - package.json#scripts.test:py
       - id: testing.test-py-extended
@@ -393,7 +406,8 @@ categories:
         command: pnpm test:py:extended
         type: pnpm
         runs: cross-env UM_PYTEST_MARK="not experimental" node scripts/run-pytest.mjs
-        description: Uses the run-pytest wrapper with the extended marker and venv path resolution.
+        description: Uses the run-pytest wrapper with the extended marker and venv path
+          resolution.
         source:
           - package.json#scripts.test:py:extended
       - id: testing.test-py-all
@@ -401,7 +415,8 @@ categories:
         command: pnpm test:py:all
         type: pnpm
         runs: node scripts/run-pytest.mjs -q
-        description: Executes the full pytest suite in quiet mode without the default marker filter.
+        description: Executes the full pytest suite in quiet mode without the default
+          marker filter.
         source:
           - package.json#scripts.test:py:all
       - id: testing.test-py-venv-python
@@ -409,7 +424,8 @@ categories:
         command: .\.venv\Scripts\python.exe -m pytest -q
         type: powershell
         runs: .\.venv\Scripts\python.exe -m pytest -q
-        description: Launches Pytest through the repository virtual environment so Windows shells do not rely on PATH lookups.
+        description: Launches Pytest through the repository virtual environment so Windows
+          shells do not rely on PATH lookups.
         source:
           - DevTalk.txt#Fraktal60
       - id: testing.test-py-venv-cli
@@ -417,10 +433,10 @@ categories:
         command: .\.venv\Scripts\pytest.exe -q
         type: powershell
         runs: .\.venv\Scripts\pytest.exe -q
-        description: Directly invokes the Pytest console script generated inside the virtualenv as an alternative to `python -m`.
+        description: Directly invokes the Pytest console script generated inside the virtualenv
+          as an alternative to `python -m`.
         source:
           - DevTalk.txt#Fraktal60
-
       - id: testing.test-sigil
         name: Sigil CLI test
         command: pnpm test:sigil
@@ -581,11 +597,11 @@ categories:
         source:
           - package.json#scripts.generate:agent-docs
       - id: build.trikaya-dashboard
-        name: "Trik\u0101ya dashboard"
+        name: Trikāya dashboard
         command: pnpm trikaya:dashboard
         type: pnpm
         runs: node scripts/generate-trikaya-dashboard.mjs
-        description: "Generates the Trik\u0101ya dashboard artifacts under analysis/."
+        description: Generates the Trikāya dashboard artifacts under analysis/.
         source:
           - package.json#scripts.trikaya:dashboard
   - key: runtime
@@ -621,9 +637,9 @@ categories:
         command: pnpm dev:stack
         type: pnpm
         runs: node scripts/dev-services.mjs --mode=dev
-        description: Starts the dev stack orchestrator, enforces port availability, and auto-frees
-          default ports via kill-port (disable with `UM_DEV_SERVICES_AUTOFREE_PORTS=0` or skip
-          with `UM_DEV_SERVICES_SKIP_PORT_CHECK=1`).
+        description: Starts the dev stack orchestrator, enforces port availability, and
+          auto-frees default ports via kill-port (disable with `UM_DEV_SERVICES_AUTOFREE_PORTS=0`
+          or skip with `UM_DEV_SERVICES_SKIP_PORT_CHECK=1`).
         source:
           - package.json#scripts.dev:stack
       - id: runtime.dev-ports-free
@@ -640,8 +656,8 @@ categories:
         command: pnpm dev:breath
         type: pnpm
         runs: node scripts/emergence-breath.mjs
-        description: "Watches sigils, apps/ui, and scripts to rerun `validate:sigillins`,\
-          \ rebuild the Trik\u0101ya dashboard, and print coverage metrics."
+        description: Watches sigils, apps/ui, and scripts to rerun `validate:sigillins`,
+          rebuild the Trikāya dashboard, and print coverage metrics.
         source:
           - package.json#scripts.dev:breath
       - id: runtime.ai-dev
@@ -649,7 +665,8 @@ categories:
         command: pnpm -F @unified-mandala/ai dev
         type: pnpm
         runs: pnpm -F @unified-mandala/ai dev
-        description: Sends a sample prompt through the @unified-mandala/ai Responses wrapper (requires OPENAI_API_KEY).
+        description: Sends a sample prompt through the @unified-mandala/ai Responses wrapper
+          (requires OPENAI_API_KEY).
         source:
           - packages/ai/package.json#scripts.dev
       - id: runtime.ai-nats
@@ -665,7 +682,8 @@ categories:
         command: pnpm -F @unified-mandala/api dev
         type: pnpm
         runs: pnpm -F @unified-mandala/api dev
-        description: Launches the Express API exposing `/api/ai/chat` (switch transport via AI_TRANSPORT=direct|nats).
+        description: Launches the Express API exposing `/api/ai/chat` (switch transport
+          via AI_TRANSPORT=direct|nats).
         source:
           - apps/api/package.json#scripts.dev
       - id: runtime.start
@@ -930,7 +948,8 @@ categories:
         command: pnpm sigils:validate:mini
         type: pnpm
         runs: node scripts/run-dist.mjs scripts/sigils/mini-sigillin-validator.ts
-        description: Validates Mandala explanations for CREP, Trikāya and next-step references; supports --input/--text/--json.
+        description: Validates Mandala explanations for CREP, Trikāya and next-step references;
+          supports --input/--text/--json.
         source:
           - package.json#scripts.sigils:validate:mini
           - scripts/sigils/mini-sigillin-validator.ts
@@ -1012,7 +1031,8 @@ categories:
         command: pnpm sigillins:report
         type: pnpm
         runs: node scripts/sigillins-generate-reports.mjs
-        description: 'Produces JUnit XML and Markdown summaries for governance review (default output: out/policy/sigillins/).'
+        description: 'Produces JUnit XML and Markdown summaries for governance review
+          (default output: out/policy/sigillins/).'
         source:
           - package.json#scripts.sigillins:report
       - id: sigils.map-mandala
@@ -1036,7 +1056,8 @@ categories:
         command: pnpm maps:validate
         type: pnpm
         runs: node scripts/maps/validate-maps.mjs
-        description: Validates map artifacts (`RepoMap.yaml` braucht `repo`, `ProgramFlow.yaml` `meta`).
+        description: Validates map artifacts (`RepoMap.yaml` braucht `repo`, `ProgramFlow.yaml`
+          `meta`).
         source:
           - package.json#scripts.maps:validate
       - id: sigils.maps-list
@@ -1064,7 +1085,8 @@ categories:
         command: pnpm adapter:build:era5
         type: pnpm
         runs: node scripts/adapter-build-era5.mjs
-        description: Builds ERA5 fixtures via the Python helper with `.venv` auto-detection and runs the post-processor.
+        description: Builds ERA5 fixtures via the Python helper with `.venv` auto-detection
+          and runs the post-processor.
         source:
           - package.json#scripts.adapter:build:era5
       - id: data.adapter-oisst
@@ -1132,7 +1154,9 @@ categories:
         command: pnpm observability:check
         type: pnpm
         runs: node scripts/run-dist.mjs scripts/observability/prometheus-target-check.ts
-        description: Verifies Prometheus `/api/v1/targets` and Grafana `/api/health` (Port 3300); `PROMETHEUS_REQUIRE_ACTIVE=0` erlaubt leere Targets, `OBSERVABILITY_SKIP_GRAFANA=1` überspringt den Grafana-Teil.
+        description: Verifies Prometheus `/api/v1/targets` and Grafana `/api/health` (Port
+          3300); `PROMETHEUS_REQUIRE_ACTIVE=0` erlaubt leere Targets, `OBSERVABILITY_SKIP_GRAFANA=1`
+          überspringt den Grafana-Teil.
         source:
           - package.json#scripts.observability:check
           - scripts/observability/prometheus-target-check.ts
@@ -1269,7 +1293,8 @@ categories:
         command: pnpm policy:check
         type: pnpm
         runs: node scripts/policy-suite.mjs
-        description: 'Runs the unified policy suite (OPA, Guardrails, Kyverno) and persists sigillin governance reports to out/policy/sigillins/.'
+        description: Runs the unified policy suite (OPA, Guardrails, Kyverno) and persists
+          sigillin governance reports to out/policy/sigillins/.
         source:
           - package.json#scripts.policy:check
       - id: policy.kyverno-validate
@@ -1294,8 +1319,11 @@ categories:
         name: Adapters offline build
         command: pnpm ci:adapters-offline
         type: pnpm
-        runs: cross-env CI=true pnpm adapter:build:oisst && cross-env CI=true pnpm adapter:build:era5 || true
-        description: Runs offline adapter builds in CI with non-blocking fallback (cross-platform env export).
+        runs:
+          cross-env CI=true pnpm adapter:build:oisst && cross-env CI=true pnpm adapter:build:era5
+          || true
+        description: Runs offline adapter builds in CI with non-blocking fallback (cross-platform
+          env export).
         source:
           - package.json#scripts.ci:adapters-offline
   - key: aeon
@@ -1351,7 +1379,8 @@ categories:
         command: pnpm prompts:coach
         type: pnpm
         runs: node scripts/run-dist.mjs scripts/prompt-coach.ts
-        description: Dist-first prompt coach execution; pass `--dry` to preview suggestions without writing files.
+        description: Dist-first prompt coach execution; pass `--dry` to preview suggestions
+          without writing files.
         source:
           - package.json#scripts.prompts:coach
 tools:

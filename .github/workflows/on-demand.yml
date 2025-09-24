@@ -1,0 +1,43 @@
+name: on-demand
+
+on:
+  issue_comment:
+    types: [created]
+
+permissions:
+  issues: write
+  pull-requests: write
+  contents: read
+
+jobs:
+  repomap:
+    name: /run repomap
+    if: >-
+      ${{ github.event.issue.pull_request && startsWith(github.event.comment.body, '/run repomap') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Add label run:repomap
+        uses: actions-ecosystem/action-add-labels@v1
+        with:
+          labels: run:repomap
+      - name: Confirm queued run
+        uses: thollander/actions-comment-pull-request@v3
+        with:
+          message: 'Queued **repomap** run via `run:repomap` label. Re-run CI to execute.'
+
+  governance:
+    name: /run governance
+    if: >-
+      ${{ github.event.issue.pull_request && startsWith(github.event.comment.body, '/run governance') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Add label ci:advisory
+        uses: actions-ecosystem/action-add-labels@v1
+        with:
+          labels: ci:advisory
+      - name: Confirm advisory run
+        uses: thollander/actions-comment-pull-request@v3
+        with:
+          message: 'Enabled advisory suite (`ci:advisory`). Re-run CI to collect soft-fail results.'

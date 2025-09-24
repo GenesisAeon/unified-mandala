@@ -94,6 +94,15 @@
           "source": ["package.json#scripts.postinstall"]
         },
         {
+          "id": "setup.labels-bootstrap",
+          "name": "Ensure provenance & CI labels",
+          "command": "pnpm labels:setup",
+          "type": "pnpm",
+          "runs": "node scripts/repo/setup-labels.mjs",
+          "description": "Bootstrap or refresh `source:*` and CI labels via GitHub CLI (gh label create/edit).",
+          "source": ["scripts/repo/setup-labels.mjs", "package.json#scripts.labels:setup"]
+        },
+        {
           "id": "setup.build-windows-tools",
           "name": "Build Windows helper binaries",
           "command": "pnpm build:windows-tools",
