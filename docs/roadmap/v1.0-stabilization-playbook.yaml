@@ -149,6 +149,24 @@ streams:
         status: done
         notes: Light-static smoke script (`pnpm smoke:light-static`) Teil der Release-Checklist
           & Monitoring-Auswertung (Fraktal44).
+      - id: ai-responses-bridge
+        description: OpenAI Responses Wrapper + API + Playground dokumentieren
+        status: done
+        notes: |
+          Fraktal75: Neues Workspace `@unified-mandala/ai` kapselt die OpenAI Responses API
+          (inkl. `.env.example`, Dev-Skript und optionalem NATS-Worker). `apps/api`
+          stellt `POST /api/ai/chat` bereit (`AI_TRANSPORT=direct|nats`), und
+          `MandalaAIPlayground` ermöglicht manuelle End-to-End-Tests. Command-Catalog
+          & Cheat-Sheet listen die neuen Flows (`pnpm -F @unified-mandala/ai dev`,
+          `pnpm -F @unified-mandala/ai nats`, `pnpm -F @unified-mandala/api dev`).
+        artifacts:
+          - packages/ai
+          - apps/api
+          - apps/web/src/components/MandalaAIPlayground.tsx
+          - docs/runbooks/command-catalog.md
+          - docs/runbooks/command-catalog.json
+          - docs/runbooks/command-catalog.yaml
+          - docs/cheatsheets/unified-mandala-workflows.md
   - key: governance
     owner:
       lead: AI Governance Council

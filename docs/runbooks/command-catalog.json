@@ -671,6 +671,33 @@
           "source": ["package.json#scripts.dev:breath"]
         },
         {
+          "id": "runtime.ai-dev",
+          "name": "AI Responses dev prompt",
+          "command": "pnpm -F @unified-mandala/ai dev",
+          "type": "pnpm",
+          "runs": "pnpm -F @unified-mandala/ai dev",
+          "description": "Sends a sample prompt through the @unified-mandala/ai Responses wrapper (requires OPENAI_API_KEY).",
+          "source": ["packages/ai/package.json#scripts.dev"]
+        },
+        {
+          "id": "runtime.ai-nats",
+          "name": "AI NATS worker",
+          "command": "pnpm -F @unified-mandala/ai nats",
+          "type": "pnpm",
+          "runs": "pnpm -F @unified-mandala/ai nats",
+          "description": "Starts the optional NATS request/reply worker on `ai.request`.",
+          "source": ["packages/ai/package.json#scripts.nats"]
+        },
+        {
+          "id": "runtime.api-dev",
+          "name": "AI HTTP bridge",
+          "command": "pnpm -F @unified-mandala/api dev",
+          "type": "pnpm",
+          "runs": "pnpm -F @unified-mandala/api dev",
+          "description": "Launches the Express API exposing `/api/ai/chat` (switch transport via AI_TRANSPORT=direct|nats).",
+          "source": ["apps/api/package.json#scripts.dev"]
+        },
+        {
           "id": "runtime.start",
           "name": "Start UI & dev",
           "command": "pnpm start",

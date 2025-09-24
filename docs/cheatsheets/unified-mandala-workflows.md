@@ -18,6 +18,13 @@ Dieses Cheat Sheet fasst die Kernabläufe für das Unified-Mandala-Repo zusammen
   - Belegt Ports werden automatisch freigeräumt (`pnpm dlx kill-port ...`); Opt-out via `UM_DEV_SERVICES_AUTOFREE_PORTS=0`
 - Ports hart aufräumen: `pnpm dev:ports:free`
 
+### AI Bridge testen
+
+- Responses-Wrapper lokal prüfen: `pnpm -F @unified-mandala/ai dev`
+- NATS-Worker starten (Request/Reply auf `ai.request`): `pnpm -F @unified-mandala/ai nats`
+- Express-API mit `/api/ai/chat` hochfahren: `pnpm -F @unified-mandala/api dev`
+- Optional: `AI_TRANSPORT=nats` setzen, um HTTP-Aufrufe über den Worker zu routen.
+
 ### JetStream / NATS
 
 - Lokalen NATS-Server per Docker starten: `pnpm nats:docker up`

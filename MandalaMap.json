@@ -1,8 +1,8 @@
 {
   "meta": {
     "version": "1.0",
-    "generated": "2025-10-20T12:00:00Z",
-    "fraktal": 49,
+    "generated": "2025-11-15T12:00:00Z",
+    "fraktal": 75,
     "repo": "unified-mandala",
     "source": "ChefDevAI MandalaMap bootstrap",
     "reference_docs": [
@@ -238,7 +238,8 @@
       "description": "React/Vite frontends (mandala-ui, sharedream-interface, pyramid-ui, mobile prototypes).",
       "notes": [
         "Primary UI served from apps/ui (workspace name mandala-ui).",
-        "Dev entrypoints: pnpm -F mandala-ui dev | pnpm -F mandala-ui build."
+        "Dev entrypoints: pnpm -F mandala-ui dev | pnpm -F mandala-ui build.",
+        "apps/api bietet `/api/ai/chat` (Responses direkt oder via `AI_TRANSPORT=nats`); MandalaAIPlayground in apps/web/components dient als manueller Responses-Test."
       ],
       "links": [
         {
@@ -621,7 +622,8 @@
       "description": "Primary TypeScript/Node packages grouped by domains (aeon-*, unifiedmandala-*, etc.).",
       "notes": [
         "Cover core libs, agents, domain modules, UI components, CLI tools.",
-        "Validated via pnpm test:ts:ci and pnpm lint commands."
+        "Validated via pnpm test:ts:ci and pnpm lint commands.",
+        "`@unified-mandala/ai` kapselt die OpenAI Responses API inkl. `.env.example`, Dev-Skript (`pnpm -F @unified-mandala/ai dev`) und optionalem NATS-Worker."
       ],
       "links": []
     },

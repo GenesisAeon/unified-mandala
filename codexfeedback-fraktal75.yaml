@@ -1,0 +1,47 @@
+fraktal: 75
+status: done
+owner: ChefDevAI
+summary:
+  - '`@unified-mandala/ai` implementiert den OpenAI Responses Wrapper inkl. `.env.example`, Dev-Skript und optionalem NATS-Worker (`pnpm -F @unified-mandala/ai dev|nats`).'
+  - 'Neues Workspace `apps/api` stellt `/api/ai/chat` bereit (Express, Zod-Validation, AI_TRANSPORT=direct|nats); `MandalaAIPlayground` in apps/web demonstriert den End-to-End-Flow.'
+  - 'Command-Catalog (.md/.json/.yaml), Workflow-Cheat-Sheet, MandalaMap.*, Stabilization-Playbook und codexfeedback* spiegeln die neuen AI-Bridges; CommunityOnboarding.md ergänzt eine MCP-Referenz.'
+  - 'analysis/devtalk75-evaluation.md dokumentiert die Umsetzung des Fraktal75-Gesprächs (MCP-Guidance, Wrapper, API, Playground, Follow-ups).'
+deliverables:
+  - packages/ai/package.json
+  - packages/ai/tsconfig.json
+  - packages/ai/.env.example
+  - packages/ai/README.md
+  - packages/ai/src/client.ts
+  - packages/ai/src/ask.ts
+  - packages/ai/src/index.ts
+  - packages/ai/src/dev.ts
+  - packages/ai/src/nats-worker.ts
+  - apps/api/package.json
+  - apps/api/tsconfig.json
+  - apps/api/.env.example
+  - apps/api/src/index.ts
+  - apps/api/src/natsClient.ts
+  - apps/web/src/components/MandalaAIPlayground.tsx
+  - docs/CommunityOnboarding.md
+  - docs/cheatsheets/unified-mandala-workflows.md
+  - docs/runbooks/command-catalog.md
+  - docs/runbooks/command-catalog.json
+  - docs/runbooks/command-catalog.yaml
+  - docs/roadmap/v1.0-stabilization-playbook.md
+  - docs/roadmap/v1.0-stabilization-playbook.yaml
+  - MandalaMap.md
+  - MandalaMap.yaml
+  - MandalaMap.json
+  - analysis/devtalk75-evaluation.md
+  - codexfeedback.md
+  - codexfeedback.yaml
+  - codexfeedback.json
+  - codexfeedback-fraktal75.yaml
+commands:
+  - pnpm -F @unified-mandala/ai dev
+  - pnpm -F @unified-mandala/ai nats
+  - pnpm -F @unified-mandala/api dev
+hook:
+  progress: AI-Bridge (Responses → API → Playground) produktiv; Dokumentation und MandalaMap aktualisiert, MCP-Setup als Onboarding-Referenz ergänzt.
+  next_step: Streaming-/Tool-Support optional in Folgeläufen evaluieren; Automatisierte Tests für `/api/ai/chat` vorbereiten, sobald Secrets verfügbar sind.
+repeat_required: false

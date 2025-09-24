@@ -1,6 +1,6 @@
-# Mandala Map · Fraktal49
+# Mandala Map · Fraktal75
 
-Generated: 2025-10-19T12:00:00Z
+Generated: 2025-11-15T12:00:00Z
 Repository: unified-mandala
 
 ## Reference Docs
@@ -241,11 +241,13 @@ Repository: unified-mandala
 - `apps/` — **active** Workspace applications
   - React/Vite frontends (mandala-ui, sharedream-interface, pyramid-ui, mobile prototypes).
   - Notes: Primary UI served from apps/ui (workspace name mandala-ui).; Dev entrypoints: pnpm -F mandala-ui dev | pnpm -F mandala-ui build.
+  - Notes: `apps/api` stellt `/api/ai/chat` bereit (Responses direkt oder via `AI_TRANSPORT=nats`). `MandalaAIPlayground` in apps/web/components testet den Responses-Flow manuell.
   - Links: [apps/ui package.json](apps/ui/package.json)
 
 - `packages/` — **active** Workspace packages
   - Primary TypeScript/Node packages grouped by domains (aeon-_, unifiedmandala-_, etc.).
   - Notes: Cover core libs, agents, domain modules, UI components, CLI tools.; Validated via pnpm test:ts:ci and pnpm lint commands.
+  - Notes: `@unified-mandala/ai` kapselt die OpenAI Responses API inkl. `.env.example`, Dev-Skript (`pnpm -F @unified-mandala/ai dev`) und optionalem NATS-Worker.
 
 - `public/` — **active** Public assets
   - Static assets (plugins.html, js) for the Mandala UI.
