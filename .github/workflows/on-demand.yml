@@ -1,0 +1,37 @@
+name: on-demand
+
+on:
+  issue_comment:
+    types: [created]
+
+permissions:
+  issues: write
+  pull-requests: write
+  contents: read
+
+jobs:
+  repomap:
+    name: /run repomap
+    if: >-
+      ${{ github.event.issue.pull_request && startsWith(github.event.comment.body, '/run repomap') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions-ecosystem/action-add-labels@v1
+        with:
+          labels: run:repomap
+      - uses: thollander/actions-comment-pull-request@v3
+        with:
+          message: 'Queued **repomap** run via label `run:repomap`. Re-run CI to execute.'
+
+  governance:
+    name: /run governance
+    if: >-
+      ${{ github.event.issue.pull_request && startsWith(github.event.comment.body, '/run governance') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions-ecosystem/action-add-labels@v1
+        with:
+          labels: ci:advisory
+      - uses: thollander/actions-comment-pull-request@v3
+        with:
+          message: 'Advisory governance suite enabled (soft-fail). Re-run CI to capture results.'

@@ -1,0 +1,81 @@
+name: provenance-gate
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, labeled]
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Detect changed files
+        id: diff
+        run: |
+          git fetch origin ${{ github.event.pull_request.base.ref }} --depth=1
+          git diff --name-only origin/${{ github.event.pull_request.base.ref }}...HEAD > changed.txt
+          echo "CHANGED<<EOF" >> "$GITHUB_OUTPUT"
+          cat changed.txt >> "$GITHUB_OUTPUT"
+          echo "EOF" >> "$GITHUB_OUTPUT"
+      - name: Enforce provenance and path matrix
+        env:
+          LABELS: "${{ join(github.event.pull_request.labels.*.name, ',') }}"
+        run: |
+          set -euo pipefail
+
+          if [ -z "$LABELS" ]; then
+            echo '❌ PR needs exactly one source:* label.'
+            exit 1
+          fi
+
+          COUNT=$(printf '%s\n' "$LABELS" | tr ',' '\n' | grep -c '^source:')
+          if [ "$COUNT" -ne 1 ]; then
+            echo '❌ Exactly one source:* label allowed.'
+            exit 1
+          fi
+
+          CHANGED=$(cat changed.txt)
+          echo "Changed files:\n$CHANGED\n"
+
+          PROTECTED='^(packages/.+/core/|scripts/ci/.+guard|.github/workflows/.+guard|infra/prod/|deploy/|packages/.+/release\\.mjs)'
+
+          if printf '%s' "$LABELS" | grep -q 'source:human-docs'; then
+            if printf '%s\n' "$CHANGED" | grep -Ev '^(docs/|analysis/|out/|\.github/|README|CHANGELOG|MandalaMap|command-catalog)' | grep -q '.'; then
+              echo '❌ source:human-docs may only modify docs/, analysis/, out/, .github/, README*, CHANGELOG*, MandalaMap*, command-catalog*.'
+              exit 1
+            fi
+          elif printf '%s' "$LABELS" | grep -q 'source:human'; then
+            if printf '%s\n' "$CHANGED" | grep -E '^(scratch/|data/)' >/dev/null; then
+              echo '❌ Human-authored code should not commit runtime artefacts under scratch/ or data/.'
+              exit 1
+            fi
+          elif printf '%s' "$LABELS" | grep -q 'source:mandala-ai'; then
+            if printf '%s\n' "$CHANGED" | grep -Ev '^(packages/ai|apps/.+ai|docs/|scratch/|data/|.github/|analysis/|out/)' | grep -q '.'; then
+              echo '❌ source:mandala-ai restricted to packages/ai, apps/*ai, docs/, scratch/, data/, .github/, analysis/, out/.'
+              exit 1
+            fi
+            if printf '%s\n' "$CHANGED" | grep -E "$PROTECTED" >/dev/null; then
+              echo '❌ source:mandala-ai cannot touch protected zones (core, guards, prod infra).'
+              exit 1
+            fi
+          elif printf '%s' "$LABELS" | grep -q 'source:external-ai'; then
+            if printf '%s\n' "$CHANGED" | grep -Ev '^(scratch/|docs/|analysis/|out/|.github/)' | grep -q '.'; then
+              echo '❌ source:external-ai limited to scratch/, docs/, analysis/, out/, .github/. '
+              exit 1
+            fi
+            if printf '%s\n' "$CHANGED" | grep -E "$PROTECTED" >/dev/null; then
+              echo '❌ source:external-ai cannot modify protected zones.'
+              exit 1
+            fi
+          else
+            echo '❌ Missing supported source:* label.'
+            exit 1
+          fi
+
+          echo '✅ provenance-gate passed.'

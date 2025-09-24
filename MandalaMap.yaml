@@ -1,6 +1,6 @@
 meta:
   version: '1.0'
-  generated: 2025-11-17T00:00:00Z
+  generated: 2025-11-18T00:00:00Z
   fraktal: 77
   repo: unified-mandala
   source: ChefDevAI MandalaMap bootstrap
@@ -121,6 +121,7 @@ entries:
       - 'Fraktal66: Policy-Suite markiert Kyverno/Sigillin als optionale Schritte, loggt Skip-Warnungen wenn Kyverno-CLI oder `sigillins:report` fehlen und setzt `PANTHEON_DISABLE=1`; repomap-Fallback erzeugt Artefakte, falls `scripts/run-dist.mjs` nicht verfügbar ist.'
       - 'Fraktal76 führt `ai-commit-guard.yml` ein: blockiert Bot-Pushes auf main, verhindert `.ai-scratch/`-Artefakte und erinnert im PR-Template an das Two-Plane-Modell (repo:// read-only ↔ scratch:// runtime).'
       - 'Fraktal77 ergänzt `status-gate.yml`: Das Label **ready-to-merge** löst einen Gate-Lauf (Draft, ReviewDecision, Mergeability, Status-Rollup) aus und aktiviert Auto-/Merge-Queue bei Erfolg.'
+      - 'Fraktal77+: `auto-provenance.yml` vergibt automatisch `source:*`-Labels, `provenance-gate.yml` erzwingt die Label→Pfad-Matrix und `ci.core` läuft schlanker mit optionalen Advisory-/Runtime-Lanes (Labels `ci:advisory`, `ci:extended`, `ci:runtime`, Slash-Commands `/run repomap`, `/run governance`).'
     links:
       - label: CI Core
         path: .github/workflows/ci.core.yml
@@ -134,6 +135,14 @@ entries:
         path: .github/workflows/ai-commit-guard.yml
       - label: Status gate
         path: .github/workflows/status-gate.yml
+      - label: Auto provenance
+        path: .github/workflows/auto-provenance.yml
+      - label: Provenance gate
+        path: .github/workflows/provenance-gate.yml
+      - label: On-demand
+        path: .github/workflows/on-demand.yml
+      - label: Runtime lane
+        path: .github/workflows/ci.runtime.yml
   - path: .husky/
     category: ci-infra
     status: active

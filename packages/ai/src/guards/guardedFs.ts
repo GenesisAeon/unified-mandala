@@ -1,6 +1,16 @@
 import { promises as fs } from 'node:fs';
 import path from 'node:path';
 import { resolve } from './pathBroker.js';
+import { resolveWritePath } from './pathRouter.js';
+
+const toUri = (input: string): string => {
+  if (/^[a-zA-Z][\w+.-]*:\/\//.test(input)) {
+    return input;
+  }
+
+  const routed = resolveWritePath(input);
+  return `${routed.plane}://${routed.path}`;
+};
 
 const ensureDir = async (filePath: string) => {
   await fs.mkdir(path.dirname(filePath), { recursive: true });
@@ -12,7 +22,7 @@ export const readFileURI = async (uri: string): Promise<string> => {
 };
 
 export const writeFileURI = async (uri: string, content: string | Buffer) => {
-  const resolved = resolve(uri);
+  const resolved = resolve(toUri(uri));
   if (!resolved.writable) {
     throw new Error(`Writes to ${resolved.scheme} are forbidden: ${uri}`);
   }
