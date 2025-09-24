@@ -1,5 +1,6 @@
 # Codex Feedback
 
+- FR-UM-2025-11-15-Fraktal75-AIResponsesBridge: `@unified-mandala/ai` kapselt die OpenAI Responses API (Dev-/NATS-Skripte, `.env.example`), `apps/api` liefert `/api/ai/chat` (AI_TRANSPORT=direct|nats) und `MandalaAIPlayground` ermöglicht End-to-End-Tests. Command-Catalog, Workflow-Cheat-Sheet, MandalaMap.\*, Stabilization-Playbook sowie CommunityOnboarding.md (MCP-Referenz) aktualisiert; analysis/devtalk75-evaluation.md dokumentiert den Lauf.
 - FR-UM-2025-11-10-Fraktal74-DevTalkReview: DevTalk.txt auditiert; alle CI-/Governance-/Observability-Anforderungen aus Fraktal74 sind produktiv (Aggregatoren `pnpm check:ci`/`pnpm ci:verify`, Husky-Hooks, Monitoring-Smokes). Neues README-Kapitel "Build, Test & Policy Bundles" sowie `analysis/devtalk74-evaluation.md` dokumentieren den Abgleich. Optionaler Follow-up: Coverage-Badge automatisieren.
 - FR-UM-2025-11-10-Fraktal74-CIGateUnification: Husky-Hooks laufen jetzt mit optionalem Heavy-Gate (`pnpm check:precommit`/`pnpm check:prepush`), `package.json` nutzt `postinstall: husky`, neue Aggregatoren (`scripts/ci-verify.mjs`, `scripts/sanity/index.mjs`) sowie GitHub-Workflows `check:ci`/`ci:verify` bündeln Typecheck, Unit-, Coverage-, Schema-, Maps-, Repomap-, Sanity- und Policy-Gates; Command-Catalog, MandalaMap.\* und das Stabilization-Playbook verweisen auf die aktualisierten Bundles.
 

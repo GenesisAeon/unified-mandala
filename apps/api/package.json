@@ -1,0 +1,23 @@
+{
+  "name": "@unified-mandala/api",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "start": "node --enable-source-maps dist/index.js",
+    "build": "tsc -p tsconfig.json"
+  },
+  "dependencies": {
+    "@unified-mandala/ai": "workspace:*",
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "nats": "^2.26.0",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.3",
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21"
+  }
+}

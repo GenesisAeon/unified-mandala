@@ -1,7 +1,7 @@
 meta:
   version: '1.0'
-  generated: 2025-10-20T12:00:00Z
-  fraktal: 49
+  generated: 2025-11-15T12:00:00Z
+  fraktal: 75
   repo: unified-mandala
   source: ChefDevAI MandalaMap bootstrap
   reference_docs:
@@ -217,6 +217,10 @@ entries:
     notes:
       - Primary UI served from apps/ui (workspace name mandala-ui).
       - 'Dev entrypoints: pnpm -F mandala-ui dev | pnpm -F mandala-ui build.'
+      - '`apps/api` stellt eine Express-Route `/api/ai/chat` bereit (Responses direkt
+        oder via `AI_TRANSPORT=nats`).'
+      - '`apps/web/src/components/MandalaAIPlayground.tsx` testet den Responses-Bridge
+        Flow manuell.'
     links:
       - label: apps/ui package.json
         path: apps/ui/package.json
@@ -542,6 +546,8 @@ entries:
     notes:
       - Cover core libs, agents, domain modules, UI components, CLI tools.
       - Validated via pnpm test:ts:ci and pnpm lint commands.
+      - '`@unified-mandala/ai` kapselt die OpenAI Responses API inkl. `.env.example`,
+        Dev-Skript (`pnpm -F @unified-mandala/ai dev`) und optionalem NATS-Worker.'
     links: []
   - path: pipelines/
     category: data-intel

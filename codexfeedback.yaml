@@ -1,6 +1,47 @@
 fraktal:
-  current: 74
+  current: 75
   history:
+    - id: 75
+      status: done
+      notes: 'Fraktal75 AIResponsesBridge: `@unified-mandala/ai` kapselt die OpenAI Responses API (Dev/NATS-Skripte, `.env.example`), `apps/api` liefert `/api/ai/chat` (AI_TRANSPORT=direct|nats) und `MandalaAIPlayground` ermöglicht End-to-End-Tests. Command-Catalog, Workflow-Cheat-Sheet, MandalaMap.*, Stabilization-Playbook sowie CommunityOnboarding.md (MCP-Guide) wurden aktualisiert; analysis/devtalk75-evaluation.md dokumentiert den Lauf.'
+      deliverables:
+        - packages/ai/package.json
+        - packages/ai/tsconfig.json
+        - packages/ai/.env.example
+        - packages/ai/README.md
+        - packages/ai/src/client.ts
+        - packages/ai/src/ask.ts
+        - packages/ai/src/index.ts
+        - packages/ai/src/dev.ts
+        - packages/ai/src/nats-worker.ts
+        - apps/api/package.json
+        - apps/api/tsconfig.json
+        - apps/api/.env.example
+        - apps/api/src/index.ts
+        - apps/api/src/natsClient.ts
+        - apps/web/src/components/MandalaAIPlayground.tsx
+        - docs/CommunityOnboarding.md
+        - docs/cheatsheets/unified-mandala-workflows.md
+        - docs/runbooks/command-catalog.md
+        - docs/runbooks/command-catalog.json
+        - docs/runbooks/command-catalog.yaml
+        - docs/roadmap/v1.0-stabilization-playbook.md
+        - docs/roadmap/v1.0-stabilization-playbook.yaml
+        - MandalaMap.md
+        - MandalaMap.yaml
+        - MandalaMap.json
+        - analysis/devtalk75-evaluation.md
+        - codexfeedback.md
+        - codexfeedback.yaml
+        - codexfeedback.json
+        - codexfeedback-fraktal75.yaml
+      commands:
+        - pnpm -F @unified-mandala/ai dev
+        - pnpm -F @unified-mandala/ai nats
+        - pnpm -F @unified-mandala/api dev
+      hook:
+        progress: AI-Bridge (Responses → API → Playground) produktiv; Dokumentation & MandalaMap aktualisiert, MCP-Setup als Onboarding-Referenz ergänzt.
+        next_step: Streaming-/Tool-Support optional evaluieren und API-Tests automatisieren, sobald Secrets verfügbar sind.
     - id: 74
       status: done
       notes: 'Fraktal74 CIGateUnification: Husky-Hooks erzwingen auf Wunsch schwere

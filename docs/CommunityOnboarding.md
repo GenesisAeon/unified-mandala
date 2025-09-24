@@ -36,6 +36,18 @@ Weitere Hinweise zu Modulen und Ordnerstruktur findest du im [Handbuch](Handbuch
 
 Eine kurze Schritt-für-Schritt-Anleitung zum Starten einer Demo inklusive Mistral Code Agent findest du in [docs/demo/onboarding-demo.md](demo/onboarding-demo.md).
 
+## Custom Connectors (MCP) – Schnellreferenz
+
+Für Mandala-Integrationen mit ChatGPT Custom Connectors (MCP) gelten einige Voraussetzungen außerhalb des Repos:
+
+1. **Plan prüfen** – Custom Connectoren stehen nur für ChatGPT **Pro** oder **Business/Enterprise/Edu** Workspaces bereit. Free/Plus Accounts zeigen den Schalter nicht.
+2. **Rolle verifizieren** – In Workspaces können ausschließlich **Owner/Admins** neue Connectoren aktivieren. Normale Mitglieder sehen die Option erst, nachdem ein Admin sie freigeschaltet hat.
+3. **Einstellungen finden** – In ChatGPT: `Settings → Connectors` → "Add custom connector". Die UI verlinkt direkt auf die MCP-Dokumentation.
+4. **Rollout-Status beachten** – Manche Funktionen (z. B. Deep Research) werden stufenweise pro Region ausgerollt. Fehlt der Schalter trotz erfüllter Voraussetzungen, ist der Account vermutlich noch nicht freigeschaltet.
+5. **MCP-Server bereitstellen** – Sobald die Option sichtbar ist, erwartet ChatGPT einen erreichbaren MCP-Server (lokal oder remote). Technische Anforderungen und Sicherheitsrisiken stehen in der offiziellen Dokumentation: <https://platform.openai.com/docs/mcp>.
+
+> Tipp: Teste die Einstellungen sowohl im Web (chat.openai.com) als auch in der Desktop-App. Melde dich ggf. einmal ab/an, falls der Toggle nicht sofort erscheint.
+
 ## AI Governance Primer
 
 - **Policy Suite** (`pnpm policy:check`) vereint OPA, Guardrails und Kyverno.
