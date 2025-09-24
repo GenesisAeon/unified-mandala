@@ -1,6 +1,32 @@
 fraktal:
-  current: 76
+  current: 77
   history:
+    - id: 77
+      status: done
+      notes: 'Fraktal77 StatusGate: Workflow `status-gate.yml` prüft das Label **ready-to-merge** (Draft, ReviewDecision, Mergeability, Status-Rollup) und aktiviert Auto-Merge/Merge Queue nur bei grünen Checks; MandalaMap.*, Stabilization-Playbook.(md|yaml), Workflow-Cheat-Sheet, Command-Catalog.(md|json|yaml), analysis/devtalk77-evaluation.md sowie codexfeedback* dokumentieren den Gate-Lauf und die manuelle `workflow_dispatch`-Option.'
+      deliverables:
+        - .github/workflows/status-gate.yml
+        - MandalaMap.md
+        - MandalaMap.yaml
+        - MandalaMap.json
+        - docs/roadmap/v1.0-stabilization-playbook.md
+        - docs/roadmap/v1.0-stabilization-playbook.yaml
+        - docs/cheatsheets/unified-mandala-workflows.md
+        - docs/runbooks/command-catalog.md
+        - docs/runbooks/command-catalog.yaml
+        - docs/runbooks/command-catalog.json
+        - analysis/scripts-and-commands.json
+        - analysis/devtalk77-evaluation.md
+        - codexfeedback.md
+        - codexfeedback.yaml
+        - codexfeedback.json
+        - codexfeedback-fraktal77.yaml
+      commands:
+        - gh workflow run status-gate -f pr=<nummer>
+      hook:
+        progress: Status-Gate aktiv; Ready-to-merge Label löst Auto-/Merge-Queue nur bei SUCCESS aus.
+        next_step: Optionale Ergänzung automatisierter Tests für status-gate Skript (z. B. Mock-basierte CI-Checks) evaluieren.
+      repeat_required: false
     - id: 76
       status: done
       notes: 'Fraktal76 TwoPlaneGuard: `packages/ai` ergänzt Guarded-FS (`pathBroker.ts`,

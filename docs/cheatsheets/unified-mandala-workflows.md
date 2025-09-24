@@ -76,6 +76,7 @@ Dieses Cheat Sheet fasst die Kernabläufe für das Unified-Mandala-Repo zusammen
 - `pnpm check:ci` fasst die Kern-Gates für PRs zusammen: `pnpm typecheck`, `pnpm test:unit`, `pnpm schema:validate`, `pnpm maps:validate`, `pnpm repomap:build`, `pnpm repomap:validate`, `pnpm sanity` und `pnpm policy:check`.
 - `pnpm ci:verify` ruft das Skript `scripts/ci-verify.mjs` auf (Typecheck, Unit-Tests, Coverage, Schema/Map/Repo-Sanity und Policy-Suite) – identisch mit dem GitHub-Workflow `ci:verify`.
 - GitHub-Workflow `ai-commit-guard.yml` führt `node scripts/ci/ai-commit-guard.mjs` aus, blockiert `.ai-scratch/`-Artefakte, verhindert Bot-Pushes auf `main` und erinnert PRs an das Two-Plane-Modell (CODE ↔ RUNTIME).
+- GitHub-Workflow `status-gate.yml` reagiert auf das Label **ready-to-merge** (oder manuellen `workflow_dispatch`), prüft Draft, ReviewDecision, Mergeability sowie den Status-Rollup und aktiviert Auto-Merge/Merge Queue nur bei vollständig grünen Checks; scheitert ein Gate, wird das Label automatisch entfernt.
 
 ### Python & Adapter-Abhängigkeiten
 

@@ -1,0 +1,29 @@
+fraktal: 77
+status: done
+owner: ChefDevAI
+summary:
+  - 'Workflow `status-gate.yml` prüft Ready-to-merge Labels auf Draft, ReviewDecision, Mergeability und Status-Rollup und aktiviert Auto-/Merge-Queue ausschließlich bei SUCCESS.'
+  - 'Dokumentation (MandalaMap.*, Stabilization-Playbook.(md|yaml), Workflow-Cheat-Sheet, Command-Catalog.(md|json|yaml)) sowie analysis/devtalk77-evaluation.md und codexfeedback* spiegeln das Gate und den manuellen `workflow_dispatch`-Pfad.'
+deliverables:
+  - .github/workflows/status-gate.yml
+  - MandalaMap.md
+  - MandalaMap.yaml
+  - MandalaMap.json
+  - docs/roadmap/v1.0-stabilization-playbook.md
+  - docs/roadmap/v1.0-stabilization-playbook.yaml
+  - docs/cheatsheets/unified-mandala-workflows.md
+  - docs/runbooks/command-catalog.md
+  - docs/runbooks/command-catalog.yaml
+  - docs/runbooks/command-catalog.json
+  - analysis/scripts-and-commands.json
+  - analysis/devtalk77-evaluation.md
+  - codexfeedback.md
+  - codexfeedback.yaml
+  - codexfeedback.json
+  - codexfeedback-fraktal77.yaml
+commands:
+  - gh workflow run status-gate -f pr=<nummer>
+hook:
+  progress: Status-Gate Workflow aktiv und dokumentiert; Ready-to-merge Label automatisch bewacht.
+  next_step: Optional automatisierte Tests/Metrics für status-gate Workflow ergänzen (z. B. Mocking mit `gh api` Sandbox).
+repeat_required: false

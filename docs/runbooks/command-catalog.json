@@ -245,6 +245,15 @@
           "source": ["scripts/ci/ai-commit-guard.mjs", ".github/workflows/ai-commit-guard.yml"]
         },
         {
+          "id": "quality.status-gate",
+          "name": "Ready-to-merge status gate",
+          "command": "gh workflow run status-gate -f pr=<nummer>",
+          "type": "gh",
+          "runs": "gh workflow run status-gate -f pr=<nummer>",
+          "description": "Manual trigger for status-gate.yml; re-checks Draft, ReviewDecision, Mergeability and Status-Rollup before enabling auto-merge or the merge queue.",
+          "source": [".github/workflows/status-gate.yml"]
+        },
+        {
           "id": "quality.pyright",
           "name": "Run Pyright",
           "command": "npx pyright",
