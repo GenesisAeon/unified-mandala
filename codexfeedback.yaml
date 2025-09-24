@@ -3,29 +3,46 @@ fraktal:
   history:
     - id: 77
       status: done
-      notes: 'Fraktal77 StatusGate: Workflow `status-gate.yml` prüft das Label **ready-to-merge** (Draft, ReviewDecision, Mergeability, Status-Rollup) und aktiviert Auto-Merge/Merge Queue nur bei grünen Checks; MandalaMap.*, Stabilization-Playbook.(md|yaml), Workflow-Cheat-Sheet, Command-Catalog.(md|json|yaml), analysis/devtalk77-evaluation.md sowie codexfeedback* dokumentieren den Gate-Lauf und die manuelle `workflow_dispatch`-Option.'
+      notes: 'Fraktal77 ProvenanceMatrix: auto-provenance.yml vergibt source:* Labels,
+        provenance-gate.yml schützt Pfade für human/mandala/external Beiträge und ci.core
+        wurde in leichte + labelgesteuerte Advisory/Runtime-Lanes zerlegt (on-demand.yml,
+        ci.runtime.yml, Slash-Commands). MandalaMap.*, Stabilization-Playbook.(md|yaml),
+        Command-Catalog.(md|json|yaml), docs/START-HERE.md, .github/CODEOWNERS, PR-Template
+        und scripts/repo/setup-labels.mjs dokumentieren das Update; status-gate.yml
+        bleibt Kern des Merge-Gates.'
       deliverables:
-        - .github/workflows/status-gate.yml
-        - MandalaMap.md
-        - MandalaMap.yaml
-        - MandalaMap.json
+        - .github/workflows/auto-provenance.yml
+        - .github/workflows/provenance-gate.yml
+        - .github/workflows/ci.core.yml
+        - .github/workflows/ci.nightly.yml
+        - .github/workflows/on-demand.yml
+        - .github/workflows/ci.runtime.yml
+        - .github/CODEOWNERS
+        - .github/pull_request_template.md
+        - docs/START-HERE.md
         - docs/roadmap/v1.0-stabilization-playbook.md
         - docs/roadmap/v1.0-stabilization-playbook.yaml
-        - docs/cheatsheets/unified-mandala-workflows.md
         - docs/runbooks/command-catalog.md
         - docs/runbooks/command-catalog.yaml
         - docs/runbooks/command-catalog.json
-        - analysis/scripts-and-commands.json
-        - analysis/devtalk77-evaluation.md
+        - MandalaMap.md
+        - MandalaMap.yaml
+        - MandalaMap.json
+        - scripts/repo/setup-labels.mjs
         - codexfeedback.md
         - codexfeedback.yaml
         - codexfeedback.json
         - codexfeedback-fraktal77.yaml
       commands:
+        - pnpm labels:setup
         - gh workflow run status-gate -f pr=<nummer>
+        - gh workflow run auto-provenance
+        - gh workflow run provenance-gate
       hook:
-        progress: Status-Gate aktiv; Ready-to-merge Label löst Auto-/Merge-Queue nur bei SUCCESS aus.
-        next_step: Optionale Ergänzung automatisierter Tests für status-gate Skript (z. B. Mock-basierte CI-Checks) evaluieren.
+        progress: 'Provenance-Governance aktiv: auto-labels, Pfadmatrix und labelgesteuerte
+          CI-Lanes laufen; Status-Gate überwacht weiterhin ready-to-merge.'
+        next_step: Optional Slash-Command Coverage erweitern (`/run runtime`) und Advisory-Output
+          automatisiert kommentieren.
       repeat_required: false
     - id: 76
       status: done

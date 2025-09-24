@@ -1,0 +1,36 @@
+name: Run pnpm task
+description: Setup Node and pnpm, optionally install dependencies, then run a pnpm command with --if-present safety.
+inputs:
+  node-version:
+    description: Node.js version to use
+    default: lts/*
+  task:
+    description: pnpm arguments to execute (e.g., typecheck)
+    required: true
+  cwd:
+    description: Working directory
+    default: .
+  install:
+    description: Set to 'false' to skip pnpm install step when already prepared.
+    default: 'true'
+runs:
+  using: composite
+  steps:
+    - name: Use Node ${{ inputs.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ inputs.node-version }}
+        cache: pnpm
+        cache-dependency-path: pnpm-lock.yaml
+    - name: Enable Corepack
+      shell: bash
+      run: corepack enable
+    - name: Install dependencies
+      if: ${{ inputs.install != 'false' }}
+      shell: bash
+      working-directory: ${{ inputs.cwd }}
+      run: pnpm install --frozen-lockfile
+    - name: Run pnpm task
+      shell: bash
+      working-directory: ${{ inputs.cwd }}
+      run: pnpm --if-present ${{ inputs.task }}

@@ -1,63 +1,36 @@
-name: CI Nightly
+name: ci.nightly
 
 on:
   schedule:
-    - cron: '0 1 * * *'
+    - cron: '37 3 * * *'
   workflow_dispatch:
 
 jobs:
-  nightly-type-and-tests:
+  extended:
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        node: ['20.x']
-        python: ['3.11']
-    env:
-      OFFLINE: '1'
-      LOW_MEM: '1'
-      VITE_LOW_MEM: 'on'
-      NODE_OPTIONS: '--max-old-space-size=2048'
-      CI: 'true'
-      PYTHONPATH: src
-      PANTHEON_DISABLE: '1'
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - name: Toolchain sanity
+        uses: ./.github/actions/run-pnpm-task
         with:
-          node-version: ${{ matrix.node }}
-          cache: 'pnpm'
-      - uses: pnpm/action-setup@v4
+          task: sanity
+      - name: Extended adapters offline
+        uses: ./.github/actions/run-pnpm-task
         with:
-          version: 10.16.1
-      - name: Debug toolchain versions
-        run: |
-          echo "Node $(node -v)"
-          echo "PNPM v$(pnpm -v)"
-      - run: pnpm install --frozen-lockfile
-      - run: pnpm format:check
-      - run: pnpm lint
-      - uses: actions/setup-python@v5
+          task: adapters:offline
+          install: 'false'
+      - name: Coverage
+        uses: ./.github/actions/run-pnpm-task
         with:
-          python-version: ${{ matrix.python }}
-          cache: 'pip'
-          cache-dependency-path: requirements.txt
-      - run: python -m pip install --upgrade pip
-      - run: python -m pip install -r requirements.txt
-      - run: python -m pip install -r src/adapters/requirements.txt
-      - name: Capture toolchain manifest
-        run: |
-          {
-            echo "Node $(node -v)"
-            echo "PNPM v$(pnpm -v)"
-            echo "Python $(python --version 2>&1)"
-          } > toolchain-versions.txt
-      - uses: actions/upload-artifact@v4
-        if: always()
+          task: test:unit:coverage
+          install: 'false'
+      - name: Repomap full
+        uses: ./.github/actions/run-pnpm-task
         with:
-          name: toolchain-versions-${{ matrix.node }}-${{ matrix.python }}
-          path: toolchain-versions.txt
-      - run: npx tsc -p tsconfig.json --noEmit
-      - run: pnpm test:ts:ci
-      - run: pnpm test:py
-      - run: npx pyright
+          task: repomap:build
+          install: 'false'
+      - name: Repomap validate
+        uses: ./.github/actions/run-pnpm-task
+        with:
+          task: repomap:validate
+          install: 'false'

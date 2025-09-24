@@ -2,28 +2,43 @@ fraktal: 77
 status: done
 owner: ChefDevAI
 summary:
-  - 'Workflow `status-gate.yml` prüft Ready-to-merge Labels auf Draft, ReviewDecision, Mergeability und Status-Rollup und aktiviert Auto-/Merge-Queue ausschließlich bei SUCCESS.'
-  - 'Dokumentation (MandalaMap.*, Stabilization-Playbook.(md|yaml), Workflow-Cheat-Sheet, Command-Catalog.(md|json|yaml)) sowie analysis/devtalk77-evaluation.md und codexfeedback* spiegeln das Gate und den manuellen `workflow_dispatch`-Pfad.'
+  - Auto-Provenance (`auto-provenance.yml`) vergibt source:* Labels, `provenance-gate.yml`
+    erzwingt die Pfad-Matrix und `ci.core` läuft mit labelgesteuerten Advisory-/Runtime-Lanes
+    (inkl. Slash-Commands `/run repomap`, `/run governance`).
+  - '`status-gate.yml` bleibt Bestandteil des Merge-Gates; MandalaMap.*, Stabilization-Playbook.(md|yaml),
+    Command-Catalog.(md|json|yaml), docs/START-HERE.md, `.github/CODEOWNERS`, `.github/pull_request_template.md`
+    und scripts/repo/setup-labels.mjs dokumentieren das Update.'
 deliverables:
-  - .github/workflows/status-gate.yml
-  - MandalaMap.md
-  - MandalaMap.yaml
-  - MandalaMap.json
+  - .github/workflows/auto-provenance.yml
+  - .github/workflows/provenance-gate.yml
+  - .github/workflows/ci.core.yml
+  - .github/workflows/ci.nightly.yml
+  - .github/workflows/on-demand.yml
+  - .github/workflows/ci.runtime.yml
+  - .github/CODEOWNERS
+  - .github/pull_request_template.md
+  - docs/START-HERE.md
   - docs/roadmap/v1.0-stabilization-playbook.md
   - docs/roadmap/v1.0-stabilization-playbook.yaml
-  - docs/cheatsheets/unified-mandala-workflows.md
   - docs/runbooks/command-catalog.md
   - docs/runbooks/command-catalog.yaml
   - docs/runbooks/command-catalog.json
-  - analysis/scripts-and-commands.json
-  - analysis/devtalk77-evaluation.md
+  - MandalaMap.md
+  - MandalaMap.yaml
+  - MandalaMap.json
+  - scripts/repo/setup-labels.mjs
   - codexfeedback.md
   - codexfeedback.yaml
   - codexfeedback.json
   - codexfeedback-fraktal77.yaml
 commands:
+  - pnpm labels:setup
   - gh workflow run status-gate -f pr=<nummer>
+  - gh workflow run auto-provenance
+  - gh workflow run provenance-gate
 hook:
-  progress: Status-Gate Workflow aktiv und dokumentiert; Ready-to-merge Label automatisch bewacht.
-  next_step: Optional automatisierte Tests/Metrics für status-gate Workflow ergänzen (z. B. Mocking mit `gh api` Sandbox).
+  progress:
+    Provenance-Labelling + Pfad-Matrix aktiv; CI-Lanes lassen sich über Labels/Slash-Commands
+    zuschalten.
+  next_step: Slash-Command `/run runtime` ergänzen oder Advisory-Kommentare automatisieren.
 repeat_required: false

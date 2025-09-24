@@ -1,6 +1,6 @@
 {
   "schema": "command-catalog/v1",
-  "generated": "2025-10-26T00:00:00Z",
+  "generated": "2025-11-18T00:00:00Z",
   "owner": "ChefDevAI",
   "notes": [
     "Aggregates pnpm scripts, shell helpers, and governance tools exposed in the unified-mandala repository.",
@@ -92,6 +92,15 @@
           "runs": "husky",
           "description": "Runs Husky's installer via the postinstall script (pnpm install triggers it automatically).",
           "source": ["package.json#scripts.postinstall"]
+        },
+        {
+          "id": "setup.labels-bootstrap",
+          "name": "Ensure provenance labels",
+          "command": "pnpm labels:setup",
+          "type": "pnpm",
+          "runs": "node scripts/repo/setup-labels.mjs",
+          "description": "Uses the GitHub CLI (`gh label create|edit`) to seed `source:*` and CI trigger labels (requires `gh auth login`).",
+          "source": ["scripts/repo/setup-labels.mjs"]
         },
         {
           "id": "setup.build-windows-tools",

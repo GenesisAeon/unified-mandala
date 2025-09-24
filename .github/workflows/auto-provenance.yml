@@ -1,0 +1,65 @@
+name: auto-provenance
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  label:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@v7
+        with:
+          script: |
+            const pr = context.payload.pull_request;
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+
+            const commits = await github.paginate(github.rest.pulls.listCommits, {
+              owner,
+              repo,
+              pull_number: pr.number,
+              per_page: 100,
+            });
+
+            const isBotCommit = commits.some((commit) => {
+              const authorType = commit.author?.type;
+              if (authorType === 'Bot') return true;
+              const message = commit.commit?.message ?? '';
+              return /codex|chatgpt|assistant|openai/i.test(message);
+            });
+
+            const files = await github.paginate(github.rest.pulls.listFiles, {
+              owner,
+              repo,
+              pull_number: pr.number,
+              per_page: 100,
+            });
+
+            const onlyDocs =
+              files.length > 0 &&
+              files.every((file) =>
+                /^(docs\/|analysis\/|out\/|\.github\/|README|CHANGELOG|MandalaMap|command-catalog)/.test(file.filename)
+              );
+
+            let label = 'source:human';
+            if (isBotCommit) {
+              label = 'source:external-ai';
+            } else if (onlyDocs) {
+              label = 'source:human-docs';
+            }
+
+            const existing = (pr.labels || []).map((label) => label.name).filter((name) => name.startsWith('source:'));
+            for (const name of existing) {
+              try {
+                await github.rest.issues.removeLabel({ owner, repo, issue_number: pr.number, name });
+              } catch (error) {
+                if (error.status !== 404) throw error;
+              }
+            }
+
+            await github.rest.issues.addLabels({ owner, repo, issue_number: pr.number, labels: [label] });

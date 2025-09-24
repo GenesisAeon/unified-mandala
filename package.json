@@ -58,6 +58,7 @@
     "update:newadvanced-todo": "node scripts/update-newadvanced-todo.js",
     "update:fractal-todo": "node scripts/update-fractal-todo.js",
     "update:todo-sigil": "node scripts/update-todo-sigil.js",
+    "labels:setup": "node scripts/repo/setup-labels.mjs",
     "update:advanced-progress": "node repositorypflege/update-advanced-progress.js",
     "generate:initial-tasks": "node repositorypflege/generate-initial-tasks.js",
     "validate:todos": "node scripts/validate-implicit-todos.js",

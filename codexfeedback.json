@@ -1,9 +1,9 @@
 {
   "runs": [
     {
-      "fraktalrun": "Fraktal77 StatusGate",
+      "fraktalrun": "Fraktal77 ProvenanceMatrix",
       "status": "done",
-      "notes": "Status-gate workflow enforces ready-to-merge label by verifying Draft=false, ReviewDecision=APPROVED, Mergeable=MERGEABLE and status rollup SUCCESS before enabling auto-merge/merge queue; MandalaMap, stabilization playbook, workflow cheat sheet, command catalog, devtalk77 evaluation and codexfeedback trackers document manual workflow_dispatch usage."
+      "notes": "auto-provenance.yml auto-labels source:* PRs, provenance-gate.yml enforces path matrix, ci.core reorganised with advisory/runtime lanes + on-demand slash commands; status-gate.yml remains active and MandalaMap.*, stabilization playbook, command catalog, docs/START-HERE.md, CODEOWNERS, PR template and scripts/repo/setup-labels.mjs capture the governance rollout."
     },
     {
       "fraktalrun": "Fraktal76 TwoPlaneGuard",

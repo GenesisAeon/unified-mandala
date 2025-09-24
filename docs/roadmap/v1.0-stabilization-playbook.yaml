@@ -1,7 +1,7 @@
 fraktal: 40
 release: v1.0
 owner: codex
-updated: '2025-11-17'
+updated: '2025-11-18'
 summary: 'Strukturierter Maßnahmenplan zur Umsetzung der Fraktal40-Besprechung.
 
   Fokus auf stabile Kern-Builds, dist-first Services, verschärfte Governance
@@ -88,6 +88,10 @@ streams:
           wird `gh pr merge --squash --auto --delete-branch` gesetzt; bei Fehlern entfernt der Workflow das Label
           automatisch. MandalaMap.*, Stabilization-Playbook und das Workflow-Cheat-Sheet dokumentieren die Nutzung
           inklusive manueller `workflow_dispatch`-Option.
+          Fraktal77+: `auto-provenance.yml` vergibt `source:*`-Labels automatisch, `provenance-gate.yml` erzwingt die Pfadmatrix,
+          und `ci.core` wurde in leichte Kern- und labelgesteuerte Advisory-/Runtime-Lanes geteilt (`on-demand.yml`,
+          `ci.runtime.yml`). PR-Template, CODEOWNERS sowie `scripts/repo/setup-labels.mjs` dokumentieren die Pflichten,
+          während `docs/START-HERE.md` den Golden Path + Label-Matrix für Onboarding bündelt.
         output:
           - .github/workflows/status-gate.yml
   - key: code-quality

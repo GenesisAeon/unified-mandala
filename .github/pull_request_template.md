@@ -1,36 +1,33 @@
-# Unified Mandala Pull Request
-
 ## Summary
 
-- [ ] Kurzbeschreibung der Änderung(en)
-- [ ] Verlinke relevante Fraktal-/DevTalk-Notizen (falls vorhanden)
+- [ ] Kurzbeschreibung der Änderungen
+- [ ] Relevante Fraktal-/DevTalk-Referenzen
 
-## Plane (bitte markieren)
+## Provenance (choose ONE & apply label)
 
-- [ ] CODE — Änderungen am Repository (Dateien im Repo, Tests, Workflows)
-- [ ] RUNTIME — Änderungen an Laufzeit/Infra (NATS, HTTP, scratch:// Artefakte)
+- [ ] source:human — human-authored code
+- [ ] source:human-docs — human-authored docs/metadata only
+- [ ] source:mandala-ai — internal Mandala automation
+- [ ] source:external-ai — external AI contribution (Codex/GPT, etc.)
 
-> Nutze **CODE** wenn Dateien im Repo angepasst werden. Nutze **RUNTIME** für Runtime-Deployments ohne Repo-Diff.
+> CI fails if the label does not match the changed paths.
 
-## Verification (mindestens die relevanten Punkte abhaken)
+## Scope Check
+
+- [ ] Keine Änderungen an geschützten Bereichen ohne `source:human`
+  - `packages/*/core/**`, `.github/workflows/*guard*`, `scripts/ci/*guard*`, `infra/prod/**`, `deploy/**`
+
+## Verification (mark relevant)
 
 - [ ] `pnpm typecheck`
 - [ ] `pnpm test:unit`
-- [ ] `pnpm test:unit:coverage`
 - [ ] `npx pyright`
+- [ ] `pnpm policy:check`
 - [ ] `pnpm schema:validate`
 - [ ] `pnpm maps:validate`
 - [ ] `pnpm repomap:build && pnpm repomap:validate`
-- [ ] `pnpm policy:check`
-- [ ] Weitere (siehe Kommentare)
+- [ ] weitere Checks (siehe Kommentare)
 
-## Two-Plane Guardrails
+## Notes
 
-- [ ] Keine Dateien unter `.ai-scratch/` im Commit enthalten (runtime Artefakte → scratch://)
-- [ ] Laufzeit-Ausgaben oder Zwischenergebnisse ausschließlich unter `scratch://` oder `data://` gespeichert
-- [ ] Falls der PR durch einen Bot erstellt wurde: mindestens ein menschlicher Reviewer eingetragen
-
-## Follow-up Notes
-
-- [ ] Offene Punkte oder Nachfolge-Fraktale dokumentiert
-- [ ] Relevante Docs (MandalaMap, Playbook, Command Catalog, Codexfeedback) aktualisiert oder Follow-up angelegt
+- Follow-up Aufgaben & Dokumentations-Updates (MandalaMap, Command Catalog, Playbook, Codexfeedback) verlinken oder als TODO erfassen.
