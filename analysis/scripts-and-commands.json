@@ -145,6 +145,7 @@
     "sigillins:authoring": "node scripts/sigillin-authoring.mjs",
     "sigillins:report": "node scripts/sigillins-generate-reports.mjs",
     "sigillins:build": "node scripts/build-sigillin-archive.mjs",
-    "trikaya:dashboard": "node scripts/generate-trikaya-dashboard.mjs"
+    "trikaya:dashboard": "node scripts/generate-trikaya-dashboard.mjs",
+    "status-gate:run": "gh workflow run status-gate -f pr=<nummer>"
   }
 }

@@ -1,7 +1,7 @@
 fraktal: 40
 release: v1.0
 owner: codex
-updated: '2025-11-16'
+updated: '2025-11-17'
 summary: 'Strukturierter Maßnahmenplan zur Umsetzung der Fraktal40-Besprechung.
 
   Fokus auf stabile Kern-Builds, dist-first Services, verschärfte Governance
@@ -79,6 +79,17 @@ streams:
           - out/policy/sigillins/sigillins-junit-report.xml
           - out/policy/sigillins/sigillins-report.md
           - policy-sigillins (GitHub artifact)
+      - id: ready-merge-gate
+        description: Label **ready-to-merge** triggert Status-Gate + Auto-/Merge-Queue Aktivierung
+        status: done
+        notes: |-
+          Fraktal77: Workflow `.github/workflows/status-gate.yml` liest PR-Status via GraphQL, prüft Draft-Status,
+          ReviewDecision (APPROVED), Mergeability und den Status-Rollup (SUCCESS). Nur wenn alle Gates grün sind,
+          wird `gh pr merge --squash --auto --delete-branch` gesetzt; bei Fehlern entfernt der Workflow das Label
+          automatisch. MandalaMap.*, Stabilization-Playbook und das Workflow-Cheat-Sheet dokumentieren die Nutzung
+          inklusive manueller `workflow_dispatch`-Option.
+        output:
+          - .github/workflows/status-gate.yml
   - key: code-quality
     owner:
       lead: DevX Guild
