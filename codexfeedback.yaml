@@ -1,9 +1,54 @@
 fraktal:
-  current: 75
+  current: 76
   history:
+    - id: 76
+      status: done
+      notes: 'Fraktal76 TwoPlaneGuard: `packages/ai` ergänzt Guarded-FS (`pathBroker.ts`,
+        `guardedFs.ts`) und einen Agent-Tool-Router, `ai-commit-guard.yml` verhindert
+        Bot-Pushes und `.ai-scratch/`-Artefakte, das PR-Template verankert CODE↔RUNTIME-Plane,
+        und MandalaMap/Playbook/Command-Catalog/Cheat-Sheet dokumentieren die Halluzinations-Schichten
+        (Programm vs. Programm+AI vs. Repo) inklusive DevTalk76-Review.'
+      deliverables:
+        - .gitignore
+        - .github/pull_request_template.md
+        - .github/workflows/ai-commit-guard.yml
+        - MandalaMap.md
+        - MandalaMap.yaml
+        - MandalaMap.json
+        - analysis/devtalk76-evaluation.md
+        - codexfeedback.md
+        - codexfeedback.yaml
+        - codexfeedback.json
+        - codexfeedback-fraktal76.yaml
+        - docs/cheatsheets/unified-mandala-workflows.md
+        - docs/roadmap/v1.0-stabilization-playbook.md
+        - docs/roadmap/v1.0-stabilization-playbook.yaml
+        - docs/runbooks/command-catalog.md
+        - docs/runbooks/command-catalog.yaml
+        - docs/runbooks/command-catalog.json
+        - packages/ai/src/agent/tools.ts
+        - packages/ai/src/guards/guardedFs.ts
+        - packages/ai/src/guards/pathBroker.ts
+        - packages/ai/src/index.ts
+        - scripts/ci/ai-commit-guard.mjs
+      commands:
+        - pnpm -F @unified-mandala/ai build
+        - node scripts/ci/ai-commit-guard.mjs
+      hook:
+        progress: Two-Plane-Modell technisch verankert (Guarded-FS, CI-Guard, PR-Template);
+          MandalaMap, Playbook und Command-Catalog referenzieren die neuen Leitplanken,
+          DevTalk76-Evaluation dokumentiert den Drift-Fix.
+        next_step: Runtime-spezifische Tests (z. B. automatisierte Checks für scratch://-Writes)
+          ergänzen und optional weitere RUNTIME-Tools modellieren (NATS/HTTP-Failover,
+          Storage-Broker).
     - id: 75
       status: done
-      notes: 'Fraktal75 AIResponsesBridge: `@unified-mandala/ai` kapselt die OpenAI Responses API (Dev/NATS-Skripte, `.env.example`), `apps/api` liefert `/api/ai/chat` (AI_TRANSPORT=direct|nats) und `MandalaAIPlayground` ermöglicht End-to-End-Tests. Command-Catalog, Workflow-Cheat-Sheet, MandalaMap.*, Stabilization-Playbook sowie CommunityOnboarding.md (MCP-Guide) wurden aktualisiert; analysis/devtalk75-evaluation.md dokumentiert den Lauf.'
+      notes: 'Fraktal75 AIResponsesBridge: `@unified-mandala/ai` kapselt die OpenAI
+        Responses API (Dev/NATS-Skripte, `.env.example`), `apps/api` liefert `/api/ai/chat`
+        (AI_TRANSPORT=direct|nats) und `MandalaAIPlayground` ermöglicht End-to-End-Tests.
+        Command-Catalog, Workflow-Cheat-Sheet, MandalaMap.*, Stabilization-Playbook
+        sowie CommunityOnboarding.md (MCP-Guide) wurden aktualisiert; analysis/devtalk75-evaluation.md
+        dokumentiert den Lauf.'
       deliverables:
         - packages/ai/package.json
         - packages/ai/tsconfig.json
@@ -40,8 +85,10 @@ fraktal:
         - pnpm -F @unified-mandala/ai nats
         - pnpm -F @unified-mandala/api dev
       hook:
-        progress: AI-Bridge (Responses → API → Playground) produktiv; Dokumentation & MandalaMap aktualisiert, MCP-Setup als Onboarding-Referenz ergänzt.
-        next_step: Streaming-/Tool-Support optional evaluieren und API-Tests automatisieren, sobald Secrets verfügbar sind.
+        progress: AI-Bridge (Responses → API → Playground) produktiv; Dokumentation
+          & MandalaMap aktualisiert, MCP-Setup als Onboarding-Referenz ergänzt.
+        next_step: Streaming-/Tool-Support optional evaluieren und API-Tests automatisieren,
+          sobald Secrets verfügbar sind.
     - id: 74
       status: done
       notes: 'Fraktal74 CIGateUnification: Husky-Hooks erzwingen auf Wunsch schwere

@@ -1,22 +1,36 @@
-# fraktal21: zero-warn typing, STAC strict++, offline adapters, resonance+emergence, prompt-coach, epistemic
+# Unified Mandala Pull Request
 
-## Changes
-- Pyright strict 0-warn via shared types + fixtures
-- STAC strict++ schema + Ajv validator
-- Deterministic offline builds (2×2×2) + CI cache
-- Resonance CLI via tsx + paths; Emergence Explorer (flagged)
-- Prompt Coach (heuristic) + PR comment (dry run)
-- Epistemic evidence + Bayes + ConfidenceSigil
+## Summary
 
-## Verification
+- [ ] Kurzbeschreibung der Änderung(en)
+- [ ] Verlinke relevante Fraktal-/DevTalk-Notizen (falls vorhanden)
+
+## Plane (bitte markieren)
+
+- [ ] CODE — Änderungen am Repository (Dateien im Repo, Tests, Workflows)
+- [ ] RUNTIME — Änderungen an Laufzeit/Infra (NATS, HTTP, scratch:// Artefakte)
+
+> Nutze **CODE** wenn Dateien im Repo angepasst werden. Nutze **RUNTIME** für Runtime-Deployments ohne Repo-Diff.
+
+## Verification (mindestens die relevanten Punkte abhaken)
+
+- [ ] `pnpm typecheck`
+- [ ] `pnpm test:unit`
+- [ ] `pnpm test:unit:coverage`
 - [ ] `npx pyright`
-- [ ] `npx tsc --noEmit` + `pnpm vitest run`
-- [ ] `CI=true pnpm adapter:build:oisst && era5`
-- [ ] `pnpm stac:validate && pnpm stac:validate:item`
-- [ ] `pnpm resonance:calc`
-- [ ] Emergence Explorer behind `VITE_FEATURE_EMERGENCE_EXPLORER=on`
-- [ ] Prompt Coach output in `prompts/.optimized/` + `.diff/`
+- [ ] `pnpm schema:validate`
+- [ ] `pnpm maps:validate`
+- [ ] `pnpm repomap:build && pnpm repomap:validate`
+- [ ] `pnpm policy:check`
+- [ ] Weitere (siehe Kommentare)
 
-## Notes / Follow-ups
-- Switch Prompt-Coach to real Optimizer API
-- EFFIS live + correlations batch → `out/correlations.json`
+## Two-Plane Guardrails
+
+- [ ] Keine Dateien unter `.ai-scratch/` im Commit enthalten (runtime Artefakte → scratch://)
+- [ ] Laufzeit-Ausgaben oder Zwischenergebnisse ausschließlich unter `scratch://` oder `data://` gespeichert
+- [ ] Falls der PR durch einen Bot erstellt wurde: mindestens ein menschlicher Reviewer eingetragen
+
+## Follow-up Notes
+
+- [ ] Offene Punkte oder Nachfolge-Fraktale dokumentiert
+- [ ] Relevante Docs (MandalaMap, Playbook, Command Catalog, Codexfeedback) aktualisiert oder Follow-up angelegt

@@ -236,6 +236,15 @@
           "source": ["package.json#scripts.ci:fast-checks"]
         },
         {
+          "id": "quality.ai-commit-guard",
+          "name": "AI commit guard",
+          "command": "node scripts/ci/ai-commit-guard.mjs",
+          "type": "node",
+          "runs": "node scripts/ci/ai-commit-guard.mjs",
+          "description": "Enforces the two-plane policy by blocking `.ai-scratch/` artifacts and bot pushes on main; consumed by ai-commit-guard.yml.",
+          "source": ["scripts/ci/ai-commit-guard.mjs", ".github/workflows/ai-commit-guard.yml"]
+        },
+        {
           "id": "quality.pyright",
           "name": "Run Pyright",
           "command": "npx pyright",

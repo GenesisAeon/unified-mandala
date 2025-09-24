@@ -1,7 +1,7 @@
 fraktal: 40
 release: v1.0
 owner: codex
-updated: '2025-11-08'
+updated: '2025-11-16'
 summary: 'Strukturierter Maßnahmenplan zur Umsetzung der Fraktal40-Besprechung.
 
   Fokus auf stabile Kern-Builds, dist-first Services, verschärfte Governance
@@ -194,6 +194,20 @@ streams:
           - scripts/validate-sigillins.mjs
           - scripts/schemas/mandala-sigillin.schema.json
           - .github/workflows/sigillin-validate.yml
+      - id: two-plane-guard
+        description: Repo-/Runtime-Ebenen für Agenten trennen und CI-Guard aktivieren
+        status: done
+        notes: Fraktal76 liefert Guarded-FS (`packages/ai/src/guards/*`), PR-Template mit
+          CODE↔RUNTIME-Plane-Checkboxen sowie `ai-commit-guard.mjs`, das Bot-Pushes auf
+          `main` und `.ai-scratch/`-Artefakte blockiert (Halluzinations-Schichten werden
+          klar zwischen Programm, Programm+AI und Repo unterschieden).
+        artifacts:
+          - packages/ai/src/guards/pathBroker.ts
+          - packages/ai/src/guards/guardedFs.ts
+          - packages/ai/src/agent/tools.ts
+          - .github/workflows/ai-commit-guard.yml
+          - scripts/ci/ai-commit-guard.mjs
+          - .github/pull_request_template.md
   - key: observability
     owner:
       lead: TelemetryOps / GenesisAeonNavigator
