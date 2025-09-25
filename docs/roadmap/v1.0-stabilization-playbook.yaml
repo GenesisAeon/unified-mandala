@@ -28,30 +28,39 @@ streams:
 
           JetStream-Bus-Test läuft unter Vitest; CI-Core startet einen Docker-basierten
           NATS-Server und ruft `pnpm nats:doctor` sowie `pnpm test:jetstream` im type-and-tests-Gate
-          auf (Fraktal57). `pnpm nats:doctor` liefert detaillierte Hinweise (fehlendes `-js`,
-          Timeout/Proxy, Berechtigungen) und nutzt `$JS.API.INFO` als Fallback. Lokale Workflows
-          verwenden `pnpm nats:docker` für JetStream-Container, `pnpm dev:stack` prüft Ports
-          und räumt sie standardmäßig via kill-port auf (Opt-out: `UM_DEV_SERVICES_AUTOFREE_PORTS=0`)
-          und verweist bei Bedarf auf `pnpm dev:ports:free`. Runbook `docs/runbooks/nats-jetstream.md`
-          dokumentiert Setup und Troubleshooting, README & Tests-Runbook spiegeln die neuen Hinweise.
+          auf (Fraktal57). `pnpm nats:doctor` liefert detaillierte Hinweise (fehlendes
+          `-js`, Timeout/Proxy, Berechtigungen) und nutzt `$JS.API.INFO` als Fallback.
+          Lokale Workflows verwenden `pnpm nats:docker` für JetStream-Container, `pnpm
+          dev:stack` prüft Ports und räumt sie standardmäßig via kill-port auf (Opt-out:
+          `UM_DEV_SERVICES_AUTOFREE_PORTS=0`) und verweist bei Bedarf auf `pnpm dev:ports:free`.
+          Runbook `docs/runbooks/nats-jetstream.md` dokumentiert Setup und Troubleshooting,
+          README & Tests-Runbook spiegeln die neuen Hinweise.
 
-          Fraktal61: CI-Core führt zusätzlich `pnpm test:unit:coverage` mit Coverage aus und veröffentlicht
-          den Report als Artefakt (`coverage-vitest`).
+          Fraktal61: CI-Core führt zusätzlich `pnpm test:unit:coverage` mit Coverage aus
+          und veröffentlicht den Report als Artefakt (`coverage-vitest`).
 
-          Fraktal64+: Core-, Extended- und Nightly-Jobs installieren `src/adapters/requirements.txt`, sodass
-          NetCDF4/h5netcdf/scipy offline verfügbar sind; `PANTHEON_DISABLE=1` deaktiviert Pantheon-Analytics
-          in QA-Läufen, Coverage-Jobs nutzen `pnpm test:unit:coverage` konsistent und Pytests sichern die
-          STAC-HREF-Normalisierung gegen Item-Verzeichnisse ab.
-          Fraktal65: CI-Core setzt auf die Skript-Aliase `pnpm typecheck`, `pnpm test:unit` und `pnpm test:unit:coverage`,
-          Governance-Workflows laufen mit `pnpm schema:validate`, `pnpm maps:validate`, `pnpm policy:check`, und Repo-Sanity
-          prüft `ciBehaviour`-Felder via `pnpm sanity`.
+          Fraktal64+: Core-, Extended- und Nightly-Jobs installieren `src/adapters/requirements.txt`,
+          sodass NetCDF4/h5netcdf/scipy offline verfügbar sind; `PANTHEON_DISABLE=1` deaktiviert
+          Pantheon-Analytics in QA-Läufen, Coverage-Jobs nutzen `pnpm test:unit:coverage`
+          konsistent und Pytests sichern die STAC-HREF-Normalisierung gegen Item-Verzeichnisse
+          ab. Fraktal65: CI-Core setzt auf die Skript-Aliase `pnpm typecheck`, `pnpm test:unit`
+          und `pnpm test:unit:coverage`, Governance-Workflows laufen mit `pnpm schema:validate`,
+          `pnpm maps:validate`, `pnpm policy:check`, und Repo-Sanity prüft `ciBehaviour`-Felder
+          via `pnpm sanity`.
 
-          Fraktal73: Windows-Setup (`scripts/setup-dev-env.ps1`) erkennt Docker-basierte `nats`-Container, exportiert Status /
-          Start-Hinweise im InstallReport und Runbooks/README dokumentieren `docker ps -a ...`, `docker start nats`,
-          `docker logs --tail=50 nats` sowie den PowerShell-Portcheck `Test-NetConnection 127.0.0.1 -Port 4222`.
+          Fraktal73: Windows-Setup (`scripts/setup-dev-env.ps1`) erkennt Docker-basierte
+          `nats`-Container, exportiert Status / Start-Hinweise im InstallReport und Runbooks/README
+          dokumentieren `docker ps -a ...`, `docker start nats`, `docker logs --tail=50
+          nats` sowie den PowerShell-Portcheck `Test-NetConnection 127.0.0.1 -Port 4222`.
 
-          Fraktal78: `ci.core.yml` bündelt `pnpm test:unit:coverage`, `pnpm schema:validate`, `pnpm maps:validate`, `pnpm sanity` und `pnpm policy:check` als Pflicht-Gates; das Artefakt `coverage-vitest` wird hochgeladen und die Advisory-Lane (`ci:advisory`) ruft `pnpm check:ci` als Soft-Fail-Bundle auf.
-          Fraktal79: `pnpm start:cosmic-web` orchestriert NATS, Demo-Artefakte, Dev-Services, Vite und den Cosmic-Ticker in einem Kommando, triggert `pnpm smoke:ui` mit dynamischem Port; mandala-ui liefert `/demo/ai-playground` via Vite-Proxy (Port 3002) und `scripts/ci/no-local-path-leaks.mjs` blockt Windows-Pfade/Secrets im Staging-Bereich.
+          Fraktal78: `ci.core.yml` bündelt `pnpm test:unit:coverage`, `pnpm schema:validate`,
+          `pnpm maps:validate`, `pnpm sanity` und `pnpm policy:check` als Pflicht-Gates;
+          das Artefakt `coverage-vitest` wird hochgeladen und die Advisory-Lane (`ci:advisory`)
+          ruft `pnpm check:ci` als Soft-Fail-Bundle auf. Fraktal79: `pnpm start:cosmic-web`
+          orchestriert NATS, Demo-Artefakte, Dev-Services, Vite und den Cosmic-Ticker
+          in einem Kommando, triggert `pnpm smoke:ui` mit dynamischem Port; mandala-ui
+          liefert `/demo/ai-playground` via Vite-Proxy (Port 4000 → `apps/api`) und `scripts/ci/no-local-path-leaks.mjs`
+          blockt Windows-Pfade/Secrets im Staging-Bereich.
 
           '
         success:
@@ -70,13 +79,27 @@ streams:
       - id: policy-suite-unify
         description: pnpm policy:check bündelt OPA, Guardrails und Kyverno
         status: done
-        notes: |-
-          Fraktal60: policy:check ruft sigillins:report auf und erzeugt Artefakte in out/policy/sigillins/.
-          Fraktal61: policy-check.yml lädt die Sigillin-Governance-Berichte als separates GitHub-Artefakt (`policy-sigillins`).
-          Fraktal65: Governance-Workflow ruft zusätzlich `pnpm schema:validate` und `pnpm maps:validate` auf; Repo-Sanity nutzt `pnpm sanity`, um `ciBehaviour`-Metadaten zu prüfen.
-          Fraktal66: Policy-Suite markiert Kyverno/Sigillin als optionale Schritte (`PANTHEON_DISABLE=1`), loggt Skip-Warnungen wenn Kyverno-CLI oder `sigillins:report` fehlen, `pnpm repomap:*` erzeugt Fallback-Artefakte bei fehlendem dist und das Cheat Sheet `docs/cheatsheets/unified-mandala-workflows.md` bündelt die Kern-Workflows.
-          Fraktal68: keys/ bleibt automation-only; Repo-Sanity prüft `.gitignore`/`.gitkeep` und `policies/kyverno.yaml` meldet unerwartete Dateien.
-          Fraktal78: Policy-Suite läuft direkt im `ci.core`-Gate; Schema-/Map-Validation und Repo-Sanity teilen sich den Lauf, optionales Label `ci:advisory` ruft `pnpm check:ci` (Soft-Fail) auf.
+        notes: 'Fraktal60: policy:check ruft sigillins:report auf und erzeugt Artefakte
+          in out/policy/sigillins/.
+
+          Fraktal61: policy-check.yml lädt die Sigillin-Governance-Berichte als separates
+          GitHub-Artefakt (`policy-sigillins`).
+
+          Fraktal65: Governance-Workflow ruft zusätzlich `pnpm schema:validate` und `pnpm
+          maps:validate` auf; Repo-Sanity nutzt `pnpm sanity`, um `ciBehaviour`-Metadaten
+          zu prüfen.
+
+          Fraktal66: Policy-Suite markiert Kyverno/Sigillin als optionale Schritte (`PANTHEON_DISABLE=1`),
+          loggt Skip-Warnungen wenn Kyverno-CLI oder `sigillins:report` fehlen, `pnpm
+          repomap:*` erzeugt Fallback-Artefakte bei fehlendem dist und das Cheat Sheet
+          `docs/cheatsheets/unified-mandala-workflows.md` bündelt die Kern-Workflows.
+
+          Fraktal68: keys/ bleibt automation-only; Repo-Sanity prüft `.gitignore`/`.gitkeep`
+          und `policies/kyverno.yaml` meldet unerwartete Dateien.
+
+          Fraktal78: Policy-Suite läuft direkt im `ci.core`-Gate; Schema-/Map-Validation
+          und Repo-Sanity teilen sich den Lauf, optionales Label `ci:advisory` ruft `pnpm
+          check:ci` (Soft-Fail) auf.'
         output:
           - out/policy/policy-suite.json
           - out/policy/policy-suite.md
@@ -84,26 +107,44 @@ streams:
           - out/policy/sigillins/sigillins-report.md
           - policy-sigillins (GitHub artifact)
       - id: ready-merge-gate
-        description: Label **ready-to-merge** triggert Status-Gate + Auto-/Merge-Queue Aktivierung
+        description: Label **ready-to-merge** triggert Status-Gate + Auto-/Merge-Queue
+          Aktivierung
         status: done
-        notes: |-
-          Fraktal77: Workflow `.github/workflows/status-gate.yml` liest PR-Status via GraphQL, prüft Draft-Status,
-          ReviewDecision (APPROVED), Mergeability und den Status-Rollup (SUCCESS). Nur wenn alle Gates grün sind,
-          wird `gh pr merge --squash --auto --delete-branch` gesetzt; bei Fehlern entfernt der Workflow das Label
-          automatisch. MandalaMap.*, Stabilization-Playbook und das Workflow-Cheat-Sheet dokumentieren die Nutzung
-          inklusive manueller `workflow_dispatch`-Option.
+        notes: 'Fraktal77: Workflow `.github/workflows/status-gate.yml` liest PR-Status
+          via GraphQL, prüft Draft-Status,
+
+          ReviewDecision (APPROVED), Mergeability und den Status-Rollup (SUCCESS). Nur
+          wenn alle Gates grün sind,
+
+          wird `gh pr merge --squash --auto --delete-branch` gesetzt; bei Fehlern entfernt
+          der Workflow das Label
+
+          automatisch. MandalaMap.*, Stabilization-Playbook und das Workflow-Cheat-Sheet
+          dokumentieren die Nutzung
+
+          inklusive manueller `workflow_dispatch`-Option.'
         output:
           - .github/workflows/status-gate.yml
       - id: provenance-guard
         description: Automatisches Provenance-Labeling (`source:*`) + Pfad-Gate einführen
         status: done
-        notes: |-
-          Fraktal77: `auto-provenance.yml` vergibt automatisch `source:human`, `source:human-docs`, `source:mandala-ai`
-          oder `source:external-ai`. `provenance-gate.yml` vergleicht Labels mit Pfad-Matrix, schützt `packages/**/core`,
-          Guard-Skripte, Deploy/Infra und verhindert Runtime-Artefakte im Repo. `/run repomap` und `/run governance`
-          hängen Labels (`run:repomap`, `ci:advisory`) an; `ci.runtime.yml` startet NATS + AI-Smoketest nur bei `ci:runtime`.
-          `docs/START-HERE.md` erklärt Golden Path & Two-Plane-Modell, `scripts/repo/setup-labels.mjs` + `pnpm labels:setup`
-          erzeugen die benötigten GitHub-Labels.
+        notes:
+          'Fraktal77: `auto-provenance.yml` vergibt automatisch `source:human`, `source:human-docs`,
+          `source:mandala-ai`
+
+          oder `source:external-ai`. `provenance-gate.yml` vergleicht Labels mit Pfad-Matrix,
+          schützt `packages/**/core`,
+
+          Guard-Skripte, Deploy/Infra und verhindert Runtime-Artefakte im Repo. `/run
+          repomap` und `/run governance`
+
+          hängen Labels (`run:repomap`, `ci:advisory`) an; `ci.runtime.yml` startet NATS
+          + AI-Smoketest nur bei `ci:runtime`.
+
+          `docs/START-HERE.md` erklärt Golden Path & Two-Plane-Modell, `scripts/repo/setup-labels.mjs`
+          + `pnpm labels:setup`
+
+          erzeugen die benötigten GitHub-Labels.'
         output:
           - .github/workflows/auto-provenance.yml
           - .github/workflows/provenance-gate.yml
@@ -125,27 +166,61 @@ streams:
       - id: lint-doc-refresh
         description: README/CONTRIBUTING mit Dist-First und Hook-Hinweisen erweitern
         status: done
-        notes: |-
-          README & CONTRIBUTING beschreiben scripts/run-dist.mjs inkl. `UM_RUN_DIST_*` Overrides; Windows-Onboarding
-          referenziert `scripts/setup-dev-env.ps1` und `scripts/run-powershell.mjs`. PowerShell-Setup exportiert den
-          Installationsstatus nach `out/setup/install-state.json` für Codexfeedback-Läufe; ParserFix `(Test-CommandExists ...)`
-          + Bool-Cast beheben den PowerShell 7 ParserError aus DevTalk 55. Corepack-Admin-Detection vermeidet EPERM,
-          protokolliert den Aktivierungsmodus im InstallReport und ergänzt README/Onboarding/Command-Catalog um
+        notes: 'README & CONTRIBUTING beschreiben scripts/run-dist.mjs inkl. `UM_RUN_DIST_*`
+          Overrides; Windows-Onboarding
+
+          referenziert `scripts/setup-dev-env.ps1` und `scripts/run-powershell.mjs`. PowerShell-Setup
+          exportiert den
+
+          Installationsstatus nach `out/setup/install-state.json` für Codexfeedback-Läufe;
+          ParserFix `(Test-CommandExists ...)`
+
+          + Bool-Cast beheben den PowerShell 7 ParserError aus DevTalk 55. Corepack-Admin-Detection
+          vermeidet EPERM,
+
+          protokolliert den Aktivierungsmodus im InstallReport und ergänzt README/Onboarding/Command-Catalog
+          um
+
           NATS-Hinweise (winget/Docker) für `pnpm start:all`.
-          README & Tests-Runbook listen `pnpm nats:docker` sowie `pnpm dev:ports:free`; Emergence-Scan fällt auf
-          docs/sigillin/GENESIS.md zurück, wenn SIGILLIN_GENESIS.md fehlt; Quickstart (Windows · PowerShell) erklärt
-          `UI_DEV_URL`-Overrides und JetStream-Setup, `SIGILLIN_GENESIS.md` liegt als Placeholder im Repo. README
-          Quickstart (PowerShell) ergänzt Hinweise zu `Get-Content`/`type` und `$env:`-Zuweisungen; docs/maps/RepoMap.yaml
-          führt `repo`, ProgramFlow.yaml einen `meta`-Block, wodurch `pnpm maps:validate` wieder grün läuft. Fraktal67
-          erweitert das Cheat Sheet um `pnpm check:precommit`, `pnpm check:prepush`, `pnpm check:ci`, `pnpm ci:verify`, Monitoring-/Offline-Bundle-Hinweise und verweist
+
+          README & Tests-Runbook listen `pnpm nats:docker` sowie `pnpm dev:ports:free`;
+          Emergence-Scan fällt auf
+
+          docs/sigillin/GENESIS.md zurück, wenn SIGILLIN_GENESIS.md fehlt; Quickstart
+          (Windows · PowerShell) erklärt
+
+          `UI_DEV_URL`-Overrides und JetStream-Setup, `SIGILLIN_GENESIS.md` liegt als
+          Placeholder im Repo. README
+
+          Quickstart (PowerShell) ergänzt Hinweise zu `Get-Content`/`type` und `$env:`-Zuweisungen;
+          docs/maps/RepoMap.yaml
+
+          führt `repo`, ProgramFlow.yaml einen `meta`-Block, wodurch `pnpm maps:validate`
+          wieder grün läuft. Fraktal67
+
+          erweitert das Cheat Sheet um `pnpm check:precommit`, `pnpm check:prepush`, `pnpm
+          check:ci`, `pnpm ci:verify`, Monitoring-/Offline-Bundle-Hinweise und verweist
+
           explizit auf `scripts/setup-dev-env.ps1`.
-          Fraktal70 erweitert README sowie `docs/demos/cosmic-web.md` um eine plattformfreundliche Cosmic-Web-Anleitung,
-          warnt vor HTTP-Requests auf Port 4222, verlinkt `scripts/realtime/sub-cosmic.mjs` (`pnpm sub:cosmic`, Default-Subject
+
+          Fraktal70 erweitert README sowie `docs/demos/cosmic-web.md` um eine plattformfreundliche
+          Cosmic-Web-Anleitung,
+
+          warnt vor HTTP-Requests auf Port 4222, verlinkt `scripts/realtime/sub-cosmic.mjs`
+          (`pnpm sub:cosmic`, Default-Subject
+
           `demo.cosmic`) und nennt das neue Testskript `pnpm test:unit:crep`.
-          Fraktal72 beschreibt den Pytest-Wrapper `scripts/run-pytest.mjs` (auto `.venv`), empfiehlt weiterhin
-          `pnpm exec cypress install`, dokumentiert den Mandala-Erklärungscheck `pnpm sigils:validate:mini` und legt
-          `prompts:coach` auf den Dist-First-Runner (`scripts/run-dist.mjs scripts/prompt-coach.ts`) inklusive
-          Command-Catalog-Aktualisierungen.
+
+          Fraktal72 beschreibt den Pytest-Wrapper `scripts/run-pytest.mjs` (auto `.venv`),
+          empfiehlt weiterhin
+
+          `pnpm exec cypress install`, dokumentiert den Mandala-Erklärungscheck `pnpm
+          sigils:validate:mini` und legt
+
+          `prompts:coach` auf den Dist-First-Runner (`scripts/run-dist.mjs scripts/prompt-coach.ts`)
+          inklusive
+
+          Command-Catalog-Aktualisierungen.'
       - id: ts-node-retire
         description: Produktionspfade auf `node dist/...` umstellen
         status: done
@@ -167,10 +242,10 @@ streams:
         notes: Dockerfile.dev auf Node20/Python3 gehoben; Dist-First CLI & Dev-Skripte
           aktualisiert (Fraktal44). Adapter-Build-Kommandos verwenden `scripts/lib/python.mjs`
           und `scripts/adapter-build-era5.mjs`, sodass `pnpm adapter:build:*` die Projekt-venv
-          auch unter Windows findet (Fraktal57). `_normalise_href` berechnet Asset-HREFs relativ
-          zum STAC-Item-Verzeichnis (Fallback auf `file://`), die Engine-Präferenz umfasst nun
-          `netcdf4 → h5netcdf → scipy`, und Root-Requirements pinnen `h5netcdf`, damit Offline-Builds
-          stabil bleiben.
+          auch unter Windows findet (Fraktal57). `_normalise_href` berechnet Asset-HREFs
+          relativ zum STAC-Item-Verzeichnis (Fallback auf `file://`), die Engine-Präferenz
+          umfasst nun `netcdf4 → h5netcdf → scipy`, und Root-Requirements pinnen `h5netcdf`,
+          damit Offline-Builds stabil bleiben.
       - id: compose-profiles
         description: docker-compose Profile für core/newsbot/climate definieren
         status: done
@@ -184,13 +259,14 @@ streams:
       - id: ai-responses-bridge
         description: OpenAI Responses Wrapper + API + Playground dokumentieren
         status: done
-        notes: |
-          Fraktal75: Neues Workspace `@unified-mandala/ai` kapselt die OpenAI Responses API
-          (inkl. `.env.example`, Dev-Skript und optionalem NATS-Worker). `apps/api`
-          stellt `POST /api/ai/chat` bereit (`AI_TRANSPORT=direct|nats`), und
-          `MandalaAIPlayground` ermöglicht manuelle End-to-End-Tests. Command-Catalog
-          & Cheat-Sheet listen die neuen Flows (`pnpm -F @unified-mandala/ai dev`,
-          `pnpm -F @unified-mandala/ai nats`, `pnpm -F @unified-mandala/api dev`).
+        notes: "Fraktal75: Neues Workspace `@unified-mandala/ai` kapselt die OpenAI Responses\
+          \ API\n(inkl. `.env.example`, Dev-Skript und optionalem NATS-Worker). `apps/api`\n\
+          stellt `POST /api/ai/chat` bereit (`AI_TRANSPORT=direct|nats`), und\n`MandalaAIPlayground`\
+          \ ermöglicht manuelle End-to-End-Tests. Command-Catalog\n& Cheat-Sheet listen\
+          \ die neuen Flows (`pnpm -F @unified-mandala/ai dev`,\n`pnpm -F @unified-mandala/ai\
+          \ nats`, `pnpm -F @unified-mandala/api dev`).\n          `pnpm dev:stack` startet\
+          \ `apps/api` auf Port 4000; der mandala-ui Vite-Proxy leitet `/api/ai` dorthin\
+          \ und erlaubt Overrides via `MANDALA_AI_API_ORIGIN`.\n"
         artifacts:
           - packages/ai
           - apps/api
@@ -229,10 +305,10 @@ streams:
       - id: two-plane-guard
         description: Repo-/Runtime-Ebenen für Agenten trennen und CI-Guard aktivieren
         status: done
-        notes: Fraktal76 liefert Guarded-FS (`packages/ai/src/guards/*`), PR-Template mit
-          CODE↔RUNTIME-Plane-Checkboxen sowie `ai-commit-guard.mjs`, das Bot-Pushes auf
-          `main` und `.ai-scratch/`-Artefakte blockiert (Halluzinations-Schichten werden
-          klar zwischen Programm, Programm+AI und Repo unterschieden).
+        notes: Fraktal76 liefert Guarded-FS (`packages/ai/src/guards/*`), PR-Template
+          mit CODE↔RUNTIME-Plane-Checkboxen sowie `ai-commit-guard.mjs`, das Bot-Pushes
+          auf `main` und `.ai-scratch/`-Artefakte blockiert (Halluzinations-Schichten
+          werden klar zwischen Programm, Programm+AI und Repo unterschieden).
         artifacts:
           - packages/ai/src/guards/pathBroker.ts
           - packages/ai/src/guards/guardedFs.ts
@@ -253,7 +329,9 @@ streams:
       - id: metrics-endpoints
         description: Alle Services exportieren `/metrics` via @um/health
         status: done
-        notes: '@um/health integriert, Monitoring-Smokes im Release-Drill geprüft (Fraktal44); Fraktal72 liefert `pnpm observability:check` für Prometheus `/api/v1/targets` + Grafana `/api/health` (Port 3300).'
+        notes: '@um/health integriert, Monitoring-Smokes im Release-Drill geprüft (Fraktal44);
+          Fraktal72 liefert `pnpm observability:check` für Prometheus `/api/v1/targets`
+          + Grafana `/api/health` (Port 3300).'
       - id: prom-compose
         description: Compose-Profile für Prometheus/Grafana aktivieren
         status: done

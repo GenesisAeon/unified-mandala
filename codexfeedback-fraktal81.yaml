@@ -1,0 +1,30 @@
+fraktal: 81
+status: done
+owner: ChefDevAI
+summary:
+  - 'Dev-Stack `pnpm dev:stack` startet jetzt den AI-API-Service (`apps/api`) automatisch
+    auf Port 4000, sodass `/api/ai/chat` ohne manuelle Workarounds erreichbar ist.'
+  - 'mandala-ui proxyt `/api/ai` via `MANDALA_AI_API_ORIGIN`; MandalaAIPlayground-Requests
+    landen nicht mehr im 404 und dokumentieren den neuen Flow in Stabilization-Playbook
+    & MandalaMap (Fraktal81).'
+  - 'codexfeedback* und analysis/devtalk77c-evaluation.md halten den Fraktal-Hook fest;
+    Experiments-Service bleibt bestehen, Follow-up evaluiert mögliche Konsolidierung.'
+deliverables:
+  - analysis/devtalk77c-evaluation.md
+  - apps/ui/src/components/MandalaAIPlayground.tsx
+  - apps/ui/vite.config.ts
+  - codexfeedback-fraktal81.yaml
+  - codexfeedback.json
+  - codexfeedback.md
+  - codexfeedback.yaml
+  - docs/roadmap/v1.0-stabilization-playbook.md
+  - docs/roadmap/v1.0-stabilization-playbook.yaml
+  - MandalaMap.json
+  - MandalaMap.md
+  - MandalaMap.yaml
+  - scripts/dev-services.mjs
+commands: []
+hook:
+  progress: 'AI Playground nutzt Port 4000 (`apps/api`) über den automatischen Dev-Stack.'
+  next_step: 'Optional: UI-Smokes/Cypress für `/api/ai/chat` und Experiments-API-Refactor prüfen.'
+repeat_required: false

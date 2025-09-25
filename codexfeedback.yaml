@@ -1,12 +1,40 @@
 fraktal:
-  current: 80
+  current: 81
   history:
+    - id: 81
+      status: done
+      notes: 'Fraktal81 AIProxyAlignment: `pnpm dev:stack` startet `apps/api` (Port
+        4000) als AI Responses Bridge, mandala-ui proxyt `/api/ai` via `MANDALA_AI_API_ORIGIN`
+        und Playground-Requests landen nicht mehr im 404; MandalaMap.*, Stabilization-Playbook.(md|yaml),
+        codexfeedback* und analysis/devtalk77c-evaluation.md spiegeln den Lauf.'
+      deliverables:
+        - analysis/devtalk77c-evaluation.md
+        - apps/ui/src/components/MandalaAIPlayground.tsx
+        - apps/ui/vite.config.ts
+        - codexfeedback-fraktal81.yaml
+        - codexfeedback.json
+        - codexfeedback.md
+        - codexfeedback.yaml
+        - docs/roadmap/v1.0-stabilization-playbook.md
+        - docs/roadmap/v1.0-stabilization-playbook.yaml
+        - MandalaMap.json
+        - MandalaMap.md
+        - MandalaMap.yaml
+        - scripts/dev-services.mjs
+      commands: []
+      hook:
+        progress: AI Playground nutzt jetzt den dedizierten API-Service auf Port 4000;
+          Dev-Stack startet die Bridge automatisch.
+        next_step: 'Optionale Follow-ups: UI-Smoke/Cypress für Playground erweitern
+          und Experiments-API ggf. konsolidieren.'
+      repeat_required: false
     - id: 80
       status: done
-      notes:
-        'Fraktal80 LegacyMandalaMap: MandalaMap Legacy-Overlay mit Labels, Edge-Highlight, Mini-Map und Event-Glow (SSE +
-        Timer-Fallback) wieder aktiv; sharedream-interface bindet die gemeinsame Komponente mit Demo-Knoten ein, `.gitignore`
-        erweitert Windows-/Cypress-Filter und README/Onboarding dokumentieren `$env:CI` + `pnpm exec tsx` Workarounds.'
+      notes: 'Fraktal80 LegacyMandalaMap: MandalaMap Legacy-Overlay mit Labels, Edge-Highlight,
+        Mini-Map und Event-Glow (SSE + Timer-Fallback) wieder aktiv; sharedream-interface
+        bindet die gemeinsame Komponente mit Demo-Knoten ein, `.gitignore` erweitert
+        Windows-/Cypress-Filter und README/Onboarding dokumentieren `$env:CI` + `pnpm
+        exec tsx` Workarounds.'
       deliverables:
         - .gitignore
         - MandalaMap.json
@@ -24,8 +52,10 @@ fraktal:
         - packages/unifiedmandala-ui/index.ts
       commands: []
       hook:
-        progress: Legacy-Overlay sichtbar (`?legacy=1` oder Prop), Demo nutzt Mini-Map + Event-Glow; Windows-Hinweise ergänzt.
-        next_step: SSE-Endpoint konfigurierbar machen und UI-Smoke/Cypress für Legacy-Overlay ergänzen.
+        progress: Legacy-Overlay sichtbar (`?legacy=1` oder Prop), Demo nutzt Mini-Map
+          + Event-Glow; Windows-Hinweise ergänzt.
+        next_step: SSE-Endpoint konfigurierbar machen und UI-Smoke/Cypress für Legacy-Overlay
+          ergänzen.
       repeat_required: false
     - id: 79
       status: done
@@ -59,12 +89,19 @@ fraktal:
       commands:
         - pnpm start:cosmic-web
       hook:
-        progress: One-command Cosmic-Web Starter + `/demo/ai-playground` Route aktiv; Smoke prüft den Playground.
-        next_step: Optional Cypress/Playwright-Szenario für den Playground oder Docker-Cleanup im Starter ergänzen.
+        progress: One-command Cosmic-Web Starter + `/demo/ai-playground` Route aktiv;
+          Smoke prüft den Playground.
+        next_step: Optional Cypress/Playwright-Szenario für den Playground oder Docker-Cleanup
+          im Starter ergänzen.
       repeat_required: false
     - id: 78
       status: done
-      notes: 'Fraktal78 CoreCoveragePolicy: ci.core.yml bündelt `pnpm test:unit:coverage`, `pnpm schema:validate`, `pnpm maps:validate`, `pnpm sanity` und `pnpm policy:check` im type_and_tests-Gate, lädt `coverage-vitest` als Artefakt hoch; Label `ci:advisory` triggert `pnpm check:ci` (Soft-Fail). docs/START-HERE.md, Workflow-Cheat-Sheet, Stabilization-Playbook (MD/YAML) sowie MandalaMap.(md|json|yaml) und codexfeedback* + analysis/devtalk78-evaluation.md dokumentieren den Lauf.'
+      notes: 'Fraktal78 CoreCoveragePolicy: ci.core.yml bündelt `pnpm test:unit:coverage`,
+        `pnpm schema:validate`, `pnpm maps:validate`, `pnpm sanity` und `pnpm policy:check`
+        im type_and_tests-Gate, lädt `coverage-vitest` als Artefakt hoch; Label `ci:advisory`
+        triggert `pnpm check:ci` (Soft-Fail). docs/START-HERE.md, Workflow-Cheat-Sheet,
+        Stabilization-Playbook (MD/YAML) sowie MandalaMap.(md|json|yaml) und codexfeedback*
+        + analysis/devtalk78-evaluation.md dokumentieren den Lauf.'
       deliverables:
         - .github/workflows/ci.core.yml
         - analysis/devtalk78-evaluation.md
@@ -82,12 +119,10 @@ fraktal:
       commands:
         - pnpm check:ci
       hook:
-        progress:
-          Core-Gates laufen jetzt mit Coverage + Schema/Map/Sanity/Policy fail-fast; Dokumentation
-          und MandalaMap spiegeln Fraktal78.
-        next_step:
-          Monitoring der Laufzeiten & mögliche Bündelung der pnpm install-Phase evaluieren, um
-          doppelte Installationen im type_and_tests-Job zu vermeiden.
+        progress: Core-Gates laufen jetzt mit Coverage + Schema/Map/Sanity/Policy fail-fast;
+          Dokumentation und MandalaMap spiegeln Fraktal78.
+        next_step: Monitoring der Laufzeiten & mögliche Bündelung der pnpm install-Phase
+          evaluieren, um doppelte Installationen im type_and_tests-Job zu vermeiden.
       repeat_required: false
     - id: 77
       status: done

@@ -42,6 +42,12 @@ const serviceDefinitions = [
     portKeys: ['EXPERIMENTS_API_PORT'],
   },
   {
+    name: 'ai-api',
+    script: 'apps/api/src/index.ts',
+    envDefaults: { PORT: '4000' },
+    portKeys: ['PORT'],
+  },
+  {
     name: 'share-api',
     script: 'scripts/share-api.ts',
     envDefaults: { SHARE_API_PORT: '3001' },
