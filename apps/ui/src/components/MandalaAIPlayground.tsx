@@ -66,7 +66,7 @@ export function MandalaAIPlayground() {
         <h1 className="text-2xl font-semibold text-slate-900">Mandala AI Playground</h1>
         <p className="text-sm text-slate-600">
           Sende Nachrichten an <code>/api/ai/chat</code> und inspiziere die Antworten der Unified-Mandala-AI.
-          Der Dev-Server proxyt die Anfragen an den Experiments-Service auf Port 3002.
+          Der Dev-Server proxyt die Anfragen an den AI-API-Service (<code>apps/api</code>) auf Port 4000.
         </p>
       </header>
 

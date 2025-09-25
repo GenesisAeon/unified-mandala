@@ -1,5 +1,6 @@
 # Codex Feedback
 
+- FR-UM-2025-11-24-Fraktal81-AIProxyAlignment: `pnpm dev:stack` startet nun `apps/api` auf Port 4000 (AI Responses Bridge), der mandala-ui Vite-Proxy nutzt `MANDALA_AI_API_ORIGIN` für Overrides, und `MandalaAIPlayground` kommuniziert fehlerfrei mit `/api/ai/chat`; MandalaMap._ (Fraktal81), Stabilization-Playbook (MD/YAML) und codexfeedback_ aktualisiert, analysis/devtalk77c-evaluation.md dokumentiert den Lauf.
 - FR-UM-2025-11-23-Fraktal80-LegacyMandalaMap: MandalaMap legacy overlays wieder aktiv (Labels, Edge-Highlight, Mini-Map,
   Event-Glow mit SSE-Fallback), `apps/sharedream-interface` nutzt die gemeinsame Komponente mit Demo-Knoten, `.gitignore`
   filtert Windows-/Cypress-Artefakte und README/Onboarding dokumentieren `$env:CI=1` + `pnpm exec tsx` Workarounds.

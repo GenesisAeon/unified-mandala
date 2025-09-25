@@ -1,6 +1,11 @@
 {
   "runs": [
     {
+      "fraktalrun": "Fraktal81 AIProxyAlignment",
+      "status": "done",
+      "notes": "pnpm dev:stack now launches apps/api on port 4000 so mandala-ui's Vite proxy can reach /api/ai/chat; overrides via MANDALA_AI_API_ORIGIN supported. MandalaMap.*, stabilization playbook and codexfeedback* updated; analysis/devtalk77c-evaluation.md captures the run."
+    },
+    {
       "fraktalrun": "Fraktal80 LegacyMandalaMap",
       "status": "done",
       "notes": "MandalaMap legacy overlay reactivated (labels, edge highlight, mini-map, SSE glow fallback); sharedream-interface renders the shared component with demo nodes; .gitignore covers Windows/Cypress artefacts; README/Onboarding document $env:CI PowerShell usage and pnpm exec tsx fallbacks."

@@ -1,8 +1,8 @@
 {
   "meta": {
     "version": "1.0",
-    "generated": "2025-11-23T00:00:00Z",
-    "fraktal": 80,
+    "generated": "2025-11-24T00:00:00Z",
+    "fraktal": 81,
     "repo": "unified-mandala",
     "source": "ChefDevAI MandalaMap bootstrap",
     "reference_docs": [
@@ -272,7 +272,7 @@
         "Dev entrypoints: pnpm -F mandala-ui dev | pnpm -F mandala-ui build.",
         "apps/api bietet `/api/ai/chat` (Responses direkt oder via `AI_TRANSPORT=nats`); MandalaAIPlayground in apps/web/components dient als manueller Responses-Test.",
         "Fraktal79 ergänzt `pnpm start:cosmic-web` als orchestrierten Demo-Starter (NATS, Artefakte, Services, UI, Smoke) und schaltet mandala-ui direkt auf `/demo/ai-playground`.",
-        "mandala-ui bedient `/demo/ai-playground` jetzt selbst; der Vite-Dev-Server proxyt `/api/ai` auf Port 3002 für den Playground."
+        "mandala-ui bedient `/demo/ai-playground` jetzt selbst; der Vite-Dev-Server proxyt `/api/ai` auf Port 4000 zum AI-Service (`apps/api`, konfigurierbar via `MANDALA_AI_API_ORIGIN`)."
       ],
       "links": [
         {

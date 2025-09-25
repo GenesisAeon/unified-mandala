@@ -2,7 +2,9 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const aiApiTarget = process.env.MANDALA_AI_API_ORIGIN ?? "http://localhost:4000";
 
 export default defineConfig({
   plugins: [react()],
@@ -16,7 +18,7 @@ export default defineConfig({
     port: 5173,
     proxy: {
       "/api/ai": {
-        target: "http://localhost:3002",
+        target: aiApiTarget,
         changeOrigin: true,
       },
     },

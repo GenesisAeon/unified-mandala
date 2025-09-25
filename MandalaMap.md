@@ -1,6 +1,6 @@
-# Mandala Map · Fraktal80
+# Mandala Map · Fraktal81
 
-Generated: 2025-11-23T00:00:00Z
+Generated: 2025-11-24T00:00:00Z
 Repository: unified-mandala
 
 ## Reference Docs
@@ -241,7 +241,7 @@ Repository: unified-mandala
 - `apps/` — **active** Workspace applications
   - React/Vite frontends (mandala-ui, sharedream-interface, pyramid-ui, mobile prototypes).
   - Notes: Primary UI served from apps/ui (workspace name mandala-ui).; Dev entrypoints: pnpm -F mandala-ui dev | pnpm -F mandala-ui build.; Fraktal79 liefert `pnpm start:cosmic-web` als orchestrierten Demo-Start (NATS, Artefakte, Services, UI, Smoke) und erweitert mandala-ui um `/demo/ai-playground`.
-  - Notes: `apps/api` stellt `/api/ai/chat` bereit (Responses direkt oder via `AI_TRANSPORT=nats`). `MandalaAIPlayground` in apps/web/components testet den Responses-Flow manuell.; mandala-ui spiegelt den Playground unter `/demo/ai-playground` mit Vite-Proxy auf Port 3002.
+  - Notes: `apps/api` stellt `/api/ai/chat` bereit (Responses direkt oder via `AI_TRANSPORT=nats`). `MandalaAIPlayground` in apps/web/components testet den Responses-Flow manuell.; mandala-ui spiegelt den Playground unter `/demo/ai-playground` mit Vite-Proxy auf Port 4000 (`apps/api`, konfigurierbar via `MANDALA_AI_API_ORIGIN`).
   - Links: [apps/ui package.json](apps/ui/package.json)
 
 - `packages/` — **active** Workspace packages
