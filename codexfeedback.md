@@ -1,5 +1,6 @@
 # Codex Feedback
 
+- FR-UM-2025-11-24-Fraktal82-DevStackPreflight: `scripts/dev-services.mjs` prüft fehlende Workspace-Artefakte (Start mit `@unified-mandala/ai`) und baut sie automatisch (`pnpm -F … build`, Opt-out via `UM_DEV_SERVICES_SKIP_PREBUILD=1`); `scripts/setup-dev-env.ps1` setzt `$hasNats` zuverlässig, womit der Installationsbericht keinen undefinierten Status mehr meldet. Stabilization-Playbook (MD/YAML) und analysis/devtalk80-evaluation.md dokumentieren die Recovery-Schritte.
 - FR-UM-2025-11-24-Fraktal81-AIProxyAlignment: `pnpm dev:stack` startet nun `apps/api` auf Port 4000 (AI Responses Bridge), der mandala-ui Vite-Proxy nutzt `MANDALA_AI_API_ORIGIN` für Overrides, und `MandalaAIPlayground` kommuniziert fehlerfrei mit `/api/ai/chat`; MandalaMap._ (Fraktal81), Stabilization-Playbook (MD/YAML) und codexfeedback_ aktualisiert, analysis/devtalk77c-evaluation.md dokumentiert den Lauf.
 - FR-UM-2025-11-23-Fraktal80-LegacyMandalaMap: MandalaMap legacy overlays wieder aktiv (Labels, Edge-Highlight, Mini-Map,
   Event-Glow mit SSE-Fallback), `apps/sharedream-interface` nutzt die gemeinsame Komponente mit Demo-Knoten, `.gitignore`

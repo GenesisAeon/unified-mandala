@@ -22,6 +22,14 @@ const resolvedMode =
         ? 'prod'
         : 'dev';
 
+const preflightPackages = [
+  {
+    name: '@unified-mandala/ai',
+    outputs: ['packages/ai/dist/index.js', 'packages/ai/dist/index.d.ts'],
+    command: ['-F', '@unified-mandala/ai', 'build'],
+  },
+];
+
 const serviceDefinitions = [
   {
     name: 'rag-api',
@@ -153,6 +161,8 @@ process.on('SIGTERM', () => {
   shutdown('SIGTERM');
 });
 
+await ensureWorkspacePrebuilds();
+
 console.log(
   `[dev-services] Starting ${serviceDefinitions.length} services in ${resolvedMode} mode...`,
 );
@@ -225,6 +235,78 @@ async function ensurePortsAvailable(service, env) {
     }
     process.exit(1);
   }
+}
+
+async function ensureWorkspacePrebuilds() {
+  if (process.env.UM_DEV_SERVICES_SKIP_PREBUILD === '1') {
+    console.log(
+      '[dev-services] Skipping workspace prebuild checks (UM_DEV_SERVICES_SKIP_PREBUILD=1).',
+    );
+    return;
+  }
+
+  const missing = [];
+  for (const entry of preflightPackages) {
+    const missingOutputs = entry.outputs
+      .map((relativePath) => ({
+        path: relativePath,
+        exists: fs.existsSync(path.resolve(repoRoot, relativePath)),
+      }))
+      .filter((item) => !item.exists);
+
+    if (missingOutputs.length > 0) {
+      missing.push({ entry, missingOutputs });
+    }
+  }
+
+  if (missing.length === 0) {
+    return;
+  }
+
+  console.log(`[dev-services] Preparing ${missing.length} workspace package(s) for dev mode...`);
+
+  for (const { entry, missingOutputs } of missing) {
+    console.log(
+      `[dev-services] → Building ${entry.name} (missing: ${missingOutputs
+        .map((item) => item.path)
+        .join(', ')})`,
+    );
+    await runPnpm(entry.command);
+
+    const unresolved = entry.outputs.filter(
+      (relativePath) => !fs.existsSync(path.resolve(repoRoot, relativePath)),
+    );
+    if (unresolved.length > 0) {
+      throw new Error(
+        `Failed to materialise build artefacts for ${entry.name}: ${unresolved.join(', ')}`,
+      );
+    }
+  }
+}
+
+function runPnpm(args) {
+  return new Promise((resolve, reject) => {
+    const child = spawn('pnpm', args, {
+      stdio: 'inherit',
+      cwd: repoRoot,
+      env: process.env,
+      shell: process.platform === 'win32',
+    });
+    child.on('exit', (code, signal) => {
+      if (signal) {
+        reject(new Error(`pnpm exec ${args.join(' ')} terminated via signal ${signal}`));
+        return;
+      }
+      if (code !== 0) {
+        reject(new Error(`pnpm exec ${args.join(' ')} exited with code ${code}`));
+        return;
+      }
+      resolve();
+    });
+    child.on('error', (error) => {
+      reject(error);
+    });
+  });
 }
 
 function isPortAvailable(port) {

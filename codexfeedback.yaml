@@ -1,6 +1,24 @@
 fraktal:
-  current: 81
+  current: 82
   history:
+    - id: 82
+      status: done
+      notes: 'Fraktal82 DevStackPreflight: `scripts/dev-services.mjs` baut fehlende Workspace-Artefakte automatisch (Start mit `@unified-mandala/ai`, Opt-out via `UM_DEV_SERVICES_SKIP_PREBUILD=1`) und `scripts/setup-dev-env.ps1` setzt `$hasNats` korrekt, sodass Windows-Installberichte keine undefinierten Variablen mehr enthalten; Stabilization-Playbook (MD/YAML) und analysis/devtalk80-evaluation.md dokumentieren die Recovery-Schritte.'
+      deliverables:
+        - analysis/devtalk80-evaluation.md
+        - codexfeedback-fraktal82.yaml
+        - codexfeedback.json
+        - codexfeedback.md
+        - codexfeedback.yaml
+        - docs/roadmap/v1.0-stabilization-playbook.md
+        - docs/roadmap/v1.0-stabilization-playbook.yaml
+        - scripts/dev-services.mjs
+        - scripts/setup-dev-env.ps1
+      commands: []
+      hook:
+        progress: Dev-Stack startet ohne fehlende Dist-Artefakte; Setup-Report zeigt NATS-Status korrekt an.
+        next_step: Weitere Workspace-Pakete in den Preflight aufnehmen und optional einen CLI-Schalter für den Skip bereitstellen.
+      repeat_required: false
     - id: 81
       status: done
       notes: 'Fraktal81 AIProxyAlignment: `pnpm dev:stack` startet `apps/api` (Port
