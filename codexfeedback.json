@@ -1,6 +1,11 @@
 {
   "runs": [
     {
+      "fraktalrun": "Fraktal82 DevStackPreflight",
+      "status": "done",
+      "notes": "scripts/dev-services.mjs now performs a workspace preflight that builds @unified-mandala/ai when dist artefacts are missing (opt-out via UM_DEV_SERVICES_SKIP_PREBUILD); scripts/setup-dev-env.ps1 sets $hasNats to the aggregated Docker/binary state so Windows install logs no longer warn about an undefined variable."
+    },
+    {
       "fraktalrun": "Fraktal81 AIProxyAlignment",
       "status": "done",
       "notes": "pnpm dev:stack now launches apps/api on port 4000 so mandala-ui's Vite proxy can reach /api/ai/chat; overrides via MANDALA_AI_API_ORIGIN supported. MandalaMap.*, stabilization playbook and codexfeedback* updated; analysis/devtalk77c-evaluation.md captures the run."

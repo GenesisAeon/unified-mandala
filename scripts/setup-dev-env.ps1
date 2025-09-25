@@ -402,6 +402,8 @@ $script:InstallMetadata['natsServerSource'] = if ($hasNatsBinary -and $dockerNat
   'missing'
 }
 
+$hasNats = $overallHasNats
+
 $script:InstallMetadata['natsServerDocker'] = [ordered]@{
   present = [bool]$dockerNatsInfo
   running = $dockerNatsRunning

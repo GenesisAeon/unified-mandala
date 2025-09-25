@@ -266,7 +266,11 @@ streams:
           \ die neuen Flows (`pnpm -F @unified-mandala/ai dev`,\n`pnpm -F @unified-mandala/ai\
           \ nats`, `pnpm -F @unified-mandala/api dev`).\n          `pnpm dev:stack` startet\
           \ `apps/api` auf Port 4000; der mandala-ui Vite-Proxy leitet `/api/ai` dorthin\
-          \ und erlaubt Overrides via `MANDALA_AI_API_ORIGIN`.\n"
+          \ und erlaubt Overrides via `MANDALA_AI_API_ORIGIN`.\n          Fraktal82 ergänzt\
+          \ einen Preflight in `scripts/dev-services.mjs`, der fehlende Workspace-Builds\
+          \ (z.\u00a0B. `packages/ai/dist/index.js`) automatisch via `pnpm -F @unified-mandala/ai\
+          \ build` erzeugt (`UM_DEV_SERVICES_SKIP_PREBUILD=1` deaktiviert den Check)\
+          \ und räumt die fehlende `$hasNats`-Variable im Windows-Setup-Skript.\n"
         artifacts:
           - packages/ai
           - apps/api
