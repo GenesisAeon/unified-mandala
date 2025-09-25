@@ -1,5 +1,8 @@
 # Codex Feedback
 
+- FR-UM-2025-11-23-Fraktal80-LegacyMandalaMap: MandalaMap legacy overlays wieder aktiv (Labels, Edge-Highlight, Mini-Map,
+  Event-Glow mit SSE-Fallback), `apps/sharedream-interface` nutzt die gemeinsame Komponente mit Demo-Knoten, `.gitignore`
+  filtert Windows-/Cypress-Artefakte und README/Onboarding dokumentieren `$env:CI=1` + `pnpm exec tsx` Workarounds.
 - FR-UM-2025-11-22-Fraktal79-CosmicStarter: `pnpm start:cosmic-web` bootet NATS, baut die
   Cosmic-Web-Artefakte, startet Dev-Services/Vite/NATS-Ticker und triggert automatisch
   `pnpm smoke:ui` mit dynamischer `UI_DEV_URL`; mandala-ui hostet `/demo/ai-playground`

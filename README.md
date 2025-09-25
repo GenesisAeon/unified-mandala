@@ -287,6 +287,11 @@ pnpm prompts:coach --dry
 pnpm test:unit:coverage       # Coverage-Report der Kernmodule
 ```
 
+> 🪟 PowerShell: `$env:CI = "1"; pnpm adapter:build:oisst` und `$env:CI = "1"; pnpm adapter:build:era5` setzen das Environment
+> ohne POSIX `CI=true`. Falls `scripts/run-dist.mjs` unter Windows einen `spawnSync pnpm.cmd EINVAL`-Fehler wirft, führe die
+> TypeScript-Skripte direkt via `pnpm exec tsx <skript>` aus, z. B. `pnpm exec tsx scripts/validate-stac.ts out/example.item.json`
+> oder `pnpm exec tsx scripts/prompt-coach.ts --dry`.
+
 > ℹ️ `CI Experimental` läuft nur mit Label `run-experimental`. `ENABLE_EXPERIMENTAL_TESTS=1` schaltet zusätzliche, instabile Suites frei (z.B. `pnpm test:ts:experimental`).
 
 ### Sigillin (Inter-AI Bridges) & Validator

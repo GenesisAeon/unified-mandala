@@ -1,0 +1,29 @@
+fraktal: 80
+status: done
+owner: ChefDevAI
+summary:
+  - 'MandalaMap Legacy-Overlay (Labels, Edge-Highlight, Mini-Map, Event-Glow) wurde reaktiviert und ist via `?legacy=1`
+    oder Prop steuerbar; Browser-SSE wird abgesichert und fallbackt auf einen Demo-Timer.'
+  - 'sharedream-interface nutzt die gemeinsame Komponente mit Demo-Knoten/-Kanten als sofort sichtbaren Showcase.'
+  - '.gitignore filtert Windows/Cypress-Artefakte; README & docs/ONBOARDING dokumentieren `$env:CI` und `pnpm exec tsx`
+    als Windows-Workarounds.'
+deliverables:
+  - .gitignore
+  - MandalaMap.json
+  - MandalaMap.md
+  - MandalaMap.yaml
+  - analysis/devtalk77b-evaluation.md
+  - apps/sharedream-interface/components/MandalaMap.tsx
+  - codexfeedback-fraktal80.yaml
+  - codexfeedback.json
+  - codexfeedback.md
+  - codexfeedback.yaml
+  - docs/ONBOARDING.md
+  - README.md
+  - packages/unifiedmandala-ui/components/MandalaMap.tsx
+  - packages/unifiedmandala-ui/index.ts
+commands: []
+hook:
+  progress: Legacy-Overlay aktiv; Demo + Docs spiegeln die Reaktivierung.
+  next_step: Event-Quelle konfigurierbar machen und UI-Smoke-Test für Legacy-Modus ergänzen.
+repeat_required: false

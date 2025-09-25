@@ -71,6 +71,10 @@ pnpm test:unit:coverage  # Coverage für Kernmodule
 pnpm policy:check        # Governance-Gates
 ```
 
+> 🪟 PowerShell setzt Umgebungsvariablen mit `$env:CI = "1"; pnpm adapter:build:oisst` bzw. `$env:CI = "1"; pnpm adapter:build:era5`.
+> Sollte `scripts/run-dist.mjs` unter Windows mit `spawnSync pnpm.cmd EINVAL` aussteigen, führe das Zielskript direkt via
+> `pnpm exec tsx …` aus (z. B. `pnpm exec tsx scripts/validate-stac.ts out/example.item.json`).
+
 ### Services starten
 
 ```bash

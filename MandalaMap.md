@@ -1,6 +1,6 @@
-# Mandala Map · Fraktal78
+# Mandala Map · Fraktal80
 
-Generated: 2025-11-19T00:00:00Z
+Generated: 2025-11-23T00:00:00Z
 Repository: unified-mandala
 
 ## Reference Docs
