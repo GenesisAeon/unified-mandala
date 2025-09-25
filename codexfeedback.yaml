@@ -1,6 +1,32 @@
 fraktal:
-  current: 79
+  current: 80
   history:
+    - id: 80
+      status: done
+      notes:
+        'Fraktal80 LegacyMandalaMap: MandalaMap Legacy-Overlay mit Labels, Edge-Highlight, Mini-Map und Event-Glow (SSE +
+        Timer-Fallback) wieder aktiv; sharedream-interface bindet die gemeinsame Komponente mit Demo-Knoten ein, `.gitignore`
+        erweitert Windows-/Cypress-Filter und README/Onboarding dokumentieren `$env:CI` + `pnpm exec tsx` Workarounds.'
+      deliverables:
+        - .gitignore
+        - MandalaMap.json
+        - MandalaMap.md
+        - MandalaMap.yaml
+        - analysis/devtalk77b-evaluation.md
+        - apps/sharedream-interface/components/MandalaMap.tsx
+        - codexfeedback-fraktal80.yaml
+        - codexfeedback.json
+        - codexfeedback.md
+        - codexfeedback.yaml
+        - docs/ONBOARDING.md
+        - README.md
+        - packages/unifiedmandala-ui/components/MandalaMap.tsx
+        - packages/unifiedmandala-ui/index.ts
+      commands: []
+      hook:
+        progress: Legacy-Overlay sichtbar (`?legacy=1` oder Prop), Demo nutzt Mini-Map + Event-Glow; Windows-Hinweise ergänzt.
+        next_step: SSE-Endpoint konfigurierbar machen und UI-Smoke/Cypress für Legacy-Overlay ergänzen.
+      repeat_required: false
     - id: 79
       status: done
       notes:

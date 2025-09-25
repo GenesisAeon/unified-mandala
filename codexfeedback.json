@@ -1,6 +1,11 @@
 {
   "runs": [
     {
+      "fraktalrun": "Fraktal80 LegacyMandalaMap",
+      "status": "done",
+      "notes": "MandalaMap legacy overlay reactivated (labels, edge highlight, mini-map, SSE glow fallback); sharedream-interface renders the shared component with demo nodes; .gitignore covers Windows/Cypress artefacts; README/Onboarding document $env:CI PowerShell usage and pnpm exec tsx fallbacks."
+    },
+    {
       "fraktalrun": "Fraktal79 CosmicStarter",
       "status": "done",
       "notes": "pnpm start:cosmic-web orchestrates NATS (ensure/start), rebuilds cosmic-web artefacts, launches dev-services + mandala-ui (port autodetect) and the cosmic tick publisher, and triggers pnpm smoke:ui with the detected UI_DEV_URL; mandala-ui now serves /demo/ai-playground with navigation and a Vite proxy to port 3002, and scripts/ci/no-local-path-leaks.mjs blocks staged Windows paths/secrets. MandalaMap.*, stabilization playbook (MD/YAML) and codexfeedback* record the run."
