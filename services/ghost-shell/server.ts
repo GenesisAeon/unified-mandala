@@ -23,7 +23,7 @@ export function startServer(
   port = 3000,
   secret = 'ghost-secret',
   enableSocket: boolean = true,
-  enableBackground: boolean = true
+  enableBackground: boolean = true,
 ) {
   const app = express();
   let ready = false;
@@ -33,6 +33,9 @@ export function startServer(
   app.use(express.static(path.join(__dirname, '..', 'public')));
 
   app.get('/healthz', (_req, res) => {
+    res.json({ ok: true });
+  });
+  app.get('/health', (_req, res) => {
     res.json({ ok: true });
   });
 
@@ -79,37 +82,37 @@ export function startServer(
   const server = http.createServer(app);
   let io: Server | null = null;
   if (enableSocket) {
-    io = new Server(server, { cors: { origin: "*" }, wsEngine: WebSocketServer });
+    io = new Server(server, { cors: { origin: '*' }, wsEngine: WebSocketServer });
     io.use(socketAuth(secret));
     io.use(rateLimit);
-    io.on("connection", (socket) => {
+    io.on('connection', (socket) => {
       addSession(socket.id);
       recordConnection();
 
-      socket.on("join_room", (roomId: string) => {
+      socket.on('join_room', (roomId: string) => {
         joinRoom(socket, roomId);
       });
 
-      socket.on("leave_room", (roomId: string) => {
+      socket.on('leave_room', (roomId: string) => {
         leaveRoom(socket, roomId);
       });
 
-      socket.on("room_message", ({ roomId, msg }) => {
+      socket.on('room_message', ({ roomId, msg }) => {
         sendRoomMessage(io!, roomId, msg);
       });
 
-      socket.on("user_message", (msg) => {
+      socket.on('user_message', (msg) => {
         const start = Date.now();
         const session = getSession(socket.id);
         if (session) {
           session.history.push(msg);
         }
-        socket.emit("echo", msg);
+        socket.emit('echo', msg);
         emitSigilAlert(socket, { energy: Math.random() });
         recordLatency(Date.now() - start);
       });
 
-      socket.on("disconnect", () => {
+      socket.on('disconnect', () => {
         removeSession(socket.id);
         leaveAll(socket);
       });
@@ -131,12 +134,12 @@ export function startServer(
       'GenesisAeonZIPMEM',
       'newadvancedconversations',
       '**',
-      '*.yaml'
+      '*.yaml',
     );
     watcher = watchFragments(fragmentsPattern);
     scheduler = scheduleAdaptive(
       () => glob(fragmentsPattern).then((files) => files.length),
-      runSelfLearn
+      runSelfLearn,
     );
   }
 

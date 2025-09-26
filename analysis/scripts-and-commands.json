@@ -1,5 +1,5 @@
 {
-  "/workspace/unified-mandala": {
+  "root": {
     "build:agents": "tsc -p tsconfig.agents.json && node -e \"const fs=require('fs'),p='dist/agents/personhood/AIJuristicAgent.js';if(fs.existsSync(p))fs.renameSync(p,p.replace(/\\.js$/,'.cjs'));\"",
     "build": "tsc -p tsconfig.build.json && pnpm build:agents",
     "typecheck": "tsc -p tsconfig.json --noEmit",
@@ -24,6 +24,7 @@
     "start": "pnpm -s build:ui && pnpm -s dev",
     "start:light": "pnpm -s build:ui && node scripts/light-static-server.mjs",
     "start:all": "pnpm dev:stack",
+    "start:cosmic-web": "node scripts/start-cosmic-web.mjs",
     "sub:cosmic": "node scripts/realtime/sub-cosmic.mjs",
     "demo:cosmic:generate": "python src/adapters/cosmic_web/mock.py",
     "demo:cosmic:stac": "node scripts/demos/build-cosmic-web-stac.mjs",
@@ -40,6 +41,15 @@
     "docs:auto": "node scripts/generate-api-docs.js",
     "postinstall": "husky",
     "labels:setup": "node scripts/repo/setup-labels.mjs",
+    "guard:no-dotenv": "node scripts/ci/guard-no-dotenv.mjs",
+    "maps:sync": "pnpm repomap:build && pnpm repomap:validate && node scripts/mandala-map-validate.mjs",
+    "dev:health": "tsx scripts/health-aggregator.ts",
+    "ps:start-um": "powershell -NoProfile -ExecutionPolicy Bypass -Command \". ./scripts/dev-helper.ps1; Start-UM\"",
+    "ps:stop-um": "powershell -NoProfile -ExecutionPolicy Bypass -Command \". ./scripts/dev-helper.ps1; Stop-UM\"",
+    "ps:start-ui": "powershell -NoProfile -ExecutionPolicy Bypass -Command \". ./scripts/dev-helper.ps1; Start-UI -Port 5174\"",
+    "ps:test-um": "powershell -NoProfile -ExecutionPolicy Bypass -Command \". ./scripts/dev-helper.ps1; Test-UM -Extended\"",
+    "ps:set-secrets": "powershell -NoProfile -ExecutionPolicy Bypass -Command \". ./scripts/dev-helper.ps1; Set-UMSecrets\"",
+    "ps:maps-sync": "powershell -NoProfile -ExecutionPolicy Bypass -Command \"pnpm repomap:build; pnpm repomap:validate; node scripts/mandala-map-validate.mjs\"",
     "check:precommit": "pnpm lint-staged && pnpm typecheck && pnpm test:unit && pnpm schema:validate && pnpm maps:validate && pnpm repomap:build && pnpm repomap:validate && pnpm sanity && pnpm policy:check",
     "check:prepush": "pnpm test:unit:coverage && pnpm policy:check",
     "split:conversations": "node scripts/split-conversations.js",
@@ -96,6 +106,7 @@
     "maps:validate": "node scripts/maps/validate-maps.mjs",
     "schema:validate": "node scripts/validate-schemas.mjs",
     "policy:check": "node scripts/policy-suite.mjs",
+    "guard:no-local-paths": "node scripts/ci/no-local-path-leaks.mjs",
     "sanity": "node scripts/sanity/index.mjs",
     "repomap:build": "node scripts/generate-repomap.mjs",
     "repomap:validate": "node scripts/validate-repomap.mjs",

@@ -163,6 +163,15 @@ streams:
       - scripts/dev-services.mjs
       - docker-compose.yml
     checkpoints:
+      - id: dev-helper-health-guard
+        description: PowerShell Dev-Helper, zentraler Health-Aggregator und `.env`-Guard
+        status: done
+        notes: 'Fraktal84: `scripts/dev-helper.ps1` mit Start/Stop/Test/Secrets, `scripts/health-aggregator.ts` (via `pnpm dev:health`) sowie Husky-Guard `guard-no-dotenv` blocken `.env*` im Staging; Docs `docs/DEV-SHORTCUTS.md` ergänzen die Nutzung.'
+        output:
+          - scripts/dev-helper.ps1
+          - scripts/health-aggregator.ts
+          - scripts/ci/guard-no-dotenv.mjs
+          - docs/DEV-SHORTCUTS.md
       - id: lint-doc-refresh
         description: README/CONTRIBUTING mit Dist-First und Hook-Hinweisen erweitern
         status: done

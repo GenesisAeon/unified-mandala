@@ -11,22 +11,51 @@ if (!fs.existsSync(inputPath)) {
 
 // Try local 'opa'
 function runLocal() {
-  return spawnSync("opa", ["eval", "-i", inputPath, "-d", policyPath, "data.mandala.governance.allow"], { encoding: "utf-8" });
+  return spawnSync("opa", ["eval", "-i", inputPath, "-d", policyPath, "data.mandala.governance.allow"], {
+    encoding: "utf-8",
+    timeout: 3000,
+  });
 }
 
 // Try dockerized opa
+function hasDocker() {
+  const r = spawnSync("docker", ["version", "--format", "{{.Client.Version}}"], { encoding: "utf-8", timeout: 1500 });
+  return !r.error && (r.status === 0);
+}
+
 function runDocker() {
-  return spawnSync("docker", ["run","--rm","-v", process.cwd()+":/w","-w","/w","openpolicyagent/opa:0.67.1","eval","-i",inputPath,"-d",policyPath,"data.mandala.governance.allow"], { encoding: "utf-8" });
+  if (!hasDocker()) {
+    return { error: new Error("docker CLI not available"), status: 1, stdout: "", stderr: "" };
+  }
+  return spawnSync(
+    "docker",
+    [
+      "run",
+      "--rm",
+      "-v",
+      process.cwd() + ":/w",
+      "-w",
+      "/w",
+      "openpolicyagent/opa:0.67.1",
+      "eval",
+      "-i",
+      inputPath,
+      "-d",
+      policyPath,
+      "data.mandala.governance.allow",
+    ],
+    { encoding: "utf-8", timeout: 5000 }
+  );
 }
 
 let r = runLocal();
 if (r.error || r.status != 0) {
-  console.warn("Local opa not available, trying docker...");
+  console.warn("Local opa not available, trying docker (fast-fail)...");
   r = runDocker();
 }
 
 if (r.error || r.status != 0) {
-  console.warn("OPA eval failed or not available, skipping (non-fatal).");
+  console.warn("OPA eval failed or not available (docker/offline). Skipping (non-fatal).\n" + (r.stderr || r.error?.message || ""));
   process.exit(0);
 }
 

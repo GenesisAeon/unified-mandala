@@ -1,6 +1,11 @@
 {
   "runs": [
     {
+      "fraktalrun": "Fraktal84 DevHelperHealthGuard",
+      "status": "done",
+      "notes": "PowerShell Dev-Helper (scripts/dev-helper.ps1) adds Start/Stop/Test/Secrets, a central health aggregator (scripts/health-aggregator.ts via `pnpm dev:health`), extra `/health` routes (api, fourier, sigil-generator, ghost-shell, realtime-hub), and a Husky guard (guard-no-dotenv) to block `.env*` from staging; pnpm shortcuts (`ps:*`) and docs (docs/DEV-SHORTCUTS.md) complete the flow. Stabilization Playbook updated; a negative contract test ensures /api/ai/chat returns 400 for invalid payloads."
+    },
+    {
       "fraktalrun": "Fraktal83 ResponsesPayloadFix",
       "status": "done",
       "notes": "@unified-mandala/ai now maps chat messages to Responses API input_text/output_text parts, eliminating the OpenAI 400 error \"Invalid value: 'text'\"; vitest coverage guards the payload and the stabilization playbook + MandalaMap record the fix with follow-up smoke/metrics/Gemini tasks (analysis/devtalk80-evaluation.md)."

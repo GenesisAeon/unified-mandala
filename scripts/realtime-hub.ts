@@ -49,6 +49,10 @@ async function main() {
   const app = express();
   app.use(express.json());
 
+  app.get('/health', (_req, res) => {
+    res.json({ ok: true });
+  });
+
   app.post('/live/ask', async (req, res) => {
     const { question, k } = req.body;
     if (!question) {

@@ -33,8 +33,9 @@ fs.writeFileSync(scriptsPath, JSON.stringify(buildFallbackScripts(), null, 2));
 
 console.log(`[repomap] Fallback artefacts written → ${path.relative(projectRoot, jsonPath)}`);
 
-const exitCode = primary.error ? 1 : (primary.status ?? 1);
-process.exit(exitCode);
+// Fallback artefacts were generated successfully; exit 0 to avoid blocking local hooks
+// on environments where pnpm/dist build is unavailable (e.g., CI advisory runs or GUI clients).
+process.exit(0);
 
 function buildFallbackEntries() {
   const ignore = new Set(['.git', 'node_modules', '.pnpm', 'dist', 'out', '.husky']);

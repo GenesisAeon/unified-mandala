@@ -11,6 +11,10 @@ export function startServer(port = 4100) {
   app.use(metricsMiddleware);
   app.get('/metrics', metricsEndpoint);
 
+  app.get('/health', (_req, res) => {
+    res.json({ ok: true });
+  });
+
   app.get('/fourier/latest', (_req, res) => {
     res.json(latestMetrics);
   });

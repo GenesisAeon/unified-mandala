@@ -5,6 +5,10 @@ export function createApp() {
   const app = express();
   app.use(express.json());
 
+  app.get('/health', (_req, res) => {
+    res.json({ ok: true });
+  });
+
   app.post('/api/fourier/analyze', (req, res) => {
     const data: number[] = req.body.data;
     if (!Array.isArray(data)) {

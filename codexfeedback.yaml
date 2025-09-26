@@ -1,6 +1,32 @@
 fraktal:
-  current: 83
+  current: 84
   history:
+    - id: 84
+      status: done
+      notes: 'Fraktal84 DevHelperHealthGuard: PowerShell Dev-Helper (Start/Stop/Test/Secrets), zentraler Health-Aggregator (`scripts/health-aggregator.ts` → `pnpm dev:health`), neue `/health`-Routen (api, fourier, sigil-generator, ghost-shell, realtime-hub) und Husky-Guard `guard-no-dotenv` gegen `.env*`-Commits; pnpm-Shortcuts (`ps:*`) und `docs/DEV-SHORTCUTS.md` ergänzen den Flow. Stabilization-Playbook (MD/YAML) aktualisiert; negativer Contract-Test für `/api/ai/chat` stellt 400 bei ungültiger Payload sicher.'
+      deliverables:
+        - scripts/dev-helper.ps1
+        - scripts/health-aggregator.ts
+        - scripts/ci/guard-no-dotenv.mjs
+        - apps/api/src/index.ts
+        - services/fourier-metrics/index.ts
+        - services/fourier-metrics/api.ts
+        - services/ghost-shell/server.ts
+        - services/sigil-generator/index.ts
+        - scripts/realtime-hub.ts
+        - tests/api/chat-contract.test.ts
+        - docs/DEV-SHORTCUTS.md
+        - package.json
+        - .husky/pre-commit
+      commands:
+        - pnpm ps:set-secrets
+        - pnpm ps:start-um
+        - pnpm dev:health
+        - pnpm ps:test-um
+      hook:
+        progress: Zentrale Health-Übersicht unter http://localhost:3999/health und schneller E2E-Sanity via Smoke-AI.
+        next_step: Optional `/health` in alle Router/Services konsolidieren und UI-Badge/Prometheus-Scrape für Aggregator ergänzen.
+      repeat_required: false
     - id: 83
       status: done
       notes: 'Fraktal83 ResponsesPayloadFix: `@unified-mandala/ai` mappt Chat-Verläufe auf `input_text`/`output_text`, behebt den OpenAI-Fehler "Invalid value: ''text''" und stellt `/api/ai/chat` wieder her; Vitest prüft die Payload, Stabilization-Playbook & MandalaMap spiegeln den Fix, analysis/devtalk80-evaluation.md fasst Folgeaufgaben.'

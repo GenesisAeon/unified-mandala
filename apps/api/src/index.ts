@@ -11,6 +11,9 @@ app.use(express.json({ limit: '1mb' }));
 app.get('/healthz', (_req, res) => {
   res.json({ ok: true });
 });
+app.get('/health', (_req, res) => {
+  res.json({ ok: true });
+});
 
 const ChatSchema = z.object({
   messages: z
@@ -45,6 +48,10 @@ app.post('/api/ai/chat', async (req, res) => {
 });
 
 const port = Number(process.env.PORT || 4000);
-app.listen(port, () => {
-  console.log(`[api] listening on http://localhost:${port}`);
-});
+if (process.env.NODE_ENV !== 'test' && process.env.VITEST !== '1') {
+  app.listen(port, () => {
+    console.log(`[api] listening on http://localhost:${port}`);
+  });
+}
+
+export { app, ChatSchema };

@@ -5,6 +5,10 @@ export function startServer(port = 4200) {
   const app = express();
   app.use(express.json());
 
+  app.get('/health', (_req, res) => {
+    res.json({ ok: true });
+  });
+
   app.post('/sigil/generate', async (req, res) => {
     const { prompt } = req.body;
     const markdown = await generateMarkdownSigil(prompt || '');

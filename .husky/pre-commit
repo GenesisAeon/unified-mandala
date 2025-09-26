@@ -10,6 +10,7 @@ if [ -n "$UM_SKIP_HEAVY_HOOKS" ]; then
 fi
 
 pnpm lint-staged || exit $?
+pnpm guard:no-dotenv || exit $?
 pnpm typecheck || exit $?
 pnpm test:unit || exit $?
 pnpm schema:validate || exit $?

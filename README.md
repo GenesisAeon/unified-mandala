@@ -60,6 +60,17 @@ docker compose --profile monitoring up
 > • JetStream-Betrieb & Self-Check: `docs/runbooks/nats-jetstream.md` und `docs/runbooks/MaxBundle.md` bündeln Setup, Docker-Profile sowie `pnpm nats:doctor`/`pnpm test:jetstream` Troubleshooting.
 > • `pnpm nats:doctor` liefert bei Fehlern direkte Hinweise (z. B. JetStream nicht aktiviert, Timeout/Firewall, fehlende Berechtigung) und nutzt `$JS.API.INFO` als Fallback.
 
+### Windows Dev-Shortcuts
+
+Siehe Kurzreferenz unter `docs/DEV-SHORTCUTS.md` für PowerShell-Helfer (Secrets setzen, Dev-Stack/Health starten, Smoke-Checks):
+
+```powershell
+. ./scripts/dev-helper.ps1
+Set-UMSecrets -ApiKey '<KEY>'
+Start-UM; Start-UMHealth
+Smoke-AI -Message 'Hallo Aeon!'
+```
+
 ## Quickstart (Windows · PowerShell)
 
 ```powershell
