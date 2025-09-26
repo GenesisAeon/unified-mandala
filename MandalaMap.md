@@ -241,7 +241,7 @@ Repository: unified-mandala
 - `apps/` — **active** Workspace applications
   - React/Vite frontends (mandala-ui, sharedream-interface, pyramid-ui, mobile prototypes).
   - Notes: Primary UI served from apps/ui (workspace name mandala-ui).; Dev entrypoints: pnpm -F mandala-ui dev | pnpm -F mandala-ui build.; Fraktal79 liefert `pnpm start:cosmic-web` als orchestrierten Demo-Start (NATS, Artefakte, Services, UI, Smoke) und erweitert mandala-ui um `/demo/ai-playground`.
-  - Notes: `apps/api` stellt `/api/ai/chat` bereit (Responses direkt oder via `AI_TRANSPORT=nats`). `MandalaAIPlayground` in apps/web/components testet den Responses-Flow manuell.; mandala-ui spiegelt den Playground unter `/demo/ai-playground` mit Vite-Proxy auf Port 4000 (`apps/api`, konfigurierbar via `MANDALA_AI_API_ORIGIN`).
+  - Notes: `apps/api` stellt `/api/ai/chat` bereit (Responses direkt oder via `AI_TRANSPORT=nats`). `MandalaAIPlayground` in apps/web/components testet den Responses-Flow manuell.; mandala-ui spiegelt den Playground unter `/demo/ai-playground` mit Vite-Proxy auf Port 4000 (`apps/api`, konfigurierbar via `MANDALA_AI_API_ORIGIN`).; Fraktal83 entfernt das alte `type: "text"` aus der Responses-Payload (`input_text`/`output_text`), womit der 400-Fehler "Invalid value: 'text'" verschwindet und die Playground-Smokes wieder laufen (API-Key vorausgesetzt).
   - Links: [apps/ui package.json](apps/ui/package.json)
 
 - `packages/` — **active** Workspace packages

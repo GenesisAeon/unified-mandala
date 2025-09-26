@@ -270,7 +270,10 @@ streams:
           \ einen Preflight in `scripts/dev-services.mjs`, der fehlende Workspace-Builds\
           \ (z.\u00a0B. `packages/ai/dist/index.js`) automatisch via `pnpm -F @unified-mandala/ai\
           \ build` erzeugt (`UM_DEV_SERVICES_SKIP_PREBUILD=1` deaktiviert den Check)\
-          \ und räumt die fehlende `$hasNats`-Variable im Windows-Setup-Skript.\n"
+          \ und räumt die fehlende `$hasNats`-Variable im Windows-Setup-Skript.\n          \
+          Fraktal83: Responses-Payload nutzt jetzt `input_text`/`output_text` statt\
+          \ `type: 'text'`, wodurch der 400-Fehler \"Invalid value: 'text'\" verschwindet\
+          \ und MandalaAIPlayground wieder Antworten liefert (mit gesetztem `OPENAI_API_KEY`).\n"
         artifacts:
           - packages/ai
           - apps/api

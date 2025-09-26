@@ -257,6 +257,9 @@ entries:
         Artefakte, Services, UI, Smoke) und verdrahtet mandala-ui direkt auf `/demo/ai-playground`.
       - mandala-ui rendert den Playground selbst; der Dev-Server proxyt `/api/ai` auf
         Port 4000 (AI-Service `apps/api`, steuerbar via `MANDALA_AI_API_ORIGIN`).
+      - 'Fraktal83 behebt 400er-Antworten ("Invalid value: ''text''") durch korrektes
+        Responses-Mapping (`input_text`/`output_text`) in `packages/ai`; UI-Smokes
+        funktionieren wieder, sobald `OPENAI_API_KEY` gesetzt ist.'
     links:
       - label: apps/ui package.json
         path: apps/ui/package.json
