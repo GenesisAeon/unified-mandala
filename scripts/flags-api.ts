@@ -5,6 +5,10 @@ async function main() {
   const app = express();
   app.use(express.json());
 
+  app.get('/health', (_req, res) => {
+    res.json({ ok: true });
+  });
+
   const ff = new FeatureFlags({
     servers: process.env.NATS_URL || 'nats://localhost:4222',
     bucket: process.env.NATS_FEATURE_FLAGS_BUCKET || 'featureflags',

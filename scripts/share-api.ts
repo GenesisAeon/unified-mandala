@@ -10,6 +10,10 @@ async function main() {
   const app = express();
   app.use(express.json());
 
+  app.get('/health', (_req, res) => {
+    res.json({ ok: true });
+  });
+
   const secret = process.env.SHARE_SECRET || 'change-me';
   const signer = new SignedURL(secret);
 

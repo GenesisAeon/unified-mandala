@@ -30,3 +30,18 @@ node scripts/mandala-map-validate.mjs  # MandalaMap.*-Konsistenz prüfen
 ```
 
 - In PRs über Slash-Command triggern (erfordert CI): Kommentar `/run repomap` → Workflow `on-demand.yml` hängt das Label `run:repomap` an; `ci.core` führt dann die Repomap-Phase (`repomap_when_needed`) automatisch aus.
+
+### Schnellere Commits (bei langsamer Umgebung)
+
+- Nur Lint-Staged ausführen (schaltet schwere Hooks ab):
+
+```powershell
+[Environment]::SetEnvironmentVariable('UM_SKIP_HEAVY_HOOKS','1','User')
+# GitHub Desktop neu starten, später Variable wieder entfernen
+```
+
+- Vollständige Prüfung manuell nachholen:
+
+```powershell
+pnpm check:precommit
+```

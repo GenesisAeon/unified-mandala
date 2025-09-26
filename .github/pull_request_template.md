@@ -31,6 +31,10 @@
 - [ ] `pnpm policy:check`
 - [ ] Weitere (siehe Kommentare)
 
+### On‑Demand Checks (optional)
+
+- In PR‑Kommentaren kann mit `/run repomap` der Map‑Build on‑demand aktiviert werden (Workflow `on-demand.yml` hängt `run:repomap` an; `ci.core` führt dann den Repomap‑Job automatisch aus).
+
 ## Two-Plane Guardrails
 
 - [ ] Keine Dateien unter `.ai-scratch/` im Commit enthalten (Runtime-Artefakte → scratch://)

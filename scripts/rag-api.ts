@@ -56,6 +56,10 @@ const docStore = new DocStore(DOC_PATH);
 const app = express();
 app.use(express.json({ limit: '1mb' }));
 
+app.get('/health', (_req, res) => {
+  res.json({ ok: true });
+});
+
 app.post('/index', async (req, res) => {
   const { id, text, source } = req.body;
   if (!id || !text) {

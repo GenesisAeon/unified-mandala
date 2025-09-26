@@ -33,6 +33,9 @@ function verifyPersonhood(req: express.Request): void {
 async function main() {
   const app = express();
   app.use(express.json());
+  app.get('/health', (_req, res) => {
+    res.json({ ok: true });
+  });
   const registry = await initRegistry();
 
   app.get('/experiments', (req, res) => {
