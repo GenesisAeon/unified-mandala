@@ -272,7 +272,8 @@
         "Dev entrypoints: pnpm -F mandala-ui dev | pnpm -F mandala-ui build.",
         "apps/api bietet `/api/ai/chat` (Responses direkt oder via `AI_TRANSPORT=nats`); MandalaAIPlayground in apps/web/components dient als manueller Responses-Test.",
         "Fraktal79 ergänzt `pnpm start:cosmic-web` als orchestrierten Demo-Starter (NATS, Artefakte, Services, UI, Smoke) und schaltet mandala-ui direkt auf `/demo/ai-playground`.",
-        "mandala-ui bedient `/demo/ai-playground` jetzt selbst; der Vite-Dev-Server proxyt `/api/ai` auf Port 4000 zum AI-Service (`apps/api`, konfigurierbar via `MANDALA_AI_API_ORIGIN`)."
+        "mandala-ui bedient `/demo/ai-playground` jetzt selbst; der Vite-Dev-Server proxyt `/api/ai` auf Port 4000 zum AI-Service (`apps/api`, konfigurierbar via `MANDALA_AI_API_ORIGIN`).",
+        "Fraktal83: Responses-Payload nutzt nun `input_text`/`output_text` statt `type: 'text'`, wodurch der 400er-Fehler \"Invalid value: 'text'\" verschwindet; Playground-Smokes laufen wieder mit gesetztem `OPENAI_API_KEY`."
       ],
       "links": [
         {

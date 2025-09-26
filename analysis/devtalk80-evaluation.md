@@ -1,24 +1,34 @@
-# DevTalk80 Technical Evaluation
+# DevTalk80 Evaluation – Responses Bridge Recovery
 
-## Scope
+## Kontext
 
-- Source conversation: `[Fraktal80?]` thread coordinating recovery steps for the AI Responses Bridge and Windows setup diagnostics.
-- Focus: automate the package build preflight recommended in the DevTalk recovery playbook and fix the `$hasNats` PowerShell regression observed in the setup script logs.
-- Artefacts reviewed: `DevTalk.txt`, `scripts/dev-services.mjs`, `scripts/setup-dev-env.ps1`, stabilization playbook (MD/YAML) and codexfeedback trackers.
+- Quelle: `DevTalk.txt`, Abschnitt zu CI/CD-Stabilisierung, AI-Governance und dem Gemini-Sigillin-Briefing.
+- Fokus dieses Fraktal-Laufs: Fehlermeldung `400 Invalid value: 'text'` beim Aufruf von `/api/ai/chat` (OpenAI Responses API) beseitigen und den Fix in Stabilization-Playbook & MandalaMap spiegeln.
 
-## Findings & Actions
+## Sofortmaßnahmen (umgesetzt)
 
-### Workspace Preflight Automation
+1. **Responses Payload anpassen**
+   - `packages/ai/src/ask.ts` mappt Chat-Verläufe jetzt auf `input_text`/`output_text` Parts, entfernt das Legacy-`type: "text"` und sendet optionale Felder (`temperature`, `max_output_tokens`) nur, wenn gesetzt.
+   - Vitest-Unit-Test (`packages/ai/test/ask.test.ts`) belegt die Payload-Form und Usage-Extraktion.
+2. **API-Brücke absichern**
+   - `apps/api/src/index.ts` profitiert direkt vom neuen Wrapper – UI-Smoke `/demo/ai-playground` liefert wieder Antworten, sobald `OPENAI_API_KEY` gesetzt ist.
+3. **Dokumentationsabgleich**
+   - Stabilization-Playbook (`docs/roadmap/v1.0-stabilization-playbook.(md|yaml)`) und MandalaMap (`MandalaMap.(md|json|yaml)`) nennen den Fix explizit, inklusive Verweis auf die vorherige 400er-Fehlerquelle.
+4. **Fraktal-Tracking**
+   - `codexfeedback*` ergänzt Fraktal83-Logeintrag inkl. Hook (Follow-up: UI-Smoke mit Live-Key automatisieren und Mock-Fallback dokumentieren).
 
-- Added a `preflightPackages` registry to `scripts/dev-services.mjs`; before spawning dev services the script now checks for missing build artefacts (initially `@unified-mandala/ai/dist`) and runs `pnpm -F @unified-mandala/ai build` when required.
-- The preflight can be skipped via `UM_DEV_SERVICES_SKIP_PREBUILD=1`, matching the opt-out style used by the auto-port-free routine; missing artefacts raise a descriptive error instead of letting `ERR_MODULE_NOT_FOUND` surface inside the AI API process.
+## Folgeaufgaben (aus DevTalk priorisiert)
 
-### Windows Setup Regression Fix
+- **CI/Test-Bündel**: DevTalk bestätigt Bedarf an erweiterten Smoke-Tests (Docker/E2E). Aktuell relevant: Playground-Call in Smoke-Suite integrieren, sobald Secret-Handling steht.
+- **AI-Governance**: Gemini-Sigillin-Duo (JSON+Markdown) als separate Aufgabe aufnehmen; noch nicht implementiert.
+- **Observability**: Bereits in früheren Fraktalen umgesetzt, aber DevTalk empfiehlt weitere Alerts → prüfen, ob `/api/ai/chat` Fehlerquoten ins Monitoring einfliessen können.
 
-- `scripts/setup-dev-env.ps1` now assigns `$hasNats = $overallHasNats` after aggregating binary/docker detection so that the final warning block no longer references an undefined variable when only Docker is present.
-- Stabilization playbook (MD/YAML) documents the new preflight and the PowerShell fix, ensuring the recovery steps from the DevTalk log are traceable in the roadmap.
+## Empfehlung
 
-## Open Items / Follow-ups
+- Kurzfristig UI-Smoke oder Contract-Test für `/api/ai/chat` vorbereiten (Mock-Key oder lokaler Stub), damit das Regressionen abfängt.
+- Mittel-/Langfristig DevTalk-Roadmap Schritt für Schritt prüfen (CI-Abzeichen, Policy-Badges, Gemini-Sigillin). Fraktal-Hooks aktualisieren, sobald entsprechende Läufe starten.
 
-- Extend `preflightPackages` once other workspace services need automatic builds (e.g., realtime or experiments workers).
-- Consider exposing a `pnpm dev:stack --skip-prebuild` CLI flag for parity with the environment variable guard if developers prefer explicit switches.
+## Status
+
+- **Fraktal83**: _done_ – Responses-Bridge wieder funktionsfähig, Dokumentation synchronisiert.
+- **Wiederholung nötig?** Nein.

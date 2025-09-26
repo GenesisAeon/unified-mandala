@@ -1,6 +1,11 @@
 {
   "runs": [
     {
+      "fraktalrun": "Fraktal83 ResponsesPayloadFix",
+      "status": "done",
+      "notes": "@unified-mandala/ai now maps chat messages to Responses API input_text/output_text parts, eliminating the OpenAI 400 error \"Invalid value: 'text'\"; vitest coverage guards the payload and the stabilization playbook + MandalaMap record the fix with follow-up smoke/metrics/Gemini tasks (analysis/devtalk80-evaluation.md)."
+    },
+    {
       "fraktalrun": "Fraktal82 DevStackPreflight",
       "status": "done",
       "notes": "scripts/dev-services.mjs now performs a workspace preflight that builds @unified-mandala/ai when dist artefacts are missing (opt-out via UM_DEV_SERVICES_SKIP_PREBUILD); scripts/setup-dev-env.ps1 sets $hasNats to the aggregated Docker/binary state so Windows install logs no longer warn about an undefined variable."

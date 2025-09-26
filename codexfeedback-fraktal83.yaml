@@ -1,0 +1,25 @@
+fraktal: 83
+status: done
+owner: ChefDevAI
+summary:
+  - 'Responses-Bridge nutzt `input_text`/`output_text` statt Legacy-`type: "text"`, womit `/api/ai/chat` keine 400er mehr liefert.'
+  - 'Vitest-Contract-Test deckt die neue Payload-Form ab und prüft Model/Usage-Rückgabe.'
+  - 'Stabilization-Playbook & MandalaMap dokumentieren Fraktal83; DevTalk80-Evaluation fasst Maßnahmen & nächste Schritte zusammen.'
+deliverables:
+  - analysis/devtalk80-evaluation.md
+  - packages/ai/src/ask.ts
+  - packages/ai/test/ask.test.ts
+  - docs/roadmap/v1.0-stabilization-playbook.md
+  - docs/roadmap/v1.0-stabilization-playbook.yaml
+  - MandalaMap.json
+  - MandalaMap.md
+  - MandalaMap.yaml
+  - codexfeedback-fraktal83.yaml
+  - codexfeedback.json
+  - codexfeedback.md
+  - codexfeedback.yaml
+commands: []
+hook:
+  progress: Responses-Bridge liefert wieder Antworten; Playground zeigt AI-Output bei gesetztem `OPENAI_API_KEY`.
+  next_step: UI-Smoke oder Contract-Test für `/api/ai/chat` mit Mock-Key integrieren und Gemini-Sigillin-Aufgabe einplanen.
+repeat_required: false

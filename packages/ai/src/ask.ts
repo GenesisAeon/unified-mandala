@@ -29,8 +29,13 @@ export interface AskOpenAIResult {
 
 const DEFAULT_MODEL = process.env.OPENAI_MODEL ?? 'gpt-4.1-mini';
 
+type ResponseContent = {
+  type?: string;
+  text?: string;
+};
+
 type ResponseOutput = {
-  content?: Array<{ type?: string; text?: string }>;
+  content?: ResponseContent[];
   finish_reason?: string;
 };
 
@@ -45,16 +50,32 @@ type ResponsesPayload = {
   };
 };
 
-function buildInput(messages: ChatMessage[]) {
-  return messages.map((message) => ({
+type ResponsesInputContent = {
+  type: 'input_text' | 'output_text';
+  text: string;
+};
+
+type ResponsesInputItem = {
+  role: ChatMessageRole;
+  content: ResponsesInputContent[];
+};
+
+function toResponsesContent(message: ChatMessage): ResponsesInputItem {
+  const text = message.content?.toString() ?? '';
+
+  const content: ResponsesInputContent = {
+    type: message.role === 'assistant' ? 'output_text' : 'input_text',
+    text
+  };
+
+  return {
     role: message.role,
-    content: [
-      {
-        type: 'text',
-        text: message.content
-      }
-    ]
-  }));
+    content: [content]
+  };
+}
+
+function buildInput(messages: ChatMessage[]): ResponsesInputItem[] {
+  return messages.map(toResponsesContent);
 }
 
 function extractText(payload: ResponsesPayload): string {
@@ -93,12 +114,20 @@ export async function askOpenAI(params: AskOpenAIParams): Promise<AskOpenAIResul
   } = params;
 
   const resolvedClient = client ?? getOpenAI();
-  const response = (await resolvedClient.responses.create({
+  const requestPayload: Record<string, unknown> = {
     model,
-    input: buildInput(messages) as any,
-    temperature,
-    max_output_tokens: maxTokens
-  })) as ResponsesPayload;
+    input: buildInput(messages) as any
+  };
+
+  if (typeof temperature === 'number') {
+    requestPayload.temperature = temperature;
+  }
+
+  if (typeof maxTokens === 'number') {
+    requestPayload.max_output_tokens = maxTokens;
+  }
+
+  const response = (await resolvedClient.responses.create(requestPayload as any)) as ResponsesPayload;
 
   const text = extractText(response);
   const finishReason = extractFinishReason(response);

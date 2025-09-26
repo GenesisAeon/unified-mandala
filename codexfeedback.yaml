@@ -1,6 +1,27 @@
 fraktal:
-  current: 82
+  current: 83
   history:
+    - id: 83
+      status: done
+      notes: 'Fraktal83 ResponsesPayloadFix: `@unified-mandala/ai` mappt Chat-Verläufe auf `input_text`/`output_text`, behebt den OpenAI-Fehler "Invalid value: ''text''" und stellt `/api/ai/chat` wieder her; Vitest prüft die Payload, Stabilization-Playbook & MandalaMap spiegeln den Fix, analysis/devtalk80-evaluation.md fasst Folgeaufgaben.'
+      deliverables:
+        - analysis/devtalk80-evaluation.md
+        - packages/ai/src/ask.ts
+        - packages/ai/test/ask.test.ts
+        - docs/roadmap/v1.0-stabilization-playbook.md
+        - docs/roadmap/v1.0-stabilization-playbook.yaml
+        - MandalaMap.json
+        - MandalaMap.md
+        - MandalaMap.yaml
+        - codexfeedback-fraktal83.yaml
+        - codexfeedback.json
+        - codexfeedback.md
+        - codexfeedback.yaml
+      commands: []
+      hook:
+        progress: Responses-Bridge liefert wieder Antworten; Playground benötigt nur noch `OPENAI_API_KEY`.
+        next_step: UI-Smoke/Contract-Test für `/api/ai/chat` mit Mock-Key ergänzen und Gemini-Sigillin-Task planen.
+      repeat_required: false
     - id: 82
       status: done
       notes: 'Fraktal82 DevStackPreflight: `scripts/dev-services.mjs` baut fehlende Workspace-Artefakte automatisch (Start mit `@unified-mandala/ai`, Opt-out via `UM_DEV_SERVICES_SKIP_PREBUILD=1`) und `scripts/setup-dev-env.ps1` setzt `$hasNats` korrekt, sodass Windows-Installberichte keine undefinierten Variablen mehr enthalten; Stabilization-Playbook (MD/YAML) und analysis/devtalk80-evaluation.md dokumentieren die Recovery-Schritte.'
