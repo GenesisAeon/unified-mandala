@@ -67,3 +67,19 @@ pnpm live:std
 ```powershell
 pnpm ps:live-lite
 ```
+
+### Ports & Offsets
+
+- Zentrales Port‑Mapping via `config/ports.ts`. Optionaler Offset schiebt alle Ports:
+
+```powershell
+$env:PORT_OFFSET = '100'       # verschiebt 3001→3101, 4000→4100, 3999→4099, ...
+pnpm live:std
+```
+
+- Preflight (Ports vor Start freiräumen):
+
+```powershell
+pnpm preflight:freeports
+pnpm live:std:clean
+```

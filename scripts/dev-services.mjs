@@ -210,12 +210,14 @@ function collectPortCandidates(service, env) {
   ]);
 
   const results = [];
+  const offRaw = env.PORT_OFFSET || '0';
+  const off = Number.parseInt(String(offRaw), 10) || 0;
   for (const key of envKeys) {
     const raw = env[key];
     if (!raw) continue;
     const port = Number.parseInt(String(raw), 10);
     if (Number.isNaN(port)) continue;
-    results.push({ key, port });
+    results.push({ key, port: port + off });
   }
   return results;
 }

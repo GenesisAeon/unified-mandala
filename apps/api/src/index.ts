@@ -3,6 +3,7 @@ import cors from 'cors';
 import { z } from 'zod';
 import { askOpenAI } from '@unified-mandala/ai';
 import { requestAI } from './natsClient.js';
+import ports from '@config/ports';
 
 const app = express();
 app.use(cors());
@@ -47,7 +48,7 @@ app.post('/api/ai/chat', async (req, res) => {
   }
 });
 
-const port = Number(process.env.PORT || 4000);
+const port = ports.ai;
 if (process.env.NODE_ENV !== 'test' && process.env.VITEST !== '1') {
   app.listen(port, () => {
     console.log(`[api] listening on http://localhost:${port}`);

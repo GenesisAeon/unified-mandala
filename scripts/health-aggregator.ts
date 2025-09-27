@@ -1,5 +1,6 @@
 #!/usr/bin/env -S node --experimental-fetch
 import express from 'express';
+import ports from '../config/ports';
 
 type Target = { name: string; url: string };
 
@@ -30,7 +31,7 @@ app.get('/health', async (_req, res) => {
   res.json({ overall, services: results, ts: new Date().toISOString() });
 });
 
-const PORT = Number(process.env.UM_HEALTH_PORT || 3999);
+const PORT = ports.health;
 app.listen(PORT, () => {
   console.log(`health-aggregator listening on http://localhost:${PORT}/health`);
 });

@@ -3,6 +3,12 @@ pnpm store:commit-memory >/dev/null 2>&1 || true
 export PANTHEON_DISABLE=1
 export CI=1
 
+# Use repo-local temp to avoid ENOSPC on system tmp
+mkdir -p tmp >/dev/null 2>&1 || true
+export TMPDIR="$(pwd)/tmp"
+export TEMP="$TMPDIR"
+export TMP="$TMPDIR"
+
 if [ -n "$UM_SKIP_HEAVY_HOOKS" ]; then
   echo "[husky] UM_SKIP_HEAVY_HOOKS=1 → running lint-staged only"
   pnpm lint-staged || exit $?

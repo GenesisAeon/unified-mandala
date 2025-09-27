@@ -175,4 +175,33 @@ function Start-UMHealth {
   pnpm dev:health
 }
 
-Export-ModuleMember -Function *-UM,Start-UI,Smoke-UI,Health-Check,Invoke-UMChat,Set-UMSecrets,Free-UMPorts,Start-NATS,Smoke-AI,Start-UMHealth
+function Preflight-UM {
+  [CmdletBinding()]
+  param([int]$Offset = 0)
+  $base = @(3001,3002,3003,3004,3999,4000,4020,4021)
+  $ports = @()
+  foreach ($p in $base) { $ports += ($p + $Offset) }
+  Free-UMPorts -Ports $ports
+  Write-UMInfo ("Preflight cleared: {0}" -f ($ports -join ', '))
+}
+
+function Start-UMOffset {
+  [CmdletBinding()]
+  param([int]$Offset = 0, [switch]$NoNATS)
+  if (-not $NoNATS) { Start-NATS }
+  $env:PORT_OFFSET = "$Offset"
+  $env:NATS_URL = 'nats://127.0.0.1:4222'
+  Write-UMInfo "Starting UM with PORT_OFFSET=$Offset"
+  pnpm dev:stack
+}
+
+function Start-UIAligned {
+  [CmdletBinding()]
+  param([int]$Offset = 0, [int]$Port = 5174)
+  $env:PORT_OFFSET = "$Offset"
+  $env:AI_API_PORT = "${(4000 + $Offset)}"
+  Write-UMInfo "Starting UI (api -> $($env:AI_API_PORT)) on $Port"
+  pnpm -F mandala-ui dev -- --port $Port
+}
+
+Export-ModuleMember -Function *-UM,Start-UI,Smoke-UI,Health-Check,Invoke-UMChat,Set-UMSecrets,Free-UMPorts,Start-NATS,Smoke-AI,Start-UMHealth,Preflight-UM,Start-UMOffset,Start-UIAligned

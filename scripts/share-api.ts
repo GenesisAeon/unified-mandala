@@ -1,5 +1,6 @@
 import express from 'express';
 import { SignedURL } from '../packages/security/SignedURL';
+import ports from '../config/ports';
 
 function resolvePort(value: string | undefined, fallback: number): number {
   const parsed = Number(value);
@@ -35,7 +36,7 @@ async function main() {
     res.json({ valid });
   });
 
-  const sharePort = resolvePort(process.env.SHARE_API_PORT ?? process.env.PORT, 3000);
+  const sharePort = ports.share;
   app.listen(sharePort, () => {
     console.log(`Share API server listening on ${sharePort}`);
   });

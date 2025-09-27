@@ -1,5 +1,6 @@
 import express from 'express';
 import { FeatureFlags } from '../packages/featureflags/FeatureFlags';
+import ports from '../config/ports';
 
 async function main() {
   const app = express();
@@ -37,9 +38,7 @@ async function main() {
     res.json({ status: 'deleted' });
   });
 
-  const rawPort = process.env.FLAGS_API_PORT ?? process.env.PORT ?? '3004';
-  const parsed = Number.parseInt(rawPort, 10);
-  const port = Number.isNaN(parsed) ? 3004 : parsed;
+  const port = ports.flags;
   app.listen(port, () => {
     console.log(`Flags API server listening on ${port}`);
   });

@@ -3,6 +3,7 @@ import { connect } from 'nats';
 import ExperimentRegistry, { ExperimentRecord } from '../packages/experiments/ExperimentRegistry';
 import { enforcePolicy, PolicyOptions } from '../packages/personhood/PolicyGuard';
 import { ConsentRegistry } from '../packages/personhood/ConsentRegistry';
+import ports from '../config/ports';
 
 function resolvePort(value: string | undefined, fallback: number): number {
   const parsed = Number(value);
@@ -93,7 +94,7 @@ async function main() {
     }
   });
 
-  const experimentsPort = resolvePort(process.env.EXPERIMENTS_API_PORT ?? process.env.PORT, 3000);
+  const experimentsPort = ports.experiments;
   app.listen(experimentsPort, () => {
     console.log(`Experiments API server listening on ${experimentsPort}`);
   });

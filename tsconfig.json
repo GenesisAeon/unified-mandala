@@ -20,7 +20,8 @@
       "@utils/*": ["src/utils/*"],
       "@resonance": ["src/utils/resonance/index.ts"],
       "@resonance/*": ["src/utils/resonance/*"],
-      "@epistemic/*": ["packages/epistemic/src/*"]
+      "@epistemic/*": ["packages/epistemic/src/*"],
+      "@config/*": ["config/*"]
     }
   },
   "include": [

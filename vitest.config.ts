@@ -1,4 +1,5 @@
 import { defineConfig } from "vitest/config";
+import path from 'node:path';
 
 const toBool = (value: string | undefined) =>
   value === "1" || value?.toLowerCase() === "true";
@@ -31,6 +32,12 @@ if (!runExperimental) {
 }
 
 export default defineConfig({
+  cacheDir: 'tmp/.vite',
+  resolve: {
+    alias: {
+      '@config': path.resolve(__dirname, 'config'),
+    },
+  },
   test: {
     environment: "node",
     setupFiles: ["tests/setup/ci.ts"],

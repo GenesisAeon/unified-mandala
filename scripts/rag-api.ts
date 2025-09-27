@@ -5,6 +5,7 @@ import { ModelRouter } from '../packages/rag/AnswerComposer';
 import { createEmbedder } from '../packages/rag/Embedder';
 import { VectorStore } from '../packages/rag/VectorStore';
 import { DocStore } from '../packages/rag/DocStore';
+import ports from '../config/ports';
 
 function resolvePort(value: string | undefined, fallback: number): number {
   const parsed = Number(value);
@@ -91,7 +92,7 @@ app.post('/ask', async (req, res) => {
   res.json(answer);
 });
 
-const ragPort = resolvePort(process.env.RAG_API_PORT ?? process.env.PORT, 3000);
+const ragPort = ports.rag;
 app.listen(ragPort, () => {
   console.log(`RAG API server listening on ${ragPort}`);
 });

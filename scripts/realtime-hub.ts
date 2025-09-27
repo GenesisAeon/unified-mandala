@@ -4,6 +4,7 @@ import { LocalEventBus, Subjects } from '../packages/event-bus';
 import { ResearchHubWS } from '../packages/realtime';
 import { RAGPipeline } from '../packages/rag/RAGPipeline';
 import { ModelRouter } from '../packages/rag/AnswerComposer';
+import ports from '../config/ports';
 
 function resolvePort(value: string | undefined, fallback: number): number {
   const parsed = Number(value);
@@ -12,7 +13,7 @@ function resolvePort(value: string | undefined, fallback: number): number {
 
 async function main() {
   const bus = new LocalEventBus();
-  const wsPort = resolvePort(process.env.REALTIME_WS_PORT ?? process.env.WS_PORT, 4021);
+  const wsPort = ports.realtimeWS;
   new ResearchHubWS({ port: wsPort, bus });
 
   const STORE_DIR = process.env.RAG_STORE_DIR || path.join('data', 'rag');
@@ -64,7 +65,7 @@ async function main() {
     res.json(answer);
   });
 
-  const hubPort = resolvePort(process.env.REALTIME_HUB_PORT ?? process.env.PORT, 4020);
+  const hubPort = ports.realtime;
   app.listen(hubPort, () => {
     console.log(`Realtime hub listening on ${hubPort}`);
   });
