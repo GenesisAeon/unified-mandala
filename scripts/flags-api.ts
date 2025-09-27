@@ -10,14 +10,60 @@ async function main() {
     res.json({ ok: true });
   });
 
+  type FlagStore = {
+    get(name: string): Promise<boolean | null>;
+    set(name: string, enabled: boolean): Promise<void>;
+    delete(name: string): Promise<void>;
+  };
+
+  let store: FlagStore;
   const ff = new FeatureFlags({
     servers: process.env.NATS_URL || 'nats://localhost:4222',
     bucket: process.env.NATS_FEATURE_FLAGS_BUCKET || 'featureflags',
   });
-  await ff.connect();
+  const forceMemory =
+    (process.env.FEATURE_FLAGS_MODE || '').toLowerCase() === 'memory' ||
+    process.env.DISABLE_NATS === '1';
+  if (forceMemory) {
+    console.warn('[flags-api] Using in-memory feature flags (forced by env).');
+    const memory = new Map<string, boolean>();
+    store = {
+      async get(name) {
+        return memory.has(name) ? memory.get(name)! : null;
+      },
+      async set(name, enabled) {
+        memory.set(name, enabled);
+      },
+      async delete(name) {
+        memory.delete(name);
+      },
+    } satisfies FlagStore;
+  } else {
+    try {
+      await ff.connect();
+      store = ff as unknown as FlagStore;
+    } catch (err: any) {
+      console.warn(
+        '[flags-api] NATS unavailable, using in-memory feature flags. Reason:',
+        err?.message || err,
+      );
+      const memory = new Map<string, boolean>();
+      store = {
+        async get(name) {
+          return memory.has(name) ? memory.get(name)! : null;
+        },
+        async set(name, enabled) {
+          memory.set(name, enabled);
+        },
+        async delete(name) {
+          memory.delete(name);
+        },
+      } satisfies FlagStore;
+    }
+  }
 
   app.get('/flags/:name', async (req, res) => {
-    const enabled = await ff.get(req.params.name);
+    const enabled = await store.get(req.params.name);
     if (enabled === null) {
       return res.status(404).json({ error: 'not found' });
     }
@@ -29,12 +75,12 @@ async function main() {
     if (typeof enabled !== 'boolean') {
       return res.status(400).json({ error: 'enabled boolean required' });
     }
-    await ff.set(req.params.name, enabled);
+    await store.set(req.params.name, enabled);
     res.json({ status: 'ok' });
   });
 
   app.delete('/flags/:name', async (req, res) => {
-    await ff.delete(req.params.name);
+    await store.delete(req.params.name);
     res.json({ status: 'deleted' });
   });
 

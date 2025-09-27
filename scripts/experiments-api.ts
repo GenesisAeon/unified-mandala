@@ -11,6 +11,12 @@ function resolvePort(value: string | undefined, fallback: number): number {
 }
 
 async function initRegistry(): Promise<ExperimentRegistry> {
+  const disable =
+    process.env.DISABLE_NATS === '1' ||
+    (process.env.EXPERIMENTS_STORE || '').toLowerCase() === 'memory';
+  if (disable) {
+    return new ExperimentRegistry();
+  }
   try {
     const nc = await connect({ servers: process.env.NATS_URL || 'nats://localhost:4222' });
     return await ExperimentRegistry.connect(nc);
