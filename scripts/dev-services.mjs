@@ -12,6 +12,8 @@ const repoRoot = path.resolve(__dirname, '..');
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 const modeArg = process.argv.find((arg) => arg.startsWith('--mode='));
+const profileArg = process.argv.find((arg) => arg.startsWith('--profile='));
+const lowMemFlag = process.argv.some((arg) => arg === '--low-mem');
 const explicitMode = modeArg ? modeArg.split('=')[1]?.toLowerCase() : undefined;
 const resolvedMode =
   explicitMode === 'prod' || explicitMode === 'production'
@@ -22,6 +24,10 @@ const resolvedMode =
         ? 'prod'
         : 'dev';
 
+const resolvedProfile = (profileArg ? profileArg.split('=')[1] : process.env.UM_PROFILE || 'std')
+  .toString()
+  .toLowerCase();
+
 const preflightPackages = [
   {
     name: '@unified-mandala/ai',
@@ -30,7 +36,8 @@ const preflightPackages = [
   },
 ];
 
-const serviceDefinitions = [
+// Base service registry (full set)
+const serviceDefinitionsAll = [
   {
     name: 'rag-api',
     script: 'scripts/rag-api.ts',
@@ -67,7 +74,21 @@ const serviceDefinitions = [
     envDefaults: { REALTIME_HUB_PORT: '4020', REALTIME_WS_PORT: '4021' },
     portKeys: ['REALTIME_HUB_PORT', 'REALTIME_WS_PORT'],
   },
+  {
+    name: 'health-aggregator',
+    script: 'scripts/health-aggregator.ts',
+    envDefaults: { UM_HEALTH_PORT: '3999' },
+    portKeys: ['UM_HEALTH_PORT'],
+  },
 ];
+
+// Profile selection
+let serviceDefinitions = serviceDefinitionsAll;
+if (resolvedProfile === 'lite' || resolvedProfile === 'light' || resolvedProfile === 'minimal') {
+  serviceDefinitions = serviceDefinitionsAll.filter((s) =>
+    ['ai-api', 'share-api', 'flags-api', 'health-aggregator'].includes(s.name),
+  );
+}
 
 const missingProdTargets = [];
 if (resolvedMode === 'prod') {
@@ -98,6 +119,7 @@ async function spawnService(service) {
     ...process.env,
     SERVICE_NAME: service.name,
     UM_SERVICE_MODE: resolvedMode,
+    UM_PROFILE: resolvedProfile,
   };
 
   if (service.envDefaults) {
@@ -107,6 +129,15 @@ async function spawnService(service) {
         env[key] = value;
       }
     }
+  }
+
+  // Low-memory / CPU-friendly defaults
+  const lowMem = lowMemFlag || process.env.UM_LOW_MEM === '1' || process.env.LOW_MEM === '1';
+  if (lowMem || resolvedProfile === 'lite') {
+    env.LOW_MEM = env.LOW_MEM || '1';
+    env.VITE_LOW_MEM = env.VITE_LOW_MEM || 'on';
+    env.NODE_OPTIONS = env.NODE_OPTIONS || '--max-old-space-size=1024';
+    env.UV_THREADPOOL_SIZE = env.UV_THREADPOOL_SIZE || '2';
   }
 
   if (!skipPortChecks) {

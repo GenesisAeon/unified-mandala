@@ -45,3 +45,25 @@ node scripts/mandala-map-validate.mjs  # MandalaMap.*-Konsistenz prüfen
 ```powershell
 pnpm check:precommit
 ```
+
+### Live‑Profiles (CPU‑schonend)
+
+- Minimalprofil (AI‑Bridge, Flags/Share, Health‑Aggregator):
+
+```powershell
+pnpm live:lite                # setzt Low‑Mem Defaults
+pnpm dev:health               # Aggregator (falls nicht automatisch gestartet)
+pnpm smoke:live               # Health + Chat E2E
+```
+
+- Standardprofil:
+
+```powershell
+pnpm live:std
+```
+
+- PowerShell Alias:
+
+```powershell
+pnpm ps:live-lite
+```
