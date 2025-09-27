@@ -114,6 +114,30 @@ const attemptedAutoFree = new Set();
 
 const processes = [];
 
+// Opportunistic NATS detection: if not reachable locally, prefer in-memory fallbacks
+async function detectNatsAvailability() {
+  const host = process.env.NATS_HOST || '127.0.0.1';
+  const port = Number.parseInt(process.env.NATS_PORT || '4222', 10) || 4222;
+  const timeoutMs = 400;
+  const ok = await new Promise((resolve) => {
+    const socket = net.createConnection({ host, port });
+    const onDone = (result) => {
+      try {
+        socket.destroy();
+      } catch {}
+      resolve(result);
+    };
+    socket.setTimeout(timeoutMs);
+    socket.once('connect', () => onDone(true));
+    socket.once('timeout', () => onDone(false));
+    socket.once('error', () => onDone(false));
+  });
+  if (!ok && process.env.DISABLE_NATS !== '0') {
+    process.env.DISABLE_NATS = process.env.DISABLE_NATS || '1';
+    console.warn('[dev-services] NATS not reachable, setting DISABLE_NATS=1 for child processes.');
+  }
+}
+
 async function spawnService(service) {
   const env = {
     ...process.env,
@@ -193,6 +217,7 @@ process.on('SIGTERM', () => {
 });
 
 await ensureWorkspacePrebuilds();
+await detectNatsAvailability();
 
 console.log(
   `[dev-services] Starting ${serviceDefinitions.length} services in ${resolvedMode} mode...`,
