@@ -2,6 +2,7 @@ Development quick guide
 
 - Start full stack
   - PowerShell helper: `. ./scripts/dev-helper.ps1; Start-UM`
+  - With offset: `. ./scripts/dev-helper.ps1; Start-UM -PortOffset 100`
   - No NATS/Docker: `. ./scripts/dev-helper.ps1; Start-UM -NoNATS` (forces in-memory backends)
   - Opt-in auto-disable if NATS unreachable: `$env:UM_DEV_AUTODISABLE_NATS='1'; pnpm start:all`
 
@@ -26,6 +27,7 @@ Development quick guide
 - Handy commands
   - Free ports: `pnpm dev:ports:free`
   - Health JSON: `pnpm dev:health` then GET `http://localhost:3999/health`
+  - PowerShell shortcuts: `pnpm ps:start-um`, `pnpm ps:start-um:offset`, `pnpm ps:start-um:memory`, `pnpm ps:smoke-flags`, `pnpm ps:smoke-experiments`
 
 - Fraktal diary migration
   - Organize: `pnpm meta:fraktal:organize` (moves files, generates index, creates redirect stubs at old paths)
@@ -34,3 +36,4 @@ Development quick guide
 - MandalaMap consistency
   - Validate (non-blocking): `pnpm meta:mandala:validate`
   - Sync JSON/MD from YAML: `pnpm meta:mandala:sync`
+  - Strict (CI/optional local): `pnpm meta:mandala:validate:strict` (pre-commit runs this only when `UM_STRICT_META=1`)

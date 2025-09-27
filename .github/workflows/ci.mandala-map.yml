@@ -1,0 +1,46 @@
+name: MandalaMap Check
+
+on:
+  push:
+    paths:
+      - 'MandalaMap.*'
+      - 'scripts/meta/mandala-map-*'
+      - 'docs/fraktal/**'
+  pull_request:
+    paths:
+      - 'MandalaMap.*'
+      - 'scripts/meta/mandala-map-*'
+      - 'docs/fraktal/**'
+
+jobs:
+  mandala-map-validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Enable corepack
+        run: corepack enable
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Gentle validate
+        run: pnpm meta:mandala:validate
+      - name: Strict validate (soft)
+        run: pnpm meta:mandala:validate:strict
+        continue-on-error: true
+
+  mandala-map-validate-strict:
+    if: ${{ github.event_name == 'pull_request' && contains(toJSON(github.event.pull_request.labels), 'mandala-strict') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Enable corepack
+        run: corepack enable
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Strict validate (label-gated)
+        run: pnpm meta:mandala:validate:strict

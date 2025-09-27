@@ -84,7 +84,7 @@ function Start-UI {
 
 function Start-UM {
   [CmdletBinding()]
-  param([switch]$NoNATS)
+  param([switch]$NoNATS, [int]$PortOffset = 0)
   if (-not $NoNATS) {
     try {
       Start-NATS
@@ -96,6 +96,10 @@ function Start-UM {
     $env:DISABLE_NATS = '1'
   }
   $env:NATS_URL = 'nats://127.0.0.1:4222'
+  if ($PortOffset -ne 0) {
+    $env:PORT_OFFSET = "$PortOffset"
+    Write-UMInfo "Using PORT_OFFSET=$PortOffset for all services"
+  }
   Write-UMInfo 'Starting full dev stack (services)'
   pnpm dev:stack
 }

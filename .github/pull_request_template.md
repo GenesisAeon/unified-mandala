@@ -6,3 +6,4 @@ PR Checklist
 - [ ] Update Fraktal‑Tagebuch (Fraktal‑Diary) with relevant notes
 - [ ] Run tests (`pnpm test:unit`) and type checks (`npx tsc`, `npx pyright`)
 - [ ] Verify dev stack (`pnpm start:all`) and health (`http://localhost:3999/health`)
+- [ ] Optional: add PR label `mandala-strict` to enforce strict MandalaMap validation in CI

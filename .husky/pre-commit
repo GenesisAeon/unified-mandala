@@ -29,3 +29,7 @@ pnpm guard:no-local-paths || exit $?
 pnpm meta:fraktal:organize || true
 pnpm meta:check || true
 pnpm meta:mandala:validate || true
+if [ "${UM_STRICT_META:-0}" = "1" ]; then
+  echo "[husky] UM_STRICT_META=1 → running strict MandalaMap validation"
+  pnpm meta:mandala:validate:strict || exit $?
+fi
