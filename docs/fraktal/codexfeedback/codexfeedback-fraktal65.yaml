@@ -1,0 +1,54 @@
+fraktal: 65
+status: done
+owner: ChefDevAI
+summary:
+  - 'CI Core, Extended und Nightly installieren `src/adapters/requirements.txt`, damit NetCDF4/h5netcdf/scipy offline verfügbar bleiben.'
+  - '`_normalise_href` berechnet hrefs relativ zum STAC-Item-Verzeichnis (Fallback `file://`) und Pytests sichern die Regression.'
+  - 'QA-Test-Runner respektiert `PANTHEON_DISABLE`; MandalaMap, Stabilization-Playbook und Trikāya-Dashboard dokumentieren die Änderungen.'
+  - 'CI-Meta-Gates auf Fraktal65-Niveau: `pnpm typecheck`/`pnpm test:unit`/`pnpm test:unit:coverage` in CI-Core, Governance-Workflow ruft `pnpm schema:validate`/`pnpm maps:validate`/`pnpm policy:check` auf, `pnpm sanity` und `pnpm repomap:*` sichern `ciBehaviour`-Artefakte.'
+deliverables:
+  - requirements.txt
+  - src/adapters/shared/xarray_utils.py
+  - src/adapters/core/stac.py
+  - src/adapters/oisst/postprocess_oisst.py
+  - tests/adapters/test_stac_paths.py
+  - scripts/qa-test-runner.ts
+  - .github/workflows/ci.core.yml
+  - .github/workflows/ci.yml
+  - .github/workflows/ci.extended.yml
+  - .github/workflows/ci.nightly.yml
+  - .github/workflows/governance.yml
+  - .github/workflows/repo-sanity.yml
+  - .github/workflows/repomap.yml
+  - MandalaMap.md
+  - MandalaMap.yaml
+  - MandalaMap.json
+  - docs/roadmap/v1.0-stabilization-playbook.md
+  - docs/roadmap/v1.0-stabilization-playbook.yaml
+  - analysis/trikaya-dashboard.json
+  - analysis/trikaya-dashboard.md
+  - analysis/trikaya-dashboard.yaml
+  - codexfeedback.md
+  - codexfeedback.json
+  - codexfeedback.yaml
+  - scripts/validate-schemas.mjs
+  - scripts/repo-sanity.mjs
+  - scripts/generate-repomap.mjs
+  - scripts/validate-repomap.mjs
+  - schemas/mandala-map.schema.json
+  - schemas/codexfeedback.schema.json
+commands:
+  - pnpm adapter:build:oisst
+  - pnpm stac:validate
+  - pytest tests/adapters/test_stac_paths.py
+  - pnpm test:unit
+  - pnpm schema:validate
+  - pnpm maps:validate
+  - pnpm policy:check
+  - pnpm sanity
+  - pnpm repomap:build
+  - pnpm repomap:validate
+hook:
+  progress: 'CI-Meta-Gates grün: typecheck/unit/coverage-Aliase aktiv, Governance-Checks & Repo-Sanity validieren `ciBehaviour`, Repomap liefert Artefakte.'
+  next_step: 'Weitere Adapter/Bridges auf relative HREFs und neue Governance-Schemata migrieren (Fraktal66).'
+repeat_required: false

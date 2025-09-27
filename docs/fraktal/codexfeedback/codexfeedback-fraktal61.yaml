@@ -1,0 +1,28 @@
+fraktal: 61
+status: done
+owner: ChefDevAI
+summary:
+  - 'ci.core führt `pnpm test:unit` mit Coverage aus und veröffentlicht das Artefakt `coverage-vitest`.'
+  - 'policy-check.yml lädt Sigillin-Governance-Reports zusätzlich als GitHub-Artefakt `policy-sigillins`.'
+  - 'Command-Catalog, MandalaMap und Stabilization-Playbook dokumentieren die neuen CI-Artefakte.'
+deliverables:
+  - .github/workflows/ci.core.yml
+  - .github/workflows/policy-check.yml
+  - docs/governance/policy-suite.md
+  - docs/roadmap/v1.0-stabilization-playbook.md
+  - docs/roadmap/v1.0-stabilization-playbook.yaml
+  - docs/runbooks/command-catalog.md
+  - docs/runbooks/command-catalog.yaml
+  - docs/runbooks/command-catalog.json
+  - MandalaMap.md
+  - MandalaMap.yaml
+  - MandalaMap.json
+  - codexfeedback-fraktal61.yaml
+  - codexfeedback.md
+  - codexfeedback.json
+  - codexfeedback.yaml
+follow_up:
+  coverage_gate:
+    description: 'Coverage-Schwellenwerte prüfen und bei Stabilität als ci.core-Gate aktivieren.'
+    status: planned
+repeat_required: false

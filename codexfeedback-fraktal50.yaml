@@ -1,25 +1,2 @@
-fraktal: 50
-status: done
-owner: ChefDevAI
-summary:
-  - 'Sigillin validator normalisiert relative Pfade (Windows ↔ POSIX) und liefert echte Ergebnisse statt Non-Bridge-Skips.'
-  - 'Bridge-Matcher decken JSON/YAML/Markdown mit (^|/) Präfix ab; Skip-Logs nennen jetzt klare Gründe.'
-  - 'Codexfeedback-Tracker auf Fraktal50 gehoben, Hook für Windows-Validerungs-Feedback gesetzt.'
-  - '2025-10-21 Evaluierung: Windows-Validerungsfeedback ohne neue Findings, Docker-Follow-up verschoben – Fraktal50 abgeschlossen.'
-deliverables:
-  - scripts/validate-sigillins.mjs
-  - codexfeedback.yaml
-  - codexfeedback.json
-  - codexfeedback.md
-  - codexfeedback-fraktal50.yaml
-follow_up:
-  windows_validator_regression_watch:
-    description: 'Windows-Entwickler sollen corepack pnpm validate:sigillins erneut laufen lassen und Ergebnisse teilen.'
-    status: closed
-  docker_desktop_followup:
-    description: 'Docker Desktop/WSL Ready-Check im nächsten Fragment adressieren, sobald Validator bestätigt ist.'
-    status: deferred
-hook:
-  progress: 'Pfadnormalisierung & Skip-Transparenz fertig; Windows-Feedback geprüft (keine Regressionen), Docker-Follow-up vertagt.'
-  next_step: 'Keine unmittelbaren Aufgaben – neue Fragmente öffnen bei Docker-Setup-Bedarf.'
-repeat_required: false
+# moved: docs/fraktal/codexfeedback/codexfeedback-fraktal50.yaml
+# Hinweis: Diese Datei wurde in die Fraktal-Struktur verschoben. Bitte Links aktualisieren.

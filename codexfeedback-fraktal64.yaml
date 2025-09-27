@@ -1,18 +1,2 @@
-fraktal: 64
-status: done
-owner: ChefDevAI
-summary:
-  - 'pythonEnv resolves the repository root so adapter builds inherit the correct PYTHONPATH without manual overrides.'
-  - 'The EFFIS offline builder now writes a minimal NetCDF grid, letting resample + STAC steps succeed without network access.'
-  - 'New pytest coverage exercises `_normalise_href` and `make_stac_item` for relative and absolute hrefs to guard schema regressions.'
-deliverables:
-  - scripts/lib/python.mjs
-  - src/adapters/effis/fetch_effis.py
-  - tests/adapters/test_stac_paths.py
-commands:
-  - pnpm adapter:build:effis
-  - pytest tests/adapters/test_stac_paths.py
-hook:
-  progress: Adapter pipelines no longer require PYTHONPATH hacks and offline fixtures stay schema-compliant; STAC href behaviour is unit-tested.
-  next_step: Fold the href regression test into broader STAC validation coverage or CI smoke as future work.
-repeat_required: false
+# moved: docs/fraktal/codexfeedback/codexfeedback-fraktal64.yaml
+# Hinweis: Diese Datei wurde in die Fraktal-Struktur verschoben. Bitte Links aktualisieren.

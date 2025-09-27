@@ -26,3 +26,6 @@ pnpm repomap:validate || exit $?
 pnpm sanity || exit $?
 pnpm policy:check || exit $?
 pnpm guard:no-local-paths || exit $?
+pnpm meta:fraktal:organize || true
+pnpm meta:check || true
+pnpm meta:mandala:validate || true

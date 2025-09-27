@@ -1,23 +1,2 @@
-fraktal: 67
-status: done
-owner: ChefDevAI
-summary:
-  - 'DevTalk67 evaluiert: Workflow-Cheat-Sheet ergänzt `pnpm check:ci`, `pnpm ci:verify`, Monitoring-/Offline-Bundle-Hinweise und Windows-Setup.'
-  - 'MandalaMap.* und docs/roadmap/v1.0-stabilization-playbook.* spiegeln den erweiterten Scope.'
-  - 'Codexfeedback.md/json/yaml aktualisiert, neuer Hook in Fraktal67 festgehalten.'
-deliverables:
-  - docs/cheatsheets/unified-mandala-workflows.md
-  - MandalaMap.md
-  - MandalaMap.yaml
-  - MandalaMap.json
-  - docs/roadmap/v1.0-stabilization-playbook.md
-  - docs/roadmap/v1.0-stabilization-playbook.yaml
-  - codexfeedback.md
-  - codexfeedback.json
-  - codexfeedback.yaml
-  - codexfeedback-fraktal67.yaml
-commands: []
-hook:
-  progress: 'Cheat Sheet + MandalaMap + Playbook decken DevTalk67 ab; Tracker auf 67 gehoben.'
-  next_step: 'Fraktal68 fokussiert Stub-/Keys-Governance sowie Lint-Cleanup (scripts/advice/merge.mjs, scripts/analyze-conversations.js, scripts/check-meta-score-layer.js, scripts/generate-chronopoem.js).'
-repeat_required: false
+# moved: docs/fraktal/codexfeedback/codexfeedback-fraktal67.yaml
+# Hinweis: Diese Datei wurde in die Fraktal-Struktur verschoben. Bitte Links aktualisieren.

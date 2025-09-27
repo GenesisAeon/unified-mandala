@@ -1,47 +1,8 @@
-# Unified Mandala Pull Request
+PR Checklist
 
-## Summary
-
-- [ ] Kurzbeschreibung der Änderung(en)
-- [ ] Relevante Fraktal-/DevTalk-Notizen verlinkt (falls vorhanden)
-
-## Provenance (genau **ein** Label setzen)
-
-- [ ] `source:human` – menschlich erstellter Code / Workflows
-- [ ] `source:human-docs` – ausschließlich Dokumentation/Analysen/Artefakte
-- [ ] `source:mandala-ai` – Mandala-interne Automationen (AI-Workspace, scratch/data)
-- [ ] `source:external-ai` – Externe AI (z. B. Codex/GPT); nur scratch/docs/.github erlaubt
-
-> CI schlägt fehl, wenn das gesetzte Label nicht zu den geänderten Pfaden passt.
-
-## Plane (bitte markieren)
-
-- [ ] CODE — Änderungen am Repository (Dateien im Repo, Tests, Workflows)
-- [ ] RUNTIME — Änderungen an Laufzeit/Infra (NATS, HTTP, scratch:// Artefakte)
-
-## Verification (relevante Punkte abhaken oder `n/a` begründen)
-
-- [ ] `pnpm typecheck`
-- [ ] `pnpm test:unit`
-- [ ] `pnpm test:unit:coverage`
-- [ ] `npx pyright`
-- [ ] `pnpm schema:validate`
-- [ ] `pnpm maps:validate`
-- [ ] `pnpm repomap:build && pnpm repomap:validate`
-- [ ] `pnpm policy:check`
-- [ ] Weitere (siehe Kommentare)
-
-### On‑Demand Checks (optional)
-
-- In PR‑Kommentaren kann mit `/run repomap` der Map‑Build on‑demand aktiviert werden (Workflow `on-demand.yml` hängt `run:repomap` an; `ci.core` führt dann den Repomap‑Job automatisch aus).
-
-## Two-Plane Guardrails
-
-- [ ] Keine Dateien unter `.ai-scratch/` im Commit enthalten (Runtime-Artefakte → scratch://)
-- [ ] Laufzeit-Ausgaben ausschließlich unter `scratch://` oder `data://`
-- [ ] Bei Bot-PRs mindestens ein menschlicher Reviewer eingetragen
-
-## Follow-up Notes
-
-- [ ] Offene Punkte oder Nachfolge-Fraktale dokumentiert
-- [ ] Relevante Docs (MandalaMap, Playbook, Command Catalog, Codexfeedback) aktualisiert oder Follow-up angelegt
+- [ ] Update codexfeedback: `codexfeedback.md`, `codexfeedback.json`, `codexfeedback.yaml`
+- [ ] Update roadmap: `docs/roadmap/v1.0-stabilization-playbook.md`, `docs/roadmap/v1.0-stabilization-playbook.yaml`
+- [ ] Update MandalaMap artifacts: `MandalaMap.md`, `MandalaMap.json`, `MandalaMap.yaml`
+- [ ] Update Fraktal‑Tagebuch (Fraktal‑Diary) with relevant notes
+- [ ] Run tests (`pnpm test:unit`) and type checks (`npx tsc`, `npx pyright`)
+- [ ] Verify dev stack (`pnpm start:all`) and health (`http://localhost:3999/health`)

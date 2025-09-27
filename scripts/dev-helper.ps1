@@ -85,7 +85,16 @@ function Start-UI {
 function Start-UM {
   [CmdletBinding()]
   param([switch]$NoNATS)
-  if (-not $NoNATS) { Start-NATS }
+  if (-not $NoNATS) {
+    try {
+      Start-NATS
+    } catch {
+      Write-Warning "Docker/NATS not available, falling back to memory backends (DISABLE_NATS=1)."
+      $env:DISABLE_NATS = '1'
+    }
+  } else {
+    $env:DISABLE_NATS = '1'
+  }
   $env:NATS_URL = 'nats://127.0.0.1:4222'
   Write-UMInfo 'Starting full dev stack (services)'
   pnpm dev:stack
@@ -167,6 +176,37 @@ function Smoke-AI {
   }
 }
 
+function Smoke-Flags {
+  [CmdletBinding()]
+  param([string]$BaseUrl = 'http://localhost:3004', [string]$Name = 'demo')
+  try {
+    Invoke-RestMethod -Uri "$BaseUrl/flags/$Name" -Method Delete -TimeoutSec 5 | Out-Null
+  } catch {}
+  $putBody = @{ enabled = $true } | ConvertTo-Json -Compress
+  try {
+    Invoke-RestMethod -Uri "$BaseUrl/flags/$Name" -Method Put -ContentType 'application/json' -Body $putBody -TimeoutSec 5 | Out-Null
+    $res = Invoke-RestMethod -Uri "$BaseUrl/flags/$Name" -TimeoutSec 5
+    Write-UMInfo ("Flags OK: {0}" -f ($res | ConvertTo-Json -Compress))
+  } catch {
+    Write-Warning "Flags smoke failed: $($_.Exception.Message)"
+  }
+}
+
+function Smoke-Experiments {
+  [CmdletBinding()]
+  param([string]$BaseUrl = 'http://localhost:3002')
+  $id = "exp-$([Guid]::NewGuid().ToString('N').Substring(0,8))"
+  $body = @{ id = $id; metadata = @{ title = 'smoke' } } | ConvertTo-Json -Depth 4 -Compress
+  try {
+    $headers = @{ 'x-person-id' = 'smoke'; 'x-region' = 'us'; 'x-reviewed' = 'true' }
+    Invoke-RestMethod -Uri "$BaseUrl/experiments" -Method Post -ContentType 'application/json' -Body $body -Headers $headers -TimeoutSec 5 | Out-Null
+    $res = Invoke-RestMethod -Uri "$BaseUrl/experiments/$id" -Headers $headers -TimeoutSec 5
+    Write-UMInfo ("Experiments OK: {0}" -f ($res | ConvertTo-Json -Compress))
+  } catch {
+    Write-Warning "Experiments smoke failed: $($_.Exception.Message)"
+  }
+}
+
 function Start-UMHealth {
   [CmdletBinding()]
   param([int]$Port = 3999)
@@ -204,4 +244,4 @@ function Start-UIAligned {
   pnpm -F mandala-ui dev -- --port $Port
 }
 
-Export-ModuleMember -Function *-UM,Start-UI,Smoke-UI,Health-Check,Invoke-UMChat,Set-UMSecrets,Free-UMPorts,Start-NATS,Smoke-AI,Start-UMHealth,Preflight-UM,Start-UMOffset,Start-UIAligned
+Export-ModuleMember -Function *-UM,Start-UI,Smoke-UI,Health-Check,Invoke-UMChat,Set-UMSecrets,Free-UMPorts,Start-NATS,Smoke-AI,Smoke-Flags,Smoke-Experiments,Start-UMHealth,Preflight-UM,Start-UMOffset,Start-UIAligned

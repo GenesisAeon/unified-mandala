@@ -114,7 +114,7 @@ const attemptedAutoFree = new Set();
 
 const processes = [];
 
-// Opportunistic NATS detection: if not reachable locally, prefer in-memory fallbacks
+// Opportunistic NATS detection: optionally auto-disable via env for dev
 async function detectNatsAvailability() {
   const host = process.env.NATS_HOST || '127.0.0.1';
   const port = Number.parseInt(process.env.NATS_PORT || '4222', 10) || 4222;
@@ -132,9 +132,18 @@ async function detectNatsAvailability() {
     socket.once('timeout', () => onDone(false));
     socket.once('error', () => onDone(false));
   });
-  if (!ok && process.env.DISABLE_NATS !== '0') {
+  const autoFlag =
+    (process.env.UM_DEV_AUTODISABLE_NATS || '').toLowerCase() === '1' ||
+    (process.env.UM_DEV_AUTODISABLE_NATS || '').toLowerCase() === 'true';
+  if (!ok && autoFlag && process.env.DISABLE_NATS !== '0') {
     process.env.DISABLE_NATS = process.env.DISABLE_NATS || '1';
-    console.warn('[dev-services] NATS not reachable, setting DISABLE_NATS=1 for child processes.');
+    console.warn(
+      '[dev-services] NATS not reachable, setting DISABLE_NATS=1 for child processes (UM_DEV_AUTODISABLE_NATS=1).',
+    );
+  } else if (!ok) {
+    console.warn(
+      '[dev-services] NATS not reachable. To auto-disable NATS-backed services, set UM_DEV_AUTODISABLE_NATS=1.',
+    );
   }
 }
 

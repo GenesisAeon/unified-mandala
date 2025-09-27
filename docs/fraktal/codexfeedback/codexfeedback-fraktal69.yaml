@@ -1,0 +1,27 @@
+fraktal: 69
+status: done
+owner: ChefDevAI
+summary:
+  - 'Cosmic-Web Demo implementiert: synthetische Tracer-Daten, STAC-Item und Sigillin inklusive UI-Route /demo/cosmic-web.'
+  - 'Deterministisches CREP-Modul @mandala/crep eingeführt; Tests decken Kernmetriken ab.'
+  - 'Repo-Map Fallback propagiert Fehlstatus, Cosmic-Demoskripte über pnpm demo:cosmic verfügbar.'
+deliverables:
+  - src/adapters/cosmic_web/mock.py
+  - analysis/cosmic-web/
+  - scripts/demos/build-cosmic-web-stac.mjs
+  - scripts/demos/publish-cosmic-web.mjs
+  - scripts/realtime/cosmic-publisher.mjs
+  - sigils/demos/cosmic-web.sigill.json
+  - schemas/sigillin-demo.schema.json
+  - packages/crep/
+  - apps/ui/src/components/CosmicWebDemo.tsx
+  - apps/ui/src/shell/App.tsx
+  - tests/demos/cosmic-web.spec.ts
+commands:
+  - pnpm demo:cosmic
+  - pnpm test:unit
+  - pnpm schema:validate
+hook:
+  progress: 'Artefakte & UI für Cosmic-Web stehen stabil; Dokumentation folgt über Fraktal70.'
+  next_step: 'Realtime-Brücke (NATS → SSE/WS) optional in Infrastruktur einhängen und Policy-Suite-Soft-Skip finalisieren.'
+repeat_required: false

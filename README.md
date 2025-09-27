@@ -345,3 +345,9 @@ MIT. Datenquellen: jeweilige Nutzungsbedingungen beachten.
 - **RepoMap**: `docs/maps/RepoMap.yaml` → `pnpm maps:build` erzeugt JSON
 - **ProgramFlow**: `docs/maps/ProgramFlow.yaml` → Mermaid SVG unter `docs/diagrams/`
 - **Pre-Rituale**: `docs/rituals/pre-rituale.md`
+
+## Fraktal Diary Relocation
+
+- Die Fraktal‑Dokumente liegen künftig unter `docs/fraktal/diary` (Codexfeedback unter `docs/fraktal/codexfeedback`).
+- Übersicht: siehe `docs/fraktal/index.md`.
+- Beim Umzug erzeugt `pnpm meta:fraktal:organize` automatisch Redirect‑Stubs an den alten Pfaden, damit bestehende Links nicht ins Leere laufen.

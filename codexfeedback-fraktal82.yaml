@@ -1,21 +1,2 @@
-fraktal: 82
-status: done
-owner: ChefDevAI
-summary:
-  - 'Dev-Stack führt vor dem Start einen Workspace-Preflight aus: fehlende Artefakte wie `packages/ai/dist/index.js` lösen automatisch `pnpm -F @unified-mandala/ai build` aus (Opt-out via `UM_DEV_SERVICES_SKIP_PREBUILD=1`).'
-  - 'Windows-Setup-Skript initialisiert `$hasNats` mit dem aggregierten Status (`binary`/`docker`), sodass der Installationsbericht keine undefinierten Variablen mehr meldet.'
-deliverables:
-  - analysis/devtalk80-evaluation.md
-  - codexfeedback-fraktal82.yaml
-  - codexfeedback.json
-  - codexfeedback.md
-  - codexfeedback.yaml
-  - docs/roadmap/v1.0-stabilization-playbook.md
-  - docs/roadmap/v1.0-stabilization-playbook.yaml
-  - scripts/dev-services.mjs
-  - scripts/setup-dev-env.ps1
-commands: []
-hook:
-  progress: Dev-Stack startet ohne ERR_MODULE_NOT_FOUND; Windows setup reportiert NATS-Status stabil.
-  next_step: Weitere Workspace-Pakete in den Preflight aufnehmen und optional einen CLI-Schalter für Prebuild-Skip ergänzen.
-repeat_required: false
+# moved: docs/fraktal/codexfeedback/codexfeedback-fraktal82.yaml
+# Hinweis: Diese Datei wurde in die Fraktal-Struktur verschoben. Bitte Links aktualisieren.

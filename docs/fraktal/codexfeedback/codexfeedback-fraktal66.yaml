@@ -1,0 +1,38 @@
+fraktal: 66
+status: done
+owner: ChefDevAI
+summary:
+  - 'Policy-Suite markiert Kyverno/Sigillin als optionale Schritte (`PANTHEON_DISABLE=1`) und protokolliert Skip-Warnungen, wenn Kyverno-CLI oder `sigillins:report` fehlen, statt CI-Fails auszulösen.'
+  - 'Schema- und Repo-Sanity-Checks akzeptieren Codexfeedback als YAML oder JSON und liefern klarere Fehlermeldungen.'
+  - 'Repomap-Build fällt auf generierte Artefakte zurück, falls `scripts/run-dist.mjs` kein dist erzeugt; Validator prüft tolerant.'
+  - 'Neues Cheat Sheet `docs/cheatsheets/unified-mandala-workflows.md` bündelt Dev-, CI-, Adapter-, Governance- und Demo-Flows.'
+deliverables:
+  - scripts/policy-suite.mjs
+  - scripts/validate-schemas.mjs
+  - scripts/repo-sanity.mjs
+  - scripts/generate-repomap.mjs
+  - scripts/validate-repomap.mjs
+  - docs/cheatsheets/unified-mandala-workflows.md
+  - MandalaMap.yaml
+  - MandalaMap.json
+  - MandalaMap.md
+  - analysis/trikaya-dashboard.yaml
+  - analysis/trikaya-dashboard.json
+  - analysis/trikaya-dashboard.md
+  - docs/roadmap/v1.0-stabilization-playbook.yaml
+  - docs/roadmap/v1.0-stabilization-playbook.md
+  - codexfeedback.md
+  - codexfeedback.json
+  - codexfeedback.yaml
+  - codexfeedback-fraktal66.yaml
+commands:
+  - pnpm policy:check
+  - pnpm schema:validate
+  - pnpm maps:validate
+  - pnpm sanity
+  - pnpm repomap:build
+  - pnpm repomap:validate
+hook:
+  progress: 'Policy-Suite optional-safe, Repomap-Fallbacks aktiv, Cheatsheet veröffentlicht – Meta-Gates Fraktal66 abgeschlossen.'
+  next_step: 'Stub-Usage Audit & Keys-Governance (Fraktal67) koordinieren; optionale Adapter-Finetunes evaluieren.'
+repeat_required: false

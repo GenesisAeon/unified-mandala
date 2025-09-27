@@ -1,0 +1,26 @@
+fraktal: 46
+status: done
+owner: Codex
+summary:
+  - MandalaMap Baseline refreshed with bridge registry entry and follow-up updates.
+  - "Sigillin validator hardened (CREP metrics, Trik\u0101ya, next action) and CI workflow\
+    \ set to required."
+  - New mandala-map workflow publishes artifacts without blocking merges.
+deliverables:
+  - MandalaMap.yaml
+  - MandalaMap.json
+  - MandalaMap.md
+  - sigils/google-gemini-briefing.sigil.json
+  - docs/sigillin/GOOGLEGEMINI_SIGILLIN.md
+  - sigils/bridges/bridges.index.yaml
+follow_up:
+  stub_replacement_plan:
+    description:
+      "stubs/ (kan/liquid/torch_geometric) & keys/ mit belastbaren Artefakten/Secrets-Strategie\
+      \ erg\xE4nzen."
+    status: open
+  mandala_map_upkeep:
+    description: "MandalaMap.* nach jedem Fraktal aktualisieren und neue Artefakte\
+      \ verkn\xFCpfen."
+    status: ongoing
+repeat_required: false

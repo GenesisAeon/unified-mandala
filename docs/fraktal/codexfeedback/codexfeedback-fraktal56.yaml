@@ -1,0 +1,45 @@
+fraktal: 56
+status: done
+owner: ChefDevAI
+summary:
+  - 'Installationsstatus-Tracking ergänzt: `scripts/setup-dev-env.ps1` initialisiert eine InstallState-Map, fasst Git/Node/Python/Corepack/pnpm/Docker/NATS zusammen und unterstützt Windows PowerShell 5.1 via ExecutionPolicy Bypass.'
+  - 'PowerShell-Bootstrap `scripts/setup-dev-env.ps1` installiert Git/Node/Python, aktiviert Corepack und führt pnpm install auf Windows aus.'
+  - 'Node-Wrapper `scripts/run-powershell.mjs` sucht pwsh oder Windows PowerShell, sodass `pnpm build:windows-tools` ohne pwsh-Laufzeit funktioniert.'
+  - 'Dokumentation (README/ONBOARDING/CommunityOnboarding), Command-Catalog & MandalaMap verweisen jetzt auf Windows-Parität; Playbook-Notizen ergänzt.'
+  - 'Setup-Skript schreibt nach Abschluss eine JSON-Zusammenfassung unter `out/setup/install-state.json` (Shell-Version, Tool-Status, Skip-Flags) für Codexfeedback-Auswertungen.'
+  - 'Corepack-Admin-Erkennung vermeidet EPERM, protokolliert Aktivierungsmodus (`system`, `user`, `system-fallback`, `skipped`) und blendet NATS-Installationshinweise (winget/Docker) ein.'
+  - 'PowerShell 7.5 ParserError behoben: `Ensure-Tool` nutzt jetzt `(Test-CommandExists ...)` in `-and`-Ausdrücken und castet Installationsresultate zu Bool, sodass der Dev-Setup-Lauf auf Windows wieder durchläuft.'
+  - 'Emergence-Breath (`scripts/emergence-breath.mjs`) koppelt `pnpm dev:breath` an `validate:sigillins` + `trikaya:dashboard`, überwacht sigils/, apps/ui/ und scripts/ und meldet Coverage-Metriken nach jedem Lauf.'
+  - '`scripts/smoke/ui-dev-smoke.mjs` respektiert `UI_DEV_URL` und vermeidet zusätzliche Vite-Instanzen, wodurch Windows-Portkonflikte (5173→5174) verschwinden.'
+deliverables:
+  - scripts/setup-dev-env.ps1
+  - scripts/run-powershell.mjs
+  - scripts/emergence-breath.mjs
+  - scripts/smoke/ui-dev-smoke.mjs
+  - package.json
+  - README.md
+  - docs/ONBOARDING.md
+  - docs/CommunityOnboarding.md
+  - docs/runbooks/command-catalog.md
+  - docs/runbooks/command-catalog.yaml
+  - docs/runbooks/command-catalog.json
+  - codexfeedback.md
+  - codexfeedback.json
+  - codexfeedback.yaml
+  - MandalaMap.md
+  - MandalaMap.yaml
+  - MandalaMap.json
+  - docs/roadmap/v1.0-stabilization-playbook.md
+  - docs/roadmap/v1.0-stabilization-playbook.yaml
+  - codexfeedback-fraktal56.yaml
+follow_up:
+  windows_script_validation:
+    description: 'Windows-Terminallauf für scripts/setup-dev-env.ps1 (inkl. Installationsstatus-Output + winget/choco fallback) validieren und Feedback sammeln.'
+    status: done
+  docker_windows_profile:
+    description: 'Docker Compose Windows-Dokumentation ergänzen (z. B. `--build`, WSL vs. Hyper-V) sobald Image-Build bestätigt ist.'
+    status: planned
+hook:
+  progress: 'Windows-Bootstrap + PowerShell-Fallback stehen; Windows-Lauf bestätigt InstallState-Export, `pnpm dev:breath` automatisiert Sigillin/Trikāya-Checks und UI-Smoke respektiert `UI_DEV_URL` ohne zusätzliche Vite-Instanz.'
+  next_step: 'Compose-/Docker-Windows-Profil dokumentieren (`docker_windows_profile`) und DevTalk-Track um Emergence-Breath-Status ergänzen.'
+repeat_required: false

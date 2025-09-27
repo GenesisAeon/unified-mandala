@@ -1,25 +1,2 @@
-fraktal: 62
-status: done
-owner: ChefDevAI
-summary:
-  - 'Windows-Dokumentation ergänzt: README und CONTRIBUTING erklären Pytest-Aufruf über die Projekt-venv sowie Puppeteer-/Cypress-Installation.'
-  - 'Command-Catalog (MD/YAML/JSON) listet jetzt die Windows-spezifischen Befehle für Puppeteer, Cypress und Pytest.'
-  - 'codexfeedback-Tracker auf Fraktal62 gehoben; Hook verweist auf erneute Validierung der Windows-Builds nach Tool-Installationen.'
-deliverables:
-  - README.md
-  - CONTRIBUTING.md
-  - docs/runbooks/command-catalog.md
-  - docs/runbooks/command-catalog.yaml
-  - docs/runbooks/command-catalog.json
-  - codexfeedback.md
-  - codexfeedback.json
-  - codexfeedback.yaml
-  - codexfeedback-fraktal62.yaml
-commands:
-  - .\\.venv\\Scripts\\python.exe -m pytest -q
-  - pnpm exec puppeteer browsers install chrome-headless-shell
-  - pnpm dlx cypress install
-hook:
-  progress: Windows-Doku führt Pytest und Tool-Downloads explizit aus; Team kennt nun empfohlene Befehle für Mermaid/Cypress.
-  next_step: Nach den Installationen `pnpm adapter:build:effis` bzw. `pnpm cy:run` einmalig testen, um den Flow auf Windows zu bestätigen.
-repeat_required: false
+# moved: docs/fraktal/codexfeedback/codexfeedback-fraktal62.yaml
+# Hinweis: Diese Datei wurde in die Fraktal-Struktur verschoben. Bitte Links aktualisieren.

@@ -1,0 +1,35 @@
+fraktal: 68
+status: done
+owner: ChefDevAI
+summary:
+  - 'Keys-Verzeichnis abgesichert: `.gitignore` + `.gitkeep` eingecheckt, Repo-Sanity meldet fehlende oder unerwartete Dateien.'
+  - 'Kyverno-Dry-Run erweitert Ressourcen um Keys-State, Policies verhindern Commits außerhalb der Automation-Marker.'
+  - 'Stub-Roadmap, MandalaMap und Stabilization-Playbook dokumentieren den Fortschritt; Meta-Skripte lint-bereinigt.'
+deliverables:
+  - keys/.gitignore
+  - keys/.gitkeep
+  - scripts/repo-sanity.mjs
+  - tools/kyverno-dry-run.mjs
+  - policies/kyverno.yaml
+  - docs/roadmap/stub-replacement-roadmap.md
+  - docs/roadmap/stub-replacement-roadmap.yaml
+  - MandalaMap.md
+  - MandalaMap.yaml
+  - MandalaMap.json
+  - docs/roadmap/v1.0-stabilization-playbook.md
+  - docs/roadmap/v1.0-stabilization-playbook.yaml
+  - scripts/advice/merge.mjs
+  - scripts/analyze-conversations.js
+  - scripts/check-meta-score-layer.js
+  - scripts/generate-chronopoem.js
+  - codexfeedback.md
+  - codexfeedback.json
+  - codexfeedback.yaml
+commands:
+  - pnpm lint:eslint
+  - pnpm policy:check
+  - pnpm sanity
+hook:
+  progress: 'Keys-Governance enforced; Lint-Fundstellen beseitigt.'
+  next_step: 'Phase-B-Ersatzimplementierungen der Stub-Roadmap priorisieren.'
+repeat_required: false

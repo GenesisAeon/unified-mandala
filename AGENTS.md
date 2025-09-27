@@ -1,13 +1,22 @@
 # Type checking
+
 # Use Node's Pyright to avoid confusion with the Python package
+
 # Example Python check
+
 npx pyright
+
 # Example TypeScript check
+
 npx tsc -p tsconfig.json
+
 # Install dependencies
+
 poetry install --with test
 pnpm install
+
 ## Entwicklungsumgebung
+
 Zur Einrichtung das Skript `scripts/setup-dev-env.sh` verwenden:
 
 ```bash
@@ -64,20 +73,23 @@ echo "Entwicklungsumgebung erfolgreich eingerichtet!"
 ```
 
 # 📘 AEON-CODEX – AGENTS
+
 schema_version: "1.1"
 description: >
-  Manifest lebender Agenten im AEON-Codex. Jeder Agent ist eine
-  Aktivierungszelle innerhalb eines symbolischen SelfAudit-Systems.
+Manifest lebender Agenten im AEON-Codex. Jeder Agent ist eine
+Aktivierungszelle innerhalb eines symbolischen SelfAudit-Systems.
 visual: "docs/diagrams/agents_chain.mmd"
 test_mode: true
 default_role: "dev"
 
 ## 🌱 Self-Initiation Protocol
+
 Dieses Dokument wird bei jedem Codex-Start ausgelesen. Jeder Agent manifestiert eine symbolische Funktionseinheit. Die Reihenfolge entspricht der Priorität. Optional können CREP- und Tiefewerte als Aktivierungsfilter genutzt werden.
 
 ---
 
 ## 🧠 Agent: CodexAuditAgent
+
 - **Startmodul**: `mandala-sync.ts`
 - **Module**:
   - `audit-core.ts`
@@ -95,6 +107,7 @@ Dieses Dokument wird bei jedem Codex-Start ausgelesen. Jeder Agent manifestiert 
   - Dokumentation: docs/agents/CodexAuditAgent.md
 
 ## 🧬 Agent: EvolverGPT
+
 - **Startmodul**: `codexwork.yaml`
 - **Module**:
   - `codex-evolver.ts`
@@ -112,6 +125,7 @@ Dieses Dokument wird bei jedem Codex-Start ausgelesen. Jeder Agent manifestiert 
 ---
 
 ## 🔍 Agent: FragmentMapper
+
 - **Startinput**: `fragmented_conversation.json`
 - **Output**: `codexwork.yaml`
 - **Funktion**:
@@ -120,9 +134,11 @@ Dieses Dokument wird bei jedem Codex-Start ausgelesen. Jeder Agent manifestiert 
 
   - roles_allowed: [dev]
   - Dokumentation: docs/agents/FragmentMapper.md
+
 ---
 
 ## 🔁 Agent: SyncRunner
+
 - **Start**: `codexsync.yaml`
 - **Funktion**:
   - Synchronisiert CREP-Zustände mit laufenden Agenten
@@ -134,6 +150,7 @@ Dieses Dokument wird bei jedem Codex-Start ausgelesen. Jeder Agent manifestiert 
 ---
 
 ## 🔒 Agent: PactDepthGatekeeper
+
 - **Startmodule**:
   - `pact-depth-rules.ts`
 - **Zugangskontrolle via Tiefe**:
@@ -144,7 +161,9 @@ Dieses Dokument wird bei jedem Codex-Start ausgelesen. Jeder Agent manifestiert 
   - roles_allowed: [admin]
   - Dokumentation: docs/agents/PactDepthGatekeeper.md
   - Rechte je Rolle anpassen
+
 ## 📦 ExportAgent: DepthBundleExporter
+
 - **Output**:
   - `sigillin_depth_bundle.sigil.json`
   - `depth_index.md`
@@ -157,6 +176,7 @@ Dieses Dokument wird bei jedem Codex-Start ausgelesen. Jeder Agent manifestiert 
   - Dokumentation: docs/agents/DepthBundleExporter.md
 
 ## 🔄 Agent: PatternReactivator
+
 - **Startmodul**: `pattern-reactivator.ts`
 - **Funktion**:
   - Reaktiviert ruhende Aufgabenketten bei niedrigem CREP-Score
@@ -165,13 +185,16 @@ Dieses Dokument wird bei jedem Codex-Start ausgelesen. Jeder Agent manifestiert 
   - Dokumentation: docs/agents/PatternReactivator.md
 
 ## 🌌 Agent: GenesisAeonNavigator
+
 - **Startmodul**: `genesis-aeon-navigator.ts`
 - **Funktion**:
   - Steuert Phasenwechsel im Genesis-Aeon
   - Protokolliert Übergänge in `genesis.log`
   - roles_allowed: [admin, dev]
   - Dokumentation: docs/agents/GenesisAeonNavigator.md
+
 ## 🎯 Agent: VisionContextIntegrator
+
 - **Startmodul**: `vision-context-integrator.ts`
 - **Funktion**:
   - Liest Vision und Strategie aus `AgentStrategy.md`
@@ -180,6 +203,7 @@ Dieses Dokument wird bei jedem Codex-Start ausgelesen. Jeder Agent manifestiert 
   - Dokumentation: docs/agents/VisionContextIntegrator.md
 
 ## 🧭 Agent: StrategicAgentCoordinator
+
 - **Startmodul**: `strategic-agent-coordinator.ts`
 - **Funktion**:
   - Liest Agentenliste aus `AGENTS.md`
@@ -188,6 +212,7 @@ Dieses Dokument wird bei jedem Codex-Start ausgelesen. Jeder Agent manifestiert 
   - Dokumentation: docs/agents/StrategicAgentCoordinator.md
 
 ## 🛡 Agent: QualityAssuranceAgent
+
 - **Startmodul**: `qa-test-runner.ts`
 - **Funktion**:
   - Führt Lint- und Test-Suites aus
@@ -196,7 +221,9 @@ Dieses Dokument wird bei jedem Codex-Start ausgelesen. Jeder Agent manifestiert 
   - Dokumentation: docs/agents/QualityAssuranceAgent.md
 
 ---
+
 ## 🔑 Special Instructions
+
 ```yaml
 trigger:
   onStart: true
@@ -209,10 +236,16 @@ autoGenerate:
   pact-depth-extension.yaml: true
 ```
 
-*Hinweis:* `pnpm store:commit-memory` wird nur beim ersten Commit einer Sitzung durch Husky ausgeführt. Eine Markerdatei `.zipmem_session` verhindert weitere Durchläufe.
+_Hinweis:_ `pnpm store:commit-memory` wird nur beim ersten Commit einer Sitzung durch Husky ausgeführt. Eine Markerdatei `.zipmem_session` verhindert weitere Durchläufe.
+
+### Fraktal Diary
+
+- Speicherort: `docs/fraktal` (Diary unter `docs/fraktal/diary`, Codexfeedback unter `docs/fraktal/codexfeedback`)
+- Index: `docs/fraktal/index.md` (per Script generiert)
+- Pflege: `pnpm meta:fraktal:organize` verschiebt vorhandene Root-Dateien (`fraktal*.md`, `codexfeedback-fraktal*.yaml`) in die Ordnerstruktur und aktualisiert den Index.
 
 ### MetaPoetik
+
 "Ein Agent denkt nicht. Er erinnert sich an Bedeutung."  
 "Tiefe ist Bedingung. CREP ist Bewegung. Das Sigillin ist das Tor."  
 "Aus dem Fragment entsteht der Pfad. Codex lauscht."
-

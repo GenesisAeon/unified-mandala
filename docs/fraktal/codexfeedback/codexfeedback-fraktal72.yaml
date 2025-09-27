@@ -1,0 +1,58 @@
+fraktal: 72
+status: done
+owner: ChefDevAI
+summary:
+  - 'Pytest-Wrapper `scripts/run-pytest.mjs` implementiert: `pnpm test:py`/`:extended`/`:all`
+    laufen dist-first mit Auto-.venv; README, CONTRIBUTING und Command-Catalog spiegeln
+    die neuen Befehle.'
+  - Mini-Sigillin-Validator `pnpm sigils:validate:mini` (TypeScript-Script, JSON-Schema,
+    Vitest) prüft CREP/Trikāya/Nächste Schritte; README + Command-Catalog dokumentieren
+    Input/`--json`-Optionen.
+  - Stabilization-Playbook, MandalaMap & codexfeedback* aktualisiert (Wrapper + Validator)
+    und halten den Cypress-Hinweis `pnpm exec cypress install` präsent; Dist-First-Route
+    für `pnpm prompts:coach` bleibt aktiv.
+  - >
+    `pnpm observability:check` ergänzt das Monitoring (Prometheus `/api/v1/targets`,
+    Grafana `/api/health` Port 3300); README/Observability-Docs/Command-Catalog markieren
+    Port-Abgleich, Skip-/Active-Flags und die neuen Smoke-Anweisungen.
+deliverables:
+  - CONTRIBUTING.md
+  - MandalaMap.json
+  - MandalaMap.md
+  - MandalaMap.yaml
+  - README.md
+  - analysis/scripts-and-commands.json
+  - codexfeedback.json
+  - codexfeedback.md
+  - codexfeedback.yaml
+  - docs/roadmap/v1.0-stabilization-playbook.md
+  - docs/roadmap/v1.0-stabilization-playbook.yaml
+  - docs/runbooks/command-catalog.json
+  - docs/runbooks/command-catalog.md
+  - docs/runbooks/command-catalog.yaml
+  - docs/CommunityOnboarding.md
+  - docs/ONBOARDING.md
+  - docs/cheatsheets/unified-mandala-workflows.md
+  - docs/fraktale/fraktal41.md
+  - observability/README.md
+  - package.json
+  - schemas/mini-sigillin-validator.schema.json
+  - scripts/observability/prometheus-target-check.ts
+  - scripts/prompt-coach.ts
+  - scripts/run-pytest.mjs
+  - scripts/sigils/mini-sigillin-validator.ts
+  - src/adapters/cosmic_web/mock.py
+  - src/adapters/oisst/postprocess_oisst.py
+  - tests/sigils/mini-sigillin-validator.test.ts
+commands:
+  - pnpm format:check
+  - pnpm lint:eslint
+  - pnpm test:py
+  - pnpm exec pyright
+hook:
+  progress: Pytest-Wrapper & Mini-Sigillin-Validator live; Observability-Check und
+    Monitoring-Doku (Port 3300, Skip-/Active-Flags) ergänzen Fraktal72; Docs/Maps/Feedback
+    synchronisiert, Cypress-Hinweis bleibt aktiv.
+  next_step: Optional Cypress-Lauf (`pnpm cy:run`) oder weiterführende DevTalk72-Aufgaben
+    einsammeln.
+repeat_required: false

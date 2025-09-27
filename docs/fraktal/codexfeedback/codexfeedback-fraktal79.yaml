@@ -1,0 +1,40 @@
+fraktal: 79
+status: done
+owner: ChefDevAI
+summary:
+  - '`pnpm start:cosmic-web` orchestriert NATS (ensure/start), baut die Cosmic-Web-Artefakte,
+    startet Dev-Services, mandala-ui (Port autodetect) und den Live-Ticker und stößt
+    automatisch `pnpm smoke:ui` mit korrekter `UI_DEV_URL` an.'
+  - 'mandala-ui rendert `/demo/ai-playground` direkt (Playground-Komponente + Navigation),
+    Vite proxyt `/api/ai` auf Port 3002 und der UI-Smoke prüft die Route nach dem Boot.'
+  - 'Guard `scripts/ci/no-local-path-leaks.mjs` blockt versehentlich gestagte Windows-Pfade
+    oder Secrets, `.gitignore` schützt Cosmic-Web-Artefakte & Scratch-Verzeichnisse, und
+    MandalaMap.*, Stabilization-Playbook.(md|yaml) sowie codexfeedback* spiegeln den Lauf.'
+deliverables:
+  - .gitignore
+  - .husky/pre-commit
+  - apps/ui/public/demo/cosmic-web/.gitkeep
+  - apps/ui/src/components/MandalaAIPlayground.tsx
+  - apps/ui/src/shell/App.tsx
+  - apps/ui/vite.config.ts
+  - codexfeedback-fraktal79.yaml
+  - codexfeedback.json
+  - codexfeedback.md
+  - codexfeedback.yaml
+  - docs/roadmap/v1.0-stabilization-playbook.md
+  - docs/roadmap/v1.0-stabilization-playbook.yaml
+  - MandalaMap.md
+  - MandalaMap.yaml
+  - MandalaMap.json
+  - package.json
+  - scripts/ci/no-local-path-leaks.mjs
+  - scripts/smoke/ui-dev-smoke.mjs
+  - scripts/start-cosmic-web.mjs
+commands:
+  - pnpm start:cosmic-web
+hook:
+  progress: One-command Cosmic-Web Starter + AI Playground Route aktiv; Smoke prüft `/demo/ai-playground`.
+  next_step:
+    'Optional Follow-up: Cypress/Playwright für Playground ergänzen oder `pnpm start:cosmic-web`
+    mit Cleanup-Signalen (docker rm) erweitern.'
+repeat_required: false
