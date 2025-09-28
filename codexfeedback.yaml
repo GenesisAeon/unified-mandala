@@ -3,33 +3,56 @@ fraktal:
   history:
     - id: 87
       status: in-progress
-      notes:
-        'Fraktal87 DevTalkStabilization: `analysis/devtalk87-evaluation.md` bestätigt, dass die DevTalk-Stabilisierungsziele
-        für CI/Governance/Observability bereits umgesetzt sind, nennt aber offene Aufgaben (Shortcut-Diagnose,
-        Port-Offset-Doku, Health-Badge, Gemini-Sigillin-Link); MandalaMap und das Stabilization-Playbook
-        spiegeln den Hook und codexfeedback* hebt den Fraktalrun auf 87.'
+      notes: 'Fraktal87 DevTalkStabilization: analysis/devtalk87-evaluation.md bestätigt
+        die DevTalk-Ziele (CI/Governance/Observability/Docs) und hält jetzt das Shortcut-Diagnose-Skript
+        (`scripts/diag/shortcuts.mjs` → `pnpm diag:shortcuts`), die erweiterten DEV-SHORTCUTS
+        (Ports/Offsets/Health-Badge + Troubleshooting) sowie die aktualisierten RoleOutCommands
+        für den Qwen-Rollout fest. Climate-MVP (Phase 4) und der Gemini-Sigillin-Link
+        bleiben als offene Aufgaben markiert; MandalaMap.*, Stabilization-Playbook und
+        codexfeedback führen den Lauf weiterhin als in-progress.'
       deliverables:
+        - .github/workflows/ci.qwen-smoke.yml
+        - .husky/pre-push
+        - MandalaMap.json
+        - MandalaMap.md
+        - MandalaMap.yaml
         - analysis/devtalk87-evaluation.md
         - codexfeedback-fraktal87.yaml
         - codexfeedback.json
         - codexfeedback.md
         - codexfeedback.yaml
+        - docs/DEV-SHORTCUTS.md
         - docs/fraktal/index.md
+        - docs/roadmap/RoleOutCommands.json
+        - docs/roadmap/RoleOutCommands.md
+        - docs/roadmap/RoleOutCommands.yaml
         - docs/roadmap/v1.0-stabilization-playbook.md
         - docs/roadmap/v1.0-stabilization-playbook.yaml
-        - MandalaMap.json
-        - MandalaMap.md
-        - MandalaMap.yaml
-      commands: []
+        - package.json
+        - scripts/dev-helper.ps1
+        - scripts/dev-services.mjs
+        - scripts/diag/shortcuts.mjs
+        - scripts/hooks/qwen-smoke-trigger.mjs
+        - scripts/smoke/live-smoke.mjs
+        - scripts/smoke/qwen-smoke.mjs
+      commands:
+        - pnpm smoke:qwen
+        - pnpm hook:qwen-smoke
+        - pnpm diag:shortcuts
       hook:
-        progress: DevTalk-Plan erneut gespiegelt; offene Tasks klar benannt und in den Roadmap-Artefakten verankert.
-        next_step:
-          Shortcut-Diagnose-Skript, Port-Offset-Dokumentation und Health-Badge liefern; Gemini-Sigillin in MandalaMap
+        progress: Qwen-Smoke & Hook dokumentiert; RoleOutCommands.* jetzt inkl. `pnpm
+          diag:shortcuts` als Phase-1-Check, DEV-SHORTCUTS beleuchten Ports/Offsets/Health-Badge.
+          Stabilization-Playbook aktualisiert.
+        next_step: Climate-MVP (Phase 4) verdrahten und Gemini-Sigillin in MandalaMap
           verlinken.
       repeat_required: true
     - id: 86
       status: done
-      notes: 'Fraktal86 PortOffsetAlignment: `scripts/dev-helper.ps1` setzt Service-Ports pro Offset als absolute Werte, `config/ports.ts`, `apps/ui/vite.config.ts` und `scripts/dev-services.mjs` behandeln Env-Overrides ohne doppelte Offsets und `scripts/health-aggregator.ts` nutzt dynamische Ports; Stabilization-Playbook & MandalaMap verankern den Hook.'
+      notes: 'Fraktal86 PortOffsetAlignment: `scripts/dev-helper.ps1` setzt Service-Ports
+        pro Offset als absolute Werte, `config/ports.ts`, `apps/ui/vite.config.ts` und
+        `scripts/dev-services.mjs` behandeln Env-Overrides ohne doppelte Offsets und
+        `scripts/health-aggregator.ts` nutzt dynamische Ports; Stabilization-Playbook
+        & MandalaMap verankern den Hook.'
       deliverables:
         - scripts/dev-helper.ps1
         - config/ports.ts
@@ -47,12 +70,16 @@ fraktal:
         - docs/fraktal/codexfeedback/codexfeedback-fraktal86.yaml
       commands: []
       hook:
-        progress: Port-Offsets kollidieren nicht mehr; Health-Aggregator prüft die berechneten Dienste.
-        next_step: UI-/Docs-Update in `docs/DEV-SHORTCUTS.md` für Port-Mapping nachziehen und optional Smoke-Check für Offset-Stacks ergänzen.
+        progress: Port-Offsets kollidieren nicht mehr; Health-Aggregator prüft die berechneten
+          Dienste.
+        next_step: UI-/Docs-Update in `docs/DEV-SHORTCUTS.md` für Port-Mapping nachziehen
+          und optional Smoke-Check für Offset-Stacks ergänzen.
       repeat_required: false
     - id: 85
       status: done
-      notes: 'Fraktal85 ShortcutDiagnostics: `analysis/devtalk84-evaluation.md` auditierte `pnpm dev:stack`, `pnpm start:cosmic-web`, `pnpm smoke:live` und die `ps:*`-Shortcuts; Stabilization-Playbook & MandalaMap setzen einen Follow-up-Hook.'
+      notes: 'Fraktal85 ShortcutDiagnostics: `analysis/devtalk84-evaluation.md` auditierte
+        `pnpm dev:stack`, `pnpm start:cosmic-web`, `pnpm smoke:live` und die `ps:*`-Shortcuts;
+        Stabilization-Playbook & MandalaMap setzen einen Follow-up-Hook.'
       deliverables:
         - analysis/devtalk84-evaluation.md
         - docs/roadmap/v1.0-stabilization-playbook.md
@@ -66,12 +93,19 @@ fraktal:
         - codexfeedback.yaml
       commands: []
       hook:
-        progress: Shortcut-Audit dokumentiert; Follow-up `pnpm diag:shortcuts` im Playbook verankert.
+        progress: Shortcut-Audit dokumentiert; Follow-up `pnpm diag:shortcuts` im Playbook
+          verankert.
         next_step: Diagnoseskript + Troubleshooting für `docs/DEV-SHORTCUTS.md` umsetzen.
       repeat_required: false
     - id: 84
       status: done
-      notes: 'Fraktal84 DevHelperHealthGuard: PowerShell Dev-Helper (Start/Stop/Test/Secrets), zentraler Health-Aggregator (`scripts/health-aggregator.ts` → `pnpm dev:health`), neue `/health`-Routen (api, fourier, sigil-generator, ghost-shell, realtime-hub) und Husky-Guard `guard-no-dotenv` gegen `.env*`-Commits; pnpm-Shortcuts (`ps:*`) und `docs/DEV-SHORTCUTS.md` ergänzen den Flow. Stabilization-Playbook (MD/YAML) aktualisiert; negativer Contract-Test für `/api/ai/chat` stellt 400 bei ungültiger Payload sicher.'
+      notes: 'Fraktal84 DevHelperHealthGuard: PowerShell Dev-Helper (Start/Stop/Test/Secrets),
+        zentraler Health-Aggregator (`scripts/health-aggregator.ts` → `pnpm dev:health`),
+        neue `/health`-Routen (api, fourier, sigil-generator, ghost-shell, realtime-hub)
+        und Husky-Guard `guard-no-dotenv` gegen `.env*`-Commits; pnpm-Shortcuts (`ps:*`)
+        und `docs/DEV-SHORTCUTS.md` ergänzen den Flow. Stabilization-Playbook (MD/YAML)
+        aktualisiert; negativer Contract-Test für `/api/ai/chat` stellt 400 bei ungültiger
+        Payload sicher.'
       deliverables:
         - scripts/dev-helper.ps1
         - scripts/health-aggregator.ts
@@ -92,12 +126,18 @@ fraktal:
         - pnpm dev:health
         - pnpm ps:test-um
       hook:
-        progress: Zentrale Health-Übersicht unter http://localhost:3999/health und schneller E2E-Sanity via Smoke-AI.
-        next_step: Optional `/health` in alle Router/Services konsolidieren und UI-Badge/Prometheus-Scrape für Aggregator ergänzen.
+        progress: Zentrale Health-Übersicht unter http://localhost:3999/health und schneller
+          E2E-Sanity via Smoke-AI.
+        next_step:
+          Optional `/health` in alle Router/Services konsolidieren und UI-Badge/Prometheus-Scrape
+          für Aggregator ergänzen.
       repeat_required: false
     - id: 83
       status: done
-      notes: 'Fraktal83 ResponsesPayloadFix: `@unified-mandala/ai` mappt Chat-Verläufe auf `input_text`/`output_text`, behebt den OpenAI-Fehler "Invalid value: ''text''" und stellt `/api/ai/chat` wieder her; Vitest prüft die Payload, Stabilization-Playbook & MandalaMap spiegeln den Fix, analysis/devtalk80-evaluation.md fasst Folgeaufgaben.'
+      notes: 'Fraktal83 ResponsesPayloadFix: `@unified-mandala/ai` mappt Chat-Verläufe
+        auf `input_text`/`output_text`, behebt den OpenAI-Fehler "Invalid value: ''text''"
+        und stellt `/api/ai/chat` wieder her; Vitest prüft die Payload, Stabilization-Playbook
+        & MandalaMap spiegeln den Fix, analysis/devtalk80-evaluation.md fasst Folgeaufgaben.'
       deliverables:
         - analysis/devtalk80-evaluation.md
         - packages/ai/src/ask.ts
@@ -113,12 +153,19 @@ fraktal:
         - codexfeedback.yaml
       commands: []
       hook:
-        progress: Responses-Bridge liefert wieder Antworten; Playground benötigt nur noch `OPENAI_API_KEY`.
-        next_step: UI-Smoke/Contract-Test für `/api/ai/chat` mit Mock-Key ergänzen und Gemini-Sigillin-Task planen.
+        progress: Responses-Bridge liefert wieder Antworten; Playground benötigt nur
+          noch `OPENAI_API_KEY`.
+        next_step: UI-Smoke/Contract-Test für `/api/ai/chat` mit Mock-Key ergänzen und
+          Gemini-Sigillin-Task planen.
       repeat_required: false
     - id: 82
       status: done
-      notes: 'Fraktal82 DevStackPreflight: `scripts/dev-services.mjs` baut fehlende Workspace-Artefakte automatisch (Start mit `@unified-mandala/ai`, Opt-out via `UM_DEV_SERVICES_SKIP_PREBUILD=1`) und `scripts/setup-dev-env.ps1` setzt `$hasNats` korrekt, sodass Windows-Installberichte keine undefinierten Variablen mehr enthalten; Stabilization-Playbook (MD/YAML) und analysis/devtalk80-evaluation.md dokumentieren die Recovery-Schritte.'
+      notes: 'Fraktal82 DevStackPreflight: `scripts/dev-services.mjs` baut fehlende
+        Workspace-Artefakte automatisch (Start mit `@unified-mandala/ai`, Opt-out via
+        `UM_DEV_SERVICES_SKIP_PREBUILD=1`) und `scripts/setup-dev-env.ps1` setzt `$hasNats`
+        korrekt, sodass Windows-Installberichte keine undefinierten Variablen mehr enthalten;
+        Stabilization-Playbook (MD/YAML) und analysis/devtalk80-evaluation.md dokumentieren
+        die Recovery-Schritte.'
       deliverables:
         - analysis/devtalk80-evaluation.md
         - codexfeedback-fraktal82.yaml
@@ -131,8 +178,10 @@ fraktal:
         - scripts/setup-dev-env.ps1
       commands: []
       hook:
-        progress: Dev-Stack startet ohne fehlende Dist-Artefakte; Setup-Report zeigt NATS-Status korrekt an.
-        next_step: Weitere Workspace-Pakete in den Preflight aufnehmen und optional einen CLI-Schalter für den Skip bereitstellen.
+        progress: Dev-Stack startet ohne fehlende Dist-Artefakte; Setup-Report zeigt
+          NATS-Status korrekt an.
+        next_step: Weitere Workspace-Pakete in den Preflight aufnehmen und optional
+          einen CLI-Schalter für den Skip bereitstellen.
       repeat_required: false
     - id: 81
       status: done

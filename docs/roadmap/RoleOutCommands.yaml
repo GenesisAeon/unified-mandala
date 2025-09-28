@@ -1,0 +1,108 @@
+fraktal: 87
+updated: '2025-11-29'
+title: Mandala Rollout Command Tracker
+phases:
+  - id: phase-0
+    title: 'Phase 0 – Hygiene & Ports'
+    status: ready
+    gate: 'pnpm guard:no-dotenv'
+    commands:
+      - command: '. ./scripts/dev-helper.ps1; Stop-UM'
+        status: ready
+        notes: 'Ports räumen (3001/3002/3003/3004/3999/4020/4021) bevor der Stack startet.'
+      - command: '. ./scripts/dev-helper.ps1; Start-NATS'
+        status: ready
+        notes: 'Lokalen NATS (mit JetStream) aktivieren; optional via `pnpm nats:docker`.'
+      - command: 'pnpm guard:no-dotenv'
+        status: ready
+        notes: 'Bestätigt, dass keine `.env*` Dateien im Commit landen (Husky-Gate).'
+  - id: phase-1
+    title: 'Phase 1 – Core-Stack + Health'
+    status: ready
+    gate: 'http://localhost:3999/health'
+    commands:
+      - command: 'pnpm dev:stack'
+        status: ready
+        notes: 'Startet API, Flags, Realtime-Hub & Share-Service im Dev-Modus.'
+      - command: 'pnpm dev:health'
+        status: ready
+        notes: 'Aggregiert Service-Health auf Port 3999 (Offset-aware).'
+      - command: 'pnpm -F mandala-ui dev -- --port 5173'
+        status: ready
+        notes: 'Vite-Dev-Server für mandala-ui (Proxy → Port 4000).'
+      - command: 'pnpm smoke:ui'
+        status: ready
+        notes: 'Verifiziert, dass das UI erreichbar ist (`UI_DEV_URL` autodetektiert).'
+      - command: 'pnpm diag:shortcuts'
+        status: ready
+        notes: 'Diagnose-Lauf für Dev-Stack, Health-Aggregator & PowerShell-Helper (JSON-Ausgabe).'
+  - id: phase-2
+    title: 'Phase 2 – AI-Playground (Qwen)'
+    status: in-progress
+    gate: 'pnpm smoke:qwen'
+    commands:
+      - command: 'pnpm smoke:qwen'
+        status: ready
+        notes: 'End-to-End Smoke UI → `/api/ai/chat` → Qwen (Ollama/vLLM); erwartet "Qwen ok".'
+      - command: 'pnpm hook:qwen-smoke'
+        status: wired
+        notes: 'Pre-Push-Hook, läuft wenn `AI_PROVIDER` mit `qwen-` beginnt (Opt-in via `UM_RUN_QWEN_SMOKE=1`).'
+      - command: 'curl http://localhost:11434/api/chat ...'
+        status: reference
+        notes: 'Direkter Ollama-Probeaufruf; stellt sicher, dass das Modell lokal antwortet.'
+      - command: 'curl http://localhost:8000/v1/chat/completions ...'
+        status: reference
+        notes: 'Direkter vLLM-Probeaufruf; optional falls vLLM-Backend genutzt wird.'
+  - id: phase-3
+    title: 'Phase 3 – Realtime Cosmic-Web'
+    status: ready
+    gate: 'pnpm demo:cosmic'
+    commands:
+      - command: 'pnpm demo:cosmic'
+        status: ready
+        notes: 'Generiert Artefakte & publiziert Demo-Ticks (STAC + Assets).'
+      - command: 'pnpm sub:cosmic'
+        status: ready
+        notes: 'Optionaler Subscriber für `demo.cosmic` zum lokalen Monitoring.'
+      - command: 'pnpm start:cosmic-web'
+        status: ready
+        notes: 'Ein-Kommando-Orchestrator (NATS, Services, UI, Smoke).'
+  - id: phase-4
+    title: 'Phase 4 – Climate-MVP'
+    status: planned
+    gate: 'STAC validation + KPI sichtbar'
+    commands:
+      - command: 'pnpm adapter:build:era5'
+        status: planned
+        notes: 'Mini-Region / kurzer Zeitraum für ERA5 als Einstieg (Projekt-Venv).'
+      - command: 'pnpm adapter:build:oisst'
+        status: planned
+        notes: 'Alternativ/ergänzend OISST; Pipeline klein halten.'
+      - command: 'python -m tools.stac.validate <artifact>'
+        status: planned
+        notes: 'Validierung der erzeugten STAC-Dateien.'
+  - id: phase-5
+    title: 'Phase 5 – Observability & Governance'
+    status: ready
+    gate: 'pnpm check:ci'
+    commands:
+      - command: 'pnpm check:ci'
+        status: ready
+        notes: 'Typecheck, Unit, Schema, Maps, Repomap, Sanity & Policy in einem Bundle.'
+      - command: 'pnpm policy:check'
+        status: ready
+        notes: 'OPA/Guardrails/Kyverno + Sigillin-Reports prüfen.'
+      - command: 'pnpm observability:check'
+        status: ready
+        notes: 'Prometheus/Grafana-Scrapes (Port 3300) validieren.'
+  - id: phase-6
+    title: 'Phase 6 – Showtime Profil'
+    status: planned
+    gate: 'pnpm live:std + pnpm smoke:live'
+    commands:
+      - command: 'pnpm live:std'
+        status: planned
+        notes: 'Standard-Profil starten (Services + Health-Aggregator).'
+      - command: 'pnpm smoke:live'
+        status: planned
+        notes: 'Verifiziert Live-Profil (`/api/ai/chat` erreichbar).'

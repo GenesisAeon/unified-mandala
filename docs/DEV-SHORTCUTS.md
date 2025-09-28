@@ -70,11 +70,19 @@ pnpm ps:live-lite
 
 ### Ports & Offsets
 
-- Zentrales Port‑Mapping via `config/ports.ts`. Optionaler Offset schiebt alle Ports:
+- Zentrales Port‑Mapping via `config/ports.ts`. Optionaler Offset schiebt alle Ports, inklusive Health-Aggregator (`UM_HEALTH_PORT`) und Realtime-WS:
 
 ```powershell
 $env:PORT_OFFSET = '100'       # verschiebt 3001→3101, 4000→4100, 3999→4099, ...
 pnpm live:std
+```
+
+- PowerShell-Shorthand über den Dev-Helper:
+
+```powershell
+. ./scripts/dev-helper.ps1
+Set-UMPortMap -PortOffset 150   # setzt SHARE/AI/Health/Realtime synchron
+Start-UM                        # nutzt die gesetzten Ports
 ```
 
 - Preflight (Ports vor Start freiräumen):
@@ -83,3 +91,29 @@ pnpm live:std
 pnpm preflight:freeports
 pnpm live:std:clean
 ```
+
+- Health-Aggregator-Link (respektiert Offset):
+
+```markdown
+[Local Health Aggregator](http://localhost:${env:UM_HEALTH_PORT -or 3999}/health)
+```
+
+### Shortcut Diagnostics
+
+- Automatischer Sanity-Check für Dev-Stack, Health-Smoke und PowerShell-Helper:
+
+```powershell
+pnpm diag:shortcuts
+```
+
+- Der Lauf liefert eine farbige Konsolenübersicht und ein JSON-Resümee (Ausgabe auf STDOUT). Nutze `> out/diag/shortcuts.json`, wenn du das Ergebnis versionieren möchtest.
+
+### Troubleshooting Cheatsheet
+
+| Symptom / Meldung                               | Diagnose                                         | Fix / Hinweis                                                                           |
+| ----------------------------------------------- | ------------------------------------------------ | --------------------------------------------------------------------------------------- |
+| `port 4000 already in use`                      | `pnpm diag:shortcuts` → Dev-Stack                | `pnpm preflight:freeports` oder `pnpm dlx kill-port <PORT>`                             |
+| `live-smoke: health aggregator not reachable`   | `pnpm diag:shortcuts` → Live-Smoke               | `pnpm dev:stack` + `pnpm dev:health` starten; Offsets prüfen (`Set-UMPortMap`).         |
+| PowerShell meldet `command not found: Start-UM` | `pnpm diag:shortcuts` → PowerShell               | `pwsh` installieren oder ExecutionPolicy anpassen (`Set-ExecutionPolicy RemoteSigned`). |
+| `pnpm test:unit` fehlt nach übersprungenem Hook | `Test-UM -Diagnostic` (zeigt geplante Kommandos) | `pnpm -w test:unit` + `pnpm schema:validate` manuell nachholen.                         |
+| Health-Aggregator Badge zeigt falschen Port     | Prüfe `UM_HEALTH_PORT` in der Ausgabe            | `Set-UMPortMap -PortOffset <n>` erneut ausführen oder `.env.local` überschreiben.       |

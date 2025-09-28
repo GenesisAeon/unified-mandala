@@ -14,6 +14,9 @@ const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 const modeArg = process.argv.find((arg) => arg.startsWith('--mode='));
 const profileArg = process.argv.find((arg) => arg.startsWith('--profile='));
 const lowMemFlag = process.argv.some((arg) => arg === '--low-mem');
+const diagMode = process.env.UM_DEV_SERVICES_DIAG === '1' || process.argv.includes('--diagnostic');
+const diagJson =
+  process.env.UM_DEV_SERVICES_DIAG_JSON === '1' || process.argv.includes('--diag-json');
 const explicitMode = modeArg ? modeArg.split('=')[1]?.toLowerCase() : undefined;
 const resolvedMode =
   explicitMode === 'prod' || explicitMode === 'production'
@@ -27,6 +30,13 @@ const resolvedMode =
 const resolvedProfile = (profileArg ? profileArg.split('=')[1] : process.env.UM_PROFILE || 'std')
   .toString()
   .toLowerCase();
+const baseLowMem =
+  lowMemFlag ||
+  process.env.UM_LOW_MEM === '1' ||
+  process.env.LOW_MEM === '1' ||
+  resolvedProfile === 'lite' ||
+  resolvedProfile === 'light' ||
+  resolvedProfile === 'minimal';
 
 const preflightPackages = [
   {
@@ -145,9 +155,11 @@ async function detectNatsAvailability() {
       '[dev-services] NATS not reachable. To auto-disable NATS-backed services, set UM_DEV_AUTODISABLE_NATS=1.',
     );
   }
+
+  return ok;
 }
 
-async function spawnService(service) {
+function createServiceEnv(service) {
   const env = {
     ...process.env,
     SERVICE_NAME: service.name,
@@ -164,14 +176,18 @@ async function spawnService(service) {
     }
   }
 
-  // Low-memory / CPU-friendly defaults
-  const lowMem = lowMemFlag || process.env.UM_LOW_MEM === '1' || process.env.LOW_MEM === '1';
-  if (lowMem || resolvedProfile === 'lite') {
+  if (baseLowMem) {
     env.LOW_MEM = env.LOW_MEM || '1';
     env.VITE_LOW_MEM = env.VITE_LOW_MEM || 'on';
     env.NODE_OPTIONS = env.NODE_OPTIONS || '--max-old-space-size=1024';
     env.UV_THREADPOOL_SIZE = env.UV_THREADPOOL_SIZE || '2';
   }
+
+  return env;
+}
+
+async function spawnService(service) {
+  const env = createServiceEnv(service);
 
   if (!skipPortChecks) {
     await ensurePortsAvailable(service, env);
@@ -226,7 +242,52 @@ process.on('SIGTERM', () => {
 });
 
 await ensureWorkspacePrebuilds();
-await detectNatsAvailability();
+const natsAvailable = await detectNatsAvailability();
+
+if (diagMode) {
+  const diagServices = [];
+  for (const service of serviceDefinitions) {
+    const env = createServiceEnv(service);
+    const ports = collectPortCandidates(service, env);
+    const conflicts = await findPortConflicts(ports);
+    diagServices.push({
+      name: service.name,
+      ports,
+      conflicts,
+      status: conflicts.length === 0 ? 'ok' : 'port-conflict',
+    });
+  }
+
+  const summary = {
+    mode: resolvedMode,
+    profile: resolvedProfile,
+    portOffset: Number.parseInt(process.env.PORT_OFFSET || '0', 10) || 0,
+    lowMem: baseLowMem ? 'on' : 'off',
+    natsAvailable,
+    services: diagServices,
+  };
+
+  if (diagJson) {
+    console.log(JSON.stringify(summary));
+  } else {
+    console.log('[dev-services] Diagnostic summary:');
+    for (const entry of diagServices) {
+      const portList = entry.ports.map((p) => `${p.key}:${p.port}`).join(', ');
+      const flag = entry.status === 'ok' ? '✓' : '⚠️';
+      console.log(`  ${flag} ${entry.name} → ${portList || 'no ports declared'}`);
+      if (entry.conflicts.length > 0) {
+        for (const conflict of entry.conflicts) {
+          console.log(
+            `     └─ conflict on ${conflict.key}=${conflict.port} (free manually or run "pnpm dev:ports:free")`,
+          );
+        }
+      }
+    }
+  }
+
+  const hasIssues = diagServices.some((entry) => entry.status !== 'ok');
+  process.exit(hasIssues ? 1 : 0);
+}
 
 console.log(
   `[dev-services] Starting ${serviceDefinitions.length} services in ${resolvedMode} mode...`,

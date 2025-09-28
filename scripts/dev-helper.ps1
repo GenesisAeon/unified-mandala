@@ -161,7 +161,15 @@ function Stop-UM {
 
 function Test-UM {
   [CmdletBinding()]
-  param([switch]$Extended)
+  param([switch]$Extended, [switch]$Diagnostic)
+  if ($Diagnostic) {
+    Write-UMInfo 'Diagnostic mode: skipping pnpm test commands (Test-UM).'
+    Write-UMInfo 'Would run: pnpm -w test:unit, pnpm -w schema:validate, pnpm maps:validate'
+    if ($Extended) {
+      Write-UMInfo 'Extended flag would also run: pnpm repomap:build, pnpm repomap:validate, pnpm policy:check'
+    }
+    return
+  }
   Write-UMInfo 'Running unit tests and schema/map validation'
   pnpm -w test:unit
   pnpm -w schema:validate

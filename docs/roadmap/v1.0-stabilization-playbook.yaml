@@ -1,7 +1,7 @@
 fraktal: 40
 release: v1.0
 owner: codex
-updated: '2025-11-27'
+updated: '2025-11-29'
 summary: 'Strukturierter Maßnahmenplan zur Umsetzung der Fraktal40-Besprechung.
 
   Fokus auf stabile Kern-Builds, dist-first Services, verschärfte Governance
@@ -156,6 +156,39 @@ streams:
           - .github/workflows/ci.runtime.yml
           - scripts/repo/setup-labels.mjs
           - docs/START-HERE.md
+      - id: qwen-local-rollout
+        description: Lokalen Qwen-Playground mit Smokes/Hooks absichern und optionalen
+          CI-Trigger anbieten
+        status: in-progress
+        notes: 'Fraktal87: `scripts/smoke/qwen-smoke.mjs` + `pnpm smoke:qwen` prüfen den
+          Pfad UI → `/api/ai/chat` → Qwen
+
+          (Ollama bzw. vLLM). `scripts/hooks/qwen-smoke-trigger.mjs` hängt über `pnpm
+          hook:qwen-smoke` im Pre-Push
+
+          (Opt-in via `AI_PROVIDER=qwen-*` oder `UM_RUN_QWEN_SMOKE=1`) und überspringt
+          GitHub Actions automatisch.
+
+          `.github/workflows/ci.qwen-smoke.yml` eröffnet eine Self-Hosted Lane (`ci:qwen-smoke`
+          Label bzw. `workflow_dispatch`)
+
+          für Runner mit Qwen-Backend. Die Phasen- und Kommandoübersicht liegt in `docs/roadmap/RoleOutCommands.(md|yaml|json)`;
+
+          MandalaMap* und codexfeedback* markieren Fraktal87 solange als „in-progress“,
+          bis Phase 4 (Climate-MVP) und der
+
+          Health-Badge für den Aggregator erfüllt sind.
+
+          '
+        output:
+          - scripts/smoke/qwen-smoke.mjs
+          - scripts/hooks/qwen-smoke-trigger.mjs
+          - package.json
+          - .husky/pre-push
+          - .github/workflows/ci.qwen-smoke.yml
+          - docs/roadmap/RoleOutCommands.md
+          - docs/roadmap/RoleOutCommands.yaml
+          - docs/roadmap/RoleOutCommands.json
   - key: code-quality
     owner:
       lead: DevX Guild
@@ -170,7 +203,10 @@ streams:
       - id: dev-helper-health-guard
         description: PowerShell Dev-Helper, zentraler Health-Aggregator und `.env`-Guard
         status: done
-        notes: 'Fraktal84: `scripts/dev-helper.ps1` mit Start/Stop/Test/Secrets, `scripts/health-aggregator.ts` (via `pnpm dev:health`) sowie Husky-Guard `guard-no-dotenv` blocken `.env*` im Staging; Docs `docs/DEV-SHORTCUTS.md` ergänzen die Nutzung.'
+        notes:
+          'Fraktal84: `scripts/dev-helper.ps1` mit Start/Stop/Test/Secrets, `scripts/health-aggregator.ts`
+          (via `pnpm dev:health`) sowie Husky-Guard `guard-no-dotenv` blocken `.env*`
+          im Staging; Docs `docs/DEV-SHORTCUTS.md` ergänzen die Nutzung.'
         output:
           - scripts/dev-helper.ps1
           - scripts/health-aggregator.ts
@@ -237,7 +273,12 @@ streams:
       - id: pnpm-shortcuts-diagnostics
         description: Shortcut-Parität automatisiert prüfen (`pnpm diag:shortcuts` + Doku-Fixes)
         status: in-progress
-        notes: 'Fraktal85 (DevTalk84-Audit) identifiziert fehlende Diagnostik für `pnpm dev:stack`, `pnpm start:cosmic-web`, `pnpm smoke:live` und `ps:*`. Fraktal87 (`analysis/devtalk87-evaluation.md`) bestätigt den Bedarf erneut und ergänzt Port-Offset-Doku sowie Health-Badge als gekoppelte Aufgaben; Fraktalstatus bleibt in-progress.'
+        notes: Fraktal85 (DevTalk84-Audit) identifiziert fehlende Diagnostik für `pnpm
+          dev:stack`, `pnpm start:cosmic-web`, `pnpm smoke:live` und `ps:*`. Fraktal87
+          (Update 2025-11-29) liefert `scripts/diag/shortcuts.mjs` + `pnpm diag:shortcuts`,
+          erweitert `docs/DEV-SHORTCUTS.md` (Ports/Offsets, Troubleshooting, Health-Badge)
+          und ergänzt `scripts/smoke/live-smoke.mjs` um `--json/--soft`. Fraktalstatus
+          bleibt bis Climate-MVP + Gemini-Link in MandalaMap umgesetzt sind in-progress.
       - id: ts-node-retire
         description: Produktionspfade auf `node dist/...` umstellen
         status: done
@@ -285,10 +326,10 @@ streams:
           \ `apps/api` auf Port 4000; der mandala-ui Vite-Proxy leitet `/api/ai` dorthin\
           \ und erlaubt Overrides via `MANDALA_AI_API_ORIGIN`.\n          Fraktal82 ergänzt\
           \ einen Preflight in `scripts/dev-services.mjs`, der fehlende Workspace-Builds\
-          \ (z.\u00a0B. `packages/ai/dist/index.js`) automatisch via `pnpm -F @unified-mandala/ai\
-          \ build` erzeugt (`UM_DEV_SERVICES_SKIP_PREBUILD=1` deaktiviert den Check)\
-          \ und räumt die fehlende `$hasNats`-Variable im Windows-Setup-Skript.\n          \
-          Fraktal83: Responses-Payload nutzt jetzt `input_text`/`output_text` statt\
+          \ (z. B. `packages/ai/dist/index.js`) automatisch via `pnpm -F @unified-mandala/ai\
+          \ build` erzeugt (`UM_DEV_SERVICES_SKIP_PREBUILD=1` deaktiviert den Check) und\
+          \ räumt die fehlende `$hasNats`-Variable im Windows-Setup-Skript.\n        \
+          \  Fraktal83: Responses-Payload nutzt jetzt `input_text`/`output_text` statt\
           \ `type: 'text'`, wodurch der 400-Fehler \"Invalid value: 'text'\" verschwindet\
           \ und MandalaAIPlayground wieder Antworten liefert (mit gesetztem `OPENAI_API_KEY`).\n"
         artifacts:

@@ -142,6 +142,9 @@ entries:
         als Pflichtlauf; Artefakt `coverage-vitest` wird hochgeladen, Label `ci:advisory`
         triggert `pnpm check:ci` als Soft-Fail.'
       - '`ci.runtime.yml` startet NATS + AI-Smoketest, ausgelöst durch Label `ci:runtime`.'
+      - 'Fraktal87 ergänzt `.github/workflows/ci.qwen-smoke.yml` als Self-Hosted-Lane (Label `ci:qwen-smoke`, optional
+        `workflow_dispatch`) für den Qwen-Smoke (`pnpm smoke:qwen`); verweist auf `RoleOutCommands.*` und den Pre-Push-Hook
+        `pnpm hook:qwen-smoke`.'
     links:
       - label: CI Core
         path: .github/workflows/ci.core.yml
@@ -163,6 +166,8 @@ entries:
         path: .github/workflows/on-demand.yml
       - label: Runtime CI
         path: .github/workflows/ci.runtime.yml
+      - label: Qwen smoke
+        path: .github/workflows/ci.qwen-smoke.yml
   - path: .husky/
     category: ci-infra
     status: active
@@ -236,7 +241,7 @@ entries:
       - scripts/generate-trikaya-dashboard.mjs produziert analysis/trikaya-dashboard.(json|md|yaml)
         für CREP/Trikāya-Governance.
       - 'Fraktal85: `analysis/devtalk84-evaluation.md` dokumentiert den PNPM/Shortcut-Audit (Follow-up `pnpm diag:shortcuts`, Troubleshooting-Doku).'
-      - 'Fraktal87: `analysis/devtalk87-evaluation.md` bestätigt DevTalk-Umsetzungen (CI/Governance/Observability) und hält Shortcut-Diagnose, Port-Offset-Doku, Health-Badge & Gemini-Sigillin-Link als nächste Schritte fest.'
+      - 'Fraktal87 Update: `analysis/devtalk87-evaluation.md` dokumentiert das Shortcut-Diagnose-Skript (`pnpm diag:shortcuts`), die erweiterten DEV-SHORTCUTS (Ports/Offsets/Health-Badge) und belässt Climate-MVP + Gemini-Sigillin-Link als offene Punkte.'
     links:
       - label: Repo map script
         path: scripts/repo-map.ts
@@ -402,6 +407,8 @@ entries:
         empfiehlt weiterhin `pnpm exec cypress install`, ergänzt `pnpm sigils:validate:mini`
         als Mandala-Erklärungscheck und synchronisiert Command-Catalog/README/CONTRIBUTING
         mit dem Dist-First-Runner für `pnpm prompts:coach`.
+      - Neues Rollout-Command-Board (`docs/roadmap/RoleOutCommands.(md|json|yaml)`) verfolgt Phasen 0–6 (inkl.
+        Qwen-Smoke) und spiegelt Hooks in Playbook, MandalaMap und codexfeedback.
     links:
       - label: v1.0 Playbook
         path: docs/roadmap/v1.0-stabilization-playbook.md
@@ -409,6 +416,8 @@ entries:
         path: docs/roadmap/stub-replacement-roadmap.md
       - label: Cosmic-Web Quickstart
         path: docs/demos/cosmic-web.md
+      - label: RoleOut Commands
+        path: docs/roadmap/RoleOutCommands.md
   - path: examples/
     category: research
     status: experimental
@@ -729,6 +738,10 @@ entries:
         (NATS, Artefakte, Services, UI, Smoke) und `scripts/ci/no-local-path-leaks.mjs`
         verhindert versehentliche Windows-Pfade oder Secrets im Staging-Bereich.
       - Fraktal86 exportiert im Dev-Helper (`scripts/dev-helper.ps1`) eine Port-Matrix (share/experiments/rag/flags/api/health/realtime) inkl. Offset; `config/ports.ts` und `apps/ui/vite.config.ts` interpretieren Env-Overrides als absolute Ports, `scripts/dev-services.mjs` prüft Konflikte ohne Doppel-Offsets und der Health-Aggregator nutzt dynamische Portwerte.
+      - >-
+        Fraktal87 startet den Qwen-Rollout: `scripts/smoke/qwen-smoke.mjs` liefert `pnpm smoke:qwen`, der Pre-Push-Trigger
+        `scripts/hooks/qwen-smoke-trigger.mjs` (`pnpm hook:qwen-smoke`) läuft nur bei `AI_PROVIDER=qwen-*`/`UM_RUN_QWEN_SMOKE=1`;
+        `.github/workflows/ci.qwen-smoke.yml` und `docs/roadmap/RoleOutCommands.(md|json|yaml)` spiegeln denselben Flow.
     links:
       - label: run-dist
         path: scripts/run-dist.mjs
@@ -750,6 +763,10 @@ entries:
         path: scripts/start-cosmic-web.mjs
       - label: no-local-paths guard
         path: scripts/ci/no-local-path-leaks.mjs
+      - label: smoke:qwen
+        path: scripts/smoke/qwen-smoke.mjs
+      - label: hook:qwen-smoke
+        path: scripts/hooks/qwen-smoke-trigger.mjs
   - path: services/
     category: core-runtime
     status: active
