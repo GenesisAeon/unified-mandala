@@ -1,0 +1,23 @@
+fraktal: 85
+status: done
+owner: ChefDevAI
+summary:
+  - 'analysis/devtalk84-evaluation.md dokumentiert den PNPM-/Shortcut-Audit (dev:stack, start:cosmic-web, smoke:live, ps:*) und listet Diagnoseskript-Follow-ups.'
+  - 'docs/roadmap/v1.0-stabilization-playbook.(md|yaml) ergänzen den Checkpoint `pnpm-shortcuts-diagnostics`.'
+  - 'MandalaMap.(md|json|yaml) aktualisieren Meta (Fraktal85) und verlinken den Audit-Hook.'
+deliverables:
+  - analysis/devtalk84-evaluation.md
+  - docs/roadmap/v1.0-stabilization-playbook.md
+  - docs/roadmap/v1.0-stabilization-playbook.yaml
+  - MandalaMap.json
+  - MandalaMap.md
+  - MandalaMap.yaml
+  - codexfeedback-fraktal85.yaml
+  - codexfeedback.json
+  - codexfeedback.md
+  - codexfeedback.yaml
+commands: []
+hook:
+  progress: Shortcut-Audit abgeschlossen; Follow-up `pnpm diag:shortcuts` im Playbook markiert.
+  next_step: Diagnoseskript implementieren und Troubleshooting in `docs/DEV-SHORTCUTS.md` ergänzen.
+repeat_required: false

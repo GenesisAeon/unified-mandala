@@ -1,6 +1,11 @@
 {
   "runs": [
     {
+      "fraktalrun": "Fraktal85 ShortcutDiagnostics",
+      "status": "done",
+      "notes": "analysis/devtalk84-evaluation.md audits pnpm dev:stack, pnpm start:cosmic-web, pnpm smoke:live and ps:* shortcuts; stabilization playbook + MandalaMap add a pnpm diag:shortcuts follow-up and codexfeedback hooks track the task."
+    },
+    {
       "fraktalrun": "Fraktal84 DevHelperHealthGuard",
       "status": "done",
       "notes": "PowerShell Dev-Helper (scripts/dev-helper.ps1) adds Start/Stop/Test/Secrets, a central health aggregator (scripts/health-aggregator.ts via `pnpm dev:health`), extra `/health` routes (api, fourier, sigil-generator, ghost-shell, realtime-hub), and a Husky guard (guard-no-dotenv) to block `.env*` from staging; pnpm shortcuts (`ps:*`) and docs (docs/DEV-SHORTCUTS.md) complete the flow. Stabilization Playbook updated; a negative contract test ensures /api/ai/chat returns 400 for invalid payloads."

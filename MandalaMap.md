@@ -1,6 +1,6 @@
-# Mandala Map · Fraktal81
+# Mandala Map · Fraktal85
 
-Generated: 2025-11-24T00:00:00Z
+Generated: 2025-11-26T00:00:00Z
 Repository: unified-mandala
 
 ## Reference Docs
@@ -218,6 +218,7 @@ Repository: unified-mandala
   - Notes:
     - scripts/repo-map.ts writes analysis/repo-map.json and CSV; keep artifacts in sync with MandalaMap.\*
     - scripts/generate-trikaya-dashboard.mjs produziert analysis/trikaya-dashboard.(json\|md\|yaml) für CREP/Trikāya-Governance.
+    - Fraktal85: `analysis/devtalk84-evaluation.md` dokumentiert den PNPM/Shortcut-Audit (Follow-up `pnpm diag:shortcuts`, Troubleshooting-Doku).
   - Links: [Repo map script](scripts/repo-map.ts) · [Trikāya dashboard script](scripts/generate-trikaya-dashboard.mjs)
 
 - `data/` — **active** Data lake
