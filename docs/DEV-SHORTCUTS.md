@@ -46,6 +46,18 @@ node scripts/mandala-map-validate.mjs  # MandalaMap.*-Konsistenz prüfen
 pnpm check:precommit
 ```
 
+### CI / Command Sanity
+
+- Kompletten CI-Bundel lokal prüfen:
+
+```powershell
+pnpm check:ci
+```
+
+- Erwartete Ausgabe in Offline-/Container-Umgebungen:
+  - `policy:check` meldet ggf. `OPA eval failed or not available (docker/offline)` – das ist non-fatal, Sigillin-Reports werden trotzdem erzeugt.
+  - Für vollständige Läufe Docker bereitstellen oder `POLICY_SUITE_SKIP_OPA=1` setzen.
+
 ### Live‑Profiles (CPU‑schonend)
 
 - Minimalprofil (AI‑Bridge, Flags/Share, Health‑Aggregator):

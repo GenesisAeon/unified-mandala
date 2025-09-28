@@ -61,6 +61,9 @@ streams:
           in einem Kommando, triggert `pnpm smoke:ui` mit dynamischem Port; mandala-ui
           liefert `/demo/ai-playground` via Vite-Proxy (Port 4000 → `apps/api`) und `scripts/ci/no-local-path-leaks.mjs`
           blockt Windows-Pfade/Secrets im Staging-Bereich.
+          Fraktal85: `pnpm check:ci` läuft lokal komplett durch (Typecheck, Vitest, Schema-/Map-Validation,
+          RepoMap, Sanity, Policy). `docs/DEV-SHORTCUTS.md` nennt den erwarteten OPA-Skip (Docker offline)
+          und `analysis/devtalk84-evaluation.md` dokumentiert Folgeaufgaben (zusätzliche Prebuilds, UI-Smokes).
 
           '
         success:
