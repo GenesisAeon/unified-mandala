@@ -1,0 +1,24 @@
+fraktal: 87
+status: in-progress
+owner: ChatGPT5DeepResearch
+summary:
+  - 'DevTalk.txt erneut ausgewertet (`analysis/devtalk87-evaluation.md`); Statusmatrix zeigt, dass CI/Governance/Observability-Punkte aus dem Playbook umgesetzt sind.'
+  - 'Offene ToDos (Shortcut-Diagnose, Port-Offset-Doku, Health-Badge, Gemini-Sigillin-Verlinkung) als nächste Fraktalziele markiert; MandalaMap & Stabilization-Playbook notieren den Hook.'
+  - 'Codexfeedback-Tracker (md/json/yaml) und Fraktalindex auf 87 angehoben, Fraktalrun als „in-progress“ mit Repeat-Markierung vermerkt.'
+deliverables:
+  - analysis/devtalk87-evaluation.md
+  - codexfeedback-fraktal87.yaml
+  - codexfeedback.json
+  - codexfeedback.md
+  - codexfeedback.yaml
+  - docs/fraktal/index.md
+  - docs/roadmap/v1.0-stabilization-playbook.md
+  - docs/roadmap/v1.0-stabilization-playbook.yaml
+  - MandalaMap.json
+  - MandalaMap.md
+  - MandalaMap.yaml
+commands: []
+hook:
+  progress: DevTalk-Gesamtplan erneut abgeglichen; offene Tasks klar benannt und in Roadmap/MandalaMap gespiegelt.
+  next_step: Shortcut-Diagnose-Skript (`pnpm diag:shortcuts`), Port-Offset-Dokumentation und Health-Aggregator-Badge umsetzen; Gemini-Sigillin in MandalaMap verlinken.
+repeat_required: true

@@ -1,6 +1,11 @@
 {
   "runs": [
     {
+      "fraktalrun": "Fraktal87 DevTalkStabilization",
+      "status": "in-progress",
+      "notes": "analysis/devtalk87-evaluation.md re-checks the DevTalk stabilization plan, confirms CI/governance/observability goals are live, and flags follow-ups: pnpm diag:shortcuts, port-offset documentation, health badge, Gemini sigillin link. MandalaMap.*, stabilization playbook, and codexfeedback trackers now mark Fraktal 87 as in-progress."
+    },
+    {
       "fraktalrun": "Fraktal86 PortOffsetAlignment",
       "status": "done",
       "notes": "scripts/dev-helper.ps1 sets absolute service ports per offset, config/ports.ts/apps/ui/vite.config.ts/scripts/dev-services.mjs treat env overrides as final values, the health aggregator resolves dynamic ports, and stabilization playbook plus MandalaMap map the hook."

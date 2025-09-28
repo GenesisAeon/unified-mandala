@@ -1,6 +1,32 @@
 fraktal:
-  current: 86
+  current: 87
   history:
+    - id: 87
+      status: in-progress
+      notes:
+        'Fraktal87 DevTalkStabilization: `analysis/devtalk87-evaluation.md` bestätigt, dass die DevTalk-Stabilisierungsziele
+        für CI/Governance/Observability bereits umgesetzt sind, nennt aber offene Aufgaben (Shortcut-Diagnose,
+        Port-Offset-Doku, Health-Badge, Gemini-Sigillin-Link); MandalaMap und das Stabilization-Playbook
+        spiegeln den Hook und codexfeedback* hebt den Fraktalrun auf 87.'
+      deliverables:
+        - analysis/devtalk87-evaluation.md
+        - codexfeedback-fraktal87.yaml
+        - codexfeedback.json
+        - codexfeedback.md
+        - codexfeedback.yaml
+        - docs/fraktal/index.md
+        - docs/roadmap/v1.0-stabilization-playbook.md
+        - docs/roadmap/v1.0-stabilization-playbook.yaml
+        - MandalaMap.json
+        - MandalaMap.md
+        - MandalaMap.yaml
+      commands: []
+      hook:
+        progress: DevTalk-Plan erneut gespiegelt; offene Tasks klar benannt und in den Roadmap-Artefakten verankert.
+        next_step:
+          Shortcut-Diagnose-Skript, Port-Offset-Dokumentation und Health-Badge liefern; Gemini-Sigillin in MandalaMap
+          verlinken.
+      repeat_required: true
     - id: 86
       status: done
       notes: 'Fraktal86 PortOffsetAlignment: `scripts/dev-helper.ps1` setzt Service-Ports pro Offset als absolute Werte, `config/ports.ts`, `apps/ui/vite.config.ts` und `scripts/dev-services.mjs` behandeln Env-Overrides ohne doppelte Offsets und `scripts/health-aggregator.ts` nutzt dynamische Ports; Stabilization-Playbook & MandalaMap verankern den Hook.'

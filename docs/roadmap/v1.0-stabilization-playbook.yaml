@@ -237,7 +237,7 @@ streams:
       - id: pnpm-shortcuts-diagnostics
         description: Shortcut-Parität automatisiert prüfen (`pnpm diag:shortcuts` + Doku-Fixes)
         status: in-progress
-        notes: 'Fraktal85 (DevTalk84-Audit) identifiziert fehlende Diagnostik für `pnpm dev:stack`, `pnpm start:cosmic-web`, `pnpm smoke:live` und `ps:*`. Folgeaufgaben: Skript `pnpm diag:shortcuts` entwerfen und Troubleshooting in `docs/DEV-SHORTCUTS.md` ergänzen (`analysis/devtalk84-evaluation.md`).'
+        notes: 'Fraktal85 (DevTalk84-Audit) identifiziert fehlende Diagnostik für `pnpm dev:stack`, `pnpm start:cosmic-web`, `pnpm smoke:live` und `ps:*`. Fraktal87 (`analysis/devtalk87-evaluation.md`) bestätigt den Bedarf erneut und ergänzt Port-Offset-Doku sowie Health-Badge als gekoppelte Aufgaben; Fraktalstatus bleibt in-progress.'
       - id: ts-node-retire
         description: Produktionspfade auf `node dist/...` umstellen
         status: done
