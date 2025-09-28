@@ -1,7 +1,7 @@
 meta:
   version: '1.0'
-  generated: '2025-11-26 00:00:00+00:00'
-  fraktal: 85
+  generated: '2025-11-27 00:00:00+00:00'
+  fraktal: 86
   repo: unified-mandala
   source: ChefDevAI MandalaMap bootstrap
   reference_docs:
@@ -727,6 +727,7 @@ entries:
       - Fraktal79 liefert `scripts/start-cosmic-web.mjs` als One-Command-Orchestrator
         (NATS, Artefakte, Services, UI, Smoke) und `scripts/ci/no-local-path-leaks.mjs`
         verhindert versehentliche Windows-Pfade oder Secrets im Staging-Bereich.
+      - Fraktal86 exportiert im Dev-Helper (`scripts/dev-helper.ps1`) eine Port-Matrix (share/experiments/rag/flags/api/health/realtime) inkl. Offset; `config/ports.ts` und `apps/ui/vite.config.ts` interpretieren Env-Overrides als absolute Ports, `scripts/dev-services.mjs` prüft Konflikte ohne Doppel-Offsets und der Health-Aggregator nutzt dynamische Portwerte.
     links:
       - label: run-dist
         path: scripts/run-dist.mjs

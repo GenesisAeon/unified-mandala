@@ -6,12 +6,25 @@ import { fileURLToPath } from "node:url";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const off = Number(process.env.PORT_OFFSET ?? "0") || 0;
-const aiPort = (Number(process.env.AI_API_PORT ?? "4000") || 4000) + off;
-const ragPort = (Number(process.env.RAG_API_PORT ?? "3003") || 3003) + off;
-const flagsPort = (Number(process.env.FLAGS_API_PORT ?? "3004") || 3004) + off;
-const sharePort = (Number(process.env.SHARE_API_PORT ?? "3001") || 3001) + off;
-const experimentsPort = (Number(process.env.EXPERIMENTS_API_PORT ?? "3002") || 3002) + off;
-const realtimePort = (Number(process.env.REALTIME_HUB_PORT ?? "4020") || 4020) + off;
+
+const resolvePort = (envKey: string, fallback: number) => {
+  const raw = process.env[envKey];
+  const parsed = Number(raw);
+  if (Number.isFinite(parsed) && parsed > 0) {
+    if (off !== 0 && parsed === fallback) {
+      return fallback + off;
+    }
+    return parsed;
+  }
+  return fallback + off;
+};
+
+const aiPort = resolvePort("AI_API_PORT", 4000);
+const ragPort = resolvePort("RAG_API_PORT", 3003);
+const flagsPort = resolvePort("FLAGS_API_PORT", 3004);
+const sharePort = resolvePort("SHARE_API_PORT", 3001);
+const experimentsPort = resolvePort("EXPERIMENTS_API_PORT", 3002);
+const realtimePort = resolvePort("REALTIME_HUB_PORT", 4020);
 
 const aiApiTarget = process.env.MANDALA_AI_API_ORIGIN ?? `http://localhost:${aiPort}`;
 const realtimeWs = process.env.VITE_REALTIME_WS ?? `ws://localhost:${realtimePort}/ws?topic=demo.cosmic`;

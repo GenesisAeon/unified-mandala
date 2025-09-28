@@ -1,6 +1,11 @@
 {
   "runs": [
     {
+      "fraktalrun": "Fraktal86 PortOffsetAlignment",
+      "status": "done",
+      "notes": "scripts/dev-helper.ps1 sets absolute service ports per offset, config/ports.ts/apps/ui/vite.config.ts/scripts/dev-services.mjs treat env overrides as final values, the health aggregator resolves dynamic ports, and stabilization playbook plus MandalaMap map the hook."
+    },
+    {
       "fraktalrun": "Fraktal85 ShortcutDiagnostics",
       "status": "done",
       "notes": "analysis/devtalk84-evaluation.md audits pnpm dev:stack, pnpm start:cosmic-web, pnpm smoke:live and ps:* shortcuts; stabilization playbook + MandalaMap add a pnpm diag:shortcuts follow-up and codexfeedback hooks track the task."

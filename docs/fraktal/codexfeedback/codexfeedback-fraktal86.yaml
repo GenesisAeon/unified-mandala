@@ -1,0 +1,27 @@
+fraktal: 86
+status: done
+owner: ChefDevAI
+summary:
+  - 'scripts/dev-helper.ps1 exportiert nun eine vollständige Port-Matrix (share/experiments/rag/flags/api/health/realtime) je Offset, sodass Start-UM und Start-UIAligned Ports ohne Doppelverschiebung setzen.'
+  - 'config/ports.ts, apps/ui/vite.config.ts und scripts/dev-services.mjs interpretieren Env-Overrides als finale Ports; Health-Aggregator nutzt ports.* für dynamische Ziele.'
+  - 'docs/roadmap/v1.0-stabilization-playbook.(md|yaml), MandalaMap.(md|json|yaml) sowie codexfeedback* wurden auf Fraktal86 aktualisiert und dokumentieren den Port-Offset-Hook.'
+deliverables:
+  - scripts/dev-helper.ps1
+  - config/ports.ts
+  - apps/ui/vite.config.ts
+  - scripts/dev-services.mjs
+  - scripts/health-aggregator.ts
+  - docs/roadmap/v1.0-stabilization-playbook.md
+  - docs/roadmap/v1.0-stabilization-playbook.yaml
+  - MandalaMap.md
+  - MandalaMap.yaml
+  - MandalaMap.json
+  - codexfeedback.json
+  - codexfeedback.md
+  - codexfeedback.yaml
+  - docs/fraktal/codexfeedback/codexfeedback-fraktal86.yaml
+commands: []
+hook:
+  progress: Port-Offsets greifen deterministisch; Health-Aggregator überwacht die berechneten Services.
+  next_step: docs/DEV-SHORTCUTS.md um ein Beispiel für Set-UMPortMap/Offset-Smoke ergänzen und optional einen Smoke-Test für Offset-Stacks planen.
+repeat_required: false
