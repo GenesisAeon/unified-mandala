@@ -20,10 +20,22 @@ function parseNum(value: string | undefined): number | undefined {
 
 const off = parseNum(process.env.PORT_OFFSET) ?? 0;
 
+function resolveWithOffset(value: number | undefined, fallback: number): number {
+  if (value === undefined) {
+    return fallback + off;
+  }
+  if (off !== 0 && value === fallback) {
+    return fallback + off;
+  }
+  return value;
+}
+
 function pick(names: string[], fallback: number): number {
   for (const name of names) {
-    const n = parseNum((process.env as any)[name]);
-    if (n !== undefined) return n + off;
+    const n = parseNum((process.env as Record<string, string | undefined>)[name]);
+    if (n !== undefined) {
+      return resolveWithOffset(n, fallback);
+    }
   }
   return fallback + off;
 }

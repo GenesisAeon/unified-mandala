@@ -1,7 +1,7 @@
 fraktal: 40
 release: v1.0
 owner: codex
-updated: '2025-11-26'
+updated: '2025-11-27'
 summary: 'Strukturierter Maßnahmenplan zur Umsetzung der Fraktal40-Besprechung.
 
   Fokus auf stabile Kern-Builds, dist-first Services, verschärfte Governance
@@ -60,7 +60,11 @@ streams:
           orchestriert NATS, Demo-Artefakte, Dev-Services, Vite und den Cosmic-Ticker
           in einem Kommando, triggert `pnpm smoke:ui` mit dynamischem Port; mandala-ui
           liefert `/demo/ai-playground` via Vite-Proxy (Port 4000 → `apps/api`) und `scripts/ci/no-local-path-leaks.mjs`
-          blockt Windows-Pfade/Secrets im Staging-Bereich.
+          blockt Windows-Pfade/Secrets im Staging-Bereich. Fraktal86: `scripts/dev-helper.ps1`
+          setzt Service-Ports (share, experiments, rag, flags, api, health, realtime)
+          als absolute Werte je Offset; `config/ports.ts` und `apps/ui/vite.config.ts`
+          interpretieren Umgebungsvariablen als finale Ports und `scripts/dev-services.mjs`
+          vermeidet doppelte Offset-Aufschläge bei der Portprüfung.
 
           '
         success:

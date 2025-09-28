@@ -1,6 +1,29 @@
 fraktal:
-  current: 85
+  current: 86
   history:
+    - id: 86
+      status: done
+      notes: 'Fraktal86 PortOffsetAlignment: `scripts/dev-helper.ps1` setzt Service-Ports pro Offset als absolute Werte, `config/ports.ts`, `apps/ui/vite.config.ts` und `scripts/dev-services.mjs` behandeln Env-Overrides ohne doppelte Offsets und `scripts/health-aggregator.ts` nutzt dynamische Ports; Stabilization-Playbook & MandalaMap verankern den Hook.'
+      deliverables:
+        - scripts/dev-helper.ps1
+        - config/ports.ts
+        - apps/ui/vite.config.ts
+        - scripts/dev-services.mjs
+        - scripts/health-aggregator.ts
+        - docs/roadmap/v1.0-stabilization-playbook.md
+        - docs/roadmap/v1.0-stabilization-playbook.yaml
+        - MandalaMap.md
+        - MandalaMap.yaml
+        - MandalaMap.json
+        - codexfeedback.json
+        - codexfeedback.md
+        - codexfeedback.yaml
+        - docs/fraktal/codexfeedback/codexfeedback-fraktal86.yaml
+      commands: []
+      hook:
+        progress: Port-Offsets kollidieren nicht mehr; Health-Aggregator prüft die berechneten Dienste.
+        next_step: UI-/Docs-Update in `docs/DEV-SHORTCUTS.md` für Port-Mapping nachziehen und optional Smoke-Check für Offset-Stacks ergänzen.
+      repeat_required: false
     - id: 85
       status: done
       notes: 'Fraktal85 ShortcutDiagnostics: `analysis/devtalk84-evaluation.md` auditierte `pnpm dev:stack`, `pnpm start:cosmic-web`, `pnpm smoke:live` und die `ps:*`-Shortcuts; Stabilization-Playbook & MandalaMap setzen einen Follow-up-Hook.'

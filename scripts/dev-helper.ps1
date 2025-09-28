@@ -15,6 +15,58 @@ function Write-UMInfo {
   Write-Host "[UM] $Message" -ForegroundColor Cyan
 }
 
+function Set-UMPortMap {
+  [CmdletBinding()]
+  param([int]$PortOffset = 0)
+
+  $share = 3001 + $PortOffset
+  $experiments = 3002 + $PortOffset
+  $rag = 3003 + $PortOffset
+  $flags = 3004 + $PortOffset
+  $health = 3999 + $PortOffset
+  $api = 4000 + $PortOffset
+  $realtime = 4020 + $PortOffset
+  $realtimeWs = 4021 + $PortOffset
+
+  $env:PORT_OFFSET = "$PortOffset"
+
+  $env:SHARE_API_PORT = "$share"
+  $env:SHARE_PORT = "$share"
+  $env:PORT_SHARE = "$share"
+
+  $env:EXPERIMENTS_API_PORT = "$experiments"
+  $env:EXPERIMENTS_PORT = "$experiments"
+  $env:PORT_EXPERIMENTS = "$experiments"
+
+  $env:RAG_API_PORT = "$rag"
+  $env:RAG_PORT = "$rag"
+  $env:PORT_RAG = "$rag"
+
+  $env:FLAGS_API_PORT = "$flags"
+  $env:FLAGS_PORT = "$flags"
+  $env:PORT_FLAGS = "$flags"
+
+  $env:UM_HEALTH_PORT = "$health"
+  $env:HEALTH_PORT = "$health"
+  $env:PORT_HEALTH = "$health"
+
+  $env:AI_API_PORT = "$api"
+  $env:API_PORT = "$api"
+  $env:PORT = "$api"
+
+  $env:REALTIME_HUB_PORT = "$realtime"
+  $env:REALTIME_PORT = "$realtime"
+  $env:PORT_REALTIME = "$realtime"
+
+  $env:REALTIME_WS_PORT = "$realtimeWs"
+  $env:PORT_REALTIME_WS = "$realtimeWs"
+
+  Write-UMInfo (
+    "Ports → share:{0} exp:{1} rag:{2} flags:{3} api:{4} health:{5} ws:{6}/{7}" -f \
+      $share, $experiments, $rag, $flags, $api, $health, $realtime, $realtimeWs
+  )
+}
+
 function Set-UMSecrets {
   [CmdletBinding()]
   param(
@@ -65,7 +117,7 @@ function Start-NATS {
 
 function Free-UMPorts {
   [CmdletBinding()]
-  param([int[]]$Ports = @(3001,3002,3003,3004,4020,4021))
+  param([int[]]$Ports = @(3001,3002,3003,3004,3999,4000,4020,4021))
   Write-UMInfo ("Freeing ports: {0}" -f ($Ports -join ', '))
   $conns = Get-NetTCPConnection -State Listen -ErrorAction SilentlyContinue | Where-Object { $Ports -contains $_.LocalPort }
   $pids = $conns | Select-Object -ExpandProperty OwningProcess -Unique
@@ -96,17 +148,14 @@ function Start-UM {
     $env:DISABLE_NATS = '1'
   }
   $env:NATS_URL = 'nats://127.0.0.1:4222'
-  if ($PortOffset -ne 0) {
-    $env:PORT_OFFSET = "$PortOffset"
-    Write-UMInfo "Using PORT_OFFSET=$PortOffset for all services"
-  }
+  Set-UMPortMap -PortOffset $PortOffset
   Write-UMInfo 'Starting full dev stack (services)'
   pnpm dev:stack
 }
 
 function Stop-UM {
   [CmdletBinding()]
-  param([int[]]$Ports = @(3001,3002,3003,3004,4020,4021))
+  param([int[]]$Ports = @(3001,3002,3003,3004,3999,4000,4020,4021))
   Free-UMPorts -Ports $Ports
 }
 
@@ -233,7 +282,7 @@ function Start-UMOffset {
   [CmdletBinding()]
   param([int]$Offset = 0, [switch]$NoNATS)
   if (-not $NoNATS) { Start-NATS }
-  $env:PORT_OFFSET = "$Offset"
+  Set-UMPortMap -PortOffset $Offset
   $env:NATS_URL = 'nats://127.0.0.1:4222'
   Write-UMInfo "Starting UM with PORT_OFFSET=$Offset"
   pnpm dev:stack
@@ -242,8 +291,7 @@ function Start-UMOffset {
 function Start-UIAligned {
   [CmdletBinding()]
   param([int]$Offset = 0, [int]$Port = 5174)
-  $env:PORT_OFFSET = "$Offset"
-  $env:AI_API_PORT = "${(4000 + $Offset)}"
+  Set-UMPortMap -PortOffset $Offset
   Write-UMInfo "Starting UI (api -> $($env:AI_API_PORT)) on $Port"
   pnpm -F mandala-ui dev -- --port $Port
 }

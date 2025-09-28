@@ -243,16 +243,38 @@ function collectPortCandidates(service, env) {
     ...Object.keys(service.envDefaults ?? {}).filter((key) => /PORT$/i.test(key)),
   ]);
 
-  const results = [];
   const offRaw = env.PORT_OFFSET || '0';
   const off = Number.parseInt(String(offRaw), 10) || 0;
+  const results = [];
+
   for (const key of envKeys) {
     const raw = env[key];
-    if (!raw) continue;
-    const port = Number.parseInt(String(raw), 10);
-    if (Number.isNaN(port)) continue;
-    results.push({ key, port: port + off });
+    const fallbackRaw = service.envDefaults?.[key];
+    const fallback =
+      fallbackRaw !== undefined ? Number.parseInt(String(fallbackRaw), 10) : undefined;
+
+    let resolved;
+
+    if (raw !== undefined && raw !== '') {
+      const parsed = Number.parseInt(String(raw), 10);
+      if (!Number.isNaN(parsed)) {
+        if (off !== 0 && fallback !== undefined && parsed === fallback) {
+          resolved = fallback + off;
+        } else {
+          resolved = parsed;
+        }
+      }
+    }
+
+    if (resolved === undefined && fallback !== undefined) {
+      resolved = fallback + off;
+    }
+
+    if (resolved !== undefined && Number.isFinite(resolved)) {
+      results.push({ key, port: resolved });
+    }
   }
+
   return results;
 }
 

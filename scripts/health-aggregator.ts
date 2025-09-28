@@ -5,12 +5,12 @@ import ports from '../config/ports';
 type Target = { name: string; url: string };
 
 const defaultTargets: Target[] = [
-  { name: 'api', url: 'http://localhost:4000/health' },
-  { name: 'experiments', url: 'http://localhost:3002/health' },
-  { name: 'share', url: 'http://localhost:3001/health' },
-  { name: 'rag', url: 'http://localhost:3003/health' },
-  { name: 'flags', url: 'http://localhost:3004/health' },
-  // { name: 'realtime', url: 'http://localhost:4020/health' },
+  { name: 'api', url: `http://localhost:${ports.ai}/health` },
+  { name: 'experiments', url: `http://localhost:${ports.experiments}/health` },
+  { name: 'share', url: `http://localhost:${ports.share}/health` },
+  { name: 'rag', url: `http://localhost:${ports.rag}/health` },
+  { name: 'flags', url: `http://localhost:${ports.flags}/health` },
+  // { name: 'realtime', url: `http://localhost:${ports.realtime}/health` },
 ];
 
 const app = express();
