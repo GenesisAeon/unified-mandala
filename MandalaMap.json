@@ -248,7 +248,8 @@
       "description": "Generated datasets (conversation filters, repo-map JSON/CSV, audits).",
       "notes": [
         "scripts/repo-map.ts writes analysis/repo-map.json and CSV; keep artifacts in sync with MandalaMap.*",
-        "scripts/generate-trikaya-dashboard.mjs produziert analysis/trikaya-dashboard.(json|md|yaml) für CREP/Trikāya-Governance."
+        "scripts/generate-trikaya-dashboard.mjs produziert analysis/trikaya-dashboard.(json|md|yaml) für CREP/Trikāya-Governance.",
+        "Fraktal85 dokumentiert in analysis/devtalk84-evaluation.md, dass pnpm check:ci lokal grün läuft (Typecheck/Vitest/Schemas/RepoMap/Policy) und verweist auf den Docker/OPA-Hinweis in docs/DEV-SHORTCUTS.md."
       ],
       "links": [
         {

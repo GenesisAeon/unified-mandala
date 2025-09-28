@@ -1,6 +1,11 @@
 {
   "runs": [
     {
+      "fraktalrun": "Fraktal85 CommandAudit",
+      "status": "done",
+      "notes": "Dev-Stack Lite (`pnpm dev:stack --profile=lite --mode=dev`) confirmed @unified-mandala/ai preflight and service startup; `pnpm check:ci` runs locally (typecheck, vitest, schema/map validation, repomap, sanity, policy) with the expected OPA docker/offline skip. Docs (analysis/devtalk84-evaluation.md, docs/DEV-SHORTCUTS.md, MandalaMap.*, stabilization playbook) capture the audit and follow-up tasks (prebuild expansion, UI smokes)."
+    },
+    {
       "fraktalrun": "Fraktal84 DevHelperHealthGuard",
       "status": "done",
       "notes": "PowerShell Dev-Helper (scripts/dev-helper.ps1) adds Start/Stop/Test/Secrets, a central health aggregator (scripts/health-aggregator.ts via `pnpm dev:health`), extra `/health` routes (api, fourier, sigil-generator, ghost-shell, realtime-hub), and a Husky guard (guard-no-dotenv) to block `.env*` from staging; pnpm shortcuts (`ps:*`) and docs (docs/DEV-SHORTCUTS.md) complete the flow. Stabilization Playbook updated; a negative contract test ensures /api/ai/chat returns 400 for invalid payloads."

@@ -1,0 +1,26 @@
+fraktal: 85
+status: done
+owner: ChefDevAI
+summary:
+  - 'Dev-Stack Lite-Profil (`pnpm dev:stack --profile=lite --mode=dev`) bestätigt automatischen Preflight für `@unified-mandala/ai` und stabile Starts von AI-/Flags-/Share-/Health-Services.'
+  - '`pnpm check:ci` läuft lokal grün (Typecheck, Vitest, Schema/Map, RepoMap, Sanity, Policy); OPA meldet erwarteten Docker/Offline-Skip und erzeugt dennoch Sigillin-Reports.'
+  - 'analysis/devtalk84-evaluation.md, docs/DEV-SHORTCUTS.md, Stabilization-Playbook und MandalaMap halten Audit & Folgeaufgaben (weitere Prebuilds, UI-Smokes) fest.'
+deliverables:
+  - analysis/devtalk84-evaluation.md
+  - codexfeedback-fraktal85.yaml
+  - codexfeedback.json
+  - codexfeedback.md
+  - codexfeedback.yaml
+  - docs/DEV-SHORTCUTS.md
+  - docs/roadmap/v1.0-stabilization-playbook.md
+  - docs/roadmap/v1.0-stabilization-playbook.yaml
+  - MandalaMap.json
+  - MandalaMap.md
+  - MandalaMap.yaml
+commands:
+  - pnpm dev:stack --profile=lite --mode=dev
+  - pnpm check:ci
+hook:
+  progress: CI/Policy-Bundle läuft lokal stabil; Dev-Stack Lite startbereit.
+  next_step: Weitere Workspace-Prebuilds evaluieren und Playground-/UI-Smokes in Standardläufe integrieren.
+repeat_required: false

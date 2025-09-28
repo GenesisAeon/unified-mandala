@@ -1,6 +1,28 @@
 fraktal:
-  current: 84
+  current: 85
   history:
+    - id: 85
+      status: done
+      notes: 'Fraktal85 CommandAudit: Dev-Stack Lite-Profil verifiziert (`pnpm dev:stack --profile=lite --mode=dev`), kompletter CI-Bundel (`pnpm check:ci`) läuft lokal grün (Typecheck, Vitest, Schema/Map, RepoMap, Sanity, Policy). Docs (DEV-SHORTCUTS, Stabilization-Playbook, MandalaMap) halten den Audit inkl. OPA/Docker-Skip-Hinweis fest; analysis/devtalk84-evaluation.md protokolliert Folgeaufgaben (weitere Prebuilds, UI-Smokes).'
+      deliverables:
+        - analysis/devtalk84-evaluation.md
+        - codexfeedback-fraktal85.yaml
+        - codexfeedback.json
+        - codexfeedback.md
+        - codexfeedback.yaml
+        - docs/DEV-SHORTCUTS.md
+        - docs/roadmap/v1.0-stabilization-playbook.md
+        - docs/roadmap/v1.0-stabilization-playbook.yaml
+        - MandalaMap.json
+        - MandalaMap.md
+        - MandalaMap.yaml
+      commands:
+        - pnpm dev:stack --profile=lite --mode=dev
+        - pnpm check:ci
+      hook:
+        progress: CI/Policy-Bundel lokal bestätigt; OPA-Skip dokumentiert.
+        next_step: Weitere Workspace-Prebuilds evaluieren und Playground-Smokes automatisieren.
+      repeat_required: false
     - id: 84
       status: done
       notes: 'Fraktal84 DevHelperHealthGuard: PowerShell Dev-Helper (Start/Stop/Test/Secrets), zentraler Health-Aggregator (`scripts/health-aggregator.ts` → `pnpm dev:health`), neue `/health`-Routen (api, fourier, sigil-generator, ghost-shell, realtime-hub) und Husky-Guard `guard-no-dotenv` gegen `.env*`-Commits; pnpm-Shortcuts (`ps:*`) und `docs/DEV-SHORTCUTS.md` ergänzen den Flow. Stabilization-Playbook (MD/YAML) aktualisiert; negativer Contract-Test für `/api/ai/chat` stellt 400 bei ungültiger Payload sicher.'

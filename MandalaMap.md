@@ -218,6 +218,7 @@ Repository: unified-mandala
   - Notes:
     - scripts/repo-map.ts writes analysis/repo-map.json and CSV; keep artifacts in sync with MandalaMap.\*
     - scripts/generate-trikaya-dashboard.mjs produziert analysis/trikaya-dashboard.(json\|md\|yaml) für CREP/Trikāya-Governance.
+    - Fraktal85 (analysis/devtalk84-evaluation.md) bestätigt `pnpm check:ci` lokal (Typecheck/Vitest/Schemas/RepoMap/Policy) und verweist auf den Docker/OPA-Hinweis in docs/DEV-SHORTCUTS.md.
   - Links: [Repo map script](scripts/repo-map.ts) · [Trikāya dashboard script](scripts/generate-trikaya-dashboard.mjs)
 
 - `data/` — **active** Data lake
