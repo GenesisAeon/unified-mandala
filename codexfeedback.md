@@ -1,5 +1,9 @@
 # Codex Feedback
 
+- FR-UM-2025-11-28-Fraktal87-DevTalkStabilization: `analysis/devtalk87-evaluation.md` bestätigt die DevTalk-Checkliste (CI, Governance,
+  Observability, Docs) als umgesetzt, markiert aber offene Aufgaben: Shortcut-Diagnose (`pnpm diag:shortcuts`), Port-Offset-Doku,
+  Health-Aggregator-Badge und Gemini-Sigillin-Link. MandalaMap._, Stabilization-Playbook (MD/YAML) sowie codexfeedback_ heben den
+  Fraktalstand auf 87 und kennzeichnen den Lauf als in-progress.
 - FR-UM-2025-11-27-Fraktal86-PortOffsetAlignment: `scripts/dev-helper.ps1` setzt die Service-Ports (share/experiments/rag/flags/api/health/realtime) pro Offset als absolute Werte, `config/ports.ts`, `apps/ui/vite.config.ts` und `scripts/dev-services.mjs` interpretieren Env-Overrides ohne doppelte Offsets und `scripts/health-aggregator.ts` nutzt dynamische Port-Ziele; Stabilization-Playbook (MD/YAML) und MandalaMap.(md|json|yaml) dokumentieren den Hook.
 - FR-UM-2025-11-26-Fraktal85-ShortcutDiagnostics: `analysis/devtalk84-evaluation.md` auditierte `pnpm dev:stack`, `pnpm start:cosmic-web`, `pnpm smoke:live` und die PowerShell-Shortcuts; Stabilization-Playbook (MD/YAML) erhielt einen Follow-up-Checkpoint („pnpm diag:shortcuts“), MandalaMap._ verlinkt den Audit und codexfeedback_ erfasst den Hook.
 - FR-UM-2025-11-24-Fraktal84-DevHelperHealthGuard: PowerShell Dev-Helper (`scripts/dev-helper.ps1`) mit Start/Stop/Test/Secrets, Health-Aggregator (`scripts/health-aggregator.ts`, `pnpm dev:health`), zusätzliche `/health`-Routen (api, fourier, sigil-generator, ghost-shell, realtime-hub) und Husky-Guard `guard-no-dotenv` gegen `.env*` im Staging; pnpm-Shortcuts (`ps:*`) und Docs (`docs/DEV-SHORTCUTS.md`) ergänzen den Flow. Stabilization-Playbook (MD/YAML) und MandalaMap-Verweise aktualisiert; negativer Contract-Test für `/api/ai/chat` stellt 400 bei falscher Payload sicher.
