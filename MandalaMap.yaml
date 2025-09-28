@@ -1,7 +1,7 @@
 meta:
   version: '1.0'
-  generated: '2025-11-24 00:00:00+00:00'
-  fraktal: 81
+  generated: '2025-11-26 00:00:00+00:00'
+  fraktal: 85
   repo: unified-mandala
   source: ChefDevAI MandalaMap bootstrap
   reference_docs:
@@ -235,6 +235,7 @@ entries:
         with MandalaMap.*
       - scripts/generate-trikaya-dashboard.mjs produziert analysis/trikaya-dashboard.(json|md|yaml)
         für CREP/Trikāya-Governance.
+      - 'Fraktal85: `analysis/devtalk84-evaluation.md` dokumentiert den PNPM/Shortcut-Audit (Follow-up `pnpm diag:shortcuts`, Troubleshooting-Doku).'
     links:
       - label: Repo map script
         path: scripts/repo-map.ts

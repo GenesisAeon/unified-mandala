@@ -1,6 +1,25 @@
 fraktal:
-  current: 84
+  current: 85
   history:
+    - id: 85
+      status: done
+      notes: 'Fraktal85 ShortcutDiagnostics: `analysis/devtalk84-evaluation.md` auditierte `pnpm dev:stack`, `pnpm start:cosmic-web`, `pnpm smoke:live` und die `ps:*`-Shortcuts; Stabilization-Playbook & MandalaMap setzen einen Follow-up-Hook.'
+      deliverables:
+        - analysis/devtalk84-evaluation.md
+        - docs/roadmap/v1.0-stabilization-playbook.md
+        - docs/roadmap/v1.0-stabilization-playbook.yaml
+        - MandalaMap.json
+        - MandalaMap.md
+        - MandalaMap.yaml
+        - codexfeedback-fraktal85.yaml
+        - codexfeedback.json
+        - codexfeedback.md
+        - codexfeedback.yaml
+      commands: []
+      hook:
+        progress: Shortcut-Audit dokumentiert; Follow-up `pnpm diag:shortcuts` im Playbook verankert.
+        next_step: Diagnoseskript + Troubleshooting für `docs/DEV-SHORTCUTS.md` umsetzen.
+      repeat_required: false
     - id: 84
       status: done
       notes: 'Fraktal84 DevHelperHealthGuard: PowerShell Dev-Helper (Start/Stop/Test/Secrets), zentraler Health-Aggregator (`scripts/health-aggregator.ts` → `pnpm dev:health`), neue `/health`-Routen (api, fourier, sigil-generator, ghost-shell, realtime-hub) und Husky-Guard `guard-no-dotenv` gegen `.env*`-Commits; pnpm-Shortcuts (`ps:*`) und `docs/DEV-SHORTCUTS.md` ergänzen den Flow. Stabilization-Playbook (MD/YAML) aktualisiert; negativer Contract-Test für `/api/ai/chat` stellt 400 bei ungültiger Payload sicher.'

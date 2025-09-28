@@ -1,7 +1,7 @@
 fraktal: 40
 release: v1.0
 owner: codex
-updated: '2025-11-18'
+updated: '2025-11-26'
 summary: 'Strukturierter Maßnahmenplan zur Umsetzung der Fraktal40-Besprechung.
 
   Fokus auf stabile Kern-Builds, dist-first Services, verschärfte Governance
@@ -230,6 +230,10 @@ streams:
           inklusive
 
           Command-Catalog-Aktualisierungen.'
+      - id: pnpm-shortcuts-diagnostics
+        description: Shortcut-Parität automatisiert prüfen (`pnpm diag:shortcuts` + Doku-Fixes)
+        status: in-progress
+        notes: 'Fraktal85 (DevTalk84-Audit) identifiziert fehlende Diagnostik für `pnpm dev:stack`, `pnpm start:cosmic-web`, `pnpm smoke:live` und `ps:*`. Folgeaufgaben: Skript `pnpm diag:shortcuts` entwerfen und Troubleshooting in `docs/DEV-SHORTCUTS.md` ergänzen (`analysis/devtalk84-evaluation.md`).'
       - id: ts-node-retire
         description: Produktionspfade auf `node dist/...` umstellen
         status: done
