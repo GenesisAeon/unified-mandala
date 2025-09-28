@@ -3,3 +3,4 @@ export CI=1
 
 pnpm test:unit:coverage || exit $?
 pnpm policy:check || exit $?
+pnpm hook:qwen-smoke || exit $?

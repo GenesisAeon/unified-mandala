@@ -30,3 +30,12 @@
 - Track the three operational tasks above as the next Fraktal (port-doc, shortcut CLI, health badge). Mark Fraktal87 as **in progress** until those deliverables land.
 - Keep CI/policy automation running; review adding summary comments for provenance/policy runs to close the governance feedback loop.
 - Revisit DevTalk once Gemini bridge lands to ensure CREP/trikāya guidance remains accurate.
+- Nutze `docs/roadmap/RoleOutCommands.*` + `pnpm smoke:qwen`/`pnpm hook:qwen-smoke`, um den Qwen-Rollout sichtbar zu halten; der Self-Hosted-Workflow `ci.qwen-smoke.yml` ergänzt bei Bedarf ein Label-Gate (`ci:qwen-smoke`).
+
+## Update 2025-11-29 – Shortcut Diagnostics umgesetzt
+
+- `scripts/diag/shortcuts.mjs` stellt `pnpm diag:shortcuts` bereit (Dev-Stack-Diagnose, Live-Smoke-JSON, PowerShell-Check) und ergänzt damit den geforderten Shortcut-Sanity-Lauf.
+- `scripts/smoke/live-smoke.mjs` akzeptiert jetzt `--json/--soft`, damit Diagnosen nicht an fehlenden Services scheitern und strukturierte Ausgaben liefern.
+- `docs/DEV-SHORTCUTS.md` dokumentiert Port-Offsets (inkl. Health-Aggregator-Link), den neuen Diagnosebefehl sowie eine Troubleshooting-Tabelle.
+- `docs/roadmap/RoleOutCommands.(md|json|yaml)` markieren `pnpm diag:shortcuts` als Phase-1-Kommando und setzen `pnpm smoke:qwen` auf **ready**.
+- Offene Punkte: Climate-MVP-Pipeline (Phase 4) & Gemini-Sigillin-Verlinkung in MandalaMap bleiben auf der To-do-Liste.

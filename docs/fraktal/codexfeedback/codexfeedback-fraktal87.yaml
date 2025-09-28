@@ -2,23 +2,49 @@ fraktal: 87
 status: in-progress
 owner: ChatGPT5DeepResearch
 summary:
-  - 'DevTalk.txt erneut ausgewertet (`analysis/devtalk87-evaluation.md`); Statusmatrix zeigt, dass CI/Governance/Observability-Punkte aus dem Playbook umgesetzt sind.'
-  - 'Offene ToDos (Shortcut-Diagnose, Port-Offset-Doku, Health-Badge, Gemini-Sigillin-Verlinkung) als nächste Fraktalziele markiert; MandalaMap & Stabilization-Playbook notieren den Hook.'
-  - 'Codexfeedback-Tracker (md/json/yaml) und Fraktalindex auf 87 angehoben, Fraktalrun als „in-progress“ mit Repeat-Markierung vermerkt.'
+  - 'Fraktal87 Qwen-Rollout: `scripts/smoke/qwen-smoke.mjs` + `pnpm smoke:qwen`, Pre-Push-Hook
+    (`scripts/hooks/qwen-smoke-trigger.mjs`, `pnpm hook:qwen-smoke`), `.github/workflows/ci.qwen-smoke.yml`
+    und `docs/roadmap/RoleOutCommands.(md|json|yaml)` halten den schrittweisen Mandala-Rollout
+    (Phase 0–6) fest; MandalaMap/Playbook spiegeln den Hook weiterhin als in-progress.'
+  - DevTalk.txt erneut ausgewertet (`analysis/devtalk87-evaluation.md`); Statusmatrix
+    zeigt, dass CI/Governance/Observability-Punkte aus dem Playbook umgesetzt sind.
+  - 'Fraktal87 Update: Shortcut-Diagnose-Skript (`scripts/diag/shortcuts.mjs` → `pnpm
+    diag:shortcuts`), erweiterte Port-/Health-Doku (`docs/DEV-SHORTCUTS.md`) und aktualisierte
+    RoleOutCommands.* sind umgesetzt; Climate-MVP (Phase 4) und Gemini-Sigillin-Verlinkung
+    bleiben offen.'
+  - Codexfeedback-Tracker (md/json/yaml) und Fraktalindex auf 87 angehoben, Fraktalrun
+    als „in-progress“ mit Repeat-Markierung vermerkt.
 deliverables:
+  - .github/workflows/ci.qwen-smoke.yml
+  - .husky/pre-push
+  - MandalaMap.json
+  - MandalaMap.md
+  - MandalaMap.yaml
   - analysis/devtalk87-evaluation.md
   - codexfeedback-fraktal87.yaml
   - codexfeedback.json
   - codexfeedback.md
   - codexfeedback.yaml
+  - docs/DEV-SHORTCUTS.md
   - docs/fraktal/index.md
+  - docs/roadmap/RoleOutCommands.json
+  - docs/roadmap/RoleOutCommands.md
+  - docs/roadmap/RoleOutCommands.yaml
   - docs/roadmap/v1.0-stabilization-playbook.md
   - docs/roadmap/v1.0-stabilization-playbook.yaml
-  - MandalaMap.json
-  - MandalaMap.md
-  - MandalaMap.yaml
-commands: []
+  - package.json
+  - scripts/dev-helper.ps1
+  - scripts/dev-services.mjs
+  - scripts/diag/shortcuts.mjs
+  - scripts/hooks/qwen-smoke-trigger.mjs
+  - scripts/smoke/live-smoke.mjs
+  - scripts/smoke/qwen-smoke.mjs
+commands:
+  - pnpm smoke:qwen
+  - pnpm hook:qwen-smoke
+  - pnpm diag:shortcuts
 hook:
-  progress: DevTalk-Gesamtplan erneut abgeglichen; offene Tasks klar benannt und in Roadmap/MandalaMap gespiegelt.
-  next_step: Shortcut-Diagnose-Skript (`pnpm diag:shortcuts`), Port-Offset-Dokumentation und Health-Aggregator-Badge umsetzen; Gemini-Sigillin in MandalaMap verlinken.
+  progress: Qwen-Smoke, Hook & RoleOutCommands verankert; Shortcut-Diagnose (`pnpm
+    diag:shortcuts`) und DEV-SHORTCUTS wurden aktualisiert.
+  next_step: Climate-MVP (Phase 4) liefern und Gemini-Sigillin in MandalaMap verlinken.
 repeat_required: true
