@@ -3,7 +3,7 @@
     {
       "fraktalrun": "Fraktal87 DevTalkStabilization",
       "status": "in-progress",
-      "notes": "analysis/devtalk87-evaluation.md re-checks the DevTalk stabilization plan, confirms CI/governance/observability goals, and now records the shortcut diagnostic tooling (`scripts/diag/shortcuts.mjs` → `pnpm diag:shortcuts`), updated DEV-SHORTCUTS (port offsets, health badge, troubleshooting), and the rollout table refresh in docs/roadmap/RoleOutCommands.*. Climate-MVP (Phase 4) and the Gemini sigillin link remain pending; MandalaMap.*, the stabilization playbook, and codexfeedback keep Fraktal87 marked in-progress until those land."
+      "notes": "analysis/devtalk87-evaluation.md re-checks the DevTalk stabilization plan, confirms CI/governance/observability goals, and now records the shortcut diagnostic tooling (`scripts/diag/shortcuts.mjs` → `pnpm diag:shortcuts`), updated DEV-SHORTCUTS (port offsets, health badge, troubleshooting), and the rollout table refresh in docs/roadmap/RoleOutCommands.*. Climate-MVP (Phase 4) and the Gemini sigillin link remain pending; MandalaMap.*, the stabilization playbook, and codexfeedback keep Fraktal87 marked in-progress until those land. Fraktal87 Update 2025-11-30 ergänzt `apps/api-lite/ollama-proxy.mjs` + Dev-Helper-Shortcuts (`ps:start-ollama-proxy`, `ps:umo`, `ps:smoke-qwen`), erweitert `package.json` um `start:ollama-proxy` und erweitert `apps/ui/vite.config.ts`/`scripts/smoke/qwen-smoke.mjs` für den Port-4000-Proxy samt `output_text`-Fallback; Stabilization-Playbook & MandalaMap spiegeln den Schritt, Status bleibt in-progress bis Climate-MVP & Health-Badge bereitstehen."
     },
     {
       "fraktalrun": "Fraktal86 PortOffsetAlignment",

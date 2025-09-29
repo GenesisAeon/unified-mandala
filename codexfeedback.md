@@ -1,5 +1,6 @@
 # Codex Feedback
 
+- FR-UM-2025-11-30-Fraktal87-QwenLocalProxy: `apps/api-lite/ollama-proxy.mjs` liefert einen leichtgewichtigen Express-Proxy (\`pnpm start:ollama-proxy\`, PowerShell `Start-OllamaProxy`/`Start-UMOllama`), `apps/ui/vite.config.ts` routet `/api/*` im Dev konsequent nach Port 4000 und `scripts/dev-helper.ps1` ergänzt `Smoke-Qwen`. `package.json` erweitert die Shortcuts (`start:ollama-proxy`, `ps:start-ollama-proxy`, `ps:umo`, `ps:smoke-qwen`) und `scripts/smoke/qwen-smoke.mjs` nutzt native Fetch/Timeouts samt `output_text`-Fallback. Stabilization-Playbook (MD/YAML) sowie MandalaMap.(md|json|yaml) referenzieren das Update; Fraktal87 bleibt bis Climate-MVP & Health-Badge erledigt sind in-progress.
 - FR-UM-2025-11-28-Fraktal87-QwenRollout: `scripts/smoke/qwen-smoke.mjs` + `pnpm smoke:qwen` decken den neuen Qwen-Ende-zu-Ende-Sniff
   ab, Husky (`pnpm hook:qwen-smoke`) hängt optional im Pre-Push, und `.github/workflows/ci.qwen-smoke.yml` ermöglicht eine
   Self-Hosted-Lane (`ci:qwen-smoke`). `docs/roadmap/RoleOutCommands.(md|json|yaml)` verfolgen Phase 0–6 des Rollouts, MandalaMap.\*

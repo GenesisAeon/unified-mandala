@@ -9,7 +9,11 @@ fraktal:
         (Ports/Offsets/Health-Badge + Troubleshooting) sowie die aktualisierten RoleOutCommands
         für den Qwen-Rollout fest. Climate-MVP (Phase 4) und der Gemini-Sigillin-Link
         bleiben als offene Aufgaben markiert; MandalaMap.*, Stabilization-Playbook und
-        codexfeedback führen den Lauf weiterhin als in-progress.'
+        codexfeedback führen den Lauf weiterhin als in-progress. Update 2025-11-30 ergänzt
+        `apps/api-lite/ollama-proxy.mjs`, neue Dev-Helper-Shortcuts (`ps:start-ollama-proxy`,
+        `ps:umo`, `ps:smoke-qwen`), `pnpm start:ollama-proxy` sowie Anpassungen an
+        `apps/ui/vite.config.ts` und `scripts/smoke/qwen-smoke.mjs`, damit `/api/*`
+        zuverlässig via Port 4000 proxyt und der Smoke `output_text`-Fallbacks nutzt.'
       deliverables:
         - .github/workflows/ci.qwen-smoke.yml
         - .husky/pre-push

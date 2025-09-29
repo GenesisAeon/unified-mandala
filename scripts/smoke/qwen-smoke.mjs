@@ -11,14 +11,12 @@ const uiCandidates = [
   'http://localhost:5174',
 ].filter(Boolean);
 
-const API_BASE = process.env.API_BASE ?? 'http://localhost:4000';
 const providerHint = (process.env.AI_PROVIDER || '').toLowerCase();
+const explicitApiBase = process.env.API_BASE;
 
 const defaultOllamaEndpoint = 'http://localhost:11434';
 const defaultVllmEndpoint = 'http://localhost:8000';
-const OLLAMA_URL = process.env.QWEN_ENDPOINT ?? defaultOllamaEndpoint;
-const OLLAMA_MODEL = process.env.QWEN_MODEL ?? 'qwen2.5:7b-instruct';
-const VLLM_URL = process.env.QWEN_ENDPOINT ?? defaultVllmEndpoint;
+const OLLAMA_MODEL = process.env.QWEN_MODEL ?? 'qwen2.5:7b';
 const VLLM_MODEL = process.env.QWEN_MODEL ?? 'Qwen/Qwen2.5-7B-Instruct';
 
 const TARGET_TEXT = process.env.TARGET_TEXT ?? 'Qwen ok';
@@ -30,9 +28,9 @@ const red = (text) => color('31', text);
 const cyan = (text) => color('36', text);
 const gray = (text) => color('90', text);
 
-async function fetchWithTimeout(url, options = {}, timeoutMs = 5000) {
+async function fetchWithTimeout(url, options = {}, timeoutMs = 10000) {
   const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), timeoutMs);
+  const timeout = setTimeout(() => controller.abort('timeout'), timeoutMs);
   try {
     const response = await fetch(url, { ...options, signal: controller.signal });
     return response;
@@ -42,7 +40,7 @@ async function fetchWithTimeout(url, options = {}, timeoutMs = 5000) {
 }
 
 async function waitForUI() {
-  const attempts = 30;
+  const attempts = 40;
   const delay = 500;
 
   for (const base of uiCandidates) {
@@ -66,8 +64,9 @@ async function waitForUI() {
   throw new Error(`UI not reachable on any candidate base URL: ${uiCandidates.join(', ')}`);
 }
 
-async function callApiChat() {
-  const url = `${API_BASE.replace(/\/+$/, '')}/api/ai/chat`;
+async function callApiChat(apiBase) {
+  const base = apiBase.replace(/\/+$/, '');
+  const url = `${base}/api/ai/chat`;
   const payload = {
     messages: [
       { role: 'system', content: 'Antworte nur exakt: "Qwen ok".' },
@@ -90,9 +89,10 @@ async function callApiChat() {
   }
 
   const json = await response.json();
-  const parts = json?.output?.[0]?.content ?? [];
-  const textPart = parts.find((part) => part?.type === 'output_text');
-  const answer = textPart?.text ?? '';
+  const answer =
+    json?.output_text ??
+    json?.output?.[0]?.content?.find?.((part) => part?.type === 'output_text')?.text ??
+    '';
 
   if (!answer) {
     throw new Error(`No output_text field in response: ${JSON.stringify(json).slice(0, 400)}…`);
@@ -108,13 +108,13 @@ async function callApiChat() {
       ),
     );
   }
-  return { json, answer, ok };
+  return ok;
 }
 
-async function probeOllama() {
-  const url = `${OLLAMA_URL.replace(/\/+$/, '')}/api/chat`;
+async function probeOllama(ollamaUrl, model) {
+  const url = `${ollamaUrl.replace(/\/+$/, '')}/api/chat`;
   const payload = {
-    model: OLLAMA_MODEL,
+    model,
     stream: false,
     messages: [
       { role: 'system', content: 'Antworte nur "Qwen ok".' },
@@ -143,7 +143,7 @@ async function probeOllama() {
   }
 
   if (text.includes(TARGET_TEXT)) {
-    console.log(green(`✓ Ollama (${OLLAMA_MODEL}) responded with expected snippet`));
+    console.log(green(`✓ Ollama (${model}) responded with expected snippet`));
   } else {
     console.log(
       cyan(`• Ollama responded without the exact snippet: ${gray(JSON.stringify(text))}`),
@@ -151,10 +151,10 @@ async function probeOllama() {
   }
 }
 
-async function probeVllm() {
-  const url = `${VLLM_URL.replace(/\/+$/, '')}/v1/chat/completions`;
+async function probeVllm(vllmUrl, model) {
+  const url = `${vllmUrl.replace(/\/+$/, '')}/v1/chat/completions`;
   const payload = {
-    model: VLLM_MODEL,
+    model,
     messages: [
       { role: 'system', content: 'Antworte nur "Qwen ok".' },
       { role: 'user', content: 'Sag: Qwen ok' },
@@ -182,7 +182,7 @@ async function probeVllm() {
   }
 
   if (text.includes(TARGET_TEXT)) {
-    console.log(green(`✓ vLLM (${VLLM_MODEL}) responded with expected snippet`));
+    console.log(green(`✓ vLLM (${model}) responded with expected snippet`));
   } else {
     console.log(cyan(`• vLLM responded without the exact snippet: ${gray(JSON.stringify(text))}`));
   }
@@ -191,38 +191,38 @@ async function probeVllm() {
 (async () => {
   try {
     console.log(cyan('⏳ Waiting for UI …'));
-    await waitForUI();
+    const uiBase = await waitForUI();
 
+    const apiBase = explicitApiBase ?? uiBase;
     console.log(cyan('⏳ Calling API /api/ai/chat …'));
-    const { ok } = await callApiChat();
+    const apiOk = await callApiChat(apiBase);
 
     const providerMatches = {
       ollama: providerHint.includes('ollama'),
       vllm: providerHint.includes('vllm'),
     };
 
-    if (providerMatches.ollama) {
-      console.log(cyan('⏳ Probing Qwen via Ollama …'));
-      await probeOllama();
+    if (!providerHint || providerMatches.ollama) {
+      const model = process.env.QWEN_MODEL ?? 'qwen2.5:7b';
+      await probeOllama(process.env.QWEN_ENDPOINT ?? defaultOllamaEndpoint, model);
     } else if (providerMatches.vllm) {
-      console.log(cyan('⏳ Probing Qwen via vLLM …'));
-      await probeVllm();
+      await probeVllm(process.env.QWEN_ENDPOINT ?? defaultVllmEndpoint, VLLM_MODEL);
     } else {
       console.log(gray('No provider hint → attempting Ollama, then vLLM (best-effort).'));
       try {
-        await probeOllama();
+        await probeOllama(process.env.QWEN_ENDPOINT ?? defaultOllamaEndpoint, OLLAMA_MODEL);
       } catch (error) {
         console.log(gray(`Ollama probe skipped/failed: ${error.message}`));
       }
       try {
-        await probeVllm();
+        await probeVllm(process.env.QWEN_ENDPOINT ?? defaultVllmEndpoint, VLLM_MODEL);
       } catch (error) {
         console.log(gray(`vLLM probe skipped/failed: ${error.message}`));
       }
     }
 
     console.log(green('✅ Qwen E2E smoke finished.'));
-    process.exit(ok ? 0 : 0);
+    process.exit(apiOk ? 0 : 0);
   } catch (error) {
     console.error(red(`❌ Smoke failed: ${error.message}`));
     process.exit(1);

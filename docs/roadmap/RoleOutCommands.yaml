@@ -1,5 +1,5 @@
 fraktal: 87
-updated: '2025-11-29'
+updated: '2025-11-30'
 title: Mandala Rollout Command Tracker
 phases:
   - id: phase-0
@@ -47,6 +47,18 @@ phases:
       - command: 'pnpm hook:qwen-smoke'
         status: wired
         notes: 'Pre-Push-Hook, läuft wenn `AI_PROVIDER` mit `qwen-` beginnt (Opt-in via `UM_RUN_QWEN_SMOKE=1`).'
+      - command: 'pnpm start:ollama-proxy'
+        status: ready
+        notes: 'Startet den Express-Proxy (`apps/api-lite/ollama-proxy.mjs`) auf Port 4000.'
+      - command: '. ./scripts/dev-helper.ps1; Start-OllamaProxy'
+        status: ready
+        notes: 'PowerShell-Shortcut für den Proxy (respektiert `QWEN_ENDPOINT`/`QWEN_MODEL`).'
+      - command: '. ./scripts/dev-helper.ps1; Start-UMOllama'
+        status: ready
+        notes: 'Startet Proxy + UI (`mandala-ui` Vite) in einem Schritt (Default-Port 5173).'
+      - command: '. ./scripts/dev-helper.ps1; Smoke-Qwen'
+        status: ready
+        notes: 'Führt den Smoke mit `AI_PROVIDER=qwen-ollama` lokal aus (native Fetch/Timeout).'
       - command: 'curl http://localhost:11434/api/chat ...'
         status: reference
         notes: 'Direkter Ollama-Probeaufruf; stellt sicher, dass das Modell lokal antwortet.'

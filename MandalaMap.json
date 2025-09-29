@@ -750,6 +750,18 @@
         {
           "label": "hook:qwen-smoke",
           "path": "scripts/hooks/qwen-smoke-trigger.mjs"
+        },
+        {
+          "label": "ollama-proxy",
+          "path": "apps/api-lite/ollama-proxy.mjs"
+        },
+        {
+          "label": "vite-dev-proxy",
+          "path": "apps/ui/vite.config.ts"
+        },
+        {
+          "label": "dev-helper",
+          "path": "scripts/dev-helper.ps1"
         }
       ],
       "notes": [
@@ -770,7 +782,8 @@
         "Fraktal76 ergänzt `scripts/ci/ai-commit-guard.mjs`, das Bot-Pushes auf `main` blockt und `.ai-scratch/`-Artefakte stoppt; Agenten speichern Runtime-Dateien dadurch konsequent unter `scratch://` oder `data://`.",
         "Fraktal79 liefert `scripts/start-cosmic-web.mjs` als One-Command-Orchestrator (NATS, Artefakte, Services, UI, Smoke) und `scripts/ci/no-local-path-leaks.mjs` verhindert versehentliche Windows-Pfade oder Secrets im Staging-Bereich.",
         "Fraktal86 exportiert im Dev-Helper (`scripts/dev-helper.ps1`) eine Port-Matrix (share/experiments/rag/flags/api/health/realtime) inkl. Offset; `config/ports.ts` und `apps/ui/vite.config.ts` interpretieren Env-Overrides als absolute Ports, `scripts/dev-services.mjs` prüft Konflikte ohne Doppel-Offsets und der Health-Aggregator nutzt dynamische Portwerte.",
-        "Fraktal87 startet den Qwen-Rollout: `scripts/smoke/qwen-smoke.mjs` liefert `pnpm smoke:qwen`, der Pre-Push-Trigger `scripts/hooks/qwen-smoke-trigger.mjs` (`pnpm hook:qwen-smoke`) läuft nur bei `AI_PROVIDER=qwen-*`/`UM_RUN_QWEN_SMOKE=1`; `.github/workflows/ci.qwen-smoke.yml` und `docs/roadmap/RoleOutCommands.(md|json|yaml)` spiegeln denselben Flow."
+        "Fraktal87 startet den Qwen-Rollout: `scripts/smoke/qwen-smoke.mjs` liefert `pnpm smoke:qwen`, der Pre-Push-Trigger `scripts/hooks/qwen-smoke-trigger.mjs` (`pnpm hook:qwen-smoke`) läuft nur bei `AI_PROVIDER=qwen-*`/`UM_RUN_QWEN_SMOKE=1`; `.github/workflows/ci.qwen-smoke.yml` und `docs/roadmap/RoleOutCommands.(md|json|yaml)` spiegeln denselben Flow.",
+        "Fraktal87 Update 2025-11-30: `apps/api-lite/ollama-proxy.mjs` liefert einen leichten Express-Proxy (`pnpm start:ollama-proxy`, PowerShell `Start-OllamaProxy`/`Start-UMOllama`), `apps/ui/vite.config.ts` erzwingt `/api/*` → Port 4000 und `scripts/dev-helper.ps1` ergänzt `Smoke-Qwen` für lokale Smokes ohne Zusatz-Dependencies."
       ],
       "path": "scripts/",
       "status": "active",

@@ -47,7 +47,6 @@ Samples:
   - AWS deployment stubs (active) — aws/
   - Helm charts (active) — charts/
   - CI support scripts (active) — ci/
-  - Self-hosted Qwen smoke lane (active) — .github/workflows/ci.qwen-smoke.yml
 - automation:
   - Plugin registry cache (active) — .registry/
   - Codex sync scripts (active) — codex-sync/
