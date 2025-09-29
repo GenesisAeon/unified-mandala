@@ -304,4 +304,48 @@ function Start-UIAligned {
   pnpm -F mandala-ui dev -- --port $Port
 }
 
-Export-ModuleMember -Function *-UM,Start-UI,Smoke-UI,Health-Check,Invoke-UMChat,Set-UMSecrets,Free-UMPorts,Start-NATS,Smoke-AI,Smoke-Flags,Smoke-Experiments,Start-UMHealth,Preflight-UM,Start-UMOffset,Start-UIAligned
+function Start-OllamaProxy {
+  [CmdletBinding()]
+  param(
+    [string]$Endpoint,
+    [string]$Model,
+    [int]$Port = 0
+  )
+
+  if (-not $Endpoint) { $Endpoint = $env:QWEN_ENDPOINT }
+  if (-not $Endpoint) { $Endpoint = 'http://localhost:11434' }
+  if (-not $Model) { $Model = $env:QWEN_MODEL }
+  if (-not $Model) { $Model = 'qwen2.5:7b' }
+  if (-not $Port) {
+    if ($env:PORT) { $Port = [int]$env:PORT } else { $Port = 4000 }
+  }
+
+  Write-UMInfo "Starting Ollama proxy → $Endpoint ($Model) on :$Port"
+  $env:QWEN_ENDPOINT = $Endpoint
+  $env:QWEN_MODEL = $Model
+  $env:PORT = "$Port"
+  Start-Process node -ArgumentList "apps/api-lite/ollama-proxy.mjs" -WindowStyle Minimized | Out-Null
+}
+
+function Start-UMOllama {
+  [CmdletBinding()]
+  param(
+    [int]$UiPort = 5173,
+    [string]$Endpoint,
+    [string]$Model
+  )
+
+  Start-OllamaProxy -Endpoint $Endpoint -Model $Model -Port 4000
+  $env:UI_DEV_URL = "http://localhost:$UiPort"
+  Write-UMInfo "Starting mandala-ui on :$UiPort with proxy to 4000"
+  Start-Process pnpm -ArgumentList "-F","mandala-ui","dev","--","--port",$UiPort -WindowStyle Minimized | Out-Null
+}
+
+function Smoke-Qwen {
+  [CmdletBinding()]
+  param()
+  if (-not $env:AI_PROVIDER) { $env:AI_PROVIDER = 'qwen-ollama' }
+  node "scripts/smoke/qwen-smoke.mjs"
+}
+
+Export-ModuleMember -Function *-UM,Start-UI,Smoke-UI,Health-Check,Invoke-UMChat,Set-UMSecrets,Free-UMPorts,Start-NATS,Smoke-AI,Smoke-Flags,Smoke-Experiments,Start-UMHealth,Preflight-UM,Start-UMOffset,Start-UIAligned,Start-OllamaProxy,Start-UMOllama,Smoke-Qwen

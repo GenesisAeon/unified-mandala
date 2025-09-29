@@ -4,7 +4,7 @@
 - Fraktal: 87
 - Generated: 2025-11-28 00:00:00+00:00
 
-Total entries: 70
+Total entries: 71
 
 Categories:
 
@@ -13,7 +13,7 @@ Categories:
 - automation: 10
 - agents: 8
 - support: 6
-- core-runtime: 6
+- core-runtime: 7
 - data-intel: 5
 - research: 5
 - testing: 4
@@ -23,7 +23,7 @@ Categories:
 
 Statuses:
 
-- active: 52
+- active: 53
 - experimental: 7
 - generated: 3
 - stable: 3
@@ -41,6 +41,8 @@ Samples:
   - Documentation (active) — docs/
   - Governance policies (active) — governance/
   - Manifest documents (active) — manifest/
+- core-runtime:
+  - API Lite Proxy (active) — apps/api-lite/
 - ci-infra:
   - GitHub workflows & templates (active) — .github/
   - Git hooks (active) — .husky/

@@ -5,9 +5,10 @@
   Self-Hosted-Lane (`ci:qwen-smoke`). `docs/roadmap/RoleOutCommands.(md|json|yaml)` verfolgen Phase 0–6 des Rollouts, MandalaMap.\*
   und das Stabilization-Playbook markieren den Hook weiterhin als in-progress (Climate-MVP, Health-Badge offen).
 - FR-UM-2025-11-29-Fraktal87-DevTalkStabilization: `analysis/devtalk87-evaluation.md` bestätigt die DevTalk-Checkliste (CI, Governance,
-  Observability, Docs) und dokumentiert nun das Shortcut-Diagnose-Skript (`scripts/diag/shortcuts.mjs` → `pnpm diag:shortcuts`), die
-  erweiterten DEV-SHORTCUTS (Ports/Offsets/Health-Badge) sowie die aktualisierten Rollout-Tabellen (`docs/roadmap/RoleOutCommands.*`).
-  Climate-MVP (Phase 4) und die Gemini-Sigillin-Verlinkung bleiben als Follow-ups offen; MandalaMap.\_ und das Stabilization-Playbook
+  Observability, Docs) und dokumentiert jetzt sowohl das Shortcut-Diagnose-Skript (`scripts/diag/shortcuts.mjs` → `pnpm diag:shortcuts`)
+  als auch den Ollama-Proxy (`apps/api-lite/ollama-proxy.mjs` → `pnpm start:ollama-proxy` / `pnpm ps:umo` / `pnpm ps:smoke-qwen`).
+  DEV-SHORTCUTS sowie `docs/roadmap/RoleOutCommands.*` spiegeln die neue Start-/Smoke-Kette;
+  Climate-MVP (Phase 4) und die Gemini-Sigillin-Verlinkung bleiben Follow-ups. MandalaMap.\_ und das Stabilization-Playbook
   führen Fraktal87 weiterhin als in-progress.
 - FR-UM-2025-11-27-Fraktal86-PortOffsetAlignment: `scripts/dev-helper.ps1` setzt die Service-Ports (share/experiments/rag/flags/api/health/realtime) pro Offset als absolute Werte, `config/ports.ts`, `apps/ui/vite.config.ts` und `scripts/dev-services.mjs` interpretieren Env-Overrides ohne doppelte Offsets und `scripts/health-aggregator.ts` nutzt dynamische Port-Ziele; Stabilization-Playbook (MD/YAML) und MandalaMap.(md|json|yaml) dokumentieren den Hook.
 - FR-UM-2025-11-26-Fraktal85-ShortcutDiagnostics: `analysis/devtalk84-evaluation.md` auditierte `pnpm dev:stack`, `pnpm start:cosmic-web`, `pnpm smoke:live` und die PowerShell-Shortcuts; Stabilization-Playbook (MD/YAML) erhielt einen Follow-up-Checkpoint („pnpm diag:shortcuts“), MandalaMap._ verlinkt den Audit und codexfeedback_ erfasst den Hook.

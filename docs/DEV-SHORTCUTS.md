@@ -108,6 +108,22 @@ pnpm diag:shortcuts
 
 - Der Lauf liefert eine farbige Konsolenübersicht und ein JSON-Resümee (Ausgabe auf STDOUT). Nutze `> out/diag/shortcuts.json`, wenn du das Ergebnis versionieren möchtest.
 
+### Qwen via Ollama (Proxy + Smoke)
+
+- Proxy starten und UI ankoppeln:
+
+```powershell
+pnpm start:ollama-proxy    # Node-Proxy (4000 → Ollama 11434, `/health`)
+pnpm ps:umo               # PowerShell: Proxy + UI (Port 5173) gemeinsam starten
+```
+
+- Smoke-Checks (CLI/PowerShell):
+
+```powershell
+pnpm smoke:qwen
+pnpm ps:smoke-qwen
+```
+
 ### Troubleshooting Cheatsheet
 
 | Symptom / Meldung                               | Diagnose                                         | Fix / Hinweis                                                                           |

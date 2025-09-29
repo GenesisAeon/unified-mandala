@@ -11,13 +11,14 @@ const uiCandidates = [
   'http://localhost:5174',
 ].filter(Boolean);
 
-const API_BASE = process.env.API_BASE ?? 'http://localhost:4000';
+const configuredApiBase = process.env.API_BASE;
+const defaultApiBase = 'http://localhost:4000';
 const providerHint = (process.env.AI_PROVIDER || '').toLowerCase();
 
 const defaultOllamaEndpoint = 'http://localhost:11434';
 const defaultVllmEndpoint = 'http://localhost:8000';
 const OLLAMA_URL = process.env.QWEN_ENDPOINT ?? defaultOllamaEndpoint;
-const OLLAMA_MODEL = process.env.QWEN_MODEL ?? 'qwen2.5:7b-instruct';
+const OLLAMA_MODEL = process.env.QWEN_MODEL ?? 'qwen2.5:7b';
 const VLLM_URL = process.env.QWEN_ENDPOINT ?? defaultVllmEndpoint;
 const VLLM_MODEL = process.env.QWEN_MODEL ?? 'Qwen/Qwen2.5-7B-Instruct';
 
@@ -66,8 +67,7 @@ async function waitForUI() {
   throw new Error(`UI not reachable on any candidate base URL: ${uiCandidates.join(', ')}`);
 }
 
-async function callApiChat() {
-  const url = `${API_BASE.replace(/\/+$/, '')}/api/ai/chat`;
+async function callApiChat(uiBase) {
   const payload = {
     messages: [
       { role: 'system', content: 'Antworte nur exakt: "Qwen ok".' },
@@ -75,40 +75,61 @@ async function callApiChat() {
     ],
   };
 
-  const response = await fetchWithTimeout(
-    url,
-    {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload),
-    },
-    10000,
-  );
-
-  if (!response.ok) {
-    throw new Error(`/api/ai/chat responded with HTTP ${response.status}`);
+  const candidates = [];
+  if (configuredApiBase) {
+    candidates.push(configuredApiBase);
+  }
+  candidates.push(defaultApiBase);
+  if (uiBase) {
+    candidates.push(uiBase);
   }
 
-  const json = await response.json();
-  const parts = json?.output?.[0]?.content ?? [];
-  const textPart = parts.find((part) => part?.type === 'output_text');
-  const answer = textPart?.text ?? '';
+  const errors = [];
+  for (const base of [...new Set(candidates)]) {
+    const normalized = base.replace(/\/+$/, '');
+    const url = `${normalized}/api/ai/chat`;
+    try {
+      const response = await fetchWithTimeout(
+        url,
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        },
+        10000,
+      );
 
-  if (!answer) {
-    throw new Error(`No output_text field in response: ${JSON.stringify(json).slice(0, 400)}…`);
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}`);
+      }
+
+      const json = await response.json();
+      const outputText =
+        json?.output_text ??
+        json?.output?.[0]?.content?.find?.((part) => part?.type === 'output_text')?.text ??
+        '';
+
+      if (!outputText) {
+        throw new Error(`No output_text in response: ${JSON.stringify(json).slice(0, 400)}…`);
+      }
+
+      const ok = outputText.trim().includes(TARGET_TEXT);
+      if (ok) {
+        console.log(green(`✓ API responded with expected text (${TARGET_TEXT}) via ${normalized}`));
+      } else {
+        console.log(
+          cyan(
+            `• API responded via ${normalized} but wording differed: ${gray(JSON.stringify(outputText))}`,
+          ),
+        );
+      }
+      return { json, answer: outputText, ok };
+    } catch (error) {
+      errors.push(`${url} → ${error.message}`);
+    }
   }
 
-  const ok = answer.trim().includes(TARGET_TEXT);
-  if (ok) {
-    console.log(green(`✓ API responded with expected text (${TARGET_TEXT})`));
-  } else {
-    console.log(
-      cyan(
-        `• API responded with output_text but wording differed: ${gray(JSON.stringify(answer))}`,
-      ),
-    );
-  }
-  return { json, answer, ok };
+  throw new Error(`All API probes failed: ${errors.join('; ')}`);
 }
 
 async function probeOllama() {
@@ -191,10 +212,10 @@ async function probeVllm() {
 (async () => {
   try {
     console.log(cyan('⏳ Waiting for UI …'));
-    await waitForUI();
+    const uiBase = await waitForUI();
 
     console.log(cyan('⏳ Calling API /api/ai/chat …'));
-    const { ok } = await callApiChat();
+    const { ok } = await callApiChat(uiBase);
 
     const providerMatches = {
       ollama: providerHint.includes('ollama'),

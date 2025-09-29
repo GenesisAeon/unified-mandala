@@ -3,7 +3,7 @@
     {
       "fraktalrun": "Fraktal87 DevTalkStabilization",
       "status": "in-progress",
-      "notes": "analysis/devtalk87-evaluation.md re-checks the DevTalk stabilization plan, confirms CI/governance/observability goals, and now records the shortcut diagnostic tooling (`scripts/diag/shortcuts.mjs` → `pnpm diag:shortcuts`), updated DEV-SHORTCUTS (port offsets, health badge, troubleshooting), and the rollout table refresh in docs/roadmap/RoleOutCommands.*. Climate-MVP (Phase 4) and the Gemini sigillin link remain pending; MandalaMap.*, the stabilization playbook, and codexfeedback keep Fraktal87 marked in-progress until those land."
+      "notes": "analysis/devtalk87-evaluation.md re-checks the DevTalk stabilization plan, confirms CI/governance/observability goals, and now documents the Ollama proxy rollout (`apps/api-lite/ollama-proxy.mjs` → `pnpm start:ollama-proxy` / `pnpm ps:umo` / `pnpm ps:smoke-qwen`) alongside the shortcut diagnostics. DEV-SHORTCUTS plus docs/roadmap/RoleOutCommands.* reflect the new start/smoke chain; Climate-MVP (Phase 4) and the Gemini sigillin link remain the open follow-ups, so MandalaMap.*, the stabilization playbook, and codexfeedback keep Fraktal87 in-progress."
     },
     {
       "fraktalrun": "Fraktal86 PortOffsetAlignment",
