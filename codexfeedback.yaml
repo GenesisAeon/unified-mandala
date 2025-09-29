@@ -4,18 +4,18 @@ fraktal:
     - id: 87
       status: in-progress
       notes: 'Fraktal87 DevTalkStabilization: analysis/devtalk87-evaluation.md bestätigt
-        die DevTalk-Ziele (CI/Governance/Observability/Docs) und hält jetzt das Shortcut-Diagnose-Skript
-        (`scripts/diag/shortcuts.mjs` → `pnpm diag:shortcuts`), die erweiterten DEV-SHORTCUTS
-        (Ports/Offsets/Health-Badge + Troubleshooting) sowie die aktualisierten RoleOutCommands
-        für den Qwen-Rollout fest. Climate-MVP (Phase 4) und der Gemini-Sigillin-Link
-        bleiben als offene Aufgaben markiert; MandalaMap.*, Stabilization-Playbook und
-        codexfeedback führen den Lauf weiterhin als in-progress.'
+        die DevTalk-Ziele (CI/Governance/Observability/Docs) und erweitert den Qwen-Rollout
+        um den Ollama-Proxy (`apps/api-lite/ollama-proxy.mjs` → `pnpm start:ollama-proxy` /
+        `pnpm ps:umo`) sowie den Smoke-Shortcut (`pnpm ps:smoke-qwen`). DEV-SHORTCUTS,
+        RoleOutCommands.* und MandalaMap.* spiegeln die neue Start-/Smoke-Kette; Climate-MVP
+        (Phase 4) und der Gemini-Sigillin-Link bleiben als offene Aufgaben markiert.'
       deliverables:
         - .github/workflows/ci.qwen-smoke.yml
         - .husky/pre-push
         - MandalaMap.json
         - MandalaMap.md
         - MandalaMap.yaml
+        - apps/api-lite/ollama-proxy.mjs
         - analysis/devtalk87-evaluation.md
         - codexfeedback-fraktal87.yaml
         - codexfeedback.json
@@ -39,11 +39,14 @@ fraktal:
         - pnpm smoke:qwen
         - pnpm hook:qwen-smoke
         - pnpm diag:shortcuts
+        - pnpm start:ollama-proxy
+        - pnpm ps:umo
+        - pnpm ps:smoke-qwen
       hook:
-        progress: Qwen-Smoke & Hook dokumentiert; RoleOutCommands.* jetzt inkl. `pnpm
-          diag:shortcuts` als Phase-1-Check, DEV-SHORTCUTS beleuchten Ports/Offsets/Health-Badge.
-          Stabilization-Playbook aktualisiert.
-        next_step: Climate-MVP (Phase 4) verdrahten und Gemini-Sigillin in MandalaMap
+        progress: Proxy + Smoke via pnpm/PowerShell verdrahtet (`pnpm start:ollama-proxy`,
+          `pnpm ps:umo`, `pnpm ps:smoke-qwen`); RoleOutCommands.* & Stabilization-Playbook
+          aktualisiert.
+        next_step: Climate-MVP (Phase 4) liefern und Gemini-Sigillin in MandalaMap
           verlinken.
       repeat_required: true
     - id: 86

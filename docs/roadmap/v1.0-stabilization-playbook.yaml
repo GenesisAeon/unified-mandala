@@ -169,6 +169,14 @@ streams:
           (Opt-in via `AI_PROVIDER=qwen-*` oder `UM_RUN_QWEN_SMOKE=1`) und überspringt
           GitHub Actions automatisch.
 
+          `apps/api-lite/ollama-proxy.mjs` (`pnpm start:ollama-proxy`) normalisiert
+          `output_text` + `/health`; `scripts/dev-helper.ps1`
+
+          liefert `Start-UMOllama`/`Smoke-Qwen` (`pnpm ps:umo`, `pnpm ps:smoke-qwen`).
+          `docs/DEV-SHORTCUTS.md` & RoleOutCommands.*
+
+          dokumentieren die Start-/Smoke-Kette.
+
           `.github/workflows/ci.qwen-smoke.yml` eröffnet eine Self-Hosted Lane (`ci:qwen-smoke`
           Label bzw. `workflow_dispatch`)
 
@@ -188,6 +196,9 @@ streams:
           - .github/workflows/ci.qwen-smoke.yml
           - docs/roadmap/RoleOutCommands.md
           - docs/roadmap/RoleOutCommands.yaml
+          - docs/DEV-SHORTCUTS.md
+          - apps/api-lite/ollama-proxy.mjs
+          - scripts/dev-helper.ps1
           - docs/roadmap/RoleOutCommands.json
   - key: code-quality
     owner:

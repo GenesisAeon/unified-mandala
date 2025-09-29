@@ -1,6 +1,6 @@
 {
   "fraktal": 87,
-  "updated": "2025-11-29",
+  "updated": "2025-11-30",
   "title": "Mandala Rollout Command Tracker",
   "phases": [
     {
@@ -66,9 +66,24 @@
       "gate": "pnpm smoke:qwen",
       "commands": [
         {
+          "command": "pnpm start:ollama-proxy",
+          "status": "ready",
+          "notes": "Startet den Node-Proxy (4000 → Ollama 11434) und normalisiert `output_text` für die UI."
+        },
+        {
+          "command": "pnpm ps:umo",
+          "status": "ready",
+          "notes": "PowerShell-Shortcut: Proxy + mandala-ui Dev-Server gemeinsam starten (Port 5173)."
+        },
+        {
           "command": "pnpm smoke:qwen",
           "status": "ready",
           "notes": "End-to-End Smoke UI → `/api/ai/chat` → Qwen (Ollama/vLLM); erwartet \"Qwen ok\"."
+        },
+        {
+          "command": "pnpm ps:smoke-qwen",
+          "status": "wired",
+          "notes": "PowerShell-Shortcut für den Smoke (setzt `AI_PROVIDER=qwen-ollama`)."
         },
         {
           "command": "pnpm hook:qwen-smoke",

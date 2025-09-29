@@ -5,6 +5,23 @@
   },
   "entries": [
     {
+      "category": "core-runtime",
+      "description": "Express proxy bridging mandala-ui to Ollama (11434 \u2192 4000) with `/health` + `output_text` normalization.",
+      "links": [
+        {
+          "label": "ollama-proxy",
+          "path": "apps/api-lite/ollama-proxy.mjs"
+        }
+      ],
+      "notes": [
+        "`apps/api-lite/ollama-proxy.mjs` starts via `pnpm start:ollama-proxy` or PowerShell (`pnpm ps:umo`).",
+        "Proxy + smoke shortcuts (`pnpm smoke:qwen`, `pnpm ps:smoke-qwen`) complete the Fraktal87 rollout path."
+      ],
+      "path": "apps/api-lite/",
+      "status": "active",
+      "title": "API Lite Proxy"
+    },
+    {
       "category": "support",
       "description": "Internal Git control files; managed by tooling and excluded from builds.",
       "links": [],

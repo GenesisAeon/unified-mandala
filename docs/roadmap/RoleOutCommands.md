@@ -1,6 +1,6 @@
 # Mandala Rollout Command Tracker
 
-_Fraktal 87 · Stand: 29.11.2025_
+_Fraktal 87 · Stand: 30.11.2025_
 
 Die Tabelle bildet die sechs Phasen des Mandala-Rollouts auf konkrete Kommandos ab. Status-Legende:
 **ready** = etabliert, **in-progress** = aktiv in Arbeit, **planned** = geplant, **new** = frisch ergänzt,
@@ -28,7 +28,10 @@ Die Tabelle bildet die sechs Phasen des Mandala-Rollouts auf konkrete Kommandos 
 
 | Kommando                                             | Status    | Hinweis                                                                        |
 | ---------------------------------------------------- | --------- | ------------------------------------------------------------------------------ |
+| `pnpm start:ollama-proxy`                            | ready     | Startet den Node-Proxy (4000 → Ollama 11434) und normalisiert `output_text`.   |
+| `pnpm ps:umo`                                        | ready     | PowerShell-Shortcut: Proxy + mandala-ui Dev-Server (Port 5173).                |
 | `pnpm smoke:qwen`                                    | ready     | End-to-End-Smoke UI → `/api/ai/chat` → Qwen (Ollama/vLLM), erwartet „Qwen ok“. |
+| `pnpm ps:smoke-qwen`                                 | wired     | PowerShell-Shortcut für den Smoke (`AI_PROVIDER=qwen-ollama`).                 |
 | `pnpm hook:qwen-smoke`                               | wired     | Pre-Push-Hook; läuft bei `AI_PROVIDER=qwen-*` oder `UM_RUN_QWEN_SMOKE=1`.      |
 | `curl http://localhost:11434/api/chat ...`           | reference | Direkter Ollama-Test (lokale Modellprobe).                                     |
 | `curl http://localhost:8000/v1/chat/completions ...` | reference | Direkter vLLM-Test, falls entsprechender Backendpfad aktiv ist.                |

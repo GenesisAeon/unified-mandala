@@ -39,3 +39,9 @@
 - `docs/DEV-SHORTCUTS.md` dokumentiert Port-Offsets (inkl. Health-Aggregator-Link), den neuen Diagnosebefehl sowie eine Troubleshooting-Tabelle.
 - `docs/roadmap/RoleOutCommands.(md|json|yaml)` markieren `pnpm diag:shortcuts` als Phase-1-Kommando und setzen `pnpm smoke:qwen` auf **ready**.
 - Offene Punkte: Climate-MVP-Pipeline (Phase 4) & Gemini-Sigillin-Verlinkung in MandalaMap bleiben auf der To-do-Liste.
+
+## Update 2025-11-30 – Ollama Proxy Helpers
+
+- `apps/api-lite/ollama-proxy.mjs` stellt einen schlanken Proxy bereit (`pnpm start:ollama-proxy`, `pnpm ps:umo`), normalisiert `output_text` und exponiert `/health` für den Playground.
+- `scripts/dev-helper.ps1` ergänzt `Start-OllamaProxy`, `Start-UMOllama` und `Smoke-Qwen`; `package.json` liefert die passenden pnpm-Shortcuts (`ps:start-ollama-proxy`, `ps:umo`, `ps:smoke-qwen`).
+- `docs/DEV-SHORTCUTS.md` und `docs/roadmap/RoleOutCommands.*` dokumentieren den neuen Flow; Stabilization-Playbook (MD/YAML) verweist auf Proxy + PowerShell-Helfer. Fraktal87 bleibt bis Climate-MVP/Gemini-Link offen, der Rollout-Hook enthält jetzt eine vollständige Start-/Smoke-Kette.
