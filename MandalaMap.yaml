@@ -742,6 +742,10 @@ entries:
         Fraktal87 startet den Qwen-Rollout: `scripts/smoke/qwen-smoke.mjs` liefert `pnpm smoke:qwen`, der Pre-Push-Trigger
         `scripts/hooks/qwen-smoke-trigger.mjs` (`pnpm hook:qwen-smoke`) läuft nur bei `AI_PROVIDER=qwen-*`/`UM_RUN_QWEN_SMOKE=1`;
         `.github/workflows/ci.qwen-smoke.yml` und `docs/roadmap/RoleOutCommands.(md|json|yaml)` spiegeln denselben Flow.
+      - >-
+        Fraktal87 Update 2025-11-30: `apps/api-lite/ollama-proxy.mjs` liefert einen leichten Express-Proxy (`pnpm
+        start:ollama-proxy`, PowerShell `Start-OllamaProxy`/`Start-UMOllama`), `apps/ui/vite.config.ts` erzwingt `/api/*`
+        → Port 4000 und `scripts/dev-helper.ps1` ergänzt `Smoke-Qwen` für lokale Smokes ohne Zusatz-Dependencies.
     links:
       - label: run-dist
         path: scripts/run-dist.mjs
@@ -767,6 +771,12 @@ entries:
         path: scripts/smoke/qwen-smoke.mjs
       - label: hook:qwen-smoke
         path: scripts/hooks/qwen-smoke-trigger.mjs
+      - label: ollama-proxy
+        path: apps/api-lite/ollama-proxy.mjs
+      - label: vite-dev-proxy
+        path: apps/ui/vite.config.ts
+      - label: dev-helper
+        path: scripts/dev-helper.ps1
   - path: services/
     category: core-runtime
     status: active

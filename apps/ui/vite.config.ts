@@ -41,7 +41,7 @@ export default defineConfig({
     host: true,
     port: 5173,
     proxy: {
-      "/api/ai": {
+      "/api": {
         target: aiApiTarget,
         changeOrigin: true,
       },

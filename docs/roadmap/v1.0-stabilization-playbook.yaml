@@ -1,7 +1,7 @@
 fraktal: 40
 release: v1.0
 owner: codex
-updated: '2025-11-29'
+updated: '2025-11-30'
 summary: 'Strukturierter Maßnahmenplan zur Umsetzung der Fraktal40-Besprechung.
 
   Fokus auf stabile Kern-Builds, dist-first Services, verschärfte Governance
@@ -179,6 +179,12 @@ streams:
 
           Health-Badge für den Aggregator erfüllt sind.
 
+          Fraktal87 Update 2025-11-30: `apps/api-lite/ollama-proxy.mjs` stellt einen
+          leichten Express-Proxy bereit (`pnpm start:ollama-proxy`, PowerShell-Shortcuts
+          `Start-OllamaProxy`, `Start-UMOllama`). `apps/ui/vite.config.ts` routet `/api/*`
+          konsistent nach Port 4000 und `scripts/dev-helper.ps1` ergänzt `Smoke-Qwen`,
+          sodass lokale Läufe ohne zusätzliche Dependencies funktionieren.
+
           '
         output:
           - scripts/smoke/qwen-smoke.mjs
@@ -189,6 +195,9 @@ streams:
           - docs/roadmap/RoleOutCommands.md
           - docs/roadmap/RoleOutCommands.yaml
           - docs/roadmap/RoleOutCommands.json
+          - apps/api-lite/ollama-proxy.mjs
+          - apps/ui/vite.config.ts
+          - scripts/dev-helper.ps1
   - key: code-quality
     owner:
       lead: DevX Guild
