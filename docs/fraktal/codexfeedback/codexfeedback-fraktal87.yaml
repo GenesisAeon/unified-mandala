@@ -1,19 +1,20 @@
 fraktal: 87
-status: in-progress
+status: done
 owner: ChatGPT5DeepResearch
 summary:
   - 'Fraktal87 Qwen-Rollout: `scripts/smoke/qwen-smoke.mjs` + `pnpm smoke:qwen`, Pre-Push-Hook
     (`scripts/hooks/qwen-smoke-trigger.mjs`, `pnpm hook:qwen-smoke`), `.github/workflows/ci.qwen-smoke.yml`
     und `docs/roadmap/RoleOutCommands.(md|json|yaml)` halten den schrittweisen Mandala-Rollout
-    (Phase 0–6) fest; MandalaMap/Playbook spiegeln den Hook weiterhin als in-progress.'
+    (Phase 0–6) fest; MandalaMap/Playbook führten den Hook als aktiv, bis Fraktal88 die Restaufgaben übernahm.'
   - DevTalk.txt erneut ausgewertet (`analysis/devtalk87-evaluation.md`); Statusmatrix
     zeigt, dass CI/Governance/Observability-Punkte aus dem Playbook umgesetzt sind.
   - 'Fraktal87 Update: Shortcut-Diagnose-Skript (`scripts/diag/shortcuts.mjs` → `pnpm
     diag:shortcuts`) plus Ollama-Proxy (`apps/api-lite/ollama-proxy.mjs` → `pnpm start:ollama-proxy`/
     `pnpm ps:umo`/`pnpm ps:smoke-qwen`); DEV-SHORTCUTS & RoleOutCommands.* dokumentieren
-    die Start-/Smoke-Kette, Climate-MVP (Phase 4) & Gemini-Sigillin-Verlinkung bleiben offen.'
-  - Codexfeedback-Tracker (md/json/yaml) und Fraktalindex auf 87 angehoben, Fraktalrun
-    als „in-progress“ mit Repeat-Markierung vermerkt.
+    die Start-/Smoke-Kette. Restarbeiten (Climate-MVP Phase 4, Gemini-Sigillin-Link,
+    Health-Badge) sind nach Fraktal88 umgezogen.'
+  - Codexfeedback-Tracker (md/json/yaml) markieren Fraktal87 als abgeschlossen und verweisen
+    auf Fraktal88 als aktiven Hook.
 deliverables:
   - .github/workflows/ci.qwen-smoke.yml
   - .husky/pre-push
@@ -51,5 +52,5 @@ hook:
   progress: Proxy + Smoke via pnpm/PowerShell verdrahtet (`pnpm start:ollama-proxy`,
     `pnpm ps:umo`, `pnpm ps:smoke-qwen`); RoleOutCommands.* & DEV-SHORTCUTS dokumentieren
     den Flow.
-  next_step: Climate-MVP (Phase 4) liefern und Gemini-Sigillin in MandalaMap verlinken.
-repeat_required: true
+  next_step: Folgeaufgaben laufen unter Fraktal88 (Climate-MVP, Gemini-Link, Health-Badge).
+repeat_required: false

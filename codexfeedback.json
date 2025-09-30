@@ -1,9 +1,14 @@
 {
   "runs": [
     {
-      "fraktalrun": "Fraktal87 DevTalkStabilization",
+      "fraktalrun": "Fraktal88 DevTalkContinuation",
       "status": "in-progress",
-      "notes": "analysis/devtalk87-evaluation.md re-checks the DevTalk stabilization plan, confirms CI/governance/observability goals, and now documents the Ollama proxy rollout (`apps/api-lite/ollama-proxy.mjs` → `pnpm start:ollama-proxy` / `pnpm ps:umo` / `pnpm ps:smoke-qwen`) alongside the shortcut diagnostics. DEV-SHORTCUTS plus docs/roadmap/RoleOutCommands.* reflect the new start/smoke chain; Climate-MVP (Phase 4) and the Gemini sigillin link remain the open follow-ups, so MandalaMap.*, the stabilization playbook, and codexfeedback keep Fraktal87 in-progress."
+      "notes": "analysis/devtalk88-evaluation.md validates the DevTalk roadmap after the Qwen proxy fix, confirms CI/governance/observability/doc gates are green, and carries the remaining follow-ups (Climate MVP Phase 4, Gemini sigillin link, health badge) into Fraktal88. MandalaMap.*, stabilization playbook, and codexfeedback* are updated to reflect the new active hook."
+    },
+    {
+      "fraktalrun": "Fraktal87 DevTalkStabilization",
+      "status": "done",
+      "notes": "analysis/devtalk87-evaluation.md re-checks the DevTalk stabilization plan, confirms CI/governance/observability goals, and documents the Ollama proxy rollout (`apps/api-lite/ollama-proxy.mjs` → `pnpm start:ollama-proxy` / `pnpm ps:umo` / `pnpm ps:smoke-qwen`) plus the shortcut diagnostics. With the follow-up tasks migrated to Fraktal88, the Qwen rollout hook is now closed."
     },
     {
       "fraktalrun": "Fraktal86 PortOffsetAlignment",

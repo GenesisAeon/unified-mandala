@@ -15,7 +15,7 @@
       ],
       "notes": [
         "`apps/api-lite/ollama-proxy.mjs` starts via `pnpm start:ollama-proxy` or PowerShell (`pnpm ps:umo`).",
-        "Proxy + smoke shortcuts (`pnpm smoke:qwen`, `pnpm ps:smoke-qwen`) complete the Fraktal87 rollout path."
+        "Proxy + smoke shortcuts (`pnpm smoke:qwen`, `pnpm ps:smoke-qwen`) closed the Fraktal87 rollout; remaining follow-ups (Climate MVP, Gemini link, Health badge) sit with Fraktal88."
       ],
       "path": "apps/api-lite/",
       "status": "active",
@@ -1061,8 +1061,8 @@
     }
   },
   "meta": {
-    "fraktal": 87,
-    "generated": "2025-11-28 00:00:00+00:00",
+    "fraktal": 88,
+    "generated": "2025-11-30 00:00:00+00:00",
     "reference_docs": [
       "docs/roadmap/v1.0-stabilization-playbook.md",
       "docs/roadmap/v1.0-stabilization-playbook.yaml"

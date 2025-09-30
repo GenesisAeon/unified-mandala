@@ -1,7 +1,7 @@
 fraktal: 40
 release: v1.0
 owner: codex
-updated: '2025-11-29'
+updated: '2025-11-30'
 summary: 'Strukturierter Maßnahmenplan zur Umsetzung der Fraktal40-Besprechung.
 
   Fokus auf stabile Kern-Builds, dist-first Services, verschärfte Governance
@@ -182,10 +182,9 @@ streams:
 
           für Runner mit Qwen-Backend. Die Phasen- und Kommandoübersicht liegt in `docs/roadmap/RoleOutCommands.(md|yaml|json)`;
 
-          MandalaMap* und codexfeedback* markieren Fraktal87 solange als „in-progress“,
-          bis Phase 4 (Climate-MVP) und der
-
-          Health-Badge für den Aggregator erfüllt sind.
+          MandalaMap* und codexfeedback* haben Fraktal87 abgeschlossen; Restaufgaben
+          (Climate-MVP Phase 4, Gemini-Link, Health-Badge) werden in Fraktal88
+          nachverfolgt (`analysis/devtalk88-evaluation.md`).
 
           '
         output:
