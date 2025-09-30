@@ -1,0 +1,33 @@
+fraktal: 88
+status: in-progress
+owner: ChatGPT5DeepResearch
+summary:
+  - 'Fraktal88 DevTalkContinuation: `analysis/devtalk88-evaluation.md` bestätigt die erfüllten
+    DevTalk-Ziele (CI/CD, Governance, Observability, Docs) nach dem Qwen-Rollout und sammelt
+    die offenen Aufgaben (Climate-MVP Phase 4, Gemini-Sigillin-Link, Health-Badge) in einem
+    neuen Hook.'
+  - 'MandalaMap.* und `docs/roadmap/v1.0-stabilization-playbook.(md|yaml)` tragen Fraktal88 als
+    aktiven Status, codexfeedback.* markieren Fraktal87 als abgeschlossen.'
+  - 'Empfohlene Schritte: `pnpm start:cosmic-web` (Realtime-Check vor Climate MVP),
+    `pnpm meta:fraktal:organize` (Index), optional `pnpm export_depth_bundle` nach
+    Gemini-Integration.'
+deliverables:
+  - analysis/devtalk88-evaluation.md
+  - codexfeedback.yaml
+  - codexfeedback.json
+  - codexfeedback.md
+  - MandalaMap.md
+  - MandalaMap.yaml
+  - MandalaMap.json
+  - docs/roadmap/v1.0-stabilization-playbook.md
+  - docs/roadmap/v1.0-stabilization-playbook.yaml
+commands:
+  - pnpm start:cosmic-web
+  - pnpm meta:fraktal:organize
+  - pnpm export_depth_bundle
+hook:
+  progress: Qwen-Rollout validiert; Restarbeiten (Climate MVP, Gemini-Link, Health-Badge) als
+    aktiver Fokus dokumentiert.
+  next_step: Climate-MVP liefern, Gemini-Briefing einchecken + verlinken und Health-Badge in
+    README/Docs ergänzen; anschließend Fraktal88 schließen.
+repeat_required: true

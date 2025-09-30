@@ -1,14 +1,42 @@
 fraktal:
-  current: 87
+  current: 88
   history:
-    - id: 87
+    - id: 88
       status: in-progress
+      notes: 'Fraktal88 DevTalkContinuation: `analysis/devtalk88-evaluation.md` bewertet den
+        DevTalk-Plan nach Abschluss des Qwen-Rollouts, bestätigt die erfüllten Gates
+        (CI/Governance/Observability/Docs) und verlagert die offenen Aufgaben auf Climate-MVP
+        (Phase 4), Gemini-Sigillin-Verlinkung sowie Health-Aggregator-Badge. MandalaMap.*,
+        Stabilization-Playbook und codexfeedback* heben Fraktal88 als aktiven Hook hervor.'
+      deliverables:
+        - analysis/devtalk88-evaluation.md
+        - codexfeedback.yaml
+        - codexfeedback.json
+        - codexfeedback.md
+        - docs/fraktal/codexfeedback/codexfeedback-88-devtalk.yaml
+        - docs/roadmap/v1.0-stabilization-playbook.md
+        - docs/roadmap/v1.0-stabilization-playbook.yaml
+        - MandalaMap.md
+        - MandalaMap.yaml
+        - MandalaMap.json
+      commands:
+        - pnpm start:cosmic-web
+        - pnpm meta:fraktal:organize
+        - pnpm export_depth_bundle
+      hook:
+        progress: Qwen-Rollout abgeschlossen; DevTalk88-Evaluation bestätigt grüne Gates
+          und beschreibt Restarbeiten (Climate MVP, Gemini-Sigillin, Health-Badge).
+        next_step: Climate-MVP (Phase 4) liefern, Gemini-Briefing verlinken und Health-Badge
+          in README/docs platzieren; anschließend Fraktal88 schließen.
+      repeat_required: true
+    - id: 87
+      status: done
       notes: 'Fraktal87 DevTalkStabilization: analysis/devtalk87-evaluation.md bestätigt
         die DevTalk-Ziele (CI/Governance/Observability/Docs) und erweitert den Qwen-Rollout
         um den Ollama-Proxy (`apps/api-lite/ollama-proxy.mjs` → `pnpm start:ollama-proxy` /
         `pnpm ps:umo`) sowie den Smoke-Shortcut (`pnpm ps:smoke-qwen`). DEV-SHORTCUTS,
-        RoleOutCommands.* und MandalaMap.* spiegeln die neue Start-/Smoke-Kette; Climate-MVP
-        (Phase 4) und der Gemini-Sigillin-Link bleiben als offene Aufgaben markiert.'
+        RoleOutCommands.* und MandalaMap.* spiegeln die neue Start-/Smoke-Kette; offene
+        Aufgaben wurden nach Fraktal88 verlegt.'
       deliverables:
         - .github/workflows/ci.qwen-smoke.yml
         - .husky/pre-push
@@ -46,9 +74,8 @@ fraktal:
         progress: Proxy + Smoke via pnpm/PowerShell verdrahtet (`pnpm start:ollama-proxy`,
           `pnpm ps:umo`, `pnpm ps:smoke-qwen`); RoleOutCommands.* & Stabilization-Playbook
           aktualisiert.
-        next_step: Climate-MVP (Phase 4) liefern und Gemini-Sigillin in MandalaMap
-          verlinken.
-      repeat_required: true
+        next_step: Follow-ups an Fraktal88 delegiert (Climate-MVP, Gemini-Link, Health-Badge).
+      repeat_required: false
     - id: 86
       status: done
       notes: 'Fraktal86 PortOffsetAlignment: `scripts/dev-helper.ps1` setzt Service-Ports

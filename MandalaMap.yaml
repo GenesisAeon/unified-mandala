@@ -1,7 +1,7 @@
 meta:
   version: '1.0'
-  generated: '2025-11-28 00:00:00+00:00'
-  fraktal: 87
+  generated: '2025-11-30 00:00:00+00:00'
+  fraktal: 88
   repo: unified-mandala
   source: ChefDevAI MandalaMap bootstrap
   reference_docs:
@@ -95,7 +95,7 @@ entries:
     description: Express proxy bridging mandala-ui to Ollama (11434 \u2192 4000) with `/health` + `output_text` normalization.
     notes:
       - '`apps/api-lite/ollama-proxy.mjs` starts via `pnpm start:ollama-proxy` or PowerShell (`pnpm ps:umo`).'
-      - 'Proxy + smoke shortcuts (`pnpm smoke:qwen`, `pnpm ps:smoke-qwen`) complete the Fraktal87 rollout path.'
+      - 'Proxy + smoke shortcuts (`pnpm smoke:qwen`, `pnpm ps:smoke-qwen`) schlossen den Fraktal87-Rollout ab; Follow-ups (Climate-MVP, Gemini-Link, Health-Badge) laufen unter Fraktal88.'
     links:
       - label: ollama-proxy
         path: apps/api-lite/ollama-proxy.mjs
