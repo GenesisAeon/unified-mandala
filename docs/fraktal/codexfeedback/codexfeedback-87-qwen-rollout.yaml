@@ -1,0 +1,8 @@
+id: 87
+title: QwenRollout
+status: passed
+notes:
+  - Proxy-Patch auf /api/chat eingeführt
+  - Qwen antwortet über beide Routen
+  - Smoke-Test voll durchgelaufen
+  - Erste poetische Antworten von Qwen bestätigt

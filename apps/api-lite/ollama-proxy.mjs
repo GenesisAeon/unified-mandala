@@ -14,7 +14,7 @@ app.get("/health", (_req, res) => {
   res.json({ ok: true, provider: "ollama", model });
 });
 
-app.post("/api/ai/chat", async (req, res) => {
+async function handleChat(req, res) {
   try {
     const { messages = [], stream = false } = req.body ?? {};
 
@@ -48,7 +48,11 @@ app.post("/api/ai/chat", async (req, res) => {
   } catch (error) {
     res.status(500).json({ error: "proxy_crash", detail: String(error) });
   }
-});
+}
+
+// Backward-compatible route alias
+app.post("/api/chat", handleChat);
+app.post("/api/ai/chat", handleChat);
 
 app.listen(port, () => {
   console.log(`[ollama-proxy] http://localhost:${port} → ${upstream} (${model})`);
