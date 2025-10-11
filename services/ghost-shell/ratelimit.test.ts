@@ -6,7 +6,9 @@ describe('rate limit', () => {
   it('allows under limit', async () => {
     const socket = socketFactory('1');
     let called = false;
-    await rateLimit(socket, () => { called = true; });
+    await rateLimit(socket, () => {
+      called = true;
+    });
     expect(called).toBe(true);
   });
 
@@ -16,7 +18,9 @@ describe('rate limit', () => {
       await rateLimit(socket, () => {});
     }
     let err: Error | null = null;
-    await rateLimit(socket, (e?: Error) => { err = e || null; });
+    await rateLimit(socket, (e?: Error) => {
+      err = e || null;
+    });
     expect(err).toBeInstanceOf(Error);
   });
 });

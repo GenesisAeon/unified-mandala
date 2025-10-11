@@ -10,7 +10,7 @@ describe('MandalaReader', () => {
     expect(elements.length).toBe(1);
     expect(elements[0]).toEqual({
       type: 'circle',
-      attributes: { cx: '50', cy: '50', r: '10', fill: 'red' }
+      attributes: { cx: '50', cy: '50', r: '10', fill: 'red' },
     });
   });
 });

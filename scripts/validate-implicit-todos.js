@@ -20,7 +20,7 @@ function validateList(list, source) {
   const errors = [];
   const seen = new Set();
   list.forEach((item, idx) => {
-    ['commit', 'path', 'task', 'test'].forEach(key => {
+    ['commit', 'path', 'task', 'test'].forEach((key) => {
       if (!item[key] || typeof item[key] !== 'string' || !item[key].trim()) {
         errors.push(`${source}[${idx}] missing ${key}`);
       }

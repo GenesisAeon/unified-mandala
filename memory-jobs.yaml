@@ -1,19 +1,19 @@
 jobs:
   - job_name: nightly_fine_tune
-    schedule: "0 2 * * *"
+    schedule: '0 2 * * *'
     actions:
       - type: fine_tune_models
         agent: mistral_code_agent
         description: Nightly fine-tuning via Mistral CodeAgent
   - job_name: mandala-news-publish
-    schedule: "0 6 * * *"
+    schedule: '0 6 * * *'
     actions:
       - type: http_request
         method: POST
         url: http://orchestrator:8000/publish
         description: Publish approved drafts via orchestrator
   - job_name: mandala-positive-hourly
-    schedule: "0 * * * *"
+    schedule: '0 * * * *'
     actions:
       - type: http_request
         method: POST

@@ -11,7 +11,7 @@ describe('PluginList', () => {
           Promise.resolve([
             { name: 'mandalaHaiku', version: '1.1.0', approved: false, blacklisted: false },
           ]),
-      })
+      }),
     );
   });
 

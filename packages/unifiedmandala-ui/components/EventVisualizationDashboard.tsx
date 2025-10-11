@@ -9,11 +9,13 @@ export interface EventVisualizationDashboardProps {
   events: EventData[];
 }
 
-export const EventVisualizationDashboard: React.FC<EventVisualizationDashboardProps> = ({ events }) => {
+export const EventVisualizationDashboard: React.FC<EventVisualizationDashboardProps> = ({
+  events,
+}) => {
   const counts = events.reduce<Record<string, number>>((acc, evt) => {
     acc[evt.type] = (acc[evt.type] || 0) + 1;
     return acc;
-    }, {});
+  }, {});
   return (
     <div aria-label="event-visualization-dashboard">
       <ul>

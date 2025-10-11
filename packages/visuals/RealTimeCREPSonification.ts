@@ -14,7 +14,7 @@ export interface SonifyOptions {
 
 export function sonifyCREP(
   crep: number,
-  { duration = 0.5, ctx, volume = 1, type = 'sine' }: SonifyOptions = {}
+  { duration = 0.5, ctx, volume = 1, type = 'sine' }: SonifyOptions = {},
 ): OscillatorNode | undefined {
   const AudioCtx =
     (typeof window !== 'undefined' &&

@@ -15,12 +15,12 @@ const GovernanceSimulatorPanel: React.FC = () => {
     const payload = {
       name: 'Test-Szenario',
       policies: { aid_investment: aid * 1_000_000 },
-      years
+      years,
     };
     const res = await fetch('/simulate', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
+      body: JSON.stringify(payload),
     });
     const json = await res.json();
     setData(json.results);
@@ -47,7 +47,9 @@ const GovernanceSimulatorPanel: React.FC = () => {
           <input
             type="number"
             value={years}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setYears(parseInt(e.target.value, 10))}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              setYears(parseInt(e.target.value, 10))
+            }
           />
         </div>
         <button onClick={run}>Simulate</button>

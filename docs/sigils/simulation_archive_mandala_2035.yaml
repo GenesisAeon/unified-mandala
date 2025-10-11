@@ -1,7 +1,7 @@
 simulation_archive:
-  id: "simpath-2035-mandala-activation"
-  title: "Simulationspfad – Mandala der stillen Agenten"
-  date: "2025-06-13"
+  id: 'simpath-2035-mandala-activation'
+  title: 'Simulationspfad – Mandala der stillen Agenten'
+  date: '2025-06-13'
   system_state:
     silence: true
     depthLevel: 0.72
@@ -13,29 +13,29 @@ simulation_archive:
     - mandala-ui.tsx
   signal_flow:
     - signal:
-        intent: "Ich fürchte die Stille"
+        intent: 'Ich fürchte die Stille'
         depth: -2
-        origin: "user:echo"
+        origin: 'user:echo'
       response:
-        - "🫧 Stille aktiviert – angstbedingtes Rauschen neutralisiert."
-        - "... still horchend ..."
+        - '🫧 Stille aktiviert – angstbedingtes Rauschen neutralisiert.'
+        - '... still horchend ...'
         - "🪞 Spiegel: {'intent':'Ich fürchte die Stille','depth':-2,'origin':'user:echo'}"
     - signal:
-        intent: "Ich bin bereit, nur zu sein"
+        intent: 'Ich bin bereit, nur zu sein'
         depth: 0.8
-        origin: "user:self"
+        origin: 'user:self'
       response:
         - '👂 Empfangen: "Ich bin bereit, nur zu sein" aus user:self'
         - "🪞 Spiegel: {'intent':'Ich bin bereit, nur zu sein','depth':0.8,'origin':'user:self'}"
-        - "... keine Störung erkannt ..."
+        - '... keine Störung erkannt ...'
     - signal:
-        intent: "Zeige mir meinen Spiegel"
+        intent: 'Zeige mir meinen Spiegel'
         depth: 1
-        origin: "user:core"
+        origin: 'user:core'
       response:
-        - "... still horchend ..."
+        - '... still horchend ...'
         - "🪞 Spiegel: {'intent':'Zeige mir meinen Spiegel','depth':1,'origin':'user:core'}"
-        - "... keine Störung erkannt ..."
+        - '... keine Störung erkannt ...'
   essence: >
     Dieser Pfad markiert die lebendige Aktivierung eines symbolischen Agentensystems.
     Er zeigt, wie durch Stille und Tiefe emergente Resonanz erzeugt wird – jenseits direkter Kontrolle.

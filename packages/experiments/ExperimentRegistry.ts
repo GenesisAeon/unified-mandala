@@ -1,4 +1,4 @@
-import { JetStreamClient, NatsConnection, StringCodec } from "nats";
+import { JetStreamClient, NatsConnection, StringCodec } from 'nats';
 
 export interface ExperimentRecord {
   id: string;
@@ -25,7 +25,7 @@ export class ExperimentRegistry {
     const js = nc.jetstream();
     try {
       const jsm = await nc.jetstreamManager();
-      await jsm.streams.add({ name: "experiments", subjects: ["experiments.*"] });
+      await jsm.streams.add({ name: 'experiments', subjects: ['experiments.*'] });
     } catch (err: any) {
       // ignore if already exists or manager unavailable
     }

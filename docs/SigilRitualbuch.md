@@ -8,8 +8,8 @@ und konkrete Instruktionen.
 
 ```yaml
 sigillin_id: um:2025-0806-CHAT-MIGRATION
-title: "Chat-Wechsel-Sigillin"
-trigger_phrase: "Wechsle in neuen Chat"
+title: 'Chat-Wechsel-Sigillin'
+trigger_phrase: 'Wechsle in neuen Chat'
 instructions: |
   1) Lade Handover: GenesisAeonZIPMEM/handovers/<AUTO_TS>-handover.json
   2) Initialisiere Module:

@@ -5,10 +5,10 @@ describe('validateArgs', () => {
     type: 'object',
     properties: {
       name: { type: 'string' },
-      age: { type: 'number' }
+      age: { type: 'number' },
     },
     required: ['name'],
-    additionalProperties: false
+    additionalProperties: false,
   };
 
   it('accepts valid arguments', () => {

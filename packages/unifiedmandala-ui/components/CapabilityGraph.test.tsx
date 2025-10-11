@@ -14,4 +14,3 @@ test('renders capability gating information', () => {
   expect(screen.getByText('write: ✅')).toBeInTheDocument();
   expect(screen.getByText('delete: 🚫 (gated by: admin)')).toBeInTheDocument();
 });
-

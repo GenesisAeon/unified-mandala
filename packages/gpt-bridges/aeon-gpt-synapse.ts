@@ -15,13 +15,10 @@ import { isValidRole } from './gptRoles';
 const MODEL_MATRIX: Record<GPTRole, string[]> = {
   [GPTRole.AEON]: ['gpt-4.1', 'gpt-5'],
   [GPTRole.CREP]: ['gpt-4.1'],
-  [GPTRole.POET]: ['gpt-4.1']
+  [GPTRole.POET]: ['gpt-4.1'],
 };
 
-export async function sendToGPT(
-  request: GPTRequest,
-  retries = 2
-): Promise<string> {
+export async function sendToGPT(request: GPTRequest, retries = 2): Promise<string> {
   if (!isValidRole(request.role)) {
     throw new Error(`Unbekannte GPT-Rolle: ${request.role}`);
   }
@@ -38,7 +35,7 @@ export async function sendToGPT(
         const response = await fetch(endpoint, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ ...request, phase: phaseId, model })
+          body: JSON.stringify({ ...request, phase: phaseId, model }),
         });
         if (!response.ok) {
           throw new Error(`GPT request failed: ${response.status}`);
@@ -50,7 +47,7 @@ export async function sendToGPT(
         if (attempt === retries) {
           if (model === models[models.length - 1]) {
             throw new Error(
-              `Network request failed after ${retries + 1} attempts: ${(err as Error).message}`
+              `Network request failed after ${retries + 1} attempts: ${(err as Error).message}`,
             );
           }
           // try next model

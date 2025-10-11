@@ -12,7 +12,7 @@ function loadAdvancedTodo(file) {
 }
 
 function getOpenTasks(file) {
-  return loadAdvancedTodo(file).filter(t => t.status === 'todo');
+  return loadAdvancedTodo(file).filter((t) => t.status === 'todo');
 }
 
 module.exports = { loadAdvancedTodo, getOpenTasks };

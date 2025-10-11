@@ -5,7 +5,9 @@ class MockAgent implements Agent {
   id = 'Mock';
   layer = 'Aeon';
   received: Task[] = [];
-  async handle(task: Task) { this.received.push(task); }
+  async handle(task: Task) {
+    this.received.push(task);
+  }
 }
 
 describe('AeonCoreAssembler', () => {

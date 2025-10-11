@@ -12,11 +12,11 @@ spec:
   triggers:
     - type: nats-jetstream
       metadata:
-        natsServerMonitoringEndpoint: "http://nats.monitoring:8222"
+        natsServerMonitoringEndpoint: 'http://nats.monitoring:8222'
         streamName: gpt5
         consumerName: gpt5-worker
-        pendingMessages: "100"
+        pendingMessages: '100'
     - type: metrics-api
       metadata:
-        url: "http://gpt5-budget-guard:8080/usage"
-        value: "MAX_DAILY_TOKENS"
+        url: 'http://gpt5-budget-guard:8080/usage'
+        value: 'MAX_DAILY_TOKENS'

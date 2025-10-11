@@ -5,7 +5,7 @@ function updateFromNewConvos(
   convPath = path.join(__dirname, '../docs/sigils/newadvancedconversations.json'),
   yamlPath = path.join(__dirname, '../advancedToDo.yaml'),
   jsonPath = path.join(__dirname, '../advancedToDo.json'),
-  options = { includeImplicit: true }
+  options = { includeImplicit: true },
 ) {
   updateAdvancedTodo(convPath, yamlPath, jsonPath, options);
   console.log(`Updated advancedToDo files from ${path.basename(convPath)}`);

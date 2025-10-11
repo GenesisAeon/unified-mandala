@@ -6,7 +6,7 @@ interface SigillinFractalVisualizerProps {
 
 const SigillinFractalVisualizer: React.FC<SigillinFractalVisualizerProps> = ({ sigillinData }) => (
   <div aria-label="Sigillin Fraktalkunst">
-    {sigillinData.map(sigil => (
+    {sigillinData.map((sigil) => (
       <div
         key={sigil.id}
         data-testid="fractal-piece"

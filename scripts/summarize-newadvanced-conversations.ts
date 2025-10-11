@@ -11,7 +11,10 @@ export interface ConversationSummary {
   nodes: number;
 }
 
-export function summarizeNewAdvancedConversations(filePath: string, limit?: number): Promise<ConversationSummary[]> {
+export function summarizeNewAdvancedConversations(
+  filePath: string,
+  limit?: number,
+): Promise<ConversationSummary[]> {
   return new Promise((resolve, reject) => {
     const summaries: ConversationSummary[] = [];
     let resolved = false;
@@ -43,9 +46,12 @@ if (typeof require !== 'undefined' && require.main === module) {
   const args: string[] = process.argv.slice(2);
   const fileIndex = args.findIndex((a: string) => a === '--file' || a === '-f');
   const limitIndex = args.findIndex((a: string) => a === '--limit' || a === '-n');
-  const file = fileIndex >= 0 ? path.resolve(args[fileIndex + 1]) : path.join(__dirname, '../docs/sigils/newadvancedconversations.json');
+  const file =
+    fileIndex >= 0
+      ? path.resolve(args[fileIndex + 1])
+      : path.join(__dirname, '../docs/sigils/newadvancedconversations.json');
   const limit = limitIndex >= 0 ? parseInt(args[limitIndex + 1], 10) : undefined;
-  summarizeNewAdvancedConversations(file, limit).then(res => {
+  summarizeNewAdvancedConversations(file, limit).then((res) => {
     console.log(JSON.stringify(res, null, 2));
   });
 }

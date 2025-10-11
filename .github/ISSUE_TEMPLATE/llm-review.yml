@@ -1,7 +1,7 @@
-name: "🤖 LLM Review Request"
-description: "Request a review cycle from Claude/Mistral"
-title: "[LLM] Review: <short description>"
-labels: ["llm-orchestration","review"]
+name: '🤖 LLM Review Request'
+description: 'Request a review cycle from Claude/Mistral'
+title: '[LLM] Review: <short description>'
+labels: ['llm-orchestration', 'review']
 body:
   - type: markdown
     attributes:
@@ -9,7 +9,7 @@ body:
   - type: textarea
     id: context
     attributes:
-      label: "Kontext / Scope"
+      label: 'Kontext / Scope'
       placeholder: |
         - EventBus (NATS + OTEL), Governance (OPA), Runner-Brücke
         - Links: PR #123, Design-Doc
@@ -17,11 +17,11 @@ body:
   - type: checkboxes
     id: acceptance
     attributes:
-      label: "Acceptance"
+      label: 'Acceptance'
       options:
-        - label: "DIFFs git-apply-fähig"          # required
+        - label: 'DIFFs git-apply-fähig' # required
           required: true
-        - label: "TESTS decken Edge-Cases ab"     # required
+        - label: 'TESTS decken Edge-Cases ab' # required
           required: true
-        - label: "CHANGESPEC mit risk + acceptance"
+        - label: 'CHANGESPEC mit risk + acceptance'
           required: true

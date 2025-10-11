@@ -10,10 +10,10 @@ try {
 }
 
 function appendTasks(entries, yamlFile, jsonFile) {
-  const loadYaml = f => (fs.existsSync(f) ? YAML.parse(fs.readFileSync(f, 'utf8')) : []);
-  const loadJson = f => (fs.existsSync(f) ? JSON.parse(fs.readFileSync(f, 'utf8')) : []);
+  const loadYaml = (f) => (fs.existsSync(f) ? YAML.parse(fs.readFileSync(f, 'utf8')) : []);
+  const loadJson = (f) => (fs.existsSync(f) ? JSON.parse(fs.readFileSync(f, 'utf8')) : []);
   const merge = (existing, add) => {
-    const known = new Set(existing.map(e => e.commit));
+    const known = new Set(existing.map((e) => e.commit));
     for (const e of add) {
       if (!known.has(e.commit)) {
         existing.push(e);
@@ -32,11 +32,11 @@ function run(dir = path.join(__dirname, '..')) {
   const yamlFile = path.join(__dirname, '../advancedToDo.yaml');
   const jsonFile = path.join(__dirname, '../advancedToDo.json');
   const todos = scanTodoComments(dir);
-  const entries = todos.map(t => ({
+  const entries = todos.map((t) => ({
     commit: `TODO in ${t.file}:${t.line}`,
     path: t.file,
     task: t.text,
-    test: ''
+    test: '',
   }));
   appendTasks(entries, yamlFile, jsonFile);
   console.log(`added ${entries.length} code todos from ${dir}`);

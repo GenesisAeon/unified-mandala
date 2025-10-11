@@ -1,8 +1,8 @@
 # Grundsymbole
 
 | Symbol | Bedeutung |
-|-------|-----------|
-| 🜂 | Feuer |
-| 🜁 | Luft |
-| 🜃 | Erde |
-| 🜄 | Wasser |
+| ------ | --------- |
+| 🜂      | Feuer     |
+| 🜁      | Luft      |
+| 🜃      | Erde      |
+| 🜄      | Wasser    |

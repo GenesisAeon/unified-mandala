@@ -1,5 +1,5 @@
-import { KEYWORDS } from "./kw";
-import { RX } from "./regexes";
+import { KEYWORDS } from './kw';
+import { RX } from './regexes';
 
 export type ConvItem = {
   when?: string | number;
@@ -12,7 +12,7 @@ export type ConvItem = {
 };
 
 export function extractText(item: ConvItem): string {
-  return item.text ?? item.message ?? item.content ?? "";
+  return item.text ?? item.message ?? item.content ?? '';
 }
 
 export function findKeywords(t: string): string[] {

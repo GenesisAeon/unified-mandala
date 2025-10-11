@@ -10,4 +10,3 @@ test('aggregates weighted contributions per actor', () => {
   expect(ledger.totalFor('bob')).toBe(5 * 2);
   expect(ledger.summary()).toEqual({ alice: 11.5, bob: 10 });
 });
-

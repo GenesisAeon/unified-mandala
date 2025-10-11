@@ -13,7 +13,7 @@ export default function MandalaPluginList() {
     }
     socketRef.current.emit('sigil_alert', {
       id: 'aeon:2025-0626-HIGH-ENERGY',
-      crep: {}
+      crep: {},
     });
   };
 

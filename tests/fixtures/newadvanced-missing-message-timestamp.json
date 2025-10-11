@@ -15,8 +15,8 @@
         "id": "n1",
         "message": {
           "id": "n1",
-          "author": {"role": "user"},
-          "content": {"parts": ["hi"]}
+          "author": { "role": "user" },
+          "content": { "parts": ["hi"] }
         },
         "parent": "client-created-root",
         "children": []

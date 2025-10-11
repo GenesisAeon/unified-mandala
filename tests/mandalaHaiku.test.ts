@@ -18,6 +18,10 @@ describe.skip('mandalaHaiku plugin', () => {
       done();
     });
 
-    socket.emit('sigil_alert', { id: 'aeon:2025-0626-HIGH-ENERGY', crep: 0.9, symbol: '\ud83c\udf1f' });
+    socket.emit('sigil_alert', {
+      id: 'aeon:2025-0626-HIGH-ENERGY',
+      crep: 0.9,
+      symbol: '\ud83c\udf1f',
+    });
   });
 });

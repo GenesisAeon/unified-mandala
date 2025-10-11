@@ -11,7 +11,7 @@ export function createCREPFeedbackAPI(manager: CREPManager) {
 
   app.post('/crep-feedback', (req, res) => {
     const { C, R, E, P } = req.body || {};
-    if ([C, R, E, P].some(v => typeof v !== 'number')) {
+    if ([C, R, E, P].some((v) => typeof v !== 'number')) {
       return res.status(400).json({ error: 'invalid data' });
     }
     manager.addCREPEntry(C, R, E, P);

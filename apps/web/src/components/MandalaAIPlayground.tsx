@@ -47,10 +47,10 @@ export default function MandalaAIPlayground() {
         body: JSON.stringify({
           messages: [
             { role: 'system', content: system },
-            { role: 'user', content: prompt }
+            { role: 'user', content: prompt },
           ],
-          temperature: 0.2
-        })
+          temperature: 0.2,
+        }),
       });
 
       const data = await response.json();
@@ -71,9 +71,8 @@ export default function MandalaAIPlayground() {
       <header className="grid gap-2">
         <h1 className="text-2xl font-semibold">Mandala AI Playground</h1>
         <p className="text-sm text-neutral-600">
-          Test a Responses API bridge exposed via <code>/api/ai/chat</code>. Configure
-          the system prompt, send a question, and inspect the answer returned by the
-          Unified Mandala AI worker.
+          Test a Responses API bridge exposed via <code>/api/ai/chat</code>. Configure the system
+          prompt, send a question, and inspect the answer returned by the Unified Mandala AI worker.
         </p>
       </header>
 

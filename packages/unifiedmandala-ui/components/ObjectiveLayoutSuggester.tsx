@@ -20,7 +20,7 @@ const ObjectiveLayoutSuggester: React.FC = () => {
       <textarea
         aria-label="objective-input"
         value={objective}
-        onChange={e => setObjective(e.target.value)}
+        onChange={(e) => setObjective(e.target.value)}
       />
       <button onClick={generate}>Generate Layout</button>
       {layout && <pre aria-label="layout-output">{layout}</pre>}

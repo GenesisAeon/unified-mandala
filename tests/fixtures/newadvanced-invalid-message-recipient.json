@@ -15,10 +15,10 @@
         "id": "n1",
         "message": {
           "id": "n1",
-          "author": {"role": "user"},
+          "author": { "role": "user" },
           "create_time": 1,
           "update_time": 1,
-          "content": {"parts": ["hi"]},
+          "content": { "parts": ["hi"] },
           "status": "finished_successfully",
           "recipient": "invalid_recipient",
           "channel": "final",

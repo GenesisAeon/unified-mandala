@@ -7,8 +7,8 @@ if (!path) {
 }
 const content = fs.readFileSync(path, 'utf8');
 const lines = content.split(/\r?\n/);
-const errorCount = lines.filter(l => l.includes('ERROR')).length;
-const resonanceLines = lines.filter(l => l.includes('resonance'));
+const errorCount = lines.filter((l) => l.includes('ERROR')).length;
+const resonanceLines = lines.filter((l) => l.includes('resonance'));
 console.log(`Lines: ${lines.length}`);
 console.log(`Errors: ${errorCount}`);
 console.log(`Resonance mentions: ${resonanceLines.length}`);

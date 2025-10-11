@@ -103,9 +103,9 @@
     dem Datensatz zu filtern.
   test: ''
   status: planned
-- commit: "Extend HookTriggererAgent to trigger multiple webhooks and log responses"
+- commit: 'Extend HookTriggererAgent to trigger multiple webhooks and log responses'
   path: packages/agents/HookTriggererAgent.ts
-  task: "Support array task.urls and log HTTP status for each hook"
+  task: 'Support array task.urls and log HTTP status for each hook'
   test: packages/agents/__tests__/HookTriggererAgent.spec.ts
   status: done
 - commit: >-

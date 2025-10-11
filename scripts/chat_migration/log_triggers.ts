@@ -10,7 +10,8 @@ interface LogOptions {
 }
 
 export async function logTriggers(options: LogOptions = {}) {
-  const conversationsPath = options.conversationsPath || path.resolve('docs/sigils/newadvancedconversations.json');
+  const conversationsPath =
+    options.conversationsPath || path.resolve('docs/sigils/newadvancedconversations.json');
   const todoPath = options.todoPath || path.resolve('advancedToDo.yaml');
   const outPath = options.outPath || path.resolve('scripts/chat_migration/migration_log.json');
   const limit = options.limit ?? 5;
@@ -26,14 +27,17 @@ export async function logTriggers(options: LogOptions = {}) {
   } catch (err) {
     throw new Error(`Failed to parse conversations at ${conversationsPath}: ${err}`);
   }
-  const triggerPhrases = convos.slice(-limit).map(c => c.title).filter(Boolean);
+  const triggerPhrases = convos
+    .slice(-limit)
+    .map((c) => c.title)
+    .filter(Boolean);
 
   // Load advanced ToDos and filter open ones
   const todoRaw = await fs.readFile(todoPath, 'utf8');
   const todos = (yaml.load(todoRaw) as any[]) || [];
   const openTodos = todos
-    .filter(t => t && t.commit && t.status !== 'done')
-    .map(t => t.commit as string);
+    .filter((t) => t && t.commit && t.status !== 'done')
+    .map((t) => t.commit as string);
 
   const log = { triggerPhrases, openTodos };
   await fs.mkdir(path.dirname(outPath), { recursive: true });
@@ -42,7 +46,7 @@ export async function logTriggers(options: LogOptions = {}) {
 }
 
 if (require.main === module) {
-  logTriggers().catch(err => {
+  logTriggers().catch((err) => {
     console.error(err);
     process.exit(1);
   });

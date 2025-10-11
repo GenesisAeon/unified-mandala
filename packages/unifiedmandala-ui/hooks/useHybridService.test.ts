@@ -10,7 +10,7 @@ test('selects response with highest CREP', async () => {
   };
 
   global.fetch = jest.fn((url: string) =>
-    Promise.resolve({ json: () => Promise.resolve(responses[url]) })
+    Promise.resolve({ json: () => Promise.resolve(responses[url]) }),
   ) as any;
 
   const { result } = renderHook(() => useHybridService(['/a', '/b', '/c']));

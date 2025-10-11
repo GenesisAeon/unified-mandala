@@ -14,10 +14,7 @@ export interface BehaviorDiffResult {
  * and highlights additions, removals and modifications.
  */
 export class BehavioralDiffViewer {
-  static diff(
-    baseline: BehaviorSnapshot[],
-    current: BehaviorSnapshot[]
-  ): BehaviorDiffResult {
+  static diff(baseline: BehaviorSnapshot[], current: BehaviorSnapshot[]): BehaviorDiffResult {
     const baseMap = new Map(baseline.map((b) => [b.id, b.response]));
     const currMap = new Map(current.map((c) => [c.id, c.response]));
 
@@ -29,7 +26,7 @@ export class BehavioralDiffViewer {
       if (!baseMap.has(id)) {
         added.push({ id, response: resp });
       } else if (baseMap.get(id) !== resp) {
-        changed.push({ id, from: baseMap.get(id)! , to: resp });
+        changed.push({ id, from: baseMap.get(id)!, to: resp });
       }
     }
 

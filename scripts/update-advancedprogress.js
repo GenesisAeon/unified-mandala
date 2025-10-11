@@ -9,7 +9,10 @@ function getLastCommitMessage() {
 
 function getOpenBranches() {
   const output = execSync('git branch --format="%(refname:short)"').toString();
-  return output.split('\n').map(b => b.trim()).filter(b => b && b !== 'main');
+  return output
+    .split('\n')
+    .map((b) => b.trim())
+    .filter((b) => b && b !== 'main');
 }
 
 function getMergeConflicts() {

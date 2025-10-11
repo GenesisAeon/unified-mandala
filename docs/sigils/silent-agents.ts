@@ -8,26 +8,29 @@ export interface CREPSignal {
 }
 
 abstract class SilentAgent {
-  constructor(public id: string, public role: string) {}
+  constructor(
+    public id: string,
+    public role: string,
+  ) {}
   abstract process(signal: CREPSignal): string;
 }
 
 export class ListeningAgent extends SilentAgent {
   constructor() {
-    super("aeon:listener.01", "Empfangsagent");
+    super('aeon:listener.01', 'Empfangsagent');
   }
 
   process(signal: CREPSignal): string {
     if (signal.depth === 0) {
       return `👂 Empfangen: "${signal.intent}" aus ${signal.origin}`;
     }
-    return "... still horchend ...";
+    return '... still horchend ...';
   }
 }
 
 export class MirrorAgent extends SilentAgent {
   constructor() {
-    super("aeon:mirror.02", "Spiegelagent");
+    super('aeon:mirror.02', 'Spiegelagent');
   }
 
   process(signal: CREPSignal): string {
@@ -37,14 +40,14 @@ export class MirrorAgent extends SilentAgent {
 
 export class SilenceAgent extends SilentAgent {
   constructor() {
-    super("aeon:silencer.03", "Stilleagent");
+    super('aeon:silencer.03', 'Stilleagent');
   }
 
   process(signal: CREPSignal): string {
-    if (signal.intent.includes("Angst") || signal.depth < -1) {
-      return "🫧 Stille aktiviert – angstbedingtes Rauschen neutralisiert.";
+    if (signal.intent.includes('Angst') || signal.depth < -1) {
+      return '🫧 Stille aktiviert – angstbedingtes Rauschen neutralisiert.';
     }
-    return "... keine Störung erkannt ...";
+    return '... keine Störung erkannt ...';
   }
 }
 

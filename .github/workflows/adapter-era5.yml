@@ -2,7 +2,7 @@ name: ERA5 Adapter Pipeline
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 2 * * *"   # täglich 02:00 UTC
+    - cron: '0 2 * * *' # täglich 02:00 UTC
 jobs:
   era5:
     runs-on: ubuntu-latest
@@ -11,11 +11,11 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: '20'
 
       - uses: actions/setup-python@v5
         with:
-          python-version: "3.10"
+          python-version: '3.10'
 
       - run: corepack enable && corepack prepare pnpm@8.15.6 --activate
       - run: pnpm install --frozen-lockfile

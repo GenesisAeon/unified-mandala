@@ -14,12 +14,12 @@ const SingularitySimulatorPanel: React.FC = () => {
     const payload = {
       name: 'Standard-Szenario',
       timeline_years: years,
-      merge_depth: mergeDepth
+      merge_depth: mergeDepth,
     };
     const res = await fetch('/simulate', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
+      body: JSON.stringify(payload),
     });
     const json = await res.json();
     setData(json.results);
@@ -56,11 +56,21 @@ const SingularitySimulatorPanel: React.FC = () => {
           <div className="h-64">
             <ResponsiveContainer width="100%" height="100%">
               <LineChart data={data}>
-                <XAxis dataKey="year" label={{ value: 'Jahr', position: 'insideBottomRight', offset: -5 }} />
-                <YAxis label={{ value: 'Intelligenz-Faktor', angle: -90, position: 'insideLeft' }} />
+                <XAxis
+                  dataKey="year"
+                  label={{ value: 'Jahr', position: 'insideBottomRight', offset: -5 }}
+                />
+                <YAxis
+                  label={{ value: 'Intelligenz-Faktor', angle: -90, position: 'insideLeft' }}
+                />
                 <Tooltip />
                 <Line dataKey="raw_intelligence" name="Basis-Intelligenz" dot={false} />
-                <Line dataKey="effective_intelligence" name="Effektive Intelligenz" dot={false} strokeDasharray="3 3" />
+                <Line
+                  dataKey="effective_intelligence"
+                  name="Effektive Intelligenz"
+                  dot={false}
+                  strokeDasharray="3 3"
+                />
               </LineChart>
             </ResponsiveContainer>
           </div>
@@ -71,4 +81,3 @@ const SingularitySimulatorPanel: React.FC = () => {
 };
 
 export default SingularitySimulatorPanel;
-

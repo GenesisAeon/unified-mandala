@@ -1,24 +1,24 @@
 # AeonSealAI – SealCore Initialstruktur
 
 SealCore:
-  id: "seal-core-alpha"
-  version: "0.1.0"
-  type: "Membraninterface zwischen AdvancedAI & SelfLearnAI"
+  id: 'seal-core-alpha'
+  version: '0.1.0'
+  type: 'Membraninterface zwischen AdvancedAI & SelfLearnAI'
   description: |
     Das SealCore-Modul bildet die zentrale Übergangsschicht,
     die kontinuierlich Datenströme überwacht, symbolisch verarbeitet
     und mittels CREP- und Fraktal-Feedbackzyklen adaptive Entscheidungen trifft.
 
   dependencies:
-    - python: ">=3.10"
+    - python: '>=3.10'
     - pyyaml
     - numpy
-    - flask       # optional für Web-API
-    - websocket-client  # optional für Reactive-Interface
+    - flask # optional für Web-API
+    - websocket-client # optional für Reactive-Interface
 
   components:
     input_monitoring:
-      role: "Erfassung aller eingehenden Nachrichten und Datenströme"
+      role: 'Erfassung aller eingehenden Nachrichten und Datenströme'
       implementation: |
         def monitor_input():
             # Beispiel: Lese aus Queue oder Socket
@@ -26,7 +26,7 @@ SealCore:
             return data
 
     symbolic_parser:
-      role: "Transformation numerischer und textueller Daten in symbolische Codes"
+      role: 'Transformation numerischer und textueller Daten in symbolische Codes'
       implementation: |
         def parse_to_symbols(data):
             # Nutze SymbolMapper-Agent
@@ -34,14 +34,14 @@ SealCore:
             return symbols
 
     lumen_resonator:
-      role: "Erzeugung von Klang- und Farbsignalen als systemisches Feedback"
+      role: 'Erzeugung von Klang- und Farbsignalen als systemisches Feedback'
       implementation: |
         def generate_resonance(symbols):
             # Beispiel: mixe Frequenz- und Farbvektoren
             return resonance_engine.render(symbols)
 
     behavioral_evolver:
-      role: "Selbstoptimierung und Reflexion basierend auf CREP & Trikāya"
+      role: 'Selbstoptimierung und Reflexion basierend auf CREP & Trikāya'
       implementation: |
         def evolve_behavior(symbols):
             scores = crep_bridge.evaluate(symbols)
@@ -73,16 +73,16 @@ SealCore:
 
   logging:
     enabled: true
-    path: "logs/SealCore/"
-    format: "yaml"
+    path: 'logs/SealCore/'
+    format: 'yaml'
 
   api_endpoints:
-    - path: "/sealcore/act"
+    - path: '/sealcore/act'
       method: POST
-      description: "Nimmt ein JSON-Paket entgegen, verarbeitet und liefert symbolische Antwort"
+      description: 'Nimmt ein JSON-Paket entgegen, verarbeitet und liefert symbolische Antwort'
 
   integration:
-    - "ArchivAeon: liefert kontextsensitive Fragmente"
-    - "SymbolMapper: stellt Glyphen bereit"
-    - "CREPBridge: liefert Bewertungsmatrizen"
-    - "MandalaUI: visualisiert Resonanzantworten"
+    - 'ArchivAeon: liefert kontextsensitive Fragmente'
+    - 'SymbolMapper: stellt Glyphen bereit'
+    - 'CREPBridge: liefert Bewertungsmatrizen'
+    - 'MandalaUI: visualisiert Resonanzantworten'

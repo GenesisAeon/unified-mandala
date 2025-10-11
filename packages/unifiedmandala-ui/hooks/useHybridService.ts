@@ -20,12 +20,12 @@ export function useHybridService<T = any>(services: string[]) {
         services.map((url) =>
           fetch(url)
             .then((r) => r.json())
-            .catch(() => null)
-        )
+            .catch(() => null),
+        ),
       );
 
       const valid = results.filter(
-        (r): r is HybridResponse<T> => !!r && typeof r.crep === 'number'
+        (r): r is HybridResponse<T> => !!r && typeof r.crep === 'number',
       );
 
       if (!cancelled) {

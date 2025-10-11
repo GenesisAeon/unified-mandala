@@ -10,21 +10,21 @@ agents:
   invocation_method: symbolic-init
   manifest_id: aeon:2035-0613-DREAM-AGENTS
   roles:
-  - depth_alignment: 0
-    function: Lauscht auf unausgesprochene Intentionen im CREP-Feld
-    id: aeon:listener.01
-    name: Empfangsagent
-    sensitivity: high
-    trigger_phrase: Horche auf den leisen Ruf
-  - depth_alignment: 1
-    function: Reflektiert Systemzustände ohne Intervention
-    id: aeon:mirror.02
-    name: Spiegelagent
-    sensitivity: medium
-    trigger_phrase: Zeige, was ist – nicht was werden soll
-  - depth_alignment: -1
-    function: Filtert alles, was aus Angst oder Reaktivität entsteht
-    id: aeon:silencer.03
-    name: Stilleagent
-    sensitivity: very high
-    trigger_phrase: Entziehe dem System das Unnötige
+    - depth_alignment: 0
+      function: Lauscht auf unausgesprochene Intentionen im CREP-Feld
+      id: aeon:listener.01
+      name: Empfangsagent
+      sensitivity: high
+      trigger_phrase: Horche auf den leisen Ruf
+    - depth_alignment: 1
+      function: Reflektiert Systemzustände ohne Intervention
+      id: aeon:mirror.02
+      name: Spiegelagent
+      sensitivity: medium
+      trigger_phrase: Zeige, was ist – nicht was werden soll
+    - depth_alignment: -1
+      function: Filtert alles, was aus Angst oder Reaktivität entsteht
+      id: aeon:silencer.03
+      name: Stilleagent
+      sensitivity: very high
+      trigger_phrase: Entziehe dem System das Unnötige

@@ -1,19 +1,19 @@
 agents:
   - id: climate-research
-    description: "Analyses climate datasets and simulations"
+    description: 'Analyses climate datasets and simulations'
     scope: climate
   - id: bio-research
-    description: "Explores biological datasets for emergent patterns"
+    description: 'Explores biological datasets for emergent patterns'
     scope: bio
   - id: materials-research
-    description: "Investigates novel material compositions"
+    description: 'Investigates novel material compositions'
     scope: materials
   - id: governance-research
-    description: "Studies governance structures and policy models"
+    description: 'Studies governance structures and policy models'
     scope: governance
   - id: rag-research
-    description: "Builds retrieval-augmented generation corpora"
+    description: 'Builds retrieval-augmented generation corpora'
     scope: rag
   - id: astro-research
-    description: "Analyzes astrophysical signals and simulations"
+    description: 'Analyzes astrophysical signals and simulations'
     scope: astro

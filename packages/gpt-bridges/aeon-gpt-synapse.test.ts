@@ -10,8 +10,8 @@ describe('sendToGPT', () => {
     global.fetch = jest.fn(() =>
       Promise.resolve({
         ok: true,
-        json: () => Promise.resolve({ response: 'Hallo' })
-      })
+        json: () => Promise.resolve({ response: 'Hallo' }),
+      }),
     ) as any;
     const result = await sendToGPT({ role: GPTRole.AEON, input: 'test' });
     expect(fetch).toHaveBeenCalled();
@@ -26,7 +26,7 @@ describe('sendToGPT', () => {
       .mockRejectedValueOnce(new Error('net'))
       .mockResolvedValueOnce({
         ok: true,
-        json: () => Promise.resolve({ response: 'Hallo' })
+        json: () => Promise.resolve({ response: 'Hallo' }),
       });
     global.fetch = mockFetch as any;
     const result = await sendToGPT({ role: GPTRole.AEON, input: 'test' });
@@ -42,7 +42,7 @@ describe('sendToGPT', () => {
       .mockResolvedValueOnce({ ok: false, status: 500 })
       .mockResolvedValueOnce({
         ok: true,
-        json: () => Promise.resolve({ response: 'Hallo' })
+        json: () => Promise.resolve({ response: 'Hallo' }),
       });
     global.fetch = mockFetch as any;
     const result = await sendToGPT({ role: GPTRole.AEON, input: 'test' });
@@ -57,9 +57,9 @@ describe('sendToGPT', () => {
   it('throws after max retries', async () => {
     const mockFetch = jest.fn().mockRejectedValue(new Error('offline'));
     global.fetch = mockFetch as any;
-    await expect(
-      sendToGPT({ role: GPTRole.AEON, input: 'test' })
-    ).rejects.toThrow(/Network request failed/);
+    await expect(sendToGPT({ role: GPTRole.AEON, input: 'test' })).rejects.toThrow(
+      /Network request failed/,
+    );
     // 3 attempts for each of two models
     expect(mockFetch).toHaveBeenCalledTimes(6);
   });

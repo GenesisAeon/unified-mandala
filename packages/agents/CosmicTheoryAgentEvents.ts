@@ -19,7 +19,8 @@ export type CosmicTheoryAgentEvents = {
   [key: string]: any;
 };
 
-export const CosmicTheoryEventHub: Emitter<CosmicTheoryAgentEvents> = mitt<CosmicTheoryAgentEvents>();
+export const CosmicTheoryEventHub: Emitter<CosmicTheoryAgentEvents> =
+  mitt<CosmicTheoryAgentEvents>();
 
 export function logTrace(message: string): void {
   const span = trace.getSpan(context.active());
@@ -27,7 +28,7 @@ export function logTrace(message: string): void {
     message,
     timestamp: Date.now(),
     spanId: span?.spanContext().spanId,
-    traceId: span?.spanContext().traceId
+    traceId: span?.spanContext().traceId,
   });
 }
 

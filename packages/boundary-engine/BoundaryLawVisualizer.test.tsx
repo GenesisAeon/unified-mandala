@@ -4,6 +4,6 @@ import '@testing-library/jest-dom';
 import BoundaryLawVisualizer from './BoundaryLawVisualizer';
 
 test('renders boundary laws', () => {
-  render(<BoundaryLawVisualizer laws={["law1"]} />);
+  render(<BoundaryLawVisualizer laws={['law1']} />);
   expect(screen.getByText('law1')).toBeInTheDocument();
 });

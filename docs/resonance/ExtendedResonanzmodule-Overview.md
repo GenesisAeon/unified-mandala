@@ -3,6 +3,7 @@
 Dieses Dokument beschreibt die Integration der erweiterten Resonanzmodule in das UnifiedMandala.
 
 ## Module
+
 1. **CoherenceAgent** – Bewertet Konsistenz und Struktur.
 2. **ArchetypeAnalyzer** – Erkennt archetypische Muster.
 3. **EthicGuardian** – Überprüft Inhalte auf Ethikverstöße.

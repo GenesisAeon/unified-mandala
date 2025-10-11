@@ -4,8 +4,7 @@ description: |
   Fokus auf visuelle Erweiterungen, CREP-Systemintegration, Symbolzeitlogik und GPT-Anbindung.
 
 tasks:
-
-  - title: "Integriere CREPPhaseMatrix.yaml in crep-engine"
+  - title: 'Integriere CREPPhaseMatrix.yaml in crep-engine'
     path: packages/crep-engine/data/CREPPhaseMatrix.yaml
     description: |
       Matrix zur Bewertung von CREP-Werten in Zustandsbereichen (safe, warning, critical).
@@ -24,7 +23,7 @@ tasks:
           resonance: ">= 4 && < 7"
           emergence: ">= 4 && < 7"
 
-  - title: "Erzeuge SymbolzeitTrigger-Modul"
+  - title: 'Erzeuge SymbolzeitTrigger-Modul'
     path: packages/aeon-shell/symbolzeit.ts
     description: |
       Exportiere aktuelle Symbolzeitphase (morgen, tag, abend, nacht) für das Mandalasystem.
@@ -34,7 +33,7 @@ tasks:
         date: new Date().toISOString()
       };
 
-  - title: "Aktualisiere MandalaNetworkView mit CREPMatrix-Farben"
+  - title: 'Aktualisiere MandalaNetworkView mit CREPMatrix-Farben'
     path: packages/unifiedmandala-ui/components/MandalaNetworkView.tsx
     description: |
       Farblogik der Knoten aktualisieren basierend auf CREPPhaseMatrix.
@@ -50,7 +49,7 @@ tasks:
           return "orange";
         }
 
-  - title: "Baue SigillinLoader-Komponente"
+  - title: 'Baue SigillinLoader-Komponente'
     path: packages/unifiedmandala-ui/components/SigillinLoader.tsx
     description: |
       UI-Komponente zum dynamischen Laden und Filtern von Sigillin.
@@ -58,7 +57,7 @@ tasks:
     notes: |
       Ermöglicht Auswahl nach Typ, CREP-Wert oder Textsuche.
 
-  - title: "Lege GPT-Synapse-Modul an"
+  - title: 'Lege GPT-Synapse-Modul an'
     path: packages/gpt-bridges/aeon-gpt-synapse.ts
     description: |
       Zentrale Brücke zwischen UnifiedMandala und GPT-Modulen.
@@ -74,7 +73,7 @@ tasks:
         return "Dies ist ein GPT-Stubsignal.";
       }
 
-  - title: "Lege GPT-AEONPOET- und GPT-CREPJUDGE-Stubs an"
+  - title: 'Lege GPT-AEONPOET- und GPT-CREPJUDGE-Stubs an'
     path: packages/gpt-bridges/
     files:
       - gpt-aeonpoet.ts
@@ -90,7 +89,7 @@ tasks:
         return "🟠 Zustand unsicher";
       }
 
-  - title: "Bereite sharedream-SyncModul vor"
+  - title: 'Bereite sharedream-SyncModul vor'
     path: packages/sharedream-interface/sync.ts
     description: |
       Sync-Modul zur Übergabe von CREP-Zustand und SigillinMap an Website oder externen Viewer.
@@ -108,7 +107,7 @@ tasks:
         };
       }
 
-  - title: "Baue onboarding-flow.tsx mit CHRONOPOEM-Anbindung"
+  - title: 'Baue onboarding-flow.tsx mit CHRONOPOEM-Anbindung'
     path: packages/unifiedmandala-ui/components/onboarding-flow.tsx
     description: |
       Visuelles Onboarding mit poetischer Begleitung aus CHRONOPOEM.md.

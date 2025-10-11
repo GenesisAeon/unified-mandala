@@ -6,6 +6,6 @@ describe('VRMultiAvatar', () => {
     const multi = new VRMultiAvatar();
     multi.addAvatar('a');
     multi.addAvatar('b');
-    expect(multi.listAvatars()).toEqual(['a','b']);
+    expect(multi.listAvatars()).toEqual(['a', 'b']);
   });
 });

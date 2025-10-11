@@ -20,14 +20,14 @@ const schema = {
       type: 'object',
       properties: {
         theory: { type: 'number' },
-        practice: { type: 'number' }
+        practice: { type: 'number' },
       },
       required: ['theory', 'practice'],
-      additionalProperties: false
-    }
+      additionalProperties: false,
+    },
   },
   required: ['name', 'version', 'weights'],
-  additionalProperties: false
+  additionalProperties: false,
 };
 
 export function loadTheoryAgentConfig(raw: unknown): TheoryAgentConfig {

@@ -1,19 +1,27 @@
-import fs from "fs";
+import fs from 'fs';
 
 type UniverseTree = Record<string, string[]>;
 type SeedModelResult = { modelName: string; crepResonance: number };
 type UtopiaRow = { source: string; sigil: string; value: number; timestamp: string };
 
 function generateMermaidTree(tree: UniverseTree): string {
-  const lines: string[] = ["graph TD;"];
+  const lines: string[] = ['graph TD;'];
   for (const [node, children] of Object.entries(tree)) {
-    if (!children || children.length===0) { lines.push(`${node}`); continue; }
+    if (!children || children.length === 0) {
+      lines.push(`${node}`);
+      continue;
+    }
     lines.push(`${node}-->${children.join(`\n${node}-->`)}`);
   }
-  return lines.join("\n");
+  return lines.join('\n');
 }
 
-export function generateHTMLReport(outPath: string, tree: UniverseTree, seed: SeedModelResult[], utopia: UtopiaRow[]) {
+export function generateHTMLReport(
+  outPath: string,
+  tree: UniverseTree,
+  seed: SeedModelResult[],
+  utopia: UtopiaRow[],
+) {
   const html = `<!doctype html>
 <html><head>
   <meta charset="utf-8"/>
@@ -40,8 +48,8 @@ export function generateHTMLReport(outPath: string, tree: UniverseTree, seed: Se
     new Chart(ctx, {
       type: 'bar',
       data: {
-        labels: ${JSON.stringify(["emergence_predictor","consent_mesh_sim"])} ,
-        datasets: [{ label: 'CREP Resonance', data: ${JSON.stringify([0.72,0.64])} }]
+        labels: ${JSON.stringify(['emergence_predictor', 'consent_mesh_sim'])} ,
+        datasets: [{ label: 'CREP Resonance', data: ${JSON.stringify([0.72, 0.64])} }]
       },
       options: { responsive:true, scales: { y: { beginAtZero: true, max: 1 } } }
     });
@@ -49,10 +57,10 @@ export function generateHTMLReport(outPath: string, tree: UniverseTree, seed: Se
   <h2>Utopia Adapter Data</h2>
   <table>
     <tr><th>Source</th><th>Sigil</th><th>Value</th><th>Timestamp</th></tr>
-    ${utopia.map(d=>`<tr><td>${d.source}</td><td>${d.sigil}</td><td>${d.value}</td><td>${d.timestamp}</td></tr>`).join("")}
+    ${utopia.map((d) => `<tr><td>${d.source}</td><td>${d.sigil}</td><td>${d.value}</td><td>${d.timestamp}</td></tr>`).join('')}
   </table>
   <script>mermaid.initialize({ startOnLoad: true });</script>
 </body></html>`;
   fs.writeFileSync(outPath, html);
-  console.log("Report written:", outPath);
+  console.log('Report written:', outPath);
 }

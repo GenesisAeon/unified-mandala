@@ -5,10 +5,17 @@ export interface ConversationStatsProps {
   messageCount: number;
 }
 
-const ConversationStats: React.FC<ConversationStatsProps> = ({ conversationCount, messageCount }) => (
+const ConversationStats: React.FC<ConversationStatsProps> = ({
+  conversationCount,
+  messageCount,
+}) => (
   <div aria-label="Conversation Stats">
-    <p>Total Conversations: <span>{conversationCount}</span></p>
-    <p>Total Messages: <span>{messageCount}</span></p>
+    <p>
+      Total Conversations: <span>{conversationCount}</span>
+    </p>
+    <p>
+      Total Messages: <span>{messageCount}</span>
+    </p>
   </div>
 );
 

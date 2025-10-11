@@ -8,8 +8,5 @@ test('stores attribution entries per artifact', () => {
 
   expect(index.get('fileA')).toHaveLength(2);
   expect(index.get('fileA')[0]).toMatchObject({ actor: 'alice', share: 0.6, license: 'MIT' });
-  expect(index.get('fileB')).toEqual([
-    { artifact: 'fileB', actor: 'carol', share: 1 }
-  ]);
+  expect(index.get('fileB')).toEqual([{ artifact: 'fileB', actor: 'carol', share: 1 }]);
 });
-

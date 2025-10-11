@@ -23,7 +23,7 @@ export class FutureKIAgent {
   }
 
   predict(year: number): string | undefined {
-    return this.predictions.find(p => p.year === year)?.summary;
+    return this.predictions.find((p) => p.year === year)?.summary;
   }
 }
 

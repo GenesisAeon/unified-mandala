@@ -11,7 +11,7 @@ test('renders admin metrics with gpt-5 badge', () => {
       openTodos={1}
       gpt5AvgLatency={200}
       gpt5SuccessRate={0.99}
-    />
+    />,
   );
   const metrics = screen.getByLabelText('Admin Metrics');
   expect(metrics).toHaveTextContent('0.50');

@@ -55,16 +55,14 @@ describe('session store', () => {
   it('persists sessions to disk', () => {
     addSession('persist');
     jest.advanceTimersByTime(31000);
-    const data = JSON.parse(
-      fs.readFileSync('services/ghost-shell/sessions.json', 'utf8')
-    );
+    const data = JSON.parse(fs.readFileSync('services/ghost-shell/sessions.json', 'utf8'));
     expect(data.persist).toBeDefined();
   });
 
   it('loads sessions from disk on startup', () => {
     fs.writeFileSync(
       'services/ghost-shell/sessions.json',
-      JSON.stringify({ loadme: { history: [], lastActive: Date.now() } })
+      JSON.stringify({ loadme: { history: [], lastActive: Date.now() } }),
     );
     jest.isolateModules(() => {
       const mod = require('./session-store');

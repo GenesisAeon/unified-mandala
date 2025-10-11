@@ -1,5 +1,5 @@
 id: governance-simulator
-title: "Governance Simulator"
+title: 'Governance Simulator'
 type: simulation
 agent: GovernanceSimulatorAgent
 entrypoint: agents/governance_simulator/main.py

@@ -10,7 +10,7 @@ export interface FractalTask {
 export class FractalTaskRunner {
   runFile(file: string) {
     const tasks = YAML.parse(fs.readFileSync(file, 'utf8')) as FractalTask[];
-    return Promise.all(tasks.map(t => this.runTask(t)));
+    return Promise.all(tasks.map((t) => this.runTask(t)));
   }
 
   async runTask(task: FractalTask) {

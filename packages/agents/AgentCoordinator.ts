@@ -16,9 +16,7 @@ export class AgentCoordinator {
   }
 
   async coordinate(symbolzeit: number, crep: number) {
-    const sorted = [...this.agents].sort(
-      (a, b) => (b.priority || 0) - (a.priority || 0)
-    );
+    const sorted = [...this.agents].sort((a, b) => (b.priority || 0) - (a.priority || 0));
     for (const a of sorted) {
       const meetsCrep = a.minCrep === undefined || crep >= a.minCrep;
       const meetsSymbolzeit =

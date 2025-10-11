@@ -12,7 +12,7 @@ export default function MacroEditor() {
     fetch('/macro/run', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ source })
+      body: JSON.stringify({ source }),
     })
       .then((r) => r.text())
       .then((text) => setOutput(text))

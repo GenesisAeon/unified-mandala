@@ -6,4 +6,3 @@ test('generateWeights returns increasing weights', () => {
   expect(weights[1]).toBeGreaterThan(weights[0]);
   expect(weights[2]).toBeGreaterThan(weights[1]);
 });
-

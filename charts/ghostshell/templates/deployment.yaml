@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "ghostshell.fullname" . }}
+  name: { { include "ghostshell.fullname" . } }
 spec:
-  replicas: {{ .Values.replicaCount }}
+  replicas: { { .Values.replicaCount } }
   selector:
     matchLabels:
-      app: {{ include "ghostshell.name" . }}
+      app: { { include "ghostshell.name" . } }
   template:
     metadata:
       labels:
-        app: {{ include "ghostshell.name" . }}
+        app: { { include "ghostshell.name" . } }
     spec:
       containers:
         - name: ghostshell
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          image: '{{ .Values.image.repository }}:{{ .Values.image.tag }}'
           ports:
             - containerPort: 3000
           livenessProbe:

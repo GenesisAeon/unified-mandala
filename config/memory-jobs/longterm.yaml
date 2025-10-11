@@ -1,5 +1,5 @@
 job_name: longterm_archive
-schedule: "0 0 1 * *"
+schedule: '0 0 1 * *'
 actions:
   - type: consolidate
     region: default

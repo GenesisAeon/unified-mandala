@@ -7,9 +7,7 @@
         "type": "timeseries",
         "title": "Pulse Rate",
         "datasource": "Prometheus",
-        "targets": [
-          { "expr": "universe_pulse_rate" }
-        ],
+        "targets": [{ "expr": "universe_pulse_rate" }],
         "fieldConfig": { "defaults": {} }
       }
     ],
@@ -18,4 +16,3 @@
   },
   "overwrite": true
 }
-

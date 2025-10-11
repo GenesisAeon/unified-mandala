@@ -12,9 +12,7 @@ export class EventPlaybackModule {
   }
 
   playback(type?: string): RecordedEvent[] {
-    return this.events
-      .filter(e => !type || e.type === type)
-      .map(e => ({ ...e }));
+    return this.events.filter((e) => !type || e.type === type).map((e) => ({ ...e }));
   }
 
   clear(): void {

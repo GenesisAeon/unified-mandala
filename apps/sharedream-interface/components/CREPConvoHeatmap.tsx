@@ -1,6 +1,9 @@
 import React from 'react';
 
-export interface HeatmapPoint { time: string; value: number; }
+export interface HeatmapPoint {
+  time: string;
+  value: number;
+}
 
 export default function CREPConvoHeatmap({ data }: { data: HeatmapPoint[] }) {
   return (

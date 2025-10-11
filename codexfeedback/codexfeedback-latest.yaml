@@ -1,0 +1,49 @@
+fraktal_run:
+  id: Fraktal90
+  author: Johann
+  timestamp_utc: '${NOW}'
+  summary: |
+    Plan A (ohne API-Key) bestätigt. Proxy, Health und manuelle Calls liefern 200/Antwort.
+    Zwei Patches implementiert: stabilerer qwen-smoke (konfigurierbarer Timeout, optionaler API-Key)
+    und UI-Playground-Rendering (Fallback auf output_text/message.content/choices).
+
+status:
+  proxy: ok
+  ui_playground: pending_user_validation
+  smoke_fs: ok
+  smoke_qwen: pending_user_validation
+  api_key_guard: disabled_for_dev_session
+
+changes:
+  - file: scripts/smoke/qwen-smoke.mjs
+    description: "Timeout via SMOKE_TIMEOUT_MS (Default 60000 ms) + Header 'X-API-Key' wenn LOCAL_API_KEY gesetzt; stream=false und options.num_predict=64."
+  - file: apps/ui/src/components/MandalaAIPlayground.tsx
+    description: 'Antwort-Mapping erweitert (output_text -> message.content -> choices[0].message.content -> text).'
+
+next_steps:
+  - label: Plan B – Vite-Proxy injiziert API-Key
+    action: "apps/ui/vite.config.ts: im server.proxy '/api' Header 'X-API-Key' aus process.env.LOCAL_API_KEY setzen"
+    state: recommended
+  - label: Plan B – smoke:qwen mit API-Key
+    action: 'Bereits unterstützt (LOCAL_API_KEY); bei Bedarf ENV setzen und erneut laufen lassen'
+    state: ready
+  - label: /health ohne Key erlauben
+    action: "Middleware skip für '/health' im Proxy oder Reihenfolge anpassen"
+    state: optional
+  - label: Rate-Limit-Test reproduzierbar machen
+    action: 'Limiter max temporär reduzieren (z.B. 5) und 10 schnelle Requests senden'
+    state: optional
+
+hooks:
+  progress: 0.7 # 70% – Smoke/Playground-Validierung durch Nutzer offen
+  resume_hint: 'UI neu laden (Hard-Reload), Playground testen, dann pnpm smoke:qwen mit SMOKE_TIMEOUT_MS=60000. Falls ok, Plan B anwenden.'
+
+references:
+  roadmap_playbook: docs/roadmap/v1.0-stabilization-playbook.md
+  mandala_map:
+    - MandalaMap.yaml
+    - MandalaMap.json
+    - MandalaMap.md
+
+repeat_needed: conditional
+repeat_reason: 'Nur falls Playground weiterhin keine Ausgabe zeigt oder smoke:qwen trotz Timeout scheitert.'

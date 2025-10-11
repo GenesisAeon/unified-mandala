@@ -6,11 +6,11 @@ Dieses Dokument beschreibt die Exportstruktur der CREP-Daten. Die CREP-Engine er
 
 Die Exportdatei ist eine JSON‑Liste. Jedes Element repräsentiert einen Messpunkt der CREP‑Werte und besitzt folgende Felder:
 
-| Feld       | Typ     | Beschreibung                                |
-|------------|---------|---------------------------------------------|
-| `timestamp`| string  | ISO‑Datum des Messzeitpunkts               |
-| `symbolzeit` | string | Symbolische Zeitangabe (z. B. `morgen`) |
-| `crepValue` | object | Objekt mit `C`, `R`, `E` und `P` Komponenten |
+| Feld         | Typ    | Beschreibung                                 |
+| ------------ | ------ | -------------------------------------------- |
+| `timestamp`  | string | ISO‑Datum des Messzeitpunkts                 |
+| `symbolzeit` | string | Symbolische Zeitangabe (z. B. `morgen`)      |
+| `crepValue`  | object | Objekt mit `C`, `R`, `E` und `P` Komponenten |
 
 ## Beispiel
 

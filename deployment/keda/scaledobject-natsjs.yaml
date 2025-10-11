@@ -12,8 +12,7 @@ spec:
   triggers:
     - type: nats-jetstream
       metadata:
-        natsServerMonitoringEndpoint: "http://nats.monitoring:8222"
+        natsServerMonitoringEndpoint: 'http://nats.monitoring:8222'
         streamName: tasks
         consumerName: worker
-        lagThreshold: "100"
-
+        lagThreshold: '100'

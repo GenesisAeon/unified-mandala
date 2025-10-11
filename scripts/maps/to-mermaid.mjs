@@ -3,7 +3,7 @@ import { parse } from 'yaml';
 import { execSync } from 'child_process';
 import path from 'path';
 
-const flow = parse(fs.readFileSync('docs/maps/ProgramFlow.yaml','utf8'));
+const flow = parse(fs.readFileSync('docs/maps/ProgramFlow.yaml', 'utf8'));
 let mermaid = 'graph TD\n';
 if (Array.isArray(flow.nodes)) {
   for (const n of flow.nodes) {
@@ -22,8 +22,8 @@ if (Array.isArray(flow.flows)) {
   }
 }
 const dir = 'docs/diagrams';
-fs.mkdirSync(dir,{recursive:true});
-const mmdPath = path.join(dir,'program-flow.mmd');
+fs.mkdirSync(dir, { recursive: true });
+const mmdPath = path.join(dir, 'program-flow.mmd');
 fs.writeFileSync(mmdPath, mermaid);
 try {
   execSync(`npx mmdc -i ${mmdPath} -o ${dir}/program-flow.svg`);

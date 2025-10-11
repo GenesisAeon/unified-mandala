@@ -1,4 +1,3 @@
-
 export interface OpenAIMessage {
   role: 'system' | 'user' | 'assistant';
   content: string;
@@ -17,9 +16,9 @@ async function post(url: string, apiKey: string, body: unknown) {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      Authorization: `Bearer ${apiKey}`
+      Authorization: `Bearer ${apiKey}`,
     },
-    body: JSON.stringify(body)
+    body: JSON.stringify(body),
   };
   const res = await fetch(url, init);
   return res;

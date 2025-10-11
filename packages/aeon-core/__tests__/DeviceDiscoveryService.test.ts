@@ -2,7 +2,10 @@ import { describe, it, expect } from 'vitest';
 import { DeviceDiscoveryService } from '../DeviceDiscoveryService';
 import { SigilDriver } from '../SigilDriver';
 
-class Dummy extends SigilDriver { async connect() {}; async disconnect() {} }
+class Dummy extends SigilDriver {
+  async connect() {}
+  async disconnect() {}
+}
 
 describe('DeviceDiscoveryService', () => {
   it('registers and retrieves drivers', () => {

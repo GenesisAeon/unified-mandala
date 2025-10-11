@@ -4,4 +4,7 @@ out
 dist
 packages/unifiedmandala-ui/build
 apps/ui/dist
+charts/**
+docs/api/**
+GenesisAeonZIPMEM/**
 **/generated/**

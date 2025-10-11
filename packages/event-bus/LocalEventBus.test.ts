@@ -35,4 +35,3 @@ describe('LocalEventBus', () => {
     expect(errorHandler).toHaveBeenCalledWith(errorPayload);
   });
 });
-

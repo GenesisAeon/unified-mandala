@@ -29,7 +29,7 @@ export async function runSetupWizard() {
 }
 
 if (require.main === module) {
-  runSetupWizard().catch(err => {
+  runSetupWizard().catch((err) => {
     console.error(err);
     process.exit(1);
   });

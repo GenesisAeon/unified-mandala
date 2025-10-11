@@ -9,7 +9,11 @@ export class AgentHeartbeat {
   private intervalId?: NodeJS.Timeout;
   private readonly logFile: string;
 
-  constructor(private agentId: string, private intervalMs = 60000, logFile?: string) {
+  constructor(
+    private agentId: string,
+    private intervalMs = 60000,
+    logFile?: string,
+  ) {
     this.logFile = logFile ?? path.resolve('data/agents/heartbeats.jsonl');
     this.register().catch(console.error);
     this.start();

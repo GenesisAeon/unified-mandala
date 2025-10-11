@@ -20,4 +20,3 @@ export class AttributionIndex {
     return this.index[artifact] ?? [];
   }
 }
-

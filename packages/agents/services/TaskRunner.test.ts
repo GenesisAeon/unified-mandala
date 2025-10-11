@@ -1,4 +1,4 @@
-import { test, expect, afterEach } from "vitest";
+import { test, expect, afterEach } from 'vitest';
 import fs from 'fs';
 import path from 'path';
 import { runFractalTask } from './TaskRunner';
@@ -14,8 +14,16 @@ afterEach(() => {
 });
 
 test('writes sigillin history after run', async () => {
-  fs.writeFileSync(pluginJs, 'module.exports = class { constructor(){} analyze(){ return {foo:1}; }}');
-  fs.writeFileSync(tmpYaml, 'sigillin_id: test\ninput: []\nsteps:\n - plugin: "' + pluginJs.replace(/\\/g,'/') + '"\n   config: {}\ndoc: true');
+  fs.writeFileSync(
+    pluginJs,
+    'module.exports = class { constructor(){} analyze(){ return {foo:1}; }}',
+  );
+  fs.writeFileSync(
+    tmpYaml,
+    'sigillin_id: test\ninput: []\nsteps:\n - plugin: "' +
+      pluginJs.replace(/\\/g, '/') +
+      '"\n   config: {}\ndoc: true',
+  );
   await runFractalTask(tmpYaml);
   expect(fs.existsSync(historyFile)).toBe(true);
   const content = fs.readFileSync(historyFile, 'utf8');

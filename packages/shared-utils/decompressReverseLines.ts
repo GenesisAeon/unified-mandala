@@ -34,7 +34,7 @@ if (require.main === module) {
     console.error('Usage: decompressReverseLines <input.gz> <output.txt>');
     process.exit(1);
   }
-  decompressReverseLines(input, output).catch(err => {
+  decompressReverseLines(input, output).catch((err) => {
     console.error(err);
     process.exit(1);
   });

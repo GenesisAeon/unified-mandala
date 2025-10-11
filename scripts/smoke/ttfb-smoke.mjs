@@ -9,7 +9,7 @@ async function probe() {
     try {
       const start = Date.now();
       const ttfb = await new Promise((resolve, reject) => {
-        const req = http.get('http://127.0.0.1:3000/', res => {
+        const req = http.get('http://127.0.0.1:3000/', (res) => {
           res.once('data', () => resolve(Date.now() - start));
           res.on('error', reject);
         });

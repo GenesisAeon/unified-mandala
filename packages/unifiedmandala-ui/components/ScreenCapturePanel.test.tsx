@@ -6,7 +6,7 @@ import ScreenCapturePanel from './ScreenCapturePanel';
 describe('ScreenCapturePanel', () => {
   beforeEach(() => {
     (global as any).fetch = jest.fn().mockResolvedValue({
-      blob: async () => new Blob(['fake'], { type: 'image/png' })
+      blob: async () => new Blob(['fake'], { type: 'image/png' }),
     });
     (global as any).URL.createObjectURL = jest.fn(() => 'blob:test');
   });

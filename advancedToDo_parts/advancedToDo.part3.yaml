@@ -1,35 +1,35 @@
-- commit: "Document Aeon Transition guidelines"
+- commit: 'Document Aeon Transition guidelines'
   path: docs/sigils/aeon-transition.md
-  task: "Summarize transition instructions from conversations"
+  task: 'Summarize transition instructions from conversations'
   status: done
-  test: ""
-- commit: "Draft Friendship system concept"
+  test: ''
+- commit: 'Draft Friendship system concept'
   path: docs/friendship-system.md
   status: done
-  task: "Outline AI friendship system from Aeon KI Resonanz chat"
-  test: ""
-- commit: "Add plugin registry and loader"
+  task: 'Outline AI friendship system from Aeon KI Resonanz chat'
+  test: ''
+- commit: 'Add plugin registry and loader'
   path: plugins/manifest.yaml
-  task: "Define manifest schema and implement usePluginLoader"
+  task: 'Define manifest schema and implement usePluginLoader'
   test: apps/sharedream-interface/hooks/usePluginLoader.test.ts
   status: done
-- commit: "Implement Objective2UI service"
+- commit: 'Implement Objective2UI service'
   path: services/objective2ui.ts
-  task: "Generate layout YAML via GPT and store suggestion in plugin manifest"
+  task: 'Generate layout YAML via GPT and store suggestion in plugin manifest'
   test: services/objective2ui.test.ts
   status: done
-- commit: "Add FeedbackButtons component"
+- commit: 'Add FeedbackButtons component'
   path: packages/unifiedmandala-ui/components/FeedbackButtons.tsx
-  task: "Capture like/dislike feedback and log Sigil event"
+  task: 'Capture like/dislike feedback and log Sigil event'
   test: packages/unifiedmandala-ui/components/FeedbackButtons.test.tsx
   status: done
-- commit: "Add bio sensor hooks and HapticService"
+- commit: 'Add bio sensor hooks and HapticService'
   path: packages/bio
-  task: "Provide usePulse hook with dummy values and stub HapticService"
+  task: 'Provide usePulse hook with dummy values and stub HapticService'
   test: packages/bio/__tests__/usePulse.test.tsx
   status: done
-- commit: "Add useABLayout hook"
+- commit: 'Add useABLayout hook'
   path: packages/unifiedmandala-ui/hooks/useABLayout.ts
-  task: "Render random A/B layout and send metric event"
+  task: 'Render random A/B layout and send metric event'
   test: packages/unifiedmandala-ui/hooks/useABLayout.test.tsx
   status: done

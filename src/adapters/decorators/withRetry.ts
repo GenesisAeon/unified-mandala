@@ -1,14 +1,14 @@
-import { Adapter, AdapterInput, AdapterResult } from "../base";
+import { Adapter, AdapterInput, AdapterResult } from '../base';
 
 export interface RetryOpts {
-  retries?: number;       // default 3
-  backoffMs?: number;     // initial, default 200
-  maxBackoffMs?: number;  // cap, default 2000
-  jitter?: boolean;       // default true
+  retries?: number; // default 3
+  backoffMs?: number; // initial, default 200
+  maxBackoffMs?: number; // cap, default 2000
+  jitter?: boolean; // default true
   retryOn?: (res: AdapterResult<any> | Error) => boolean; // default: network/error or !ok
 }
 
-const wait = (ms: number) => new Promise(r => setTimeout(r, ms));
+const wait = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
 export function withRetry<T>(opts: RetryOpts = {}) {
   const {
@@ -16,7 +16,9 @@ export function withRetry<T>(opts: RetryOpts = {}) {
     backoffMs = 200,
     maxBackoffMs = 2000,
     jitter = true,
-    retryOn = (x) => x instanceof Error || (typeof x === "object" && x !== null && "ok" in x && (x as any).ok === false)
+    retryOn = (x) =>
+      x instanceof Error ||
+      (typeof x === 'object' && x !== null && 'ok' in x && (x as any).ok === false),
   } = opts;
 
   return (next: Adapter<T>): Adapter<T> => {

@@ -21,5 +21,5 @@ Logs zeigen CREP-Events und Routingentscheidungen.
 
 ### Erweiterung
 
-* Eigene NN-Services in `nets/` ergänzen
-* Schwellenwerte in `orchestrator/pipeline_config.yaml` anpassen
+- Eigene NN-Services in `nets/` ergänzen
+- Schwellenwerte in `orchestrator/pipeline_config.yaml` anpassen

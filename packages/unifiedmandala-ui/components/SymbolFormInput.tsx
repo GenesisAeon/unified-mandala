@@ -9,17 +9,13 @@ const SymbolFormInput: React.FC<SymbolFormInputProps> = ({ onSubmit }) => {
 
   return (
     <form
-      onSubmit={e => {
+      onSubmit={(e) => {
         e.preventDefault();
         onSubmit(value);
         setValue('');
       }}
     >
-      <input
-        aria-label="Symbol"
-        value={value}
-        onChange={e => setValue(e.target.value)}
-      />
+      <input aria-label="Symbol" value={value} onChange={(e) => setValue(e.target.value)} />
       <button type="submit">OK</button>
     </form>
   );

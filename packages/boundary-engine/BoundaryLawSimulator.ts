@@ -15,6 +15,6 @@ export class BoundaryLawSimulator {
   }
 
   simulate(input: unknown) {
-    return this.rules.map(r => ({ ruleId: r.id, result: r.evaluate(input) }));
+    return this.rules.map((r) => ({ ruleId: r.id, result: r.evaluate(input) }));
   }
 }

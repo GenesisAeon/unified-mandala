@@ -4,7 +4,7 @@ import { MemoryManager, MemoryCategory } from './memory-manager';
 export class CodexMemoryKernel {
   constructor(
     private file = 'codex-memory.json',
-    private manager = new MemoryManager()
+    private manager = new MemoryManager(),
   ) {
     this.load();
   }
@@ -20,7 +20,10 @@ export class CodexMemoryKernel {
 
   load() {
     if (fs.existsSync(this.file)) {
-      const data = JSON.parse(fs.readFileSync(this.file, 'utf8')) as Record<MemoryCategory, string[]>;
+      const data = JSON.parse(fs.readFileSync(this.file, 'utf8')) as Record<
+        MemoryCategory,
+        string[]
+      >;
       Object.entries(data).forEach(([cat, entries]) => {
         entries.forEach((e) => this.manager.add(cat as MemoryCategory, e));
       });

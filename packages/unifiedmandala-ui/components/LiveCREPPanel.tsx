@@ -14,7 +14,7 @@ const LiveCREPPanel: React.FC = () => {
   return (
     <section aria-label="Live CREP Panel">
       <CREPTriggerPanel
-        availableTriggers={DEFAULT_TRIGGERS.map(t => ({
+        availableTriggers={DEFAULT_TRIGGERS.map((t) => ({
           label: t.label,
           data: t.data,
         }))}

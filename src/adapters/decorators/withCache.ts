@@ -1,4 +1,4 @@
-import { Adapter, AdapterInput, AdapterResult, keyOf } from "../base";
+import { Adapter, AdapterInput, AdapterResult, keyOf } from '../base';
 
 export interface CacheOpts<T> {
   ttlMs: number; // Lebensdauer

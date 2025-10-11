@@ -96,6 +96,7 @@ entries:
     notes:
       - '`apps/api-lite/ollama-proxy.mjs` starts via `pnpm start:ollama-proxy` or PowerShell (`pnpm ps:umo`).'
       - 'Proxy + smoke shortcuts (`pnpm smoke:qwen`, `pnpm ps:smoke-qwen`) schlossen den Fraktal87-Rollout ab; Follow-ups (Climate-MVP, Gemini-Link, Health-Badge) laufen unter Fraktal88.'
+      - 'Fraktal89: Guarded FS tool routes (`/api/tools/fs/read|write`), API-Key guard, rate limits (chat=60/min, fs=30/min), audit log, HOST loopback bind.'
     links:
       - label: ollama-proxy
         path: apps/api-lite/ollama-proxy.mjs

@@ -1,10 +1,5 @@
 import { test, expect } from 'vitest';
-import {
-  CosmicTheoryEventHub,
-  logTrace,
-  enterVR,
-  exitVR
-} from './CosmicTheoryAgentEvents';
+import { CosmicTheoryEventHub, logTrace, enterVR, exitVR } from './CosmicTheoryAgentEvents';
 
 test('emit and receive events', () => {
   const logs: string[] = [];

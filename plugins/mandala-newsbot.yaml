@@ -1,14 +1,14 @@
 id: mandala-newsbot
-title: "Mandala-NewsBot Team"
+title: 'Mandala-NewsBot Team'
 type: news-broadcast
 agent: NewsOrchestratorAgent
 entrypoint: agents/newsbot/orchestrator.py
 config:
-  newsapi_key: "${NEWSAPI_KEY}"
+  newsapi_key: '${NEWSAPI_KEY}'
   rss_feeds:
     - https://rss.cnn.com/rss/cnn_latest.rss
     - https://feeds.bbci.co.uk/news/rss.xml
   youtube:
-    api_key: "${YOUTUBE_API_KEY}"
-    stream_key: "${YOUTUBE_STREAM_KEY}"
-  schedule: "0 * * * *"
+    api_key: '${YOUTUBE_API_KEY}'
+    stream_key: '${YOUTUBE_STREAM_KEY}'
+  schedule: '0 * * * *'

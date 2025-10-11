@@ -1,27 +1,39 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 // @ts-ignore
 const data: any = (() => {
   try {
-    return require("../../out/sigillin_index.json");
+    return require('../../out/sigillin_index.json');
   } catch {
     return {};
   }
 })();
-import { SigillinCard } from "../components/SigillinCard";
-import AdapterResonancePanel from "./AdapterResonance";
-import { isOn } from "../../config/featureFlags";
-import EmergenceExplorer from "./EmergenceExplorer";
-const era5Score = (() => { try { return require("../../out/era5_crep.json").score ?? 0; } catch { return 0; }})();
-const oisstScore = (() => { try { return require("../../out/oisst_crep.json").score ?? 0; } catch { return 0; }})();
+import { SigillinCard } from '../components/SigillinCard';
+import AdapterResonancePanel from './AdapterResonance';
+import { isOn } from '../../config/featureFlags';
+import EmergenceExplorer from './EmergenceExplorer';
+const era5Score = (() => {
+  try {
+    return require('../../out/era5_crep.json').score ?? 0;
+  } catch {
+    return 0;
+  }
+})();
+const oisstScore = (() => {
+  try {
+    return require('../../out/oisst_crep.json').score ?? 0;
+  } catch {
+    return 0;
+  }
+})();
 
 export default function SigillinIndexPanel() {
-  const [source, setSource] = useState<string>("all");
-  const [klass, setKlass] = useState<string>("all");
+  const [source, setSource] = useState<string>('all');
+  const [klass, setKlass] = useState<string>('all');
   const list = data?.sigils ?? [];
   const filtered = list.filter(
     (s: any) =>
-      (source === "all" || s.sourceId === source) &&
-      (klass === "all" || (s.metrics?.emergenceClass ?? "low") === klass)
+      (source === 'all' || s.sourceId === source) &&
+      (klass === 'all' || (s.metrics?.emergenceClass ?? 'low') === klass),
   );
   const items = filtered.slice(0, 500);
   return (
@@ -59,7 +71,7 @@ export default function SigillinIndexPanel() {
           <SigillinCard key={s.id} sigillin={s} />
         ))}
       </div>
-      {isOn("emergenceExplorer") && (
+      {isOn('emergenceExplorer') && (
         <div className="mt-6">
           <EmergenceExplorer />
         </div>

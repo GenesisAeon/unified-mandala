@@ -50,4 +50,3 @@ export class AnnotationsStore {
     return this.load(docId);
   }
 }
-

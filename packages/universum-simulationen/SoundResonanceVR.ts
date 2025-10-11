@@ -1,5 +1,9 @@
-export function soundResonanceVR(freq: number, amp: number, steps: number): {x:number,y:number,z:number}[] {
-  const data: {x:number,y:number,z:number}[] = [];
+export function soundResonanceVR(
+  freq: number,
+  amp: number,
+  steps: number,
+): { x: number; y: number; z: number }[] {
+  const data: { x: number; y: number; z: number }[] = [];
   for (let i = 0; i < steps; i++) {
     const angle = (i / steps) * freq;
     data.push({

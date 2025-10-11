@@ -31,11 +31,11 @@ const schema = {
         properties: {
           name: { type: 'string' },
           weight: { type: 'number' },
-          color: { type: 'string', nullable: true }
+          color: { type: 'string', nullable: true },
         },
         required: ['name', 'weight'],
-        additionalProperties: false
-      }
+        additionalProperties: false,
+      },
     },
     totalLayers: { type: 'number' },
     nodesPerLayer: { type: 'number' },
@@ -45,14 +45,14 @@ const schema = {
         coherence: { type: 'number' },
         resonance: { type: 'number' },
         emergence: { type: 'number' },
-        poetics: { type: 'number' }
+        poetics: { type: 'number' },
       },
       required: ['coherence', 'resonance', 'emergence', 'poetics'],
-      additionalProperties: false
-    }
+      additionalProperties: false,
+    },
   },
   required: ['layers'],
-  additionalProperties: false
+  additionalProperties: false,
 };
 
 export function loadPyramidConfig(raw: unknown): PyramidConfig {

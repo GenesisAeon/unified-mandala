@@ -12,7 +12,7 @@ export class TGIProvider implements ModelProvider {
     const res = await fetch(`${this.baseUrl}/generate`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ model, prompt })
+      body: JSON.stringify({ model, prompt }),
     });
     if (!res.ok) {
       throw new Error(`TGI request failed with status ${res.status}`);

@@ -9,33 +9,25 @@
       "type": "graph",
       "title": "Falco Alerts",
       "datasource": "Prometheus",
-      "targets": [
-        { "expr": "sum(rate(falco_events[5m]))" }
-      ]
+      "targets": [{ "expr": "sum(rate(falco_events[5m]))" }]
     },
     {
       "type": "graph",
       "title": "Kyverno Policy Violations",
       "datasource": "Prometheus",
-      "targets": [
-        { "expr": "sum(kyverno_policy_violations_total)" }
-      ]
+      "targets": [{ "expr": "sum(kyverno_policy_violations_total)" }]
     },
     {
       "type": "graph",
       "title": "Cilium Drops",
       "datasource": "Prometheus",
-      "targets": [
-        { "expr": "sum(rate(cilium_drop_count_total[5m]))" }
-      ]
+      "targets": [{ "expr": "sum(rate(cilium_drop_count_total[5m]))" }]
     },
     {
       "type": "logs",
       "title": "Audit Log Errors",
       "datasource": "Loki",
-      "targets": [
-        { "expr": "{job=\"apiserver\"} |= \"error\"" }
-      ]
+      "targets": [{ "expr": "{job=\"apiserver\"} |= \"error\"" }]
     }
   ]
 }

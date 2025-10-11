@@ -1,0 +1,498 @@
+diff --git a/apps/ui/src/components/MandalaAIPlayground.tsx b/apps/ui/src/components/MandalaAIPlayground.tsx
+index a02efaba..f4f56be0 100644
+--- a/apps/ui/src/components/MandalaAIPlayground.tsx
++++ b/apps/ui/src/components/MandalaAIPlayground.tsx
+@@ -27,6 +27,65 @@ export function MandalaAIPlayground() {
+ 
+   const endpoint = useMemo(() => buildEndpoint(resolveApiBase()), []);
+ 
++  // Tools panel state
++  const [uri, setUri] = useState("repo://docs");
++  const [exts, setExts] = useState(".md,.json,.yaml,.yml");
++  const [listOut, setListOut] = useState<string>("");
++  const [readUri, setReadUri] = useState("repo://README.md");
++  const [readOut, setReadOut] = useState<string>("");
++  const [nsRoot, setNsRoot] = useState<string>("repo://");
++  const [pickerOpen, setPickerOpen] = useState<boolean>(false);
++  const [pickerItems, setPickerItems] = useState<string[]>([]);
++  const [memText, setMemText] = useState("Qwen Memory Note");
++  const [memTags, setMemTags] = useState("qwen,playground");
++  const [memQuery, setMemQuery] = useState("playground");
++  const [memOut, setMemOut] = useState<string>("");
++  // RAG state
++  const [ragRoots, setRagRoots] = useState("repo://docs");
++  const [ragQuery, setRagQuery] = useState("mandala");
++  const [ragOut, setRagOut] = useState<string>("");
++
++  // Intent Bridge state
++  const [autoIntent, setAutoIntent] = useState<boolean>(true);
++  const [intentLog, setIntentLog] = useState<IntentLog[]>([]);
++  const [autoFollowUp, setAutoFollowUp] = useState<boolean>(true);
++
++  async function maybeRunIntentsFrom(text: string) {
++    try {
++      if (!autoIntent) return;
++      const intents = tryParseIntentsFrom(text).slice(0, MAX_INTENTS_PER_TURN);
++      if (!intents.length) return;
++      const logs: IntentLog[] = [];
++      for (const i of intents) {
++        const log = await runIntent(i);
++        logs.push(log);
++        setIntentLog((prev) => [...prev, log]);
++      }
++      // Append a compact summary under the assistant answer
++      try {
++        const summary = formatIntentSummary(logs);
++        setAnswer((prev) => (prev ? `${prev}\n\nIntentBridge:\n${summary}` : `IntentBridge:\n${summary}`));
++      } catch {}
++      // optional follow-up: send tool results back to the model for a final answer
++      if (autoFollowUp) {
++        try {
++          const final = await followUpWithToolResults({
++            endpoint,
++            systemPrompt,
++            userPrompt: prompt,
++            initialAssistant: text,
++            logs,
++          });
++          if (final) {
++            setAnswer((prev) => (prev ? `${prev}\n\nFinal:\n${final}` : `Final:\n${final}`));
++          }
++        } catch (e) {
++          setAnswer((prev) => (prev ? `${prev}\n\n[follow-up failed: ${String((e as Error)?.message ?? e)}]` : prev));
++        }
++      }
++    } catch {}
++  }
++
+   async function send() {
+     if (!prompt.trim()) return;
+ 
+@@ -47,12 +106,25 @@ export function MandalaAIPlayground() {
+         }),
+       });
+ 
+-      const payload = await response.json().catch(() => ({}));
++      const payload = await safeJson(response);
+       if (!response.ok) {
+         throw new Error(payload?.error ?? `Request failed with status ${response.status}`);
+       }
+ 
+-      setAnswer(payload?.text ?? "");
++      function pickOutputText(result: any): string {
++        return (
++          result?.output_text ??
++          result?.message?.content ??
++          (Array.isArray(result?.choices) ? result?.choices?.[0]?.message?.content : undefined) ??
++          result?.text ??
++          ""
++        );
++      }
++
++      const text = pickOutputText(payload);
++      setAnswer(text);
++      // Auto-run tool intents if present in the model output
++      await maybeRunIntentsFrom(text);
+       setState("done");
+     } catch (err) {
+       setError(err instanceof Error ? err.message : String(err));
+@@ -60,6 +132,136 @@ export function MandalaAIPlayground() {
+     }
+   }
+ 
++  async function ragIndex() {
++    try {
++      const payload = {
++        roots: ragRoots.split(",").map((s) => s.trim()).filter(Boolean),
++        exts: [".md", ".txt"],
++        max_depth: 2,
++        limit: 100,
++        chunk_chars: 600,
++        chunk_overlap: 120,
++      };
++      const r = await fetch("/api/tools/rag/index", {
++        method: "POST",
++        headers: { "Content-Type": "application/json" },
++        body: JSON.stringify(payload),
++      });
++      const j = await safeJson(r);
++      if (!r.ok) throw new Error(j?.error ?? `rag index failed: ${r.status}`);
++      setRagOut(JSON.stringify(j, null, 2));
++    } catch (e) {
++      setRagOut(String(e instanceof Error ? e.message : e));
++    }
++  }
++
++  async function ragSearch() {
++    try {
++      const r = await fetch("/api/tools/rag/query", {
++        method: "POST",
++        headers: { "Content-Type": "application/json" },
++        body: JSON.stringify({ query: ragQuery, top_k: 5 }),
++      });
++      const j = await safeJson(r);
++      if (!r.ok) throw new Error(j?.error ?? `rag query failed: ${r.status}`);
++      setRagOut(JSON.stringify(j, null, 2));
++    } catch (e) {
++      setRagOut(String(e instanceof Error ? e.message : e));
++    }
++  }
++  async function fsList() {
++    try {
++      const payload = {
++        uri,
++        exts: exts.split(",").map((s) => s.trim()).filter(Boolean),
++        max_depth: 3,
++        limit: 200,
++      };
++      const r = await fetch("/api/tools/fs/list", {
++        method: "POST",
++        headers: { "Content-Type": "application/json" },
++        body: JSON.stringify(payload),
++      });
++      const j = await safeJson(r);
++      if (!r.ok) throw new Error(j?.error ?? `list failed: ${r.status}`);
++      setListOut(JSON.stringify(j, null, 2));
++    } catch (e) {
++      setListOut(String(e instanceof Error ? e.message : e));
++    }
++  }
++
++  async function fsRead() {
++    try {
++      const payload = { uri: readUri, encoding: "utf8" };
++      const r = await fetch("/api/tools/fs/read", {
++        method: "POST",
++        headers: { "Content-Type": "application/json" },
++        body: JSON.stringify(payload),
++      });
++      const j = await safeJson(r);
++      if (!r.ok) throw new Error(j?.error ?? `read failed: ${r.status}`);
++      setReadOut(typeof j?.content === "string" ? j.content : JSON.stringify(j, null, 2));
++    } catch (e) {
++      setReadOut(String(e instanceof Error ? e.message : e));
++    }
++  }
++
++  async function openPicker(startRoot?: string) {
++    try {
++      const root = (startRoot || nsRoot).replace(/\/+$/, "//");
++      const payload = {
++        uri: root,
++        exts: [".md", ".json", ".yaml", ".yml", ".txt"],
++        max_depth: 3,
++        limit: 200,
++      };
++      const r = await fetch("/api/tools/fs/list", {
++        method: "POST",
++        headers: { "Content-Type": "application/json", Accept: "application/json" },
++        body: JSON.stringify(payload),
++      });
++      const j = await safeJson(r);
++      if (!r.ok) throw new Error(j?.error ?? `list failed: ${r.status}`);
++      setPickerItems(Array.isArray(j?.items) ? j.items : []);
++      setPickerOpen(true);
++    } catch (e) {
++      setPickerItems([]);
++      setPickerOpen(true);
++    }
++  }
++
++  async function memRemember() {
++    try {
++      const payload = { text: memText, tags: memTags.split(",").map((s) => s.trim()).filter(Boolean) };
++      const r = await fetch("/api/tools/memory/remember", {
++        method: "POST",
++        headers: { "Content-Type": "application/json", Accept: "application/json" },
++        body: JSON.stringify(payload),
++      });
++      const j = await safeJson(r);
++      if (!r.ok) throw new Error(j?.error ?? `remember failed: ${r.status}`);
++      setMemOut(JSON.stringify(j, null, 2));
++    } catch (e) {
++      setMemOut(String(e instanceof Error ? e.message : e));
++    }
++  }
++
++  async function memRecall() {
++    try {
++      const payload = { query: memQuery, top_k: 5 };
++      const r = await fetch("/api/tools/memory/recall", {
++        method: "POST",
++        headers: { "Content-Type": "application/json" },
++        body: JSON.stringify(payload),
++      });
++      const j = await safeJson(r);
++      if (!r.ok) throw new Error(j?.error ?? `recall failed: ${r.status}`);
++      setMemOut(JSON.stringify(j, null, 2));
++    } catch (e) {
++      setMemOut(String(e instanceof Error ? e.message : e));
++    }
++  }
++
+   return (
+     <div className="mx-auto grid max-w-3xl gap-5 rounded-2xl border border-slate-200 bg-white/80 p-6 shadow">
+       <header className="grid gap-2">
+@@ -107,8 +309,249 @@ export function MandalaAIPlayground() {
+           {answer ?? ""}
+         </div>
+       )}
++      <section className="grid gap-3 border-t pt-4">
++        <h2 className="text-lg font-semibold text-slate-900">Tools</h2>
++        {/* Intent Bridge controls */}
++        <div className="grid gap-2">
++          <div className="flex items-center gap-2">
++            <input id="autoIntent" type="checkbox" checked={autoIntent} onChange={(e) => setAutoIntent(e.target.checked)} />
++            <label htmlFor="autoIntent" className="text-sm text-slate-700">IntentBridge (auto)</label>
++          </div>
++          <div className="flex items-center gap-2">
++            <input id="autoFollowUp" type="checkbox" checked={autoFollowUp} onChange={(e) => setAutoFollowUp(e.target.checked)} />
++            <label htmlFor="autoFollowUp" className="text-sm text-slate-700">Follow-up (auto)</label>
++          </div>
++          <pre className="max-h-48 overflow-auto rounded-xl border bg-slate-50 p-2 text-xs whitespace-pre-wrap">
++            {intentLog.length ? JSON.stringify(intentLog, null, 2) : "No intents executed yet."}
++          </pre>
++        </div>
++        <div className="grid gap-2 md:grid-cols-2">
++          <div className="grid gap-2">
++            <span className="text-sm font-medium text-slate-700">FS list</span>
++            <div className="flex gap-2">
++              <select value={nsRoot} onChange={(e) => setNsRoot(e.target.value)} className="rounded-xl border p-2">
++                <option value="repo://">repo://</option>
++                <option value="scratch://">scratch://</option>
++                <option value="data://">data://</option>
++              </select>
++              <input value={uri} onChange={(e) => setUri(e.target.value)} className="flex-1 rounded-xl border p-2" />
++              <button type="button" onClick={() => openPicker(nsRoot)} className="rounded-xl bg-slate-600 px-3 py-2 text-white">Browse</button>
++            </div>
++            <input value={exts} onChange={(e) => setExts(e.target.value)} className="rounded-xl border p-2" />
++            <button type="button" onClick={fsList} className="rounded-xl bg-slate-700 px-3 py-2 text-white">Listen</button>
++            <pre className="max-h-48 overflow-auto rounded-xl border bg-slate-50 p-2 text-xs">{listOut}</pre>
++          </div>
++          <div className="grid gap-2">
++            <span className="text-sm font-medium text-slate-700">FS read</span>
++            <div className="flex gap-2">
++              <input value={readUri} onChange={(e) => setReadUri(e.target.value)} className="flex-1 rounded-xl border p-2" />
++              <button type="button" onClick={() => openPicker()} className="rounded-xl bg-slate-600 px-3 py-2 text-white">Browse</button>
++            </div>
++            <button type="button" onClick={fsRead} className="rounded-xl bg-slate-700 px-3 py-2 text-white">Lesen</button>
++            <pre className="max-h-48 overflow-auto rounded-xl border bg-slate-50 p-2 text-xs whitespace-pre-wrap">{readOut}</pre>
++          </div>
++        </div>
++        {pickerOpen && (
++          <div className="rounded-xl border border-slate-200 bg-white p-3 shadow">
++            <div className="mb-2 flex items-center justify-between">
++              <div className="text-sm font-medium text-slate-700">Select a file ({nsRoot})</div>
++              <button type="button" onClick={() => setPickerOpen(false)} className="text-sm text-slate-500 hover:underline">close</button>
++            </div>
++            <div className="max-h-56 overflow-auto">
++              {pickerItems.length === 0 ? (
++                <div className="text-sm text-slate-500">No items or listing failed.</div>
++              ) : (
++                <ul className="text-sm">
++                  {pickerItems.map((it) => (
++                    <li key={it} className="cursor-pointer truncate rounded px-2 py-1 hover:bg-slate-100" onClick={() => { setReadUri(it); setUri(it.replace(/\/[^/]*$/, '')); setPickerOpen(false); }}>
++                      {it}
++                    </li>
++                  ))}
++                </ul>
++              )}
++            </div>
++          </div>
++        )}
++        <div className="grid gap-2">
++          <span className="text-sm font-medium text-slate-700">Memory</span>
++          <input value={memText} onChange={(e) => setMemText(e.target.value)} className="rounded-xl border p-2" />
++          <input value={memTags} onChange={(e) => setMemTags(e.target.value)} className="rounded-xl border p-2" />
++          <div className="flex gap-2">
++            <button type="button" onClick={memRemember} className="rounded-xl bg-indigo-600 px-3 py-2 text-white">Remember</button>
++            <input value={memQuery} onChange={(e) => setMemQuery(e.target.value)} className="flex-1 rounded-xl border p-2" />
++            <button type="button" onClick={memRecall} className="rounded-xl bg-indigo-600 px-3 py-2 text-white">Recall</button>
++          </div>
++          <pre className="max-h-48 overflow-auto rounded-xl border bg-slate-50 p-2 text-xs whitespace-pre-wrap">{memOut}</pre>
++        </div>
++        <div className="grid gap-2">
++          <span className="text-sm font-medium text-slate-700">RAG</span>
++          <input value={ragRoots} onChange={(e) => setRagRoots(e.target.value)} className="rounded-xl border p-2" />
++          <div className="flex gap-2">
++            <button type="button" onClick={ragIndex} className="rounded-xl bg-emerald-600 px-3 py-2 text-white">Index</button>
++            <input value={ragQuery} onChange={(e) => setRagQuery(e.target.value)} className="flex-1 rounded-xl border p-2" />
++            <button type="button" onClick={ragSearch} className="rounded-xl bg-emerald-600 px-3 py-2 text-white">Query</button>
++          </div>
++          <pre className="max-h-48 overflow-auto rounded-xl border bg-slate-50 p-2 text-xs whitespace-pre-wrap">{ragOut}</pre>
++        </div>
++      </section>
+     </div>
+   );
+ }
+ 
+ export default MandalaAIPlayground;
++
++// Tolerant JSON parsing helper: returns {} on empty/non-JSON bodies
++async function safeJson(r: Response): Promise<any> {
++  try {
++    const txt = await r.text();
++    if (!txt || !txt.trim()) return {};
++    return JSON.parse(txt);
++  } catch {
++    return {};
++  }
++}
++
++// --- Intent Bridge helpers/types ---
++type ToolName =
++  | "fs.list"
++  | "fs.read"
++  | "memory.remember"
++  | "memory.recall"
++  | "rag.index"
++  | "rag.query";
++
++type ToolIntent = { tool: ToolName; args?: Record<string, any> };
++
++type IntentLog = {
++  intent: ToolIntent;
++  ok: boolean;
++  status?: number;
++  error?: string;
++  result?: any;
++};
++
++const MAX_INTENTS_PER_TURN = 3;
++
++function tryParseIntentsFrom(text: string): ToolIntent[] {
++  try {
++    if (!text) return [];
++    const m = text.match(/```json\s*([\s\S]*?)```/i);
++    const candidate = m ? m[1] : text;
++    const firstBrace = candidate.indexOf("{");
++    if (firstBrace < 0) return [];
++    const sliced = candidate.slice(firstBrace);
++    let parsed: any;
++    try {
++      parsed = JSON.parse(sliced);
++    } catch {
++      return [];
++    }
++    const arr: any[] = Array.isArray(parsed) ? parsed : [parsed];
++    const allowed: ToolName[] = [
++      "fs.list",
++      "fs.read",
++      "memory.remember",
++      "memory.recall",
++      "rag.index",
++      "rag.query",
++    ];
++    return arr.filter((x) => x && allowed.includes(x.tool as ToolName));
++  } catch {
++    return [];
++  }
++}
++
++async function postJSON(path: string, body: any): Promise<{ ok: boolean; status: number; data: any }> {
++  const r = await fetch(path, {
++    method: "POST",
++    headers: { "Content-Type": "application/json" },
++    body: JSON.stringify(body ?? {}),
++  });
++  const data = await safeJson(r);
++  return { ok: r.ok, status: r.status, data };
++}
++
++async function runIntent(i: ToolIntent): Promise<IntentLog> {
++  try {
++    switch (i.tool) {
++      case "fs.list": {
++        const res = await postJSON("/api/tools/fs/list", i.args);
++        return { intent: i, ok: res.ok, status: res.status, result: res.data, error: res.ok ? undefined : res.data?.error };
++      }
++      case "fs.read": {
++        const res = await postJSON("/api/tools/fs/read", i.args);
++        return { intent: i, ok: res.ok, status: res.status, result: res.data, error: res.ok ? undefined : res.data?.error };
++      }
++      case "memory.remember": {
++        const res = await postJSON("/api/tools/memory/remember", i.args);
++        return { intent: i, ok: res.ok, status: res.status, result: res.data, error: res.ok ? undefined : res.data?.error };
++      }
++      case "memory.recall": {
++        const res = await postJSON("/api/tools/memory/recall", i.args);
++        return { intent: i, ok: res.ok, status: res.status, result: res.data, error: res.ok ? undefined : res.data?.error };
++      }
++      case "rag.index": {
++        const res = await postJSON("/api/tools/rag/index", i.args);
++        return { intent: i, ok: res.ok, status: res.status, result: res.data, error: res.ok ? undefined : res.data?.error };
++      }
++      case "rag.query": {
++        const res = await postJSON("/api/tools/rag/query", i.args);
++        return { intent: i, ok: res.ok, status: res.status, result: res.data, error: res.ok ? undefined : res.data?.error };
++      }
++      default:
++        return { intent: i, ok: false, error: "unsupported_tool" } as IntentLog;
++    }
++  } catch (e: any) {
++    return { intent: i, ok: false, error: String(e?.message ?? e) } as IntentLog;
++  }
++}
++
++const TRUNC_SUMMARY_CHARS = 12000;
++
++function formatIntentSummary(logs: IntentLog[]): string {
++  const chunks = logs.map((l) => {
++    const h = l.ok ? "ok" : `fail:${l.error ?? l.status}`;
++    let sample = "";
++    try {
++      sample = JSON.stringify(l.result);
++    } catch {}
++    if (sample && sample.length > 600) sample = sample.slice(0, 600) + "ÔÇª";
++    return `[tool:${l.intent.tool}] ${h}\n${sample}`;
++  });
++  let summary = chunks.join("\n\n");
++  if (summary.length > TRUNC_SUMMARY_CHARS) {
++    summary = summary.slice(0, TRUNC_SUMMARY_CHARS) + "\nÔÇª(truncated)";
++  }
++  return summary;
++}
++
++async function followUpWithToolResults(args: {
++  endpoint: string;
++  systemPrompt: string;
++  userPrompt: string;
++  initialAssistant: string;
++  logs: IntentLog[];
++}): Promise<string | null> {
++  const { endpoint, systemPrompt, userPrompt, initialAssistant, logs } = args;
++  const summary = formatIntentSummary(logs);
++  const followUser = `Hier sind Tool-Ergebnisse aus dem Intent-Bridge-Lauf. Bitte integriere diese in eine finale, pr├ñzise Antwort.\n\n${summary}`;
++  const response = await fetch(endpoint, {
++    method: "POST",
++    headers: { "Content-Type": "application/json" },
++    body: JSON.stringify({
++      messages: [
++        { role: "system", content: systemPrompt },
++        { role: "user", content: userPrompt },
++        { role: "assistant", content: initialAssistant },
++        { role: "user", content: followUser },
++      ],
++      temperature: 0.2,
++    }),
++  });
++  const payload = await safeJson(response);
++  if (!response.ok) return null;
++  const txt = payload?.output_text ?? payload?.message?.content ?? (Array.isArray(payload?.choices) ? payload?.choices?.[0]?.message?.content : undefined) ?? payload?.text ?? "";
++  return typeof txt === "string" && txt.trim().length ? txt : null;
++}
++
++// end of file helpers
+diff --git a/apps/ui/vite.config.ts b/apps/ui/vite.config.ts
+index c4f66d98..cfe0a8e8 100644
+--- a/apps/ui/vite.config.ts
++++ b/apps/ui/vite.config.ts
+@@ -41,7 +41,7 @@ export default defineConfig({
+     host: true,
+     port: 5173,
+     proxy: {
+-      "/api/ai": {
++      "/api": {
+         target: aiApiTarget,
+         changeOrigin: true,
+       },

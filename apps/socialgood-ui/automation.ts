@@ -25,9 +25,8 @@ export function analyzeConversations(conversations: string[]): ConversationStats
   const count = conversations.length;
   const totalWords = conversations.reduce(
     (sum, c) => sum + c.split(/\s+/).filter(Boolean).length,
-    0
+    0,
   );
   const averageLength = count === 0 ? 0 : totalWords / count;
   return { count, averageLength };
 }
-

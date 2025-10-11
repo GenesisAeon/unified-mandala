@@ -26,7 +26,10 @@ test('lists available services', async () => {
 });
 
 test('saves selected services', async () => {
-  await request(app).post('/api/services').send({ selected: ['gpt4all'] }).expect(200);
+  await request(app)
+    .post('/api/services')
+    .send({ selected: ['gpt4all'] })
+    .expect(200);
   const saved = yaml.load(fs.readFileSync(outFile, 'utf8')) as any;
   expect(saved.selected).toEqual(['gpt4all']);
 });

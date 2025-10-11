@@ -9,4 +9,3 @@ export default {
 export const Aktiv = () => (
   <SoforthilfeOverlay triggerCondition={true} onResolve={() => alert('Ok!')} />
 );
-

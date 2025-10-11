@@ -1,5 +1,5 @@
 name: Sigillin Sync
-schedule: "0 * * * *"
+schedule: '0 * * * *'
 description: |
   Periodisches Verknüpfen neuer Sigillin-Dateien
 steps:

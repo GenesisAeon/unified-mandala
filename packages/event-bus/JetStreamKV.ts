@@ -1,4 +1,11 @@
-import { connect, StringCodec, type ConnectionOptions, type JetStreamClient, type NatsConnection, type KV } from 'nats';
+import {
+  connect,
+  StringCodec,
+  type ConnectionOptions,
+  type JetStreamClient,
+  type NatsConnection,
+  type KV,
+} from 'nats';
 
 export interface JetStreamKVOptions extends ConnectionOptions {
   bucket: string;

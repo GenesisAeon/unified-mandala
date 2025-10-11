@@ -1,10 +1,10 @@
-name: "poeticResonance"
-type: "agent"
-description: "Generiert poetische CREP-Feedback-Haikus."
-version: "1.0.2"
-author: "AeonDev"
-entry: "poeticResonance.js"
-apiVersion: "1.0"
+name: 'poeticResonance'
+type: 'agent'
+description: 'Generiert poetische CREP-Feedback-Haikus.'
+version: '1.0.2'
+author: 'AeonDev'
+entry: 'poeticResonance.js'
+apiVersion: '1.0'
 permissions:
-  - "read:history"
-  - "emit:sigil_alert"
+  - 'read:history'
+  - 'emit:sigil_alert'

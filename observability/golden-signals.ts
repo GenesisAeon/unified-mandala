@@ -18,7 +18,7 @@ export function calculateGoldenSignals(
   successes: number,
   totalRequests: number,
   queueDepth: number,
-  retries: number
+  retries: number,
 ): GoldenSignalsMetrics {
   const sorted = [...latencies].sort((a, b) => a - b);
   let p95Latency = 0;
@@ -28,8 +28,7 @@ export function calculateGoldenSignals(
     const upper = Math.ceil(pos);
     const lowerVal = sorted[lower];
     const upperVal = sorted[upper];
-    p95Latency =
-      lowerVal + (upperVal - lowerVal) * (pos - lower);
+    p95Latency = lowerVal + (upperVal - lowerVal) * (pos - lower);
   }
   const successRate = totalRequests > 0 ? successes / totalRequests : 0;
   return {

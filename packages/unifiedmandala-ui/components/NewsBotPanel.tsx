@@ -14,12 +14,12 @@ const NewsBotPanel: React.FC = () => {
   const startFinetune = async () => {
     const payload = {
       base_model: 'vicuna-13b',
-      output_dir: '/models/latest'
+      output_dir: '/models/latest',
     };
     await fetch('/finetune', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
+      body: JSON.stringify(payload),
     });
   };
 

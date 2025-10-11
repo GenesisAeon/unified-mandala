@@ -4,7 +4,10 @@ export interface LicenseInfo {
 }
 
 export class MandalaCoreLicense {
-  constructor(public holder: string, public license: string) {}
+  constructor(
+    public holder: string,
+    public license: string,
+  ) {}
 
   generateNotice(info: LicenseInfo): string {
     const rights = info.rights.join(', ');

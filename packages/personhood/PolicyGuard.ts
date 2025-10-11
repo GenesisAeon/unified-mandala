@@ -32,5 +32,10 @@ export function enforcePolicy(opts: PolicyOptions): void {
     AuditTrail.record({ personId: opts.personId, action: 'review_required', model: opts.model });
     throw new Error('Review required');
   }
-  AuditTrail.record({ personId: opts.personId, action: 'policy_pass', region: opts.region, model: opts.model });
+  AuditTrail.record({
+    personId: opts.personId,
+    action: 'policy_pass',
+    region: opts.region,
+    model: opts.model,
+  });
 }

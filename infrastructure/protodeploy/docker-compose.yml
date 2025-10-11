@@ -8,4 +8,4 @@ services:
     volumes:
       - ../..:/workspace/unified-mandala
     ports:
-      - "4000:3000"
+      - '4000:3000'

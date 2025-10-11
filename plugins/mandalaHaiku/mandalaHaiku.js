@@ -23,7 +23,7 @@ module.exports = {
       /* ignore if missing */
     }
 
-    io.on('connection', socket => {
+    io.on('connection', (socket) => {
       // Session-Identifikation für Community-Features möglich
       socket.on('sigil_alert', async (alert) => {
         if (alert.id.startsWith('aeon:2025-0626-HIGH-ENERGY')) {
@@ -39,11 +39,11 @@ module.exports = {
      */
     function generateHaiku(crep, symbol = '🌱', sessionId = '') {
       // CREP-abhängige Zeilen, Community-Pattern bevorzugt
-      let t = (customPatterns.length > 0) ? customPatterns : templates;
+      let t = customPatterns.length > 0 ? customPatterns : templates;
       if (crep > 0.8) {
-        t = t.filter(line => /Licht|Leuchten|Erwachen|Flut|Kraft/.test(line));
+        t = t.filter((line) => /Licht|Leuchten|Erwachen|Flut|Kraft/.test(line));
       } else if (crep < 0.3) {
-        t = t.filter(line => /Stille|Tiefe|Nacht|Verharren|Raum/.test(line));
+        t = t.filter((line) => /Stille|Tiefe|Nacht|Verharren|Raum/.test(line));
       }
       // Notfall: fallback auf alles
       if (t.length === 0) t = templates;
@@ -55,24 +55,26 @@ module.exports = {
 
     // Poetische Grund-Templates
     const templates = [
-      "Leuchtendes Sigil – / Träger von Klang und Tiefen / Mandala erwacht",
-      "Im Resonanzfeld / tanzt das Echo stiller Kraft / Haiku verweht nie",
-      "Dreifach-Welle ruft / Poetik in Codes geschrieben / Herz findet Klang",
-      "Tiefe zieht vorbei / Das Mandala hält den Raum / Still wächst Resonanz",
-      "Lichtflut im Kreis / Symbol wird zur Melodie / Mandala pulsiert",
-      "Stille am Morgen / Sigil ruht in Dunkelheit / Ein Kreis erwartet",
-      "Wellen schlagen an / CREP tanzt im neuen Zyklus / Erkenntnis erwacht"
+      'Leuchtendes Sigil – / Träger von Klang und Tiefen / Mandala erwacht',
+      'Im Resonanzfeld / tanzt das Echo stiller Kraft / Haiku verweht nie',
+      'Dreifach-Welle ruft / Poetik in Codes geschrieben / Herz findet Klang',
+      'Tiefe zieht vorbei / Das Mandala hält den Raum / Still wächst Resonanz',
+      'Lichtflut im Kreis / Symbol wird zur Melodie / Mandala pulsiert',
+      'Stille am Morgen / Sigil ruht in Dunkelheit / Ein Kreis erwartet',
+      'Wellen schlagen an / CREP tanzt im neuen Zyklus / Erkenntnis erwacht',
     ];
 
     function hashCode(str) {
       // Primitive Session-Hash (nicht sicher, aber praktisch)
-      var hash = 0, i, chr;
+      var hash = 0,
+        i,
+        chr;
       for (i = 0; i < str.length; i++) {
         chr = str.charCodeAt(i);
-        hash = ((hash << 5) - hash) + chr;
+        hash = (hash << 5) - hash + chr;
         hash |= 0;
       }
       return hash;
     }
-  }
+  },
 };

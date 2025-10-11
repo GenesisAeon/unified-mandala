@@ -1,10 +1,10 @@
-name: "mandalaHaiku"
-type: "agent"
-description: "Generiert CREP-adaptive Haikus für High-Energy-Sigil-Alerts mit optionalen Community-Patterns."
-version: "1.1.0"
-author: "AeonDev"
-entry: "mandalaHaiku.js"
-apiVersion: "1.0"
+name: 'mandalaHaiku'
+type: 'agent'
+description: 'Generiert CREP-adaptive Haikus für High-Energy-Sigil-Alerts mit optionalen Community-Patterns.'
+version: '1.1.0'
+author: 'AeonDev'
+entry: 'mandalaHaiku.js'
+apiVersion: '1.0'
 permissions:
-  - "listen:sigil_alert"
-  - "emit:haiku_response"
+  - 'listen:sigil_alert'
+  - 'emit:haiku_response'

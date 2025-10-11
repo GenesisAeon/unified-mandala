@@ -5,9 +5,7 @@ export interface CREPState {
   history: CREPEntry[];
 }
 
-export type CREPAction =
-  | { type: 'ADD'; entry: CREPEntry }
-  | { type: 'RESET' };
+export type CREPAction = { type: 'ADD'; entry: CREPEntry } | { type: 'RESET' };
 
 export class CREPContext extends EventEmitter {
   private state: CREPState;

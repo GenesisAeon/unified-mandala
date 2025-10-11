@@ -13,9 +13,11 @@ export function CREPInsightDashboard({ score }: CREPInsightDashboardProps) {
       <div data-testid="score">{score}</div>
       <div data-testid="level">{level}</div>
       <div data-testid="bar-container" style={{ background: '#eee', width: '100%', height: '8px' }}>
-        <div data-testid="bar" style={{ background: '#3b82f6', width: `${percentage}%`, height: '100%' }} />
+        <div
+          data-testid="bar"
+          style={{ background: '#3b82f6', width: `${percentage}%`, height: '100%' }}
+        />
       </div>
     </div>
   );
 }
-

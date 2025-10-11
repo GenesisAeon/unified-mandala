@@ -7,7 +7,7 @@ describe('PantheonBoundaryLawExplorer', () => {
     const res = exp.explore([
       { module: 'a', law: 'alpha' },
       { module: 'b', law: 'alpha' },
-      { module: 'c', law: 'beta' }
+      { module: 'c', law: 'beta' },
     ]);
     expect(res).toEqual({ alpha: 2, beta: 1 });
   });

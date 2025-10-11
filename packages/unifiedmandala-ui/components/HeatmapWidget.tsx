@@ -8,9 +8,12 @@ export interface HeatmapWidgetProps {
   size?: number;
 }
 
-export default function HeatmapWidget({ manager = new CREPManager(), size = 20 }: HeatmapWidgetProps) {
+export default function HeatmapWidget({
+  manager = new CREPManager(),
+  size = 20,
+}: HeatmapWidgetProps) {
   const history = useCREPHistory(manager);
-  const values = history.slice(-size).map(h => (h.C + h.R + h.E + h.P) / 4);
+  const values = history.slice(-size).map((h) => (h.C + h.R + h.E + h.P) / 4);
   return (
     <div className="heatmap-widget" aria-label="CREP Heatmap">
       <NullmembranSIHeatmap values={values} />

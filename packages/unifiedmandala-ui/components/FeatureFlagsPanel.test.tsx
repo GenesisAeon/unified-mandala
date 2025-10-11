@@ -4,9 +4,10 @@ import '@testing-library/jest-dom';
 import FeatureFlagsPanel from './FeatureFlagsPanel';
 
 test('renders and toggles feature flags', async () => {
-  const fetchMock = jest.fn()
+  const fetchMock = jest
+    .fn()
     .mockResolvedValueOnce({
-      json: async () => ({ flags: [{ name: 'researchHub.enabled', enabled: false }] })
+      json: async () => ({ flags: [{ name: 'researchHub.enabled', enabled: false }] }),
     })
     .mockResolvedValueOnce({});
   // @ts-ignore

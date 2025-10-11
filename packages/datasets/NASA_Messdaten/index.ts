@@ -11,13 +11,13 @@ export function registerNASAMessdaten(personId: string): void {
     NASA_DATASET_VERSION,
     'train',
     '/data/nasa/train.csv',
-    personId
+    personId,
   );
   DatasetRegistry.addSplit(
     NASA_DATASET_NAME,
     NASA_DATASET_VERSION,
     'test',
     '/data/nasa/test.csv',
-    personId
+    personId,
   );
 }

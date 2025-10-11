@@ -8,6 +8,6 @@ export class VRMeetingRoom {
   }
 
   broadcast(msg: string, peers: string[]): string[] {
-    return peers.map(p => `${p}:${msg}`);
+    return peers.map((p) => `${p}:${msg}`);
   }
 }

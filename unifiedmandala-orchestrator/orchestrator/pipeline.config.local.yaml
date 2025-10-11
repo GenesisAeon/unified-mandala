@@ -1,9 +1,9 @@
 sigillin_map:
   simulate_singularity: singularity_simulator_service
-  gpt4all_chat:         gpt4all_service
-  openassistant_chat:   openassistant_service
-  h2ogpt_chat:          h2ogpt_service
-  avatar:               avatar_renderer_service
+  gpt4all_chat: gpt4all_service
+  openassistant_chat: openassistant_service
+  h2ogpt_chat: h2ogpt_service
+  avatar: avatar_renderer_service
 
 crep_thresholds:
   singularity_simulator_service: 0.75
@@ -13,6 +13,6 @@ crep_thresholds:
   avatar_renderer_service: 0.40
 
 routing:
-  strategy: "hybrid_best_crep"
+  strategy: 'hybrid_best_crep'
 http:
   port: 7070

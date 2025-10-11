@@ -19,7 +19,7 @@ export class BoundaryDiscoveryAgent {
     // naive example: one rule per observation
     return this.observations.map((o, idx) => ({
       id: `rule-${idx}`,
-      description: `auto-generated from obs ${idx}`
+      description: `auto-generated from obs ${idx}`,
     }));
   }
 }

@@ -15,7 +15,7 @@ function loadProgress() {
 function loadTodos() {
   if (!fs.existsSync(todoFile)) return [];
   const raw = fs.readFileSync(todoFile, 'utf8');
-  return raw.split(/\n-/).filter(line => line.trim().startsWith('commit:'));
+  return raw.split(/\n-/).filter((line) => line.trim().startsWith('commit:'));
 }
 
 function loadChrono() {

@@ -14,4 +14,3 @@ test('renders service health status', () => {
   expect(screen.getByText('api: 🟢')).toBeInTheDocument();
   expect(screen.getByText('db: 🔴')).toBeInTheDocument();
 });
-

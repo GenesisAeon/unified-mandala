@@ -12,6 +12,6 @@ export function createTonePlayground(): TonePlayground {
     },
     stop() {
       current = 0;
-    }
+    },
   };
 }

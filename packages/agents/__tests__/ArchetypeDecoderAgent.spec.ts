@@ -7,6 +7,8 @@ describe('ArchetypeDecoderAgent', () => {
   it('decodes archetypes from description', async () => {
     const agent = new ArchetypeDecoderAgent();
     await agent.handle({ id: 'T1', description: 'Aktiviere Feuer und Wasser' });
-    expect(console.log).toHaveBeenCalledWith('🔥 ArchetypeDecoderAgent → archetypes=["feuer","wasser"]');
+    expect(console.log).toHaveBeenCalledWith(
+      '🔥 ArchetypeDecoderAgent → archetypes=["feuer","wasser"]',
+    );
   });
 });

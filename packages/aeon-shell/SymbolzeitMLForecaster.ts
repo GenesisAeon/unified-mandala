@@ -11,9 +11,9 @@ export class SymbolzeitMLForecaster {
   private length = 0;
 
   /**
-     * Train the model using a sequence of Symbolzeit values.
-     * @param history Array of numeric Symbolzeit values ordered by time.
-     */
+   * Train the model using a sequence of Symbolzeit values.
+   * @param history Array of numeric Symbolzeit values ordered by time.
+   */
   train(history: number[]): void {
     this.length = history.length;
     if (this.length === 0) {
@@ -37,8 +37,8 @@ export class SymbolzeitMLForecaster {
   }
 
   /**
-     * Forecast the next Symbolzeit value.
-     */
+   * Forecast the next Symbolzeit value.
+   */
   forecastNext(): number {
     const nextIndex = this.length;
     return this.slope * nextIndex + this.intercept;
@@ -53,4 +53,3 @@ export function forecastSymbolzeit(history: number[]): number {
   forecaster.train(history);
   return forecaster.forecastNext();
 }
-

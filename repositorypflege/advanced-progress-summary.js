@@ -15,9 +15,8 @@ const format = args.includes('--json')
         : 'text';
 const showDetails = args.includes('--details');
 const fileIdx = args.indexOf('--file');
-const progressFile = fileIdx !== -1 && args[fileIdx + 1]
-  ? args[fileIdx + 1]
-  : 'advancedprogress.json';
+const progressFile =
+  fileIdx !== -1 && args[fileIdx + 1] ? args[fileIdx + 1] : 'advancedprogress.json';
 
 try {
   const data = JSON.parse(fs.readFileSync(progressFile, 'utf8'));
@@ -56,15 +55,11 @@ try {
     console.log(`| Pending Tasks | ${summary.pending} |`);
     console.log(`| Completed Tasks | ${summary.done} |`);
     console.log(`| Fractal Todos | ${summary.fractalTodos} |`);
-    if (summary.lastUpdated)
-      console.log(`| Last Updated | ${summary.lastUpdated} |`);
-    if (summary.commitHash)
-      console.log(`| Commit | ${summary.commitHash} |`);
+    if (summary.lastUpdated) console.log(`| Last Updated | ${summary.lastUpdated} |`);
+    if (summary.commitHash) console.log(`| Commit | ${summary.commitHash} |`);
     if (showDetails) {
-      if (summary.lastCommit)
-        console.log(`| Last Commit | ${summary.lastCommit} |`);
-      if (summary.fractalStep)
-        console.log(`| Fractal Step | ${summary.fractalStep} |`);
+      if (summary.lastCommit) console.log(`| Last Commit | ${summary.lastCommit} |`);
+      if (summary.fractalStep) console.log(`| Fractal Step | ${summary.fractalStep} |`);
       if (summary.openBranches)
         console.log(`| Open Branches | ${summary.openBranches.join(', ')} |`);
       if (summary.mergeConflicts && summary.mergeConflicts.length)

@@ -11,7 +11,7 @@ export class AeonKernel {
 
   setState(state: Partial<CREPState>) {
     this.state = { ...this.state, ...state };
-    this.listeners.forEach(l => l(this.state));
+    this.listeners.forEach((l) => l(this.state));
   }
 
   getState(): CREPState {

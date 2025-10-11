@@ -7,10 +7,7 @@ interface MacroEvent {
   [key: string]: any;
 }
 
-async function replayMacro(
-  filePath: string,
-  baseUrl: string = 'http://localhost:3030'
-) {
+async function replayMacro(filePath: string, baseUrl: string = 'http://localhost:3030') {
   const abs = path.resolve(filePath);
   const rl = readline.createInterface({
     input: createReadStream(abs),

@@ -22,11 +22,11 @@ Die folgenden Domänen werden als "muss stabil" priorisiert. Alles andere bleibt
 
 ## Teststrategie & Environments
 
-| Ebene        | Befehl(e)                         | Inhalt                                                |
-|--------------|-----------------------------------|-------------------------------------------------------|
-| Core (PR)    | `pnpm test:ts:ci`, `pnpm test:py`                      | Schnelle Unit- und Pipeline-Checks ohne Slow/Exp.     |
-| Extended     | `pnpm test:ts:extended`, `pnpm test:py:extended`       | Vollständige Offline-Pipelines (OISST, ERA5) + Smoke |
-| Experimental | `ENABLE_EXPERIMENTAL_TESTS=1 pnpm test:ts:experimental` | Prototypen & Redteam-Suites                           |
+| Ebene        | Befehl(e)                                               | Inhalt                                               |
+| ------------ | ------------------------------------------------------- | ---------------------------------------------------- |
+| Core (PR)    | `pnpm test:ts:ci`, `pnpm test:py`                       | Schnelle Unit- und Pipeline-Checks ohne Slow/Exp.    |
+| Extended     | `pnpm test:ts:extended`, `pnpm test:py:extended`        | Vollständige Offline-Pipelines (OISST, ERA5) + Smoke |
+| Experimental | `ENABLE_EXPERIMENTAL_TESTS=1 pnpm test:ts:experimental` | Prototypen & Redteam-Suites                          |
 
 - `pytest`-Marker: `slow` (Extended), `experimental` (on-demand). Neue Tests bitte entsprechend markieren.
 - `ENABLE_EXTENDED_TESTS`, `ENABLE_EXPERIMENTAL_TESTS` steuern die Vitest-Filter.

@@ -3,7 +3,7 @@
  * In a real system this would apply sustainability heuristics.
  */
 export function evolveGreen(options: string[]): string[] {
-  return options.filter(o => /green/i.test(o));
+  return options.filter((o) => /green/i.test(o));
 }
 
 export default evolveGreen;

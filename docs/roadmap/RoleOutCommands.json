@@ -61,8 +61,8 @@
     },
     {
       "id": "phase-2",
-      "title": "Phase 2 – AI-Playground (Qwen)",
-      "status": "in-progress",
+      "title": "Phase 2 - AI-Playground (Qwen)",
+      "status": "ready",
       "gate": "pnpm smoke:qwen",
       "commands": [
         {

@@ -21,7 +21,7 @@ export function analyzeNewAdvancedConversations(
   filePath: string,
   filterTitles?: string[],
   start = 0,
-  count = Infinity
+  count = Infinity,
 ): ConversationStats {
   const raw = JSON.parse(fs.readFileSync(filePath, 'utf8'));
   const allSessions = Array.isArray(filterTitles)
@@ -59,9 +59,7 @@ export function analyzeNewAdvancedConversations(
     conversationCount: sessions.length,
     messageCount,
     authorCounts,
-    averageMessagesPerConversation: sessions.length
-      ? messageCount / sessions.length
-      : 0,
+    averageMessagesPerConversation: sessions.length ? messageCount / sessions.length : 0,
     timeRange: { start: minTime, end: maxTime },
     todoCount,
     titles: collectedTitles,
@@ -72,7 +70,7 @@ export async function analyzeNewAdvancedConversationsStream(
   filePath: string,
   filterTitles?: string[],
   start = 0,
-  count = Infinity
+  count = Infinity,
 ): Promise<ConversationStats> {
   return new Promise((resolve, reject) => {
     const titleSet = filterTitles ? new Set(filterTitles) : undefined;
@@ -110,13 +108,9 @@ export async function analyzeNewAdvancedConversationsStream(
           const ct = (msg as any).create_time;
           if (typeof ct === 'number') {
             stats.timeRange.start =
-              stats.timeRange.start === null
-                ? ct
-                : Math.min(stats.timeRange.start, ct);
+              stats.timeRange.start === null ? ct : Math.min(stats.timeRange.start, ct);
             stats.timeRange.end =
-              stats.timeRange.end === null
-                ? ct
-                : Math.max(stats.timeRange.end, ct);
+              stats.timeRange.end === null ? ct : Math.max(stats.timeRange.end, ct);
           }
           const parts: string[] = msg.content?.parts || [];
           const text = parts.join(' ');
@@ -143,10 +137,7 @@ if (typeof require !== 'undefined' && require.main === module) {
   const file =
     fileArgIndex >= 0
       ? args[fileArgIndex]
-      : path.join(
-          __dirname,
-          '../docs/sigils/newadvancedconversations.json'
-        );
+      : path.join(__dirname, '../docs/sigils/newadvancedconversations.json');
   const summaryIndex = args.indexOf('--summary');
   const summaryPath = summaryIndex >= 0 ? args[summaryIndex + 1] : null;
   const jsonIndex = args.indexOf('--json');
@@ -154,25 +145,17 @@ if (typeof require !== 'undefined' && require.main === module) {
   const titlesArgIndex = args.indexOf('--titles');
   const titleList =
     titlesArgIndex >= 0
-      ? args[titlesArgIndex + 1]
-          .split(',')
-          .map((t: string) => t.trim())
+      ? args[titlesArgIndex + 1].split(',').map((t: string) => t.trim())
       : undefined;
   const startIndex = args.indexOf('--start');
   const start = startIndex >= 0 ? parseInt(args[startIndex + 1], 10) : 0;
   const countIndex = args.indexOf('--count');
-  const count =
-    countIndex >= 0 ? parseInt(args[countIndex + 1], 10) : Infinity;
+  const count = countIndex >= 0 ? parseInt(args[countIndex + 1], 10) : Infinity;
   const useStream = args.includes('--stream');
 
   (async () => {
     const stats = useStream
-      ? await analyzeNewAdvancedConversationsStream(
-          file,
-          titleList,
-          start,
-          count
-        )
+      ? await analyzeNewAdvancedConversationsStream(file, titleList, start, count)
       : analyzeNewAdvancedConversations(file, titleList, start, count);
     console.log(`Conversations: ${stats.conversationCount}`);
     console.log(`Messages: ${stats.messageCount}`);
@@ -185,15 +168,11 @@ if (typeof require !== 'undefined' && require.main === module) {
         `- Conversations: ${stats.conversationCount}`,
         `- Messages: ${stats.messageCount}`,
         '- Authors:',
-        ...Object.entries(stats.authorCounts).map(
-          ([role, count]) => `  - ${role}: ${count}`
-        ),
+        ...Object.entries(stats.authorCounts).map(([role, count]) => `  - ${role}: ${count}`),
         '- Titles:',
         ...stats.titles.map((t) => `  - ${t}`),
         `- TODOs: ${stats.todoCount}`,
-        `- Time range: ${
-          stats.timeRange.start ?? 'n/a'
-        } - ${stats.timeRange.end ?? 'n/a'}`,
+        `- Time range: ${stats.timeRange.start ?? 'n/a'} - ${stats.timeRange.end ?? 'n/a'}`,
       ];
       fs.writeFileSync(summaryPath, lines.join('\n') + '\n');
       console.log(`Summary written to ${summaryPath}`);

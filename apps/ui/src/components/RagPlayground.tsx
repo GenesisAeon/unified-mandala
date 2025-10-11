@@ -1,24 +1,24 @@
-import { useMemo, useState } from "react";
+import { useMemo, useState } from 'react';
 
-type State = "idle" | "loading" | "done" | "error";
+type State = 'idle' | 'loading' | 'done' | 'error';
 
 function ragBase(): string {
   const base = (import.meta as any)?.env?.VITE_RAG_BASE;
-  if (typeof base === "string" && base.trim()) return base.trim();
-  return "/rag"; // proxied by Vite to RAG API
+  if (typeof base === 'string' && base.trim()) return base.trim();
+  return '/rag'; // proxied by Vite to RAG API
 }
 
 export default function RagPlayground() {
   const base = useMemo(ragBase, []);
-  const [q, setQ] = useState("");
+  const [q, setQ] = useState('');
   const [k, setK] = useState(5);
   const [resp, setResp] = useState<any>(null);
-  const [state, setState] = useState<State>("idle");
+  const [state, setState] = useState<State>('idle');
   const [error, setError] = useState<string | null>(null);
 
   async function search() {
     if (!q.trim()) return;
-    setState("loading");
+    setState('loading');
     setError(null);
     setResp(null);
     try {
@@ -27,31 +27,31 @@ export default function RagPlayground() {
       const json = await r.json();
       if (!r.ok) throw new Error(json?.error || `HTTP ${r.status}`);
       setResp(json);
-      setState("done");
+      setState('done');
     } catch (err) {
       setError(err instanceof Error ? err.message : String(err));
-      setState("error");
+      setState('error');
     }
   }
 
   async function ask() {
     if (!q.trim()) return;
-    setState("loading");
+    setState('loading');
     setError(null);
     setResp(null);
     try {
       const r = await fetch(`${base}/ask`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ question: q, k }),
       });
       const json = await r.json();
       if (!r.ok) throw new Error(json?.error || `HTTP ${r.status}`);
       setResp(json);
-      setState("done");
+      setState('done');
     } catch (err) {
       setError(err instanceof Error ? err.message : String(err));
-      setState("error");
+      setState('error');
     }
   }
 
@@ -88,7 +88,7 @@ export default function RagPlayground() {
         <button
           type="button"
           onClick={search}
-          disabled={state === "loading" || !q.trim()}
+          disabled={state === 'loading' || !q.trim()}
           className="inline-flex items-center justify-center rounded-xl bg-slate-600 px-4 py-2 font-medium text-white shadow transition hover:bg-slate-500 disabled:cursor-not-allowed disabled:bg-slate-300"
         >
           Search
@@ -96,18 +96,20 @@ export default function RagPlayground() {
         <button
           type="button"
           onClick={ask}
-          disabled={state === "loading" || !q.trim()}
+          disabled={state === 'loading' || !q.trim()}
           className="inline-flex items-center justify-center rounded-xl bg-indigo-600 px-4 py-2 font-medium text-white shadow transition hover:bg-indigo-500 disabled:cursor-not-allowed disabled:bg-indigo-300"
         >
           Ask
         </button>
       </div>
 
-      {state === "error" && error && (
-        <div className="rounded-xl border border-red-200 bg-red-50 p-3 text-sm text-red-700">{error}</div>
+      {state === 'error' && error && (
+        <div className="rounded-xl border border-red-200 bg-red-50 p-3 text-sm text-red-700">
+          {error}
+        </div>
       )}
 
-      {state === "done" && (
+      {state === 'done' && (
         <pre className="whitespace-pre-wrap rounded-xl border border-slate-200 bg-slate-50 p-4 text-xs leading-relaxed text-slate-900">
           {JSON.stringify(resp, null, 2)}
         </pre>
@@ -115,4 +117,3 @@ export default function RagPlayground() {
     </div>
   );
 }
-

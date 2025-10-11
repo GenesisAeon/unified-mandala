@@ -12,9 +12,9 @@ router.post('/code', async (req, res) => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        ...(key ? { Authorization: `Bearer ${key}` } : {})
+        ...(key ? { Authorization: `Bearer ${key}` } : {}),
       },
-      body: JSON.stringify({ snippet })
+      body: JSON.stringify({ snippet }),
     });
     const data = await (resp as any).json();
     res.json(data);

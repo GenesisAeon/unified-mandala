@@ -11,15 +11,13 @@ describe('ReviewAgent', () => {
           id: 'a',
           message: { content: 'Hello world' },
           parent: 'root',
-          children: []
-        }
-      }
+          children: [],
+        },
+      },
     };
     const spy = vi.spyOn(console, 'log').mockImplementation(() => {});
     agent.handle({ id: 't1', description: 'review', conversation } as any);
-    expect(spy).toHaveBeenCalledWith(
-      '📝 ReviewAgent → review fragment: Hello world'
-    );
+    expect(spy).toHaveBeenCalledWith('📝 ReviewAgent → review fragment: Hello world');
     spy.mockRestore();
   });
 });

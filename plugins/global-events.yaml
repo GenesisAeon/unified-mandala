@@ -1,10 +1,10 @@
 id: global-events
-title: "Global Events Monitor"
-description: "Aggregates positive science, tech and environment breakthroughs"
+title: 'Global Events Monitor'
+description: 'Aggregates positive science, tech and environment breakthroughs'
 type: environment
 agent: GlobalEventsAgent
 entrypoint: agents/global_events/orchestrator.py
 config:
-  science_api_url: "https://example.com/science"
-  tech_api_url: "https://example.com/tech"
-  environment_api_url: "https://example.com/environment"
+  science_api_url: 'https://example.com/science'
+  tech_api_url: 'https://example.com/tech'
+  environment_api_url: 'https://example.com/environment'

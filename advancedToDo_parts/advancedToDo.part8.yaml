@@ -1,30 +1,30 @@
-- commit: "Implement MemoryManager Service"
+- commit: 'Implement MemoryManager Service'
   path: services/memory-manager
-  task: "Manage daily, weekly and longterm categories with scheduler; integrate with fragment_and_package_conversations.js and extract_code_fragments.js"
+  task: 'Manage daily, weekly and longterm categories with scheduler; integrate with fragment_and_package_conversations.js and extract_code_fragments.js'
   test: services/memory-manager/test.ts
   status: done
-- commit: "Add Feedback Agents for new files"
+- commit: 'Add Feedback Agents for new files'
   path: packages/agents/feedback
-  task: "Agents monitor new files and trigger MemoryManager hooks"
+  task: 'Agents monitor new files and trigger MemoryManager hooks'
   test: packages/agents/__tests__/feedback.test.ts
   status: done
-- commit: "Create todo_parser Go component"
+- commit: 'Create todo_parser Go component'
   path: go-bridge/pkg/codeagent/todo_parser.go
-  task: "Parse TODO markers and expose /usecases/todo/parse endpoint"
+  task: 'Parse TODO markers and expose /usecases/todo/parse endpoint'
   test: go-bridge/pkg/codeagent/todo_parser_test.go
   status: done
-- commit: "Add Parse TODOs button"
+- commit: 'Add Parse TODOs button'
   path: apps/web/components/TodoButton.tsx
-  task: "UI button invokes /usecases/todo/parse"
+  task: 'UI button invokes /usecases/todo/parse'
   test: apps/web/components/__tests__/TodoButton.test.tsx
   status: done
-- commit: "Automate ToDo generation"
+- commit: 'Automate ToDo generation'
   path: scripts/todoSigilGenerator.js
-  task: "Generate tasks from SelfAnalyzer results into advancedToDo.yaml"
-  test: ""
+  task: 'Generate tasks from SelfAnalyzer results into advancedToDo.yaml'
+  test: ''
   status: done
-- commit: "Cluster roadmap guidelines"
+- commit: 'Cluster roadmap guidelines'
   path: docs/roadmap/cluster-guidelines.md
-  task: "Provide clusters and practical guard rails for implementation pitches"
-  test: ""
+  task: 'Provide clusters and practical guard rails for implementation pitches'
+  test: ''
   status: done

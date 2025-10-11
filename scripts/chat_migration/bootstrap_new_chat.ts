@@ -5,13 +5,13 @@ export interface SigillinLoader {
 export const SIGILLIN_IDS = [
   'um:2025-0806-ANCHOR-NEWADV',
   'um:2025-0806-GOV-SIM',
-  'um:2025-0806-SINGULARITY-SIM'
+  'um:2025-0806-SINGULARITY-SIM',
 ];
 
 const defaultLoader: SigillinLoader = {
   load(id: string) {
     console.log(`Loading sigillin ${id}`);
-  }
+  },
 };
 
 export async function bootstrapNewChat(loader: SigillinLoader = defaultLoader) {
@@ -23,5 +23,5 @@ export async function bootstrapNewChat(loader: SigillinLoader = defaultLoader) {
 }
 
 if (require.main === module) {
-  bootstrapNewChat().then(p => console.log(p));
+  bootstrapNewChat().then((p) => console.log(p));
 }

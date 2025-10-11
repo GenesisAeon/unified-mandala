@@ -7,7 +7,13 @@ const mockIo = ioClient as unknown as jest.Mock;
 
 it('emits crep sync events from socket', () => {
   const handlers: Record<string, (d: any) => void> = {};
-  const socket = { on: jest.fn((ev, cb) => { handlers[ev] = cb; }), emit: jest.fn(), disconnect: jest.fn() } as unknown as Socket;
+  const socket = {
+    on: jest.fn((ev, cb) => {
+      handlers[ev] = cb;
+    }),
+    emit: jest.fn(),
+    disconnect: jest.fn(),
+  } as unknown as Socket;
   mockIo.mockReturnValue(socket);
   jest.spyOn(GPTEventHub, 'emit');
 

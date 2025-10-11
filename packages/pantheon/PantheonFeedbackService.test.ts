@@ -14,7 +14,7 @@ describe('PantheonFeedbackService', () => {
 
   it('coordinates round via callback', () => {
     const svc = new PantheonFeedbackService();
-    const result = svc.coordinateRound(['a'], m => m.toUpperCase());
+    const result = svc.coordinateRound(['a'], (m) => m.toUpperCase());
     expect(result).toEqual(['FEEDBACK:A']);
   });
 });

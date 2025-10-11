@@ -1,7 +1,8 @@
 🚀 DeployRoadMap.md
 
 UnifiedMandala – Webfrontend & Server-Setup
-1. Infrastruktur & Domain
+
+1.  Infrastruktur & Domain
 
     Entscheide:
 
@@ -15,7 +16,7 @@ UnifiedMandala – Webfrontend & Server-Setup
 
         DNS prüfen: A-Record zeigt auf Server-IP.
 
-2. Server-Setup (bei VPS/Root-Server)
+2.  Server-Setup (bei VPS/Root-Server)
 
     Betriebssystem installieren:
 
@@ -42,7 +43,7 @@ Webserver einrichten (Nginx empfohlen):
 
 3. Frontend Build & Deployment
 
-    Frontend klonen & bauen:
+   Frontend klonen & bauen:
 
 git clone https://github.com/GenesisAeon/unifiedmandala-ui.git
 cd unifiedmandala-ui
@@ -52,7 +53,7 @@ npm run build
 Build deployen:
 
 sudo mkdir -p /var/www/mandala
-sudo cp -r build/* /var/www/mandala/
+sudo cp -r build/\* /var/www/mandala/
 sudo chown -R www-data:www-data /var/www/mandala
 
 Nginx-Konfiguration anlegen
@@ -60,13 +61,13 @@ Nginx-Konfiguration anlegen
     Datei: /etc/nginx/sites-available/mandala.conf
 
 server {
-  listen 80;
-  server_name deine-domain.de www.deine-domain.de;
-  root /var/www/mandala;
-  index index.html;
-  location / {
-    try_files $uri $uri/ /index.html;
-  }
+listen 80;
+server_name deine-domain.de www.deine-domain.de;
+root /var/www/mandala;
+index index.html;
+location / {
+try_files $uri $uri/ /index.html;
+}
 }
 
     Aktivieren & testen:
@@ -87,8 +88,8 @@ SSL aktivieren (Let’s Encrypt):
 
 4. SPA-Routing (.htaccess für Strato & Co.)
 
-    Nur bei klassischem Webspace:
-    Lege im Build-Ordner eine .htaccess an:
+   Nur bei klassischem Webspace:
+   Lege im Build-Ordner eine .htaccess an:
 
 <IfModule mod_rewrite.c>
   RewriteEngine On
@@ -97,13 +98,13 @@ SSL aktivieren (Let’s Encrypt):
   RewriteRule . /index.html [L]
 </IfModule>
 
-5. CI/CD (optional)
+5.  CI/CD (optional)
 
     GitHub Actions: Automatischer FTP-Upload nach jedem Push (nur bei Strato/Webspace)
 
     Deploy-Skript/Cronjob: Für eigenen Server, automatisiertes Build & Kopieren
 
-6. Test & Smoke Check
+6.  Test & Smoke Check
 
     Domain aufrufen (https://deine-domain.de)
 
@@ -111,7 +112,7 @@ SSL aktivieren (Let’s Encrypt):
 
     404 → .htaccess oder Nginx-Config prüfen
 
-7. Nächste Ausbaustufen
+7.  Nächste Ausbaustufen
 
     Backend-API: Node/Go-Services, ggf. Docker/Kubernetes
 
@@ -119,7 +120,7 @@ SSL aktivieren (Let’s Encrypt):
 
     Monitoring & Backup: z. B. UptimeRobot, automatische Sicherungen
 
-8. Troubleshooting & Tipps
+8.  Troubleshooting & Tipps
 
     Fehler? Sieh in die Logs:
 

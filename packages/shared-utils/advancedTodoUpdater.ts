@@ -1,7 +1,10 @@
 import fs from 'fs';
 import YAML from 'yaml';
 import path from 'path';
-import { extractTodosFromConversations, extractImplicitTodosFromConversations } from './conversationAnalyzer';
+import {
+  extractTodosFromConversations,
+  extractImplicitTodosFromConversations,
+} from './conversationAnalyzer';
 
 export interface AdvancedTodoEntry {
   commit: string;
@@ -19,7 +22,7 @@ export function updateAdvancedTodo(
   convFile: string,
   yamlFile: string,
   jsonFile: string,
-  options: UpdateOptions = {}
+  options: UpdateOptions = {},
 ): AdvancedTodoEntry[] {
   const { includeImplicit = false, maxEntries } = options;
   const todos = extractTodosFromConversations(convFile);
@@ -27,7 +30,11 @@ export function updateAdvancedTodo(
     todos.push(...extractImplicitTodosFromConversations(convFile));
   }
 
-  const clean = (t: string) => t.replace(/^[*\-]\s*/, '').replace(/【.*?】/g, '').trim();
+  const clean = (t: string) =>
+    t
+      .replace(/^[*\-]\s*/, '')
+      .replace(/【.*?】/g, '')
+      .trim();
   const isValid = (t: string) =>
     /\w{3}/.test(t) &&
     t.split(/\s+/).length >= 3 &&
@@ -42,7 +49,7 @@ export function updateAdvancedTodo(
       commit: t,
       path: '',
       task: t,
-      test: ''
+      test: '',
     }));
 
   if (typeof maxEntries === 'number') {
@@ -64,7 +71,7 @@ export function updateAdvancedTodo(
   };
 
   const merge = (existing: AdvancedTodoEntry[], add: AdvancedTodoEntry[]) => {
-    const known = new Set(existing.map(e => e.commit));
+    const known = new Set(existing.map((e) => e.commit));
     for (const e of add) {
       if (!known.has(e.commit)) {
         existing.push(e);

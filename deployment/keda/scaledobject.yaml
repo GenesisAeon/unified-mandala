@@ -10,10 +10,9 @@ spec:
   minReplicaCount: 1
   maxReplicaCount: 10
   triggers:
-  - type: nats-jetstream
-    metadata:
-      natsServerMonitoringEndpoint: "http://nats.monitoring:8222"
-      streamName: tasks
-      consumerName: worker
-      pendingMessages: "100"
-
+    - type: nats-jetstream
+      metadata:
+        natsServerMonitoringEndpoint: 'http://nats.monitoring:8222'
+        streamName: tasks
+        consumerName: worker
+        pendingMessages: '100'

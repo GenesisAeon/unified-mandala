@@ -12,7 +12,7 @@ describe('VRBegegnungsraumLobby', () => {
     const lobby = new VRBegegnungsraumLobby();
     expect(lobby.initiateHandshake('fourier')).toBe('handshake:fourier');
     expect(lobby.initiateHandshake('fourier', { breathSync: true })).toBe(
-      'handshake:fourier:breath-sync'
+      'handshake:fourier:breath-sync',
     );
   });
 });

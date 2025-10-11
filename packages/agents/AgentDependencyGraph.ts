@@ -1,6 +1,9 @@
 import { EventEmitter } from 'events';
 
-export interface AgentEdge { from: string; to: string; }
+export interface AgentEdge {
+  from: string;
+  to: string;
+}
 
 /**
  * Simple in-memory graph that emits an `update` event whenever

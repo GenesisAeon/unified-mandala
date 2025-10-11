@@ -12,7 +12,7 @@ spec:
       metadata:
         serverAddress: http://prometheus.monitoring.svc.cluster.local:9090
         metricName: http_requests_total
-        threshold: "100"
+        threshold: '100'
         query: sum(rate(http_requests_total{app="flags-api"}[2m]))
 ---
 apiVersion: keda.sh/v1alpha1
@@ -29,7 +29,7 @@ spec:
       metadata:
         serverAddress: http://prometheus.monitoring.svc.cluster.local:9090
         metricName: http_requests_total
-        threshold: "100"
+        threshold: '100'
         query: sum(rate(http_requests_total{app="experiments-api"}[2m]))
 ---
 apiVersion: keda.sh/v1alpha1
@@ -46,5 +46,5 @@ spec:
       metadata:
         serverAddress: http://prometheus.monitoring.svc.cluster.local:9090
         metricName: http_requests_total
-        threshold: "100"
+        threshold: '100'
         query: sum(rate(http_requests_total{app="reviewer-api"}[2m]))

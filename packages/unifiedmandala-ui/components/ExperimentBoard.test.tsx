@@ -6,7 +6,7 @@ import ExperimentBoard from './ExperimentBoard';
 describe('ExperimentBoard', () => {
   beforeEach(() => {
     (global as any).fetch = jest.fn().mockResolvedValueOnce({
-      json: async () => ({ experiments: [{ id: 'exp1', result: 'ok' }] })
+      json: async () => ({ experiments: [{ id: 'exp1', result: 'ok' }] }),
     });
   });
 
@@ -14,7 +14,7 @@ describe('ExperimentBoard', () => {
     render(<ExperimentBoard />);
     expect(fetch).toHaveBeenCalledWith(
       '/experiments/list',
-      expect.objectContaining({ headers: { 'X-Personhood': 'required' } })
+      expect.objectContaining({ headers: { 'X-Personhood': 'required' } }),
     );
     expect(await screen.findByText(/exp1/)).toBeInTheDocument();
   });

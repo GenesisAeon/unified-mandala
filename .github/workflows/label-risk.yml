@@ -1,4 +1,4 @@
-name: "LLM: Auto Risk Labels"
+name: 'LLM: Auto Risk Labels'
 on:
   pull_request:
     types: [opened, synchronize]

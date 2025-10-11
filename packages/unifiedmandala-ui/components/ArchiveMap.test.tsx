@@ -4,9 +4,7 @@ import '@testing-library/jest-dom';
 import ArchiveMap, { ArchiveSite } from './ArchiveMap';
 
 test('renders sites and triggers callback', () => {
-  const sites: ArchiveSite[] = [
-    { id: '1', name: 'Pumapunku', lat: -16.551, lon: -68.673 },
-  ];
+  const sites: ArchiveSite[] = [{ id: '1', name: 'Pumapunku', lat: -16.551, lon: -68.673 }];
   const onSelect = jest.fn();
   render(<ArchiveMap sites={sites} onSelect={onSelect} />);
   const marker = screen.getByRole('button', { name: 'Pumapunku' });

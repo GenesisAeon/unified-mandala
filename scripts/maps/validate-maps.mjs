@@ -3,10 +3,10 @@ import { parse } from 'yaml';
 import Ajv from 'ajv';
 
 const ajv = new Ajv();
-const schemaRepo = {type:'object',required:['repo']};
-const schemaFlow = {type:'object',required:['meta','nodes','flows']};
+const schemaRepo = { type: 'object', required: ['repo'] };
+const schemaFlow = { type: 'object', required: ['meta', 'nodes', 'flows'] };
 
-function check(file, schema){
+function check(file, schema) {
   const data = parse(fs.readFileSync(file, 'utf8'));
   const validate = ajv.compile(schema);
   if (!validate(data)) {

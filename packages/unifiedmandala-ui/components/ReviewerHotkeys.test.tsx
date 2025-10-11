@@ -15,8 +15,8 @@ describe('ReviewerHotkeys', () => {
       '/review/decision',
       expect.objectContaining({
         method: 'POST',
-        body: JSON.stringify({ id: '1', decision: 'approve' })
-      })
+        body: JSON.stringify({ id: '1', decision: 'approve' }),
+      }),
     );
   });
 
@@ -27,8 +27,8 @@ describe('ReviewerHotkeys', () => {
       '/review/decision',
       expect.objectContaining({
         method: 'POST',
-        body: JSON.stringify({ id: '2', decision: 'reject' })
-      })
+        body: JSON.stringify({ id: '2', decision: 'reject' }),
+      }),
     );
   });
 
@@ -39,8 +39,8 @@ describe('ReviewerHotkeys', () => {
       '/review/decision',
       expect.objectContaining({
         method: 'POST',
-        body: JSON.stringify({ id: '3', decision: 'hold' })
-      })
+        body: JSON.stringify({ id: '3', decision: 'hold' }),
+      }),
     );
   });
 });

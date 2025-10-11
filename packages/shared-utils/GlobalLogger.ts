@@ -5,7 +5,7 @@ class GlobalLogger {
 
   log(msg: string) {
     console.log(msg);
-    this.listeners.forEach(l => l(msg));
+    this.listeners.forEach((l) => l(msg));
   }
 
   subscribe(fn: LogListener) {

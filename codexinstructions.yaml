@@ -1,10 +1,10 @@
 # 🜂 codexinstructions.yaml
 workflow_steps:
   - "\u00D6ffne und Analysiere kontext.yaml!"
-  - "codexwork.yaml öffnen und ausführen"
-  - "Nach unimplementierten Aufgaben oder TODO-Kommentaren suchen und in docs/sigils/todo-sigil.yaml ergänzen"
-  - "Fehlt diese Datei, alle offenen TODOs sammeln und als neue docs/sigils/todo-sigil.yaml anlegen"
-  - "Hinweise im Ordner repositorypflege beachten"
-  - "Während eines Commits möglichst viele TODOs abarbeiten und dokumentieren"
-  - "Programm und alle Funktionen laufen lassen und testen, Fehler beheben"
-  - "Aus dem Kontext des Repos und conversations.json unter Berücksichtigung der repoübergreifenden Gesamtarchitektur neue ToDos ableiten, überlegen wie du sie implementieren kannst und als neue ToDos in ToDo.yaml eintragen"
+  - 'codexwork.yaml öffnen und ausführen'
+  - 'Nach unimplementierten Aufgaben oder TODO-Kommentaren suchen und in docs/sigils/todo-sigil.yaml ergänzen'
+  - 'Fehlt diese Datei, alle offenen TODOs sammeln und als neue docs/sigils/todo-sigil.yaml anlegen'
+  - 'Hinweise im Ordner repositorypflege beachten'
+  - 'Während eines Commits möglichst viele TODOs abarbeiten und dokumentieren'
+  - 'Programm und alle Funktionen laufen lassen und testen, Fehler beheben'
+  - 'Aus dem Kontext des Repos und conversations.json unter Berücksichtigung der repoübergreifenden Gesamtarchitektur neue ToDos ableiten, überlegen wie du sie implementieren kannst und als neue ToDos in ToDo.yaml eintragen'

@@ -6,7 +6,9 @@ describe('Event bus load tests', () => {
     const bus = new EventEmitter();
     const total = 10000;
     let count = 0;
-    bus.on('evt', () => { count++; });
+    bus.on('evt', () => {
+      count++;
+    });
     const start = performance.now();
     for (let i = 0; i < total; i++) {
       bus.emit('evt');

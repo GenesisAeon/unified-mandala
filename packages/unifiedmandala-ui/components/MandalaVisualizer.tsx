@@ -11,7 +11,7 @@ const MandalaVisualizer: React.FC = () => {
 
   useEffect(() => {
     fetch('/api/metrics')
-      .then(r => r.json())
+      .then((r) => r.json())
       .then(setMetrics)
       .catch(() => {});
   }, []);

@@ -9,4 +9,3 @@ test('renders table and histogram', () => {
   const svg = getByLabelText('Numeric Histogram');
   expect(svg.nodeName.toLowerCase()).toBe('svg');
 });
-

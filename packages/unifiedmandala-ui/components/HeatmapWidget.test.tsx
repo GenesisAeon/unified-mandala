@@ -17,10 +17,10 @@ test('renders heatmap cells for crep history', () => {
     },
     clear() {
       this.store = {};
-    }
+    },
   };
   const manager = new CREPManager();
-  manager.addCREPEntry(1,1,1,1);
+  manager.addCREPEntry(1, 1, 1, 1);
   const { container } = render(<HeatmapWidget manager={manager} size={1} />);
   jest.runOnlyPendingTimers();
   expect(container.querySelectorAll('.nullmembran-si-heatmap div').length).toBe(1);

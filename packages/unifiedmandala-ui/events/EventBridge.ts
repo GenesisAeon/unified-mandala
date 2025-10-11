@@ -8,7 +8,7 @@ export type UIEventMap = {
 
 const bridge = mitt<UIEventMap>();
 
-CosmicTheoryEventHub.on('theory:updated', payload => {
+CosmicTheoryEventHub.on('theory:updated', (payload) => {
   bridge.emit('theory:update', payload);
 });
 

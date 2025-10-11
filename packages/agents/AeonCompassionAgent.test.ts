@@ -6,7 +6,11 @@ describe('AeonCompassionAgent', () => {
   it('emits sigil-status and logs entry', () => {
     const bus = new EventEmitter();
     let logMsg = '';
-    const root = { log: (m: string) => { logMsg = m; } };
+    const root = {
+      log: (m: string) => {
+        logMsg = m;
+      },
+    };
     const agent = new AeonCompassionAgent(bus);
     let emitted = '';
     bus.on('sigil-status', (s) => (emitted = s));

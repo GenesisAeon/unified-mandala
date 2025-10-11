@@ -25,7 +25,5 @@ export function hasAccess(depth: number, role: Role, options: GatekeeperOptions 
  * Ermittelt eine textuelle Antwort auf Basis der Zugriffsentscheidung.
  */
 export function gatekeep(depth: number, role: Role, options: GatekeeperOptions = {}): string {
-  return hasAccess(depth, role, options)
-    ? 'Zugriff gewährt'
-    : 'Zugriff verweigert';
+  return hasAccess(depth, role, options) ? 'Zugriff gewährt' : 'Zugriff verweigert';
 }

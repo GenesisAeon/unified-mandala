@@ -20,7 +20,7 @@ describe('Archiv Menschheitsspuren', () => {
       'Qesem Cave',
       'White Sands',
       'Attirampakkam',
-      'Gunung Padang'
+      'Gunung Padang',
     ];
     for (const e of entries) {
       expect(content).toContain(e);

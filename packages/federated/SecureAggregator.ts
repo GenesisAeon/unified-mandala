@@ -39,6 +39,6 @@ export class SecureAggregator {
 
   private laplace(epsilon: number): number {
     const u = Math.random() - 0.5;
-    return -Math.sign(u) * Math.log(1 - 2 * Math.abs(u)) / epsilon;
+    return (-Math.sign(u) * Math.log(1 - 2 * Math.abs(u))) / epsilon;
   }
 }

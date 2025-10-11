@@ -6,7 +6,7 @@ export class CREPMultiSync {
 
   connect(url = 'ws://localhost:4000') {
     this.socket = io(url);
-    this.socket.on('crep-update', data => {
+    this.socket.on('crep-update', (data) => {
       GPTEventHub.emit('crep:sync', data);
     });
   }

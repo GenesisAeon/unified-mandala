@@ -2,51 +2,51 @@ version: 0.3
 topic: agents
 layers:
   greek:
-    - name: "YAMLNavigatorAgent"
-      files: ["packages/agents/YAMLNavigatorAgent.ts"]
-      role: "Parse/Traverse YAML codices"
+    - name: 'YAMLNavigatorAgent'
+      files: ['packages/agents/YAMLNavigatorAgent.ts']
+      role: 'Parse/Traverse YAML codices'
   math:
-    - name: "KiResonanceAnalyzer"
-      files: ["packages/agents/KiResonanceAnalyzer.ts","packages/agents/ResonanzMetrics.ts"]
-      role: "Resonanzmetriken, Scoring, Thresholds"
-    - name: "HumanMachineCheckAgent"
-      files: ["packages/agents/HumanMachineCheckAgent.ts"]   # to-verify
-      role: "Vorfilter Mensch/ Maschine"
-      status: "to-verify"
+    - name: 'KiResonanceAnalyzer'
+      files: ['packages/agents/KiResonanceAnalyzer.ts', 'packages/agents/ResonanzMetrics.ts']
+      role: 'Resonanzmetriken, Scoring, Thresholds'
+    - name: 'HumanMachineCheckAgent'
+      files: ['packages/agents/HumanMachineCheckAgent.ts'] # to-verify
+      role: 'Vorfilter Mensch/ Maschine'
+      status: 'to-verify'
   aeon:
-    - name: "TaskPlannerAgent"
-      files: ["packages/agents/TaskPlannerAgent.ts"]
-      role: "Aufgabenplanung / Orchestrierung"
-    - name: "MetaComposerAgent"
-      files: ["packages/agents/MetaComposerAgent.ts","packages/agents/MetaScoreComposer.ts"]
-      role: "Scores mischen, Plan-Komposition"
-    - name: "MetaLearnerAgent"
-      files: ["packages/agents/MetaLearnerAgent.ts"]
-      role: "Meta-Lernen, Score-Validierung"
-    - name: "EmergenceFusionAgent"
-      files: ["packages/agents/EmergenceFusionAgent.ts"]
-      role: "Emergenz fusionieren, Finalisierung"
-    - name: "SigillinInterpreterAgent"
-      files: ["packages/agents/SigillinInterpreterAgent.ts"]
-      role: "Sigillin-Kommandos lesen/ausführen"
-    - name: "HookTriggererAgent"
-      files: ["packages/agents/HookTriggererAgent.ts"]
-      role: "Webhooks, Side-effects"
-    - name: "DreamSyncAgent"
-      files: ["packages/agents/DreamSyncAgent.ts"]
-      role: "Sync/Async Dream-Flows"
-    - name: "AIJuristischePersonAgent"
-      files: ["packages/agents/AIJuristischePersonAgent.ts"]   # to-verify
-      role: "Personhood-Decision (allow/challenge/throttle/deny)"
-      status: "to-verify"
+    - name: 'TaskPlannerAgent'
+      files: ['packages/agents/TaskPlannerAgent.ts']
+      role: 'Aufgabenplanung / Orchestrierung'
+    - name: 'MetaComposerAgent'
+      files: ['packages/agents/MetaComposerAgent.ts', 'packages/agents/MetaScoreComposer.ts']
+      role: 'Scores mischen, Plan-Komposition'
+    - name: 'MetaLearnerAgent'
+      files: ['packages/agents/MetaLearnerAgent.ts']
+      role: 'Meta-Lernen, Score-Validierung'
+    - name: 'EmergenceFusionAgent'
+      files: ['packages/agents/EmergenceFusionAgent.ts']
+      role: 'Emergenz fusionieren, Finalisierung'
+    - name: 'SigillinInterpreterAgent'
+      files: ['packages/agents/SigillinInterpreterAgent.ts']
+      role: 'Sigillin-Kommandos lesen/ausführen'
+    - name: 'HookTriggererAgent'
+      files: ['packages/agents/HookTriggererAgent.ts']
+      role: 'Webhooks, Side-effects'
+    - name: 'DreamSyncAgent'
+      files: ['packages/agents/DreamSyncAgent.ts']
+      role: 'Sync/Async Dream-Flows'
+    - name: 'AIJuristischePersonAgent'
+      files: ['packages/agents/AIJuristischePersonAgent.ts'] # to-verify
+      role: 'Personhood-Decision (allow/challenge/throttle/deny)'
+      status: 'to-verify'
 
 personhood_support:
   router_hook:
-    - "packages/gpt-bridges/router/withPersonhood.ts"
+    - 'packages/gpt-bridges/router/withPersonhood.ts'
   governance:
-    - "governance/personhood.policy.yaml"
-    - "docs/personhood/PersonhoodProtocol.md"
+    - 'governance/personhood.policy.yaml'
+    - 'docs/personhood/PersonhoodProtocol.md'
   registry_audit:
-    - "packages/personhood/ConsentRegistry.ts"
-    - "packages/personhood/PolicyGuard.ts"
-    - "packages/personhood/AuditTrail.ts"
+    - 'packages/personhood/ConsentRegistry.ts'
+    - 'packages/personhood/PolicyGuard.ts'
+    - 'packages/personhood/AuditTrail.ts'

@@ -1,11 +1,11 @@
-version: "0.1"
-intents: ["query","assert","ritual"]
-roles: ["agent","ui","kernel","adapter"]
+version: '0.1'
+intents: ['query', 'assert', 'ritual']
+roles: ['agent', 'ui', 'kernel', 'adapter']
 constraints:
-  - name: "ritual-phase-order"
-    rule: "ritual:init -> ritual:ack -> ritual:close"
-    status: "planned"
+  - name: 'ritual-phase-order'
+    rule: 'ritual:init -> ritual:ack -> ritual:close'
+    status: 'planned'
 examples:
-  - symbol: "🔥"
-    intent: "assert"
-    context: { metric: "t2m", celsius: 32 }
+  - symbol: '🔥'
+    intent: 'assert'
+    context: { metric: 't2m', celsius: 32 }

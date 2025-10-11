@@ -26,7 +26,7 @@ describe('GenesisAeonNavigator', () => {
     nav.navigate('init');
     expect((GPTEventHub.emit as jest.Mock).mock.calls[0]).toEqual([
       'genesis:navigate',
-      { from: 'init', to: 'phase1' }
+      { from: 'init', to: 'phase1' },
     ]);
   });
 
@@ -36,7 +36,7 @@ describe('GenesisAeonNavigator', () => {
     nav.navigate('a');
     expect((GPTEventHub.emit as jest.Mock).mock.calls[0][1]).toEqual({
       from: 'a',
-      to: 'b'
+      to: 'b',
     });
   });
 

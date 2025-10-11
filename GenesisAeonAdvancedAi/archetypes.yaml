@@ -1,10 +1,10 @@
-- context: "stress"
+- context: 'stress'
   crep_min: 0.0
   crep_max: 0.2
-  symbol: "🕳️"
-  meaning: "Krise"
-- context: "growth"
+  symbol: '🕳️'
+  meaning: 'Krise'
+- context: 'growth'
   crep_min: 0.7
   crep_max: 1.0
-  symbol: "🌱"
-  meaning: "Wachstum"
+  symbol: '🌱'
+  meaning: 'Wachstum'

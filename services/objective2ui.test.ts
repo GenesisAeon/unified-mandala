@@ -6,7 +6,7 @@ import { sendToGPT } from '../packages/gpt-bridges/aeon-gpt-synapse';
 
 jest.mock('../packages/gpt-bridges/aeon-gpt-synapse', () => ({
   sendToGPT: jest.fn(),
-  GPTRole: { AEON: 'aeon' }
+  GPTRole: { AEON: 'aeon' },
 }));
 
 const manifestPath = path.join(__dirname, '../plugins/manifest.yaml');
@@ -37,7 +37,7 @@ test('storeLayoutSuggestion writes manifest', () => {
 });
 
 test('storeLayoutSuggestion throws for missing plugin', () => {
-  expect(() =>
-    storeLayoutSuggestion('MissingPlugin', 'layout: none', manifestPath)
-  ).toThrow('Plugin MissingPlugin not found');
+  expect(() => storeLayoutSuggestion('MissingPlugin', 'layout: none', manifestPath)).toThrow(
+    'Plugin MissingPlugin not found',
+  );
 });

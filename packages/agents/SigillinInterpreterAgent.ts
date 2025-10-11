@@ -9,7 +9,7 @@ export class SigillinInterpreterAgent implements Agent {
   }
   async handle(task: Task): Promise<void> {
     const matches = [...task.description.matchAll(/sigil\((.*?)\)/gi)];
-    const sigils = matches.map(m => m[1]);
+    const sigils = matches.map((m) => m[1]);
     console.log(`🔮 SigillinInterpreterAgent → sigils=${JSON.stringify(sigils)}`);
   }
 }

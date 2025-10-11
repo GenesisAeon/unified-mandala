@@ -40,7 +40,7 @@ export function usePluginLoader() {
               ? (await import(/* @vite-ignore */ p.dataHook)).default
               : undefined;
             return { ...p, Component, useDataHook } as LoadedPlugin;
-          })
+          }),
         );
         setPlugins(loaded);
       })

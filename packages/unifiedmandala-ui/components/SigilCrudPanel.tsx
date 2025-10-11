@@ -28,18 +28,18 @@ const SigilCrudPanel: React.FC<SigilCrudPanelProps> = ({ manager }) => {
       <input
         aria-label="Sigil ID"
         value={id}
-        onChange={e => setId(e.target.value)}
+        onChange={(e) => setId(e.target.value)}
         placeholder="Sigil ID"
       />
       <textarea
         aria-label="Sigil Content"
         value={content}
-        onChange={e => setContent(e.target.value)}
+        onChange={(e) => setContent(e.target.value)}
         placeholder="JSON or YAML"
       />
       <button onClick={addSigil}>Add</button>
       <ul>
-        {sigils.map(s => (
+        {sigils.map((s) => (
           <li key={s.id}>
             {s.id}
             <button onClick={() => removeSigil(s.id)}>Delete</button>

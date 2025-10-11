@@ -6,7 +6,7 @@ export class EmergenzScanner {
 
   scanForEmergence() {
     const history = this.crepManager.getCREPHistory();
-    const emergent = history.filter(entry => entry.E > 0.9);
+    const emergent = history.filter((entry) => entry.E > 0.9);
     if (emergent.length) GPTEventHub.emit('emergence:detected', emergent);
     return emergent.length > 0;
   }

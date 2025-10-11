@@ -23,7 +23,7 @@ function updateChangelog(commits) {
   }
   const file = 'CHANGELOG.md';
   const content = fs.readFileSync(file, 'utf-8').split('\n');
-  const idx = content.findIndex(line => line.startsWith('## [Unreleased]'));
+  const idx = content.findIndex((line) => line.startsWith('## [Unreleased]'));
   if (idx === -1) {
     console.error('Unreleased section not found');
     return;

@@ -9,7 +9,7 @@ export class OllamaProvider implements ModelProvider {
     const res = await fetch(`${this.baseUrl}/api/generate`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ model, prompt })
+      body: JSON.stringify({ model, prompt }),
     });
     if (!res.ok) {
       throw new Error(`Ollama request failed with status ${res.status}`);

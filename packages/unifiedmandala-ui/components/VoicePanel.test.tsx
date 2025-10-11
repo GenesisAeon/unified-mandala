@@ -15,14 +15,10 @@ describe('VoicePanel', () => {
     const { getByText, getByLabelText } = render(<VoicePanel />);
 
     fireEvent.click(getByText('Fetch Partial'));
-    await waitFor(() =>
-      expect(getByLabelText('partial-result')).toHaveTextContent('hello')
-    );
+    await waitFor(() => expect(getByLabelText('partial-result')).toHaveTextContent('hello'));
 
     fireEvent.click(getByText('Fetch Final'));
-    await waitFor(() =>
-      expect(getByText('hello world')).toBeInTheDocument()
-    );
+    await waitFor(() => expect(getByText('hello world')).toBeInTheDocument());
     expect(getByLabelText('partial-result')).toHaveTextContent('');
   });
 });

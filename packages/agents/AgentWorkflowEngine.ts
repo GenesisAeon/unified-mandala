@@ -40,7 +40,7 @@ export default class AgentWorkflowEngine extends EventEmitter {
 
   /** Return lightweight snapshot of loaded agents. */
   snapshot(): AgentEntry[] {
-    return this.agents.map(a => ({
+    return this.agents.map((a) => ({
       id: a.id,
       start: a.start,
       description: a.description,

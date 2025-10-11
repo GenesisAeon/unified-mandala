@@ -10,7 +10,7 @@ jest.mock('@react-three/fiber', () => ({
   mesh: 'mesh',
   meshStandardMaterial: 'meshStandardMaterial',
   ambientLight: 'ambientLight',
-  pointLight: 'pointLight'
+  pointLight: 'pointLight',
 }));
 
 test('renders nested pyramid layers', () => {

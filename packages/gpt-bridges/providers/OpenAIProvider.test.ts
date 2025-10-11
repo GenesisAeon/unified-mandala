@@ -17,7 +17,7 @@ describe('OpenAIProvider', () => {
     process.env.USE_RESPONSES_API = '1';
     global.fetch = jest.fn().mockResolvedValue({
       ok: true,
-      json: async () => ({ output: [{ content: [{ text: 'hi' }] }] })
+      json: async () => ({ output: [{ content: [{ text: 'hi' }] }] }),
     }) as any;
     const provider = new OpenAIProvider();
     const result = await provider.generate('gpt-4o-mini', 'hi');
@@ -32,7 +32,7 @@ describe('OpenAIProvider', () => {
       .mockRejectedValueOnce(new Error('network'))
       .mockResolvedValueOnce({
         ok: true,
-        json: async () => ({ choices: [{ message: { content: 'fallback' } }] })
+        json: async () => ({ choices: [{ message: { content: 'fallback' } }] }),
       }) as any;
     const provider = new OpenAIProvider();
     const result = await provider.generate('gpt-4o-mini', 'hi');

@@ -4,7 +4,7 @@ const { listOpenAdvancedTodos } = require('./list-open-advanced-todos');
 
 function groupTodosByDir(pattern, todoPaths, excludePattern, includeConversations = false) {
   const todos = listOpenAdvancedTodos(pattern, todoPaths, excludePattern, {
-    includeConversations
+    includeConversations,
   });
   return todos.reduce((acc, t) => {
     const dir = path.dirname(t.path || '').replace(/\\/g, '/');
@@ -23,8 +23,7 @@ if (require.main === module) {
   const exclude = exclIndex >= 0 ? process.argv[exclIndex + 1] : undefined;
   const jsonOutput = process.argv.includes('--json');
   const yamlOutput = process.argv.includes('--yaml');
-  const markdownOutput =
-    process.argv.includes('--markdown') || process.argv.includes('--md');
+  const markdownOutput = process.argv.includes('--markdown') || process.argv.includes('--md');
   const includeConvos = process.argv.includes('--include-conversations');
   const limitIndex = process.argv.indexOf('--limit');
   const limit = limitIndex >= 0 ? parseInt(process.argv[limitIndex + 1], 10) : undefined;

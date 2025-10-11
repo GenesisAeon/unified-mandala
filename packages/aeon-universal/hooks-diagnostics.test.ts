@@ -6,7 +6,7 @@ describe('AeonUniversal hooks and diagnostics', () => {
   it('invokes hooks and collects diagnostics', () => {
     const manager = new HookManager();
     const called: string[] = [];
-    manager.register('afterEmitSigil', ctx => {
+    manager.register('afterEmitSigil', (ctx) => {
       called.push(ctx.ast.type);
     });
     const diagnostics = new AeonDiagnostics();

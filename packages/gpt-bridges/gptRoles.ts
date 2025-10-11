@@ -6,4 +6,3 @@ export enum GPTRole {
 
 export const isValidRole = (role: string): role is GPTRole =>
   Object.values(GPTRole).includes(role as GPTRole);
-

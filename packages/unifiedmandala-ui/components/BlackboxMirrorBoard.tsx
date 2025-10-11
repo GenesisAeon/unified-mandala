@@ -11,7 +11,9 @@ export interface BlackboxMirrorBoardProps {
  * BlackboxMirrorBoard mirrors user input in real-time. The typed text is
  * reflected in reverse order to symbolize introspective reflection layers.
  */
-export default function BlackboxMirrorBoard({ placeholder = 'Schreibe hier...' }: BlackboxMirrorBoardProps) {
+export default function BlackboxMirrorBoard({
+  placeholder = 'Schreibe hier...',
+}: BlackboxMirrorBoardProps) {
   const [value, setValue] = useState('');
   const mirror = value.split('').reverse().join('');
 
@@ -21,7 +23,7 @@ export default function BlackboxMirrorBoard({ placeholder = 'Schreibe hier...' }
         aria-label="blackbox-input"
         placeholder={placeholder}
         value={value}
-        onChange={e => setValue(e.target.value)}
+        onChange={(e) => setValue(e.target.value)}
       />
       <div aria-label="blackbox-mirror">{mirror}</div>
     </div>

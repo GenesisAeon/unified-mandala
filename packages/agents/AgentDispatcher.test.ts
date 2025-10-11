@@ -6,8 +6,21 @@ describe('AgentDispatcher', () => {
   it('dispatches by priority and catches errors', async () => {
     const calls: string[] = [];
     const agents: Agent[] = [
-      { id: 'a', layer: 'L', priority: 1, handle: vi.fn().mockImplementation(() => calls.push('a')) } as any,
-      { id: 'b', layer: 'L', priority: 5, handle: vi.fn().mockImplementation(() => { calls.push('b'); throw new Error('x'); }) } as any,
+      {
+        id: 'a',
+        layer: 'L',
+        priority: 1,
+        handle: vi.fn().mockImplementation(() => calls.push('a')),
+      } as any,
+      {
+        id: 'b',
+        layer: 'L',
+        priority: 5,
+        handle: vi.fn().mockImplementation(() => {
+          calls.push('b');
+          throw new Error('x');
+        }),
+      } as any,
     ];
     const d = new AgentDispatcher(agents);
     await d.dispatch({ id: '1', description: 't' });

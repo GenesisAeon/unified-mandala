@@ -16,7 +16,7 @@ export class CosmicTheoryAgentMetrics {
 
   query(type?: string): MetricEntry[] {
     if (!type) return [...this.metrics];
-    return this.metrics.filter(m => m.type === type);
+    return this.metrics.filter((m) => m.type === type);
   }
 
   clear(): void {

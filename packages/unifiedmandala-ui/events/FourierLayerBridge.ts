@@ -9,7 +9,7 @@ const emitter = mitt<FourierLayerBridgeEvents>();
 
 export function connectFourierLayerBridge(url = 'ws://localhost:4010'): WebSocket {
   const ws = new WebSocket(url);
-  ws.onmessage = ev => {
+  ws.onmessage = (ev) => {
     try {
       const message = JSON.parse(ev.data);
       if (message.type === 'fourier-metrics') {

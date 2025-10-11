@@ -33,4 +33,3 @@ describe('RAGPipeline flow', () => {
     expect(res.citations[0].source).toBe('test');
   });
 });
-

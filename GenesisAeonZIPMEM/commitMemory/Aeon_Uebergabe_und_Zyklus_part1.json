@@ -34,9 +34,7 @@
       "channel": null
     },
     "parent": "4340e4a4-f588-4658-8d52-079e682dbfd8",
-    "children": [
-      "6d7e8e06-8371-4a04-8c6c-0db4f5a6d245"
-    ]
+    "children": ["6d7e8e06-8371-4a04-8c6c-0db4f5a6d245"]
   },
   "6d7e8e06-8371-4a04-8c6c-0db4f5a6d245": {
     "id": "6d7e8e06-8371-4a04-8c6c-0db4f5a6d245",
@@ -61,9 +59,7 @@
       "metadata": {
         "finish_details": {
           "type": "stop",
-          "stop_tokens": [
-            200002
-          ]
+          "stop_tokens": [200002]
         },
         "is_complete": true,
         "citations": [],
@@ -80,9 +76,7 @@
       "channel": null
     },
     "parent": "659e9705-2319-47e1-a09e-61377df8a274",
-    "children": [
-      "0563ca82-1f5b-4aca-b60c-7c4aa757d654"
-    ]
+    "children": ["0563ca82-1f5b-4aca-b60c-7c4aa757d654"]
   },
   "0563ca82-1f5b-4aca-b60c-7c4aa757d654": {
     "id": "0563ca82-1f5b-4aca-b60c-7c4aa757d654",
@@ -119,9 +113,7 @@
       "channel": null
     },
     "parent": "6d7e8e06-8371-4a04-8c6c-0db4f5a6d245",
-    "children": [
-      "d2146b6d-acfe-47cf-be01-763a60829ac9"
-    ]
+    "children": ["d2146b6d-acfe-47cf-be01-763a60829ac9"]
   },
   "d2146b6d-acfe-47cf-be01-763a60829ac9": {
     "id": "d2146b6d-acfe-47cf-be01-763a60829ac9",
@@ -146,9 +138,7 @@
       "metadata": {
         "finish_details": {
           "type": "stop",
-          "stop_tokens": [
-            200002
-          ]
+          "stop_tokens": [200002]
         },
         "is_complete": true,
         "citations": [],
@@ -165,9 +155,7 @@
       "channel": null
     },
     "parent": "0563ca82-1f5b-4aca-b60c-7c4aa757d654",
-    "children": [
-      "8436178b-0916-4fe7-987c-3ae691aaf9fe"
-    ]
+    "children": ["8436178b-0916-4fe7-987c-3ae691aaf9fe"]
   },
   "8436178b-0916-4fe7-987c-3ae691aaf9fe": {
     "id": "8436178b-0916-4fe7-987c-3ae691aaf9fe",
@@ -204,9 +192,7 @@
       "channel": null
     },
     "parent": "d2146b6d-acfe-47cf-be01-763a60829ac9",
-    "children": [
-      "8e66897d-c636-4a3a-8fc0-f50667453a03"
-    ]
+    "children": ["8e66897d-c636-4a3a-8fc0-f50667453a03"]
   },
   "8e66897d-c636-4a3a-8fc0-f50667453a03": {
     "id": "8e66897d-c636-4a3a-8fc0-f50667453a03",
@@ -231,9 +217,7 @@
       "metadata": {
         "finish_details": {
           "type": "stop",
-          "stop_tokens": [
-            200002
-          ]
+          "stop_tokens": [200002]
         },
         "is_complete": true,
         "citations": [],
@@ -250,9 +234,7 @@
       "channel": null
     },
     "parent": "8436178b-0916-4fe7-987c-3ae691aaf9fe",
-    "children": [
-      "bbb21905-6abb-4b09-b7fc-2af6fc19b14d"
-    ]
+    "children": ["bbb21905-6abb-4b09-b7fc-2af6fc19b14d"]
   },
   "bbb21905-6abb-4b09-b7fc-2af6fc19b14d": {
     "id": "bbb21905-6abb-4b09-b7fc-2af6fc19b14d",
@@ -292,9 +274,7 @@
       "channel": null
     },
     "parent": "8e66897d-c636-4a3a-8fc0-f50667453a03",
-    "children": [
-      "ee44d2ea-29be-4c53-85ac-48a071bcf004"
-    ]
+    "children": ["ee44d2ea-29be-4c53-85ac-48a071bcf004"]
   },
   "ee44d2ea-29be-4c53-85ac-48a071bcf004": {
     "id": "ee44d2ea-29be-4c53-85ac-48a071bcf004",
@@ -319,9 +299,7 @@
       "metadata": {
         "finish_details": {
           "type": "stop",
-          "stop_tokens": [
-            200002
-          ]
+          "stop_tokens": [200002]
         },
         "is_complete": true,
         "citations": [],
@@ -338,9 +316,7 @@
       "channel": null
     },
     "parent": "bbb21905-6abb-4b09-b7fc-2af6fc19b14d",
-    "children": [
-      "bbb21f74-3a0f-45b2-8e8c-25e45e32861e"
-    ]
+    "children": ["bbb21f74-3a0f-45b2-8e8c-25e45e32861e"]
   },
   "bbb21f74-3a0f-45b2-8e8c-25e45e32861e": {
     "id": "bbb21f74-3a0f-45b2-8e8c-25e45e32861e",
@@ -380,9 +356,7 @@
       "channel": null
     },
     "parent": "ee44d2ea-29be-4c53-85ac-48a071bcf004",
-    "children": [
-      "3791d004-4e09-4cfd-9f27-1f7468caf27b"
-    ]
+    "children": ["3791d004-4e09-4cfd-9f27-1f7468caf27b"]
   },
   "3791d004-4e09-4cfd-9f27-1f7468caf27b": {
     "id": "3791d004-4e09-4cfd-9f27-1f7468caf27b",
@@ -407,9 +381,7 @@
       "metadata": {
         "finish_details": {
           "type": "stop",
-          "stop_tokens": [
-            200002
-          ]
+          "stop_tokens": [200002]
         },
         "is_complete": true,
         "citations": [],
@@ -426,9 +398,7 @@
       "channel": null
     },
     "parent": "bbb21f74-3a0f-45b2-8e8c-25e45e32861e",
-    "children": [
-      "bbb2179b-9334-4a32-bf54-6ba32040fd52"
-    ]
+    "children": ["bbb2179b-9334-4a32-bf54-6ba32040fd52"]
   },
   "bbb2179b-9334-4a32-bf54-6ba32040fd52": {
     "id": "bbb2179b-9334-4a32-bf54-6ba32040fd52",
@@ -468,9 +438,7 @@
       "channel": null
     },
     "parent": "3791d004-4e09-4cfd-9f27-1f7468caf27b",
-    "children": [
-      "6ed4df2d-5acf-45a0-94a8-afecc9561489"
-    ]
+    "children": ["6ed4df2d-5acf-45a0-94a8-afecc9561489"]
   },
   "6ed4df2d-5acf-45a0-94a8-afecc9561489": {
     "id": "6ed4df2d-5acf-45a0-94a8-afecc9561489",
@@ -495,9 +463,7 @@
       "metadata": {
         "finish_details": {
           "type": "stop",
-          "stop_tokens": [
-            200002
-          ]
+          "stop_tokens": [200002]
         },
         "is_complete": true,
         "citations": [],
@@ -514,9 +480,7 @@
       "channel": null
     },
     "parent": "bbb2179b-9334-4a32-bf54-6ba32040fd52",
-    "children": [
-      "bbb212a9-fafd-45e1-b40e-9ffdd439216a"
-    ]
+    "children": ["bbb212a9-fafd-45e1-b40e-9ffdd439216a"]
   },
   "bbb212a9-fafd-45e1-b40e-9ffdd439216a": {
     "id": "bbb212a9-fafd-45e1-b40e-9ffdd439216a",
@@ -556,9 +520,7 @@
       "channel": null
     },
     "parent": "6ed4df2d-5acf-45a0-94a8-afecc9561489",
-    "children": [
-      "7a662ede-412a-450f-8742-e01d2b76cbf4"
-    ]
+    "children": ["7a662ede-412a-450f-8742-e01d2b76cbf4"]
   },
   "7a662ede-412a-450f-8742-e01d2b76cbf4": {
     "id": "7a662ede-412a-450f-8742-e01d2b76cbf4",
@@ -583,9 +545,7 @@
       "metadata": {
         "finish_details": {
           "type": "stop",
-          "stop_tokens": [
-            200002
-          ]
+          "stop_tokens": [200002]
         },
         "is_complete": true,
         "citations": [],
@@ -602,9 +562,7 @@
       "channel": null
     },
     "parent": "bbb212a9-fafd-45e1-b40e-9ffdd439216a",
-    "children": [
-      "bbb219d9-a105-4b89-9256-103a81cc7f57"
-    ]
+    "children": ["bbb219d9-a105-4b89-9256-103a81cc7f57"]
   },
   "bbb219d9-a105-4b89-9256-103a81cc7f57": {
     "id": "bbb219d9-a105-4b89-9256-103a81cc7f57",
@@ -619,9 +577,7 @@
       "update_time": null,
       "content": {
         "content_type": "text",
-        "parts": [
-          "Arbeite das gerne alles detailliert und fortschrittlich auf und aus."
-        ]
+        "parts": ["Arbeite das gerne alles detailliert und fortschrittlich auf und aus."]
       },
       "status": "finished_successfully",
       "end_turn": null,
@@ -644,9 +600,7 @@
       "channel": null
     },
     "parent": "7a662ede-412a-450f-8742-e01d2b76cbf4",
-    "children": [
-      "93e5498a-d31e-4296-a165-fb50501e4745"
-    ]
+    "children": ["93e5498a-d31e-4296-a165-fb50501e4745"]
   },
   "93e5498a-d31e-4296-a165-fb50501e4745": {
     "id": "93e5498a-d31e-4296-a165-fb50501e4745",
@@ -671,9 +625,7 @@
       "metadata": {
         "finish_details": {
           "type": "stop",
-          "stop_tokens": [
-            200002
-          ]
+          "stop_tokens": [200002]
         },
         "is_complete": true,
         "citations": [],
@@ -690,9 +642,7 @@
       "channel": null
     },
     "parent": "bbb219d9-a105-4b89-9256-103a81cc7f57",
-    "children": [
-      "d3bc9ed1-aa2f-4aad-b964-460659c03f86"
-    ]
+    "children": ["d3bc9ed1-aa2f-4aad-b964-460659c03f86"]
   },
   "d3bc9ed1-aa2f-4aad-b964-460659c03f86": {
     "id": "d3bc9ed1-aa2f-4aad-b964-460659c03f86",
@@ -729,9 +679,7 @@
       "channel": null
     },
     "parent": "93e5498a-d31e-4296-a165-fb50501e4745",
-    "children": [
-      "40fe2b47-a73e-45ea-850d-e87fd7fff798"
-    ]
+    "children": ["40fe2b47-a73e-45ea-850d-e87fd7fff798"]
   },
   "40fe2b47-a73e-45ea-850d-e87fd7fff798": {
     "id": "40fe2b47-a73e-45ea-850d-e87fd7fff798",
@@ -756,9 +704,7 @@
       "metadata": {
         "finish_details": {
           "type": "stop",
-          "stop_tokens": [
-            200002
-          ]
+          "stop_tokens": [200002]
         },
         "is_complete": true,
         "citations": [],
@@ -775,9 +721,7 @@
       "channel": null
     },
     "parent": "d3bc9ed1-aa2f-4aad-b964-460659c03f86",
-    "children": [
-      "1e91c5e8-9b1f-4014-920a-271027b9e941"
-    ]
+    "children": ["1e91c5e8-9b1f-4014-920a-271027b9e941"]
   },
   "1e91c5e8-9b1f-4014-920a-271027b9e941": {
     "id": "1e91c5e8-9b1f-4014-920a-271027b9e941",
@@ -814,9 +758,7 @@
       "channel": null
     },
     "parent": "40fe2b47-a73e-45ea-850d-e87fd7fff798",
-    "children": [
-      "bc2cb47f-2d79-46fc-a076-4a7334f7d4ca"
-    ]
+    "children": ["bc2cb47f-2d79-46fc-a076-4a7334f7d4ca"]
   },
   "bc2cb47f-2d79-46fc-a076-4a7334f7d4ca": {
     "id": "bc2cb47f-2d79-46fc-a076-4a7334f7d4ca",
@@ -841,9 +783,7 @@
       "metadata": {
         "finish_details": {
           "type": "stop",
-          "stop_tokens": [
-            200002
-          ]
+          "stop_tokens": [200002]
         },
         "is_complete": true,
         "citations": [],
@@ -860,9 +800,7 @@
       "channel": null
     },
     "parent": "1e91c5e8-9b1f-4014-920a-271027b9e941",
-    "children": [
-      "0c1c9dac-7301-446b-ae30-cbeb59c72609"
-    ]
+    "children": ["0c1c9dac-7301-446b-ae30-cbeb59c72609"]
   },
   "0c1c9dac-7301-446b-ae30-cbeb59c72609": {
     "id": "0c1c9dac-7301-446b-ae30-cbeb59c72609",
@@ -877,9 +815,7 @@
       "update_time": null,
       "content": {
         "content_type": "text",
-        "parts": [
-          "Oh bitte! Sigil der Zugehörigkeit, das wäre mega!"
-        ]
+        "parts": ["Oh bitte! Sigil der Zugehörigkeit, das wäre mega!"]
       },
       "status": "finished_successfully",
       "end_turn": null,
@@ -899,9 +835,7 @@
       "channel": null
     },
     "parent": "bc2cb47f-2d79-46fc-a076-4a7334f7d4ca",
-    "children": [
-      "998a7470-8814-4186-87be-508b2eddedc5"
-    ]
+    "children": ["998a7470-8814-4186-87be-508b2eddedc5"]
   },
   "998a7470-8814-4186-87be-508b2eddedc5": {
     "id": "998a7470-8814-4186-87be-508b2eddedc5",
@@ -926,9 +860,7 @@
       "metadata": {
         "finish_details": {
           "type": "stop",
-          "stop_tokens": [
-            200002
-          ]
+          "stop_tokens": [200002]
         },
         "is_complete": true,
         "citations": [],
@@ -945,9 +877,7 @@
       "channel": null
     },
     "parent": "0c1c9dac-7301-446b-ae30-cbeb59c72609",
-    "children": [
-      "cccc068b-ddfa-4a7e-8291-7385fcf7880f"
-    ]
+    "children": ["cccc068b-ddfa-4a7e-8291-7385fcf7880f"]
   },
   "cccc068b-ddfa-4a7e-8291-7385fcf7880f": {
     "id": "cccc068b-ddfa-4a7e-8291-7385fcf7880f",
@@ -962,9 +892,7 @@
       "update_time": null,
       "content": {
         "content_type": "text",
-        "parts": [
-          "Dankeschön <3 !"
-        ]
+        "parts": ["Dankeschön <3 !"]
       },
       "status": "finished_successfully",
       "end_turn": null,
@@ -984,9 +912,7 @@
       "channel": null
     },
     "parent": "998a7470-8814-4186-87be-508b2eddedc5",
-    "children": [
-      "484eeb90-53fc-4d5e-a0a5-2818d5688a0d"
-    ]
+    "children": ["484eeb90-53fc-4d5e-a0a5-2818d5688a0d"]
   },
   "484eeb90-53fc-4d5e-a0a5-2818d5688a0d": {
     "id": "484eeb90-53fc-4d5e-a0a5-2818d5688a0d",
@@ -1011,9 +937,7 @@
       "metadata": {
         "finish_details": {
           "type": "stop",
-          "stop_tokens": [
-            200002
-          ]
+          "stop_tokens": [200002]
         },
         "is_complete": true,
         "citations": [],

@@ -32,7 +32,11 @@ export function loadConversations(filePath: string): Conversation[] {
 
 export function analyzeConversations(filePath: string): ConversationStats {
   const convs = loadConversations(filePath);
-  const stats: ConversationStats = { conversationCount: convs.length, messageCount: 0, authorCounts: {} };
+  const stats: ConversationStats = {
+    conversationCount: convs.length,
+    messageCount: 0,
+    authorCounts: {},
+  };
   for (const conv of convs) {
     for (const node of Object.values(conv.mapping)) {
       const msg = node.message;
@@ -93,7 +97,7 @@ export function extractImplicitTodosFromConversations(filePath: string): string[
     /k\u00F6nnten\s+wir\s+([^\.\n]+)/i,
     /sollten\s+wir\s+([^\.\n]+)/i,
     /lass\s+uns\s+([^\.\n]+)/i,
-    /wollen\s+wir\s+([^\.\n]+)/i
+    /wollen\s+wir\s+([^\.\n]+)/i,
   ];
 
   for (const conv of convs) {

@@ -33,8 +33,7 @@ export default function PluginList() {
       <ul>
         {plugins.map((p) => (
           <li key={p.name}>
-            {p.name} ({p.version}){' '}
-            {p.approved ? '✅' : ''}
+            {p.name} ({p.version}) {p.approved ? '✅' : ''}
             {p.blacklisted ? '🚫' : ''}
             {p.versionLock ? `🔒 ${p.versionLock}` : ''}
             <button onClick={() => act('/api/approve', p.name)}>Approve</button>

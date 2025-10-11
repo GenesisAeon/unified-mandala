@@ -8,7 +8,7 @@ test('parses markdown checkbox todos', () => {
   const tasks = parseMdTodos(file);
   expect(tasks).toEqual([
     { text: 'open task', done: false },
-    { text: 'done task', done: true }
+    { text: 'done task', done: true },
   ]);
   fs.unlinkSync(file);
 });

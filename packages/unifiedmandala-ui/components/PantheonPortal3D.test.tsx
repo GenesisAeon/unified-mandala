@@ -9,7 +9,7 @@ jest.mock('@react-three/fiber', () => ({
   pointLight: 'pointLight',
   boxGeometry: 'boxGeometry',
   mesh: 'mesh',
-  meshStandardMaterial: 'meshStandardMaterial'
+  meshStandardMaterial: 'meshStandardMaterial',
 }));
 
 test('renders modules as meshes', () => {

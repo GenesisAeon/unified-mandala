@@ -4,16 +4,16 @@ export type CrepPartsLoose =
   | number
   | string
   | {
-      score?: number | string
-      coherence?: number | string
-      resonance?: number | string
-      emergence?: number | string
-      poetics?: number | string
-      C?: number | string
-      R?: number | string
-      E?: number | string
-      P?: number | string
-      crep?: any
+      score?: number | string;
+      coherence?: number | string;
+      resonance?: number | string;
+      emergence?: number | string;
+      poetics?: number | string;
+      C?: number | string;
+      R?: number | string;
+      E?: number | string;
+      P?: number | string;
+      crep?: any;
     }
   | null
   | undefined;
@@ -26,12 +26,12 @@ export type CrepNormalized = {
     e?: number;
     p?: number;
   };
-  source: "score" | "lowercase" | "uppercase" | "derived" | "none";
+  source: 'score' | 'lowercase' | 'uppercase' | 'derived' | 'none';
 };
 
 function toNum(v: any): number | undefined {
   if (v == null) return undefined;
-  const n = typeof v === "string" ? Number(v.trim()) : Number(v);
+  const n = typeof v === 'string' ? Number(v.trim()) : Number(v);
   return Number.isFinite(n) ? n : undefined;
 }
 
@@ -54,18 +54,18 @@ function clamp01(n: number): number {
 export function normalizeCREP(input: CrepPartsLoose): CrepNormalized {
   const direct = toNum(input as any);
   if (direct !== undefined) {
-    return { score: clamp01(direct), parts: {}, source: "score" };
+    return { score: clamp01(direct), parts: {}, source: 'score' };
   }
 
-  if (typeof input === "object" && input) {
-    if ("crep" in input && (input as any).crep != null) {
+  if (typeof input === 'object' && input) {
+    if ('crep' in input && (input as any).crep != null) {
       const nested = normalizeCREP((input as any).crep);
-      if (nested.source !== "none") return nested;
+      if (nested.source !== 'none') return nested;
     }
 
     const maybeScore = toNum((input as any).score);
     if (maybeScore !== undefined) {
-      return { score: clamp01(maybeScore), parts: {}, source: "score" };
+      return { score: clamp01(maybeScore), parts: {}, source: 'score' };
     }
 
     const lc = {
@@ -85,7 +85,7 @@ export function normalizeCREP(input: CrepPartsLoose): CrepNormalized {
           e: lc.e !== undefined ? clamp01(lc.e) : undefined,
           p: lc.p !== undefined ? clamp01(lc.p) : undefined,
         },
-        source: "lowercase",
+        source: 'lowercase',
       };
     }
 
@@ -106,10 +106,10 @@ export function normalizeCREP(input: CrepPartsLoose): CrepNormalized {
           e: uc.e !== undefined ? clamp01(uc.e) : undefined,
           p: uc.p !== undefined ? clamp01(uc.p) : undefined,
         },
-        source: "uppercase",
+        source: 'uppercase',
       };
     }
   }
 
-  return { score: 0, parts: {}, source: "none" };
+  return { score: 0, parts: {}, source: 'none' };
 }

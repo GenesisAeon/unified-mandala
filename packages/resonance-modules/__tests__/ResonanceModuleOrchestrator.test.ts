@@ -2,7 +2,9 @@ import { ResonanceModuleOrchestrator } from '../ResonanceModuleOrchestrator';
 
 class DummyModule {
   id = 'dummy';
-  process(input: unknown) { return input; }
+  process(input: unknown) {
+    return input;
+  }
 }
 
 describe('ResonanceModuleOrchestrator', () => {
@@ -26,7 +28,7 @@ describe('ResonanceModuleOrchestrator', () => {
     const orch = new ResonanceModuleOrchestrator();
     orch.register(new DummyModule());
     const received: unknown[] = [];
-    orch.bus.on('result', r => received.push(r));
+    orch.bus.on('result', (r) => received.push(r));
     orch.runAll('z');
     expect(received).toEqual(['z']);
   });
@@ -35,7 +37,7 @@ describe('ResonanceModuleOrchestrator', () => {
     const orch = new ResonanceModuleOrchestrator();
     orch.register(new DummyModule());
     const vr: unknown[] = [];
-    orch.connectVR(p => vr.push(p));
+    orch.connectVR((p) => vr.push(p));
     orch.runAll('v');
     expect(vr).toEqual(['v']);
   });

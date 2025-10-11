@@ -17,10 +17,10 @@
         "children": [],
         "message": {
           "id": "not-a-uuid",
-          "author": {"role": "user"},
+          "author": { "role": "user" },
           "create_time": 1,
           "update_time": 1,
-          "content": {"content_type": "text", "parts": ["Hello"]}
+          "content": { "content_type": "text", "parts": ["Hello"] }
         }
       }
     }

@@ -1,9 +1,9 @@
 # Adapter-Matrix
 
-| Quelle | Pfad                    | Status | Intervall | Auth | Throttle (N/Δt) | Cache (TTL) | Schema |
-|-------:|-------------------------|:------:|:---------:|:----:|:---------------:|:-----------:|:------:|
-| ERA5   | src/adapters/impl/era5.stub.ts  |  Stub  |   —     |  —   |   5 / 1s        |   60s       |  Zod   |
-| OISST  | src/adapters/impl/oisst.stub.ts |  Stub  |   —     |  —   |   5 / 1s        |   60s       |  Zod   |
+| Quelle | Pfad                            | Status | Intervall | Auth | Throttle (N/Δt) | Cache (TTL) | Schema |
+| -----: | ------------------------------- | :----: | :-------: | :--: | :-------------: | :---------: | :----: |
+|   ERA5 | src/adapters/impl/era5.stub.ts  |  Stub  |     —     |  —   |     5 / 1s      |     60s     |  Zod   |
+|  OISST | src/adapters/impl/oisst.stub.ts |  Stub  |     —     |  —   |     5 / 1s      |     60s     |  Zod   |
 
 **Decorators aktiv:** `withRetry(3×,exp backoff) → withRateLimit(5/1s) → withCache(60s) → withSchema(Zod)`
 

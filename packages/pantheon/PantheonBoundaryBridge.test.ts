@@ -4,7 +4,7 @@ import { PantheonBoundaryBridge } from './PantheonBoundaryBridge';
 describe('PantheonBoundaryBridge', () => {
   it('bridges events to boundary detection and emits', () => {
     let emitted: any[] | null = null;
-    const bridge = new PantheonBoundaryBridge(m => {
+    const bridge = new PantheonBoundaryBridge((m) => {
       emitted = m;
     });
     const result = bridge.bridge('hello boundary foo', ['foo']);

@@ -42,10 +42,7 @@ export class VectorStore {
 
   private save(): void {
     fs.mkdirSync(path.dirname(this.filePath), { recursive: true });
-    fs.writeFileSync(
-      this.filePath,
-      JSON.stringify({ records: this.records }, null, 2)
-    );
+    fs.writeFileSync(this.filePath, JSON.stringify({ records: this.records }, null, 2));
   }
 }
 

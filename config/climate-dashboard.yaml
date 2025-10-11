@@ -1,22 +1,22 @@
 kpis:
   - id: wildfire_risk
-    label: "Großbrand-Risiko (EFFIS Proxy)"
+    label: 'Großbrand-Risiko (EFFIS Proxy)'
     threshold: 0.7
     warn: 0.5
-    unit: "index"
+    unit: 'index'
   - id: t2m_anomaly
-    label: "ERA5 2m Temperatur Anomalie (Δ)"
+    label: 'ERA5 2m Temperatur Anomalie (Δ)'
     threshold: 2.0
     warn: 1.0
-    unit: "°C"
+    unit: '°C'
   - id: underground_water
-    label: "Grundwasserstand (Pegel)"
+    label: 'Grundwasserstand (Pegel)'
     threshold: -30
     warn: -15
-    unit: "cm"
+    unit: 'cm'
   - id: crep_resonance
-    label: "CREP Resonanz"
-    unit: "index"
+    label: 'CREP Resonanz'
+    unit: 'index'
     warn: 0.5
     threshold: 0.8
     worse_when: farther
@@ -25,18 +25,18 @@ kpis:
 visualization:
   show_sigils: true
   sigil_mapping:
-    "🔔": { label: "Hohe Kohärenz" }
-    "✨": { label: "Mittlere Kohärenz" }
-    "🫧": { label: "Niedrige Kohärenz" }
-    "🌀": { label: "Chaotisch" }
-    "🔥": { label: "Hitzewelle" }
-    "❄️": { label: "Kältewelle" }
-    "🌡️": { label: "Temperatur" }
-    "🧯": { label: "Starker Mangel" }
-    "🚰": { label: "Mangel" }
-    "💧": { label: "OK" }
-    "⚠️": { label: "Warnstufe" }
-    "🟢": { label: "Geringes Risiko" }
-    "🌿": { label: "Hohe Vielfalt" }
-    "🍃": { label: "Mittlere Vielfalt" }
-    "🦗": { label: "Geringe Vielfalt" }
+    '🔔': { label: 'Hohe Kohärenz' }
+    '✨': { label: 'Mittlere Kohärenz' }
+    '🫧': { label: 'Niedrige Kohärenz' }
+    '🌀': { label: 'Chaotisch' }
+    '🔥': { label: 'Hitzewelle' }
+    '❄️': { label: 'Kältewelle' }
+    '🌡️': { label: 'Temperatur' }
+    '🧯': { label: 'Starker Mangel' }
+    '🚰': { label: 'Mangel' }
+    '💧': { label: 'OK' }
+    '⚠️': { label: 'Warnstufe' }
+    '🟢': { label: 'Geringes Risiko' }
+    '🌿': { label: 'Hohe Vielfalt' }
+    '🍃': { label: 'Mittlere Vielfalt' }
+    '🦗': { label: 'Geringe Vielfalt' }

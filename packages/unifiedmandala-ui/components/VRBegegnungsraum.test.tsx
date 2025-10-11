@@ -4,7 +4,7 @@ import '@testing-library/jest-dom';
 import VRBegegnungsraum from './VRBegegnungsraum';
 
 global.fetch = jest.fn(() =>
-  Promise.resolve({ ok: true, json: () => Promise.resolve({ value: 7 }) })
+  Promise.resolve({ ok: true, json: () => Promise.resolve({ value: 7 }) }),
 ) as any;
 
 describe('VRBegegnungsraum', () => {

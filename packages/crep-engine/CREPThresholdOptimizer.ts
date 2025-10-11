@@ -1,8 +1,4 @@
-export function optimizeThreshold(
-  values: number[],
-  current: number,
-  learningRate = 0.1
-): number {
+export function optimizeThreshold(values: number[], current: number, learningRate = 0.1): number {
   if (values.length === 0) return current;
   const avg = values.reduce((a, b) => a + b, 0) / values.length;
   const updated = current + (avg - current) * learningRate;

@@ -3,10 +3,7 @@ const fs = require('fs');
 const path = require('path');
 
 const convFile = path.join(__dirname, '../docs/sigils/conversations.json');
-const fallbackFile = path.join(
-  __dirname,
-  '../docs/sigils/newadvancedconversations.json'
-);
+const fallbackFile = path.join(__dirname, '../docs/sigils/newadvancedconversations.json');
 const kontextFile = path.join(__dirname, '../kontext.json');
 
 function loadConversations(file) {
@@ -36,10 +33,16 @@ function run(source = convFile, outFile = kontextFile) {
     throw new Error('No conversations file found');
   }
   const topics = {
-    codex: [], genesisos: [], unified_mandala: [], aeonshell: [],
-    genesis_aeon: [], nukleon_scanner: [], sigillin: [], innovation: []
+    codex: [],
+    genesisos: [],
+    unified_mandala: [],
+    aeonshell: [],
+    genesis_aeon: [],
+    nukleon_scanner: [],
+    sigillin: [],
+    innovation: [],
   };
-  convs.forEach(c => {
+  convs.forEach((c) => {
     const cat = categorize(c.title || '');
     if (cat && !topics[cat].includes(c.title)) topics[cat].push(c.title);
   });
@@ -47,7 +50,7 @@ function run(source = convFile, outFile = kontextFile) {
     project: 'GenesisAeon',
     repository: 'unified-mandala',
     summary: `Automatisch generiert aus ${convs.length} Gespr\u00e4chen.`,
-    topics
+    topics,
   };
   fs.writeFileSync(outFile, JSON.stringify(kontext, null, 2));
   console.log('kontext.json updated.');

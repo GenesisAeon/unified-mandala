@@ -27,7 +27,7 @@ export default function ReviewerPanel() {
     fetch('/review/decision', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ id, decision })
+      body: JSON.stringify({ id, decision }),
     }).then(() => setItems((prev) => prev.filter((i) => i.id !== id)));
   };
 

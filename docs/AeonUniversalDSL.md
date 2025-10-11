@@ -1,6 +1,6 @@
 # AeonUniversal DSL
 
-Dieses Dokument beschreibt die Grundstruktur der *AeonUniversal DSL* zur Definition von Mandala-Workflows.
+Dieses Dokument beschreibt die Grundstruktur der _AeonUniversal DSL_ zur Definition von Mandala-Workflows.
 
 ## 1. Syntaxübersicht
 
@@ -17,12 +17,12 @@ Ein DSL-Dokument ist im YAML-Format aufgebaut und besteht aus einer Liste von **
 
 ## 2. Schlüsselwörter
 
-| Feld      | Bedeutung                                      |
-|-----------|------------------------------------------------|
-| `task`    | Name des Arbeitsschritts                       |
-| `plugin`  | Referenz auf ein analysierendes Modul          |
-| `input`   | Datenquelle oder Inline-Daten                  |
-| `config`  | Plugin-spezifische Optionen                    |
+| Feld     | Bedeutung                             |
+| -------- | ------------------------------------- |
+| `task`   | Name des Arbeitsschritts              |
+| `plugin` | Referenz auf ein analysierendes Modul |
+| `input`  | Datenquelle oder Inline-Daten         |
+| `config` | Plugin-spezifische Optionen           |
 
 ## 3. Compiler Hooks
 
@@ -50,4 +50,5 @@ Der DSL-Compiler ruft bei jedem Task folgende Hooks auf:
 Dieses Minimalbeispiel scannt zunächst Sigil-Dateien und führt anschließend eine CREP-Analyse durch.
 
 ---
-*Stand: Entwurfsversion – weitere Sprachkonstrukte folgen in kommenden Updates.*
+
+_Stand: Entwurfsversion – weitere Sprachkonstrukte folgen in kommenden Updates._

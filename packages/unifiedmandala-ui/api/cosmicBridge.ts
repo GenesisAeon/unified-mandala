@@ -8,7 +8,7 @@ const emitter = mitt<CosmicBridgeEvents>();
 
 export function connectCosmicBridge(url = 'ws://localhost:4000/sigil'): WebSocket {
   const ws = new WebSocket(url);
-  ws.onmessage = ev => {
+  ws.onmessage = (ev) => {
     try {
       const data = JSON.parse(ev.data);
       emitter.emit('sigil:alert', data);

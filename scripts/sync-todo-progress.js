@@ -16,22 +16,22 @@ function syncTodoProgress(partsDir, progressFile, extraFiles = [], options = {})
   progress.progress = progress.progress || [];
   progress.pendingTasks = progress.pendingTasks || [];
 
-  const doneSet = new Set(progress.progress.map(p => p.commit));
-  const pendingSet = new Set(progress.pendingTasks.map(p => p.commit));
+  const doneSet = new Set(progress.progress.map((p) => p.commit));
+  const pendingSet = new Set(progress.pendingTasks.map((p) => p.commit));
 
   let addedDone = 0;
   let addedPending = 0;
 
   const partFiles = fs
     .readdirSync(partsDir)
-    .filter(f => ['.json', '.yaml', '.yml'].includes(path.extname(f)));
+    .filter((f) => ['.json', '.yaml', '.yml'].includes(path.extname(f)));
 
-  const allFiles = partFiles.map(f => path.join(partsDir, f)).concat(extraFiles);
+  const allFiles = partFiles.map((f) => path.join(partsDir, f)).concat(extraFiles);
 
-  allFiles.forEach(file => {
+  allFiles.forEach((file) => {
     if (!fs.existsSync(file)) return;
     const tasks = loadTasks(file) || [];
-    (tasks || []).forEach(task => {
+    (tasks || []).forEach((task) => {
       if (!task || !task.commit) return;
       if (task.status === 'done') {
         if (!doneSet.has(task.commit)) {
@@ -65,7 +65,7 @@ if (require.main === module) {
   const dryRun = process.argv.includes('--dry-run');
   const { addedDone, addedPending } = syncTodoProgress(partsDir, progressFile, extra, { dryRun });
   console.log(
-    `Synchronized ToDo parts with progress file (added ${addedDone} done, ${addedPending} pending)`
+    `Synchronized ToDo parts with progress file (added ${addedDone} done, ${addedPending} pending)`,
   );
 }
 

@@ -4,7 +4,7 @@ import '@testing-library/jest-dom';
 import TaskBoard from './TaskBoard';
 
 global.fetch = jest.fn(() =>
-  Promise.resolve({ json: () => Promise.resolve([]) })
+  Promise.resolve({ json: () => Promise.resolve([]) }),
 ) as unknown as typeof fetch;
 
 test('renders task board heading', () => {

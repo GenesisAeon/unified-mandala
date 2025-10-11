@@ -1,26 +1,25 @@
-import { defineConfig } from "vitest/config";
+import { defineConfig } from 'vitest/config';
 import path from 'node:path';
 
-const toBool = (value: string | undefined) =>
-  value === "1" || value?.toLowerCase() === "true";
+const toBool = (value: string | undefined) => value === '1' || value?.toLowerCase() === 'true';
 
 const runExtended = toBool(process.env.ENABLE_EXTENDED_TESTS);
 const runExperimental = toBool(process.env.ENABLE_EXPERIMENTAL_TESTS);
 
 const extendedGlobs = [
-  "tests/**/*.{integration,extended}.{test,spec}.ts",
-  "tests/**/*.{integration,extended}.{test,spec}.tsx",
-  "tests/**/*.{smoke}.{test,spec}.ts",
-  "tests/**/*.{smoke}.{test,spec}.tsx",
-  "tests/**/smoke/**/*",
-  "tests/**/redteam/**/*",
-  "tests/**/*.cy.ts",
+  'tests/**/*.{integration,extended}.{test,spec}.ts',
+  'tests/**/*.{integration,extended}.{test,spec}.tsx',
+  'tests/**/*.{smoke}.{test,spec}.ts',
+  'tests/**/*.{smoke}.{test,spec}.tsx',
+  'tests/**/smoke/**/*',
+  'tests/**/redteam/**/*',
+  'tests/**/*.cy.ts',
 ];
 
 const experimentalGlobs = [
-  "tests/**/experimental/**/*",
-  "tests/**/*.{experimental}.{test,spec}.ts",
-  "tests/**/*.{experimental}.{test,spec}.tsx",
+  'tests/**/experimental/**/*',
+  'tests/**/*.{experimental}.{test,spec}.ts',
+  'tests/**/*.{experimental}.{test,spec}.tsx',
 ];
 
 const exclude = new Set<string>();
@@ -39,17 +38,45 @@ export default defineConfig({
     },
   },
   test: {
-    environment: "node",
-    setupFiles: ["tests/setup/ci.ts"],
+    environment: 'node',
+    setupFiles: ['tests/setup/ci.ts'],
     globals: true,
-    pool: "threads",
+    pool: 'threads',
     poolOptions: { threads: { singleThread: true } },
-    coverage: { enabled: false },
-    include: [
-      "tests/**/*.{test,spec}.ts",
-      "packages/**/test/**/*.{test,spec}.ts",
-    ],
+    coverage: {
+      enabled: false,
+      include: ['src/**/*.ts', 'packages/*/src/**/*.ts', 'apps/*/src/**/*.ts'],
+      exclude: [
+        '**/node_modules/**',
+        '**/dist/**',
+        'scripts/**',
+        'tests/**',
+        'vitest.setup.ts',
+        '**/tmp_*.*',
+        '**/tmp_*/**',
+        // Demo/agents and non-TS proxy
+        'unified-mandala/agents/**',
+        'apps/api-lite/**',
+        // UI TSX: components/pages/panels and story files
+        'unified-mandala/apps/**/components/**',
+        'unified-mandala/apps/**/pages/**',
+        'unified-mandala/apps/**/panels/**',
+        '**/*.stories.tsx',
+        '**/*.stories.ts',
+        // Common bootstrap files not unit-tested
+        'main.ts',
+        'main.tsx',
+        'index.ts',
+        'index.tsx',
+        'cli.js',
+        // workspace-specific misc
+        'GenesisAeonZIPMEM/**',
+        'unified-mandala/GenesisAeonZIPMEM/**',
+        // explicitly exclude UI source tree if not testing TSX
+        'unified-mandala/apps/ui/src/**',
+      ],
+    },
+    include: ['tests/**/*.{test,spec}.ts', 'packages/**/test/**/*.{test,spec}.ts'],
     exclude: Array.from(exclude),
   },
 });
-

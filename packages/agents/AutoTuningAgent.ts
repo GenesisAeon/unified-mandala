@@ -10,7 +10,7 @@ export interface ExperimentResult<T> {
 export class AutoTuningAgent<T> {
   constructor(
     private budget: number,
-    private logger: (result: ExperimentResult<T>) => void = () => {}
+    private logger: (result: ExperimentResult<T>) => void = () => {},
   ) {}
 
   /**
@@ -20,7 +20,7 @@ export class AutoTuningAgent<T> {
    */
   async tune(
     candidates: T[],
-    evaluate: (params: T) => Promise<number> | number
+    evaluate: (params: T) => Promise<number> | number,
   ): Promise<ExperimentResult<T> | null> {
     let remaining = this.budget;
     let best: ExperimentResult<T> | null = null;

@@ -1,3 +1,3 @@
 # Sigillin Onboarding
 
-*TODO: Original Leitfaden von Claude hier einfügen.*
+_TODO: Original Leitfaden von Claude hier einfügen._

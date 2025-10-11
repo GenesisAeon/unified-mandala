@@ -3,6 +3,7 @@ Halte stets Backend-API, Datahooks, UI-Komponenten, Storybook-Stories und Tests 
 Prüfe regelmäßig, ob die Datenquellen (z.B. /api/meta-scores) und die Dashboard-Komponenten konsistent und aktuell die Layer-Konfiguration abbilden. Bei jedem Commit: Test-/Doku-Referenz ergänzen!
 
 Weitere Hinweise:
+
 - Nutze **codex-sigil.yaml** als zentralen Arbeitsanker.
 - Folge dem Ablauf in **fraktal-zyklus.md** bei der Umsetzung deiner Aufgaben.
 - Feedback siehe feedbackcodex.json

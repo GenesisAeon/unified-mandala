@@ -34,4 +34,3 @@ export default function GeophysikSection({ metrics }: GeophysikSectionProps) {
     </section>
   );
 }
-

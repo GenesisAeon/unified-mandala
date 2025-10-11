@@ -5,7 +5,9 @@ async function main() {
   const stream = process.env.NATS_STREAM || 'MANDALA';
   const subjects = (process.env.NATS_SUBJECTS || `${stream}.>`).split(',');
   const creds = process.env.NATS_CREDS;
-  const maxReconnects = process.env.NATS_MAX_RECONNECTS ? parseInt(process.env.NATS_MAX_RECONNECTS, 10) : undefined;
+  const maxReconnects = process.env.NATS_MAX_RECONNECTS
+    ? parseInt(process.env.NATS_MAX_RECONNECTS, 10)
+    : undefined;
 
   const connOpts: any = { servers: url, maxReconnectAttempts: maxReconnects };
   if (creds) {

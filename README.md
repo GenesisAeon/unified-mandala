@@ -203,6 +203,7 @@ Die UI nutzt dieselben Subjects; stimmen keine Events, vergleiche die Angaben in
 
 - **Onboarding:** `scripts/onboarding-ritual.md`
 - **Handbuch (Kanon):** `Handbuch.md`
+- **Dev Shortcuts (pnpm/npm/yarn):** `docs/DEV-SHORTCUTS.md`
 - **Offline-Bundle:** `docs/offline/docker-compose.yml`
 - **ToDo-System:** `advancedToDo.yaml` / `advancedToDo.json` (Sync: `node scripts/sync-todo-progress.js`)
 - **Governance/Ethik:** `docs/governance/HI-Compact.md`, `docs/governance/policy-suite.md`, `AI_POLICY.md`, `agents.yaml`

@@ -33,7 +33,7 @@ function gatherTasks() {
   const sources = [
     path.join(repoRoot, 'advancedToDo.json'),
     path.join(repoRoot, 'advancedToDo.yaml'),
-    path.join(repoRoot, 'advancedToDo_parts')
+    path.join(repoRoot, 'advancedToDo_parts'),
   ];
   let tasks = [];
   for (const src of sources) {
@@ -75,4 +75,6 @@ for (const t of allTasks) {
 const sliced = openTasks.slice(0, limit);
 const output = { generatedAt: new Date().toISOString(), tasks: sliced };
 fs.writeFileSync(outFile, JSON.stringify(output, null, 2));
-console.log(`Initial tasks written to ${path.relative(process.cwd(), outFile)} (${sliced.length} items)`);
+console.log(
+  `Initial tasks written to ${path.relative(process.cwd(), outFile)} (${sliced.length} items)`,
+);

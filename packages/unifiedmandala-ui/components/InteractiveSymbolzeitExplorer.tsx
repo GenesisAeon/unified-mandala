@@ -5,7 +5,10 @@ export interface InteractiveSymbolzeitExplorerProps {
   onChange?: (value: number) => void;
 }
 
-const InteractiveSymbolzeitExplorer: React.FC<InteractiveSymbolzeitExplorerProps> = ({ initial = 0, onChange }) => {
+const InteractiveSymbolzeitExplorer: React.FC<InteractiveSymbolzeitExplorerProps> = ({
+  initial = 0,
+  onChange,
+}) => {
   const [value, setValue] = useState(initial);
 
   const update = (next: number) => {

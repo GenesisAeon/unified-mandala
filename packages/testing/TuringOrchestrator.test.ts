@@ -11,7 +11,7 @@ describe('TuringOrchestrator', () => {
     const t = new TuringOrchestrator();
     const rate = t.runBatch([
       { prompt: 'a', response: 'b' },
-      { prompt: 'a', response: 'a' }
+      { prompt: 'a', response: 'a' },
     ]);
     expect(rate).toBeCloseTo(0.5);
   });

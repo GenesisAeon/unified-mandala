@@ -1,3 +1,7 @@
+# Development
+
+> Quick links: For everyday start/stop commands across pnpm / npm / yarn, see DEV-SHORTCUTS(./DEV-SHORTCUTS.md).
+
 Development quick guide
 
 - Start full stack

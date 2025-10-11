@@ -11,4 +11,7 @@ for (let i = 0; i < 3; i++) {
 logger.log('end');
 
 const entries = RunLogger.read(logFile);
-console.log('Run entries:', entries.filter(e => e.run_id === logger.id));
+console.log(
+  'Run entries:',
+  entries.filter((e) => e.run_id === logger.id),
+);

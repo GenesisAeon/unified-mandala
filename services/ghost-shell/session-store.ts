@@ -51,10 +51,12 @@ export function stopSessionPersistence() {
 loadSessions();
 startSessionPersistence();
 
-export function configureSessionStore(options: {
-  ttlMs?: number;
-  maxHistory?: number;
-} = {}): void {
+export function configureSessionStore(
+  options: {
+    ttlMs?: number;
+    maxHistory?: number;
+  } = {},
+): void {
   if (options.ttlMs !== undefined) {
     ttlMs = options.ttlMs;
   }

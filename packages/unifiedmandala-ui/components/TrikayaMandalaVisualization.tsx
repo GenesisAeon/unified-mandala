@@ -5,7 +5,7 @@ const layers = ['Nirmanakaya', 'Sambhogakaya', 'Dharmakaya'];
 const styles: React.CSSProperties[] = [
   { background: 'rgba(255,0,0,0.3)' },
   { background: 'rgba(0,255,0,0.3)' },
-  { background: 'rgba(0,0,255,0.3)' }
+  { background: 'rgba(0,0,255,0.3)' },
 ];
 
 const TrikayaMandalaVisualization: React.FC = () => (
@@ -21,7 +21,7 @@ const TrikayaMandalaVisualization: React.FC = () => (
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          ...styles[i]
+          ...styles[i],
         }}
       >
         {l}

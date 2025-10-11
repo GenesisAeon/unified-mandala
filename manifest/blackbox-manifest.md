@@ -8,4 +8,3 @@ This manifest summarizes the Blackbox Resonance modules anchored in the Mandala 
 - **HeatmapWidget** – renders resonance heatmaps over time.
 - **OnboardingModal** – guides new users through the Blackbox interface.
 - **HaikuOverlay** – displays poetic prompts during onboarding.
-

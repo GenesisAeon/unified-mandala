@@ -3,7 +3,9 @@ import { LocalEventBus, NatsEventBus, Subjects, bridgeEventBuses } from '../pack
 async function main() {
   const url = process.env.NATS_URL;
   const creds = process.env.NATS_CREDS;
-  const maxReconnects = process.env.NATS_MAX_RECONNECTS ? parseInt(process.env.NATS_MAX_RECONNECTS, 10) : undefined;
+  const maxReconnects = process.env.NATS_MAX_RECONNECTS
+    ? parseInt(process.env.NATS_MAX_RECONNECTS, 10)
+    : undefined;
 
   const local = new LocalEventBus();
   const nats = new NatsEventBus();

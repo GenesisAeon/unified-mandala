@@ -9,7 +9,9 @@ export default function MetaScoreDisplay() {
   return (
     <ul>
       {scores.map((s) => (
-        <li key={s.id}>{s.id}: {s.value}</li>
+        <li key={s.id}>
+          {s.id}: {s.value}
+        </li>
       ))}
     </ul>
   );

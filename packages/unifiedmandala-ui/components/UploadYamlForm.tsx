@@ -19,9 +19,7 @@ export default function UploadYamlForm() {
   return (
     <div>
       <input type="file" onChange={handleFile} data-testid="file-input" />
-      {yamlOut && (
-        <textarea value={yamlOut} readOnly data-testid="yaml-output" />
-      )}
+      {yamlOut && <textarea value={yamlOut} readOnly data-testid="yaml-output" />}
     </div>
   );
 }

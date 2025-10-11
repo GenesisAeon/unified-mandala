@@ -1,28 +1,32 @@
-import { FEATURES } from "../config/featureFlags";
+import { FEATURES } from '../config/featureFlags';
 
-type Severity = "ok" | "warn" | "alarm";
+type Severity = 'ok' | 'warn' | 'alarm';
 
-function membraneFromThresholds(_metric: "t2m" | "wildfire" | "groundwater") {
+function membraneFromThresholds(_metric: 't2m' | 'wildfire' | 'groundwater') {
   return {
-    step: (_t: number, v: number) => ({ A: v, state: "ok" as Severity, severity: "ok" as Severity }),
+    step: (_t: number, v: number) => ({
+      A: v,
+      state: 'ok' as Severity,
+      severity: 'ok' as Severity,
+    }),
   };
 }
 
 function toSigil(state: Severity) {
   switch (state) {
-    case "warn":
-      return "🟠";
-    case "alarm":
-      return "🔴";
+    case 'warn':
+      return '🟠';
+    case 'alarm':
+      return '🔴';
     default:
-      return "🟢";
+      return '🟢';
   }
 }
 
-export function stepOrBypass(metric: "t2m" | "wildfire" | "groundwater", t: number, v: number) {
-  if (FEATURES.membrane !== "on") {
+export function stepOrBypass(metric: 't2m' | 'wildfire' | 'groundwater', t: number, v: number) {
+  if (FEATURES.membrane !== 'on') {
     // LowMem: kein State, nur triviales Sigil zurückgeben
-    return { A: undefined as number | undefined, sigil: "🟢", severity: "ok" as const };
+    return { A: undefined as number | undefined, sigil: '🟢', severity: 'ok' as const };
   }
   const m = membraneFromThresholds(metric);
   const r = m.step(t, v);

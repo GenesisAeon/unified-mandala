@@ -26,4 +26,3 @@ export class CreditLedger {
     return { ...this.ledger };
   }
 }
-

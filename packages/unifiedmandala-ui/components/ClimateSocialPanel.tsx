@@ -13,7 +13,7 @@ export default function ClimateSocialPanel() {
     fetch('/process', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ task_type: 'climate_fetch', crep_score: 0.75 })
+      body: JSON.stringify({ task_type: 'climate_fetch', crep_score: 0.75 }),
     })
       .then((r) => r.json())
       .then((json) => setData(json))

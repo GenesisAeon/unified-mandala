@@ -1,7 +1,7 @@
 sigillin_id: aeon:2025-0705-FRACTAL-ANCHOR
-anchorType: "fractal-entry"
-update_time: "2025-07-05T14:00:00+02:00"
-responsible: "aeon"
+anchorType: 'fractal-entry'
+update_time: '2025-07-05T14:00:00+02:00'
+responsible: 'aeon'
 description: |
   Dieses Sigil markiert den Einstiegspunkt für den Fraktallauf über mehrere MetaCommits.
   - Extraktion und Abstraktion von ToDos im Repo
@@ -11,6 +11,6 @@ description: |
     2. Implementierung & Validierung
     3. Optimierung, Fehleranalyse & Deployment
 context:
-  - "Repo: GenesisAeonAdvancedAi"
-  - "MetaCommit: recursive-task-runner"
-refLink: "docs/sigils/aeon-2025-0705-fractal-anchor.yaml"
+  - 'Repo: GenesisAeonAdvancedAi'
+  - 'MetaCommit: recursive-task-runner'
+refLink: 'docs/sigils/aeon-2025-0705-fractal-anchor.yaml'

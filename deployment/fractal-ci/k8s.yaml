@@ -13,6 +13,6 @@ spec:
         app: fractal-ci
     spec:
       containers:
-      - name: ci-runner
-        image: node:20-alpine
-        command: ['sh', '-c', 'pnpm install && pnpm test']
+        - name: ci-runner
+          image: node:20-alpine
+          command: ['sh', '-c', 'pnpm install && pnpm test']

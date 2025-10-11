@@ -1,6 +1,9 @@
 import fs from 'fs';
 
-export function extractChronoPoem(input = 'docs/sigils/conversations.json', output = 'CHRONOPOEM_TIMELINE.md') {
+export function extractChronoPoem(
+  input = 'docs/sigils/conversations.json',
+  output = 'CHRONOPOEM_TIMELINE.md',
+) {
   const raw = fs.readFileSync(input, 'utf-8');
   const data = JSON.parse(raw);
   const lines = (Array.isArray(data) ? data : []).map((item: any) => {

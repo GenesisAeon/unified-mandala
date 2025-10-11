@@ -1,20 +1,20 @@
 # Cheat sheet for voice intents and their command mappings
 intents:
-  - intent: "open workflow"
-    command: "aeon.sh workflow open"
-    description: "Launches the workflow launcher in the shell"
-  - intent: "load sigil"
-    command: "sigillin load <name>"
-    description: "Loads a Sigillin file into the active context"
-  - intent: "add task"
-    command: "todo add <task>"
-    description: "Appends a new item to the advanced ToDo list"
-  - intent: "start cycle"
-    command: "aeon.sh cycle start"
-    description: "Initiates the next resonance cycle"
-  - intent: "generate sigil"
-    command: "sigillin generate <name>"
-    description: "Creates a fresh Sigillin and activates it"
-  - intent: "sync todos"
-    command: "node scripts/sync-todo-progress.js"
-    description: "Synchronizes advanced ToDo files"
+  - intent: 'open workflow'
+    command: 'aeon.sh workflow open'
+    description: 'Launches the workflow launcher in the shell'
+  - intent: 'load sigil'
+    command: 'sigillin load <name>'
+    description: 'Loads a Sigillin file into the active context'
+  - intent: 'add task'
+    command: 'todo add <task>'
+    description: 'Appends a new item to the advanced ToDo list'
+  - intent: 'start cycle'
+    command: 'aeon.sh cycle start'
+    description: 'Initiates the next resonance cycle'
+  - intent: 'generate sigil'
+    command: 'sigillin generate <name>'
+    description: 'Creates a fresh Sigillin and activates it'
+  - intent: 'sync todos'
+    command: 'node scripts/sync-todo-progress.js'
+    description: 'Synchronizes advanced ToDo files'

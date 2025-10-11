@@ -23,7 +23,7 @@ can query the index via `/rag/search` or dedicated Sigil endpoints.
 
 ```ts
 fetch('/rag/search?q=mandala')
-  .then(r => r.json())
+  .then((r) => r.json())
   .then(console.log);
 ```
 

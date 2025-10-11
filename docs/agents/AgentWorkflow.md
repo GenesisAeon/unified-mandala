@@ -27,4 +27,3 @@ pnpm ts-node scripts/system-start.ts --dry-run
 
 The `--dry-run` flag lists the lifecycle events without starting the
 agents.
-

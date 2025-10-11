@@ -1,4 +1,7 @@
-export interface Metrics { bewusstsein: number; resonanz: number }
+export interface Metrics {
+  bewusstsein: number;
+  resonanz: number;
+}
 
 export class KIBewusstseinResonanzMonitor {
   history: Metrics[] = [];

@@ -13,9 +13,12 @@ describe('OpenAI provider', () => {
   test('uses responses API when available', async () => {
     global.fetch = jest.fn().mockResolvedValue({
       ok: true,
-      json: async () => ({ output: [{ content: [{ text: 'hi' }] }] })
+      json: async () => ({ output: [{ content: [{ text: 'hi' }] }] }),
     }) as any;
-    const result = await callOpenAI({ model: 'gpt-4o-mini', messages: [{ role: 'user', content: 'hi' }] });
+    const result = await callOpenAI({
+      model: 'gpt-4o-mini',
+      messages: [{ role: 'user', content: 'hi' }],
+    });
     expect(result).toBe('hi');
     expect((global.fetch as any).mock.calls[0][0]).toBe(RESPONSES_URL);
   });
@@ -24,8 +27,14 @@ describe('OpenAI provider', () => {
     global.fetch = jest
       .fn()
       .mockResolvedValueOnce({ ok: false, status: 500, json: async () => ({}) })
-      .mockResolvedValueOnce({ ok: true, json: async () => ({ choices: [{ message: { content: 'fallback' } }] }) }) as any;
-    const result = await callOpenAI({ model: 'gpt-4o-mini', messages: [{ role: 'user', content: 'hi' }] });
+      .mockResolvedValueOnce({
+        ok: true,
+        json: async () => ({ choices: [{ message: { content: 'fallback' } }] }),
+      }) as any;
+    const result = await callOpenAI({
+      model: 'gpt-4o-mini',
+      messages: [{ role: 'user', content: 'hi' }],
+    });
     expect(result).toBe('fallback');
     const calls = (global.fetch as any).mock.calls;
     expect(calls[0][0]).toBe(RESPONSES_URL);

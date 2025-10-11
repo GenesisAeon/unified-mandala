@@ -6,7 +6,7 @@ import GuidedOnboardingTour, { TourStep } from './GuidedOnboardingTour';
 test('navigates through tour steps', () => {
   const steps: TourStep[] = [
     { title: 'Step 1', content: 'Welcome' },
-    { title: 'Step 2', content: 'Finish setup' }
+    { title: 'Step 2', content: 'Finish setup' },
   ];
   const onFinish = jest.fn();
   render(<GuidedOnboardingTour steps={steps} onFinish={onFinish} />);

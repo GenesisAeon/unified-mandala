@@ -14,7 +14,7 @@ async function collectSigils(dir: string, base: string): Promise<any[]> {
   for (const entry of entries) {
     const full = path.join(dir, entry.name);
     if (entry.isDirectory()) {
-      results.push(...await collectSigils(full, base));
+      results.push(...(await collectSigils(full, base)));
     } else if (entry.isFile()) {
       if (/conversations/i.test(entry.name)) continue;
       const rel = path.relative(base, full);
@@ -32,8 +32,10 @@ async function collectSigils(dir: string, base: string): Promise<any[]> {
 
 export async function exportSigillin(options: ExportOptions = {}) {
   const memoryPath = options.memoryPath || path.resolve('docs/sigils');
-  const outJsonPath = options.outJsonPath || path.resolve('scripts/chat_migration/exported_sigillin.json');
-  const outYamlPath = options.outYamlPath || path.resolve('scripts/chat_migration/exported_sigillin.yaml');
+  const outJsonPath =
+    options.outJsonPath || path.resolve('scripts/chat_migration/exported_sigillin.json');
+  const outYamlPath =
+    options.outYamlPath || path.resolve('scripts/chat_migration/exported_sigillin.yaml');
 
   const sigils = await collectSigils(memoryPath, memoryPath);
 
@@ -45,7 +47,7 @@ export async function exportSigillin(options: ExportOptions = {}) {
 }
 
 if (require.main === module) {
-  exportSigillin().catch(err => {
+  exportSigillin().catch((err) => {
     console.error(err);
     process.exit(1);
   });

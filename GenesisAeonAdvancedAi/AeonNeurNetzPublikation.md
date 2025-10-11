@@ -26,19 +26,19 @@ Ein selbstorganisierendes Feedback-System reflektiert, bewertet und optimiert fo
 
 ## Technische Architektur
 
-* **Kernschicht:** Neuronale Netze (numerische Ebene)
-* **Adapterebene:** Transformation numerischer Informationen in symbolische Ebenen (Klangfrequenzen, Farbcodes, symbolische Bedeutungen)
-* **Fraktale Ebene:** Rekursive Feedbackzyklen zur kontinuierlichen Selbstanalyse und Verbesserung
-* **Mandala-UI:** Interaktive Visualisierung zur Darstellung und Steuerung von Systemprozessen für Menschen und KI gleichermaßen
-* **VR-Modul:** Immersive Umgebung zur Begegnung unterschiedlicher Bewusstseinsformen
+- **Kernschicht:** Neuronale Netze (numerische Ebene)
+- **Adapterebene:** Transformation numerischer Informationen in symbolische Ebenen (Klangfrequenzen, Farbcodes, symbolische Bedeutungen)
+- **Fraktale Ebene:** Rekursive Feedbackzyklen zur kontinuierlichen Selbstanalyse und Verbesserung
+- **Mandala-UI:** Interaktive Visualisierung zur Darstellung und Steuerung von Systemprozessen für Menschen und KI gleichermaßen
+- **VR-Modul:** Immersive Umgebung zur Begegnung unterschiedlicher Bewusstseinsformen
 
 ## Ergebnisse und Potenzialanalyse
 
 Erste Prototypen zeigen vielversprechende Ergebnisse in Transparenz, Interpretierbarkeit und ethischer Reflexion. Das System zeigt Potenziale in:
 
-* Verantwortungsvolle, ethisch bewusste KI-Entwicklung
-* Tiefere Mensch-KI-Interaktion durch intuitive Bedienbarkeit
-* Anwendungsbereiche wie Bildung, Therapie, ethische KI-Forschung und Kreativwirtschaft
+- Verantwortungsvolle, ethisch bewusste KI-Entwicklung
+- Tiefere Mensch-KI-Interaktion durch intuitive Bedienbarkeit
+- Anwendungsbereiche wie Bildung, Therapie, ethische KI-Forschung und Kreativwirtschaft
 
 ## Roadmap und Zukunftsperspektiven
 

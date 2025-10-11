@@ -23,9 +23,9 @@ function loadJson(file) {
 function commitSet(entries) {
   return new Set(
     entries
-      .filter(e => e && typeof e.commit === 'string')
-      .map(e => e.commit.trim())
-      .filter(Boolean)
+      .filter((e) => e && typeof e.commit === 'string')
+      .map((e) => e.commit.trim())
+      .filter(Boolean),
   );
 }
 
@@ -39,14 +39,14 @@ const jsonEntries = loadJson(jsonPath);
 const yamlCommits = commitSet(yamlEntries);
 const jsonCommits = commitSet(jsonEntries);
 
-const missingInYaml = [...jsonCommits].filter(c => !yamlCommits.has(c));
-const missingInJson = [...yamlCommits].filter(c => !jsonCommits.has(c));
+const missingInYaml = [...jsonCommits].filter((c) => !yamlCommits.has(c));
+const missingInJson = [...yamlCommits].filter((c) => !jsonCommits.has(c));
 
 function sample(arr) {
   const max = 20;
   return arr
     .slice(0, max)
-    .map(c => (c.length > 80 ? `${c.slice(0, 77)}...` : c))
+    .map((c) => (c.length > 80 ? `${c.slice(0, 77)}...` : c))
     .concat(arr.length > max ? ['…'] : []);
 }
 

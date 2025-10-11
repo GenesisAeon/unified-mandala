@@ -15,4 +15,3 @@ describe('BadgeProfile', () => {
     expect(screen.getByText('⭐')).toBeInTheDocument();
   });
 });
-

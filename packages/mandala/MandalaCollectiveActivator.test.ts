@@ -8,7 +8,7 @@ describe('MandalaCollectiveActivator', () => {
     expect(act.activate(bus)).toBe('activated');
     expect(bus.publish).toHaveBeenCalledWith(
       'mandala.collective.started',
-      expect.objectContaining({ timestamp: expect.any(Number) })
+      expect.objectContaining({ timestamp: expect.any(Number) }),
     );
   });
 });

@@ -9,7 +9,7 @@ export class VLLMProvider implements ModelProvider {
     const res = await fetch(`${this.baseUrl}/completions`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ model, prompt })
+      body: JSON.stringify({ model, prompt }),
     });
     if (!res.ok) {
       throw new Error(`vLLM request failed with status ${res.status}`);

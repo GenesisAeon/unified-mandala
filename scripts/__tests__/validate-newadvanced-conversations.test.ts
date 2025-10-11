@@ -20,7 +20,7 @@ test('detects duplicates, missing fields and invalid roles', () => {
             id: 'client-created-root',
             parent: null,
             children: ['node'],
-            message: null
+            message: null,
           },
           node: {
             id: 'node',
@@ -31,12 +31,12 @@ test('detects duplicates, missing fields and invalid roles', () => {
               author: { role: 'hacker' },
               create_time: 1,
               update_time: 1,
-              content: { content_type: 'text', parts: ['hi'] }
-            }
-          }
+              content: { content_type: 'text', parts: ['hi'] },
+            },
+          },
         },
         create_time: 1,
-        update_time: 2
+        update_time: 2,
       },
       {
         id: '4',
@@ -49,14 +49,13 @@ test('detects duplicates, missing fields and invalid roles', () => {
             message: {
               id: 'node',
               author: { role: 'user' },
-              create_time: 1
-            }
-          }
+              create_time: 1,
+            },
+          },
         },
         create_time: 1,
-        update_time: 2
-      }
-      ,
+        update_time: 2,
+      },
       {
         id: '5',
         title: 'Orphan node',
@@ -65,7 +64,7 @@ test('detects duplicates, missing fields and invalid roles', () => {
             id: 'client-created-root',
             parent: null,
             children: [],
-            message: null
+            message: null,
           },
           node: {
             id: 'node',
@@ -76,14 +75,14 @@ test('detects duplicates, missing fields and invalid roles', () => {
               author: { role: 'user' },
               create_time: 1,
               update_time: 1,
-              content: { content_type: 'text', parts: ['hi'] }
-            }
-          }
+              content: { content_type: 'text', parts: ['hi'] },
+            },
+          },
         },
         create_time: 1,
-        update_time: 2
-      }
-    ])
+        update_time: 2,
+      },
+    ]),
   );
   const res = validateNewAdvancedConversations(file);
   expect(res.conversationCount).toBe(6);

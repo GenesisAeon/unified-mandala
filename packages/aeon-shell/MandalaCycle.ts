@@ -10,7 +10,10 @@ export class MandalaCycle extends EventEmitter {
   private compassion: AeonCompassionAgent;
   weightFactor = 1;
 
-  constructor(private opts: MandalaCycleOptions, bus = new EventEmitter()) {
+  constructor(
+    private opts: MandalaCycleOptions,
+    bus = new EventEmitter(),
+  ) {
     super();
     this.compassion = new AeonCompassionAgent(bus);
   }

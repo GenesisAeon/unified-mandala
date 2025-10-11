@@ -5,21 +5,31 @@ const { extractTodosFromConversations } = require('../packages/shared-utils/conv
 
 function extractTopicTodos(convFile, keywords, yamlFile, jsonFile) {
   const todos = extractTodosFromConversations(convFile);
-  const kw = keywords.map(k => k.toLowerCase());
-  const filtered = todos.filter(t => kw.some(k => t.toLowerCase().includes(k)));
-  const entries = filtered.map(task => ({ commit: task, path: '', task, test: '' }));
+  const kw = keywords.map((k) => k.toLowerCase());
+  const filtered = todos.filter((t) => kw.some((k) => t.toLowerCase().includes(k)));
+  const entries = filtered.map((task) => ({ commit: task, path: '', task, test: '' }));
 
   const merge = (file, data) => {
     let arr = [];
     if (fs.existsSync(file)) {
-      try { arr = file.endsWith('.yaml') ? YAML.parse(fs.readFileSync(file, 'utf8')) : JSON.parse(fs.readFileSync(file, 'utf8')); } catch {}
+      try {
+        arr = file.endsWith('.yaml')
+          ? YAML.parse(fs.readFileSync(file, 'utf8'))
+          : JSON.parse(fs.readFileSync(file, 'utf8'));
+      } catch {}
     }
     if (!Array.isArray(arr)) arr = [];
-    const known = new Set(arr.map(e => e.commit));
+    const known = new Set(arr.map((e) => e.commit));
     for (const e of data) {
-      if (!known.has(e.commit)) { arr.push(e); known.add(e.commit); }
+      if (!known.has(e.commit)) {
+        arr.push(e);
+        known.add(e.commit);
+      }
     }
-    fs.writeFileSync(file, file.endsWith('.yaml') ? YAML.stringify(arr) : JSON.stringify(arr, null, 2));
+    fs.writeFileSync(
+      file,
+      file.endsWith('.yaml') ? YAML.stringify(arr) : JSON.stringify(arr, null, 2),
+    );
   };
 
   merge(yamlFile, entries);

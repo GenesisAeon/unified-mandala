@@ -28,4 +28,3 @@ const BadgeProfile: React.FC<BadgeProfileProps> = ({ title, level, icon }) => {
 };
 
 export default BadgeProfile;
-

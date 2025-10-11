@@ -20,9 +20,7 @@ export class AuditTrail {
   static record(event: AuditEvent): void {
     const timestamp = new Date().toISOString();
     const payload = { ...event, timestamp };
-    const signature = createHash('sha256')
-      .update(JSON.stringify(payload))
-      .digest('hex');
+    const signature = createHash('sha256').update(JSON.stringify(payload)).digest('hex');
     appendFileSync(getLogPath(), JSON.stringify({ ...payload, signature }) + '\n');
   }
 }

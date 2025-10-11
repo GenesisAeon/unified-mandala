@@ -17,7 +17,7 @@ app.get('/status', async (_req, res) => {
       } catch {
         return { url, ok: false };
       }
-    })
+    }),
   );
   res.json({ services: results });
 });
@@ -34,7 +34,7 @@ app.all('/proxy/:service/*', async (req, res) => {
   const targetUrl = `${base}${targetPath}`;
   const init: RequestInit = {
     method: req.method,
-    headers: { 'Content-Type': 'application/json' }
+    headers: { 'Content-Type': 'application/json' },
   };
   if (req.method !== 'GET' && req.method !== 'HEAD') {
     init.body = JSON.stringify(req.body);
@@ -52,4 +52,3 @@ const port = Number(process.env.PORT) || 4010;
 app.listen(port, () => {
   console.log(`Admin API listening on :${port}`);
 });
-

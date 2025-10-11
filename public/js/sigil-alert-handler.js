@@ -1,5 +1,5 @@
 export function registerSigilHandler(socket) {
-  socket.on('sigil_alert', sigil => {
+  socket.on('sigil_alert', (sigil) => {
     const el = document.createElement('div');
     el.className = `sigil ${sigil.effect}`;
     el.textContent = sigil.id;

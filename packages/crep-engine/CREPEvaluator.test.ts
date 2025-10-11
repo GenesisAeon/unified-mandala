@@ -6,8 +6,12 @@ describe('CREPEvaluator', () => {
   beforeEach(() => {
     (globalThis as any).localStorage = {
       store: {} as Record<string, string>,
-      getItem(key: string) { return this.store[key] || null; },
-      setItem(key: string, value: string) { this.store[key] = value; },
+      getItem(key: string) {
+        return this.store[key] || null;
+      },
+      setItem(key: string, value: string) {
+        this.store[key] = value;
+      },
     };
   });
 
@@ -21,7 +25,12 @@ describe('CREPEvaluator', () => {
 
     evaluator.evaluateNewDataPoint({ C: 1, R: 1, E: 1, P: 0.1 });
 
-    expect(GPTEventHub.emit).toHaveBeenCalledWith('emergence:detected', { C: 1, R: 1, E: 1, P: 0.1 });
+    expect(GPTEventHub.emit).toHaveBeenCalledWith('emergence:detected', {
+      C: 1,
+      R: 1,
+      E: 1,
+      P: 0.1,
+    });
     expect(manager.addCREPEntry).toHaveBeenCalledWith(1, 1, 1, 0.1);
   });
 

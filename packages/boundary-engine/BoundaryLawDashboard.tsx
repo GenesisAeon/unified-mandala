@@ -5,12 +5,15 @@ export interface BoundaryLawDashboardProps {
   macroHypotheses?: string[];
 }
 
-export default function BoundaryLawDashboard({ laws, macroHypotheses = [] }: BoundaryLawDashboardProps) {
+export default function BoundaryLawDashboard({
+  laws,
+  macroHypotheses = [],
+}: BoundaryLawDashboardProps) {
   return (
     <div>
       <h2>Boundary Laws</h2>
       <ul>
-        {laws.map(law => (
+        {laws.map((law) => (
           <li key={law}>{law}</li>
         ))}
       </ul>
@@ -18,7 +21,7 @@ export default function BoundaryLawDashboard({ laws, macroHypotheses = [] }: Bou
         <>
           <h3>Macro Hypotheses</h3>
           <ul>
-            {macroHypotheses.map(h => (
+            {macroHypotheses.map((h) => (
               <li key={h}>{h}</li>
             ))}
           </ul>

@@ -18,6 +18,6 @@ export interface ComplianceResult {
  * enable detailed logging by callers.
  */
 export function checkCompliance(op: DataOperation): ComplianceResult {
-  const violations = op.fields.filter(f => !op.allowed.includes(f));
+  const violations = op.fields.filter((f) => !op.allowed.includes(f));
   return { compliant: violations.length === 0, violations };
 }

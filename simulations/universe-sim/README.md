@@ -9,4 +9,3 @@ go run cmd/sim-runner.go
 ```
 
 Output files will be named `state-<runId>-v1.jsonl` and `events-<runId>.jsonl`.
-

@@ -13,7 +13,7 @@ export async function objectiveToLayout(objective: string): Promise<string> {
 export function storeLayoutSuggestion(
   pluginName: string,
   layoutYaml: string,
-  manifestPath = path.join(__dirname, '../plugins/manifest.yaml')
+  manifestPath = path.join(__dirname, '../plugins/manifest.yaml'),
 ) {
   const manifest = YAML.parse(fs.readFileSync(manifestPath, 'utf8'));
   const plugin = manifest.plugins.find((p: any) => p.name === pluginName);

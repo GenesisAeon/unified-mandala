@@ -1,14 +1,14 @@
-import { Agent, Task } from "../core/interfaces";
-import { withFSM } from "../core/fsmMixin";
-import { AeonTranspilerAgent } from "./AeonTranspilerAgent";
-import { AeonPythonTranspilerAgent } from "./AeonPythonTranspilerAgent";
-import { AeonGoTranspilerAgent } from "./AeonGoTranspilerAgent";
-import { AeonRustTranspilerAgent } from "./AeonRustTranspilerAgent";
-import { AeonJsTranspilerAgent } from "./AeonJsTranspilerAgent";
+import { Agent, Task } from '../core/interfaces';
+import { withFSM } from '../core/fsmMixin';
+import { AeonTranspilerAgent } from './AeonTranspilerAgent';
+import { AeonPythonTranspilerAgent } from './AeonPythonTranspilerAgent';
+import { AeonGoTranspilerAgent } from './AeonGoTranspilerAgent';
+import { AeonRustTranspilerAgent } from './AeonRustTranspilerAgent';
+import { AeonJsTranspilerAgent } from './AeonJsTranspilerAgent';
 
 export class AeonUniversalCoordinatorAgent implements Agent {
-  id = "AeonUniversalCoordinator";
-  layer: "Aeon" = "Aeon";
+  id = 'AeonUniversalCoordinator';
+  layer: 'Aeon' = 'Aeon';
   private tsAgent: AeonTranspilerAgent;
   private pyAgent: AeonPythonTranspilerAgent;
   private goAgent: AeonGoTranspilerAgent;
@@ -16,11 +16,11 @@ export class AeonUniversalCoordinatorAgent implements Agent {
   private jsAgent: AeonJsTranspilerAgent;
 
   constructor(
-    tsOut = "aeon-output.ts",
-    pyOut = "aeon-output.py",
-    goOut = "aeon-output.go",
-    rsOut = "aeon-output.rs",
-    jsOut = "aeon-output.js",
+    tsOut = 'aeon-output.ts',
+    pyOut = 'aeon-output.py',
+    goOut = 'aeon-output.go',
+    rsOut = 'aeon-output.rs',
+    jsOut = 'aeon-output.js',
   ) {
     this.tsAgent = new AeonTranspilerAgent(tsOut);
     this.pyAgent = new AeonPythonTranspilerAgent(pyOut);

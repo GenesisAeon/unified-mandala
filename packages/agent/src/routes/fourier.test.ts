@@ -9,7 +9,7 @@ describe('fourierRouter', () => {
     app.use(fourierRouter);
     const res = await request(app)
       .post('/fourier/analyze')
-      .send({ data: [1,0,-1,0], depth: 1 });
+      .send({ data: [1, 0, -1, 0], depth: 1 });
     expect(res.body.maxAmplitude).toBeGreaterThan(0);
   });
 });

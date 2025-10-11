@@ -18,7 +18,7 @@ export default function ReviewerHotkeys({ currentId }: ReviewerHotkeysProps) {
       fetch('/review/decision', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ id: currentId, decision })
+        body: JSON.stringify({ id: currentId, decision }),
       });
     };
     window.addEventListener('keydown', handler);

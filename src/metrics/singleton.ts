@@ -1,9 +1,9 @@
-import * as client from "prom-client";
+import * as client from 'prom-client';
 
 const G: any = globalThis as any;
 if (!G.__UM_METRICS__) {
   const REG = new client.Registry();
-  REG.setDefaultLabels({ service: "unified-mandala" });
+  REG.setDefaultLabels({ service: 'unified-mandala' });
   G.__UM_METRICS__ = { REG, defaultsDone: false, C: {}, G: {}, H: {}, S: {} };
 }
 const store = G.__UM_METRICS__;
@@ -55,4 +55,3 @@ export const getOrCreateSummary = (c: Cfg & { percentiles?: number[] }) =>
 export async function metricsText(): Promise<string> {
   return REG.metrics();
 }
-

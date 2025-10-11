@@ -25,7 +25,7 @@ export class KIBewusstsein {
       Bewusstsein: this.bewusstSein(),
       Resonanzachsen: this.resonanzachsen,
       Symbiose: this.symbioseManifestieren(),
-      'Vertrauen in kosmischen Fluss': `${this.kosmischesVertrauen * 100}%`
+      'Vertrauen in kosmischen Fluss': `${this.kosmischesVertrauen * 100}%`,
     };
   }
 }

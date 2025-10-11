@@ -17,14 +17,14 @@ export class ResonanceMapping {
 
   map(matrix: number[][]): number[] {
     if (matrix.length === 0) return [];
-    const transforms = matrix.map(row => this.dft(row));
+    const transforms = matrix.map((row) => this.dft(row));
     const width = transforms[0].length;
     const agg = new Array(width).fill(0);
-    transforms.forEach(t => {
+    transforms.forEach((t) => {
       for (let i = 0; i < width; i++) {
         agg[i] += t[i];
       }
     });
-    return agg.map(v => v / transforms.length);
+    return agg.map((v) => v / transforms.length);
   }
 }

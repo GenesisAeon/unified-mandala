@@ -20,20 +20,20 @@ export function extractFractalTodos(sigillinFile: string): string[] {
 export function updateFractalTodos(
   sigillinFile: string,
   yamlFile = path.resolve(__dirname, '../../advancedToDo.yaml'),
-  jsonFile = path.resolve(__dirname, '../../advancedToDo.json')
+  jsonFile = path.resolve(__dirname, '../../advancedToDo.json'),
 ): FractalTodoEntry[] {
   const todos = extractFractalTodos(sigillinFile);
-  const entries: FractalTodoEntry[] = todos.map(t => ({
+  const entries: FractalTodoEntry[] = todos.map((t) => ({
     commit: t,
     path: '',
     task: t,
     test: '',
-    status: 'offen'
+    status: 'offen',
   }));
   const loadYaml = (f: string) => (fs.existsSync(f) ? YAML.parse(fs.readFileSync(f, 'utf8')) : []);
   const loadJson = (f: string) => (fs.existsSync(f) ? JSON.parse(fs.readFileSync(f, 'utf8')) : []);
   const merge = (a: FractalTodoEntry[], b: FractalTodoEntry[]) => {
-    const known = new Set(a.map(e => e.commit));
+    const known = new Set(a.map((e) => e.commit));
     for (const e of b) {
       if (!known.has(e.commit)) {
         a.push(e);

@@ -96,24 +96,21 @@ function extractImplicitTodosFromConversations(filePath) {
     /k\u00F6nnten\s+wir\s+([^\.\n]+)/i,
     /sollten\s+wir\s+([^\.\n]+)/i,
     /lass\s+uns\s+([^\.\n]+)/i,
-    /wollen\s+wir\s+([^\.\n]+)/i
+    /wollen\s+wir\s+([^\.\n]+)/i,
   ];
   for (const conv of convs) {
     for (const node of Object.values(conv.mapping)) {
       const msg = node.message;
-      if (!msg)
-        continue;
+      if (!msg) continue;
       const parts = msg.content?.parts || [];
       for (const part of parts) {
-        if (typeof part !== 'string')
-          continue;
+        if (typeof part !== 'string') continue;
         for (const line of part.split(/\n+/)) {
           for (const re of patterns) {
             const m = re.exec(line);
             if (m) {
               const text = m[1].split(/[\n\.]/)[0].trim();
-              if (text)
-                todos.push(text);
+              if (text) todos.push(text);
               break;
             }
           }
@@ -130,5 +127,5 @@ module.exports = {
   extractTodosFromConversations,
   extractImplicitTodosFromConversations,
   countTodosByConversation,
-  extractTodosByTitle
+  extractTodosByTitle,
 };

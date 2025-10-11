@@ -28,9 +28,9 @@ export function split(src: string, dest: string): Promise<number> {
       .pipe(streamArray());
 
     pipeline.on('data', ({ value }: { value: any }) => {
-      const slug = (value.title || String(count))
-        .replace(/[^a-zA-Z0-9]+/g, '-')
-        .replace(/^-+|-+$/g, '') || `${count}`;
+      const slug =
+        (value.title || String(count)).replace(/[^a-zA-Z0-9]+/g, '-').replace(/^-+|-+$/g, '') ||
+        `${count}`;
       const dir = path.join(dest, slug);
       fs.mkdirSync(dir, { recursive: true });
       fs.writeFileSync(path.join(dir, 'conversation.json'), JSON.stringify(value, null, 2));
@@ -51,7 +51,7 @@ if (typeof require !== 'undefined' && require.main === module) {
     process.argv[2] || path.join(__dirname, '../docs/sigils/newadvancedconversations.json');
   const destArg =
     process.argv[3] || path.join(__dirname, '../GenesisAeonZIPMEM/newadvancedconversations');
-  split(srcArg, destArg).catch(err => {
+  split(srcArg, destArg).catch((err) => {
     console.error(err);
     process.exit(1);
   });

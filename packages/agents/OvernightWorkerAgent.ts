@@ -11,13 +11,18 @@ export class OvernightWorkerAgent implements Agent {
   constructor(
     private dispatch: (task: Task) => Promise<void> = async () => {},
     output = 'overnight-report.log',
-    now: () => Date = () => new Date()
+    now: () => Date = () => new Date(),
   ) {
     this.reporter = new OvernightProgressReporter(output);
-    this.scheduler = new NightWorkScheduler(async (task: Task) => {
-      await this.dispatch(task);
-      await this.reporter.handle(task);
-    }, 0, 6, now);
+    this.scheduler = new NightWorkScheduler(
+      async (task: Task) => {
+        await this.dispatch(task);
+        await this.reporter.handle(task);
+      },
+      0,
+      6,
+      now,
+    );
   }
 
   async handle(task: Task): Promise<void> {
@@ -33,4 +38,3 @@ export class OvernightWorkerAgent implements Agent {
     return this.scheduler.getQueueLength();
   }
 }
-

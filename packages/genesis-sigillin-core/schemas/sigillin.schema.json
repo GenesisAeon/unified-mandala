@@ -4,7 +4,10 @@
   "properties": {
     "schema_version": { "type": "string" },
     "id": { "type": "string" },
-    "type": { "type": "string", "enum": ["fallback-anchor", "poetic-root", "crep-trigger", "session-memory", "ethik-node"] },
+    "type": {
+      "type": "string",
+      "enum": ["fallback-anchor", "poetic-root", "crep-trigger", "session-memory", "ethik-node"]
+    },
     "status": { "type": "string", "enum": ["draft", "reviewed", "published"] },
     "creator": { "type": "string" },
     "created_at": { "type": "string", "format": "date-time" },
@@ -14,7 +17,10 @@
         "type": "object",
         "properties": {
           "id": { "type": "string" },
-          "relation": { "type": "string", "enum": ["derivesFrom", "complements", "follows", "precedes"] }
+          "relation": {
+            "type": "string",
+            "enum": ["derivesFrom", "complements", "follows", "precedes"]
+          }
         },
         "required": ["id", "relation"]
       }

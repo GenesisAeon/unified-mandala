@@ -25,4 +25,3 @@ pnpm ts-node scripts/system-start.ts --dry-run
 
 The script loads all agents, boots available model providers and emits
 lifecycle events through the local event bus.
-

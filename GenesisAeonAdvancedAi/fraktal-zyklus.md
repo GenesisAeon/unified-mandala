@@ -6,4 +6,4 @@
 4. **Integration:** Integrieren neuer Schichten (symbolisch/numerisch)
 5. **Evaluation:** Kontinuierliches Monitoring und ethische Bewertung
 
-*Zyklus wird iterativ wiederholt.*
+_Zyklus wird iterativ wiederholt._

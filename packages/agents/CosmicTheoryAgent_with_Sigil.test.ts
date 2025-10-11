@@ -1,7 +1,9 @@
 import { describe, it, expect } from 'vitest';
 
 class MockSigil {
-  currentSigil() { return 'sigil'; }
+  currentSigil() {
+    return 'sigil';
+  }
 }
 import { CosmicTheoryAgentWithSigil } from './CosmicTheoryAgent_with_Sigil';
 

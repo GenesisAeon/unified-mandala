@@ -20,5 +20,5 @@ export function loadAdvancedTodo(file: string): AdvancedTodoEntry[] {
 }
 
 export function getOpenTasks(file: string): AdvancedTodoEntry[] {
-  return loadAdvancedTodo(file).filter(t => t.status === 'todo');
+  return loadAdvancedTodo(file).filter((t) => t.status === 'todo');
 }

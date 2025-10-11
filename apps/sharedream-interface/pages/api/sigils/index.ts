@@ -21,7 +21,9 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
         return null;
       }
     })
-    .filter((r): r is { file: string; content: string } => !!r && r.content.toLowerCase().includes(q))
+    .filter(
+      (r): r is { file: string; content: string } => !!r && r.content.toLowerCase().includes(q),
+    )
     .slice(0, 20);
   res.status(200).json({ results });
 }

@@ -23,10 +23,7 @@ describe('analyzeNewAdvancedConversations', () => {
   });
 
   it('filters by specified titles', () => {
-    const file = path.join(
-      __dirname,
-      '../tests/fixtures/newadvanced-multi.json'
-    );
+    const file = path.join(__dirname, '../tests/fixtures/newadvanced-multi.json');
     const stats = analyzeNewAdvancedConversations(file, ['Second']);
     expect(stats.conversationCount).toBe(1);
     expect(stats.messageCount).toBe(1);
@@ -36,10 +33,7 @@ describe('analyzeNewAdvancedConversations', () => {
   });
 
   it('respects start and count parameters', () => {
-    const file = path.join(
-      __dirname,
-      '../tests/fixtures/newadvanced-multi.json'
-    );
+    const file = path.join(__dirname, '../tests/fixtures/newadvanced-multi.json');
     const stats = analyzeNewAdvancedConversations(file, undefined, 1, 1);
     expect(stats.conversationCount).toBe(1);
     expect(stats.titles).toEqual(['Second']);
@@ -58,19 +52,14 @@ describe('analyzeNewAdvancedConversations', () => {
     const file = path.join(__dirname, '../tests/fixtures/newadvanced-multi.json');
     const out = path.join(os.tmpdir(), 'newadvanced-stats2.json');
     const script = path.join(__dirname, 'analyze-newadvanced-conversations.ts');
-    execSync(
-      `npx ts-node --transpile-only ${script} ${file} --start 1 --count 1 --json ${out}`
-    );
+    execSync(`npx ts-node --transpile-only ${script} ${file} --start 1 --count 1 --json ${out}`);
     const written = JSON.parse(fs.readFileSync(out, 'utf8'));
     expect(written.conversationCount).toBe(1);
     expect(written.titles).toEqual(['Second']);
   });
 
   it('streams conversation data without loading entire file', async () => {
-    const file = path.join(
-      __dirname,
-      '../tests/fixtures/newadvanced-multi.json'
-    );
+    const file = path.join(__dirname, '../tests/fixtures/newadvanced-multi.json');
     const stats = await analyzeNewAdvancedConversationsStream(file);
     expect(stats.conversationCount).toBe(2);
     expect(stats.messageCount).toBe(2);

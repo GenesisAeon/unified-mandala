@@ -12,17 +12,21 @@ export function normalizeToolCalls(provider: string, payload: any): ToolCall[] {
     const calls = payload.tool_calls || [];
     return calls.map((c: any) => ({
       name: c.function?.name ?? '',
-      args: safeParse(c.function?.arguments)
+      args: safeParse(c.function?.arguments),
     }));
   }
   if (provider === 'anthropic') {
     const calls = Array.isArray(payload) ? payload : payload.tool_calls || [];
     return calls.map((c: any) => ({
       name: c.name || '',
-      args: c.input || {}
+      args: c.input || {},
     }));
   }
-  const calls = Array.isArray(payload.tool_calls) ? payload.tool_calls : Array.isArray(payload) ? payload : [];
+  const calls = Array.isArray(payload.tool_calls)
+    ? payload.tool_calls
+    : Array.isArray(payload)
+      ? payload
+      : [];
   return calls.map((c: any) => ({ name: c.name || '', args: c.args || {} }));
 }
 
@@ -42,7 +46,7 @@ export function toProviderFormat(provider: string, calls: ToolCall[]): any[] {
   if (provider === 'openai') {
     return calls.map((c) => ({
       type: 'function',
-      function: { name: c.name, arguments: JSON.stringify(c.args) }
+      function: { name: c.name, arguments: JSON.stringify(c.args) },
     }));
   }
   if (provider === 'anthropic') {

@@ -2,7 +2,10 @@ const audioContextCache: Record<string, AudioContext | undefined> = {};
 
 export function getAudioContext(key = 'default'): AudioContext {
   if (!audioContextCache[key]) {
-    if (typeof window !== 'undefined' && (window.AudioContext || (window as any).webkitAudioContext)) {
+    if (
+      typeof window !== 'undefined' &&
+      (window.AudioContext || (window as any).webkitAudioContext)
+    ) {
       const Ctx = window.AudioContext || (window as any).webkitAudioContext;
       audioContextCache[key] = new Ctx();
     } else {

@@ -32,10 +32,18 @@ const SigillinViewer: React.FC<{ url: string }> = ({ url }) => {
   return (
     <div className="sigillin-viewer">
       <h2>{data.title}</h2>
-      <p><strong>ID:</strong> {data.id}</p>
-      <p><strong>Resonanz:</strong> {data.resonanz}</p>
-      <p><strong>Relevanz:</strong> {data.relevanz}</p>
-      <p><strong>Erstellt am:</strong> {new Date(data.erstellt_am).toLocaleDateString()}</p>
+      <p>
+        <strong>ID:</strong> {data.id}
+      </p>
+      <p>
+        <strong>Resonanz:</strong> {data.resonanz}
+      </p>
+      <p>
+        <strong>Relevanz:</strong> {data.relevanz}
+      </p>
+      <p>
+        <strong>Erstellt am:</strong> {new Date(data.erstellt_am).toLocaleDateString()}
+      </p>
       <ul>
         {data.kommentare.map((kommentar, index) => (
           <li key={index}>{kommentar}</li>

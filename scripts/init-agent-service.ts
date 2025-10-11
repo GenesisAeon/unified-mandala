@@ -4,7 +4,7 @@ import path from 'path';
 export function camelCase(name: string): string {
   return name
     .replace(/[-_]+(.)/g, (_, c) => c.toUpperCase())
-    .replace(/^(.)/, m => m.toLowerCase());
+    .replace(/^(.)/, (m) => m.toLowerCase());
 }
 
 export function initAgentService(name: string, baseDir = 'packages'): string {

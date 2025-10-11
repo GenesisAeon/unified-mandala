@@ -4,9 +4,7 @@
       "path": "/workspace/unified-mandala/src/components/GeophysikSection.tsx",
       "name": "GeophysikSection",
       "hasTodo": false,
-      "props": [
-        "metrics"
-      ]
+      "props": ["metrics"]
     },
     {
       "path": "/workspace/unified-mandala/src/components/__tests__/GeophysikSection.test.tsx",
@@ -24,34 +22,25 @@
       "path": "/workspace/unified-mandala/src/ui/components/ConfidenceSigil.tsx",
       "name": "Component",
       "hasTodo": false,
-      "props": [
-        "strength"
-      ]
+      "props": ["strength"]
     },
     {
       "path": "/workspace/unified-mandala/src/ui/components/MembraneBadge.tsx",
       "name": "Component",
       "hasTodo": false,
-      "props": [
-        "A",
-        "sigil"
-      ]
+      "props": ["A", "sigil"]
     },
     {
       "path": "/workspace/unified-mandala/src/ui/components/SigillinBadge.tsx",
       "name": "Component",
       "hasTodo": false,
-      "props": [
-        "value"
-      ]
+      "props": ["value"]
     },
     {
       "path": "/workspace/unified-mandala/src/ui/components/SigillinCard.tsx",
       "name": "Component",
       "hasTodo": false,
-      "props": [
-        "sigillin"
-      ]
+      "props": ["sigillin"]
     }
   ],
   "vr": [

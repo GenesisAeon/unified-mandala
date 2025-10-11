@@ -1,8 +1,4 @@
-import {
-  toFrequency,
-  toColor,
-  mapResonance,
-} from '../ResonanceAudioVisualizer';
+import { toFrequency, toColor, mapResonance } from '../ResonanceAudioVisualizer';
 
 test('maps value to frequency', () => {
   expect(toFrequency(2)).toBe(880);
@@ -13,7 +9,5 @@ test('maps value to color', () => {
 });
 
 test('maps array to audio-visual samples', () => {
-  expect(mapResonance([0.5])).toEqual([
-    { frequency: 220, color: 'hsl(180, 100%, 50%)' },
-  ]);
+  expect(mapResonance([0.5])).toEqual([{ frequency: 220, color: 'hsl(180, 100%, 50%)' }]);
 });

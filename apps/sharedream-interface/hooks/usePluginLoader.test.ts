@@ -7,7 +7,7 @@ const invalidManifest = `plugins:\n  - name: BrokenPlugin\n    component: '../co
 describe('usePluginLoader', () => {
   beforeEach(() => {
     (global as any).fetch = jest.fn(() =>
-      Promise.resolve({ text: () => Promise.resolve(manifestYAML) })
+      Promise.resolve({ text: () => Promise.resolve(manifestYAML) }),
     );
   });
 
@@ -24,7 +24,7 @@ describe('usePluginLoader', () => {
 
   test('handles invalid manifest', async () => {
     (global as any).fetch = jest.fn(() =>
-      Promise.resolve({ text: () => Promise.resolve(invalidManifest) })
+      Promise.resolve({ text: () => Promise.resolve(invalidManifest) }),
     );
     const { result } = renderHook(() => usePluginLoader());
     await act(async () => {});

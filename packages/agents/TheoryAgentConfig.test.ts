@@ -7,7 +7,7 @@ describe('loadTheoryAgentConfig', () => {
       name: 'agent',
       version: '1.0',
       description: 'test',
-      weights: { theory: 1, practice: 2 }
+      weights: { theory: 1, practice: 2 },
     });
     expect(cfg.name).toBe('agent');
     expect(cfg.weights.theory).toBe(1);

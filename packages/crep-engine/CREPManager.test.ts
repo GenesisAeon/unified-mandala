@@ -8,9 +8,15 @@ describe('CREPManager with localStorage', () => {
   beforeEach(() => {
     (globalThis as any).localStorage = {
       store: {} as Record<string, string>,
-      getItem(key: string) { return this.store[key] || null; },
-      setItem(key: string, value: string) { this.store[key] = value; },
-      clear() { this.store = {}; }
+      getItem(key: string) {
+        return this.store[key] || null;
+      },
+      setItem(key: string, value: string) {
+        this.store[key] = value;
+      },
+      clear() {
+        this.store = {};
+      },
     };
     (globalThis as any).localStorage.clear();
     jest.spyOn(GPTEventHub, 'emit');
@@ -30,7 +36,10 @@ describe('CREPManager with localStorage', () => {
 
   it('loads history from localStorage', () => {
     const ts = new Date().toISOString();
-    (globalThis as any).localStorage.setItem('crepHistory', JSON.stringify([{ timestamp: ts, C: 1, R: 1, E: 1, P: 1 }]));
+    (globalThis as any).localStorage.setItem(
+      'crepHistory',
+      JSON.stringify([{ timestamp: ts, C: 1, R: 1, E: 1, P: 1 }]),
+    );
     const manager = new CREPManager();
     expect(manager.getCREPHistory()).toHaveLength(1);
   });
@@ -39,13 +48,17 @@ describe('CREPManager with localStorage', () => {
 describe('CREPManager without localStorage', () => {
   beforeEach(async () => {
     delete (globalThis as any).localStorage;
-    try { await fs.promises.unlink(file); } catch {}
+    try {
+      await fs.promises.unlink(file);
+    } catch {}
     jest.spyOn(GPTEventHub, 'emit');
   });
 
   afterEach(async () => {
     jest.restoreAllMocks();
-    try { await fs.promises.unlink(file); } catch {}
+    try {
+      await fs.promises.unlink(file);
+    } catch {}
   });
 
   it('writes history to file when no localStorage', async () => {

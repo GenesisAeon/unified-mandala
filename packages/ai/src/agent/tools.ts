@@ -13,7 +13,7 @@ async function runtimeChat(messages: ChatMessage[]) {
   const response = await fetchFn(endpoint, {
     method: 'POST',
     headers: { 'content-type': 'application/json' },
-    body: JSON.stringify({ messages })
+    body: JSON.stringify({ messages }),
   });
 
   if (!response.ok) {
@@ -46,12 +46,10 @@ export const tools: Record<string, ToolHandler> = {
     return writeFileURI(`scratch://${path}`, data);
   },
   async 'runtime.chat'(args) {
-    const messages = Array.isArray(args?.messages)
-      ? (args.messages as ChatMessage[])
-      : [];
+    const messages = Array.isArray(args?.messages) ? (args.messages as ChatMessage[]) : [];
     if (messages.length === 0) {
       throw new Error('runtime.chat requires at least one message');
     }
     return runtimeChat(messages);
-  }
+  },
 };

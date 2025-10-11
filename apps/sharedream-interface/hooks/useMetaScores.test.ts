@@ -3,7 +3,7 @@ import { useMetaScores } from './useMetaScores';
 
 beforeEach(() => {
   (global as any).fetch = jest.fn(() =>
-    Promise.resolve({ json: () => Promise.resolve({ scores: [{ id: 't', value: 0.5 }] }) })
+    Promise.resolve({ json: () => Promise.resolve({ scores: [{ id: 't', value: 0.5 }] }) }),
   );
 });
 
@@ -36,7 +36,7 @@ test('retry fetches scores after failure', async () => {
   expect(result.current.error).toBe('Fehler beim Laden der Meta-Scores');
 
   (global as any).fetch = jest.fn(() =>
-    Promise.resolve({ json: () => Promise.resolve({ scores: [{ id: 'r', value: 0.9 }] }) })
+    Promise.resolve({ json: () => Promise.resolve({ scores: [{ id: 'r', value: 0.9 }] }) }),
   );
 
   await act(async () => {

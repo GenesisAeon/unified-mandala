@@ -8,7 +8,7 @@ const CREPTriggerPanel: React.FC<CREPTriggerPanelProps> = ({ availableTriggers }
   const { triggerCREP } = useCREP();
   return (
     <div aria-label="CREP Trigger Panel">
-      {availableTriggers.map(t => (
+      {availableTriggers.map((t) => (
         <button key={t.label} onClick={() => triggerCREP(t.data)} aria-label={`Trigger ${t.label}`}>
           {t.label}
         </button>

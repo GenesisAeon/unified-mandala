@@ -4,7 +4,9 @@ import addFormats from 'ajv-formats';
 import path from 'path';
 
 const ajv = addFormats(new Ajv());
-const schema = JSON.parse(readFileSync(path.join(__dirname, 'schemas/sigillin.schema.json'), 'utf8'));
+const schema = JSON.parse(
+  readFileSync(path.join(__dirname, 'schemas/sigillin.schema.json'), 'utf8'),
+);
 const validate = ajv.compile(schema);
 
 export function validateSigillin(filePath: string): boolean {

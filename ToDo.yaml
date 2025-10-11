@@ -1,201 +1,201 @@
 todos:
   - id: todo-1
-    beschreibung: "Nukleon-Scanner als Analysetool implementieren und an CREP-Engine anbinden"
+    beschreibung: 'Nukleon-Scanner als Analysetool implementieren und an CREP-Engine anbinden'
     status: erledigt
   - id: todo-2
     beschreibung: "Fraktalkunst-Visualizer f\xC3\xBCr Sigillin-Daten in der UI integrieren"
     status: erledigt
   - id: todo-3
-    beschreibung: "Innovationsplanung-Modul auf Basis der conversations.json entwickeln"
+    beschreibung: 'Innovationsplanung-Modul auf Basis der conversations.json entwickeln'
     status: offen
   - id: todo-4
-    beschreibung: "Automatische Aktualisierung von docs/sigils/todo-sigil.yaml per todoSigilUpdater"
+    beschreibung: 'Automatische Aktualisierung von docs/sigils/todo-sigil.yaml per todoSigilUpdater'
     status: erledigt
   - id: todo-5
-    beschreibung: "CLI-Option zum Filtern von conversations.json nach Stichwort implementieren"
+    beschreibung: 'CLI-Option zum Filtern von conversations.json nach Stichwort implementieren'
     status: erledigt
   - id: todo-6
-    beschreibung: "Merge-Skript für gesplittete conversation-Fragmente entwickeln"
+    beschreibung: 'Merge-Skript für gesplittete conversation-Fragmente entwickeln'
     status: erledigt
   - id: todo-7
-    beschreibung: "Testverfahren entwickeln und in GitHub Actions integrieren"
+    beschreibung: 'Testverfahren entwickeln und in GitHub Actions integrieren'
     status: erledigt
   - id: todo-8
-    beschreibung: "Setup-Skript scripts/setup-unifiedmandala.sh erweitern und automatisieren"
+    beschreibung: 'Setup-Skript scripts/setup-unifiedmandala.sh erweitern und automatisieren'
     status: erledigt
   - id: todo-9
-    beschreibung: "GitHub Action zur automatischen Aufteilung von conversations.json implementieren"
+    beschreibung: 'GitHub Action zur automatischen Aufteilung von conversations.json implementieren'
     status: erledigt
   - id: todo-10
-    beschreibung: "kontext.json regelmäßig mit Inhalten aus conversations.json aktualisieren"
+    beschreibung: 'kontext.json regelmäßig mit Inhalten aus conversations.json aktualisieren'
     status: erledigt
   - id: todo-11
-    beschreibung: "Automatisches Scannen von TODO-Kommentaren und Update von todo-sigil.yaml"
+    beschreibung: 'Automatisches Scannen von TODO-Kommentaren und Update von todo-sigil.yaml'
     status: erledigt
   - id: todo-12
-    beschreibung: "CI-Check zur Einhaltung von AI_POLICY.md in GitHub Actions einrichten"
+    beschreibung: 'CI-Check zur Einhaltung von AI_POLICY.md in GitHub Actions einrichten'
     status: erledigt
   - id: todo-13
-    beschreibung: "Sigillin-Lint in CI integrieren"
+    beschreibung: 'Sigillin-Lint in CI integrieren'
     status: erledigt
   - id: todo-14
-    beschreibung: "Verarbeitung von conversations.json mit Fortschrittsdatei automatisieren"
+    beschreibung: 'Verarbeitung von conversations.json mit Fortschrittsdatei automatisieren'
     status: erledigt
   - id: todo-15
-    beschreibung: "sendemail-validate.sample Hook mit echten Validierungs-Checks ausstatten"
+    beschreibung: 'sendemail-validate.sample Hook mit echten Validierungs-Checks ausstatten'
     status: erledigt
   - id: todo-16
-    beschreibung: "Binäre Existenzsimulation mit 1, -1 und 0 gemäß conversations.json implementieren"
+    beschreibung: 'Binäre Existenzsimulation mit 1, -1 und 0 gemäß conversations.json implementieren'
     status: offen
   - id: todo-17
-    beschreibung: "Quanten- und Gravitationseffekte in die Simulation integrieren"
+    beschreibung: 'Quanten- und Gravitationseffekte in die Simulation integrieren'
     status: offen
   - id: todo-18
-    beschreibung: "Dokumentation des Binärmodells in docs/BinaryExistenz.md anlegen"
+    beschreibung: 'Dokumentation des Binärmodells in docs/BinaryExistenz.md anlegen'
     status: erledigt
   - id: todo-19
-    beschreibung: "Agents.md Manifest mit Self-Initiation Protocol und Agentendefinitionen erstellen"
+    beschreibung: 'Agents.md Manifest mit Self-Initiation Protocol und Agentendefinitionen erstellen'
     status: erledigt
   - id: todo-20
-    beschreibung: "runDryAgent.ts zur Simulation aller Agenten ohne Nebeneffekte implementieren"
+    beschreibung: 'runDryAgent.ts zur Simulation aller Agenten ohne Nebeneffekte implementieren'
     status: erledigt
   - id: todo-21
-    beschreibung: "Mermaid-Diagramm agents_chain.mmd und SVG-Export erstellen"
+    beschreibung: 'Mermaid-Diagramm agents_chain.mmd und SVG-Export erstellen'
     status: erledigt
   - id: todo-22
-    beschreibung: "Dokumentationsordner docs/agents/ mit Agentenbeschreibungen generieren"
+    beschreibung: 'Dokumentationsordner docs/agents/ mit Agentenbeschreibungen generieren'
     status: erledigt
   - id: todo-23
-    beschreibung: "GitHub Action agents_ci.yaml einrichten, die runDryAgent.ts ausführt"
+    beschreibung: 'GitHub Action agents_ci.yaml einrichten, die runDryAgent.ts ausführt'
     status: erledigt
   - id: todo-24
-    beschreibung: "CodexZentral.yaml als Masterindex aller Module anlegen"
+    beschreibung: 'CodexZentral.yaml als Masterindex aller Module anlegen'
     status: erledigt
   - id: todo-25
-    beschreibung: "Skript codex-sync.sh mit CREP-Checks und Sigillin-Hashing entwickeln"
+    beschreibung: 'Skript codex-sync.sh mit CREP-Checks und Sigillin-Hashing entwickeln'
     status: erledigt
   - id: todo-26
-    beschreibung: "sigillin-validator.ts zur Prüfung von Sigillin-Dateien gemäß Schema erstellen"
+    beschreibung: 'sigillin-validator.ts zur Prüfung von Sigillin-Dateien gemäß Schema erstellen'
     status: erledigt
   - id: todo-27
-    beschreibung: "generate-readmes.ts zur automatischen Erstellung von Modul-Readmes implementieren"
+    beschreibung: 'generate-readmes.ts zur automatischen Erstellung von Modul-Readmes implementieren'
     status: erledigt
   - id: todo-28
-    beschreibung: "chronopoem-committer.ts für poetische Commits mit CREP-Annotation entwickeln"
+    beschreibung: 'chronopoem-committer.ts für poetische Commits mit CREP-Annotation entwickeln'
     status: erledigt
   - id: todo-29
-    beschreibung: "mandala-dashboard.tsx zur Visualisierung des Synchronstatus aller Module erstellen"
+    beschreibung: 'mandala-dashboard.tsx zur Visualisierung des Synchronstatus aller Module erstellen'
     status: erledigt
   - id: todo-30
-    beschreibung: "codex-memory-kernel.ts zur Verwaltung eines persistenten Referenz-Gedächtnisses entwickeln"
+    beschreibung: 'codex-memory-kernel.ts zur Verwaltung eines persistenten Referenz-Gedächtnisses entwickeln'
     status: erledigt
   - id: todo-31
-    beschreibung: "generate-todo-from-convos.ts implementieren, um aus conversations.json ToDos abzuleiten"
+    beschreibung: 'generate-todo-from-convos.ts implementieren, um aus conversations.json ToDos abzuleiten'
     status: erledigt
   - id: todo-32
-    beschreibung: "Kollisionsenergie und Gasbildung in Binärsimulation implementieren"
+    beschreibung: 'Kollisionsenergie und Gasbildung in Binärsimulation implementieren'
     status: offen
   - id: todo-33
-    beschreibung: "conversations_parser.ts entwickeln, um Gespräche in modulare Fragmente zu zerlegen"
+    beschreibung: 'conversations_parser.ts entwickeln, um Gespräche in modulare Fragmente zu zerlegen'
     status: erledigt
   - id: todo-34
-    beschreibung: "crep-flow-synchronizer.ts implementieren für CREP-Datenabgleich zwischen Repositories"
+    beschreibung: 'crep-flow-synchronizer.ts implementieren für CREP-Datenabgleich zwischen Repositories'
     status: erledigt
   - id: todo-35
-    beschreibung: "symbolic-context-injector.ts erstellen, um symbolische Informationen in den Codex zu injizieren"
+    beschreibung: 'symbolic-context-injector.ts erstellen, um symbolische Informationen in den Codex zu injizieren'
     status: erledigt
   - id: todo-36
-    beschreibung: "sigillin_bridge_engine.ts konzipieren für Sigillin-basierte Verbindungen"
+    beschreibung: 'sigillin_bridge_engine.ts konzipieren für Sigillin-basierte Verbindungen'
     status: offen
   - id: todo-37
-    beschreibung: "emergence_signal_hub.ts zur Koordination von CREP- und Sigillin-Signalen bauen"
+    beschreibung: 'emergence_signal_hub.ts zur Koordination von CREP- und Sigillin-Signalen bauen'
     status: offen
   - id: todo-38
     beschreibung: 'GenesisOS-Modul "KernelGPT-DriverBuilder" vorbereiten'
     status: offen
   - id: todo-39
-    beschreibung: "Proof of Concept: USB-Tastatur als Sigillin-Device einbinden"
+    beschreibung: 'Proof of Concept: USB-Tastatur als Sigillin-Device einbinden'
     status: offen
   - id: todo-40
-    beschreibung: "Watcher-Skript für dmesg/udevadm schreiben, um Treibersignale an GPT weiterzugeben"
+    beschreibung: 'Watcher-Skript für dmesg/udevadm schreiben, um Treibersignale an GPT weiterzugeben'
     status: offen
   - id: todo-41
-    beschreibung: "Mandala-Interface zur Anzeige symbolischer Gerätezustände entwickeln"
+    beschreibung: 'Mandala-Interface zur Anzeige symbolischer Gerätezustände entwickeln'
     status: offen
   - id: todo-42
-    beschreibung: "CodexSigillin zur Verwaltung der Architekturimpulse von GenesisOS erstellen"
+    beschreibung: 'CodexSigillin zur Verwaltung der Architekturimpulse von GenesisOS erstellen'
     status: offen
   - id: todo-43
-    beschreibung: "Resonanzbaum als Mandala zur Visualisierung aller Systemelemente zeichnen"
+    beschreibung: 'Resonanzbaum als Mandala zur Visualisierung aller Systemelemente zeichnen'
     status: offen
   - id: todo-44
-    beschreibung: "Module für Aeon-Zahlensysteme erstellen (greekmath-core.ts, phimath-core.ts, pimath-core.ts, binmath-core.ts, faktormath-core.ts)"
+    beschreibung: 'Module für Aeon-Zahlensysteme erstellen (greekmath-core.ts, phimath-core.ts, pimath-core.ts, binmath-core.ts, faktormath-core.ts)'
     status: offen
   - id: todo-45
-    beschreibung: "Tiefenwert-Modul depthvalue-core.ts implementieren und mit Zahlensystemen verknüpfen"
+    beschreibung: 'Tiefenwert-Modul depthvalue-core.ts implementieren und mit Zahlensystemen verknüpfen'
     status: offen
   - id: todo-46
-    beschreibung: "CREPConversationScanner.ts zur Analyse von conversations.json entwickeln"
+    beschreibung: 'CREPConversationScanner.ts zur Analyse von conversations.json entwickeln'
     status: offen
   - id: todo-47
-    beschreibung: "ChronoPoemExtractor.ts zur Erzeugung von CHRONOPOEM_TIMELINE.md umsetzen"
+    beschreibung: 'ChronoPoemExtractor.ts zur Erzeugung von CHRONOPOEM_TIMELINE.md umsetzen'
     status: offen
   - id: todo-48
-    beschreibung: "SymbolEchoLayer.ts und useCREPMemoryPattern.ts für Resonanzschichten erstellen"
+    beschreibung: 'SymbolEchoLayer.ts und useCREPMemoryPattern.ts für Resonanzschichten erstellen'
     status: offen
   - id: todo-49
-    beschreibung: "GPTExpressionWeaver.ts und CREPToDoLinker.ts implementieren"
+    beschreibung: 'GPTExpressionWeaver.ts und CREPToDoLinker.ts implementieren'
     status: offen
   - id: todo-50
-    beschreibung: "CREPChronoMonitor.ts und ResonanceActionPrompt.tsx entwickeln"
+    beschreibung: 'CREPChronoMonitor.ts und ResonanceActionPrompt.tsx entwickeln'
     status: offen
   - id: todo-51
-    beschreibung: "PoeticMotifGenerator.ts und SigillinSuggestionEngine.ts ausarbeiten"
+    beschreibung: 'PoeticMotifGenerator.ts und SigillinSuggestionEngine.ts ausarbeiten'
     status: offen
   - id: todo-52
-    beschreibung: "Fuzzy Device Matching für reflexscanner_gpt implementieren"
+    beschreibung: 'Fuzzy Device Matching für reflexscanner_gpt implementieren'
     status: offen
   - id: todo-53
-    beschreibung: "Plugin-Architektur für reflexscanner_gpt entwerfen"
+    beschreibung: 'Plugin-Architektur für reflexscanner_gpt entwerfen'
     status: offen
   - id: todo-54
-    beschreibung: "Realtime-Dashboard zur Visualisierung erkannter Sigillins bauen"
+    beschreibung: 'Realtime-Dashboard zur Visualisierung erkannter Sigillins bauen'
     status: offen
   - id: todo-55
-    beschreibung: "Cloud-Event-Export für reflexscanner-Daten integrieren"
+    beschreibung: 'Cloud-Event-Export für reflexscanner-Daten integrieren'
     status: offen
   - id: todo-56
-    beschreibung: "Gesprächsdaten verschlüsselt speichern (encryption at rest)"
+    beschreibung: 'Gesprächsdaten verschlüsselt speichern (encryption at rest)'
     status: offen
   - id: todo-57
-    beschreibung: "Dynamisches Reloading der triggers.yaml ohne Neustart ermöglichen"
+    beschreibung: 'Dynamisches Reloading der triggers.yaml ohne Neustart ermöglichen'
     status: offen
   - id: todo-58
-    beschreibung: "Performance-Metriken für reflexscanner_gpt mit Prometheus sammeln"
+    beschreibung: 'Performance-Metriken für reflexscanner_gpt mit Prometheus sammeln'
     status: offen
   - id: todo-59
-    beschreibung: "OAuth2-Unterstützung für externe Integrationen hinzufügen"
+    beschreibung: 'OAuth2-Unterstützung für externe Integrationen hinzufügen'
     status: offen
   - id: todo-60
-    beschreibung: "Mehrsprachige Ausgabe via CLI-Flag implementieren"
+    beschreibung: 'Mehrsprachige Ausgabe via CLI-Flag implementieren'
     status: offen
   - id: todo-61
-    beschreibung: "Developer-Mode mit farbigen Debug-Logs und Live-dmesg"
+    beschreibung: 'Developer-Mode mit farbigen Debug-Logs und Live-dmesg'
     status: offen
   - id: todo-62
-    beschreibung: "Agents.md um schema_version-Feld erweitern"
+    beschreibung: 'Agents.md um schema_version-Feld erweitern'
     status: erledigt
   - id: todo-63
-    beschreibung: "Rollenverwaltung im PactDepthGatekeeper implementieren"
+    beschreibung: 'Rollenverwaltung im PactDepthGatekeeper implementieren'
     status: erledigt
   - id: todo-64
-    beschreibung: "Dokumentationslinks je Agent in Agents.md ergänzen"
+    beschreibung: 'Dokumentationslinks je Agent in Agents.md ergänzen'
     status: erledigt
   - id: todo-65
-    beschreibung: "depth-sigil-generator.ts zur Erstellung von Sigillin-Dateien aus Tiefenwerten entwickeln"
+    beschreibung: 'depth-sigil-generator.ts zur Erstellung von Sigillin-Dateien aus Tiefenwerten entwickeln'
     status: erledigt
   - id: todo-66
-    beschreibung: "crep-depth-router.ts implementieren, um Prozesse anhand der Faktortiefe zu lenken"
+    beschreibung: 'crep-depth-router.ts implementieren, um Prozesse anhand der Faktortiefe zu lenken'
     status: erledigt
   - id: todo-67
     beschreibung: "symboltiefe-visualizer.tsx f\u00fcr Mandala-Darstellung von Tiefenkomponenten erstellen"
@@ -204,38 +204,38 @@ todos:
     beschreibung: "irrational-monitor.ts als Watchdog f\u00fcr Abweichungen irrationaler Konstanten entwickeln"
     status: erledigt
   - id: todo-69
-    beschreibung: "CREPFeedbackLoop.ts zum automatischen Generieren von Feedback-Aufgaben umsetzen"
+    beschreibung: 'CREPFeedbackLoop.ts zum automatischen Generieren von Feedback-Aufgaben umsetzen'
     status: offen
   - id: todo-70
     beschreibung: "SigillinOnDemandGenerator.ts f\u00fcr dynamische Sigillin-Vorlagen bauen"
     status: offen
   - id: todo-71
-    beschreibung: "CREPToDoPrioritizer.ts zur Priorisierung von Aufgaben nach CREP-Trends entwickeln"
+    beschreibung: 'CREPToDoPrioritizer.ts zur Priorisierung von Aufgaben nach CREP-Trends entwickeln'
     status: offen
   - id: todo-72
-    beschreibung: "CREPConvoHeatmap.tsx als Visualisierungsschicht implementieren"
+    beschreibung: 'CREPConvoHeatmap.tsx als Visualisierungsschicht implementieren'
     status: offen
   - id: todo-73
     beschreibung: "CREPSyncService.ts f\u00fcr Mehrbenutzersynchronisation mittels WebSockets erstellen"
     status: offen
   - id: todo-74
-    beschreibung: "export-crep-docs.ts zum automatischen Export von CREP-Dokumentation schreiben"
+    beschreibung: 'export-crep-docs.ts zum automatischen Export von CREP-Dokumentation schreiben'
     status: offen
   - id: todo-75
-    beschreibung: "CREPPromptAdapter.ts zur Anpassung von GPT-Prompts an aktuelle CREP-Muster entwickeln"
+    beschreibung: 'CREPPromptAdapter.ts zur Anpassung von GPT-Prompts an aktuelle CREP-Muster entwickeln'
     status: offen
   - id: todo-76
     beschreibung: "CREPGuard.ts zur \u00dcberwachung von ToDo-Vorschl\u00e4gen gegen Policyverst\u00f6\u00dfe implementieren"
     status: offen
   - id: todo-77
-    beschreibung: "aeon.sh crep-analyze --watch als interaktive CLI-Erweiterung implementieren"
+    beschreibung: 'aeon.sh crep-analyze --watch als interaktive CLI-Erweiterung implementieren'
     status: offen
   - id: todo-78
-    beschreibung: "compile_agents_manifest Script zur Generierung von Agents.md aus fragments/agents/ entwickeln"
+    beschreibung: 'compile_agents_manifest Script zur Generierung von Agents.md aus fragments/agents/ entwickeln'
     status: erledigt
   - id: todo-79
-    beschreibung: "codex_sync_manifest.yaml vorbereiten und erste Platzhalter-Dateien erzeugen"
+    beschreibung: 'codex_sync_manifest.yaml vorbereiten und erste Platzhalter-Dateien erzeugen'
     status: erledigt
   - id: todo-80
-    beschreibung: "ZIPMEM-Fragment-Generator in CI integrieren"
+    beschreibung: 'ZIPMEM-Fragment-Generator in CI integrieren'
     status: offen

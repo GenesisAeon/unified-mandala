@@ -13,10 +13,10 @@ const schema: JSONSchemaType<UnifiedMandalaConfig> = {
     name: { type: 'string' },
     version: { type: 'string' },
     layers: { type: 'integer', nullable: true },
-    enableAudio: { type: 'boolean', nullable: true }
+    enableAudio: { type: 'boolean', nullable: true },
   },
   required: ['name', 'version'],
-  additionalProperties: false
+  additionalProperties: false,
 };
 
 export function validateConfig(raw: unknown): UnifiedMandalaConfig {

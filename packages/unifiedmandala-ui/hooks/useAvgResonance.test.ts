@@ -3,7 +3,7 @@ import '@testing-library/jest-dom';
 import { useAvgResonance } from './useAvgResonance';
 
 global.fetch = jest.fn(() =>
-  Promise.resolve({ json: () => Promise.resolve({ scores: [{ idx: '1', avgResonance: 0.8 }] }) })
+  Promise.resolve({ json: () => Promise.resolve({ scores: [{ idx: '1', avgResonance: 0.8 }] }) }),
 ) as any;
 
 test('fetches avg resonance', async () => {

@@ -24,11 +24,9 @@ test('lists and unregisters peers', () => {
 
   expect(connector.list()).toEqual([
     { id: 'peer1', baseUrl: 'https://example.com/' },
-    { id: 'peer2', baseUrl: 'https://example.org/' }
+    { id: 'peer2', baseUrl: 'https://example.org/' },
   ]);
 
   expect(connector.unregister('peer1')).toBe(true);
-  expect(connector.list()).toEqual([
-    { id: 'peer2', baseUrl: 'https://example.org/' }
-  ]);
+  expect(connector.list()).toEqual([{ id: 'peer2', baseUrl: 'https://example.org/' }]);
 });

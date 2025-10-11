@@ -24,13 +24,13 @@ export const templates: Record<string, UITemplate> = {
   adminConsole: {
     id: 'adminConsole',
     source: path.resolve(__dirname, '..', 'admin-ui'),
-    description: 'Admin console UI template'
+    description: 'Admin console UI template',
   },
   commonsHub: {
     id: 'commonsHub',
     source: path.resolve(__dirname, '..', 'commons-ui'),
-    description: 'Commons hub UI template'
-  }
+    description: 'Commons hub UI template',
+  },
 };
 
 export type TemplateName = keyof typeof templates;

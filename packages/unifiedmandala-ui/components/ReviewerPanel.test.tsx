@@ -18,7 +18,7 @@ describe('ReviewerPanel', () => {
     fireEvent.click(approve);
     expect(fetch).toHaveBeenCalledWith(
       '/review/decision',
-      expect.objectContaining({ method: 'POST' })
+      expect.objectContaining({ method: 'POST' }),
     );
   });
 });

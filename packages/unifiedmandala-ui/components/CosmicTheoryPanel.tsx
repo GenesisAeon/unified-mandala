@@ -7,7 +7,11 @@ interface Props {
 const CosmicTheoryPanel: React.FC<Props> = ({ formulas }) => (
   <div>
     <h3>Cosmic Theories</h3>
-    <ul>{formulas.map(f => <li key={f}>{f}</li>)}</ul>
+    <ul>
+      {formulas.map((f) => (
+        <li key={f}>{f}</li>
+      ))}
+    </ul>
   </div>
 );
 

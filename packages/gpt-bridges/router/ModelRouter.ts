@@ -11,11 +11,7 @@ export class ModelRouter {
 
   constructor(providers?: ModelProvider[]) {
     this.providers = {};
-    (providers || [
-      new OllamaProvider(),
-      new TGIProvider(),
-      new VLLMProvider()
-    ]).forEach((p) => {
+    (providers || [new OllamaProvider(), new TGIProvider(), new VLLMProvider()]).forEach((p) => {
       this.providers[p.name] = p;
     });
   }

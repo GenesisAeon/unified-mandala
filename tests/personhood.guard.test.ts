@@ -22,9 +22,17 @@ describe('Personhood Policy Guard', () => {
 
   test('enforces region and model and review rules', () => {
     ConsentRegistry.grant('user3');
-    expect(() => enforcePolicy({ personId: 'user3', region: 'xx', model: 'gpt-4o', reviewed: true })).toThrow('Region not allowed');
-    expect(() => enforcePolicy({ personId: 'user3', region: 'eu', model: 'bad-model', reviewed: true })).toThrow('Model not allowed');
-    expect(() => enforcePolicy({ personId: 'user3', region: 'eu', model: 'gpt-4o', reviewed: false })).toThrow('Review required');
-    expect(() => enforcePolicy({ personId: 'user3', region: 'eu', model: 'gpt-4o', reviewed: true })).not.toThrow();
+    expect(() =>
+      enforcePolicy({ personId: 'user3', region: 'xx', model: 'gpt-4o', reviewed: true }),
+    ).toThrow('Region not allowed');
+    expect(() =>
+      enforcePolicy({ personId: 'user3', region: 'eu', model: 'bad-model', reviewed: true }),
+    ).toThrow('Model not allowed');
+    expect(() =>
+      enforcePolicy({ personId: 'user3', region: 'eu', model: 'gpt-4o', reviewed: false }),
+    ).toThrow('Review required');
+    expect(() =>
+      enforcePolicy({ personId: 'user3', region: 'eu', model: 'gpt-4o', reviewed: true }),
+    ).not.toThrow();
   });
 });

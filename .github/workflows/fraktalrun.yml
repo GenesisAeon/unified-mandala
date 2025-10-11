@@ -3,9 +3,9 @@ name: Fraktalrun Import
 on:
   push:
     paths:
-      - "advancedToDo.*"
-      - "advancedToDo/**"
-      - "advancedToDo_parts/**"
+      - 'advancedToDo.*'
+      - 'advancedToDo/**'
+      - 'advancedToDo_parts/**'
   workflow_dispatch:
 
 jobs:

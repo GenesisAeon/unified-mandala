@@ -1,28 +1,28 @@
 sigillin_map:
-  graph_pattern:    gnn_service
-  multi_relation:   hgnn_service
-  sensor_stream:    snn_service
-  language_seq:     transformer_service
-  time_series:      liquidnet_service
-  physics_sim:      kan_service
-  on_device_task:   npu_service
+  graph_pattern: gnn_service
+  multi_relation: hgnn_service
+  sensor_stream: snn_service
+  language_seq: transformer_service
+  time_series: liquidnet_service
+  physics_sim: kan_service
+  on_device_task: npu_service
   simulate_singularity: singularity_simulator_service
-  gpt4all_chat:     gpt4all_service
+  gpt4all_chat: gpt4all_service
   openassistant_chat: openassistant_service
-  h2ogpt_chat:      h2ogpt_service
-  news_fetch:       news_fetcher_service
-  script_gen:       script_gen_service
-  tts:              tts_service
-  avatar:           avatar_renderer_service
-  stream:           streamer_service
-  science_events:   science_service
-  tech_events:      tech_service
+  h2ogpt_chat: h2ogpt_service
+  news_fetch: news_fetcher_service
+  script_gen: script_gen_service
+  tts: tts_service
+  avatar: avatar_renderer_service
+  stream: streamer_service
+  science_events: science_service
+  tech_events: tech_service
   environment_events: environment_service
-  global_events:    global_events_orchestrator
-  climate_metrics:  climate_service
-  forest_metrics:   forest_service
-  flood_metrics:    flood_service
-  economy_metrics:  economy_service
+  global_events: global_events_orchestrator
+  climate_metrics: climate_service
+  forest_metrics: forest_service
+  flood_metrics: flood_service
+  economy_metrics: economy_service
   emissions_metrics: emissions_service
   mitigation_metrics: mitigation_service
 

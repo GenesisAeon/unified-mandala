@@ -28,8 +28,8 @@ test('forwards snippet with auth header', async () => {
     expect.objectContaining({
       method: 'POST',
       headers: expect.objectContaining({
-        Authorization: 'Bearer test-key'
-      })
-    })
+        Authorization: 'Bearer test-key',
+      }),
+    }),
   );
 });

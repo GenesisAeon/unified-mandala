@@ -30,7 +30,10 @@ const SigilStory: React.FC<SigilStoryProps> = ({ paths }) => {
         .append('g')
         .attr('transform', `translate(${radius * 2}, ${(idx + 1) * radius * 2})`);
       const maxTime = d3.max(path.milestones, (m) => m.time) || 1;
-      const angle = d3.scaleLinear().domain([0, maxTime]).range([0, 2 * Math.PI]);
+      const angle = d3
+        .scaleLinear()
+        .domain([0, maxTime])
+        .range([0, 2 * Math.PI]);
 
       const arcGen = d3
         .arc<d3.DefaultArcObject>()
@@ -41,13 +44,15 @@ const SigilStory: React.FC<SigilStoryProps> = ({ paths }) => {
         .data(path.milestones)
         .enter()
         .append('path')
-        .attr('d', (d) =>
-          arcGen({
-            startAngle: angle(d.time),
-            endAngle: angle(d.time) + 0.3,
-            innerRadius: radius - 20,
-            outerRadius: radius,
-          })!
+        .attr(
+          'd',
+          (d) =>
+            arcGen({
+              startAngle: angle(d.time),
+              endAngle: angle(d.time) + 0.3,
+              innerRadius: radius - 20,
+              outerRadius: radius,
+            })!,
         )
         .attr('fill', '#6b6')
         .append('title')
@@ -55,7 +60,9 @@ const SigilStory: React.FC<SigilStoryProps> = ({ paths }) => {
     });
   }, [paths]);
 
-  return <svg ref={ref} aria-label="Sigil Story" width={400} height={paths.length * radius * 2.5} />;
+  return (
+    <svg ref={ref} aria-label="Sigil Story" width={400} height={paths.length * radius * 2.5} />
+  );
 };
 
 export default SigilStory;

@@ -3,7 +3,9 @@ import fs from 'fs';
 import path from 'path';
 import YAML from 'yaml';
 
-export function generatePluginManifest(outFile = path.join(__dirname, '../plugins/generated-manifest.yaml')): void {
+export function generatePluginManifest(
+  outFile = path.join(__dirname, '../plugins/generated-manifest.yaml'),
+): void {
   const pluginsDir = path.join(__dirname, '../plugins');
   const entries = fs.readdirSync(pluginsDir).filter((f) => {
     const p = path.join(pluginsDir, f);
@@ -17,7 +19,10 @@ export function generatePluginManifest(outFile = path.join(__dirname, '../plugin
     manifest.plugins.push({
       name: data.name,
       version: data.version,
-      entry: path.relative(path.dirname(outFile), path.join(pluginsDir, dir, data.entry || 'index.js')),
+      entry: path.relative(
+        path.dirname(outFile),
+        path.join(pluginsDir, dir, data.entry || 'index.js'),
+      ),
       description: data.description,
       type: data.type,
     });

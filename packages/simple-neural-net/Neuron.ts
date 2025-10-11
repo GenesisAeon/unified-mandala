@@ -11,7 +11,7 @@ export class Neuron {
   private weight2: number = this.random() * 2 - 1;
 
   compute(input1: number, input2: number, activation: (x: number) => number): number {
-    const preActivation = (this.weight1 * input1) + (this.weight2 * input2) + this.bias;
+    const preActivation = this.weight1 * input1 + this.weight2 * input2 + this.bias;
     return activation(preActivation);
   }
 

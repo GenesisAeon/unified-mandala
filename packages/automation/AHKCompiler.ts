@@ -23,4 +23,3 @@ export function compileToAHK(macro: Macro): string {
 }
 
 export default { compileToAHK };
-

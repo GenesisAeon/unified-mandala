@@ -9,7 +9,7 @@ import {
   enterVR,
   exitVR,
   logTrace,
-  TraceLogPayload
+  TraceLogPayload,
 } from './CosmicTheoryAgentEvents';
 import { withCircuit } from '../core/withCircuit';
 
@@ -19,19 +19,19 @@ export const sigilHistory: SigilEntry[] = [];
 
 const meter = metrics.getMeter('cosmic-theory-agent');
 const regressionDuration = meter.createHistogram('pysr_call_duration_seconds', {
-  description: 'Duration of PySR service calls'
+  description: 'Duration of PySR service calls',
 });
 const cacheHits = meter.createCounter('pysr_cache_hits_total', {
-  description: 'Number of cached regression results used'
+  description: 'Number of cached regression results used',
 });
 const cacheMisses = meter.createCounter('pysr_cache_misses_total', {
-  description: 'Number of regression cache misses'
+  description: 'Number of regression cache misses',
 });
 
 const regressionCache = new LRUCache<string, string>({ max: 50 });
 
 export const introspectionLog: TraceLogPayload[] = [];
-CosmicTheoryEventHub.on('trace:log', p => introspectionLog.push(p));
+CosmicTheoryEventHub.on('trace:log', (p) => introspectionLog.push(p));
 
 sigilManager.on('sigil:added', (entry: SigilEntry) => {
   sigilHistory.push(entry);
@@ -50,7 +50,7 @@ export function loadSigil(id: string, text: string): void {
   const entry = sigilManager.loadFromString(id, text);
   CosmicTheoryEventHub.emit('sigil:generated', {
     sigilId: entry.id,
-    formula: JSON.stringify(entry.data)
+    formula: JSON.stringify(entry.data),
   });
 }
 
@@ -64,35 +64,29 @@ export function adjustWeights(
   weights: AgentWeights,
   metrics: AgentWeights,
   reward: number,
-  lr = 0.1
+  lr = 0.1,
 ): AgentWeights {
   const updated: AgentWeights = {
     coherence: clamp(weights.coherence + lr * reward * metrics.coherence, 0, 1),
     resonance: clamp(weights.resonance + lr * reward * metrics.resonance, 0, 1),
-    emergence: clamp(weights.emergence + lr * reward * metrics.emergence, 0, 1)
+    emergence: clamp(weights.emergence + lr * reward * metrics.emergence, 0, 1),
   };
   return updated;
 }
 
-export function mutateWeights(
-  weights: AgentWeights,
-  rate = 0.1
-): AgentWeights {
+export function mutateWeights(weights: AgentWeights, rate = 0.1): AgentWeights {
   return {
     coherence: clamp(weights.coherence + (Math.random() * 2 - 1) * rate, 0, 1),
     resonance: clamp(weights.resonance + (Math.random() * 2 - 1) * rate, 0, 1),
-    emergence: clamp(weights.emergence + (Math.random() * 2 - 1) * rate, 0, 1)
+    emergence: clamp(weights.emergence + (Math.random() * 2 - 1) * rate, 0, 1),
   };
 }
 
-export function crossoverWeights(
-  a: AgentWeights,
-  b: AgentWeights
-): AgentWeights {
+export function crossoverWeights(a: AgentWeights, b: AgentWeights): AgentWeights {
   return {
     coherence: Math.random() < 0.5 ? a.coherence : b.coherence,
     resonance: Math.random() < 0.5 ? a.resonance : b.resonance,
-    emergence: Math.random() < 0.5 ? a.emergence : b.emergence
+    emergence: Math.random() < 0.5 ? a.emergence : b.emergence,
   };
 }
 
@@ -111,7 +105,7 @@ export async function fetchCosmicData(url: string): Promise<any> {
 }
 
 export function analyzeCosmicData(values: number[]): string {
-  const fragments = values.flatMap(v => fractalDecompose(v));
+  const fragments = values.flatMap((v) => fractalDecompose(v));
   const metric = computeFractalMetric(fragments);
   return symbolicRegression([metric]);
 }
@@ -119,7 +113,7 @@ export function analyzeCosmicData(values: number[]): string {
 export async function performRemoteAnalysis(
   data: number[],
   endpoint: string,
-  protocol: 'rest' | 'grpc' = 'rest'
+  protocol: 'rest' | 'grpc' = 'rest',
 ): Promise<number[]> {
   if (protocol === 'grpc') {
     const { Client, credentials } = await import('@grpc/grpc-js');
@@ -127,14 +121,14 @@ export async function performRemoteAnalysis(
     return new Promise((resolve, reject) => {
       client.makeUnaryRequest(
         '/AnalysisService/Analyze',
-        arg => Buffer.from(JSON.stringify(arg)),
-        buffer => JSON.parse(buffer.toString()),
+        (arg) => Buffer.from(JSON.stringify(arg)),
+        (buffer) => JSON.parse(buffer.toString()),
         { data },
         (err, resp: any) => {
           client.close();
           if (err) return reject(err);
           resolve(resp?.result ?? []);
-        }
+        },
       );
     });
   }
@@ -145,7 +139,7 @@ export async function performRemoteAnalysis(
 export async function callPySRService(
   data: number[],
   endpoint: string,
-  protocol: 'rest' | 'grpc' = 'rest'
+  protocol: 'rest' | 'grpc' = 'rest',
 ): Promise<string> {
   logTrace(`callPySRService start: ${endpoint}`);
   CosmicTheoryEventHub.emit('theory:start', { dataPoints: data });
@@ -165,8 +159,8 @@ export async function callPySRService(
       return new Promise((resolve, reject) => {
         client.makeUnaryRequest(
           '/PySRService/Regress',
-          arg => Buffer.from(JSON.stringify(arg)),
-          buffer => JSON.parse(buffer.toString()),
+          (arg) => Buffer.from(JSON.stringify(arg)),
+          (buffer) => JSON.parse(buffer.toString()),
           { data },
           (err, resp: any) => {
             client.close();
@@ -175,7 +169,7 @@ export async function callPySRService(
             logTrace('pysr grpc success');
             CosmicTheoryEventHub.emit('theory:regression:success', { equation: eq });
             resolve(eq);
-          }
+          },
         );
       });
     }
@@ -194,21 +188,17 @@ export async function callPySRService(
   return equation;
 }
 
-export async function streamFourierMetricsGrpc(
-  endpoint: string,
-  onData: (metrics: any) => void
-) {
+export async function streamFourierMetricsGrpc(endpoint: string, onData: (metrics: any) => void) {
   const { Client, credentials } = await import('@grpc/grpc-js');
   const client = new Client(endpoint, credentials.createInsecure());
   const call = client.makeServerStreamRequest(
     '/FourierService/StreamMetrics',
     () => Buffer.alloc(0),
-    buffer => JSON.parse(buffer.toString()),
-    {}
+    (buffer) => JSON.parse(buffer.toString()),
+    {},
   );
   call.on('data', onData);
   return () => call.cancel();
 }
 
 export { enterVR, exitVR };
-

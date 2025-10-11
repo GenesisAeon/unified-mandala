@@ -3838,9 +3838,7 @@
     "description": "Implement collaborative markdown editor with Automerge and federation API endpoints",
     "test_or_story": "CollaborativeEditor.story.tsx; SyncStatus component",
     "responsible": "UI Team",
-    "dependencies": [
-      "MetaScore"
-    ],
+    "dependencies": ["MetaScore"],
     "self_check": true
   },
   {
@@ -3850,9 +3848,7 @@
     "description": "Add federation push/pull API and sync status indicator",
     "test_or_story": "SyncStatus.story.tsx",
     "responsible": "Integration Team",
-    "dependencies": [
-      "Collaboration"
-    ],
+    "dependencies": ["Collaboration"],
     "self_check": true
   },
   {
@@ -3862,9 +3858,7 @@
     "description": "Implement agent to suggest layer weight optimizations and schedule periodic runs",
     "test_or_story": "MetaLearnerAgent.spec.ts",
     "responsible": "AI Team",
-    "dependencies": [
-      "MetaScore"
-    ],
+    "dependencies": ["MetaScore"],
     "self_check": true
   },
   {
@@ -3884,9 +3878,7 @@
     "description": "Add tracing setup and deploy Storybook via GitHub Actions",
     "test_or_story": "Tracing.story.tsx",
     "responsible": "Ops Team",
-    "dependencies": [
-      "Security"
-    ],
+    "dependencies": ["Security"],
     "self_check": true
   },
   {
@@ -3916,9 +3908,7 @@
     "description": "Initial UI with Sigil cards and agent mapping view",
     "test_or_story": "mandala-ui.story.tsx",
     "responsible": "UI Team",
-    "dependencies": [
-      "ProtoDeploy"
-    ],
+    "dependencies": ["ProtoDeploy"],
     "self_check": true,
     "status": "done"
   },
@@ -3929,9 +3919,7 @@
     "description": "Allow exporting and importing Sigillin bundles for ProtoDeploy",
     "test_or_story": "sigil-export.test.ts",
     "responsible": "Tools Team",
-    "dependencies": [
-      "ProtoDeploy"
-    ],
+    "dependencies": ["ProtoDeploy"],
     "self_check": true
   },
   {
@@ -3951,9 +3939,7 @@
     "description": "Integrate ProtoDeploy setup instructions and feedback loops",
     "test_or_story": "docs-review.test",
     "responsible": "Docs Team",
-    "dependencies": [
-      "ProtoDeploy"
-    ],
+    "dependencies": ["ProtoDeploy"],
     "self_check": true
   },
   {
@@ -14681,11 +14667,7 @@
     "title": "README Rework (Quickstart, Dual-Dev, Offline)",
     "owner": "genesis-aeon",
     "priority": "high",
-    "labels": [
-      "docs",
-      "readme",
-      "onboarding"
-    ],
+    "labels": ["docs", "readme", "onboarding"],
     "status": "open",
     "acceptance": [
       "Quickstart mit Befehlen & Ports vorhanden",
@@ -14697,20 +14679,14 @@
         "path": "README.md"
       }
     ],
-    "cmd": [
-      "pnpm build:ui && pnpm dev"
-    ]
+    "cmd": ["pnpm build:ui && pnpm dev"]
   },
   {
     "id": "DOC-002",
     "title": "Handbuch Struktur (TL;DR, Architektur, Runbooks, Governance)",
     "owner": "genesis-aeon",
     "priority": "high",
-    "labels": [
-      "docs",
-      "handbook",
-      "governance"
-    ],
+    "labels": ["docs", "handbook", "governance"],
     "status": "open",
     "acceptance": [
       "Handbuch mit klarer Kapitelstruktur",
@@ -14721,20 +14697,14 @@
         "path": "Handbuch.md"
       }
     ],
-    "cmd": [
-      "pnpm dev:ui"
-    ]
+    "cmd": ["pnpm dev:ui"]
   },
   {
     "id": "PKG-003",
     "title": "GenesisAeonAdvancedAi als Package kapseln (Build/Docs/Tests)",
     "owner": "genesis-aeon",
     "priority": "medium",
-    "labels": [
-      "genesis-ai",
-      "packaging",
-      "tests"
-    ],
+    "labels": ["genesis-ai", "packaging", "tests"],
     "status": "open",
     "acceptance": [
       "package.json/pyproject vorhanden",
@@ -14752,11 +14722,7 @@
     "title": "Agents Audit (Governance, Rate Limits, Observability) – Phase 1",
     "owner": "genesis-aeon",
     "priority": "high",
-    "labels": [
-      "agents",
-      "audit",
-      "governance"
-    ],
+    "labels": ["agents", "audit", "governance"],
     "status": "open",
     "acceptance": [
       "Inventur-Liste je Agent (I/O, Secrets, Limits)",
@@ -14774,11 +14740,7 @@
     "title": "HI-Compact v1.0 einführen (Governance & Rituale)",
     "owner": "genesis-aeon",
     "priority": "high",
-    "labels": [
-      "governance",
-      "ethics",
-      "docs"
-    ],
+    "labels": ["governance", "ethics", "docs"],
     "status": "open",
     "acceptance": [
       "docs/governance/HI-Compact.md vorhanden",
@@ -14802,11 +14764,7 @@
     "title": "Entscheidungs- & MRV-Logging integrieren",
     "owner": "genesis-aeon",
     "priority": "high",
-    "labels": [
-      "mrv",
-      "logging",
-      "decisions"
-    ],
+    "labels": ["mrv", "logging", "decisions"],
     "status": "open",
     "acceptance": [
       "scripts/mrv/action-log.ts & example.ts lauffähig",
@@ -14829,10 +14787,7 @@
     "title": "Offline-Kit skizzieren (Minimalfähigkeiten & Karten)",
     "owner": "genesis-aeon",
     "priority": "medium",
-    "labels": [
-      "offline",
-      "resilience"
-    ],
+    "labels": ["offline", "resilience"],
     "status": "open",
     "acceptance": [
       "docs/offline/offline-kit.md",
@@ -14852,11 +14807,7 @@
     "title": "HI-Compact + AB-Policy + Runbooks verankern",
     "owner": "genesis-aeon",
     "priority": "high",
-    "labels": [
-      "governance",
-      "ethics",
-      "docs"
-    ],
+    "labels": ["governance", "ethics", "docs"],
     "status": "open",
     "acceptance": [
       "governance/HI-Compact.md vorhanden",
@@ -14880,11 +14831,7 @@
     "title": "MRV-Logging & Smoke-Tests lauffähig",
     "owner": "genesis-aeon",
     "priority": "high",
-    "labels": [
-      "mrv",
-      "smoke",
-      "infra"
-    ],
+    "labels": ["mrv", "smoke", "infra"],
     "status": "open",
     "acceptance": [
       "data/mrv/actions/*.json wird erzeugt",
@@ -14907,10 +14854,7 @@
     "title": "Climate-Config/Adapter-Skelette verdrahten",
     "owner": "genesis-aeon",
     "priority": "medium",
-    "labels": [
-      "climate",
-      "adapters"
-    ],
+    "labels": ["climate", "adapters"],
     "status": "done",
     "acceptance": [
       "src/config/climate-dashboard.yaml vorhanden",
@@ -14933,11 +14877,7 @@
     "title": "Agents Guardrails/Registry/Runner (Phase A) aktiv",
     "owner": "genesis-aeon",
     "priority": "high",
-    "labels": [
-      "agents",
-      "governance",
-      "infra"
-    ],
+    "labels": ["agents", "governance", "infra"],
     "status": "done",
     "acceptance": [
       "agents/registry.yaml existiert (leer oder mit Einträgen)",
@@ -14965,11 +14905,7 @@
     "title": "Agents Observability (Metriken p50/p95, ok/fail) + Runner-Instrumentation",
     "owner": "genesis-aeon",
     "priority": "high",
-    "labels": [
-      "agents",
-      "observability",
-      "metrics"
-    ],
+    "labels": ["agents", "observability", "metrics"],
     "status": "open",
     "acceptance": [
       "data/agents/metrics/*.jsonl entsteht beim Run",
@@ -14992,11 +14928,7 @@
     "title": "Domain-Audit in CI",
     "owner": "genesis-aeon",
     "priority": "high",
-    "labels": [
-      "agents",
-      "audit",
-      "security"
-    ],
+    "labels": ["agents", "audit", "security"],
     "status": "open",
     "acceptance": [
       "pnpm agents:audit:domains findet keine verbotenen Domains (oder schlägt korrekt fehl)",
@@ -15016,10 +14948,7 @@
     "title": "Golden-File-Tests (deterministisch) für priorisierte Agenten",
     "owner": "genesis-aeon",
     "priority": "medium",
-    "labels": [
-      "agents",
-      "tests"
-    ],
+    "labels": ["agents", "tests"],
     "status": "open",
     "acceptance": [
       "tests/agents/golden/<agentId>/{input,expected}.json vorhanden",

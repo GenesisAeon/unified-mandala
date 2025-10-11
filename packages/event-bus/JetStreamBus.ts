@@ -1,4 +1,12 @@
-import { connect, consumerOpts, type JetStreamClient, type JetStreamSubscription, type NatsConnection, StringCodec, type ConnectionOptions } from 'nats';
+import {
+  connect,
+  consumerOpts,
+  type JetStreamClient,
+  type JetStreamSubscription,
+  type NatsConnection,
+  StringCodec,
+  type ConnectionOptions,
+} from 'nats';
 import { Subjects } from './subjects';
 
 export interface JetStreamBusOptions {
@@ -37,7 +45,10 @@ export class JetStreamBus {
     await this.js.publish(subject, data);
   }
 
-  async subscribe(subject: Subjects, handler: (data: unknown) => void): Promise<JetStreamSubscription> {
+  async subscribe(
+    subject: Subjects,
+    handler: (data: unknown) => void,
+  ): Promise<JetStreamSubscription> {
     if (!this.js) throw new Error('Not connected');
     const opts = consumerOpts();
     opts.durable(this.durable);

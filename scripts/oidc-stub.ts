@@ -21,7 +21,7 @@ app.post('/token', (req, res) => {
     algorithm: 'RS256',
     expiresIn: '1h',
     keyid: jwk.kid,
-    issuer: 'oidc-stub'
+    issuer: 'oidc-stub',
   });
   res.json({ access_token: token, token_type: 'Bearer', expires_in: 3600 });
 });

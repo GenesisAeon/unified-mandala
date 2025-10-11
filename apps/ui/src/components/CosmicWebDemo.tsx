@@ -1,6 +1,6 @@
-import { useEffect, useMemo, useRef, useState } from "react";
-import type { Graph } from "@mandala/crep";
-import { computeCREP } from "@mandala/crep";
+import { useEffect, useMemo, useRef, useState } from 'react';
+import type { Graph } from '@mandala/crep';
+import { computeCREP } from '@mandala/crep';
 
 type Feature = {
   geometry: { coordinates: [number, number] };
@@ -32,7 +32,11 @@ function buildGraph(source: GraphSource): Graph {
   source.nodes.forEach((node, index) => {
     labels[node.id] = index % 3;
   });
-  const edges = source.edges.map(([sourceId, targetId]) => ({ source: sourceId, target: targetId, weight: 1 }));
+  const edges = source.edges.map(([sourceId, targetId]) => ({
+    source: sourceId,
+    target: targetId,
+    weight: 1,
+  }));
   return { nodes, edges, labels };
 }
 
@@ -44,7 +48,8 @@ function mutateGraph(graph: Graph): Graph {
   };
   if (clone.nodes.length < 3) return clone;
   const idx = Math.floor(Math.random() * clone.nodes.length);
-  const partner = (idx + 2 + Math.floor(Math.random() * (clone.nodes.length - 1))) % clone.nodes.length;
+  const partner =
+    (idx + 2 + Math.floor(Math.random() * (clone.nodes.length - 1))) % clone.nodes.length;
   const source = clone.nodes[idx];
   const target = clone.nodes[partner];
   clone.edges.push({ source, target, weight: 1 });
@@ -65,7 +70,7 @@ function useGraphRealtime(initial: Graph | null, setGraph: (graph: Graph) => voi
     let cleanup: (() => void) | null = null;
 
     const apply = (payload: unknown) => {
-      if (!payload || typeof payload !== "object") return;
+      if (!payload || typeof payload !== 'object') return;
       const graphPayload = (payload as { graph?: Graph }).graph;
       if (!graphPayload) return;
       setGraph({
@@ -77,14 +82,15 @@ function useGraphRealtime(initial: Graph | null, setGraph: (graph: Graph) => voi
 
     const connectWebSocket = () => {
       try {
-        const url = (import.meta as any).env?.VITE_REALTIME_WS ?? "ws://localhost:4020/ws?topic=demo.cosmic";
+        const url =
+          (import.meta as any).env?.VITE_REALTIME_WS ?? 'ws://localhost:4020/ws?topic=demo.cosmic';
         const socket = new WebSocket(url);
         socket.onmessage = (event) => {
           try {
             const payload = JSON.parse(String(event.data));
             apply(payload);
           } catch (error) {
-            console.warn("[cosmic-web] unable to parse websocket payload", error);
+            console.warn('[cosmic-web] unable to parse websocket payload', error);
           }
         };
         socket.onclose = () => {
@@ -93,21 +99,23 @@ function useGraphRealtime(initial: Graph | null, setGraph: (graph: Graph) => voi
         cleanup = () => socket.close();
         return true;
       } catch (error) {
-        console.warn("[cosmic-web] websocket connect failed", error);
+        console.warn('[cosmic-web] websocket connect failed', error);
         return false;
       }
     };
 
     const connectEventSource = () => {
       try {
-        const url = (import.meta as any).env?.VITE_REALTIME_SSE ?? "http://localhost:4020/sse?topic=demo.cosmic";
+        const url =
+          (import.meta as any).env?.VITE_REALTIME_SSE ??
+          'http://localhost:4020/sse?topic=demo.cosmic';
         const source = new EventSource(url);
         source.onmessage = (event) => {
           try {
             const payload = JSON.parse(event.data);
             apply(payload);
           } catch (error) {
-            console.warn("[cosmic-web] unable to parse sse payload", error);
+            console.warn('[cosmic-web] unable to parse sse payload', error);
           }
         };
         source.onerror = () => {
@@ -117,7 +125,7 @@ function useGraphRealtime(initial: Graph | null, setGraph: (graph: Graph) => voi
         cleanup = () => source.close();
         return true;
       } catch (error) {
-        console.warn("[cosmic-web] eventsource connect failed", error);
+        console.warn('[cosmic-web] eventsource connect failed', error);
         return false;
       }
     };
@@ -148,7 +156,7 @@ export function CosmicWebDemo() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [points, setPoints] = useState<Feature[]>([]);
   const [epochs, setEpochs] = useState<string[]>([]);
-  const [epoch, setEpoch] = useState<string>("ALL");
+  const [epoch, setEpoch] = useState<string>('ALL');
   const [graphSource, setGraphSource] = useState<GraphSource | null>(null);
   const [graph, setGraph] = useState<Graph | null>(null);
   const previous = useRef<Graph | null>(null);
@@ -156,14 +164,14 @@ export function CosmicWebDemo() {
   useEffect(() => {
     (async () => {
       try {
-        const meta = await fetchJson<{ epochs: string[] }>("/demo/cosmic-web/clusters-meta.json");
-        setEpochs(["ALL", ...meta.epochs]);
-        const fc = await fetchJson<{ features: Feature[] }>("/demo/cosmic-web/clusters.geojson");
+        const meta = await fetchJson<{ epochs: string[] }>('/demo/cosmic-web/clusters-meta.json');
+        setEpochs(['ALL', ...meta.epochs]);
+        const fc = await fetchJson<{ features: Feature[] }>('/demo/cosmic-web/clusters.geojson');
         setPoints(fc.features);
-        const graphData = await fetchJson<GraphSource>("/demo/cosmic-web/policy-graph.json");
+        const graphData = await fetchJson<GraphSource>('/demo/cosmic-web/policy-graph.json');
         setGraphSource(graphData);
       } catch (error) {
-        console.error("[cosmic-web] failed to load artefacts", error);
+        console.error('[cosmic-web] failed to load artefacts', error);
       }
     })();
   }, []);
@@ -181,7 +189,7 @@ export function CosmicWebDemo() {
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const ctx = canvas.getContext("2d");
+    const ctx = canvas.getContext('2d');
     if (!ctx) return;
     const width = canvas.clientWidth;
     const height = canvas.clientHeight;
@@ -189,16 +197,17 @@ export function CosmicWebDemo() {
     canvas.height = height;
 
     ctx.clearRect(0, 0, width, height);
-    ctx.fillStyle = "#0f172a";
+    ctx.fillStyle = '#0f172a';
     ctx.fillRect(0, 0, width, height);
 
-    const filtered = epoch === "ALL" ? points : points.filter((feature) => feature.properties.epoch === epoch);
+    const filtered =
+      epoch === 'ALL' ? points : points.filter((feature) => feature.properties.epoch === epoch);
     const margin = 24;
     const scaleX = (value: number) => margin + (value / 10) * (width - margin * 2);
     const scaleY = (value: number) => height - (margin + (value / 10) * (height - margin * 2));
 
     ctx.lineWidth = 1;
-    ctx.strokeStyle = "rgba(148, 163, 184, 0.25)";
+    ctx.strokeStyle = 'rgba(148, 163, 184, 0.25)';
     for (let i = 0; i <= 10; i += 1) {
       const gx = margin + ((width - margin * 2) / 10) * i;
       const gy = margin + ((height - margin * 2) / 10) * i;
@@ -210,7 +219,7 @@ export function CosmicWebDemo() {
       ctx.stroke();
     }
 
-    ctx.fillStyle = "rgba(96, 165, 250, 0.85)";
+    ctx.fillStyle = 'rgba(96, 165, 250, 0.85)';
     for (const feature of filtered) {
       const [x, y] = feature.geometry.coordinates;
       const radius = 1.5 + (feature.properties.cluster % 3);
@@ -225,7 +234,8 @@ export function CosmicWebDemo() {
       <header className="space-y-1">
         <h1 className="text-2xl font-semibold">Cosmic-Web Demo</h1>
         <p className="text-sm text-slate-500">
-          Clustertracer skizzieren eine latente Governance-Struktur. Daten und Graph stammen aus synthetischen Artefakten.
+          Clustertracer skizzieren eine latente Governance-Struktur. Daten und Graph stammen aus
+          synthetischen Artefakten.
         </p>
       </header>
       <div className="grid gap-6 lg:grid-cols-3">
@@ -282,11 +292,21 @@ export function CosmicWebDemo() {
   );
 }
 
-function Metric({ label, value, highlight }: { label: string; value: number; highlight?: boolean }) {
+function Metric({
+  label,
+  value,
+  highlight,
+}: {
+  label: string;
+  value: number;
+  highlight?: boolean;
+}) {
   return (
     <div className="flex items-center justify-between rounded-lg bg-slate-50 px-3 py-2">
       <span className="text-slate-600">{label}</span>
-      <span className={`font-mono ${highlight ? "text-slate-900" : "text-slate-700"}`}>{value.toFixed(3)}</span>
+      <span className={`font-mono ${highlight ? 'text-slate-900' : 'text-slate-700'}`}>
+        {value.toFixed(3)}
+      </span>
     </div>
   );
 }

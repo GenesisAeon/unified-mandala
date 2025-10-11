@@ -10,7 +10,7 @@ export interface ModuleStatus {
 const MODULES: { name: string; relPath: string }[] = [
   { name: 'Ethical Refusal', relPath: 'agents/ethics_policy/main.py' },
   { name: 'Singularity Simulator', relPath: 'agents/singularity_simulator/main.py' },
-  { name: 'Weltinnenpolitik-Simulator', relPath: 'agents/governance_simulator/main.py' }
+  { name: 'Weltinnenpolitik-Simulator', relPath: 'agents/governance_simulator/main.py' },
 ];
 
 export async function initModules(): Promise<ModuleStatus[]> {
@@ -29,10 +29,10 @@ export async function initModules(): Promise<ModuleStatus[]> {
 
 if (require.main === module) {
   initModules()
-    .then(res => {
+    .then((res) => {
       console.log(JSON.stringify(res, null, 2));
     })
-    .catch(err => {
+    .catch((err) => {
       console.error(err);
       process.exit(1);
     });

@@ -9,7 +9,9 @@ describe('AnswerComposer', () => {
         return 'Because [1]';
       },
     };
-    const docs: DocRecord[] = [{ id: 'doc1', text: 'fact', source: 'src' , createdAt: 0, updatedAt: 0}];
+    const docs: DocRecord[] = [
+      { id: 'doc1', text: 'fact', source: 'src', createdAt: 0, updatedAt: 0 },
+    ];
     const composer = new AnswerComposer(router);
     const res = await composer.compose('What?', docs);
     expect(res.answer).toBe('Because [1]');

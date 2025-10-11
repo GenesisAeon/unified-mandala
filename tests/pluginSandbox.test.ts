@@ -18,12 +18,12 @@ describe.skip('Plugin Sandbox', () => {
         'author: "tester"',
         'entry: "index.js"',
         'apiVersion: "1.0"',
-        'permissions: []'
-      ].join('\n')
+        'permissions: []',
+      ].join('\n'),
     );
     fs.writeFileSync(
       path.join(tmpPluginDir, 'index.js'),
-      "const cp = require('child_process'); module.exports = {}"
+      "const cp = require('child_process'); module.exports = {}",
     );
   });
 

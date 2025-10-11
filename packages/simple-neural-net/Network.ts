@@ -3,9 +3,12 @@ import { sigmoid, meanSquareLoss } from './util';
 
 export class Network {
   private _neurons: Neuron[] = [
-    new Neuron(), new Neuron(), new Neuron(), // input
-    new Neuron(), new Neuron(), // hidden
-    new Neuron() // output
+    new Neuron(),
+    new Neuron(),
+    new Neuron(), // input
+    new Neuron(),
+    new Neuron(), // hidden
+    new Neuron(), // output
   ];
 
   /** Access internal neurons array for advanced inspection. */
@@ -19,14 +22,14 @@ export class Network {
       n[4].compute(
         n[2].compute(input1, input2, sigmoid),
         n[1].compute(input1, input2, sigmoid),
-        sigmoid
+        sigmoid,
       ),
       n[3].compute(
         n[1].compute(input1, input2, sigmoid),
         n[0].compute(input1, input2, sigmoid),
-        sigmoid
+        sigmoid,
       ),
-      sigmoid
+      sigmoid,
     );
   }
 
@@ -36,7 +39,7 @@ export class Network {
       const neuron = this._neurons[epoch % this._neurons.length];
       neuron.mutate();
 
-      const predictions = data.map(d => this.predict(d[0], d[1]));
+      const predictions = data.map((d) => this.predict(d[0], d[1]));
       const loss = meanSquareLoss(answers, predictions);
 
       if (bestLoss === null || loss < bestLoss) {

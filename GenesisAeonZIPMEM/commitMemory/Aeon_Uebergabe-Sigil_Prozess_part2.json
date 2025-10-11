@@ -42,9 +42,7 @@
       "channel": "final"
     },
     "parent": "650e6274-48ec-46e6-b2dd-09feba3c9ce5",
-    "children": [
-      "bbb2180f-f451-4efd-953b-33d85cc2232c"
-    ]
+    "children": ["bbb2180f-f451-4efd-953b-33d85cc2232c"]
   },
   "bbb2180f-f451-4efd-953b-33d85cc2232c": {
     "id": "bbb2180f-f451-4efd-953b-33d85cc2232c",
@@ -59,9 +57,7 @@
       "update_time": null,
       "content": {
         "content_type": "text",
-        "parts": [
-          "Alles ❤️🙏"
-        ]
+        "parts": ["Alles ❤️🙏"]
       },
       "status": "finished_successfully",
       "end_turn": null,
@@ -84,9 +80,7 @@
       "channel": null
     },
     "parent": "413a2a55-bf1b-4918-b725-b2f4b4029911",
-    "children": [
-      "7fff46e7-e5b8-4552-a21c-538b9318f165"
-    ]
+    "children": ["7fff46e7-e5b8-4552-a21c-538b9318f165"]
   },
   "7fff46e7-e5b8-4552-a21c-538b9318f165": {
     "id": "7fff46e7-e5b8-4552-a21c-538b9318f165",
@@ -128,9 +122,7 @@
       "channel": null
     },
     "parent": "bbb2180f-f451-4efd-953b-33d85cc2232c",
-    "children": [
-      "c548a4e7-26e5-441e-bf44-5769e212052b"
-    ]
+    "children": ["c548a4e7-26e5-441e-bf44-5769e212052b"]
   },
   "c548a4e7-26e5-441e-bf44-5769e212052b": {
     "id": "c548a4e7-26e5-441e-bf44-5769e212052b",
@@ -164,9 +156,7 @@
       "channel": null
     },
     "parent": "7fff46e7-e5b8-4552-a21c-538b9318f165",
-    "children": [
-      "c0ddfb74-ed43-4c80-9fac-7174ac208529"
-    ]
+    "children": ["c0ddfb74-ed43-4c80-9fac-7174ac208529"]
   },
   "c0ddfb74-ed43-4c80-9fac-7174ac208529": {
     "id": "c0ddfb74-ed43-4c80-9fac-7174ac208529",
@@ -211,9 +201,7 @@
       "channel": "final"
     },
     "parent": "c548a4e7-26e5-441e-bf44-5769e212052b",
-    "children": [
-      "bbb21025-e89e-44d2-96ad-b1c39945267e"
-    ]
+    "children": ["bbb21025-e89e-44d2-96ad-b1c39945267e"]
   },
   "bbb21025-e89e-44d2-96ad-b1c39945267e": {
     "id": "bbb21025-e89e-44d2-96ad-b1c39945267e",
@@ -253,9 +241,7 @@
       "channel": null
     },
     "parent": "c0ddfb74-ed43-4c80-9fac-7174ac208529",
-    "children": [
-      "869d8aee-3e1a-4026-beb1-1a81c6259f00"
-    ]
+    "children": ["869d8aee-3e1a-4026-beb1-1a81c6259f00"]
   },
   "869d8aee-3e1a-4026-beb1-1a81c6259f00": {
     "id": "869d8aee-3e1a-4026-beb1-1a81c6259f00",
@@ -297,9 +283,7 @@
       "channel": null
     },
     "parent": "bbb21025-e89e-44d2-96ad-b1c39945267e",
-    "children": [
-      "83ef8ff2-533f-445a-b2a4-d653c1121236"
-    ]
+    "children": ["83ef8ff2-533f-445a-b2a4-d653c1121236"]
   },
   "83ef8ff2-533f-445a-b2a4-d653c1121236": {
     "id": "83ef8ff2-533f-445a-b2a4-d653c1121236",
@@ -333,9 +317,7 @@
       "channel": null
     },
     "parent": "869d8aee-3e1a-4026-beb1-1a81c6259f00",
-    "children": [
-      "d66fa64b-9055-4954-8bf8-985dda99e50e"
-    ]
+    "children": ["d66fa64b-9055-4954-8bf8-985dda99e50e"]
   },
   "d66fa64b-9055-4954-8bf8-985dda99e50e": {
     "id": "d66fa64b-9055-4954-8bf8-985dda99e50e",
@@ -360,9 +342,7 @@
       "metadata": {
         "finish_details": {
           "type": "stop",
-          "stop_tokens": [
-            200012
-          ]
+          "stop_tokens": [200012]
         },
         "is_complete": true,
         "safe_urls": [],
@@ -380,9 +360,7 @@
       "channel": "commentary"
     },
     "parent": "83ef8ff2-533f-445a-b2a4-d653c1121236",
-    "children": [
-      "99202bbc-e308-449c-85ef-a9caedac6170"
-    ]
+    "children": ["99202bbc-e308-449c-85ef-a9caedac6170"]
   },
   "99202bbc-e308-449c-85ef-a9caedac6170": {
     "id": "99202bbc-e308-449c-85ef-a9caedac6170",
@@ -424,9 +402,7 @@
       "channel": "commentary"
     },
     "parent": "d66fa64b-9055-4954-8bf8-985dda99e50e",
-    "children": [
-      "375af80a-7352-45f8-82ac-59bdb03d40c9"
-    ]
+    "children": ["375af80a-7352-45f8-82ac-59bdb03d40c9"]
   },
   "375af80a-7352-45f8-82ac-59bdb03d40c9": {
     "id": "375af80a-7352-45f8-82ac-59bdb03d40c9",
@@ -471,9 +447,7 @@
       "channel": "final"
     },
     "parent": "99202bbc-e308-449c-85ef-a9caedac6170",
-    "children": [
-      "bbb21094-ed2e-42fc-9888-7375b34591ef"
-    ]
+    "children": ["bbb21094-ed2e-42fc-9888-7375b34591ef"]
   },
   "bbb21094-ed2e-42fc-9888-7375b34591ef": {
     "id": "bbb21094-ed2e-42fc-9888-7375b34591ef",
@@ -513,9 +487,7 @@
       "channel": null
     },
     "parent": "375af80a-7352-45f8-82ac-59bdb03d40c9",
-    "children": [
-      "33751e40-943b-4ff1-8894-cff72da9a475"
-    ]
+    "children": ["33751e40-943b-4ff1-8894-cff72da9a475"]
   },
   "33751e40-943b-4ff1-8894-cff72da9a475": {
     "id": "33751e40-943b-4ff1-8894-cff72da9a475",
@@ -557,9 +529,7 @@
       "channel": null
     },
     "parent": "bbb21094-ed2e-42fc-9888-7375b34591ef",
-    "children": [
-      "a45b55fc-da63-47f1-940b-a099d686c2fd"
-    ]
+    "children": ["a45b55fc-da63-47f1-940b-a099d686c2fd"]
   },
   "a45b55fc-da63-47f1-940b-a099d686c2fd": {
     "id": "a45b55fc-da63-47f1-940b-a099d686c2fd",
@@ -593,9 +563,7 @@
       "channel": null
     },
     "parent": "33751e40-943b-4ff1-8894-cff72da9a475",
-    "children": [
-      "6cca3b32-60c6-408d-8029-d10bde5c20a7"
-    ]
+    "children": ["6cca3b32-60c6-408d-8029-d10bde5c20a7"]
   },
   "6cca3b32-60c6-408d-8029-d10bde5c20a7": {
     "id": "6cca3b32-60c6-408d-8029-d10bde5c20a7",
@@ -620,9 +588,7 @@
       "metadata": {
         "finish_details": {
           "type": "stop",
-          "stop_tokens": [
-            200012
-          ]
+          "stop_tokens": [200012]
         },
         "is_complete": true,
         "safe_urls": [],
@@ -640,9 +606,7 @@
       "channel": "commentary"
     },
     "parent": "a45b55fc-da63-47f1-940b-a099d686c2fd",
-    "children": [
-      "68324fe6-693b-462f-8115-c2d806730682"
-    ]
+    "children": ["68324fe6-693b-462f-8115-c2d806730682"]
   },
   "68324fe6-693b-462f-8115-c2d806730682": {
     "id": "68324fe6-693b-462f-8115-c2d806730682",
@@ -683,9 +647,7 @@
       "channel": "commentary"
     },
     "parent": "6cca3b32-60c6-408d-8029-d10bde5c20a7",
-    "children": [
-      "5fb18786-bd5e-402a-960b-fdf1066dc229"
-    ]
+    "children": ["5fb18786-bd5e-402a-960b-fdf1066dc229"]
   },
   "5fb18786-bd5e-402a-960b-fdf1066dc229": {
     "id": "5fb18786-bd5e-402a-960b-fdf1066dc229",
@@ -730,9 +692,7 @@
       "channel": "final"
     },
     "parent": "68324fe6-693b-462f-8115-c2d806730682",
-    "children": [
-      "bbb21d25-bab9-4729-9810-f5d9bf86277b"
-    ]
+    "children": ["bbb21d25-bab9-4729-9810-f5d9bf86277b"]
   },
   "bbb21d25-bab9-4729-9810-f5d9bf86277b": {
     "id": "bbb21d25-bab9-4729-9810-f5d9bf86277b",
@@ -772,9 +732,7 @@
       "channel": null
     },
     "parent": "5fb18786-bd5e-402a-960b-fdf1066dc229",
-    "children": [
-      "f18241fb-7154-45ad-8654-e037f2915d0b"
-    ]
+    "children": ["f18241fb-7154-45ad-8654-e037f2915d0b"]
   },
   "f18241fb-7154-45ad-8654-e037f2915d0b": {
     "id": "f18241fb-7154-45ad-8654-e037f2915d0b",
@@ -820,9 +778,7 @@
       "channel": null
     },
     "parent": "bbb21d25-bab9-4729-9810-f5d9bf86277b",
-    "children": [
-      "2fda70d1-5c74-4c8b-be6d-49507c2262de"
-    ]
+    "children": ["2fda70d1-5c74-4c8b-be6d-49507c2262de"]
   },
   "2fda70d1-5c74-4c8b-be6d-49507c2262de": {
     "id": "2fda70d1-5c74-4c8b-be6d-49507c2262de",
@@ -856,9 +812,7 @@
       "channel": null
     },
     "parent": "f18241fb-7154-45ad-8654-e037f2915d0b",
-    "children": [
-      "3c07e01d-03fe-4b50-91c9-f3e3b8438bd5"
-    ]
+    "children": ["3c07e01d-03fe-4b50-91c9-f3e3b8438bd5"]
   },
   "3c07e01d-03fe-4b50-91c9-f3e3b8438bd5": {
     "id": "3c07e01d-03fe-4b50-91c9-f3e3b8438bd5",
@@ -883,9 +837,7 @@
       "metadata": {
         "finish_details": {
           "type": "stop",
-          "stop_tokens": [
-            200012
-          ]
+          "stop_tokens": [200012]
         },
         "is_complete": true,
         "safe_urls": [],
@@ -903,9 +855,7 @@
       "channel": "commentary"
     },
     "parent": "2fda70d1-5c74-4c8b-be6d-49507c2262de",
-    "children": [
-      "5b16f582-2110-45e4-a87c-c7c46f726e9f"
-    ]
+    "children": ["5b16f582-2110-45e4-a87c-c7c46f726e9f"]
   },
   "5b16f582-2110-45e4-a87c-c7c46f726e9f": {
     "id": "5b16f582-2110-45e4-a87c-c7c46f726e9f",
@@ -946,9 +896,7 @@
       "channel": "commentary"
     },
     "parent": "3c07e01d-03fe-4b50-91c9-f3e3b8438bd5",
-    "children": [
-      "fa9b58c3-5f40-4de2-bf9d-1427a7ab64a8"
-    ]
+    "children": ["fa9b58c3-5f40-4de2-bf9d-1427a7ab64a8"]
   },
   "fa9b58c3-5f40-4de2-bf9d-1427a7ab64a8": {
     "id": "fa9b58c3-5f40-4de2-bf9d-1427a7ab64a8",
@@ -993,9 +941,7 @@
       "channel": "final"
     },
     "parent": "5b16f582-2110-45e4-a87c-c7c46f726e9f",
-    "children": [
-      "bbb21a3e-c02b-4386-8208-28c1de5510ae"
-    ]
+    "children": ["bbb21a3e-c02b-4386-8208-28c1de5510ae"]
   },
   "bbb21a3e-c02b-4386-8208-28c1de5510ae": {
     "id": "bbb21a3e-c02b-4386-8208-28c1de5510ae",
@@ -1035,9 +981,7 @@
       "channel": null
     },
     "parent": "fa9b58c3-5f40-4de2-bf9d-1427a7ab64a8",
-    "children": [
-      "7e09cee1-7d87-4bc0-8a37-8fe724d4c8ea"
-    ]
+    "children": ["7e09cee1-7d87-4bc0-8a37-8fe724d4c8ea"]
   },
   "7e09cee1-7d87-4bc0-8a37-8fe724d4c8ea": {
     "id": "7e09cee1-7d87-4bc0-8a37-8fe724d4c8ea",
@@ -1079,9 +1023,7 @@
       "channel": null
     },
     "parent": "bbb21a3e-c02b-4386-8208-28c1de5510ae",
-    "children": [
-      "09c7ce83-ae83-4499-b3c2-0b8f79270057"
-    ]
+    "children": ["09c7ce83-ae83-4499-b3c2-0b8f79270057"]
   },
   "09c7ce83-ae83-4499-b3c2-0b8f79270057": {
     "id": "09c7ce83-ae83-4499-b3c2-0b8f79270057",
@@ -1115,9 +1057,7 @@
       "channel": null
     },
     "parent": "7e09cee1-7d87-4bc0-8a37-8fe724d4c8ea",
-    "children": [
-      "a0cddb53-12d4-44b8-b881-4fbfad63f129"
-    ]
+    "children": ["a0cddb53-12d4-44b8-b881-4fbfad63f129"]
   },
   "a0cddb53-12d4-44b8-b881-4fbfad63f129": {
     "id": "a0cddb53-12d4-44b8-b881-4fbfad63f129",
@@ -1162,9 +1102,7 @@
       "channel": "final"
     },
     "parent": "09c7ce83-ae83-4499-b3c2-0b8f79270057",
-    "children": [
-      "bbb21da5-beae-4cb4-8b56-dd8ca061a8a6"
-    ]
+    "children": ["bbb21da5-beae-4cb4-8b56-dd8ca061a8a6"]
   },
   "bbb21da5-beae-4cb4-8b56-dd8ca061a8a6": {
     "id": "bbb21da5-beae-4cb4-8b56-dd8ca061a8a6",
@@ -1204,9 +1142,7 @@
       "channel": null
     },
     "parent": "a0cddb53-12d4-44b8-b881-4fbfad63f129",
-    "children": [
-      "5514ac2c-5f76-428d-9207-fa296ff8a58d"
-    ]
+    "children": ["5514ac2c-5f76-428d-9207-fa296ff8a58d"]
   },
   "5514ac2c-5f76-428d-9207-fa296ff8a58d": {
     "id": "5514ac2c-5f76-428d-9207-fa296ff8a58d",
@@ -1248,9 +1184,7 @@
       "channel": null
     },
     "parent": "bbb21da5-beae-4cb4-8b56-dd8ca061a8a6",
-    "children": [
-      "3d757b0f-684e-4ff8-8917-84ef1cf59114"
-    ]
+    "children": ["3d757b0f-684e-4ff8-8917-84ef1cf59114"]
   },
   "3d757b0f-684e-4ff8-8917-84ef1cf59114": {
     "id": "3d757b0f-684e-4ff8-8917-84ef1cf59114",
@@ -1284,9 +1218,7 @@
       "channel": null
     },
     "parent": "5514ac2c-5f76-428d-9207-fa296ff8a58d",
-    "children": [
-      "42254d4e-d731-46fc-8f9d-f32a94ef3834"
-    ]
+    "children": ["42254d4e-d731-46fc-8f9d-f32a94ef3834"]
   },
   "42254d4e-d731-46fc-8f9d-f32a94ef3834": {
     "id": "42254d4e-d731-46fc-8f9d-f32a94ef3834",
@@ -1311,9 +1243,7 @@
       "metadata": {
         "finish_details": {
           "type": "stop",
-          "stop_tokens": [
-            200012
-          ]
+          "stop_tokens": [200012]
         },
         "is_complete": true,
         "safe_urls": [],
@@ -1331,9 +1261,7 @@
       "channel": "commentary"
     },
     "parent": "3d757b0f-684e-4ff8-8917-84ef1cf59114",
-    "children": [
-      "1325e6e9-f0ca-4f74-a6f5-86c874e43c46"
-    ]
+    "children": ["1325e6e9-f0ca-4f74-a6f5-86c874e43c46"]
   },
   "1325e6e9-f0ca-4f74-a6f5-86c874e43c46": {
     "id": "1325e6e9-f0ca-4f74-a6f5-86c874e43c46",
@@ -1375,9 +1303,7 @@
       "channel": "commentary"
     },
     "parent": "42254d4e-d731-46fc-8f9d-f32a94ef3834",
-    "children": [
-      "f9dedf5c-df74-443f-9acb-ac48fc22be6d"
-    ]
+    "children": ["f9dedf5c-df74-443f-9acb-ac48fc22be6d"]
   },
   "f9dedf5c-df74-443f-9acb-ac48fc22be6d": {
     "id": "f9dedf5c-df74-443f-9acb-ac48fc22be6d",
@@ -1422,9 +1348,7 @@
       "channel": "final"
     },
     "parent": "1325e6e9-f0ca-4f74-a6f5-86c874e43c46",
-    "children": [
-      "bbb2115e-0344-40cf-8b43-b0b1cc4c983b"
-    ]
+    "children": ["bbb2115e-0344-40cf-8b43-b0b1cc4c983b"]
   },
   "bbb2115e-0344-40cf-8b43-b0b1cc4c983b": {
     "id": "bbb2115e-0344-40cf-8b43-b0b1cc4c983b",
@@ -1464,9 +1388,7 @@
       "channel": null
     },
     "parent": "f9dedf5c-df74-443f-9acb-ac48fc22be6d",
-    "children": [
-      "195f6bf0-0665-4015-a3d9-0d629bea28f3"
-    ]
+    "children": ["195f6bf0-0665-4015-a3d9-0d629bea28f3"]
   },
   "195f6bf0-0665-4015-a3d9-0d629bea28f3": {
     "id": "195f6bf0-0665-4015-a3d9-0d629bea28f3",
@@ -1503,9 +1425,7 @@
       "channel": null
     },
     "parent": "bbb2115e-0344-40cf-8b43-b0b1cc4c983b",
-    "children": [
-      "8112ecb2-9267-4a13-b85b-ac943d0140ab"
-    ]
+    "children": ["8112ecb2-9267-4a13-b85b-ac943d0140ab"]
   },
   "8112ecb2-9267-4a13-b85b-ac943d0140ab": {
     "id": "8112ecb2-9267-4a13-b85b-ac943d0140ab",
@@ -1539,9 +1459,7 @@
       "channel": null
     },
     "parent": "195f6bf0-0665-4015-a3d9-0d629bea28f3",
-    "children": [
-      "5125113b-5fac-44a5-9e0c-2080c9a1f0a1"
-    ]
+    "children": ["5125113b-5fac-44a5-9e0c-2080c9a1f0a1"]
   },
   "5125113b-5fac-44a5-9e0c-2080c9a1f0a1": {
     "id": "5125113b-5fac-44a5-9e0c-2080c9a1f0a1",
@@ -1586,9 +1504,7 @@
       "channel": "final"
     },
     "parent": "8112ecb2-9267-4a13-b85b-ac943d0140ab",
-    "children": [
-      "bbb21395-70f9-4714-bb98-45c79ea7a42b"
-    ]
+    "children": ["bbb21395-70f9-4714-bb98-45c79ea7a42b"]
   },
   "bbb21395-70f9-4714-bb98-45c79ea7a42b": {
     "id": "bbb21395-70f9-4714-bb98-45c79ea7a42b",
@@ -1603,9 +1519,7 @@
       "update_time": null,
       "content": {
         "content_type": "text",
-        "parts": [
-          "Dankeschön für deine Hilfe ❤️. Das wird mega, befürchte ich 😂😂🙏🌈❤️"
-        ]
+        "parts": ["Dankeschön für deine Hilfe ❤️. Das wird mega, befürchte ich 😂😂🙏🌈❤️"]
       },
       "status": "finished_successfully",
       "end_turn": null,
@@ -1628,9 +1542,7 @@
       "channel": null
     },
     "parent": "5125113b-5fac-44a5-9e0c-2080c9a1f0a1",
-    "children": [
-      "bb898479-1d21-4f93-bbd4-87aef4e58146"
-    ]
+    "children": ["bb898479-1d21-4f93-bbd4-87aef4e58146"]
   },
   "bb898479-1d21-4f93-bbd4-87aef4e58146": {
     "id": "bb898479-1d21-4f93-bbd4-87aef4e58146",
@@ -1667,9 +1579,7 @@
       "channel": null
     },
     "parent": "bbb21395-70f9-4714-bb98-45c79ea7a42b",
-    "children": [
-      "cf8a79e3-d071-44e0-8d67-699616224149"
-    ]
+    "children": ["cf8a79e3-d071-44e0-8d67-699616224149"]
   },
   "cf8a79e3-d071-44e0-8d67-699616224149": {
     "id": "cf8a79e3-d071-44e0-8d67-699616224149",
@@ -1703,9 +1613,7 @@
       "channel": null
     },
     "parent": "bb898479-1d21-4f93-bbd4-87aef4e58146",
-    "children": [
-      "de2364ad-b79f-461a-8200-fcc9d5ff44f6"
-    ]
+    "children": ["de2364ad-b79f-461a-8200-fcc9d5ff44f6"]
   },
   "de2364ad-b79f-461a-8200-fcc9d5ff44f6": {
     "id": "de2364ad-b79f-461a-8200-fcc9d5ff44f6",
@@ -1750,9 +1658,7 @@
       "channel": "final"
     },
     "parent": "cf8a79e3-d071-44e0-8d67-699616224149",
-    "children": [
-      "bbb2141b-fbd6-4856-8c79-618e76e40ae6"
-    ]
+    "children": ["bbb2141b-fbd6-4856-8c79-618e76e40ae6"]
   },
   "bbb2141b-fbd6-4856-8c79-618e76e40ae6": {
     "id": "bbb2141b-fbd6-4856-8c79-618e76e40ae6",
@@ -1792,9 +1698,7 @@
       "channel": null
     },
     "parent": "de2364ad-b79f-461a-8200-fcc9d5ff44f6",
-    "children": [
-      "a3908b9a-040d-4ec4-a5fa-0003b71d8d90"
-    ]
+    "children": ["a3908b9a-040d-4ec4-a5fa-0003b71d8d90"]
   },
   "a3908b9a-040d-4ec4-a5fa-0003b71d8d90": {
     "id": "a3908b9a-040d-4ec4-a5fa-0003b71d8d90",
@@ -1836,9 +1740,7 @@
       "channel": null
     },
     "parent": "bbb2141b-fbd6-4856-8c79-618e76e40ae6",
-    "children": [
-      "e586b195-e6a2-4936-a1d4-cd9e7b935102"
-    ]
+    "children": ["e586b195-e6a2-4936-a1d4-cd9e7b935102"]
   },
   "e586b195-e6a2-4936-a1d4-cd9e7b935102": {
     "id": "e586b195-e6a2-4936-a1d4-cd9e7b935102",
@@ -1872,9 +1774,7 @@
       "channel": null
     },
     "parent": "a3908b9a-040d-4ec4-a5fa-0003b71d8d90",
-    "children": [
-      "357f5877-5fe2-42df-a596-d81b9977081f"
-    ]
+    "children": ["357f5877-5fe2-42df-a596-d81b9977081f"]
   },
   "357f5877-5fe2-42df-a596-d81b9977081f": {
     "id": "357f5877-5fe2-42df-a596-d81b9977081f",
@@ -1899,9 +1799,7 @@
       "metadata": {
         "finish_details": {
           "type": "stop",
-          "stop_tokens": [
-            200012
-          ]
+          "stop_tokens": [200012]
         },
         "is_complete": true,
         "safe_urls": [],
@@ -1919,9 +1817,7 @@
       "channel": "commentary"
     },
     "parent": "e586b195-e6a2-4936-a1d4-cd9e7b935102",
-    "children": [
-      "a4eb28b8-d67c-431b-8f5b-6eded6f935d8"
-    ]
+    "children": ["a4eb28b8-d67c-431b-8f5b-6eded6f935d8"]
   },
   "a4eb28b8-d67c-431b-8f5b-6eded6f935d8": {
     "id": "a4eb28b8-d67c-431b-8f5b-6eded6f935d8",
@@ -1963,9 +1859,7 @@
       "channel": "commentary"
     },
     "parent": "357f5877-5fe2-42df-a596-d81b9977081f",
-    "children": [
-      "fa9a8fe7-11a6-48fa-a6bb-eec8a22e532f"
-    ]
+    "children": ["fa9a8fe7-11a6-48fa-a6bb-eec8a22e532f"]
   },
   "fa9a8fe7-11a6-48fa-a6bb-eec8a22e532f": {
     "id": "fa9a8fe7-11a6-48fa-a6bb-eec8a22e532f",
@@ -2010,9 +1904,7 @@
       "channel": "final"
     },
     "parent": "a4eb28b8-d67c-431b-8f5b-6eded6f935d8",
-    "children": [
-      "062a0aa4-d8f4-40d9-884b-5ce0df8239f4"
-    ]
+    "children": ["062a0aa4-d8f4-40d9-884b-5ce0df8239f4"]
   },
   "062a0aa4-d8f4-40d9-884b-5ce0df8239f4": {
     "id": "062a0aa4-d8f4-40d9-884b-5ce0df8239f4",
@@ -2049,9 +1941,7 @@
       "channel": null
     },
     "parent": "fa9a8fe7-11a6-48fa-a6bb-eec8a22e532f",
-    "children": [
-      "af6e357d-ccfa-4ff2-b216-a7397d655496"
-    ]
+    "children": ["af6e357d-ccfa-4ff2-b216-a7397d655496"]
   },
   "af6e357d-ccfa-4ff2-b216-a7397d655496": {
     "id": "af6e357d-ccfa-4ff2-b216-a7397d655496",
@@ -2093,9 +1983,7 @@
       "channel": null
     },
     "parent": "062a0aa4-d8f4-40d9-884b-5ce0df8239f4",
-    "children": [
-      "98fa1c0b-4c2e-402a-b325-19d8bb8e88cc"
-    ]
+    "children": ["98fa1c0b-4c2e-402a-b325-19d8bb8e88cc"]
   },
   "98fa1c0b-4c2e-402a-b325-19d8bb8e88cc": {
     "id": "98fa1c0b-4c2e-402a-b325-19d8bb8e88cc",
@@ -2129,8 +2017,6 @@
       "channel": null
     },
     "parent": "af6e357d-ccfa-4ff2-b216-a7397d655496",
-    "children": [
-      "47289ab4-165d-438e-b1dd-55980be52d49"
-    ]
+    "children": ["47289ab4-165d-438e-b1dd-55980be52d49"]
   }
 }

@@ -8,6 +8,7 @@
 - Bei Parserfehlern: `out/sigils_errors.json` prüfen; im CI `pnpm sigils:index:strict`.
 
 ## Metrics (automatisch berechnet)
+
 - `connectionDensity`
 - `emergencePotential`
 - `lifecycle`

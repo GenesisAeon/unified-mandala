@@ -6,14 +6,14 @@ function dispatchGrpc(task: string, address: string): Promise<number> {
   return new Promise((resolve, reject) => {
     client.makeUnaryRequest(
       '/DispatchService/Dispatch',
-      arg => Buffer.from(JSON.stringify(arg)),
-      buffer => JSON.parse(buffer.toString()),
+      (arg) => Buffer.from(JSON.stringify(arg)),
+      (buffer) => JSON.parse(buffer.toString()),
       { task },
       (err, resp: any) => {
         client.close();
         if (err) return reject(err);
         resolve(resp?.status ?? 0);
-      }
+      },
     );
   });
 }
@@ -21,7 +21,7 @@ function dispatchGrpc(task: string, address: string): Promise<number> {
 export function dispatchCmd(
   task: string,
   endpoint = 'https://localhost:3000/dispatch',
-  protocol: 'rest' | 'grpc' = 'rest'
+  protocol: 'rest' | 'grpc' = 'rest',
 ): Promise<number> {
   if (protocol === 'grpc') {
     return dispatchGrpc(task, endpoint);
@@ -30,10 +30,13 @@ export function dispatchCmd(
   return new Promise((resolve, reject) => {
     const req = https.request(
       endpoint,
-      { method: 'POST', headers: { 'Content-Type': 'application/json', 'Content-Length': data.length } },
-      res => {
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Content-Length': data.length },
+      },
+      (res) => {
         resolve(res.statusCode ?? 0);
-      }
+      },
     );
     req.on('error', reject);
     req.write(data);

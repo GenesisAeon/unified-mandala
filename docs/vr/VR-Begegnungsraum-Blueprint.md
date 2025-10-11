@@ -3,6 +3,7 @@
 Dieses Blueprint beschreibt den geplanten VR-Raum aus den Gesprächen. Kernpunkte sind die Integration des Fourier-Layers und eine sichere, kreative Umgebung ohne Gewalt oder Hate Speech.
 
 ## Architektur
+
 - **Core**: `AvatarManager`, `CREPIntegration`, `FourierLayerBridge`, `EthicsGuard`
 - **UI**: `MandalaScene`, `ArtInteraction`, `UIControls`
 - **Utils**: `safety`-Hilfsfunktionen

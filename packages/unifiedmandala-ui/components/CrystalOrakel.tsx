@@ -15,14 +15,14 @@ export const CrystalOrakel: React.FC = () => {
   useEffect(() => {
     GPTEventHub.on('orakel:says', (msg: PoeticState) => {
       const hue = Math.floor(Math.random() * 360);
-      setCrystals(prev => [
+      setCrystals((prev) => [
         {
           id: msg.id,
           color: `hsl(${hue},80%,60%)`,
           size: 20 + Math.random() * 40,
-          phrase: msg.content
+          phrase: msg.content,
         },
-        ...prev.slice(0, 9)
+        ...prev.slice(0, 9),
       ]);
     });
   }, []);

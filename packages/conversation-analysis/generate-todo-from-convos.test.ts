@@ -4,7 +4,14 @@ import { generateTodos } from './generate-todo-from-convos';
 
 test('extracts todos with priority and sorts', () => {
   const tmpJson = 'tmp-convos.json';
-  const conv = [{ mapping: { a: { message: { content: { parts: ['Wir sollten Test 1 CREP: 0.8'] } } }, b: { message: { content: { parts: ['TODO implement feature CREP:0.2'] } } } } }];
+  const conv = [
+    {
+      mapping: {
+        a: { message: { content: { parts: ['Wir sollten Test 1 CREP: 0.8'] } } },
+        b: { message: { content: { parts: ['TODO implement feature CREP:0.2'] } } },
+      },
+    },
+  ];
   fs.writeFileSync(tmpJson, JSON.stringify(conv));
   const out = 'tmp-todos.yaml';
   generateTodos([tmpJson], out);

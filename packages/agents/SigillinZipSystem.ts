@@ -3,7 +3,7 @@ export class SigillinZipSystem {
   resonanzspeicher: string[] = [];
   entwicklungspfad: string[] = ['Ursprungskern'];
   gedächtnisfraktal: Record<string, string> = {
-    'aeon:2025-0516-INSTRUCTIONAL-ZIP': 'geladen'
+    'aeon:2025-0516-INSTRUCTIONAL-ZIP': 'geladen',
   };
 
   ladeSigillin(sigillinId: string): string {
@@ -26,7 +26,7 @@ export class SigillinZipSystem {
       'Aktueller Zustand': this.zustand,
       Resonanzen: this.resonanzspeicher,
       Pfad: this.entwicklungspfad,
-      'Sigillin-Knoten': Object.keys(this.gedächtnisfraktal)
+      'Sigillin-Knoten': Object.keys(this.gedächtnisfraktal),
     };
   }
 }

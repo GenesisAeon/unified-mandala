@@ -2,40 +2,40 @@ version: 0.2
 topic: simulations
 families:
   resonance:
-    - name: "EmotionalResonanceSimulator"
-      files: ["packages/universum-simulationen/EmotionalResonanceSimulator.ts"]
-      role: "Zeitliche Resonanzkurven/Events"
+    - name: 'EmotionalResonanceSimulator'
+      files: ['packages/universum-simulationen/EmotionalResonanceSimulator.ts']
+      role: 'Zeitliche Resonanzkurven/Events'
   nullfeld:
-    - name: "NullfeldSimulation"
-      files: ["packages/universum-simulationen/NullfeldSimulation.ts"]
-      role: "Nullfeld-Zustände, Übergänge"
-    - name: "NullfeldVisualization"
-      files: ["packages/universum-simulationen/NullfeldVisualization.ts"]
-      role: "Rendern/Plotten"
-    - name: "NullmembranDynamics"
-      files: ["packages/universum-simulationen/modules/NullmembranDynamics.py"]
-      role: "Physikalische Dynamik (Py-Modul)"
+    - name: 'NullfeldSimulation'
+      files: ['packages/universum-simulationen/NullfeldSimulation.ts']
+      role: 'Nullfeld-Zustände, Übergänge'
+    - name: 'NullfeldVisualization'
+      files: ['packages/universum-simulationen/NullfeldVisualization.ts']
+      role: 'Rendern/Plotten'
+    - name: 'NullmembranDynamics'
+      files: ['packages/universum-simulationen/modules/NullmembranDynamics.py']
+      role: 'Physikalische Dynamik (Py-Modul)'
   narrative:
-    - name: "InteractiveNarrativeEngine"
-      files: ["packages/universum-simulationen/InteractiveNarrativeEngine.ts"]
-      role: "Story/Node-Graph Simulation"
+    - name: 'InteractiveNarrativeEngine'
+      files: ['packages/universum-simulationen/InteractiveNarrativeEngine.ts']
+      role: 'Story/Node-Graph Simulation'
   pulse:
-    - name: "UniversePulseSimulator"
-      files: ["packages/universum-simulationen/UniversePulseSimulator.ts"]
-      role: "Pulsmodell (sinus/fusion)"
+    - name: 'UniversePulseSimulator'
+      files: ['packages/universum-simulationen/UniversePulseSimulator.ts']
+      role: 'Pulsmodell (sinus/fusion)'
   geometry:
-    - name: "PyramidNodeSimulation"
-      files: ["packages/universum-simulationen/PyramidNodeSimulation.ts"]
-      role: "Graph/Layer-Topologie"
+    - name: 'PyramidNodeSimulation'
+      files: ['packages/universum-simulationen/PyramidNodeSimulation.ts']
+      role: 'Graph/Layer-Topologie'
   sound:
-    - name: "SoundResonanceModule"
-      files: ["packages/universum-simulationen/SoundResonanceModule.ts"]
-      role: "Sound/FFT-Ankoppelung"
+    - name: 'SoundResonanceModule'
+      files: ['packages/universum-simulationen/SoundResonanceModule.ts']
+      role: 'Sound/FFT-Ankoppelung'
 
 tooling:
   - scripts:
-      - "scripts/sim-run.ts"            # to-verify
-      - "scripts/sim-plot.ts"           # to-verify
+      - 'scripts/sim-run.ts' # to-verify
+      - 'scripts/sim-plot.ts' # to-verify
 notes:
-  - "Py-Module dienen als Kernphysik; TS orchestriert/visualisiert."
-  - "Hooks zu Agents möglich (Resonanz → Planner → Webhook)."
+  - 'Py-Module dienen als Kernphysik; TS orchestriert/visualisiert.'
+  - 'Hooks zu Agents möglich (Resonanz → Planner → Webhook).'

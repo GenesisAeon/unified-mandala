@@ -217,10 +217,7 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
       invalidAsyncStatus.push(idx);
     }
 
-    if (
-      'voice' in conv &&
-      (typeof conv.voice !== 'string' || conv.voice.trim() === '')
-    ) {
+    if ('voice' in conv && (typeof conv.voice !== 'string' || conv.voice.trim() === '')) {
       invalidVoice.push(idx);
     }
     if (
@@ -274,11 +271,7 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
       if (seenIds.has(conv.id)) duplicateIds.push(conv.id);
       else seenIds.add(conv.id);
     }
-    if (
-      typeof conv.conversation_id === 'string' &&
-      conv.id &&
-      conv.conversation_id !== conv.id
-    ) {
+    if (typeof conv.conversation_id === 'string' && conv.id && conv.conversation_id !== conv.id) {
       mismatchedConversationIds.push(idx);
     }
     if (conv.plugin_ids !== undefined && conv.plugin_ids !== null) {
@@ -336,16 +329,13 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
           (m: any) =>
             typeof m !== 'object' ||
             typeof m.category !== 'string' ||
-            typeof m.flagged !== 'boolean'
+            typeof m.flagged !== 'boolean',
         )
       ) {
         invalidModerationResults.push(idx);
       }
     }
-    if (
-      conv.conversation_template_id !== undefined &&
-      conv.conversation_template_id !== null
-    ) {
+    if (conv.conversation_template_id !== undefined && conv.conversation_template_id !== null) {
       if (
         typeof conv.conversation_template_id !== 'string' ||
         !uuidPattern.test(conv.conversation_template_id)
@@ -353,14 +343,8 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
         invalidTemplateIds.push(idx);
       }
     }
-    if (
-      conv.default_model_slug !== undefined &&
-      conv.default_model_slug !== null
-    ) {
-      if (
-        typeof conv.default_model_slug !== 'string' ||
-        !conv.default_model_slug.trim()
-      ) {
+    if (conv.default_model_slug !== undefined && conv.default_model_slug !== null) {
+      if (typeof conv.default_model_slug !== 'string' || !conv.default_model_slug.trim()) {
         invalidDefaultModelSlugs.push(idx);
       }
     }
@@ -377,6 +361,7 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
       if (conv.title.trim() !== conv.title || /\s{2,}/.test(conv.title)) {
         titlesWithWhitespace.push(idx);
       }
+      // eslint-disable-next-line no-control-regex
       if (/[\x00-\x1F\x7F]/.test(conv.title)) {
         titlesWithInvalidChars.push(idx);
       }
@@ -474,10 +459,7 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
           break;
         }
         if (
-          Object.prototype.hasOwnProperty.call(
-            meta,
-            'is_visually_hidden_from_conversation'
-          ) &&
+          Object.prototype.hasOwnProperty.call(meta, 'is_visually_hidden_from_conversation') &&
           typeof meta.is_visually_hidden_from_conversation !== 'boolean'
         ) {
           invalidMetadata = true;
@@ -506,11 +488,21 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
         mismatchedNodeIds.push(idx);
         break;
       }
-      if (node.id && !uuidPattern.test(node.id) && key !== 'client-created-root' && !invalidIdRecorded) {
+      if (
+        node.id &&
+        !uuidPattern.test(node.id) &&
+        key !== 'client-created-root' &&
+        !invalidIdRecorded
+      ) {
         invalidIds.push(idx);
         invalidIdRecorded = true;
       }
-      if (node.message && typeof node.message.id === 'string' && !uuidPattern.test(node.message.id) && !invalidIdRecorded) {
+      if (
+        node.message &&
+        typeof node.message.id === 'string' &&
+        !uuidPattern.test(node.message.id) &&
+        !invalidIdRecorded
+      ) {
         invalidIds.push(idx);
         invalidIdRecorded = true;
       }
@@ -551,11 +543,7 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
 
       if (node.parent) {
         const parent = conv.mapping[node.parent];
-        if (
-          parent &&
-          Array.isArray(parent.children) &&
-          !parent.children.includes(key)
-        ) {
+        if (parent && Array.isArray(parent.children) && !parent.children.includes(key)) {
           unlistedChildren.push(idx);
           break;
         }
@@ -594,66 +582,63 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
       }
       if (key !== 'client-created-root' && node.message) {
         const m = node.message;
-      if (
-        typeof m.create_time !== 'number' ||
-        typeof m.update_time !== 'number'
-      ) {
-        messagesMissingTimestamps.push(idx);
-        break;
+        if (typeof m.create_time !== 'number' || typeof m.update_time !== 'number') {
+          messagesMissingTimestamps.push(idx);
+          break;
+        }
+        if (m.update_time < m.create_time) {
+          invalidMessageTimestamps.push(idx);
+          break;
+        }
+        if (
+          m.weight !== undefined &&
+          (typeof m.weight !== 'number' || m.weight < 0 || m.weight > 1)
+        ) {
+          invalidMessageWeights.push(idx);
+          break;
+        }
+        if (
+          m.status !== undefined &&
+          (typeof m.status !== 'string' || !allowedStatuses.includes(m.status))
+        ) {
+          invalidMessageStatuses.push(idx);
+          break;
+        }
+        if (m.channel !== undefined && m.channel !== null && !allowedChannels.includes(m.channel)) {
+          invalidMessageChannels.push(idx);
+          break;
+        }
+        if (
+          m.recipient !== undefined &&
+          (typeof m.recipient !== 'string' || !allowedRecipients.includes(m.recipient))
+        ) {
+          invalidMessageRecipients.push(idx);
+          break;
+        }
+        if (
+          m.content &&
+          m.content.content_type !== undefined &&
+          (typeof m.content.content_type !== 'string' ||
+            !allowedContentTypes.includes(m.content.content_type))
+        ) {
+          invalidContentTypes.push(idx);
+          break;
+        }
+        if (m.end_turn !== undefined && typeof m.end_turn !== 'boolean') {
+          invalidEndTurn.push(idx);
+          break;
+        }
       }
-      if (m.update_time < m.create_time) {
-        invalidMessageTimestamps.push(idx);
-        break;
-      }
-      if (
-        m.weight !== undefined &&
-        (typeof m.weight !== 'number' || m.weight < 0 || m.weight > 1)
-      ) {
-        invalidMessageWeights.push(idx);
-        break;
-      }
-      if (
-        m.status !== undefined &&
-        (typeof m.status !== 'string' || !allowedStatuses.includes(m.status))
-      ) {
-        invalidMessageStatuses.push(idx);
-        break;
-      }
-      if (
-        m.channel !== undefined &&
-        m.channel !== null &&
-        !allowedChannels.includes(m.channel)
-      ) {
-        invalidMessageChannels.push(idx);
-        break;
-      }
-      if (
-        m.recipient !== undefined &&
-        (typeof m.recipient !== 'string' || !allowedRecipients.includes(m.recipient))
-      ) {
-        invalidMessageRecipients.push(idx);
-        break;
-      }
-      if (
-        m.content &&
-        m.content.content_type !== undefined &&
-        (typeof m.content.content_type !== 'string' ||
-          !allowedContentTypes.includes(m.content.content_type))
-      ) {
-        invalidContentTypes.push(idx);
-        break;
-      }
-      if (m.end_turn !== undefined && typeof m.end_turn !== 'boolean') {
-        invalidEndTurn.push(idx);
-        break;
-      }
-    }
     }
 
     if (
       nodes.some((n: any) => {
         const parts = n?.message?.content?.parts;
-        return !parts || parts.length === 0 || parts.every((p: any) => typeof p === 'string' && p.trim() === '');
+        return (
+          !parts ||
+          parts.length === 0 ||
+          parts.every((p: any) => typeof p === 'string' && p.trim() === '')
+        );
       })
     ) {
       emptyMessages.push(idx);
@@ -712,10 +697,7 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
       if (visited.size !== Object.keys(conv.mapping || {}).length) {
         unreachableNodes.push(idx);
       }
-      if (
-        typeof conv.current_node === 'string' &&
-        !conv.mapping[conv.current_node]
-      ) {
+      if (typeof conv.current_node === 'string' && !conv.mapping[conv.current_node]) {
         invalidCurrentNodes.push(idx);
       }
     }
@@ -743,9 +725,9 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
     duplicateIds,
     duplicateTitles,
     duplicateTitleIndices,
-  conversationsWithTitleWhitespace: titlesWithWhitespace,
-  conversationsWithInvalidTitleChars: titlesWithInvalidChars,
-  conversationsWithLongTitles: longTitles,
+    conversationsWithTitleWhitespace: titlesWithWhitespace,
+    conversationsWithInvalidTitleChars: titlesWithInvalidChars,
+    conversationsWithLongTitles: longTitles,
     missingFields,
     outOfOrderConversations: outOfOrder,
     invalidTimestamps,
@@ -800,7 +782,8 @@ export function validateNewAdvancedConversations(filePath: string): ValidationRe
 }
 
 if (require.main === module) {
-  const file = process.argv[2] || path.join(__dirname, '../docs/sigils/newadvancedconversations.json');
+  const file =
+    process.argv[2] || path.join(__dirname, '../docs/sigils/newadvancedconversations.json');
   const result = validateNewAdvancedConversations(file);
   if (
     result.duplicateIds.length ||

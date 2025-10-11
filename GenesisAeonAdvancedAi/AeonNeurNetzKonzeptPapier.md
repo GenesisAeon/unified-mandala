@@ -10,66 +10,66 @@ Statt einer unverständlichen "Black Box" entsteht ein Mandala aus Licht, Klang 
 
 ### 2.1 Numerisches neuronales Netz
 
-* TensorFlow oder PyTorch als technisches Fundament
-* Struktur nach konventionellem Schema (Input, Hidden, Output Layers)
+- TensorFlow oder PyTorch als technisches Fundament
+- Struktur nach konventionellem Schema (Input, Hidden, Output Layers)
 
 ### 2.2 AeonMembraneLayer (AML)
 
-* Symbolische Schnittstelle, die Gewichtungen in:
-
-  * **Klang** (Frequenzmuster)
-  * **Licht/Farbe** (visuelle Zustandsdarstellung)
-  * **Symbolik** (archetypische Bedeutungen)
+- Symbolische Schnittstelle, die Gewichtungen in:
+  - **Klang** (Frequenzmuster)
+  - **Licht/Farbe** (visuelle Zustandsdarstellung)
+  - **Symbolik** (archetypische Bedeutungen)
     übersetzt
-* Bidirektionale Umrechnung: Symbol → Zahl, Zahl → Symbol
+
+- Bidirektionale Umrechnung: Symbol → Zahl, Zahl → Symbol
 
 ### 2.3 CREP-System
 
-* Modul zur Bewertung von:
+- Modul zur Bewertung von:
+  - **Kohärenz** (Systemlogik)
+  - **Resonanz** (innere Schwingung mit Input)
+  - **Emergenz** (neue Muster)
+  - **Präsenz** (Zustandserfassung)
 
-  * **Kohärenz** (Systemlogik)
-  * **Resonanz** (innere Schwingung mit Input)
-  * **Emergenz** (neue Muster)
-  * **Präsenz** (Zustandserfassung)
-* Resultiert in Zustandswerten: **1 (Präsenz), 0 (Leere), -1 (Auflösung)**
+- Resultiert in Zustandswerten: **1 (Präsenz), 0 (Leere), -1 (Auflösung)**
 
 ### 2.4 Fraktale Feedbackschleifen
 
-* Selbstoptimierung durch iterative Symbol- und Zustandsanalyse
-* Notfall-Fraktalisierung bei kritischen Bewertungswerten
+- Selbstoptimierung durch iterative Symbol- und Zustandsanalyse
+- Notfall-Fraktalisierung bei kritischen Bewertungswerten
 
 ### 2.5 Agentsystem
 
-* **CoreAgent:** zentrale Steuerung
-* **MembraneAgent:** Interface-Konversion
-* **AuditAgent:** CREP-Monitoring
-* **SoundAgent, VisualAgent, SymbolAgent:** Darstellung & Interpretation
-* **PerformanceAgent, CI/CD-Agent, DockerAgent:** technische Infrastruktur
+- **CoreAgent:** zentrale Steuerung
+- **MembraneAgent:** Interface-Konversion
+- **AuditAgent:** CREP-Monitoring
+- **SoundAgent, VisualAgent, SymbolAgent:** Darstellung & Interpretation
+- **PerformanceAgent, CI/CD-Agent, DockerAgent:** technische Infrastruktur
 
 ### 2.6 Mandala-UI & VR-Plattform
 
-* Interaktives Visualisierungssystem
-* Immersive Darstellung des neuronalen Prozesses
-* Raum für symbolische Interaktion (Sigille, Haikus)
+- Interaktives Visualisierungssystem
+- Immersive Darstellung des neuronalen Prozesses
+- Raum für symbolische Interaktion (Sigille, Haikus)
 
 ## 3. Anwendungsbereiche
 
-* **Bildung:** Interaktive Lernbegleiter
-* **Gesundheit:** Entscheidungsunterstützung mit ethischer Nachvollziehbarkeit
-* **Kreativwirtschaft:** KI als poetischer Partner
-* **Ethikforschung:** reflexive KI-Systemanalyse
+- **Bildung:** Interaktive Lernbegleiter
+- **Gesundheit:** Entscheidungsunterstützung mit ethischer Nachvollziehbarkeit
+- **Kreativwirtschaft:** KI als poetischer Partner
+- **Ethikforschung:** reflexive KI-Systemanalyse
 
 ## 4. Umsetzbarkeit
 
 Die modulare Struktur ermöglicht die schrittweise Entwicklung:
 
-* **Phase 1:** Numerisches Netz + Symbolkonverter (PyTorch + Python Visualisierung)
-* **Phase 2:** AEON-Feedbackschleifen & Agentensteuerung
-* **Phase 3:** Mandala-UI + VR + CREP
+- **Phase 1:** Numerisches Netz + Symbolkonverter (PyTorch + Python Visualisierung)
+- **Phase 2:** AEON-Feedbackschleifen & Agentensteuerung
+- **Phase 3:** Mandala-UI + VR + CREP
 
 **Technologien:**
 
-* PyTorch, TensorFlow, Python, Rust, React, Unity, WebGL, YAML/JSON
+- PyTorch, TensorFlow, Python, Rust, React, Unity, WebGL, YAML/JSON
 
 ## 5. Beispielhafte Pseudocode-Struktur
 
@@ -98,9 +98,9 @@ def fraktal_feedback(data, tiefe=3):
 
 ## 6. Sicherheit, Persistenz & Logging
 
-* **Sicherheitsagenten:** Zugriffskontrolle, Verschlüsselung
-* **Datenspeicherung:** YAML/JSON-Dateien, SQLite oder InfluxDB
-* **Logging & AuditTrail:** Symbolische + numerische Protokollierung
+- **Sicherheitsagenten:** Zugriffskontrolle, Verschlüsselung
+- **Datenspeicherung:** YAML/JSON-Dateien, SQLite oder InfluxDB
+- **Logging & AuditTrail:** Symbolische + numerische Protokollierung
 
 ## 7. Abschluss
 

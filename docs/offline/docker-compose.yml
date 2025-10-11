@@ -6,7 +6,7 @@ services:
       dockerfile: Dockerfile.dev
     command: pnpm dev
     ports:
-      - "3000:3000"
+      - '3000:3000'
     volumes:
       - ../../:/workspace/unified-mandala
   agent:
@@ -17,6 +17,6 @@ services:
     environment:
       - PORT=4000
     ports:
-      - "4000:4000"
+      - '4000:4000'
     volumes:
       - ../../:/workspace/unified-mandala

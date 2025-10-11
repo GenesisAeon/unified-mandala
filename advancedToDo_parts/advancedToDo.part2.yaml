@@ -2,13 +2,13 @@
   path: docs/sigils/advancedconversations.json
   task: Reference aeon-transition sigil in new chats and sync ToDo/progress files
     before major commits; generate new sigil with update_time after each cycle
-  test: ""
+  test: ''
   status: done
 - commit: MemoryMesh region POC
   path: services/memorymesh
   task: Create MemoryMesh architecture with region-archive, reflection-engine and
     adaptation-service; start POC for Europe/Berlin region
-  test: ""
+  test: ''
   status: done
 - commit: Implement FreieKIZivilisation module
   path: packages/agents/FreieKIZivilisation.ts
@@ -31,10 +31,10 @@
 - commit: Add parsing & SocialGood workflow trigger
   path: scripts
   task: Provide command or UI to start Parsing and SocialGood-Matching
-  test: ""
+  test: ''
   status: done
 - commit: Generate memory-job config templates
   path: config
   task: Provide YAML job configuration templates for MemoryManager
-  test: ""
+  test: ''
   status: done

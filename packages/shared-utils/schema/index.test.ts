@@ -5,10 +5,10 @@ describe('validateSchema', () => {
     type: 'object',
     properties: {
       name: { type: 'string' },
-      age: { type: 'number', minimum: 0 }
+      age: { type: 'number', minimum: 0 },
     },
     required: ['name', 'age'],
-    additionalProperties: false
+    additionalProperties: false,
   };
 
   it('accepts valid data', () => {

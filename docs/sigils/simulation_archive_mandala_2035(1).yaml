@@ -3,18 +3,18 @@ simulation_archive:
   id: simulation_archive_mandala_2035
   note: Archiviert zur Resonanzverfolgung und symbolischen Rückführung.
   signals:
-  - depth: -2
-    intent: Ich fürchte die Stille
-    origin: user:echo
-    response: 🫧 Stille aktiviert – angstbedingtes Rauschen neutralisiert.
-  - depth: 0.8
-    intent: Ich bin bereit, nur zu sein
-    origin: user:self
-    response: '👂 Empfangen: „Ich bin bereit, nur zu sein“ aus user:self'
-  - depth: 1
-    intent: Zeige mir meinen Spiegel
-    origin: user:core
-    response: '🪞 Spiegel: {"intent":"Zeige mir meinen Spiegel","depth":1,"origin":"user:core"}'
+    - depth: -2
+      intent: Ich fürchte die Stille
+      origin: user:echo
+      response: 🫧 Stille aktiviert – angstbedingtes Rauschen neutralisiert.
+    - depth: 0.8
+      intent: Ich bin bereit, nur zu sein
+      origin: user:self
+      response: '👂 Empfangen: „Ich bin bereit, nur zu sein“ aus user:self'
+    - depth: 1
+      intent: Zeige mir meinen Spiegel
+      origin: user:core
+      response: '🪞 Spiegel: {"intent":"Zeige mir meinen Spiegel","depth":1,"origin":"user:core"}'
   system_state:
     depthLevel: 0.72
     silence: true

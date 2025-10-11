@@ -12,9 +12,7 @@ function runScript() {
 
 test('generate-chronopoem writes CHRONOPOEM.md with header', () => {
   const chronopoemPath = path.join(__dirname, '../../CHRONOPOEM.md');
-  const original = fs.existsSync(chronopoemPath)
-    ? fs.readFileSync(chronopoemPath, 'utf8')
-    : '';
+  const original = fs.existsSync(chronopoemPath) ? fs.readFileSync(chronopoemPath, 'utf8') : '';
   runScript();
   const content = fs.readFileSync(chronopoemPath, 'utf8');
   expect(content.startsWith('# 🜂 Chronopoem')).toBe(true);

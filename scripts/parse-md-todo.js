@@ -28,13 +28,17 @@ function appendTasks(entries, yamlFile, jsonFile) {
   fs.writeFileSync(jsonFile, JSON.stringify(j, null, 2));
 }
 
-function parseMdTodo(mdFile, yamlFile = path.join(__dirname, '../advancedToDo.yaml'), jsonFile = path.join(__dirname, '../advancedToDo.json')) {
+function parseMdTodo(
+  mdFile,
+  yamlFile = path.join(__dirname, '../advancedToDo.yaml'),
+  jsonFile = path.join(__dirname, '../advancedToDo.json'),
+) {
   const todos = extractTodosFromFile(mdFile);
   const entries = todos.map((t) => ({
     commit: `TODO from ${path.basename(mdFile)} - ${t.text.slice(0, 40)}`,
     path: mdFile,
     task: t.text,
-    test: ''
+    test: '',
   }));
   appendTasks(entries, yamlFile, jsonFile);
   console.log(`added ${entries.length} todos from ${mdFile}`);

@@ -10,7 +10,7 @@ describe('list-open-tasks command', () => {
     fs.mkdirSync(tmpDir, { recursive: true });
     fs.writeFileSync(
       todoFile,
-      '- commit: test\n  path: test.ts\n  task: sample task\n  status: todo\n'
+      '- commit: test\n  path: test.ts\n  task: sample task\n  status: todo\n',
     );
   });
 

@@ -27,13 +27,16 @@ function appendTasks(entries, yamlFile, jsonFile) {
   fs.writeFileSync(jsonFile, JSON.stringify(j, null, 2));
 }
 
-function generateTodoFromRepo(yamlFile = path.join(__dirname, '../advancedToDo.yaml'), jsonFile = path.join(__dirname, '../advancedToDo.json')) {
+function generateTodoFromRepo(
+  yamlFile = path.join(__dirname, '../advancedToDo.yaml'),
+  jsonFile = path.join(__dirname, '../advancedToDo.json'),
+) {
   const stats = analyzeRepo();
   const entries = stats.packages.map((pkg) => ({
     commit: `Add tests for ${pkg}`,
     path: `packages/${pkg}`,
     task: `Ensure unit tests exist for ${pkg}`,
-    test: `packages/${pkg}/*.test.ts`
+    test: `packages/${pkg}/*.test.ts`,
   }));
   appendTasks(entries, yamlFile, jsonFile);
   console.log(`todo entries updated for ${entries.length} packages`);

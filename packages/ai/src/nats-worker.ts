@@ -5,14 +5,14 @@ import { askOpenAI, type AskOpenAIParams } from './index.js';
 const sc = StringCodec();
 const MessageSchema = z.object({
   role: z.union([z.literal('system'), z.literal('user'), z.literal('assistant')]),
-  content: z.string().min(1)
+  content: z.string().min(1),
 });
 
 const RequestSchema = z.object({
   messages: z.array(MessageSchema).min(1),
   model: z.string().optional(),
   temperature: z.number().min(0).max(2).optional(),
-  max_tokens: z.number().int().positive().optional()
+  max_tokens: z.number().int().positive().optional(),
 });
 
 async function handleRequest(data: Uint8Array) {
@@ -22,7 +22,7 @@ async function handleRequest(data: Uint8Array) {
     messages: parsed.messages,
     model: parsed.model,
     temperature: parsed.temperature,
-    max_tokens: parsed.max_tokens
+    max_tokens: parsed.max_tokens,
   };
   return askOpenAI(params);
 }
@@ -45,9 +45,9 @@ async function main() {
         sc.encode(
           JSON.stringify({
             ok: false,
-            error: error instanceof Error ? error.message : String(error)
-          })
-        )
+            error: error instanceof Error ? error.message : String(error),
+          }),
+        ),
       );
     }
   }

@@ -18,7 +18,7 @@ describe('utopie-consent', () => {
     submitVote('pkgB', false);
     const tasks = [
       { package: 'pkgB', task: 'B' },
-      { package: 'pkgA', task: 'A' }
+      { package: 'pkgA', task: 'A' },
     ];
     const result = prioritizeTasks(tasks);
     expect(result[0].package).toBe('pkgA');

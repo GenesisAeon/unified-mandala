@@ -17,10 +17,7 @@ export function analyzeTrend(values: number[]): number {
   return denominator === 0 ? 0 : numerator / denominator;
 }
 
-export function classifyTrend(
-  values: number[],
-  epsilon = 1e-3
-): 'upward' | 'downward' | 'stable' {
+export function classifyTrend(values: number[], epsilon = 1e-3): 'upward' | 'downward' | 'stable' {
   const slope = analyzeTrend(values);
   if (slope > epsilon) return 'upward';
   if (slope < -epsilon) return 'downward';

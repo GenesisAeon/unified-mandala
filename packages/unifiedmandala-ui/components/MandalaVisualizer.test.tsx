@@ -2,7 +2,9 @@ import { render, waitFor } from '@testing-library/react';
 import MandalaVisualizer from './MandalaVisualizer';
 
 (global as any).fetch = jest.fn(() =>
-  Promise.resolve({ json: () => Promise.resolve({ activeUsers: 5, tasksCompleted: 10, averageCREP: 0.5 }) })
+  Promise.resolve({
+    json: () => Promise.resolve({ activeUsers: 5, tasksCompleted: 10, averageCREP: 0.5 }),
+  }),
 ) as any;
 
 describe('MandalaVisualizer', () => {

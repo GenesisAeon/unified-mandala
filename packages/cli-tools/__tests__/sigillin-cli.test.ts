@@ -8,7 +8,7 @@ describe('grep-todos command', () => {
 
   beforeAll(() => {
     if (!fs.existsSync(tmpDir)) fs.mkdirSync(tmpDir);
-    fs.writeFileSync(sample, JSON.stringify([{text:'hi'},{text:'TODO: do'}]));
+    fs.writeFileSync(sample, JSON.stringify([{ text: 'hi' }, { text: 'TODO: do' }]));
   });
 
   afterAll(() => {

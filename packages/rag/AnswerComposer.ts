@@ -25,9 +25,7 @@ export class AnswerComposer {
   constructor(private router: ModelRouter) {}
 
   async compose(question: string, docs: DocRecord[]): Promise<AnswerResult> {
-    const contextLines = docs
-      .map((d, i) => `[${i + 1}] ${d.text}`)
-      .join('\n');
+    const contextLines = docs.map((d, i) => `[${i + 1}] ${d.text}`).join('\n');
     const prompt = `${contextLines}\n\nQuestion: ${question}\nAnswer:`;
     const answer = await this.router.generate(prompt);
     const citations = docs.map((d) => ({ id: d.id, source: d.source }));

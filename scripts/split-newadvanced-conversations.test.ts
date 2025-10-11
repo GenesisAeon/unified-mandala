@@ -6,10 +6,7 @@ import { splitNewAdvancedConversations } from './split-newadvanced-conversations
 
 describe('splitNewAdvancedConversations', () => {
   it('splits conversations into separate files', async () => {
-    const src = path.join(
-      __dirname,
-      '../tests/fixtures/newadvanced-multi.json'
-    );
+    const src = path.join(__dirname, '../tests/fixtures/newadvanced-multi.json');
     const outDir = fs.mkdtempSync(path.join(os.tmpdir(), 'split-convo-'));
     const files = await splitNewAdvancedConversations(src, outDir);
     expect(files.length).toBe(2);
@@ -20,10 +17,7 @@ describe('splitNewAdvancedConversations', () => {
   });
 
   it('supports start index and count in streaming mode', async () => {
-    const src = path.join(
-      __dirname,
-      '../tests/fixtures/newadvanced-multi.json'
-    );
+    const src = path.join(__dirname, '../tests/fixtures/newadvanced-multi.json');
     const outDir = fs.mkdtempSync(path.join(os.tmpdir(), 'split-convo-'));
     const files = await splitNewAdvancedConversations(src, outDir, 1, 1, {
       stream: true,

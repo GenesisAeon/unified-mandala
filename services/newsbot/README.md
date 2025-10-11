@@ -1,7 +1,7 @@
 # Mandala NewsBot Services
 
 This directory contains placeholder microservices for the NewsBot
-pipeline.  Each subdirectory exposes a minimal FastAPI application with
+pipeline. Each subdirectory exposes a minimal FastAPI application with
 TODO markers for future expansion:
 
 - `news_fetcher`: collect headlines via RSS or NewsAPI.

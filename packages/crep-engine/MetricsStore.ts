@@ -2,7 +2,7 @@ import { metrics } from '@opentelemetry/api';
 
 const meter = metrics.getMeter('crep-engine');
 const valueHistogram = meter.createHistogram('crep_value', {
-  description: 'CREP metric values'
+  description: 'CREP metric values',
 });
 
 export class MetricsStore {

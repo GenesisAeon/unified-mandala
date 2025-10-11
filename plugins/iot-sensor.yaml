@@ -1,9 +1,9 @@
 id: iot-sensor
-title: "IoT Sensor"
-description: "Streams MQTT sensor data into the mandala"
+title: 'IoT Sensor'
+description: 'Streams MQTT sensor data into the mandala'
 type: data
 agent: IoTSensorAgent
 entrypoint: agents/iot_sensor/main.py
 config:
-  mqtt_url: "mqtt://localhost:1883"
-  topic: "sensors/#"
+  mqtt_url: 'mqtt://localhost:1883'
+  topic: 'sensors/#'

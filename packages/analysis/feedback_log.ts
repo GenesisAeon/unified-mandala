@@ -9,7 +9,10 @@ export interface FeedbackEntry {
 
 import fs from 'fs';
 
-export function logFeedback(entry: Omit<FeedbackEntry, 'timestamp'>, file: string = 'feedback_log.json'): FeedbackEntry[] {
+export function logFeedback(
+  entry: Omit<FeedbackEntry, 'timestamp'>,
+  file: string = 'feedback_log.json',
+): FeedbackEntry[] {
   const data: FeedbackEntry[] = fs.existsSync(file)
     ? JSON.parse(fs.readFileSync(file, 'utf8'))
     : [];

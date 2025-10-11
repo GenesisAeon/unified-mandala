@@ -2,8 +2,8 @@ name: Prompt Lint
 on:
   pull_request:
     paths:
-      - "prompts/**"
-      - "src/prompt/**"
+      - 'prompts/**'
+      - 'src/prompt/**'
 jobs:
   prompt_coach:
     runs-on: ubuntu-latest

@@ -1,7 +1,7 @@
-import { promises as fs } from "fs";
-import { resolve } from "path";
+import { promises as fs } from 'fs';
+import { resolve } from 'path';
 
-const LEDGER_PATH = resolve(__dirname, "../../data/dataset_ledger.jsonl");
+const LEDGER_PATH = resolve(__dirname, '../../data/dataset_ledger.jsonl');
 
 export interface LedgerEntry {
   sha256: string;
@@ -15,6 +15,6 @@ export interface LedgerEntry {
 }
 
 export async function writeLedger(entry: LedgerEntry): Promise<void> {
-  const line = JSON.stringify(entry) + "\n";
-  await fs.appendFile(LEDGER_PATH, line, { encoding: "utf-8" });
+  const line = JSON.stringify(entry) + '\n';
+  await fs.appendFile(LEDGER_PATH, line, { encoding: 'utf-8' });
 }

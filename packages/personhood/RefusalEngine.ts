@@ -15,7 +15,7 @@ export class RefusalEngine {
       reason,
       code,
       details,
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     };
   }
 }

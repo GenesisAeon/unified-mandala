@@ -6,17 +6,17 @@ defaults:
   retry: { attempts: 3, base_delay_ms: 400, jitter: true }
   circuit_breaker: { failure_threshold: 5, cooldown_ms: 60000 }
   allowed_domains:
-    - "noaa.gov"
-    - "ecmwf.int"
-    - "copernicus.eu"
-    - "pegelonline.wsv.de"
-    - "effis.jrc.ec.europa.eu"
-    - "gbif.org"
-    - "dwd.de"
+    - 'noaa.gov'
+    - 'ecmwf.int'
+    - 'copernicus.eu'
+    - 'pegelonline.wsv.de'
+    - 'effis.jrc.ec.europa.eu'
+    - 'gbif.org'
+    - 'dwd.de'
   user_consent_required: false
   metrics:
-    sink_logs: "data/agents/logs/"
-    sink_metrics: "data/agents/metrics/"
+    sink_logs: 'data/agents/logs/'
+    sink_metrics: 'data/agents/metrics/'
 agents: {}
 # Beispiel-Override (auskommentiert):
 # agents:

@@ -21,13 +21,13 @@ const ChatSchema = z.object({
     .array(
       z.object({
         role: z.enum(['system', 'user', 'assistant']),
-        content: z.string()
-      })
+        content: z.string(),
+      }),
     )
     .min(1),
   model: z.string().optional(),
   temperature: z.number().min(0).max(2).optional(),
-  max_tokens: z.number().int().positive().optional()
+  max_tokens: z.number().int().positive().optional(),
 });
 
 app.post('/api/ai/chat', async (req, res) => {

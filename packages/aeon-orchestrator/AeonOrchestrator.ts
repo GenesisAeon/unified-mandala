@@ -8,7 +8,7 @@ export class AeonOrchestrator {
   }
 
   unregister(listener: (e: AeonEvent) => void) {
-    this.listeners = this.listeners.filter(l => l !== listener);
+    this.listeners = this.listeners.filter((l) => l !== listener);
   }
 
   dispatch(event: AeonEvent) {

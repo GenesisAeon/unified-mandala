@@ -8,7 +8,10 @@ jest.mock('nats', () => {
     [Symbol.asyncIterator]: async function* () {},
   }));
   const close = jest.fn();
-  const sc = { encode: (v: string) => Buffer.from(v), decode: (b: Uint8Array) => Buffer.from(b).toString() };
+  const sc = {
+    encode: (v: string) => Buffer.from(v),
+    decode: (b: Uint8Array) => Buffer.from(b).toString(),
+  };
   return {
     connect: jest.fn(() => Promise.resolve({ publish, subscribe, close })),
     StringCodec: jest.fn(() => sc),

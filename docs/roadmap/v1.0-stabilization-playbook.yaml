@@ -460,3 +460,10 @@ risks:
   - id: policy-tooling-gaps
     description: Kyverno/OPA Binaries nicht auf Runner verfügbar
     mitigation: Fallback auf Containerized CLI, Preflight-Check in policy-suite
+status_updates:
+  - id: fraktal89
+    date: '2025-09-30'
+    notes:
+      security: Guarded FS endpoints, API-Key, loopback bind (HOST=127.0.0.1) and rate limits in proxy.
+      observability: Lightweight audit logging for proxy requests.
+      smokes: FS smoke (pnpm smoke:fs) added; Qwen smoke green (pnpm smoke:qwen).

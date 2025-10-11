@@ -11,9 +11,7 @@ describe('Ghostshell configuration validation', () => {
   });
 
   test('helm values contain expected defaults', () => {
-    const values = yaml.load(
-      fs.readFileSync('charts/ghostshell/values.yaml', 'utf8')
-    ) as any;
+    const values = yaml.load(fs.readFileSync('charts/ghostshell/values.yaml', 'utf8')) as any;
     expect(values.replicaCount).toBeGreaterThan(0);
     expect(values.service.port).toBe(80);
     expect(values.ingress.enabled).toBe(true);
@@ -21,19 +19,14 @@ describe('Ghostshell configuration validation', () => {
   });
 
   test('chart metadata is correct', () => {
-    const chart = yaml.load(
-      fs.readFileSync('charts/ghostshell/Chart.yaml', 'utf8')
-    ) as any;
+    const chart = yaml.load(fs.readFileSync('charts/ghostshell/Chart.yaml', 'utf8')) as any;
     expect(chart.name).toBe('ghostshell');
     expect(chart.type).toBe('application');
     expect(typeof chart.version).toBe('string');
   });
 
   test('deployment template exposes container port 3000', () => {
-    const deployment = fs.readFileSync(
-      'charts/ghostshell/templates/deployment.yaml',
-      'utf8'
-    );
+    const deployment = fs.readFileSync('charts/ghostshell/templates/deployment.yaml', 'utf8');
     expect(deployment).toMatch(/containerPort: 3000/);
   });
 });

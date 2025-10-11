@@ -1,89 +1,89 @@
 tasks:
-- id: adv-001
-  title: 'Adapter: ERA5 + OISST – Zeitreihen-Utils harmonisieren'
-  description: Implementiere ERA5/OISST Adapter und unify utils in src/utils/time.
-  status: in-progress
-  priority: 5
-  owner: codex
-  labels:
-  - climate
-  - adapter
-  - crep
-  area: data
-  component: adapters
-  phase: PRÄSENZ
-  trikaya: Sambhogakāya
-  crep:
-    resonance: 0.8
-    coherence: 0.7
-    emergence: 0.6
-    poetics: 0.5
-  acceptance:
-  - ERA5 & OISST liefern identische Normalform (schema v1)
-  - Unit-Tests > 80% coverage
-- id: adv-002
-  title: FourierMetricsServer → OTel-Tracing end-to-end
-  description: Trace-ID Propagation UI→WS→Server; Loglevel + Grafana Panel
-  status: open
-  priority: 4
-  labels:
-  - observability
-  - otel
-  - crep
-  phase: LEERE
-  trikaya: Nirmāṇakāya
-- id: adv-003
-  title: Analyse Gesprächsextrakte
-  description: Analyse Gesprächsextrakte
-  status: open
-  priority: 3
-  owner: codex
-  labels:
-  - advanced
-  - codex-import
-  phase: PRÄSENZ
-  trikaya: Nirmāṇakāya
-- id: adv-004
-  title: Erzeuge initiale Aufgaben
-  description: Erzeuge initiale Aufgaben
-  status: open
-  priority: 3
-  owner: codex
-  labels:
-  - advanced
-  - codex-import
-  phase: PRÄSENZ
-  trikaya: Nirmāṇakāya
-- id: adv-005
-  title: Verzweige in Unteraufgaben
-  description: Verzweige in Unteraufgaben
-  status: open
-  priority: 3
-  owner: codex
-  labels:
-  - advanced
-  - codex-import
-  phase: PRÄSENZ
-  trikaya: Nirmāṇakāya
-- id: adv-006
-  title: Bewerte CREP und depth
-  description: Bewerte CREP und depth
-  status: open
-  priority: 3
-  owner: codex
-  labels:
-  - advanced
-  - codex-import
-  phase: PRÄSENZ
-  trikaya: Nirmāṇakāya
-- id: adv-007
-  title: Commitiere Ergebnisse
-  description: Commitiere Ergebnisse
-  status: open
-  priority: 3
-  owner: codex
-  labels:
-  - advanced
-  - codex-import
-  phase: PRÄSENZ
-  trikaya: Nirmāṇakāya
+  - id: adv-001
+    title: 'Adapter: ERA5 + OISST – Zeitreihen-Utils harmonisieren'
+    description: Implementiere ERA5/OISST Adapter und unify utils in src/utils/time.
+    status: in-progress
+    priority: 5
+    owner: codex
+    labels:
+      - climate
+      - adapter
+      - crep
+    area: data
+    component: adapters
+    phase: PRÄSENZ
+    trikaya: Sambhogakāya
+    crep:
+      resonance: 0.8
+      coherence: 0.7
+      emergence: 0.6
+      poetics: 0.5
+    acceptance:
+      - ERA5 & OISST liefern identische Normalform (schema v1)
+      - Unit-Tests > 80% coverage
+  - id: adv-002
+    title: FourierMetricsServer → OTel-Tracing end-to-end
+    description: Trace-ID Propagation UI→WS→Server; Loglevel + Grafana Panel
+    status: open
+    priority: 4
+    labels:
+      - observability
+      - otel
+      - crep
+    phase: LEERE
+    trikaya: Nirmāṇakāya
+  - id: adv-003
+    title: Analyse Gesprächsextrakte
+    description: Analyse Gesprächsextrakte
+    status: open
+    priority: 3
+    owner: codex
+    labels:
+      - advanced
+      - codex-import
+    phase: PRÄSENZ
+    trikaya: Nirmāṇakāya
+  - id: adv-004
+    title: Erzeuge initiale Aufgaben
+    description: Erzeuge initiale Aufgaben
+    status: open
+    priority: 3
+    owner: codex
+    labels:
+      - advanced
+      - codex-import
+    phase: PRÄSENZ
+    trikaya: Nirmāṇakāya
+  - id: adv-005
+    title: Verzweige in Unteraufgaben
+    description: Verzweige in Unteraufgaben
+    status: open
+    priority: 3
+    owner: codex
+    labels:
+      - advanced
+      - codex-import
+    phase: PRÄSENZ
+    trikaya: Nirmāṇakāya
+  - id: adv-006
+    title: Bewerte CREP und depth
+    description: Bewerte CREP und depth
+    status: open
+    priority: 3
+    owner: codex
+    labels:
+      - advanced
+      - codex-import
+    phase: PRÄSENZ
+    trikaya: Nirmāṇakāya
+  - id: adv-007
+    title: Commitiere Ergebnisse
+    description: Commitiere Ergebnisse
+    status: open
+    priority: 3
+    owner: codex
+    labels:
+      - advanced
+      - codex-import
+    phase: PRÄSENZ
+    trikaya: Nirmāṇakāya

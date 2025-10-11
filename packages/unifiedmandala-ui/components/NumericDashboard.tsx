@@ -39,4 +39,3 @@ const NumericDashboard: React.FC<Props> = ({ data }) => {
 };
 
 export default NumericDashboard;
-

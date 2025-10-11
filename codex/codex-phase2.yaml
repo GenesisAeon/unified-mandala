@@ -1,7 +1,7 @@
 # 🜂 codex-phase2.yaml
 # Phase 2 – Repository-Aufspaltung, Strukturinitialisierung und Kollektiv-Vorbereitung
 
-task: "Strukturiere UnifiedMandala in thematische Repository-Einheiten, initialisiere Frontend-Projekt und bereite GPT-Kommunikation & Webanbindung vor."
+task: 'Strukturiere UnifiedMandala in thematische Repository-Einheiten, initialisiere Frontend-Projekt und bereite GPT-Kommunikation & Webanbindung vor.'
 
 description: |
   Dieses YAML definiert die zweite Systemphase:
@@ -10,7 +10,6 @@ description: |
   mit erweiterbarer Mandala-Logik und poetisch-symbolischer Architektur.
 
 steps:
-
   - type: repository
     action: create
     name: aeon-shell
@@ -56,8 +55,8 @@ steps:
         - crep-color.css
       - public/
         - assets/
-          - sigillin-icons/
-          - sharedream-logo.svg
+        - sigillin-icons/
+        - sharedream-logo.svg
       - README.md (mit Beschreibung des Interfaces und Link zum GenesisMandala)
 
   - type: link

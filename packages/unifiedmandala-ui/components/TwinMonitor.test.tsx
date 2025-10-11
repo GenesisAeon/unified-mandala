@@ -6,7 +6,7 @@ import TwinMonitor from './TwinMonitor';
 describe('TwinMonitor', () => {
   beforeEach(() => {
     (global as any).fetch = jest.fn().mockResolvedValue({
-      json: async () => ({ status: 'ok' })
+      json: async () => ({ status: 'ok' }),
     });
   });
 

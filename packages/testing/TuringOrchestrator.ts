@@ -3,7 +3,7 @@ export class TuringOrchestrator {
     return prompt.trim() !== response.trim();
   }
 
-  runBatch(pairs: Array<{prompt: string; response: string}>): number {
+  runBatch(pairs: Array<{ prompt: string; response: string }>): number {
     let passed = 0;
     for (const { prompt, response } of pairs) {
       if (this.run(prompt, response)) {

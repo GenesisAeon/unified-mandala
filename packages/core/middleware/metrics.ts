@@ -30,5 +30,5 @@ export function metricsMiddleware(req: Request, res: Response, next: NextFunctio
 
 export function metricsEndpoint(_req: Request, res: Response) {
   res.set('Content-Type', REG.contentType);
-  metricsText().then(m => res.end(m));
+  metricsText().then((m) => res.end(m));
 }

@@ -76,10 +76,7 @@ export class CitationIndex {
 
   private save(): void {
     fs.mkdirSync(path.dirname(this.filePath), { recursive: true });
-    fs.writeFileSync(
-      this.filePath,
-      JSON.stringify({ citations: this.citations }, null, 2)
-    );
+    fs.writeFileSync(this.filePath, JSON.stringify({ citations: this.citations }, null, 2));
   }
 }
 

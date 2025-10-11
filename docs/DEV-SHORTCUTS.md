@@ -133,3 +133,25 @@ pnpm ps:smoke-qwen
 | PowerShell meldet `command not found: Start-UM` | `pnpm diag:shortcuts` → PowerShell               | `pwsh` installieren oder ExecutionPolicy anpassen (`Set-ExecutionPolicy RemoteSigned`). |
 | `pnpm test:unit` fehlt nach übersprungenem Hook | `Test-UM -Diagnostic` (zeigt geplante Kommandos) | `pnpm -w test:unit` + `pnpm schema:validate` manuell nachholen.                         |
 | Health-Aggregator Badge zeigt falschen Port     | Prüfe `UM_HEALTH_PORT` in der Ausgabe            | `Set-UMPortMap -PortOffset <n>` erneut ausführen oder `.env.local` überschreiben.       |
+
+## Start-Shortcuts (pnpm / npm / yarn)
+
+## Zweck pnpm npm yarn
+
+Primer + Key + UI + Proxy `pnpm start:primer` `npm run npm:start:primer` `yarn yarn:start:primer`
+Primer + Key + UI + Proxy + RAG-Autoindex `pnpm start:primer:rag` `npm run npm:start:primer:rag` `yarn yarn:start:primer:rag`
+Primer + Plain (ohne Key-Injection) `pnpm start:primer:plain` `npm run npm:start:primer:plain` `yarn yarn:start:primer:plain`
+UI Dev (nur UI) `pnpm dev:ui` `npm run npm:dev:ui` `yarn yarn:dev:ui`
+UI Dev mit Key-Injection `pnpm dev:ui:with-key` `npm run npm:dev:ui:with-key` `yarn yarn:dev:ui:with-key`
+Smoke: Qwen `pnpm smoke:qwen` `npm run npm:smoke:qwen` `yarn yarn:smoke:qwen`
+Smoke: FS `pnpm smoke:fs` `npm run npm:smoke:fs` `yarn yarn:smoke:fs`
+Smoke: Memory `pnpm smoke:memory` `npm run npm:smoke:memory` `yarn yarn:smoke:memory`
+Smoke: RAG `pnpm smoke:rag` `npm run npm:smoke:rag` `yarn yarn:smoke:rag`
+
+### Hinweise
+
+- Primer aktivieren: Die Start-Shortcuts setzen `QWEN_PRIMER_FILE=sigils/qwen-primer.md` automatisch (bei start:primer\*).
+- Auth-Key lokal: start:primer\* setzt `LOCAL_API_KEY=dev-key` und injiziert `X-API-Key` via Vite-Proxy.
+- RAG: Einmalig das Embed-Modell ziehen: `ollama pull nomic-embed-text`.
+- Healthcheck: `Invoke-RestMethod http://127.0.0.1:4000/health` (PowerShell) sollte `ok: true, ...` liefern.
+- Troubleshooting: `unauthorized` → mit :primer starten oder Header manuell setzen; UI leer → Vite neu laden und Console prüfen.

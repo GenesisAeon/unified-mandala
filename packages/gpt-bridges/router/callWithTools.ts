@@ -16,13 +16,13 @@ export interface ChatModel {
  */
 export async function chatWithTools(
   model: ChatModel,
-  options: { messages: ChatMessage[]; provider?: string }
+  options: { messages: ChatMessage[]; provider?: string },
 ): Promise<any> {
   const { provider = 'openai' } = options;
   const history = [...options.messages];
   while (true) {
     const response = await model({ messages: history, tools: toolRegistry.list() });
-    const calls: ToolCall[] = normalizeToolCalls(provider, (response as any));
+    const calls: ToolCall[] = normalizeToolCalls(provider, response as any);
     if (!calls.length) {
       return response;
     }

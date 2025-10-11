@@ -23,6 +23,10 @@ const VLLM_URL = process.env.QWEN_ENDPOINT ?? defaultVllmEndpoint;
 const VLLM_MODEL = process.env.QWEN_MODEL ?? 'Qwen/Qwen2.5-7B-Instruct';
 
 const TARGET_TEXT = process.env.TARGET_TEXT ?? 'Qwen ok';
+// Configurable timeout for all network calls (default 60s)
+const TIMEOUT_MS = Number(process.env.SMOKE_TIMEOUT_MS ?? 60000);
+// Optional API key support for guarded dev proxies
+const API_KEY = process.env.LOCAL_API_KEY;
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 const color = (code, text) => `\u001b[${code}m${text}\u001b[0m`;
@@ -31,7 +35,7 @@ const red = (text) => color('31', text);
 const cyan = (text) => color('36', text);
 const gray = (text) => color('90', text);
 
-async function fetchWithTimeout(url, options = {}, timeoutMs = 5000) {
+async function fetchWithTimeout(url, options = {}, timeoutMs = TIMEOUT_MS) {
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), timeoutMs);
   try {
@@ -73,6 +77,9 @@ async function callApiChat(uiBase) {
       { role: 'system', content: 'Antworte nur exakt: "Qwen ok".' },
       { role: 'user', content: 'Bitte antworte exakt mit: Qwen ok' },
     ],
+    stream: false,
+    // Fast reply hint (for Ollama-backed proxies)
+    options: { num_predict: 64 },
   };
 
   const candidates = [];
@@ -93,10 +100,13 @@ async function callApiChat(uiBase) {
         url,
         {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: {
+            'Content-Type': 'application/json',
+            ...(API_KEY ? { 'X-API-Key': API_KEY } : {}),
+          },
           body: JSON.stringify(payload),
         },
-        10000,
+        TIMEOUT_MS,
       );
 
       if (!response.ok) {
@@ -150,7 +160,7 @@ async function probeOllama() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload),
     },
-    10000,
+    TIMEOUT_MS,
   );
 
   if (!response.ok) {
@@ -189,7 +199,7 @@ async function probeVllm() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload),
     },
-    10000,
+    TIMEOUT_MS,
   );
 
   if (!response.ok) {

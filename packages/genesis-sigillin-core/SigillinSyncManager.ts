@@ -7,5 +7,5 @@ export const syncSigillinStatus = (id: string, status: string) => {
   else bc.postMessage({ id, status });
 };
 
-socket.on('sigillinStatusUpdated', data => bc.postMessage(data));
+socket.on('sigillinStatusUpdated', (data) => bc.postMessage(data));
 bc.onmessage = (msg) => console.log('Status update (BC):', msg.data);

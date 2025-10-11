@@ -13,7 +13,9 @@ test('generateHaiku creates 3-line poem', () => {
 
 test('compileYAML writes yaml file', () => {
   const poem = ResonanzPoetik.generateHaiku(task, 'Beta', 0.5);
-  const results: PoeticResult[] = [{ timestamp: '2024-01-01', taskId: 't1', phase: 'Beta', crepScore: 0.5, vers: poem }];
+  const results: PoeticResult[] = [
+    { timestamp: '2024-01-01', taskId: 't1', phase: 'Beta', crepScore: 0.5, vers: poem },
+  ];
   const filename = 'test_poem.yaml';
   ResonanzPoetik.compileYAML(results, filename);
   const content = fs.readFileSync(path.join(process.cwd(), filename), 'utf-8');

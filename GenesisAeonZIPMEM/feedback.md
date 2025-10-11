@@ -2,7 +2,7 @@
 
 ZIPMEM MetaCommit abgeschlossen. Alle Features sind integriert.
 SealCore module added and commit-memory script relocated.
-Commit memory now stored direkt unter ``commitMemory/<commit-hash>``.
+Commit memory now stored direkt unter `commitMemory/<commit-hash>`.
 
 Neue Module für SelfLearn-System implementiert (SelfOrganizingMemory, TaskAllocator, Coordinator).
 Added conversation_importer utilities.
@@ -12,4 +12,5 @@ Additional stubs for UI and core modules created.
 Added README with commitMemory instructions.
 
 ## 2025-08-06
+
 - Integrated Singularity Simulator agent skeleton and sigil.

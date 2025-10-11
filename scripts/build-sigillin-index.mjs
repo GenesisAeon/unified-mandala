@@ -6,30 +6,50 @@ import { calculateMetrics } from '../src/utils/calculateMetrics.js';
 import { emergenceClass } from '../src/utils/classify.js';
 import { safeParseSigilFile } from './lib/safeSigilParse.cjs';
 
-const ROOTS=["docs/sigils/**/*.{yaml,yml,json,md}","data/sigils/**/*.jsonl"];
-const errors=[]; let sigils=[];
-for(const file of await glob(ROOTS,{dot:false,onlyFiles:true,unique:true})){
-  const res=safeParseSigilFile(file);
-  if(!res.ok){ continue; }
-  const data=res.data||{};
-  const id=data.id||path.basename(file).replace(path.extname(file),'');
-  const title=data.title||data.name||id;
-  const crep=normalizeCREP(data.crep??{score:data.score,C:data.C,R:data.R,E:data.E,P:data.P});
-  sigils.push({id,name:title,crep,connections:data.connections||[],phase:data.phase,sourceId:data.sourceId});
+const ROOTS = ['docs/sigils/**/*.{yaml,yml,json,md}', 'data/sigils/**/*.jsonl'];
+const errors = [];
+let sigils = [];
+for (const file of await glob(ROOTS, { dot: false, onlyFiles: true, unique: true })) {
+  const res = safeParseSigilFile(file);
+  if (!res.ok) {
+    continue;
+  }
+  const data = res.data || {};
+  const id = data.id || path.basename(file).replace(path.extname(file), '');
+  const title = data.title || data.name || id;
+  const crep = normalizeCREP(
+    data.crep ?? { score: data.score, C: data.C, R: data.R, E: data.E, P: data.P },
+  );
+  sigils.push({
+    id,
+    name: title,
+    crep,
+    connections: data.connections || [],
+    phase: data.phase,
+    sourceId: data.sourceId,
+  });
 }
-const total=sigils.length;
-sigils=sigils.map(s=>{
-  const metrics=calculateMetrics(s,total);
-  return {...s,metrics:{...metrics,emergenceClass:emergenceClass(metrics.emergencePotential??0)}};
+const total = sigils.length;
+sigils = sigils.map((s) => {
+  const metrics = calculateMetrics(s, total);
+  return {
+    ...s,
+    metrics: { ...metrics, emergenceClass: emergenceClass(metrics.emergencePotential ?? 0) },
+  };
 });
-sigils.sort((a,b)=>(b?.metrics?.emergencePotential??0)-(a?.metrics?.emergencePotential??0));
-let adapters=[];
-if(fs.existsSync('out/adapters_index.json')){
-  try{adapters=JSON.parse(fs.readFileSync('out/adapters_index.json','utf8'));}catch{}
+sigils.sort(
+  (a, b) => (b?.metrics?.emergencePotential ?? 0) - (a?.metrics?.emergencePotential ?? 0),
+);
+let adapters = [];
+if (fs.existsSync('out/adapters_index.json')) {
+  try {
+    adapters = JSON.parse(fs.readFileSync('out/adapters_index.json', 'utf8'));
+  } catch {}
 }
-fs.mkdirSync('out',{recursive:true});
-fs.writeFileSync('out/sigillin_index.json',JSON.stringify({sigils,adapters},null,2));
-fs.writeFileSync('out/sigils_errors.json',JSON.stringify(errors,null,2));
-if(process.env.SIGILS_STRICT==='true' && errors.length){
-  console.error(`Sigil errors: ${errors.length}`); process.exit(1);
+fs.mkdirSync('out', { recursive: true });
+fs.writeFileSync('out/sigillin_index.json', JSON.stringify({ sigils, adapters }, null, 2));
+fs.writeFileSync('out/sigils_errors.json', JSON.stringify(errors, null, 2));
+if (process.env.SIGILS_STRICT === 'true' && errors.length) {
+  console.error(`Sigil errors: ${errors.length}`);
+  process.exit(1);
 }

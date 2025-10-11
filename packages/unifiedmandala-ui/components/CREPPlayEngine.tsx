@@ -15,9 +15,10 @@ const CREPPlayEngine: React.FC = () => {
 
   return (
     <div aria-label="CREP Play Engine">
-      {(['C','R','E','P'] as const).map(key => (
+      {(['C', 'R', 'E', 'P'] as const).map((key) => (
         <label key={key}>
-          {key}: <input type="range" min="0" max="10" value={values[key]} onChange={handleChange(key)} />
+          {key}:{' '}
+          <input type="range" min="0" max="10" value={values[key]} onChange={handleChange(key)} />
         </label>
       ))}
       <button onClick={handleSubmit}>Trigger</button>

@@ -30,7 +30,7 @@ export class SigilManager extends EventEmitter {
   }
 
   update(id: string, data: any): void {
-    const s = this.sigils.find(e => e.id === id);
+    const s = this.sigils.find((e) => e.id === id);
     if (s) {
       s.data = data;
       this.emit('sigil:updated', s);
@@ -38,7 +38,7 @@ export class SigilManager extends EventEmitter {
   }
 
   remove(id: string): void {
-    this.sigils = this.sigils.filter(e => e.id !== id);
+    this.sigils = this.sigils.filter((e) => e.id !== id);
     this.emit('sigil:removed', id);
   }
 

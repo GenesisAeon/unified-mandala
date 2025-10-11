@@ -1,7 +1,7 @@
 {
   "gates": [
-    {"topic":"governance.override","min_level":"P3"},
-    {"topic":"admin.*","min_level":"P3"},
-    {"topic":"data.ingest","min_level":"P1"}
+    { "topic": "governance.override", "min_level": "P3" },
+    { "topic": "admin.*", "min_level": "P3" },
+    { "topic": "data.ingest", "min_level": "P1" }
   ]
 }

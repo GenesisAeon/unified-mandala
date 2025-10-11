@@ -11,7 +11,7 @@ export interface NullfeldResult {
 export function simulateNullfeld(
   masses: number[],
   curvature: number,
-  energy: number
+  energy: number,
 ): NullfeldResult {
   const G = 6.674e-11; // gravitational constant simplified
   let totalForce = 0;

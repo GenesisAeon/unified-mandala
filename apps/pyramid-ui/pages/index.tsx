@@ -7,7 +7,9 @@ const Home: React.FC = () => (
   <SigilProvider>
     <div>
       <h1>Pyramid UI Prototype</h1>
-      <SigilCrudPanel manager={new (require('../../../packages/shared-utils/SigilManager').SigilManager)()} />
+      <SigilCrudPanel
+        manager={new (require('../../../packages/shared-utils/SigilManager').SigilManager)()}
+      />
       <ThreeDPyramid layers={3} />
     </div>
   </SigilProvider>

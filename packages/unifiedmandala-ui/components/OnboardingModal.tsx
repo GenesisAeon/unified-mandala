@@ -10,10 +10,7 @@ interface ServiceOption {
   default_enabled?: boolean;
 }
 
-const servicesFile = path.resolve(
-  __dirname,
-  '../../../config/onboarding/services.yaml'
-);
+const servicesFile = path.resolve(__dirname, '../../../config/onboarding/services.yaml');
 let defaultServices: ServiceOption[] = [];
 try {
   const raw = fs.readFileSync(servicesFile, 'utf8');
@@ -37,13 +34,11 @@ const OnboardingModal: React.FC<OnboardingModalProps> = ({
 }) => {
   const [index, setIndex] = useState(0);
   const [selected, setSelected] = useState<string[]>(
-    services.filter(s => s.default_enabled).map(s => s.id)
+    services.filter((s) => s.default_enabled).map((s) => s.id),
   );
   if (!open) return null;
   const toggle = (id: string) => {
-    setSelected(prev =>
-      prev.includes(id) ? prev.filter(x => x !== id) : [...prev, id]
-    );
+    setSelected((prev) => (prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]));
   };
   const next = () => {
     if (index < steps.length) {
@@ -60,7 +55,7 @@ const OnboardingModal: React.FC<OnboardingModalProps> = ({
       ) : (
         <div>
           <p>Dienste auswählen:</p>
-          {services.map(s => (
+          {services.map((s) => (
             <label key={s.id} style={{ display: 'block' }}>
               <input
                 type="checkbox"

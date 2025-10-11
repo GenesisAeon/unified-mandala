@@ -1,22 +1,22 @@
 agents:
   - id: codex
-    role: "Implementer"
-    tasks: ["patch", "scripts", "ci"]
+    role: 'Implementer'
+    tasks: ['patch', 'scripts', 'ci']
   - id: mistral
-    role: "Planner"
-    tasks: ["plans", "adapters", "bench"]
+    role: 'Planner'
+    tasks: ['plans', 'adapters', 'bench']
   - id: claude
-    role: "Narrator"
-    tasks: ["docs", "onboarding", "ethics"]
+    role: 'Narrator'
+    tasks: ['docs', 'onboarding', 'ethics']
   - id: archivist
-    role: "Archivist"
-    model: "llama-3.1-70b-instruct"
-    tasks: ["emergence_scan", "schema_review", "repo_map"]
+    role: 'Archivist'
+    model: 'llama-3.1-70b-instruct'
+    tasks: ['emergence_scan', 'schema_review', 'repo_map']
   - id: cartographer
-    role: "Cartographer"
-    model: "qwen-2.5-72b"
-    tasks: ["schema_lint", "ts_refactor", "cross_language_review"]
+    role: 'Cartographer'
+    model: 'qwen-2.5-72b'
+    tasks: ['schema_lint', 'ts_refactor', 'cross_language_review']
 routing:
-  emergence_scan: ["archivist", "mistral"]
-  schema_review: ["archivist", "codex"]
-  docs_sync: ["claude", "codex"]
+  emergence_scan: ['archivist', 'mistral']
+  schema_review: ['archivist', 'codex']
+  docs_sync: ['claude', 'codex']

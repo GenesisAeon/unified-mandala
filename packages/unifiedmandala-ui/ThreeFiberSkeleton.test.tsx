@@ -8,7 +8,7 @@ jest.mock('@react-three/fiber', () => ({
   ambientLight: 'ambientLight',
   mesh: 'mesh',
   boxGeometry: 'boxGeometry',
-  meshStandardMaterial: 'meshStandardMaterial'
+  meshStandardMaterial: 'meshStandardMaterial',
 }));
 
 test('renders three-fiber skeleton', () => {

@@ -10,7 +10,7 @@ export interface GeoTIFFIngestResult {
 export async function ingestGeoTIFF(
   filePath: string,
   license: string,
-  personhood?: PersonhoodMetadata
+  personhood?: PersonhoodMetadata,
 ): Promise<GeoTIFFIngestResult> {
   const data = fs.readFileSync(filePath);
   const arrayBuffer = data.buffer.slice(data.byteOffset, data.byteOffset + data.byteLength);

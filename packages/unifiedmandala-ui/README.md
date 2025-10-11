@@ -3,6 +3,7 @@
 React-Komponenten für das Mandala-Frontend.
 
 ## Komponenten
+
 - **MandalaNetworkView** – D3-Netzwerk aller Sigillin-Knoten
 - **CREPChart** – Visualisierung der CREP-Historie
 - **CREPTriggerPanel** – Anzeige und Steuerung von CREP-Events
@@ -19,10 +20,10 @@ React-Komponenten für das Mandala-Frontend.
 - **LiveCREPPanel** – kombiniert Trigger und Chart für Live-Daten
 
 ## Hooks
+
 - **useSymbolzeit** – liefert aktuelle Symbolzeit-Phase
 - **useCREP** – Zugriff auf CREP-Historie und Trigger
 - **CREPContext** – stellt CREP-Daten via React Context bereit
 
 Zusätzlich stellt `shared-utils` die Funktion **getCREPPhaseColor** bereit,
 um CREP-Werte in Farbzustände zu übersetzen.
-

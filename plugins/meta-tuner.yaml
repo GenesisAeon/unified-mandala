@@ -1,5 +1,5 @@
 id: meta-tuner
-title: "Meta Tuner"
+title: 'Meta Tuner'
 type: optimization
 agent: MetaTunerAgent
 entrypoint: agents/meta_tuner/main.py

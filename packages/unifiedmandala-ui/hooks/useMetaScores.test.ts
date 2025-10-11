@@ -4,7 +4,7 @@ import { useMetaScores } from './useMetaScores';
 
 beforeEach(() => {
   global.fetch = jest.fn(() =>
-    Promise.resolve({ json: () => Promise.resolve([{ layer: 'x', score: 0.4 }]) })
+    Promise.resolve({ json: () => Promise.resolve([{ layer: 'x', score: 0.4 }]) }),
   ) as any;
 });
 

@@ -23,8 +23,10 @@ export function syncHistoricalData(datasetPath: string, archivePath: string): vo
 }
 
 if (require.main === module) {
-  const dataset = process.argv[2] || path.join(__dirname, '..', 'docs', 'archive', 'historical-data.json');
-  const archive = process.argv[3] || path.join(__dirname, '..', 'docs', 'archive', 'archiv-menschheitsspuren.md');
+  const dataset =
+    process.argv[2] || path.join(__dirname, '..', 'docs', 'archive', 'historical-data.json');
+  const archive =
+    process.argv[3] || path.join(__dirname, '..', 'docs', 'archive', 'archiv-menschheitsspuren.md');
   syncHistoricalData(dataset, archive);
   console.log('Historical dataset synced');
 }

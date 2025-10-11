@@ -10,7 +10,7 @@ describe('analyzePackages', () => {
     mkdirSync(packagesDir, { recursive: true });
     writeFileSync(
       path.join(packagesDir, 'package.json'),
-      JSON.stringify({ name: 'demo', dependencies: { safe: '1.0.0', risky: '*' } })
+      JSON.stringify({ name: 'demo', dependencies: { safe: '1.0.0', risky: '*' } }),
     );
     const reports = analyzePackages(tmp);
     expect(reports).toEqual([{ name: 'demo', dependencies: 2, risky: ['risky'] }]);

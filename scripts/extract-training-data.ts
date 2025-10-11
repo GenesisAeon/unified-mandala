@@ -46,7 +46,7 @@ export async function extractTrainingData(
   outRoot = path.resolve('GenesisAeonZIPMEM/newadvancedconversations'),
   manifestPath = path.resolve('GenesisAeonZIPMEM/ZIPMEM_manifest.yaml'),
   reflection: Reflection = new BasicReflection(),
-  crepThreshold = 0.5
+  crepThreshold = 0.5,
 ) {
   let manifest: any = { conversations: [] };
   try {
@@ -56,9 +56,7 @@ export async function extractTrainingData(
     // ignore if manifest doesn't exist
   }
 
-  const pipeline = createReadStream(src, { encoding: 'utf8' })
-    .pipe(parser())
-    .pipe(streamArray());
+  const pipeline = createReadStream(src, { encoding: 'utf8' }).pipe(parser()).pipe(streamArray());
 
   for await (const { value: convo } of pipeline) {
     const date = (convo.timestamp || convo.date || new Date().toISOString()).slice(0, 10);
@@ -72,10 +70,10 @@ export async function extractTrainingData(
         typeof m.crep === 'number'
           ? m.crep
           : typeof m.metadata?.crep === 'number'
-          ? m.metadata.crep
-          : typeof m.weight === 'number'
-          ? m.weight
-          : 1;
+            ? m.metadata.crep
+            : typeof m.weight === 'number'
+              ? m.weight
+              : 1;
       if (score < crepThreshold) {
         reflection.record(`Filtered message ${i} in '${title}' with CREP ${score}`);
         return false;
@@ -91,7 +89,10 @@ export async function extractTrainingData(
     await fs.mkdir(folder, { recursive: true });
 
     await fs.writeFile(path.join(folder, 'conversation.json'), JSON.stringify(convo, null, 2));
-    await fs.writeFile(path.join(folder, 'conversation.yaml'), yaml.dump(convo, { lineWidth: 120 }));
+    await fs.writeFile(
+      path.join(folder, 'conversation.yaml'),
+      yaml.dump(convo, { lineWidth: 120 }),
+    );
 
     for (let i = 0; i < messages.length; i++) {
       const msg = messages[i];
@@ -103,10 +104,7 @@ export async function extractTrainingData(
         content: msg.content || msg.text || '',
         time: msg.timestamp || msg.time || null,
       };
-      await fs.writeFile(
-        path.join(folder, `msg_${idx}.yaml`),
-        yaml.dump(frag, { lineWidth: 120 })
-      );
+      await fs.writeFile(path.join(folder, `msg_${idx}.yaml`), yaml.dump(frag, { lineWidth: 120 }));
     }
 
     const summaryText = summarizeMessages(messages);
@@ -114,7 +112,7 @@ export async function extractTrainingData(
     await fs.writeFile(path.join(folder, 'summary.md'), summaryMd);
 
     const participants = Array.from(
-      new Set(messages.map((m: any) => m.role || m.sender).filter(Boolean))
+      new Set(messages.map((m: any) => m.role || m.sender).filter(Boolean)),
     );
     const meta = { id: slug, title, date, participants, tags: convo.tags || [] };
     await fs.writeFile(path.join(folder, 'meta.yaml'), yaml.dump(meta));

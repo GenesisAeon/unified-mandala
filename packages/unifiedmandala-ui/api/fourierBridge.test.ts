@@ -11,7 +11,7 @@ global.WebSocket = class {
 
 test('connectFourierBridge emits metric events', () => {
   let payload: any = null;
-  fourierBridge.on('fourier:metrics', data => {
+  fourierBridge.on('fourier:metrics', (data) => {
     payload = data;
   });
   const ws = connectFourierBridge('ws://test');
@@ -21,10 +21,12 @@ test('connectFourierBridge emits metric events', () => {
 
 test('connectFourierBridge emits svg events', () => {
   let svg: any = null;
-  fourierBridge.on('fourier:metrics-svg', data => {
+  fourierBridge.on('fourier:metrics-svg', (data) => {
     svg = data;
   });
   const ws = connectFourierBridge('ws://test');
-  (ws as any).send(JSON.stringify({ type: 'fourier-metrics-svg', data: { id: 'x', svg: '<svg/>' } }));
+  (ws as any).send(
+    JSON.stringify({ type: 'fourier-metrics-svg', data: { id: 'x', svg: '<svg/>' } }),
+  );
   expect(svg).toEqual({ id: 'x', svg: '<svg/>' });
 });

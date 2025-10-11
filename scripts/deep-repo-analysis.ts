@@ -11,7 +11,7 @@ export interface PackageReport {
 
 export function analyzePackages(baseDir: string): PackageReport[] {
   const packagesDir = path.join(baseDir, 'packages');
-  const dirs = readdirSync(packagesDir, { withFileTypes: true }).filter(d => d.isDirectory());
+  const dirs = readdirSync(packagesDir, { withFileTypes: true }).filter((d) => d.isDirectory());
   const reports: PackageReport[] = [];
   for (const dir of dirs) {
     const pkgPath = path.join(packagesDir, dir.name, 'package.json');
@@ -24,7 +24,10 @@ export function analyzePackages(baseDir: string): PackageReport[] {
   return reports;
 }
 
-export async function suggestFixes(agent: { createSnippet(prompt: string): Promise<string> }, report: PackageReport): Promise<string | null> {
+export async function suggestFixes(
+  agent: { createSnippet(prompt: string): Promise<string> },
+  report: PackageReport,
+): Promise<string | null> {
   if (!report.risky.length) return null;
   const prompt = `Package ${report.name} has risky dependencies: ${report.risky.join(', ')}. Provide mitigation steps.`;
   return agent.createSnippet(prompt);
@@ -33,11 +36,14 @@ export async function suggestFixes(agent: { createSnippet(prompt: string): Promi
 if (require.main === module) {
   const reports = analyzePackages(process.cwd());
   if (process.env.MISTRAL_API_KEY) {
-    const api = new MistralAPI(process.env.MISTRAL_API_URL || "https://api.mistral.ai", process.env.MISTRAL_API_KEY!);
+    const api = new MistralAPI(
+      process.env.MISTRAL_API_URL || 'https://api.mistral.ai',
+      process.env.MISTRAL_API_KEY!,
+    );
     const agent = new MistralCodeAgent(api);
     Promise.all(
-      reports.map(async r => ({ ...r, suggestion: await suggestFixes(agent, r) }))
-    ).then(res => console.log(JSON.stringify(res, null, 2)));
+      reports.map(async (r) => ({ ...r, suggestion: await suggestFixes(agent, r) })),
+    ).then((res) => console.log(JSON.stringify(res, null, 2)));
   } else {
     console.log(JSON.stringify(reports, null, 2));
   }

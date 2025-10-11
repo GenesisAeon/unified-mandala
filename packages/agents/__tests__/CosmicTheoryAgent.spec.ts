@@ -1,6 +1,11 @@
 import { describe, it, expect, vi, test } from 'vitest';
 import axios from 'axios';
-import { fetchCosmicData, analyzeCosmicData, callPySRService, streamFourierMetricsGrpc } from '../CosmicTheoryAgent';
+import {
+  fetchCosmicData,
+  analyzeCosmicData,
+  callPySRService,
+  streamFourierMetricsGrpc,
+} from '../CosmicTheoryAgent';
 
 vi.mock('axios');
 vi.mock('@grpc/grpc-js', () => {
@@ -17,7 +22,7 @@ vi.mock('@grpc/grpc-js', () => {
         return emitter;
       }
     },
-    credentials: { createInsecure: () => null }
+    credentials: { createInsecure: () => null },
   };
 });
 
@@ -51,9 +56,8 @@ describe('callPySRService', () => {
 
 test('streams fourier metrics via grpc', async () => {
   const received: any[] = [];
-  const cancel = await streamFourierMetricsGrpc('localhost:50051', m => received.push(m));
-  await new Promise(r => setTimeout(r, 10));
+  const cancel = await streamFourierMetricsGrpc('localhost:50051', (m) => received.push(m));
+  await new Promise((r) => setTimeout(r, 10));
   cancel();
   expect(received).toEqual([{ val: 1 }]);
 });
-

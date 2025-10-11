@@ -12,8 +12,8 @@ export class HookTriggererAgent implements Agent {
     const urls = Array.isArray((task as any).urls)
       ? (task as any).urls
       : (task as any).url
-      ? [(task as any).url]
-      : [];
+        ? [(task as any).url]
+        : [];
     const method = (task as any).method || 'POST';
 
     for (const url of urls) {
@@ -24,9 +24,7 @@ export class HookTriggererAgent implements Agent {
           body: JSON.stringify(task),
         });
         if (!res.ok) {
-          console.error(
-            `HookTriggerer error for ${task.id} [${url}]: ${res.status}`
-          );
+          console.error(`HookTriggerer error for ${task.id} [${url}]: ${res.status}`);
         }
       } catch (err) {
         console.error(`HookTriggerer error for ${task.id} [${url}]:`, err);

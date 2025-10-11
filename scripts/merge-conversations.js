@@ -8,7 +8,10 @@ let { mergeJsonChunks } = (() => {
   }
 })();
 
-function run(dir = path.join(__dirname, '../docs/sigils/conversations'), out = path.join(__dirname, '../docs/sigils/conversations.json')) {
+function run(
+  dir = path.join(__dirname, '../docs/sigils/conversations'),
+  out = path.join(__dirname, '../docs/sigils/conversations.json'),
+) {
   mergeJsonChunks(dir, out);
   console.log(`Conversations merged into ${out}`);
 }

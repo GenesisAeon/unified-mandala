@@ -1,7 +1,7 @@
 # Archiv Menschheitsspuren – Erweiterung
 
 Dieses Dokument ergänzt `docs/archive/archiv-menschheitsspuren.md` um weitere
-archäologische Hinweise aus dem Chat *Erweiterung Archiv Menschheitsspuren*.
+archäologische Hinweise aus dem Chat _Erweiterung Archiv Menschheitsspuren_.
 
 ## Zusätzliche Funde
 

@@ -39,4 +39,3 @@ export const AgentHealthPanel: React.FC = () => {
 };
 
 export default AgentHealthPanel;
-

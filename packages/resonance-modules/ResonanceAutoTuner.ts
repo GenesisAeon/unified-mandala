@@ -9,7 +9,7 @@ export class ResonanceAutoTuner {
     const avg = feedback.reduce((a, b) => a + b, 0) / feedback.length;
     return {
       frequency: params.frequency * (1 + avg),
-      intensity: params.intensity * (1 + avg / 2)
+      intensity: params.intensity * (1 + avg / 2),
     };
   }
 }

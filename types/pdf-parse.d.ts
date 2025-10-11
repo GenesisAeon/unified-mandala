@@ -5,6 +5,6 @@ declare module 'pdf-parse' {
   }
   export default function pdf(
     data: Buffer,
-    options?: Record<string, unknown>
+    options?: Record<string, unknown>,
   ): Promise<PDFParseResult>;
 }

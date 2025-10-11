@@ -1,16 +1,16 @@
 # codex/fraktalrun.import.yaml
 kind: CodexRun
-name: "Fraktalrun – advancedToDo Import"
+name: 'Fraktalrun – advancedToDo Import'
 triggers:
   - manual: true
   - onChange:
-      paths: ["advancedToDo.yaml","advancedToDo.json"]
+      paths: ['advancedToDo.yaml', 'advancedToDo.json']
 steps:
-  - name: "Fraktalrun: Import & Normalize"
-    uses: "fraktalrun/pipeline.yaml#commit"
+  - name: 'Fraktalrun: Import & Normalize'
+    uses: 'fraktalrun/pipeline.yaml#commit'
     env:
-      REDACTION: "true"
-      DRY_RUN: "false"
+      REDACTION: 'true'
+      DRY_RUN: 'false'
 artifacts:
-  - "./tasks/fractal_tasks.yaml"
-  - "./advancedprogress.json"
+  - './tasks/fractal_tasks.yaml'
+  - './advancedprogress.json'

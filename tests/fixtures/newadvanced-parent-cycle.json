@@ -13,13 +13,13 @@
       },
       "A": {
         "id": "A",
-        "message": {"id": "mA", "author": {"role": "user"}, "create_time": 1},
+        "message": { "id": "mA", "author": { "role": "user" }, "create_time": 1 },
         "parent": "B",
         "children": []
       },
       "B": {
         "id": "B",
-        "message": {"id": "mB", "author": {"role": "assistant"}, "create_time": 2},
+        "message": { "id": "mB", "author": { "role": "assistant" }, "create_time": 2 },
         "parent": "A",
         "children": []
       }

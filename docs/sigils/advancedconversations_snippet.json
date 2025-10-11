@@ -1,11 +1,6 @@
 {
   "id": "learning-module-launch",
-  "modules": [
-    "codeagent-python",
-    "codeagent-go",
-    "c-tutor",
-    "java-hamster-ai"
-  ],
+  "modules": ["codeagent-python", "codeagent-go", "c-tutor", "java-hamster-ai"],
   "workflows": [
     {
       "name": "C-Tutor Progress",

@@ -40,12 +40,12 @@ function run() {
   const repo = path.join(__dirname, '..');
   const sigilFile = path.join(repo, 'docs/sigils/todo-sigil.yaml');
   const comments = scanTodoComments(repo);
-  const existing = parseTodoSigil(sigilFile).map(it => ({
+  const existing = parseTodoSigil(sigilFile).map((it) => ({
     text: it.beschreibung,
-    done: it.status === 'erledigt'
+    done: it.status === 'erledigt',
   }));
-  const texts = new Set(existing.map(t => t.text));
-  comments.forEach(c => {
+  const texts = new Set(existing.map((t) => t.text));
+  comments.forEach((c) => {
     const text = `${c.text} (${c.file}:${c.line})`;
     if (!texts.has(text)) {
       existing.push({ text, done: false });

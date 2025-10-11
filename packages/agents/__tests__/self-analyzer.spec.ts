@@ -8,7 +8,7 @@ describe('self-analyzer agent', () => {
   const tmpJson = path.join(__dirname, 'tmp-todo.json');
 
   afterEach(() => {
-    [tmpYaml, tmpJson].forEach(f => fs.existsSync(f) && fs.unlinkSync(f));
+    [tmpYaml, tmpJson].forEach((f) => fs.existsSync(f) && fs.unlinkSync(f));
   });
 
   it('writes todo entries', () => {

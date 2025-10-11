@@ -18,7 +18,7 @@ describe('chunkNewAdvancedConversations', () => {
 
   it('writes chunk files with requested size', async () => {
     await chunkNewAdvancedConversations(file, dest, 1);
-    const chunks = fs.readdirSync(dest).filter(f => f.endsWith('.json'));
+    const chunks = fs.readdirSync(dest).filter((f) => f.endsWith('.json'));
     expect(chunks).toHaveLength(2);
     const first = JSON.parse(fs.readFileSync(path.join(dest, chunks[0]), 'utf8'));
     expect(first).toHaveLength(1);

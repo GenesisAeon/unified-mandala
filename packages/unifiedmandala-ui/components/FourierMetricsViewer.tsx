@@ -16,12 +16,7 @@ const FourierMetricsViewer: React.FC = () => {
 
   if (!svg) return <div>No metrics</div>;
 
-  return (
-    <div
-      aria-label="Fourier Metrics SVG"
-      dangerouslySetInnerHTML={{ __html: svg }}
-    />
-  );
+  return <div aria-label="Fourier Metrics SVG" dangerouslySetInnerHTML={{ __html: svg }} />;
 };
 
 export default FourierMetricsViewer;

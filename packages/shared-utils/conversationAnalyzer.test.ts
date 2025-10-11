@@ -1,6 +1,13 @@
 import fs from 'fs';
 import path from 'path';
-import { analyzeConversations, extractTodosFromConversations, extractImplicitTodosFromConversations, loadConversations, countTodosByConversation, extractTodosByTitle } from './conversationAnalyzer';
+import {
+  analyzeConversations,
+  extractTodosFromConversations,
+  extractImplicitTodosFromConversations,
+  loadConversations,
+  countTodosByConversation,
+  extractTodosByTitle,
+} from './conversationAnalyzer';
 
 describe('conversationAnalyzer', () => {
   const sample = path.join(__dirname, 'sample-conv.json');
@@ -9,13 +16,22 @@ describe('conversationAnalyzer', () => {
       {
         id: 'a',
         mapping: {
-          root: { id: 'root', message: { id: 'm1', author: { role: 'user' }, content: { parts: ['Hallo TODO teste'] } } }
-        }
-      }
+          root: {
+            id: 'root',
+            message: {
+              id: 'm1',
+              author: { role: 'user' },
+              content: { parts: ['Hallo TODO teste'] },
+            },
+          },
+        },
+      },
     ];
     fs.writeFileSync(sample, JSON.stringify(data), 'utf8');
   });
-  afterAll(() => { fs.unlinkSync(sample); });
+  afterAll(() => {
+    fs.unlinkSync(sample);
+  });
 
   it('analyzes conversations', () => {
     const stats = analyzeConversations(sample);
@@ -41,10 +57,14 @@ describe('conversationAnalyzer', () => {
         id: 'b',
         mapping: {
           root: {
-            message: { id: 'm2', author: { role: 'user' }, content: { parts: ['Wir sollten mehr Tests schreiben.'] } }
-          }
-        }
-      }
+            message: {
+              id: 'm2',
+              author: { role: 'user' },
+              content: { parts: ['Wir sollten mehr Tests schreiben.'] },
+            },
+          },
+        },
+      },
     ];
     fs.writeFileSync(file, JSON.stringify(data), 'utf8');
     const todos = extractImplicitTodosFromConversations(file);
@@ -62,18 +82,18 @@ describe('conversationAnalyzer', () => {
           root: {
             message: {
               author: { role: 'user' },
-              content: { parts: ['TODO: sample'] }
-            }
-          }
-        }
+              content: { parts: ['TODO: sample'] },
+            },
+          },
+        },
       },
       {
         id: 'b',
         title: 'Bar',
         mapping: {
-          root: { message: { author: { role: 'user' }, content: { parts: ['no tasks'] } } }
-        }
-      }
+          root: { message: { author: { role: 'user' }, content: { parts: ['no tasks'] } } },
+        },
+      },
     ];
     fs.writeFileSync(file, JSON.stringify(data), 'utf8');
     const todos = extractTodosByTitle(file, 'Foo');
@@ -83,8 +103,14 @@ describe('conversationAnalyzer', () => {
 
   it('loads newline-delimited json', () => {
     const file = path.join(__dirname, 'lines.jsonl');
-    const line1 = JSON.stringify({ id: 'x', mapping: { r: { message: { content: { parts: ['A'] } } } } });
-    const line2 = JSON.stringify({ id: 'y', mapping: { r: { message: { content: { parts: ['B'] } } } } });
+    const line1 = JSON.stringify({
+      id: 'x',
+      mapping: { r: { message: { content: { parts: ['A'] } } } },
+    });
+    const line2 = JSON.stringify({
+      id: 'y',
+      mapping: { r: { message: { content: { parts: ['B'] } } } },
+    });
     fs.writeFileSync(file, `${line1}\n${line2}`);
     const convs = loadConversations(file);
     expect(convs.length).toBe(2);

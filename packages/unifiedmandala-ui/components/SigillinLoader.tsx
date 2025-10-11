@@ -14,12 +14,13 @@ const SigillinLoader: React.FC<SigillinLoaderProps> = ({ onLoaded }) => {
     const file = e.target.files?.[0];
     if (!file) return;
     const reader = new FileReader();
-    reader.onload = evt => {
+    reader.onload = (evt) => {
       try {
         const text = evt.target?.result as string;
-        const parsed = file.name.endsWith('.yaml') || file.name.endsWith('.yml')
-          ? YAML.parse(text)
-          : JSON.parse(text);
+        const parsed =
+          file.name.endsWith('.yaml') || file.name.endsWith('.yml')
+            ? YAML.parse(text)
+            : JSON.parse(text);
         setData(Array.isArray(parsed) ? parsed : [parsed]);
         setError(null);
         onLoaded?.(parsed);
@@ -31,8 +32,8 @@ const SigillinLoader: React.FC<SigillinLoaderProps> = ({ onLoaded }) => {
     reader.readAsText(file);
   };
 
-  const filtered = data.filter(item =>
-    filter ? JSON.stringify(item).toLowerCase().includes(filter.toLowerCase()) : true
+  const filtered = data.filter((item) =>
+    filter ? JSON.stringify(item).toLowerCase().includes(filter.toLowerCase()) : true,
   );
 
   return (
@@ -47,7 +48,7 @@ const SigillinLoader: React.FC<SigillinLoaderProps> = ({ onLoaded }) => {
         type="text"
         placeholder="Filter"
         value={filter}
-        onChange={e => setFilter(e.target.value)}
+        onChange={(e) => setFilter(e.target.value)}
         aria-label="Filter"
       />
       {error && <p role="alert">{error}</p>}

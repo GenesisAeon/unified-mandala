@@ -8,13 +8,13 @@ export const pyramidConfigSchema = {
         properties: {
           id: { type: 'string' },
           name: { type: 'string' },
-          weight: { type: 'number' }
+          weight: { type: 'number' },
         },
-        required: ['id', 'name']
-      }
-    }
+        required: ['id', 'name'],
+      },
+    },
   },
-  required: ['layers']
+  required: ['layers'],
 } as const;
 
 export default pyramidConfigSchema;

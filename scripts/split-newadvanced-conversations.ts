@@ -13,7 +13,7 @@ export async function splitNewAdvancedConversations(
   outDir: string,
   start = 0,
   count = Infinity,
-  opts: { stream?: boolean } = {}
+  opts: { stream?: boolean } = {},
 ): Promise<string[]> {
   let useStream = opts.stream;
   if (useStream === undefined) {
@@ -82,23 +82,17 @@ if (typeof require !== 'undefined' && require.main === module) {
   const args = process.argv.slice(2);
   const positional = args.filter((a: string) => !a.startsWith('--'));
   const flags = new Set(args.filter((a: string) => a.startsWith('--')));
-  const src =
-    positional[0] ||
-    path.join(__dirname, '../docs/sigils/newadvancedconversations.json');
+  const src = positional[0] || path.join(__dirname, '../docs/sigils/newadvancedconversations.json');
   const out =
-    positional[1] ||
-    path.join(
-      __dirname,
-      '../docs/sigils/newadvancedconversations_fragments'
-    );
+    positional[1] || path.join(__dirname, '../docs/sigils/newadvancedconversations_fragments');
   const start = parseInt(positional[2] || '0', 10);
   const count = parseInt(positional[3] || `${Number.POSITIVE_INFINITY}`, 10);
   const stream = flags.has('--stream');
   splitNewAdvancedConversations(src, out, start, count, { stream })
-    .then(files => {
+    .then((files) => {
       console.log(`Wrote ${files.length} fragments to ${out}`);
     })
-    .catch(err => {
+    .catch((err) => {
       console.error(err);
       process.exit(1);
     });

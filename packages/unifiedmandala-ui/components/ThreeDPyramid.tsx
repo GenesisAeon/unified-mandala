@@ -18,7 +18,7 @@ const Layer: React.FC<{ index: number }> = ({ index }) => {
   });
 
   return (
-    <mesh ref={ref} position={[0, index * height, 0]} aria-label={`pyramid-layer-${index}`}> 
+    <mesh ref={ref} position={[0, index * height, 0]} aria-label={`pyramid-layer-${index}`}>
       <coneGeometry args={[size, height]} />
       <meshStandardMaterial color="teal" />
     </mesh>

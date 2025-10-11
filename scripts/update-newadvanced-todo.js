@@ -8,5 +8,7 @@ const yamlFile = path.join(__dirname, '../advancedToDo.yaml');
 const jsonFile = path.join(__dirname, '../advancedToDo.json');
 
 const entries = updateAdvancedTodo(convFile, yamlFile, jsonFile, { includeImplicit: true });
-console.log(`advancedToDo updated with ${entries.length} tasks from newadvancedconversations.json.`);
+console.log(
+  `advancedToDo updated with ${entries.length} tasks from newadvancedconversations.json.`,
+);
 updateProgress('sync');

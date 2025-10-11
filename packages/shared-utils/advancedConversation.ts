@@ -12,8 +12,10 @@ export function extractMessagesAfterAnchor(filePath: string, anchor: string): st
 
   for (const conv of convs) {
     const nodes = Object.values(conv.mapping)
-      .filter(n => n.message)
-      .sort((a, b) => ((a as any).message?.create_time || 0) - ((b as any).message?.create_time || 0));
+      .filter((n) => n.message)
+      .sort(
+        (a, b) => ((a as any).message?.create_time || 0) - ((b as any).message?.create_time || 0),
+      );
     let anchorFound = false;
     for (const node of nodes) {
       const parts = (node as any).message?.content?.parts || [];

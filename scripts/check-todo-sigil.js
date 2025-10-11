@@ -37,7 +37,7 @@ const checks = {
 function checkTodos(filePath) {
   const items = parseTodoSigil(filePath);
   let allOk = true;
-  items.forEach(item => {
+  items.forEach((item) => {
     if (item.status === 'erledigt' && checks[item.id]) {
       const ok = checks[item.id]();
       console.log(`${item.id}: ${item.beschreibung} -> ${ok ? 'OK' : 'FEHLT'}`);

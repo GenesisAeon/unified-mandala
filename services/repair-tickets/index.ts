@@ -11,7 +11,7 @@ export class RepairTicketService {
     const ticket: RepairTicket = {
       id: String(this.tickets.length + 1),
       file,
-      status: 'open'
+      status: 'open',
     };
     this.tickets.push(ticket);
     return ticket;

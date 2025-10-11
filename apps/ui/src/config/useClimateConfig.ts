@@ -1,9 +1,9 @@
-import { useMemo } from "react";
-import YAML from "yaml";
+import { useMemo } from 'react';
+import YAML from 'yaml';
 // Vite: '?raw' importiert Datei als String
 // Pfad: UI → ../../config/...
 // @ts-ignore
-import raw from "~config/climate-dashboard.yaml?raw";
+import raw from '~config/climate-dashboard.yaml?raw';
 
 export type KpiConfig = {
   id: string;
@@ -18,10 +18,10 @@ export function useClimateConfig(): ClimateConfig {
   return useMemo(() => {
     try {
       const parsed = YAML.parse(String(raw)) as ClimateConfig;
-      if (!parsed?.kpis?.length) throw new Error("missing kpis");
+      if (!parsed?.kpis?.length) throw new Error('missing kpis');
       return parsed;
     } catch (e) {
-      console.error("Failed to parse climate-dashboard.yaml", e);
+      console.error('Failed to parse climate-dashboard.yaml', e);
       return { kpis: [] };
     }
   }, []);

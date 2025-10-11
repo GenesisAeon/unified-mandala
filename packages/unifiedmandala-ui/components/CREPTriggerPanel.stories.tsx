@@ -7,7 +7,5 @@ export default {
 };
 
 export const Default = () => (
-  <CREPTriggerPanel
-    availableTriggers={[{ label: 'Ping', data: { C: 1, R: 1, E: 1, P: 1 } }]}
-  />
+  <CREPTriggerPanel availableTriggers={[{ label: 'Ping', data: { C: 1, R: 1, E: 1, P: 1 } }]} />
 );

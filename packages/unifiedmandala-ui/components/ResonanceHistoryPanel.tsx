@@ -22,7 +22,7 @@ const ResonanceHistoryPanel: React.FC<ResonanceHistoryPanelProps> = ({ records }
       </tr>
     </thead>
     <tbody>
-      {records.map(r => (
+      {records.map((r) => (
         <tr key={r.timestamp.toString()}>
           <td>{new Date(r.timestamp).toLocaleString()}</td>
           <td>{r.crep}</td>

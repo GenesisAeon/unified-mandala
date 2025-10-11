@@ -13,7 +13,7 @@
         "id": "child",
         "message": {
           "id": "child",
-          "author": {"role": "user"},
+          "author": { "role": "user" },
           "create_time": 1
         },
         "parent": "ghost",

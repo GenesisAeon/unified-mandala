@@ -8,6 +8,6 @@ export class CREPIntegration {
   }
 
   emit(score: number): void {
-    this.callbacks.forEach(cb => cb(score));
+    this.callbacks.forEach((cb) => cb(score));
   }
 }

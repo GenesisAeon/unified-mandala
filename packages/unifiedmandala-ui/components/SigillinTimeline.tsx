@@ -11,8 +11,10 @@ interface SigillinTimelineProps {
 
 const SigillinTimeline: React.FC<SigillinTimelineProps> = ({ events }) => (
   <ul aria-label="Sigillin Timeline">
-    {events.map(e => (
-      <li key={e.id}>{e.id} – {new Date(e.timestamp).toLocaleString()}</li>
+    {events.map((e) => (
+      <li key={e.id}>
+        {e.id} – {new Date(e.timestamp).toLocaleString()}
+      </li>
     ))}
   </ul>
 );

@@ -12,15 +12,15 @@ describe('OSControlPanel', () => {
     const { getByText } = render(<OSControlPanel />);
     fireEvent.click(getByText('Grant Consent'));
     await waitFor(() =>
-      expect(fetch).toHaveBeenNthCalledWith(1, '/os/consent', { method: 'POST' })
+      expect(fetch).toHaveBeenNthCalledWith(1, '/os/consent', { method: 'POST' }),
     );
     fireEvent.click(getByText('Trigger Action'));
     await waitFor(() =>
       expect(fetch).toHaveBeenNthCalledWith(
         2,
         '/os/action',
-        expect.objectContaining({ method: 'POST' })
-      )
+        expect.objectContaining({ method: 'POST' }),
+      ),
     );
   });
 });

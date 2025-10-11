@@ -3,7 +3,7 @@ import BoundaryVisualDebugger from './BoundaryVisualDebugger';
 
 describe('BoundaryVisualDebugger', () => {
   it('renders active boundaries and collisions', () => {
-    render(<BoundaryVisualDebugger active={['A','B']} collisions={['X']} />);
+    render(<BoundaryVisualDebugger active={['A', 'B']} collisions={['X']} />);
     expect(screen.getByText('Active Boundaries')).toBeInTheDocument();
     expect(screen.getByText('A')).toBeInTheDocument();
     expect(screen.getByText('B')).toBeInTheDocument();

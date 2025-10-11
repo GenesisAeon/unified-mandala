@@ -1,16 +1,16 @@
-import http from "http";
-import fs from "fs/promises";
-import path from "path";
-import { handleOps } from "./api-ops";
-import { handleKpi, handleCrep } from "./api-kpi";
-import { requestLogger } from "../../src/middleware/request-logger";
-import { handleHealth } from "./api-health";
-import { cleanupStaleLocks } from "../../packages/lock";
-import { shutdownLogger } from "../../packages/logging/logger";
+import http from 'http';
+import fs from 'fs/promises';
+import path from 'path';
+import { handleOps } from './api-ops';
+import { handleKpi, handleCrep } from './api-kpi';
+import { requestLogger } from '../../src/middleware/request-logger';
+import { handleHealth } from './api-health';
+import { cleanupStaleLocks } from '../../packages/lock';
+import { shutdownLogger } from '../../packages/logging/logger';
 
-cleanupStaleLocks().catch(()=>{});
+cleanupStaleLocks().catch(() => {});
 
-const distDir = path.resolve(__dirname, "../../apps/ui/dist");
+const distDir = path.resolve(__dirname, '../../apps/ui/dist');
 
 const server = http.createServer((req, res) => {
   requestLogger(req, res, async () => {
@@ -19,15 +19,15 @@ const server = http.createServer((req, res) => {
     if (await handleCrep(req, res)) return;
     if (await handleOps(req, res)) return;
     try {
-      let reqPath = req.url || "/";
-      if (reqPath === "/") reqPath = "/index.html";
+      let reqPath = req.url || '/';
+      if (reqPath === '/') reqPath = '/index.html';
       const filePath = path.join(distDir, reqPath);
       const data = await fs.readFile(filePath);
       res.statusCode = 200;
       res.end(data);
     } catch {
       res.statusCode = 404;
-      res.end("Not found");
+      res.end('Not found');
     }
   });
 });
@@ -37,5 +37,11 @@ server.listen(port, () => {
   console.log(`Static lite server listening on http://localhost:${port}`);
 });
 
-const graceful = async () => { try { await shutdownLogger(); } catch {} process.exit(0); };
-process.on("SIGTERM", graceful); process.on("SIGINT", graceful);
+const graceful = async () => {
+  try {
+    await shutdownLogger();
+  } catch {}
+  process.exit(0);
+};
+process.on('SIGTERM', graceful);
+process.on('SIGINT', graceful);

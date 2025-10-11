@@ -5,11 +5,11 @@ import { createTodoSigil } from '../packages/shared-utils/todoSigilGenerator';
 
 export function synthFromSymbolflow(sourcePath: string, outPath: string) {
   const todos = extractImplicitTodosFromConversations(path.resolve(sourcePath));
-  const items = todos.map(t => ({ text: t, done: false }));
+  const items = todos.map((t) => ({ text: t, done: false }));
   const yaml = createTodoSigil(items, {
     id: 'aeon:poetic-todo',
     titel: 'Poetische Aufgaben',
-    symbolzeit: 'tag'
+    symbolzeit: 'tag',
   });
   fs.writeFileSync(outPath, yaml);
   console.log(`Poetic todo sigil written to ${outPath}`);

@@ -5,9 +5,10 @@ const agentsDir = path.join(__dirname, '..', 'packages', 'agents');
 const outputPath = path.join(__dirname, '..', 'docs', 'agents_manifest.md');
 
 function listAgents(dir) {
-  return fs.readdirSync(dir)
-    .filter(f => f.endsWith('.ts') && !f.endsWith('.test.ts'))
-    .map(f => path.basename(f, '.ts'))
+  return fs
+    .readdirSync(dir)
+    .filter((f) => f.endsWith('.ts') && !f.endsWith('.test.ts'))
+    .map((f) => path.basename(f, '.ts'))
     .sort();
 }
 
@@ -19,7 +20,7 @@ function generateManifest(agents) {
     '',
     '## Available Agents',
     '',
-    ...agents.map(name => `- ${name}`)
+    ...agents.map((name) => `- ${name}`),
   ];
   return lines.join('\n');
 }

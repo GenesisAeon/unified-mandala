@@ -3,7 +3,9 @@ import { VRBegegnungsraumCanvasBridge } from './VRBegegnungsraumCanvas';
 
 class DummyListener {
   events: string[] = [];
-  onVREvents(events: string[]) { this.events.push(...events); }
+  onVREvents(events: string[]) {
+    this.events.push(...events);
+  }
 }
 
 describe('VRBegegnungsraumCanvasBridge', () => {

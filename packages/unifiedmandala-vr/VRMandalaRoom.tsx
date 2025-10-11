@@ -9,7 +9,13 @@ const VRMandalaRoom: React.FC = () => {
   }, []);
 
   return (
-    <Canvas onCreated={({ gl }) => { if ((gl as any).xr) { (gl as any).xr.enabled = true; } }}>
+    <Canvas
+      onCreated={({ gl }) => {
+        if ((gl as any).xr) {
+          (gl as any).xr.enabled = true;
+        }
+      }}
+    >
       <ambientLight intensity={0.5} />
       <mesh position={[0, 0, -2]} aria-label="vr-mandala-room">
         <sphereGeometry args={[1, 32, 32]} />

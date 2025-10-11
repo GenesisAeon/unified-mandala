@@ -22,7 +22,7 @@ export class InMemoryBlockchain implements BlockchainAdapter {
 
 export async function storeSigillin(
   record: SigillinRecord,
-  adapter: BlockchainAdapter
+  adapter: BlockchainAdapter,
 ): Promise<string> {
   return adapter.persist(record);
 }

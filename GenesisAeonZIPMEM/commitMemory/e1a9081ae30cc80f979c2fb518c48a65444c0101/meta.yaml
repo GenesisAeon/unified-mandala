@@ -1,5 +1,5 @@
 commit: e1a9081ae30cc80f979c2fb518c48a65444c0101
-message: "feat(aeon): add advanced agent with YAML logging"
+message: 'feat(aeon): add advanced agent with YAML logging'
 patch: changes.patch
 fragments: fragments
 files:

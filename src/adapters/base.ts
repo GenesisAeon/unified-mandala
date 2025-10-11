@@ -18,7 +18,10 @@ export type Adapter<T> = (input?: AdapterInput) => Promise<AdapterResult<T>>;
 export function ok<T>(data: T, meta: Record<string, unknown> = {}): AdapterResult<T> {
   return { ok: true, data, meta };
 }
-export function fail<T = never>(error: string, meta: Record<string, unknown> = {}): AdapterResult<T> {
+export function fail<T = never>(
+  error: string,
+  meta: Record<string, unknown> = {},
+): AdapterResult<T> {
   return { ok: false, error, meta };
 }
 

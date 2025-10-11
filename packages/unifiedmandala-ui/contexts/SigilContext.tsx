@@ -13,7 +13,7 @@ export const SigilProvider: React.FC<{ children?: React.ReactNode }> = ({ childr
 
   useEffect(() => {
     // preload default sigils from data file
-    (sigillinNodes as any[]).forEach(entry => manager.add({ id: entry.id, data: entry }));
+    (sigillinNodes as any[]).forEach((entry) => manager.add({ id: entry.id, data: entry }));
   }, [manager]);
 
   const value = useMemo(() => ({ manager }), [manager]);

@@ -19,7 +19,7 @@ export class OvernightProgressReporter implements Agent {
   async handle(task: Task): Promise<void> {
     const summary = (task as any).summary || (task as any).description || '';
     this.events.push({ id: task.id, summary });
-    const lines = this.events.map(e => `${e.id}:${e.summary}`);
+    const lines = this.events.map((e) => `${e.id}:${e.summary}`);
     fs.writeFileSync(this.output, lines.join('\n'));
     console.log(`\uD83C\uDF19 OvernightProgressReporter logged ${task.id}`);
   }

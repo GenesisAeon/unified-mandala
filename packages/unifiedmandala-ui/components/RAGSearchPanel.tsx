@@ -17,11 +17,7 @@ export default function RAGSearchPanel() {
 
   return (
     <div aria-label="RAGSearchPanel">
-      <input
-        placeholder="Search"
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
-      />
+      <input placeholder="Search" value={query} onChange={(e) => setQuery(e.target.value)} />
       <button onClick={search}>Search</button>
       {result && <pre>{JSON.stringify(result, null, 2)}</pre>}
     </div>

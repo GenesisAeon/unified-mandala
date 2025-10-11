@@ -16,7 +16,7 @@ export function createProvenanceCard(
   sourceUri: string,
   content: string | Buffer,
   license: string,
-  personhood?: PersonhoodMetadata
+  personhood?: PersonhoodMetadata,
 ): ProvenanceCard {
   return {
     sourceUri,

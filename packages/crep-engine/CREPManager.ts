@@ -70,7 +70,7 @@ export class CREPManager {
         acc.P += e.P;
         return acc;
       },
-      { C: 0, R: 0, E: 0, P: 0 }
+      { C: 0, R: 0, E: 0, P: 0 },
     );
     const count = slice.length;
     return {

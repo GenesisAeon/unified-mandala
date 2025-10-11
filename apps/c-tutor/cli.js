@@ -1,4 +1,3 @@
 #!/usr/bin/env node
 
-console.log("c-tutor placeholder");
-
+console.log('c-tutor placeholder');

@@ -16,7 +16,8 @@ export class SealCore extends EventEmitter {
   }
 
   async connect() {
-    const Impl: any = typeof globalThis.WebSocket !== 'undefined' ? globalThis.WebSocket : NodeWebSocket;
+    const Impl: any =
+      typeof globalThis.WebSocket !== 'undefined' ? globalThis.WebSocket : NodeWebSocket;
     const ws: any = new Impl(this.options.url);
     this.ws = ws as WebSocket;
     const handleMsg = (data: any) => {

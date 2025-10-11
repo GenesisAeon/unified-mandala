@@ -1,5 +1,5 @@
 id: contrastive-training
-title: "Contrastive Training"
+title: 'Contrastive Training'
 type: training
 agent: ContrastiveTrainingAgent
 entrypoint: agents/contrastive_training/main.ts

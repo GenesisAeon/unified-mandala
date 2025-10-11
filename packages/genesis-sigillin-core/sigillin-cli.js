@@ -58,7 +58,7 @@ switch (command) {
       process.exit(1);
     }
     const data = JSON.parse(fs.readFileSync(file, 'utf8'));
-    (data.related_sigils || []).forEach(r => {
+    (data.related_sigils || []).forEach((r) => {
       console.log(`${r.id} (${r.relation})`);
     });
     break;

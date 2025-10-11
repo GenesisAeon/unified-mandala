@@ -5,22 +5,30 @@ type SeedModelResults = { modelName: string; crepResonance: number }[];
 type UtopiaAdapterData = { source: string; sigil: string; value: number; timestamp: string }[];
 
 function generateMermaidTree(tree: UniverseTree): string {
-  const lines: string[] = ["graph TD;"];
+  const lines: string[] = ['graph TD;'];
   for (const [node, children] of Object.entries(tree)) {
-    if (!children || children.length===0) { lines.push(node); continue; }
+    if (!children || children.length === 0) {
+      lines.push(node);
+      continue;
+    }
     lines.push(`${node}-->${children.join(`\n${node}-->`)}`);
   }
-  return lines.join("\n");
+  return lines.join('\n');
 }
 
 (async function main() {
-  const tree: UniverseTree = { "R0": ["R1","R2"], "R1": ["R1a","R1b"], "R2": ["R2a"] };
+  const tree: UniverseTree = { R0: ['R1', 'R2'], R1: ['R1a', 'R1b'], R2: ['R2a'] };
   const seed: SeedModelResults = [
-    { modelName:"emergence_predictor", crepResonance:0.72 },
-    { modelName:"consent_mesh_sim", crepResonance:0.64 }
+    { modelName: 'emergence_predictor', crepResonance: 0.72 },
+    { modelName: 'consent_mesh_sim', crepResonance: 0.64 },
   ];
   const utopia: UtopiaAdapterData = [
-    { source:"mobility_2030", sigil:"sigil:mobility-2030", value:0.8, timestamp:new Date().toISOString() }
+    {
+      source: 'mobility_2030',
+      sigil: 'sigil:mobility-2030',
+      value: 0.8,
+      timestamp: new Date().toISOString(),
+    },
   ];
 
   const html = `<!DOCTYPE html>
@@ -49,8 +57,8 @@ function generateMermaidTree(tree: UniverseTree): string {
     new Chart(ctx, {
       type: 'bar',
       data: {
-        labels: ${JSON.stringify(["emergence_predictor","consent_mesh_sim"])},
-        datasets: [{ label: 'CREP Resonance', data: ${JSON.stringify([0.72,0.64])} }]
+        labels: ${JSON.stringify(['emergence_predictor', 'consent_mesh_sim'])},
+        datasets: [{ label: 'CREP Resonance', data: ${JSON.stringify([0.72, 0.64])} }]
       },
       options: { responsive:true, scales: { y: { beginAtZero: true, max: 1 } } }
     });
@@ -65,4 +73,7 @@ function generateMermaidTree(tree: UniverseTree): string {
 
   writeFileSync('runs/report.html', html);
   console.log('Report generated at runs/report.html');
-})().catch(e=>{ console.error(e); process.exit(1); });
+})().catch((e) => {
+  console.error(e);
+  process.exit(1);
+});

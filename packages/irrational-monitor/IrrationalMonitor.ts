@@ -11,11 +11,7 @@ export class IrrationalMonitor {
     return CONSTANTS[name];
   }
 
-  static isDeviation(
-    name: IrrationalConstant,
-    measured: number,
-    tolerance = 1e-6,
-  ): boolean {
+  static isDeviation(name: IrrationalConstant, measured: number, tolerance = 1e-6): boolean {
     const expected = IrrationalMonitor.expected(name);
     return Math.abs(expected - measured) > tolerance;
   }

@@ -10,10 +10,13 @@ export class ArchivAeon {
   constructor(private baseDir = 'GenesisAeonZIPMEM/commitMemory') {}
 
   archive(entries: ArchiveEntry[]): number {
-    entries.forEach(e => {
+    entries.forEach((e) => {
       const dir = path.join(this.baseDir, e.id);
       fs.mkdirSync(dir, { recursive: true });
-      fs.writeFileSync(path.join(dir, 'conversation.json'), JSON.stringify(e.conversation, null, 2));
+      fs.writeFileSync(
+        path.join(dir, 'conversation.json'),
+        JSON.stringify(e.conversation, null, 2),
+      );
     });
     return entries.length;
   }

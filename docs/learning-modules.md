@@ -12,12 +12,14 @@ This document explains the learning workflows referenced in `docs/sigils/advance
 ## Workflows
 
 ### C-Tutor Progress
+
 1. Start at beginner level.
 2. Solve exercises and receive a Sigil at each milestone.
 3. Level up to intermediate and expert.
 4. Export your learning Sigil for your portfolio.
 
 ### JavaHamster AI Flow
+
 1. Select a level.
 2. Write and run Hamster code.
 3. An AI coach provides hints during challenges.

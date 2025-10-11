@@ -3,7 +3,7 @@ module.exports = {
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 2022,
-    sourceType: 'module'
+    sourceType: 'module',
   },
   plugins: ['import', '@typescript-eslint'],
   extends: [
@@ -11,19 +11,19 @@ module.exports = {
     'plugin:@typescript-eslint/recommended',
     'plugin:import/recommended',
     'plugin:import/typescript',
-    'prettier'
+    'prettier',
   ],
   env: {
     node: true,
     es2020: true,
-    jest: true
+    jest: true,
   },
   settings: {
     'import/resolver': {
       typescript: {
-        project: ['./tsconfig.json']
-      }
-    }
+        project: ['./tsconfig.json'],
+      },
+    },
   },
   rules: {
     'import/no-unresolved': 'error',
@@ -35,7 +35,7 @@ module.exports = {
     'no-empty': 'off',
     'no-constant-condition': 'off',
     'prefer-const': 'off',
-    'no-useless-escape': 'off'
+    'no-useless-escape': 'off',
   },
   overrides: [
     {
@@ -50,14 +50,14 @@ module.exports = {
         '@typescript-eslint/no-inferrable-types': 'off',
         '@typescript-eslint/no-unused-vars': 'off',
         '@typescript-eslint/prefer-as-const': 'off',
-        '@typescript-eslint/triple-slash-reference': 'off'
-      }
+        '@typescript-eslint/triple-slash-reference': 'off',
+      },
     },
     {
       files: ['**/*.js', '**/*.cjs', '**/*.mjs'],
       rules: {
-        '@typescript-eslint/no-var-requires': 'off'
-      }
+        '@typescript-eslint/no-var-requires': 'off',
+      },
     },
     {
       files: [
@@ -66,11 +66,11 @@ module.exports = {
         'scripts/**/*.spec.{ts,tsx}',
         'tests/**/*.{ts,tsx}',
         'services/**/*.{test,spec}.ts',
-        'src/ui/panels/SigillinIndexPanel.tsx'
+        'src/ui/panels/SigillinIndexPanel.tsx',
       ],
       rules: {
-        '@typescript-eslint/no-var-requires': 'off'
-      }
-    }
-  ]
+        '@typescript-eslint/no-var-requires': 'off',
+      },
+    },
+  ],
 };

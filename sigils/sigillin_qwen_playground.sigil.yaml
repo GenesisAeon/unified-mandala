@@ -1,0 +1,68 @@
+sigillin: QwenPlayground
+version: 1.0
+meta:
+  author: 'Johann & Aeon'
+  created: '2025-10-02'
+  purpose: 'Qwen im Browser – sicherer Proxy, Tools & Smokes'
+context:
+  project: unified-mandala
+  phase: 2 # AI-Playground
+  repo_root: 'D:\mandala\unified-mandala'
+ai:
+  provider: qwen-ollama
+  endpoint: http://localhost:11434
+  model: qwen2.5:7b
+  options:
+    num_predict: 64
+proxy:
+  host: 127.0.0.1
+  port: 4000
+  routes:
+    - path: /api/chat
+    - path: /api/ai/chat
+  rate_limit:
+    chat:
+      window_ms: 60000
+      max: 60
+    fs:
+      window_ms: 60000
+      max: 30
+  security:
+    require_api_key: false # Plan A; true für Plan B
+    header_name: X-API-Key
+namespaces:
+  repo: 'D:\mandala\unified-mandala' # read-only
+  scratch: 'D:\mandala\unified-mandala\.ai-scratch' # read/write
+  data: 'D:\mandala\data' # read/write
+tools:
+  fs:
+    read:
+      allow:
+        - repo://**
+        - scratch://**
+        - data://**
+    write:
+      allow:
+        - scratch://**
+        - data://**
+      deny:
+        - repo://**
+smoke:
+  scripts:
+    qwen: pnpm smoke:qwen
+    fs: pnpm smoke:fs
+    memory: pnpm smoke:memory
+  timeout_ms: 60000
+ui:
+  url: http://localhost:5173/demo/ai-playground
+ritual:
+  activate:
+    - scripts/cheatsheets/quick-run.ps1 -Mode A
+  verify:
+    - GET http://127.0.0.1:4000/health -> ok: true
+    - POST /api/ai/chat -> output_text vorhanden
+  exit:
+    - Ctrl+C im Proxy-Tab
+notes:
+  - Plan B (sicher): Require API-Key und Vite-Proxy/Smokes Header mitsenden
+  - Mandala-Sync: Fraktal 90–92 in Arbeit; Guarded FS + Memory aktiviert

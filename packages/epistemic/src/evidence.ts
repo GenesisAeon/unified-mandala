@@ -1,4 +1,4 @@
-export type EvidenceSource = "obs"|"model"|"expert"|"proxy";
+export type EvidenceSource = 'obs' | 'model' | 'expert' | 'proxy';
 export interface Evidence {
   id: string;
   claim: string;

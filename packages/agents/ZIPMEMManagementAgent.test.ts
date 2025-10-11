@@ -14,7 +14,9 @@ test('organize writes fragments', () => {
 
 test('detectLinks finds ids', () => {
   const agent = new ZIPMEMManagementAgent();
-  const frags: Fragment[] = [{ id: 'a', content: { ref: 'see 12345678-aaaa-bbbb-cccc-123456789abc' } }];
+  const frags: Fragment[] = [
+    { id: 'a', content: { ref: 'see 12345678-aaaa-bbbb-cccc-123456789abc' } },
+  ];
   const links = agent.detectLinks(frags);
   expect(links['a'][0]).toBe('12345678-aaaa-bbbb-cccc-123456789abc');
 });

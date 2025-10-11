@@ -3,17 +3,20 @@
 This module implements cognitive agents combining symbolic logic and neural networks.
 
 ## Features
+
 - Production-rule engine for symbolic reasoning
 - Simple MLP networks for perception modules
 - Hybrid execution pipeline with context switching
 - CLI & gRPC interface
 
 ## Installation
+
 ```bash
 go get github.com/GenesisAeon/unifiedmandala/pkg/mind/hybrid
 ```
 
 ## Usage Example (Go)
+
 ```go
 import "github.com/GenesisAeon/unifiedmandala/pkg/mind/hybrid"
 
@@ -32,6 +35,7 @@ func main() {
 ## API Documentation
 
 ### gRPC Service: `MindService`
+
 ```protobuf
 service MindService {
   rpc LoadMind (MindConfig) returns (MindState);
@@ -40,6 +44,7 @@ service MindService {
 ```
 
 ### REST Bridge (`mind-engine/swagger.yaml`)
+
 ```yaml
 paths:
   /mind/step:

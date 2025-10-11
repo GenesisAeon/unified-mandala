@@ -15,10 +15,12 @@ export interface ValidationResult {
 }
 
 export function validateSigillin(file: string, schemaPath?: string): ValidationResult {
-  const schemaFile = schemaPath || path.join(__dirname, '../genesis-sigillin-core/schemas/sigillin.schema.json');
+  const schemaFile =
+    schemaPath || path.join(__dirname, '../genesis-sigillin-core/schemas/sigillin.schema.json');
   const schema = JSON.parse(fs.readFileSync(schemaFile, 'utf8'));
   const content = fs.readFileSync(file, 'utf8');
-  const data = file.endsWith('.yaml') || file.endsWith('.yml') ? parseYaml(content) : JSON.parse(content);
+  const data =
+    file.endsWith('.yaml') || file.endsWith('.yml') ? parseYaml(content) : JSON.parse(content);
   const ajv = new Ajv();
   addFormats(ajv);
   const validate = ajv.compile(schema);

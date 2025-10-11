@@ -1,4 +1,4 @@
 export const SYMBOLZEIT = {
-  phase: "abend",
-  date: new Date().toISOString()
+  phase: 'abend',
+  date: new Date().toISOString(),
 };

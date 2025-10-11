@@ -11,7 +11,7 @@ import {
   sigilHistory,
   performRemoteAnalysis,
   callPySRService,
-  introspectionLog
+  introspectionLog,
 } from './CosmicTheoryAgent';
 import { CosmicTheoryEventHub } from './CosmicTheoryAgentEvents';
 
@@ -55,7 +55,7 @@ describe('mutation and crossover', () => {
 describe('sigil integration', () => {
   it('emits event when loading sigil', () => {
     const events: any[] = [];
-    CosmicTheoryEventHub.on('sigil:generated', e => events.push(e));
+    CosmicTheoryEventHub.on('sigil:generated', (e) => events.push(e));
     loadSigil('alpha', '{"f":1}');
     expect(sigilManager.list()[0].id).toBe('alpha');
     expect(events[0].sigilId).toBe('alpha');
@@ -63,12 +63,12 @@ describe('sigil integration', () => {
 
   it('records history via SigilManager hooks', () => {
     const events: any[] = [];
-    CosmicTheoryEventHub.on('sigil:added', e => events.push(e));
+    CosmicTheoryEventHub.on('sigil:added', (e) => events.push(e));
     sigilManager.add({ id: 'beta', data: {} });
     sigilManager.update('beta', { x: 1 });
     sigilManager.remove('beta');
     expect(events[0].sigilId).toBe('beta');
-    expect(sigilHistory.map(s => s.id)).toContain('beta');
+    expect(sigilHistory.map((s) => s.id)).toContain('beta');
   });
 });
 
@@ -90,42 +90,40 @@ describe('performRemoteAnalysis', () => {
 describe('callPySRService', () => {
   it('calls PySR REST service', async () => {
     vi.spyOn(axios, 'post').mockResolvedValue({ data: { equation: 'y=x' } });
-    const eq = await callPySRService([1,2], 'http://localhost/pysr');
+    const eq = await callPySRService([1, 2], 'http://localhost/pysr');
     expect(eq).toBe('y=x');
   });
 
   it('calls PySR gRPC service', async () => {
     const makeUnaryRequest = vi.fn((path, ser, des, arg, cb) => cb(null, { equation: 'y=x^2' }));
     vi.spyOn(Client.prototype, 'makeUnaryRequest').mockImplementation(makeUnaryRequest as any);
-    const eq = await callPySRService([1,2], 'localhost:6000', 'grpc');
+    const eq = await callPySRService([1, 2], 'localhost:6000', 'grpc');
     expect(eq).toBe('y=x^2');
   });
 
   it('emits start and success events', async () => {
     const starts: any[] = [];
     const successes: any[] = [];
-    CosmicTheoryEventHub.on('theory:start', p => starts.push(p));
-    CosmicTheoryEventHub.on('theory:regression:success', p => successes.push(p));
+    CosmicTheoryEventHub.on('theory:start', (p) => starts.push(p));
+    CosmicTheoryEventHub.on('theory:regression:success', (p) => successes.push(p));
     vi.spyOn(axios, 'post').mockResolvedValue({ data: { equation: 'y=2x' } });
-    const eq = await callPySRService([3,4], 'http://localhost/pysr');
+    const eq = await callPySRService([3, 4], 'http://localhost/pysr');
     expect(eq).toBe('y=2x');
-    expect(starts[0].dataPoints).toEqual([3,4]);
+    expect(starts[0].dataPoints).toEqual([3, 4]);
     expect(successes[0].equation).toBe('y=2x');
   });
 
   it('records introspection logs', async () => {
     vi.spyOn(axios, 'post').mockResolvedValue({ data: { equation: 'y=3x' } });
     introspectionLog.length = 0;
-    const eq = await callPySRService([5,6], 'http://localhost/pysr');
+    const eq = await callPySRService([5, 6], 'http://localhost/pysr');
     expect(eq).toBe('y=3x');
     expect(introspectionLog.length).toBeGreaterThan(1);
     expect(introspectionLog[0].message).toMatch(/start/);
   });
 
   it('caches regression results', async () => {
-    const post = vi
-      .spyOn(axios, 'post')
-      .mockResolvedValue({ data: { equation: 'cached' } });
+    const post = vi.spyOn(axios, 'post').mockResolvedValue({ data: { equation: 'cached' } });
     const first = await callPySRService([7], 'http://localhost/pysr');
     const second = await callPySRService([7], 'http://localhost/pysr');
     expect(first).toBe('cached');

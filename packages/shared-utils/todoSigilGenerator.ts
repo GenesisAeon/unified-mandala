@@ -8,7 +8,11 @@ export interface TodoSigilOptions {
 }
 
 export function createTodoSigil(tasks: TodoItem[], options: TodoSigilOptions = {}): string {
-  const { id = 'aeon:2025-0605-TODO', titel = 'UnifiedMandala ToDo Übersicht', symbolzeit = 'tag' } = options;
+  const {
+    id = 'aeon:2025-0605-TODO',
+    titel = 'UnifiedMandala ToDo Übersicht',
+    symbolzeit = 'tag',
+  } = options;
   const lines: string[] = [];
   lines.push(`sigillin_id: ${id}`);
   lines.push(`symbolzeit: ${symbolzeit}`);
@@ -22,7 +26,11 @@ export function createTodoSigil(tasks: TodoItem[], options: TodoSigilOptions = {
   return lines.join('\n') + '\n';
 }
 
-export function generateTodoSigilFromFile(sourcePath: string, destPath: string, options?: TodoSigilOptions) {
+export function generateTodoSigilFromFile(
+  sourcePath: string,
+  destPath: string,
+  options?: TodoSigilOptions,
+) {
   const tasks = extractTodosFromFile(sourcePath);
   const yaml = createTodoSigil(tasks, options);
   fs.writeFileSync(destPath, yaml);

@@ -20,7 +20,7 @@ export function extractConvoMemory(conversation: string): ConvoMemory {
       coherence: Math.min(10, len % 10),
       resonance: Math.min(10, (len >> 1) % 10),
       emergence: Math.min(10, (len >> 2) % 10),
-      poetics: Math.min(10, (len >> 3) % 10)
-    }
+      poetics: Math.min(10, (len >> 3) % 10),
+    },
   };
 }

@@ -8,7 +8,7 @@ jest.mock('@react-three/fiber', () => ({
   group: 'group',
   mesh: 'mesh',
   boxGeometry: 'boxGeometry',
-  meshStandardMaterial: 'meshStandardMaterial'
+  meshStandardMaterial: 'meshStandardMaterial',
 }));
 
 test('renders canvas element', () => {

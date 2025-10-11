@@ -38,7 +38,7 @@ export function buildResonanzMandala(nodes: ResonanzNode[]): ResonanzMandala {
       ...node,
       radius,
       x: Math.cos(angle) * radius,
-      y: Math.sin(angle) * radius
+      y: Math.sin(angle) * radius,
     } as ResonanzPosition;
   });
 

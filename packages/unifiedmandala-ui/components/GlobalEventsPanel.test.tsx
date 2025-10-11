@@ -6,7 +6,7 @@ import GlobalEventsPanel from './GlobalEventsPanel';
 describe('GlobalEventsPanel', () => {
   beforeEach(() => {
     (global as any).fetch = jest.fn().mockResolvedValue({
-      json: async () => ({ events: [] })
+      json: async () => ({ events: [] }),
     });
   });
 

@@ -7,8 +7,8 @@ export function createDefaultPyramidConfig(output = 'pyramid.config.json'): void
     layers: [
       { name: 'base', weight: 1, color: '#FFD700' },
       { name: 'middle', weight: 0.618, color: '#FF8C00' },
-      { name: 'apex', weight: 0.382, color: '#FF4500' }
-    ]
+      { name: 'apex', weight: 0.382, color: '#FF4500' },
+    ],
   };
   fs.writeFileSync(path.resolve(output), JSON.stringify(config, null, 2));
 }

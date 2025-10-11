@@ -30,8 +30,8 @@ export function adaptStyle(text: string, opts: StyleOptions = {}): string {
 
   if (opts.language === 'de') {
     const dict: Record<string, string> = {
-      'Hello': 'Hallo',
-      'world': 'Welt'
+      Hello: 'Hallo',
+      world: 'Welt',
     };
     Object.entries(dict).forEach(([en, de]) => {
       const re = new RegExp(`\\b${en}\\b`, 'gi');

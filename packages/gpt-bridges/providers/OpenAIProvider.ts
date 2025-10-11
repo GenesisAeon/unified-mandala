@@ -9,7 +9,7 @@ export class OpenAIProvider implements ModelProvider {
 
   constructor(
     private apiKey: string = process.env.OPENAI_API_KEY || '',
-    private baseUrl: string = 'https://api.openai.com/v1'
+    private baseUrl: string = 'https://api.openai.com/v1',
   ) {
     if (!this.apiKey) {
       throw new Error('OPENAI_API_KEY is required');
@@ -21,9 +21,9 @@ export class OpenAIProvider implements ModelProvider {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${this.apiKey}`
+        Authorization: `Bearer ${this.apiKey}`,
       },
-      body: JSON.stringify(body)
+      body: JSON.stringify(body),
     });
     if (!res.ok) {
       throw new Error(`OpenAI request failed with status ${res.status}`);
@@ -37,7 +37,7 @@ export class OpenAIProvider implements ModelProvider {
       try {
         const data: any = await this.post('/responses', {
           model,
-          input: [{ role: 'user', content: prompt }]
+          input: [{ role: 'user', content: prompt }],
         });
         const text = data.output?.[0]?.content?.[0]?.text ?? data.output_text;
         if (typeof text === 'string') {
@@ -49,7 +49,7 @@ export class OpenAIProvider implements ModelProvider {
     }
     const data: any = await this.post('/chat/completions', {
       model,
-      messages: [{ role: 'user', content: prompt }]
+      messages: [{ role: 'user', content: prompt }],
     });
     return data.choices?.[0]?.message?.content ?? '';
   }

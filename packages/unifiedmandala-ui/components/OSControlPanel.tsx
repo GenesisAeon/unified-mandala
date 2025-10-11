@@ -17,7 +17,7 @@ export default function OSControlPanel() {
     fetch('/os/action', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ action: 'open-notepad' })
+      body: JSON.stringify({ action: 'open-notepad' }),
     });
   };
 

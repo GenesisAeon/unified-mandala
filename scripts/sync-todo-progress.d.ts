@@ -8,5 +8,5 @@ export function syncTodoProgress(
   partsDir: string,
   progressFile: string,
   extraFiles?: string[],
-  options?: { dryRun?: boolean }
+  options?: { dryRun?: boolean },
 ): SyncResult;

@@ -12,7 +12,7 @@ export class AeonUniversalAgent implements Agent {
 
   async handle(task: Task): Promise<void> {
     const result = compile(task.description);
-    result.tasks.forEach(t => {
+    result.tasks.forEach((t) => {
       AeonMemory.record(t.description, { task: t });
     });
     console.log(`🌀 AeonUniversalAgent → compiled ${result.tasks.length} tasks`);

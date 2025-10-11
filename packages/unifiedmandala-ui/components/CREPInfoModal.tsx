@@ -9,7 +9,7 @@ const descriptions = {
   C: 'Coherence – Klarheit der Verbindungen.',
   R: 'Resonance – Mitschwingen und Kommunikation.',
   E: 'Emergence – Neues entsteht spontan.',
-  P: 'Poetics – Tiefere symbolische Bedeutung.'
+  P: 'Poetics – Tiefere symbolische Bedeutung.',
 };
 
 const CREPInfoModal: React.FC<CREPInfoModalProps> = ({ open, onClose }) => {
@@ -19,7 +19,9 @@ const CREPInfoModal: React.FC<CREPInfoModalProps> = ({ open, onClose }) => {
       <h2>CREP-Werte</h2>
       <ul>
         {Object.entries(descriptions).map(([key, text]) => (
-          <li key={key}><strong>{key}</strong>: {text}</li>
+          <li key={key}>
+            <strong>{key}</strong>: {text}
+          </li>
         ))}
       </ul>
       <button onClick={onClose}>Schließen</button>

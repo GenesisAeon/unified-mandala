@@ -12,15 +12,15 @@ describe('extractSessionTodos', () => {
         path: '',
         task: 'TODO: implement feature',
         test: '',
-        status: 'planned'
+        status: 'planned',
       },
       {
         commit: '- TODO: fix bug',
         path: '',
         task: 'TODO: fix bug',
         test: '',
-        status: 'planned'
-      }
+        status: 'planned',
+      },
     ]);
   });
 });

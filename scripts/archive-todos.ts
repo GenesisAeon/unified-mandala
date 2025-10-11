@@ -5,7 +5,7 @@ import yaml from 'js-yaml';
 export function archiveAdvancedTodos(
   srcJson = 'advancedToDo.json',
   srcYaml = 'advancedToDo.yaml',
-  archiveDir = 'GenesisAeonZIPMEM'
+  archiveDir = 'GenesisAeonZIPMEM',
 ) {
   const jsonData: any[] = fs.existsSync(srcJson)
     ? JSON.parse(fs.readFileSync(srcJson, 'utf-8'))
@@ -18,15 +18,16 @@ export function archiveAdvancedTodos(
   fs.mkdirSync(archiveDir, { recursive: true });
   fs.writeFileSync(
     path.join(archiveDir, 'advancedToDoArchive.json'),
-    JSON.stringify(doneJson, null, 2)
+    JSON.stringify(doneJson, null, 2),
   );
-  fs.writeFileSync(
-    path.join(archiveDir, 'advancedToDoArchive.yaml'),
-    yaml.dump(doneYaml)
-  );
+  fs.writeFileSync(path.join(archiveDir, 'advancedToDoArchive.yaml'), yaml.dump(doneYaml));
   fs.writeFileSync(
     srcJson,
-    JSON.stringify(jsonData.filter((i) => i.status !== 'done'), null, 2)
+    JSON.stringify(
+      jsonData.filter((i) => i.status !== 'done'),
+      null,
+      2,
+    ),
   );
   fs.writeFileSync(srcYaml, yaml.dump(yamlData.filter((i: any) => i.status !== 'done')));
   return 'archived';

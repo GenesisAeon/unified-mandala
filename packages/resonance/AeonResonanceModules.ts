@@ -9,7 +9,7 @@ export class AeonResonanceModules {
     this.modules.push(m);
   }
   runAll(): string[] {
-    return this.modules.map(m => m.run());
+    return this.modules.map((m) => m.run());
   }
 }
 

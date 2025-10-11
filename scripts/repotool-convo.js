@@ -12,13 +12,13 @@ function loadConversations(file) {
 function analyzeConversations(convs) {
   let messageCount = 0;
   const authorCounts = {};
-  convs.forEach(conv => {
+  convs.forEach((conv) => {
     for (const node of Object.values(conv.mapping || {})) {
       const msg = node.message;
       const content = msg && msg.content && msg.content.parts && msg.content.parts[0];
       if (content && content !== '') {
         messageCount++;
-        const role = (msg.author && msg.author.role) ? msg.author.role : 'unknown';
+        const role = msg.author && msg.author.role ? msg.author.role : 'unknown';
         authorCounts[role] = (authorCounts[role] || 0) + 1;
       }
     }
@@ -29,7 +29,7 @@ function analyzeConversations(convs) {
 function extractTodos(convs) {
   const todos = [];
   const regex = /TODO[:]?\s*(.*)/i;
-  convs.forEach(conv => {
+  convs.forEach((conv) => {
     for (const node of Object.values(conv.mapping || {})) {
       const msg = node.message;
       if (!msg) continue;
@@ -51,8 +51,8 @@ function updateProgress(convs, file) {
     } catch {}
   }
   let changed = false;
-  convs.forEach(c => {
-    if (!data.some(p => p.id === c.id)) {
+  convs.forEach((c) => {
+    if (!data.some((p) => p.id === c.id)) {
       data.push({ id: c.id, processedAt: new Date().toISOString() });
       changed = true;
     }

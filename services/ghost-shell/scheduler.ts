@@ -4,10 +4,7 @@ export function getInterval() {
   return intervalMs;
 }
 
-export function scheduleAdaptive(
-  countFn: () => Promise<number>,
-  run: () => Promise<void>
-) {
+export function scheduleAdaptive(countFn: () => Promise<number>, run: () => Promise<void>) {
   let timeout: NodeJS.Timeout | undefined;
   let cancelled = false;
 

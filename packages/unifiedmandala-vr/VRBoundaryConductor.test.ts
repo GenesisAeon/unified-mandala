@@ -7,7 +7,7 @@ describe('VRBoundaryConductor', () => {
   it('passes handshake events to boundary bridge', () => {
     const vr = new VRBegegnungsraum();
     let bridged: any[] | null = null;
-    const bridge = new PantheonBoundaryBridge(m => {
+    const bridge = new PantheonBoundaryBridge((m) => {
       bridged = m;
     });
     const conductor = new VRBoundaryConductor(vr, bridge, [/^xr-/]);

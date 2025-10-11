@@ -28,12 +28,8 @@ export default function FeatureFlagsPanel() {
     fetch('/flags', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name, enabled })
-    }).then(() =>
-      setFlags((prev) =>
-        prev.map((f) => (f.name === name ? { ...f, enabled } : f))
-      )
-    );
+      body: JSON.stringify({ name, enabled }),
+    }).then(() => setFlags((prev) => prev.map((f) => (f.name === name ? { ...f, enabled } : f))));
   };
 
   if (loading) {
@@ -60,4 +56,3 @@ export default function FeatureFlagsPanel() {
     </div>
   );
 }
-

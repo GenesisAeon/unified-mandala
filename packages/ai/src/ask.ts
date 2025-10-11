@@ -65,12 +65,12 @@ function toResponsesContent(message: ChatMessage): ResponsesInputItem {
 
   const content: ResponsesInputContent = {
     type: message.role === 'assistant' ? 'output_text' : 'input_text',
-    text
+    text,
   };
 
   return {
     role: message.role,
-    content: [content]
+    content: [content],
   };
 }
 
@@ -105,18 +105,12 @@ function extractFinishReason(payload: ResponsesPayload): string | undefined {
 }
 
 export async function askOpenAI(params: AskOpenAIParams): Promise<AskOpenAIResult> {
-  const {
-    messages,
-    model = DEFAULT_MODEL,
-    temperature,
-    max_tokens: maxTokens,
-    client
-  } = params;
+  const { messages, model = DEFAULT_MODEL, temperature, max_tokens: maxTokens, client } = params;
 
   const resolvedClient = client ?? getOpenAI();
   const requestPayload: Record<string, unknown> = {
     model,
-    input: buildInput(messages) as any
+    input: buildInput(messages) as any,
   };
 
   if (typeof temperature === 'number') {
@@ -127,7 +121,9 @@ export async function askOpenAI(params: AskOpenAIParams): Promise<AskOpenAIResul
     requestPayload.max_output_tokens = maxTokens;
   }
 
-  const response = (await resolvedClient.responses.create(requestPayload as any)) as ResponsesPayload;
+  const response = (await resolvedClient.responses.create(
+    requestPayload as any,
+  )) as ResponsesPayload;
 
   const text = extractText(response);
   const finishReason = extractFinishReason(response);
@@ -136,6 +132,6 @@ export async function askOpenAI(params: AskOpenAIParams): Promise<AskOpenAIResul
     text,
     finish_reason: finishReason,
     model: response.model ?? model,
-    usage: response.usage
+    usage: response.usage,
   };
 }

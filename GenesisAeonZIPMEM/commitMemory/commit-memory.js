@@ -18,12 +18,7 @@ async function run() {
   }
   const { stdout: commitStdout } = await execAsync('git rev-parse HEAD');
   const commit = commitStdout.trim();
-  const memoryDir = path.join(
-    repoRoot,
-    'GenesisAeonZIPMEM',
-    'commitMemory',
-    commit
-  );
+  const memoryDir = path.join(repoRoot, 'GenesisAeonZIPMEM', 'commitMemory', commit);
   try {
     await fs.access(memoryDir);
     console.log('Memory for this commit already exists.');
@@ -33,13 +28,13 @@ async function run() {
   }
   await fs.mkdir(memoryDir, { recursive: true });
   const { stdout: patchStdout } = await execAsync(
-    `git show ${commit} -- . ':(exclude)GenesisAeonZIPMEM'`
+    `git show ${commit} -- . ':(exclude)GenesisAeonZIPMEM'`,
   );
   await fs.writeFile(path.join(memoryDir, 'changes.patch'), patchStdout, 'utf8');
   const fragmentsDir = path.join(memoryDir, 'fragments');
   await fs.mkdir(fragmentsDir, { recursive: true });
   const { stdout: filesStdout } = await execAsync(
-    `git diff-tree --no-commit-id --name-only -r ${commit}`
+    `git diff-tree --no-commit-id --name-only -r ${commit}`,
   );
   const files = filesStdout
     .toString()
@@ -58,18 +53,10 @@ async function run() {
   for (const file of files) {
     const fileDir = path.join(fragmentsDir, path.dirname(file));
     await fs.mkdir(fileDir, { recursive: true });
-    const { stdout: fragmentPatch } = await execAsync(
-      `git diff ${commit}^ ${commit} -- ${file}`
-    );
-    await fs.writeFile(
-      path.join(fragmentsDir, `${file}.patch`),
-      fragmentPatch,
-      'utf8'
-    );
+    const { stdout: fragmentPatch } = await execAsync(`git diff ${commit}^ ${commit} -- ${file}`);
+    await fs.writeFile(path.join(fragmentsDir, `${file}.patch`), fragmentPatch, 'utf8');
   }
-  const { stdout: messageStdout } = await execAsync(
-    `git log -1 --pretty=%B ${commit}`
-  );
+  const { stdout: messageStdout } = await execAsync(`git log -1 --pretty=%B ${commit}`);
   const message = messageStdout.toString().trim();
   const meta = {
     commit,
@@ -78,13 +65,9 @@ async function run() {
     fragments: 'fragments',
     files,
     environment: { node: nodeVersion, pnpm: pnpmVersion },
-    instructions: 'Apply patch with git apply or review for reference.'
+    instructions: 'Apply patch with git apply or review for reference.',
   };
-  await fs.writeFile(
-    path.join(memoryDir, 'meta.yaml'),
-    YAML.stringify(meta),
-    'utf8'
-  );
+  await fs.writeFile(path.join(memoryDir, 'meta.yaml'), YAML.stringify(meta), 'utf8');
   await fs.writeFile(sessionFlag, commit, 'utf8');
   console.log(`Commit memory stored in ${memoryDir}`);
 }

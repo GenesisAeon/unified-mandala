@@ -9,9 +9,7 @@ describe('findMissingModules', () => {
   it('returns empty array when all modules exist', () => {
     const tmp = path.join(os.tmpdir(), 'repo_map_valid.yaml');
     const content = {
-      repository_map: [
-        { name: 'test', type: 't', role: 'r', modules: ['AGENTS.md'] },
-      ],
+      repository_map: [{ name: 'test', type: 't', role: 'r', modules: ['AGENTS.md'] }],
     };
     fs.writeFileSync(tmp, yaml.dump(content));
     expect(findMissingModules(tmp)).toEqual([]);
@@ -20,9 +18,7 @@ describe('findMissingModules', () => {
   it('lists missing modules', () => {
     const tmp = path.join(os.tmpdir(), 'repo_map_missing.yaml');
     const content = {
-      repository_map: [
-        { name: 'test', type: 't', role: 'r', modules: ['not_there.file'] },
-      ],
+      repository_map: [{ name: 'test', type: 't', role: 'r', modules: ['not_there.file'] }],
     };
     fs.writeFileSync(tmp, yaml.dump(content));
     expect(findMissingModules(tmp)).toEqual(['not_there.file']);

@@ -10,7 +10,7 @@ export interface PDFIngestResult {
 export async function ingestPDF(
   filePath: string,
   license: string,
-  personhood?: PersonhoodMetadata
+  personhood?: PersonhoodMetadata,
 ): Promise<PDFIngestResult> {
   const data = fs.readFileSync(filePath);
   (pdfParse as any).pdfjs.GlobalWorkerOptions.workerSrc = undefined;

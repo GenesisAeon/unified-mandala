@@ -11,9 +11,9 @@ describe('FourierLayer', () => {
 
   it('emits metrics event', () => {
     const events: any[] = [];
-    FourierLayerEvents.on('metrics', e => events.push(e));
+    FourierLayerEvents.on('metrics', (e) => events.push(e));
     const svgEvents: any[] = [];
-    FourierLayerEvents.on('metrics-svg', e => svgEvents.push(e));
+    FourierLayerEvents.on('metrics-svg', (e) => svgEvents.push(e));
     const layer = new FourierLayer('L2', 1, [0, 1, 0, -1], { depth: 1 });
     layer.analyze();
     expect(events.length).toBe(1);
@@ -24,7 +24,7 @@ describe('FourierLayer', () => {
 
   it('writes SVG when exportPath provided', () => {
     const tmp = 'test.svg';
-    const layer = new FourierLayer('L3', 1, [1,1,1,1], { depth: 1, exportPath: tmp });
+    const layer = new FourierLayer('L3', 1, [1, 1, 1, 1], { depth: 1, exportPath: tmp });
     layer.analyze();
     const content = require('fs').readFileSync(tmp, 'utf8');
     expect(content.startsWith('<svg')).toBe(true);

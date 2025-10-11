@@ -13,7 +13,13 @@ import { QuantumTheoryAgent } from '../packages/agents';
  */
 export function ingestArchive(
   agent: QuantumTheoryAgent,
-  archiveFile: string = path.join(__dirname, '..', 'docs', 'archive', 'archiv-menschheitsspuren.md'),
+  archiveFile: string = path.join(
+    __dirname,
+    '..',
+    'docs',
+    'archive',
+    'archiv-menschheitsspuren.md',
+  ),
 ): number {
   const content = fs.readFileSync(archiveFile, 'utf-8');
   const lines = content.split(/\r?\n/).filter((l) => l.trim().startsWith('-'));

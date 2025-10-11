@@ -6,15 +6,16 @@ export function useLatestCREP() {
 
   useEffect(() => {
     let isMounted = true;
-    globalThis.fetch('/api/crep/latest')
-      .then(res => {
+    globalThis
+      .fetch('/api/crep/latest')
+      .then((res) => {
         if (!res.ok) throw new Error('Failed to load');
         return res.json();
       })
-      .then(data => {
+      .then((data) => {
         if (isMounted) setValue(data.value);
       })
-      .catch(err => {
+      .catch((err) => {
         if (isMounted) setError(err.message);
       });
     return () => {

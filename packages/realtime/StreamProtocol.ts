@@ -32,4 +32,3 @@ export interface StreamEnvelope<T extends LiveMsg = LiveMsg> {
 export function wrap<T extends LiveMsg>(msg: T): StreamEnvelope<T> {
   return { v: PROTOCOL_VERSION, msg };
 }
-

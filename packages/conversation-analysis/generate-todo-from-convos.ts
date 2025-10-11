@@ -8,7 +8,10 @@ export interface TodoItem {
   /** CREP based priority, higher means more relevant */
   priority: number;
 }
-export function generateTodos(inputs: string[] = ['docs/sigils/newadvancedconversations.json'], output = 'todo-sigil.yaml') {
+export function generateTodos(
+  inputs: string[] = ['docs/sigils/newadvancedconversations.json'],
+  output = 'todo-sigil.yaml',
+) {
   const todos: TodoItem[] = [];
   for (const file of inputs) {
     if (!fs.existsSync(file)) continue;
@@ -25,7 +28,11 @@ export function generateTodos(inputs: string[] = ['docs/sigils/newadvancedconver
         const msg = (node as any).message;
         if (!msg) continue;
         const content = msg.content;
-        const parts = Array.isArray(content?.parts) ? content.parts : typeof content === 'string' ? [content] : [];
+        const parts = Array.isArray(content?.parts)
+          ? content.parts
+          : typeof content === 'string'
+            ? [content]
+            : [];
         for (const part of parts) {
           if (typeof part !== 'string') continue;
           if (/wir sollten|könnten wir|TODO/i.test(part)) {

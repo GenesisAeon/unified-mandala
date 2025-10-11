@@ -5,12 +5,12 @@ const path = require('path');
 function extractDocs(dir) {
   const files = fs.readdirSync(dir);
   let out = '';
-  files.forEach(f => {
+  files.forEach((f) => {
     const p = path.join(dir, f);
     if (fs.statSync(p).isDirectory()) return;
     const text = fs.readFileSync(p, 'utf8');
     const matches = text.match(/\/\/\/\s*(.*)/g);
-    if (matches) out += matches.map(m => m.replace('///', '').trim()).join('\n') + '\n';
+    if (matches) out += matches.map((m) => m.replace('///', '').trim()).join('\n') + '\n';
   });
   return out;
 }

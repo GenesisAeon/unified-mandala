@@ -17,7 +17,10 @@ const Layer: React.FC<{ index: number; layer: { color?: string } }> = ({ index, 
   );
 };
 
-const PyramidView: React.FC<PyramidViewProps & React.ComponentProps<typeof Canvas>> = ({ config, ...props }) => (
+const PyramidView: React.FC<PyramidViewProps & React.ComponentProps<typeof Canvas>> = ({
+  config,
+  ...props
+}) => (
   <div role="img" aria-label="Pyramid visualization">
     <Canvas {...props}>
       <ambientLight intensity={0.5} />

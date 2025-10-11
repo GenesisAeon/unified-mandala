@@ -11,7 +11,7 @@ export function useAgentActivity() {
 
   useEffect(() => {
     const handler = (data: AgentActivity) => {
-      setActivities(a => [...a.slice(-49), data]);
+      setActivities((a) => [...a.slice(-49), data]);
     };
     GPTEventHub.on('agentActivity', handler);
     return () => {

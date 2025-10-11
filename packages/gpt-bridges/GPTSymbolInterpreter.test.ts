@@ -9,7 +9,7 @@ test('fetches meaning for unknown symbols', async () => {
     Promise.resolve({
       ok: true,
       json: () => Promise.resolve({ meaning: 'mystery' }),
-    })
+    }),
   );
 
   const res = await interpret('🔮', mockFetch as any);

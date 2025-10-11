@@ -4,7 +4,14 @@ import { render } from '@testing-library/react';
 import PyramidView from './PyramidView';
 import { PyramidConfig } from '../pyramid/PyramidConfig';
 
-jest.mock('@react-three/fiber', () => ({ Canvas: ({ children }: any) => <div>{children}</div>, coneGeometry: 'coneGeometry', mesh: 'mesh', meshStandardMaterial: 'meshStandardMaterial', ambientLight: 'ambientLight', pointLight: 'pointLight' }));
+jest.mock('@react-three/fiber', () => ({
+  Canvas: ({ children }: any) => <div>{children}</div>,
+  coneGeometry: 'coneGeometry',
+  mesh: 'mesh',
+  meshStandardMaterial: 'meshStandardMaterial',
+  ambientLight: 'ambientLight',
+  pointLight: 'pointLight',
+}));
 
 test('renders layers', () => {
   const config: PyramidConfig = { layers: [{ name: 'a', weight: 1 }] };

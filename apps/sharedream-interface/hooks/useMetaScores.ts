@@ -1,6 +1,9 @@
 import { useCallback, useEffect, useState } from 'react';
 
-export interface MetaScore { id: string; value: number; }
+export interface MetaScore {
+  id: string;
+  value: number;
+}
 
 export function useMetaScores() {
   const [scores, setScores] = useState<MetaScore[]>([]);

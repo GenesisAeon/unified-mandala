@@ -21,12 +21,7 @@ const manifests = new Map<string, PluginManifest>();
 const modules = new Map<string, any>();
 const emitter = new EventEmitter();
 
-const ALLOWED_MODULES = new Set([
-  'fs',
-  'path',
-  'events',
-  'prom-client'
-]);
+const ALLOWED_MODULES = new Set(['fs', 'path', 'events', 'prom-client']);
 
 function createSandboxRequire(pluginDir: string) {
   return function sandboxRequire(mod: string) {
@@ -46,14 +41,22 @@ function loadPlugin(name: string) {
   const content = fs.readFileSync(manifestPath, 'utf8');
   const manifest = yaml.load(content) as PluginManifest;
   if (manifest.apiVersion !== CORE_API_VERSION) {
-    throw new Error(`Plugin ${name} expects API ${manifest.apiVersion}, core is ${CORE_API_VERSION}`);
+    throw new Error(
+      `Plugin ${name} expects API ${manifest.apiVersion}, core is ${CORE_API_VERSION}`,
+    );
   }
   manifests.set(name, manifest);
   const pluginDir = path.join(PLUGIN_DIR, name);
   const entryPath = path.join(pluginDir, manifest.entry);
   const code = fs.readFileSync(entryPath, 'utf8');
   const sandboxRequire = createSandboxRequire(pluginDir);
-  const sandbox: any = { module: { exports: {} }, exports: {}, require: sandboxRequire, console, pluginMeta: manifest };
+  const sandbox: any = {
+    module: { exports: {} },
+    exports: {},
+    require: sandboxRequire,
+    console,
+    pluginMeta: manifest,
+  };
   vm.createContext(sandbox);
   vm.runInContext(code, sandbox, { filename: entryPath });
   modules.set(name, sandbox.module.exports || sandbox.exports);
@@ -73,7 +76,7 @@ function watch() {
   });
 }
 
-fs.readdirSync(PLUGIN_DIR).forEach(dir => {
+fs.readdirSync(PLUGIN_DIR).forEach((dir) => {
   if (fs.existsSync(path.join(PLUGIN_DIR, dir, 'manifest.yaml'))) {
     try {
       loadPlugin(dir);

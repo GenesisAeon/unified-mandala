@@ -3,18 +3,21 @@
 This module provides tools for simulating chemical reaction kinetics and molecular structures.
 
 ## Features
+
 - Reaction equation parser and ODE-based kinetics solver
 - Molecule graph representation (atoms & bonds)
 - Export results to JSON and YAML
 - REST & gRPC service endpoints
 
 ## Installation
+
 ```bash
 # From project root
 go get github.com/GenesisAeon/unifiedmandala/pkg/chem/kinetics
 ```
 
 ## Usage Example (Go)
+
 ```go
 import "github.com/GenesisAeon/unifiedmandala/pkg/chem/kinetics"
 
@@ -33,6 +36,7 @@ func main() {
 ## API Documentation
 
 ### gRPC Service: `ChemistryService`
+
 ```protobuf
 service ChemistryService {
   rpc ComputeReaction (ReactionConfig) returns (ReactionResult);
@@ -40,6 +44,7 @@ service ChemistryService {
 ```
 
 ### REST Bridge (`chem-sim-engine/swagger.yaml`)
+
 ```yaml
 paths:
   /chem/kinetics/simulate:

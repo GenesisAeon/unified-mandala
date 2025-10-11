@@ -23,7 +23,7 @@ export class DreamMemory {
     const entry: DreamEntry = {
       id: state.id,
       timestamp: state.timestamp,
-      vision: `🛌 Vision: ${state.content}`
+      vision: `🛌 Vision: ${state.content}`,
     };
     this.dreams.push(entry);
     fs.writeFileSync(DREAM_PATH, JSON.stringify(this.dreams, null, 2), 'utf-8');

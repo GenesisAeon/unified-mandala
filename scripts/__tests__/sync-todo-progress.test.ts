@@ -9,12 +9,9 @@ test('syncTodoProgress reports counts and supports dry run', () => {
   fs.mkdirSync(partsDir);
   const tasks = [
     { commit: 'done task', status: 'done' },
-    { commit: 'pending task', status: 'open' }
+    { commit: 'pending task', status: 'open' },
   ];
-  fs.writeFileSync(
-    path.join(partsDir, 'tasks.json'),
-    JSON.stringify(tasks, null, 2)
-  );
+  fs.writeFileSync(path.join(partsDir, 'tasks.json'), JSON.stringify(tasks, null, 2));
   const progressFile = path.join(tmp, 'progress.json');
   fs.writeFileSync(progressFile, JSON.stringify({ progress: [], pendingTasks: [] }, null, 2));
 

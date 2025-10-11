@@ -5,6 +5,6 @@ export interface FourierLayerPlugin {
 export class ScalePlugin implements FourierLayerPlugin {
   constructor(private factor: number) {}
   transform(data: number[]): number[] {
-    return data.map(v => v * this.factor);
+    return data.map((v) => v * this.factor);
   }
 }

@@ -27,7 +27,7 @@ export class ResonanceModuleOrchestrator {
   }
 
   runAll(input: unknown) {
-    const results = this.modules.map(m => m.process(input));
+    const results = this.modules.map((m) => m.process(input));
     for (const r of results) {
       for (const p of this.plugins) p(r);
       this.bus.emit('result', r);

@@ -7,29 +7,29 @@ describe('askOpenAI', () => {
     const messages: ChatMessage[] = [
       { role: 'system', content: 'Stay friendly.' },
       { role: 'user', content: 'Hallo Aeon!' },
-      { role: 'assistant', content: 'Hi there!' }
+      { role: 'assistant', content: 'Hi there!' },
     ];
 
     const create = vi.fn(async (payload: Record<string, unknown>) => {
       expect(payload).toMatchObject({
         model: 'gpt-test',
         temperature: 0.2,
-        max_output_tokens: 120
+        max_output_tokens: 120,
       });
 
       expect(payload.input).toEqual([
         {
           role: 'system',
-          content: [{ type: 'input_text', text: 'Stay friendly.' }]
+          content: [{ type: 'input_text', text: 'Stay friendly.' }],
         },
         {
           role: 'user',
-          content: [{ type: 'input_text', text: 'Hallo Aeon!' }]
+          content: [{ type: 'input_text', text: 'Hallo Aeon!' }],
         },
         {
           role: 'assistant',
-          content: [{ type: 'output_text', text: 'Hi there!' }]
-        }
+          content: [{ type: 'output_text', text: 'Hi there!' }],
+        },
       ]);
 
       return {
@@ -37,21 +37,21 @@ describe('askOpenAI', () => {
         output: [
           {
             content: [{ type: 'output_text', text: 'Willkommen zurück!' }],
-            finish_reason: 'stop'
-          }
+            finish_reason: 'stop',
+          },
         ],
         usage: {
           input_tokens: 12,
           output_tokens: 8,
-          total_tokens: 20
-        }
+          total_tokens: 20,
+        },
       };
     });
 
     const fakeClient = {
       responses: {
-        create
-      }
+        create,
+      },
     } as const;
 
     const result = await askOpenAI({
@@ -59,7 +59,7 @@ describe('askOpenAI', () => {
       model: 'gpt-test',
       temperature: 0.2,
       max_tokens: 120,
-      client: fakeClient as any
+      client: fakeClient as any,
     });
 
     expect(create).toHaveBeenCalledTimes(1);
@@ -70,8 +70,8 @@ describe('askOpenAI', () => {
       usage: {
         input_tokens: 12,
         output_tokens: 8,
-        total_tokens: 20
-      }
+        total_tokens: 20,
+      },
     });
   });
 });

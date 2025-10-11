@@ -16,7 +16,7 @@ const sigilOut = path.join(__dirname, '../docs/sigils/aeon-transition.sigil.json
 
 function createTransitionSigil() {
   const data = JSON.parse(fs.readFileSync(convFile, 'utf8'));
-  const sigil = data.find(c => c.title === 'Aeon Übergabe-Sigil Prozess');
+  const sigil = data.find((c) => c.title === 'Aeon Übergabe-Sigil Prozess');
   if (!sigil) {
     throw new Error('Aeon Übergabe-Sigil Prozess not found');
   }

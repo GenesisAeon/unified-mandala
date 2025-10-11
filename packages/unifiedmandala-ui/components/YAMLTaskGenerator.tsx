@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import YAML from 'yaml';
 
-export interface TaskDef { plugin: string; input: any }
+export interface TaskDef {
+  plugin: string;
+  input: any;
+}
 
 export const YAMLTaskGenerator: React.FC = () => {
   const [tasks, setTasks] = useState<TaskDef[]>([]);
@@ -20,8 +23,16 @@ export const YAMLTaskGenerator: React.FC = () => {
     <div>
       {tasks.map((t, i) => (
         <div key={i}>
-          <input placeholder="plugin" value={t.plugin} onChange={e => updateTask(i, 'plugin', e.target.value)} />
-          <input placeholder="input" value={t.input} onChange={e => updateTask(i, 'input', e.target.value)} />
+          <input
+            placeholder="plugin"
+            value={t.plugin}
+            onChange={(e) => updateTask(i, 'plugin', e.target.value)}
+          />
+          <input
+            placeholder="input"
+            value={t.input}
+            onChange={(e) => updateTask(i, 'input', e.target.value)}
+          />
         </div>
       ))}
       <button onClick={addTask}>Add Task</button>

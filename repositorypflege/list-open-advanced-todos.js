@@ -34,7 +34,7 @@ function listOpenAdvancedTodos(
   pattern,
   todoPaths,
   excludePattern,
-  { includeConversations = false } = {}
+  { includeConversations = false } = {},
 ) {
   const basePaths =
     todoPaths && todoPaths.length
@@ -44,7 +44,7 @@ function listOpenAdvancedTodos(
       : [
           path.resolve(__dirname, '..', 'advancedToDo.json'),
           path.resolve(__dirname, '..', 'advancedToDo.yaml'),
-          path.resolve(__dirname, '..', 'advancedToDo_parts')
+          path.resolve(__dirname, '..', 'advancedToDo_parts'),
         ];
   const files = collectFiles(basePaths);
   let data = [];
@@ -58,8 +58,8 @@ function listOpenAdvancedTodos(
     excludePattern !== undefined
       ? excludePattern
       : includeConversations
-      ? undefined
-      : 'conversations';
+        ? undefined
+        : 'conversations';
   const excludeRegex = exclude ? new RegExp(exclude, 'i') : null;
   const seen = new Set();
   const result = [];
@@ -93,24 +93,17 @@ if (require.main === module) {
   const includeConvos = process.argv.includes('--include-conversations');
   const jsonOutput = process.argv.includes('--json');
   const yamlOutput = process.argv.includes('--yaml');
-  const markdownOutput =
-    process.argv.includes('--markdown') || process.argv.includes('--md');
+  const markdownOutput = process.argv.includes('--markdown') || process.argv.includes('--md');
   const open = listOpenAdvancedTodos(pattern, todoPaths, exclude, {
-    includeConversations: includeConvos
+    includeConversations: includeConvos,
   });
   const display = open.slice(0, limit);
   if (jsonOutput) {
     console.log(
-      JSON.stringify(
-        { todos: display, remaining: open.length - display.length },
-        null,
-        2
-      )
+      JSON.stringify({ todos: display, remaining: open.length - display.length }, null, 2),
     );
   } else if (yamlOutput) {
-    console.log(
-      yaml.dump({ todos: display, remaining: open.length - display.length })
-    );
+    console.log(yaml.dump({ todos: display, remaining: open.length - display.length }));
   } else {
     display.forEach((t) => {
       const commitText =

@@ -6,6 +6,4 @@ export default {
   component: SymbolicWayfinder,
 };
 
-export const Demo = () => (
-  <SymbolicWayfinder currentCREP="1" currentSigillin="genesis" />
-);
+export const Demo = () => <SymbolicWayfinder currentCREP="1" currentSigillin="genesis" />;

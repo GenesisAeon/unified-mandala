@@ -7,7 +7,7 @@ import { GPTEventHub } from '../GPTEventHub';
  */
 export function withPersonhood<T extends (...args: any[]) => any>(
   handler: T,
-  personId: string
+  personId: string,
 ): (...args: Parameters<T>) => ReturnType<T> {
   return (...args: Parameters<T>): ReturnType<T> => {
     requireConsent(personId);

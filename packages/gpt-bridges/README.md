@@ -8,4 +8,3 @@ Stub-Module zur Kommunikation mit GPT-Diensten.
   bei endgültigem Fehlschlag eine aussagekräftige Fehlermeldung zurück.
 - **AEONPOET** und **CREPJUDGE** – Platzhalter für spezialisierte GPT-Rollen
 - **GPTConversationLogger** – zeichnet Prompts und Antworten über den EventHub auf
-

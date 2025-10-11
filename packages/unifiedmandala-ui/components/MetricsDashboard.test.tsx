@@ -4,7 +4,7 @@ import '@testing-library/jest-dom';
 import MetricsDashboard from './MetricsDashboard';
 
 jest.mock('../hooks/useMetaScores', () => ({
-  useMetaScores: () => [{ layer: 'alpha', score: 0.8 }]
+  useMetaScores: () => [{ layer: 'alpha', score: 0.8 }],
 }));
 
 test('renders metrics line chart', () => {

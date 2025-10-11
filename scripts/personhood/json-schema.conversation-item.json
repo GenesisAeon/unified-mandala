@@ -3,13 +3,13 @@
   "title": "ConversationItem",
   "type": "object",
   "properties": {
-    "when": { "type": ["string","number"] },
-    "author": { "type": ["string","null"] },
-    "channel": { "type": ["string","null"] },
-    "text": { "type": ["string","null"] },
-    "message": { "type": ["string","null"] },
-    "content": { "type": ["string","null"] },
-    "meta": { "type": ["object","null"] }
+    "when": { "type": ["string", "number"] },
+    "author": { "type": ["string", "null"] },
+    "channel": { "type": ["string", "null"] },
+    "text": { "type": ["string", "null"] },
+    "message": { "type": ["string", "null"] },
+    "content": { "type": ["string", "null"] },
+    "meta": { "type": ["object", "null"] }
   },
   "additionalProperties": true
 }

@@ -1,4 +1,4 @@
-export type Personhood = "P0"|"P1"|"P2"|"P3";
+export type Personhood = 'P0' | 'P1' | 'P2' | 'P3';
 
 export interface Governance {
   level?: Personhood;
@@ -12,7 +12,7 @@ export interface ActorRef {
   role: string;
 }
 
-export interface MandalaEvent<T=any> {
+export interface MandalaEvent<T = any> {
   id: string;
   topic: string;
   actor: ActorRef;

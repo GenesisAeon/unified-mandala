@@ -42,7 +42,7 @@ export class CodexNavigatorAgent {
   private processTask(task: any): { task: any; antwort: string } {
     return {
       task,
-      antwort: `Resonanz aus Phase ${this.state.phase}`
+      antwort: `Resonanz aus Phase ${this.state.phase}`,
     };
   }
 

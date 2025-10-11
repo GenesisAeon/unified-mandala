@@ -1,6 +1,6 @@
 # Agent System Overview
 
-UnifiedMandala orchestrates several agents that communicate via CREP and symbolic links. 
+UnifiedMandala orchestrates several agents that communicate via CREP and symbolic links.
 Jeder Agent folgt dem Mandala-Prinzip: Beobachten, Bewerten, Reagieren.
 Die folgende Kette zeigt den üblichen Ablauf:
 
@@ -16,6 +16,7 @@ graph TD
 ```
 
 Weitere Agenten wie `PatternReactivator` und `GenesisAeonNavigator` arbeiten parallel zur Kette und
+
 - **StrategicAgentCoordinator** synchronisiert die Agentenliste.
   überwachen CREP-Scores sowie Phasenwechsel.
 - **QualityAssuranceAgent** prüft Codequalität durch Linting und Tests.
@@ -33,6 +34,7 @@ Weitere Agenten wie `PatternReactivator` und `GenesisAeonNavigator` arbeiten par
 Dieses Dokument verknüpft die Agentenlogik und dient als Einstiegspunkt für eigene Erweiterungen.
 
 ## Strategy
+
 - Konsolidierte Konfiguration über `codex-config.yaml`
 - Gemeinsame Logging-Schnittstellen für Nachvollziehbarkeit
 - Regelmäßige Sync-Zyklen via `SyncRunner` automatisieren

@@ -1,6 +1,6 @@
 # Agents Package
 
-Dieses Verzeichnis bündelt verschiedene Agenten des Unified Mandala Projekts. 
+Dieses Verzeichnis bündelt verschiedene Agenten des Unified Mandala Projekts.
 Der `CodexNavigatorAgent` dient als Ausgangspunkt und verarbeitet Aufgaben aus
 `codexwork.yaml`.
 Der `GoAgent` liest advancedToDo-Dateien und gibt offene Aufgaben aus.

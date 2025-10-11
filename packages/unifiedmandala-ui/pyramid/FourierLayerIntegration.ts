@@ -11,7 +11,7 @@ export function useFourierLayerMetrics() {
 
   useEffect(() => {
     const handle = (data: any) => {
-      setMetrics(m => [...m, data]);
+      setMetrics((m) => [...m, data]);
     };
     bridge.on('fourier:metrics', handle);
     const ws = connectFourierLayerBridge();

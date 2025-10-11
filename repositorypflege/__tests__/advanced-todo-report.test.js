@@ -10,7 +10,7 @@ test('groups open todos by directory', () => {
     { commit: 'Task A', path: 'a/file1', status: 'open' },
     { commit: 'Task B', path: 'a/file2', status: 'open' },
     { commit: 'Task C', path: 'b/file3', status: 'open' },
-    { commit: 'Task D', path: 'b/file4', status: 'done' }
+    { commit: 'Task D', path: 'b/file4', status: 'done' },
   ];
   fs.writeFileSync(tmp, JSON.stringify(sample, null, 2));
 
@@ -18,11 +18,9 @@ test('groups open todos by directory', () => {
   expect(grouped).toEqual({
     a: [
       { commit: 'Task A', path: 'a/file1' },
-      { commit: 'Task B', path: 'a/file2' }
+      { commit: 'Task B', path: 'a/file2' },
     ],
-    b: [
-      { commit: 'Task C', path: 'b/file3' }
-    ]
+    b: [{ commit: 'Task C', path: 'b/file3' }],
   });
 
   fs.unlinkSync(tmp);
@@ -32,18 +30,18 @@ test('cli outputs json when --json flag is provided', () => {
   const tmp = path.join(__dirname, 'tmp-report.json');
   const sample = [
     { commit: 'Task A', path: 'a/file1', status: 'open' },
-    { commit: 'Task C', path: 'b/file3', status: 'open' }
+    { commit: 'Task C', path: 'b/file3', status: 'open' },
   ];
   fs.writeFileSync(tmp, JSON.stringify(sample, null, 2));
 
   const script = path.join(__dirname, '..', 'advanced-todo-report.js');
   const out = execSync(`node ${script} --path ${tmp} --json`, {
-    encoding: 'utf8'
+    encoding: 'utf8',
   });
   const grouped = JSON.parse(out);
   expect(grouped).toEqual({
     a: [{ commit: 'Task A', path: 'a/file1' }],
-    b: [{ commit: 'Task C', path: 'b/file3' }]
+    b: [{ commit: 'Task C', path: 'b/file3' }],
   });
 
   fs.unlinkSync(tmp);
@@ -53,18 +51,18 @@ test('cli outputs yaml when --yaml flag is provided', () => {
   const tmp = path.join(__dirname, 'tmp-report.json');
   const sample = [
     { commit: 'Task A', path: 'a/file1', status: 'open' },
-    { commit: 'Task C', path: 'b/file3', status: 'open' }
+    { commit: 'Task C', path: 'b/file3', status: 'open' },
   ];
   fs.writeFileSync(tmp, JSON.stringify(sample, null, 2));
 
   const script = path.join(__dirname, '..', 'advanced-todo-report.js');
   const out = execSync(`node ${script} --path ${tmp} --yaml`, {
-    encoding: 'utf8'
+    encoding: 'utf8',
   });
   const grouped = yaml.load(out);
   expect(grouped).toEqual({
     a: [{ commit: 'Task A', path: 'a/file1' }],
-    b: [{ commit: 'Task C', path: 'b/file3' }]
+    b: [{ commit: 'Task C', path: 'b/file3' }],
   });
 
   fs.unlinkSync(tmp);
@@ -74,13 +72,13 @@ test('cli outputs markdown when --md flag is provided', () => {
   const tmp = path.join(__dirname, 'tmp-report.json');
   const sample = [
     { commit: 'Task A', path: 'a/file1', status: 'open' },
-    { commit: 'Task C', path: 'b/file3', status: 'open' }
+    { commit: 'Task C', path: 'b/file3', status: 'open' },
   ];
   fs.writeFileSync(tmp, JSON.stringify(sample, null, 2));
 
   const script = path.join(__dirname, '..', 'advanced-todo-report.js');
   const out = execSync(`node ${script} --path ${tmp} --md`, {
-    encoding: 'utf8'
+    encoding: 'utf8',
   });
   expect(out).toContain('### a (1)');
   expect(out).toContain('- Task A');

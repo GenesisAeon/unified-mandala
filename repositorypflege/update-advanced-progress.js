@@ -29,16 +29,16 @@ function updateAdvancedProgress(
   pattern,
   todoPaths,
   excludePattern,
-  { includeConversations = false, dryRun = false } = {}
+  { includeConversations = false, dryRun = false } = {},
 ) {
   const progressPath = progressFile || path.resolve(__dirname, '..', 'advancedprogress.json');
   const progress = JSON.parse(fs.readFileSync(progressPath, 'utf8'));
   const todos = listOpenAdvancedTodos(pattern, todoPaths, excludePattern, {
-    includeConversations
+    includeConversations,
   }).slice(0, limit);
   progress.pendingTasks = todos.map((t) => ({ commit: t.commit, path: t.path, status: 'open' }));
   const changed = getChangedFiles().filter(
-    (f) => f !== path.relative(path.resolve(__dirname, '..'), progressPath)
+    (f) => f !== path.relative(path.resolve(__dirname, '..'), progressPath),
   );
   progress.changedFiles = changed;
   progress.lastUpdated = new Date().toISOString();
@@ -70,7 +70,7 @@ if (require.main === module) {
   const dryRun = process.argv.includes('--dry-run');
   updateAdvancedProgress(limit, progressFile, pattern, todoPaths, exclude, {
     includeConversations: includeConvos,
-    dryRun
+    dryRun,
   });
 }
 

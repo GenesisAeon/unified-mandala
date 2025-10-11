@@ -1,5 +1,5 @@
 job_name: daily_cleanup
-schedule: "0 0 * * *"
+schedule: '0 0 * * *'
 actions:
   - type: archive_region
     region: default

@@ -1,4 +1,9 @@
-import { connectionCounter, responseLatencyGauge, recordConnection, recordLatency } from './metrics';
+import {
+  connectionCounter,
+  responseLatencyGauge,
+  recordConnection,
+  recordLatency,
+} from './metrics';
 
 describe('ghost-shell metrics', () => {
   it('tracks connections and latency', async () => {

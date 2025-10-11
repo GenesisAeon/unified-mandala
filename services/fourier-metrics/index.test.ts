@@ -20,7 +20,10 @@ describe('fourier metrics server', () => {
   });
 
   it('serves latest metrics via REST', async () => {
-    FourierLayerEvents.emit('metrics', { id: 'L1', metrics: { maxAmplitude: 1, avgAmplitude: 0.5 } });
+    FourierLayerEvents.emit('metrics', {
+      id: 'L1',
+      metrics: { maxAmplitude: 1, avgAmplitude: 0.5 },
+    });
     const res = await request(`http://localhost:${PORT}`).get('/fourier/latest');
     expect(res.body.L1.maxAmplitude).toBe(1);
   });
@@ -30,11 +33,11 @@ describe('fourier metrics server', () => {
     FourierLayerEvents.emit('metrics', { id: 'L2', metrics: { maxAmplitude: 2, avgAmplitude: 1 } });
 
     // capture connection handler and invoke
-    const handler = mockServer.on.mock.calls.find(c => c[0] === 'connection')?.[1];
+    const handler = mockServer.on.mock.calls.find((c) => c[0] === 'connection')?.[1];
     expect(handler).toBeDefined();
     const socket = { send: (msg: string) => messages.push(JSON.parse(msg)), on: jest.fn() } as any;
     handler(socket);
 
-    expect(messages.some(m => m.id === 'L2')).toBe(true);
+    expect(messages.some((m) => m.id === 'L2')).toBe(true);
   });
 });

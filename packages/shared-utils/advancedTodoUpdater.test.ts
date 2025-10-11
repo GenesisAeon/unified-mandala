@@ -12,9 +12,23 @@ describe('updateAdvancedTodo', () => {
   beforeAll(() => {
     if (!fs.existsSync(tmp)) fs.mkdirSync(tmp);
     const data = [
-      { id: 'c1', mapping: { root: { message: { content: { parts: ['Test'] } } }, node2: { message: { content: { parts: ['// TODO: first sample task'] } } } } },
-      { id: 'c2', mapping: { root: { message: { content: { parts: ['# TODO second sample task'] } } } } },
-      { id: 'c3', mapping: { root: { message: { content: { parts: ['Wir sollten zusätzliche Tests schreiben'] } } } } }
+      {
+        id: 'c1',
+        mapping: {
+          root: { message: { content: { parts: ['Test'] } } },
+          node2: { message: { content: { parts: ['// TODO: first sample task'] } } },
+        },
+      },
+      {
+        id: 'c2',
+        mapping: { root: { message: { content: { parts: ['# TODO second sample task'] } } } },
+      },
+      {
+        id: 'c3',
+        mapping: {
+          root: { message: { content: { parts: ['Wir sollten zusätzliche Tests schreiben'] } } },
+        },
+      },
     ];
     fs.writeFileSync(conv, JSON.stringify(data), 'utf8');
   });

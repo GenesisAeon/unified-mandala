@@ -52,7 +52,7 @@ export interface AeonUniversalOptions {
 const DEFAULT_OPTIONS: Required<AeonUniversalOptions> = {
   persistHistory: false,
   historyPath: 'aeon-history.json',
-  maxDepth: 10
+  maxDepth: 10,
 };
 export class AeonUniversalMembrane {
   private mem: NeuronMembrane;
@@ -67,16 +67,13 @@ export class AeonUniversalMembrane {
   }
 
   private saveHistoryToFile() {
-    fs.writeFileSync(
-      this.opts.historyPath,
-      JSON.stringify(this.history, null, 2)
-    );
+    fs.writeFileSync(this.opts.historyPath, JSON.stringify(this.history, null, 2));
   }
 
   constructor(
     mem: NeuronMembrane = new NeuronMembrane(),
     reflections = 1,
-    options: AeonUniversalOptions = {}
+    options: AeonUniversalOptions = {},
   ) {
     this.mem = mem;
     this.opts = { ...DEFAULT_OPTIONS, ...options };
@@ -118,23 +115,23 @@ export class AeonUniversalMembrane {
   async trainAsync(
     data: [number, number][],
     answers: number[],
-    crep: CREPSignature
+    crep: CREPSignature,
   ): Promise<void> {
     if (data.length !== answers.length) {
       throw new Error('trainAsync: Data und Answers m\u00fcssen gleich lang sein');
     }
     const base = this.mem.getNetworks()[0];
-    await new Promise<void>(resolve =>
+    await new Promise<void>((resolve) =>
       setTimeout(() => {
         selfTrain(base, data, answers, crep, 5);
         resolve();
-      }, 0)
+      }, 0),
     );
-    await new Promise<void>(resolve =>
+    await new Promise<void>((resolve) =>
       setTimeout(() => {
         depthSync(this.mem, data);
         resolve();
-      }, 0)
+      }, 0),
     );
   }
 
@@ -186,10 +183,7 @@ export class AeonUniversalMembrane {
   /**
    * Führt mehrere Harmonize-Zyklen aus und speichert die Ergebnisse.
    */
-  selfReflectCycle(
-    iterations: number,
-    options: HarmonizeOptions
-  ): HarmonyResult {
+  selfReflectCycle(iterations: number, options: HarmonizeOptions): HarmonyResult {
     let last = undefined as unknown as HarmonyResult;
     for (let i = 0; i < iterations; i++) {
       last = this.harmonize(options);
@@ -201,7 +195,7 @@ export class AeonUniversalMembrane {
    * Liefert f\u00fcr jede Netzebene die aktuelle Energie und den zugeh\u00f6rigen Ton.
    */
   scanResonance(): { energy: number; tone: string }[] {
-    return this.mem.getNetworks().map(net => {
+    return this.mem.getNetworks().map((net) => {
       const energy = scanEnergy(net);
       const tone = memoryToTone(energy / 10);
       return { energy, tone };

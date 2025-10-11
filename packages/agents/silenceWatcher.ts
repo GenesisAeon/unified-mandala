@@ -6,7 +6,10 @@ export class SilenceWatcher {
     this.lastEvent = Date.now();
   };
 
-  constructor(private thresholdMs = 60000, private hub = GPTEventHub) {
+  constructor(
+    private thresholdMs = 60000,
+    private hub = GPTEventHub,
+  ) {
     this.hub.on('*', this.handler as any);
   }
 

@@ -1,5 +1,5 @@
 id: singularity-simulator
-title: "Singularity Simulator"
+title: 'Singularity Simulator'
 type: simulation
 agent: SingularitySimulatorAgent
 entrypoint: agents/singularity_simulator/main.py

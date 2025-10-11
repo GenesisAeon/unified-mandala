@@ -19,7 +19,10 @@ export interface MandalaEdge {
 /**
  * Load the mastercanvas YAML and parse basic node structure.
  */
-export function loadMasterCanvas(file = path.join(__dirname, '../../docs/mastercanvas.yaml')): { nodes: MandalaNode[]; edges: MandalaEdge[] } {
+export function loadMasterCanvas(file = path.join(__dirname, '../../docs/mastercanvas.yaml')): {
+  nodes: MandalaNode[];
+  edges: MandalaEdge[];
+} {
   const text = fs.readFileSync(file, 'utf8');
   const doc = YAML.parse(text);
   const nodes: MandalaNode[] = [];
@@ -28,7 +31,9 @@ export function loadMasterCanvas(file = path.join(__dirname, '../../docs/masterc
     doc.nodes.forEach((n: any) => nodes.push({ id: String(n.id), label: n.label || String(n.id) }));
   }
   if (Array.isArray(doc.edges)) {
-    doc.edges.forEach((e: any) => edges.push({ source: String(e.source), target: String(e.target) }));
+    doc.edges.forEach((e: any) =>
+      edges.push({ source: String(e.source), target: String(e.target) }),
+    );
   }
   return { nodes, edges };
 }
@@ -36,7 +41,10 @@ export function loadMasterCanvas(file = path.join(__dirname, '../../docs/masterc
 /**
  * Very small Three.js scene setup that displays spheres for nodes.
  */
-export function createMandalaGraphScene(data: { nodes: MandalaNode[]; edges: MandalaEdge[] }): THREE.Scene {
+export function createMandalaGraphScene(data: {
+  nodes: MandalaNode[];
+  edges: MandalaEdge[];
+}): THREE.Scene {
   const scene = new THREE.Scene();
   const material = new THREE.MeshBasicMaterial({ color: 0x00ffcc });
   data.nodes.forEach((n, i) => {

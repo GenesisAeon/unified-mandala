@@ -6,11 +6,11 @@ export interface VRAvatarHubProps {
 
 export default function VRAvatarHub({ initialAvatars = [] }: VRAvatarHubProps) {
   const [avatars, setAvatars] = useState(initialAvatars);
-  const addAvatar = (id: string) => setAvatars(a => [...a, id]);
+  const addAvatar = (id: string) => setAvatars((a) => [...a, id]);
   return (
     <div>
       <ul>
-        {avatars.map(a => (
+        {avatars.map((a) => (
           <li key={a}>{a}</li>
         ))}
       </ul>

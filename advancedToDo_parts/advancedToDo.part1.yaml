@@ -1,15 +1,15 @@
-- commit: "Implement C-Tutor progress workflow"
+- commit: 'Implement C-Tutor progress workflow'
   path: packages/tutorials/C-Tutor
-  task: "Track user progress and award Sigil per milestone"
+  task: 'Track user progress and award Sigil per milestone'
   test: packages/tutorials/__tests__/C-Tutor.test.ts
   status: done
-- commit: "Add JavaHamster AI Flow"
+- commit: 'Add JavaHamster AI Flow'
   status: done
   path: packages/tutorials/JavaHamsterAI
-  task: "Interactive hamster coding with AI coach and Sigil rewards"
+  task: 'Interactive hamster coding with AI coach and Sigil rewards'
   test: packages/tutorials/__tests__/JavaHamsterAI.test.ts
-- commit: "Document learning modules"
+- commit: 'Document learning modules'
   status: done
   path: docs/learning-modules.md
-  task: "Describe workflows from advancedconversations_snippet.json"
-  test: ""
+  task: 'Describe workflows from advancedconversations_snippet.json'
+  test: ''

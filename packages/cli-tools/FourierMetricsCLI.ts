@@ -16,7 +16,7 @@ function main() {
   const result = layer.analyze();
   const out = {
     maxAmplitude: result.metrics.maxAmplitude,
-    avgAmplitude: result.metrics.avgAmplitude
+    avgAmplitude: result.metrics.avgAmplitude,
   };
   console.log(JSON.stringify(out, null, 2));
 }

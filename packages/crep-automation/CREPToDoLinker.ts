@@ -1,4 +1,7 @@
-export interface CREPChange { R: number; E: number }
+export interface CREPChange {
+  R: number;
+  E: number;
+}
 
 export function linkCREPToDos(change: CREPChange): string[] {
   const tasks: string[] = [];

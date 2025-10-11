@@ -16,9 +16,6 @@ describe('NewsBotPanel', () => {
     fireEvent.click(screen.getByRole('button', { name: /Sammle Trainingsdaten/ }));
     expect(fetch).toHaveBeenCalledWith('/training/collect', { method: 'POST' });
     fireEvent.click(screen.getByRole('button', { name: /Finetune starten/ }));
-    expect(fetch).toHaveBeenCalledWith(
-      '/finetune',
-      expect.objectContaining({ method: 'POST' })
-    );
+    expect(fetch).toHaveBeenCalledWith('/finetune', expect.objectContaining({ method: 'POST' }));
   });
 });

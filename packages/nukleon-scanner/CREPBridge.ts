@@ -16,6 +16,6 @@ export function analyzeConvoCREP(conversation: string): CREPAnalysis {
   scanner.importFromTranscript(conversation);
   return {
     memory,
-    averagePhi: scanner.averagePhi()
+    averagePhi: scanner.averagePhi(),
   };
 }

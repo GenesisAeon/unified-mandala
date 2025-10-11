@@ -34,9 +34,7 @@ export function summarizeRepositoryMap(options: SummaryOptions = {}) {
   }
 
   if (options.csv) {
-    const lines = Object.entries(summary).map(
-      ([name, count]) => `${name},${count}`
-    );
+    const lines = Object.entries(summary).map(([name, count]) => `${name},${count}`);
     return ['name,count', ...lines].join('\n');
   }
 
@@ -55,4 +53,3 @@ if (require.main === module) {
     console.log(result);
   }
 }
-

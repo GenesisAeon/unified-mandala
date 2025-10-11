@@ -10,7 +10,7 @@ global.WebSocket = class {
 
 test('connectCosmicBridge emits sigil alerts', () => {
   let payload: any = null;
-  cosmicBridge.on('sigil:alert', data => {
+  cosmicBridge.on('sigil:alert', (data) => {
     payload = data;
   });
   const ws = connectCosmicBridge('ws://test');

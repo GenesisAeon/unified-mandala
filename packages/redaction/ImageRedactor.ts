@@ -13,10 +13,7 @@ export interface RedactionRegion {
  * @param regions Array of regions to redact.
  * @returns Buffer of the redacted PNG image.
  */
-export async function redactImage(
-  input: Buffer,
-  regions: RedactionRegion[]
-): Promise<Buffer> {
+export async function redactImage(input: Buffer, regions: RedactionRegion[]): Promise<Buffer> {
   const image = await Jimp.read(input);
 
   for (const { x, y, width, height } of regions) {

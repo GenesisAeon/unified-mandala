@@ -5,7 +5,7 @@ test('trains towards sample data', () => {
     [115, 66],
     [175, 78],
     [205, 72],
-    [120, 67]
+    [120, 67],
   ];
   const answers = [1, 0, 0, 1];
   const net = new Network();

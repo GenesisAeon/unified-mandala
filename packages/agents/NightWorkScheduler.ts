@@ -9,7 +9,7 @@ export class NightWorkScheduler implements Agent {
     private dispatch: (task: Task) => Promise<void> = async () => {},
     private startHour = 0,
     private endHour = 6,
-    private now: () => Date = () => new Date()
+    private now: () => Date = () => new Date(),
   ) {}
 
   private isNight() {

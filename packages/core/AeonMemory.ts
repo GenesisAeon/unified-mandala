@@ -32,7 +32,7 @@ export class AeonMemory {
       id: `${Date.now()}`,
       timestamp: new Date().toISOString(),
       description,
-      ...extra
+      ...extra,
     };
     this.entries.push(entry);
     fs.writeFileSync(CHRONIK_PATH, YAML.stringify(this.entries), 'utf-8');
@@ -44,9 +44,7 @@ export class AeonMemory {
   }
 
   static top(n = 5): MemoryEntry[] {
-    return [...this.entries]
-      .sort((a, b) => (b.crepScore || 0) - (a.crepScore || 0))
-      .slice(0, n);
+    return [...this.entries].sort((a, b) => (b.crepScore || 0) - (a.crepScore || 0)).slice(0, n);
   }
 
   static all(): MemoryEntry[] {

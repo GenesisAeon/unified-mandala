@@ -16,7 +16,7 @@ describe('BackupManager', () => {
     manager.backupFile('source.txt');
     expect(mockedFs.copyFileSync).toHaveBeenCalledWith(
       'source.txt',
-      path.join('dest', 'source.txt')
+      path.join('dest', 'source.txt'),
     );
   });
 });

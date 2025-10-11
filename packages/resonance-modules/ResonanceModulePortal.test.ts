@@ -4,6 +4,6 @@ import { ResonanceModulePortal } from './ResonanceModulePortal';
 describe('ResonanceModulePortal', () => {
   it('connects modules', () => {
     const p = new ResonanceModulePortal();
-    expect(p.connect('a','b')).toBe('a->b');
+    expect(p.connect('a', 'b')).toBe('a->b');
   });
 });

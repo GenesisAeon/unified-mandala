@@ -20,6 +20,6 @@ export function createFourierAPI() {
 }
 
 let lastMetrics: any = null;
-FourierLayerEvents.on('metrics', data => {
+FourierLayerEvents.on('metrics', (data) => {
   lastMetrics = data;
 });

@@ -3,17 +3,20 @@
 This module converts CREP timelines and simulation events into musical compositions.
 
 ## Features
+
 - Map CREP metrics to melody parameters
 - Generate MIDI files or play live via WebAudio
 - Configurable scales, tempos, and instruments
 - CLI & REST endpoints
 
 ## Installation
+
 ```bash
 go get github.com/GenesisAeon/unifiedmandala/pkg/sonifier/melody
 ```
 
 ## Usage Example (CLI)
+
 ```bash
 sonify-run \
   --input events.jsonl \
@@ -26,6 +29,7 @@ sonify-run \
 ## API Documentation
 
 ### REST Bridge (`sonifier-service/swagger.yaml`)
+
 ```yaml
 paths:
   /sonify:

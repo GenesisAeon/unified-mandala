@@ -6,7 +6,11 @@ const renderLayer = (node: LayerNode, level = 0): JSX.Element => {
   const height = 1;
   const size = (level + 1) * node.weight * 2;
   return (
-    <mesh key={level} position={[0, level * height, 0]} aria-label={`nested-layer-${level}`}>\n      <coneGeometry args={[size, height]} />\n      <meshStandardMaterial color="orange" />\n      {node.children && renderLayer(node.children, level + 1)}\n    </mesh>
+    <mesh key={level} position={[0, level * height, 0]} aria-label={`nested-layer-${level}`}>
+      \n <coneGeometry args={[size, height]} />
+      \n <meshStandardMaterial color="orange" />
+      \n {node.children && renderLayer(node.children, level + 1)}\n{' '}
+    </mesh>
   );
 };
 

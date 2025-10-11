@@ -4,7 +4,7 @@ import { routeTask, routeTasks, Task, Peer } from './TaskRouter';
 const peers: Peer[] = [
   { id: 'human1', kind: 'human', roles: ['writer'], score: 0.8 },
   { id: 'ai1', kind: 'ai', roles: ['writer', 'reviewer'], score: 0.9 },
-  { id: 'human2', kind: 'human', roles: ['reviewer'], score: 0.9 }
+  { id: 'human2', kind: 'human', roles: ['reviewer'], score: 0.9 },
 ];
 
 function test(name: string, fn: () => void) {
@@ -38,7 +38,7 @@ test('returns undefined when no peer has role', () => {
 test('assigns multiple tasks', () => {
   const tasks: Task[] = [
     { id: 't4', requiredRole: 'writer' },
-    { id: 't5', requiredRole: 'reviewer' }
+    { id: 't5', requiredRole: 'reviewer' },
   ];
   const assignments = routeTasks(tasks, peers);
   assert.deepEqual(assignments, { t4: 'ai1', t5: 'human2' });

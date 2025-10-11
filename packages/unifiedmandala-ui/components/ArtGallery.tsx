@@ -14,10 +14,7 @@ interface ArtGalleryProps {
  * Renders a simple gallery of generative art pieces.
  */
 const ArtGallery: React.FC<ArtGalleryProps> = ({ pieces }) => (
-  <div
-    data-testid="art-gallery"
-    style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem' }}
-  >
+  <div data-testid="art-gallery" style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem' }}>
     {pieces.map((piece) => (
       <img
         key={piece.id}

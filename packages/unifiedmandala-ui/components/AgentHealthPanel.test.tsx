@@ -4,10 +4,11 @@ import '@testing-library/jest-dom';
 import AgentHealthPanel from './AgentHealthPanel';
 
 test('renders agent heartbeat entries', async () => {
-  global.fetch = jest.fn(() =>
-    Promise.resolve({
-      json: () => Promise.resolve([{ agentId: 'alpha', status: 'ok' }]),
-    }) as any
+  global.fetch = jest.fn(
+    () =>
+      Promise.resolve({
+        json: () => Promise.resolve([{ agentId: 'alpha', status: 'ok' }]),
+      }) as any,
   );
 
   render(<AgentHealthPanel />);

@@ -9,7 +9,7 @@ export function extractComments(file: string): string[] {
   while ((match = regex.exec(content))) {
     const cleaned = match[1]
       .split('\n')
-      .map(l => l.replace(/^\s*\* ?/, ''))
+      .map((l) => l.replace(/^\s*\* ?/, ''))
       .join('\n')
       .trim();
     if (cleaned) blocks.push(cleaned);

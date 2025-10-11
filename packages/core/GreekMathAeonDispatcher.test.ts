@@ -6,7 +6,9 @@ describe('GreekMathAeonDispatcher', () => {
     const dispatcher = new GreekMathAeonDispatcher();
     const spy = vi.fn();
     dispatcher.emitter.on('dispatcher:error', spy);
-    dispatcher.dispatch(() => { throw new Error('x'); });
+    dispatcher.dispatch(() => {
+      throw new Error('x');
+    });
     expect(spy).toHaveBeenCalled();
   });
 
@@ -16,7 +18,9 @@ describe('GreekMathAeonDispatcher', () => {
     dispatcher.emitter.on('dispatcher:error', spy);
     const ok = dispatcher.dispatchWithResult(() => 42);
     expect(ok).toBe(42);
-    const fail = dispatcher.dispatchWithResult(() => { throw new Error('x'); });
+    const fail = dispatcher.dispatchWithResult(() => {
+      throw new Error('x');
+    });
     expect(fail).toBeNull();
     expect(spy).toHaveBeenCalled();
   });

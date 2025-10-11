@@ -49,7 +49,7 @@ app.all('/peers/:id/*', async (req, res) => {
     const resp = await connector.invoke(id, path, {
       method: req.method,
       headers: { 'Content-Type': 'application/json' },
-      body: req.method === 'GET' || req.method === 'HEAD' ? undefined : JSON.stringify(req.body)
+      body: req.method === 'GET' || req.method === 'HEAD' ? undefined : JSON.stringify(req.body),
     });
     const text = await resp.text();
     res.status(resp.status).send(text);

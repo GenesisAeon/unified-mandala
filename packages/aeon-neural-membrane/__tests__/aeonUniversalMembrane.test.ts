@@ -11,7 +11,7 @@ test('train and predict through universal membrane', () => {
   const mem = new AeonUniversalMembrane(undefined, 2);
   const data: [number, number][] = [
     [115, 66],
-    [175, 78]
+    [175, 78],
   ];
   const answers = [1, 0];
   const crep: CREPSignature = { coherence: 6, resonance: 6, emergence: 6, poetics: 6 };
@@ -25,7 +25,7 @@ test('harmonize reflects on high energy', () => {
   const mem = new AeonUniversalMembrane(undefined, 0);
   const data: [number, number][] = [
     [115, 66],
-    [175, 78]
+    [175, 78],
   ];
   const answers = [1, 0];
   const res = mem.harmonize({ data, answers, text: 'hello world', energyThreshold: 0 });
@@ -40,7 +40,7 @@ test('trainAsync resolves and predicts', async () => {
   const mem = new AeonUniversalMembrane(undefined, 0);
   const data: [number, number][] = [
     [10, 20],
-    [30, 40]
+    [30, 40],
   ];
   const answers = [0, 1];
   const crep: CREPSignature = { coherence: 5, resonance: 5, emergence: 5, poetics: 5 };
@@ -58,19 +58,18 @@ test('constructor accepts injected membrane', () => {
 
 test('harmonize throws on mismatched data', () => {
   const mem = new AeonUniversalMembrane(undefined, 0);
-  expect(() =>
-    mem.harmonize({ data: [[1, 2]], answers: [1, 0], text: 'hi' })
-  ).toThrow('harmonize: Data und Answers m');
+  expect(() => mem.harmonize({ data: [[1, 2]], answers: [1, 0], text: 'hi' })).toThrow(
+    'harmonize: Data und Answers m',
+  );
 });
 
 test('analyzeConversation fails without signature', () => {
   jest.resetModules();
   jest.doMock('../../nukleon-scanner', () => ({
-    extractConvoMemory: () => ({ text: 'x', crepSignature: undefined })
+    extractConvoMemory: () => ({ text: 'x', crepSignature: undefined }),
   }));
   const { AeonUniversalMembrane: Mem } = require('../aeonUniversalMembrane');
   const mem = new Mem(undefined, 0);
   expect(() => mem.analyzeConversation('x')).toThrow('fehlende CREP');
   jest.dontMock('../../nukleon-scanner');
 });
-

@@ -38,6 +38,6 @@ export class GoAgent {
   }
 
   pending(): GoTask[] {
-    return this.jsonTasks.filter(t => t.status !== 'done');
+    return this.jsonTasks.filter((t) => t.status !== 'done');
   }
 }

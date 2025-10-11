@@ -17,5 +17,6 @@ const entries = RunLogger.read('runlog.jsonl');
 ```
 
 ## JSONL helper
+
 The logger uses `jsonlLogger` under the hood, which exposes `appendJsonl` and `readJsonl`
 functions for generic JSONL work.

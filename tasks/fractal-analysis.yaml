@@ -1,4 +1,4 @@
 tasks:
-  - command: "echo Running tests"
-  - command: "npx pyright"
-  - command: "npx tsc -p tsconfig.json"
+  - command: 'echo Running tests'
+  - command: 'npx pyright'
+  - command: 'npx tsc -p tsconfig.json'

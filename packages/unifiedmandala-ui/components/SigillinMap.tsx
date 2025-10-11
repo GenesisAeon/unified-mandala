@@ -3,7 +3,7 @@ interface SigillinMapProps {
 }
 const SigillinMap: React.FC<SigillinMapProps> = ({ sigillinData }) => (
   <div aria-label="Sigillin-Karte">
-    {sigillinData.map(sigillin => (
+    {sigillinData.map((sigillin) => (
       <div
         key={sigillin.id}
         style={{ backgroundColor: sigillin.status === 'aktiv' ? '#00FF99' : '#CCCCCC' }}

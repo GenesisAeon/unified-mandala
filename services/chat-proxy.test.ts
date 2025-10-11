@@ -26,7 +26,7 @@ test('forwards message to configured service', async () => {
     'http://gpt4all:8080/api/chat',
     expect.objectContaining({
       method: 'POST',
-      body: JSON.stringify({ message: 'hi' })
-    })
+      body: JSON.stringify({ message: 'hi' }),
+    }),
   );
 });

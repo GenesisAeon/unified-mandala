@@ -3,16 +3,19 @@ import React from 'react';
 import { CREPProvider, useCREPContext } from '../contexts/CREPContext';
 import { useAdaptiveLayout } from './useAdaptiveLayout';
 
-const wrapper: React.FC<{children: React.ReactNode}> = ({ children }) => (
+const wrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => (
   <CREPProvider>{children}</CREPProvider>
 );
 
 test('returns critical layout when CREP state is critical', () => {
-  const { result } = renderHook(() => {
-    const ctx = useCREPContext();
-    const layout = useAdaptiveLayout();
-    return { ctx, layout };
-  }, { wrapper });
+  const { result } = renderHook(
+    () => {
+      const ctx = useCREPContext();
+      const layout = useAdaptiveLayout();
+      return { ctx, layout };
+    },
+    { wrapper },
+  );
 
   act(() => {
     result.current.ctx.triggerCREP({ C: 1, R: 1, E: 1, P: 1 });
@@ -22,11 +25,14 @@ test('returns critical layout when CREP state is critical', () => {
 });
 
 test('returns safe layout when CREP state is safe', () => {
-  const { result } = renderHook(() => {
-    const ctx = useCREPContext();
-    const layout = useAdaptiveLayout();
-    return { ctx, layout };
-  }, { wrapper });
+  const { result } = renderHook(
+    () => {
+      const ctx = useCREPContext();
+      const layout = useAdaptiveLayout();
+      return { ctx, layout };
+    },
+    { wrapper },
+  );
 
   act(() => {
     result.current.ctx.triggerCREP({ C: 8, R: 8, E: 8, P: 1 });

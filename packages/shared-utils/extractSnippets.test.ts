@@ -10,8 +10,8 @@ describe('extractCodeSnippetsFromFile', () => {
     if (!fs.existsSync(tmpDir)) fs.mkdirSync(tmpDir);
     const sample = [
       { msg: "Here is code:\n```js\nconsole.log('hi');\n```" },
-      { msg: "no code here" },
-      { msg: "Another snippet:\n```python\nprint('x')\n```" }
+      { msg: 'no code here' },
+      { msg: "Another snippet:\n```python\nprint('x')\n```" },
     ];
     fs.writeFileSync(sampleFile, JSON.stringify(sample), 'utf8');
   });

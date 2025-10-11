@@ -6,7 +6,7 @@ test('runMetaTasks executes commands', () => {
   const dir = fs.mkdtempSync(path.join(__dirname, 'meta-'));
   const target = path.join(dir, 'out.txt');
   const config = path.join(dir, 'config.yaml');
-  fs.writeFileSync(config, `tasks:\n  - command: echo hello > ${target.replace(/\\/g,'/')}`);
+  fs.writeFileSync(config, `tasks:\n  - command: echo hello > ${target.replace(/\\/g, '/')}`);
   const count = runMetaTasks(config);
   const content = fs.readFileSync(target, 'utf8').trim();
   expect(count).toBe(1);

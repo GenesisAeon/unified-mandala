@@ -7,4 +7,3 @@ To ensure responsible development of the Unified Mandala project, governance mec
 ## Trustworthy AI Guidelines
 
 The project follows trustworthy AI guidelines that emphasise safety, explainability and human oversight. All agent contributions, including those from the Mistral Code Agent, are reviewed for compliance with these principles before integration.
-

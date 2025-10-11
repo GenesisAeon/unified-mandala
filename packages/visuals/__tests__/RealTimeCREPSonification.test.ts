@@ -5,12 +5,13 @@ test('creates oscillator with mapped frequency', () => {
   const gainConnect = jest.fn();
   const gainNode = { gain: { value: 0 }, connect: gainConnect } as any;
   const ctx = {
-    createOscillator: () => ({
-      frequency: { value: 0 },
-      connect: oscConnect,
-      start,
-      stop,
-    }) as any,
+    createOscillator: () =>
+      ({
+        frequency: { value: 0 },
+        connect: oscConnect,
+        start,
+        stop,
+      }) as any,
     createGain: () => gainNode,
     destination: {},
     currentTime: 0,

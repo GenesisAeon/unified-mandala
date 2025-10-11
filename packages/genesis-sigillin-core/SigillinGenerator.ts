@@ -12,7 +12,7 @@ export const SigillinGenerator = (
   type: Sigillin['type'],
   status: Sigillin['status'],
   creator: string,
-  schema_version = '1.0.0'
+  schema_version = '1.0.0',
 ): Sigillin => {
   const sigillin: Sigillin = {
     schema_version,

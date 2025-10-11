@@ -17,7 +17,9 @@ interface PermissionsFile {
 export class PolicyEnforcer {
   private policies: Record<string, AgentPolicy>;
 
-  constructor(permissionsPath: string = path.resolve(process.cwd(), 'governance/permissions.yaml')) {
+  constructor(
+    permissionsPath: string = path.resolve(process.cwd(), 'governance/permissions.yaml'),
+  ) {
     const raw = fs.readFileSync(permissionsPath, 'utf8');
     const parsed: PermissionsFile = YAML.parse(raw) || {};
     this.policies = parsed.agents || {};

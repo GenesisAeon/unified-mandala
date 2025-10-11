@@ -20,7 +20,7 @@ async function loadPlugins(manifestPath: string) {
       } else if (mod.run) {
         await mod.run();
       }
-    })
+    }),
   );
 }
 
@@ -29,7 +29,7 @@ async function main() {
   await loadPlugins(manifest);
 }
 
-main().catch(err => {
+main().catch((err) => {
   console.error(err);
   process.exit(1);
 });

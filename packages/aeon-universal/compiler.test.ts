@@ -1,118 +1,111 @@
-import fs from "fs";
-import path from "path";
+import fs from 'fs';
+import path from 'path';
 import {
   compile,
   transpileToTS,
   transpileToPython,
   transpileToGo,
   transpileToJS,
-} from "./compiler";
-import { AeonSigillinVault } from "../core/AeonSigillinVault";
+} from './compiler';
+import { AeonSigillinVault } from '../core/AeonSigillinVault';
 
-const CHRONIK = path.resolve("mandala-chronik.yaml");
+const CHRONIK = path.resolve('mandala-chronik.yaml');
 
-describe("AeonUniversal compile", () => {
+describe('AeonUniversal compile', () => {
   beforeEach(() => {
     if (fs.existsSync(CHRONIK)) fs.unlinkSync(CHRONIK);
   });
 
-  it("creates tasks and records memory", () => {
-    const result = compile("TASK Demo\nREM Erinnerung");
-    expect(result.tasks[0].description).toBe("Demo");
-    const content = fs.readFileSync(CHRONIK, "utf-8");
-    expect(content).toContain("Erinnerung");
+  it('creates tasks and records memory', () => {
+    const result = compile('TASK Demo\nREM Erinnerung');
+    expect(result.tasks[0].description).toBe('Demo');
+    const content = fs.readFileSync(CHRONIK, 'utf-8');
+    expect(content).toContain('Erinnerung');
   });
 
-  it("records sigillin states", () => {
-    const spy = jest.spyOn(AeonSigillinVault, "record");
-    compile("SIG Hallo");
+  it('records sigillin states', () => {
+    const spy = jest.spyOn(AeonSigillinVault, 'record');
+    compile('SIG Hallo');
     expect(spy).toHaveBeenCalled();
   });
 
-  it("parses emitSigil with params", () => {
-    const spy = jest.spyOn(AeonSigillinVault, "record");
+  it('parses emitSigil with params', () => {
+    const spy = jest.spyOn(AeonSigillinVault, 'record');
     compile('emitSigil("Hi","intro", level:1);');
     expect(spy).toHaveBeenCalledWith(
-      expect.objectContaining({ content: "Hi", category: "intro", params: { level: 1 } })
+      expect.objectContaining({ content: 'Hi', category: 'intro', params: { level: 1 } }),
     );
   });
 
-  it("records guard states", () => {
-    const spy = jest.spyOn(AeonSigillinVault, "recordGuard");
-    compile("GUARD Schutz");
+  it('records guard states', () => {
+    const spy = jest.spyOn(AeonSigillinVault, 'recordGuard');
+    compile('GUARD Schutz');
     expect(spy).toHaveBeenCalled();
   });
 
-  it("includes other files recursively", () => {
-    const tmp = path.resolve("tmp.aeon");
-    fs.writeFileSync(tmp, "TASK Subtask");
+  it('includes other files recursively', () => {
+    const tmp = path.resolve('tmp.aeon');
+    fs.writeFileSync(tmp, 'TASK Subtask');
     const result = compile(`INCLUDE ${tmp}`);
-    expect(result.tasks[0].description).toBe("Subtask");
+    expect(result.tasks[0].description).toBe('Subtask');
     fs.unlinkSync(tmp);
   });
 
-  it("supports macro definitions and calls", () => {
-    const source = ["DEFINE greet", "TASK Hello", "END", "CALL greet"].join(
-      "\n",
-    );
+  it('supports macro definitions and calls', () => {
+    const source = ['DEFINE greet', 'TASK Hello', 'END', 'CALL greet'].join('\n');
     const result = compile(source);
-    expect(result.tasks[0].description).toBe("Hello");
+    expect(result.tasks[0].description).toBe('Hello');
   });
 
-  it("supports macros with parameters", () => {
-    const source = [
-      "DEFINE echo msg",
-      "  TASK $msg",
-      "END",
-      "CALL echo Hallo",
-    ].join("\n");
+  it('supports macros with parameters', () => {
+    const source = ['DEFINE echo msg', '  TASK $msg', 'END', 'CALL echo Hallo'].join('\n');
     const result = compile(source);
-    expect(result.tasks[0].description).toBe("Hallo");
+    expect(result.tasks[0].description).toBe('Hallo');
   });
 
-  it("handles context blocks with WITH/ENDWITH", () => {
-    const source = ["WITH A", "TASK Test", "ENDWITH"].join("\n");
+  it('handles context blocks with WITH/ENDWITH', () => {
+    const source = ['WITH A', 'TASK Test', 'ENDWITH'].join('\n');
     const result = compile(source);
-    expect(result.tasks[0].context).toBe("A");
+    expect(result.tasks[0].context).toBe('A');
   });
 
-  it("handles REPEAT blocks", () => {
-    const source = ["REPEAT 2", "TASK R", "ENDREPEAT"].join("\n");
+  it('handles REPEAT blocks', () => {
+    const source = ['REPEAT 2', 'TASK R', 'ENDREPEAT'].join('\n');
     const result = compile(source);
     expect(result.tasks.length).toBe(2);
   });
 
-  it("handles ROUTE blocks", () => {
-    const source = ["ROUTE AeonTranspiler", "TASK X", "ENDROUTE"].join("\n");
+  it('handles ROUTE blocks', () => {
+    const source = ['ROUTE AeonTranspiler', 'TASK X', 'ENDROUTE'].join('\n');
     const result = compile(source);
-    expect(result.tasks[0].route).toBe("AeonTranspiler");
+    expect(result.tasks[0].route).toBe('AeonTranspiler');
   });
 
-  it("transpiles tasks to TypeScript", () => {
-    const res = compile("TASK Demo");
+  it('transpiles tasks to TypeScript', () => {
+    const res = compile('TASK Demo');
     const ts = transpileToTS(res);
-    expect(ts).toContain("aeonTasks");
-    expect(ts).toContain("Demo");
+    expect(ts).toContain('aeonTasks');
+    expect(ts).toContain('Demo');
   });
 
-  it("transpiles tasks to Python", () => {
-    const res = compile("TASK Demo");
+  it('transpiles tasks to Python', () => {
+    const res = compile('TASK Demo');
     const py = transpileToPython(res);
-    expect(py).toContain("aeon_tasks");
-    expect(py).toContain("Demo");
+    expect(py).toContain('aeon_tasks');
+    expect(py).toContain('Demo');
   });
 
-  it("transpiles tasks to Go", () => {
-    const res = compile("TASK Demo");
+  it('transpiles tasks to Go', () => {
+    const res = compile('TASK Demo');
     const go = transpileToGo(res);
-    expect(go).toContain("package aeon");
-    expect(go).toContain("Demo");
+    expect(go).toContain('package aeon');
+    expect(go).toContain('Demo');
   });
 
-  it("transpiles tasks to JS", () => {
-    const res = compile("TASK Demo");
+  it('transpiles tasks to JS', () => {
+    const res = compile('TASK Demo');
     const js = transpileToJS(res);
-    expect(js).toContain("aeonTasks");
-    expect(js).toContain("Demo");
+    expect(js).toContain('aeonTasks');
+    expect(js).toContain('Demo');
   });
 });

@@ -12,4 +12,4 @@ ab_testing:
       min: 15
       max: 95
   logging:
-    sink: "data/mrv/actions/"
+    sink: 'data/mrv/actions/'

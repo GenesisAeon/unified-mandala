@@ -17,7 +17,7 @@ describe('HookTriggererAgent', () => {
     await agent.handle({ id: 'T-URL', description: '...', url: 'https://example.com/hook' });
     expect(fetchMock).toHaveBeenCalledWith(
       'https://example.com/hook',
-      expect.objectContaining({ method: 'POST' })
+      expect.objectContaining({ method: 'POST' }),
     );
   });
 
@@ -33,12 +33,12 @@ describe('HookTriggererAgent', () => {
     expect(fetchMock).toHaveBeenNthCalledWith(
       1,
       'https://example.com/1',
-      expect.objectContaining({ method: 'POST' })
+      expect.objectContaining({ method: 'POST' }),
     );
     expect(fetchMock).toHaveBeenNthCalledWith(
       2,
       'https://example.com/2',
-      expect.objectContaining({ method: 'POST' })
+      expect.objectContaining({ method: 'POST' }),
     );
   });
 });

@@ -1,5 +1,5 @@
-- commit: "Add transition history script"
+- commit: 'Add transition history script'
   path: scripts/add-transition-history.js
-  task: "Keep aeon transition sigils in advancedprogress.json"
+  task: 'Keep aeon transition sigils in advancedprogress.json'
   test: scripts/__tests__/add-transition-history.test.ts
   status: done

@@ -7,7 +7,7 @@ export class VRBoundaryConductor {
   constructor(
     private vr: VRBegegnungsraum,
     private bridge: PantheonBoundaryBridge,
-    private rules: (string | RegExp)[] = []
+    private rules: (string | RegExp)[] = [],
   ) {}
 
   start() {
@@ -17,7 +17,9 @@ export class VRBoundaryConductor {
     this.vr.onHandshake(cb);
     this.unsubscribe = () => {
       // remove listener by filtering
-      (this.vr as any).handshakeListeners = (this.vr as any).handshakeListeners.filter((fn: any) => fn !== cb);
+      (this.vr as any).handshakeListeners = (this.vr as any).handshakeListeners.filter(
+        (fn: any) => fn !== cb,
+      );
     };
   }
 

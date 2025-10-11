@@ -5,6 +5,6 @@ describe('GoAgent', () => {
   it('loads tasks and filters pending ones', () => {
     const agent = new GoAgent('.');
     expect(Array.isArray(agent.jsonTasks)).toBe(true);
-    expect(agent.pending()).toEqual(agent.jsonTasks.filter(t => t.status !== 'done'));
+    expect(agent.pending()).toEqual(agent.jsonTasks.filter((t) => t.status !== 'done'));
   });
 });

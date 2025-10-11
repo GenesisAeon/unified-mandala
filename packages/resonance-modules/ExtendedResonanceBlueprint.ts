@@ -8,11 +8,11 @@ export const ExtendedResonanceBlueprint: ResonanceService[] = [
   {
     name: 'AeonMythOS',
     description: 'Mythic pattern analysis and narrative synthesis',
-    endpoint: '/mythos'
+    endpoint: '/mythos',
   },
   {
     name: 'AeonSigilNet',
     description: 'Sigil network interactions and resonance exchange',
-    endpoint: '/sigilnet'
-  }
+    endpoint: '/sigilnet',
+  },
 ];

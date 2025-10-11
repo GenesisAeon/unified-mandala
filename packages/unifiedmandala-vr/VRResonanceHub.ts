@@ -8,6 +8,6 @@ export class VRResonanceHub {
   }
 
   broadcast(value: number) {
-    this.listeners.forEach(l => l(value));
+    this.listeners.forEach((l) => l(value));
   }
 }

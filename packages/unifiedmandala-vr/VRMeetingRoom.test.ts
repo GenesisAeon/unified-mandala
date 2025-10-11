@@ -3,7 +3,10 @@ import { VRMeetingRoom } from './VRMeetingRoom';
 
 class DummyLoader {
   loadCalled = false;
-  load() { this.loadCalled = true; return Promise.resolve(); }
+  load() {
+    this.loadCalled = true;
+    return Promise.resolve();
+  }
 }
 
 describe('VRMeetingRoom', () => {
@@ -16,6 +19,6 @@ describe('VRMeetingRoom', () => {
 
   it('broadcast returns peer messages', () => {
     const room = new VRMeetingRoom({ load: () => Promise.resolve() } as any);
-    expect(room.broadcast('hi', ['a','b'])).toEqual(['a:hi','b:hi']);
+    expect(room.broadcast('hi', ['a', 'b'])).toEqual(['a:hi', 'b:hi']);
   });
 });

@@ -1,8 +1,8 @@
 {
-  "id":"00000000-0000-4000-8000-000000000000",
-  "topic":"data.ingest",
-  "actor":{"id":"fixture","role":"test"},
-  "ts":"2025-01-01T00:00:00Z",
-  "personhood":"P1",
-  "payload":{"sha256":"abc"}
+  "id": "00000000-0000-4000-8000-000000000000",
+  "topic": "data.ingest",
+  "actor": { "id": "fixture", "role": "test" },
+  "ts": "2025-01-01T00:00:00Z",
+  "personhood": "P1",
+  "payload": { "sha256": "abc" }
 }

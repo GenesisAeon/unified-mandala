@@ -55,10 +55,8 @@ if (require.main === module) {
   if (res.missingStart.length || res.missingRoles.length || res.missingDocs.length) {
     if (res.missingStart.length)
       console.error('Agents missing start module/input:', res.missingStart);
-    if (res.missingRoles.length)
-      console.error('Agents missing roles_allowed:', res.missingRoles);
-    if (res.missingDocs.length)
-      console.error('Agents missing documentation:', res.missingDocs);
+    if (res.missingRoles.length) console.error('Agents missing roles_allowed:', res.missingRoles);
+    if (res.missingDocs.length) console.error('Agents missing documentation:', res.missingDocs);
     process.exit(1);
   }
   console.log(`Validated ${res.agentCount} agents successfully.`);

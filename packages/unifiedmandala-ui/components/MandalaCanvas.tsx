@@ -8,7 +8,12 @@ export interface MandalaCanvasProps {
   onModuleSelect?: (module: string) => void;
 }
 
-const MandalaCanvas: React.FC<MandalaCanvasProps> = ({ boundaryRules, pantheonEvents, modules = [], onModuleSelect }) => {
+const MandalaCanvas: React.FC<MandalaCanvasProps> = ({
+  boundaryRules,
+  pantheonEvents,
+  modules = [],
+  onModuleSelect,
+}) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {

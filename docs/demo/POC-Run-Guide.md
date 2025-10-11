@@ -1,9 +1,11 @@
 # POC Run: Bio-Sim → Sonification → AI Art
 
 ## Overview
+
 Demonstrate the pipeline from scientific simulation through music and image generation in a single workflow.
 
 ### Steps
+
 1. **Run Bio Simulation**
    ```bash
    bio-sim-service --config genome-sim.yaml --output genome-run.jsonl
@@ -33,4 +35,4 @@ Demonstrate the pipeline from scientific simulation through music and image gene
 | 4     | Image Generation   | Progress bar then reveal of AI-generated fractal-DNA watercolor image  | 4s       |
 | 5     | Sigil Creation     | Dashboard flashes new Sigil card with `fractalHash` and artifact links | 3s       |
 
-*Use animated overlays: arrows, labels like “CREP → Melody”, “Genomes → Art”.*
+_Use animated overlays: arrows, labels like “CREP → Melody”, “Genomes → Art”._

@@ -3,18 +3,21 @@
 This protocol documents how to reproduce experiments within the Unified Mandala project.
 
 ## Seed Control
+
 - Use deterministic seeds for all stochastic processes.
 - Record seeds in experiment metadata under `seed`.
 
 ## JSONL Dataset Format
+
 - Store training data in JSON Lines (`.jsonl`) files.
 - Each line should contain a JSON object with at least `prompt` and `completion` fields.
 - Example:
   ```json
-  {"prompt": "Question?", "completion": "Answer."}
+  { "prompt": "Question?", "completion": "Answer." }
   ```
 
 ## Environment Capture
+
 - Export the Python environment with:
   ```bash
   pip freeze > requirements.lock
@@ -29,6 +32,7 @@ This protocol documents how to reproduce experiments within the Unified Mandala 
   ```
 
 ## Reproducibility Checklist
+
 - [ ] Save seed values
 - [ ] Archive dataset snapshots
 - [ ] Export environment locks

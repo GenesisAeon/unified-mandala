@@ -5,7 +5,7 @@ import path from 'path';
 export function watchAdvancedToDo(
   file: string = path.join(__dirname, '../advancedToDo.json'),
   interval = 5000,
-  onChange?: () => void
+  onChange?: () => void,
 ) {
   let lastMtime = fs.statSync(file).mtimeMs;
   const timer = setInterval(() => {

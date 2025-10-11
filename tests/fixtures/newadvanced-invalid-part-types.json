@@ -13,8 +13,8 @@
         "id": "a",
         "message": {
           "id": "m1",
-          "author": {"role": "user"},
-          "content": {"parts": ["valid", {"foo": "bar"}]},
+          "author": { "role": "user" },
+          "content": { "parts": ["valid", { "foo": "bar" }] },
           "create_time": 1,
           "update_time": 1
         },

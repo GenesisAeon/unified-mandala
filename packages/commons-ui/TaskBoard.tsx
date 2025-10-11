@@ -29,11 +29,11 @@ export default function TaskBoard() {
       await fetch('/api/tasks', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(newTask)
+        body: JSON.stringify(newTask),
       });
       setTasks((prev) => [
         ...prev,
-        { id: Math.random().toString(36).slice(2), title: newTask.title }
+        { id: Math.random().toString(36).slice(2), title: newTask.title },
       ]);
     } catch {
       /* ignore network errors in demo */

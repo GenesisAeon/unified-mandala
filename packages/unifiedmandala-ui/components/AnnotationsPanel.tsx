@@ -16,7 +16,10 @@ interface AnnotationsPanelProps {
  * AnnotationsPanel shows realtime annotations and provides a form to add new ones.
  * Derived from guidance in `newadvancedconversations.json`.
  */
-export default function AnnotationsPanel({ docId, wsUrl = 'ws://localhost:4022' }: AnnotationsPanelProps) {
+export default function AnnotationsPanel({
+  docId,
+  wsUrl = 'ws://localhost:4022',
+}: AnnotationsPanelProps) {
   const [annotations, setAnnotations] = useState<Annotation[]>([]);
   const [text, setText] = useState('');
 
@@ -30,7 +33,7 @@ export default function AnnotationsPanel({ docId, wsUrl = 'ws://localhost:4022' 
     const ws = new WebSocket(wsUrl);
     ws.onopen = () => {
       ws.send(
-        JSON.stringify({ v: '1.0', msg: { type: 'subscribe', channel: Subjects.LIVE_ANSWER } })
+        JSON.stringify({ v: '1.0', msg: { type: 'subscribe', channel: Subjects.LIVE_ANSWER } }),
       );
     };
     ws.onmessage = (ev) => {
@@ -55,7 +58,7 @@ export default function AnnotationsPanel({ docId, wsUrl = 'ws://localhost:4022' 
     fetch(`/annotations/${docId}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body
+      body,
     })
       .then((r) => r.json())
       .then((ann: Annotation) => {
@@ -76,4 +79,3 @@ export default function AnnotationsPanel({ docId, wsUrl = 'ws://localhost:4022' 
     </div>
   );
 }
-

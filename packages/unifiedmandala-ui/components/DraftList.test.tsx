@@ -7,14 +7,12 @@ describe('DraftList', () => {
   test('renders drafts and triggers actions', () => {
     const drafts = [
       { id: '1', title: 'First draft' },
-      { id: '2', title: 'Second draft' }
+      { id: '2', title: 'Second draft' },
     ];
     const onApprove = jest.fn();
     const onReject = jest.fn();
 
-    render(
-      <DraftList drafts={drafts} onApprove={onApprove} onReject={onReject} />
-    );
+    render(<DraftList drafts={drafts} onApprove={onApprove} onReject={onReject} />);
 
     expect(screen.getByText('First draft')).toBeInTheDocument();
     expect(screen.getByText('Second draft')).toBeInTheDocument();

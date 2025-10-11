@@ -10,14 +10,10 @@ const mapping: Record<string, string> = {
  * The fetch implementation is injectable to keep the module testable without
  * performing real network requests.
  */
-export async function interpret(
-  symbol: string,
-  fetchImpl?: typeof fetch
-): Promise<string> {
+export async function interpret(symbol: string, fetchImpl?: typeof fetch): Promise<string> {
   if (mapping[symbol]) return mapping[symbol];
 
-  const endpoint =
-    process.env.GPT_SYMBOL_URL || 'http://localhost:3000/symbol-interpret';
+  const endpoint = process.env.GPT_SYMBOL_URL || 'http://localhost:3000/symbol-interpret';
   const fn = fetchImpl || (globalThis as any).fetch;
   try {
     const res = await fn(endpoint, {

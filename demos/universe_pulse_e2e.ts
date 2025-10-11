@@ -9,7 +9,7 @@ emitter.on('pulse', ({ value, index }) => {
 });
 
 // Output final run metrics when simulation ends
-emitter.on('end', metrics => {
+emitter.on('end', (metrics) => {
   console.log('metrics', metrics);
 });
 

@@ -1,4 +1,4 @@
-export type SigilIntent = "assert" | "query" | "ritual" | string;
+export type SigilIntent = 'assert' | 'query' | 'ritual' | string;
 
 export interface SigilMessage {
   symbol: string;

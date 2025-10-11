@@ -39,7 +39,7 @@ export class DatasetRegistry {
     version: string,
     splitName: string,
     uri: string,
-    personId: string
+    personId: string,
   ): void {
     requireConsent(personId);
     const ver = this.getVersion(name, version);
@@ -51,7 +51,7 @@ export class DatasetRegistry {
     version: string,
     artifactName: string,
     uri: string,
-    personId: string
+    personId: string,
   ): void {
     requireConsent(personId);
     const ver = this.getVersion(name, version);

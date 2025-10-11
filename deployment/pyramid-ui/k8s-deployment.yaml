@@ -13,10 +13,10 @@ spec:
         app: pyramid-ui
     spec:
       containers:
-      - name: pyramid-ui
-        image: pyramid-ui:latest
-        ports:
-        - containerPort: 3000
+        - name: pyramid-ui
+          image: pyramid-ui:latest
+          ports:
+            - containerPort: 3000
 ---
 apiVersion: v1
 kind: Service
@@ -26,5 +26,5 @@ spec:
   selector:
     app: pyramid-ui
   ports:
-  - port: 80
-    targetPort: 3000
+    - port: 80
+      targetPort: 3000

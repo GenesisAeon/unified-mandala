@@ -17,7 +17,8 @@ const CapabilityGraph: React.FC<CapabilityGraphProps> = ({ capabilities }) => {
       <ul>
         {capabilities.map((cap) => (
           <li key={cap.name}>
-            {cap.name}: {cap.enabled ? '✅' : `🚫 (gated by: ${cap.gatedBy?.join(', ') || 'unknown'})`}
+            {cap.name}:{' '}
+            {cap.enabled ? '✅' : `🚫 (gated by: ${cap.gatedBy?.join(', ') || 'unknown'})`}
           </li>
         ))}
       </ul>
@@ -26,4 +27,3 @@ const CapabilityGraph: React.FC<CapabilityGraphProps> = ({ capabilities }) => {
 };
 
 export default CapabilityGraph;
-

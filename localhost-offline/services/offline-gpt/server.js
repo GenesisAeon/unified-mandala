@@ -9,4 +9,4 @@ app.post('/chat', (req, res) => {
   res.json({ reply: answer });
 });
 
-app.listen(5000, () => console.log('Offline GPT Mock running')); 
+app.listen(5000, () => console.log('Offline GPT Mock running'));

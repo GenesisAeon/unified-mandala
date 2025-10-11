@@ -21,7 +21,7 @@ export function readJsonl<T = any>(filePath: string): T[] {
   const lines = fs
     .readFileSync(filePath, 'utf8')
     .split('\n')
-    .map(l => l.trim())
+    .map((l) => l.trim())
     .filter(Boolean);
-  return lines.map(line => JSON.parse(line));
+  return lines.map((line) => JSON.parse(line));
 }

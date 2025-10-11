@@ -6,6 +6,4 @@ export default {
   component: AeonStoryMode,
 };
 
-export const Beispiel = () => (
-  <AeonStoryMode storyId="42" onExit={() => alert('exit')} />
-);
+export const Beispiel = () => <AeonStoryMode storyId="42" onExit={() => alert('exit')} />;

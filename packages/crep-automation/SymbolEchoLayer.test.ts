@@ -6,6 +6,6 @@ test('detects hash symbols', () => {
 });
 
 test('generates echo string', () => {
-  const echo = generateEcho(['a','b']);
+  const echo = generateEcho(['a', 'b']);
   expect(echo).toBe('a! b!');
 });

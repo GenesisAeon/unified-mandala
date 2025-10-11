@@ -11,7 +11,7 @@ export class MemoryManager {
   private store: Record<MemoryCategory, Entry[]> = {
     daily: [],
     weekly: [],
-    longterm: []
+    longterm: [],
   };
 
   private timers: Partial<Record<MemoryCategory, ReturnType<typeof setInterval>>> = {};
@@ -19,8 +19,8 @@ export class MemoryManager {
     private cleanupConfig: Record<MemoryCategory, number> = {
       daily: 24 * 60 * 60 * 1000,
       weekly: 7 * 24 * 60 * 60 * 1000,
-      longterm: 30 * 24 * 60 * 60 * 1000
-    }
+      longterm: 30 * 24 * 60 * 60 * 1000,
+    },
   ) {
     (Object.keys(this.cleanupConfig) as MemoryCategory[]).forEach((cat) => {
       this.timers[cat] = setInterval(() => this.cleanup(cat), this.cleanupConfig[cat]);
@@ -32,7 +32,7 @@ export class MemoryManager {
   }
 
   get(category: MemoryCategory): string[] {
-    return this.store[category].map(e => e.text);
+    return this.store[category].map((e) => e.text);
   }
 
   getCategories(): MemoryCategory[] {
@@ -44,7 +44,7 @@ export class MemoryManager {
       this.store[category] = [];
       return;
     }
-    (Object.keys(this.store) as MemoryCategory[]).forEach(cat => {
+    (Object.keys(this.store) as MemoryCategory[]).forEach((cat) => {
       this.store[cat] = [];
     });
   }
@@ -81,7 +81,7 @@ export class MemoryManager {
     const map: Record<MemoryCategory, MemoryCategory | undefined> = {
       daily: 'weekly',
       weekly: 'longterm',
-      longterm: undefined
+      longterm: undefined,
     };
     const target = map[from];
     if (!target || entries.length === 0) return;

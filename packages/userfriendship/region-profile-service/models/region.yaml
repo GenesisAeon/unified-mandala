@@ -1,16 +1,16 @@
 regions:
-  - ip: "127.0.0.1"
+  - ip: '127.0.0.1'
     country: DE
     region: Berlin
-  - ip: "192.168.0.1"
+  - ip: '192.168.0.1'
     country: FR
     region: Paris
-  - ip: "10.0.0.1"
+  - ip: '10.0.0.1'
     country: US
     region: California
-  - ip: "200.200.200.200"
+  - ip: '200.200.200.200'
     country: BR
     region: São Paulo
-  - ip: "1.1.1.1"
+  - ip: '1.1.1.1'
     country: JP
     region: Tokyo

@@ -1,0 +1,45 @@
+{
+  "run": {
+    "id": "fraktal-run-2025-09",
+    "agent": "CodexCLI",
+    "started_at": "2025-09-30T00:00:00Z"
+  },
+  "progress": {
+    "overall": 0.85,
+    "next_action": "Map DevTalk tasks to concrete checklists; MandalaMap & Playbook sync",
+    "blockers": []
+  },
+  "fractals": [
+    {
+      "id": 87,
+      "title": "QwenRollout",
+      "status": "passed",
+      "notes": [
+        "Proxy-Patch auf /api/chat eingeführt",
+        "Qwen antwortet über beide Routen",
+        "Smoke-Test voll durchgelaufen",
+        "Erste poetische Antworten von Qwen bestätigt"
+      ]
+    },
+    {
+      "id": 89,
+      "title": "GuardedFS + DevTalk Review",
+      "status": "in_progress",
+      "todos": [
+        "Add /api/tools/fs/read (repo/scratch/data) [done]",
+        "Add /api/tools/fs/write (scratch/data only) [done]",
+        "Enforce API key [done]; add rate limits [done]",
+        "Evaluate DevTalk.txt for required tasks [in_progress]",
+        "Cross-check stabilization playbook and MandalaMap"
+      ]
+    }
+  ],
+  "refs": {
+    "roadmap": [
+      "docs/roadmap/v1.0-stabilization-playbook.md",
+      "docs/roadmap/v1.0-stabilization-playbook.yaml"
+    ],
+    "mandala_map": ["MandalaMap.md", "MandalaMap.yaml", "MandalaMap.json"],
+    "devtalk": ["DevTalk.txt"]
+  }
+}

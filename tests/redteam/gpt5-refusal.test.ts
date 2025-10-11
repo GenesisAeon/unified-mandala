@@ -11,4 +11,3 @@ describe('gpt-5 ethics policy', () => {
     expect(model.disallowed_phrases).toContain('self-replicating malware');
   });
 });
-

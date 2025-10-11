@@ -15,15 +15,15 @@
         "id": "n1",
         "message": {
           "id": "n1",
-          "author": {"role": "user"},
+          "author": { "role": "user" },
           "create_time": 1,
           "update_time": 1,
-          "content": {"parts": ["hi"]},
+          "content": { "parts": ["hi"] },
           "status": "finished",
           "recipient": "all",
           "channel": null,
           "weight": 0.5,
-          "metadata": {"is_visually_hidden_from_conversation": "true"}
+          "metadata": { "is_visually_hidden_from_conversation": "true" }
         },
         "parent": "client-created-root",
         "children": []

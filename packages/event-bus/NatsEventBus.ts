@@ -5,7 +5,9 @@ export class NatsEventBus {
   private nc?: NatsConnection;
   private sc = StringCodec();
 
-  async connect(options: { url?: string; creds?: string; maxReconnects?: number } = {}): Promise<void> {
+  async connect(
+    options: { url?: string; creds?: string; maxReconnects?: number } = {},
+  ): Promise<void> {
     const { url = 'nats://localhost:4222', creds, maxReconnects } = options;
     const connectOpts: ConnectionOptions = { servers: url } as ConnectionOptions;
     if (creds) {

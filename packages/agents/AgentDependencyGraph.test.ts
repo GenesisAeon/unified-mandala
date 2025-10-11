@@ -4,7 +4,7 @@ import { AgentDependencyGraph, buildAgentGraph } from './AgentDependencyGraph';
 it('builds adjacency list', () => {
   const g = buildAgentGraph([
     { from: 'a', to: 'b' },
-    { from: 'a', to: 'c' }
+    { from: 'a', to: 'c' },
   ]);
   expect(g).toEqual({ a: ['b', 'c'] });
 });

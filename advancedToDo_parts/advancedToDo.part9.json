@@ -1,25 +1,25 @@
 [
   {
-  "commit": "Implement MemoryManager Service",
-  "path": "services/memory-manager",
-  "task": "Manage daily, weekly and longterm categories with scheduler; integrate with fragment_and_package_conversations.js and extract_code_fragments.js",
-  "test": "services/memory-manager/test.ts"
-  ,"status": "done"
-},
-{
-  "commit": "Add Feedback Agents for new files",
-  "path": "packages/agents/feedback",
-  "task": "Agents monitor new files and trigger MemoryManager hooks",
-  "test": "packages/agents/__tests__/feedback.test.ts"
-  ,"status": "done"
-},
-{
-  "commit": "Create todo_parser Go component",
-  "path": "go-bridge/pkg/codeagent/todo_parser.go",
-  "task": "Parse TODO markers and expose /usecases/todo/parse endpoint",
-  "test": "go-bridge/pkg/codeagent/todo_parser_test.go"
-  ,"status": "done"
-},
+    "commit": "Implement MemoryManager Service",
+    "path": "services/memory-manager",
+    "task": "Manage daily, weekly and longterm categories with scheduler; integrate with fragment_and_package_conversations.js and extract_code_fragments.js",
+    "test": "services/memory-manager/test.ts",
+    "status": "done"
+  },
+  {
+    "commit": "Add Feedback Agents for new files",
+    "path": "packages/agents/feedback",
+    "task": "Agents monitor new files and trigger MemoryManager hooks",
+    "test": "packages/agents/__tests__/feedback.test.ts",
+    "status": "done"
+  },
+  {
+    "commit": "Create todo_parser Go component",
+    "path": "go-bridge/pkg/codeagent/todo_parser.go",
+    "task": "Parse TODO markers and expose /usecases/todo/parse endpoint",
+    "test": "go-bridge/pkg/codeagent/todo_parser_test.go",
+    "status": "done"
+  },
   {
     "commit": "Add Parse TODOs button",
     "path": "apps/web/components/TodoButton.tsx",
@@ -42,26 +42,26 @@
     "status": "done"
   },
   {
-  "commit": "Add React use-case components for Sigil generation, ToDo parsing, and SocialGood matching",
-  "path": "apps/socialgood-ui/src/components/UsecaseComponents.tsx",
-  "task": "Implement reusable UI components that trigger sigil generation, parse TODOs, and match SocialGood tags",
-  "test": "apps/socialgood-ui/src/components/__tests__/UsecaseComponents.test.tsx",
-  "status": "done"
-},
+    "commit": "Add React use-case components for Sigil generation, ToDo parsing, and SocialGood matching",
+    "path": "apps/socialgood-ui/src/components/UsecaseComponents.tsx",
+    "task": "Implement reusable UI components that trigger sigil generation, parse TODOs, and match SocialGood tags",
+    "test": "apps/socialgood-ui/src/components/__tests__/UsecaseComponents.test.tsx",
+    "status": "done"
+  },
   {
-  "commit": "Create Go todo_parser module",
-  "path": "cmd/todo_parser.go",
-  "task": "Parse TODO blocks and expose them via REST endpoint /usecases/todo/parse",
-  "test": "cmd/todo_parser_test.go",
-  "status": "done"
-},
-{
-  "commit": "Add handleTodo action and button",
-  "path": "apps/socialgood-ui/src/components/TodoButton.tsx",
-  "task": "Invoke /usecases/todo/parse from UI and display parsed TODOs",
-  "test": "apps/socialgood-ui/src/components/__tests__/TodoButton.test.tsx",
-  "status": "done"
-},
+    "commit": "Create Go todo_parser module",
+    "path": "cmd/todo_parser.go",
+    "task": "Parse TODO blocks and expose them via REST endpoint /usecases/todo/parse",
+    "test": "cmd/todo_parser_test.go",
+    "status": "done"
+  },
+  {
+    "commit": "Add handleTodo action and button",
+    "path": "apps/socialgood-ui/src/components/TodoButton.tsx",
+    "task": "Invoke /usecases/todo/parse from UI and display parsed TODOs",
+    "test": "apps/socialgood-ui/src/components/__tests__/TodoButton.test.tsx",
+    "status": "done"
+  },
   {
     "commit": "Auto-generate tasks from SelfAnalyzer results",
     "path": "packages/agents/self-analyzer",
@@ -77,10 +77,10 @@
     "status": "done"
   },
   {
-  "commit": "Automate documentation, sigil generation, and TODO prioritization",
-  "path": "apps/socialgood-ui",
-  "task": "Automated docs, sigil generation, TODO ranking and conversation analytics",
-  "test": "apps/socialgood-ui/__tests__/automation.test.ts",
-  "status": "done"
-}
+    "commit": "Automate documentation, sigil generation, and TODO prioritization",
+    "path": "apps/socialgood-ui",
+    "task": "Automated docs, sigil generation, TODO ranking and conversation analytics",
+    "test": "apps/socialgood-ui/__tests__/automation.test.ts",
+    "status": "done"
+  }
 ]

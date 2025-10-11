@@ -10,7 +10,7 @@ export class ZIPMEMManagementAgent {
   constructor(private baseDir = 'GenesisAeonZIPMEM/fragments') {}
 
   organize(fragments: Fragment[]): void {
-    fragments.forEach(f => {
+    fragments.forEach((f) => {
       const dir = path.join(this.baseDir, f.id);
       fs.mkdirSync(dir, { recursive: true });
       fs.writeFileSync(path.join(dir, 'fragment.json'), JSON.stringify(f, null, 2));
@@ -20,7 +20,7 @@ export class ZIPMEMManagementAgent {
   detectLinks(fragments: Fragment[]): Record<string, string[]> {
     const links: Record<string, string[]> = {};
     const regex = /[a-f0-9]{8}-[a-f0-9-]{27}/g;
-    fragments.forEach(f => {
+    fragments.forEach((f) => {
       const str = JSON.stringify(f.content);
       const matches = str.match(regex);
       if (matches && matches.length) {

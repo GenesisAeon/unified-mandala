@@ -7,7 +7,12 @@ import CREPVisualizer from './CREPVisualizer';
 test('MandalaCanvas calls onModuleSelect when module button clicked', () => {
   const onSelect = jest.fn();
   const { getByText } = render(
-    <MandalaCanvas boundaryRules={[]} pantheonEvents={[]} modules={['m1']} onModuleSelect={onSelect} />
+    <MandalaCanvas
+      boundaryRules={[]}
+      pantheonEvents={[]}
+      modules={['m1']}
+      onModuleSelect={onSelect}
+    />,
   );
   fireEvent.click(getByText('m1'));
   expect(onSelect).toHaveBeenCalledWith('m1');
@@ -15,7 +20,7 @@ test('MandalaCanvas calls onModuleSelect when module button clicked', () => {
 
 test('CREPVisualizer renders timeline axis', () => {
   const { getByLabelText } = render(
-    <CREPVisualizer history={[{ timestamp: new Date(1), C: 1, R: 1, E: 1, P: 1 }]} />
+    <CREPVisualizer history={[{ timestamp: new Date(1), C: 1, R: 1, E: 1, P: 1 }]} />,
   );
   const svg = getByLabelText('CREP Visualizer');
   expect(svg.querySelector('line')).toBeInTheDocument();

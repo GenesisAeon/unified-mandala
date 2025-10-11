@@ -20,7 +20,7 @@ export interface VCFIngestResult {
 export function ingestVCF(
   filePath: string,
   license: string,
-  personhood?: PersonhoodMetadata
+  personhood?: PersonhoodMetadata,
 ): VCFIngestResult {
   const text = fs.readFileSync(filePath, 'utf-8');
   const variants: VCFVariant[] = [];

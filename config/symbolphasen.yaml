@@ -1,12 +1,12 @@
 morgen:
   phase: Initiation
-  farbe: "#B4E3F2"
+  farbe: '#B4E3F2'
 tag:
   phase: Aktivierung
-  farbe: "#E3F4D6"
+  farbe: '#E3F4D6'
 abend:
   phase: Integration
-  farbe: "#F7D9C4"
+  farbe: '#F7D9C4'
 nacht:
   phase: Reflexion
-  farbe: "#2C3E50"
+  farbe: '#2C3E50'

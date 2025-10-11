@@ -25,9 +25,8 @@ program
     const ajv = new Ajv();
     const validate = ajv.compile(schema);
     const content = fs.readFileSync(file, 'utf8');
-    const data = file.endsWith('.yaml') || file.endsWith('.yml')
-      ? YAML.parse(content)
-      : JSON.parse(content);
+    const data =
+      file.endsWith('.yaml') || file.endsWith('.yml') ? YAML.parse(content) : JSON.parse(content);
     if (!validate(data)) {
       console.error(validate.errors);
       process.exit(1);
@@ -51,7 +50,7 @@ program
     const { globSync } = require('glob');
     const files = globSync('**/*.sigil.json', { ignore: 'node_modules/**' });
     console.log('Gefundene Sigillin-Dateien:');
-    files.forEach(f => console.log(' -', f));
+    files.forEach((f) => console.log(' -', f));
   });
 
 program
@@ -80,15 +79,15 @@ program
   .action((opts) => {
     const { globSync } = require('glob');
     const sigilFiles = globSync('**/*.sigil.json', { ignore: 'node_modules/**' });
-    const sigils = sigilFiles.map(f => JSON.parse(fs.readFileSync(f, 'utf8')));
+    const sigils = sigilFiles.map((f) => JSON.parse(fs.readFileSync(f, 'utf8')));
     if (opts.json) {
       fs.writeFileSync('sigillin-graph.json', JSON.stringify(sigils, null, 2));
       console.log('sigillin-graph.json erstellt');
       return;
     }
     let out = 'graph TD\n';
-    sigils.forEach(s => {
-      (s.related_sigils || []).forEach(r => {
+    sigils.forEach((s) => {
+      (s.related_sigils || []).forEach((r) => {
         out += `  ${s.id} -->|${r.relation}| ${r.id}\n`;
       });
     });
@@ -120,10 +119,7 @@ program
     } catch {
       ({ generateTodoSigilFromFile } = require('../shared-utils/todoSigilGenerator'));
     }
-    generateTodoSigilFromFile(
-      path.resolve(source),
-      path.join('docs/sigils/todo-sigil.yaml')
-    );
+    generateTodoSigilFromFile(path.resolve(source), path.join('docs/sigils/todo-sigil.yaml'));
     console.log('todo-sigil.yaml aktualisiert.');
   });
 
@@ -152,10 +148,19 @@ function bumpVersion(file, level = 'patch') {
   const isYaml = filepath.endsWith('.yaml') || filepath.endsWith('.yml');
   const sigil = isYaml ? YAML.parse(content) : JSON.parse(content);
   const [major, minor, patch] = (sigil.version || '0.0.0').split('.').map(Number);
-  let m = major, n = minor, p = patch;
-  if (level === 'major') { m += 1; n = 0; p = 0; }
-  else if (level === 'minor') { n += 1; p = 0; }
-  else { p += 1; }
+  let m = major,
+    n = minor,
+    p = patch;
+  if (level === 'major') {
+    m += 1;
+    n = 0;
+    p = 0;
+  } else if (level === 'minor') {
+    n += 1;
+    p = 0;
+  } else {
+    p += 1;
+  }
   sigil.version = [m, n, p].join('.');
   const out = isYaml ? YAML.stringify(sigil) : JSON.stringify(sigil, null, 2);
   fs.writeFileSync(filepath, out);
@@ -188,7 +193,7 @@ program
       console.log('Keine offenen Aufgaben gefunden.');
       return;
     }
-    todos.forEach(t => {
+    todos.forEach((t) => {
       console.log(`- ${t.task} (${t.path})`);
     });
   });
@@ -226,7 +231,9 @@ program
       ({ grepJsonArrayFile } = require('../shared-utils/jsonFragmenter'));
     }
     const file = path.isAbsolute(opts.input) ? opts.input : path.join(__dirname, opts.input);
-    const dest = path.isAbsolute(opts.output) ? opts.output : path.join(__dirname, '../../', opts.output);
+    const dest = path.isAbsolute(opts.output)
+      ? opts.output
+      : path.join(__dirname, '../../', opts.output);
     const matches = grepJsonArrayFile(file, dest, /TODO/i);
     console.log(`Filtered ${matches.length} TODO items. Output: ${dest}`);
   });

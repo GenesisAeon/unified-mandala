@@ -29,9 +29,5 @@ export default function VRExperienceRoom({ url, rules = [] }: VRExperienceRoomPr
     return () => conductor.stop();
   }, [url, rules]);
 
-  return (
-    <div aria-label="vr-experience-room">
-      VR Experience Room
-    </div>
-  );
+  return <div aria-label="vr-experience-room">VR Experience Room</div>;
 }

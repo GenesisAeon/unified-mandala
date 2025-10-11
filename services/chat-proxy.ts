@@ -27,16 +27,14 @@ router.post('/api/chat', async (req, res) => {
   const { serviceId, message, externalUrl } = req.body || {};
   if (!message) return res.status(400).json({ error: 'message required' });
 
-  const target =
-    (serviceId && serviceConfig.services?.[serviceId]?.endpoint) ||
-    externalUrl;
+  const target = (serviceId && serviceConfig.services?.[serviceId]?.endpoint) || externalUrl;
   if (!target) return res.status(400).json({ error: 'serviceId or externalUrl required' });
 
   try {
     const resp = await fetch(target, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ message })
+      body: JSON.stringify({ message }),
     });
     const data = await (resp as any).json();
     res.json(data);

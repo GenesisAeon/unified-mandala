@@ -10,10 +10,18 @@ class MockWebSocket {
     this.url = url;
   }
   url: string;
-  send() {/* noop */}
-  close() {/* noop */}
-  addEventListener() {/* noop */}
-  removeEventListener() {/* noop */}
+  send() {
+    /* noop */
+  }
+  close() {
+    /* noop */
+  }
+  addEventListener() {
+    /* noop */
+  }
+  removeEventListener() {
+    /* noop */
+  }
 }
 
 (global as any).WebSocket = MockWebSocket as any;

@@ -4,7 +4,7 @@ import '@testing-library/jest-dom';
 import CREPPlayEngine from './CREPPlayEngine';
 
 jest.mock('../hooks/useCREP', () => ({
-  useCREP: () => ({ triggerCREP: jest.fn() })
+  useCREP: () => ({ triggerCREP: jest.fn() }),
 }));
 
 describe('CREPPlayEngine', () => {

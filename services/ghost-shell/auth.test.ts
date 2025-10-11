@@ -24,7 +24,9 @@ describe('ghost-shell auth', () => {
   });
 
   it('calls next with error on invalid token', () => {
-    verify.mockImplementation(() => { throw new Error('bad'); });
+    verify.mockImplementation(() => {
+      throw new Error('bad');
+    });
 
     const socket: any = { handshake: { auth: { token: 'bad' } } };
     const next = jest.fn();
@@ -35,7 +37,9 @@ describe('ghost-shell auth', () => {
   });
 
   it('calls next with error when token missing', () => {
-    verify.mockImplementation(() => { throw new Error('missing'); });
+    verify.mockImplementation(() => {
+      throw new Error('missing');
+    });
 
     const socket: any = { handshake: { auth: {} } };
     const next = jest.fn();

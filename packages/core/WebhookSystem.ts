@@ -23,13 +23,13 @@ export class WebhookSystem extends EventEmitter {
     this.emit(event, payload);
     const targets = this.hooks[event] || [];
     await Promise.all(
-      targets.map(url =>
+      targets.map((url) =>
         fetch(url, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload),
-        }).catch(() => undefined)
-      )
+        }).catch(() => undefined),
+      ),
     );
   }
 }

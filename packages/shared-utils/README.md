@@ -3,6 +3,7 @@
 Gemeinsame Hilfsfunktionen für UnifiedMandala.
 
 ## Funktionen
+
 - **splitText** und **splitFile** – zerlegen Texte in handliche Fragmente
 - **splitJsonArrayFile** und **writeJsonChunks** – teilen große JSON-Arrays auf
 - **grepJsonArrayFile** – filtert JSON-Arrays per Regex und schreibt Treffer

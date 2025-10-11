@@ -32,7 +32,11 @@ describe('parseNewAdvancedConversations', () => {
   });
 
   it('respects start and count in streaming mode', async () => {
-    const matches = await parseNewAdvancedConversations(file, dest, 'Session', { stream: true, start: 1, count: 1 });
+    const matches = await parseNewAdvancedConversations(file, dest, 'Session', {
+      stream: true,
+      start: 1,
+      count: 1,
+    });
     expect(matches).toEqual([{ title: 'Session B', mapping: {} }]);
   });
 });

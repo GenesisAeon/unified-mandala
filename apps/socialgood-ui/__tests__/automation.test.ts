@@ -31,4 +31,3 @@ describe('automation helpers', () => {
     expect(stats.averageLength).toBeCloseTo(1.5, 5);
   });
 });
-

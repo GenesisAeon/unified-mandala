@@ -17,7 +17,7 @@ export class GrokAgent {
 
   analyze(text: string): string {
     const words = text.split(/\s+/).filter(Boolean);
-    const matches = words.filter(w => this.patterns.includes(w));
+    const matches = words.filter((w) => this.patterns.includes(w));
     const count = words.length;
     if (matches.length) {
       return `Matched ${matches.length}: ${matches.join(', ')}`;

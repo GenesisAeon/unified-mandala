@@ -18,4 +18,3 @@ test('renders singularity simulator controls', () => {
   expect(screen.getByText(/Verschmelzungs-Tiefe/)).toBeInTheDocument();
   expect(screen.getByRole('button', { name: /Simulation starten/ })).toBeInTheDocument();
 });
-

@@ -7,7 +7,11 @@ function extractComments(file) {
   const docs = [];
   let match;
   while ((match = regex.exec(content))) {
-    const cleaned = match[1].split('\n').map(l => l.replace(/^\s*\* ?/, '')).join('\n').trim();
+    const cleaned = match[1]
+      .split('\n')
+      .map((l) => l.replace(/^\s*\* ?/, ''))
+      .join('\n')
+      .trim();
     if (cleaned) docs.push(cleaned);
   }
   return docs.join('\n\n');

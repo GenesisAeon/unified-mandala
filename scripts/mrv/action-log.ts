@@ -1,10 +1,10 @@
-import fs from "fs";
-import path from "path";
+import fs from 'fs';
+import path from 'path';
 
 export type DecisionRecord = {
   id: string;
   ts: string;
-  actor: "human" | "agent" | "co";
+  actor: 'human' | 'agent' | 'co';
   domain: string;
   context: Record<string, any>;
   expected: Record<string, number>;
@@ -19,7 +19,7 @@ export type OutcomeRecord = {
   notes?: string;
 };
 
-const SINK = path.resolve(process.cwd(), "data/mrv/actions");
+const SINK = path.resolve(process.cwd(), 'data/mrv/actions');
 
 export function logDecision(d: DecisionRecord) {
   fs.mkdirSync(SINK, { recursive: true });

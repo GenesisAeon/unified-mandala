@@ -1,4 +1,4 @@
-import { TextEncoder } from "util";
+import { TextEncoder } from 'util';
 (global as any).TextEncoder = TextEncoder;
 import { startServer } from './server';
 import request from 'supertest';

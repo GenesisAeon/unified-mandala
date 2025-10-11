@@ -1,5 +1,8 @@
 export class AdaptiveThreshold {
-  constructor(private windowSize = 10, private k = 1.0) {}
+  constructor(
+    private windowSize = 10,
+    private k = 1.0,
+  ) {}
   private history: number[] = [];
 
   push(value: number) {

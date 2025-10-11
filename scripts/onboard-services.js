@@ -18,12 +18,12 @@ services.forEach((s, idx) => {
 });
 
 const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
-rl.question('Nummern auswählen (z.B. 1,3): ', answer => {
+rl.question('Nummern auswählen (z.B. 1,3): ', (answer) => {
   const ids = answer
     .split(',')
-    .map(str => parseInt(str.trim(), 10) - 1)
-    .filter(i => i >= 0 && i < services.length)
-    .map(i => services[i].id);
+    .map((str) => parseInt(str.trim(), 10) - 1)
+    .filter((i) => i >= 0 && i < services.length)
+    .map((i) => services[i].id);
 
   if (!fs.existsSync(outDir)) {
     fs.mkdirSync(outDir, { recursive: true });

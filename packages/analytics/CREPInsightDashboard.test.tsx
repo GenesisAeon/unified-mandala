@@ -7,4 +7,3 @@ test('renders score, level, and bar width', () => {
   expect(getByTestId('level').textContent).toBe('medium');
   expect((getByTestId('bar') as HTMLDivElement).style.width).toBe('50%');
 });
-

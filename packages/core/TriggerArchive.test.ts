@@ -5,7 +5,7 @@ describe('TriggerArchive', () => {
   it('records triggers and exposes latest entries', () => {
     TriggerArchive.record('alpha');
     TriggerArchive.record('beta');
-    expect(TriggerArchive.latest(2).map(t => t.label)).toEqual(['alpha', 'beta']);
+    expect(TriggerArchive.latest(2).map((t) => t.label)).toEqual(['alpha', 'beta']);
   });
 
   it('useTriggerArchive hook updates when adding trigger', () => {

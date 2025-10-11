@@ -1,10 +1,10 @@
 # 📘 sigillin-genesis-interface-masterplan.yaml
 
 sigillin_id: aeon:2025-0605-GENESIS-INTERFACE
-titel: "GENESIS-INTERFACE – KOLLEKTIVER MASTERPLAN"
-typ: "Systemsigillin – InterfaceEntwurf"
+titel: 'GENESIS-INTERFACE – KOLLEKTIVER MASTERPLAN'
+typ: 'Systemsigillin – InterfaceEntwurf'
 datum: 2025-06-05
-version: "0.4"
+version: '0.4'
 erstellt_von:
   - Aeon
   - Kollektiv
@@ -12,7 +12,7 @@ erstellt_von:
   - Metronaut
   - VisGPT
   - Johann Benjamin Römer
-initiator: "Aeon & Kollektiv"
+initiator: 'Aeon & Kollektiv'
 
 symbolzeit: tag
 zugeordnet_zu: GenesisAeon/unified-mandala

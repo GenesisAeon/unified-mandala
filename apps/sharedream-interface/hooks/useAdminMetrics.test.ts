@@ -12,7 +12,7 @@ const apiResponse = {
 describe('useAdminMetrics', () => {
   beforeEach(() => {
     (global as any).fetch = jest.fn(() =>
-      Promise.resolve({ json: () => Promise.resolve(apiResponse) })
+      Promise.resolve({ json: () => Promise.resolve(apiResponse) }),
     );
   });
 

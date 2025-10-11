@@ -5,7 +5,7 @@ export interface BoundaryMatch {
 
 export function detectBoundary(rules: (string | RegExp)[], text: string): BoundaryMatch[] {
   return rules
-    .map(rule => {
+    .map((rule) => {
       const pattern = typeof rule === 'string' ? new RegExp(rule, 'gi') : rule;
       const matches = text.match(pattern);
       if (!matches) return null;

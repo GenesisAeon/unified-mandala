@@ -11,19 +11,21 @@ function extractSessionTodos(filePath, titles) {
   const raw = JSON.parse(fs.readFileSync(filePath, 'utf8'));
   const titleSet = new Set(titles);
   const tasks = [];
-  raw.forEach(session => {
+  raw.forEach((session) => {
     if (!titleSet.has(session.title)) return;
     const nodes = Object.values(session.mapping || {});
-    nodes.forEach(node => {
+    nodes.forEach((node) => {
       const parts = node.message && node.message.content && node.message.content.parts;
       if (!parts) return;
-      parts.forEach(part => {
-        part.split('\n').forEach(line => {
+      parts.forEach((part) => {
+        part.split('\n').forEach((line) => {
           const trimmed = line.trim();
           if (
             /TODO:/i.test(trimmed) ||
             /scripts\/(sync-todo-progress|parse-advanced-conversations)/.test(trimmed) ||
-            /(Feature-Extraktion|Progress-Tracking|CI\/CD|Deployment|Modul-Integrationen|UI-Upgrades)/i.test(trimmed)
+            /(Feature-Extraktion|Progress-Tracking|CI\/CD|Deployment|Modul-Integrationen|UI-Upgrades)/i.test(
+              trimmed,
+            )
           ) {
             const taskText = trimmed.replace(/^(?:[-*]|\d+\.)\s*/, '');
             tasks.push({
@@ -31,7 +33,7 @@ function extractSessionTodos(filePath, titles) {
               path: '',
               task: taskText,
               test: '',
-              status: 'planned'
+              status: 'planned',
             });
           }
         });
@@ -75,10 +77,7 @@ if (require.main === module) {
     dest: path.join(__dirname, '../GenesisAeonZIPMEM/newadvancedconversations'),
     keyword: 'TODO',
     extract: false,
-    titles: [
-      'Sigillin Entwicklungszusammenfassung',
-      'Programm testen Feedback',
-    ],
+    titles: ['Sigillin Entwicklungszusammenfassung', 'Programm testen Feedback'],
     yaml: false,
     limit: undefined,
     stream: undefined,
@@ -108,7 +107,7 @@ if (require.main === module) {
       case '--titles':
         opts.titles = (args[++i] || '')
           .split(',')
-          .map(t => t.trim())
+          .map((t) => t.trim())
           .filter(Boolean);
         break;
       case '--yaml':
@@ -156,10 +155,16 @@ if (require.main === module) {
       stream: opts.stream,
       start: opts.start,
       count: opts.count,
-    }).then(matches => {
-      console.log(`Parsed ${matches.length} fragments containing '${opts.keyword}'. Output: ${opts.dest}`);
+    }).then((matches) => {
+      console.log(
+        `Parsed ${matches.length} fragments containing '${opts.keyword}'. Output: ${opts.dest}`,
+      );
     });
   }
 }
 
-module.exports = { parseNewAdvancedConversations, extractSessionTodos, chunkNewAdvancedConversations };
+module.exports = {
+  parseNewAdvancedConversations,
+  extractSessionTodos,
+  chunkNewAdvancedConversations,
+};

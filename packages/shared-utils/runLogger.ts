@@ -13,7 +13,10 @@ export interface RunLogEntry<T = any> {
  * Each entry is tagged with a run_id so multiple runs can share a log file.
  */
 export class RunLogger {
-  constructor(private filePath: string, private runId: string = randomUUID()) {}
+  constructor(
+    private filePath: string,
+    private runId: string = randomUUID(),
+  ) {}
 
   log(event: string, data?: any) {
     const entry: RunLogEntry = {

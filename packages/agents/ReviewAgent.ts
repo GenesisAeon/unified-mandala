@@ -16,7 +16,7 @@ export class ReviewAgent implements Agent {
       return;
     }
     const nodes = Object.values(conv.mapping).filter(
-      (n: any) => n && n.message && n.message.content
+      (n: any) => n && n.message && n.message.content,
     );
     const fragment = nodes[0] as any;
     if (fragment) {

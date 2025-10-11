@@ -9,7 +9,7 @@ async function main() {
 
   const files = globSync('**/*.{yaml,yml,json}', {
     cwd: sigilsDir,
-    ignore: ['*conversations*']
+    ignore: ['*conversations*'],
   });
 
   const lines = files.map((file) => {

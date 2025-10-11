@@ -60,7 +60,7 @@ export function writeJsonChunks(filePath: string, destDir: string, chunkSize: nu
 export function writeJsonChunksStream(
   filePath: string,
   destDir: string,
-  chunkSize: number
+  chunkSize: number,
 ): Promise<void> {
   return new Promise((resolve, reject) => {
     if (!fs.existsSync(destDir)) fs.mkdirSync(destDir, { recursive: true });
@@ -109,7 +109,7 @@ export function grepJsonArrayFile<T>(
   pattern: RegExp,
   limit?: number,
   start = 0,
-  count = Infinity
+  count = Infinity,
 ): T[] {
   const raw = fs.readFileSync(filePath, 'utf8');
   const data: T[] = JSON.parse(raw);
@@ -147,7 +147,7 @@ export function grepJsonArrayFileStream<T>(
   pattern: RegExp,
   limit?: number,
   start = 0,
-  count = Infinity
+  count = Infinity,
 ): Promise<T[]> {
   return new Promise((resolve, reject) => {
     const matches: T[] = [];
@@ -198,7 +198,7 @@ export function streamJsonArrayFile<T>(
   filePath: string,
   onItem: (item: T, index: number) => void | Promise<void>,
   start = 0,
-  count = Infinity
+  count = Infinity,
 ): Promise<void> {
   return new Promise((resolve, reject) => {
     let index = -1;
@@ -272,7 +272,7 @@ export function mergeJsonChunks(dir: string, outFile: string) {
   if (!fs.existsSync(dir)) throw new Error(`Directory not found: ${dir}`);
   const files = fs
     .readdirSync(dir)
-    .filter(f => f.endsWith('.json'))
+    .filter((f) => f.endsWith('.json'))
     .sort();
   const merged: any[] = [];
   for (const f of files) {

@@ -3,32 +3,32 @@
   "title": "MandalaEvent",
   "type": "object",
   "properties": {
-    "id": {"type": "string"},
-    "topic": {"type": "string"},
+    "id": { "type": "string" },
+    "topic": { "type": "string" },
     "actor": {
       "type": "object",
       "properties": {
-        "id": {"type": "string"},
-        "role": {"type": "string"}
+        "id": { "type": "string" },
+        "role": { "type": "string" }
       },
-      "required": ["id","role"]
+      "required": ["id", "role"]
     },
-    "ts": {"type": "string", "format": "date-time"},
-    "personhood": {"type": "string", "enum": ["P0","P1","P2","P3"]},
+    "ts": { "type": "string", "format": "date-time" },
+    "personhood": { "type": "string", "enum": ["P0", "P1", "P2", "P3"] },
     "governance": {
-      "type":"object",
+      "type": "object",
       "properties": {
-        "level": {"type":"string","enum":["P0","P1","P2","P3"]},
-        "compliant": {"type":"boolean"},
-        "ethics_approval": {"type":"boolean"},
-        "notes": {"type":"string"}
+        "level": { "type": "string", "enum": ["P0", "P1", "P2", "P3"] },
+        "compliant": { "type": "boolean" },
+        "ethics_approval": { "type": "boolean" },
+        "notes": { "type": "string" }
       },
       "additionalProperties": false
     },
-    "sigil": {"type":"string"},
-    "crep_resonance": {"type":"number","minimum":0,"maximum":1},
+    "sigil": { "type": "string" },
+    "crep_resonance": { "type": "number", "minimum": 0, "maximum": 1 },
     "payload": {}
   },
-  "required": ["id","topic","ts","payload"],
+  "required": ["id", "topic", "ts", "payload"],
   "additionalProperties": true
 }

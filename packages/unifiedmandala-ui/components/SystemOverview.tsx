@@ -25,4 +25,3 @@ const SystemOverview: React.FC<SystemOverviewProps> = ({ services }) => {
 };
 
 export default SystemOverview;
-

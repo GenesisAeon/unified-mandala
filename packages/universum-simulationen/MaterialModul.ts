@@ -12,9 +12,9 @@ export interface MaterialAnalysis {
 }
 
 export function analyzeMaterial(layers: Material[]): MaterialAnalysis[] {
-  return layers.map(layer => ({
+  return layers.map((layer) => ({
     name: layer.name,
     conduction: layer.conductivity * layer.thickness,
-    resonanceScore: layer.resonance / (layer.thickness || 1)
+    resonanceScore: layer.resonance / (layer.thickness || 1),
   }));
 }

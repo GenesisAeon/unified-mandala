@@ -22,7 +22,9 @@ function countFiles(dir: string): number {
 export function analyzeRepo(rootDir = path.resolve(__dirname, '../../')): RepoStats {
   const packagesDir = path.join(rootDir, 'packages');
   const packages = fs.existsSync(packagesDir)
-    ? fs.readdirSync(packagesDir).filter(d => fs.statSync(path.join(packagesDir, d)).isDirectory())
+    ? fs
+        .readdirSync(packagesDir)
+        .filter((d) => fs.statSync(path.join(packagesDir, d)).isDirectory())
     : [];
   const docsDir = path.join(rootDir, 'docs');
   const docFiles = countFiles(docsDir);
@@ -30,7 +32,7 @@ export function analyzeRepo(rootDir = path.resolve(__dirname, '../../')): RepoSt
     const pkgDir = path.join(packagesDir, pkg);
     if (!fs.existsSync(pkgDir)) return acc;
     const files = fs.readdirSync(pkgDir);
-    const tests = files.filter(f => f.includes('.test.')).length;
+    const tests = files.filter((f) => f.includes('.test.')).length;
     return acc + tests;
   }, 0);
   return { packages, docFiles, testFiles };

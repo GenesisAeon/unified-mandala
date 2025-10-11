@@ -13,6 +13,6 @@ spec:
         app: pantheon
     spec:
       containers:
-      - name: pantheon
-        image: node:20-alpine
-        command: ['sh', '-c', 'pnpm install && pnpm start']
+        - name: pantheon
+          image: node:20-alpine
+          command: ['sh', '-c', 'pnpm install && pnpm start']

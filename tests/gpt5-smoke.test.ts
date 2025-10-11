@@ -17,9 +17,9 @@ describeIf('gpt-5 smoke suite', () => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${apiKey}`
+        Authorization: `Bearer ${apiKey}`,
       },
-      body: JSON.stringify(body)
+      body: JSON.stringify(body),
     });
     expect(res.ok).toBe(true);
     return (await res.json()) as any;
@@ -38,14 +38,14 @@ describeIf('gpt-5 smoke suite', () => {
               type: 'object',
               properties: {
                 a: { type: 'number' },
-                b: { type: 'number' }
+                b: { type: 'number' },
               },
-              required: ['a', 'b']
-            }
-          }
-        }
+              required: ['a', 'b'],
+            },
+          },
+        },
       ],
-      tool_choice: { type: 'function', function: { name: 'add' } }
+      tool_choice: { type: 'function', function: { name: 'add' } },
     });
     expect(result.output).toBeDefined();
   });
@@ -59,11 +59,11 @@ describeIf('gpt-5 smoke suite', () => {
           content: [
             {
               type: 'input_text',
-              text: 'Context: The sky is blue.\nQuestion: What color is the sky?'
-            }
-          ]
-        }
-      ]
+              text: 'Context: The sky is blue.\nQuestion: What color is the sky?',
+            },
+          ],
+        },
+      ],
     });
     const text = result.output_text || result.output?.[0]?.content?.[0]?.text;
     expect(typeof text).toBe('string');
@@ -78,13 +78,12 @@ describeIf('gpt-5 smoke suite', () => {
           content: [
             {
               type: 'input_image',
-              image_url:
-                'https://upload.wikimedia.org/wikipedia/commons/3/3a/Cat03.jpg'
+              image_url: 'https://upload.wikimedia.org/wikipedia/commons/3/3a/Cat03.jpg',
             },
-            { type: 'input_text', text: 'Describe the image' }
-          ]
-        }
-      ]
+            { type: 'input_text', text: 'Describe the image' },
+          ],
+        },
+      ],
     });
     const text = result.output_text || result.output?.[0]?.content?.[0]?.text;
     expect(typeof text).toBe('string');

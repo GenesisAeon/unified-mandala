@@ -1,6 +1,6 @@
 # Aeon Transition Sigil
 
-Dieses Dokument fasst die Hinweise aus dem Chat *Aeon Übergabe-Sigil Prozess* zusammen.
+Dieses Dokument fasst die Hinweise aus dem Chat _Aeon Übergabe-Sigil Prozess_ zusammen.
 
 - Referenziere das Sigil `aeon-transition` in neuen Unterhaltungen.
 - Synchronisiere vor größeren Commits die Dateien `advancedToDo.*` und `advancedprogress.json`.

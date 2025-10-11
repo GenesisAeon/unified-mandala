@@ -51,7 +51,11 @@ const buildDefaultEdges = (nodes: MandalaNode[]): MandalaEdge[] => {
   for (let i = 1; i < nodes.length; i += 1) {
     const previous = nodes[i - 1];
     const current = nodes[i];
-    edges.push({ id: `edge-${previous.id}-${current.id}`, source: previous.id, target: current.id });
+    edges.push({
+      id: `edge-${previous.id}-${current.id}`,
+      source: previous.id,
+      target: current.id,
+    });
   }
   // connect back to core for a closed resonance loop
   edges.push({ id: 'edge-last-core', source: nodes[nodes.length - 1].id, target: nodes[0].id });
@@ -212,7 +216,11 @@ const MandalaMap: React.FC<MandalaMapProps> = ({
         height={height}
         aria-label="Mandala Map"
         role="img"
-        style={{ background: '#0b1120', borderRadius: 12, boxShadow: '0 20px 40px rgba(15, 23, 42, 0.35)' }}
+        style={{
+          background: '#0b1120',
+          borderRadius: 12,
+          boxShadow: '0 20px 40px rgba(15, 23, 42, 0.35)',
+        }}
         onMouseLeave={() => setHoveredNode(null)}
       >
         <defs>
@@ -228,7 +236,10 @@ const MandalaMap: React.FC<MandalaMapProps> = ({
           const target = nodes.find((node) => node.id === edge.target);
           if (!source || !target) return null;
 
-          const active = highlightOnHover && hoveredNode && (edge.source === hoveredNode || edge.target === hoveredNode);
+          const active =
+            highlightOnHover &&
+            hoveredNode &&
+            (edge.source === hoveredNode || edge.target === hoveredNode);
 
           return (
             <line
@@ -240,7 +251,11 @@ const MandalaMap: React.FC<MandalaMapProps> = ({
               stroke={active ? '#38bdf8' : '#1e293b'}
               strokeWidth={active ? 2.4 : 1.2}
               strokeOpacity={hoveredNode ? (active ? 0.85 : edgeOpacity * 0.4) : edgeOpacity}
-              strokeDasharray={edge.strength ? `${Math.max(2, 6 - edge.strength * 4)} ${Math.max(3, edge.strength * 12)}` : undefined}
+              strokeDasharray={
+                edge.strength
+                  ? `${Math.max(2, 6 - edge.strength * 4)} ${Math.max(3, edge.strength * 12)}`
+                  : undefined
+              }
             />
           );
         })}
@@ -260,7 +275,11 @@ const MandalaMap: React.FC<MandalaMapProps> = ({
               }}
             >
               {glowing && (
-                <circle r={radius + 18} fill="url(#mandala-glow)" opacity={Math.max(0, glowStrength)} />
+                <circle
+                  r={radius + 18}
+                  fill="url(#mandala-glow)"
+                  opacity={Math.max(0, glowStrength)}
+                />
               )}
               <circle
                 r={radius}
@@ -297,7 +316,8 @@ const MandalaMap: React.FC<MandalaMapProps> = ({
         >
           <strong style={{ display: 'block', marginBottom: 4 }}>Legacy overlay active</strong>
           <span>
-            Edge highlighting, mini-map and event glow are unlocked. Append <code>?legacy=1</code> to toggle locally.
+            Edge highlighting, mini-map and event glow are unlocked. Append <code>?legacy=1</code>{' '}
+            to toggle locally.
           </span>
         </div>
       )}
@@ -358,4 +378,3 @@ const MandalaMap: React.FC<MandalaMapProps> = ({
 };
 
 export default MandalaMap;
-

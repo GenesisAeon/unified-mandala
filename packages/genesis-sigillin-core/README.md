@@ -16,4 +16,3 @@ sigillin-cli bump-version <file>
 ```
 
 Der CLI-Befehl erleichtert das Erzeugen und Pflegen von Sigillin-Dateien.
-

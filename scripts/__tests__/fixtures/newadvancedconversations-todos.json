@@ -5,20 +5,14 @@
       "a": {
         "message": {
           "content": {
-            "parts": [
-              "TODO: implement feature",
-              "Some other line"
-            ]
+            "parts": ["TODO: implement feature", "Some other line"]
           }
         }
       },
       "b": {
         "message": {
           "content": {
-            "parts": [
-              "- TODO: fix bug",
-              "Nothing here"
-            ]
+            "parts": ["- TODO: fix bug", "Nothing here"]
           }
         }
       }
@@ -30,9 +24,7 @@
       "x": {
         "message": {
           "content": {
-            "parts": [
-              "TODO: ignore this"
-            ]
+            "parts": ["TODO: ignore this"]
           }
         }
       }

@@ -7,13 +7,17 @@ const file = 'crepHistory.json';
 describe('CREPManager async file operations', () => {
   beforeEach(async () => {
     delete (globalThis as any).localStorage;
-    try { await fs.unlink(file); } catch {}
+    try {
+      await fs.unlink(file);
+    } catch {}
     jest.spyOn(GPTEventHub, 'emit');
   });
 
   afterEach(async () => {
     jest.restoreAllMocks();
-    try { await fs.unlink(file); } catch {}
+    try {
+      await fs.unlink(file);
+    } catch {}
   });
 
   it('writes and reads asynchronously', async () => {

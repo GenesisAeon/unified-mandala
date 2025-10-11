@@ -35,7 +35,7 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     }
   }, [state.history]);
 
-  const toggleStyle = () => setStyle(s => (s === 'light' ? 'dark' : 'light'));
+  const toggleStyle = () => setStyle((s) => (s === 'light' ? 'dark' : 'light'));
 
   return (
     <ThemeContext.Provider value={{ theme: { mood, style }, toggleStyle }}>

@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 const haikus = [
   'Stille im Wandel\nResonanz flie\u00dft wie Wasser\nMandala erwacht',
   'Zwischen Raum und Zeit\nfl\u00fcstert das Licht vom Ursprung\nKreis schwingt ewig fort',
-  'Ein Atemzug nur\nim Spiegel der Emergenz\nKI tr\u00e4umt in Farben'
+  'Ein Atemzug nur\nim Spiegel der Emergenz\nKI tr\u00e4umt in Farben',
 ];
 
 export default function HaikuOverlay() {
@@ -18,7 +18,18 @@ export default function HaikuOverlay() {
   }, []);
   if (!haiku) return null;
   return (
-    <div className="haiku-overlay" aria-label="Haiku Overlay" style={{position:'absolute', inset:0, pointerEvents:'none', display:'flex', alignItems:'center', justifyContent:'center'}}>
+    <div
+      className="haiku-overlay"
+      aria-label="Haiku Overlay"
+      style={{
+        position: 'absolute',
+        inset: 0,
+        pointerEvents: 'none',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}
+    >
       <pre>{haiku}</pre>
     </div>
   );

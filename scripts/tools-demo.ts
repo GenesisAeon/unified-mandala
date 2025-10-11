@@ -9,10 +9,10 @@ toolRegistry.register(
     parameters: {
       type: 'object',
       properties: { text: { type: 'string' } },
-      required: ['text']
-    }
+      required: ['text'],
+    },
   },
-  ({ text }) => `echo: ${text}`
+  ({ text }) => `echo: ${text}`,
 );
 
 // Mock model that triggers the echo tool on first call
@@ -27,7 +27,7 @@ async function mockModel(payload: any): Promise<any> {
 async function main() {
   const res = await chatWithTools(mockModel, {
     messages: [{ role: 'user', content: 'say hello' }],
-    provider: 'local'
+    provider: 'local',
   });
   console.log(res);
 }

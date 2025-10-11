@@ -16,7 +16,7 @@ export class ResonanzPoetik {
     return [
       base.split(' ').slice(0, 5).join(' '),
       `Im Raum von ${phase} bewegt`,
-      `CREP: ${score.toFixed(2)} Klang`
+      `CREP: ${score.toFixed(2)} Klang`,
     ].join('\n');
   }
 
@@ -29,7 +29,7 @@ export class ResonanzPoetik {
         `phase: ${r.phase}`,
         `crepScore: ${r.crepScore.toFixed(2)}`,
         'vers: |',
-        `  ${r.vers.replace(/\n/g, '\n  ')}`
+        `  ${r.vers.replace(/\n/g, '\n  ')}`,
       ].join('\n');
     });
 

@@ -23,11 +23,7 @@ export default function SigilSearchPanel({ initialQuery = '' }: { initialQuery?:
 
   return (
     <div aria-label="SigilSearchPanel">
-      <input
-        placeholder="Search sigils"
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
-      />
+      <input placeholder="Search sigils" value={query} onChange={(e) => setQuery(e.target.value)} />
       <button onClick={() => search(query)}>Search</button>
       {results.length > 0 && (
         <ul>

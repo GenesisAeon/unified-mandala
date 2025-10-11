@@ -13,11 +13,11 @@ test('outputs JSON summary for custom file', () => {
         progress: [{}],
         fractalTodos: [{}],
         lastUpdated: '2025-01-01T00:00:00.000Z',
-        commitHash: '0123456789abcdef0123456789abcdef01234567'
+        commitHash: '0123456789abcdef0123456789abcdef01234567',
       },
       null,
-      2
-    )
+      2,
+    ),
   );
 
   const script = path.join(__dirname, '..', 'advanced-progress-summary.js');
@@ -28,7 +28,7 @@ test('outputs JSON summary for custom file', () => {
     done: 1,
     fractalTodos: 1,
     lastUpdated: '2025-01-01T00:00:00.000Z',
-    commitHash: '0123456789abcdef0123456789abcdef01234567'
+    commitHash: '0123456789abcdef0123456789abcdef01234567',
   });
 
   fs.unlinkSync(tmp);
@@ -44,16 +44,16 @@ test('outputs YAML summary for custom file', () => {
         progress: [{}],
         fractalTodos: [{}],
         lastUpdated: '2025-01-01T00:00:00.000Z',
-        commitHash: '0123456789abcdef0123456789abcdef01234567'
+        commitHash: '0123456789abcdef0123456789abcdef01234567',
       },
       null,
-      2
-    )
+      2,
+    ),
   );
 
   const script = path.join(__dirname, '..', 'advanced-progress-summary.js');
   const output = execSync(`node ${script} --yaml --file ${tmp}`, {
-    encoding: 'utf8'
+    encoding: 'utf8',
   });
   const summary = yaml.load(output);
   expect(summary).toEqual({
@@ -61,7 +61,7 @@ test('outputs YAML summary for custom file', () => {
     done: 1,
     fractalTodos: 1,
     lastUpdated: '2025-01-01T00:00:00.000Z',
-    commitHash: '0123456789abcdef0123456789abcdef01234567'
+    commitHash: '0123456789abcdef0123456789abcdef01234567',
   });
 
   fs.unlinkSync(tmp);
@@ -77,24 +77,20 @@ test('outputs CSV summary for custom file', () => {
         progress: [{}],
         fractalTodos: [{}],
         lastUpdated: '2025-01-01T00:00:00.000Z',
-        commitHash: '0123456789abcdef0123456789abcdef01234567'
+        commitHash: '0123456789abcdef0123456789abcdef01234567',
       },
       null,
-      2
-    )
+      2,
+    ),
   );
 
   const script = path.join(__dirname, '..', 'advanced-progress-summary.js');
   const output = execSync(`node ${script} --csv --file ${tmp}`, {
-    encoding: 'utf8'
+    encoding: 'utf8',
   }).trim();
   const lines = output.split(/\r?\n/);
-  expect(lines[0]).toBe(
-    'Pending Tasks,Completed Tasks,Fractal Todos,Last Updated,Commit'
-  );
-  expect(lines[1]).toBe(
-    '1,1,1,2025-01-01T00:00:00.000Z,0123456789abcdef0123456789abcdef01234567'
-  );
+  expect(lines[0]).toBe('Pending Tasks,Completed Tasks,Fractal Todos,Last Updated,Commit');
+  expect(lines[1]).toBe('1,1,1,2025-01-01T00:00:00.000Z,0123456789abcdef0123456789abcdef01234567');
 
   fs.unlinkSync(tmp);
 });
@@ -108,16 +104,16 @@ test('includes changed files when details flag is used', () => {
         pendingTasks: [],
         progress: [],
         fractalTodos: [],
-        changedFiles: ['a.js', 'docs/readme.md']
+        changedFiles: ['a.js', 'docs/readme.md'],
       },
       null,
-      2
-    )
+      2,
+    ),
   );
 
   const script = path.join(__dirname, '..', 'advanced-progress-summary.js');
   const output = execSync(`node ${script} --json --details --file ${tmp}`, {
-    encoding: 'utf8'
+    encoding: 'utf8',
   });
   const summary = JSON.parse(output);
   expect(summary.changedFiles).toEqual(['a.js', 'docs/readme.md']);

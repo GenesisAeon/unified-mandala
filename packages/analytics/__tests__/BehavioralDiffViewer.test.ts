@@ -16,8 +16,6 @@ describe('BehavioralDiffViewer', () => {
 
     expect(diff.added).toEqual([{ id: '3', response: 'bar' }]);
     expect(diff.removed).toEqual([{ id: '2', response: 'foo' }]);
-    expect(diff.changed).toEqual([
-      { id: '1', from: 'hello', to: 'hello world' },
-    ]);
+    expect(diff.changed).toEqual([{ id: '1', from: 'hello', to: 'hello world' }]);
   });
 });

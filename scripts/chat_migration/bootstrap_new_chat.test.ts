@@ -7,7 +7,7 @@ describe('bootstrapNewChat', () => {
     const loader: SigillinLoader = {
       load(id: string) {
         loaded.push(id);
-      }
+      },
     };
 
     const prompt = await bootstrapNewChat(loader);

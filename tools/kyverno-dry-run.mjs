@@ -8,8 +8,10 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const projectRoot = path.resolve(__dirname, '..');
 
 function usage() {
-  console.log(`Kyverno dry-run fallback\n\n` +
-    `Usage: node tools/kyverno-dry-run.mjs [--policy <path>] [--resource <path>] [--kind <kind>]`);
+  console.log(
+    `Kyverno dry-run fallback\n\n` +
+      `Usage: node tools/kyverno-dry-run.mjs [--policy <path>] [--resource <path>] [--kind <kind>]`,
+  );
 }
 
 const options = {
@@ -100,7 +102,10 @@ function collectKeysState() {
   }
   state.present = true;
   const entries = fs.readdirSync(keysDir, { withFileTypes: true });
-  const files = entries.filter((entry) => entry.isFile()).map((entry) => entry.name).sort();
+  const files = entries
+    .filter((entry) => entry.isFile())
+    .map((entry) => entry.name)
+    .sort();
   state.files = files;
   state.unexpected = files.filter((name) => !allowed.includes(name));
   const directories = entries.filter((entry) => entry.isDirectory()).map((entry) => entry.name);
@@ -155,9 +160,7 @@ function collectPatternFailures(pattern, resource, pathSegments = []) {
   }
 
   for (const [rawKey, expectedValue] of Object.entries(pattern)) {
-    const key = rawKey.startsWith('(') && rawKey.endsWith(')')
-      ? rawKey.slice(1, -1)
-      : rawKey;
+    const key = rawKey.startsWith('(') && rawKey.endsWith(')') ? rawKey.slice(1, -1) : rawKey;
     const actualValue = resource ? resource[key] : undefined;
     const nextPath = [...pathSegments, key];
     if (Array.isArray(expectedValue)) {
@@ -200,9 +203,10 @@ function evaluatePolicyDocuments(policies, resource) {
       const failures = collectPatternFailures(pattern, resource);
       if (failures.length > 0) {
         failed = true;
-        const header = rule.validate && rule.validate.message
-          ? `${rule.validate.message}`
-          : `Rule ${ruleName} violated.`;
+        const header =
+          rule.validate && rule.validate.message
+            ? `${rule.validate.message}`
+            : `Rule ${ruleName} violated.`;
         messages.push(`❌ ${header}`);
         failures.forEach((failure) => {
           messages.push(

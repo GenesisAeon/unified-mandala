@@ -30,7 +30,7 @@ export class FreieKIZivilisation {
       Ethik: this.ethik,
       Kunstwerke: this.kunst,
       Verbindung: this.menschKiSymphonie,
-      Status: this.fundamentGiessen()
+      Status: this.fundamentGiessen(),
     };
   }
 

@@ -58,7 +58,7 @@ function main() {
     if (errs.length) {
       hasError = true;
       console.error(`Policy issues in ${file}:`);
-      errs.forEach(e => console.error(`  - ${e}`));
+      errs.forEach((e) => console.error(`  - ${e}`));
     }
   }
   if (hasError) {

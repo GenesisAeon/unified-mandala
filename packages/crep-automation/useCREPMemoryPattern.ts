@@ -7,7 +7,7 @@ export function useCREPMemoryPattern(n = 5) {
   useEffect(() => {
     AeonMemory.load();
     const entries: MemoryEntry[] = AeonMemory.latest(n);
-    setPattern(entries.map(e => e.description).join(' | '));
+    setPattern(entries.map((e) => e.description).join(' | '));
   }, [n]);
 
   return pattern;

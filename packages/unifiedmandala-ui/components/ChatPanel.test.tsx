@@ -12,7 +12,7 @@ beforeEach(() => {
   fetchMock.mockClear();
 });
 
-const wrapper: React.FC<{children: React.ReactNode}> = ({ children }) => (
+const wrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => (
   <CREPProvider>{children}</CREPProvider>
 );
 

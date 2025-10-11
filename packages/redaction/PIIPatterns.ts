@@ -1,6 +1,6 @@
 export const PII_PATTERNS: Record<string, RegExp> = {
   // Email addresses
-  email: /\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b/, 
+  email: /\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b/,
   // North American phone numbers, optional country code
   phone: /\b(?:\+?\d{1,3}[\s-.]?)?(?:\(\d{3}\)|\d{3})[\s-.]?\d{3}[\s-.]?\d{4}\b/,
   // US Social Security Number

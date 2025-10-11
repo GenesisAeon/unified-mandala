@@ -50,9 +50,7 @@ app.post('/datasets/:name/versions/:version/splits', (req, res) => {
   const { splitName, uri, personId } = req.body;
   const { name, version } = req.params;
   if (!splitName || !uri || !personId) {
-    return res
-      .status(400)
-      .json({ error: 'splitName, uri and personId required' });
+    return res.status(400).json({ error: 'splitName, uri and personId required' });
   }
   try {
     DatasetRegistry.addSplit(name, version, splitName, uri, personId);
@@ -66,9 +64,7 @@ app.post('/datasets/:name/versions/:version/artifacts', (req, res) => {
   const { artifactName, uri, personId } = req.body;
   const { name, version } = req.params;
   if (!artifactName || !uri || !personId) {
-    return res
-      .status(400)
-      .json({ error: 'artifactName, uri and personId required' });
+    return res.status(400).json({ error: 'artifactName, uri and personId required' });
   }
   try {
     DatasetRegistry.addArtifact(name, version, artifactName, uri, personId);
@@ -88,10 +84,7 @@ app.get('/datasets/:name', (req, res) => {
 
 app.get('/datasets/:name/versions/:version', (req, res) => {
   try {
-    const ver = DatasetRegistry.getVersion(
-      req.params.name,
-      req.params.version
-    );
+    const ver = DatasetRegistry.getVersion(req.params.name, req.params.version);
     res.json(ver);
   } catch (err: any) {
     res.status(404).json({ error: err.message });
@@ -102,4 +95,3 @@ const port = parseInt(process.env.PORT || '3000', 10);
 app.listen(port, () => {
   console.log(`Dataset API server listening on ${port}`);
 });
-

@@ -1,10 +1,10 @@
 // HMR/ESM- und Test-sichere Prometheus-Metriken (prom-client)
-const client = require("prom-client");
+const client = require('prom-client');
 
 const G = global;
 if (!G.__UM_METRICS__) {
   const REG = new client.Registry();
-  REG.setDefaultLabels({ service: "unified-mandala" });
+  REG.setDefaultLabels({ service: 'unified-mandala' });
   G.__UM_METRICS__ = { REG, defaultsDone: false, C: {}, G: {}, H: {}, S: {} };
 }
 const store = G.__UM_METRICS__;

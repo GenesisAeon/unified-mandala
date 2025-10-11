@@ -1,8 +1,8 @@
-import { Adapter, AdapterInput, AdapterResult } from "../base";
+import { Adapter, AdapterInput, AdapterResult } from '../base';
 
 export interface RateLimitOpts {
-  capacity: number;     // erlaubte Aufrufe pro Intervall
-  intervalMs: number;   // Fenstergröße
+  capacity: number; // erlaubte Aufrufe pro Intervall
+  intervalMs: number; // Fenstergröße
 }
 
 export function withRateLimit<T>(opts: RateLimitOpts) {
@@ -19,7 +19,7 @@ export function withRateLimit<T>(opts: RateLimitOpts) {
     }
     // warten bis erstes Ticket ausläuft
     const waitFor = intervalMs - (now - hits[0]);
-    await new Promise(r => setTimeout(r, Math.max(0, waitFor)));
+    await new Promise((r) => setTimeout(r, Math.max(0, waitFor)));
     // nach Wartezeit nochmal probieren (rekursiv)
     return acquire();
   }

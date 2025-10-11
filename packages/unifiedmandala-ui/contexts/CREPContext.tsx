@@ -42,12 +42,7 @@ export const CREPProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     dispatch({ type: 'ADD', entry: history[history.length - 1] });
   };
 
-  return (
-    <CREPContext.Provider value={{ state, triggerCREP }}>
-      {children}
-    </CREPContext.Provider>
-  );
+  return <CREPContext.Provider value={{ state, triggerCREP }}>{children}</CREPContext.Provider>;
 };
 
 export const useCREPContext = () => useContext(CREPContext);
-

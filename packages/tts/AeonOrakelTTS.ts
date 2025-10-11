@@ -1,7 +1,8 @@
 import { GPTEventHub } from '../gpt-bridges/GPTEventHub';
 
 export class AeonOrakelTTS {
-  private synthesis: SpeechSynthesis | null = typeof window !== 'undefined' ? window.speechSynthesis : null;
+  private synthesis: SpeechSynthesis | null =
+    typeof window !== 'undefined' ? window.speechSynthesis : null;
 
   constructor() {
     GPTEventHub.on('orakel:says', this.onOrakelMessage.bind(this));

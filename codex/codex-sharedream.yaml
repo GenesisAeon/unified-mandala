@@ -1,7 +1,7 @@
 # 🜂 codex-sharedream.yaml
 # Auftrag für Codex: Aufbau & Integration neuer Systemmodule (Phase 1–2)
 
-task: "Erzeuge, aktualisiere und verknüpfe neue Core- und Interface-Komponenten für UnifiedMandala"
+task: 'Erzeuge, aktualisiere und verknüpfe neue Core- und Interface-Komponenten für UnifiedMandala'
 
 description: |
   Dieses Codex-Command-Set erweitert das UnifiedMandala-Projekt um neue essentielle Komponenten,
@@ -9,7 +9,6 @@ description: |
   das System vollständig machen. GPT-Stubs und CREP-Module werden vorbereitet.
 
 targets:
-
   - path: packages/unifiedmandala-ui/components/SigillinLoader.tsx
     type: file
     action: generate
@@ -85,4 +84,3 @@ targets:
     action: update
     description: >
       Ergänze neue Tasks zu SigillinLoader, Symbolzeit, GPT-Schnittstellen und SharedreamInterface.
-

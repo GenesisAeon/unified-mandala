@@ -17,7 +17,7 @@ class MockWebSocket {
 (global as any).WebSocket = MockWebSocket as any;
 
 test('collects events from WebSocket', () => {
-  const { result } = renderHook(() => useLiveEvents('ws://example')); 
+  const { result } = renderHook(() => useLiveEvents('ws://example'));
   const ws = MockWebSocket.instances[0];
   act(() => {
     ws.emit({ type: 'test', value: 1 });

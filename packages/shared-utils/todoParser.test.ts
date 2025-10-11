@@ -5,6 +5,6 @@ test('extracts todo items', () => {
   const items = extractTodos(text);
   expect(items).toEqual([
     { text: 'open task', done: false },
-    { text: 'done task', done: true }
+    { text: 'done task', done: true },
   ]);
 });

@@ -3,7 +3,7 @@ import '@testing-library/jest-dom';
 import { useLatestCREP } from './useLatestCREP';
 
 globalThis.fetch = jest.fn(() =>
-  Promise.resolve({ ok: true, json: () => Promise.resolve({ value: 42 }) })
+  Promise.resolve({ ok: true, json: () => Promise.resolve({ value: 42 }) }),
 ) as any;
 
 test('loads latest CREP value', async () => {

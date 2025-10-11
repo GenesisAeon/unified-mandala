@@ -16,7 +16,7 @@ describe('CodexResonanzFraktal', () => {
     expect(fraktal.history()).toEqual(['fractal:alpha']);
     expect((GPTEventHub.emit as jest.Mock).mock.calls[0]).toEqual([
       'codex:fraktal',
-      'fractal:alpha'
+      'fractal:alpha',
     ]);
   });
 });

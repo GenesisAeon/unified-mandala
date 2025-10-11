@@ -12,11 +12,9 @@ const PoetryModeContext = createContext<PoetryModeContextValue>({
 
 export const PoetryModeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [enabled, setEnabled] = useState(false);
-  const toggle = () => setEnabled(e => !e);
+  const toggle = () => setEnabled((e) => !e);
   return (
-    <PoetryModeContext.Provider value={{ enabled, toggle }}>
-      {children}
-    </PoetryModeContext.Provider>
+    <PoetryModeContext.Provider value={{ enabled, toggle }}>{children}</PoetryModeContext.Provider>
   );
 };
 

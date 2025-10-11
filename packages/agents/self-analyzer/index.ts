@@ -14,7 +14,7 @@ function append(entries: TodoEntry[], yamlFile: string, jsonFile: string) {
   const loadYaml = (f: string) => (fs.existsSync(f) ? YAML.parse(fs.readFileSync(f, 'utf8')) : []);
   const loadJson = (f: string) => (fs.existsSync(f) ? JSON.parse(fs.readFileSync(f, 'utf8')) : []);
   const merge = (existing: TodoEntry[], add: TodoEntry[]) => {
-    const known = new Set(existing.map(e => e.commit));
+    const known = new Set(existing.map((e) => e.commit));
     for (const e of add) {
       if (!known.has(e.commit)) {
         existing.push(e);
@@ -31,14 +31,14 @@ function append(entries: TodoEntry[], yamlFile: string, jsonFile: string) {
 
 export function generateAdvancedTodos(
   yamlFile = path.resolve(__dirname, '../../../advancedToDo.yaml'),
-  jsonFile = path.resolve(__dirname, '../../../advancedToDo.json')
+  jsonFile = path.resolve(__dirname, '../../../advancedToDo.json'),
 ): TodoEntry[] {
   const stats = analyzeRepo(path.resolve(__dirname, '../../..'));
-  const entries = stats.packages.map(pkg => ({
+  const entries = stats.packages.map((pkg) => ({
     commit: `Add tests for ${pkg}`,
     path: `packages/${pkg}`,
     task: `Ensure unit tests exist for ${pkg}`,
-    test: `packages/${pkg}/*.test.ts`
+    test: `packages/${pkg}/*.test.ts`,
   }));
   append(entries, yamlFile, jsonFile);
   return entries;

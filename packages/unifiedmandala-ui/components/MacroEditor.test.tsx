@@ -6,7 +6,7 @@ import MacroEditor from './MacroEditor';
 describe('MacroEditor', () => {
   beforeEach(() => {
     (global as any).fetch = jest.fn().mockResolvedValue({
-      text: () => Promise.resolve('ok')
+      text: () => Promise.resolve('ok'),
     });
   });
 
@@ -15,9 +15,6 @@ describe('MacroEditor', () => {
     fireEvent.change(getByPlaceholderText('Enter macro...'), { target: { value: 'print("hi")' } });
     fireEvent.click(getByText('Run'));
     await findByText('ok');
-    expect(fetch).toHaveBeenCalledWith(
-      '/macro/run',
-      expect.objectContaining({ method: 'POST' })
-    );
+    expect(fetch).toHaveBeenCalledWith('/macro/run', expect.objectContaining({ method: 'POST' }));
   });
 });
