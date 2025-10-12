@@ -16,7 +16,7 @@ describe('kpi/membrane-bridge stepOrBypass', () => {
     vi.resetModules();
     const mod = await import('../membrane-bridge');
     const r = mod.stepOrBypass('t2m', Date.now(), 0.5);
-    expect(r.A).toBeDefined();
+    expect(typeof r.sigil).toBe('string');
     expect(['ok', 'warn', 'alarm']).toContain(r.severity);
   });
 });
