@@ -12,8 +12,8 @@ Categories:
 - ci-infra: 10
 - automation: 10
 - agents: 8
-- support: 6
 - core-runtime: 7
+- support: 6
 - data-intel: 5
 - research: 5
 - testing: 4
@@ -41,15 +41,12 @@ Samples:
   - Documentation (active) — docs/
   - Governance policies (active) — governance/
   - Manifest documents (active) — manifest/
-- core-runtime:
-  - API Lite Proxy (active) — apps/api-lite/
 - ci-infra:
   - GitHub workflows & templates (active) — .github/
   - Git hooks (active) — .husky/
   - AWS deployment stubs (active) — aws/
   - Helm charts (active) — charts/
   - CI support scripts (active) — ci/
-  - Self-hosted Qwen smoke lane (active) — .github/workflows/ci.qwen-smoke.yml
 - automation:
   - Plugin registry cache (active) — .registry/
   - Codex sync scripts (active) — codex-sync/
