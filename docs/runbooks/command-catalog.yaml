@@ -374,6 +374,30 @@ categories:
         description: Runs the default Vitest suite.
         source:
           - package.json#scripts.test
+      - id: testing.test-unit
+        name: Unit test suite
+        command: pnpm test:unit
+        type: pnpm
+        runs: vitest run
+        description: Unit test suite with workspace defaults.
+        source:
+          - package.json#scripts.test:unit
+      - id: testing.test-coverage
+        name: Unit tests with coverage
+        command: pnpm test:unit:coverage
+        type: pnpm
+        runs: vitest run --coverage
+        description: Unit test suite with v8 coverage enabled.
+        source:
+          - package.json#scripts.test:unit:coverage
+      - id: testing.test-membrane
+        name: Membrane/KPI focused suite
+        command: pnpm test:membrane
+        type: pnpm
+        runs: vitest run --reporter=dot tests/kpi/membrane-bridge.test.ts src/kpi/tests/membrane-bridge.test.ts tests/membrane/index.test.ts tests/membrane/real-membrane.test.ts
+        description: Runs the focused Membrane/KPI suites for fast iteration.
+        source:
+          - package.json#scripts.test:membrane
       - id: testing.test-watch
         name: Vitest watch
         command: pnpm test:watch

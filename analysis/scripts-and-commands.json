@@ -177,6 +177,7 @@
     "test:py:all": "node scripts/run-pytest.mjs -q",
     "test:sigil": "node scripts/run-dist.mjs scripts/validate-sigil-cli.ts",
     "test:ui": "vitest run --passWithNoTests",
+    "test:membrane": "vitest run --reporter=dot tests/kpi/membrane-bridge.test.ts src/kpi/tests/membrane-bridge.test.ts tests/membrane/index.test.ts tests/membrane/real-membrane.test.ts",
     "ci:verify": "node scripts/ci-verify.mjs",
     "kyverno:validate": "node tools/kyverno-dry-run.mjs",
     "scan:ingest": "node scripts/ingest-external-scan.mjs",
