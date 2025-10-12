@@ -40,7 +40,7 @@ export const getOrCreateHistogram = (c: Cfg & { buckets?: number[] }) =>
     name: c.name,
     help: c.help ?? c.name,
     labelNames: c.labelNames ?? [],
-    buckets: c.buckets,
+    buckets: c.buckets ?? [0.1, 0.5, 1, 2, 5],
   }));
 
 export const getOrCreateSummary = (c: Cfg & { percentiles?: number[] }) =>
@@ -49,7 +49,7 @@ export const getOrCreateSummary = (c: Cfg & { percentiles?: number[] }) =>
     name: c.name,
     help: c.help ?? c.name,
     labelNames: c.labelNames ?? [],
-    percentiles: c.percentiles,
+    percentiles: c.percentiles ?? [0.5, 0.9, 0.99],
   }));
 
 export async function metricsText(): Promise<string> {

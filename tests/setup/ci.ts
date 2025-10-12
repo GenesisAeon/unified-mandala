@@ -7,6 +7,15 @@ import path from 'node:path';
 process.env.OFFLINE ??= '1';
 process.env.LOW_MEM ??= '1';
 process.env.VITE_LOW_MEM ??= 'on';
+process.env.UM_ASCII_SIGILS ??= '1';
+// Force temp to repo-local tmp to avoid ENOSPC on system temp
+try {
+  const repoTmp = path.join(process.cwd(), 'tmp');
+  fs.mkdirSync(repoTmp, { recursive: true });
+  process.env.TMPDIR = process.env.TMPDIR || repoTmp;
+  process.env.TEMP = process.env.TEMP || repoTmp;
+  process.env.TMP = process.env.TMP || repoTmp;
+} catch {}
 
 // Vitest-/Jest-Globals bereitstellen
 (Object.assign as any)(globalThis, { vi, expect });

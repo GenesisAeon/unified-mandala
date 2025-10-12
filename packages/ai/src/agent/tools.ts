@@ -1,27 +1,29 @@
 import { askOpenAI, type ChatMessage } from '../ask.js';
 import { readFileURI, writeFileURI } from '../guards/guardedFs.js';
 
-const fetchFn = (globalThis as { fetch?: typeof fetch }).fetch;
 
 async function runtimeChat(messages: ChatMessage[]) {
-  if (typeof fetchFn !== 'function') {
-    // Fallback: use the local OpenAI client when fetch is not available (older Node runtimes).
-    return askOpenAI({ messages });
+  // Prefer HTTP transport when a fetch implementation is present and callable.
+  // Tests can stub fetch; in production, this hits the local API gateway.
+  const gfetch = (globalThis as any).fetch as typeof fetch | undefined;
+  if (typeof gfetch === 'function') {
+    const endpoint = process.env.MANDALA_AI_HTTP ?? 'http://localhost:3000/api/ai/chat';
+    const response = await gfetch(endpoint, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ messages }),
+    });
+
+    if (!response.ok) {
+      const detail = await response.text();
+      throw new Error(`runtime.chat failed (${response.status}): ${detail}`);
+    }
+
+    return response.json();
   }
 
-  const endpoint = process.env.MANDALA_AI_HTTP ?? 'http://localhost:3000/api/ai/chat';
-  const response = await fetchFn(endpoint, {
-    method: 'POST',
-    headers: { 'content-type': 'application/json' },
-    body: JSON.stringify({ messages }),
-  });
-
-  if (!response.ok) {
-    const detail = await response.text();
-    throw new Error(`runtime.chat failed (${response.status}): ${detail}`);
-  }
-
-  return response.json();
+  // Fallback: use the local OpenAI client when fetch is not available.
+  return askOpenAI({ messages });
 }
 
 type ToolHandler = (args: Record<string, unknown>) => Promise<unknown>;

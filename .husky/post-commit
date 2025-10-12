@@ -1,3 +1,2 @@
-#!/bin/sh
-. "$(dirname "$0")/_/husky.sh"
 # post-commit hooks intentionally disabled for CI stability
+# (Husky v9 deprecation: removed shebang and husky.sh sourcing)

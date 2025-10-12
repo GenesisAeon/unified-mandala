@@ -1,5 +1,8 @@
 pnpm store:commit-memory >/dev/null 2>&1 || true
 
+# Increase Node.js memory for hook subprocesses (eslint, prettier, vitest)
+export NODE_OPTIONS="${NODE_OPTIONS:---max-old-space-size=4096}"
+
 export PANTHEON_DISABLE=1
 export CI=1
 
@@ -11,11 +14,11 @@ export TMP="$TMPDIR"
 
 if [ -n "$UM_SKIP_HEAVY_HOOKS" ]; then
   echo "[husky] UM_SKIP_HEAVY_HOOKS=1 → running lint-staged only"
-  pnpm lint-staged || exit $?
+  pnpm run lint-staged -- --concurrent false || exit $?
   exit 0
 fi
 
-pnpm lint-staged || exit $?
+pnpm run lint-staged -- --concurrent false || exit $?
 pnpm guard:no-dotenv || exit $?
 pnpm typecheck || exit $?
 pnpm test:unit || exit $?

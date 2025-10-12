@@ -1,11 +1,15 @@
-import { connect, StringCodec, type NatsConnection } from 'nats';
+let connection: Promise<any> | undefined;
 
-const sc = StringCodec();
-let connection: Promise<NatsConnection> | undefined;
+async function loadNats() {
+  const injected = (globalThis as any).__UM_TEST_NATS;
+  if (injected) return injected;
+  return await import('nats');
+}
 
 async function getConnection() {
   if (!connection) {
-    connection = connect({ servers: process.env.NATS_URL || 'localhost:4222' });
+    const nats = await loadNats();
+    connection = nats.connect({ servers: process.env.NATS_URL || 'localhost:4222' });
   }
   return connection;
 }
@@ -15,6 +19,8 @@ export async function requestAI(payload: unknown, opts?: { timeout?: number; sub
   const timeout = opts?.timeout ?? 10_000;
   const nc = await getConnection();
 
+  const { StringCodec } = await loadNats();
+  const sc = StringCodec();
   const response = await nc.request(subject, sc.encode(JSON.stringify(payload)), { timeout });
   const data = JSON.parse(sc.decode(response.data));
 

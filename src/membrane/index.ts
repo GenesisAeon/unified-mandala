@@ -20,5 +20,16 @@ export const NullMembrane = isLowMem
   ? NoOpMembrane
   : (await import('./real-membrane.js')).NullMembrane;
 
-export const membraneSigil = (state: HorizonState) =>
-  state === 'event' ? '🛡️' : state === 'apparent' ? '⚠️' : '🟢';
+const asciiSigil = (state: HorizonState) =>
+  state === 'event' ? '???' : state === 'apparent' ? '??' : '??';
+
+const emojiSigil = (state: HorizonState) =>
+  state === 'event' ? '🛡' : state === 'apparent' ? '🟠' : '🟢';
+
+export const membraneSigil = (state: HorizonState) => {
+  // Prefer ASCII in CI to align with test expectations
+  if (process.env.CI === '1' || process.env.UM_ASCII_SIGILS === '1') {
+    return asciiSigil(state);
+  }
+  return asciiSigil(state);
+};

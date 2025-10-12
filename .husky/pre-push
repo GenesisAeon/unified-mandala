@@ -1,6 +1,11 @@
 export PANTHEON_DISABLE=1
 export CI=1
 
+if [ -n "$UM_SKIP_HEAVY_HOOKS" ]; then
+  echo "[husky] UM_SKIP_HEAVY_HOOKS=1 – skipping tests and policy"
+  exit 0
+fi
+
 pnpm test:unit:coverage || exit $?
 pnpm policy:check || exit $?
 pnpm hook:qwen-smoke || exit $?

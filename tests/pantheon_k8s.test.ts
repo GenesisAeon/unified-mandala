@@ -1,4 +1,5 @@
+import { existsSync } from 'node:fs';
+
 test('pantheon deployment config exists', () => {
-  const fs = require('fs');
-  expect(fs.existsSync('deployment/pantheon/deployment.yaml')).toBe(true);
+  expect(existsSync('deployment/pantheon/deployment.yaml')).toBe(true);
 });

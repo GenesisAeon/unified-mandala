@@ -1,5 +1,6 @@
 export class FourierLayerBridge {
-  connect(data: number[]): number[] {
+  connect<T>(data: T[]): T[] {
     return data;
   }
 }
+

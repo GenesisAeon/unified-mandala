@@ -5,7 +5,7 @@ import { askOpenAI } from '@unified-mandala/ai';
 import { requestAI } from './natsClient.js';
 import ports from '@config/ports';
 
-const app = express();
+const app = (globalThis as any).__UM_TEST_EXPRESS_APP ?? express();
 app.use(cors());
 app.use(express.json({ limit: '1mb' }));
 
@@ -41,7 +41,9 @@ app.post('/api/ai/chat', async (req, res) => {
 
   try {
     const payload = parsed.data;
-    const result = useNats ? await requestAI(payload) : await askOpenAI(payload);
+    const testClient = (globalThis as any).__UM_TEST_OPENAI_CLIENT;
+    const aiParams = testClient ? { ...payload, client: testClient } : payload;
+    const result = useNats ? await requestAI(payload) : await askOpenAI(aiParams as any);
     res.json(result);
   } catch (error) {
     res.status(500).json({ error: error instanceof Error ? error.message : String(error) });

@@ -74,11 +74,14 @@ export function normalizeCREP(input: CrepPartsLoose): CrepNormalized {
       e: toNum((input as any).emergence),
       p: toNum((input as any).poetics),
     };
-    const lcVals = [lc.c, lc.r, lc.e, lc.p].filter((x) => x !== undefined) as number[];
-    if (lcVals.length > 0) {
-      const avg = lcVals.reduce((a, b) => a + b, 0) / lcVals.length;
+    const lcPresent = [lc.c, lc.r, lc.e, lc.p].filter((x) => x !== undefined) as number[];
+    if (lcPresent.length > 0) {
+      const lcClamped = [lc.c, lc.r, lc.e, lc.p]
+        .filter((x) => x !== undefined)
+        .map((x) => clamp01(x as number));
+      const avg = lcClamped.reduce((a, b) => a + b, 0) / lcClamped.length;
       return {
-        score: clamp01(avg),
+        score: avg,
         parts: {
           c: lc.c !== undefined ? clamp01(lc.c) : undefined,
           r: lc.r !== undefined ? clamp01(lc.r) : undefined,
@@ -95,11 +98,14 @@ export function normalizeCREP(input: CrepPartsLoose): CrepNormalized {
       e: toNum((input as any).E),
       p: toNum((input as any).P),
     };
-    const ucVals = [uc.c, uc.r, uc.e, uc.p].filter((x) => x !== undefined) as number[];
-    if (ucVals.length > 0) {
-      const avg = ucVals.reduce((a, b) => a + b, 0) / ucVals.length;
+    const ucPresent = [uc.c, uc.r, uc.e, uc.p].filter((x) => x !== undefined) as number[];
+    if (ucPresent.length > 0) {
+      const ucClamped = [uc.c, uc.r, uc.e, uc.p]
+        .filter((x) => x !== undefined)
+        .map((x) => clamp01(x as number));
+      const avg = ucClamped.reduce((a, b) => a + b, 0) / ucClamped.length;
       return {
-        score: clamp01(avg),
+        score: avg,
         parts: {
           c: uc.c !== undefined ? clamp01(uc.c) : undefined,
           r: uc.r !== undefined ? clamp01(uc.r) : undefined,

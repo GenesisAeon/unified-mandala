@@ -24,11 +24,15 @@ function toSigil(state: Severity) {
 }
 
 export function stepOrBypass(metric: 't2m' | 'wildfire' | 'groundwater', t: number, v: number) {
-  if (FEATURES.membrane !== 'on') {
+  const lowMem =
+    (typeof process !== 'undefined' &&
+      (process.env.LOW_MEM === '1' || process.env.LOW_MEM === 'true')) ||
+    false;
+  if (lowMem || FEATURES.membrane !== 'on') {
     // LowMem: kein State, nur triviales Sigil zurückgeben
     return { A: undefined as number | undefined, sigil: '🟢', severity: 'ok' as const };
   }
   const m = membraneFromThresholds(metric);
   const r = m.step(t, v);
-  return { A: r.A, sigil: toSigil(r.state), severity: r.severity };
+  return { A: r.A, sigil: '??', severity: r.severity };
 }

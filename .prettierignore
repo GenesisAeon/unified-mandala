@@ -8,3 +8,13 @@ charts/**
 docs/api/**
 GenesisAeonZIPMEM/**
 **/generated/**
+
+# lock files & heavy generated data
+pnpm-lock.yaml
+package-lock.json
+yarn.lock
+poetry.lock
+
+# large content not worth formatting
+docs/fraktal/**
+ToDoAI.json
