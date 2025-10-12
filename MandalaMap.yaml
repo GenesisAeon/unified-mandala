@@ -92,10 +92,11 @@ entries:
     category: core-runtime
     status: active
     title: API Lite Proxy
-    description: Express proxy bridging mandala-ui to Ollama (11434 \u2192 4000) with `/health` + `output_text` normalization.
+    description: Express proxy bridging mandala-ui to Ollama (11434 \u2192 4000) with `/health`, `/metrics` and `output_text` normalization.
     notes:
       - '`apps/api-lite/ollama-proxy.mjs` starts via `pnpm start:ollama-proxy` or PowerShell (`pnpm ps:umo`).'
-      - 'Proxy + smoke shortcuts (`pnpm smoke:qwen`, `pnpm ps:smoke-qwen`) schlossen den Fraktal87-Rollout ab; Follow-ups (Climate-MVP, Gemini-Link, Health-Badge) laufen unter Fraktal88.'
+      - 'Adds basic metrics tile support (p95/p99, RPM, 5xx), export/reset and optional Auto-RAG in Playground.'
+      - 'Proxy + smoke shortcuts (`pnpm smoke:qwen`, `pnpm smoke:fs`, `pnpm smoke:memory`, `pnpm smoke:rag`) verified in local precommit.'
       - 'Fraktal89: Guarded FS tool routes (`/api/tools/fs/read|write`), API-Key guard, rate limits (chat=60/min, fs=30/min), audit log, HOST loopback bind.'
     links:
       - label: ollama-proxy

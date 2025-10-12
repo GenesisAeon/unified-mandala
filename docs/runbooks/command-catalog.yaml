@@ -7,6 +7,80 @@ notes:
   - Use pnpm run <script> to execute workspace commands unless a direct shell invocation
     is provided.
 categories:
+  - key: runtime
+    title: Runtime & Developer Services
+    description: Commands for launching dev servers, stacks, and runtime utilities.
+    entries:
+      - id: runtime.dev-stack
+        name: Start dev stack
+        command: pnpm dev:stack
+        type: pnpm
+        runs: node scripts/dev-services.mjs --mode=dev
+        description: Starts the dev stack orchestrator; auto-frees default ports and checks availability.
+        source:
+          - package.json#scripts.dev:stack
+          - scripts/dev-services.mjs
+      - id: runtime.dev-ui
+        name: UI dev server
+        command: pnpm dev:ui
+        type: pnpm
+        runs: pnpm -F mandala-ui dev
+        description: Launches the mandala-ui workspace dev server.
+        source:
+          - package.json#scripts.dev:ui
+      - id: runtime.start-ollama-proxy
+        name: Start Ollama proxy (API Lite)
+        command: pnpm start:ollama-proxy
+        type: pnpm
+        runs: node apps/api-lite/ollama-proxy.mjs
+        description: Starts the lightweight API proxy with /health and /metrics endpoints.
+        source:
+          - package.json#scripts.start:ollama-proxy
+          - apps/api-lite/ollama-proxy.mjs
+      - id: runtime.dev-ports-free
+        name: Free common dev ports
+        command: pnpm dev:ports:free
+        type: pnpm
+        runs: pnpm dlx kill-port 3001 3002 3003 3004 4020 4021
+        description: Frees default ports before starting the dev stack.
+        source:
+          - package.json#scripts.dev:ports:free
+  - key: smokes
+    title: Smoke Tests
+    description: Quick smoke commands for common subsystems.
+    entries:
+      - id: smoke.qwen
+        name: Qwen smoke
+        command: pnpm smoke:qwen
+        type: pnpm
+        runs: node scripts/smoke/qwen-smoke.mjs
+        description: Runs UI + /api/ai/chat proxy smoke validation for Qwen profile.
+        source:
+          - package.json#scripts.smoke:qwen
+      - id: smoke.fs
+        name: FS smoke
+        command: pnpm smoke:fs
+        type: pnpm
+        runs: node scripts/smoke/fs-smoke.mjs
+        description: Filesystem tooling smoke.
+        source:
+          - package.json#scripts.smoke:fs
+      - id: smoke.memory
+        name: Memory smoke
+        command: pnpm smoke:memory
+        type: pnpm
+        runs: node scripts/smoke/memory-smoke.mjs
+        description: Memory tooling smoke.
+        source:
+          - package.json#scripts.smoke:memory
+      - id: smoke.rag
+        name: RAG smoke
+        command: pnpm smoke:rag
+        type: pnpm
+        runs: node scripts/smoke/rag-smoke.mjs
+        description: Retrieval augmented generation smoke.
+        source:
+          - package.json#scripts.smoke:rag
   - key: setup
     title: Setup & Environment
     description: Bootstrap developer workstations and core tooling parity.

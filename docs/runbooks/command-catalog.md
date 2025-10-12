@@ -194,16 +194,37 @@ Diese Sammlung bündelt pnpm-Skripte, Shell-Kommandos sowie wiederverwendbare To
 
 > Dataset builders, adapter workflows, and resonance tooling.
 
-| Command                    | Type   | Runs                                                                       | Beschreibung                                                                                        |
-| -------------------------- | ------ | -------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
-| `pnpm adapter:build:era5`  | `pnpm` | `node scripts/adapter-build-era5.mjs`                                      | Builds ERA5 fixtures via the Python helper with `.venv` auto-detection and runs the post-processor. |
-| `pnpm adapter:build:oisst` | `pnpm` | `node scripts/build-adapter-oisst.mjs`                                     | Generates OISST adapter data bundles.                                                               |
-| `pnpm adapter:build:effis` | `pnpm` | `node scripts/build-adapter-effis.mjs`                                     | Builds EFFIS adapter outputs.                                                                       |
-| `pnpm adapters:ci:install` | `pnpm` | `pip install -r src/adapters/requirements.txt`                             | Installs Python requirements for adapters in CI.                                                    |
-| `pnpm resonance:calc`      | `pnpm` | `node scripts/run-dist.mjs scripts/resonance-calc.ts`                      | Runs the resonance calculator for sigillin analytics.                                               |
-| `pnpm scan:ingest`         | `pnpm` | `node scripts/ingest-external-scan.mjs`                                    | Scans and ingests external dataset manifests.                                                       |
-| `pnpm stac:validate`       | `pnpm` | `node scripts/validate-stac.mjs`                                           | Validates STAC catalog outputs.                                                                     |
-| `pnpm stac:validate:item`  | `pnpm` | `node scripts/run-dist.mjs scripts/validate-stac.ts out/example.item.json` | Validates a single STAC item artifact.                                                              |
+| Command                    | Type   | Runs                                   | Beschreibung                                                                                        |
+| -------------------------- | ------ | -------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| `pnpm adapter:build:era5`  | `pnpm` | `node scripts/adapter-build-era5.mjs`  | Builds ERA5 fixtures via the Python helper with `.venv` auto-detection and runs the post-processor. |
+| `pnpm adapter:build:oisst` | `pnpm` | `node scripts/build-adapter-oisst.mjs` | Generates OISST adapter data bundles.                                                               |
+
+## Runtime & Developer Services (Updates)
+
+| Command                   | Type   | Runs                                  | Beschreibung                                             |
+| ------------------------- | ------ | ------------------------------------- | -------------------------------------------------------- |
+| `pnpm start:ollama-proxy` | `pnpm` | `node apps/api-lite/ollama-proxy.mjs` | Startet den leichtgewichtigen Proxy mit /health,/metrics |
+
+## Smoke Tests (Updates)
+
+| Command             | Type   | Runs                                  | Beschreibung     |
+| ------------------- | ------ | ------------------------------------- | ---------------- |
+| `pnpm smoke:qwen`   | `pnpm` | `node scripts/smoke/qwen-smoke.mjs`   | Qwen smoke       |
+| `pnpm smoke:fs`     | `pnpm` | `node scripts/smoke/fs-smoke.mjs`     | Filesystem smoke |
+| `pnpm smoke:memory` | `pnpm` | `node scripts/smoke/memory-smoke.mjs` | Memory smoke     |
+| `pnpm smoke:rag`    | `pnpm` | `node scripts/smoke/rag-smoke.mjs`    | RAG smoke        |
+
+## CI Gates (Updates)
+
+| Command                    | Type   | Runs                                                                       | Beschreibung                                               |
+| -------------------------- | ------ | -------------------------------------------------------------------------- | ---------------------------------------------------------- |
+| `pnpm check:ci`            | `pnpm` | combined gate                                                              | Typecheck, Unit, Schema/Maps/Sanity, Policy in einem Lauf. |
+| `pnpm adapter:build:effis` | `pnpm` | `node scripts/build-adapter-effis.mjs`                                     | Builds EFFIS adapter outputs.                              |
+| `pnpm adapters:ci:install` | `pnpm` | `pip install -r src/adapters/requirements.txt`                             | Installs Python requirements for adapters in CI.           |
+| `pnpm resonance:calc`      | `pnpm` | `node scripts/run-dist.mjs scripts/resonance-calc.ts`                      | Runs the resonance calculator for sigillin analytics.      |
+| `pnpm scan:ingest`         | `pnpm` | `node scripts/ingest-external-scan.mjs`                                    | Scans and ingests external dataset manifests.              |
+| `pnpm stac:validate`       | `pnpm` | `node scripts/validate-stac.mjs`                                           | Validates STAC catalog outputs.                            |
+| `pnpm stac:validate:item`  | `pnpm` | `node scripts/run-dist.mjs scripts/validate-stac.ts out/example.item.json` | Validates a single STAC item artifact.                     |
 
 ## Observability & Monitoring
 
