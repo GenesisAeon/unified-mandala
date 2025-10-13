@@ -57,3 +57,10 @@ Samples:
   - Process automation (active) — processes/
 
 _Auto-generated summary. Edit YAML as the source of truth._
+
+## Recent Additions
+
+- Observability: RUM Traces dashboard (`grafana/dashboards/rum-traces.json`), optional local Tempo/OTEL compose under `docs/observability/`.
+- Automation: Backlog Consolidate (`scripts/meta/backlog-consolidate.mjs`, `pnpm backlog:consolidate`), GitHub Action uploads artifacts on changes.
+- Automation: Verified Starter (`scripts/start-verified.ts`, `pnpm start:verified`) launches UI + dev stack + health, waits, then runs smoke.
+- CI Infra: MandalaMap strict label-gated workflow (`.github/workflows/mandala-map-strict.yml`).

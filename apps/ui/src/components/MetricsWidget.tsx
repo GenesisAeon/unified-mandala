@@ -1,4 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
+import { getGrafanaBaseUrl, openGrafanaExplore, isGrafanaUrlValid } from '../lib/grafana';
+import { openRUMSettings, onGrafanaValidity } from '../lib/uiBus';
 
 type Buckets = Record<
   '0-50' | '50-100' | '100-250' | '250-500' | '500-1000' | '1000-2000' | '2000-5000' | '5000+',
@@ -100,6 +102,10 @@ export default function MetricsWidget() {
   const [ragToast, setRagToast] = useState<{ ok: boolean; msg: string } | null>(null);
   const [ragBadge, setRagBadge] = useState<{ ts: string; count?: number } | null>(null);
   const [traceToast, setTraceToast] = useState<{ ok: boolean; msg: string } | null>(null);
+  const [gToast, setGToast] = useState<string | null>(null);
+  const gToastTimer = useRef<number | null>(null);
+  const [gPulse, setGPulse] = useState(false);
+  const gPulseTimer = useRef<number | null>(null);
 
   const exportMetricsJson = async () => {
     try {
@@ -337,6 +343,10 @@ export default function MetricsWidget() {
     }
   };
 
+  const openInGrafana = () => {
+    openGrafanaExplore('service.name = "mandala-ui" and span.name = "ui.metrics.test"');
+  };
+
   const createTestSpan = async () => {
     try {
       const st = (window as any).__rum?.status?.();
@@ -422,6 +432,24 @@ export default function MetricsWidget() {
     fetchMetrics();
     const id = setInterval(fetchMetrics, 5000);
     return () => clearInterval(id);
+  }, []);
+
+  useEffect(() => {
+    const off = onGrafanaValidity((v) => {
+      setGToast(v ? 'Explore aktiviert' : 'Explore deaktiviert');
+      if (gToastTimer.current) window.clearTimeout(gToastTimer.current);
+      gToastTimer.current = window.setTimeout(() => setGToast(null), 2200) as unknown as number;
+      if (v) {
+        setGPulse(true);
+        if (gPulseTimer.current) window.clearTimeout(gPulseTimer.current);
+        gPulseTimer.current = window.setTimeout(() => setGPulse(false), 1200) as unknown as number;
+      }
+    });
+    return () => {
+      off?.();
+      if (gToastTimer.current) window.clearTimeout(gToastTimer.current);
+      if (gPulseTimer.current) window.clearTimeout(gPulseTimer.current);
+    };
   }, []);
 
   useEffect(() => {
@@ -550,6 +578,48 @@ export default function MetricsWidget() {
             RAG ok{typeof ragBadge.count === 'number' ? `  +${ragBadge.count}` : ''}
           </span>
         )}
+        {(() => {
+          const canOpenGrafana = isGrafanaUrlValid(getGrafanaBaseUrl());
+          return (
+            <button
+              type="button"
+              onClick={openInGrafana}
+              className={`rounded-xl border px-3 py-1 text-sm ${canOpenGrafana ? '' : 'opacity-50 cursor-not-allowed'} ${gPulse ? 'ring-2 ring-emerald-300' : ''}`}
+              title={
+                canOpenGrafana
+                  ? 'Open in Grafana Explore'
+                  : 'Grafana URL ungültig – stelle sie in Settings → RUM ein'
+              }
+              disabled={!canOpenGrafana}
+            >
+              Open in Grafana
+            </button>
+          );
+        })()}
+        {gToast && (
+          <span
+            role="status"
+            aria-live="polite"
+            className="ml-2 inline-block rounded-lg bg-slate-900 px-2 py-1 text-xs text-white shadow transition"
+            title={gToast}
+          >
+            {gToast}
+          </span>
+        )}
+        {(() => {
+          const canOpenGrafana = isGrafanaUrlValid(getGrafanaBaseUrl());
+          if (canOpenGrafana) return null;
+          return (
+            <button
+              type="button"
+              className="rounded-xl border px-2 py-1 text-xs"
+              title="Settings → RUM öffnen"
+              onClick={openRUMSettings}
+            >
+              open settings
+            </button>
+          );
+        })()}
         <button
           type="button"
           onClick={createTestSpan}

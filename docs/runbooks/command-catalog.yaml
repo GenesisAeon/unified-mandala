@@ -45,6 +45,15 @@ categories:
         description: Frees default ports before starting the dev stack.
         source:
           - package.json#scripts.dev:ports:free
+      - id: runtime.start-verified
+        name: Start verified stack (UI+stack+health)
+        command: pnpm start:verified
+        type: pnpm
+        runs: tsx scripts/start-verified.ts
+        description: Starts UI (Vite), dev stack and health aggregator, waits for readiness, then runs smoke:live. Respects PORT_OFFSET.
+        source:
+          - package.json#scripts.start:verified
+          - scripts/start-verified.ts
   - key: smokes
     title: Smoke Tests
     description: Quick smoke commands for common subsystems.
@@ -1568,3 +1577,16 @@ scripts:
   - id: script.setup-dev-container
     path: Dockerfile.dev
     description: Dev container definition aligning Node 20 + Python 3 toolchains.
+  - key: maintenance
+    title: Maintenance & Automation
+    description: Housekeeping commands and repository maintenance tasks.
+    entries:
+      - id: maintenance.backlog-consolidate
+        name: Backlog consolidate
+        command: pnpm backlog:consolidate
+        type: pnpm
+        runs: node scripts/meta/backlog-consolidate.mjs
+        description: Scans advancedToDo_parts and writes `out/backlog/fragment-index.json`; updates `advancedprogress.json.backlogIndex`.
+        source:
+          - scripts/meta/backlog-consolidate.mjs
+          - .github/workflows/backlog-consolidate.yml

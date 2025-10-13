@@ -62,6 +62,17 @@ Beispiel mit Port-Offset 100: `PORT_OFFSET=100 pnpm dev:health` -> Health auf `h
 - Optionaler Collector: `VITE_OTEL_COLLECTOR_URL=http://localhost:4318/v1/traces`
 - Datenschutz: RUM ist standardmäßig deaktiviert. Bitte interne Policies beachten und nur mit informierter Zustimmung aktivieren.
 
+### RUM Traces (Grafana)
+
+- Import dashboard: `grafana/dashboards/rum-traces.json`
+- Explore query (Tempo · TraceQL):
+
+```
+service.name = "mandala-ui" and span.name = "ui.metrics.test"
+```
+
+- Demo-Span senden im Playground: Proxy Metrics → Trace test (RUM muss aktiv sein).
+
 > **Hinweise:**
 > • „Cannot GET /“ auf :3000 bedeutet: Backend servt keine HMR-UI. Entweder **Vite-Dev** (`pnpm dev:ui`) nutzen oder **statisch bauen** (`pnpm build:ui && pnpm dev`).
 > • Für Observability mit Prometheus/Grafana das Compose-Profil `monitoring` starten (siehe `observability/README.md`) und mit `pnpm observability:check` Prometheus (`/api/v1/targets`) sowie Grafana (`/api/health`, Host-Port 3300) prüfen.

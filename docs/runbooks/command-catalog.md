@@ -180,9 +180,10 @@ Diese Sammlung bündelt pnpm-Skripte, Shell-Kommandos sowie wiederverwendbare To
 
 ## Runtime & Developer Services (Updates)
 
-| Command                   | Type   | Runs                                  | Beschreibung                                             |
-| ------------------------- | ------ | ------------------------------------- | -------------------------------------------------------- |
-| `pnpm start:ollama-proxy` | `pnpm` | `node apps/api-lite/ollama-proxy.mjs` | Startet den leichtgewichtigen Proxy mit /health,/metrics |
+| Command                   | Type   | Runs                                  | Beschreibung                                                                             |
+| ------------------------- | ------ | ------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `pnpm start:ollama-proxy` | `pnpm` | `node apps/api-lite/ollama-proxy.mjs` | Startet den leichtgewichtigen Proxy mit /health,/metrics                                 |
+| `pnpm start:verified`     | `pnpm` | `tsx scripts/start-verified.ts`       | Startet UI+Stack+Health, wartet auf Readiness und ltet Smoke. Respektiert `PORT_OFFSET`. |
 
 ## Smoke Tests (Updates)
 
@@ -294,3 +295,9 @@ Diese Sammlung bündelt pnpm-Skripte, Shell-Kommandos sowie wiederverwendbare To
 | script.docker-compose-local | `docker-compose.local.yaml`                             | Docker Compose definition for local offline stack parity.                                                                                                                                                                                    |
 | script.docker-compose       | `docker-compose.yml`                                    | Primary Docker Compose file with multiple service profiles.                                                                                                                                                                                  |
 | script.setup-dev-container  | `Dockerfile.dev`                                        | Dev container definition aligning Node 20 + Python 3 toolchains.                                                                                                                                                                             |
+
+## Maintenance & Automation
+
+| Command                    | Type   | Runs                                        | Beschreibung                                                                  |
+| -------------------------- | ------ | ------------------------------------------- | ----------------------------------------------------------------------------- |
+| `pnpm backlog:consolidate` | `pnpm` | `node scripts/meta/backlog-consolidate.mjs` | Erstellt Backlog-Index und aktualisiert `advancedprogress.json.backlogIndex`. |

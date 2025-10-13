@@ -181,6 +181,54 @@ entries:
         path: .github/workflows/ci.runtime.yml
       - label: Qwen smoke
         path: .github/workflows/ci.qwen-smoke.yml
+  - path: grafana/dashboards/rum-traces.json
+    category: observability
+    status: active
+    title: RUM Traces Dashboard (Tempo)
+    description: Grafana dashboard for browser RUM traces using Tempo (TraceQL panels).
+    notes:
+      - Import via Grafana → Dashboards → Import; select datasource "Tempo" if prompted.
+      - Use the Metrics tile "Trace test" to emit demo spans and verify ingestion.
+      - Optional compose overlay under docs/observability to run Tempo + OTEL Collector locally.
+    links:
+      - label: Tempo compose overlay
+        path: docs/observability/docker-compose.tempo.yml
+      - label: OTEL collector config
+        path: docs/observability/otel/otel-collector.yaml
+      - label: Tempo config
+        path: docs/observability/tempo/tempo.yaml
+  - path: scripts/meta/backlog-consolidate.mjs
+    category: automation
+    status: active
+    title: Backlog Consolidate
+    description: Scans advancedToDo_parts and writes out/backlog/fragment-index.json; updates advancedprogress.json.backlogIndex.
+    notes:
+      - Exposed via `pnpm backlog:consolidate`.
+      - GitHub Action uploads backlog artifacts on changes to advancedToDo_parts/**.
+    links:
+      - label: GH Action
+        path: .github/workflows/backlog-consolidate.yml
+  - path: scripts/start-verified.ts
+    category: automation
+    status: active
+    title: Verified Starter
+    description: Starts UI + dev stack + health aggregator, waits for readiness, then runs smoke:live. Respects PORT_OFFSET.
+    notes:
+      - Run via `pnpm start:verified`. Health URL defaults to http://127.0.0.1:3999/health.
+      - Uses wait-on to coordinate readiness.
+    links:
+      - label: package script
+        path: package.json#scripts.start:verified
+  - path: .github/workflows/mandala-map-strict.yml
+    category: ci-infra
+    status: active
+    title: MandalaMap strict (label gate)
+    description: Optional PR job (label `mandalamap:strict`) that fails on MandalaMap warnings and uploads validation logs.
+    notes:
+      - Complements the soft validation in mandala-map.yml; add the label to enforce strict gating for sensitive PRs.
+    links:
+      - label: Mandala map (soft)
+        path: .github/workflows/mandala-map.yml
   - path: .husky/
     category: ci-infra
     status: active

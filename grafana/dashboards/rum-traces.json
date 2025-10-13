@@ -1,0 +1,38 @@
+{
+  "annotations": { "list": [] },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "panels": [
+    {
+      "type": "text",
+      "title": "RUM Traces · How to Explore",
+      "gridPos": { "h": 6, "w": 24, "x": 0, "y": 0 },
+      "options": {
+        "mode": "markdown",
+        "content": "Use **Explore → Tempo** with TraceQL:\n\n```\nservice.name = \"mandala-ui\" and span.name = \"ui.metrics.test\"\n```\n\nTip: emit a test span from the Playground (Metrics tile → **Trace test**)."
+      }
+    },
+    {
+      "title": "Recent UI traces (Tempo)",
+      "type": "tempo-query",
+      "gridPos": { "h": 12, "w": 24, "x": 0, "y": 6 },
+      "options": { "queryType": "traceql" },
+      "targets": [
+        {
+          "datasource": { "type": "tempo", "uid": "Tempo" },
+          "query": "service.name = \"mandala-ui\" and duration > 1ms",
+          "queryType": "traceql",
+          "refId": "A"
+        }
+      ]
+    }
+  ],
+  "schemaVersion": 39,
+  "style": "dark",
+  "tags": ["rum", "tempo", "traces"],
+  "time": { "from": "now-1h", "to": "now" },
+  "timezone": "",
+  "title": "Mandala · RUM Traces",
+  "version": 1
+}

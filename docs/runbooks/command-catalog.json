@@ -1638,6 +1638,16 @@
       "id": "script.setup-dev-container",
       "path": "Dockerfile.dev",
       "description": "Dev container definition aligning Node 20 + Python 3 toolchains."
+    },
+    {
+      "id": "script.start-verified",
+      "path": "scripts/start-verified.ts",
+      "description": "Starts UI + dev stack + health aggregator, waits for readiness, then runs smoke:live."
+    },
+    {
+      "id": "script.backlog-consolidate",
+      "path": "scripts/meta/backlog-consolidate.mjs",
+      "description": "Backlog consolidation: generates out/backlog/fragment-index.json and updates advancedprogress.json."
     }
   ]
 }

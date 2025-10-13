@@ -60,6 +60,7 @@
     "maps:sync": "pnpm repomap:build && pnpm repomap:validate && node scripts/mandala-map-validate.mjs",
     "backlog:consolidate": "node scripts/meta/backlog-consolidate.mjs",
     "dev:health": "tsx scripts/health-aggregator.ts",
+    "start:verified": "tsx scripts/start-verified.ts",
     "smoke:live": "node scripts/smoke/live-smoke.mjs",
     "smoke:qwen": "node scripts/smoke/qwen-smoke.mjs",
     "smoke:memory": "node scripts/smoke/memory-smoke.mjs",
@@ -67,6 +68,8 @@
     "smoke:fs": "node scripts/smoke/fs-smoke.mjs",
     "diag:shortcuts": "node scripts/diag/shortcuts.mjs",
     "clean:caches": "node scripts/clean-caches.mjs",
+    "rum:align-otel": "pnpm -r up @opentelemetry/api @opentelemetry/sdk-trace-web @opentelemetry/exporter-trace-otlp-http @opentelemetry/instrumentation @opentelemetry/instrumentation-document-load && pnpm -r dedupe",
+    "rum:why-otel": "pnpm -r why @opentelemetry/api",
     "ps:start-um": "powershell -NoProfile -ExecutionPolicy Bypass -Command \". ./scripts/dev-helper.ps1; Start-UM\"",
     "ps:start-um:offset": "powershell -NoProfile -ExecutionPolicy Bypass -Command \". ./scripts/dev-helper.ps1; Start-UM -PortOffset 100\"",
     "ps:start-um:memory": "powershell -NoProfile -ExecutionPolicy Bypass -Command \". ./scripts/dev-helper.ps1; Start-UM -NoNATS\"",
@@ -227,6 +230,15 @@
     "yarn:smoke:fs": "node scripts/smoke/fs-smoke.mjs",
     "yarn:smoke:memory": "node scripts/smoke/memory-smoke.mjs",
     "yarn:smoke:rag": "node scripts/smoke/rag-smoke.mjs"
+  },
+  "pnpm": {
+    "overrides": {
+      "@opentelemetry/api": ">=1.6.0 <2.0.0",
+      "@opentelemetry/sdk-trace-web": ">=1.6.0 <2.0.0",
+      "@opentelemetry/exporter-trace-otlp-http": ">=0.50.0 <1.0.0",
+      "@opentelemetry/instrumentation": ">=0.50.0 <1.0.0",
+      "@opentelemetry/instrumentation-document-load": ">=0.50.0 <1.0.0"
+    }
   },
   "dependencies": {
     "@automerge/automerge": "^3.1.1",
