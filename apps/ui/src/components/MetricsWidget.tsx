@@ -99,6 +99,7 @@ export default function MetricsWidget() {
   const [autoRag, setAutoRag] = useState<boolean>(false);
   const [ragToast, setRagToast] = useState<{ ok: boolean; msg: string } | null>(null);
   const [ragBadge, setRagBadge] = useState<{ ts: string; count?: number } | null>(null);
+  const [traceToast, setTraceToast] = useState<{ ok: boolean; msg: string } | null>(null);
 
   const exportMetricsJson = async () => {
     try {
@@ -336,6 +337,38 @@ export default function MetricsWidget() {
     }
   };
 
+  const createTestSpan = async () => {
+    try {
+      const st = (window as any).__rum?.status?.();
+      if (!st?.enabled) {
+        setTraceToast({ ok: false, msg: 'RUM disabled — enable in Settings.' });
+        setTimeout(() => setTraceToast(null), 2500);
+        return;
+      }
+      const api = await import('@opentelemetry/api');
+      const tracer = api.trace.getTracer('um-ui', '0.1.0');
+      const span = tracer.startSpan('ui.metrics.test', {
+        attributes: {
+          'app.component': 'MetricsWidget',
+          'rum.test': true,
+        } as any,
+      });
+      span.addEvent('test.start', { at: Date.now() } as any);
+      await new Promise((r) => setTimeout(r, 30));
+      const child = tracer.startSpan('ui.metrics.child');
+      child.addEvent('child.work');
+      await new Promise((r) => setTimeout(r, 10));
+      child.end();
+      span.addEvent('test.end', { at: Date.now() } as any);
+      span.end();
+      setTraceToast({ ok: true, msg: 'Sent test span (ui.metrics.test)' });
+    } catch (e: any) {
+      setTraceToast({ ok: false, msg: `Trace failed: ${e?.message ?? String(e)}` });
+    } finally {
+      setTimeout(() => setTraceToast(null), 3000);
+    }
+  };
+
   const maybeAutoRagIndex = async () => {
     if (!autoRag) return;
     try {
@@ -517,6 +550,14 @@ export default function MetricsWidget() {
             RAG ok{typeof ragBadge.count === 'number' ? `  +${ragBadge.count}` : ''}
           </span>
         )}
+        <button
+          type="button"
+          onClick={createTestSpan}
+          className="rounded-md border px-2 py-1 text-xs hover:bg-slate-50"
+          title="Send a demo OTel span to verify browser RUM"
+        >
+          Trace test
+        </button>
       </div>
 
       {ragToast && (
@@ -525,6 +566,15 @@ export default function MetricsWidget() {
           className={`mt-2 text-xs rounded-md px-2 py-1 ${ragToast.ok ? 'bg-emerald-50 text-emerald-700' : 'bg-red-50 text-red-700'}`}
         >
           {ragToast.msg}
+        </div>
+      )}
+
+      {traceToast && (
+        <div
+          role="status"
+          className={`mt-2 text-xs rounded-md px-2 py-1 ${traceToast.ok ? 'bg-emerald-50 text-emerald-700' : 'bg-yellow-50 text-yellow-800'}`}
+        >
+          {traceToast.msg}
         </div>
       )}
 

@@ -5,6 +5,7 @@ import OpsPanel from '../components/OpsPanel';
 import { CosmicWebDemo } from '../components/CosmicWebDemo';
 import MandalaAIPlayground from '../components/MandalaAIPlayground';
 import RagPlayground from '../components/RagPlayground';
+import RumTopbarToggle from '../components/RumTopbarToggle';
 
 export default function App() {
   const route = useMemo(() => {
@@ -30,6 +31,7 @@ export default function App() {
           >
             Cosmic-Web Demo
           </a>
+          <RumTopbarToggle />
         </nav>
         <MandalaAIPlayground />
       </main>

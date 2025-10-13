@@ -58,6 +58,7 @@
     "labels:setup": "node scripts/repo/setup-labels.mjs",
     "guard:no-dotenv": "node scripts/ci/guard-no-dotenv.mjs",
     "maps:sync": "pnpm repomap:build && pnpm repomap:validate && node scripts/mandala-map-validate.mjs",
+    "backlog:consolidate": "node scripts/meta/backlog-consolidate.mjs",
     "dev:health": "tsx scripts/health-aggregator.ts",
     "smoke:live": "node scripts/smoke/live-smoke.mjs",
     "smoke:qwen": "node scripts/smoke/qwen-smoke.mjs",

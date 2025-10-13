@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react';
 import MetricsWidget from './MetricsWidget';
+import SettingsRUM from './SettingsRUM';
 
 type PlaygroundState = 'idle' | 'loading' | 'done' | 'error';
 
@@ -372,6 +373,11 @@ export function MandalaAIPlayground() {
         <div className="flex-1" />
         <MetricsWidget />
       </div>
+
+      {/* RUM Settings */}
+      <section className="mt-2">
+        <SettingsRUM />
+      </section>
 
       <label className="grid gap-2">
         <span className="text-sm font-medium text-slate-700">Systemnachricht</span>

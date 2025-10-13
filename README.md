@@ -49,6 +49,19 @@ docker compose --profile monitoring up
 # -> Prometheus http://localhost:9090, Grafana http://localhost:3300 (admin/admin)
 ```
 
+### Health Aggregator (lokal)
+
+- Start: `pnpm dev:health`
+- Check: `http://localhost:3999/health` (oder mit `PORT_OFFSET` verschoben)
+
+Beispiel mit Port-Offset 100: `PORT_OFFSET=100 pnpm dev:health` -> Health auf `http://localhost:4099/health`.
+
+### Real User Monitoring (RUM)
+
+- Aktivierung (Vite-UI): `VITE_ENABLE_RUM=on pnpm dev:ui`
+- Optionaler Collector: `VITE_OTEL_COLLECTOR_URL=http://localhost:4318/v1/traces`
+- Datenschutz: RUM ist standardmäßig deaktiviert. Bitte interne Policies beachten und nur mit informierter Zustimmung aktivieren.
+
 > **Hinweise:**
 > • „Cannot GET /“ auf :3000 bedeutet: Backend servt keine HMR-UI. Entweder **Vite-Dev** (`pnpm dev:ui`) nutzen oder **statisch bauen** (`pnpm build:ui && pnpm dev`).
 > • Für Observability mit Prometheus/Grafana das Compose-Profil `monitoring` starten (siehe `observability/README.md`) und mit `pnpm observability:check` Prometheus (`/api/v1/targets`) sowie Grafana (`/api/health`, Host-Port 3300) prüfen.

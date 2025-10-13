@@ -4,6 +4,8 @@
 - Fraktal: 88
 - Generated: 2025-11-30 00:00:00+00:00
 
+Bridges index: sigils/bridges/bridges.index.yaml
+
 Total entries: 71
 
 Categories:
