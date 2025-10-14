@@ -154,6 +154,9 @@ Nutze die gebündelten pnpm-Kommandos, um die in DevTalk74 beschriebenen CI-/Gov
 - **Adapter (Stub→Live):** `src/adapters` (ERA5, OISST, EFFIS, Pegel, Biodiversität, Radar, SPEI)
 - **Utilities:** `src/utils` (Resampling, Z-Scores, MRV/STAC)
 
+- **Boundary (Getting Started):** `docs/boundary/GettingStarted.md`
+- **Boundary Demo UI:** open `/demo/boundary` after `pnpm -F mandala-ui dev`
+
 Die Adapter sind initial als Stubs verfügbar und werden schrittweise an echte Feeds gebunden.
 
 ---

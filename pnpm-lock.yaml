@@ -362,6 +362,15 @@ importers:
 
   apps/ui:
     dependencies:
+      '@mandala/boundary-core':
+        specifier: workspace:*
+        version: link:../../packages/boundary-core
+      '@mandala/boundary-engine':
+        specifier: workspace:*
+        version: link:../../packages/boundary-engine
+      '@mandala/boundary-ui':
+        specifier: workspace:*
+        version: link:../../packages/boundary-ui
       '@mandala/crep':
         specifier: workspace:*
         version: link:../../packages/crep

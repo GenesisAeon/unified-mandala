@@ -5,6 +5,7 @@ Fraktal Diary Index
 Diary
 - fraktal-zyklus.md — docs/fraktal/diary/fraktal-zyklus.md
 - fraktal44.md — docs/fraktal/diary/fraktal44.md
+- fraktal88.md — docs/fraktal/diary/fraktal88.md
 
 Codexfeedback
 - codexfeedback-87-qwen-rollout.yaml — docs/fraktal/codexfeedback/codexfeedback-87-qwen-rollout.yaml

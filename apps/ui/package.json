@@ -9,6 +9,9 @@
     "preview": "vite preview --port 5173"
   },
   "dependencies": {
+    "@mandala/boundary-core": "workspace:*",
+    "@mandala/boundary-engine": "workspace:*",
+    "@mandala/boundary-ui": "workspace:*",
     "@opentelemetry/api": "^1.9.0",
     "@mandala/crep": "workspace:*",
     "@opentelemetry/exporter-trace-otlp-http": "^0.49.1",

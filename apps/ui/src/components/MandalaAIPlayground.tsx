@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react';
 import MetricsWidget from './MetricsWidget';
+import BoundaryMiniTile from './BoundaryMiniTile';
 import SettingsRUM from './SettingsRUM';
 
 type PlaygroundState = 'idle' | 'loading' | 'done' | 'error';
@@ -372,6 +373,11 @@ export function MandalaAIPlayground() {
       <div className="mt-3 flex flex-col md:flex-row gap-3">
         <div className="flex-1" />
         <MetricsWidget />
+      </div>
+
+      {/* Quick tiles row */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+        <BoundaryMiniTile />
       </div>
 
       {/* RUM Settings */}
