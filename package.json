@@ -66,6 +66,10 @@
     "smoke:memory": "node scripts/smoke/memory-smoke.mjs",
     "smoke:rag": "node scripts/smoke/rag-smoke.mjs",
     "smoke:fs": "node scripts/smoke/fs-smoke.mjs",
+    "boundary:run": "tsx scripts/boundary-runner.ts --input scripts/boundary-demo.rules.json --out data://logs/boundary/laws.json",
+    "boundary:demo": "tsx scripts/boundary-runner.ts --demo --out data://logs/boundary/laws.demo.json",
+    "build:boundary": "pnpm -r --filter @mandala/boundary-core build && pnpm -r --filter @mandala/boundary-engine build && pnpm -r --filter @mandala/boundary-ui build",
+    "test:boundary": "vitest run packages/boundary-engine packages/boundary-core",
     "diag:shortcuts": "node scripts/diag/shortcuts.mjs",
     "clean:caches": "node scripts/clean-caches.mjs",
     "rum:align-otel": "pnpm -r up @opentelemetry/api @opentelemetry/sdk-trace-web @opentelemetry/exporter-trace-otlp-http @opentelemetry/instrumentation @opentelemetry/instrumentation-document-load && pnpm -r dedupe",
@@ -241,6 +245,8 @@
     }
   },
   "dependencies": {
+    "@mandala/boundary-core": "workspace:*",
+    "@mandala/boundary-engine": "workspace:*",
     "@automerge/automerge": "^3.1.1",
     "@grpc/grpc-js": "^1.9.10",
     "@opentelemetry/api": "^1.9.0",

@@ -21,6 +21,12 @@ importers:
       '@grpc/grpc-js':
         specifier: ^1.9.10
         version: 1.13.4
+      '@mandala/boundary-core':
+        specifier: workspace:*
+        version: link:packages/boundary-core
+      '@mandala/boundary-engine':
+        specifier: workspace:*
+        version: link:packages/boundary-engine
       '@opentelemetry/api':
         specifier: '>=1.6.0 <2.0.0'
         version: 1.9.0
@@ -433,6 +439,29 @@ importers:
       typescript:
         specifier: ^5.6.3
         version: 5.8.3
+
+  packages/boundary-core: {}
+
+  packages/boundary-engine:
+    dependencies:
+      '@mandala/boundary-core':
+        specifier: workspace:*
+        version: link:../boundary-core
+
+  packages/boundary-ui:
+    dependencies:
+      '@mandala/boundary-core':
+        specifier: workspace:*
+        version: link:../boundary-core
+      '@mandala/boundary-engine':
+        specifier: workspace:*
+        version: link:../boundary-engine
+      react:
+        specifier: '>=18'
+        version: 18.3.1
+      react-dom:
+        specifier: '>=18'
+        version: 18.3.1(react@18.3.1)
 
   packages/codex-navigator-agent: {}
 

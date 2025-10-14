@@ -3,3 +3,5 @@ packages:
   - 'src'
   - 'packages/*'
   - 'services/*'
+  - 'packages/boundary-*'
+  - '!packages/**/dist'
