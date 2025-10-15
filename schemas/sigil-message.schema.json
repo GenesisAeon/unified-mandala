@@ -1,6 +1,6 @@
 {
   "$id": "https://unified-mandala.org/schemas/sigil-message.schema.json",
-  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "SigilMessage",
   "type": "object",
   "required": ["symbol", "intent", "context", "meta"],

@@ -1,7 +1,7 @@
 meta:
   version: '1.0'
-  generated: '2025-12-01 00:00:00+00:00'
-  fraktal: 93
+  generated: '2025-12-02 00:00:00+00:00'
+  fraktal: 94
   repo: unified-mandala
   source: ChefDevAI MandalaMap bootstrap
   reference_docs:
@@ -752,6 +752,7 @@ entries:
       scripts.
     notes:
       - Keep versioned with tools/kyverno-dry-run.mjs expectations.
+      - 'Fraktal94: `scripts/validate-schemas.mjs` prüft `sigils/samples/sigil-message.sample.json` gegen `schemas/sigil-message.schema.json` (JSON Schema 2020-12).'
     links: []
   - path: scripts/
     category: automation

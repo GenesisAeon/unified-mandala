@@ -103,6 +103,14 @@ if (fs.existsSync(cosmicSigillPath)) {
   console.warn(`⚠️ Optional demo sigillin missing: ${cosmicSigill}`);
 }
 
+const sigilMessageSample = 'sigils/samples/sigil-message.sample.json';
+const sigilMessagePath = path.join(projectRoot, sigilMessageSample);
+if (fs.existsSync(sigilMessagePath)) {
+  validateDocument('schemas/sigil-message.schema.json', sigilMessageSample, readJson);
+} else {
+  console.warn(`⚠️ Optional SigilMessage sample missing: ${sigilMessageSample}`);
+}
+
 if (hasFailure) {
   process.exitCode = 1;
 } else {

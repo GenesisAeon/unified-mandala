@@ -1,0 +1,15 @@
+{
+  "symbol": "⚡",
+  "intent": "warn",
+  "context": "membrane step threshold exceeded",
+  "meta": {
+    "ts": "2025-12-01T23:59:59Z",
+    "source": "membrane-bounds",
+    "crep": {
+      "coherence": 0.72,
+      "resonance": 0.68,
+      "emergence": 0.55,
+      "poetics": 0.44
+    }
+  }
+}
