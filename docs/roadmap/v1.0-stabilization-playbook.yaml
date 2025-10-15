@@ -1,7 +1,7 @@
 fraktal: 40
 release: v1.0
 owner: codex
-updated: '2025-11-30'
+updated: '2025-12-02'
 summary: 'Strukturierter Maßnahmenplan zur Umsetzung der Fraktal40-Besprechung.
 
   Fokus auf stabile Kern-Builds, dist-first Services, verschärfte Governance
@@ -408,7 +408,9 @@ streams:
           Fraktal72 liefert `pnpm observability:check` für Prometheus `/api/v1/targets`
           + Grafana `/api/health` (Port 3300). Fraktal93 erweitert Membrane um
           Prometheus Counter/Histogram & Boundary-Events; SigilMessage-Schema
-          wird via Ajv-Test abgesichert, UI-Pill folgt.'
+          wird via Ajv-Test abgesichert, UI-Pill folgt. Fraktal94 verankert das
+          Schema in `pnpm schema:validate` (Sample unter `sigils/samples/`), MandalaMap
+          und Codexfeedback halten UI-/Boundary-Follow-ups fest.'
       - id: prom-compose
         description: Compose-Profile für Prometheus/Grafana aktivieren
         status: done

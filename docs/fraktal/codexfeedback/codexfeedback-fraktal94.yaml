@@ -1,0 +1,26 @@
+fraktal: 94
+status: in-progress
+owner: Johann
+summary:
+  - 'DevTalk94 Review: CI/CD, Governance, Observability und Doku-Checklisten abgeglichen.'
+  - 'SigilMessage Schema-Gate aktiviert (Schema 2020-12 + Sample unter `sigils/samples/`, `scripts/validate-schemas.mjs`).'
+  - 'MandalaMap & Stabilization-Playbook auf Fraktal94 aktualisiert; Hooks dokumentieren offene UI/Boundary-Schritte.'
+deliverables:
+  - analysis/devtalk94-evaluation.md
+  - sigils/samples/sigil-message.sample.json
+  - schemas/sigil-message.schema.json
+  - scripts/validate-schemas.mjs
+  - docs/membrane/real-membrane-v0.1.md
+  - docs/roadmap/v1.0-stabilization-playbook.md
+  - docs/roadmap/v1.0-stabilization-playbook.yaml
+  - MandalaMap.yaml
+  - MandalaMap.json
+  - MandalaMap.md
+commands:
+  - pnpm schema:validate
+  - pnpm observability:check
+hook:
+  progress: 0.35
+  next_step: 'MembranePill ins UI verdrahten und Boundary-Smokes um deduplizierte Events erweitern.'
+repeat_required: conditional
+repeat_reason: 'Wiederholen, falls UI-/Boundary-Follow-ups nicht vor Fraktal95 umgesetzt werden.'

@@ -1,46 +1,48 @@
 fraktal_run:
-  id: Fraktal93
+  id: Fraktal94
   author: Johann
-  timestamp_utc: '2025-12-01T00:00:00Z'
+  timestamp_utc: '2025-12-02T00:00:00Z'
   summary: |
-    RealMembrane Hardening: ENV-config, Prometheus metrics, TTL cache and CI ASCII guard.
-    KPI bridge publishes Boundary events; SigilMessage contract validated via Ajv; UI pill scaffolded.
+    DevTalk94 ausgewertet; Schema-Gate für SigilMessage in `pnpm schema:validate` integriert.
+    MandalaMap & Stabilization-Playbook auf Fraktal94 gehoben; UI/Boundary-Follow-ups dokumentiert.
 status:
-  membrane_config: hardened
-  boundary_bridge: emitting
-  sigil_contract: tested
+  devtalk_alignment: audited
+  schema_gate: wired
+  membrane_ui: pending
 changes:
-  - file: src/membrane/config.ts
-    description: 'Expose MEMBRANE_CFG env defaults + cache TTL constant'
-  - file: src/membrane/real-membrane.ts
-    description: 'Record metrics, start OTel span, normalise legacy config'
-  - file: src/membrane/metrics.ts
-    description: 'Prometheus counter + histogram for membrane steps'
-  - file: src/membrane/registry.ts
-    description: 'TTL cache per KPI with reset helper'
-  - file: src/kpi/membrane-bridge.ts
-    description: 'Publish Boundary events and surface A/ΔA/state/enabled'
-  - file: src/boundary/publisher.ts
-    description: 'Shared publisher with optional fetch fallback'
-  - file: tests/sigil/schema.contract.test.ts
-    description: 'Ajv contract test for sigil-message schema'
-  - file: apps/ui/src/components/MembranePill.tsx
-    description: 'UI badge for membrane state (enabled, A, ΔA)'
+  - file: schemas/sigil-message.schema.json
+    description: 'Schema upgraded to JSON Schema 2020-12 to align with validation suite'
+  - file: sigils/samples/sigil-message.sample.json
+    description: 'Reference payload validating against schemas/sigil-message.schema.json'
+  - file: scripts/validate-schemas.mjs
+    description: 'Runs SigilMessage schema validation during pnpm schema:validate'
   - file: docs/membrane/real-membrane-v0.1.md
-    description: 'What-changed nugget for operators'
+    description: 'Marks SigilMessage schema promotion checklist item as done (Fraktal94)'
+  - file: analysis/devtalk94-evaluation.md
+    description: 'Audit of DevTalk94 requirements vs. repo state'
+  - file: docs/roadmap/v1.0-stabilization-playbook.md
+    description: 'Observability note updated for Fraktal94 status'
+  - file: docs/roadmap/v1.0-stabilization-playbook.yaml
+    description: 'Observability checkpoint documents Fraktal94 Schema-Gate wiring'
+  - file: MandalaMap.yaml
+    description: 'Meta fraktal updated to 94; schema entry notes SigilMessage validation sample'
+  - file: MandalaMap.json
+    description: 'Meta + notes synced with Fraktal94 changes'
+  - file: MandalaMap.md
+    description: 'Generated header reflects Fraktal94'
 next_steps:
-  - label: Schema gate wiring
-    action: 'Add schemas/sigil-message.schema.json to pnpm schema:validate bundle'
-    state: open
   - label: Membrane pill integration
     action: 'Use MembranePill in OpsPanel/Playground once API exposes readings'
     state: todo
   - label: Boundary smoke update
-    action: 'Extend boundary smokes to assert new publisher payload'
+    action: 'Extend boundary smokes with dedupe/event-key assertions'
     state: todo
+  - label: Observability note
+    action: 'Document membrane metrics knobs in README/operations guide'
+    state: planned
 hook:
-  progress: 0.55
-  resume_hint: 'Wire schema gate + UI pill, then refresh MandalaMap & codexfeedback via pnpm meta:fraktal:organize.'
+  progress: 0.35
+  resume_hint: 'Focus on UI pill wiring + boundary smoke dedupe before closing Fraktal94.'
 references:
   roadmap_playbook: docs/roadmap/v1.0-stabilization-playbook.md
   mandala_map:
@@ -49,4 +51,4 @@ references:
     - MandalaMap.md
   devtalk: DevTalk.txt
 repeat_needed: conditional
-repeat_reason: 'Nur erneut laufen, falls Boundary-Smoke/Schema-Gate offen bleiben oder Membrane UI nicht integriert wird.'
+repeat_reason: 'Wiederholen, falls Membrane-UI oder Boundary-Smokes nicht gehärtet werden können.'

@@ -1,29 +1,26 @@
-# Codexfeedback – Fraktal 93
+# Codexfeedback – Fraktal 94
 
-- Phase: Membrane Hardening & Sigillin Contract Wiring
-- Status: RealMembrane telemetry + boundary hooks aktiv, Sigillin-Contract testet Schema, UI-Pill vorbereitet.
-- Next Hook: UI-Verdrahtung (`MembranePill`), Schema in `pnpm schema:validate`, Boundary-Smoke aktualisieren.
+- Phase: DevTalk94 Sync, Schema-Gate Wiring & Roadmap-Refresh
+- Status: DevTalk-Anforderungen auditiert, SigilMessage-Schema in `pnpm schema:validate`, UI/Boundary Follow-ups offen.
+- Next Hook: `MembranePill` verdrahten, Boundary-Smokes um Event-Key/Dedupe ergänzen, Observability-Notiz erweitern.
 
 What changed
 
-- `src/membrane/config.ts` · ENV-gesteuerte Defaults (`MEMBRANE_CFG`), Cache-TTL und CI-ASCII Guard.
-- `src/membrane/real-membrane.ts` · Metrics/Tracing Hook, Legacy-Config-Normalisierung, deterministische Step-Pipeline.
-- `src/membrane/metrics.ts` + `registry.ts` · Prometheus Counter/Histogram + TTL-Cache je KPI.
-- `src/kpi/membrane-bridge.ts` · Boundary-Events bei Event/Recovery, Rückgabe liefert A/ΔA/State/Enabled.
-- `src/boundary/publisher.ts` · Gemeinsamer Publisher mit optionalem Fetch-Hook (`BOUNDARY_ENDPOINT`).
-- Tests (`tests/membrane/*`, `tests/kpi/membrane-bridge.test.ts`, `tests/sigil/schema.contract.test.ts`) decken Golden, CI-ASCII, Schema-Vertrag, Boundary-Emissionen ab.
-- `apps/ui/src/components/MembranePill.tsx` · UI-Mikrosignal (Tone + Tooltip) für A/ΔA/State.
-- `docs/membrane/real-membrane-v0.1.md` · What-changed Nugget für Operator:innen.
-- `analysis/devtalk93-evaluation.md` · Abgleich DevTalk93 (erledigt/offen) + nächste Befehle.
+- `schemas/sigil-message.schema.json` · Aktualisiert auf JSON Schema 2020-12 für die Validierungskette.
+- `sigils/samples/sigil-message.sample.json` · Referenzpayload für das SigilMessage-Schema.
+- `scripts/validate-schemas.mjs` · Lädt das Sample und validiert `schemas/sigil-message.schema.json` im Schema-Gate.
+- `docs/membrane/real-membrane-v0.1.md` · Checkliste markiert das Schema-Gate (Fraktal94) als erledigt.
+- `analysis/devtalk94-evaluation.md` · Abgleich DevTalk94 (CI/CD, Governance, Observability, Docs, Tests).
+- `docs/roadmap/v1.0-stabilization-playbook.(md|yaml)` · Statusnotiz aktualisiert (Membrane Observability, Fraktal94).
+- `MandalaMap.(md|json|yaml)` · Meta auf Fraktal94 gehoben, Schema-Eintrag verweist auf Sample.
 
 Validate
 
-- `pnpm vitest run tests/membrane --run`
-- `pnpm vitest run tests/kpi/membrane-bridge.test.ts --run`
-- `pnpm vitest run tests/sigil/schema.contract.test.ts --run`
+- `pnpm schema:validate`
+- `pnpm observability:check`
 
 Refs
 
-- docs/roadmap/v1.0-stabilization-playbook.md / .yaml
+- docs/roadmap/v1.0-stabilization-playbook.(md|yaml)
 - MandalaMap.(md|json|yaml)
-- DevTalk.txt (Membrane/Sigillin Abschnitt)
+- DevTalk.txt

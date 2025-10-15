@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import Ajv from 'ajv';
+import Ajv from 'ajv/dist/2020.js';
 import addFormats from 'ajv-formats';
 import schema from '../../schemas/sigil-message.schema.json';
 import { buildSigilMessage } from '../../src/adapters/sigil-mapping';
