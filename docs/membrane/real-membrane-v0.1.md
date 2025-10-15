@@ -50,6 +50,6 @@ The KPI bridge caches one membrane instance per metric so A/ΔA evolve with the 
 
 ## Hooks for follow-up work
 
-- [x] Promote the schema `schemas/sigil-message.schema.json` (JSON Schema 2020-12) into the CI validation suite (`scripts/validate-schemas.mjs`, Fraktal94).
+- [x] Promote the schema `schemas/sigil-message/1-0-0.schema.json` (JSON Schema 2020-12, fingerprint + fixtures) into the CI validation suite (`scripts/validate-schemas.mjs`, Fraktal94).
 - [ ] Surface A/ΔA/Severity in the Playground badge (connect to `stepOrBypass`).
 - [ ] Extend validator wordlists (ES/FR) before enabling `sigillin:strict` on every PR.

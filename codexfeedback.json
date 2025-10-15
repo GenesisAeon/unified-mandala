@@ -1,6 +1,11 @@
 {
   "runs": [
     {
+      "fraktalrun": "Fraktal94 SchemaGateHardening",
+      "status": "in-progress",
+      "notes": "analysis/devtalk94-evaluation.md bestätigt den DevTalk-Abgleich; schemas/sigil-message/1-0-0.schema.json (Fingerprints + Valid/Invalid-Fixtures) hängt strikt in pnpm schema:validate, src/adapters/sigil-mapping.ts & tests/sigil/schema.contract.test.ts erzeugen/prüfen das Format; MandalaMap.*, Stabilization-Playbook.(md|yaml) und codexfeedback-latest.* dokumentieren offene UI/Boundary-Follow-ups."
+    },
+    {
       "fraktalrun": "Fraktal88 DevTalkContinuation",
       "status": "in-progress",
       "notes": "analysis/devtalk88-evaluation.md validates the DevTalk roadmap after the Qwen proxy fix, confirms CI/governance/observability/doc gates are green, and carries the remaining follow-ups (Climate MVP Phase 4, Gemini sigillin link, health badge) into Fraktal88. MandalaMap.*, stabilization playbook, and codexfeedback* are updated to reflect the new active hook."

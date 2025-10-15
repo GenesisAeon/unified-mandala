@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://unified.mandala/schemas/sigil-message/1-0-0.schema.json",
+  "title": "SigilMessage",
+  "description": "Governed event emitted from membrane/KPI bridges.",
+  "type": "object",
+  "properties": {
+    "kind": { "const": "SigilMessage" },
+    "schemaVersion": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" },
+    "ts": { "type": "string", "format": "date-time" },
+    "id": {
+      "type": "string",
+      "pattern": "^(?:[0-9a-fA-F-]{36}|[0-9A-HJKMNP-TV-Z]{26})$"
+    },
+    "kpi": { "type": "string", "minLength": 1 },
+    "state": { "enum": ["subcritical", "apparent", "event"] },
+    "severity": { "enum": ["ok", "warn", "alarm"] },
+    "intent": { "enum": ["notify", "escalate", "recover"] },
+    "symbol": { "type": "string", "minLength": 1 },
+    "ascii": { "type": "boolean", "default": false },
+    "asciiSymbol": { "type": "string" },
+    "A": { "type": "number" },
+    "dA": { "type": "number" },
+    "context": {
+      "type": "object",
+      "properties": {
+        "source": { "type": "string" },
+        "boundaryLawId": { "type": "string" },
+        "notes": { "type": "string", "maxLength": 2000 }
+      },
+      "additionalProperties": false
+    },
+    "evidence": {
+      "type": "array",
+      "items": { "type": "string", "format": "uri" },
+      "maxItems": 16
+    },
+    "meta": {
+      "type": "object",
+      "additionalProperties": true
+    }
+  },
+  "required": ["kind", "schemaVersion", "ts", "kpi", "state", "severity", "intent", "symbol"],
+  "allOf": [
+    {
+      "if": {
+        "properties": { "ascii": { "const": true } },
+        "required": ["ascii"]
+      },
+      "then": { "required": ["asciiSymbol"] }
+    }
+  ],
+  "unevaluatedProperties": false,
+  "examples": [
+    {
+      "kind": "SigilMessage",
+      "schemaVersion": "1.0.0",
+      "ts": "2025-01-01T12:00:00Z",
+      "id": "01HZYZ4NBY6Q9W3E4QKQZKYF8N",
+      "kpi": "groundwater",
+      "state": "event",
+      "severity": "alarm",
+      "intent": "escalate",
+      "symbol": "⚠️",
+      "ascii": true,
+      "asciiSymbol": "!!",
+      "A": 0.84,
+      "dA": 0.21,
+      "context": {
+        "source": "membrane",
+        "boundaryLawId": "gw-evt-2025-01"
+      },
+      "evidence": ["https://unified.mandala/observability/events/gw-evt-2025-01.json"],
+      "meta": {
+        "region": "delta"
+      }
+    }
+  ]
+}

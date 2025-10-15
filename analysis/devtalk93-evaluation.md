@@ -4,7 +4,7 @@
 
 - **Quelle**: `DevTalk.txt` – Stabilisierungsvorschläge für Membrane, Sigillin-Governance und Beobachtbarkeit (Fraktal93).
 - **Ziel**: Prüfen, welche harten Maßnahmen aus dem DevTalk in diesem Lauf umgesetzt wurden und welche Follow-ups offen bleiben.
-- **Artefakte geprüft**: `src/membrane/`, `src/kpi/membrane-bridge.ts`, `schemas/sigil-message.schema.json`, `MandalaMap.*`, `docs/roadmap/v1.0-stabilization-playbook.(md|yaml)`, `codexfeedback/*`.
+- **Artefakte geprüft**: `src/membrane/`, `src/kpi/membrane-bridge.ts`, `schemas/sigil-message/1-0-0.schema.json`, `MandalaMap.*`, `docs/roadmap/v1.0-stabilization-playbook.(md|yaml)`, `codexfeedback/*`.
 
 ## Umsetzung vs. DevTalk-Empfehlungen
 
@@ -30,7 +30,7 @@
 ## Offene Punkte aus DevTalk93
 
 1. **UI-Integration** – MembranePill in OpsPanel/KPI-Board einbinden, damit A/ΔA sichtbar werden.
-2. **Schema Gate** – `schemas/sigil-message.schema.json` in `pnpm schema:validate` aufnehmen und MandalaMap Governance-Hinweis ergänzen.
+2. **Schema Gate** – `schemas/sigil-message/1-0-0.schema.json` in `pnpm schema:validate` aufnehmen und MandalaMap Governance-Hinweis ergänzen.
 3. **Boundary Observability** – Boundary-Smokes (`scripts/smoke/boundary-*`) um neuen Publisher ergänzen.
 4. **Fraktal Hooks** – `pnpm meta:fraktal:organize` nach Merge laufen lassen, sobald weitere Sigillin/Boundary-Artefakte ergänzt sind.
 

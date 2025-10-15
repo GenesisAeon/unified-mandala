@@ -23,9 +23,12 @@
 
 ## Neue Deliverables in Fraktal94
 
-- `schemas/sigil-message.schema.json` – Auf JSON Schema 2020-12 angehoben, kompatibel mit dem Validation-Gate.
+- `schemas/sigil-message/1-0-0.schema.json` – JSON Schema 2020-12 mit Strict-Properties & ASCII-Gate; Fingerprint zwingt Versionsbump.
+- `schemas/sigil-message/examples/*` – Valid/invalid Fixtures sichern Strictness (Extra-Props, ASCII-Constraint, Timestamp-Format).
 - `sigils/samples/sigil-message.sample.json` – Referenzpayload für SigilMessage-Validierung.
-- `scripts/validate-schemas.mjs` – erweitert um SigilMessage-Schema-Check.
+- `scripts/validate-schemas.mjs` – Ajv Strict, Fixtures + Fingerprint-Guard im Schema-Gate.
+- `src/adapters/sigil-mapping.ts` – Build-Helfer liefert SigilMessage 1.0.0 (kind/schemaVersion/ASCII/dA/Context-Sanitizer).
+- `tests/sigil/schema.contract.test.ts` – Validiert neue Struktur via Ajv Strict + Build-Helfer.
 - `docs/membrane/real-membrane-v0.1.md` – Checkliste markiert Schema-Gate als erledigt (Fraktal94).
 - `analysis/devtalk94-evaluation.md` – dieser Audit.
 - Aktualisierte MandalaMap._ und Stabilization-Playbook._ mit Fraktal94-Status.

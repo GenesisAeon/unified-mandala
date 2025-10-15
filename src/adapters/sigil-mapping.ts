@@ -1,72 +1,110 @@
 import { SigilMessage, nowIso } from '../../packages/sigil/protocols';
 
-export interface SigilMessageContract {
-  symbol: string;
-  intent: 'inform' | 'warn' | 'alarm' | 'celebrate';
-  context: string;
-  meta: {
-    ts: string;
-    source: string;
-    crep?: {
-      coherence?: number;
-      resonance?: number;
-      emergence?: number;
-      poetics?: number;
-    };
-    [key: string]: unknown;
-  };
+export type SigilState = 'subcritical' | 'apparent' | 'event';
+export type SigilSeverity = 'ok' | 'warn' | 'alarm';
+export type SigilIntent = 'notify' | 'escalate' | 'recover';
+
+export interface SigilMessageContractContext {
+  source?: string;
+  boundaryLawId?: string;
+  notes?: string;
 }
 
-type BuildSigilInput = {
+export interface SigilMessageContract {
+  kind: 'SigilMessage';
+  schemaVersion: string;
+  ts: string;
+  id?: string;
+  kpi: string;
+  state: SigilState;
+  severity: SigilSeverity;
+  intent: SigilIntent;
   symbol: string;
-  intent: SigilMessageContract['intent'];
-  context: string;
-  meta: {
-    source: string;
-    ts?: string;
-    crep?: {
-      coherence?: number;
-      resonance?: number;
-      emergence?: number;
-      poetics?: number;
-    };
-    [key: string]: unknown;
-  };
+  ascii?: boolean;
+  asciiSymbol?: string;
+  A?: number;
+  dA?: number;
+  context?: SigilMessageContractContext;
+  evidence?: string[];
+  meta?: Record<string, unknown>;
+}
+
+export interface BuildSigilInput {
+  symbol: string;
+  kpi: string;
+  state: SigilState;
+  severity: SigilSeverity;
+  intent: SigilIntent;
+  ascii?: boolean;
+  asciiSymbol?: string;
+  schemaVersion?: string;
+  ts?: string;
+  id?: string;
+  A?: number;
+  dA?: number;
+  context?: SigilMessageContractContext;
+  evidence?: string[];
+  meta?: Record<string, unknown>;
+}
+
+const pickContext = (context: SigilMessageContractContext | undefined) => {
+  if (!context) return undefined;
+  const payload: SigilMessageContractContext = {};
+  if (context.source) payload.source = context.source;
+  if (context.boundaryLawId) payload.boundaryLawId = context.boundaryLawId;
+  if (context.notes) payload.notes = context.notes.slice(0, 2000);
+  return Object.keys(payload).length > 0 ? payload : undefined;
 };
 
-const clamp01 = (value: number | undefined) => {
-  if (typeof value !== 'number' || Number.isNaN(value)) return undefined;
-  if (value < 0) return 0;
-  if (value > 1) return 1;
-  return value;
+const sanitizeEvidence = (evidence: string[] | undefined) => {
+  if (!Array.isArray(evidence)) return undefined;
+  const filtered = evidence.filter((item) => typeof item === 'string' && item.trim().length > 0);
+  return filtered.length > 0 ? filtered : undefined;
 };
 
 export function buildSigilMessage(input: BuildSigilInput): SigilMessageContract {
-  const { symbol, intent, context } = input;
-  const ts = input.meta.ts ?? new Date().toISOString();
-  const meta: SigilMessageContract['meta'] = {
+  if (input.ascii === true && !input.asciiSymbol) {
+    throw new Error('asciiSymbol is required when ascii is true');
+  }
+  const schemaVersion = input.schemaVersion ?? '1.0.0';
+  const ts = input.ts ?? new Date().toISOString();
+  const context = pickContext(input.context);
+  const evidence = sanitizeEvidence(input.evidence);
+  const result: SigilMessageContract = {
+    kind: 'SigilMessage',
+    schemaVersion,
     ts,
-    source: input.meta.source,
+    kpi: input.kpi,
+    state: input.state,
+    severity: input.severity,
+    intent: input.intent,
+    symbol: input.symbol,
   };
-  for (const [key, value] of Object.entries(input.meta)) {
-    if (key === 'ts' || key === 'source' || key === 'crep') continue;
-    meta[key] = value;
+  if (input.id) {
+    result.id = input.id;
   }
-  if (input.meta.crep) {
-    const crep: NonNullable<SigilMessageContract['meta']['crep']> = {};
-    const coherence = clamp01(input.meta.crep.coherence);
-    const resonance = clamp01(input.meta.crep.resonance);
-    const emergence = clamp01(input.meta.crep.emergence);
-    const poetics = clamp01(input.meta.crep.poetics);
-    if (typeof coherence === 'number') crep.coherence = coherence;
-    if (typeof resonance === 'number') crep.resonance = resonance;
-    if (typeof emergence === 'number') crep.emergence = emergence;
-    if (typeof poetics === 'number') crep.poetics = poetics;
-    if (Object.keys(crep).length > 0) {
-      meta.crep = crep;
-    }
+  if (input.ascii !== undefined) {
+    result.ascii = input.ascii;
   }
-  return { symbol, intent, context, meta };
+  if (input.asciiSymbol) {
+    result.asciiSymbol = input.asciiSymbol;
+  }
+  if (typeof input.A === 'number') {
+    result.A = input.A;
+  }
+  if (typeof input.dA === 'number') {
+    result.dA = input.dA;
+  }
+  if (context) {
+    result.context = context;
+  }
+  if (evidence) {
+    result.evidence = evidence;
+  }
+  if (input.meta && Object.keys(input.meta).length > 0) {
+    result.meta = { ...input.meta };
+  }
+  return result;
 }
 
 export function temperatureToSigil(celsius: number, src = 'era5'): SigilMessage {

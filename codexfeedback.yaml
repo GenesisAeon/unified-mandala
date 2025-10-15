@@ -1,6 +1,41 @@
 fraktal:
-  current: 88
+  current: 94
   history:
+    - id: 94
+      status: in-progress
+      notes: 'Fraktal94 SchemaGateHardening: `analysis/devtalk94-evaluation.md` bestätigt DevTalk94,
+        `schemas/sigil-message/1-0-0.schema.json` (Fingerprint + Valid/Invalid-Fixtures) hängt
+        strikt in `pnpm schema:validate`; `src/adapters/sigil-mapping.ts` & `tests/sigil/schema.contract.test.ts`
+        erzeugen/prüfen das neue Format, MandalaMap.*, Stabilization-Playbook.(md|yaml) und
+        codexfeedback-latest.* dokumentieren offene UI/Boundary-Follow-ups.'
+      deliverables:
+        - analysis/devtalk94-evaluation.md
+        - schemas/sigil-message/1-0-0.schema.json
+        - schemas/sigil-message/examples/valid.json
+        - schemas/sigil-message/examples/invalid-extra-prop.json
+        - schemas/sigil-message/examples/invalid-ascii-missing.json
+        - schemas/sigil-message/examples/invalid-ts.json
+        - sigils/samples/sigil-message.sample.json
+        - scripts/validate-schemas.mjs
+        - src/adapters/sigil-mapping.ts
+        - tests/sigil/schema.contract.test.ts
+        - docs/membrane/real-membrane-v0.1.md
+        - docs/roadmap/v1.0-stabilization-playbook.md
+        - docs/roadmap/v1.0-stabilization-playbook.yaml
+        - MandalaMap.md
+        - MandalaMap.yaml
+        - MandalaMap.json
+        - codexfeedback/codexfeedback-latest.md
+        - codexfeedback/codexfeedback-latest.json
+        - codexfeedback/codexfeedback-latest.yaml
+      commands:
+        - pnpm schema:validate
+        - pnpm observability:check
+      hook:
+        progress: Schema im Gate, Fingerprint aktiv; UI/Boundary-Follow-ups offen.
+        next_step: MembranePill verdrahten, Boundary-Smokes erweitern, Observability-Notiz ergänzen.
+      repeat_required: true
+      repeat_reason: UI/Boundary-Follow-ups abschließen, bevor Fraktal94 geschlossen werden kann.
     - id: 88
       status: in-progress
       notes: 'Fraktal88 DevTalkContinuation: `analysis/devtalk88-evaluation.md` bewertet den
