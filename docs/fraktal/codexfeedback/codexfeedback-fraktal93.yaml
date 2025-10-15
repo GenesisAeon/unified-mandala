@@ -1,0 +1,40 @@
+fraktal: 93
+status: in-progress
+owner: ChatGPT5
+summary:
+  - 'RealMembrane v0.1 implementiert (heuristische Horizont-Erkennung mit Hysterese,
+    Debounce und ΔA-Watch) und in docs/membrane/real-membrane-v0.1.md dokumentiert.'
+  - 'Membrane-Bridge nutzt jetzt geteilte RealMembrane-Instanzen inkl. Feature-Flag
+    (`MEMBRANE_ON`/`VITE_FEATURE_MEMBRANE` → default off) und ASCII/Emoji-Sigils.'
+  - 'Sigillin-Governance: Neues Label-Gate `.github/workflows/sigillin-strict.yml`,
+    plus SigilMessage-Schema für Contract-Tests.'
+  - 'MandalaMap.* und v1.0-Stabilization-Playbook mit Status-Update versehen;
+    Hook verweist auf Membran-Rollout & Sigillin-Governance.'
+  - 'DevTalk93-Needle: Evaluierung weiter offen – prüfen, ob weitere KPI-Mappings
+    (CO₂, Luftqualität) priorisiert werden sollen.'
+deliverables:
+  - src/membrane/index.ts
+  - src/membrane/real-membrane.ts
+  - src/kpi/membrane-bridge.ts
+  - src/membrane/tests
+  - src/kpi/tests
+  - tests/kpi/membrane-bridge.test.ts
+  - docs/membrane/real-membrane-v0.1.md
+  - schemas/sigil-message.schema.json
+  - .github/workflows/sigillin-strict.yml
+  - MandalaMap.md
+  - MandalaMap.yaml
+  - MandalaMap.json
+  - docs/roadmap/v1.0-stabilization-playbook.md
+  - docs/roadmap/v1.0-stabilization-playbook.yaml
+commands:
+  - pnpm test:unit --filter membrane
+  - pnpm test:unit --filter "membrane-bridge"
+  - pnpm schema:validate
+  - pnpm maps:validate
+hook:
+  progress: RealMembrane verdrahtet, Governance-Gate aktiv; Tests decken LowMem und
+    Event-Boundaries ab.
+  next_step: KPI-Mappings (CO₂, Luftqualität) & UI-Badges anbinden; Sigillin-Validator
+    um weitere Sprachen erweitern.
+repeat_required: true

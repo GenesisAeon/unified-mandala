@@ -13,15 +13,16 @@ describe('membrane module (src/membrane)', () => {
 
   it('membraneSigil maps states', async () => {
     const mod = await import('../../src/membrane/index');
-    expect(mod.membraneSigil('event')).toBe('???');
-    expect(mod.membraneSigil('apparent')).toBe('??');
-    expect(mod.membraneSigil('subcritical')).toBe('??');
+    process.env.CI = '1';
+    expect(mod.membraneSigil('event')).toBe('[!!]');
+    expect(mod.membraneSigil('apparent')).toBe('[~]');
+    expect(mod.membraneSigil('subcritical')).toBe('[ok]');
   });
 
   it('NullMembrane (low mem on) uses NoOp behavior', async () => {
     process.env.LOW_MEM = '1';
     const mod = await import('../../src/membrane/index');
-    expect(mod.isLowMem).toBe(true);
+    expect(mod.isLowMem()).toBe(true);
     const Mem = mod.NullMembrane as any;
     const inst = new Mem();
     const r = inst.step(123, 4.2);
@@ -32,7 +33,7 @@ describe('membrane module (src/membrane)', () => {
     delete process.env.LOW_MEM;
     delete (process.env as any).VITE_LOW_MEM;
     const mod = await import('../../src/membrane/index');
-    expect(mod.isLowMem).toBe(false);
+    expect(mod.isLowMem()).toBe(false);
     const Mem = mod.NullMembrane as any;
     const inst = new Mem();
     const r = inst.step(456, 1.1);
