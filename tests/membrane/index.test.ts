@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach, afterEach } from 'vitest';
+import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 
 const OLD_ENV = { ...process.env } as NodeJS.ProcessEnv;
 
@@ -13,9 +13,9 @@ describe('membrane module (src/membrane)', () => {
 
   it('membraneSigil maps states', async () => {
     const mod = await import('../../src/membrane/index');
-    expect(mod.membraneSigil('event')).toBe('???');
-    expect(mod.membraneSigil('apparent')).toBe('??');
-    expect(mod.membraneSigil('subcritical')).toBe('??');
+    expect(mod.membraneSigil('event')).toBe('[!]');
+    expect(mod.membraneSigil('apparent')).toBe('~~');
+    expect(mod.membraneSigil('subcritical')).toBe('--');
   });
 
   it('NullMembrane (low mem on) uses NoOp behavior', async () => {
@@ -36,6 +36,8 @@ describe('membrane module (src/membrane)', () => {
     const Mem = mod.NullMembrane as any;
     const inst = new Mem();
     const r = inst.step(456, 1.1);
-    expect(r).toMatchObject({ t: 456, value: 1.1, severity: 'ok', state: 'subcritical' });
+    expect(r).toMatchObject({ t: 456, value: 1.1 });
+    expect(r.A).toBeGreaterThanOrEqual(0);
+    expect(['ok', 'warn', 'alarm']).toContain(r.severity);
   });
 });

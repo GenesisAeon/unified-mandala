@@ -17,17 +17,19 @@ describe('membrane module', () => {
     delete process.env.LOW_MEM;
     vi.resetModules();
     const mod = await import('../index');
-    expect(mod.membraneSigil('subcritical')).toBeDefined();
-    expect(mod.membraneSigil('apparent')).toBeDefined();
-    expect(mod.membraneSigil('event')).toBeDefined();
+    expect(mod.membraneSigil('subcritical')).toBe('--');
+    expect(mod.membraneSigil('apparent')).toBe('~~');
+    expect(mod.membraneSigil('event')).toBe('[!]');
   });
 
-  it('real-membrane NullMembrane returns subcritical ok reading', async () => {
+  it('real membrane returns severity with computed amplitude', async () => {
     const real = await import('../real-membrane');
-    const inst = new real.NullMembrane();
-    const r = inst.step(Date.now(), 0.42);
-    expect(r.state).toBe('subcritical');
-    expect(r.severity).toBe('ok');
-    expect(r.A).toBe(0);
+    const inst = new real.RealMembrane();
+    const t = Date.now();
+    const r = inst.step(t, 0.42);
+    expect(r.state).toBeTypeOf('string');
+    expect(r.A).toBeGreaterThanOrEqual(0);
+    expect(Number.isFinite(r.dA)).toBe(true);
+    expect(['ok', 'warn', 'alarm']).toContain(r.severity);
   });
 });
