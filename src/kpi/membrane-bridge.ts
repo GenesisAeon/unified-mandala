@@ -1,35 +1,61 @@
 import { FEATURES } from '../config/featureFlags';
-import { membraneSigil, NullMembrane, isLowMem } from '../membrane';
+import { membraneSigil, isLowMem, MEMBRANE_CFG } from '../membrane';
+import type { HorizonState } from '../membrane';
+import { RealMembrane } from '../membrane/real-membrane.js';
+import { getMembrane } from '../membrane/registry.js';
+import { publishBoundary } from '../boundary/publisher.js';
+
+const PREFIX = 'kpi:membrane:';
 
 type SupportedMetric = 't2m' | 'wildfire' | 'groundwater';
 
-type HorizonState = import('../membrane').HorizonState;
+type MembraneInstance = RealMembrane;
 
-type MembraneInstance = {
-  step(t: number, v: number): { A: number; state: HorizonState; severity: 'ok' | 'warn' | 'alarm' };
-};
+type MembraneReading = ReturnType<MembraneInstance['step']>;
 
-type MembraneCtor = new () => MembraneInstance;
+const lastStates = new Map<SupportedMetric, HorizonState>();
 
-const membranes = new Map<SupportedMetric, MembraneInstance>();
+const shouldBypass = () => isLowMem || FEATURES.membrane !== 'on' || MEMBRANE_CFG.MODE === 'null';
 
 function ensureMembrane(metric: SupportedMetric) {
-  if (!membranes.has(metric)) {
-    const Mem = NullMembrane as unknown as MembraneCtor;
-    membranes.set(metric, new Mem());
-  }
-  return membranes.get(metric)!;
+  return getMembrane(`${PREFIX}${metric}`, () => new RealMembrane());
 }
 
 export function stepOrBypass(metric: SupportedMetric, t: number, v: number) {
-  if (isLowMem || FEATURES.membrane !== 'on') {
+  if (shouldBypass()) {
     return {
       A: undefined as number | undefined,
+      dA: undefined as number | undefined,
+      state: 'subcritical' as HorizonState,
       sigil: membraneSigil('subcritical'),
       severity: 'ok' as const,
+      enabled: false,
     };
   }
   const membrane = ensureMembrane(metric);
-  const out = membrane.step(t, v);
-  return { A: out.A, sigil: membraneSigil(out.state), severity: out.severity };
+  const prev = lastStates.get(metric) ?? 'subcritical';
+  const out = membrane.step(t, v) as MembraneReading;
+  lastStates.set(metric, out.state);
+  if (prev !== out.state) {
+    const enteringEvent = prev !== 'event' && out.state === 'event';
+    const recovered = prev === 'event' && out.state !== 'event';
+    if (enteringEvent || recovered) {
+      void publishBoundary({
+        ts: new Date(t).toISOString(),
+        source: 'membrane',
+        ruleId: enteringEvent ? 'membrane:event' : 'membrane:recovery',
+        verdict: enteringEvent ? 'violation' : 'resolve',
+        severity: enteringEvent ? 'alarm' : 'ok',
+        details: { metric, A: out.A, dA: out.dA, state: out.state },
+      });
+    }
+  }
+  return {
+    A: out.A,
+    dA: out.dA,
+    state: out.state,
+    sigil: membraneSigil(out.state),
+    severity: out.severity,
+    enabled: true,
+  };
 }

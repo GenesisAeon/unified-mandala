@@ -1,5 +1,6 @@
 # Codex Feedback
 
+- FR-UM-2025-12-01-Fraktal93-MembraneHardening: `src/membrane/config.ts` führt `MEMBRANE_CFG` (ENV-Defaults, MODE, TTL) ein, `real-membrane.ts` misst Prometheus-Counter/Histogram + OTel-Spans und normalisiert Legacy-Parameter, `src/kpi/membrane-bridge.ts` publiziert Boundary-Events (event/recovery) samt A/ΔA/state/enabled, `src/boundary/publisher.ts` bündelt Fetch-Hook + Test-Publisher; Tests (`tests/membrane/*`, `tests/kpi/membrane-bridge.test.ts`, `tests/sigil/schema.contract.test.ts`) sichern Golden-Series, CI-ASCII, Boundary-Emission und SigilMessage-Schema, `apps/ui/src/components/MembranePill.tsx` liefert UI-Mikrosignal, `docs/membrane/real-membrane-v0.1.md` ergänzt What-changed Nugget, `analysis/devtalk93-evaluation.md` dokumentiert Umsetzung vs. DevTalk.
 - FR-UM-2025-11-30-Fraktal88-DevTalkContinuation: `analysis/devtalk88-evaluation.md` prüft den DevTalk-Fahrplan nach dem Qwen-Fix,
   bestätigt grüne Gates (CI, Governance, Observability, Docs) und verschiebt die restlichen Aufgaben (Climate-MVP Phase 4,
   Gemini-Sigillin-Link, Health-Badge) in Fraktal88. MandalaMap.\* sowie das Stabilization-Playbook markieren Fraktal88 als aktiven

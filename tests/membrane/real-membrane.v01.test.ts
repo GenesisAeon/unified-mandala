@@ -23,7 +23,7 @@ describe('RealMembrane v0.1', () => {
   });
 
   it('enters apparent near threshold with positive delta A', () => {
-    const m = new RealMembrane({ T_ok: 0.8, T_warn: 1.6, H: 0.2, K: 2, sigmaMin: 1e-3, N: 200 });
+    const m = new RealMembrane({ T_OK: 0.8, T_WARN: 1.6, H: 0.2, K: 2, SIGMA_MIN: 1e-3, N: 200 });
     feed(m, Array(20).fill(0));
     const r = feed(m, [0, 0, 1.6, 1.8, 1.7, 1.9]);
     expect(['apparent', 'event']).toContain(r.state);

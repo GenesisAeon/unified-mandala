@@ -35,6 +35,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '@config': path.resolve(__dirname, 'config'),
+      '@mandala/boundary-core': path.resolve(__dirname, 'stubs/boundary-core.ts'),
     },
     preserveSymlinks: true,
   },

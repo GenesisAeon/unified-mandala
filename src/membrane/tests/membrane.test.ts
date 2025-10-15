@@ -17,9 +17,9 @@ describe('membrane module', () => {
     delete process.env.LOW_MEM;
     vi.resetModules();
     const mod = await import('../index');
-    expect(mod.membraneSigil('subcritical')).toBe('--');
-    expect(mod.membraneSigil('apparent')).toBe('~~');
-    expect(mod.membraneSigil('event')).toBe('[!]');
+    expect(mod.membraneSigil('subcritical', true)).toBe('--');
+    expect(mod.membraneSigil('apparent', true)).toBe('~~');
+    expect(mod.membraneSigil('event', true)).toBe('[!]');
   });
 
   it('real membrane returns severity with computed amplitude', async () => {
