@@ -791,7 +791,7 @@
       "links": [],
       "notes": [
         "Keep versioned with tools/kyverno-dry-run.mjs expectations.",
-        "Fraktal94: scripts/validate-schemas.mjs validates sigils/samples/sigil-message.sample.json against schemas/sigil-message.schema.json (JSON Schema 2020-12)."
+        "Fraktal94: schemas/sigil-message/1-0-0.schema.json (Fingerprint + Valid/Invalid-Fixtures) runs strictly in pnpm schema:validate via scripts/validate-schemas.mjs (Ajv 2020)."
       ],
       "path": "schemas/",
       "status": "active",
@@ -1156,7 +1156,7 @@
   },
   "meta": {
     "fraktal": 94,
-    "generated": "2025-12-02 00:00:00+00:00",
+    "generated": "2025-12-03 00:00:00+00:00",
     "reference_docs": [
       "docs/roadmap/v1.0-stabilization-playbook.md",
       "docs/roadmap/v1.0-stabilization-playbook.yaml"

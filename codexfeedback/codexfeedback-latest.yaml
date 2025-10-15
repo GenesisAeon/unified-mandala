@@ -1,54 +1,33 @@
-fraktal_run:
-  id: Fraktal94
-  author: Johann
-  timestamp_utc: '2025-12-02T00:00:00Z'
-  summary: |
-    DevTalk94 ausgewertet; Schema-Gate für SigilMessage in `pnpm schema:validate` integriert.
-    MandalaMap & Stabilization-Playbook auf Fraktal94 gehoben; UI/Boundary-Follow-ups dokumentiert.
-status:
-  devtalk_alignment: audited
-  schema_gate: wired
-  membrane_ui: pending
+fraktal:
+  id: 94
+  phase: DevTalk94 Sync, Schema-Gate Hardening & Roadmap-Refresh
+  status: DevTalk-Anforderungen auditiert, SigilMessage 1.0.0 strikt im Schema-Gate (Fingerprint + Fixtures), UI/Boundary Follow-ups offen.
+  next_hook: MembranePill verdrahten, Boundary-Smokes um Event-Key/Dedupe ergänzen, Observability-Notiz erweitern.
 changes:
-  - file: schemas/sigil-message.schema.json
-    description: 'Schema upgraded to JSON Schema 2020-12 to align with validation suite'
+  - file: schemas/sigil-message/1-0-0.schema.json
+    description: Versioniertes JSON Schema 2020-12 mit ASCII-Gate & Fingerprint-Anker.
+  - file: schemas/sigil-message/examples/
+    description: Valid/invalid Fixtures sichern Strictness (Extra-Props, ASCII, Timestamp).
   - file: sigils/samples/sigil-message.sample.json
-    description: 'Reference payload validating against schemas/sigil-message.schema.json'
+    description: Referenzpayload für das SigilMessage-Schema.
   - file: scripts/validate-schemas.mjs
-    description: 'Runs SigilMessage schema validation during pnpm schema:validate'
-  - file: docs/membrane/real-membrane-v0.1.md
-    description: 'Marks SigilMessage schema promotion checklist item as done (Fraktal94)'
+    description: Ajv strict, Fingerprint-Check sowie Valid/Invalid-Fixtures im Schema-Gate.
+  - file: src/adapters/sigil-mapping.ts
+    description: Build-Helfer erzeugt SigilMessage 1.0.0 (kind/schemaVersion/Context-Sanitizer).
+  - file: tests/sigil/schema.contract.test.ts
+    description: Ajv strict gegen das neue Schema + Build-Helfer.
   - file: analysis/devtalk94-evaluation.md
-    description: 'Audit of DevTalk94 requirements vs. repo state'
-  - file: docs/roadmap/v1.0-stabilization-playbook.md
-    description: 'Observability note updated for Fraktal94 status'
-  - file: docs/roadmap/v1.0-stabilization-playbook.yaml
-    description: 'Observability checkpoint documents Fraktal94 Schema-Gate wiring'
-  - file: MandalaMap.yaml
-    description: 'Meta fraktal updated to 94; schema entry notes SigilMessage validation sample'
-  - file: MandalaMap.json
-    description: 'Meta + notes synced with Fraktal94 changes'
-  - file: MandalaMap.md
-    description: 'Generated header reflects Fraktal94'
-next_steps:
-  - label: Membrane pill integration
-    action: 'Use MembranePill in OpsPanel/Playground once API exposes readings'
-    state: todo
-  - label: Boundary smoke update
-    action: 'Extend boundary smokes with dedupe/event-key assertions'
-    state: todo
-  - label: Observability note
-    action: 'Document membrane metrics knobs in README/operations guide'
-    state: planned
-hook:
-  progress: 0.35
-  resume_hint: 'Focus on UI pill wiring + boundary smoke dedupe before closing Fraktal94.'
-references:
-  roadmap_playbook: docs/roadmap/v1.0-stabilization-playbook.md
-  mandala_map:
-    - MandalaMap.yaml
-    - MandalaMap.json
-    - MandalaMap.md
-  devtalk: DevTalk.txt
-repeat_needed: conditional
-repeat_reason: 'Wiederholen, falls Membrane-UI oder Boundary-Smokes nicht gehärtet werden können.'
+    description: DevTalk94 Audit mit neuen Deliverables (Schema 1-0-0, Fixtures, Fingerprint).
+  - file: docs/membrane/real-membrane-v0.1.md
+    description: Checkliste markiert Schema-Gate inkl. Fingerprint/Fixures als erledigt.
+  - file: docs/roadmap/v1.0-stabilization-playbook.(md|yaml)
+    description: Statusnotiz aktualisiert (Schema 1-0-0, Fingerprint, Fixtures).
+  - file: MandalaMap.(md|json|yaml)
+    description: Meta auf Fraktal94 gehoben, Schema-Eintrag verweist auf Version/Fixtures/Fingerprint.
+validate:
+  - pnpm schema:validate
+  - pnpm observability:check
+refs:
+  - docs/roadmap/v1.0-stabilization-playbook.(md|yaml)
+  - MandalaMap.(md|json|yaml)
+  - DevTalk.txt

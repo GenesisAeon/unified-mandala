@@ -1,86 +1,56 @@
 {
-  "fraktal_run": {
-    "id": "Fraktal94",
-    "author": "Johann",
-    "timestamp_utc": "2025-12-02T00:00:00Z",
-    "summary": [
-      "DevTalk94 evaluated; SigilMessage schema wired into pnpm schema:validate.",
-      "MandalaMap and Stabilization-Playbook bumped to Fraktal94 with open UI/Boundary hooks."
-    ]
-  },
-  "status": {
-    "devtalk_alignment": "audited",
-    "schema_gate": "wired",
-    "membrane_ui": "pending"
+  "fraktal": {
+    "id": 94,
+    "phase": "DevTalk94 Sync, Schema-Gate Hardening & Roadmap-Refresh",
+    "status": "DevTalk-Anforderungen auditiert, SigilMessage 1.0.0 strikt im Schema-Gate (Fingerprint + Fixtures), UI/Boundary Follow-ups offen.",
+    "next_hook": "MembranePill verdrahten, Boundary-Smokes um Event-Key/Dedupe ergänzen, Observability-Notiz erweitern."
   },
   "changes": [
     {
-      "file": "schemas/sigil-message.schema.json",
-      "desc": "Schema upgraded to JSON Schema 2020-12 to align with validation suite"
+      "file": "schemas/sigil-message/1-0-0.schema.json",
+      "desc": "Versioniertes JSON Schema 2020-12 mit ASCII-Gate & Fingerprint-Anker."
+    },
+    {
+      "file": "schemas/sigil-message/examples/",
+      "desc": "Valid/invalid Fixtures sichern Strictness (Extra-Props, ASCII, Timestamp)."
     },
     {
       "file": "sigils/samples/sigil-message.sample.json",
-      "desc": "Reference payload validating against schemas/sigil-message.schema.json"
+      "desc": "Referenzpayload für das SigilMessage-Schema."
     },
     {
       "file": "scripts/validate-schemas.mjs",
-      "desc": "Runs SigilMessage schema validation during pnpm schema:validate"
+      "desc": "Ajv strict, Fingerprint-Check sowie Valid/Invalid-Fixtures im Schema-Gate."
     },
     {
-      "file": "docs/membrane/real-membrane-v0.1.md",
-      "desc": "Marks SigilMessage schema promotion checklist item as done (Fraktal94)"
+      "file": "src/adapters/sigil-mapping.ts",
+      "desc": "Build-Helfer erzeugt SigilMessage 1.0.0 (kind/schemaVersion/Context-Sanitizer)."
+    },
+    {
+      "file": "tests/sigil/schema.contract.test.ts",
+      "desc": "Ajv strict gegen das neue Schema + Build-Helfer."
     },
     {
       "file": "analysis/devtalk94-evaluation.md",
-      "desc": "Audit of DevTalk94 requirements vs. repo state"
+      "desc": "DevTalk94 Audit mit neuen Deliverables (Schema 1-0-0, Fixtures, Fingerprint)."
     },
     {
-      "file": "docs/roadmap/v1.0-stabilization-playbook.md",
-      "desc": "Observability note updated for Fraktal94 status"
+      "file": "docs/membrane/real-membrane-v0.1.md",
+      "desc": "Checkliste markiert Schema-Gate inkl. Fingerprint/Fixures als erledigt."
     },
     {
-      "file": "docs/roadmap/v1.0-stabilization-playbook.yaml",
-      "desc": "Observability checkpoint documents Fraktal94 Schema-Gate wiring"
+      "file": "docs/roadmap/v1.0-stabilization-playbook.(md|yaml)",
+      "desc": "Statusnotiz aktualisiert (Schema 1-0-0, Fingerprint, Fixtures)."
     },
     {
-      "file": "MandalaMap.yaml",
-      "desc": "Meta fraktal updated to 94; schema entry references SigilMessage sample"
-    },
-    {
-      "file": "MandalaMap.json",
-      "desc": "Meta + notes synced with Fraktal94 changes"
-    },
-    {
-      "file": "MandalaMap.md",
-      "desc": "Header reflects Fraktal94 snapshot"
+      "file": "MandalaMap.(md|json|yaml)",
+      "desc": "Meta auf Fraktal94 gehoben, Schema-Eintrag verweist auf Version/Fixtures/Fingerprint."
     }
   ],
-  "next_steps": [
-    {
-      "label": "Membrane pill integration",
-      "action": "Use MembranePill in OpsPanel/Playground once API exposes readings",
-      "state": "todo"
-    },
-    {
-      "label": "Boundary smoke update",
-      "action": "Extend boundary smokes with dedupe/event-key assertions",
-      "state": "todo"
-    },
-    {
-      "label": "Observability note",
-      "action": "Document membrane metrics knobs in README/operations guide",
-      "state": "planned"
-    }
-  ],
-  "hook": {
-    "progress": 0.35,
-    "resume_hint": "Focus on UI pill wiring + boundary smoke dedupe before closing Fraktal94."
-  },
-  "references": {
-    "roadmap_playbook": "docs/roadmap/v1.0-stabilization-playbook.md",
-    "mandala_map": ["MandalaMap.yaml", "MandalaMap.json", "MandalaMap.md"],
-    "devtalk": "DevTalk.txt"
-  },
-  "repeat_needed": "conditional",
-  "repeat_reason": "Wiederholen, falls Membrane-UI oder Boundary-Smokes nicht gehärtet werden können."
+  "validate": ["pnpm schema:validate", "pnpm observability:check"],
+  "refs": [
+    "docs/roadmap/v1.0-stabilization-playbook.(md|yaml)",
+    "MandalaMap.(md|json|yaml)",
+    "DevTalk.txt"
+  ]
 }

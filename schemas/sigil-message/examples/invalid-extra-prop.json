@@ -1,0 +1,11 @@
+{
+  "kind": "SigilMessage",
+  "schemaVersion": "1.0.0",
+  "ts": "2025-01-01T12:00:00Z",
+  "kpi": "groundwater",
+  "state": "event",
+  "severity": "alarm",
+  "intent": "escalate",
+  "symbol": "⚠️",
+  "unexpected": true
+}

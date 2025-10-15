@@ -409,8 +409,8 @@ streams:
           + Grafana `/api/health` (Port 3300). Fraktal93 erweitert Membrane um
           Prometheus Counter/Histogram & Boundary-Events; SigilMessage-Schema
           wird via Ajv-Test abgesichert, UI-Pill folgt. Fraktal94 verankert das
-          Schema in `pnpm schema:validate` (Sample unter `sigils/samples/`), MandalaMap
-          und Codexfeedback halten UI-/Boundary-Follow-ups fest.'
+          Schema `schemas/sigil-message/1-0-0.schema.json` (Fingerprints + Valid/Invalid-Fixtures)
+          im `pnpm schema:validate`, MandalaMap und Codexfeedback halten UI-/Boundary-Follow-ups fest.'
       - id: prom-compose
         description: Compose-Profile für Prometheus/Grafana aktivieren
         status: done
