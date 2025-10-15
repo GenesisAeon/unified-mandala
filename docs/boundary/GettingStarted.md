@@ -1,69 +1,18 @@
-# Boundary · Getting Started (Milestone A)
+## Boundary Service (opt-in)
 
-This slice reactivates the Boundary feature as buildable packages plus a tiny CLI.
-
-## Packages
-
-- `mandala/boundary-core`  
-  Types (`BoundaryRule`, `BoundaryObservation`) and a simple in-memory `BoundaryRegistry`.
-
-- `mandala/boundary-engine`  
-  Discovery runtime: `Extractor` (regex-based) and `DiscoveryEngine` (runs rules on inputs and summarizes).
-
-- `mandala/boundary-ui`  
-  Minimal React table component `BoundaryLawInsightsUI` (Phase B wires a route).
-
-## Build & Smoke
+Start (Dev):
 
 ```bash
-pnpm build:boundary
-pnpm boundary:demo
-# → writes data/logs/boundary/laws.demo.json and JSONL rollup
+ENABLE_BOUNDARY=1 pnpm dev:boundary   # Port 4010 (änderbar via BOUNDARY_PORT)
 ```
 
-## Run with custom rules
+Endpoints:
 
-Rules accept JSON (YAML optional if `yaml` is installed). Example:
+- `GET /boundary/health` einfache Health-Probe
+- `GET /boundary/laws` lädt den letzten Snapshot aus `data/logs/boundary/`
+- `POST /boundary/observe` `laws: Law[]` annimmt, JSONL rollt & Snapshot schreibt
+  (optional: NATS publish auf `boundary.law.discovered`, wenn `NATS_URL` gesetzt)
 
-```json
-[
-  {
-    "id": "no-todo",
-    "description": "No TODO markers",
-    "severity": "warn",
-    "pattern": "\\bTODO\\b"
-  },
-  {
-    "id": "no-secret",
-    "description": "No API_KEY in code",
-    "severity": "error",
-    "pattern": "API_KEY=.*"
-  }
-]
-```
+Health Aggregator:
 
-```bash
-pnpm boundary:run --input scripts/boundary-demo.rules.json \
-  --out data://logs/boundary/laws.json \
-  --scan README.md --scan docs/DEV.md
-```
-
-Outputs:
-
-```json
-{
-  "generated_at": "",
-  "rules_count": 2,
-  "observations_count": 4,
-  "violations_count": 1,
-  "summary": { "ok": 3, "warn": 1, "error": 0 },
-  "laws": [
-    /* BoundaryObservation */
-  ]
-}
-```
-
-## Next (Milestone B)
-
-- UI route `/demo/boundary` embedding `BoundaryLawInsightsUI` and reading the latest snapshot from `data://logs/boundary/`.
-- Optional: auto-index boundary logs into RAG (append mode) to make laws searchable.
+- Dev-Orchestrator hängt bei `ENABLE_BOUNDARY=1` automatisch `http://127.0.0.1:4010/boundary/health` an.

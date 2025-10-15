@@ -58,6 +58,7 @@
     "smoke:memory": "node scripts/smoke/memory-smoke.mjs",
     "smoke:rag": "node scripts/smoke/rag-smoke.mjs",
     "smoke:fs": "node scripts/smoke/fs-smoke.mjs",
+    "smoke:boundary": "node scripts/smoke/boundary-smoke.mjs",
     "boundary:run": "tsx scripts/boundary-runner.ts --input scripts/boundary-demo.rules.json --out data://logs/boundary/laws.json",
     "boundary:demo": "tsx scripts/boundary-runner.ts --demo --out data://logs/boundary/laws.demo.json",
     "build:boundary": "pnpm -r --filter @mandala/boundary-core build && pnpm -r --filter @mandala/boundary-engine build && pnpm -r --filter @mandala/boundary-ui build",

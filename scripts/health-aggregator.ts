@@ -16,7 +16,9 @@ const defaultTargets: Target[] = [
 const app = express();
 
 app.get('/health', async (_req, res) => {
-  const targets = defaultTargets;
+  const extra = (process.env.HEALTH_TARGETS_EXTRA || '').split(/,\s*/).filter(Boolean);
+  const extraTargets: Target[] = extra.map((url, i) => ({ name: `extra:${i + 1}`, url }));
+  const targets: Target[] = [...defaultTargets, ...extraTargets];
   const results = await Promise.all(
     targets.map(async (t) => {
       try {

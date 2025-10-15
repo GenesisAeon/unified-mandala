@@ -100,6 +100,24 @@ if (resolvedProfile === 'lite' || resolvedProfile === 'light' || resolvedProfile
   );
 }
 
+// Optional Boundary service (opt-in)
+if (process.env.ENABLE_BOUNDARY === '1') {
+  const port = process.env.BOUNDARY_PORT || '4010';
+  serviceDefinitions = [
+    ...serviceDefinitions,
+    {
+      name: 'boundary',
+      script: 'scripts/boundary-service.ts',
+      envDefaults: { BOUNDARY_PORT: port },
+      portKeys: ['BOUNDARY_PORT'],
+    },
+  ];
+  // Health Aggregator Extra-Target
+  const extra = `http://127.0.0.1:${port}/boundary/health`;
+  const prev = process.env.HEALTH_TARGETS_EXTRA || '';
+  process.env.HEALTH_TARGETS_EXTRA = [prev, extra].filter(Boolean).join(',');
+}
+
 const missingProdTargets = [];
 if (resolvedMode === 'prod') {
   for (const service of serviceDefinitions) {

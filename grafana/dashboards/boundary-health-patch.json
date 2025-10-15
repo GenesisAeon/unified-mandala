@@ -1,0 +1,180 @@
+{
+  "id": null,
+  "uid": "boundary-health-patch",
+  "title": "Boundary  Health Patch",
+  "tags": ["boundary", "health", "patch"],
+  "timezone": "",
+  "schemaVersion": 39,
+  "version": 2,
+  "refresh": "10s",
+  "time": { "from": "now-1h", "to": "now" },
+  "annotations": {
+    "list": [
+      {
+        "type": "dashboard",
+        "name": "Annotations & Alerts",
+        "enable": true,
+        "hide": false,
+        "builtIn": 1,
+        "iconColor": "rgba(0, 211, 255, 1)"
+      }
+    ]
+  },
+  "templating": {
+    "list": [
+      {
+        "type": "custom",
+        "name": "quantile",
+        "label": "Latency quantile",
+        "query": "0.95,0.99",
+        "options": [
+          { "text": "0.95", "value": "0.95", "selected": true },
+          { "text": "0.99", "value": "0.99", "selected": false }
+        ],
+        "current": { "text": "0.95", "value": "0.95", "selected": true },
+        "includeAll": false,
+        "multi": false,
+        "hide": 0
+      }
+    ]
+  },
+  "panels": [
+    {
+      "id": 501,
+      "type": "stat",
+      "title": "Boundary  Laws/min",
+      "gridPos": { "h": 6, "w": 12, "x": 0, "y": 0 },
+      "datasource": null,
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "sum(rate(boundary_laws_accepted_total[5m])) * 60",
+          "legendFormat": "laws/min",
+          "instant": true,
+          "datasource": null
+        }
+      ],
+      "options": {
+        "reduceOptions": { "calcs": ["lastNotNull"], "fields": "", "values": false },
+        "orientation": "auto",
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "textMode": "value_and_name"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "none",
+          "decimals": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              { "color": "green", "value": null },
+              { "color": "orange", "value": 10 },
+              { "color": "red", "value": 30 }
+            ]
+          }
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 502,
+      "type": "stat",
+      "title": "Boundary  p95 observe latency (ms)",
+      "gridPos": { "h": 6, "w": 12, "x": 12, "y": 0 },
+      "datasource": null,
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "histogram_quantile(0.95, sum(rate(boundary_observe_latency_ms_bucket[5m])) by (le))",
+          "legendFormat": "p95 (ms)",
+          "instant": true,
+          "datasource": null
+        }
+      ],
+      "options": {
+        "reduceOptions": { "calcs": ["lastNotNull"], "fields": "", "values": false },
+        "orientation": "auto",
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "textMode": "value_and_name"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "ms",
+          "decimals": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              { "color": "green", "value": null },
+              { "color": "orange", "value": 1000 },
+              { "color": "red", "value": 2000 }
+            ]
+          }
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 503,
+      "type": "timeseries",
+      "title": "Boundary  p95/p99 observe latency (ms, 1h)",
+      "gridPos": { "h": 8, "w": 24, "x": 0, "y": 6 },
+      "datasource": null,
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "histogram_quantile($quantile, sum(rate(boundary_observe_latency_ms_bucket[5m])) by (le))",
+          "legendFormat": "p$quantile (ms)",
+          "datasource": null
+        }
+      ],
+      "fieldConfig": {
+        "defaults": { "unit": "ms", "decimals": 0 },
+        "overrides": []
+      },
+      "options": {
+        "legend": { "displayMode": "list", "placement": "bottom" },
+        "tooltip": { "mode": "single" }
+      }
+    },
+    {
+      "id": 504,
+      "type": "bargauge",
+      "title": "Boundary  Laws/min by severity",
+      "gridPos": { "h": 6, "w": 24, "x": 0, "y": 14 },
+      "datasource": null,
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "sum by (severity) (rate(boundary_laws_accepted_total[5m])) * 60",
+          "legendFormat": "{{severity}}",
+          "instant": true,
+          "datasource": null
+        }
+      ],
+      "options": {
+        "displayMode": "basic",
+        "orientation": "horizontal",
+        "reduceOptions": { "calcs": ["lastNotNull"], "fields": "", "values": false }
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "none",
+          "decimals": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              { "color": "green", "value": null },
+              { "color": "orange", "value": 10 },
+              { "color": "red", "value": 30 }
+            ]
+          }
+        },
+        "overrides": []
+      }
+    }
+  ]
+}

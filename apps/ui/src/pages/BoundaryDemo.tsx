@@ -54,6 +54,8 @@ export default function BoundaryDemo() {
   const [loading, setLoading] = React.useState(false);
   const [error, setError] = React.useState<string | null>(null);
   const [note, setNote] = React.useState<string>('');
+  const [autoRag, setAutoRag] = React.useState<boolean>(false);
+  const [ragBadge, setRagBadge] = React.useState<string>('');
 
   const candidates = React.useMemo(() => [
     'data://logs/boundary/laws.json',
@@ -88,6 +90,13 @@ export default function BoundaryDemo() {
       const payload = JSON.parse(text) as LawsPayload;
       setLaws(Array.isArray(payload.laws) ? payload.laws : []);
       setMeta({ generated: payload.generated_at, summary: payload.summary });
+      if (autoRag) {
+        try {
+          await ragIndexAppend();
+        } catch (e: any) {
+          setNote(`RAG-Index: ${e?.message ?? e}`);
+        }
+      }
     } catch (e: any) {
       setError(e?.message ?? String(e));
       setLaws([]);
@@ -95,7 +104,23 @@ export default function BoundaryDemo() {
     } finally {
       setLoading(false);
     }
-  }, [candidates]);
+  }, [candidates, autoRag]);
+
+  async function ragIndexAppend() {
+    const r = await fetch('/api/tools/rag/index', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify({
+        roots: 'data://logs/boundary',
+        exts: ['.json', '.yaml', '.yml'],
+        fresh: false,
+      }),
+    });
+    if (!r.ok) throw new Error(`rag.index append failed: ${r.status}`);
+    const ts = new Date().toLocaleTimeString();
+    setRagBadge(`RAG ok ✓ (${ts})`);
+    setTimeout(() => setRagBadge(''), 3500);
+  }
 
   React.useEffect(() => {
     void loadLatest();
@@ -135,6 +160,13 @@ export default function BoundaryDemo() {
       setNote('Demo-Snapshot gespeichert.');
       setTimeout(() => setNote(''), 2200);
       await loadLatest();
+      if (autoRag) {
+        try {
+          await ragIndexAppend();
+        } catch (e: any) {
+          setNote(`RAG-Index: ${e?.message ?? e}`);
+        }
+      }
     } catch (e: any) {
       setError(e?.message ?? String(e));
     } finally {
@@ -191,12 +223,21 @@ export default function BoundaryDemo() {
           >
             Demo-Snapshot
           </button>
+          <label className="ml-3 inline-flex items-center gap-2 text-xs text-slate-700">
+            <input
+              type="checkbox"
+              checked={autoRag}
+              onChange={(e) => setAutoRag(e.target.checked)}
+            />
+            Auto-index RAG (boundary)
+          </label>
         </div>
       </div>
 
       {note && <div className="rounded-xl bg-slate-900 text-white px-3 py-2 text-xs">{note}</div>}
       {error && <div className="rounded-xl bg-red-50 text-red-700 px-3 py-2 text-sm">{error}</div>}
       {badges}
+      {ragBadge && <div className="text-xs text-emerald-700">{ragBadge}</div>}
 
       <div className="rounded-xl border">
         <BoundaryLawInsightsUI laws={laws} loading={loading} error={error} onScan={() => void loadLatest()} />
@@ -209,4 +250,3 @@ export default function BoundaryDemo() {
     </div>
   );
 }
-
