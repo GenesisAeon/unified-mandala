@@ -1,4 +1,7 @@
-export const isLowMem = process.env.LOW_MEM === '1' || process.env.VITE_LOW_MEM === 'on';
+import { MEMBRANE_CFG } from './config.js';
+
+export const isLowMem =
+  MEMBRANE_CFG.MODE === 'null' || process.env.LOW_MEM === '1' || process.env.VITE_LOW_MEM === 'on';
 
 export type HorizonState = 'subcritical' | 'apparent' | 'event';
 export type MembraneReading = {
@@ -26,12 +29,13 @@ const asciiSigil = (state: HorizonState) =>
 const emojiSigil = (state: HorizonState) =>
   state === 'event' ? '🛡️' : state === 'apparent' ? '🟠' : '🟢';
 
-export const membraneSigil = (state: HorizonState) => {
-  // Prefer ASCII in CI to align with test expectations
-  if (process.env.CI === '1' || process.env.UM_ASCII_SIGILS === '1') {
-    return asciiSigil(state);
-  }
-  return emojiSigil(state);
+const preferAscii = () =>
+  MEMBRANE_CFG.CI_ASCII || process.env.UM_ASCII_SIGILS === '1' || process.env.CI === '1';
+
+export const membraneSigil = (state: HorizonState, forceAscii?: boolean) => {
+  const useAscii = typeof forceAscii === 'boolean' ? forceAscii : preferAscii();
+  return useAscii ? asciiSigil(state) : emojiSigil(state);
 };
 
+export { MEMBRANE_CFG };
 export type { RealMembraneConfig } from './real-membrane.js';

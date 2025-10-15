@@ -106,6 +106,82 @@
       "title": "GitHub workflows & templates"
     },
     {
+      "category": "observability",
+      "description": "Grafana dashboard for browser RUM traces using Tempo (TraceQL panels).",
+      "links": [
+        {
+          "label": "Tempo compose overlay",
+          "path": "docs/observability/docker-compose.tempo.yml"
+        },
+        {
+          "label": "OTEL collector config",
+          "path": "docs/observability/otel/otel-collector.yaml"
+        },
+        {
+          "label": "Tempo config",
+          "path": "docs/observability/tempo/tempo.yaml"
+        }
+      ],
+      "notes": [
+        "Import via Grafana → Dashboards → Import; select datasource \"Tempo\" if prompted.",
+        "Use the Metrics tile \"Trace test\" to emit demo spans and verify ingestion.",
+        "Optional compose overlay under docs/observability to run Tempo + OTEL Collector locally."
+      ],
+      "path": "grafana/dashboards/rum-traces.json",
+      "status": "active",
+      "title": "RUM Traces Dashboard (Tempo)"
+    },
+    {
+      "category": "automation",
+      "description": "Scans advancedToDo_parts and writes out/backlog/fragment-index.json; updates advancedprogress.json.backlogIndex.",
+      "links": [
+        {
+          "label": "GH Action",
+          "path": ".github/workflows/backlog-consolidate.yml"
+        }
+      ],
+      "notes": [
+        "Exposed via `pnpm backlog:consolidate`.",
+        "GitHub Action uploads backlog artifacts on changes to advancedToDo_parts/**."
+      ],
+      "path": "scripts/meta/backlog-consolidate.mjs",
+      "status": "active",
+      "title": "Backlog Consolidate"
+    },
+    {
+      "category": "automation",
+      "description": "Starts UI + dev stack + health aggregator, waits for readiness, then runs smoke:live. Respects PORT_OFFSET.",
+      "links": [
+        {
+          "label": "package script",
+          "path": "package.json#scripts.start:verified"
+        }
+      ],
+      "notes": [
+        "Run via `pnpm start:verified`. Health URL defaults to http://127.0.0.1:3999/health.",
+        "Uses wait-on to coordinate readiness."
+      ],
+      "path": "scripts/start-verified.ts",
+      "status": "active",
+      "title": "Verified Starter"
+    },
+    {
+      "category": "ci-infra",
+      "description": "Optional PR job (label `mandalamap:strict`) that fails on MandalaMap warnings and uploads validation logs.",
+      "links": [
+        {
+          "label": "Mandala map (soft)",
+          "path": ".github/workflows/mandala-map.yml"
+        }
+      ],
+      "notes": [
+        "Complements the soft validation in mandala-map.yml; add the label to enforce strict gating for sensitive PRs."
+      ],
+      "path": ".github/workflows/mandala-map-strict.yml",
+      "status": "active",
+      "title": "MandalaMap strict (label gate)"
+    },
+    {
       "category": "ci-infra",
       "description": "Pre-commit automation enforcing lint-staged and formatting policies.",
       "links": [
@@ -872,6 +948,19 @@
       "title": "Python stub packages"
     },
     {
+      "category": "observability",
+      "description": "RealMembrane horizon detection, metrics instrumentation and boundary hooks.",
+      "links": [],
+      "notes": [
+        "`MEMBRANE_CFG` steuert N/H/K/T_OK/T_WARN/SIGMA_MIN/MODE/CI_ASCII via ENV.",
+        "Prometheus Counter/Histogram + OTel Span (`src/membrane/metrics.ts`, Fraktal93).",
+        "TTL-Registry + Boundary-Publisher (event/recovery) speisen KPI Bridge & Alerts."
+      ],
+      "path": "src/membrane/",
+      "status": "active",
+      "title": "Membrane engine (TypeScript)"
+    },
+    {
       "category": "automation",
       "description": "Codex task definitions and sigillin skeleton specs driving automation flows.",
       "links": [],
@@ -1063,8 +1152,8 @@
     }
   },
   "meta": {
-    "fraktal": 88,
-    "generated": "2025-11-30 00:00:00+00:00",
+    "fraktal": 93,
+    "generated": "2025-12-01 00:00:00+00:00",
     "reference_docs": [
       "docs/roadmap/v1.0-stabilization-playbook.md",
       "docs/roadmap/v1.0-stabilization-playbook.yaml"

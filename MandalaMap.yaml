@@ -1,7 +1,7 @@
 meta:
   version: '1.0'
-  generated: '2025-11-30 00:00:00+00:00'
-  fraktal: 88
+  generated: '2025-12-01 00:00:00+00:00'
+  fraktal: 93
   repo: unified-mandala
   source: ChefDevAI MandalaMap bootstrap
   reference_docs:
@@ -899,6 +899,16 @@ entries:
     links:
       - label: Stub replacement roadmap
         path: docs/roadmap/stub-replacement-roadmap.md
+  - path: src/membrane/
+    category: observability
+    status: active
+    title: Membrane engine (TypeScript)
+    description: RealMembrane horizon detection, metrics instrumentation and boundary hooks.
+    notes:
+      - '`MEMBRANE_CFG` steuert N/H/K/T_OK/T_WARN/SIGMA_MIN/MODE/CI_ASCII via ENV.'
+      - 'Prometheus Counter/Histogram + OTel Span (`src/membrane/metrics.ts`, Fraktal93).'
+      - 'TTL-Registry + Boundary-Publisher (event/recovery) speisen KPI Bridge & Alerts.'
+    links: []
   - path: tasks/
     category: automation
     status: active

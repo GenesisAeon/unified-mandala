@@ -4,9 +4,9 @@ The v0.1 membrane consolidates the heuristics we agreed in Fraktal93. It offers 
 
 ## Signal pipeline
 
-1. **Windowed stats** – keep the last _N_ (=200) samples, update running sum + sum of squares, and derive \(\mu\) and \(\sigma\) with Bessel correction. A floor (`sigmaMin = 1e-3`) prevents divide-by-zero when the stream is flat.
+1. **Windowed stats** – keep the last _N_ (=200) samples, update running sum + sum of squares, and derive \(\mu\) and \(\sigma\) with Bessel correction. A floor (`SIGMA_MIN = 1e-3`) prevents divide-by-zero when the stream is flat.
 2. **Amplitude** – compute \(z = \frac{x - \mu}{\sigma}\) and use \(A = |z|\). The delta `dA` compares the new amplitude with the previous step.
-3. **State proposal** – thresholds: `T_ok = 1.0`, `T_warn = 2.0`. Hysteresis margin `H = 0.2` keeps the band sticky. Values above `T_warn + H` jump straight to `event`; `dA > 0.5` nudges borderline spikes into `apparent` even if `A` is still inside the band.
+3. **State proposal** – thresholds: `T_OK = 1.0`, `T_WARN = 2.0`. Hysteresis margin `H = 0.2` keeps the band sticky. Values above `T_WARN + H` jump straight to `event`; `dA > 0.5` nudges borderline spikes into `apparent` even if `A` is still inside the band.
 4. **Debounce** – transitions require `K` consecutive confirmations (default 3). The debounce memory resets when the candidate matches the current state.
 
 ## Severity mapping
@@ -24,15 +24,23 @@ Enable ASCII determinism in CI via `CI=1` or `UM_ASCII_SIGILS=1`. Outside CI the
 ```ts
 new RealMembrane({
   N: 200, // window size
-  T_ok: 1.0, // z-score threshold for ok → apparent
-  T_warn: 2.0, // z-score threshold for apparent → event
+  T_OK: 1.0, // z-score threshold for ok → apparent
+  T_WARN: 2.0, // z-score threshold for apparent → event
   H: 0.2, // hysteresis margin
   K: 3, // debounce confirmations
-  sigmaMin: 1e-3,
+  SIGMA_MIN: 1e-3,
 });
 ```
 
 The KPI bridge caches one membrane instance per metric so A/ΔA evolve with the stream. Set `LOW_MEM=1` or flip `FEATURES.membrane` to `off` to bypass horizon analysis.
+
+### What changed (v0.1 hardening)
+
+- **H** ↑ → weniger nervöse Umschaltungen (mehr Trägheit)
+- **K** ↑ → robustere Debounce (mehr bestätigte Schritte nötig)
+- **T_OK/T_WARN** ↑ → konservativer (später warn/event)
+- **N** ↑ → glattere A/ΔA, aber trägere Reaktion
+- **SIGMA_MIN** ↑ → stabiler bei Flatlines (verhindert A-Explosion)
 
 ## Verification checklist
 

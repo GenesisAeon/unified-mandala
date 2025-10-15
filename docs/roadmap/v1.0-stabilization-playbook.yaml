@@ -406,7 +406,9 @@ streams:
         status: done
         notes: '@um/health integriert, Monitoring-Smokes im Release-Drill geprüft (Fraktal44);
           Fraktal72 liefert `pnpm observability:check` für Prometheus `/api/v1/targets`
-          + Grafana `/api/health` (Port 3300).'
+          + Grafana `/api/health` (Port 3300). Fraktal93 erweitert Membrane um
+          Prometheus Counter/Histogram & Boundary-Events; SigilMessage-Schema
+          wird via Ajv-Test abgesichert, UI-Pill folgt.'
       - id: prom-compose
         description: Compose-Profile für Prometheus/Grafana aktivieren
         status: done

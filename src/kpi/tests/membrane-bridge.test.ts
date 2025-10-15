@@ -24,6 +24,7 @@ describe('kpi/membrane-bridge stepOrBypass', () => {
     expect(r.sigil).toBeDefined();
     expect(r.severity).toBe('ok');
     expect(r.A).toBeUndefined();
+    expect(r.enabled).toBe(false);
   });
 
   it('processes through membrane when LOW_MEM not set (membrane on)', async () => {
@@ -36,6 +37,8 @@ describe('kpi/membrane-bridge stepOrBypass', () => {
     mod.stepOrBypass('t2m', Date.now(), 0.5);
     const second = mod.stepOrBypass('t2m', Date.now() + 1000, 3.5);
     expect(typeof second.A).toBe('number');
+    expect(typeof second.dA).toBe('number');
     expect(['ok', 'warn', 'alarm']).toContain(second.severity);
+    expect(second.enabled).toBe(true);
   });
 });

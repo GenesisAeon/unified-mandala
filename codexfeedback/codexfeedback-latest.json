@@ -1,54 +1,71 @@
 {
-  "fraktal": 93,
-  "phase": "Membrane v0.1 Activation",
+  "fraktal_run": {
+    "id": "Fraktal93",
+    "author": "Johann",
+    "timestamp_utc": "2025-12-01T00:00:00Z",
+    "summary": [
+      "RealMembrane Hardening: ENV-config, Prometheus metrics, TTL cache and CI ASCII guard.",
+      "KPI bridge publishes Boundary events; SigilMessage contract validated via Ajv; UI pill scaffolded."
+    ]
+  },
   "status": {
-    "real_membrane": "landed",
-    "kpi_bridge": "cached",
-    "sigillin_strict": "label_gate_ready"
+    "membrane_config": "hardened",
+    "boundary_bridge": "emitting",
+    "sigil_contract": "tested"
   },
   "changes": [
+    { "file": "src/membrane/config.ts", "desc": "Expose MEMBRANE_CFG env defaults + cache TTL" },
     {
       "file": "src/membrane/real-membrane.ts",
-      "desc": "RealMembrane v0.1 with windowed stats, hysteresis and debounce"
+      "desc": "Record metrics, start OTel span, normalise legacy config"
     },
+    {
+      "file": "src/membrane/metrics.ts",
+      "desc": "Prometheus counter + histogram for membrane step latency"
+    },
+    { "file": "src/membrane/registry.ts", "desc": "TTL cache per KPI with reset helper" },
     {
       "file": "src/kpi/membrane-bridge.ts",
-      "desc": "cache membrane instance per metric and emit sigils"
+      "desc": "Publish Boundary events and expose A/ΔA/state"
     },
     {
-      "file": "schemas/sigil-message.schema.json",
-      "desc": "contract for SigilMessage payloads"
+      "file": "src/boundary/publisher.ts",
+      "desc": "Shared publisher with optional fetch fallback"
     },
     {
-      "file": ".github/workflows/sigillin-strict.yml",
-      "desc": "optional label-triggered validator gate"
-    }
+      "file": "tests/sigil/schema.contract.test.ts",
+      "desc": "Ajv contract test for sigil-message schema"
+    },
+    { "file": "apps/ui/src/components/MembranePill.tsx", "desc": "Membrane state badge component" },
+    { "file": "docs/membrane/real-membrane-v0.1.md", "desc": "What-changed nugget for operators" },
+    { "file": "analysis/devtalk93-evaluation.md", "desc": "DevTalk93 audit (done/open)" }
   ],
-  "next": [
+  "next_steps": [
     {
-      "label": "Wire sigil-message schema into schema:validate",
+      "label": "Schema gate wiring",
+      "action": "Add schemas/sigil-message.schema.json to pnpm schema:validate bundle",
       "state": "open"
     },
     {
-      "label": "Expose membrane badge in Playground",
+      "label": "Membrane pill integration",
+      "action": "Use MembranePill in OpsPanel/Playground once API exposes readings",
       "state": "todo"
     },
     {
-      "label": "Extend sigillin validator wordlists (ES/FR)",
+      "label": "Boundary smoke update",
+      "action": "Extend boundary smokes to assert new publisher payload",
       "state": "todo"
     }
   ],
   "hook": {
-    "progress": 0.65,
-    "resume_hint": "Run vitest boundary suites, add schema to CI bundle, then ship Playground badge."
+    "progress": 0.55,
+    "resume_hint": "Wire schema gate + UI pill, then refresh MandalaMap & codexfeedback via pnpm meta:fraktal:organize."
   },
-  "refs": [
-    "docs/roadmap/v1.0-stabilization-playbook.md",
-    "MandalaMap.yaml",
-    "MandalaMap.json",
-    "MandalaMap.md",
-    "DevTalk.txt"
-  ],
+  "references": {
+    "roadmap_playbook": "docs/roadmap/v1.0-stabilization-playbook.md",
+    "mandala_map": ["MandalaMap.yaml", "MandalaMap.json", "MandalaMap.md"],
+    "devtalk": "DevTalk.txt"
+  },
   "repeat_needed": "conditional",
-  "repeat_reason": "Repeat only if vitest membrane suites fail or horizon severity drifts in smoke data."
+  "repeat_reason": "Nur erneut laufen, falls Boundary-Smoke/Schema-Gate offen bleiben oder Membrane UI nicht integriert wird."
 }

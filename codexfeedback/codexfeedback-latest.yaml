@@ -1,36 +1,46 @@
 fraktal_run:
   id: Fraktal93
   author: Johann
-  timestamp_utc: '${NOW}'
+  timestamp_utc: '2025-12-01T00:00:00Z'
   summary: |
-    RealMembrane v0.1 lands with windowed z-score detection, hysteresis and debounce.
-    KPI membrane bridge now caches instances per metric; sigillin:strict workflow enables opt-in governance gate.
+    RealMembrane Hardening: ENV-config, Prometheus metrics, TTL cache and CI ASCII guard.
+    KPI bridge publishes Boundary events; SigilMessage contract validated via Ajv; UI pill scaffolded.
 status:
-  real_membrane: landed
-  kpi_bridge: cached
-  sigillin_strict: label_gate_ready
+  membrane_config: hardened
+  boundary_bridge: emitting
+  sigil_contract: tested
 changes:
+  - file: src/membrane/config.ts
+    description: 'Expose MEMBRANE_CFG env defaults + cache TTL constant'
   - file: src/membrane/real-membrane.ts
-    description: 'Implement RealMembrane v0.1 (window stats + hysteresis + debounce)'
+    description: 'Record metrics, start OTel span, normalise legacy config'
+  - file: src/membrane/metrics.ts
+    description: 'Prometheus counter + histogram for membrane steps'
+  - file: src/membrane/registry.ts
+    description: 'TTL cache per KPI with reset helper'
   - file: src/kpi/membrane-bridge.ts
-    description: 'Cache per-metric membrane instance and reuse sigils'
-  - file: schemas/sigil-message.schema.json
-    description: 'Define SigilMessage contract schema'
-  - file: .github/workflows/sigillin-strict.yml
-    description: 'Label-gated validator/fixer workflow'
+    description: 'Publish Boundary events and surface A/ΔA/state/enabled'
+  - file: src/boundary/publisher.ts
+    description: 'Shared publisher with optional fetch fallback'
+  - file: tests/sigil/schema.contract.test.ts
+    description: 'Ajv contract test for sigil-message schema'
+  - file: apps/ui/src/components/MembranePill.tsx
+    description: 'UI badge for membrane state (enabled, A, ΔA)'
+  - file: docs/membrane/real-membrane-v0.1.md
+    description: 'What-changed nugget for operators'
 next_steps:
-  - label: Wire sigil-message schema into schema:validate
-    action: 'Extend pnpm schema:validate bundle with schemas/sigil-message.schema.json'
+  - label: Schema gate wiring
+    action: 'Add schemas/sigil-message.schema.json to pnpm schema:validate bundle'
     state: open
-  - label: Playground membrane badge
-    action: 'Expose A/ΔA + severity + sigil in Playground UI using stepOrBypass cache'
+  - label: Membrane pill integration
+    action: 'Use MembranePill in OpsPanel/Playground once API exposes readings'
     state: todo
-  - label: Extend sigillin validator wordlists
-    action: 'Add ES/FR tokens before making sigillin:strict mandatory'
+  - label: Boundary smoke update
+    action: 'Extend boundary smokes to assert new publisher payload'
     state: todo
 hook:
-  progress: 0.65
-  resume_hint: 'Run vitest boundary suites, wire schema into CI, then surface Playground badge.'
+  progress: 0.55
+  resume_hint: 'Wire schema gate + UI pill, then refresh MandalaMap & codexfeedback via pnpm meta:fraktal:organize.'
 references:
   roadmap_playbook: docs/roadmap/v1.0-stabilization-playbook.md
   mandala_map:
@@ -39,4 +49,4 @@ references:
     - MandalaMap.md
   devtalk: DevTalk.txt
 repeat_needed: conditional
-repeat_reason: 'Re-run only if membrane vitest suites fail or horizon drift appears in smoke data.'
+repeat_reason: 'Nur erneut laufen, falls Boundary-Smoke/Schema-Gate offen bleiben oder Membrane UI nicht integriert wird.'

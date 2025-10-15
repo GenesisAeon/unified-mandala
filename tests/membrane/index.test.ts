@@ -13,9 +13,9 @@ describe('membrane module (src/membrane)', () => {
 
   it('membraneSigil maps states', async () => {
     const mod = await import('../../src/membrane/index');
-    expect(mod.membraneSigil('event')).toBe('[!]');
-    expect(mod.membraneSigil('apparent')).toBe('~~');
-    expect(mod.membraneSigil('subcritical')).toBe('--');
+    expect(mod.membraneSigil('event', true)).toBe('[!]');
+    expect(mod.membraneSigil('apparent', true)).toBe('~~');
+    expect(mod.membraneSigil('subcritical', true)).toBe('--');
   });
 
   it('NullMembrane (low mem on) uses NoOp behavior', async () => {
@@ -26,6 +26,16 @@ describe('membrane module (src/membrane)', () => {
     const inst = new Mem();
     const r = inst.step(123, 4.2);
     expect(r).toMatchObject({ t: 123, value: 4.2, severity: 'ok', state: 'subcritical', A: 0 });
+  });
+
+  it('NullMembrane respects MEMBRANE_MODE=null', async () => {
+    process.env.MEMBRANE_MODE = 'null';
+    const mod = await import('../../src/membrane/index');
+    expect(mod.isLowMem).toBe(true);
+    const Mem = mod.NullMembrane as any;
+    const inst = new Mem();
+    const r = inst.step(12, 0.9);
+    expect(r.A).toBe(0);
   });
 
   it('NullMembrane (default) uses real implementation', async () => {

@@ -1,0 +1,30 @@
+fraktal: 93
+status: in-progress
+owner: Johann
+summary:
+  - 'Membrane Hardening: `src/membrane/config.ts` (`MEMBRANE_CFG`), metrics registry, TTL cache, OTel span.'
+  - 'Boundary Bridge emits event/recovery hooks via `src/boundary/publisher.ts` + KPI bridge (A/ΔA/state/enabled).'
+  - 'SigilMessage schema validated in `tests/sigil/schema.contract.test.ts`; UI `MembranePill` bereit für Integration.'
+deliverables:
+  - src/membrane/config.ts
+  - src/membrane/metrics.ts
+  - src/membrane/registry.ts
+  - src/membrane/real-membrane.ts
+  - src/kpi/membrane-bridge.ts
+  - src/boundary/publisher.ts
+  - tests/membrane/golden.series.test.ts
+  - tests/membrane/ci-ascii.test.ts
+  - tests/membrane/bench.opt.test.ts
+  - tests/kpi/membrane-bridge.test.ts
+  - tests/sigil/schema.contract.test.ts
+  - apps/ui/src/components/MembranePill.tsx
+  - docs/membrane/real-membrane-v0.1.md
+  - analysis/devtalk93-evaluation.md
+commands:
+  - pnpm vitest run tests/membrane --run
+  - pnpm vitest run tests/kpi/membrane-bridge.test.ts --run
+  - pnpm vitest run tests/sigil/schema.contract.test.ts --run
+hook:
+  progress: 0.55
+  next_step: 'Schema gate (`pnpm schema:validate`) + UI integration für MembranePill; Boundary-Smoke anpassen.'
+repeat_required: conditional
