@@ -1,30 +1,54 @@
 {
-  "fraktal": 92,
-  "phase": "Re-Entry + Qwen Tools",
+  "fraktal": 93,
+  "phase": "Membrane v0.1 Activation",
   "status": {
-    "proxy": "ok",
-    "ui_playground": "ok",
-    "smoke_qwen": "stabilized",
-    "smoke_fs": "ok",
-    "smoke_memory": "added",
-    "api_key_guard": "planA"
+    "real_membrane": "landed",
+    "kpi_bridge": "cached",
+    "sigillin_strict": "label_gate_ready"
   },
   "changes": [
     {
-      "file": "apps/api-lite/ollama-proxy.mjs",
-      "desc": "fs.list + memory remember/recall endpoints"
+      "file": "src/membrane/real-membrane.ts",
+      "desc": "RealMembrane v0.1 with windowed stats, hysteresis and debounce"
     },
-    { "file": "scripts/smoke/memory-smoke.mjs", "desc": "memory smoke" },
-    { "file": "sigils/sigillin_qwen_playground.sigil.yaml", "desc": "Qwen Sigillin v1.0" }
+    {
+      "file": "src/kpi/membrane-bridge.ts",
+      "desc": "cache membrane instance per metric and emit sigils"
+    },
+    {
+      "file": "schemas/sigil-message.schema.json",
+      "desc": "contract for SigilMessage payloads"
+    },
+    {
+      "file": ".github/workflows/sigillin-strict.yml",
+      "desc": "optional label-triggered validator gate"
+    }
   ],
   "next": [
-    { "label": "Vite proxy header (Plan B)", "state": "recommended" },
-    { "label": "Embeddings memory", "state": "later" }
+    {
+      "label": "Wire sigil-message schema into schema:validate",
+      "state": "open"
+    },
+    {
+      "label": "Expose membrane badge in Playground",
+      "state": "todo"
+    },
+    {
+      "label": "Extend sigillin validator wordlists (ES/FR)",
+      "state": "todo"
+    }
   ],
+  "hook": {
+    "progress": 0.65,
+    "resume_hint": "Run vitest boundary suites, add schema to CI bundle, then ship Playground badge."
+  },
   "refs": [
     "docs/roadmap/v1.0-stabilization-playbook.md",
     "MandalaMap.yaml",
     "MandalaMap.json",
-    "MandalaMap.md"
-  ]
+    "MandalaMap.md",
+    "DevTalk.txt"
+  ],
+  "repeat_needed": "conditional",
+  "repeat_reason": "Repeat only if vitest membrane suites fail or horizon severity drifts in smoke data."
 }

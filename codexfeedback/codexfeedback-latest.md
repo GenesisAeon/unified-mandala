@@ -1,22 +1,26 @@
-# Codexfeedback – Fraktal 92
+# Codexfeedback – Fraktal 93
 
-- Phase: Re-Entry + Qwen Tools
-- Status: Proxy/Health ok; UI renders output_text; qwen-smoke stabilized; FS list + Memory endpoints added; memory smoke added
-- Next: Optional Vite proxy header for Plan B; expand memory to embeddings (later)
+- Phase: Membrane v0.1 Activation & Sigillin Gatekeeping
+- Status: RealMembrane heuristics merged; KPI bridge caches horizon state; sigillin:strict workflow in place (label gated).
+- Next Hook: Promote sigil-message schema + expose membrane badge in Playground. Repeat Fraktal only if RealMembrane metrics drift in smoke runs.
 
 What changed
 
-- apps/api-lite/ollama-proxy.mjs: add /api/tools/fs/list; add /api/tools/memory/{remember,recall}
-- scripts/smoke/memory-smoke.mjs: quick memory verify
-- sigils/sigillin_qwen_playground.sigil.yaml: baseline sigillin
-- package.json: add smoke:memory, quick:test scripts (earlier)
+- `src/membrane/real-membrane.ts`: implement RealMembrane v0.1 (windowed stats, hysteresis, debounce) and expose config knobs.
+- `src/kpi/membrane-bridge.ts`: cache membrane per metric, reuse sigil + severity from live stream.
+- Tests under `tests/membrane` + `tests/kpi` + `tests/unit`: golden-ish boundaries for A/ΔA, debounce, LOW_MEM bypass.
+- `schemas/sigil-message.schema.json`: contract skeleton for downstream validation.
+- `docs/membrane/real-membrane-v0.1.md`: decision record + verification checklist.
+- `.github/workflows/sigillin-strict.yml`: optional CI gate triggered by PR label.
 
 Validate
 
-- pnpm quick:test:a (Plan A) or quick:test:b (Plan B)
-- pnpm smoke:memory
+- `pnpm vitest run tests/membrane --run`
+- `pnpm vitest run tests/kpi/membrane-bridge.test.ts --run`
+- `pnpm vitest run tests/unit/membrane.null.test.ts --run`
 
 Refs
 
 - docs/roadmap/v1.0-stabilization-playbook.md
-- MandalaMap.yaml, MandalaMap.json, MandalaMap.md
+- MandalaMap.yaml / MandalaMap.json / MandalaMap.md
+- DevTalk.txt (Membrane & Sigillin items)

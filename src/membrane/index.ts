@@ -18,18 +18,20 @@ class NoOpMembrane {
 
 export const NullMembrane = isLowMem
   ? NoOpMembrane
-  : (await import('./real-membrane.js')).NullMembrane;
+  : (await import('./real-membrane.js')).RealMembrane;
 
 const asciiSigil = (state: HorizonState) =>
-  state === 'event' ? '???' : state === 'apparent' ? '??' : '??';
+  state === 'event' ? '[!]' : state === 'apparent' ? '~~' : '--';
 
 const emojiSigil = (state: HorizonState) =>
-  state === 'event' ? '🛡' : state === 'apparent' ? '🟠' : '🟢';
+  state === 'event' ? '🛡️' : state === 'apparent' ? '🟠' : '🟢';
 
 export const membraneSigil = (state: HorizonState) => {
   // Prefer ASCII in CI to align with test expectations
   if (process.env.CI === '1' || process.env.UM_ASCII_SIGILS === '1') {
     return asciiSigil(state);
   }
-  return asciiSigil(state);
+  return emojiSigil(state);
 };
+
+export type { RealMembraneConfig } from './real-membrane.js';
