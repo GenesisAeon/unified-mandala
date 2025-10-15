@@ -156,6 +156,23 @@ streams:
           - .github/workflows/ci.runtime.yml
           - scripts/repo/setup-labels.mjs
           - docs/START-HERE.md
+      - id: membrane-horizon
+        description: RealMembrane-Heuristik verdrahten und Tests/Governance aufsetzen
+        status: in-progress
+        notes: >-
+          Fraktal93: `src/membrane/real-membrane.ts` nutzt Ringpuffer-Statistiken für
+          eine heuristische Horizont-Erkennung mit ΔA/Hysterese + Debounce.
+          `src/kpi/membrane-bridge.ts` nutzt geteilte Instanzen, Feature-Flag
+          (`MEMBRANE_ON`/`VITE_FEATURE_MEMBRANE`) steht default auf off.
+          Vitest-Boundary-Tests sichern subcritical↔event und Low-Mem fällt auf
+          `NoOpMembrane` zurück. Dokumentiert in `docs/membrane/real-membrane-v0.1.md`,
+          Contract via `schemas/sigil-message.schema.json`.
+        artifacts:
+          - src/membrane/real-membrane.ts
+          - src/kpi/membrane-bridge.ts
+          - src/membrane/tests
+          - src/kpi/tests
+          - docs/membrane/real-membrane-v0.1.md
       - id: qwen-local-rollout
         description: Lokalen Qwen-Playground mit Smokes/Hooks absichern und optionalen
           CI-Trigger anbieten
@@ -377,6 +394,17 @@ streams:
           - scripts/validate-sigillins.mjs
           - scripts/schemas/mandala-sigillin.schema.json
           - .github/workflows/sigillin-validate.yml
+      - id: sigillin-strict
+        description: Label-gesteuertes Strict-Gate für Bridges aktivieren
+        status: in-progress
+        notes: >-
+          Fraktal93: `.github/workflows/sigillin-strict.yml` reagiert auf das Label
+          `sigillin:strict` und führt den Mini-Sigillin-Validator sowie
+          `scripts/fix-sigillin.ts --dry-run` aus. Dient als optionales Governance-Gate
+          vor Merge, bis automatisches Contract-Testing produktionsreif ist.
+        artifacts:
+          - .github/workflows/sigillin-strict.yml
+          - scripts/fix-sigillin.ts
       - id: two-plane-guard
         description: Repo-/Runtime-Ebenen für Agenten trennen und CI-Guard aktivieren
         status: done

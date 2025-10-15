@@ -1,0 +1,21 @@
+name: Sigillin Strict
+
+on:
+  pull_request:
+    types:
+      - labeled
+      - synchronize
+
+jobs:
+  validate:
+    if: contains(github.event.pull_request.labels.*.name, 'sigillin:strict')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 9
+      - run: corepack enable
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm -w tsx scripts/sigils/mini-sigillin-validator.ts sigils/bridges
+      - run: pnpm -w tsx scripts/fix-sigillin.ts --dry-run sigils/bridges

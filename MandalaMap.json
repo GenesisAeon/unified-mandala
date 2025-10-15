@@ -6,7 +6,7 @@
   "entries": [
     {
       "category": "core-runtime",
-      "description": "Express proxy bridging mandala-ui to Ollama (11434 \u2192 4000) with `/health` + `output_text` normalization.",
+      "description": "Express proxy bridging mandala-ui to Ollama (11434 → 4000) with `/health` + `output_text` normalization.",
       "links": [
         {
           "label": "ollama-proxy",
@@ -97,7 +97,8 @@
         "`on-demand.yml` aktiviert Slash-Commands (`/run repomap`, `/run governance`) und hängt Labels `run:repomap`/`ci:advisory` an.",
         "Fraktal78: `ci.core.yml` bündelt Coverage (`pnpm test:unit:coverage`) und Governance-Gates (`pnpm schema:validate`, `pnpm maps:validate`, `pnpm sanity`, `pnpm policy:check`) als Pflichtlauf; Artefakt `coverage-vitest` wird hochgeladen, Label `ci:advisory` triggert `pnpm check:ci` als Soft-Fail.",
         "`ci.runtime.yml` startet NATS + AI-Smoketest, ausgelöst durch Label `ci:runtime`.",
-        "Fraktal87 ergänzt `.github/workflows/ci.qwen-smoke.yml` als Self-Hosted-Lane (Label `ci:qwen-smoke`, optional `workflow_dispatch`) für den Qwen-Smoke (`pnpm smoke:qwen`); verweist auf `RoleOutCommands.*` und den Pre-Push-Hook `pnpm hook:qwen-smoke`."
+        "Fraktal87 ergänzt `.github/workflows/ci.qwen-smoke.yml` als Self-Hosted-Lane (Label `ci:qwen-smoke`, optional `workflow_dispatch`) für den Qwen-Smoke (`pnpm smoke:qwen`); verweist auf `RoleOutCommands.*` und den Pre-Push-Hook `pnpm hook:qwen-smoke`.",
+        "Fraktal93: `.github/workflows/sigillin-strict.yml` runs when the `sigillin:strict` label is present and executes the mini-sigillin validator plus `scripts/fix-sigillin.ts --dry-run` as an optional governance gate."
       ],
       "path": ".github/",
       "status": "active",
@@ -846,7 +847,8 @@
         "NetCDF adapters use deterministic engine fallbacks (netcdf4 → h5netcdf → scipy) for Windows parity and offline CI.",
         "STAC helpers berechnen relative hrefs gegen das Item-Verzeichnis (Fallback auf `file://`), sodass Konsumenten keine Fehlpfade erhalten.",
         "EFFIS offline builder writes a minimal NetCDF grid and pytest guards relative vs. absolute href normalization for STAC items.",
-        "Fraktal72 schärft Typannotationen im Cosmic-Web-Mock (deterministischer RNG, strukturierte Points/Features) und unterdrückt Pyright-PrivateUsage-Warnungen für `_normalise_href` im OISST-Postprocessing."
+        "Fraktal72 schärft Typannotationen im Cosmic-Web-Mock (deterministischer RNG, strukturierte Points/Features) und unterdrückt Pyright-PrivateUsage-Warnungen für `_normalise_href` im OISST-Postprocessing.",
+        "Fraktal93: `RealMembrane` (ring buffer stats + ΔA/Hysterese) supplies horizon states for KPI bridges; feature defaults to off via `MEMBRANE_ON`, boundary tests cover low-mem and event paths, documented in `docs/membrane/real-membrane-v0.1.md`."
       ],
       "path": "src/",
       "status": "active",
@@ -1061,8 +1063,8 @@
     }
   },
   "meta": {
-    "fraktal": 88,
-    "generated": "2025-11-30 00:00:00+00:00",
+    "fraktal": 93,
+    "generated": "2025-12-01 00:00:00+00:00",
     "reference_docs": [
       "docs/roadmap/v1.0-stabilization-playbook.md",
       "docs/roadmap/v1.0-stabilization-playbook.yaml"

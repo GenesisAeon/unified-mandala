@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest';
 
 describe('membrane/real-membrane NullMembrane', () => {
   it('step returns subcritical ok reading', async () => {
-    const mod = await import('../../src/membrane/real-membrane');
+    const mod = await import('../../src/membrane');
     const Mem = mod.NullMembrane;
     const inst = new Mem();
     const r = inst.step(1000, 3.14);

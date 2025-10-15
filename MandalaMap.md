@@ -1,8 +1,8 @@
 # Mandala Map
 
 - Version: 1.0
-- Fraktal: 88
-- Generated: 2025-11-30 00:00:00+00:00
+- Fraktal: 93
+- Generated: 2025-12-01 00:00:00+00:00
 
 Total entries: 71
 
