@@ -11,6 +11,18 @@ type LawsPayload = {
   laws: BoundaryObservation[];
 };
 
+type BoundaryStatus = {
+  generated_at?: string;
+  dedupe_store_size?: number;
+  dedupe_store_max?: number;
+  dedupe_ttl_ms?: number;
+  dedupes_per_minute?: number;
+  dedupe_hits_total?: number;
+  last_duplicate_at?: string | null;
+  last_accepted_at?: string | null;
+  snapshot_errors_total?: number;
+};
+
 async function fsRead(uri: string, encoding = 'utf8') {
   const r = await fetch('/api/tools/fs/read', {
     method: 'POST',
@@ -51,6 +63,7 @@ function classNames(...xs: Array<string | false | null | undefined>) {
 export default function BoundaryDemo() {
   const [laws, setLaws] = React.useState<BoundaryObservation[]>([]);
   const [meta, setMeta] = React.useState<{ generated?: string; summary?: LawsPayload['summary'] } | null>(null);
+  const [status, setStatus] = React.useState<BoundaryStatus | null>(null);
   const [loading, setLoading] = React.useState(false);
   const [error, setError] = React.useState<string | null>(null);
   const [note, setNote] = React.useState<string>('');
@@ -90,6 +103,18 @@ export default function BoundaryDemo() {
       const payload = JSON.parse(text) as LawsPayload;
       setLaws(Array.isArray(payload.laws) ? payload.laws : []);
       setMeta({ generated: payload.generated_at, summary: payload.summary });
+      try {
+        const statusRaw = await fsRead('data://logs/boundary/status.json');
+        const statusText = statusRaw?.text ?? (statusRaw as any)?.data ?? null;
+        if (statusText) {
+          const parsed = JSON.parse(statusText) as BoundaryStatus;
+          setStatus(parsed);
+        } else {
+          setStatus(null);
+        }
+      } catch {
+        setStatus(null);
+      }
       if (autoRag) {
         try {
           await ragIndexAppend();
@@ -101,6 +126,7 @@ export default function BoundaryDemo() {
       setError(e?.message ?? String(e));
       setLaws([]);
       setMeta(null);
+      setStatus(null);
     } finally {
       setLoading(false);
     }
@@ -191,6 +217,52 @@ export default function BoundaryDemo() {
     </div>
   );
 
+  const dedupeBadges = React.useMemo(() => {
+    if (!status) return null;
+    const rate = status.dedupes_per_minute ?? 0;
+    const store = status.dedupe_store_size ?? 0;
+    const max = status.dedupe_store_max ?? 0;
+    const ratio = max > 0 ? store / max : 0;
+    const rateClass =
+      rate > 10 ? 'bg-red-50 text-red-700' : rate > 4 ? 'bg-amber-50 text-amber-700' : 'bg-emerald-50 text-emerald-700';
+    const storeClass =
+      ratio >= 0.85
+        ? 'bg-red-50 text-red-700'
+        : ratio >= 0.65
+        ? 'bg-amber-50 text-amber-700'
+        : 'bg-emerald-50 text-emerald-700';
+    const storeHint =
+      ratio >= 0.85
+        ? 'Dedupe-Cache nahe Limit – TTL oder Horizon prüfen.'
+        : ratio >= 0.65
+        ? 'Dedupe-Cache >65% belegt – Replays beobachten.'
+        : 'Dedupe-Cache im grünen Bereich.';
+    const formattedRate = rate >= 10 ? rate.toFixed(0) : rate.toFixed(1);
+    return (
+      <div className="flex flex-wrap gap-2 text-xs">
+        <span
+          className={`inline-flex items-center gap-1 rounded-full px-2 py-1 ${rateClass}`}
+          title="Boundary dedupe hits pro Minute (rollierendes 60s Fenster)"
+        >
+          <span className="h-2 w-2 rounded-full bg-slate-500" />
+          Dedupes/min: {formattedRate}
+        </span>
+        <span
+          className={`inline-flex items-center gap-1 rounded-full px-2 py-1 ${storeClass}`}
+          title={storeHint}
+        >
+          <span className="h-2 w-2 rounded-full bg-slate-500" />
+          Cache: {store}
+          {max ? ` / ${max}` : ''}
+        </span>
+      </div>
+    );
+  }, [status]);
+
+  const lastDuplicateNote = status?.last_duplicate_at
+    ? `Letzter 409: ${new Date(status.last_duplicate_at).toLocaleTimeString()}`
+    : null;
+
   return (
     <div className="mx-auto max-w-6xl p-4 space-y-4">
       <div className="flex items-center justify-between">
@@ -237,7 +309,9 @@ export default function BoundaryDemo() {
       {note && <div className="rounded-xl bg-slate-900 text-white px-3 py-2 text-xs">{note}</div>}
       {error && <div className="rounded-xl bg-red-50 text-red-700 px-3 py-2 text-sm">{error}</div>}
       {badges}
+      {dedupeBadges}
       {ragBadge && <div className="text-xs text-emerald-700">{ragBadge}</div>}
+      {lastDuplicateNote && <div className="text-xs text-slate-500">{lastDuplicateNote}</div>}
 
       <div className="rounded-xl border">
         <BoundaryLawInsightsUI laws={laws} loading={loading} error={error} onScan={() => void loadLatest()} />

@@ -1,6 +1,16 @@
 {
   "runs": [
     {
+      "fraktalrun": "Fraktal98 PublisherRollout",
+      "status": "done",
+      "notes": "src/boundary/publisher.ts now attaches Idempotency-Key headers in the default HTTP fallback, new vitest cases cover generated vs supplied keys, and docs (runbook, playbook, MandalaMap, codexfeedback, DevTalk audit) note JS bridges as auto-aligned while highlighting non-JS follow-ups."
+    },
+    {
+      "fraktalrun": "Fraktal97 BoundaryIdempotency",
+      "status": "done",
+      "notes": "scripts/boundary-service.ts now honours Idempotency-Key headers (fallback to stableBoundaryEventKey), trims stale .tmp snapshots on boot, warms the dedupe cache from laws.jsonl, exposes /boundary/status (dedupes/min, cache utilisation, last 409, snapshot error counter) and ships new Prometheus counters boundary_http_response_family_total + boundary_snapshot_write_errors_total. scripts/smoke/boundary-service-smoke.mjs asserts header echo + status.json, apps/ui/src/pages/BoundaryDemo.tsx surfaces dedupe/cache badges and last duplicate, docs/boundary/GettingStarted.md + docs/runbooks/sigil-publisher.md document the Idempotency-Key flow, and the stabilization playbook + MandalaMap track the new state."
+    },
+    {
       "fraktalrun": "Fraktal96 BoundaryCanonicalHardening",
       "status": "done",
       "notes": "stableBoundaryEventKey now canonicalizes payload objects via packages/boundary-core/src/canonical.ts (sorted keys, circular guards, Infinity → string), packages/boundary-core/src/__tests__/event-key.test.ts covers reordered payloads and circular/self references, and scripts/boundary-service.ts performs atomic snapshot writes (.tmp → rename) while incrementing boundary_http_responses_total for alertable status buckets. docs/roadmap/v1.0-stabilization-playbook.(md|yaml) log the canonical patch, MandalaMap.(md|json|yaml) advance to Fraktal96 with a boundary-service link, and codexfeedback trackers mark the new hook (monitor dedupe metrics & extend canonical helper)."

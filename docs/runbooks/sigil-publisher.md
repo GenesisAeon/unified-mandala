@@ -48,6 +48,8 @@ Scope: Integrate `publishSigilMessage` across bridges (membrane, boundary, KPI, 
 5. **Boundary coupling.**
    - Provide `context.boundaryLawId` when the message is tied to a law; boundary smokes enforce unique `eventKey` combinations (rule+verdict+source).
    - Pair `publishBoundary` invocations with the same `boundaryLawId` to keep dedupe consistent.
+   - HTTP-Producer sollen `Idempotency-Key` (SHA1 von `ruleId|source|ts|canonical(payload)`) mitsenden – Boundary übernimmt ihn als `eventKey`/Header und liefert 202/409 symmetrisch zurück.
+   - Der Standard-JavaScript-Publisher (`publishBoundary`) hängt den Header seit Fraktal97 automatisch an; eigene Bridges (Python, Go, CLI) müssen ihn weiterhin explizit setzen.
 
 6. **Metrics expectations.**
    - `sigil_emitted_total{valid="true|false",severity,state,kpi}` increments automatically.
@@ -63,7 +65,7 @@ Scope: Integrate `publishSigilMessage` across bridges (membrane, boundary, KPI, 
 ## Dedupe & Smoke Alignment
 
 - `scripts/smoke/boundary-smoke.mjs` now validates that boundary law snapshots expose a unique `eventKey` for every entry; duplicates or missing keys fail the smoke.
-- When emitting boundary events from a new bridge, derive `eventKey` deterministically (e.g., `${source}:${ruleId}:${verdict}`) and persist it alongside the snapshot/export.
+- When emitting boundary events from a new bridge, derive `eventKey` deterministically (e.g., `${source}:${ruleId}:${verdict}`) and persist it alongside the snapshot/export. Standard-JS-Bridges übernehmen den HTTP-Header nun automatisch, andere Implementierungen prüfen.
 
 ## Follow-up Hooks
 

@@ -88,18 +88,18 @@
         "Repo Sanity builds the UI dist and waits on apps/ui/dist/index.html before running map/audit checks to avoid race conditions.",
         "CI-Core startet einen Docker-basierten NATS-Server und ruft `pnpm nats:doctor` sowie `pnpm test:jetstream` im type-and-tests-Gate auf (Fraktal57).",
         "CI-Core erzeugt Coverage via `pnpm test:unit:coverage` und publiziert das Artefakt `coverage-vitest`.",
-        "`policy-check.yml` lädt Sigillin-Governance-Berichte als separates GitHub-Artefakt `policy-sigillins`.",
-        "Python-Jobs installieren zusätzlich `src/adapters/requirements.txt`, sodass NetCDF4/h5netcdf/scipy offline verfügbar sind; `PANTHEON_DISABLE=1` hält QA-Analytics in CI ausgeschaltet.",
-        "Governance-Workflow ruft `pnpm schema:validate`, `pnpm maps:validate` und `pnpm policy:check` mit deaktivierten Analytics auf; Repo-Sanity prüft `ciBehaviour`-Felder via `pnpm sanity` (Fraktal65).",
-        "Fraktal66: Policy-Suite markiert Kyverno/Sigillin als optionale Schritte, loggt Skip-Warnungen wenn Kyverno-CLI oder `sigillins:report` fehlen und setzt `PANTHEON_DISABLE=1`; repomap-Fallback erzeugt Artefakte, falls `scripts/run-dist.mjs` nicht verfügbar ist.",
-        "Fraktal76 führt `ai-commit-guard.yml` ein: blockiert Bot-Pushes auf main, verhindert `.ai-scratch/`-Artefakte und erinnert im PR-Template an das Two-Plane-Modell (repo:// read-only ↔ scratch:// runtime).",
-        "Fraktal77 ergänzt `status-gate.yml`: Das Label **ready-to-merge** löst einen Gate-Lauf (Draft, ReviewDecision, Mergeability, Status-Rollup) aus und aktiviert Auto-/Merge-Queue bei Erfolg.",
-        "Fraktal77 ergänzt `auto-provenance.yml`: vergibt automatisch `source:*` Labels (human, human-docs, mandala-ai, external-ai).",
-        "`provenance-gate.yml` prüft Pfad-/Plane-Matrix, schützt packages/**/core, Guard-Skripte sowie Deploy-/Infra-Verzeichnisse.",
-        "`on-demand.yml` aktiviert Slash-Commands (`/run repomap`, `/run governance`) und hängt Labels `run:repomap`/`ci:advisory` an.",
-        "Fraktal78: `ci.core.yml` bündelt Coverage (`pnpm test:unit:coverage`) und Governance-Gates (`pnpm schema:validate`, `pnpm maps:validate`, `pnpm sanity`, `pnpm policy:check`) als Pflichtlauf; Artefakt `coverage-vitest` wird hochgeladen, Label `ci:advisory` triggert `pnpm check:ci` als Soft-Fail.",
-        "`ci.runtime.yml` startet NATS + AI-Smoketest, ausgelöst durch Label `ci:runtime`.",
-        "Fraktal87 ergänzt `.github/workflows/ci.qwen-smoke.yml` als Self-Hosted-Lane (Label `ci:qwen-smoke`, optional `workflow_dispatch`) für den Qwen-Smoke (`pnpm smoke:qwen`); verweist auf `RoleOutCommands.*` und den Pre-Push-Hook `pnpm hook:qwen-smoke`."
+        "`policy-check.yml` l\u00e4dt Sigillin-Governance-Berichte als separates GitHub-Artefakt `policy-sigillins`.",
+        "Python-Jobs installieren zus\u00e4tzlich `src/adapters/requirements.txt`, sodass NetCDF4/h5netcdf/scipy offline verf\u00fcgbar sind; `PANTHEON_DISABLE=1` h\u00e4lt QA-Analytics in CI ausgeschaltet.",
+        "Governance-Workflow ruft `pnpm schema:validate`, `pnpm maps:validate` und `pnpm policy:check` mit deaktivierten Analytics auf; Repo-Sanity pr\u00fcft `ciBehaviour`-Felder via `pnpm sanity` (Fraktal65).",
+        "Fraktal66: Policy-Suite markiert Kyverno/Sigillin als optionale Schritte, loggt Skip-Warnungen wenn Kyverno-CLI oder `sigillins:report` fehlen und setzt `PANTHEON_DISABLE=1`; repomap-Fallback erzeugt Artefakte, falls `scripts/run-dist.mjs` nicht verf\u00fcgbar ist.",
+        "Fraktal76 f\u00fchrt `ai-commit-guard.yml` ein: blockiert Bot-Pushes auf main, verhindert `.ai-scratch/`-Artefakte und erinnert im PR-Template an das Two-Plane-Modell (repo:// read-only \u2194 scratch:// runtime).",
+        "Fraktal77 erg\u00e4nzt `status-gate.yml`: Das Label **ready-to-merge** l\u00f6st einen Gate-Lauf (Draft, ReviewDecision, Mergeability, Status-Rollup) aus und aktiviert Auto-/Merge-Queue bei Erfolg.",
+        "Fraktal77 erg\u00e4nzt `auto-provenance.yml`: vergibt automatisch `source:*` Labels (human, human-docs, mandala-ai, external-ai).",
+        "`provenance-gate.yml` pr\u00fcft Pfad-/Plane-Matrix, sch\u00fctzt packages/**/core, Guard-Skripte sowie Deploy-/Infra-Verzeichnisse.",
+        "`on-demand.yml` aktiviert Slash-Commands (`/run repomap`, `/run governance`) und h\u00e4ngt Labels `run:repomap`/`ci:advisory` an.",
+        "Fraktal78: `ci.core.yml` b\u00fcndelt Coverage (`pnpm test:unit:coverage`) und Governance-Gates (`pnpm schema:validate`, `pnpm maps:validate`, `pnpm sanity`, `pnpm policy:check`) als Pflichtlauf; Artefakt `coverage-vitest` wird hochgeladen, Label `ci:advisory` triggert `pnpm check:ci` als Soft-Fail.",
+        "`ci.runtime.yml` startet NATS + AI-Smoketest, ausgel\u00f6st durch Label `ci:runtime`.",
+        "Fraktal87 erg\u00e4nzt `.github/workflows/ci.qwen-smoke.yml` als Self-Hosted-Lane (Label `ci:qwen-smoke`, optional `workflow_dispatch`) f\u00fcr den Qwen-Smoke (`pnpm smoke:qwen`); verweist auf `RoleOutCommands.*` und den Pre-Push-Hook `pnpm hook:qwen-smoke`."
       ],
       "path": ".github/",
       "status": "active",
@@ -123,7 +123,7 @@
         }
       ],
       "notes": [
-        "Import via Grafana → Dashboards → Import; select datasource \"Tempo\" if prompted.",
+        "Import via Grafana \u2192 Dashboards \u2192 Import; select datasource \"Tempo\" if prompted.",
         "Use the Metrics tile \"Trace test\" to emit demo spans and verify ingestion.",
         "Optional compose overlay under docs/observability to run Tempo + OTEL Collector locally."
       ],
@@ -269,15 +269,15 @@
           "path": "scripts/repo-map.ts"
         },
         {
-          "label": "Trikāya dashboard script",
+          "label": "Trik\u0101ya dashboard script",
           "path": "scripts/generate-trikaya-dashboard.mjs"
         }
       ],
       "notes": [
         "scripts/repo-map.ts writes analysis/repo-map.json and CSV; keep artifacts in sync with MandalaMap.*",
-        "scripts/generate-trikaya-dashboard.mjs produziert analysis/trikaya-dashboard.(json|md|yaml) für CREP/Trikāya-Governance.",
+        "scripts/generate-trikaya-dashboard.mjs produziert analysis/trikaya-dashboard.(json|md|yaml) f\u00fcr CREP/Trik\u0101ya-Governance.",
         "Fraktal85: `analysis/devtalk84-evaluation.md` dokumentiert den PNPM/Shortcut-Audit (Follow-up `pnpm diag:shortcuts`, Troubleshooting-Doku).",
-        "Fraktal87 Update: `analysis/devtalk87-evaluation.md` dokumentiert das Shortcut-Diagnose-Skript (`pnpm diag:shortcuts`), die erweiterten DEV-SHORTCUTS (Ports/Offsets/Health-Badge) und belässt Climate-MVP + Gemini-Sigillin-Link als offene Punkte."
+        "Fraktal87 Update: `analysis/devtalk87-evaluation.md` dokumentiert das Shortcut-Diagnose-Skript (`pnpm diag:shortcuts`), die erweiterten DEV-SHORTCUTS (Ports/Offsets/Health-Badge) und bel\u00e4sst Climate-MVP + Gemini-Sigillin-Link als offene Punkte."
       ],
       "path": "analysis/",
       "status": "generated",
@@ -297,7 +297,7 @@
         "Dev entrypoints: pnpm -F mandala-ui dev | pnpm -F mandala-ui build.",
         "`apps/api` stellt eine Express-Route `/api/ai/chat` bereit (Responses direkt oder via `AI_TRANSPORT=nats`).",
         "`apps/web/src/components/MandalaAIPlayground.tsx` testet den Responses-Bridge Flow manuell.",
-        "Fraktal79 ergänzt `pnpm start:cosmic-web` als orchestrierten Demo-Starter (NATS, Artefakte, Services, UI, Smoke) und verdrahtet mandala-ui direkt auf `/demo/ai-playground`.",
+        "Fraktal79 erg\u00e4nzt `pnpm start:cosmic-web` als orchestrierten Demo-Starter (NATS, Artefakte, Services, UI, Smoke) und verdrahtet mandala-ui direkt auf `/demo/ai-playground`.",
         "mandala-ui rendert den Playground selbst; der Dev-Server proxyt `/api/ai` auf Port 4000 (AI-Service `apps/api`, steuerbar via `MANDALA_AI_API_ORIGIN`).",
         "Fraktal83 behebt 400er-Antworten (\"Invalid value: 'text'\") durch korrektes Responses-Mapping (`input_text`/`output_text`) in `packages/ai`; UI-Smokes funktionieren wieder, sobald `OPENAI_API_KEY` gesetzt ist."
       ],
@@ -471,12 +471,12 @@
         }
       ],
       "notes": [
-        "MandalaMap references docs/roadmap/v1.0-stabilization-playbook.* für CI/Release Kontext und die Stub-Roadmap für Support-Migrationen.; JetStream-Runbooks (docs/runbooks/nats-jetstream.md, docs/runbooks/MaxBundle.md) beschreiben Setup, `$JS.API.INFO`-Fallbacks sowie `pnpm nats:doctor`/`pnpm test:jetstream` inklusive Fehlertipps (kein `-js`, Timeout, Berechtigungen); docs/runbooks/tests.md listet `pnpm nats:docker` samt Emergence-SIGILLIN-Fallback; README Quickstart (Windows · PowerShell) dokumentiert `UI_DEV_URL`-Overrides, Auto-Port-Cleanup (`UM_DEV_SERVICES_AUTOFREE_PORTS`) und JetStream-Setup; `SIGILLIN_GENESIS.md` liegt als Placeholder im Repo.",
-        "docs/maps/RepoMap.yaml deklariert `repo`, ProgramFlow.yaml führt einen `meta`-Block, damit `pnpm maps:validate` Pflichtfelder prüft (Fraktal57).",
-        "Cheat Sheet `docs/cheatsheets/unified-mandala-workflows.md` bündelt Kern-Workflows (Dev, CI, Adapter, Governance, Demo) – Fraktal67/74 listen `pnpm check:precommit`, `pnpm check:prepush`, `pnpm check:ci`, `pnpm ci:verify`, Windows-Setup sowie Monitoring-/Offline-Bundle-Hinweise.",
-        "Fraktal70 ergänzt README & `docs/demos/cosmic-web.md` um einen plattformfreundlichen Cosmic-Web-Quickstart, verweist auf den TCP-Port 4222 und bindet den Subscriber `scripts/realtime/sub-cosmic.mjs` (`pnpm sub:cosmic`, Default-Subject `demo.cosmic`, Multi-Server & Queue-Option) ein.",
-        "Fraktal72 beschreibt den Pytest-Wrapper `scripts/run-pytest.mjs` (auto `.venv`), empfiehlt weiterhin `pnpm exec cypress install`, ergänzt `pnpm sigils:validate:mini` als Mandala-Erklärungscheck und synchronisiert Command-Catalog/README/CONTRIBUTING mit dem Dist-First-Runner für `pnpm prompts:coach`.",
-        "Neues Rollout-Command-Board (`docs/roadmap/RoleOutCommands.(md|json|yaml)`) verfolgt Phasen 0–6 (inkl. Qwen-Smoke) und spiegelt Hooks in Playbook, MandalaMap und codexfeedback."
+        "MandalaMap references docs/roadmap/v1.0-stabilization-playbook.* f\u00fcr CI/Release Kontext und die Stub-Roadmap f\u00fcr Support-Migrationen.; JetStream-Runbooks (docs/runbooks/nats-jetstream.md, docs/runbooks/MaxBundle.md) beschreiben Setup, `$JS.API.INFO`-Fallbacks sowie `pnpm nats:doctor`/`pnpm test:jetstream` inklusive Fehlertipps (kein `-js`, Timeout, Berechtigungen); docs/runbooks/tests.md listet `pnpm nats:docker` samt Emergence-SIGILLIN-Fallback; README Quickstart (Windows \u00b7 PowerShell) dokumentiert `UI_DEV_URL`-Overrides, Auto-Port-Cleanup (`UM_DEV_SERVICES_AUTOFREE_PORTS`) und JetStream-Setup; `SIGILLIN_GENESIS.md` liegt als Placeholder im Repo.",
+        "docs/maps/RepoMap.yaml deklariert `repo`, ProgramFlow.yaml f\u00fchrt einen `meta`-Block, damit `pnpm maps:validate` Pflichtfelder pr\u00fcft (Fraktal57).",
+        "Cheat Sheet `docs/cheatsheets/unified-mandala-workflows.md` b\u00fcndelt Kern-Workflows (Dev, CI, Adapter, Governance, Demo) \u2013 Fraktal67/74 listen `pnpm check:precommit`, `pnpm check:prepush`, `pnpm check:ci`, `pnpm ci:verify`, Windows-Setup sowie Monitoring-/Offline-Bundle-Hinweise.",
+        "Fraktal70 erg\u00e4nzt README & `docs/demos/cosmic-web.md` um einen plattformfreundlichen Cosmic-Web-Quickstart, verweist auf den TCP-Port 4222 und bindet den Subscriber `scripts/realtime/sub-cosmic.mjs` (`pnpm sub:cosmic`, Default-Subject `demo.cosmic`, Multi-Server & Queue-Option) ein.",
+        "Fraktal72 beschreibt den Pytest-Wrapper `scripts/run-pytest.mjs` (auto `.venv`), empfiehlt weiterhin `pnpm exec cypress install`, erg\u00e4nzt `pnpm sigils:validate:mini` als Mandala-Erkl\u00e4rungscheck und synchronisiert Command-Catalog/README/CONTRIBUTING mit dem Dist-First-Runner f\u00fcr `pnpm prompts:coach`.",
+        "Neues Rollout-Command-Board (`docs/roadmap/RoleOutCommands.(md|json|yaml)`) verfolgt Phasen 0\u20136 (inkl. Qwen-Smoke) und spiegelt Hooks in Playbook, MandalaMap und codexfeedback."
       ],
       "path": "docs/",
       "status": "active",
@@ -650,7 +650,7 @@
       "links": [],
       "notes": [
         "Part of release drills described in docs/roadmap/v1.0-stabilization-playbook.md.",
-        "`pnpm observability:check` prüft Prometheus `/api/v1/targets` und Grafana `/api/health` (Host-Port 3300) nach dem Monitoring-Profil; Flags wie `PROMETHEUS_REQUIRE_ACTIVE=0` oder `OBSERVABILITY_SKIP_GRAFANA=1` steuern die Strenge.\n"
+        "`pnpm observability:check` pr\u00fcft Prometheus `/api/v1/targets` und Grafana `/api/health` (Host-Port 3300) nach dem Monitoring-Profil; Flags wie `PROMETHEUS_REQUIRE_ACTIVE=0` oder `OBSERVABILITY_SKIP_GRAFANA=1` steuern die Strenge.\n"
       ],
       "path": "observability/",
       "status": "active",
@@ -684,7 +684,7 @@
         "Cover core libs, agents, domain modules, UI components, CLI tools.",
         "Validated via pnpm test:ts:ci and pnpm lint commands.",
         "`@unified-mandala/ai` kapselt die OpenAI Responses API inkl. `.env.example`, Dev-Skript (`pnpm -F @unified-mandala/ai dev`) und optionalem NATS-Worker.",
-        "Fraktal76 ergänzt ein Guarded-FS (`packages/ai/src/guards/*`) samt Tool-Router, der repo://-Reads von scratch://-/data://-Writes trennt und Agenten zwingt, Runtime-Artefakte außerhalb des Repos abzulegen."
+        "Fraktal76 erg\u00e4nzt ein Guarded-FS (`packages/ai/src/guards/*`) samt Tool-Router, der repo://-Reads von scratch://-/data://-Writes trennt und Agenten zwingt, Runtime-Artefakte au\u00dferhalb des Repos abzulegen."
       ],
       "path": "packages/",
       "status": "active",
@@ -852,26 +852,27 @@
       ],
       "notes": [
         "Dist-first convention via scripts/run-dist.mjs; referenced throughout docs.",
-        "Sigillin-Fix-CLI (scripts/fix-sigillin.ts) unterstützt Bridges bei Trikāya/CREP/Nächste-Schritt-Korrekturen.",
-        "Windows-Parität über scripts/setup-dev-env.ps1 + scripts/run-powershell.mjs dokumentiert (PowerShell-Fallback).",
-        "PowerShell-Setup exportiert Installationsstatus nach out/setup/install-state.json für Codexfeedback-Reports.; Corepack-Admin-Check vermeidet EPERM, bietet Benutzeraktivierung ohne Admin-Rechte und ergänzt NATS-Installationshinweise für `pnpm start:all`.",
-        "ParserFix: (Test-CommandExists ...) jetzt geklammert und Installationsresultate werden zu Bool gecastet, damit PowerShell 7.5 den Dev-Setup ohne ParserError ausführt.",
+        "Sigillin-Fix-CLI (scripts/fix-sigillin.ts) unterst\u00fctzt Bridges bei Trik\u0101ya/CREP/N\u00e4chste-Schritt-Korrekturen.",
+        "Windows-Parit\u00e4t \u00fcber scripts/setup-dev-env.ps1 + scripts/run-powershell.mjs dokumentiert (PowerShell-Fallback).",
+        "PowerShell-Setup exportiert Installationsstatus nach out/setup/install-state.json f\u00fcr Codexfeedback-Reports.; Corepack-Admin-Check vermeidet EPERM, bietet Benutzeraktivierung ohne Admin-Rechte und erg\u00e4nzt NATS-Installationshinweise f\u00fcr `pnpm start:all`.",
+        "ParserFix: (Test-CommandExists ...) jetzt geklammert und Installationsresultate werden zu Bool gecastet, damit PowerShell 7.5 den Dev-Setup ohne ParserError ausf\u00fchrt.",
         "Emergence-Breath (scripts/emergence-breath.mjs) koppelt pnpm dev:breath an validate:sigillins + trikaya:dashboard und meldet Coverage-Metriken nach jedem Lauf.",
-        "Dev-Stack prüft Ports automatisch, räumt Standard-Ports via `pnpm dlx kill-port` auf (Opt-out: `UM_DEV_SERVICES_AUTOFREE_PORTS=0`) und verweist bei Bedarf auf `pnpm dev:ports:free`.",
-        "`scripts/nats-doctor.mjs` liefert JetStream-Hinweise (fehlendes `-js`, Timeout, Berechtigungen) und `scripts/nats-docker.mjs` startet bzw. überwacht JetStream-Container für lokale Tests.",
-        "Git-Hook-Validator (`scripts/sigillins-validate-changed.mjs`) prüft nur geänderte Bridges vor dem Commit.",
-        "Governance-Reports (`scripts/sigillins-generate-reports.mjs`) erzeugen JUnit-XML und Markdown für Policy-Auswertungen; `pnpm policy:check` schreibt die Artefakte automatisch nach `out/policy/sigillins/`.",
+        "Dev-Stack pr\u00fcft Ports automatisch, r\u00e4umt Standard-Ports via `pnpm dlx kill-port` auf (Opt-out: `UM_DEV_SERVICES_AUTOFREE_PORTS=0`) und verweist bei Bedarf auf `pnpm dev:ports:free`.",
+        "`scripts/nats-doctor.mjs` liefert JetStream-Hinweise (fehlendes `-js`, Timeout, Berechtigungen) und `scripts/nats-docker.mjs` startet bzw. \u00fcberwacht JetStream-Container f\u00fcr lokale Tests.",
+        "Git-Hook-Validator (`scripts/sigillins-validate-changed.mjs`) pr\u00fcft nur ge\u00e4nderte Bridges vor dem Commit.",
+        "Governance-Reports (`scripts/sigillins-generate-reports.mjs`) erzeugen JUnit-XML und Markdown f\u00fcr Policy-Auswertungen; `pnpm policy:check` schreibt die Artefakte automatisch nach `out/policy/sigillins/`.",
         "`scripts/lib/python.mjs` setzt `PYTHONPATH` wieder auf das Repo-Wurzel- `src`, sodass Adapter-Builds ohne manuelle Overrides laufen.",
-        "QA-Test-Runner lädt Pantheon Analytics nur bei Bedarf und respektiert `PANTHEON_DISABLE`, damit CI ohne zusätzliche Artefakte bleibt.",
-        "Fraktal70 ergänzt `scripts/realtime/sub-cosmic.mjs` als NATS-Subscriber (Alias `pnpm sub:cosmic`, Standard-Subject `demo.cosmic`, Multi-Server & Queue-Option), um Cosmic-Web-Ticks lokal zu prüfen und erinnert daran, dass Port 4222 ein TCP-Endpunkt ist.",
-        "Fraktal73 erkennt Docker-`nats`-Container im Windows-Setup (`scripts/setup-dev-env.ps1`), exportiert Status & Start-Hinweise und behandelt laufende Container als erfüllt.",
-        "Fraktal76 ergänzt `scripts/ci/ai-commit-guard.mjs`, das Bot-Pushes auf `main` blockt und `.ai-scratch/`-Artefakte stoppt; Agenten speichern Runtime-Dateien dadurch konsequent unter `scratch://` oder `data://`.",
+        "QA-Test-Runner l\u00e4dt Pantheon Analytics nur bei Bedarf und respektiert `PANTHEON_DISABLE`, damit CI ohne zus\u00e4tzliche Artefakte bleibt.",
+        "Fraktal70 erg\u00e4nzt `scripts/realtime/sub-cosmic.mjs` als NATS-Subscriber (Alias `pnpm sub:cosmic`, Standard-Subject `demo.cosmic`, Multi-Server & Queue-Option), um Cosmic-Web-Ticks lokal zu pr\u00fcfen und erinnert daran, dass Port 4222 ein TCP-Endpunkt ist.",
+        "Fraktal73 erkennt Docker-`nats`-Container im Windows-Setup (`scripts/setup-dev-env.ps1`), exportiert Status & Start-Hinweise und behandelt laufende Container als erf\u00fcllt.",
+        "Fraktal76 erg\u00e4nzt `scripts/ci/ai-commit-guard.mjs`, das Bot-Pushes auf `main` blockt und `.ai-scratch/`-Artefakte stoppt; Agenten speichern Runtime-Dateien dadurch konsequent unter `scratch://` oder `data://`.",
         "Fraktal79 liefert `scripts/start-cosmic-web.mjs` als One-Command-Orchestrator (NATS, Artefakte, Services, UI, Smoke) und `scripts/ci/no-local-path-leaks.mjs` verhindert versehentliche Windows-Pfade oder Secrets im Staging-Bereich.",
-        "Fraktal86 exportiert im Dev-Helper (`scripts/dev-helper.ps1`) eine Port-Matrix (share/experiments/rag/flags/api/health/realtime) inkl. Offset; `config/ports.ts` und `apps/ui/vite.config.ts` interpretieren Env-Overrides als absolute Ports, `scripts/dev-services.mjs` prüft Konflikte ohne Doppel-Offsets und der Health-Aggregator nutzt dynamische Portwerte.",
-        "Fraktal87 startet den Qwen-Rollout: `scripts/smoke/qwen-smoke.mjs` liefert `pnpm smoke:qwen`, der Pre-Push-Trigger `scripts/hooks/qwen-smoke-trigger.mjs` (`pnpm hook:qwen-smoke`) läuft nur bei `AI_PROVIDER=qwen-*`/`UM_RUN_QWEN_SMOKE=1`; `.github/workflows/ci.qwen-smoke.yml` und `docs/roadmap/RoleOutCommands.(md|json|yaml)` spiegeln denselben Flow.",
-        "Fraktal95 Update versieht `scripts/smoke/boundary-smoke.mjs` mit einer `eventKey`-Dedupe-Prüfung, `tests/smoke/boundary-smoke.spec.ts` testet die Helper und `docs/runbooks/sigil-publisher.md` erklärt die Publisher-Integration.",
-        "Fraktal95 Runtime Hardening erzwingt TTL-Dedupe direkt im Boundary-Service (`409 duplicate_eventKey` + JSONL/Snapshot-Skip), exportiert `boundary_law_deduped_total`/`boundary_dedupe_store_size` und ergänzt Grafana-Kacheln sowie den Smoke-Metrik-Check.",
-        "Fraktal95 Canonical Hardening (2025-12-07) kanonisiert Payloads in `stableBoundaryEventKey`, schreibt Boundary-Snapshots atomar (`laws.json.tmp` → `laws.json`) und zählt HTTP-Statuscodes via `boundary_http_responses_total`."
+        "Fraktal86 exportiert im Dev-Helper (`scripts/dev-helper.ps1`) eine Port-Matrix (share/experiments/rag/flags/api/health/realtime) inkl. Offset; `config/ports.ts` und `apps/ui/vite.config.ts` interpretieren Env-Overrides als absolute Ports, `scripts/dev-services.mjs` pr\u00fcft Konflikte ohne Doppel-Offsets und der Health-Aggregator nutzt dynamische Portwerte.",
+        "Fraktal87 startet den Qwen-Rollout: `scripts/smoke/qwen-smoke.mjs` liefert `pnpm smoke:qwen`, der Pre-Push-Trigger `scripts/hooks/qwen-smoke-trigger.mjs` (`pnpm hook:qwen-smoke`) l\u00e4uft nur bei `AI_PROVIDER=qwen-*`/`UM_RUN_QWEN_SMOKE=1`; `.github/workflows/ci.qwen-smoke.yml` und `docs/roadmap/RoleOutCommands.(md|json|yaml)` spiegeln denselben Flow.",
+        "Fraktal95 Update versieht `scripts/smoke/boundary-smoke.mjs` mit einer `eventKey`-Dedupe-Pr\u00fcfung, `tests/smoke/boundary-smoke.spec.ts` testet die Helper und `docs/runbooks/sigil-publisher.md` erkl\u00e4rt die Publisher-Integration.",
+        "Fraktal95 Runtime Hardening erzwingt TTL-Dedupe direkt im Boundary-Service (`409 duplicate_eventKey` + JSONL/Snapshot-Skip), exportiert `boundary_law_deduped_total`/`boundary_dedupe_store_size` und erg\u00e4nzt Grafana-Kacheln sowie den Smoke-Metrik-Check.",
+        "Fraktal95 Canonical Hardening (2025-12-07) kanonisiert Payloads in `stableBoundaryEventKey`, schreibt Boundary-Snapshots atomar (`laws.json.tmp` \u2192 `laws.json`) und z\u00e4hlt HTTP-Statuscodes via `boundary_http_responses_total`.",
+        "Fraktal97 Publisher Rollout sorgt daf\u00fcr, dass src/boundary/publisher.ts im Standard-HTTP-Fallback den Idempotency-Key mitsendet; Nicht-JS-Bridges bleiben als Follow-up."
       ],
       "path": "scripts/",
       "status": "active",
@@ -927,10 +928,10 @@
       "links": [],
       "notes": [
         "Validated via pnpm test:py and npx pyright; keep ERA5/OISST adapters green.",
-        "NetCDF adapters use deterministic engine fallbacks (netcdf4 → h5netcdf → scipy) for Windows parity and offline CI.",
+        "NetCDF adapters use deterministic engine fallbacks (netcdf4 \u2192 h5netcdf \u2192 scipy) for Windows parity and offline CI.",
         "STAC helpers berechnen relative hrefs gegen das Item-Verzeichnis (Fallback auf `file://`), sodass Konsumenten keine Fehlpfade erhalten.",
         "EFFIS offline builder writes a minimal NetCDF grid and pytest guards relative vs. absolute href normalization for STAC items.",
-        "Fraktal72 schärft Typannotationen im Cosmic-Web-Mock (deterministischer RNG, strukturierte Points/Features) und unterdrückt Pyright-PrivateUsage-Warnungen für `_normalise_href` im OISST-Postprocessing."
+        "Fraktal72 sch\u00e4rft Typannotationen im Cosmic-Web-Mock (deterministischer RNG, strukturierte Points/Features) und unterdr\u00fcckt Pyright-PrivateUsage-Warnungen f\u00fcr `_normalise_href` im OISST-Postprocessing."
       ],
       "path": "src/",
       "status": "active",
@@ -946,7 +947,7 @@
         }
       ],
       "notes": [
-        "Roadmap in docs/roadmap/stub-replacement-roadmap.(md|yaml) beschreibt Ablösung und Keys-Governance.",
+        "Roadmap in docs/roadmap/stub-replacement-roadmap.(md|yaml) beschreibt Abl\u00f6sung und Keys-Governance.",
         "Bis Phase B abgeschlossen ist, stubs/ nur als Typ-Fallback nutzen; keys/ bleibt automation-only."
       ],
       "path": "stubs/",
@@ -990,7 +991,7 @@
       "links": [],
       "notes": [
         "Used by policy:check and governance automation.",
-        "Windows helper builds laufen via pnpm build:windows-tools → scripts/run-powershell.mjs."
+        "Windows helper builds laufen via pnpm build:windows-tools \u2192 scripts/run-powershell.mjs."
       ],
       "path": "tools/",
       "status": "active",
@@ -1061,7 +1062,7 @@
       ],
       "notes": [
         "Generated alongside bridge scaffolds; keep in sync with pnpm validate:sigillins outputs.",
-        "Consumed by map:mandala validation and future dashboards for CREP/Trikāya coverage."
+        "Consumed by map:mandala validation and future dashboards for CREP/Trik\u0101ya coverage."
       ],
       "path": "sigils/bridges/bridges.index.yaml",
       "status": "active",
@@ -1076,7 +1077,7 @@
       "title": "Separate instructional jobs from actionable CI"
     },
     {
-      "detail": "Roadmap dokumentiert in docs/roadmap/stub-replacement-roadmap.(md|yaml); keys/ ist durch Repo-Sanity & Kyverno abgesichert, Ersatzimplementierungen für stubs/ bleiben offen.",
+      "detail": "Roadmap dokumentiert in docs/roadmap/stub-replacement-roadmap.(md|yaml); keys/ ist durch Repo-Sanity & Kyverno abgesichert, Ersatzimplementierungen f\u00fcr stubs/ bleiben offen.",
       "related": ["stubs/", "keys/"],
       "status": "in-progress",
       "title": "Stub replacement roadmap"
@@ -1158,8 +1159,8 @@
     }
   },
   "meta": {
-    "fraktal": 96,
-    "generated": "2025-12-07 00:00:00+00:00",
+    "fraktal": 97,
+    "generated": "2025-12-08 00:00:00+00:00",
     "reference_docs": [
       "docs/roadmap/v1.0-stabilization-playbook.md",
       "docs/roadmap/v1.0-stabilization-playbook.yaml"

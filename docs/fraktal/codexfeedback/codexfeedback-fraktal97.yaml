@@ -1,0 +1,32 @@
+fraktal: 97
+status: done
+owner: Johann
+summary:
+  - '`scripts/boundary-service.ts` akzeptiert/siegelt `Idempotency-Key`, berechnet bei Bedarf kanonische Keys, räumt `.tmp`-Snapshots auf, wärmt das Dedupe-Cache aus `laws.jsonl` und liefert `/boundary/status` samt neuen Countern (`boundary_http_response_family_total`, `boundary_snapshot_write_errors_total`).'
+  - '`scripts/smoke/boundary-service-smoke.mjs` prüft Header-Echo, Status.json und `/boundary/status` auf Dedupes/min + Cache, `apps/ui/src/pages/BoundaryDemo.tsx` zeigt entsprechende Badges inklusive "Letzter 409".'
+  - '`docs/boundary/GettingStarted.md` + `docs/runbooks/sigil-publisher.md` dokumentieren den Header-Flow; Stabilization-Playbook & MandalaMap (MD/JSON/YAML) verankern Fraktal97, codexfeedback* aktualisiert Hook & Meta.'
+deliverables:
+  - scripts/boundary-service.ts
+  - scripts/smoke/boundary-service-smoke.mjs
+  - apps/ui/src/pages/BoundaryDemo.tsx
+  - docs/boundary/GettingStarted.md
+  - docs/runbooks/sigil-publisher.md
+  - docs/roadmap/v1.0-stabilization-playbook.md
+  - docs/roadmap/v1.0-stabilization-playbook.yaml
+  - MandalaMap.md
+  - MandalaMap.yaml
+  - MandalaMap.json
+  - codexfeedback.md
+  - codexfeedback.json
+  - codexfeedback.yaml
+  - codexfeedback/codexfeedback-latest.md
+  - codexfeedback/codexfeedback-latest.json
+  - codexfeedback/codexfeedback-latest.yaml
+  - docs/fraktal/codexfeedback/codexfeedback-fraktal97.yaml
+  - analysis/devtalk96-evaluation.md
+commands:
+  - node scripts/smoke/boundary-service-smoke.mjs
+hook:
+  progress: Idempotency-Key & Status-Endpunkt aktiv, UI-Badges bieten Ops-Feedback (Dedupes/min vs. Cache).
+  next_step: Header-Pflicht auf restliche Bridges ausrollen, dedupe Alerts beobachten.
+repeat_required: false

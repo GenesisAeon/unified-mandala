@@ -8,10 +8,14 @@ import {
   writeFileSync,
   existsSync,
   appendFileSync,
+  unlinkSync,
 } from 'node:fs';
 import { writeFile, rename } from 'node:fs/promises';
 import { join, resolve } from 'node:path';
-import { isValidBoundaryEventKey } from '../packages/boundary-core/src/event-key.js';
+import {
+  isValidBoundaryEventKey,
+  stableBoundaryEventKey,
+} from '../packages/boundary-core/src/event-key.js';
 
 const PORT = Number(process.env.BOUNDARY_PORT || 4010);
 const HOST = process.env.BOUNDARY_HOST || '127.0.0.1';
@@ -46,10 +50,22 @@ let lawsCounter: any = null;
 let dedupedCounter: any = null;
 let dedupeGauge: any = null;
 let responsesCounter: any = null;
+let responseFamilyCounter: any = null;
+let snapshotErrorCounter: any = null;
 
 const DEDUPE_TTL_MS = Number(process.env.BOUNDARY_DEDUPE_TTL_MS ?? 6 * 60 * 60 * 1000);
 const DEDUPE_MAX = Number(process.env.BOUNDARY_DEDUPE_MAX ?? 50_000);
 const dedupeStore = new Map<string, number>();
+const JSONL_PATH = join(ROOT, 'laws.jsonl');
+const STATUS_PATH = join(ROOT, 'status.json');
+const DEDUPE_WARM_LIMIT = Number(process.env.BOUNDARY_WARM_CACHE_LIMIT ?? 200);
+const DEDUPE_HIT_WINDOW_MS = 60_000;
+
+let dedupeHitsTotal = 0;
+const dedupeHitsWindow: number[] = [];
+let lastDuplicateAt: string | null = null;
+let lastAcceptedAt: string | null = null;
+let snapshotErrorsTotal = 0;
 
 function updateDedupeGauge() {
   if (dedupeGauge) dedupeGauge.set(dedupeStore.size);
@@ -87,6 +103,27 @@ function dedupePut(key: string) {
   updateDedupeGauge();
 }
 
+function trimDedupeWindow(now = Date.now()) {
+  const cutoff = now - DEDUPE_HIT_WINDOW_MS;
+  while (dedupeHitsWindow.length && dedupeHitsWindow[0] < cutoff) {
+    dedupeHitsWindow.shift();
+  }
+}
+
+function recordDedupeHit(count = 1) {
+  const now = Date.now();
+  trimDedupeWindow(now);
+  for (let i = 0; i < count; i += 1) {
+    dedupeHitsWindow.push(now);
+  }
+  dedupeHitsTotal += count;
+}
+
+function dedupesPerMinute(now = Date.now()): number {
+  trimDedupeWindow(now);
+  return dedupeHitsWindow.length;
+}
+
 async function ensureMetrics() {
   if (prom) return;
   try {
@@ -121,6 +158,17 @@ async function ensureMetrics() {
       labelNames: ['code'],
       registers: [reg],
     });
+    responseFamilyCounter = new prom.Counter({
+      name: 'boundary_http_response_family_total',
+      help: 'HTTP responses grouped by status family (2xx,4xx,5xx)',
+      labelNames: ['family'],
+      registers: [reg],
+    });
+    snapshotErrorCounter = new prom.Counter({
+      name: 'boundary_snapshot_write_errors_total',
+      help: 'Count of snapshot write failures',
+      registers: [reg],
+    });
     updateDedupeGauge();
   } catch {
     // prom-client not available; /metrics will respond 503
@@ -130,7 +178,90 @@ async function ensureMetrics() {
 function recordResponse(code: number) {
   try {
     responsesCounter?.inc({ code: String(code) });
+    const family = `${Math.floor(code / 100)}xx`;
+    responseFamilyCounter?.inc({ family });
   } catch {}
+}
+
+function recordSnapshotError() {
+  try {
+    snapshotErrorCounter?.inc();
+  } catch {}
+  snapshotErrorsTotal += 1;
+}
+
+function normalizeHeaderValue(value: string | string[] | undefined): string | null {
+  if (Array.isArray(value)) {
+    return value.find((entry) => typeof entry === 'string' && entry.trim().length > 0) ?? null;
+  }
+  if (typeof value === 'string' && value.trim().length > 0) return value;
+  return null;
+}
+
+function readIdempotencyKey(req: IncomingMessage): string | null {
+  return (
+    normalizeHeaderValue(req.headers['idempotency-key']) ??
+    normalizeHeaderValue(req.headers['x-idempotency-key']) ??
+    null
+  );
+}
+
+function getStatusSnapshot(now = Date.now()) {
+  return {
+    generated_at: new Date(now).toISOString(),
+    dedupe_store_size: dedupeStore.size,
+    dedupe_store_max: DEDUPE_MAX,
+    dedupe_ttl_ms: DEDUPE_TTL_MS,
+    dedupes_per_minute: dedupesPerMinute(now),
+    dedupe_hits_total: dedupeHitsTotal,
+    last_duplicate_at: lastDuplicateAt,
+    last_accepted_at: lastAcceptedAt,
+    snapshot_errors_total: snapshotErrorsTotal,
+  };
+}
+
+function updateStatusFile() {
+  try {
+    ensureDir();
+    writeFileSync(STATUS_PATH, JSON.stringify(getStatusSnapshot(), null, 2));
+  } catch {}
+}
+
+function cleanupTmpSnapshot() {
+  const tmp = join(ROOT, 'laws.json.tmp');
+  try {
+    if (existsSync(tmp)) unlinkSync(tmp);
+  } catch {}
+}
+
+function warmDedupeFromJsonl(limit = DEDUPE_WARM_LIMIT) {
+  if (!limit || limit <= 0) return;
+  try {
+    const raw = readFileSync(JSONL_PATH, 'utf8');
+    const trimmed = raw.trim();
+    if (!trimmed) return;
+    const lines = trimmed.split('\n').slice(-limit);
+    const now = Date.now();
+    for (const line of lines) {
+      try {
+        const parsed = JSON.parse(line);
+        const key = parsed?.eventKey;
+        if (isValidBoundaryEventKey(key)) {
+          if (dedupeStore.size >= DEDUPE_MAX) break;
+          dedupeStore.set(key, now + DEDUPE_TTL_MS);
+        }
+      } catch {}
+    }
+    updateDedupeGauge();
+  } catch {}
+}
+
+function bootstrap() {
+  ensureDir();
+  cleanupTmpSnapshot();
+  warmDedupeFromJsonl();
+  pruneExpired(Date.now());
+  updateStatusFile();
 }
 
 function ensureDir() {
@@ -175,11 +306,18 @@ async function maybePublishNats(laws: Law[]) {
   }
 }
 
-function sendJson(res: ServerResponse, code: number, body: any) {
-  const text = JSON.stringify(body);
+function sendJson(
+  res: ServerResponse,
+  code: number,
+  body: any,
+  extraHeaders: Record<string, string> = {},
+) {
+  const payload = body ?? {};
+  const text = JSON.stringify(payload);
   res.writeHead(code, {
     'Content-Type': 'application/json',
     'Content-Length': Buffer.byteLength(text),
+    ...extraHeaders,
   });
   recordResponse(code);
   res.end(text);
@@ -191,6 +329,8 @@ async function writeSnapshot(snapshot: Snapshot) {
   await writeFile(tmp, JSON.stringify(snapshot, null, 2));
   await rename(tmp, target);
 }
+
+bootstrap();
 
 createServer(async (req: IncomingMessage, res: ServerResponse) => {
   const method = req.method || 'GET';
@@ -221,11 +361,16 @@ createServer(async (req: IncomingMessage, res: ServerResponse) => {
     return sendJson(res, 200, payload);
   }
 
+  if (method === 'GET' && url === '/boundary/status') {
+    return sendJson(res, 200, getStatusSnapshot());
+  }
+
   if (method === 'POST' && url === '/boundary/observe') {
     const start = Date.now();
     let buf = '';
     req.on('data', (c: any) => (buf += c));
     req.on('end', async () => {
+      const headerKeyRaw = readIdempotencyKey(req);
       try {
         const body = buf ? JSON.parse(buf) : {};
         let laws: Law[] = [];
@@ -233,71 +378,145 @@ createServer(async (req: IncomingMessage, res: ServerResponse) => {
         else if (Array.isArray(body?.law)) laws = body.law as Law[];
         else if (body?.law) laws = [body.law as Law];
 
-        if (!Array.isArray(laws) || laws.length === 0)
-          return sendJson(res, 400, { error: 'no_laws' });
-
-        const invalid = laws.filter((l) => !isValidBoundaryEventKey(l?.eventKey));
-        if (invalid.length) {
-          return sendJson(res, 400, {
-            error: 'invalid_eventKey',
-            count: invalid.length,
-          });
+        if (!Array.isArray(laws) || laws.length === 0) {
+          return sendJson(
+            res,
+            400,
+            { error: 'no_laws' },
+            headerKeyRaw ? { 'Idempotency-Key': headerKeyRaw } : undefined,
+          );
         }
 
+        if (headerKeyRaw && !isValidBoundaryEventKey(headerKeyRaw)) {
+          return sendJson(
+            res,
+            400,
+            { error: 'invalid_idempotency_key', idempotencyKey: headerKeyRaw },
+            { 'Idempotency-Key': headerKeyRaw },
+          );
+        }
+
+        const headerKey = headerKeyRaw && laws.length === 1 ? headerKeyRaw : null;
+        if (headerKeyRaw && laws.length !== 1) {
+          return sendJson(
+            res,
+            400,
+            {
+              error: 'idempotency_key_requires_single_law',
+              count: laws.length,
+              idempotencyKey: headerKeyRaw,
+            },
+            { 'Idempotency-Key': headerKeyRaw },
+          );
+        }
+
+        const canonicalLaws = laws.map((lawInput) => {
+          const eventKey =
+            headerKey ??
+            stableBoundaryEventKey({
+              ruleId: (lawInput as any)?.ruleId,
+              source: (lawInput as any)?.source,
+              ts: (lawInput as any)?.ts,
+              verdict: (lawInput as any)?.verdict,
+              severity: (lawInput as any)?.severity,
+              payload: (lawInput as any)?.payload,
+              details: (lawInput as any)?.details,
+            });
+          return { ...lawInput, eventKey } as Law;
+        });
+
         await ensureMetrics();
-        const duplicates = laws.filter((l) => dedupeHas(l.eventKey));
+        const duplicates = canonicalLaws.filter((l) => dedupeHas(l.eventKey));
         if (duplicates.length) {
           try {
             dedupedCounter?.inc(duplicates.length);
           } catch {}
-          return sendJson(res, 409, {
+          recordDedupeHit(duplicates.length);
+          lastDuplicateAt = new Date().toISOString();
+          updateStatusFile();
+          const responseKey =
+            headerKey ?? (duplicates.length === 1 ? duplicates[0].eventKey : null);
+          const duplicatePayload: any = {
             error: 'duplicate_eventKey',
             count: duplicates.length,
             eventKeys: duplicates.map((l) => l.eventKey),
-          });
+          };
+          if (responseKey) duplicatePayload.idempotencyKey = responseKey;
+          return sendJson(
+            res,
+            409,
+            duplicatePayload,
+            responseKey ? { 'Idempotency-Key': responseKey } : undefined,
+          );
         }
 
-        for (const law of laws) dedupePut(law.eventKey);
+        for (const law of canonicalLaws) dedupePut(law.eventKey);
 
         ensureDir();
-        const jsonl = join(ROOT, 'laws.jsonl');
-        for (const l of laws) appendFileSync(jsonl, JSON.stringify(l) + '\n');
+        for (const l of canonicalLaws) appendFileSync(JSONL_PATH, JSON.stringify(l) + '\n');
 
         // naive rollup: keep last 500 lines
         try {
-          const lines = readFileSync(jsonl, 'utf8').trim().split('\n').slice(-500);
-          writeFileSync(jsonl, lines.join('\n') + '\n');
+          const lines = readFileSync(JSONL_PATH, 'utf8').trim().split('\n').slice(-500);
+          writeFileSync(JSONL_PATH, lines.join('\n') + '\n');
         } catch {}
 
         // write a snapshot too
         const snap: Snapshot = {
           generated_at: new Date().toISOString(),
           rules_count: 0,
-          observations_count: laws.length,
-          violations_count: laws.filter((l) => l.verdict === 'violation').length,
+          observations_count: canonicalLaws.length,
+          violations_count: canonicalLaws.filter((l) => l.verdict === 'violation').length,
           summary: {
-            ok: laws.filter((l) => l.severity === 'ok').length,
-            warn: laws.filter((l) => l.severity === 'warn').length,
-            error: laws.filter((l) => l.severity === 'error').length,
+            ok: canonicalLaws.filter((l) => l.severity === 'ok').length,
+            warn: canonicalLaws.filter((l) => l.severity === 'warn').length,
+            error: canonicalLaws.filter((l) => l.severity === 'error').length,
           },
-          laws,
+          laws: canonicalLaws,
         };
         try {
           await writeSnapshot(snap);
         } catch (err: any) {
-          return sendJson(res, 500, { error: 'snapshot_write_failed', detail: err?.message });
+          recordSnapshotError();
+          updateStatusFile();
+          const responseKey =
+            headerKey ?? (canonicalLaws.length === 1 ? canonicalLaws[0].eventKey : null);
+          const payload: any = { error: 'snapshot_write_failed', detail: err?.message };
+          if (responseKey) payload.idempotencyKey = responseKey;
+          return sendJson(
+            res,
+            500,
+            payload,
+            responseKey ? { 'Idempotency-Key': responseKey } : undefined,
+          );
         }
 
-        await maybePublishNats(laws);
+        await maybePublishNats(canonicalLaws);
 
         // metrics
         try {
-          lawsCounter?.inc(laws.length);
+          lawsCounter?.inc(canonicalLaws.length);
           obsHist?.observe(Date.now() - start);
         } catch {}
-        return sendJson(res, 202, { accepted: laws.length });
+        lastAcceptedAt = new Date().toISOString();
+        updateStatusFile();
+        const responseKey =
+          headerKey ?? (canonicalLaws.length === 1 ? canonicalLaws[0].eventKey : null);
+        const acceptedPayload: any = { accepted: canonicalLaws.length };
+        if (responseKey) acceptedPayload.idempotencyKey = responseKey;
+        return sendJson(
+          res,
+          202,
+          acceptedPayload,
+          responseKey ? { 'Idempotency-Key': responseKey } : undefined,
+        );
       } catch (e: any) {
-        return sendJson(res, 400, { error: 'bad_json', detail: e?.message });
+        return sendJson(
+          res,
+          400,
+          { error: 'bad_json', detail: e?.message },
+          headerKeyRaw ? { 'Idempotency-Key': headerKeyRaw } : undefined,
+        );
       }
     });
     return;

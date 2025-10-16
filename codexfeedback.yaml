@@ -1,6 +1,60 @@
 fraktal:
-  current: 96
+  current: 98
   history:
+    - id: 98
+      status: done
+      notes: 'Fraktal98 PublisherRollout: `src/boundary/publisher.ts` hängt den `Idempotency-Key` im Default-HTTP-Fallback an, neue Vitest-Cases sichern Header-Echo und die Docs (Runbook, Playbook, MandalaMap, DevTalk-Audit, Codexfeedback) markieren JS-Bridges als auto-aligned; Nicht-JS-Bridges bleiben als Follow-up.'
+      deliverables:
+        - src/boundary/publisher.ts
+        - tests/boundary/publisher.test.ts
+        - docs/runbooks/sigil-publisher.md
+        - docs/roadmap/v1.0-stabilization-playbook.md
+        - docs/roadmap/v1.0-stabilization-playbook.yaml
+        - MandalaMap.md
+        - MandalaMap.yaml
+        - MandalaMap.json
+        - codexfeedback.md
+        - codexfeedback.json
+        - codexfeedback.yaml
+        - codexfeedback/codexfeedback-latest.md
+        - codexfeedback/codexfeedback-latest.json
+        - codexfeedback/codexfeedback-latest.yaml
+        - docs/fraktal/codexfeedback/codexfeedback-fraktal98.yaml
+        - analysis/devtalk96-evaluation.md
+      commands:
+        - pnpm vitest run tests/boundary/publisher.test.ts
+      hook:
+        progress: JS-Publisher sendet Idempotency-Key automatisch; Status-Docs synchronisiert.
+        next_step: Nicht-JS-Bridges & Alerts auf Idempotency/Dedupe anheben.
+      repeat_required: false
+    - id: 97
+      status: done
+      notes: 'Fraktal97 BoundaryIdempotency: `scripts/boundary-service.ts` bevorzugt `Idempotency-Key`-Header (Fallback auf `stableBoundaryEventKey`), räumt `.tmp`-Snapshots beim Start auf, wärmt das Dedupe-Cache aus `laws.jsonl`, liefert `/boundary/status` (Dedupes/min, Cache, letzte 409, Snapshot-Errors) und exportiert `boundary_http_response_family_total` sowie `boundary_snapshot_write_errors_total`. `scripts/smoke/boundary-service-smoke.mjs` prüft Header-Echo + Status.json, `apps/ui/src/pages/BoundaryDemo.tsx` rendert Dedupes/min-/Cache-Badges samt "Letzter 409"-Hinweis und `docs/boundary/GettingStarted.md` + `docs/runbooks/sigil-publisher.md` dokumentieren den Header-Flow. Stabilization-Playbook (MD/YAML) & MandalaMap.(md|json|yaml) heben Fraktal97 hervor, codexfeedback* setzt den Hook auf UI/metrics-ready.'
+      deliverables:
+        - scripts/boundary-service.ts
+        - scripts/smoke/boundary-service-smoke.mjs
+        - apps/ui/src/pages/BoundaryDemo.tsx
+        - docs/boundary/GettingStarted.md
+        - docs/runbooks/sigil-publisher.md
+        - docs/roadmap/v1.0-stabilization-playbook.md
+        - docs/roadmap/v1.0-stabilization-playbook.yaml
+        - MandalaMap.md
+        - MandalaMap.yaml
+        - MandalaMap.json
+        - codexfeedback/codexfeedback-latest.md
+        - codexfeedback/codexfeedback-latest.json
+        - codexfeedback/codexfeedback-latest.yaml
+        - codexfeedback.md
+        - codexfeedback.json
+        - codexfeedback.yaml
+        - docs/fraktal/codexfeedback/codexfeedback-fraktal97.yaml
+        - analysis/devtalk96-evaluation.md
+      commands:
+        - node scripts/smoke/boundary-service-smoke.mjs
+      hook:
+        progress: Idempotency-Header & Status-Endpunkt aktiv; UI-Badges zeigen Dedupe-Last und Cache-Verbrauch.
+        next_step: Header-Pflicht in weiteren Publishern verankern und Boundary-Alerts (Dedupes/min vs. Cache) beobachten.
+      repeat_required: false
     - id: 96
       status: done
       notes: 'Fraktal96 BoundaryCanonicalHardening: `packages/boundary-core/src/canonical.ts` kanonisiert Payloads (Schlüssel sortiert, Kreise markiert, Infinity → String) für `stableBoundaryEventKey`; `packages/boundary-core/src/__tests__/event-key.test.ts` beweist gleichbleibende Hashes bei Schlüsselumsortierung & Kreisdaten und `scripts/boundary-service.ts` schreibt `laws.json` atomar (Tmp → Rename) sowie zählt HTTP-Status via `boundary_http_responses_total`. Stabilization-Playbook (MD/YAML) vermerkt den Canonical-Patch, MandalaMap.(md|json|yaml) heben Fraktal96 hervor und codexfeedback* setzt den Hook auf Alert-Monitoring (Dedupes/min vs. 202/409).'

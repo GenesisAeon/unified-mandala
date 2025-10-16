@@ -1,7 +1,7 @@
 meta:
   version: '1.0'
-  generated: '2025-12-07 00:00:00+00:00'
-  fraktal: 96
+  generated: '2025-12-08 00:00:00+00:00'
+  fraktal: 97
   repo: unified-mandala
   source: ChefDevAI MandalaMap bootstrap
   reference_docs:
@@ -807,6 +807,8 @@ entries:
       - Fraktal95 Update versieht `scripts/smoke/boundary-smoke.mjs` mit `eventKey`-Dedupe-Prüfung, `tests/smoke/boundary-smoke.spec.ts` sichert die Helper und das Runbook `docs/runbooks/sigil-publisher.md` dokumentiert die Publisher-Integration.
       - Fraktal95 Runtime Hardening erzwingt TTL-Dedupe direkt im Boundary-Service (`409 duplicate_eventKey`, JSONL/Snapshot-Skip), exportiert `boundary_law_deduped_total` & `boundary_dedupe_store_size` und ergänzt Grafana-Kacheln plus Smoke-Metrik-Check.
       - Fraktal95 Canonical Hardening kanonisiert Payloads in `stableBoundaryEventKey`, schreibt Boundary-Snapshots atomar (`laws.json.tmp` → `laws.json`) und zählt HTTP-Statuscodes via `boundary_http_responses_total` für Alerting (202 vs. 409/5xx).
+      - Fraktal97 Idempotency Alignment spiegelt `Idempotency-Key`, liefert `/boundary/status` (Dedupes/min, Cache, letzte 409, Snapshot-Errors), erweitert Prometheus (`boundary_http_response_family_total`, `boundary_snapshot_write_errors_total`), aktualisiert den Smoke-Test (Header-Echo + Status.json) und ergänzt `/demo/boundary` um Dedupe-/Cache-Badges.
+      - Fraktal97 Publisher Rollout sorgt dafür, dass `src/boundary/publisher.ts` im Standard-HTTP-Fallback den `Idempotency-Key` mitsendet; Nicht-JS-Bridges bleiben als Follow-up im Tracker.
     links:
       - label: run-dist
         path: scripts/run-dist.mjs
