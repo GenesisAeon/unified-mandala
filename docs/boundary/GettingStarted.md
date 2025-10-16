@@ -13,6 +13,9 @@ Endpoints:
 - `GET /boundary/status` liefert Dedupe-Kennzahlen (`dedupes_per_minute`, Cache-Größe, letzte 409)
 - `POST /boundary/observe` `laws: Law[]` annimmt, JSONL rollt & Snapshot schreibt
   (optional: NATS publish auf `boundary.law.discovered`, wenn `NATS_URL` gesetzt)
+- `GET /metrics` exportiert u. a. `boundary_observe_total{result="accepted|duplicate|invalid"}` und
+  `boundary_idempotency_missing_total`
+- `OPTIONS /boundary/observe` beantwortet Browser-Preflights (CORS erlaubt und exponiert `Idempotency-Key`)
 
 ### Idempotency & Curl-Beispiel
 
@@ -44,6 +47,13 @@ curl -s -X POST http://127.0.0.1:4010/boundary/observe \
 
 curl -s http://127.0.0.1:4010/boundary/status | jq
 # {"dedupe_store_size":1,"dedupes_per_minute":1,...}
+
+# Prometheus: neue Zähler für Requests und fehlende Idempotency-Header
+curl -s http://127.0.0.1:4010/metrics | rg 'boundary_(observe_total|idempotency_missing_total)'
+
+# Preflight check (CORS):
+curl -s -X OPTIONS -i http://127.0.0.1:4010/boundary/observe
+# → 204 + Access-Control-Allow-Headers: Content-Type, Idempotency-Key
 ```
 
 Health Aggregator:

@@ -52,6 +52,17 @@ let dedupeGauge: any = null;
 let responsesCounter: any = null;
 let responseFamilyCounter: any = null;
 let snapshotErrorCounter: any = null;
+let observeCounter: any = null;
+let idempotencyMissingCounter: any = null;
+
+const CORS_HEADERS = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Headers': 'Content-Type, Idempotency-Key, idempotency-key',
+  'Access-Control-Expose-Headers': 'Idempotency-Key',
+  'Access-Control-Allow-Methods': 'GET,POST,OPTIONS',
+} as const;
+
+let otelTrace: any = undefined;
 
 const DEDUPE_TTL_MS = Number(process.env.BOUNDARY_DEDUPE_TTL_MS ?? 6 * 60 * 60 * 1000);
 const DEDUPE_MAX = Number(process.env.BOUNDARY_DEDUPE_MAX ?? 50_000);
@@ -169,6 +180,17 @@ async function ensureMetrics() {
       help: 'Count of snapshot write failures',
       registers: [reg],
     });
+    observeCounter = new prom.Counter({
+      name: 'boundary_observe_total',
+      help: 'Requests processed by /boundary/observe grouped by result',
+      labelNames: ['result'],
+      registers: [reg],
+    });
+    idempotencyMissingCounter = new prom.Counter({
+      name: 'boundary_idempotency_missing_total',
+      help: 'Requests where the client omitted an Idempotency-Key header',
+      registers: [reg],
+    });
     updateDedupeGauge();
   } catch {
     // prom-client not available; /metrics will respond 503
@@ -196,6 +218,41 @@ function normalizeHeaderValue(value: string | string[] | undefined): string | nu
   }
   if (typeof value === 'string' && value.trim().length > 0) return value;
   return null;
+}
+
+type ObserveResult = 'accepted' | 'duplicate' | 'invalid';
+
+async function annotateSpan(attributes: Record<string, unknown>) {
+  if (otelTrace === false) return;
+  if (otelTrace === undefined) {
+    try {
+      // @ts-ignore
+      const mod = await import('@opentelemetry/api');
+      otelTrace = mod?.trace ?? false;
+    } catch {
+      otelTrace = false;
+      return;
+    }
+  }
+  if (!otelTrace?.getActiveSpan) return;
+  const span = otelTrace.getActiveSpan();
+  if (!span) return;
+  for (const [key, value] of Object.entries(attributes)) {
+    if (value === undefined || value === null) continue;
+    span.setAttribute(key, value as any);
+  }
+}
+
+function recordObserve(result: ObserveResult) {
+  try {
+    observeCounter?.inc({ result });
+  } catch {}
+}
+
+function recordMissingIdempotency() {
+  try {
+    idempotencyMissingCounter?.inc();
+  } catch {}
 }
 
 function readIdempotencyKey(req: IncomingMessage): string | null {
@@ -317,6 +374,7 @@ function sendJson(
   res.writeHead(code, {
     'Content-Type': 'application/json',
     'Content-Length': Buffer.byteLength(text),
+    ...CORS_HEADERS,
     ...extraHeaders,
   });
   recordResponse(code);
@@ -336,15 +394,22 @@ createServer(async (req: IncomingMessage, res: ServerResponse) => {
   const method = req.method || 'GET';
   const url = req.url || '/';
 
+  if (method === 'OPTIONS') {
+    res.writeHead(204, { ...CORS_HEADERS, 'Content-Length': '0' });
+    recordResponse(204);
+    res.end();
+    return;
+  }
+
   if (method === 'GET' && url === '/metrics') {
     ensureMetrics().then(async () => {
       if (!reg) {
-        res.writeHead(503, { 'Content-Type': 'text/plain' });
+        res.writeHead(503, { 'Content-Type': 'text/plain', ...CORS_HEADERS });
         recordResponse(503);
         return void res.end('# metrics unavailable (prom-client not installed)');
       }
       const text = await reg.metrics();
-      res.writeHead(200, { 'Content-Type': reg.contentType });
+      res.writeHead(200, { 'Content-Type': reg.contentType, ...CORS_HEADERS });
       recordResponse(200);
       return void res.end(text);
     });
@@ -371,6 +436,7 @@ createServer(async (req: IncomingMessage, res: ServerResponse) => {
     req.on('data', (c: any) => (buf += c));
     req.on('end', async () => {
       const headerKeyRaw = readIdempotencyKey(req);
+      if (!headerKeyRaw) recordMissingIdempotency();
       try {
         const body = buf ? JSON.parse(buf) : {};
         let laws: Law[] = [];
@@ -379,6 +445,8 @@ createServer(async (req: IncomingMessage, res: ServerResponse) => {
         else if (body?.law) laws = [body.law as Law];
 
         if (!Array.isArray(laws) || laws.length === 0) {
+          recordObserve('invalid');
+          await annotateSpan({ 'boundary.dedupe.hit': false });
           return sendJson(
             res,
             400,
@@ -388,6 +456,11 @@ createServer(async (req: IncomingMessage, res: ServerResponse) => {
         }
 
         if (headerKeyRaw && !isValidBoundaryEventKey(headerKeyRaw)) {
+          recordObserve('invalid');
+          await annotateSpan({
+            'boundary.dedupe.hit': false,
+            'boundary.event_key': headerKeyRaw,
+          });
           return sendJson(
             res,
             400,
@@ -398,6 +471,11 @@ createServer(async (req: IncomingMessage, res: ServerResponse) => {
 
         const headerKey = headerKeyRaw && laws.length === 1 ? headerKeyRaw : null;
         if (headerKeyRaw && laws.length !== 1) {
+          recordObserve('invalid');
+          await annotateSpan({
+            'boundary.dedupe.hit': false,
+            'boundary.event_key': headerKeyRaw,
+          });
           return sendJson(
             res,
             400,
@@ -442,6 +520,11 @@ createServer(async (req: IncomingMessage, res: ServerResponse) => {
             eventKeys: duplicates.map((l) => l.eventKey),
           };
           if (responseKey) duplicatePayload.idempotencyKey = responseKey;
+          recordObserve('duplicate');
+          await annotateSpan({
+            'boundary.dedupe.hit': true,
+            'boundary.event_key': responseKey ?? duplicates[0]?.eventKey,
+          });
           return sendJson(
             res,
             409,
@@ -483,6 +566,11 @@ createServer(async (req: IncomingMessage, res: ServerResponse) => {
             headerKey ?? (canonicalLaws.length === 1 ? canonicalLaws[0].eventKey : null);
           const payload: any = { error: 'snapshot_write_failed', detail: err?.message };
           if (responseKey) payload.idempotencyKey = responseKey;
+          recordObserve('invalid');
+          await annotateSpan({
+            'boundary.dedupe.hit': false,
+            'boundary.event_key': responseKey ?? canonicalLaws[0]?.eventKey,
+          });
           return sendJson(
             res,
             500,
@@ -504,6 +592,11 @@ createServer(async (req: IncomingMessage, res: ServerResponse) => {
           headerKey ?? (canonicalLaws.length === 1 ? canonicalLaws[0].eventKey : null);
         const acceptedPayload: any = { accepted: canonicalLaws.length };
         if (responseKey) acceptedPayload.idempotencyKey = responseKey;
+        recordObserve('accepted');
+        await annotateSpan({
+          'boundary.dedupe.hit': false,
+          'boundary.event_key': responseKey ?? canonicalLaws[0]?.eventKey,
+        });
         return sendJson(
           res,
           202,
@@ -511,6 +604,8 @@ createServer(async (req: IncomingMessage, res: ServerResponse) => {
           responseKey ? { 'Idempotency-Key': responseKey } : undefined,
         );
       } catch (e: any) {
+        recordObserve('invalid');
+        await annotateSpan({ 'boundary.dedupe.hit': false });
         return sendJson(
           res,
           400,

@@ -1,38 +1,52 @@
 fraktal: 98
 phase: Boundary Idempotency & Ops badges
-status: JS publishBoundary sendet den Idempotency-Key automatisch; Docs/Tracker spiegeln
-  den Rollout.
-next_hook: Nicht-JS-/CLI-Publisher auf Header-Pflicht prüfen und Dedupe-Alerts verankern.
+status: Boundary-Service exportiert boundary_observe_total und boundary_idempotency_missing_total,
+  CORS-Preflights exponieren Idempotency-Key; JS publishBoundary sendet weiterhin
+  automatisch. Tracker/Doks bleiben synchron, Nicht-JS-Bridges & Alerts offen.
+next_hook: "Nicht-JS-/CLI-Publisher auf Idempotency-Key pr\xFCfen und Dedupe/Observe-Alerts\
+  \ (Dedupes/min, Cache, 409-Ratio) verankern."
 changes:
+  - path: docs/boundary/GettingStarted.md
+    desc: Dokumentiert neue Metrics-Curl-Beispiele und OPTIONS-Preflight.
+  - path: scripts/smoke/boundary-service-smoke.mjs
+    desc: "Smoke pr\xFCft Header-Expose, OPTIONS-Preflight und neue Prometheus-Counter."
+  - path: scripts/boundary-service.ts
+    desc: Erweitert `/metrics` um boundary_observe_total/boundary_idempotency_missing_total,
+      liefert CORS-Expose-Header und setzt OTel-Attribute.
   - path: src/boundary/publisher.ts
     desc: Default-HTTP-Fallback setzt Idempotency-Key (inkl. Canonical-Fallback).
   - path: tests/boundary/publisher.test.ts
-    desc: Vitest deckt auto-generierte vs. übergebene Keys + Header-Weitergabe ab.
+    desc: "Vitest deckt auto-generierte vs. \xFCbergebene Keys + Header-Weitergabe ab."
   - path: docs/runbooks/sigil-publisher.md
-    desc: Boundary-Coupling beschreibt Auto-Header für JS-Bridges und Follow-ups.
+    desc: "Boundary-Coupling beschreibt Auto-Header f\xFCr JS-Bridges und Follow-ups."
   - path: docs/roadmap/v1.0-stabilization-playbook.md
-    desc: Statusabschnitt nennt den Publisher-Rollout.
+    desc: Statusnotiz verweist auf boundary_observe_total, CORS & OTel Update.
   - path: docs/roadmap/v1.0-stabilization-playbook.yaml
-    desc: Observability-Checkpoint ergänzt Auto-Header Hinweis.
+    desc: "Checkpoint erg\xE4nzt boundary_observe_total/idempotency_missing_total &\
+      \ CORS-Expose."
   - path: MandalaMap.md
-    desc: Automation-Samples listen den Idempotency-Publisher.
+    desc: "Automation-Samples erg\xE4nzen Boundary-Service Observability Update."
   - path: MandalaMap.json
-    desc: Notes referenzieren den Publisher-Rollout.
+    desc: Scripts-Eintrag beschreibt Boundary-Service Observability Update.
   - path: MandalaMap.yaml
-    desc: Automation-Gruppe markiert den neuen Hook.
+    desc: Automation-Notes listen das Observability Update (2025-12-09).
   - path: codexfeedback.md
-    desc: Neuer Eintrag Fraktal98 PublisherRollout.
+    desc: Root-Codexfeedback log erfasst jetzt das Observability-Update (Metrics + CORS).
   - path: codexfeedback.json
-    desc: Runs prepend PublisherRollout-Log.
+    desc: "Runs-Eintrag zu Fraktal98 enth\xE4lt nun Observability-Metriken & CORS-Hinweis."
   - path: codexfeedback.yaml
-    desc: Current auf 98, History + Hook aktualisiert.
+    desc: Current/Hook spiegeln boundary_observe_total & Alert-Follow-up.
   - path: analysis/devtalk96-evaluation.md
-    desc: Idempotency-Reihe markiert JS-Auto-Header, Follow-up fokussiert Nicht-JS.
+    desc: Metrics-Zeile deckt neue Counter ab, Commands enthalten OPTIONS-Check.
   - path: docs/fraktal/codexfeedback/codexfeedback-fraktal98.yaml
-    desc: Fraktal-Log für den Publisher-Rollout.
+    desc: "Fraktal-Log f\xFCr den Publisher-Rollout."
 validate:
+  - node scripts/smoke/boundary-service-smoke.mjs
   - pnpm vitest run tests/boundary/publisher.test.ts
 refs:
+  - docs/boundary/GettingStarted.md
+  - scripts/smoke/boundary-service-smoke.mjs
+  - scripts/boundary-service.ts
   - src/boundary/publisher.ts
   - tests/boundary/publisher.test.ts
   - docs/runbooks/sigil-publisher.md

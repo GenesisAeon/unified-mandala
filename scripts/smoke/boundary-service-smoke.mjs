@@ -46,6 +46,11 @@ async function j(url, init) {
   assert.equal(p.json?.accepted, 1, 'accepted count mismatch');
   assert.equal(p.json?.idempotencyKey, idKey, 'response payload missing idempotency key');
   assert.equal(p.headers.get('idempotency-key'), idKey, 'response header missing idempotency key');
+  const expose = p.headers.get('access-control-expose-headers') || '';
+  assert.ok(
+    expose.toLowerCase().includes('idempotency-key'),
+    `expose headers missing idempotency-key: ${expose}`,
+  );
 
   const dupLaw = { ...baseLaw, eventKey: '0'.repeat(40) };
   const dup = await j(`${base}/boundary/observe`, {
@@ -78,6 +83,19 @@ async function j(url, init) {
   assert.equal(noHeader.status, 202, `canonical observe failed: ${noHeader.status}`);
   assert.equal(noHeader.json?.idempotencyKey, canonicalKey, 'canonical response missing key');
   assert.equal(noHeader.headers.get('idempotency-key'), canonicalKey, 'canonical header mismatch');
+  const allowHeaders = noHeader.headers.get('access-control-allow-headers') || '';
+  assert.ok(
+    allowHeaders.toLowerCase().includes('idempotency-key'),
+    `allow headers missing idempotency-key: ${allowHeaders}`,
+  );
+
+  const preflight = await fetch(`${base}/boundary/observe`, { method: 'OPTIONS' });
+  assert.equal(preflight.status, 204, `preflight status mismatch: ${preflight.status}`);
+  const preflightAllow = preflight.headers.get('access-control-allow-headers') || '';
+  assert.ok(
+    preflightAllow.toLowerCase().includes('idempotency-key'),
+    `preflight allow headers missing idempotency-key: ${preflightAllow}`,
+  );
 
   const statusResponse = await j(`${base}/boundary/status`);
   assert.equal(statusResponse.ok, true, `status route failed: ${statusResponse.status}`);
@@ -101,6 +119,13 @@ async function j(url, init) {
   assert.match(text, dedupeRegex);
   const value = Number(text.match(dedupeRegex)?.[1] ?? '0');
   assert.ok(value >= 1, `dedupe counter expected >= 1, received ${value}`);
+  assert.match(text, /boundary_observe_total\{result="accepted"\} \d+/);
+  assert.match(text, /boundary_observe_total\{result="duplicate"\} \d+/);
+  assert.match(text, /boundary_observe_total\{result="invalid"\} \d+/);
+  const missingMatch = text.match(/boundary_idempotency_missing_total (\d+(?:\.\d+)?)/);
+  assert.ok(missingMatch, 'missing idempotency counter absent');
+  const missingValue = Number(missingMatch?.[1] ?? '0');
+  assert.ok(missingValue >= 1, `expected missing idempotency counter >= 1, got ${missingValue}`);
 
   console.log('boundary-service-smoke: OK');
 })().catch((e) => {
