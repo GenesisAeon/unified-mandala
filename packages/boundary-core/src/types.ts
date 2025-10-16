@@ -14,6 +14,7 @@ export interface BoundaryObservation {
   source: string; // file/path/context
   ruleId: string;
   verdict: 'pass' | 'violation';
+  eventKey: string;
   details?: string;
   severity?: Severity;
 }

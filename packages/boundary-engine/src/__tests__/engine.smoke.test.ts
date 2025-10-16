@@ -13,6 +13,9 @@ describe('boundary-engine smoke', () => {
     expect(res.observationsCount).toBe(2);
     expect(res.violationsCount).toBe(1);
     expect(res.summary.warn).toBe(1);
+    res.observations.forEach((obs) => {
+      expect(obs.eventKey).toMatch(/^[a-f0-9]{40}$/);
+    });
   });
 });
 

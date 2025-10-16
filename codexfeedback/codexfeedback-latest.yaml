@@ -1,8 +1,8 @@
 fraktal:
   id: 95
   phase: 'Sigil Runtime Guard & Membrane OpsPanel Integration · Boundary Dedupe follow-up'
-  status: 'Boundary smoke enforces eventKey coverage; helper tests and the Sigil publisher runbook close the open follow-up.'
-  next_hook: 'Monitor boundary law exports for missing keys and roll the runtime publisher out to additional bridges as they migrate.'
+  status: 'Boundary smoke enforces eventKey coverage; boundary-service now dedupes runtime events (409 duplicate_eventKey + metrics) and Grafana surfaces dedupe health.'
+  next_hook: 'Roll stable eventKey generation into remaining publishers/bridges and monitor dedupe counters for replay spikes.'
 changes:
   - file: scripts/smoke/boundary-smoke.mjs
     desc: Exports helpers and enforces eventKey dedupe/missing-key detection with explicit exit codes.
@@ -10,6 +10,20 @@ changes:
     desc: Vitest coverage for snapshot extraction, missing/duplicate keys and success path.
   - file: docs/runbooks/sigil-publisher.md
     desc: Runbook describing publishSigilMessage wiring (logger/bus/listeners, boundary coupling, metrics, dedupe).
+  - file: scripts/boundary-service.ts
+    desc: Runtime service enforces TTL dedupe, validates eventKey hashes and exports Prometheus counter/gauge.
+  - file: scripts/smoke/boundary-service-smoke.mjs
+    desc: Smoke asserts 202/409 flow and checks boundary_law_deduped_total via /metrics.
+  - file: packages/boundary-core/src/event-key.ts
+    desc: Provides stableBoundaryEventKey + validator shared by engine/publisher/service.
+  - file: packages/boundary-engine/src/extractor.ts
+    desc: Observations now include deterministic eventKey hashes (test updated for pattern).
+  - file: src/boundary/publisher.ts
+    desc: Publisher auto-attaches stable eventKey hashes before invoking hook/endpoint.
+  - file: grafana/dashboards/boundary.json
+    desc: Adds Dedupes/min + Dedupe cache size stats.
+  - file: grafana/dashboards/boundary-health-patch.json
+    desc: Mirrors dedupe stat tiles in the health patch dashboard.
   - file: docs/roadmap/v1.0-stabilization-playbook.(md|yaml)
     desc: Observability stream notes the Fraktal95 update (boundary smoke dedupe + runbook).
   - file: MandalaMap.(md|json|yaml)
@@ -20,8 +34,14 @@ changes:
     desc: Repository-level tracker updated to reflect closed follow-up.
 validate:
   - pnpm vitest run tests/smoke/boundary-smoke.spec.ts
+  - pnpm vitest run packages/boundary-engine
+  - node scripts/smoke/boundary-service-smoke.mjs
 refs:
   - docs/runbooks/sigil-publisher.md
   - docs/roadmap/v1.0-stabilization-playbook.(md|yaml)
   - MandalaMap.(md|json|yaml)
   - scripts/smoke/boundary-smoke.mjs
+  - scripts/boundary-service.ts
+  - scripts/smoke/boundary-service-smoke.mjs
+  - grafana/dashboards/boundary.json
+  - grafana/dashboards/boundary-health-patch.json

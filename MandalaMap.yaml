@@ -805,6 +805,7 @@ entries:
         `scripts/hooks/qwen-smoke-trigger.mjs` (`pnpm hook:qwen-smoke`) läuft nur bei `AI_PROVIDER=qwen-*`/`UM_RUN_QWEN_SMOKE=1`;
         `.github/workflows/ci.qwen-smoke.yml` und `docs/roadmap/RoleOutCommands.(md|json|yaml)` spiegeln denselben Flow.
       - Fraktal95 Update versieht `scripts/smoke/boundary-smoke.mjs` mit `eventKey`-Dedupe-Prüfung, `tests/smoke/boundary-smoke.spec.ts` sichert die Helper und das Runbook `docs/runbooks/sigil-publisher.md` dokumentiert die Publisher-Integration.
+      - Fraktal95 Runtime Hardening erzwingt TTL-Dedupe direkt im Boundary-Service (`409 duplicate_eventKey`, JSONL/Snapshot-Skip), exportiert `boundary_law_deduped_total` & `boundary_dedupe_store_size` und ergänzt Grafana-Kacheln plus Smoke-Metrik-Check.
     links:
       - label: run-dist
         path: scripts/run-dist.mjs
