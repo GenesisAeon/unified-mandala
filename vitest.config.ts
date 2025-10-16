@@ -33,6 +33,7 @@ if (!runExperimental) {
 export default defineConfig({
   cacheDir: 'tmp/.vite',
   resolve: {
+    conditions: ['vitest', 'test', 'development', 'import', 'module'],
     alias: {
       '@config': path.resolve(__dirname, 'config'),
       '@mandala/boundary-core': path.resolve(__dirname, 'stubs/boundary-core.ts'),

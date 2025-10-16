@@ -1,7 +1,7 @@
 meta:
   version: '1.0'
-  generated: '2025-12-08 00:00:00+00:00'
-  fraktal: 97
+  generated: '2025-12-09 00:00:00+00:00'
+  fraktal: 98
   repo: unified-mandala
   source: ChefDevAI MandalaMap bootstrap
   reference_docs:
@@ -328,6 +328,9 @@ entries:
       - 'Fraktal83 behebt 400er-Antworten ("Invalid value: ''text''") durch korrektes
         Responses-Mapping (`input_text`/`output_text`) in `packages/ai`; UI-Smokes
         funktionieren wieder, sobald `OPENAI_API_KEY` gesetzt ist.'
+      - 'Fraktal98 setzt konditionale `vitest`/`test`/`development`-Exports in `packages/ai` und
+        ergänzt `resolve.conditions` in `vitest.config.ts`, sodass Vitest-Pre-Commits
+        ohne vorab gebaute `dist/`-Artefakte laufen (DevTalk Option A).'
     links:
       - label: apps/ui package.json
         path: apps/ui/package.json

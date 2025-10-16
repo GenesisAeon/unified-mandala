@@ -1,8 +1,8 @@
 {
   "fraktal": 98,
   "phase": "Boundary Idempotency & Ops badges",
-  "status": "Boundary service now exports boundary_observe_total and boundary_idempotency_missing_total metrics, CORS preflights expose Idempotency-Key, and JS publishBoundary auto-sends the header; docs/trackers remain aligned while non-JS bridges stay on the follow-up list.",
-  "next_hook": "Audit non-JS/CLI publishers for Idempotency-Key headers and wire dedupe/observe alerts (dedupes/min, cache utilisation, 409 ratio).",
+  "status": "Boundary service now exports boundary_observe_total and boundary_idempotency_missing_total metrics, CORS preflights expose Idempotency-Key, JS publishBoundary auto-sends the header, and Vitest uses zero-build exports (packages/ai + vitest.config.ts); docs/trackers remain aligned while non-JS bridges and workspace audits stay on the follow-up list.",
+  "next_hook": "Audit non-JS/CLI publishers for Idempotency-Key headers, wire dedupe/observe alerts (dedupes/min, cache utilisation, 409 ratio), and extend vitest conditional exports to additional packages if required.",
   "changes": [
     {
       "path": "docs/boundary/GettingStarted.md",
@@ -67,11 +67,24 @@
     {
       "path": "docs/fraktal/codexfeedback/codexfeedback-fraktal98.yaml",
       "desc": "Fraktal log capturing the rollout."
+    },
+    {
+      "path": "packages/ai/package.json",
+      "desc": "Declares conditional vitest/test/development exports so tests consume source without building dist."
+    },
+    {
+      "path": "vitest.config.ts",
+      "desc": "Adds resolve.conditions ['vitest','development','module','import'] to prioritise source exports during Vitest runs."
+    },
+    {
+      "path": "analysis/devtalk98-evaluation.md",
+      "desc": "Evaluates DevTalk focus, documents zero-build Vitest fix and remaining hooks."
     }
   ],
   "validate": [
     "node scripts/smoke/boundary-service-smoke.mjs",
-    "pnpm vitest run tests/boundary/publisher.test.ts"
+    "pnpm vitest run tests/boundary/publisher.test.ts",
+    "pnpm vitest run"
   ],
   "refs": [
     "docs/boundary/GettingStarted.md",
@@ -84,6 +97,9 @@
     "docs/roadmap/v1.0-stabilization-playbook.yaml",
     "MandalaMap.(md|json|yaml)",
     "codexfeedback.(md|json|yaml)",
-    "analysis/devtalk96-evaluation.md"
+    "analysis/devtalk96-evaluation.md",
+    "packages/ai/package.json",
+    "vitest.config.ts",
+    "analysis/devtalk98-evaluation.md"
   ]
 }

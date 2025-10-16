@@ -1,6 +1,11 @@
 {
   "runs": [
     {
+      "fraktalrun": "Fraktal98 ZeroBuildVitest",
+      "status": "done",
+      "notes": "packages/ai/package.json exposes conditional vitest/test/development targets so Vitest resolves source without dist, vitest.config.ts adds resolve.conditions to prefer those exports, and analysis/devtalk98-evaluation.md records the DevTalk alignment; stabilization playbook, MandalaMap (md/json/yaml) and codexfeedback-latest files capture the zero-build fix while keeping the hook on further workspace audits and boundary alerting."
+    },
+    {
       "fraktalrun": "Fraktal98 PublisherRollout",
       "status": "done",
       "notes": "Boundary-service observability update extends Fraktal98: scripts/boundary-service.ts now exposes boundary_observe_total{result} and boundary_idempotency_missing_total, answers OPTIONS /boundary/observe with CORS headers exposing Idempotency-Key, and annotates OTEL spans for dedupe hits/event keys. The smoke script checks preflight/header exposure and new counters, docs (GettingStarted, stabilization playbook, MandalaMap, codexfeedback) document the update, while JS publishBoundary continues to auto-send Idempotency-Key and non-JS bridges plus alert wiring remain the follow-up."

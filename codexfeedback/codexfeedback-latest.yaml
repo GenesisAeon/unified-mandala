@@ -2,30 +2,31 @@ fraktal: 98
 phase: Boundary Idempotency & Ops badges
 status: Boundary-Service exportiert boundary_observe_total und boundary_idempotency_missing_total,
   CORS-Preflights exponieren Idempotency-Key; JS publishBoundary sendet weiterhin
-  automatisch. Tracker/Doks bleiben synchron, Nicht-JS-Bridges & Alerts offen.
-next_hook: "Nicht-JS-/CLI-Publisher auf Idempotency-Key pr\xFCfen und Dedupe/Observe-Alerts\
-  \ (Dedupes/min, Cache, 409-Ratio) verankern."
+  automatisch und Vitest nutzt Zero-Build-Exports (`packages/ai`, `vitest.config.ts`).
+  Tracker/Doks bleiben synchron, Nicht-JS-Bridges, Alerts & Workspace-Audits offen.
+next_hook: Nicht-JS-/CLI-Publisher auf Idempotency-Key prüfen, Dedupe/Observe-Alerts
+  (Dedupes/min, Cache, 409-Ratio) verankern und weitere Pakete auf `vitest`-Exports
+  prüfen.
 changes:
   - path: docs/boundary/GettingStarted.md
     desc: Dokumentiert neue Metrics-Curl-Beispiele und OPTIONS-Preflight.
   - path: scripts/smoke/boundary-service-smoke.mjs
-    desc: "Smoke pr\xFCft Header-Expose, OPTIONS-Preflight und neue Prometheus-Counter."
+    desc: Smoke prüft Header-Expose, OPTIONS-Preflight und neue Prometheus-Counter.
   - path: scripts/boundary-service.ts
     desc: Erweitert `/metrics` um boundary_observe_total/boundary_idempotency_missing_total,
       liefert CORS-Expose-Header und setzt OTel-Attribute.
   - path: src/boundary/publisher.ts
     desc: Default-HTTP-Fallback setzt Idempotency-Key (inkl. Canonical-Fallback).
   - path: tests/boundary/publisher.test.ts
-    desc: "Vitest deckt auto-generierte vs. \xFCbergebene Keys + Header-Weitergabe ab."
+    desc: Vitest deckt auto-generierte vs. übergebene Keys + Header-Weitergabe ab.
   - path: docs/runbooks/sigil-publisher.md
-    desc: "Boundary-Coupling beschreibt Auto-Header f\xFCr JS-Bridges und Follow-ups."
+    desc: Boundary-Coupling beschreibt Auto-Header für JS-Bridges und Follow-ups.
   - path: docs/roadmap/v1.0-stabilization-playbook.md
     desc: Statusnotiz verweist auf boundary_observe_total, CORS & OTel Update.
   - path: docs/roadmap/v1.0-stabilization-playbook.yaml
-    desc: "Checkpoint erg\xE4nzt boundary_observe_total/idempotency_missing_total &\
-      \ CORS-Expose."
+    desc: Checkpoint ergänzt boundary_observe_total/idempotency_missing_total & CORS-Expose.
   - path: MandalaMap.md
-    desc: "Automation-Samples erg\xE4nzen Boundary-Service Observability Update."
+    desc: Automation-Samples ergänzen Boundary-Service Observability Update.
   - path: MandalaMap.json
     desc: Scripts-Eintrag beschreibt Boundary-Service Observability Update.
   - path: MandalaMap.yaml
@@ -33,16 +34,24 @@ changes:
   - path: codexfeedback.md
     desc: Root-Codexfeedback log erfasst jetzt das Observability-Update (Metrics + CORS).
   - path: codexfeedback.json
-    desc: "Runs-Eintrag zu Fraktal98 enth\xE4lt nun Observability-Metriken & CORS-Hinweis."
+    desc: Runs-Eintrag zu Fraktal98 enthält nun Observability-Metriken & CORS-Hinweis.
   - path: codexfeedback.yaml
     desc: Current/Hook spiegeln boundary_observe_total & Alert-Follow-up.
   - path: analysis/devtalk96-evaluation.md
     desc: Metrics-Zeile deckt neue Counter ab, Commands enthalten OPTIONS-Check.
   - path: docs/fraktal/codexfeedback/codexfeedback-fraktal98.yaml
-    desc: "Fraktal-Log f\xFCr den Publisher-Rollout."
+    desc: Fraktal-Log für den Publisher-Rollout.
+  - path: packages/ai/package.json
+    desc: Konditionale `vitest`/`test`/`development`-Exports erlauben Tests ohne vorab
+      gebauten `dist/`-Ordner.
+  - path: vitest.config.ts
+    desc: '`resolve.conditions` priorisieren Source-Exports für Vitest-Läufe.'
+  - path: analysis/devtalk98-evaluation.md
+    desc: DevTalk-Abgleich dokumentiert Zero-Build Fix & verbleibende Hooks.
 validate:
   - node scripts/smoke/boundary-service-smoke.mjs
   - pnpm vitest run tests/boundary/publisher.test.ts
+  - pnpm vitest run
 refs:
   - docs/boundary/GettingStarted.md
   - scripts/smoke/boundary-service-smoke.mjs
@@ -55,3 +64,6 @@ refs:
   - MandalaMap.(md|json|yaml)
   - codexfeedback.(md|json|yaml)
   - analysis/devtalk96-evaluation.md
+  - packages/ai/package.json
+  - vitest.config.ts
+  - analysis/devtalk98-evaluation.md
