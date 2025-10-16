@@ -45,9 +45,13 @@ export async function publishBoundary(event: BoundaryEvent): Promise<void> {
   if (!endpoint) return;
   try {
     const target = new URL('/boundary/observe', endpoint).toString();
+    const headers: Record<string, string> = { 'Content-Type': 'application/json' };
+    if (isValidBoundaryEventKey(enriched.eventKey)) {
+      headers['Idempotency-Key'] = enriched.eventKey!;
+    }
     await fetch(target, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers,
       body: JSON.stringify({ law: enriched }),
     });
   } catch {

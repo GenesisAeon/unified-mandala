@@ -1,0 +1,29 @@
+fraktal: 98
+status: done
+owner: Johann
+summary:
+  - '`src/boundary/publisher.ts` hängt im Default-HTTP-Fallback seit Fraktal97 automatisch den `Idempotency-Key` an; Header-Validierung nutzt weiterhin `stableBoundaryEventKey` als Fallback.'
+  - '`tests/boundary/publisher.test.ts` prüft auto-generierte und vorgegebene Keys (Header-Echo, JSON-Body) über Vitest.'
+  - 'Docs & Tracker (`docs/runbooks/sigil-publisher.md`, `docs/roadmap/v1.0-stabilization-playbook.(md|yaml)`, `MandalaMap.(md|json|yaml)`, `codexfeedback.*`, `analysis/devtalk96-evaluation.md`) heben den JS-Publisher-Rollout hervor und lassen Nicht-JS-Bridges als Follow-up bestehen.'
+deliverables:
+  - src/boundary/publisher.ts
+  - tests/boundary/publisher.test.ts
+  - docs/runbooks/sigil-publisher.md
+  - docs/roadmap/v1.0-stabilization-playbook.md
+  - docs/roadmap/v1.0-stabilization-playbook.yaml
+  - MandalaMap.md
+  - MandalaMap.yaml
+  - MandalaMap.json
+  - codexfeedback.md
+  - codexfeedback.json
+  - codexfeedback.yaml
+  - codexfeedback/codexfeedback-latest.md
+  - codexfeedback/codexfeedback-latest.json
+  - codexfeedback/codexfeedback-latest.yaml
+  - analysis/devtalk96-evaluation.md
+commands:
+  - pnpm vitest run tests/boundary/publisher.test.ts
+hook:
+  progress: JS-Publisher liefert Idempotency-Key automatisch; Docs synchronisiert.
+  next_step: Nicht-JS-Bridges & Alerting nachziehen.
+repeat_required: false

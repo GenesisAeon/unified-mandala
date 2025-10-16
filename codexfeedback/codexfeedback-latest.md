@@ -1,32 +1,31 @@
-# Codexfeedback – Fraktal 96
+# Codexfeedback – Fraktal 98
 
-- Phase: Boundary Dedupe Canonicalization & Ops Metrics follow-through
-- Status: stableBoundaryEventKey canonicalizes payloads, boundary-service writes snapshots atomar und zählt HTTP-Statuscodes (`boundary_http_responses_total`) für dedizierte Alerts; Vitest deckt die Canonicalisierung ab.
-- Next Hook: Roll canonical helper into remaining ingest/export scripts und beobachten Prometheus-Alerts (Dedupes/min vs. 202/409 Ratio) für Replay-Spitzen.
+- Phase: Boundary Idempotency & Ops badges
+- Status: JS `publishBoundary` sendet den `Idempotency-Key`-Header automatisch; Docs & Tracker spiegeln den Rollout, Nicht-JS-Bridges bleiben als Follow-up.
+- Next Hook: Nicht-JS-/CLI-Publisher auf Header-Pflicht prüfen und Dedupe-Alerts (Dedupes/min vs. Cache) verankern.
 
 What changed
 
-- `packages/boundary-core/src/canonical.ts` · New helper normalises payload objects (sort keys, guard circular refs, handle non-finite numbers) for deterministic hashing.
-- `packages/boundary-core/src/event-key.ts` · Uses canonical payload serialisation when building SHA1 keys; vitest contract ensures reordered keys hash identically.
-- `packages/boundary-core/src/index.ts` · Exports the canonical helper for downstream consumers.
-- `packages/boundary-core/src/__tests__/event-key.test.ts` · Covers payload reordering and circular/non-finite edge-cases.
-- `scripts/boundary-service.ts` · Writes `laws.json` atomar (`.tmp` → rename), increments `boundary_http_responses_total` per status und meldet Snapshot-Write-Fehler als 500.
-- `docs/roadmap/v1.0-stabilization-playbook.(md|yaml)` · Observability-Abschnitt ergänzt den Canonical-Hardening-Eintrag mit HTTP-Status-Counter & Atomic Snapshots.
-- `MandalaMap.(md|json|yaml)` · Meta auf Fraktal96 gehoben, Automation-Cluster referenziert Canonical Hardening & boundary-service Link.
-- `codexfeedback.(md|json|yaml)` & `codexfeedback/codexfeedback-latest.(json|yaml)` · Tracker aktualisiert (Fraktal96 done, Hook = Alert-Monitoring & Publisher-Rollout).
-- `docs/fraktal/codexfeedback/codexfeedback-fraktal96.yaml` · Neuer Log-Eintrag für diesen Lauf.
+- `src/boundary/publisher.ts` · Default-HTTP-Fallback setzt `Idempotency-Key` (Validierung inkl. Canonical-Fallback).
+- `tests/boundary/publisher.test.ts` · Vitest deckt auto-generierte vs. manuell gesetzte Keys und Header-Weitergabe ab.
+- `docs/runbooks/sigil-publisher.md` · Boundary-Coupling Abschnitt erwähnt den Auto-Header für JS-Bridges + Follow-up für andere Implementierungen.
+- `docs/roadmap/v1.0-stabilization-playbook.(md|yaml)` · Status-Abschnitt ergänzt den Publisher-Rollout.
+- `MandalaMap.(md|json|yaml)` · Automation-Sektion notiert den Idempotency-Publisher-Hook.
+- `codexfeedback.(md|json|yaml)` & `codexfeedback/codexfeedback-latest.(json|yaml)` · Tracker auf Fraktal98 gehoben, Hook aktualisiert.
+- `analysis/devtalk96-evaluation.md` · Idempotency-Row verweist auf JS-Auto-Header, Follow-up betont Nicht-JS-Pfade.
+- `docs/fraktal/codexfeedback/codexfeedback-fraktal98.yaml` · Lauf dokumentiert (Auto-Header, Tests, Docs).
 
 Validate
 
-- `pnpm vitest run packages/boundary-core/src/__tests__/event-key.test.ts`
-- `pnpm vitest run packages/boundary-engine`
-- `node scripts/smoke/boundary-service-smoke.mjs`
+- `pnpm vitest run tests/boundary/publisher.test.ts`
 
 Refs
 
-- docs/roadmap/v1.0-stabilization-playbook.(md|yaml)
+- src/boundary/publisher.ts
+- tests/boundary/publisher.test.ts
+- docs/runbooks/sigil-publisher.md
+- docs/roadmap/v1.0-stabilization-playbook.md
+- docs/roadmap/v1.0-stabilization-playbook.yaml
 - MandalaMap.(md|json|yaml)
-- packages/boundary-core/src/event-key.ts
-- packages/boundary-core/src/canonical.ts
-- packages/boundary-core/src/**tests**/event-key.test.ts
-- scripts/boundary-service.ts
+- codexfeedback.(md|json|yaml)
+- analysis/devtalk96-evaluation.md
