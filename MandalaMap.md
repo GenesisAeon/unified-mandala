@@ -42,6 +42,7 @@ Samples:
   - Codex sync scripts (active) — codex-sync/
   - Fraktalrun pipelines (active) — fraktalrun/
   - Boundary Idempotency publisher (active) — src/boundary/publisher.ts (HTTP-Fallback sendet `Idempotency-Key`).
+  - Boundary service observability update (active) — scripts/boundary-service.ts (`/metrics` zählt `boundary_observe_total{result="accepted|duplicate|invalid"}`, `boundary_idempotency_missing_total`; CORS exponiert `Idempotency-Key`).
 - governance:
   - Codex governance manifests (active) — codex/
   - Configuration bundles (active) — config/

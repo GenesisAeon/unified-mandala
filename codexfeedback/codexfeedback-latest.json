@@ -1,9 +1,21 @@
 {
   "fraktal": 98,
   "phase": "Boundary Idempotency & Ops badges",
-  "status": "JS publishBoundary automatically sends Idempotency-Key headers; docs/trackers updated while non-JS bridges remain on the follow-up list.",
-  "next_hook": "Audit non-JS/CLI publishers for Idempotency-Key headers and wire dedupe alerts (dedupes/min vs cache).",
+  "status": "Boundary service now exports boundary_observe_total and boundary_idempotency_missing_total metrics, CORS preflights expose Idempotency-Key, and JS publishBoundary auto-sends the header; docs/trackers remain aligned while non-JS bridges stay on the follow-up list.",
+  "next_hook": "Audit non-JS/CLI publishers for Idempotency-Key headers and wire dedupe/observe alerts (dedupes/min, cache utilisation, 409 ratio).",
   "changes": [
+    {
+      "path": "docs/boundary/GettingStarted.md",
+      "desc": "Documents the new metrics curl + OPTIONS preflight example."
+    },
+    {
+      "path": "scripts/smoke/boundary-service-smoke.mjs",
+      "desc": "Smoke now asserts Idempotency-Key expose headers, OPTIONS preflight, and new Prometheus counters."
+    },
+    {
+      "path": "scripts/boundary-service.ts",
+      "desc": "Adds boundary_observe_total/boundary_idempotency_missing_total metrics, CORS preflight headers, and OTEL span attributes for dedupe hits/event keys."
+    },
     {
       "path": "src/boundary/publisher.ts",
       "desc": "Default HTTP fallback now sets Idempotency-Key (validated with canonical fallback)."
@@ -18,47 +30,53 @@
     },
     {
       "path": "docs/roadmap/v1.0-stabilization-playbook.md",
-      "desc": "Status paragraph references the publisher rollout."
+      "desc": "Observability status note references boundary_observe_total, CORS, and OTEL attributes."
     },
     {
       "path": "docs/roadmap/v1.0-stabilization-playbook.yaml",
-      "desc": "Observability checkpoint highlights JS fallback auto-header."
+      "desc": "Metrics checkpoint mentions boundary_observe_total/idempotency_missing_total and CORS expose."
     },
     {
       "path": "MandalaMap.md",
-      "desc": "Automation samples list the Idempotency publisher hook."
+      "desc": "Automation samples add boundary-service observability update."
     },
     {
       "path": "MandalaMap.json",
-      "desc": "Notes mention the publisher rollout."
+      "desc": "Scripts entry notes the boundary-service observability update."
     },
     {
       "path": "MandalaMap.yaml",
-      "desc": "Automation group includes the publisher rollout note."
+      "desc": "Automation notes include the 2025-12-09 observability update."
     },
     {
       "path": "codexfeedback.md",
-      "desc": "New entry logging Fraktal98 PublisherRollout."
+      "desc": "Root codexfeedback log now records the Fraktal98 observability update (metrics+CORS)."
     },
     {
       "path": "codexfeedback.json",
-      "desc": "Runs array prepends the PublisherRollout log."
+      "desc": "Runs array updates the Fraktal98 entry with observability metrics + CORS notes."
     },
     {
       "path": "codexfeedback.yaml",
-      "desc": "Current set to 98 with updated history/hook."
+      "desc": "Current/hook capture the new boundary_observe_total metrics and alert follow-up."
     },
     {
       "path": "analysis/devtalk96-evaluation.md",
-      "desc": "Idempotency row notes JS auto-header and non-JS follow-up."
+      "desc": "Metrics row covers new counters and OPTIONS command."
     },
     {
       "path": "docs/fraktal/codexfeedback/codexfeedback-fraktal98.yaml",
       "desc": "Fraktal log capturing the rollout."
     }
   ],
-  "validate": ["pnpm vitest run tests/boundary/publisher.test.ts"],
+  "validate": [
+    "node scripts/smoke/boundary-service-smoke.mjs",
+    "pnpm vitest run tests/boundary/publisher.test.ts"
+  ],
   "refs": [
+    "docs/boundary/GettingStarted.md",
+    "scripts/smoke/boundary-service-smoke.mjs",
+    "scripts/boundary-service.ts",
     "src/boundary/publisher.ts",
     "tests/boundary/publisher.test.ts",
     "docs/runbooks/sigil-publisher.md",

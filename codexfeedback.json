@@ -3,7 +3,7 @@
     {
       "fraktalrun": "Fraktal98 PublisherRollout",
       "status": "done",
-      "notes": "src/boundary/publisher.ts now attaches Idempotency-Key headers in the default HTTP fallback, new vitest cases cover generated vs supplied keys, and docs (runbook, playbook, MandalaMap, codexfeedback, DevTalk audit) note JS bridges as auto-aligned while highlighting non-JS follow-ups."
+      "notes": "Boundary-service observability update extends Fraktal98: scripts/boundary-service.ts now exposes boundary_observe_total{result} and boundary_idempotency_missing_total, answers OPTIONS /boundary/observe with CORS headers exposing Idempotency-Key, and annotates OTEL spans for dedupe hits/event keys. The smoke script checks preflight/header exposure and new counters, docs (GettingStarted, stabilization playbook, MandalaMap, codexfeedback) document the update, while JS publishBoundary continues to auto-send Idempotency-Key and non-JS bridges plus alert wiring remain the follow-up."
     },
     {
       "fraktalrun": "Fraktal97 BoundaryIdempotency",
