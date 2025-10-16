@@ -1,47 +1,37 @@
 fraktal:
-  id: 95
-  phase: 'Sigil Runtime Guard & Membrane OpsPanel Integration · Boundary Dedupe follow-up'
-  status: 'Boundary smoke enforces eventKey coverage; boundary-service now dedupes runtime events (409 duplicate_eventKey + metrics) and Grafana surfaces dedupe health.'
-  next_hook: 'Roll stable eventKey generation into remaining publishers/bridges and monitor dedupe counters for replay spikes.'
+  id: 96
+  phase: 'Boundary Dedupe Canonicalization & Ops Metrics follow-through'
+  status: 'stableBoundaryEventKey canonicalizes payloads; boundary-service schreibt Snapshots atomar und liefert boundary_http_responses_total für Alert-Splitting.'
+  next_hook: 'Canonical helper auf verbleibende Publisher/Exporter ausrollen und Prometheus Alerts (Dedupes/min vs. 202/409) beobachten.'
 changes:
-  - file: scripts/smoke/boundary-smoke.mjs
-    desc: Exports helpers and enforces eventKey dedupe/missing-key detection with explicit exit codes.
-  - file: tests/smoke/boundary-smoke.spec.ts
-    desc: Vitest coverage for snapshot extraction, missing/duplicate keys and success path.
-  - file: docs/runbooks/sigil-publisher.md
-    desc: Runbook describing publishSigilMessage wiring (logger/bus/listeners, boundary coupling, metrics, dedupe).
   - file: scripts/boundary-service.ts
-    desc: Runtime service enforces TTL dedupe, validates eventKey hashes and exports Prometheus counter/gauge.
-  - file: scripts/smoke/boundary-service-smoke.mjs
-    desc: Smoke asserts 202/409 flow and checks boundary_law_deduped_total via /metrics.
+    desc: Boundary-Service schreibt Snapshots atomar (Tmp + Rename), zählt HTTP-Status (`boundary_http_responses_total`) und meldet Snapshot-Write-Fehler sauber.
   - file: packages/boundary-core/src/event-key.ts
-    desc: Provides stableBoundaryEventKey + validator shared by engine/publisher/service.
-  - file: packages/boundary-engine/src/extractor.ts
-    desc: Observations now include deterministic eventKey hashes (test updated for pattern).
-  - file: src/boundary/publisher.ts
-    desc: Publisher auto-attaches stable eventKey hashes before invoking hook/endpoint.
-  - file: grafana/dashboards/boundary.json
-    desc: Adds Dedupes/min + Dedupe cache size stats.
-  - file: grafana/dashboards/boundary-health-patch.json
-    desc: Mirrors dedupe stat tiles in the health patch dashboard.
+    desc: stableBoundaryEventKey nutzt kanonische Payload-Serialisierung für deterministische Hashes.
+  - file: packages/boundary-core/src/index.ts
+    desc: Exportiert canonicalizePayload für Downstream-Consumer.
+  - file: packages/boundary-core/src/canonical.ts
+    desc: Helper sortiert Schlüssel rekursiv, schützt Zyklen und wandelt Sonderwerte (Infinity) deterministisch.
+  - file: packages/boundary-core/src/__tests__/event-key.test.ts
+    desc: Vitest verifiziert gleiche Hashes bei Schlüssel-Umsortierung und kreisenden Payloads.
   - file: docs/roadmap/v1.0-stabilization-playbook.(md|yaml)
-    desc: Observability stream notes the Fraktal95 update (boundary smoke dedupe + runbook).
+    desc: Observability-Stream ergänzt Canonical-Hardening (Atomics + HTTP-Status-Counter).
   - file: MandalaMap.(md|json|yaml)
-    desc: Generated timestamp refreshed and automation scripts entry references boundary dedupe + runbook.
-  - file: docs/fraktal/codexfeedback/codexfeedback-fraktal95.yaml
-    desc: Marked Fraktal95 as done with updated hook guidance.
+    desc: Meta auf Fraktal96 aktualisiert, Automation-Cluster referenziert Canonical Hardening & boundary-service Link.
+  - file: docs/fraktal/codexfeedback/codexfeedback-fraktal96.yaml
+    desc: Log-Eintrag für diesen Lauf inkl. Canonical-Hardening Hook.
   - file: codexfeedback.(md|json|yaml)
-    desc: Repository-level tracker updated to reflect closed follow-up.
+    desc: Tracker heben Fraktal96 als abgeschlossen hervor; Hook verweist auf Alert-Monitoring.
+  - file: codexfeedback/codexfeedback-latest.(md|json|yaml)
+    desc: Latest-Summary an Canonical Hardening angepasst.
 validate:
-  - pnpm vitest run tests/smoke/boundary-smoke.spec.ts
+  - pnpm vitest run packages/boundary-core/src/__tests__/event-key.test.ts
   - pnpm vitest run packages/boundary-engine
   - node scripts/smoke/boundary-service-smoke.mjs
 refs:
-  - docs/runbooks/sigil-publisher.md
   - docs/roadmap/v1.0-stabilization-playbook.(md|yaml)
   - MandalaMap.(md|json|yaml)
-  - scripts/smoke/boundary-smoke.mjs
   - scripts/boundary-service.ts
-  - scripts/smoke/boundary-service-smoke.mjs
-  - grafana/dashboards/boundary.json
-  - grafana/dashboards/boundary-health-patch.json
+  - packages/boundary-core/src/event-key.ts
+  - packages/boundary-core/src/canonical.ts
+  - packages/boundary-core/src/__tests__/event-key.test.ts

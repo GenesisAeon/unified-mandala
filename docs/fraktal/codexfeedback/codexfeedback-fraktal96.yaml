@@ -1,0 +1,33 @@
+fraktal: 96
+status: done
+owner: Johann
+summary:
+  - 'stableBoundaryEventKey nutzt jetzt kanonisierte Payloads (`packages/boundary-core/src/canonical.ts`) für deterministische SHA1-Hashes.'
+  - 'Vitest (`packages/boundary-core/src/__tests__/event-key.test.ts`) deckt Schlüsselumsortierung, kreisende Payloads und Infinity-Werte ab.'
+  - 'Boundary-Service schreibt `laws.json` atomar (Tmp → Rename), zählt HTTP-Status (`boundary_http_responses_total`) und meldet Snapshot-Fehler als 500.'
+  - 'Stabilization-Playbook & MandalaMap dokumentieren den Canonical-Patch, codexfeedback* setzt den neuen Hook auf Alert-Monitoring (Dedupes/min ↔ 202/409).' 
+deliverables:
+  - packages/boundary-core/src/canonical.ts
+  - packages/boundary-core/src/event-key.ts
+  - packages/boundary-core/src/index.ts
+  - packages/boundary-core/src/__tests__/event-key.test.ts
+  - scripts/boundary-service.ts
+  - docs/roadmap/v1.0-stabilization-playbook.md
+  - docs/roadmap/v1.0-stabilization-playbook.yaml
+  - MandalaMap.md
+  - MandalaMap.yaml
+  - MandalaMap.json
+  - codexfeedback/codexfeedback-latest.md
+  - codexfeedback/codexfeedback-latest.json
+  - codexfeedback/codexfeedback-latest.yaml
+  - codexfeedback.md
+  - codexfeedback.json
+  - codexfeedback.yaml
+commands:
+  - pnpm vitest run packages/boundary-core/src/__tests__/event-key.test.ts
+  - pnpm vitest run packages/boundary-engine
+  - node scripts/smoke/boundary-service-smoke.mjs
+hook:
+  progress: Canonical helper aktiv; Boundary-Service liefert atomare Snapshots & HTTP-Status-Counter.
+  next_step: Canonicalisierung für restliche Publisher/Exporter ausrollen und dedupe Alerts beobachten (Dedupes/min vs. 202/409).
+repeat_required: false

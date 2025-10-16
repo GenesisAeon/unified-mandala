@@ -1,5 +1,6 @@
 import { createHash } from 'node:crypto';
 import type { BoundaryObservation } from './types.js';
+import { canonicalizePayload } from './canonical.js';
 
 type KeyInput = Pick<BoundaryObservation, 'ruleId' | 'source' | 'ts'> & {
   verdict?: BoundaryObservation['verdict'] | string;
@@ -8,18 +9,16 @@ type KeyInput = Pick<BoundaryObservation, 'ruleId' | 'source' | 'ts'> & {
   details?: BoundaryObservation['details'];
 };
 
-function serialize(value: unknown): string {
-  try {
-    return JSON.stringify(value ?? null);
-  } catch {
-    return String(value ?? '');
-  }
-}
-
 export function stableBoundaryEventKey(law: KeyInput): string {
-  const raw = [law.ruleId, law.source, law.ts, law.verdict ?? '', law.severity ?? '', serialize(law.payload ?? law.details ?? null)]
-    .map((part) => (typeof part === 'string' ? part : serialize(part)))
-    .join('|');
+  const canonicalPayload = canonicalizePayload(law.payload ?? law.details ?? null);
+  const raw = [
+    String(law.ruleId ?? ''),
+    String(law.source ?? ''),
+    String(law.ts ?? ''),
+    String(law.verdict ?? ''),
+    String(law.severity ?? ''),
+    canonicalPayload,
+  ].join('|');
   return createHash('sha1').update(raw).digest('hex');
 }
 
