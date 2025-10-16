@@ -1,0 +1,28 @@
+fraktal: 99
+status: done
+owner: Johann
+summary:
+  - '`scripts/boundary-service.ts` beantwortet `OPTIONS`-Preflights mit `Idempotency-Key` in Allow-/Expose-Headers, setzt die Header auf allen JSON-Antworten und exportiert `boundary_observe_total` (accepted|duplicate|invalid|error) sowie `boundary_idempotency_missing_total`.'
+  - '`scripts/smoke/boundary-service-smoke.mjs` deckt Preflight, Header-Expose, fehlende Header und Prometheus-Zähler ab (202/409, kanonische Keys).'
+  - 'Docs & Tracker (`docs/roadmap/v1.0-stabilization-playbook.(md|yaml)`, `MandalaMap.(md|json|yaml)`, `codexfeedback.*`, `analysis/devtalk99-evaluation.md`) markieren die Server-Parität und halten Alerts/Nicht-JS-Publisher als Follow-up fest.'
+deliverables:
+  - scripts/boundary-service.ts
+  - scripts/smoke/boundary-service-smoke.mjs
+  - docs/roadmap/v1.0-stabilization-playbook.md
+  - docs/roadmap/v1.0-stabilization-playbook.yaml
+  - MandalaMap.md
+  - MandalaMap.yaml
+  - MandalaMap.json
+  - codexfeedback.md
+  - codexfeedback.json
+  - codexfeedback.yaml
+  - codexfeedback/codexfeedback-latest.md
+  - codexfeedback/codexfeedback-latest.json
+  - codexfeedback/codexfeedback-latest.yaml
+  - analysis/devtalk99-evaluation.md
+commands:
+  - node scripts/smoke/boundary-service-smoke.mjs
+hook:
+  progress: Boundary-Service liefert CORS-Expose & Idempotency-Metriken; Smoke bestätigt Preflight/Missing-Header/Prometheus.
+  next_step: Alerts (409-Ratio, Missing Header) und Nicht-JS-Publisher prüfen.
+repeat_required: false

@@ -52,6 +52,8 @@ let dedupeGauge: any = null;
 let responsesCounter: any = null;
 let responseFamilyCounter: any = null;
 let snapshotErrorCounter: any = null;
+let observeResultCounter: any = null;
+let idempotencyMissingCounter: any = null;
 
 const DEDUPE_TTL_MS = Number(process.env.BOUNDARY_DEDUPE_TTL_MS ?? 6 * 60 * 60 * 1000);
 const DEDUPE_MAX = Number(process.env.BOUNDARY_DEDUPE_MAX ?? 50_000);
@@ -60,6 +62,13 @@ const JSONL_PATH = join(ROOT, 'laws.jsonl');
 const STATUS_PATH = join(ROOT, 'status.json');
 const DEDUPE_WARM_LIMIT = Number(process.env.BOUNDARY_WARM_CACHE_LIMIT ?? 200);
 const DEDUPE_HIT_WINDOW_MS = 60_000;
+
+const CORS_ALLOW_ORIGIN = process.env.BOUNDARY_CORS_ALLOW_ORIGIN ?? '*';
+const CORS_ALLOW_HEADERS =
+  process.env.BOUNDARY_CORS_ALLOW_HEADERS ?? 'Content-Type, Idempotency-Key';
+const CORS_ALLOW_METHODS = process.env.BOUNDARY_CORS_ALLOW_METHODS ?? 'GET,POST,OPTIONS';
+const CORS_EXPOSE_HEADERS = process.env.BOUNDARY_CORS_EXPOSE_HEADERS ?? 'Idempotency-Key';
+const CORS_MAX_AGE = process.env.BOUNDARY_CORS_MAX_AGE ?? '300';
 
 let dedupeHitsTotal = 0;
 const dedupeHitsWindow: number[] = [];
@@ -167,6 +176,17 @@ async function ensureMetrics() {
     snapshotErrorCounter = new prom.Counter({
       name: 'boundary_snapshot_write_errors_total',
       help: 'Count of snapshot write failures',
+      registers: [reg],
+    });
+    observeResultCounter = new prom.Counter({
+      name: 'boundary_observe_total',
+      help: 'Count of /boundary/observe results grouped by outcome',
+      labelNames: ['result'],
+      registers: [reg],
+    });
+    idempotencyMissingCounter = new prom.Counter({
+      name: 'boundary_idempotency_missing_total',
+      help: 'Count of observe requests missing Idempotency-Key header',
       registers: [reg],
     });
     updateDedupeGauge();
@@ -316,6 +336,10 @@ function sendJson(
   const text = JSON.stringify(payload);
   res.writeHead(code, {
     'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': CORS_ALLOW_ORIGIN,
+    'Access-Control-Allow-Headers': CORS_ALLOW_HEADERS,
+    'Access-Control-Allow-Methods': CORS_ALLOW_METHODS,
+    'Access-Control-Expose-Headers': CORS_EXPOSE_HEADERS,
     'Content-Length': Buffer.byteLength(text),
     ...extraHeaders,
   });
@@ -335,6 +359,20 @@ bootstrap();
 createServer(async (req: IncomingMessage, res: ServerResponse) => {
   const method = req.method || 'GET';
   const url = req.url || '/';
+
+  if (method === 'OPTIONS') {
+    res.writeHead(204, {
+      'Access-Control-Allow-Origin': CORS_ALLOW_ORIGIN,
+      'Access-Control-Allow-Headers': CORS_ALLOW_HEADERS,
+      'Access-Control-Allow-Methods': CORS_ALLOW_METHODS,
+      'Access-Control-Expose-Headers': CORS_EXPOSE_HEADERS,
+      'Access-Control-Max-Age': CORS_MAX_AGE,
+      'Content-Length': 0,
+    });
+    recordResponse(204);
+    res.end();
+    return;
+  }
 
   if (method === 'GET' && url === '/metrics') {
     ensureMetrics().then(async () => {
@@ -371,6 +409,12 @@ createServer(async (req: IncomingMessage, res: ServerResponse) => {
     req.on('data', (c: any) => (buf += c));
     req.on('end', async () => {
       const headerKeyRaw = readIdempotencyKey(req);
+      await ensureMetrics();
+      if (!headerKeyRaw) {
+        try {
+          idempotencyMissingCounter?.inc();
+        } catch {}
+      }
       try {
         const body = buf ? JSON.parse(buf) : {};
         let laws: Law[] = [];
@@ -379,6 +423,9 @@ createServer(async (req: IncomingMessage, res: ServerResponse) => {
         else if (body?.law) laws = [body.law as Law];
 
         if (!Array.isArray(laws) || laws.length === 0) {
+          try {
+            observeResultCounter?.inc({ result: 'invalid' });
+          } catch {}
           return sendJson(
             res,
             400,
@@ -388,6 +435,9 @@ createServer(async (req: IncomingMessage, res: ServerResponse) => {
         }
 
         if (headerKeyRaw && !isValidBoundaryEventKey(headerKeyRaw)) {
+          try {
+            observeResultCounter?.inc({ result: 'invalid' });
+          } catch {}
           return sendJson(
             res,
             400,
@@ -398,6 +448,9 @@ createServer(async (req: IncomingMessage, res: ServerResponse) => {
 
         const headerKey = headerKeyRaw && laws.length === 1 ? headerKeyRaw : null;
         if (headerKeyRaw && laws.length !== 1) {
+          try {
+            observeResultCounter?.inc({ result: 'invalid' });
+          } catch {}
           return sendJson(
             res,
             400,
@@ -425,7 +478,6 @@ createServer(async (req: IncomingMessage, res: ServerResponse) => {
           return { ...lawInput, eventKey } as Law;
         });
 
-        await ensureMetrics();
         const duplicates = canonicalLaws.filter((l) => dedupeHas(l.eventKey));
         if (duplicates.length) {
           try {
@@ -442,6 +494,9 @@ createServer(async (req: IncomingMessage, res: ServerResponse) => {
             eventKeys: duplicates.map((l) => l.eventKey),
           };
           if (responseKey) duplicatePayload.idempotencyKey = responseKey;
+          try {
+            observeResultCounter?.inc({ result: 'duplicate' });
+          } catch {}
           return sendJson(
             res,
             409,
@@ -483,6 +538,9 @@ createServer(async (req: IncomingMessage, res: ServerResponse) => {
             headerKey ?? (canonicalLaws.length === 1 ? canonicalLaws[0].eventKey : null);
           const payload: any = { error: 'snapshot_write_failed', detail: err?.message };
           if (responseKey) payload.idempotencyKey = responseKey;
+          try {
+            observeResultCounter?.inc({ result: 'error' });
+          } catch {}
           return sendJson(
             res,
             500,
@@ -504,6 +562,9 @@ createServer(async (req: IncomingMessage, res: ServerResponse) => {
           headerKey ?? (canonicalLaws.length === 1 ? canonicalLaws[0].eventKey : null);
         const acceptedPayload: any = { accepted: canonicalLaws.length };
         if (responseKey) acceptedPayload.idempotencyKey = responseKey;
+        try {
+          observeResultCounter?.inc({ result: 'accepted' });
+        } catch {}
         return sendJson(
           res,
           202,
@@ -511,6 +572,9 @@ createServer(async (req: IncomingMessage, res: ServerResponse) => {
           responseKey ? { 'Idempotency-Key': responseKey } : undefined,
         );
       } catch (e: any) {
+        try {
+          observeResultCounter?.inc({ result: 'invalid' });
+        } catch {}
         return sendJson(
           res,
           400,

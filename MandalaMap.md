@@ -1,8 +1,8 @@
 # Mandala Map
 
 - Version: 1.0
-- Fraktal: 97
-- Generated: 2025-12-08 00:00:00+00:00
+- Fraktal: 99
+- Generated: 2025-12-09 00:00:00+00:00
 
 Total entries: 76
 
@@ -42,6 +42,7 @@ Samples:
   - Codex sync scripts (active) — codex-sync/
   - Fraktalrun pipelines (active) — fraktalrun/
   - Boundary Idempotency publisher (active) — src/boundary/publisher.ts (HTTP-Fallback sendet `Idempotency-Key`).
+  - Boundary server parity (active) — scripts/boundary-service.ts (CORS-Expose + boundary_observe_total metrics).
 - governance:
   - Codex governance manifests (active) — codex/
   - Configuration bundles (active) — config/

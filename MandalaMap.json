@@ -872,7 +872,8 @@
         "Fraktal95 Update versieht `scripts/smoke/boundary-smoke.mjs` mit einer `eventKey`-Dedupe-Pr\u00fcfung, `tests/smoke/boundary-smoke.spec.ts` testet die Helper und `docs/runbooks/sigil-publisher.md` erkl\u00e4rt die Publisher-Integration.",
         "Fraktal95 Runtime Hardening erzwingt TTL-Dedupe direkt im Boundary-Service (`409 duplicate_eventKey` + JSONL/Snapshot-Skip), exportiert `boundary_law_deduped_total`/`boundary_dedupe_store_size` und erg\u00e4nzt Grafana-Kacheln sowie den Smoke-Metrik-Check.",
         "Fraktal95 Canonical Hardening (2025-12-07) kanonisiert Payloads in `stableBoundaryEventKey`, schreibt Boundary-Snapshots atomar (`laws.json.tmp` \u2192 `laws.json`) und z\u00e4hlt HTTP-Statuscodes via `boundary_http_responses_total`.",
-        "Fraktal97 Publisher Rollout sorgt daf\u00fcr, dass src/boundary/publisher.ts im Standard-HTTP-Fallback den Idempotency-Key mitsendet; Nicht-JS-Bridges bleiben als Follow-up."
+        "Fraktal97 Publisher Rollout sorgt daf\u00fcr, dass src/boundary/publisher.ts im Standard-HTTP-Fallback den Idempotency-Key mitsendet; Nicht-JS-Bridges bleiben als Follow-up.",
+        "Fraktal99 Server Parity beantwortet Boundary-CORS-Preflights mit Idempotency-Key in Allow-/Expose-Headers, liefert die Header auf allen JSON-Routen, z\u00e4hlt boundary_observe_total (accepted|duplicate|invalid|error) sowie boundary_idempotency_missing_total und erweitert den Smoke-Test um Preflight-/Prometheus-Pr\u00fcfungen."
       ],
       "path": "scripts/",
       "status": "active",

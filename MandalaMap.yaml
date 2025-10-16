@@ -809,6 +809,7 @@ entries:
       - Fraktal95 Canonical Hardening kanonisiert Payloads in `stableBoundaryEventKey`, schreibt Boundary-Snapshots atomar (`laws.json.tmp` → `laws.json`) und zählt HTTP-Statuscodes via `boundary_http_responses_total` für Alerting (202 vs. 409/5xx).
       - Fraktal97 Idempotency Alignment spiegelt `Idempotency-Key`, liefert `/boundary/status` (Dedupes/min, Cache, letzte 409, Snapshot-Errors), erweitert Prometheus (`boundary_http_response_family_total`, `boundary_snapshot_write_errors_total`), aktualisiert den Smoke-Test (Header-Echo + Status.json) und ergänzt `/demo/boundary` um Dedupe-/Cache-Badges.
       - Fraktal97 Publisher Rollout sorgt dafür, dass `src/boundary/publisher.ts` im Standard-HTTP-Fallback den `Idempotency-Key` mitsendet; Nicht-JS-Bridges bleiben als Follow-up im Tracker.
+      - Fraktal99 Server Parity beantwortet Boundary-CORS-Preflights mit `Idempotency-Key` in Allow-/Expose-Headers, liefert die Header auf allen JSON-Routen, zählt `boundary_observe_total` (`accepted|duplicate|invalid|error`) sowie `boundary_idempotency_missing_total` und erweitert den Smoke-Test um Preflight-/Prometheus-Checks.
     links:
       - label: run-dist
         path: scripts/run-dist.mjs

@@ -1,31 +1,29 @@
-# Codexfeedback – Fraktal 98
+# Codexfeedback – Fraktal 99
 
-- Phase: Boundary Idempotency & Ops badges
-- Status: JS `publishBoundary` sendet den `Idempotency-Key`-Header automatisch; Docs & Tracker spiegeln den Rollout, Nicht-JS-Bridges bleiben als Follow-up.
-- Next Hook: Nicht-JS-/CLI-Publisher auf Header-Pflicht prüfen und Dedupe-Alerts (Dedupes/min vs. Cache) verankern.
+- Phase: Boundary Server Parity
+- Status: Boundary-Service beantwortet CORS-Preflights mit `Idempotency-Key`, setzt Allow/Expose-Header auf allen JSON-Routen und exportiert `boundary_observe_total` + `boundary_idempotency_missing_total`; Smoke-Test deckt Preflight, fehlende Header und Prometheus-Werte ab.
+- Next Hook: Alerts (409-Ratio, Missing Header) konfigurieren und Nicht-JS/CLI-Publisher auf Idempotency-Key-Pflicht prüfen.
 
 What changed
 
-- `src/boundary/publisher.ts` · Default-HTTP-Fallback setzt `Idempotency-Key` (Validierung inkl. Canonical-Fallback).
-- `tests/boundary/publisher.test.ts` · Vitest deckt auto-generierte vs. manuell gesetzte Keys und Header-Weitergabe ab.
-- `docs/runbooks/sigil-publisher.md` · Boundary-Coupling Abschnitt erwähnt den Auto-Header für JS-Bridges + Follow-up für andere Implementierungen.
-- `docs/roadmap/v1.0-stabilization-playbook.(md|yaml)` · Status-Abschnitt ergänzt den Publisher-Rollout.
-- `MandalaMap.(md|json|yaml)` · Automation-Sektion notiert den Idempotency-Publisher-Hook.
-- `codexfeedback.(md|json|yaml)` & `codexfeedback/codexfeedback-latest.(json|yaml)` · Tracker auf Fraktal98 gehoben, Hook aktualisiert.
-- `analysis/devtalk96-evaluation.md` · Idempotency-Row verweist auf JS-Auto-Header, Follow-up betont Nicht-JS-Pfade.
-- `docs/fraktal/codexfeedback/codexfeedback-fraktal98.yaml` · Lauf dokumentiert (Auto-Header, Tests, Docs).
+- `scripts/boundary-service.ts` · CORS-Preflight (`OPTIONS`), globale Allow/Expose-Header und neue Prometheus-Counter (`boundary_observe_total`, `boundary_idempotency_missing_total`).
+- `scripts/smoke/boundary-service-smoke.mjs` · Prüft Preflight, Header-Expose, fehlende Header sowie Prometheus-Zähler.
+- `docs/roadmap/v1.0-stabilization-playbook.(md|yaml)` · Server-Parität (CORS + Metriken) ergänzt.
+- `MandalaMap.(md|json|yaml)` · Automation-Notizen & Samples erweitern Boundary-CORS-/Metrik-Hinweis.
+- `codexfeedback.(md|json|yaml)` & `analysis/devtalk99-evaluation.md` · Tracker + DevTalk-Abgleich aktualisiert.
+- `docs/fraktal/codexfeedback/codexfeedback-fraktal99.yaml` · Lauf dokumentiert.
 
 Validate
 
-- `pnpm vitest run tests/boundary/publisher.test.ts`
+- `node scripts/smoke/boundary-service-smoke.mjs`
 
 Refs
 
-- src/boundary/publisher.ts
-- tests/boundary/publisher.test.ts
-- docs/runbooks/sigil-publisher.md
+- scripts/boundary-service.ts
+- scripts/smoke/boundary-service-smoke.mjs
 - docs/roadmap/v1.0-stabilization-playbook.md
 - docs/roadmap/v1.0-stabilization-playbook.yaml
-- MandalaMap.(md|json|yaml)
-- codexfeedback.(md|json|yaml)
-- analysis/devtalk96-evaluation.md
+- MandalaMap.md / MandalaMap.json / MandalaMap.yaml
+- codexfeedback.md / codexfeedback.json / codexfeedback.yaml
+- analysis/devtalk99-evaluation.md
+- docs/fraktal/codexfeedback/codexfeedback-fraktal99.yaml
