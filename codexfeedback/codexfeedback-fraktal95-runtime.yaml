@@ -1,0 +1,29 @@
+fraktal: 95
+phase: 'Boundary runtime dedupe'
+status: done
+summary:
+  - 'Boundary service enforces TTL dedupe with 409 duplicate_eventKey guard and Prometheus counter/gauge exports.'
+  - 'Smoke test exercises 202/409 flow and verifies boundary_law_deduped_total from /metrics.'
+  - 'Stable eventKey hashing shared across engine/publisher/service; Grafana dashboards surface dedupe rate + cache size.'
+deliverables:
+  - scripts/boundary-service.ts
+  - scripts/smoke/boundary-service-smoke.mjs
+  - packages/boundary-core/src/event-key.ts
+  - packages/boundary-engine/src/extractor.ts
+  - packages/boundary-engine/src/__tests__/engine.smoke.test.ts
+  - src/boundary/publisher.ts
+  - grafana/dashboards/boundary.json
+  - grafana/dashboards/boundary-health-patch.json
+  - docs/roadmap/v1.0-stabilization-playbook.md
+  - docs/roadmap/v1.0-stabilization-playbook.yaml
+  - MandalaMap.json
+  - MandalaMap.yaml
+  - codexfeedback.(md|json|yaml)
+validation:
+  - pnpm vitest run packages/boundary-engine
+  - pnpm vitest run tests/smoke/boundary-smoke.spec.ts
+  - node scripts/smoke/boundary-service-smoke.mjs
+hook:
+  progress: 'Runtime dedupe active; Grafana tiles and metrics confirm coverage.'
+  next_step: 'Migrate remaining publishers/bridges to stable eventKey helper and watch for dedupe spikes.'
+repeat_required: false

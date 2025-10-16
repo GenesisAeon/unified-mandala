@@ -52,6 +52,22 @@
       "datasource": "Prometheus"
     },
     {
+      "type": "stat",
+      "title": "Dedupes/min",
+      "gridPos": { "x": 16, "y": 0, "w": 8, "h": 4 },
+      "targets": [
+        {
+          "expr": "sum(rate(boundary_law_deduped_total[5m])) * 60",
+          "legendFormat": "dedupes/min",
+          "refId": "A",
+          "datasource": "Prometheus"
+        }
+      ],
+      "fieldConfig": { "defaults": { "unit": "opsm", "decimals": 2 }, "overrides": [] },
+      "options": { "reduceOptions": { "calcs": ["lastNotNull"], "fields": "", "values": false } },
+      "datasource": "Prometheus"
+    },
+    {
       "type": "timeseries",
       "title": "Latency p95 (ms) · last 1h",
       "gridPos": { "x": 0, "y": 4, "w": 16, "h": 8 },
@@ -65,6 +81,22 @@
       ],
       "fieldConfig": { "defaults": { "unit": "ms", "decimals": 0 }, "overrides": [] },
       "options": { "legend": { "showLegend": false } },
+      "datasource": "Prometheus"
+    },
+    {
+      "type": "stat",
+      "title": "Dedupe cache size",
+      "gridPos": { "x": 16, "y": 4, "w": 8, "h": 8 },
+      "targets": [
+        {
+          "expr": "boundary_dedupe_store_size",
+          "legendFormat": "keys",
+          "refId": "A",
+          "datasource": "Prometheus"
+        }
+      ],
+      "fieldConfig": { "defaults": { "unit": "none", "decimals": 0 }, "overrides": [] },
+      "options": { "reduceOptions": { "calcs": ["lastNotNull"], "fields": "", "values": false } },
       "datasource": "Prometheus"
     }
   ],

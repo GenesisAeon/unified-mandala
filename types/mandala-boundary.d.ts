@@ -7,7 +7,8 @@ declare module '@mandala/boundary-core' {
     source?: string;
     ruleId?: string;
     verdict: BoundaryVerdict;
-    severity?: BoundarySeverity;
+    eventKey?: string;
+    severity?: BoundarySeverity | string;
     details?: string | number | boolean | ReactNode | null;
   };
   export type BoundaryRule = {
@@ -16,6 +17,16 @@ declare module '@mandala/boundary-core' {
     severity?: BoundarySeverity;
     [key: string]: unknown;
   };
+  export function stableBoundaryEventKey(input: {
+    ruleId?: string;
+    source?: string;
+    ts?: string | number | Date;
+    verdict?: BoundaryVerdict;
+    payload?: unknown;
+    severity?: BoundarySeverity;
+    details?: unknown;
+  }): string;
+  export function isValidBoundaryEventKey(value: unknown): value is string;
   export default class BoundaryRegistry {
     constructor(...args: any[]);
     registerMany(rules: BoundaryRule[]): void;

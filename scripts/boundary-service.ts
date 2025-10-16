@@ -10,6 +10,7 @@ import {
   appendFileSync,
 } from 'node:fs';
 import { join, resolve } from 'node:path';
+import { isValidBoundaryEventKey } from '../packages/boundary-core/src/event-key.js';
 
 const PORT = Number(process.env.BOUNDARY_PORT || 4010);
 const HOST = process.env.BOUNDARY_HOST || '127.0.0.1';
@@ -21,8 +22,10 @@ type Law = {
   source: string;
   ruleId: string;
   verdict: 'pass' | 'violation';
+  eventKey: string;
   details?: string;
   severity?: 'ok' | 'warn' | 'error';
+  payload?: unknown;
 };
 
 type Snapshot = {
@@ -39,6 +42,48 @@ let prom: any = null;
 let reg: any = null;
 let obsHist: any = null;
 let lawsCounter: any = null;
+let dedupedCounter: any = null;
+let dedupeGauge: any = null;
+
+const DEDUPE_TTL_MS = Number(process.env.BOUNDARY_DEDUPE_TTL_MS ?? 6 * 60 * 60 * 1000);
+const DEDUPE_MAX = Number(process.env.BOUNDARY_DEDUPE_MAX ?? 50_000);
+const dedupeStore = new Map<string, number>();
+
+function updateDedupeGauge() {
+  if (dedupeGauge) dedupeGauge.set(dedupeStore.size);
+}
+
+function pruneExpired(now: number) {
+  for (const [key, expiresAt] of dedupeStore) {
+    if (expiresAt <= now) {
+      dedupeStore.delete(key);
+    }
+  }
+  updateDedupeGauge();
+}
+
+function dedupeHas(key: string): boolean {
+  const now = Date.now();
+  pruneExpired(now);
+  const exp = dedupeStore.get(key);
+  if (!exp) return false;
+  if (exp <= now) {
+    dedupeStore.delete(key);
+    updateDedupeGauge();
+    return false;
+  }
+  return true;
+}
+
+function dedupePut(key: string) {
+  pruneExpired(Date.now());
+  if (dedupeStore.size >= DEDUPE_MAX) {
+    const first = dedupeStore.keys().next().value;
+    if (first) dedupeStore.delete(first);
+  }
+  dedupeStore.set(key, Date.now() + DEDUPE_TTL_MS);
+  updateDedupeGauge();
+}
 
 async function ensureMetrics() {
   if (prom) return;
@@ -58,6 +103,17 @@ async function ensureMetrics() {
       help: 'Total accepted laws',
       registers: [reg],
     });
+    dedupedCounter = new prom.Counter({
+      name: 'boundary_law_deduped_total',
+      help: 'Total deduped boundary events',
+      registers: [reg],
+    });
+    dedupeGauge = new prom.Gauge({
+      name: 'boundary_dedupe_store_size',
+      help: 'Keys stored in boundary dedupe cache',
+      registers: [reg],
+    });
+    updateDedupeGauge();
   } catch {
     // prom-client not available; /metrics will respond 503
   }
@@ -156,6 +212,29 @@ createServer(async (req: IncomingMessage, res: ServerResponse) => {
         if (!Array.isArray(laws) || laws.length === 0)
           return sendJson(res, 400, { error: 'no_laws' });
 
+        const invalid = laws.filter((l) => !isValidBoundaryEventKey(l?.eventKey));
+        if (invalid.length) {
+          return sendJson(res, 400, {
+            error: 'invalid_eventKey',
+            count: invalid.length,
+          });
+        }
+
+        await ensureMetrics();
+        const duplicates = laws.filter((l) => dedupeHas(l.eventKey));
+        if (duplicates.length) {
+          try {
+            dedupedCounter?.inc(duplicates.length);
+          } catch {}
+          return sendJson(res, 409, {
+            error: 'duplicate_eventKey',
+            count: duplicates.length,
+            eventKeys: duplicates.map((l) => l.eventKey),
+          });
+        }
+
+        for (const law of laws) dedupePut(law.eventKey);
+
         ensureDir();
         const jsonl = join(ROOT, 'laws.jsonl');
         for (const l of laws) appendFileSync(jsonl, JSON.stringify(l) + '\n');
@@ -184,7 +263,6 @@ createServer(async (req: IncomingMessage, res: ServerResponse) => {
         await maybePublishNats(laws);
 
         // metrics
-        await ensureMetrics();
         try {
           lawsCounter?.inc(laws.length);
           obsHist?.observe(Date.now() - start);

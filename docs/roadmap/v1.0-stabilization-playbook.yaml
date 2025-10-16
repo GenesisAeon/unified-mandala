@@ -414,7 +414,7 @@ streams:
           Fraktal95 liefert das Runtime-Gate (Ajv 2020), Prometheus Counter `sigil_emitted_total`,
           JSONL-Snapshots unter `data/logs/sigils/` sowie die MembranePill im OpsPanel (Schema-Version
           & ASCII-Status). Fraktal95 Update (2025-12-05) ergänzt Boundary-Smoke-Dedupe (`eventKey`
-          Pflicht + Helper-Test) und dokumentiert die Publisher-Integration in `docs/runbooks/sigil-publisher.md`.'
+          Pflicht + Helper-Test) und dokumentiert die Publisher-Integration in `docs/runbooks/sigil-publisher.md`. Fraktal95 Runtime Hardening (2025-12-06) erzwingt stabile `eventKey`-Hashes im Boundary-Service (TTL-Dedupe-Cache, 409er-Pfad, JSONL/Snapshot-Bypass) und exportiert die neuen Prometheus-Metriken `boundary_law_deduped_total` sowie `boundary_dedupe_store_size` inklusive Grafana-Kacheln und Smoke-Check.'
       - id: prom-compose
         description: Compose-Profile für Prometheus/Grafana aktivieren
         status: done

@@ -3,7 +3,7 @@
     {
       "fraktalrun": "Fraktal95 BoundaryDedupe",
       "status": "done",
-      "notes": "scripts/smoke/boundary-smoke.mjs exports helpers and enforces eventKey dedupe (missing/duplicate keys fail the smoke); tests/smoke/boundary-smoke.spec.ts covers extraction/missing/duplicate paths; docs/runbooks/sigil-publisher.md captures publishSigilMessage integration, and stabilization playbook/MandalaMap/codexfeedback mark the follow-up closed."
+      "notes": "scripts/smoke/boundary-smoke.mjs exports helpers and enforces eventKey dedupe (missing/duplicate keys fail the smoke); tests/smoke/boundary-smoke.spec.ts covers extraction/missing/duplicate paths; docs/runbooks/sigil-publisher.md captures publishSigilMessage integration, and stabilization playbook/MandalaMap/codexfeedback mark the follow-up closed. Runtime hardening extends boundary-service.ts with TTL dedupe (409 duplicate_eventKey, JSONL/Snapshot skip), updates the smoke (scripts/smoke/boundary-service-smoke.mjs) to assert 202/409/metrics, and adds Grafana tiles (grafana/dashboards/boundary*.json) for dedupe counters/gauges."
     },
     {
       "fraktalrun": "Fraktal94 SchemaGateHardening",

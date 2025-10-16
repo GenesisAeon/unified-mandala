@@ -118,10 +118,88 @@
       }
     },
     {
+      "id": 505,
+      "type": "stat",
+      "title": "Boundary  Dedupes/min",
+      "gridPos": { "h": 6, "w": 12, "x": 0, "y": 6 },
+      "datasource": null,
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "sum(rate(boundary_law_deduped_total[5m])) * 60",
+          "legendFormat": "dedupes/min",
+          "instant": true,
+          "datasource": null
+        }
+      ],
+      "options": {
+        "reduceOptions": { "calcs": ["lastNotNull"], "fields": "", "values": false },
+        "orientation": "auto",
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "textMode": "value_and_name"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "none",
+          "decimals": 2,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              { "color": "green", "value": null },
+              { "color": "orange", "value": 1 },
+              { "color": "red", "value": 5 }
+            ]
+          }
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 506,
+      "type": "stat",
+      "title": "Boundary  Dedupe cache size",
+      "gridPos": { "h": 6, "w": 12, "x": 12, "y": 6 },
+      "datasource": null,
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "boundary_dedupe_store_size",
+          "legendFormat": "keys",
+          "instant": true,
+          "datasource": null
+        }
+      ],
+      "options": {
+        "reduceOptions": { "calcs": ["lastNotNull"], "fields": "", "values": false },
+        "orientation": "auto",
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "textMode": "value_and_name"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "none",
+          "decimals": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              { "color": "green", "value": null },
+              { "color": "orange", "value": 1000 },
+              { "color": "red", "value": 2000 }
+            ]
+          }
+        },
+        "overrides": []
+      }
+    },
+    {
       "id": 503,
       "type": "timeseries",
       "title": "Boundary  p95/p99 observe latency (ms, 1h)",
-      "gridPos": { "h": 8, "w": 24, "x": 0, "y": 6 },
+      "gridPos": { "h": 8, "w": 24, "x": 0, "y": 12 },
       "datasource": null,
       "targets": [
         {
@@ -144,7 +222,7 @@
       "id": 504,
       "type": "bargauge",
       "title": "Boundary  Laws/min by severity",
-      "gridPos": { "h": 6, "w": 24, "x": 0, "y": 14 },
+      "gridPos": { "h": 6, "w": 24, "x": 0, "y": 20 },
       "datasource": null,
       "targets": [
         {

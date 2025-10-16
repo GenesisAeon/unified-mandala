@@ -6,12 +6,24 @@ fraktal:
       notes:
         'Fraktal95 BoundaryDedupe: `scripts/smoke/boundary-smoke.mjs` erzwingt `eventKey`-Dedupe (Helper-Exports
         + Exit Codes), `tests/smoke/boundary-smoke.spec.ts` deckt Missing/Duplicate-Pfade ab, `docs/runbooks/sigil-publisher.md`
-        beschreibt die Publisher-Integration; Stabilization-Playbook & MandalaMap.* dokumentieren das Update,
-        codexfeedback* markiert den Lauf als abgeschlossen.'
+        beschreibt die Publisher-Integration. Runtime Hardening erweitert den Lauf: `scripts/boundary-service.ts`
+        prüft stabile `eventKey`-Hashes mit TTL-Dedupe-Cache (`409 duplicate_eventKey`), skippt JSONL/Snapshot-Writes,
+        exportiert `boundary_law_deduped_total` & `boundary_dedupe_store_size`; `scripts/smoke/boundary-service-smoke.mjs`
+        testet 202/409/Metric-Fluss und Grafana-Dashboards (`grafana/dashboards/boundary*.json`) zeigen Dedupes/min
+        & Cache-Größe. Stabilization-Playbook & MandalaMap.* dokumentieren die Erweiterung, codexfeedback*
+        markiert den Lauf als abgeschlossen.'
       deliverables:
         - scripts/smoke/boundary-smoke.mjs
         - tests/smoke/boundary-smoke.spec.ts
         - docs/runbooks/sigil-publisher.md
+        - scripts/boundary-service.ts
+        - scripts/smoke/boundary-service-smoke.mjs
+        - packages/boundary-core/src/event-key.ts
+        - packages/boundary-engine/src/extractor.ts
+        - packages/boundary-engine/src/__tests__/engine.smoke.test.ts
+        - src/boundary/publisher.ts
+        - grafana/dashboards/boundary.json
+        - grafana/dashboards/boundary-health-patch.json
         - docs/roadmap/v1.0-stabilization-playbook.md
         - docs/roadmap/v1.0-stabilization-playbook.yaml
         - MandalaMap.md
@@ -26,9 +38,11 @@ fraktal:
         - docs/fraktal/codexfeedback/codexfeedback-fraktal95.yaml
       commands:
         - pnpm vitest run tests/smoke/boundary-smoke.spec.ts
+        - pnpm vitest run packages/boundary-engine
+        - node scripts/smoke/boundary-service-smoke.mjs
       hook:
-        progress: abgeschlossen
-        next_step: Boundary-Exports beobachten und Publish-Rollout bei neuen Bridges begleiten.
+        progress: Runtime-Dedupe aktiv (Service 409 + Metrics/Grafana + Smoke), Publisher hook verteilt stabile Keys.
+        next_step: Boundary-Exports beobachten, weitere Bridges auf stabile `eventKey`-Ableitung migrieren.
       repeat_required: false
     - id: 94
       status: done

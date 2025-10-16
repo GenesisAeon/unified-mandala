@@ -4,11 +4,20 @@ owner: Johann
 summary:
   - 'Boundary-Smoke prüft `eventKey`-Dedupe (Helper-Exports + Exit Codes).'
   - 'Vitest deckt Snapshot-Extraction/Missing/Duplicate-Pfade ab.'
-  - 'Sigil-Publisher-Runbook dokumentiert Logger/Bus/Boundary-Integration; Roadmap & MandalaMap aktualisiert.'
+  - 'Boundary-Service erzwingt TTL-Dedupe (`409 duplicate_eventKey`), exportiert Prometheus Counter/Gauge und Smoke prüft 202/409/Metric.'
+  - 'Grafana-Dashboards zeigen Dedupes/min & Cache-Größe; MandalaMap/Stabilization-Playbook dokumentieren das Runtime-Hardening.'
 deliverables:
   - scripts/smoke/boundary-smoke.mjs
   - tests/smoke/boundary-smoke.spec.ts
   - docs/runbooks/sigil-publisher.md
+  - scripts/boundary-service.ts
+  - scripts/smoke/boundary-service-smoke.mjs
+  - packages/boundary-core/src/event-key.ts
+  - packages/boundary-engine/src/extractor.ts
+  - packages/boundary-engine/src/__tests__/engine.smoke.test.ts
+  - src/boundary/publisher.ts
+  - grafana/dashboards/boundary.json
+  - grafana/dashboards/boundary-health-patch.json
   - docs/roadmap/v1.0-stabilization-playbook.md
   - docs/roadmap/v1.0-stabilization-playbook.yaml
   - MandalaMap.yaml
@@ -22,7 +31,9 @@ deliverables:
   - codexfeedback.yaml
 commands:
   - pnpm vitest run tests/smoke/boundary-smoke.spec.ts
+  - pnpm vitest run packages/boundary-engine
+  - node scripts/smoke/boundary-service-smoke.mjs
 hook:
   progress: 1.0
-  next_step: 'Boundary-Exports (laws.json/laws.demo.json) beobachten, Publisher-Rollout für neue Bridges begleiten.'
+  next_step: 'Boundary-Exports (laws.json/laws.demo.json) beobachten, Publisher-Rollout für neue Bridges begleiten und dedupe counter spikes (Prometheus/Grafana) verfolgen.'
 repeat_required: false
