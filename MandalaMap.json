@@ -870,7 +870,8 @@
         "Fraktal86 exportiert im Dev-Helper (`scripts/dev-helper.ps1`) eine Port-Matrix (share/experiments/rag/flags/api/health/realtime) inkl. Offset; `config/ports.ts` und `apps/ui/vite.config.ts` interpretieren Env-Overrides als absolute Ports, `scripts/dev-services.mjs` prüft Konflikte ohne Doppel-Offsets und der Health-Aggregator nutzt dynamische Portwerte.",
         "Fraktal87 startet den Qwen-Rollout: `scripts/smoke/qwen-smoke.mjs` liefert `pnpm smoke:qwen`, der Pre-Push-Trigger `scripts/hooks/qwen-smoke-trigger.mjs` (`pnpm hook:qwen-smoke`) läuft nur bei `AI_PROVIDER=qwen-*`/`UM_RUN_QWEN_SMOKE=1`; `.github/workflows/ci.qwen-smoke.yml` und `docs/roadmap/RoleOutCommands.(md|json|yaml)` spiegeln denselben Flow.",
         "Fraktal95 Update versieht `scripts/smoke/boundary-smoke.mjs` mit einer `eventKey`-Dedupe-Prüfung, `tests/smoke/boundary-smoke.spec.ts` testet die Helper und `docs/runbooks/sigil-publisher.md` erklärt die Publisher-Integration.",
-        "Fraktal95 Runtime Hardening erzwingt TTL-Dedupe direkt im Boundary-Service (`409 duplicate_eventKey` + JSONL/Snapshot-Skip), exportiert `boundary_law_deduped_total`/`boundary_dedupe_store_size` und ergänzt Grafana-Kacheln sowie den Smoke-Metrik-Check."
+        "Fraktal95 Runtime Hardening erzwingt TTL-Dedupe direkt im Boundary-Service (`409 duplicate_eventKey` + JSONL/Snapshot-Skip), exportiert `boundary_law_deduped_total`/`boundary_dedupe_store_size` und ergänzt Grafana-Kacheln sowie den Smoke-Metrik-Check.",
+        "Fraktal95 Canonical Hardening (2025-12-07) kanonisiert Payloads in `stableBoundaryEventKey`, schreibt Boundary-Snapshots atomar (`laws.json.tmp` → `laws.json`) und zählt HTTP-Statuscodes via `boundary_http_responses_total`."
       ],
       "path": "scripts/",
       "status": "active",
@@ -1157,8 +1158,8 @@
     }
   },
   "meta": {
-    "fraktal": 95,
-    "generated": "2025-12-04 00:00:00+00:00",
+    "fraktal": 96,
+    "generated": "2025-12-07 00:00:00+00:00",
     "reference_docs": [
       "docs/roadmap/v1.0-stabilization-playbook.md",
       "docs/roadmap/v1.0-stabilization-playbook.yaml"

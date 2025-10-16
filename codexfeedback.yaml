@@ -1,6 +1,35 @@
 fraktal:
-  current: 95
+  current: 96
   history:
+    - id: 96
+      status: done
+      notes: 'Fraktal96 BoundaryCanonicalHardening: `packages/boundary-core/src/canonical.ts` kanonisiert Payloads (Schlüssel sortiert, Kreise markiert, Infinity → String) für `stableBoundaryEventKey`; `packages/boundary-core/src/__tests__/event-key.test.ts` beweist gleichbleibende Hashes bei Schlüsselumsortierung & Kreisdaten und `scripts/boundary-service.ts` schreibt `laws.json` atomar (Tmp → Rename) sowie zählt HTTP-Status via `boundary_http_responses_total`. Stabilization-Playbook (MD/YAML) vermerkt den Canonical-Patch, MandalaMap.(md|json|yaml) heben Fraktal96 hervor und codexfeedback* setzt den Hook auf Alert-Monitoring (Dedupes/min vs. 202/409).'
+      deliverables:
+        - packages/boundary-core/src/canonical.ts
+        - packages/boundary-core/src/event-key.ts
+        - packages/boundary-core/src/index.ts
+        - packages/boundary-core/src/__tests__/event-key.test.ts
+        - scripts/boundary-service.ts
+        - docs/roadmap/v1.0-stabilization-playbook.md
+        - docs/roadmap/v1.0-stabilization-playbook.yaml
+        - MandalaMap.md
+        - MandalaMap.yaml
+        - MandalaMap.json
+        - codexfeedback/codexfeedback-latest.md
+        - codexfeedback/codexfeedback-latest.json
+        - codexfeedback/codexfeedback-latest.yaml
+        - codexfeedback.md
+        - codexfeedback.json
+        - codexfeedback.yaml
+        - docs/fraktal/codexfeedback/codexfeedback-fraktal96.yaml
+      commands:
+        - pnpm vitest run packages/boundary-core/src/__tests__/event-key.test.ts
+        - pnpm vitest run packages/boundary-engine
+        - node scripts/smoke/boundary-service-smoke.mjs
+      hook:
+        progress: Canonical helper aktiv; Snapshot-Schreiben atomar & HTTP-Status-Counter aktiv.
+        next_step: Canonical-Pfad auf weitere Publisher/Exporter ausrollen und dedupe Alerts überwachen.
+      repeat_required: false
     - id: 95
       status: done
       notes:

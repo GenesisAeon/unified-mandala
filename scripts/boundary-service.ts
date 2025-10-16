@@ -9,6 +9,7 @@ import {
   existsSync,
   appendFileSync,
 } from 'node:fs';
+import { writeFile, rename } from 'node:fs/promises';
 import { join, resolve } from 'node:path';
 import { isValidBoundaryEventKey } from '../packages/boundary-core/src/event-key.js';
 
@@ -44,6 +45,7 @@ let obsHist: any = null;
 let lawsCounter: any = null;
 let dedupedCounter: any = null;
 let dedupeGauge: any = null;
+let responsesCounter: any = null;
 
 const DEDUPE_TTL_MS = Number(process.env.BOUNDARY_DEDUPE_TTL_MS ?? 6 * 60 * 60 * 1000);
 const DEDUPE_MAX = Number(process.env.BOUNDARY_DEDUPE_MAX ?? 50_000);
@@ -113,10 +115,22 @@ async function ensureMetrics() {
       help: 'Keys stored in boundary dedupe cache',
       registers: [reg],
     });
+    responsesCounter = new prom.Counter({
+      name: 'boundary_http_responses_total',
+      help: 'HTTP responses grouped by status code',
+      labelNames: ['code'],
+      registers: [reg],
+    });
     updateDedupeGauge();
   } catch {
     // prom-client not available; /metrics will respond 503
   }
+}
+
+function recordResponse(code: number) {
+  try {
+    responsesCounter?.inc({ code: String(code) });
+  } catch {}
 }
 
 function ensureDir() {
@@ -167,7 +181,15 @@ function sendJson(res: ServerResponse, code: number, body: any) {
     'Content-Type': 'application/json',
     'Content-Length': Buffer.byteLength(text),
   });
+  recordResponse(code);
   res.end(text);
+}
+
+async function writeSnapshot(snapshot: Snapshot) {
+  const target = join(ROOT, 'laws.json');
+  const tmp = `${target}.tmp`;
+  await writeFile(tmp, JSON.stringify(snapshot, null, 2));
+  await rename(tmp, target);
 }
 
 createServer(async (req: IncomingMessage, res: ServerResponse) => {
@@ -178,10 +200,12 @@ createServer(async (req: IncomingMessage, res: ServerResponse) => {
     ensureMetrics().then(async () => {
       if (!reg) {
         res.writeHead(503, { 'Content-Type': 'text/plain' });
+        recordResponse(503);
         return void res.end('# metrics unavailable (prom-client not installed)');
       }
       const text = await reg.metrics();
       res.writeHead(200, { 'Content-Type': reg.contentType });
+      recordResponse(200);
       return void res.end(text);
     });
     return;
@@ -258,7 +282,11 @@ createServer(async (req: IncomingMessage, res: ServerResponse) => {
           },
           laws,
         };
-        writeFileSync(join(ROOT, 'laws.json'), JSON.stringify(snap, null, 2));
+        try {
+          await writeSnapshot(snap);
+        } catch (err: any) {
+          return sendJson(res, 500, { error: 'snapshot_write_failed', detail: err?.message });
+        }
 
         await maybePublishNats(laws);
 
