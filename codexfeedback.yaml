@@ -1,8 +1,37 @@
 fraktal:
-  current: 94
+  current: 95
   history:
+    - id: 95
+      status: done
+      notes:
+        'Fraktal95 BoundaryDedupe: `scripts/smoke/boundary-smoke.mjs` erzwingt `eventKey`-Dedupe (Helper-Exports
+        + Exit Codes), `tests/smoke/boundary-smoke.spec.ts` deckt Missing/Duplicate-Pfade ab, `docs/runbooks/sigil-publisher.md`
+        beschreibt die Publisher-Integration; Stabilization-Playbook & MandalaMap.* dokumentieren das Update,
+        codexfeedback* markiert den Lauf als abgeschlossen.'
+      deliverables:
+        - scripts/smoke/boundary-smoke.mjs
+        - tests/smoke/boundary-smoke.spec.ts
+        - docs/runbooks/sigil-publisher.md
+        - docs/roadmap/v1.0-stabilization-playbook.md
+        - docs/roadmap/v1.0-stabilization-playbook.yaml
+        - MandalaMap.md
+        - MandalaMap.yaml
+        - MandalaMap.json
+        - codexfeedback/codexfeedback-latest.md
+        - codexfeedback/codexfeedback-latest.json
+        - codexfeedback/codexfeedback-latest.yaml
+        - codexfeedback.md
+        - codexfeedback.json
+        - codexfeedback.yaml
+        - docs/fraktal/codexfeedback/codexfeedback-fraktal95.yaml
+      commands:
+        - pnpm vitest run tests/smoke/boundary-smoke.spec.ts
+      hook:
+        progress: abgeschlossen
+        next_step: Boundary-Exports beobachten und Publish-Rollout bei neuen Bridges begleiten.
+      repeat_required: false
     - id: 94
-      status: in-progress
+      status: done
       notes: 'Fraktal94 SchemaGateHardening: `analysis/devtalk94-evaluation.md` bestätigt DevTalk94,
         `schemas/sigil-message/1-0-0.schema.json` (Fingerprint + Valid/Invalid-Fixtures) hängt
         strikt in `pnpm schema:validate`; `src/adapters/sigil-mapping.ts` & `tests/sigil/schema.contract.test.ts`
@@ -32,10 +61,9 @@ fraktal:
         - pnpm schema:validate
         - pnpm observability:check
       hook:
-        progress: Schema im Gate, Fingerprint aktiv; UI/Boundary-Follow-ups offen.
-        next_step: MembranePill verdrahten, Boundary-Smokes erweitern, Observability-Notiz ergänzen.
-      repeat_required: true
-      repeat_reason: UI/Boundary-Follow-ups abschließen, bevor Fraktal94 geschlossen werden kann.
+        progress: Schema-Gate abgeschlossen; UI/Boundary-Follow-ups nach Fraktal95 umgesetzt.
+        next_step: abgeschlossen.
+      repeat_required: false
     - id: 88
       status: in-progress
       notes: 'Fraktal88 DevTalkContinuation: `analysis/devtalk88-evaluation.md` bewertet den

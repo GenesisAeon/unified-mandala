@@ -1,0 +1,28 @@
+fraktal: 95
+status: done
+owner: Johann
+summary:
+  - 'Boundary-Smoke prüft `eventKey`-Dedupe (Helper-Exports + Exit Codes).'
+  - 'Vitest deckt Snapshot-Extraction/Missing/Duplicate-Pfade ab.'
+  - 'Sigil-Publisher-Runbook dokumentiert Logger/Bus/Boundary-Integration; Roadmap & MandalaMap aktualisiert.'
+deliverables:
+  - scripts/smoke/boundary-smoke.mjs
+  - tests/smoke/boundary-smoke.spec.ts
+  - docs/runbooks/sigil-publisher.md
+  - docs/roadmap/v1.0-stabilization-playbook.md
+  - docs/roadmap/v1.0-stabilization-playbook.yaml
+  - MandalaMap.yaml
+  - MandalaMap.json
+  - MandalaMap.md
+  - codexfeedback/codexfeedback-latest.md
+  - codexfeedback/codexfeedback-latest.json
+  - codexfeedback/codexfeedback-latest.yaml
+  - codexfeedback.md
+  - codexfeedback.json
+  - codexfeedback.yaml
+commands:
+  - pnpm vitest run tests/smoke/boundary-smoke.spec.ts
+hook:
+  progress: 1.0
+  next_step: 'Boundary-Exports (laws.json/laws.demo.json) beobachten, Publisher-Rollout für neue Bridges begleiten.'
+repeat_required: false
