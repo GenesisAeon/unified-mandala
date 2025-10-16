@@ -1,71 +1,67 @@
 {
-  "fraktal": 98,
-  "phase": "Boundary Idempotency & Ops badges",
-  "status": "JS publishBoundary automatically sends Idempotency-Key headers; docs/trackers updated while non-JS bridges remain on the follow-up list.",
-  "next_hook": "Audit non-JS/CLI publishers for Idempotency-Key headers and wire dedupe alerts (dedupes/min vs cache).",
+  "fraktal": 99,
+  "phase": "Boundary Server Parity",
+  "status": "Boundary service now exposes Idempotency-Key across CORS (OPTIONS + JSON responses) and ships boundary_observe_total / boundary_idempotency_missing_total; smoke covers preflight, missing headers and metrics.",
+  "next_hook": "Configure alerts for 409 ratio & missing headers and audit non-JS/CLI publishers for Idempotency-Key usage.",
   "changes": [
     {
-      "path": "src/boundary/publisher.ts",
-      "desc": "Default HTTP fallback now sets Idempotency-Key (validated with canonical fallback)."
+      "path": "scripts/boundary-service.ts",
+      "desc": "Adds CORS preflight handling with Idempotency-Key in allow/expose headers and new Prometheus counters (boundary_observe_total, boundary_idempotency_missing_total)."
     },
     {
-      "path": "tests/boundary/publisher.test.ts",
-      "desc": "Vitest covers generated vs supplied keys and header propagation."
-    },
-    {
-      "path": "docs/runbooks/sigil-publisher.md",
-      "desc": "Boundary coupling callout mentions JS auto-header and non-JS follow-up."
+      "path": "scripts/smoke/boundary-service-smoke.mjs",
+      "desc": "Smoke validates preflight, header exposure, missing headers and Prometheus counters."
     },
     {
       "path": "docs/roadmap/v1.0-stabilization-playbook.md",
-      "desc": "Status paragraph references the publisher rollout."
+      "desc": "Status note covers server parity (CORS expose + metrics)."
     },
     {
       "path": "docs/roadmap/v1.0-stabilization-playbook.yaml",
-      "desc": "Observability checkpoint highlights JS fallback auto-header."
+      "desc": "Observability checkpoint includes Fraktal99 server parity update."
     },
     {
       "path": "MandalaMap.md",
-      "desc": "Automation samples list the Idempotency publisher hook."
+      "desc": "Fraktal value/sample list adds boundary server parity highlight."
     },
     {
       "path": "MandalaMap.json",
-      "desc": "Notes mention the publisher rollout."
+      "desc": "Automation notes mention CORS/metrics server parity."
     },
     {
       "path": "MandalaMap.yaml",
-      "desc": "Automation group includes the publisher rollout note."
+      "desc": "Automation section records Fraktal99 server parity notes."
     },
     {
       "path": "codexfeedback.md",
-      "desc": "New entry logging Fraktal98 PublisherRollout."
+      "desc": "New entry documents Fraktal99 ServerParity run."
     },
     {
       "path": "codexfeedback.json",
-      "desc": "Runs array prepends the PublisherRollout log."
+      "desc": "Runs array prepends the server parity summary."
     },
     {
       "path": "codexfeedback.yaml",
-      "desc": "Current set to 98 with updated history/hook."
+      "desc": "Current set to 99 with updated history/hook."
     },
     {
-      "path": "analysis/devtalk96-evaluation.md",
-      "desc": "Idempotency row notes JS auto-header and non-JS follow-up."
+      "path": "analysis/devtalk99-evaluation.md",
+      "desc": "DevTalk evaluation confirms CORS/metrics/test coverage."
     },
     {
-      "path": "docs/fraktal/codexfeedback/codexfeedback-fraktal98.yaml",
-      "desc": "Fraktal log capturing the rollout."
+      "path": "docs/fraktal/codexfeedback/codexfeedback-fraktal99.yaml",
+      "desc": "Fraktal log for the server parity run."
     }
   ],
-  "validate": ["pnpm vitest run tests/boundary/publisher.test.ts"],
+  "validate": ["node scripts/smoke/boundary-service-smoke.mjs"],
   "refs": [
-    "src/boundary/publisher.ts",
-    "tests/boundary/publisher.test.ts",
-    "docs/runbooks/sigil-publisher.md",
+    "scripts/boundary-service.ts",
+    "scripts/smoke/boundary-service-smoke.mjs",
     "docs/roadmap/v1.0-stabilization-playbook.md",
     "docs/roadmap/v1.0-stabilization-playbook.yaml",
     "MandalaMap.(md|json|yaml)",
     "codexfeedback.(md|json|yaml)",
-    "analysis/devtalk96-evaluation.md"
+    "analysis/devtalk99-evaluation.md",
+    "docs/fraktal/codexfeedback/codexfeedback-fraktal99.yaml"
   ]
 }

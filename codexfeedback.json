@@ -1,6 +1,11 @@
 {
   "runs": [
     {
+      "fraktalrun": "Fraktal99 ServerParity",
+      "status": "done",
+      "notes": "scripts/boundary-service.ts now serves CORS preflights with Idempotency-Key in allow/expose headers, reuses the headers on all JSON responses, and exports boundary_observe_total (accepted|duplicate|invalid|error) plus boundary_idempotency_missing_total. scripts/smoke/boundary-service-smoke.mjs exercises preflight, header exposure, missing headers and Prometheus counters, docs/roadmap/v1.0-stabilization-playbook.(md|yaml) + MandalaMap.(md|json|yaml) log the server parity hook, and analysis/devtalk99-evaluation.md confirms the DevTalk checklist."
+    },
+    {
       "fraktalrun": "Fraktal98 PublisherRollout",
       "status": "done",
       "notes": "src/boundary/publisher.ts now attaches Idempotency-Key headers in the default HTTP fallback, new vitest cases cover generated vs supplied keys, and docs (runbook, playbook, MandalaMap, codexfeedback, DevTalk audit) note JS bridges as auto-aligned while highlighting non-JS follow-ups."

@@ -46,6 +46,12 @@ async function j(url, init) {
   assert.equal(p.json?.accepted, 1, 'accepted count mismatch');
   assert.equal(p.json?.idempotencyKey, idKey, 'response payload missing idempotency key');
   assert.equal(p.headers.get('idempotency-key'), idKey, 'response header missing idempotency key');
+  assert.equal(p.headers.get('access-control-allow-origin'), '*', 'CORS origin not exposed');
+  const exposeHeaders = p.headers.get('access-control-expose-headers') || '';
+  assert.ok(
+    exposeHeaders.toLowerCase().includes('idempotency-key'),
+    'Idempotency-Key not exposed via Access-Control-Expose-Headers',
+  );
 
   const dupLaw = { ...baseLaw, eventKey: '0'.repeat(40) };
   const dup = await j(`${base}/boundary/observe`, {
@@ -59,6 +65,11 @@ async function j(url, init) {
   assert.ok(
     Array.isArray(dup.json?.eventKeys) && dup.json.eventKeys.includes(idKey),
     'duplicate payload should list canonical event key',
+  );
+  assert.equal(
+    dup.headers.get('access-control-allow-origin'),
+    '*',
+    'CORS origin missing on duplicate',
   );
 
   const canonicalLaw = {
@@ -78,10 +89,52 @@ async function j(url, init) {
   assert.equal(noHeader.status, 202, `canonical observe failed: ${noHeader.status}`);
   assert.equal(noHeader.json?.idempotencyKey, canonicalKey, 'canonical response missing key');
   assert.equal(noHeader.headers.get('idempotency-key'), canonicalKey, 'canonical header mismatch');
+  assert.equal(
+    noHeader.headers.get('access-control-allow-origin'),
+    '*',
+    'CORS origin missing on canonical response',
+  );
+
+  const invalid = await j(`${base}/boundary/observe`, {
+    method: 'POST',
+    headers: { 'content-type': 'application/json' },
+    body: JSON.stringify({}),
+  });
+  assert.equal(invalid.status, 400, `invalid payload should 400, got ${invalid.status}`);
+  assert.equal(
+    invalid.headers.get('access-control-allow-origin'),
+    '*',
+    'CORS origin missing on invalid response',
+  );
+
+  const preflight = await fetch(`${base}/boundary/observe`, {
+    method: 'OPTIONS',
+    headers: {
+      Origin: 'https://example.test',
+      'Access-Control-Request-Method': 'POST',
+      'Access-Control-Request-Headers': 'Content-Type, Idempotency-Key',
+    },
+  });
+  assert.equal(preflight.status, 204, `preflight should return 204, got ${preflight.status}`);
+  const allowHeaders = preflight.headers.get('access-control-allow-headers') || '';
+  assert.ok(
+    allowHeaders.toLowerCase().includes('idempotency-key'),
+    'preflight missing Idempotency-Key in allow headers',
+  );
+  assert.equal(
+    preflight.headers.get('access-control-allow-origin'),
+    '*',
+    'preflight missing Access-Control-Allow-Origin',
+  );
 
   const statusResponse = await j(`${base}/boundary/status`);
   assert.equal(statusResponse.ok, true, `status route failed: ${statusResponse.status}`);
   assert.ok(statusResponse.json?.dedupe_store_size >= 1, 'status dedupe store size missing');
+  assert.equal(
+    statusResponse.headers.get('access-control-allow-origin'),
+    '*',
+    'status response missing CORS origin header',
+  );
 
   const statusPath = join(process.cwd(), 'data', 'logs', 'boundary', 'status.json');
   const statusText = readFileSync(statusPath, 'utf8');
@@ -101,6 +154,12 @@ async function j(url, init) {
   assert.match(text, dedupeRegex);
   const value = Number(text.match(dedupeRegex)?.[1] ?? '0');
   assert.ok(value >= 1, `dedupe counter expected >= 1, received ${value}`);
+  assert.match(text, /boundary_observe_total\{result="accepted"[^}]*} \d+(?:\.\d+)?/);
+  assert.match(text, /boundary_observe_total\{result="duplicate"[^}]*} \d+(?:\.\d+)?/);
+  assert.match(text, /boundary_observe_total\{result="invalid"[^}]*} \d+(?:\.\d+)?/);
+  const missingMatch = text.match(/boundary_idempotency_missing_total(?:{[^}]*})? (\d+(?:\.\d+)?)/);
+  const missingValue = Number(missingMatch?.[1] ?? '0');
+  assert.ok(missingValue >= 1, `expected idempotency missing counter >= 1, got ${missingValue}`);
 
   console.log('boundary-service-smoke: OK');
 })().catch((e) => {

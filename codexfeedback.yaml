@@ -1,6 +1,31 @@
 fraktal:
-  current: 98
+  current: 99
   history:
+    - id: 99
+      status: done
+      notes: 'Fraktal99 ServerParity: `scripts/boundary-service.ts` beantwortet CORS-Preflights (`OPTIONS`) mit `Idempotency-Key` in Allow-/Expose-Headers, setzt dieselben Header auf allen JSON-Routen und exportiert `boundary_observe_total` (`accepted|duplicate|invalid|error`) sowie `boundary_idempotency_missing_total`. `scripts/smoke/boundary-service-smoke.mjs` prüft Preflight, Header-Expose, fehlende Header und Prometheus-Zähler; Stabilization-Playbook (MD/YAML), MandalaMap.(md|json|yaml) sowie codexfeedback\* markieren den Server-Paritäts-Hook und `analysis/devtalk99-evaluation.md` bestätigt die DevTalk-Anforderungen.'
+      deliverables:
+        - scripts/boundary-service.ts
+        - scripts/smoke/boundary-service-smoke.mjs
+        - docs/roadmap/v1.0-stabilization-playbook.md
+        - docs/roadmap/v1.0-stabilization-playbook.yaml
+        - MandalaMap.md
+        - MandalaMap.yaml
+        - MandalaMap.json
+        - codexfeedback.md
+        - codexfeedback.json
+        - codexfeedback.yaml
+        - codexfeedback/codexfeedback-latest.md
+        - codexfeedback/codexfeedback-latest.json
+        - codexfeedback/codexfeedback-latest.yaml
+        - docs/fraktal/codexfeedback/codexfeedback-fraktal99.yaml
+        - analysis/devtalk99-evaluation.md
+      commands:
+        - node scripts/smoke/boundary-service-smoke.mjs
+      hook:
+        progress: Boundary-Service liefert CORS-Expose + Idempotency-Metriken; Smoke-Test deckt Preflight/Missing-Header/Prometheus ab.
+        next_step: Alerts für 409-Ratio & fehlende Header konfigurieren, Nicht-JS-Publisher auf Header-Pflicht prüfen.
+      repeat_required: false
     - id: 98
       status: done
       notes: 'Fraktal98 PublisherRollout: `src/boundary/publisher.ts` hängt den `Idempotency-Key` im Default-HTTP-Fallback an, neue Vitest-Cases sichern Header-Echo und die Docs (Runbook, Playbook, MandalaMap, DevTalk-Audit, Codexfeedback) markieren JS-Bridges als auto-aligned; Nicht-JS-Bridges bleiben als Follow-up.'

@@ -1,43 +1,40 @@
-fraktal: 98
-phase: Boundary Idempotency & Ops badges
-status: JS publishBoundary sendet den Idempotency-Key automatisch; Docs/Tracker spiegeln
-  den Rollout.
-next_hook: Nicht-JS-/CLI-Publisher auf Header-Pflicht prüfen und Dedupe-Alerts verankern.
+fraktal: 99
+phase: Boundary Server Parity
+status: Boundary service exposes Idempotency-Key for CORS preflights and JSON responses while exporting boundary_observe_total and boundary_idempotency_missing_total; smoke covers preflight, missing headers and Prometheus counters.
+next_hook: Configure alerts for 409 ratio & missing headers and audit non-JS/CLI publishers for Idempotency-Key usage.
 changes:
-  - path: src/boundary/publisher.ts
-    desc: Default-HTTP-Fallback setzt Idempotency-Key (inkl. Canonical-Fallback).
-  - path: tests/boundary/publisher.test.ts
-    desc: Vitest deckt auto-generierte vs. übergebene Keys + Header-Weitergabe ab.
-  - path: docs/runbooks/sigil-publisher.md
-    desc: Boundary-Coupling beschreibt Auto-Header für JS-Bridges und Follow-ups.
+  - path: scripts/boundary-service.ts
+    desc: Adds CORS preflight handling with Idempotency-Key allow/expose headers and new Prometheus counters (boundary_observe_total, boundary_idempotency_missing_total).
+  - path: scripts/smoke/boundary-service-smoke.mjs
+    desc: Smoke validates preflight, header exposure, missing headers and Prometheus counters.
   - path: docs/roadmap/v1.0-stabilization-playbook.md
-    desc: Statusabschnitt nennt den Publisher-Rollout.
+    desc: Status note covers server parity (CORS expose + metrics).
   - path: docs/roadmap/v1.0-stabilization-playbook.yaml
-    desc: Observability-Checkpoint ergänzt Auto-Header Hinweis.
+    desc: Observability checkpoint includes Fraktal99 server parity update.
   - path: MandalaMap.md
-    desc: Automation-Samples listen den Idempotency-Publisher.
+    desc: Fraktal/sample list adds boundary server parity highlight.
   - path: MandalaMap.json
-    desc: Notes referenzieren den Publisher-Rollout.
+    desc: Automation notes mention CORS/metrics server parity.
   - path: MandalaMap.yaml
-    desc: Automation-Gruppe markiert den neuen Hook.
+    desc: Automation section records Fraktal99 server parity notes.
   - path: codexfeedback.md
-    desc: Neuer Eintrag Fraktal98 PublisherRollout.
+    desc: New entry documents Fraktal99 ServerParity run.
   - path: codexfeedback.json
-    desc: Runs prepend PublisherRollout-Log.
+    desc: Runs array prepends the server parity summary.
   - path: codexfeedback.yaml
-    desc: Current auf 98, History + Hook aktualisiert.
-  - path: analysis/devtalk96-evaluation.md
-    desc: Idempotency-Reihe markiert JS-Auto-Header, Follow-up fokussiert Nicht-JS.
-  - path: docs/fraktal/codexfeedback/codexfeedback-fraktal98.yaml
-    desc: Fraktal-Log für den Publisher-Rollout.
+    desc: Current set to 99 with updated history/hook.
+  - path: analysis/devtalk99-evaluation.md
+    desc: DevTalk evaluation confirms CORS/metrics/test coverage.
+  - path: docs/fraktal/codexfeedback/codexfeedback-fraktal99.yaml
+    desc: Fraktal log for the server parity run.
 validate:
-  - pnpm vitest run tests/boundary/publisher.test.ts
+  - node scripts/smoke/boundary-service-smoke.mjs
 refs:
-  - src/boundary/publisher.ts
-  - tests/boundary/publisher.test.ts
-  - docs/runbooks/sigil-publisher.md
+  - scripts/boundary-service.ts
+  - scripts/smoke/boundary-service-smoke.mjs
   - docs/roadmap/v1.0-stabilization-playbook.md
   - docs/roadmap/v1.0-stabilization-playbook.yaml
   - MandalaMap.(md|json|yaml)
   - codexfeedback.(md|json|yaml)
-  - analysis/devtalk96-evaluation.md
+  - analysis/devtalk99-evaluation.md
+  - docs/fraktal/codexfeedback/codexfeedback-fraktal99.yaml
