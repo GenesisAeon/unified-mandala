@@ -9,7 +9,10 @@ fraktal:
         \ beantwortet OPTIONS /boundary/observe mit CORS-Expose und annotiert OTel-Spans.\
         \ Vitest & Smoke decken Header-/Counter-Flows ab, Docs (Runbook, GettingStarted,\
         \ Stabilization-Playbook, MandalaMap, Codexfeedback, DevTalk-Audit) spiegeln\
-        \ den Status; Nicht-JS-Bridges und Alert-Rollout bleiben Follow-up."
+        \ den Status; Nicht-JS-Bridges und Alert-Rollout bleiben Follow-up. ZeroBuildVitest\
+        \ ergänzt konditionale `vitest`/`test`/`development`-Exports in `packages/ai` und\
+        \ `resolve.conditions` im Vitest-Config; Playbook/MandalaMap/codexfeedback halten\
+        \ den Audit-Hook auf weitere Pakete & Alerts offen."
       deliverables:
         - MandalaMap.json
         - MandalaMap.md

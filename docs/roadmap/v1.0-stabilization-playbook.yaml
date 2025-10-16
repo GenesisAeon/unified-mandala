@@ -1,7 +1,7 @@
 fraktal: 40
 release: v1.0
 owner: codex
-updated: '2025-12-02'
+updated: '2025-12-09'
 summary: 'Strukturierter Maßnahmenplan zur Umsetzung der Fraktal40-Besprechung.
 
   Fokus auf stabile Kern-Builds, dist-first Services, verschärfte Governance
@@ -341,7 +341,10 @@ streams:
           \ räumt die fehlende `$hasNats`-Variable im Windows-Setup-Skript.\n        \
           \  Fraktal83: Responses-Payload nutzt jetzt `input_text`/`output_text` statt\
           \ `type: 'text'`, wodurch der 400-Fehler \"Invalid value: 'text'\" verschwindet\
-          \ und MandalaAIPlayground wieder Antworten liefert (mit gesetztem `OPENAI_API_KEY`).\n"
+          \ und MandalaAIPlayground wieder Antworten liefert (mit gesetztem `OPENAI_API_KEY`).\n        \
+          \  Fraktal98: `@unified-mandala/ai` exportiert konditionale `vitest`/`test`/`development`-\
+          \ Pfade und `vitest.config.ts` priorisiert `resolve.conditions`, sodass Pre-Commit\
+          \ Vitest-Läufe ohne Vorab-Build funktionieren (DevTalk Option A).\n"
         artifacts:
           - packages/ai
           - apps/api

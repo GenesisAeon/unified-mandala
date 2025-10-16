@@ -1,8 +1,8 @@
 # Mandala Map
 
 - Version: 1.0
-- Fraktal: 97
-- Generated: 2025-12-08 00:00:00+00:00
+- Fraktal: 98
+- Generated: 2025-12-09 00:00:00+00:00
 
 Total entries: 76
 
@@ -43,6 +43,7 @@ Samples:
   - Fraktalrun pipelines (active) — fraktalrun/
   - Boundary Idempotency publisher (active) — src/boundary/publisher.ts (HTTP-Fallback sendet `Idempotency-Key`).
   - Boundary service observability update (active) — scripts/boundary-service.ts (`/metrics` zählt `boundary_observe_total{result="accepted|duplicate|invalid"}`, `boundary_idempotency_missing_total`; CORS exponiert `Idempotency-Key`).
+  - Zero-build Vitest fallback (active) — packages/ai/package.json & vitest.config.ts (konditionale `vitest`/`test`/`development`-Exports, `resolve.conditions`).
 - governance:
   - Codex governance manifests (active) — codex/
   - Configuration bundles (active) — config/

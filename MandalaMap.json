@@ -299,7 +299,8 @@
         "`apps/web/src/components/MandalaAIPlayground.tsx` testet den Responses-Bridge Flow manuell.",
         "Fraktal79 ergänzt `pnpm start:cosmic-web` als orchestrierten Demo-Starter (NATS, Artefakte, Services, UI, Smoke) und verdrahtet mandala-ui direkt auf `/demo/ai-playground`.",
         "mandala-ui rendert den Playground selbst; der Dev-Server proxyt `/api/ai` auf Port 4000 (AI-Service `apps/api`, steuerbar via `MANDALA_AI_API_ORIGIN`).",
-        "Fraktal83 behebt 400er-Antworten (\"Invalid value: 'text'\") durch korrektes Responses-Mapping (`input_text`/`output_text`) in `packages/ai`; UI-Smokes funktionieren wieder, sobald `OPENAI_API_KEY` gesetzt ist."
+        "Fraktal83 behebt 400er-Antworten (\"Invalid value: 'text'\") durch korrektes Responses-Mapping (`input_text`/`output_text`) in `packages/ai`; UI-Smokes funktionieren wieder, sobald `OPENAI_API_KEY` gesetzt ist.",
+        "Fraktal98 ergänzt konditionale `vitest`/`test`/`development`-Exports in `packages/ai` und `resolve.conditions` in `vitest.config.ts`, damit Pre-Commit Vitest-Läufe ohne vorab gebaute `dist/`-Artefakte funktionieren (DevTalk Option A)."
       ],
       "path": "apps/",
       "status": "active",
@@ -1160,8 +1161,8 @@
     }
   },
   "meta": {
-    "fraktal": 97,
-    "generated": "2025-12-08 00:00:00+00:00",
+    "fraktal": 98,
+    "generated": "2025-12-09 00:00:00+00:00",
     "reference_docs": [
       "docs/roadmap/v1.0-stabilization-playbook.md",
       "docs/roadmap/v1.0-stabilization-playbook.yaml"

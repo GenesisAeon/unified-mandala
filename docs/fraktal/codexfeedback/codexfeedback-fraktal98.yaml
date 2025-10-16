@@ -15,7 +15,10 @@ summary:
 - Docs & Tracker (`docs/runbooks/sigil-publisher.md`, `docs/boundary/GettingStarted.md`,
   `docs/roadmap/v1.0-stabilization-playbook.(md|yaml)`, `MandalaMap.(md|json|yaml)`,
   `codexfeedback.*`, `analysis/devtalk96-evaluation.md`) heben den JS-Publisher-Rollout
-  plus Observability-Update hervor; Nicht-JS-Bridges & Alerting bleiben Follow-up.
+  plus Observability-Update hervor; `packages/ai/package.json` + `vitest.config.ts`
+  liefern Zero-Build-Vitest (konditionale Exports, `resolve.conditions`),
+  `analysis/devtalk98-evaluation.md` dokumentiert den DevTalk-Abgleich. Nicht-JS-Bridges
+  & Alerting bleiben Follow-up.
 deliverables:
 - MandalaMap.json
 - MandalaMap.md
