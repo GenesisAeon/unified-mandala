@@ -1,29 +1,25 @@
-# Codexfeedback – Fraktal 94
+# Codexfeedback – Fraktal 95
 
-- Phase: DevTalk94 Sync, Schema-Gate Hardening & Roadmap-Refresh
-- Status: DevTalk-Anforderungen auditiert, SigilMessage 1.0.0 strikt im Schema-Gate (Fingerprint + Fixtures), UI/Boundary Follow-ups offen.
-- Next Hook: `MembranePill` verdrahten, Boundary-Smokes um Event-Key/Dedupe ergänzen, Observability-Notiz erweitern.
+- Phase: Sigil Runtime Guard & Membrane OpsPanel Integration · Boundary Dedupe follow-up
+- Status: Boundary smoke enforces `eventKey` coverage, helper tests guard dedupe logic and the Sigil publisher runbook documents multi-bridge integration. Remaining optional hook: automate RAG index refresh once additional sigil feeds arrive.
+- Next Hook: Monitor boundary law exports (laws.json/laws.demo.json) for missing keys and extend publisher roll-out to remaining bridges when they adopt the runtime guard.
 
 What changed
 
-- `schemas/sigil-message/1-0-0.schema.json` · Versioniertes JSON Schema 2020-12 mit ASCII-Gate & Fingerprint-Anker.
-- `schemas/sigil-message/examples/*` · Valid/invalid Fixtures sichern Strictness (Extra-Props, ASCII, Timestamp).
-- `sigils/samples/sigil-message.sample.json` · Referenzpayload für das SigilMessage-Schema.
-- `scripts/validate-schemas.mjs` · Ajv strict, Fingerprint-Check sowie Valid/Invalid-Fixtures im Schema-Gate.
-- `src/adapters/sigil-mapping.ts` · Build-Helfer erzeugt SigilMessage 1.0.0 (kind/schemaVersion/Context-Sanitizer).
-- `tests/sigil/schema.contract.test.ts` · Ajv strict gegen das neue Schema + Build-Helfer.
-- `analysis/devtalk94-evaluation.md` · Abgleich DevTalk94 (CI/CD, Governance, Observability, Docs, Tests) inkl. neuer Deliverables.
-- `docs/membrane/real-membrane-v0.1.md` · Checkliste markiert Schema-Gate (Fraktal94) inkl. Fingerprint/Fixures als erledigt.
-- `docs/roadmap/v1.0-stabilization-playbook.(md|yaml)` · Statusnotiz aktualisiert (Schema 1-0-0, Fingerprint, Fixtures).
-- `MandalaMap.(md|json|yaml)` · Meta auf Fraktal94 gehoben, Schema-Eintrag verweist auf Version/Fixtures/Fingerprint.
+- `scripts/smoke/boundary-smoke.mjs` · Added JSON helper exports plus `eventKey` dedupe validation and CLI exit codes for missing/duplicate keys.
+- `tests/smoke/boundary-smoke.spec.ts` · Covers snapshot extraction, missing key detection, duplicate detection and happy-path validation.
+- `docs/runbooks/sigil-publisher.md` · Runbook describing how to integrate `publishSigilMessage`, boundary coupling and snapshot expectations.
+- `docs/roadmap/v1.0-stabilization-playbook.(md|yaml)` · Observability stream notes Fraktal95 update (boundary smoke + runbook).
+- `MandalaMap.(md|json|yaml)` · Generated timestamp refreshed; automation scripts entry references boundary dedupe + runbook.
+- `docs/fraktal/codexfeedback/codexfeedback-fraktal95.yaml`, `codexfeedback.(md|json|yaml)` · Marked Fraktal95 as done and updated progress hooks.
 
 Validate
 
-- `pnpm schema:validate`
-- `pnpm observability:check`
+- `pnpm vitest run tests/smoke/boundary-smoke.spec.ts`
 
 Refs
 
+- docs/runbooks/sigil-publisher.md
 - docs/roadmap/v1.0-stabilization-playbook.(md|yaml)
 - MandalaMap.(md|json|yaml)
-- DevTalk.txt
+- scripts/smoke/boundary-smoke.mjs

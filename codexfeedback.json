@@ -1,9 +1,14 @@
 {
   "runs": [
     {
+      "fraktalrun": "Fraktal95 BoundaryDedupe",
+      "status": "done",
+      "notes": "scripts/smoke/boundary-smoke.mjs exports helpers and enforces eventKey dedupe (missing/duplicate keys fail the smoke); tests/smoke/boundary-smoke.spec.ts covers extraction/missing/duplicate paths; docs/runbooks/sigil-publisher.md captures publishSigilMessage integration, and stabilization playbook/MandalaMap/codexfeedback mark the follow-up closed."
+    },
+    {
       "fraktalrun": "Fraktal94 SchemaGateHardening",
-      "status": "in-progress",
-      "notes": "analysis/devtalk94-evaluation.md bestätigt den DevTalk-Abgleich; schemas/sigil-message/1-0-0.schema.json (Fingerprints + Valid/Invalid-Fixtures) hängt strikt in pnpm schema:validate, src/adapters/sigil-mapping.ts & tests/sigil/schema.contract.test.ts erzeugen/prüfen das Format; MandalaMap.*, Stabilization-Playbook.(md|yaml) und codexfeedback-latest.* dokumentieren offene UI/Boundary-Follow-ups."
+      "status": "done",
+      "notes": "analysis/devtalk94-evaluation.md bestätigte den DevTalk-Abgleich; schemas/sigil-message/1-0-0.schema.json (Fingerprints + Valid/Invalid-Fixtures) hängt strikt in pnpm schema:validate, src/adapters/sigil-mapping.ts & tests/sigil/schema.contract.test.ts erzeugen/prüfen das Format; MandalaMap.*, Stabilization-Playbook.(md|yaml) und codexfeedback-latest.* hielten die UI/Boundary-Follow-ups fest, die in Fraktal95 umgesetzt wurden."
     },
     {
       "fraktalrun": "Fraktal88 DevTalkContinuation",

@@ -410,7 +410,11 @@ streams:
           Prometheus Counter/Histogram & Boundary-Events; SigilMessage-Schema
           wird via Ajv-Test abgesichert, UI-Pill folgt. Fraktal94 verankert das
           Schema `schemas/sigil-message/1-0-0.schema.json` (Fingerprints + Valid/Invalid-Fixtures)
-          im `pnpm schema:validate`, MandalaMap und Codexfeedback halten UI-/Boundary-Follow-ups fest.'
+          im `pnpm schema:validate`, MandalaMap und Codexfeedback halten UI-/Boundary-Follow-ups fest.
+          Fraktal95 liefert das Runtime-Gate (Ajv 2020), Prometheus Counter `sigil_emitted_total`,
+          JSONL-Snapshots unter `data/logs/sigils/` sowie die MembranePill im OpsPanel (Schema-Version
+          & ASCII-Status). Fraktal95 Update (2025-12-05) ergänzt Boundary-Smoke-Dedupe (`eventKey`
+          Pflicht + Helper-Test) und dokumentiert die Publisher-Integration in `docs/runbooks/sigil-publisher.md`.'
       - id: prom-compose
         description: Compose-Profile für Prometheus/Grafana aktivieren
         status: done

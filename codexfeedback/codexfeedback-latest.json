@@ -1,56 +1,45 @@
 {
   "fraktal": {
-    "id": 94,
-    "phase": "DevTalk94 Sync, Schema-Gate Hardening & Roadmap-Refresh",
-    "status": "DevTalk-Anforderungen auditiert, SigilMessage 1.0.0 strikt im Schema-Gate (Fingerprint + Fixtures), UI/Boundary Follow-ups offen.",
-    "next_hook": "MembranePill verdrahten, Boundary-Smokes um Event-Key/Dedupe ergänzen, Observability-Notiz erweitern."
+    "id": 95,
+    "phase": "Sigil Runtime Guard & Membrane OpsPanel Integration · Boundary Dedupe follow-up",
+    "status": "Boundary smoke enforces eventKey coverage; helper tests and the Sigil publisher runbook close the open follow-up.",
+    "next_hook": "Monitor boundary law exports for missing keys and roll the runtime publisher out to additional bridges as they migrate."
   },
   "changes": [
     {
-      "file": "schemas/sigil-message/1-0-0.schema.json",
-      "desc": "Versioniertes JSON Schema 2020-12 mit ASCII-Gate & Fingerprint-Anker."
+      "file": "scripts/smoke/boundary-smoke.mjs",
+      "desc": "Exports helpers and enforces eventKey dedupe/missing-key detection with explicit exit codes."
     },
     {
-      "file": "schemas/sigil-message/examples/",
-      "desc": "Valid/invalid Fixtures sichern Strictness (Extra-Props, ASCII, Timestamp)."
+      "file": "tests/smoke/boundary-smoke.spec.ts",
+      "desc": "Vitest coverage for snapshot extraction, missing/duplicate keys and success path."
     },
     {
-      "file": "sigils/samples/sigil-message.sample.json",
-      "desc": "Referenzpayload für das SigilMessage-Schema."
-    },
-    {
-      "file": "scripts/validate-schemas.mjs",
-      "desc": "Ajv strict, Fingerprint-Check sowie Valid/Invalid-Fixtures im Schema-Gate."
-    },
-    {
-      "file": "src/adapters/sigil-mapping.ts",
-      "desc": "Build-Helfer erzeugt SigilMessage 1.0.0 (kind/schemaVersion/Context-Sanitizer)."
-    },
-    {
-      "file": "tests/sigil/schema.contract.test.ts",
-      "desc": "Ajv strict gegen das neue Schema + Build-Helfer."
-    },
-    {
-      "file": "analysis/devtalk94-evaluation.md",
-      "desc": "DevTalk94 Audit mit neuen Deliverables (Schema 1-0-0, Fixtures, Fingerprint)."
-    },
-    {
-      "file": "docs/membrane/real-membrane-v0.1.md",
-      "desc": "Checkliste markiert Schema-Gate inkl. Fingerprint/Fixures als erledigt."
+      "file": "docs/runbooks/sigil-publisher.md",
+      "desc": "Runbook describing publishSigilMessage wiring (logger/bus/listeners, boundary coupling, metrics, dedupe)."
     },
     {
       "file": "docs/roadmap/v1.0-stabilization-playbook.(md|yaml)",
-      "desc": "Statusnotiz aktualisiert (Schema 1-0-0, Fingerprint, Fixtures)."
+      "desc": "Observability stream notes the Fraktal95 update (boundary smoke dedupe + runbook)."
     },
     {
       "file": "MandalaMap.(md|json|yaml)",
-      "desc": "Meta auf Fraktal94 gehoben, Schema-Eintrag verweist auf Version/Fixtures/Fingerprint."
+      "desc": "Generated timestamp refreshed and automation scripts entry references boundary dedupe + runbook."
+    },
+    {
+      "file": "docs/fraktal/codexfeedback/codexfeedback-fraktal95.yaml",
+      "desc": "Marked Fraktal95 as done with updated hook guidance."
+    },
+    {
+      "file": "codexfeedback.(md|json|yaml)",
+      "desc": "Repository-level tracker updated to reflect closed follow-up."
     }
   ],
-  "validate": ["pnpm schema:validate", "pnpm observability:check"],
+  "validate": ["pnpm vitest run tests/smoke/boundary-smoke.spec.ts"],
   "refs": [
+    "docs/runbooks/sigil-publisher.md",
     "docs/roadmap/v1.0-stabilization-playbook.(md|yaml)",
     "MandalaMap.(md|json|yaml)",
-    "DevTalk.txt"
+    "scripts/smoke/boundary-smoke.mjs"
   ]
 }

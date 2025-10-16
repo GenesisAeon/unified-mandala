@@ -1,7 +1,7 @@
 meta:
   version: '1.0'
-  generated: '2025-12-03 00:00:00+00:00'
-  fraktal: 94
+  generated: '2025-12-05 00:00:00+00:00'
+  fraktal: 95
   repo: unified-mandala
   source: ChefDevAI MandalaMap bootstrap
   reference_docs:
@@ -804,6 +804,7 @@ entries:
         Fraktal87 startet den Qwen-Rollout: `scripts/smoke/qwen-smoke.mjs` liefert `pnpm smoke:qwen`, der Pre-Push-Trigger
         `scripts/hooks/qwen-smoke-trigger.mjs` (`pnpm hook:qwen-smoke`) läuft nur bei `AI_PROVIDER=qwen-*`/`UM_RUN_QWEN_SMOKE=1`;
         `.github/workflows/ci.qwen-smoke.yml` und `docs/roadmap/RoleOutCommands.(md|json|yaml)` spiegeln denselben Flow.
+      - Fraktal95 Update versieht `scripts/smoke/boundary-smoke.mjs` mit `eventKey`-Dedupe-Prüfung, `tests/smoke/boundary-smoke.spec.ts` sichert die Helper und das Runbook `docs/runbooks/sigil-publisher.md` dokumentiert die Publisher-Integration.
     links:
       - label: run-dist
         path: scripts/run-dist.mjs
