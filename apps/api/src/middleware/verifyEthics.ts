@@ -32,7 +32,10 @@ export function verifyEthics(req: Request, res: Response, next: NextFunction): v
   }
 
   try {
-    const claims = jwt.verify(String(tokenHeader), getSecret()) as VerdictClaims;
+    const claims = jwt.verify(String(tokenHeader), getSecret(), {
+      algorithms: ['HS256'],
+      clockTolerance: 5,
+    }) as VerdictClaims;
     const wantHash = sha1(`${(req.method ?? 'GET').toUpperCase()}:${req.path}`);
     if (claims.v !== 'green' || claims.pth !== wantHash || typeof claims.ec !== 'number') {
       throw new Error('not_green_or_mismatch');

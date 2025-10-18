@@ -1,7 +1,37 @@
 import { defineConfig } from 'vitest/config';
 import path from 'node:path';
+import fs from 'node:fs';
+import { fileURLToPath } from 'node:url';
 
 const toBool = (value: string | undefined) => value === '1' || value?.toLowerCase() === 'true';
+
+const otelStubRoot = fileURLToPath(new URL('./tests/__mocks__/otel-api', import.meta.url));
+const resolveOtelStub = (id: string): string | null => {
+  const aliases = new Map<string, string>([
+    ['@opentelemetry/api', path.join(otelStubRoot, 'index.ts')],
+    ['@opentelemetry/api/index.js', path.join(otelStubRoot, 'index.ts')],
+    ['@opentelemetry/api/build/esm', path.join(otelStubRoot, 'build/esm/index.ts')],
+    ['@opentelemetry/api/build/esm/index.js', path.join(otelStubRoot, 'build/esm/index.ts')],
+  ]);
+  const direct = aliases.get(id);
+  if (direct) return direct;
+  if (id.startsWith('@opentelemetry/api/')) {
+    const suffix = id.slice('@opentelemetry/api/'.length);
+    const candidates = [
+      path.join(otelStubRoot, `${suffix}.ts`),
+      path.join(otelStubRoot, `${suffix}.js`),
+      path.join(otelStubRoot, suffix),
+      path.join(otelStubRoot, suffix, 'index.ts'),
+      path.join(otelStubRoot, suffix, 'index.js'),
+    ];
+    for (const candidate of candidates) {
+      if (fs.existsSync(candidate)) {
+        return candidate;
+      }
+    }
+  }
+  return null;
+};
 
 const runExtended = toBool(process.env.ENABLE_EXTENDED_TESTS);
 const runExperimental = toBool(process.env.ENABLE_EXPERIMENTAL_TESTS);
@@ -31,12 +61,37 @@ if (!runExperimental) {
 }
 
 export default defineConfig({
+  plugins: [
+    {
+      name: 'um-otel-stub-resolver',
+      enforce: 'pre',
+      resolveId(source) {
+        const resolved = resolveOtelStub(source);
+        if (resolved) {
+          return resolved;
+        }
+        return null;
+      },
+    },
+  ],
   cacheDir: 'tmp/.vite',
   resolve: {
-    conditions: ['vitest', 'test', 'development', 'import', 'module'],
+    conditions: ['vitest', 'test', 'development', 'import'],
+    mainFields: ['main', 'module', 'browser'],
     alias: {
       '@config': path.resolve(__dirname, 'config'),
       '@mandala/boundary-core': path.resolve(__dirname, 'stubs/boundary-core.ts'),
+      '@opentelemetry/api': fileURLToPath(new URL('./tests/__mocks__/otel-api', import.meta.url)),
+      '@opentelemetry/api/index.js': fileURLToPath(
+        new URL('./tests/__mocks__/otel-api/index.ts', import.meta.url),
+      ),
+      '@opentelemetry/api/build/esm': fileURLToPath(
+        new URL('./tests/__mocks__/otel-api/build/esm', import.meta.url),
+      ),
+      '@opentelemetry/api/build/esm/index.js': fileURLToPath(
+        new URL('./tests/__mocks__/otel-api/build/esm/index.ts', import.meta.url),
+      ),
+      tldts: fileURLToPath(new URL('./tests/__mocks__/tldts.ts', import.meta.url)),
     },
     preserveSymlinks: true,
   },
@@ -48,11 +103,19 @@ export default defineConfig({
     poolOptions: { threads: { singleThread: true } },
     server: {
       deps: {
-        inline: [/^@unified-mandala\/ai$/, /^openai$/, /^nats$/, /^express$/, /^react$/],
+        inline: [
+          /^@unified-mandala\/ai$/,
+          /^openai$/,
+          /^nats$/,
+          /^express$/,
+          /^react$/,
+          /^@opentelemetry\/api(\/.*)?$/,
+        ],
       },
     },
     deps: {
       optimizer: {
+        enabled: false,
         ssr: {
           include: ['@unified-mandala/ai', 'openai', 'nats', 'express', 'react'],
         },

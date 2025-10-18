@@ -1,6 +1,11 @@
 {
   "runs": [
     {
+      "fraktalrun": "Fraktal105 VerifyGateTestHardening",
+      "status": "done",
+      "notes": "Vitest aliasiert @opentelemetry/api auf einen Stub (tests/__mocks__/otel-api.ts), tests/setup/ci.ts setzt Loopback-Allowlists (VERIFY_GATE_SSRF_ALLOWLIST), Verify-Gate SSRF akzeptiert Protokoll-/Port-Wildcards und Upstream verifyEthics nutzt HS256 + clockTolerance=5; Stabilization-Playbook, MandalaMap und codexfeedback* dokumentieren DevTalk105-Hooks (Prometheus-Counter, OPA-Bundle)."
+    },
+    {
       "fraktalrun": "Fraktal103 VerifyGateDefense",
       "status": "done",
       "notes": "Verify-Gate säubert eingehende Header (Drop-Liste), prüft DNS-basierte SSRF-Allowlists (`VERIFY_GATE_UPSTREAM_ALLOWLIST`), exportiert Prometheus (`verify_gate_inflight`, `verify_gate_upstream_duration_ms`, `verify_gate_http_responses_total`) samt `/metrics` und deckt Streaming/SSRF mit neuen Vitest-Suiten ab. Ethics-API signalisiert degradierte Abhängigkeiten (`x-ethics-degraded`, Counter `ethics_degraded_total`), nutzt Lifeboat-Regeln (Hate/PII/Scam), cached Boundary-Ergebnisse (`ETHICS_CACHE_TTL_MS`) per SHA1, erzwingt eindeutige Evidenz-Domains (`ETHICS_REQUIRE_UNIQUE_EVIDENCE_DOMAINS`) und zählt Decisions/Evidenz-Domains via Prometheus. `.env.example`, Stabilization-Playbook (MD/YAML), MandalaMap (MD/JSON/YAML), analysis/devtalk103-evaluation.md und codexfeedback-latest.* dokumentieren die Defense-in-Depth-Hooks (Grafana-Alerts, DOI/Handle-Validator)."

@@ -1,8 +1,8 @@
 # Mandala Map
 
 - Version: 1.0
-- Fraktal: 104
-- Generated: 2025-12-13 00:00:00+00:00
+- Fraktal: 105
+- Generated: 2025-12-14 00:00:00+00:00
 
 Total entries: 78
 
@@ -47,7 +47,7 @@ Samples:
 - observability:
   - Ethics fail-closed service (active) — apps/ethics-api/src/index.ts (Circuit-Breaker, Ajv-Validierung, Lifeboat-Regeln inkl. Payment-Scam/Malware/Impersonation, PSL-basierte Evidenz (tldts) mit "strong"-Flag, Boundary-Cache + `boundary_cache_warm`, Log-Sampling & optionaler OPA-Deny, Prometheus-Counter `ethics_degraded_total`/`ethics_decision_log_total`).
 - core-runtime:
-  - Verify gate proxy (active) — apps/verify-gate/src/index.ts (Header-Drop-Liste, Rate/JSON-Limits (`VERIFY_GATE_JSON_LIMIT`, `VERIFY_GATE_RPS`), DNS-SSRF-Allowlist + IP-Pinning, Idempotency-Cache (`VERIFY_GATE_IDEMP_TTL_MS`) mit 409-Duplikatpfad, JWT-Verdict-Tokens (`VERIFY_GATE_JWT_SECRET`) & Upstream-Guard, `/readyz`-Ethics-Check, Prometheus (`verify_gate_inflight`) & `/metrics`).
+  - Verify gate proxy (active) — apps/verify-gate/src/index.ts (Header-Drop-Liste, Rate/JSON-Limits (`VERIFY_GATE_JSON_LIMIT`, `VERIFY_GATE_RPS`), DNS-SSRF-Allowlist + IP-Pinning, Idempotency-Cache (`VERIFY_GATE_IDEMP_TTL_MS`) mit 409-Duplikatpfad, JWT-Verdict-Tokens (`VERIFY_GATE_JWT_SECRET`) & Upstream-Guard, `/readyz`-Ethics-Check, Prometheus (`verify_gate_inflight`) & `/metrics`, Vitest-Alias für `@opentelemetry/api` + Loopback-Defaults aus `tests/setup/ci.ts` und SSRF-Wildcards (`VERIFY_GATE_SSRF_ALLOWLIST=http://127.0.0.1:*`)).
 - governance:
   - Codex governance manifests (active) — codex/
   - Configuration bundles (active) — config/

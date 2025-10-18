@@ -1,0 +1,19 @@
+{
+  "name": "@opentelemetry/api",
+  "version": "0.0.0-test",
+  "type": "module",
+  "main": "./index.ts",
+  "module": "./index.ts",
+  "exports": {
+    ".": "./index.ts",
+    "./index.js": "./index.ts",
+    "./build/esm": "./build/esm/index.ts",
+    "./build/esm/index.js": "./build/esm/index.ts",
+    "./build/esm/baggage/utils": "./build/esm/baggage/utils.ts",
+    "./build/esm/baggage/utils.js": "./build/esm/baggage/utils.ts",
+    "./build/esm/metrics": "./build/esm/metrics/index.ts",
+    "./build/esm/trace": "./build/esm/trace/index.ts",
+    "./build/esm/context": "./build/esm/context/index.ts",
+    "./build/esm/diag": "./build/esm/diag/index.ts"
+  }
+}
