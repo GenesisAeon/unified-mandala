@@ -607,8 +607,14 @@ app.listen(port, host, () => {
   console.log(`[ollama-proxy] http://${host}:${port} --> ${upstream} (${model})`);
 });
 
-if (!(await embedReady())) {
-  return res
-    .status(503)
-    .json({ error: 'embed_unavailable', detail: `Embed model '${embedModel}' not ready` });
-}
+embedReady()
+  .then((ready) => {
+    if (!ready) {
+      console.warn(
+        `[ollama-proxy] Embed model "${embedModel}" not ready yet – embedding endpoints may return errors until warmed up.`,
+      );
+    }
+  })
+  .catch((error) => {
+    console.warn('[ollama-proxy] Failed to probe embed model readiness:', error);
+  });

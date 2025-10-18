@@ -1,5 +1,6 @@
 #!/usr/bin/env -S tsx
 import { spawn } from 'node:child_process';
+import net from 'node:net';
 import process from 'node:process';
 
 function computeHealthPort(): number {
@@ -23,6 +24,22 @@ function run(name: string, cmd: string, args: string[], env?: NodeJS.ProcessEnv)
   return child;
 }
 
+async function isPortFree(port: number, host = '127.0.0.1'): Promise<boolean> {
+  return new Promise((resolve) => {
+    const server = net.createServer();
+    const finish = (result: boolean) => {
+      try {
+        server.close(() => resolve(result));
+      } catch {
+        resolve(result);
+      }
+    };
+    server.once('error', () => finish(false));
+    server.once('listening', () => finish(true));
+    server.listen(port, host);
+  });
+}
+
 async function waitOn(urls: string[], timeoutMs = 90_000): Promise<void> {
   const waitOn = await import('wait-on');
   await waitOn.default({ resources: urls, timeout: timeoutMs, window: 500 });
@@ -44,8 +61,14 @@ async function main() {
   // Dev stack (services orchestrator)
   procs.push(run('stack', 'pnpm', ['dev:stack']));
 
-  // Health aggregator
-  procs.push(run('health', 'pnpm', ['dev:health']));
+  // Health aggregator (already started via dev:stack, avoid double-bind)
+  if (await isPortFree(healthPort)) {
+    procs.push(run('health', 'pnpm', ['dev:health']));
+  } else {
+    console.log(
+      `[start-verified] Health aggregator already running on port ${healthPort}, skipping extra dev:health`,
+    );
+  }
 
   let shuttingDown = false;
   function shutdown(code = 0) {
