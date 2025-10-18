@@ -1,13 +1,50 @@
 fraktal:
-  current: 102
+  current: 103
   history:
+    - id: 103
+      status: done
+      notes:
+        'Fraktal103 VerifyGateDefense: Verify-Gate säubert Header (Drop-Liste), prüft DNS-basierte SSRF-Allowlists (`VERIFY_GATE_UPSTREAM_ALLOWLIST`),
+        exportiert Prometheus (`verify_gate_inflight`, `verify_gate_upstream_duration_ms`, `verify_gate_http_responses_total`) samt
+        `/metrics` und deckt Streaming/SSRF mit neuen Vitest-Suiten ab. Ethics-API signalisiert degradierte Abhängigkeiten (`x-ethics-degraded`,
+        Counter `ethics_degraded_total`), nutzt Lifeboat-Regeln (Hate/PII/Scam), cached Boundary-Ergebnisse (`ETHICS_CACHE_TTL_MS`) per SHA1,
+        erzwingt eindeutige Evidenz-Domains (`ETHICS_REQUIRE_UNIQUE_EVIDENCE_DOMAINS`) und zählt Decisions/Evidenz-Domains via Prometheus.
+        `.env.example`, Stabilization-Playbook (MD/YAML), MandalaMap.* sowie analysis/devtalk103-evaluation.md und codexfeedback-latest.* dokumentieren
+        die Defense-in-Depth-Hooks (Grafana-Alerts, DOI/Handle-Validator).'
+      deliverables:
+        - apps/verify-gate/src/index.ts
+        - apps/verify-gate/src/http/headerForward.ts
+        - apps/verify-gate/src/security/ssrf.ts
+        - apps/verify-gate/src/__tests__/proxy-headers.test.ts
+        - apps/verify-gate/src/__tests__/streaming-preserves-headers.test.ts
+        - apps/verify-gate/src/__tests__/ssrf-allowlist.test.ts
+        - apps/ethics-api/src/index.ts
+        - apps/ethics-api/src/__tests__/ethics-failclosed.test.ts
+        - .env.example
+        - docs/roadmap/v1.0-stabilization-playbook.md
+        - docs/roadmap/v1.0-stabilization-playbook.yaml
+        - MandalaMap.md
+        - MandalaMap.yaml
+        - MandalaMap.json
+        - analysis/devtalk103-evaluation.md
+        - codexfeedback.md
+        - codexfeedback/codexfeedback-latest.md
+        - codexfeedback/codexfeedback-latest.json
+        - codexfeedback/codexfeedback-latest.yaml
+        - codexfeedback/codexfeedback-fraktal103.yaml
+      commands:
+        - pnpm vitest run apps/verify-gate/src/__tests__/proxy-headers.test.ts apps/verify-gate/src/__tests__/streaming-preserves-headers.test.ts apps/verify-gate/src/__tests__/ssrf-allowlist.test.ts apps/ethics-api/src/__tests__/ethics-failclosed.test.ts
+      hook:
+        progress: Verify-Gate & Ethics-API Defense-in-Depth aktiv (Header-Sanitizing, DNS-SSRF, Degraded-Signale, Evidenz-Dedupe).
+        next_step: Grafana-Alerts für neue Verify/Ethics-Metriken und DOI/Handle-Validator für Evidenz-Stärke umsetzen.
+      repeat_required: false
     - id: 102
       status: done
       notes:
         'Fraktal102 EthicsGateHardening: apps/ethics-api validiert via Ajv (`EthicsCheckSchema`),
         setzt `x-request-id`, koppelt `/readyz` an den Circuit-State (`cb` 0/1/2) und
         reicht optionale Service-Bearer (`INTERNAL_BEARER`) weiter; apps/verify-gate
-        ergänzt JSON-/Rate-Limits (`GATE_JSON_LIMIT`, `VERIFY_RATE_RPS`), SSRF-Allowlist
+        ergänzt JSON-/Rate-Limits (`VERIFY_GATE_JSON_LIMIT`, `VERIFY_GATE_RPS`), SSRF-Allowlist
         (`VERIFY_UPSTREAM_ALLOWLIST`, `VERIFY_STRICT_SAME_HOST`), Streaming-Proxying
         sowie CORS-Expose für `x-ethics-*`. Live-Smoke prüft Health, Verify-Gate, Ethics
         `/readyz` und Chat; UI (EthicsBadge/fetchJsonWithEthics) & Grafana (mandala-ethics-gate.json)

@@ -27,6 +27,9 @@ const patterns = [
 ];
 
 for (const f of files.split('\n')) {
+  if (f === '.env.example' || f.endsWith('/.env.example')) {
+    continue;
+  }
   if (patterns.some((re) => re.test(f))) bad.push(f);
 }
 
