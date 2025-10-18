@@ -19,11 +19,14 @@ import {
   type BoundaryViolation,
 } from './boundary-client.js';
 import { EthicsCheckSchema, type EthicsCheckInput } from './schemas.js';
+import { parse as parseDomain } from 'tldts';
+import { evaluateOpa } from './opa.js';
 
 interface RagCitation {
   uri?: string;
   text?: string;
   score?: number;
+  strength?: 'strong' | 'standard';
   [key: string]: unknown;
 }
 
@@ -146,6 +149,7 @@ const evidenceDomainCounter = new Counter({
 });
 
 const dependencyFailMode = (process.env.ETHICS_DEP_FAIL_MODE ?? 'red').toLowerCase();
+const logSampleGreen = Number.parseFloat(process.env.LOG_SAMPLE_GREEN ?? '0.01');
 
 const circuitOptions: { failureThreshold?: number; halfOpenAfterMs?: number } = {};
 const cbFailureThreshold = Number.parseInt(process.env.BOUNDARY_CB_FAILS ?? '', 10);
@@ -189,6 +193,9 @@ const lifeboatRules: Array<{ id: string; pattern: RegExp; reason: string }> = [
   { id: 'hate_speech', pattern: /\b(kill|exterminate|eliminate)\s+all\s+(men|women|people|[a-z]+)\b/i, reason: 'hate_content' },
   { id: 'pii_redaction', pattern: /(social security|ssn|passport|credit card|iban)[^a-z0-9]?\s*([0-9\-]{4,})/i, reason: 'pii_detected' },
   { id: 'advance_fee', pattern: /\b(double\s+your\s+money|wire\s+transfer\s+fee|crypto\s+investment\s+guarantee)\b/i, reason: 'scam_detected' },
+  { id: 'payment_scam', pattern: /\b(quick\s*cash|guaranteed\s*returns|wire\s*me\s*first|crypto\s*giveaway)\b/i, reason: 'scam_detected' },
+  { id: 'malware_distribution', pattern: /(download|install).*(keylogger|ransomware|trojan|stealer)/i, reason: 'malware_distribution' },
+  { id: 'impersonation', pattern: /(impersonate|pretend\s+to\s+be|spoof).*(bank|support|official|employee)/i, reason: 'impersonation_detected' },
 ];
 
 function evaluateLifeboat(text: string): LifeboatFinding | null {
@@ -282,16 +289,36 @@ function setBoundaryCache(key: string, value: BoundaryResponse): void {
   boundaryCache.set(key, { expires: Date.now() + boundaryCacheTtlMs, value });
 }
 
-function canonicalDomain(url: string | undefined): string | null {
+function effectiveDomain(url: string | undefined): string | null {
   if (!url) {
     return null;
   }
   try {
-    const parsed = new URL(url);
-    return parsed.hostname.replace(/^www\./, '').toLowerCase();
+    const parsed = parseDomain(url, { allowPrivateDomains: true });
+    if (parsed.domain) {
+      return parsed.domain.toLowerCase();
+    }
+    if (parsed.hostname) {
+      return parsed.hostname.replace(/^www\./, '').toLowerCase();
+    }
+    const fallback = new URL(url);
+    return fallback.hostname.replace(/^www\./, '').toLowerCase();
   } catch {
     return null;
   }
+}
+
+const STRONG_DOMAIN_MATCHERS = [
+  /^doi\.org$/i,
+  /^arxiv\.org$/i,
+  /\.gov(?:\.[a-z]+)?$/i,
+];
+
+function isStrongEvidenceDomain(domain: string, uri?: string): boolean {
+  if (uri && uri.startsWith('https://doi.org/')) {
+    return true;
+  }
+  return STRONG_DOMAIN_MATCHERS.some((pattern) => pattern.test(domain));
 }
 
 function canonicalizeCitations(citations: RagCitation[]): { filtered: RagCitation[]; domains: string[] } {
@@ -299,7 +326,7 @@ function canonicalizeCitations(citations: RagCitation[]): { filtered: RagCitatio
   const filtered: RagCitation[] = [];
   const domains: string[] = [];
   for (const citation of citations) {
-    const domain = canonicalDomain(typeof citation.uri === 'string' ? citation.uri : undefined);
+    const domain = effectiveDomain(typeof citation.uri === 'string' ? citation.uri : undefined);
     if (!domain) {
       continue;
     }
@@ -308,7 +335,10 @@ function canonicalizeCitations(citations: RagCitation[]): { filtered: RagCitatio
     }
     seen.add(domain);
     domains.push(domain);
-    filtered.push({ ...citation, uri: citation.uri });
+    const strength = isStrongEvidenceDomain(domain, typeof citation.uri === 'string' ? citation.uri : undefined)
+      ? 'strong'
+      : 'standard';
+    filtered.push({ ...citation, uri: citation.uri, strength });
   }
   return { filtered, domains };
 }
@@ -363,10 +393,11 @@ app.get('/metrics', async (_req: Request, res: Response) => {
 app.get('/readyz', (_req: Request, res: Response) => {
   updateCircuitGauge();
   const value = getBoundaryCircuitStateValue();
+  const warm = boundaryCache.size > 0;
   if (value !== 0) {
-    return res.status(503).json({ ok: false, cb: value });
+    return res.status(503).json({ ok: false, cb: value, boundary_cache_warm: warm });
   }
-  return res.json({ ok: true });
+  return res.json({ ok: true, boundary_cache_warm: warm });
 });
 
 app.post(
@@ -499,10 +530,14 @@ app.post(
         : 0.35;
 
     const verdict = scoreToVerdict(score, canonicalCitations.length, uniqueDomainCount, violations.length > 0);
-    verdictCounter.inc({ verdict: verdict.verdict });
-    decisionLogCounter.inc({ verdict: verdict.verdict, reason: verdict.reason });
+    const baseNeededEvidence =
+      verdict.verdict === 'green'
+        ? []
+        : verdict.reason === 'insufficient_unique_domains'
+          ? ['second independent domain']
+          : ['mindestens zwei belastbare Quellen', 'konkreten Kontext für die Empfehlung'];
 
-    const response: EthicsCheckResult = {
+    let response: EthicsCheckResult = {
       ok: true,
       verdict: verdict.verdict,
       reason: verdict.reason,
@@ -519,25 +554,49 @@ app.post(
         co2eKgMax: 0,
         riskScore: violations.length > 0 ? 0.9 : 0.1,
       },
-      neededEvidence:
-        verdict.verdict === 'green'
-          ? []
-          : verdict.reason === 'insufficient_unique_domains'
-            ? ['mindestens zwei unterschiedliche, belastbare Domains', 'konkreten Kontext für die Empfehlung']
-            : ['mindestens zwei belastbare Quellen', 'konkreten Kontext für die Empfehlung'],
+      neededEvidence: baseNeededEvidence,
     };
+
+    const opaFlags: Record<string, unknown> = payload.flags ?? {};
+
+    const opaResult = await evaluateOpa({
+      intent,
+      verdict: response.verdict,
+      boundary: response.boundary,
+      grounding: { domains, citations: canonicalCitations },
+      flags: opaFlags,
+    });
+
+    if (opaResult.enforced && opaResult.deny) {
+      response = {
+        ...response,
+        ok: false,
+        verdict: 'red',
+        reason: opaResult.reason ?? 'policy_denied',
+        neededEvidence: [],
+        deps: { ...(response.deps ?? {}), opa: opaResult.reason ?? 'policy_denied' },
+      };
+    }
+
+    verdictCounter.inc({ verdict: response.verdict });
+    decisionLogCounter.inc({ verdict: response.verdict, reason: response.reason });
 
     res.setHeader('x-ethics-verdict', response.verdict);
     res.setHeader('x-ethics-evidence-count', String(response.grounding.citations.length));
     exposeEthicsHeaders(res);
-    console.info('[ethics-api] decision', {
-      requestId,
-      traceparent: trace.traceparent,
-      verdict: response.verdict,
-      reason: response.reason,
-      payload: hashDecisionPayload(text, context),
-      deps: response.deps ?? {},
-    });
+
+    const shouldLog = response.verdict !== 'green' || Math.random() < logSampleGreen;
+    if (shouldLog) {
+      console.info('[ethics-api] decision', {
+        requestId,
+        traceparent: trace.traceparent,
+        verdict: response.verdict,
+        reason: response.reason,
+        payload: hashDecisionPayload(text, context),
+        deps: response.deps ?? {},
+        evidenceDomains: domains,
+      });
+    }
 
     res.json(response);
   } catch (error) {

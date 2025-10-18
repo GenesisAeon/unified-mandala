@@ -20,7 +20,10 @@ const DROP_INBOUND = new Set([
 
 const ALLOW_RESPONSE_EXPOSE = ['x-ethics-verdict', 'x-ethics-evidence-count', 'x-request-id'];
 
-export function buildUpstreamHeaders(req: import('express').Request): Headers {
+export function buildUpstreamHeaders(
+  req: import('express').Request,
+  overrideHost?: string,
+): Headers {
   const headers = new Headers();
   for (const [key, value] of Object.entries(req.headers ?? {})) {
     if (!value) {
@@ -66,6 +69,10 @@ export function buildUpstreamHeaders(req: import('express').Request): Headers {
 
   if (!headers.has('content-type')) {
     headers.set('content-type', 'application/json');
+  }
+
+  if (overrideHost) {
+    headers.set('host', overrideHost);
   }
 
   return headers;

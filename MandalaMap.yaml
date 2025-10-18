@@ -1,7 +1,7 @@
 meta:
   version: '1.0'
-  generated: '2025-12-11 00:00:00+00:00'
-  fraktal: 102
+  generated: '2025-12-13 00:00:00+00:00'
+  fraktal: 104
   repo: unified-mandala
   source: ChefDevAI MandalaMap bootstrap
   reference_docs:
@@ -111,6 +111,7 @@ entries:
       - 'Timeout/Retry-Client (`fetchJson`) schützt Boundary/RAG-Aufrufe; Grounding/Boundary-Resultate bleiben synchron zur Verify-Gate-Pipeline.'
       - 'Fraktal102: Ajv-Schema-Validierung (`EthicsCheckSchema`), Request-ID-Middleware (`x-request-id`), Circuit-basierte `/readyz`-Antwort (`cb` 0/1/2), optionaler Service-Bearer (`INTERNAL_BEARER`) und weitergereichte Request-IDs zu Boundary/RAG.'
       - 'Fraktal103: Degradierte Modi (`x-ethics-degraded`, Counter `ethics_degraded_total`), Lifeboat-Regeln (Hate/PII/Scam), Boundary-Cache (`ETHICS_CACHE_TTL_MS`) per SHA1, Evidenz-Dedupe (`ETHICS_REQUIRE_UNIQUE_EVIDENCE_DOMAINS`), Counter `ethics_decision_log_total`/`ethics_evidence_domains_total`, Trace-Forwarding & gehashte Decision-Logs.'
+      - 'Fraktal104: PSL-basierte Evidenz (tldts) markiert starke Domains (DOI/arXiv/Gov), Lifeboat-Regeln umfassen Payment-Scam/Malware/Impersonation, Log-Sampling (`LOG_SAMPLE_GREEN`), `/readyz` meldet `boundary_cache_warm`, optionaler OPA-Deny (`ETHICS_OPA_*`). Vitest deckt Token-Guard & Idempotency-Flow ab.'
     links:
       - label: index.ts
         path: apps/ethics-api/src/index.ts
@@ -128,6 +129,7 @@ entries:
       - 'Filtert Hop-by-Hop-Header, erzeugt `x-request-id`, nutzt `VERIFY_GATE_TIMEOUT_MS` und Tests sichern Header-Forwarding & Fail-Closed-Pfade.'
       - 'Fraktal102: JSON-/Rate-Limits (`VERIFY_GATE_JSON_LIMIT`, `VERIFY_GATE_RPS`), SSRF-Allowlist (`VERIFY_UPSTREAM_ALLOWLIST`, `VERIFY_STRICT_SAME_HOST`), Streaming-Proxying, CORS-Expose für `x-ethics-*` sowie Request-ID-Weitergabe an Ethics.'
       - 'Fraktal103: Header-Drop-Liste (spoofbare Metadaten), DNS-basierte SSRF-Allowlist (`VERIFY_GATE_UPSTREAM_ALLOWLIST`), Prometheus (`verify_gate_inflight`, `verify_gate_upstream_duration_ms`, `verify_gate_http_responses_total`) inklusive `/metrics`, Vitest für Streaming/SSRF.'
+      - 'Fraktal104: Idempotency-Cache (`VERIFY_GATE_IDEMP_TTL_MS`) stoppt Duplikate (409), JWT-signierte Ethics-Tokens (`VERIFY_GATE_JWT_SECRET`) + Upstream-Verifikation (`x-ethics-token`), IP-Pinning-Agent, `/readyz` prüft Allowlist + Ethics. `apps/api` schützt `/api/ai/chat` per `verifyEthics`, Chaos-Skript `pnpm chaos:ethics` dokumentiert Fail-Closed-Proben.'
     links:
       - label: index.ts
         path: apps/verify-gate/src/index.ts

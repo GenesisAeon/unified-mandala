@@ -1,4 +1,6 @@
 import { describe, it, expect, vi, beforeEach, afterEach, beforeAll } from 'vitest';
+import jwt from 'jsonwebtoken';
+import crypto from 'node:crypto';
 import request from 'supertest';
 
 const responsesCreateMock = vi.hoisted(() =>
@@ -19,9 +21,26 @@ class TestOpenAIClient {
 // Import app after setting the mock
 let app: import('express').Express;
 beforeAll(async () => {
+  process.env.VERIFY_GATE_JWT_SECRET = 'test-secret';
   const api = await import('../../apps/api/src/index');
   app = api.app;
 });
+
+function signToken(path: string, method = 'POST', evidenceCount = 2): string {
+  const hash = crypto.createHash('sha1');
+  hash.update(`${method}:${path}`);
+  return jwt.sign(
+    {
+      v: 'green',
+      ec: evidenceCount,
+      rid: 'test-request',
+      pth: hash.digest('hex'),
+      exp: Math.floor(Date.now() / 1000) + 60,
+    },
+    'test-secret',
+    { algorithm: 'HS256', noTimestamp: true },
+  );
+}
 
 describe('API /api/ai/chat success (direct transport)', () => {
   beforeEach(() => {
@@ -35,7 +54,10 @@ describe('API /api/ai/chat success (direct transport)', () => {
 
   it('returns 200 and forwards askOpenAI result', async () => {
     const body = { messages: [{ role: 'user', content: 'hi' }] };
-    const res = await request(app).post('/api/ai/chat').send(body);
+    const res = await request(app)
+      .post('/api/ai/chat')
+      .set('x-ethics-token', signToken('/api/ai/chat'))
+      .send(body);
     expect(res.status).toBe(200);
     expect(res.body).toMatchObject({
       text: 'hello from mock',
@@ -49,7 +71,10 @@ describe('API /api/ai/chat success (direct transport)', () => {
       throw new Error('upstream failed');
     });
     const body = { messages: [{ role: 'user', content: 'x' }] };
-    const res = await request(app).post('/api/ai/chat').send(body);
+    const res = await request(app)
+      .post('/api/ai/chat')
+      .set('x-ethics-token', signToken('/api/ai/chat'))
+      .send(body);
     expect(res.status).toBe(500);
     expect(res.body.error).toContain('upstream failed');
   });

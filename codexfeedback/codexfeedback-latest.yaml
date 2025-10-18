@@ -1,23 +1,36 @@
-fraktal: 103
-phase: Verify-Gate Defense-in-Depth & Ethics Degraded Mode
-status: Verify-Gate säubert Header + DNS-SSRF + Prometheus; Ethics-API signalisiert Degraded (`x-ethics-degraded`), Lifeboat-Regeln & Evidenz-Dedupe aktiv; Env/Docs/Maps aktualisiert.
-nextHook: Grafana-Alerts für neue Verify/Ethics-Metriken aufsetzen und DOI/Handle-Validator vorbereiten.
+fraktal: 104
+phase: Verify-Gate Idempotency & Ethics Token Guard
+status: Verify-Gate blockt Duplikate via Idempotency-Cache, signiert Ethics-Verdicts (JWT) und pinnt Upstream-IPs; `/readyz` prüft Allowlist + Ethics. `apps/api` erzwingt `x-ethics-token`. Ethics-API markiert PSL-Domains, starke Evidenz & Lifeboat-Erweiterungen, sampelt Logs und meldet `boundary_cache_warm`; optionales OPA-Deny verfügbar.
+nextHook: OPA-Bundle/CLI automatisieren (CI, Artefakte) und Ethics-UI um Strong-Evidence-Badge + Log-Sampling-Statistiken ergänzen.
 changed:
   - apps/verify-gate/src/index.ts
+  - apps/verify-gate/src/idempotency.ts
+  - apps/verify-gate/src/verdictToken.ts
+  - apps/verify-gate/src/security/agent.ts
   - apps/verify-gate/src/http/headerForward.ts
   - apps/verify-gate/src/security/ssrf.ts
   - apps/verify-gate/src/__tests__/proxy-headers.test.ts
   - apps/verify-gate/src/__tests__/streaming-preserves-headers.test.ts
   - apps/verify-gate/src/__tests__/ssrf-allowlist.test.ts
+  - apps/verify-gate/src/__tests__/idempotency.test.ts
+  - apps/api/src/index.ts
+  - apps/api/src/middleware/verifyEthics.ts
+  - apps/api/src/__tests__/ethics-token-guard.test.ts
+  - tests/api/chat-success.test.ts
   - apps/ethics-api/src/index.ts
-  - apps/ethics-api/src/__tests__/ethics-failclosed.test.ts
+  - apps/ethics-api/src/opa.ts
   - .env.example
   - docs/roadmap/v1.0-stabilization-playbook.md
   - docs/roadmap/v1.0-stabilization-playbook.yaml
   - MandalaMap.md
   - MandalaMap.yaml
   - MandalaMap.json
-  - analysis/devtalk103-evaluation.md
+  - scripts/chaos/ethics-chaos.mjs
+  - package.json
   - codexfeedback.md
+  - codexfeedback/codexfeedback-latest.md
+  - codexfeedback/codexfeedback-latest.json
+  - codexfeedback/codexfeedback-latest.yaml
+  - analysis/devtalk104-evaluation.md
 validate:
-  - pnpm vitest run apps/verify-gate/src/__tests__/proxy-headers.test.ts apps/verify-gate/src/__tests__/streaming-preserves-headers.test.ts apps/verify-gate/src/__tests__/ssrf-allowlist.test.ts apps/ethics-api/src/__tests__/ethics-failclosed.test.ts
+  - pnpm vitest run apps/verify-gate/src/__tests__/idempotency.test.ts apps/api/src/__tests__/ethics-token-guard.test.ts tests/api/chat-success.test.ts

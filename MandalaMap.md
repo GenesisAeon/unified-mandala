@@ -1,8 +1,8 @@
 # Mandala Map
 
 - Version: 1.0
-- Fraktal: 103
-- Generated: 2025-12-12 00:00:00+00:00
+- Fraktal: 104
+- Generated: 2025-12-13 00:00:00+00:00
 
 Total entries: 78
 
@@ -45,9 +45,9 @@ Samples:
   - Boundary service observability update (active) — scripts/boundary-service.ts (`/metrics` zählt `boundary_observe_total{result="accepted|duplicate|invalid"}`, `boundary_idempotency_missing_total`; CORS exponiert `Idempotency-Key`).
   - Zero-build Vitest fallback (active) — packages/ai/package.json & vitest.config.ts (konditionale `vitest`/`test`/`development`-Exports, `resolve.conditions`).
 - observability:
-  - Ethics fail-closed service (active) — apps/ethics-api/src/index.ts (Circuit-Breaker, Ajv-Validierung, degradierte Header `x-ethics-degraded`, Lifeboat-Regeln, Boundary-Cache + einzigartige Evidenz-Domains, Prometheus-Counter `ethics_degraded_total`/`ethics_decision_log_total`).
+  - Ethics fail-closed service (active) — apps/ethics-api/src/index.ts (Circuit-Breaker, Ajv-Validierung, Lifeboat-Regeln inkl. Payment-Scam/Malware/Impersonation, PSL-basierte Evidenz (tldts) mit "strong"-Flag, Boundary-Cache + `boundary_cache_warm`, Log-Sampling & optionaler OPA-Deny, Prometheus-Counter `ethics_degraded_total`/`ethics_decision_log_total`).
 - core-runtime:
-  - Verify gate proxy (active) — apps/verify-gate/src/index.ts (Header-Drop-Liste, Request-ID, Rate/JSON-Limits (`VERIFY_GATE_JSON_LIMIT`, `VERIFY_GATE_RPS`), DNS-SSRF-Allowlist, Streaming-Proxy, Prometheus (`verify_gate_inflight`) & `/metrics`, `x-ethics-*`-Expose).
+  - Verify gate proxy (active) — apps/verify-gate/src/index.ts (Header-Drop-Liste, Rate/JSON-Limits (`VERIFY_GATE_JSON_LIMIT`, `VERIFY_GATE_RPS`), DNS-SSRF-Allowlist + IP-Pinning, Idempotency-Cache (`VERIFY_GATE_IDEMP_TTL_MS`) mit 409-Duplikatpfad, JWT-Verdict-Tokens (`VERIFY_GATE_JWT_SECRET`) & Upstream-Guard, `/readyz`-Ethics-Check, Prometheus (`verify_gate_inflight`) & `/metrics`).
 - governance:
   - Codex governance manifests (active) — codex/
   - Configuration bundles (active) — config/

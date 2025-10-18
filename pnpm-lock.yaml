@@ -168,6 +168,9 @@ importers:
       three:
         specifier: ^0.161.0
         version: 0.161.0
+      tldts:
+        specifier: ^6.1.29
+        version: 6.1.86
       tone:
         specifier: ^15.1.22
         version: 15.1.22

@@ -66,6 +66,7 @@ describe('verify gate streaming proxy', () => {
     process.env.PORT_OFFSET = '0';
     process.env.VERIFY_GATE_TIMEOUT_MS = '200';
     process.env.VERIFY_GATE_RPS = '500';
+    process.env.VERIFY_GATE_JWT_SECRET = 'test-secret';
   });
 
   afterEach(() => {
