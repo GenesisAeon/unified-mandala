@@ -1,18 +1,21 @@
-# Codexfeedback – Fraktal 104
+# Codexfeedback – Fraktal 105
 
-- Phase: Verify-Gate Idempotency & Ethics Token Guard
-- Status: Verify-Gate blockt Duplikate über einen Idempotency-Cache (`VERIFY_GATE_IDEMP_TTL_MS`), signiert Ethics-Verdicts per JWT (`VERIFY_GATE_JWT_SECRET`) und pinnt Upstream-IPs (`makePinnedAgent`); `/readyz` prüft Allowlist + Ethics `/readyz`. `apps/api` schützt `/api/ai/chat` via Middleware `verifyEthics` (428 ohne gültiges `x-ethics-token`). Ethics-API nutzt tldts für PSL-Domains, kennzeichnet starke Evidenz (DOI/arXiv/Gov), erweitert Lifeboat-Regeln (Payment-Scam/Malware/Impersonation), sampelt Logs (`LOG_SAMPLE_GREEN`), liefert `boundary_cache_warm` im `/readyz` und koppelt optional OPA (`ETHICS_OPA_*`). Docs/Env/MandalaMap & DevTalk104 spiegeln den Stand, Chaos-Skript `pnpm chaos:ethics` beschreibt Fail-Closed-Proben.
-- Next Hook: OPA-Bundle & CLI in CI integrieren (Artefakte, Smoke), Ethics-UI um Strong-Evidence-Badges & Log-Sampling-Metriken erweitern.
+- Phase: Verify-Gate Test Hardening & DevTalk105 Hooks
+- Status: Vitest aliasiert `@opentelemetry/api` auf einen No-Op-Stub, `tests/setup/ci.ts` setzt Loopback-Allowlists für Verify-Gate, SSRF-Gate akzeptiert Wildcards und Upstream `verifyEthics` toleriert Clock-Skew (HS256).
+- Next Hook: Prometheus-Counter (Idempotency/SSRF/Token-Failures) + Grafana-Alerts ergänzen und OPA-Bundle/CLI in CI verteilen.
 
 What changed
 
-- `apps/verify-gate/src/index.ts` + neue Module (`src/idempotency.ts`, `src/verdictToken.ts`, `src/security/agent.ts`) – Idempotency-Cache, JWT-Verdict-Token, IP-Pinning, `/readyz`-Ethics-Check.
-- `apps/verify-gate/src/http/headerForward.ts`, `src/security/ssrf.ts` – Host-Preservation, Protokoll-Allowlist, Allowlist-Status für Readiness.
-- Neue/aktualisierte Tests: `apps/verify-gate/src/__tests__/idempotency.test.ts`, `proxy-headers.test.ts`, `streaming-preserves-headers.test.ts`, `ssrf-allowlist.test.ts` (JWT-Secret Setup).
-- `apps/api/src/index.ts` + `middleware/verifyEthics.ts` + `__tests__/ethics-token-guard.test.ts` – Upstream-Gate erzwingt `x-ethics-token`; `tests/api/chat-success.test.ts` signiert Tokens in Supertest.
-- `apps/ethics-api/src/index.ts` + neues `src/opa.ts` – PSL-basierte Evidenz, Strong-Flag, Lifeboat-Erweiterung, Log-Sampling, `boundary_cache_warm`, optionales OPA-Fail-Closed.
-- `.env.example`, `package.json`, `scripts/chaos/ethics-chaos.mjs`, Stabilization-Playbook (MD/YAML), MandalaMap (MD/JSON/YAML), codexfeedback.\*, `analysis/devtalk104-evaluation.md` aktualisiert.
+- `vitest.config.ts` (Alias + Inline-Regeln für `@opentelemetry/api`).
+- Neues Stub-Modul `tests/__mocks__/otel-api.ts`.
+- `tests/setup/ci.ts` setzt Loopback-Allowlist (`VERIFY_GATE_SSRF_ALLOWLIST`, `VERIFY_GATE_ALLOW_PROTOCOLS`).
+- `apps/verify-gate/src/security/ssrf.ts` akzeptiert `VERIFY_GATE_SSRF_ALLOWLIST` mit Protokoll-/Port-Wildcards; Test `ssrf-allowlist.test.ts` prüft Wildcards.
+- `apps/api/src/middleware/verifyEthics.ts` erzwingt `algorithms: ['HS256']` + `clockTolerance: 5`.
+- Stabilization-Playbook (MD/YAML), MandalaMap (MD/JSON/YAML) und codexfeedback.\* spiegeln den Lauf.
+- `analysis/devtalk105-evaluation.md` dokumentiert den DevTalk-Abgleich.
 
 Validate
 
-- `pnpm vitest run apps/verify-gate/src/__tests__/idempotency.test.ts apps/api/src/__tests__/ethics-token-guard.test.ts tests/api/chat-success.test.ts`
+- `pnpm -w vitest run apps/verify-gate/src/__tests__/ssrf-allowlist.test.ts`
+- `pnpm -w vitest run apps/api/src/__tests__/ethics-token-guard.test.ts`
+- `pnpm -w vitest run tests/api/chat-success.test.ts`

@@ -8,6 +8,18 @@ process.env.OFFLINE ??= '1';
 process.env.LOW_MEM ??= '1';
 process.env.VITE_LOW_MEM ??= 'on';
 process.env.UM_ASCII_SIGILS ??= '1';
+process.env.VERIFY_GATE_SSRF_ALLOWLIST ??= 'http://127.0.0.1:*,http://localhost:*';
+process.env.VERIFY_GATE_ALLOW_PROTOCOLS ??= 'http';
+
+vi.mock('@opentelemetry/api', async () => ({
+  ...(await import('../__mocks__/otel-api/index.ts')),
+}));
+vi.mock('@opentelemetry/api/index.js', async () => ({
+  ...(await import('../__mocks__/otel-api/index.ts')),
+}));
+vi.mock('tldts', async () => ({
+  ...(await import('../__mocks__/tldts.ts')),
+}));
 // Force temp to repo-local tmp to avoid ENOSPC on system temp
 try {
   const repoTmp = path.join(process.cwd(), 'tmp');

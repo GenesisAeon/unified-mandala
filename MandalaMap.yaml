@@ -1,7 +1,7 @@
 meta:
   version: '1.0'
-  generated: '2025-12-13 00:00:00+00:00'
-  fraktal: 104
+  generated: '2025-12-14 00:00:00+00:00'
+  fraktal: 105
   repo: unified-mandala
   source: ChefDevAI MandalaMap bootstrap
   reference_docs:
@@ -130,6 +130,7 @@ entries:
       - 'Fraktal102: JSON-/Rate-Limits (`VERIFY_GATE_JSON_LIMIT`, `VERIFY_GATE_RPS`), SSRF-Allowlist (`VERIFY_UPSTREAM_ALLOWLIST`, `VERIFY_STRICT_SAME_HOST`), Streaming-Proxying, CORS-Expose für `x-ethics-*` sowie Request-ID-Weitergabe an Ethics.'
       - 'Fraktal103: Header-Drop-Liste (spoofbare Metadaten), DNS-basierte SSRF-Allowlist (`VERIFY_GATE_UPSTREAM_ALLOWLIST`), Prometheus (`verify_gate_inflight`, `verify_gate_upstream_duration_ms`, `verify_gate_http_responses_total`) inklusive `/metrics`, Vitest für Streaming/SSRF.'
       - 'Fraktal104: Idempotency-Cache (`VERIFY_GATE_IDEMP_TTL_MS`) stoppt Duplikate (409), JWT-signierte Ethics-Tokens (`VERIFY_GATE_JWT_SECRET`) + Upstream-Verifikation (`x-ethics-token`), IP-Pinning-Agent, `/readyz` prüft Allowlist + Ethics. `apps/api` schützt `/api/ai/chat` per `verifyEthics`, Chaos-Skript `pnpm chaos:ethics` dokumentiert Fail-Closed-Proben.'
+      - 'Fraktal105: Vitest aliasiert `@opentelemetry/api` auf Stub (`tests/__mocks__/otel-api.ts`), `tests/setup/ci.ts` setzt Loopback-Allowlists (`VERIFY_GATE_SSRF_ALLOWLIST=http://127.0.0.1:*,http://localhost:*`), SSRF-Gate akzeptiert Protokoll-/Port-Wildcards und Upstream `verifyEthics` prüft HS256 mit `clockTolerance: 5`.'
     links:
       - label: index.ts
         path: apps/verify-gate/src/index.ts

@@ -1,6 +1,36 @@
 fraktal:
-  current: 103
+  current: 105
   history:
+    - id: 105
+      status: done
+      notes: 'Fraktal105 VerifyGateTestHardening: vitest.config.ts aliasiert @opentelemetry/api auf Stub (tests/__mocks__/otel-api.ts), tests/setup/ci.ts setzt Loopback-Allowlists (VERIFY_GATE_SSRF_ALLOWLIST), Verify-Gate SSRF akzeptiert Protokoll-/Port-Wildcards, verifyEthics nutzt HS256 + clockTolerance=5; Stabilization-Playbook, MandalaMap, codexfeedback* dokumentieren DevTalk105-Hooks (Prometheus-Counter, OPA-Bundle).'
+      deliverables:
+        - vitest.config.ts
+        - tests/__mocks__/otel-api.ts
+        - tests/setup/ci.ts
+        - apps/verify-gate/src/security/ssrf.ts
+        - apps/verify-gate/src/__tests__/ssrf-allowlist.test.ts
+        - apps/api/src/middleware/verifyEthics.ts
+        - docs/roadmap/v1.0-stabilization-playbook.md
+        - docs/roadmap/v1.0-stabilization-playbook.yaml
+        - MandalaMap.md
+        - MandalaMap.yaml
+        - MandalaMap.json
+        - codexfeedback.md
+        - codexfeedback.json
+        - codexfeedback.yaml
+        - codexfeedback/codexfeedback-latest.md
+        - codexfeedback/codexfeedback-latest.json
+        - codexfeedback/codexfeedback-latest.yaml
+        - analysis/devtalk105-evaluation.md
+      commands:
+        - pnpm -w vitest run apps/verify-gate/src/__tests__/ssrf-allowlist.test.ts
+        - pnpm -w vitest run apps/api/src/__tests__/ethics-token-guard.test.ts
+        - pnpm -w vitest run tests/api/chat-success.test.ts
+      hook:
+        progress: Verify-Gate Tests laufen deterministisch (OTel-Stub, Loopback-Allowlist, Clock-Skew-Handhabung).
+        next_step: Prometheus-Counter & Grafana-Alerts für Idempotency/SSRF/Token-Failures ergänzen und OPA-Bundle in CI verteilen.
+      repeat_required: false
     - id: 103
       status: done
       notes:

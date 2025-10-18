@@ -39,6 +39,7 @@ describe('verify gate SSRF allowlist', () => {
       };
     });
     process.env = { ...ORIGINAL_ENV } as NodeJS.ProcessEnv;
+    delete process.env.VERIFY_GATE_SSRF_ALLOWLIST;
     process.env.NODE_ENV = 'test';
     process.env.PORT_OFFSET = '0';
     process.env.VERIFY_GATE_TIMEOUT_MS = '200';
@@ -82,5 +83,23 @@ describe('verify gate SSRF allowlist', () => {
         });
       });
     }
+  });
+});
+
+describe('ssrf allowlist parsing', () => {
+  beforeEach(() => {
+    vi.resetModules();
+    process.env = { ...ORIGINAL_ENV } as NodeJS.ProcessEnv;
+  });
+
+  afterEach(() => {
+    process.env = { ...ORIGINAL_ENV } as NodeJS.ProcessEnv;
+  });
+
+  test('allows wildcard loopback entries from VERIFY_GATE_SSRF_ALLOWLIST', async () => {
+    process.env.VERIFY_GATE_SSRF_ALLOWLIST = 'http://127.0.0.1:*';
+    process.env.VERIFY_GATE_ALLOW_PROTOCOLS = 'http';
+    const mod = await import('../security/ssrf');
+    await expect(mod.assertAllowed('http://127.0.0.1:43210')).resolves.not.toThrow();
   });
 });
