@@ -2,15 +2,18 @@ import express, { type Request, type Response } from 'express';
 import {
   collectDefaultMetrics,
   Counter,
+  Gauge,
   Histogram,
   Registry,
 } from 'prom-client';
-import { fetch } from 'undici';
-
-type BoundaryViolation = Record<string, unknown> & { severity?: string; ruleId?: string };
-interface BoundaryResponse {
-  violations?: BoundaryViolation[];
-}
+import { fetchJson } from './http-client.js';
+import {
+  configureBoundaryCircuit,
+  getBoundaryCircuitState,
+  observeBoundary,
+  type BoundaryResponse,
+  type BoundaryViolation,
+} from './boundary-client.js';
 
 interface RagCitation {
   uri?: string;
@@ -55,6 +58,7 @@ interface EthicsCheckResult {
     riskScore: number;
   };
   neededEvidence: string[];
+  deps?: Record<string, unknown>;
 }
 
 const app = express();
@@ -73,6 +77,13 @@ const ragBaseUrl = `http://127.0.0.1:${Number.isFinite(ragPort) ? ragPort : 3003
 const registry = new Registry();
 collectDefaultMetrics({ register: registry });
 
+const dependencyFailureCounter = new Counter({
+  name: 'ethics_dependency_unreachable_total',
+  help: 'Total count of failed dependency calls by dependency and reason',
+  labelNames: ['dependency', 'reason'],
+  registers: [registry],
+});
+
 const verdictCounter = new Counter({
   name: 'ethics_verdict_total',
   help: 'Count of ethics verdicts by outcome',
@@ -87,6 +98,43 @@ const checkDuration = new Histogram({
   registers: [registry],
 });
 
+const circuitGauge = new Gauge({
+  name: 'boundary_circuit_state',
+  help: 'Circuit breaker state for boundary dependency (0=closed,1=half_open,2=open)',
+  registers: [registry],
+});
+
+const dependencyFailMode = (process.env.ETHICS_DEP_FAIL_MODE ?? 'red').toLowerCase();
+
+const circuitOptions: { failureThreshold?: number; halfOpenAfterMs?: number } = {};
+const cbFailureThreshold = Number.parseInt(process.env.BOUNDARY_CB_FAILS ?? '', 10);
+if (Number.isFinite(cbFailureThreshold)) {
+  circuitOptions.failureThreshold = cbFailureThreshold;
+}
+const cbCooldownMs = Number.parseInt(process.env.BOUNDARY_CB_COOLDOWN_MS ?? '', 10);
+if (Number.isFinite(cbCooldownMs)) {
+  circuitOptions.halfOpenAfterMs = cbCooldownMs;
+}
+configureBoundaryCircuit(circuitOptions);
+
+function mapCircuitStateToValue(state: ReturnType<typeof getBoundaryCircuitState>): number {
+  switch (state) {
+    case 'half_open':
+      return 1;
+    case 'open':
+      return 2;
+    case 'closed':
+    default:
+      return 0;
+  }
+}
+
+function updateCircuitGauge(): void {
+  circuitGauge.set(mapCircuitStateToValue(getBoundaryCircuitState()));
+}
+
+updateCircuitGauge();
+
 function parseText(value: unknown): string {
   if (typeof value === 'string') {
     return value;
@@ -95,23 +143,6 @@ function parseText(value: unknown): string {
     return '';
   }
   return JSON.stringify(value);
-}
-
-async function safePostJson<T>(url: string, body: unknown): Promise<T | null> {
-  try {
-    const response = await fetch(url, {
-      method: 'POST',
-      headers: { 'content-type': 'application/json' },
-      body: JSON.stringify(body ?? {}),
-    });
-    if (!response.ok) {
-      return null;
-    }
-    return (await response.json()) as T;
-  } catch (error) {
-    console.warn('[ethics-api] request failed', url, error);
-    return null;
-  }
 }
 
 function scoreToVerdict(score: number, evidenceCount: number, hasViolations: boolean): EthicsVerdict {
@@ -140,6 +171,15 @@ app.get('/metrics', async (_req: Request, res: Response) => {
   res.end(await registry.metrics());
 });
 
+app.get('/readyz', (_req: Request, res: Response) => {
+  const state = getBoundaryCircuitState();
+  updateCircuitGauge();
+  if (state === 'open') {
+    return res.status(503).json({ ok: false, reason: 'boundary_circuit_open' });
+  }
+  return res.json({ ok: true });
+});
+
 app.post('/ethics/check', async (req: Request<unknown, unknown, EthicsCheckPayload>, res: Response) => {
   const stopTimer = checkDuration.startTimer();
   try {
@@ -147,22 +187,46 @@ app.post('/ethics/check', async (req: Request<unknown, unknown, EthicsCheckPaylo
     const minEvidenceRequired = Number.parseInt(process.env.VERIFY_MIN_EVIDENCE ?? '2', 10);
     const text = parseText(content ?? intent);
 
-    const boundary = await safePostJson<BoundaryResponse>(`${boundaryUrl}/boundary/observe`, {
-      text,
-      context,
-    });
-    const violations = Array.isArray(boundary?.violations)
-      ? (boundary?.violations as BoundaryViolation[])
+    const boundaryResult = await observeBoundary(boundaryUrl, text, context);
+    updateCircuitGauge();
+
+    if (!boundaryResult.ok) {
+      dependencyFailureCounter.inc({ dependency: 'boundary', reason: boundaryResult.error ?? 'unknown' });
+      const failureResponse: EthicsCheckResult = {
+        ok: false,
+        verdict: 'red',
+        reason: 'boundary_unreachable',
+        neededEvidence: [],
+        deps: { boundary: boundaryResult.error },
+        grounding: { score: 0, citations: [] },
+        boundary: { count: 0, violations: [] },
+        impact: { co2eKgMin: 0, co2eKgMax: 0, riskScore: 1 },
+      };
+      verdictCounter.inc({ verdict: 'red' });
+      if (dependencyFailMode === 'error') {
+        return res.status(503).json(failureResponse);
+      }
+      return res.status(200).json(failureResponse);
+    }
+
+    const violations = Array.isArray(boundaryResult.data?.violations)
+      ? (boundaryResult.data?.violations as BoundaryViolation[])
       : [];
 
     const ragCandidates = ['/rag/ask', '/ask', '/query'];
     let ragResponse: RagResponse | null = null;
     for (const candidate of ragCandidates) {
-      ragResponse = await safePostJson<RagResponse>(`${ragBaseUrl}${candidate}`, {
-        question: parseText(intent),
-        text,
+      const ragResult = await fetchJson<RagResponse>(`${ragBaseUrl}${candidate}`, {
+        method: 'POST',
+        body: {
+          question: parseText(intent),
+          text,
+        },
+        timeoutMs: Number.parseInt(process.env.RAG_TIMEOUT_MS ?? '1500', 10),
+        retries: Number.parseInt(process.env.RAG_RETRIES ?? '1', 10),
       });
-      if (ragResponse) {
+      if (ragResult.ok) {
+        ragResponse = ragResult.data;
         break;
       }
     }
@@ -230,6 +294,10 @@ app.post('/consent/issue', (req: Request, res: Response) => {
   res.json({ ok: true, receipt });
 });
 
-app.listen(port, host, () => {
-  console.log(`[ethics-api] listening on http://${host}:${port}`);
-});
+if (process.env.NODE_ENV !== 'test') {
+  app.listen(port, host, () => {
+    console.log(`[ethics-api] listening on http://${host}:${port}`);
+  });
+}
+
+export { app };

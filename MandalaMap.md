@@ -1,10 +1,10 @@
 # Mandala Map
 
 - Version: 1.0
-- Fraktal: 98
-- Generated: 2025-12-09 00:00:00+00:00
+- Fraktal: 99
+- Generated: 2025-12-10 00:00:00+00:00
 
-Total entries: 76
+Total entries: 78
 
 Categories:
 
@@ -12,9 +12,9 @@ Categories:
 - governance: 12
 - ci-infra: 11
 - agents: 8
-- core-runtime: 7
+- core-runtime: 8
 - support: 6
-- observability: 5
+- observability: 6
 - data-intel: 5
 - research: 5
 - testing: 4
@@ -23,7 +23,7 @@ Categories:
 
 Statuses:
 
-- active: 58
+- active: 60
 - experimental: 7
 - generated: 3
 - stable: 3
@@ -44,6 +44,10 @@ Samples:
   - Boundary Idempotency publisher (active) — src/boundary/publisher.ts (HTTP-Fallback sendet `Idempotency-Key`).
   - Boundary service observability update (active) — scripts/boundary-service.ts (`/metrics` zählt `boundary_observe_total{result="accepted|duplicate|invalid"}`, `boundary_idempotency_missing_total`; CORS exponiert `Idempotency-Key`).
   - Zero-build Vitest fallback (active) — packages/ai/package.json & vitest.config.ts (konditionale `vitest`/`test`/`development`-Exports, `resolve.conditions`).
+- observability:
+  - Ethics fail-closed service (active) — apps/ethics-api/src/index.ts (Circuit-Breaker, `ethics_dependency_unreachable_total`, Gauge `boundary_circuit_state`, `/readyz`).
+- core-runtime:
+  - Verify gate proxy (active) — apps/verify-gate/src/index.ts (Leitet Auth/Cookie-Header weiter, setzt `x-ethics-verdict`/`x-ethics-evidence-count`, liefert 5xx bei Ethics-Ausfall).
 - governance:
   - Codex governance manifests (active) — codex/
   - Configuration bundles (active) — config/

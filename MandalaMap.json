@@ -24,6 +24,52 @@
       "title": "API Lite Proxy"
     },
     {
+      "path": "apps/ethics-api/",
+      "category": "observability",
+      "status": "active",
+      "title": "Ethics fail-closed service",
+      "description": "Express-basierter Ethics-Check (Boundary + RAG) mit Circuit-Breaker, fail-closed Modus und Prometheus-Metriken.",
+      "notes": [
+        "Fraktal99: Circuit-Breaker + fail-closed (`ETHICS_DEP_FAIL_MODE`), Counter `ethics_dependency_unreachable_total`, Gauge `boundary_circuit_state`, `/readyz`.",
+        "Timeout/Retry-Client (`fetchJson`) schützt Boundary/RAG-Aufrufe; Grounding/Boundary-Resultate bleiben synchron zur Verify-Gate-Pipeline."
+      ],
+      "links": [
+        {
+          "label": "index.ts",
+          "path": "apps/ethics-api/src/index.ts"
+        },
+        {
+          "label": "boundary-client",
+          "path": "apps/ethics-api/src/boundary-client.ts"
+        },
+        {
+          "label": "circuit-breaker",
+          "path": "apps/ethics-api/src/circuit-breaker.ts"
+        }
+      ]
+    },
+    {
+      "path": "apps/verify-gate/",
+      "category": "core-runtime",
+      "status": "active",
+      "title": "Verify gate proxy",
+      "description": "Proxy, der Requests nur mit grünem Ethics-Verdict an das Ziel weiterleitet und Telemetrie-Header setzt.",
+      "notes": [
+        "Fraktal99: Reicht Client-Header (Authorization, Cookies) durch, setzt `x-ethics-verdict`/`x-ethics-evidence-count` und liefert 5xx, wenn der Ethics-Check ausfällt.",
+        "Filtert Hop-by-Hop-Header, erzeugt `x-request-id`, nutzt `VERIFY_GATE_TIMEOUT_MS` und Tests sichern Header-Forwarding & Fail-Closed-Pfade."
+      ],
+      "links": [
+        {
+          "label": "index.ts",
+          "path": "apps/verify-gate/src/index.ts"
+        },
+        {
+          "label": "proxy headers test",
+          "path": "apps/verify-gate/src/__tests__/proxy-headers.test.ts"
+        }
+      ]
+    },
+    {
       "category": "support",
       "description": "Internal Git control files; managed by tooling and excluded from builds.",
       "links": [],
@@ -1161,8 +1207,8 @@
     }
   },
   "meta": {
-    "fraktal": 98,
-    "generated": "2025-12-09 00:00:00+00:00",
+    "fraktal": 99,
+    "generated": "2025-12-10 00:00:00+00:00",
     "reference_docs": [
       "docs/roadmap/v1.0-stabilization-playbook.md",
       "docs/roadmap/v1.0-stabilization-playbook.yaml"

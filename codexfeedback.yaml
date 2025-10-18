@@ -1,6 +1,38 @@
 fraktal:
-  current: 98
+  current: 99
   history:
+    - id: 99
+      status: done
+      notes: 'Fraktal99 EthicsFailClosed: `apps/ethics-api` antwortet Boundary-Ausfälle fail-closed (Circuit-Breaker, Counter `ethics_dependency_unreachable_total`, Gauge `boundary_circuit_state`, `/readyz`, Shared `fetchJson`), während `apps/verify-gate` Client-Header durchreicht, `x-ethics-verdict`/`x-ethics-evidence-count` setzt und Ethics-Ausfälle mit 5xx quittiert. Neue Vitest/Supertest-Suites prüfen Fail-Closed- und Header-Forwarding-Pfade; `.env.example`, Stabilization-Playbook und MandalaMap.* dokumentieren die Env-/Metrics-Erweiterung.'
+      deliverables:
+        - apps/ethics-api/src/index.ts
+        - apps/ethics-api/src/boundary-client.ts
+        - apps/ethics-api/src/circuit-breaker.ts
+        - apps/ethics-api/src/http-client.ts
+        - apps/ethics-api/src/__tests__/ethics-failclosed.test.ts
+        - apps/verify-gate/src/index.ts
+        - apps/verify-gate/src/__tests__/proxy-headers.test.ts
+        - .env.example
+        - docs/roadmap/v1.0-stabilization-playbook.md
+        - docs/roadmap/v1.0-stabilization-playbook.yaml
+        - MandalaMap.md
+        - MandalaMap.yaml
+        - MandalaMap.json
+        - codexfeedback.md
+        - codexfeedback.json
+        - codexfeedback.yaml
+        - codexfeedback/codexfeedback-latest.md
+        - codexfeedback/codexfeedback-latest.json
+        - codexfeedback/codexfeedback-latest.yaml
+        - codexfeedback/codexfeedback-fraktal99.yaml
+        - analysis/devtalk99-evaluation.md
+      commands:
+        - pnpm vitest run apps/ethics-api/src/__tests__/ethics-failclosed.test.ts
+        - pnpm vitest run apps/verify-gate/src/__tests__/proxy-headers.test.ts
+      hook:
+        progress: Boundary-Circuit + Verify-Gate Header-Forwarding aktiv; Docs/Env synchronisiert.
+        next_step: Ethics-Gate Rate-Limits & Boundary-Alerting (Dedupes/min, circuit-open) evaluieren.
+      repeat_required: false
     - id: 98
       status: done
       notes: "Fraktal98 PublisherRollout & ObserveMetrics: `src/boundary/publisher.ts`\
