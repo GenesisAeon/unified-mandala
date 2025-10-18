@@ -110,6 +110,7 @@ entries:
       - 'Fraktal99: Circuit-Breaker + fail-closed (`ETHICS_DEP_FAIL_MODE`), Counter `ethics_dependency_unreachable_total`, Gauge `boundary_circuit_state`, `/readyz`.'
       - 'Timeout/Retry-Client (`fetchJson`) schützt Boundary/RAG-Aufrufe; Grounding/Boundary-Resultate bleiben synchron zur Verify-Gate-Pipeline.'
       - 'Fraktal102: Ajv-Schema-Validierung (`EthicsCheckSchema`), Request-ID-Middleware (`x-request-id`), Circuit-basierte `/readyz`-Antwort (`cb` 0/1/2), optionaler Service-Bearer (`INTERNAL_BEARER`) und weitergereichte Request-IDs zu Boundary/RAG.'
+      - 'Fraktal103: Degradierte Modi (`x-ethics-degraded`, Counter `ethics_degraded_total`), Lifeboat-Regeln (Hate/PII/Scam), Boundary-Cache (`ETHICS_CACHE_TTL_MS`) per SHA1, Evidenz-Dedupe (`ETHICS_REQUIRE_UNIQUE_EVIDENCE_DOMAINS`), Counter `ethics_decision_log_total`/`ethics_evidence_domains_total`, Trace-Forwarding & gehashte Decision-Logs.'
     links:
       - label: index.ts
         path: apps/ethics-api/src/index.ts
@@ -125,7 +126,8 @@ entries:
     notes:
       - 'Fraktal99: Reicht Client-Header (Authorization, Cookies) durch, setzt `x-ethics-verdict`/`x-ethics-evidence-count` und liefert 5xx, wenn der Ethics-Check ausfällt.'
       - 'Filtert Hop-by-Hop-Header, erzeugt `x-request-id`, nutzt `VERIFY_GATE_TIMEOUT_MS` und Tests sichern Header-Forwarding & Fail-Closed-Pfade.'
-      - 'Fraktal102: JSON-/Rate-Limits (`GATE_JSON_LIMIT`, `VERIFY_RATE_RPS`), SSRF-Allowlist (`VERIFY_UPSTREAM_ALLOWLIST`, `VERIFY_STRICT_SAME_HOST`), Streaming-Proxying, CORS-Expose für `x-ethics-*` sowie Request-ID-Weitergabe an Ethics.'
+      - 'Fraktal102: JSON-/Rate-Limits (`VERIFY_GATE_JSON_LIMIT`, `VERIFY_GATE_RPS`), SSRF-Allowlist (`VERIFY_UPSTREAM_ALLOWLIST`, `VERIFY_STRICT_SAME_HOST`), Streaming-Proxying, CORS-Expose für `x-ethics-*` sowie Request-ID-Weitergabe an Ethics.'
+      - 'Fraktal103: Header-Drop-Liste (spoofbare Metadaten), DNS-basierte SSRF-Allowlist (`VERIFY_GATE_UPSTREAM_ALLOWLIST`), Prometheus (`verify_gate_inflight`, `verify_gate_upstream_duration_ms`, `verify_gate_http_responses_total`) inklusive `/metrics`, Vitest für Streaming/SSRF.'
     links:
       - label: index.ts
         path: apps/verify-gate/src/index.ts

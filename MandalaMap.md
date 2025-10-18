@@ -1,8 +1,8 @@
 # Mandala Map
 
 - Version: 1.0
-- Fraktal: 102
-- Generated: 2025-12-11 00:00:00+00:00
+- Fraktal: 103
+- Generated: 2025-12-12 00:00:00+00:00
 
 Total entries: 78
 
@@ -45,9 +45,9 @@ Samples:
   - Boundary service observability update (active) — scripts/boundary-service.ts (`/metrics` zählt `boundary_observe_total{result="accepted|duplicate|invalid"}`, `boundary_idempotency_missing_total`; CORS exponiert `Idempotency-Key`).
   - Zero-build Vitest fallback (active) — packages/ai/package.json & vitest.config.ts (konditionale `vitest`/`test`/`development`-Exports, `resolve.conditions`).
 - observability:
-  - Ethics fail-closed service (active) — apps/ethics-api/src/index.ts (Circuit-Breaker, Ajv-Validierung, `x-request-id`, Circuit-/`/readyz`-Kopplung, `ethics_dependency_unreachable_total`).
+  - Ethics fail-closed service (active) — apps/ethics-api/src/index.ts (Circuit-Breaker, Ajv-Validierung, degradierte Header `x-ethics-degraded`, Lifeboat-Regeln, Boundary-Cache + einzigartige Evidenz-Domains, Prometheus-Counter `ethics_degraded_total`/`ethics_decision_log_total`).
 - core-runtime:
-  - Verify gate proxy (active) — apps/verify-gate/src/index.ts (Header-Forwarding, Request-ID, Rate/JSON-Limits, SSRF-Allowlist, Streaming-Proxy, `x-ethics-*`-Expose).
+  - Verify gate proxy (active) — apps/verify-gate/src/index.ts (Header-Drop-Liste, Request-ID, Rate/JSON-Limits (`VERIFY_GATE_JSON_LIMIT`, `VERIFY_GATE_RPS`), DNS-SSRF-Allowlist, Streaming-Proxy, Prometheus (`verify_gate_inflight`) & `/metrics`, `x-ethics-*`-Expose).
 - governance:
   - Codex governance manifests (active) — codex/
   - Configuration bundles (active) — config/

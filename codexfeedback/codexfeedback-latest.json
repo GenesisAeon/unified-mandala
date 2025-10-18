@@ -1,32 +1,27 @@
 {
-  "fraktal": 102,
-  "phase": "Ethics-Gate Hardening & UI/Observability Sync",
-  "status": "Ethics-API mit Ajv/Request-ID + Circuit `/readyz`; Verify-Gate mit JSON-/Rate-Limits, SSRF-Allowlist, Streaming-Proxy, `Access-Control-Expose-Headers`; Live-Smoke prüft Health/Verify/Ethics/Chat, UI zeigt EthicsBadge.",
-  "nextHook": "Boundary/Ethics Alerting finalisieren (Grafana-Alarme, SSRF-Gate) und Streaming-E2E im UI testen.",
+  "fraktal": 103,
+  "phase": "Verify-Gate Defense-in-Depth & Ethics Degraded Mode",
+  "status": "Verify-Gate säubert Header + DNS-SSRF + Prometheus; Ethics-API signalisiert Degraded (`x-ethics-degraded`), Lifeboat-Regeln & Evidenz-Dedupe aktiv; Env/Docs/Maps aktualisiert.",
+  "nextHook": "Grafana-Alerts für neue Verify/Ethics-Metriken aufsetzen und DOI/Handle-Validator vorbereiten.",
   "changed": [
-    "apps/ethics-api/src/index.ts",
-    "apps/ethics-api/src/boundary-client.ts",
-    "apps/ethics-api/src/http-client.ts",
-    "apps/ethics-api/src/schemas.ts",
-    "apps/ethics-api/src/__tests__/ethics-failclosed.test.ts",
     "apps/verify-gate/src/index.ts",
+    "apps/verify-gate/src/http/headerForward.ts",
+    "apps/verify-gate/src/security/ssrf.ts",
     "apps/verify-gate/src/__tests__/proxy-headers.test.ts",
-    "apps/ui/src/components/MandalaAIPlayground.tsx",
-    "apps/ui/src/components/EthicsBadge.tsx",
-    "apps/ui/src/lib/fetchWithEthics.ts",
-    "apps/ui/src/lib/streamWithEthics.ts",
-    "scripts/smoke/live-smoke.mjs",
-    "grafana/dashboards/mandala-ethics-gate.json",
+    "apps/verify-gate/src/__tests__/streaming-preserves-headers.test.ts",
+    "apps/verify-gate/src/__tests__/ssrf-allowlist.test.ts",
+    "apps/ethics-api/src/index.ts",
+    "apps/ethics-api/src/__tests__/ethics-failclosed.test.ts",
     ".env.example",
     "docs/roadmap/v1.0-stabilization-playbook.md",
     "docs/roadmap/v1.0-stabilization-playbook.yaml",
     "MandalaMap.md",
     "MandalaMap.yaml",
     "MandalaMap.json",
-    "analysis/devtalk102-evaluation.md"
+    "analysis/devtalk103-evaluation.md",
+    "codexfeedback.md"
   ],
   "validate": [
-    "pnpm vitest run apps/ethics-api/src/__tests__/ethics-failclosed.test.ts",
-    "pnpm vitest run apps/verify-gate/src/__tests__/proxy-headers.test.ts"
+    "pnpm vitest run apps/verify-gate/src/__tests__/proxy-headers.test.ts apps/verify-gate/src/__tests__/streaming-preserves-headers.test.ts apps/verify-gate/src/__tests__/ssrf-allowlist.test.ts apps/ethics-api/src/__tests__/ethics-failclosed.test.ts"
   ]
 }

@@ -5,13 +5,6 @@ import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest';
 
 const ORIGINAL_ENV = { ...process.env };
 
-function headerToString(value: string | string[] | undefined): string {
-  if (Array.isArray(value)) {
-    return value.join(',');
-  }
-  return value ?? '';
-}
-
 async function startServer(app: express.Express): Promise<{ url: string; close: () => Promise<void> }> {
   return await new Promise((resolve) => {
     const server = app.listen(0, () => {
@@ -34,7 +27,7 @@ async function startServer(app: express.Express): Promise<{ url: string; close: 
   });
 }
 
-describe('verify gate header forwarding', () => {
+describe('verify gate streaming proxy', () => {
   beforeEach(() => {
     vi.resetModules();
     vi.mock('helmet', () => ({
@@ -79,7 +72,7 @@ describe('verify gate header forwarding', () => {
     process.env = { ...ORIGINAL_ENV } as NodeJS.ProcessEnv;
   });
 
-  test('forwards authentication headers and emits ethics verdict metadata', async () => {
+  test('retains ethics headers on streamed responses', async () => {
     const ethicsApp = express();
     ethicsApp.use(express.json());
     ethicsApp.post('/ethics/check', (_req, res) => {
@@ -88,44 +81,27 @@ describe('verify gate header forwarding', () => {
     const ethics = await startServer(ethicsApp);
 
     const upstreamApp = express();
-    upstreamApp.use(express.json());
-    let receivedHeaders: Partial<Record<string, string | string[]>> | null = null;
-    upstreamApp.post('/secure', (req, res) => {
-      receivedHeaders = req.headers;
-      res.json({ ok: true, echo: req.body });
+    upstreamApp.post('/stream', (_req, res) => {
+      res.setHeader('content-type', 'text/plain');
+      res.write('chunk-one');
+      res.write('-chunk-two');
+      res.end();
     });
     const upstream = await startServer(upstreamApp);
 
-    process.env.VERIFY_ETHICS_URL = `${ethics.url}`;
-    process.env.VERIFY_UPSTREAM_URL = `${upstream.url}`;
+    process.env.VERIFY_ETHICS_URL = ethics.url;
+    process.env.VERIFY_UPSTREAM_URL = upstream.url;
     process.env.VERIFY_GATE_UPSTREAM_ALLOWLIST = new URL(upstream.url).host;
 
     const { app } = await import('../index');
 
     try {
-      const response = await request(app)
-        .post('/gate/secure')
-        .set('authorization', 'Bearer abc123')
-        .set('cookie', 'session=xyz; theme=light')
-        .set('x-forwarded-for', '1.1.1.1')
-        .send({ foo: 'bar' });
-
+      const response = await request(app).post('/gate/stream').send({ demo: true });
       expect(response.status).toBe(200);
-      expect(response.body).toEqual({ ok: true, echo: { foo: 'bar' } });
+      expect(response.text).toBe('chunk-one-chunk-two');
       expect(response.headers['x-ethics-verdict']).toBe('green');
       expect(response.headers['x-ethics-evidence-count']).toBe('0');
       expect(response.headers['access-control-expose-headers']).toContain('x-ethics-verdict');
-
-      expect(receivedHeaders).not.toBeNull();
-      if (!receivedHeaders) {
-        throw new Error('headers were not captured');
-      }
-      const headers = receivedHeaders;
-      expect(headers['authorization']).toBe('Bearer abc123');
-      const cookieValue = headerToString(headers['cookie']);
-      expect(cookieValue).toContain('session=xyz');
-      const forwardedFor = headerToString(headers['x-forwarded-for']);
-      expect(forwardedFor).toContain('1.1.1.1');
     } finally {
       await ethics.close();
       await upstream.close();

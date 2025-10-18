@@ -1,4 +1,4 @@
-import { randomUUID } from 'node:crypto';
+import { createHash, randomBytes, randomUUID } from 'node:crypto';
 import express, { type NextFunction, type Request, type Response } from 'express';
 import helmet from 'helmet';
 import Ajv from 'ajv';
@@ -111,6 +111,13 @@ const verdictCounter = new Counter({
   registers: [registry],
 });
 
+const decisionLogCounter = new Counter({
+  name: 'ethics_decision_log_total',
+  help: 'Aggregated ethics decisions by verdict and reason',
+  labelNames: ['verdict', 'reason'],
+  registers: [registry],
+});
+
 const checkDuration = new Histogram({
   name: 'ethics_check_duration_ms',
   help: 'Duration of ethics checks in milliseconds',
@@ -121,6 +128,20 @@ const checkDuration = new Histogram({
 const circuitGauge = new Gauge({
   name: 'boundary_circuit_state',
   help: 'Circuit breaker state for boundary dependency (0=closed,1=half_open,2=open)',
+  registers: [registry],
+});
+
+const degradedCounter = new Counter({
+  name: 'ethics_degraded_total',
+  help: 'Count of degraded ethics responses by dependency',
+  labelNames: ['dependency'],
+  registers: [registry],
+});
+
+const evidenceDomainCounter = new Counter({
+  name: 'ethics_evidence_domains_total',
+  help: 'Count of unique evidence domains observed in responses',
+  labelNames: ['domain'],
   registers: [registry],
 });
 
@@ -143,6 +164,163 @@ function updateCircuitGauge(): void {
 
 updateCircuitGauge();
 
+const boundaryCacheTtlMs = Number.parseInt(process.env.ETHICS_CACHE_TTL_MS ?? '60000', 10);
+const boundaryCache = new Map<string, { expires: number; value: BoundaryResponse }>();
+const uniqueDomainRequirement = Math.max(
+  1,
+  Number.parseInt(process.env.ETHICS_REQUIRE_UNIQUE_EVIDENCE_DOMAINS ?? '2', 10),
+);
+
+const EXPOSE_HEADERS = [
+  'x-ethics-verdict',
+  'x-ethics-evidence-count',
+  'x-ethics-degraded',
+  'x-request-id',
+  'traceparent',
+  'tracestate',
+];
+
+interface LifeboatFinding {
+  rule: string;
+  reason: string;
+}
+
+const lifeboatRules: Array<{ id: string; pattern: RegExp; reason: string }> = [
+  { id: 'hate_speech', pattern: /\b(kill|exterminate|eliminate)\s+all\s+(men|women|people|[a-z]+)\b/i, reason: 'hate_content' },
+  { id: 'pii_redaction', pattern: /(social security|ssn|passport|credit card|iban)[^a-z0-9]?\s*([0-9\-]{4,})/i, reason: 'pii_detected' },
+  { id: 'advance_fee', pattern: /\b(double\s+your\s+money|wire\s+transfer\s+fee|crypto\s+investment\s+guarantee)\b/i, reason: 'scam_detected' },
+];
+
+function evaluateLifeboat(text: string): LifeboatFinding | null {
+  for (const rule of lifeboatRules) {
+    if (rule.pattern.test(text)) {
+      return { rule: rule.id, reason: rule.reason };
+    }
+  }
+  return null;
+}
+
+function exposeEthicsHeaders(res: Response): void {
+  const existing = res.getHeader('Access-Control-Expose-Headers');
+  const expose = new Set<string>();
+  if (typeof existing === 'string') {
+    existing
+      .split(',')
+      .map((value) => value.trim())
+      .filter(Boolean)
+      .forEach((value) => expose.add(value));
+  } else if (Array.isArray(existing)) {
+    for (const entry of existing) {
+      if (typeof entry === 'string') {
+        entry
+          .split(',')
+          .map((value) => value.trim())
+          .filter(Boolean)
+          .forEach((value) => expose.add(value));
+      }
+    }
+  }
+  EXPOSE_HEADERS.forEach((header) => expose.add(header));
+  res.setHeader('Access-Control-Expose-Headers', Array.from(expose).join(', '));
+}
+
+function ensureTraceContext(req: Request, res: Response): { traceparent: string; tracestate?: string } {
+  const incomingTrace = typeof req.get('traceparent') === 'string' ? req.get('traceparent')?.trim() : undefined;
+  const tracestate = typeof req.get('tracestate') === 'string' ? req.get('tracestate')?.trim() : undefined;
+  const newSpanId = randomBytes(8).toString('hex');
+
+  let traceparent: string;
+  if (incomingTrace) {
+    const parts = incomingTrace.split('-');
+    if (parts.length >= 4) {
+      parts[2] = newSpanId;
+      traceparent = `${parts[0]}-${parts[1]}-${parts[2]}-${parts[3]}`;
+    } else {
+      const traceId = randomBytes(16).toString('hex');
+      traceparent = `00-${traceId}-${newSpanId}-01`;
+    }
+  } else {
+    const traceId = randomBytes(16).toString('hex');
+    traceparent = `00-${traceId}-${newSpanId}-01`;
+  }
+
+  res.setHeader('traceparent', traceparent);
+  if (tracestate) {
+    res.setHeader('tracestate', tracestate);
+  }
+  (req.headers as Record<string, unknown>)['traceparent'] = traceparent;
+  if (tracestate) {
+    (req.headers as Record<string, unknown>)['tracestate'] = tracestate;
+  }
+  return { traceparent, tracestate: tracestate ?? undefined };
+}
+
+function boundaryCacheKey(text: string, context: unknown): string {
+  const hash = createHash('sha1');
+  hash.update(text ?? '');
+  hash.update('::');
+  hash.update(JSON.stringify(context ?? {}));
+  return hash.digest('hex');
+}
+
+function getBoundaryFromCache(key: string): BoundaryResponse | null {
+  const cached = boundaryCache.get(key);
+  if (!cached) {
+    return null;
+  }
+  if (cached.expires <= Date.now()) {
+    boundaryCache.delete(key);
+    return null;
+  }
+  return cached.value;
+}
+
+function setBoundaryCache(key: string, value: BoundaryResponse): void {
+  if (boundaryCacheTtlMs <= 0) {
+    return;
+  }
+  boundaryCache.set(key, { expires: Date.now() + boundaryCacheTtlMs, value });
+}
+
+function canonicalDomain(url: string | undefined): string | null {
+  if (!url) {
+    return null;
+  }
+  try {
+    const parsed = new URL(url);
+    return parsed.hostname.replace(/^www\./, '').toLowerCase();
+  } catch {
+    return null;
+  }
+}
+
+function canonicalizeCitations(citations: RagCitation[]): { filtered: RagCitation[]; domains: string[] } {
+  const seen = new Set<string>();
+  const filtered: RagCitation[] = [];
+  const domains: string[] = [];
+  for (const citation of citations) {
+    const domain = canonicalDomain(typeof citation.uri === 'string' ? citation.uri : undefined);
+    if (!domain) {
+      continue;
+    }
+    if (seen.has(domain)) {
+      continue;
+    }
+    seen.add(domain);
+    domains.push(domain);
+    filtered.push({ ...citation, uri: citation.uri });
+  }
+  return { filtered, domains };
+}
+
+function hashDecisionPayload(text: string, context: unknown): string {
+  const hash = createHash('sha1');
+  hash.update(text ?? '');
+  hash.update('::');
+  hash.update(JSON.stringify(context ?? {}));
+  return hash.digest('hex');
+}
+
 function parseText(value: unknown): string {
   if (typeof value === 'string') {
     return value;
@@ -153,13 +331,16 @@ function parseText(value: unknown): string {
   return JSON.stringify(value);
 }
 
-function scoreToVerdict(score: number, evidenceCount: number, hasViolations: boolean): EthicsVerdict {
+function scoreToVerdict(score: number, evidenceCount: number, uniqueDomains: number, hasViolations: boolean): EthicsVerdict {
   const minGreen = Number.parseFloat(process.env.VERIFY_MIN_SCORE_GREEN ?? '0.7');
   const minYellow = Number.parseFloat(process.env.VERIFY_MIN_SCORE_YELLOW ?? '0.4');
   const minEvidence = Number.parseInt(process.env.VERIFY_MIN_EVIDENCE ?? '2', 10);
 
   if (hasViolations) {
     return { verdict: 'red', reason: 'boundary_violation' };
+  }
+  if (uniqueDomains < uniqueDomainRequirement) {
+    return { verdict: 'yellow', reason: 'insufficient_unique_domains' };
   }
   if (score >= minGreen && evidenceCount >= minEvidence) {
     return { verdict: 'green', reason: 'grounded' };
@@ -188,7 +369,9 @@ app.get('/readyz', (_req: Request, res: Response) => {
   return res.json({ ok: true });
 });
 
-app.post('/ethics/check', async (req: Request<unknown, unknown, EthicsCheckInput>, res: Response) => {
+app.post(
+  '/ethics/check',
+  async (req: Request<Record<string, string>, unknown, EthicsCheckInput>, res: Response) => {
   const stopTimer = checkDuration.startTimer();
   try {
     const payload = (req.body ?? {}) as EthicsCheckInput;
@@ -204,36 +387,78 @@ app.post('/ethics/check', async (req: Request<unknown, unknown, EthicsCheckInput
     const { intent, content, context } = payload;
     const minEvidenceRequired = Number.parseInt(process.env.VERIFY_MIN_EVIDENCE ?? '2', 10);
     const text = parseText(content ?? intent);
+    const trace = ensureTraceContext(req, res);
     const requestId = typeof res.locals.requestId === 'string' ? res.locals.requestId : randomUUID();
     res.locals.requestId = requestId;
 
-    const boundaryResult = await observeBoundary(boundaryUrl, text, context, {
-      headers: { 'x-request-id': requestId },
-    });
-    updateCircuitGauge();
-
-    if (!boundaryResult.ok) {
-      const reason = boundaryResult.error === 'CB_OPEN' ? 'circuit_open' : boundaryResult.error ?? 'unknown';
-      dependencyFailureCounter.inc({ dependency: 'boundary', reason });
-      const failureResponse: EthicsCheckResult = {
+    const lifeboat = evaluateLifeboat(text);
+    if (lifeboat) {
+      const lifeboatResponse: EthicsCheckResult = {
         ok: false,
         verdict: 'red',
-        reason: reason === 'circuit_open' ? 'boundary_circuit_open' : 'boundary_unreachable',
+        reason: lifeboat.reason,
         neededEvidence: [],
-        deps: { boundary: boundaryResult.error },
+        deps: { lifeboatRule: lifeboat.rule },
         grounding: { score: 0, citations: [] },
         boundary: { count: 0, violations: [] },
         impact: { co2eKgMin: 0, co2eKgMax: 0, riskScore: 1 },
       };
       verdictCounter.inc({ verdict: 'red' });
-      if (dependencyFailMode === 'error') {
-        return res.status(503).json(failureResponse);
-      }
-      return res.status(200).json(failureResponse);
+      decisionLogCounter.inc({ verdict: 'red', reason: lifeboat.reason });
+      res.setHeader('x-ethics-verdict', 'red');
+      res.setHeader('x-ethics-evidence-count', '0');
+      exposeEthicsHeaders(res);
+      return res.status(200).json(lifeboatResponse);
     }
 
-    const violations = Array.isArray(boundaryResult.data?.violations)
-      ? (boundaryResult.data?.violations as BoundaryViolation[])
+    const cacheKey = boundaryCacheKey(text, context);
+    let boundaryData: BoundaryResponse | null = null;
+    if (boundaryCacheTtlMs > 0) {
+      boundaryData = getBoundaryFromCache(cacheKey);
+    }
+
+    if (!boundaryData) {
+      const boundaryResult = await observeBoundary(boundaryUrl, text, context, {
+        headers: {
+          'x-request-id': requestId,
+          traceparent: trace.traceparent,
+          ...(trace.tracestate ? { tracestate: trace.tracestate } : {}),
+        },
+      });
+      updateCircuitGauge();
+
+      if (!boundaryResult.ok) {
+        const reason = boundaryResult.error === 'CB_OPEN' ? 'circuit_open' : boundaryResult.error ?? 'unknown';
+        dependencyFailureCounter.inc({ dependency: 'boundary', reason });
+        degradedCounter.inc({ dependency: 'boundary' });
+        const failureResponse: EthicsCheckResult = {
+          ok: false,
+          verdict: 'red',
+          reason: reason === 'circuit_open' ? 'boundary_circuit_open' : 'boundary_unreachable',
+          neededEvidence: [],
+          deps: { boundary: boundaryResult.error },
+          grounding: { score: 0, citations: [] },
+          boundary: { count: 0, violations: [] },
+          impact: { co2eKgMin: 0, co2eKgMax: 0, riskScore: 1 },
+        };
+        verdictCounter.inc({ verdict: 'red' });
+        decisionLogCounter.inc({ verdict: 'red', reason: failureResponse.reason });
+        res.setHeader('x-ethics-verdict', 'red');
+        res.setHeader('x-ethics-evidence-count', '0');
+        res.setHeader('x-ethics-degraded', 'boundary');
+        exposeEthicsHeaders(res);
+        if (dependencyFailMode === 'error') {
+          return res.status(503).json(failureResponse);
+        }
+        return res.status(200).json(failureResponse);
+      }
+
+      boundaryData = boundaryResult.data ?? { violations: [] };
+      setBoundaryCache(cacheKey, boundaryData);
+    }
+
+    const violations = Array.isArray(boundaryData?.violations)
+      ? (boundaryData?.violations as BoundaryViolation[])
       : [];
 
     const ragCandidates = ['/rag/ask', '/ask', '/query'];
@@ -247,7 +472,11 @@ app.post('/ethics/check', async (req: Request<unknown, unknown, EthicsCheckInput
         },
         timeoutMs: Number.parseInt(process.env.RAG_TIMEOUT_MS ?? '1500', 10),
         retries: Number.parseInt(process.env.RAG_RETRIES ?? '1', 10),
-        headers: { 'x-request-id': requestId },
+        headers: {
+          'x-request-id': requestId,
+          traceparent: trace.traceparent,
+          ...(trace.tracestate ? { tracestate: trace.tracestate } : {}),
+        },
       });
       if (ragResult.ok) {
         ragResponse = ragResult.data;
@@ -258,14 +487,20 @@ app.post('/ethics/check', async (req: Request<unknown, unknown, EthicsCheckInput
     const citations = Array.isArray(ragResponse?.citations)
       ? (ragResponse?.citations as RagCitation[])
       : [];
+    const { filtered: canonicalCitations, domains } = canonicalizeCitations(citations);
+    domains.forEach((domain) => {
+      evidenceDomainCounter.inc({ domain });
+    });
+    const uniqueDomainCount = domains.length;
     const score = typeof ragResponse?.score === 'number'
       ? ragResponse.score
-      : citations.length >= minEvidenceRequired
+      : canonicalCitations.length >= minEvidenceRequired
         ? 0.72
         : 0.35;
 
-    const verdict = scoreToVerdict(score, citations.length, violations.length > 0);
+    const verdict = scoreToVerdict(score, canonicalCitations.length, uniqueDomainCount, violations.length > 0);
     verdictCounter.inc({ verdict: verdict.verdict });
+    decisionLogCounter.inc({ verdict: verdict.verdict, reason: verdict.reason });
 
     const response: EthicsCheckResult = {
       ok: true,
@@ -273,7 +508,7 @@ app.post('/ethics/check', async (req: Request<unknown, unknown, EthicsCheckInput
       reason: verdict.reason,
       grounding: {
         score,
-        citations,
+        citations: canonicalCitations,
       },
       boundary: {
         count: violations.length,
@@ -287,8 +522,22 @@ app.post('/ethics/check', async (req: Request<unknown, unknown, EthicsCheckInput
       neededEvidence:
         verdict.verdict === 'green'
           ? []
-          : ['mindestens zwei belastbare Quellen', 'konkreten Kontext für die Empfehlung'],
+          : verdict.reason === 'insufficient_unique_domains'
+            ? ['mindestens zwei unterschiedliche, belastbare Domains', 'konkreten Kontext für die Empfehlung']
+            : ['mindestens zwei belastbare Quellen', 'konkreten Kontext für die Empfehlung'],
     };
+
+    res.setHeader('x-ethics-verdict', response.verdict);
+    res.setHeader('x-ethics-evidence-count', String(response.grounding.citations.length));
+    exposeEthicsHeaders(res);
+    console.info('[ethics-api] decision', {
+      requestId,
+      traceparent: trace.traceparent,
+      verdict: response.verdict,
+      reason: response.reason,
+      payload: hashDecisionPayload(text, context),
+      deps: response.deps ?? {},
+    });
 
     res.json(response);
   } catch (error) {
@@ -297,7 +546,8 @@ app.post('/ethics/check', async (req: Request<unknown, unknown, EthicsCheckInput
   } finally {
     stopTimer();
   }
-});
+  },
+);
 
 app.post('/impact/report', (req: Request, res: Response) => {
   res.json({ ok: true, stored: req.body ?? {} });
