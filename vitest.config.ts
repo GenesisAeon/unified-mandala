@@ -131,6 +131,7 @@ export default defineConfig({
       'src/**/tests/**/*.{test,spec}.ts',
       'packages/**/test/**/*.{test,spec}.ts',
       'packages/**/src/**/*.{test,spec}.ts',
+      'apps/**/src/**/*.{test,spec}.ts',
     ],
     exclude: Array.from(exclude),
   },

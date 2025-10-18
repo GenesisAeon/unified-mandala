@@ -1,6 +1,11 @@
 {
   "runs": [
     {
+      "fraktalrun": "Fraktal99 EthicsFailClosed",
+      "status": "done",
+      "notes": "Ethics API fail-closes boundary outages via circuit breaker (`ETHICS_DEP_FAIL_MODE`), Prometheus metrics (`ethics_dependency_unreachable_total`, `boundary_circuit_state`), shared fetchJson client and `/readyz`; Verify Gate now forwards Authorization/Cookie headers, emits `x-ethics-verdict`/`x-ethics-evidence-count`, fails closed on ethics outages, and new Vitest/Supertest suites guard the fail-closed & proxy flows. Stabilization playbook, MandalaMap (md/json/yaml), .env.example and codexfeedback_latest.* record the rollout."
+    },
+    {
       "fraktalrun": "Fraktal98 ZeroBuildVitest",
       "status": "done",
       "notes": "packages/ai/package.json exposes conditional vitest/test/development targets so Vitest resolves source without dist, vitest.config.ts adds resolve.conditions to prefer those exports, and analysis/devtalk98-evaluation.md records the DevTalk alignment; stabilization playbook, MandalaMap (md/json/yaml) and codexfeedback-latest files capture the zero-build fix while keeping the hook on further workspace audits and boundary alerting."

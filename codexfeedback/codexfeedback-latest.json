@@ -1,105 +1,99 @@
 {
-  "fraktal": 98,
-  "phase": "Boundary Idempotency & Ops badges",
-  "status": "Boundary service now exports boundary_observe_total and boundary_idempotency_missing_total metrics, CORS preflights expose Idempotency-Key, JS publishBoundary auto-sends the header, and Vitest uses zero-build exports (packages/ai + vitest.config.ts); docs/trackers remain aligned while non-JS bridges and workspace audits stay on the follow-up list.",
-  "next_hook": "Audit non-JS/CLI publishers for Idempotency-Key headers, wire dedupe/observe alerts (dedupes/min, cache utilisation, 409 ratio), and extend vitest conditional exports to additional packages if required.",
+  "fraktal": 99,
+  "phase": "Ethics fail-closed & Verify-Gate Header Forwarding",
+  "status": "Ethics API now fails closed with a circuit breaker (`ETHICS_DEP_FAIL_MODE`), Prometheus metrics (`ethics_dependency_unreachable_total`, `boundary_circuit_state`), `/readyz`, and shared fetchJson client; Verify Gate forwards Authorization/Cookie headers, emits `x-ethics-verdict`/`x-ethics-evidence-count`, filters hop-by-hop headers, and returns 5xx when ethics checks fail. Vitest/Supertest suites cover fail-closed and proxy flows; docs, MandalaMap, codexfeedback, and `.env.example` capture the rollout.",
+  "next_hook": "Evaluate rate limits/allowlist telemetry for ethics/verify gates and wire Boundary circuit-open alerts (dedupes/min vs circuit state).",
   "changes": [
     {
-      "path": "docs/boundary/GettingStarted.md",
-      "desc": "Documents the new metrics curl + OPTIONS preflight example."
+      "path": "apps/ethics-api/src/index.ts",
+      "desc": "Adds circuit breaker fail-closed response, `/readyz`, metrics, and shared fetchJson client."
     },
     {
-      "path": "scripts/smoke/boundary-service-smoke.mjs",
-      "desc": "Smoke now asserts Idempotency-Key expose headers, OPTIONS preflight, and new Prometheus counters."
+      "path": "apps/ethics-api/src/boundary-client.ts",
+      "desc": "Wraps boundary observe with timeout/retry and circuit breaker state."
     },
     {
-      "path": "scripts/boundary-service.ts",
-      "desc": "Adds boundary_observe_total/boundary_idempotency_missing_total metrics, CORS preflight headers, and OTEL span attributes for dedupe hits/event keys."
+      "path": "apps/ethics-api/src/circuit-breaker.ts",
+      "desc": "Implements reusable circuit breaker for dependency calls."
     },
     {
-      "path": "src/boundary/publisher.ts",
-      "desc": "Default HTTP fallback now sets Idempotency-Key (validated with canonical fallback)."
+      "path": "apps/ethics-api/src/http-client.ts",
+      "desc": "Provides JSON fetch with timeout, retries, and jitter backoff."
     },
     {
-      "path": "tests/boundary/publisher.test.ts",
-      "desc": "Vitest covers generated vs supplied keys and header propagation."
+      "path": "apps/verify-gate/src/index.ts",
+      "desc": "Forwards client headers, emits x-ethics headers, fail-closes on ethics outage, and filters hop-by-hop headers."
     },
     {
-      "path": "docs/runbooks/sigil-publisher.md",
-      "desc": "Boundary coupling callout mentions JS auto-header and non-JS follow-up."
+      "path": "apps/ethics-api/src/__tests__/ethics-failclosed.test.ts",
+      "desc": "Vitest ensures boundary outages yield red/503 responses based on fail mode."
+    },
+    {
+      "path": "apps/verify-gate/src/__tests__/proxy-headers.test.ts",
+      "desc": "Supertest validates Authorization/Cookie forwarding and verdict headers."
+    },
+    {
+      "path": ".env.example",
+      "desc": "Adds ETHICS_DEP_FAIL_MODE, boundary timeouts/retries, VERIFY_GATE_TIMEOUT_MS and verify URLs."
     },
     {
       "path": "docs/roadmap/v1.0-stabilization-playbook.md",
-      "desc": "Observability status note references boundary_observe_total, CORS, and OTEL attributes."
+      "desc": "Observability note covers ethics fail-closed circuit and verify header forwarding."
     },
     {
       "path": "docs/roadmap/v1.0-stabilization-playbook.yaml",
-      "desc": "Metrics checkpoint mentions boundary_observe_total/idempotency_missing_total and CORS expose."
+      "desc": "YAML tracker logs the ethics fail-closed update and verify gate changes."
     },
     {
       "path": "MandalaMap.md",
-      "desc": "Automation samples add boundary-service observability update."
+      "desc": "Meta counts updated; samples include ethics fail-closed service and verify gate proxy."
     },
     {
       "path": "MandalaMap.json",
-      "desc": "Scripts entry notes the boundary-service observability update."
+      "desc": "Entries added for apps/ethics-api and apps/verify-gate with updated meta."
     },
     {
       "path": "MandalaMap.yaml",
-      "desc": "Automation notes include the 2025-12-09 observability update."
+      "desc": "Adds observability/core-runtime entries for ethics/verify services and bumps meta."
     },
     {
       "path": "codexfeedback.md",
-      "desc": "Root codexfeedback log now records the Fraktal98 observability update (metrics+CORS)."
+      "desc": "Root log records Fraktal99 fail-closed rollout."
     },
     {
       "path": "codexfeedback.json",
-      "desc": "Runs array updates the Fraktal98 entry with observability metrics + CORS notes."
+      "desc": "Runs array prepends Fraktal99 ethics fail-closed summary."
     },
     {
       "path": "codexfeedback.yaml",
-      "desc": "Current/hook capture the new boundary_observe_total metrics and alert follow-up."
+      "desc": "Current/history updated with Fraktal99 deliverables and hooks."
     },
     {
-      "path": "analysis/devtalk96-evaluation.md",
-      "desc": "Metrics row covers new counters and OPTIONS command."
+      "path": "codexfeedback/codexfeedback-fraktal99.yaml",
+      "desc": "Detailed log for Fraktal99 fail-closed implementation."
     },
     {
-      "path": "docs/fraktal/codexfeedback/codexfeedback-fraktal98.yaml",
-      "desc": "Fraktal log capturing the rollout."
-    },
-    {
-      "path": "packages/ai/package.json",
-      "desc": "Declares conditional vitest/test/development exports so tests consume source without building dist."
-    },
-    {
-      "path": "vitest.config.ts",
-      "desc": "Adds resolve.conditions ['vitest','development','module','import'] to prioritise source exports during Vitest runs."
-    },
-    {
-      "path": "analysis/devtalk98-evaluation.md",
-      "desc": "Evaluates DevTalk focus, documents zero-build Vitest fix and remaining hooks."
+      "path": "analysis/devtalk99-evaluation.md",
+      "desc": "DevTalk evaluation documents ethics fail-closed & verify gate alignment."
     }
   ],
   "validate": [
-    "node scripts/smoke/boundary-service-smoke.mjs",
-    "pnpm vitest run tests/boundary/publisher.test.ts",
-    "pnpm vitest run"
+    "pnpm vitest run apps/ethics-api/src/__tests__/ethics-failclosed.test.ts",
+    "pnpm vitest run apps/verify-gate/src/__tests__/proxy-headers.test.ts"
   ],
   "refs": [
-    "docs/boundary/GettingStarted.md",
-    "scripts/smoke/boundary-service-smoke.mjs",
-    "scripts/boundary-service.ts",
-    "src/boundary/publisher.ts",
-    "tests/boundary/publisher.test.ts",
-    "docs/runbooks/sigil-publisher.md",
+    "apps/ethics-api/src/index.ts",
+    "apps/ethics-api/src/boundary-client.ts",
+    "apps/ethics-api/src/circuit-breaker.ts",
+    "apps/ethics-api/src/http-client.ts",
+    "apps/verify-gate/src/index.ts",
+    "apps/ethics-api/src/__tests__/ethics-failclosed.test.ts",
+    "apps/verify-gate/src/__tests__/proxy-headers.test.ts",
+    ".env.example",
     "docs/roadmap/v1.0-stabilization-playbook.md",
     "docs/roadmap/v1.0-stabilization-playbook.yaml",
     "MandalaMap.(md|json|yaml)",
     "codexfeedback.(md|json|yaml)",
-    "analysis/devtalk96-evaluation.md",
-    "packages/ai/package.json",
-    "vitest.config.ts",
-    "analysis/devtalk98-evaluation.md"
+    "analysis/devtalk99-evaluation.md"
   ]
 }

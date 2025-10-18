@@ -1,69 +1,58 @@
-fraktal: 98
-phase: Boundary Idempotency & Ops badges
-status: Boundary-Service exportiert boundary_observe_total und boundary_idempotency_missing_total,
-  CORS-Preflights exponieren Idempotency-Key; JS publishBoundary sendet weiterhin
-  automatisch und Vitest nutzt Zero-Build-Exports (`packages/ai`, `vitest.config.ts`).
-  Tracker/Doks bleiben synchron, Nicht-JS-Bridges, Alerts & Workspace-Audits offen.
-next_hook: Nicht-JS-/CLI-Publisher auf Idempotency-Key prüfen, Dedupe/Observe-Alerts
-  (Dedupes/min, Cache, 409-Ratio) verankern und weitere Pakete auf `vitest`-Exports
-  prüfen.
+fraktal: 99
+phase: 'Ethics fail-closed & Verify-Gate Header Forwarding'
+status: 'Ethics API fail-closed (Circuit-Breaker, `ethics_dependency_unreachable_total`, `boundary_circuit_state`, `/readyz`, shared fetchJson) und Verify-Gate leitet Authorization/Cookie-Header weiter, setzt `x-ethics-verdict`/`x-ethics-evidence-count`, filtert Hop-by-Hop-Header und liefert 5xx bei Ethics-Ausfällen. Vitest/Supertest decken beide Pfade ab; `.env.example`, Stabilization-Playbook und MandalaMap.* spiegeln die neuen Envs/Metriken.'
+next_hook: 'Rate-Limits, Allowlist/Alerting für Ethics-/Verify-Gate prüfen (Boundary Circuit-Open Alarmierung, SSRF-Gates).'
 changes:
-  - path: docs/boundary/GettingStarted.md
-    desc: Dokumentiert neue Metrics-Curl-Beispiele und OPTIONS-Preflight.
-  - path: scripts/smoke/boundary-service-smoke.mjs
-    desc: Smoke prüft Header-Expose, OPTIONS-Preflight und neue Prometheus-Counter.
-  - path: scripts/boundary-service.ts
-    desc: Erweitert `/metrics` um boundary_observe_total/boundary_idempotency_missing_total,
-      liefert CORS-Expose-Header und setzt OTel-Attribute.
-  - path: src/boundary/publisher.ts
-    desc: Default-HTTP-Fallback setzt Idempotency-Key (inkl. Canonical-Fallback).
-  - path: tests/boundary/publisher.test.ts
-    desc: Vitest deckt auto-generierte vs. übergebene Keys + Header-Weitergabe ab.
-  - path: docs/runbooks/sigil-publisher.md
-    desc: Boundary-Coupling beschreibt Auto-Header für JS-Bridges und Follow-ups.
+  - path: apps/ethics-api/src/index.ts
+    desc: Circuit-Breaker Fail-Closed, `/readyz`, Prometheus-Metriken, Shared fetchJson.
+  - path: apps/ethics-api/src/boundary-client.ts
+    desc: Beobachtet Boundary mit Timeout/Retry und Circuit-Breaker-State.
+  - path: apps/ethics-api/src/circuit-breaker.ts
+    desc: Reusable Circuit-Breaker für Dependenz-Aufrufe.
+  - path: apps/ethics-api/src/http-client.ts
+    desc: JSON-Fetch mit Timeout, Retries und Jitter-Backoff.
+  - path: apps/verify-gate/src/index.ts
+    desc: Header-Forwarding, Verdict-Header, Fail-Closed bei Ethics-Ausfall, Timeout für Ethics-Call.
+  - path: apps/ethics-api/src/__tests__/ethics-failclosed.test.ts
+    desc: Prüft 200/503-Fail-Closed-Verhalten je nach Modus.
+  - path: apps/verify-gate/src/__tests__/proxy-headers.test.ts
+    desc: Validiert Authorization/Cookie-Weitergabe und Verdict-Header.
+  - path: .env.example
+    desc: Neue Envs (`ETHICS_DEP_FAIL_MODE`, Boundary-Timeouts, VERIFY_GATE_TIMEOUT_MS, VERIFY_* URLs).
   - path: docs/roadmap/v1.0-stabilization-playbook.md
-    desc: Statusnotiz verweist auf boundary_observe_total, CORS & OTel Update.
+    desc: Observability-Abschnitt erwähnt Circuit-/Header-Update.
   - path: docs/roadmap/v1.0-stabilization-playbook.yaml
-    desc: Checkpoint ergänzt boundary_observe_total/idempotency_missing_total & CORS-Expose.
+    desc: YAML-Tracker dokumentiert Ethics Fail-Closed & Verify-Gate.
   - path: MandalaMap.md
-    desc: Automation-Samples ergänzen Boundary-Service Observability Update.
+    desc: Aktualisierte Meta + Samples für Ethics/Verify.
   - path: MandalaMap.json
-    desc: Scripts-Eintrag beschreibt Boundary-Service Observability Update.
+    desc: Neue Entries für apps/ethics-api und apps/verify-gate.
   - path: MandalaMap.yaml
-    desc: Automation-Notes listen das Observability Update (2025-12-09).
+    desc: Observability/Core-Runtime-Einträge + Meta-Update.
   - path: codexfeedback.md
-    desc: Root-Codexfeedback log erfasst jetzt das Observability-Update (Metrics + CORS).
+    desc: Root-Log vermerkt Fraktal99 Fail-Closed-Rollout.
   - path: codexfeedback.json
-    desc: Runs-Eintrag zu Fraktal98 enthält nun Observability-Metriken & CORS-Hinweis.
+    desc: Runs-Eintrag für Fraktal99 ergänzt.
   - path: codexfeedback.yaml
-    desc: Current/Hook spiegeln boundary_observe_total & Alert-Follow-up.
-  - path: analysis/devtalk96-evaluation.md
-    desc: Metrics-Zeile deckt neue Counter ab, Commands enthalten OPTIONS-Check.
-  - path: docs/fraktal/codexfeedback/codexfeedback-fraktal98.yaml
-    desc: Fraktal-Log für den Publisher-Rollout.
-  - path: packages/ai/package.json
-    desc: Konditionale `vitest`/`test`/`development`-Exports erlauben Tests ohne vorab
-      gebauten `dist/`-Ordner.
-  - path: vitest.config.ts
-    desc: '`resolve.conditions` priorisieren Source-Exports für Vitest-Läufe.'
-  - path: analysis/devtalk98-evaluation.md
-    desc: DevTalk-Abgleich dokumentiert Zero-Build Fix & verbleibende Hooks.
+    desc: Aktueller Hook dokumentiert Ethics/Verify Update.
+  - path: codexfeedback/codexfeedback-fraktal99.yaml
+    desc: Detaillog für Fraktal99.
+  - path: analysis/devtalk99-evaluation.md
+    desc: DevTalk-Abgleich zum Fail-Closed-/Proxy-Lauf.
 validate:
-  - node scripts/smoke/boundary-service-smoke.mjs
-  - pnpm vitest run tests/boundary/publisher.test.ts
-  - pnpm vitest run
+  - pnpm vitest run apps/ethics-api/src/__tests__/ethics-failclosed.test.ts
+  - pnpm vitest run apps/verify-gate/src/__tests__/proxy-headers.test.ts
 refs:
-  - docs/boundary/GettingStarted.md
-  - scripts/smoke/boundary-service-smoke.mjs
-  - scripts/boundary-service.ts
-  - src/boundary/publisher.ts
-  - tests/boundary/publisher.test.ts
-  - docs/runbooks/sigil-publisher.md
+  - apps/ethics-api/src/index.ts
+  - apps/ethics-api/src/boundary-client.ts
+  - apps/ethics-api/src/circuit-breaker.ts
+  - apps/ethics-api/src/http-client.ts
+  - apps/verify-gate/src/index.ts
+  - apps/ethics-api/src/__tests__/ethics-failclosed.test.ts
+  - apps/verify-gate/src/__tests__/proxy-headers.test.ts
+  - .env.example
   - docs/roadmap/v1.0-stabilization-playbook.md
   - docs/roadmap/v1.0-stabilization-playbook.yaml
   - MandalaMap.(md|json|yaml)
   - codexfeedback.(md|json|yaml)
-  - analysis/devtalk96-evaluation.md
-  - packages/ai/package.json
-  - vitest.config.ts
-  - analysis/devtalk98-evaluation.md
+  - analysis/devtalk99-evaluation.md
