@@ -9,6 +9,17 @@ const allowlistEntries = (process.env.VERIFY_GATE_UPSTREAM_ALLOWLIST ?? '127.0.0
 
 const allowlist = new Set(allowlistEntries);
 
+const allowedProtocols = new Set(
+  (process.env.VERIFY_GATE_ALLOW_PROTOCOLS ?? 'http,https')
+    .split(',')
+    .map((value: string) => value.trim().toLowerCase())
+    .filter(Boolean),
+);
+
+export function hasAllowlistEntries(): boolean {
+  return allowlist.size > 0;
+}
+
 function isPrivate(address: string): boolean {
   if (!net.isIP(address)) {
     return false;
@@ -37,6 +48,9 @@ function isPrivate(address: string): boolean {
 
 export async function assertAllowed(target: string): Promise<void> {
   const url = new URL(target);
+  if (!allowedProtocols.has(url.protocol.replace(/:$/, ''))) {
+    throw new Error('protocol_not_allowed');
+  }
   const port = url.port ? Number.parseInt(url.port, 10) : url.protocol === 'https:' ? 443 : 80;
   const hostPort = `${url.hostname}:${port}`;
 

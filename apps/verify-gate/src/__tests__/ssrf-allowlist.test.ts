@@ -43,6 +43,7 @@ describe('verify gate SSRF allowlist', () => {
     process.env.PORT_OFFSET = '0';
     process.env.VERIFY_GATE_TIMEOUT_MS = '200';
     process.env.VERIFY_GATE_RPS = '500';
+    process.env.VERIFY_GATE_JWT_SECRET = 'test-secret';
     process.env.VERIFY_ETHICS_URL = 'http://127.0.0.1:65530';
   });
 

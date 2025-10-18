@@ -19,6 +19,10 @@ export const EthicsCheckSchema = {
       type: 'array',
       items: { type: 'string' },
     },
+    flags: {
+      type: 'object',
+      additionalProperties: true,
+    },
   },
 } as const;
 
@@ -27,4 +31,5 @@ export type EthicsCheckInput = {
   content: unknown;
   context?: Record<string, unknown>;
   evidence?: string[];
+  flags?: Record<string, unknown>;
 };

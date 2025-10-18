@@ -1,0 +1,44 @@
+fraktal: 104
+status: done
+owner: Johann
+summary:
+  - '`apps/verify-gate/src/index.ts` nutzt jetzt einen Idempotency-Cache (`VERIFY_GATE_IDEMP_TTL_MS`), signiert Ethics-Verdicts (`VERIFY_GATE_JWT_SECRET`), pinnt Upstream-IPs (`makePinnedAgent`) und erweitert `/readyz` um Allowlist/Ethics-Prüfung; neue Module `idempotency.ts`, `verdictToken.ts`, `security/agent.ts` flankieren den Flow.'
+  - '`apps/api/src/index.ts` + `middleware/verifyEthics.ts` erzwingen `x-ethics-token` (JWT), Tests (`apps/api/src/__tests__/ethics-token-guard.test.ts`, `tests/api/chat-success.test.ts`) decken Success/Fail-Pfade ab.'
+  - '`apps/ethics-api/src/index.ts` markiert PSL-basierte Evidenz (tldts) inkl. Strong-Flag (DOI/arXiv/Gov), erweitert Lifeboat-Regeln (Payment-Scam/Malware/Impersonation), sampelt Logs (`LOG_SAMPLE_GREEN`), meldet `boundary_cache_warm` im `/readyz` und ruft optional OPA (`ETHICS_OPA_*`) via neuem Modul `src/opa.ts` auf.'
+  - 'Stabilization-Playbook (MD/YAML), MandalaMap (MD/JSON/YAML), `.env.example`, `package.json`, `scripts/chaos/ethics-chaos.mjs`, codexfeedback\* sowie `analysis/devtalk104-evaluation.md` dokumentieren Idempotency-/Token-Guard-Lauf & Chaos-Proben.'
+deliverables:
+  - apps/verify-gate/src/index.ts
+  - apps/verify-gate/src/idempotency.ts
+  - apps/verify-gate/src/verdictToken.ts
+  - apps/verify-gate/src/security/agent.ts
+  - apps/verify-gate/src/http/headerForward.ts
+  - apps/verify-gate/src/security/ssrf.ts
+  - apps/verify-gate/src/__tests__/proxy-headers.test.ts
+  - apps/verify-gate/src/__tests__/streaming-preserves-headers.test.ts
+  - apps/verify-gate/src/__tests__/ssrf-allowlist.test.ts
+  - apps/verify-gate/src/__tests__/idempotency.test.ts
+  - apps/api/src/index.ts
+  - apps/api/src/middleware/verifyEthics.ts
+  - apps/api/src/__tests__/ethics-token-guard.test.ts
+  - tests/api/chat-success.test.ts
+  - apps/ethics-api/src/index.ts
+  - apps/ethics-api/src/opa.ts
+  - .env.example
+  - docs/roadmap/v1.0-stabilization-playbook.md
+  - docs/roadmap/v1.0-stabilization-playbook.yaml
+  - MandalaMap.md
+  - MandalaMap.yaml
+  - MandalaMap.json
+  - scripts/chaos/ethics-chaos.mjs
+  - package.json
+  - codexfeedback.md
+  - codexfeedback/codexfeedback-latest.md
+  - codexfeedback/codexfeedback-latest.json
+  - codexfeedback/codexfeedback-latest.yaml
+  - analysis/devtalk104-evaluation.md
+commands:
+  - pnpm vitest run apps/verify-gate/src/__tests__/idempotency.test.ts apps/api/src/__tests__/ethics-token-guard.test.ts tests/api/chat-success.test.ts
+hook:
+  progress: Verify-Gate Idempotency + JWT-Gate aktiv, Ethics-API liefert PSL-Evidenz & OPA-Hook.
+  next_step: OPA-Bundle/CLI in CI anbinden, Ethics-UI um Strong-Evidence-Badges & Log-Sampling-Auswertung erweitern.
+repeat_required: false
