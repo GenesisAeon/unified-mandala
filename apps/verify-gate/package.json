@@ -1,0 +1,9 @@
+{
+  "name": "@unified-mandala/verify-gate",
+  "private": true,
+  "type": "module",
+  "main": "src/index.ts",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}

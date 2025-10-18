@@ -1,0 +1,24 @@
+run: Fraktal100
+scope: TerminalOfTrust
+status: in-progress
+summary:
+  - start-verified skips duplicate health start when port already bound
+  - live smoke honours PORT_OFFSET and custom AI origins
+  - dev stack auto-frees shared service ports before boot
+  - ethics-api + verify-gate skeletons available with metrics + ampellogik
+  - ollama proxy warmup guard converted to log-based readiness hint
+next_steps:
+  - 'Wire Mandala UI publish flows through verify-gate endpoint'
+  - 'Curate RAG corpora + stricter evidence thresholds for ethics-api'
+  - 'Capture Prometheus dashboards for ethics metrics + consent gaps'
+  - 'Extend consent receipts mit multi-sig + storage backend'
+  - 'Document end-to-end operator runbook in docs/roadmap/v1.0-stabilization-playbook.md'
+notes:
+  docs_reference:
+    - docs/roadmap/v1.0-stabilization-playbook.md
+    - docs/roadmap/v1.0-stabilization-playbook.yaml
+    - MandalaMap.md
+    - MandalaMap.yaml
+  hook:
+    current_step: ethics-gate-skeleton
+    resume_hint: connect UI verify switch + surface verdict reasons in Playground

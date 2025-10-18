@@ -27,6 +27,8 @@ const resolvedMode =
         ? 'prod'
         : 'dev';
 
+const globalPortOffset = Number.parseInt(process.env.PORT_OFFSET || '0', 10) || 0;
+
 const resolvedProfile = (profileArg ? profileArg.split('=')[1] : process.env.UM_PROFILE || 'std')
   .toString()
   .toLowerCase();
@@ -141,6 +143,25 @@ const autoFreePortsEnabled = process.env.UM_DEV_SERVICES_AUTOFREE_PORTS !== '0';
 const attemptedAutoFree = new Set();
 
 const processes = [];
+
+if (autoFreePortsEnabled) {
+  const basePorts = [
+    3999, 4000, 4010, 4020, 4021, 4100, 4120, 4121, 3001, 3002, 3003, 3004, 5173, 5174, 5175, 3110,
+    3111, 4101,
+  ];
+  const portsToFree = [...new Set(basePorts.map((port) => port + globalPortOffset))];
+  if (portsToFree.length > 0) {
+    console.log(
+      `[dev-services] Attempting proactive port cleanup via "pnpm dlx kill-port" for: ${portsToFree.join(', ')}`,
+    );
+    const freed = await attemptAutoFreePorts(portsToFree);
+    if (!freed) {
+      console.warn('[dev-services] Proactive port cleanup did not complete successfully.');
+    } else {
+      await sleep(100);
+    }
+  }
+}
 
 // Opportunistic NATS detection: optionally auto-disable via env for dev
 async function detectNatsAvailability() {
