@@ -606,9 +606,3 @@ app.post('/api/tools/rag/query', async (req, res) => {
 app.listen(port, host, () => {
   console.log(`[ollama-proxy] http://${host}:${port} --> ${upstream} (${model})`);
 });
-
-if (!(await embedReady())) {
-  return res
-    .status(503)
-    .json({ error: 'embed_unavailable', detail: `Embed model '${embedModel}' not ready` });
-}

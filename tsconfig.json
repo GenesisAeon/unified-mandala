@@ -27,6 +27,8 @@
   },
   "include": [
     "packages/**/*",
+    "apps/ethics-api/src/**/*",
+    "apps/verify-gate/src/**/*",
     "services/**/*",
     "agents/**/*",
     "scripts/**/*.ts",
