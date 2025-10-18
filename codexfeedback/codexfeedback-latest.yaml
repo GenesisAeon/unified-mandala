@@ -1,58 +1,31 @@
-fraktal: 99
-phase: 'Ethics fail-closed & Verify-Gate Header Forwarding'
-status: 'Ethics API fail-closed (Circuit-Breaker, `ethics_dependency_unreachable_total`, `boundary_circuit_state`, `/readyz`, shared fetchJson) und Verify-Gate leitet Authorization/Cookie-Header weiter, setzt `x-ethics-verdict`/`x-ethics-evidence-count`, filtert Hop-by-Hop-Header und liefert 5xx bei Ethics-Ausfällen. Vitest/Supertest decken beide Pfade ab; `.env.example`, Stabilization-Playbook und MandalaMap.* spiegeln die neuen Envs/Metriken.'
-next_hook: 'Rate-Limits, Allowlist/Alerting für Ethics-/Verify-Gate prüfen (Boundary Circuit-Open Alarmierung, SSRF-Gates).'
-changes:
-  - path: apps/ethics-api/src/index.ts
-    desc: Circuit-Breaker Fail-Closed, `/readyz`, Prometheus-Metriken, Shared fetchJson.
-  - path: apps/ethics-api/src/boundary-client.ts
-    desc: Beobachtet Boundary mit Timeout/Retry und Circuit-Breaker-State.
-  - path: apps/ethics-api/src/circuit-breaker.ts
-    desc: Reusable Circuit-Breaker für Dependenz-Aufrufe.
-  - path: apps/ethics-api/src/http-client.ts
-    desc: JSON-Fetch mit Timeout, Retries und Jitter-Backoff.
-  - path: apps/verify-gate/src/index.ts
-    desc: Header-Forwarding, Verdict-Header, Fail-Closed bei Ethics-Ausfall, Timeout für Ethics-Call.
-  - path: apps/ethics-api/src/__tests__/ethics-failclosed.test.ts
-    desc: Prüft 200/503-Fail-Closed-Verhalten je nach Modus.
-  - path: apps/verify-gate/src/__tests__/proxy-headers.test.ts
-    desc: Validiert Authorization/Cookie-Weitergabe und Verdict-Header.
-  - path: .env.example
-    desc: Neue Envs (`ETHICS_DEP_FAIL_MODE`, Boundary-Timeouts, VERIFY_GATE_TIMEOUT_MS, VERIFY_* URLs).
-  - path: docs/roadmap/v1.0-stabilization-playbook.md
-    desc: Observability-Abschnitt erwähnt Circuit-/Header-Update.
-  - path: docs/roadmap/v1.0-stabilization-playbook.yaml
-    desc: YAML-Tracker dokumentiert Ethics Fail-Closed & Verify-Gate.
-  - path: MandalaMap.md
-    desc: Aktualisierte Meta + Samples für Ethics/Verify.
-  - path: MandalaMap.json
-    desc: Neue Entries für apps/ethics-api und apps/verify-gate.
-  - path: MandalaMap.yaml
-    desc: Observability/Core-Runtime-Einträge + Meta-Update.
-  - path: codexfeedback.md
-    desc: Root-Log vermerkt Fraktal99 Fail-Closed-Rollout.
-  - path: codexfeedback.json
-    desc: Runs-Eintrag für Fraktal99 ergänzt.
-  - path: codexfeedback.yaml
-    desc: Aktueller Hook dokumentiert Ethics/Verify Update.
-  - path: codexfeedback/codexfeedback-fraktal99.yaml
-    desc: Detaillog für Fraktal99.
-  - path: analysis/devtalk99-evaluation.md
-    desc: DevTalk-Abgleich zum Fail-Closed-/Proxy-Lauf.
-validate:
-  - pnpm vitest run apps/ethics-api/src/__tests__/ethics-failclosed.test.ts
-  - pnpm vitest run apps/verify-gate/src/__tests__/proxy-headers.test.ts
-refs:
+fraktal: 102
+phase: Ethics-Gate Hardening & UI/Observability Sync
+status: Ethics-API Ajv/Request-ID + Circuit `/readyz`; Verify-Gate JSON-/Rate-Limits,
+  SSRF-Allowlist, Streaming-Proxy, `Access-Control-Expose-Headers`; Live-Smoke prüft
+  Health/Verify/Ethics/Chat, UI zeigt EthicsBadge.
+nextHook: Boundary/Ethics Alerting finalisieren (Grafana-Alarme, SSRF-Gate) und Streaming-E2E
+  im UI testen.
+changed:
   - apps/ethics-api/src/index.ts
   - apps/ethics-api/src/boundary-client.ts
-  - apps/ethics-api/src/circuit-breaker.ts
   - apps/ethics-api/src/http-client.ts
-  - apps/verify-gate/src/index.ts
+  - apps/ethics-api/src/schemas.ts
   - apps/ethics-api/src/__tests__/ethics-failclosed.test.ts
+  - apps/verify-gate/src/index.ts
   - apps/verify-gate/src/__tests__/proxy-headers.test.ts
+  - apps/ui/src/components/MandalaAIPlayground.tsx
+  - apps/ui/src/components/EthicsBadge.tsx
+  - apps/ui/src/lib/fetchWithEthics.ts
+  - apps/ui/src/lib/streamWithEthics.ts
+  - scripts/smoke/live-smoke.mjs
+  - grafana/dashboards/mandala-ethics-gate.json
   - .env.example
   - docs/roadmap/v1.0-stabilization-playbook.md
   - docs/roadmap/v1.0-stabilization-playbook.yaml
-  - MandalaMap.(md|json|yaml)
-  - codexfeedback.(md|json|yaml)
-  - analysis/devtalk99-evaluation.md
+  - MandalaMap.md
+  - MandalaMap.yaml
+  - MandalaMap.json
+  - analysis/devtalk102-evaluation.md
+validate:
+  - pnpm vitest run apps/ethics-api/src/__tests__/ethics-failclosed.test.ts
+  - pnpm vitest run apps/verify-gate/src/__tests__/proxy-headers.test.ts

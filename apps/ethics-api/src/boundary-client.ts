@@ -18,6 +18,7 @@ export interface BoundaryClientConfig {
   failureThreshold?: number;
   halfOpenAfterMs?: number;
   successReset?: number;
+  headers?: Record<string, string>;
 }
 
 const breaker = new CircuitBreaker();
@@ -40,6 +41,17 @@ export function getBoundaryCircuitState(): ReturnType<CircuitBreaker['getState']
   return breaker.getState();
 }
 
+export function getBoundaryCircuitStateValue(): 0 | 1 | 2 {
+  const state = breaker.getState();
+  if (state === 'half_open') {
+    return 1;
+  }
+  if (state === 'open') {
+    return 2;
+  }
+  return 0;
+}
+
 export async function observeBoundary(
   baseUrl: string,
   text: string,
@@ -58,6 +70,7 @@ export async function observeBoundary(
     body: { text, context },
     timeoutMs,
     retries,
+    headers: config.headers,
   });
 
   if (result.ok) {

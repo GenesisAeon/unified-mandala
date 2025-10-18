@@ -1,99 +1,32 @@
 {
-  "fraktal": 99,
-  "phase": "Ethics fail-closed & Verify-Gate Header Forwarding",
-  "status": "Ethics API now fails closed with a circuit breaker (`ETHICS_DEP_FAIL_MODE`), Prometheus metrics (`ethics_dependency_unreachable_total`, `boundary_circuit_state`), `/readyz`, and shared fetchJson client; Verify Gate forwards Authorization/Cookie headers, emits `x-ethics-verdict`/`x-ethics-evidence-count`, filters hop-by-hop headers, and returns 5xx when ethics checks fail. Vitest/Supertest suites cover fail-closed and proxy flows; docs, MandalaMap, codexfeedback, and `.env.example` capture the rollout.",
-  "next_hook": "Evaluate rate limits/allowlist telemetry for ethics/verify gates and wire Boundary circuit-open alerts (dedupes/min vs circuit state).",
-  "changes": [
-    {
-      "path": "apps/ethics-api/src/index.ts",
-      "desc": "Adds circuit breaker fail-closed response, `/readyz`, metrics, and shared fetchJson client."
-    },
-    {
-      "path": "apps/ethics-api/src/boundary-client.ts",
-      "desc": "Wraps boundary observe with timeout/retry and circuit breaker state."
-    },
-    {
-      "path": "apps/ethics-api/src/circuit-breaker.ts",
-      "desc": "Implements reusable circuit breaker for dependency calls."
-    },
-    {
-      "path": "apps/ethics-api/src/http-client.ts",
-      "desc": "Provides JSON fetch with timeout, retries, and jitter backoff."
-    },
-    {
-      "path": "apps/verify-gate/src/index.ts",
-      "desc": "Forwards client headers, emits x-ethics headers, fail-closes on ethics outage, and filters hop-by-hop headers."
-    },
-    {
-      "path": "apps/ethics-api/src/__tests__/ethics-failclosed.test.ts",
-      "desc": "Vitest ensures boundary outages yield red/503 responses based on fail mode."
-    },
-    {
-      "path": "apps/verify-gate/src/__tests__/proxy-headers.test.ts",
-      "desc": "Supertest validates Authorization/Cookie forwarding and verdict headers."
-    },
-    {
-      "path": ".env.example",
-      "desc": "Adds ETHICS_DEP_FAIL_MODE, boundary timeouts/retries, VERIFY_GATE_TIMEOUT_MS and verify URLs."
-    },
-    {
-      "path": "docs/roadmap/v1.0-stabilization-playbook.md",
-      "desc": "Observability note covers ethics fail-closed circuit and verify header forwarding."
-    },
-    {
-      "path": "docs/roadmap/v1.0-stabilization-playbook.yaml",
-      "desc": "YAML tracker logs the ethics fail-closed update and verify gate changes."
-    },
-    {
-      "path": "MandalaMap.md",
-      "desc": "Meta counts updated; samples include ethics fail-closed service and verify gate proxy."
-    },
-    {
-      "path": "MandalaMap.json",
-      "desc": "Entries added for apps/ethics-api and apps/verify-gate with updated meta."
-    },
-    {
-      "path": "MandalaMap.yaml",
-      "desc": "Adds observability/core-runtime entries for ethics/verify services and bumps meta."
-    },
-    {
-      "path": "codexfeedback.md",
-      "desc": "Root log records Fraktal99 fail-closed rollout."
-    },
-    {
-      "path": "codexfeedback.json",
-      "desc": "Runs array prepends Fraktal99 ethics fail-closed summary."
-    },
-    {
-      "path": "codexfeedback.yaml",
-      "desc": "Current/history updated with Fraktal99 deliverables and hooks."
-    },
-    {
-      "path": "codexfeedback/codexfeedback-fraktal99.yaml",
-      "desc": "Detailed log for Fraktal99 fail-closed implementation."
-    },
-    {
-      "path": "analysis/devtalk99-evaluation.md",
-      "desc": "DevTalk evaluation documents ethics fail-closed & verify gate alignment."
-    }
+  "fraktal": 102,
+  "phase": "Ethics-Gate Hardening & UI/Observability Sync",
+  "status": "Ethics-API mit Ajv/Request-ID + Circuit `/readyz`; Verify-Gate mit JSON-/Rate-Limits, SSRF-Allowlist, Streaming-Proxy, `Access-Control-Expose-Headers`; Live-Smoke prüft Health/Verify/Ethics/Chat, UI zeigt EthicsBadge.",
+  "nextHook": "Boundary/Ethics Alerting finalisieren (Grafana-Alarme, SSRF-Gate) und Streaming-E2E im UI testen.",
+  "changed": [
+    "apps/ethics-api/src/index.ts",
+    "apps/ethics-api/src/boundary-client.ts",
+    "apps/ethics-api/src/http-client.ts",
+    "apps/ethics-api/src/schemas.ts",
+    "apps/ethics-api/src/__tests__/ethics-failclosed.test.ts",
+    "apps/verify-gate/src/index.ts",
+    "apps/verify-gate/src/__tests__/proxy-headers.test.ts",
+    "apps/ui/src/components/MandalaAIPlayground.tsx",
+    "apps/ui/src/components/EthicsBadge.tsx",
+    "apps/ui/src/lib/fetchWithEthics.ts",
+    "apps/ui/src/lib/streamWithEthics.ts",
+    "scripts/smoke/live-smoke.mjs",
+    "grafana/dashboards/mandala-ethics-gate.json",
+    ".env.example",
+    "docs/roadmap/v1.0-stabilization-playbook.md",
+    "docs/roadmap/v1.0-stabilization-playbook.yaml",
+    "MandalaMap.md",
+    "MandalaMap.yaml",
+    "MandalaMap.json",
+    "analysis/devtalk102-evaluation.md"
   ],
   "validate": [
     "pnpm vitest run apps/ethics-api/src/__tests__/ethics-failclosed.test.ts",
     "pnpm vitest run apps/verify-gate/src/__tests__/proxy-headers.test.ts"
-  ],
-  "refs": [
-    "apps/ethics-api/src/index.ts",
-    "apps/ethics-api/src/boundary-client.ts",
-    "apps/ethics-api/src/circuit-breaker.ts",
-    "apps/ethics-api/src/http-client.ts",
-    "apps/verify-gate/src/index.ts",
-    "apps/ethics-api/src/__tests__/ethics-failclosed.test.ts",
-    "apps/verify-gate/src/__tests__/proxy-headers.test.ts",
-    ".env.example",
-    "docs/roadmap/v1.0-stabilization-playbook.md",
-    "docs/roadmap/v1.0-stabilization-playbook.yaml",
-    "MandalaMap.(md|json|yaml)",
-    "codexfeedback.(md|json|yaml)",
-    "analysis/devtalk99-evaluation.md"
   ]
 }

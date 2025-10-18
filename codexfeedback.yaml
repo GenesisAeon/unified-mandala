@@ -1,9 +1,63 @@
 fraktal:
-  current: 99
+  current: 102
   history:
+    - id: 102
+      status: done
+      notes:
+        'Fraktal102 EthicsGateHardening: apps/ethics-api validiert via Ajv (`EthicsCheckSchema`),
+        setzt `x-request-id`, koppelt `/readyz` an den Circuit-State (`cb` 0/1/2) und
+        reicht optionale Service-Bearer (`INTERNAL_BEARER`) weiter; apps/verify-gate
+        ergänzt JSON-/Rate-Limits (`GATE_JSON_LIMIT`, `VERIFY_RATE_RPS`), SSRF-Allowlist
+        (`VERIFY_UPSTREAM_ALLOWLIST`, `VERIFY_STRICT_SAME_HOST`), Streaming-Proxying
+        sowie CORS-Expose für `x-ethics-*`. Live-Smoke prüft Health, Verify-Gate, Ethics
+        `/readyz` und Chat; UI (EthicsBadge/fetchJsonWithEthics) & Grafana (mandala-ethics-gate.json)
+        spiegeln den Lauf.'
+      deliverables:
+        - apps/ethics-api/src/index.ts
+        - apps/ethics-api/src/boundary-client.ts
+        - apps/ethics-api/src/http-client.ts
+        - apps/ethics-api/src/schemas.ts
+        - apps/ethics-api/src/__tests__/ethics-failclosed.test.ts
+        - apps/verify-gate/src/index.ts
+        - apps/verify-gate/src/__tests__/proxy-headers.test.ts
+        - apps/ui/src/components/MandalaAIPlayground.tsx
+        - apps/ui/src/components/EthicsBadge.tsx
+        - apps/ui/src/lib/fetchWithEthics.ts
+        - apps/ui/src/lib/streamWithEthics.ts
+        - scripts/smoke/live-smoke.mjs
+        - grafana/dashboards/mandala-ethics-gate.json
+        - .env.example
+        - docs/roadmap/v1.0-stabilization-playbook.md
+        - docs/roadmap/v1.0-stabilization-playbook.yaml
+        - MandalaMap.md
+        - MandalaMap.yaml
+        - MandalaMap.json
+        - codexfeedback.md
+        - codexfeedback.json
+        - codexfeedback.yaml
+        - codexfeedback/codexfeedback-latest.md
+        - codexfeedback/codexfeedback-latest.json
+        - codexfeedback/codexfeedback-latest.yaml
+        - codexfeedback/codexfeedback-fraktal102.yaml
+        - analysis/devtalk102-evaluation.md
+      commands:
+        - pnpm vitest run apps/ethics-api/src/__tests__/ethics-failclosed.test.ts
+        - pnpm vitest run apps/verify-gate/src/__tests__/proxy-headers.test.ts
+      hook:
+        progress: Ethics Ajv/Request-ID + Verify-Gate Rate-Limit/Streaming aktiv, UI
+          & Observability synchronisiert.
+        next_step: Ethics/RAG alerting finalisieren (Grafana Alarme, Boundary-SSRF)
+          und Verify-Gate Streaming-E2E in UI erweitern.
+      repeat_required: false
     - id: 99
       status: done
-      notes: 'Fraktal99 EthicsFailClosed: `apps/ethics-api` antwortet Boundary-Ausfälle fail-closed (Circuit-Breaker, Counter `ethics_dependency_unreachable_total`, Gauge `boundary_circuit_state`, `/readyz`, Shared `fetchJson`), während `apps/verify-gate` Client-Header durchreicht, `x-ethics-verdict`/`x-ethics-evidence-count` setzt und Ethics-Ausfälle mit 5xx quittiert. Neue Vitest/Supertest-Suites prüfen Fail-Closed- und Header-Forwarding-Pfade; `.env.example`, Stabilization-Playbook und MandalaMap.* dokumentieren die Env-/Metrics-Erweiterung.'
+      notes: 'Fraktal99 EthicsFailClosed: `apps/ethics-api` antwortet Boundary-Ausfälle
+        fail-closed (Circuit-Breaker, Counter `ethics_dependency_unreachable_total`,
+        Gauge `boundary_circuit_state`, `/readyz`, Shared `fetchJson`), während `apps/verify-gate`
+        Client-Header durchreicht, `x-ethics-verdict`/`x-ethics-evidence-count` setzt
+        und Ethics-Ausfälle mit 5xx quittiert. Neue Vitest/Supertest-Suites prüfen Fail-Closed-
+        und Header-Forwarding-Pfade; `.env.example`, Stabilization-Playbook und MandalaMap.*
+        dokumentieren die Env-/Metrics-Erweiterung.'
       deliverables:
         - apps/ethics-api/src/index.ts
         - apps/ethics-api/src/boundary-client.ts
@@ -31,20 +85,21 @@ fraktal:
         - pnpm vitest run apps/verify-gate/src/__tests__/proxy-headers.test.ts
       hook:
         progress: Boundary-Circuit + Verify-Gate Header-Forwarding aktiv; Docs/Env synchronisiert.
-        next_step: Ethics-Gate Rate-Limits & Boundary-Alerting (Dedupes/min, circuit-open) evaluieren.
+        next_step: Ethics-Gate Rate-Limits & Boundary-Alerting (Dedupes/min, circuit-open)
+          evaluieren.
       repeat_required: false
     - id: 98
       status: done
-      notes: "Fraktal98 PublisherRollout & ObserveMetrics: `src/boundary/publisher.ts`\
-        \ h\xE4ngt den Idempotency-Key im Default-HTTP-Fallback an und `scripts/boundary-service.ts`\
-        \ exportiert zus\xE4tzlich boundary_observe_total{result} sowie boundary_idempotency_missing_total,\
-        \ beantwortet OPTIONS /boundary/observe mit CORS-Expose und annotiert OTel-Spans.\
-        \ Vitest & Smoke decken Header-/Counter-Flows ab, Docs (Runbook, GettingStarted,\
-        \ Stabilization-Playbook, MandalaMap, Codexfeedback, DevTalk-Audit) spiegeln\
-        \ den Status; Nicht-JS-Bridges und Alert-Rollout bleiben Follow-up. ZeroBuildVitest\
-        \ ergänzt konditionale `vitest`/`test`/`development`-Exports in `packages/ai` und\
-        \ `resolve.conditions` im Vitest-Config; Playbook/MandalaMap/codexfeedback halten\
-        \ den Audit-Hook auf weitere Pakete & Alerts offen."
+      notes: 'Fraktal98 PublisherRollout & ObserveMetrics: `src/boundary/publisher.ts`
+        hängt den Idempotency-Key im Default-HTTP-Fallback an und `scripts/boundary-service.ts`
+        exportiert zusätzlich boundary_observe_total{result} sowie boundary_idempotency_missing_total,
+        beantwortet OPTIONS /boundary/observe mit CORS-Expose und annotiert OTel-Spans.
+        Vitest & Smoke decken Header-/Counter-Flows ab, Docs (Runbook, GettingStarted,
+        Stabilization-Playbook, MandalaMap, Codexfeedback, DevTalk-Audit) spiegeln den
+        Status; Nicht-JS-Bridges und Alert-Rollout bleiben Follow-up. ZeroBuildVitest
+        ergänzt konditionale `vitest`/`test`/`development`-Exports in `packages/ai`
+        und `resolve.conditions` im Vitest-Config; Playbook/MandalaMap/codexfeedback
+        halten den Audit-Hook auf weitere Pakete & Alerts offen.'
       deliverables:
         - MandalaMap.json
         - MandalaMap.md
@@ -71,21 +126,21 @@ fraktal:
       hook:
         progress: Boundary-Service liefert neue Observe-/Missing-Header-Counter + CORS-Expose;
           Docs & Tracker synchronisiert.
-        next_step: "Nicht-JS-Bridges auf Idempotency-Key pr\xFCfen und Alerts (Dedupes/min,\
-          \ boundary_observe_total) verankern."
+        next_step: Nicht-JS-Bridges auf Idempotency-Key prüfen und Alerts (Dedupes/min,
+          boundary_observe_total) verankern.
       repeat_required: false
     - id: 97
       status: done
-      notes: "Fraktal97 BoundaryIdempotency: `scripts/boundary-service.ts` bevorzugt\
-        \ `Idempotency-Key`-Header (Fallback auf `stableBoundaryEventKey`), r\xE4umt\
-        \ `.tmp`-Snapshots beim Start auf, w\xE4rmt das Dedupe-Cache aus `laws.jsonl`,\
-        \ liefert `/boundary/status` (Dedupes/min, Cache, letzte 409, Snapshot-Errors)\
-        \ und exportiert `boundary_http_response_family_total` sowie `boundary_snapshot_write_errors_total`.\
-        \ `scripts/smoke/boundary-service-smoke.mjs` pr\xFCft Header-Echo + Status.json,\
-        \ `apps/ui/src/pages/BoundaryDemo.tsx` rendert Dedupes/min-/Cache-Badges samt\
-        \ \"Letzter 409\"-Hinweis und `docs/boundary/GettingStarted.md` + `docs/runbooks/sigil-publisher.md`\
-        \ dokumentieren den Header-Flow. Stabilization-Playbook (MD/YAML) & MandalaMap.(md|json|yaml)\
-        \ heben Fraktal97 hervor, codexfeedback* setzt den Hook auf UI/metrics-ready."
+      notes: 'Fraktal97 BoundaryIdempotency: `scripts/boundary-service.ts` bevorzugt
+        `Idempotency-Key`-Header (Fallback auf `stableBoundaryEventKey`), räumt `.tmp`-Snapshots
+        beim Start auf, wärmt das Dedupe-Cache aus `laws.jsonl`, liefert `/boundary/status`
+        (Dedupes/min, Cache, letzte 409, Snapshot-Errors) und exportiert `boundary_http_response_family_total`
+        sowie `boundary_snapshot_write_errors_total`. `scripts/smoke/boundary-service-smoke.mjs`
+        prüft Header-Echo + Status.json, `apps/ui/src/pages/BoundaryDemo.tsx` rendert
+        Dedupes/min-/Cache-Badges samt "Letzter 409"-Hinweis und `docs/boundary/GettingStarted.md`
+        + `docs/runbooks/sigil-publisher.md` dokumentieren den Header-Flow. Stabilization-Playbook
+        (MD/YAML) & MandalaMap.(md|json|yaml) heben Fraktal97 hervor, codexfeedback*
+        setzt den Hook auf UI/metrics-ready.'
       deliverables:
         - scripts/boundary-service.ts
         - scripts/smoke/boundary-service-smoke.mjs
@@ -115,15 +170,14 @@ fraktal:
       repeat_required: false
     - id: 96
       status: done
-      notes: "Fraktal96 BoundaryCanonicalHardening: `packages/boundary-core/src/canonical.ts`\
-        \ kanonisiert Payloads (Schl\xFCssel sortiert, Kreise markiert, Infinity \u2192\
-        \ String) f\xFCr `stableBoundaryEventKey`; `packages/boundary-core/src/__tests__/event-key.test.ts`\
-        \ beweist gleichbleibende Hashes bei Schl\xFCsselumsortierung & Kreisdaten und\
-        \ `scripts/boundary-service.ts` schreibt `laws.json` atomar (Tmp \u2192 Rename)\
-        \ sowie z\xE4hlt HTTP-Status via `boundary_http_responses_total`. Stabilization-Playbook\
-        \ (MD/YAML) vermerkt den Canonical-Patch, MandalaMap.(md|json|yaml) heben Fraktal96\
-        \ hervor und codexfeedback* setzt den Hook auf Alert-Monitoring (Dedupes/min\
-        \ vs. 202/409)."
+      notes: 'Fraktal96 BoundaryCanonicalHardening: `packages/boundary-core/src/canonical.ts`
+        kanonisiert Payloads (Schlüssel sortiert, Kreise markiert, Infinity → String)
+        für `stableBoundaryEventKey`; `packages/boundary-core/src/__tests__/event-key.test.ts`
+        beweist gleichbleibende Hashes bei Schlüsselumsortierung & Kreisdaten und `scripts/boundary-service.ts`
+        schreibt `laws.json` atomar (Tmp → Rename) sowie zählt HTTP-Status via `boundary_http_responses_total`.
+        Stabilization-Playbook (MD/YAML) vermerkt den Canonical-Patch, MandalaMap.(md|json|yaml)
+        heben Fraktal96 hervor und codexfeedback* setzt den Hook auf Alert-Monitoring
+        (Dedupes/min vs. 202/409).'
       deliverables:
         - packages/boundary-core/src/canonical.ts
         - packages/boundary-core/src/event-key.ts
@@ -149,21 +203,21 @@ fraktal:
       hook:
         progress: Canonical helper aktiv; Snapshot-Schreiben atomar & HTTP-Status-Counter
           aktiv.
-        next_step: "Canonical-Pfad auf weitere Publisher/Exporter ausrollen und dedupe\
-          \ Alerts \xFCberwachen."
+        next_step: Canonical-Pfad auf weitere Publisher/Exporter ausrollen und dedupe
+          Alerts überwachen.
       repeat_required: false
     - id: 95
       status: done
-      notes: "Fraktal95 BoundaryDedupe: `scripts/smoke/boundary-smoke.mjs` erzwingt\
-        \ `eventKey`-Dedupe (Helper-Exports + Exit Codes), `tests/smoke/boundary-smoke.spec.ts`\
-        \ deckt Missing/Duplicate-Pfade ab, `docs/runbooks/sigil-publisher.md` beschreibt\
-        \ die Publisher-Integration. Runtime Hardening erweitert den Lauf: `scripts/boundary-service.ts`\
-        \ pr\xFCft stabile `eventKey`-Hashes mit TTL-Dedupe-Cache (`409 duplicate_eventKey`),\
-        \ skippt JSONL/Snapshot-Writes, exportiert `boundary_law_deduped_total` & `boundary_dedupe_store_size`;\
-        \ `scripts/smoke/boundary-service-smoke.mjs` testet 202/409/Metric-Fluss und\
-        \ Grafana-Dashboards (`grafana/dashboards/boundary*.json`) zeigen Dedupes/min\
-        \ & Cache-Gr\xF6\xDFe. Stabilization-Playbook & MandalaMap.* dokumentieren die\
-        \ Erweiterung, codexfeedback* markiert den Lauf als abgeschlossen."
+      notes: 'Fraktal95 BoundaryDedupe: `scripts/smoke/boundary-smoke.mjs` erzwingt
+        `eventKey`-Dedupe (Helper-Exports + Exit Codes), `tests/smoke/boundary-smoke.spec.ts`
+        deckt Missing/Duplicate-Pfade ab, `docs/runbooks/sigil-publisher.md` beschreibt
+        die Publisher-Integration. Runtime Hardening erweitert den Lauf: `scripts/boundary-service.ts`
+        prüft stabile `eventKey`-Hashes mit TTL-Dedupe-Cache (`409 duplicate_eventKey`),
+        skippt JSONL/Snapshot-Writes, exportiert `boundary_law_deduped_total` & `boundary_dedupe_store_size`;
+        `scripts/smoke/boundary-service-smoke.mjs` testet 202/409/Metric-Fluss und Grafana-Dashboards
+        (`grafana/dashboards/boundary*.json`) zeigen Dedupes/min & Cache-Größe. Stabilization-Playbook
+        & MandalaMap.* dokumentieren die Erweiterung, codexfeedback* markiert den Lauf
+        als abgeschlossen.'
       deliverables:
         - scripts/smoke/boundary-smoke.mjs
         - tests/smoke/boundary-smoke.spec.ts
@@ -200,12 +254,11 @@ fraktal:
       repeat_required: false
     - id: 94
       status: done
-      notes: "Fraktal94 SchemaGateHardening: `analysis/devtalk94-evaluation.md` best\xE4\
-        tigt DevTalk94, `schemas/sigil-message/1-0-0.schema.json` (Fingerprint + Valid/Invalid-Fixtures)\
-        \ h\xE4ngt strikt in `pnpm schema:validate`; `src/adapters/sigil-mapping.ts`\
-        \ & `tests/sigil/schema.contract.test.ts` erzeugen/pr\xFCfen das neue Format,\
-        \ MandalaMap.*, Stabilization-Playbook.(md|yaml) und codexfeedback-latest.*\
-        \ dokumentieren offene UI/Boundary-Follow-ups."
+      notes: 'Fraktal94 SchemaGateHardening: `analysis/devtalk94-evaluation.md` bestätigt
+        DevTalk94, `schemas/sigil-message/1-0-0.schema.json` (Fingerprint + Valid/Invalid-Fixtures)
+        hängt strikt in `pnpm schema:validate`; `src/adapters/sigil-mapping.ts` & `tests/sigil/schema.contract.test.ts`
+        erzeugen/prüfen das neue Format, MandalaMap.*, Stabilization-Playbook.(md|yaml)
+        und codexfeedback-latest.* dokumentieren offene UI/Boundary-Follow-ups.'
       deliverables:
         - analysis/devtalk94-evaluation.md
         - schemas/sigil-message/1-0-0.schema.json
@@ -235,12 +288,11 @@ fraktal:
       repeat_required: false
     - id: 88
       status: in-progress
-      notes: "Fraktal88 DevTalkContinuation: `analysis/devtalk88-evaluation.md` bewertet\
-        \ den DevTalk-Plan nach Abschluss des Qwen-Rollouts, best\xE4tigt die erf\xFC\
-        llten Gates (CI/Governance/Observability/Docs) und verlagert die offenen Aufgaben\
-        \ auf Climate-MVP (Phase 4), Gemini-Sigillin-Verlinkung sowie Health-Aggregator-Badge.\
-        \ MandalaMap.*, Stabilization-Playbook und codexfeedback* heben Fraktal88 als\
-        \ aktiven Hook hervor."
+      notes: 'Fraktal88 DevTalkContinuation: `analysis/devtalk88-evaluation.md` bewertet
+        den DevTalk-Plan nach Abschluss des Qwen-Rollouts, bestätigt die erfüllten Gates
+        (CI/Governance/Observability/Docs) und verlagert die offenen Aufgaben auf Climate-MVP
+        (Phase 4), Gemini-Sigillin-Verlinkung sowie Health-Aggregator-Badge. MandalaMap.*,
+        Stabilization-Playbook und codexfeedback* heben Fraktal88 als aktiven Hook hervor.'
       deliverables:
         - analysis/devtalk88-evaluation.md
         - codexfeedback.yaml
@@ -257,19 +309,19 @@ fraktal:
         - pnpm meta:fraktal:organize
         - pnpm export_depth_bundle
       hook:
-        progress: "Qwen-Rollout abgeschlossen; DevTalk88-Evaluation best\xE4tigt gr\xFC\
-          ne Gates und beschreibt Restarbeiten (Climate MVP, Gemini-Sigillin, Health-Badge)."
-        next_step: "Climate-MVP (Phase 4) liefern, Gemini-Briefing verlinken und Health-Badge\
-          \ in README/docs platzieren; anschlie\xDFend Fraktal88 schlie\xDFen."
+        progress: Qwen-Rollout abgeschlossen; DevTalk88-Evaluation bestätigt grüne Gates
+          und beschreibt Restarbeiten (Climate MVP, Gemini-Sigillin, Health-Badge).
+        next_step: Climate-MVP (Phase 4) liefern, Gemini-Briefing verlinken und Health-Badge
+          in README/docs platzieren; anschließend Fraktal88 schließen.
       repeat_required: true
     - id: 87
       status: done
-      notes: "Fraktal87 DevTalkStabilization: analysis/devtalk87-evaluation.md best\xE4\
-        tigt die DevTalk-Ziele (CI/Governance/Observability/Docs) und erweitert den\
-        \ Qwen-Rollout um den Ollama-Proxy (`apps/api-lite/ollama-proxy.mjs` \u2192\
-        \ `pnpm start:ollama-proxy` / `pnpm ps:umo`) sowie den Smoke-Shortcut (`pnpm\
-        \ ps:smoke-qwen`). DEV-SHORTCUTS, RoleOutCommands.* und MandalaMap.* spiegeln\
-        \ die neue Start-/Smoke-Kette; offene Aufgaben wurden nach Fraktal88 verlegt."
+      notes: 'Fraktal87 DevTalkStabilization: analysis/devtalk87-evaluation.md bestätigt
+        die DevTalk-Ziele (CI/Governance/Observability/Docs) und erweitert den Qwen-Rollout
+        um den Ollama-Proxy (`apps/api-lite/ollama-proxy.mjs` → `pnpm start:ollama-proxy`
+        / `pnpm ps:umo`) sowie den Smoke-Shortcut (`pnpm ps:smoke-qwen`). DEV-SHORTCUTS,
+        RoleOutCommands.* und MandalaMap.* spiegeln die neue Start-/Smoke-Kette; offene
+        Aufgaben wurden nach Fraktal88 verlegt.'
       deliverables:
         - .github/workflows/ci.qwen-smoke.yml
         - .husky/pre-push
@@ -333,10 +385,10 @@ fraktal:
         - docs/fraktal/codexfeedback/codexfeedback-fraktal86.yaml
       commands: []
       hook:
-        progress: "Port-Offsets kollidieren nicht mehr; Health-Aggregator pr\xFCft die\
-          \ berechneten Dienste."
-        next_step: "UI-/Docs-Update in `docs/DEV-SHORTCUTS.md` f\xFCr Port-Mapping nachziehen\
-          \ und optional Smoke-Check f\xFCr Offset-Stacks erg\xE4nzen."
+        progress: Port-Offsets kollidieren nicht mehr; Health-Aggregator prüft die berechneten
+          Dienste.
+        next_step: UI-/Docs-Update in `docs/DEV-SHORTCUTS.md` für Port-Mapping nachziehen
+          und optional Smoke-Check für Offset-Stacks ergänzen.
       repeat_required: false
     - id: 85
       status: done
@@ -358,18 +410,17 @@ fraktal:
       hook:
         progress: Shortcut-Audit dokumentiert; Follow-up `pnpm diag:shortcuts` im Playbook
           verankert.
-        next_step: "Diagnoseskript + Troubleshooting f\xFCr `docs/DEV-SHORTCUTS.md`\
-          \ umsetzen."
+        next_step: Diagnoseskript + Troubleshooting für `docs/DEV-SHORTCUTS.md` umsetzen.
       repeat_required: false
     - id: 84
       status: done
-      notes: "Fraktal84 DevHelperHealthGuard: PowerShell Dev-Helper (Start/Stop/Test/Secrets),\
-        \ zentraler Health-Aggregator (`scripts/health-aggregator.ts` \u2192 `pnpm dev:health`),\
-        \ neue `/health`-Routen (api, fourier, sigil-generator, ghost-shell, realtime-hub)\
-        \ und Husky-Guard `guard-no-dotenv` gegen `.env*`-Commits; pnpm-Shortcuts (`ps:*`)\
-        \ und `docs/DEV-SHORTCUTS.md` erg\xE4nzen den Flow. Stabilization-Playbook (MD/YAML)\
-        \ aktualisiert; negativer Contract-Test f\xFCr `/api/ai/chat` stellt 400 bei\
-        \ ung\xFCltiger Payload sicher."
+      notes: 'Fraktal84 DevHelperHealthGuard: PowerShell Dev-Helper (Start/Stop/Test/Secrets),
+        zentraler Health-Aggregator (`scripts/health-aggregator.ts` → `pnpm dev:health`),
+        neue `/health`-Routen (api, fourier, sigil-generator, ghost-shell, realtime-hub)
+        und Husky-Guard `guard-no-dotenv` gegen `.env*`-Commits; pnpm-Shortcuts (`ps:*`)
+        und `docs/DEV-SHORTCUTS.md` ergänzen den Flow. Stabilization-Playbook (MD/YAML)
+        aktualisiert; negativer Contract-Test für `/api/ai/chat` stellt 400 bei ungültiger
+        Payload sicher.'
       deliverables:
         - scripts/dev-helper.ps1
         - scripts/health-aggregator.ts
@@ -390,19 +441,18 @@ fraktal:
         - pnpm dev:health
         - pnpm ps:test-um
       hook:
-        progress: "Zentrale Health-\xDCbersicht unter http://localhost:3999/health und\
-          \ schneller E2E-Sanity via Smoke-AI."
+        progress: Zentrale Health-Übersicht unter http://localhost:3999/health und schneller
+          E2E-Sanity via Smoke-AI.
         next_step:
-          "Optional `/health` in alle Router/Services konsolidieren und UI-Badge/Prometheus-Scrape\
-          \ f\xFCr Aggregator erg\xE4nzen."
+          Optional `/health` in alle Router/Services konsolidieren und UI-Badge/Prometheus-Scrape
+          für Aggregator ergänzen.
       repeat_required: false
     - id: 83
       status: done
-      notes: "Fraktal83 ResponsesPayloadFix: `@unified-mandala/ai` mappt Chat-Verl\xE4\
-        ufe auf `input_text`/`output_text`, behebt den OpenAI-Fehler \"Invalid value:\
-        \ 'text'\" und stellt `/api/ai/chat` wieder her; Vitest pr\xFCft die Payload,\
-        \ Stabilization-Playbook & MandalaMap spiegeln den Fix, analysis/devtalk80-evaluation.md\
-        \ fasst Folgeaufgaben."
+      notes: 'Fraktal83 ResponsesPayloadFix: `@unified-mandala/ai` mappt Chat-Verläufe
+        auf `input_text`/`output_text`, behebt den OpenAI-Fehler "Invalid value: ''text''"
+        und stellt `/api/ai/chat` wieder her; Vitest prüft die Payload, Stabilization-Playbook
+        & MandalaMap spiegeln den Fix, analysis/devtalk80-evaluation.md fasst Folgeaufgaben.'
       deliverables:
         - analysis/devtalk80-evaluation.md
         - packages/ai/src/ask.ts
@@ -418,10 +468,10 @@ fraktal:
         - codexfeedback.yaml
       commands: []
       hook:
-        progress: "Responses-Bridge liefert wieder Antworten; Playground ben\xF6tigt\
-          \ nur noch `OPENAI_API_KEY`."
-        next_step: "UI-Smoke/Contract-Test f\xFCr `/api/ai/chat` mit Mock-Key erg\xE4\
-          nzen und Gemini-Sigillin-Task planen."
+        progress: Responses-Bridge liefert wieder Antworten; Playground benötigt nur
+          noch `OPENAI_API_KEY`.
+        next_step: UI-Smoke/Contract-Test für `/api/ai/chat` mit Mock-Key ergänzen und
+          Gemini-Sigillin-Task planen.
       repeat_required: false
     - id: 82
       status: done
@@ -445,8 +495,8 @@ fraktal:
       hook:
         progress: Dev-Stack startet ohne fehlende Dist-Artefakte; Setup-Report zeigt
           NATS-Status korrekt an.
-        next_step: "Weitere Workspace-Pakete in den Preflight aufnehmen und optional\
-          \ einen CLI-Schalter f\xFCr den Skip bereitstellen."
+        next_step: Weitere Workspace-Pakete in den Preflight aufnehmen und optional
+          einen CLI-Schalter für den Skip bereitstellen.
       repeat_required: false
     - id: 81
       status: done
@@ -472,8 +522,8 @@ fraktal:
       hook:
         progress: AI Playground nutzt jetzt den dedizierten API-Service auf Port 4000;
           Dev-Stack startet die Bridge automatisch.
-        next_step: "Optionale Follow-ups: UI-Smoke/Cypress f\xFCr Playground erweitern\
-          \ und Experiments-API ggf. konsolidieren."
+        next_step: 'Optionale Follow-ups: UI-Smoke/Cypress für Playground erweitern
+          und Experiments-API ggf. konsolidieren.'
       repeat_required: false
     - id: 80
       status: done
@@ -499,10 +549,10 @@ fraktal:
         - packages/unifiedmandala-ui/index.ts
       commands: []
       hook:
-        progress: "Legacy-Overlay sichtbar (`?legacy=1` oder Prop), Demo nutzt Mini-Map\
-          \ + Event-Glow; Windows-Hinweise erg\xE4nzt."
-        next_step: "SSE-Endpoint konfigurierbar machen und UI-Smoke/Cypress f\xFCr Legacy-Overlay\
-          \ erg\xE4nzen."
+        progress: Legacy-Overlay sichtbar (`?legacy=1` oder Prop), Demo nutzt Mini-Map
+          + Event-Glow; Windows-Hinweise ergänzt.
+        next_step: SSE-Endpoint konfigurierbar machen und UI-Smoke/Cypress für Legacy-Overlay
+          ergänzen.
       repeat_required: false
     - id: 79
       status: done
@@ -536,19 +586,19 @@ fraktal:
       commands:
         - pnpm start:cosmic-web
       hook:
-        progress: "One-command Cosmic-Web Starter + `/demo/ai-playground` Route aktiv;\
-          \ Smoke pr\xFCft den Playground."
-        next_step: "Optional Cypress/Playwright-Szenario f\xFCr den Playground oder\
-          \ Docker-Cleanup im Starter erg\xE4nzen."
+        progress: One-command Cosmic-Web Starter + `/demo/ai-playground` Route aktiv;
+          Smoke prüft den Playground.
+        next_step: Optional Cypress/Playwright-Szenario für den Playground oder Docker-Cleanup
+          im Starter ergänzen.
       repeat_required: false
     - id: 78
       status: done
-      notes: "Fraktal78 CoreCoveragePolicy: ci.core.yml b\xFCndelt `pnpm test:unit:coverage`,\
-        \ `pnpm schema:validate`, `pnpm maps:validate`, `pnpm sanity` und `pnpm policy:check`\
-        \ im type_and_tests-Gate, l\xE4dt `coverage-vitest` als Artefakt hoch; Label\
-        \ `ci:advisory` triggert `pnpm check:ci` (Soft-Fail). docs/START-HERE.md, Workflow-Cheat-Sheet,\
-        \ Stabilization-Playbook (MD/YAML) sowie MandalaMap.(md|json|yaml) und codexfeedback*\
-        \ + analysis/devtalk78-evaluation.md dokumentieren den Lauf."
+      notes: 'Fraktal78 CoreCoveragePolicy: ci.core.yml bündelt `pnpm test:unit:coverage`,
+        `pnpm schema:validate`, `pnpm maps:validate`, `pnpm sanity` und `pnpm policy:check`
+        im type_and_tests-Gate, lädt `coverage-vitest` als Artefakt hoch; Label `ci:advisory`
+        triggert `pnpm check:ci` (Soft-Fail). docs/START-HERE.md, Workflow-Cheat-Sheet,
+        Stabilization-Playbook (MD/YAML) sowie MandalaMap.(md|json|yaml) und codexfeedback*
+        + analysis/devtalk78-evaluation.md dokumentieren den Lauf.'
       deliverables:
         - .github/workflows/ci.core.yml
         - analysis/devtalk78-evaluation.md
@@ -568,19 +618,18 @@ fraktal:
       hook:
         progress: Core-Gates laufen jetzt mit Coverage + Schema/Map/Sanity/Policy fail-fast;
           Dokumentation und MandalaMap spiegeln Fraktal78.
-        next_step: "Monitoring der Laufzeiten & m\xF6gliche B\xFCndelung der pnpm install-Phase\
-          \ evaluieren, um doppelte Installationen im type_and_tests-Job zu vermeiden."
+        next_step: Monitoring der Laufzeiten & mögliche Bündelung der pnpm install-Phase
+          evaluieren, um doppelte Installationen im type_and_tests-Job zu vermeiden.
       repeat_required: false
     - id: 77
       status: done
-      notes: "Fraktal77 StatusGate & Provenance: `status-gate.yml` \xFCberwacht **ready-to-merge**\
-        \ (Draft/Review/Mergeability/Status-Rollup), `auto-provenance.yml` vergibt `source:*`\
-        \ Labels, `provenance-gate.yml` sch\xFCtzt packages/**/core & Guard-Skripte,\
-        \ `ci.runtime.yml` l\xE4uft nur via Label `ci:runtime`, `on-demand.yml` liefert\
-        \ Slash-Commands und docs/START-HERE.md + `pnpm labels:setup` (scripts/repo/setup-labels.mjs)\
-        \ erkl\xE4ren Golden Path & Labelmatrix; MandalaMap.*, Stabilization-Playbook.(md|yaml),\
-        \ Command-Catalog.(md|json|yaml) sowie codexfeedback* dokumentieren die neuen\
-        \ Gates."
+      notes: 'Fraktal77 StatusGate & Provenance: `status-gate.yml` überwacht **ready-to-merge**
+        (Draft/Review/Mergeability/Status-Rollup), `auto-provenance.yml` vergibt `source:*`
+        Labels, `provenance-gate.yml` schützt packages/**/core & Guard-Skripte, `ci.runtime.yml`
+        läuft nur via Label `ci:runtime`, `on-demand.yml` liefert Slash-Commands und
+        docs/START-HERE.md + `pnpm labels:setup` (scripts/repo/setup-labels.mjs) erklären
+        Golden Path & Labelmatrix; MandalaMap.*, Stabilization-Playbook.(md|yaml), Command-Catalog.(md|json|yaml)
+        sowie codexfeedback* dokumentieren die neuen Gates.'
       deliverables:
         - .github/CODEOWNERS
         - .github/workflows/auto-provenance.yml
@@ -610,19 +659,18 @@ fraktal:
         - gh workflow run status-gate -f pr=<nummer>
         - pnpm labels:setup
       hook:
-        progress: "Status-Gate aktiv; Ready-to-merge Label l\xF6st Auto-/Merge-Queue\
-          \ nur bei SUCCESS aus."
-        next_step: "Optionale Erg\xE4nzung automatisierter Tests f\xFCr status-gate\
-          \ Skript (z.\u202FB. Mock-basierte CI-Checks) evaluieren."
+        progress: Status-Gate aktiv; Ready-to-merge Label löst Auto-/Merge-Queue nur
+          bei SUCCESS aus.
+        next_step: Optionale Ergänzung automatisierter Tests für status-gate Skript
+          (z. B. Mock-basierte CI-Checks) evaluieren.
       repeat_required: false
     - id: 76
       status: done
-      notes: "Fraktal76 TwoPlaneGuard: `packages/ai` erg\xE4nzt Guarded-FS (`pathBroker.ts`,\
-        \ `guardedFs.ts`) und einen Agent-Tool-Router, `ai-commit-guard.yml` verhindert\
-        \ Bot-Pushes und `.ai-scratch/`-Artefakte, das PR-Template verankert CODE\u2194\
-        RUNTIME-Plane, und MandalaMap/Playbook/Command-Catalog/Cheat-Sheet dokumentieren\
-        \ die Halluzinations-Schichten (Programm vs. Programm+AI vs. Repo) inklusive\
-        \ DevTalk76-Review."
+      notes: 'Fraktal76 TwoPlaneGuard: `packages/ai` ergänzt Guarded-FS (`pathBroker.ts`,
+        `guardedFs.ts`) und einen Agent-Tool-Router, `ai-commit-guard.yml` verhindert
+        Bot-Pushes und `.ai-scratch/`-Artefakte, das PR-Template verankert CODE↔RUNTIME-Plane,
+        und MandalaMap/Playbook/Command-Catalog/Cheat-Sheet dokumentieren die Halluzinations-Schichten
+        (Programm vs. Programm+AI vs. Repo) inklusive DevTalk76-Review.'
       deliverables:
         - .gitignore
         - .github/pull_request_template.md
@@ -653,18 +701,17 @@ fraktal:
         progress: Two-Plane-Modell technisch verankert (Guarded-FS, CI-Guard, PR-Template);
           MandalaMap, Playbook und Command-Catalog referenzieren die neuen Leitplanken,
           DevTalk76-Evaluation dokumentiert den Drift-Fix.
-        next_step:
-          "Runtime-spezifische Tests (z. B. automatisierte Checks f\xFCr scratch://-Writes)\
-          \ erg\xE4nzen und optional weitere RUNTIME-Tools modellieren (NATS/HTTP-Failover,\
-          \ Storage-Broker)."
+        next_step: Runtime-spezifische Tests (z. B. automatisierte Checks für scratch://-Writes)
+          ergänzen und optional weitere RUNTIME-Tools modellieren (NATS/HTTP-Failover,
+          Storage-Broker).
     - id: 75
       status: done
-      notes: "Fraktal75 AIResponsesBridge: `@unified-mandala/ai` kapselt die OpenAI\
-        \ Responses API (Dev/NATS-Skripte, `.env.example`), `apps/api` liefert `/api/ai/chat`\
-        \ (AI_TRANSPORT=direct|nats) und `MandalaAIPlayground` erm\xF6glicht End-to-End-Tests.\
-        \ Command-Catalog, Workflow-Cheat-Sheet, MandalaMap.*, Stabilization-Playbook\
-        \ sowie CommunityOnboarding.md (MCP-Guide) wurden aktualisiert; analysis/devtalk75-evaluation.md\
-        \ dokumentiert den Lauf."
+      notes: 'Fraktal75 AIResponsesBridge: `@unified-mandala/ai` kapselt die OpenAI
+        Responses API (Dev/NATS-Skripte, `.env.example`), `apps/api` liefert `/api/ai/chat`
+        (AI_TRANSPORT=direct|nats) und `MandalaAIPlayground` ermöglicht End-to-End-Tests.
+        Command-Catalog, Workflow-Cheat-Sheet, MandalaMap.*, Stabilization-Playbook
+        sowie CommunityOnboarding.md (MCP-Guide) wurden aktualisiert; analysis/devtalk75-evaluation.md
+        dokumentiert den Lauf.'
       deliverables:
         - packages/ai/package.json
         - packages/ai/tsconfig.json
@@ -701,20 +748,20 @@ fraktal:
         - pnpm -F @unified-mandala/ai nats
         - pnpm -F @unified-mandala/api dev
       hook:
-        progress: "AI-Bridge (Responses \u2192 API \u2192 Playground) produktiv; Dokumentation\
-          \ & MandalaMap aktualisiert, MCP-Setup als Onboarding-Referenz erg\xE4nzt."
-        next_step: "Streaming-/Tool-Support optional evaluieren und API-Tests automatisieren,\
-          \ sobald Secrets verf\xFCgbar sind."
+        progress: AI-Bridge (Responses → API → Playground) produktiv; Dokumentation
+          & MandalaMap aktualisiert, MCP-Setup als Onboarding-Referenz ergänzt.
+        next_step: Streaming-/Tool-Support optional evaluieren und API-Tests automatisieren,
+          sobald Secrets verfügbar sind.
     - id: 74
       status: done
-      notes: "Fraktal74 CIGateUnification: Husky-Hooks erzwingen auf Wunsch schwere\
-        \ Gates (`pnpm check:precommit`/`pnpm check:prepush`), `postinstall: husky`\
-        \ ersetzt prepare, neue Aggregatoren (`scripts/ci-verify.mjs`, `scripts/sanity/index.mjs`)\
-        \ sowie Workflows `check:ci`/`ci-verify` b\xFCndeln Typecheck, Unit-, Coverage-,\
-        \ Schema-, Maps-, Repomap-, Sanity- und Policy-Pr\xFCfungen; Command-Catalog,\
-        \ MandalaMap.*, Stabilization-Playbook und codexfeedback* spiegeln die aktualisierten\
-        \ Bundles. DevTalk.txt Review best\xE4tigt die Umsetzung und ist in analysis/devtalk74-evaluation.md\
-        \ sowie im README-Bereich \"Build, Test & Policy Bundles\" dokumentiert."
+      notes: 'Fraktal74 CIGateUnification: Husky-Hooks erzwingen auf Wunsch schwere
+        Gates (`pnpm check:precommit`/`pnpm check:prepush`), `postinstall: husky` ersetzt
+        prepare, neue Aggregatoren (`scripts/ci-verify.mjs`, `scripts/sanity/index.mjs`)
+        sowie Workflows `check:ci`/`ci-verify` bündeln Typecheck, Unit-, Coverage-,
+        Schema-, Maps-, Repomap-, Sanity- und Policy-Prüfungen; Command-Catalog, MandalaMap.*,
+        Stabilization-Playbook und codexfeedback* spiegeln die aktualisierten Bundles.
+        DevTalk.txt Review bestätigt die Umsetzung und ist in analysis/devtalk74-evaluation.md
+        sowie im README-Bereich "Build, Test & Policy Bundles" dokumentiert.'
       deliverables:
         - .husky/pre-commit
         - .husky/pre-push
@@ -757,13 +804,13 @@ fraktal:
           aufnehmen.
     - id: 73
       status: done
-      notes: "Fraktal73 NATSSetupGuidance: `scripts/setup-dev-env.ps1` erkennt Docker-basierte\
-        \ `nats`-Container, exportiert Status-/Start-Hinweise im InstallReport und behandelt\
-        \ laufende Container als erf\xFCllt; README, Community-/PowerShell-Onboarding\
-        \ sowie `docs/runbooks/nats-jetstream.md` dokumentieren `docker ps -a`, `docker\
-        \ start nats`, `docker logs --tail=50 nats` und den Windows-Portcheck `Test-NetConnection\
-        \ 127.0.0.1 -Port 4222`. Command-Catalog, MandalaMap.* und das Stabilization-Playbook\
-        \ spiegeln die aktualisierte Guidance."
+      notes: 'Fraktal73 NATSSetupGuidance: `scripts/setup-dev-env.ps1` erkennt Docker-basierte
+        `nats`-Container, exportiert Status-/Start-Hinweise im InstallReport und behandelt
+        laufende Container als erfüllt; README, Community-/PowerShell-Onboarding sowie
+        `docs/runbooks/nats-jetstream.md` dokumentieren `docker ps -a`, `docker start
+        nats`, `docker logs --tail=50 nats` und den Windows-Portcheck `Test-NetConnection
+        127.0.0.1 -Port 4222`. Command-Catalog, MandalaMap.* und das Stabilization-Playbook
+        spiegeln die aktualisierte Guidance.'
       deliverables:
         - scripts/setup-dev-env.ps1
         - docs/runbooks/nats-jetstream.md
@@ -786,23 +833,22 @@ fraktal:
         - pnpm lint:eslint
       hook:
         progress:
-          "Docker-basierte NATS-Container werden vom Setup erkannt; README/Onboarding/Runbook/Command-Catalog/MandalaMap/Stabilization-Playbook\
-          \ tragen die neuen Pr\xFCf- und Start-Hinweise."
+          Docker-basierte NATS-Container werden vom Setup erkannt; README/Onboarding/Runbook/Command-Catalog/MandalaMap/Stabilization-Playbook
+          tragen die neuen Prüf- und Start-Hinweise.
         next_step: Optional JetStream-Diagnose automatisiert in `pnpm nats:docker status`
           spiegeln oder weitere Container-Namen whitelisten.
     - id: 72
       status: done
       notes:
-        "Fraktal72 PytestSigillinValidator: `pnpm test:py` nutzt den Wrapper `scripts/run-pytest.mjs`\
-        \ (Auto-.venv + Default-Marker); README/CONTRIBUTING und Command-Catalog dokumentieren\
-        \ die dist-first Aufrufe. Mini-Sigillin-Validator (`pnpm sigils:validate:mini`\
-        \ + Schema + Vitest) pr\xFCft CREP/Trik\u0101ya/N\xE4chste Schritte; Docs zeigen\
-        \ `--input`/`--json`. MandalaMap.*, Stabilization-Playbook & codexfeedback*\
-        \ aktualisieren Fraktal72 (Wrapper + Validator) und halten `pnpm exec cypress\
-        \ install` pr\xE4sent; das neue Observability-Skript `pnpm observability:check`\
-        \ testet Prometheus `/api/v1/targets` und Grafana `/api/health` (Port 3300)\
-        \ und die Monitoring-Doku hebt den Port-Abgleich sowie die Skip-/Active-Flags\
-        \ hervor."
+        'Fraktal72 PytestSigillinValidator: `pnpm test:py` nutzt den Wrapper `scripts/run-pytest.mjs`
+        (Auto-.venv + Default-Marker); README/CONTRIBUTING und Command-Catalog dokumentieren
+        die dist-first Aufrufe. Mini-Sigillin-Validator (`pnpm sigils:validate:mini`
+        + Schema + Vitest) prüft CREP/Trikāya/Nächste Schritte; Docs zeigen `--input`/`--json`.
+        MandalaMap.*, Stabilization-Playbook & codexfeedback* aktualisieren Fraktal72
+        (Wrapper + Validator) und halten `pnpm exec cypress install` präsent; das neue
+        Observability-Skript `pnpm observability:check` testet Prometheus `/api/v1/targets`
+        und Grafana `/api/health` (Port 3300) und die Monitoring-Doku hebt den Port-Abgleich
+        sowie die Skip-/Active-Flags hervor.'
       deliverables:
         - CONTRIBUTING.md
         - MandalaMap.json
@@ -838,17 +884,19 @@ fraktal:
         - pnpm lint:eslint
         - pnpm test:py -- --maxfail=1 || true
       hook:
-        progress: "Cypress/Prompts/Pyright-Flow aktualisiert; Observability-Check (`pnpm\
-          \ observability:check`) und Monitoring-Doku erg\xE4nzen Fraktal72."
+        progress: Cypress/Prompts/Pyright-Flow aktualisiert; Observability-Check (`pnpm
+          observability:check`) und Monitoring-Doku ergänzen Fraktal72.
         next_step: E2E-Lauf optional mit `pnpm cy:run`, weitere DevTalk72-Impulse sammeln.
     - id: 70
       status: done
-      notes: "Fraktal70 CosmicDocs: README & `docs/demos/cosmic-web.md` bieten plattformfreundliche\
-        \ Cosmic-Web-Anleitungen, der Hinweis auf NATS-Port 4222 (kein HTTP) ist dokumentiert,\
-        \ `scripts/realtime/sub-cosmic.mjs` (`pnpm sub:cosmic`, Default-Subject `demo.cosmic`,\
-        \ Multi-Server & Queue-Option) erm\xF6glicht lokale Tick-Inspektion und `pnpm\
-        \ test:unit:crep` deckt das neue Workspace ab. MandalaMap.*, das Stabilization-Playbook\
-        \ und codexfeedback\\* spiegeln die Erg\xE4nzungen.\n"
+      notes: 'Fraktal70 CosmicDocs: README & `docs/demos/cosmic-web.md` bieten plattformfreundliche
+        Cosmic-Web-Anleitungen, der Hinweis auf NATS-Port 4222 (kein HTTP) ist dokumentiert,
+        `scripts/realtime/sub-cosmic.mjs` (`pnpm sub:cosmic`, Default-Subject `demo.cosmic`,
+        Multi-Server & Queue-Option) ermöglicht lokale Tick-Inspektion und `pnpm test:unit:crep`
+        deckt das neue Workspace ab. MandalaMap.*, das Stabilization-Playbook und codexfeedback\*
+        spiegeln die Ergänzungen.
+
+        '
       deliverables:
         - README.md
         - docs/demos/cosmic-web.md
@@ -870,8 +918,8 @@ fraktal:
       hook:
         progress: Dokumentation & Tools aktualisiert; Cosmic-Web Demo besitzt jetzt
           plattformfreundliche Leitplanken.
-        next_step: "Realtime-Br\xFCcke (NATS \u2192 UI) evaluieren und weitere Fraktal70-Inputs\
-          \ integrieren."
+        next_step: Realtime-Brücke (NATS → UI) evaluieren und weitere Fraktal70-Inputs
+          integrieren.
     - id: 69
       status: done
       notes: 'Fraktal69 Cosmic-Web Demo: Artefakte (analysis/cosmic-web), Sigillin,
@@ -897,16 +945,24 @@ fraktal:
         - pnpm test:unit
         - pnpm schema:validate
       hook:
-        progress: "Artefakte & UI stabil; Doc-Follow-up l\xE4uft \xFCber Fraktal70."
-        next_step: "Realtime-Br\xFCcke (NATS \u2192 UI) optional umsetzen; Policy-Suite\
-          \ Soft-Skip beobachten."
+        progress: Artefakte & UI stabil; Doc-Follow-up läuft über Fraktal70.
+        next_step: Realtime-Brücke (NATS → UI) optional umsetzen; Policy-Suite Soft-Skip
+          beobachten.
     - id: 68
       status: done
-      notes: "Fraktal68 KeysGovernanceLint: keys/ enth\xE4lt `.gitignore` + `.gitkeep`,\
-        \ Repo-Sanity meldet\nfehlende oder unerwartete Dateien und der Kyverno-Dry-Run\
-        \ injiziert den Keys-Status, sodass\n`policies/kyverno.yaml` unerlaubte Artefakte\
-        \ erkennt. Stub-Roadmap, MandalaMap und das\nStabilization-Playbook dokumentieren\
-        \ den Abschluss; Lint-Funde in den Scripts wurden bereinigt.\n"
+      notes: 'Fraktal68 KeysGovernanceLint: keys/ enthält `.gitignore` + `.gitkeep`,
+        Repo-Sanity meldet
+
+        fehlende oder unerwartete Dateien und der Kyverno-Dry-Run injiziert den Keys-Status,
+        sodass
+
+        `policies/kyverno.yaml` unerlaubte Artefakte erkennt. Stub-Roadmap, MandalaMap
+        und das
+
+        Stabilization-Playbook dokumentieren den Abschluss; Lint-Funde in den Scripts
+        wurden bereinigt.
+
+        '
       deliverables:
         - keys/.gitignore
         - keys/.gitkeep
@@ -937,10 +993,15 @@ fraktal:
         next_step: Stub-Ersatzimplementierungen (KAN/LTC/Norse/Torch Geometric) angehen.
     - id: 67
       status: done
-      notes: "Fraktal67 DevTalkCheatSheet: DevTalk67 evaluiert; das Workflow-Cheat-Sheet\n\
-        erg\xE4nzt `pnpm check:ci`, `pnpm ci:verify`, Monitoring-/Offline-Bundle-Hinweise\n\
-        sowie den Windows-Setup-Pfad. MandalaMap und das Stabilization-Playbook\nspiegeln\
-        \ die Erweiterung, Codexfeedback-Fraktal67 dokumentiert Progress & Hook.\n"
+      notes: 'Fraktal67 DevTalkCheatSheet: DevTalk67 evaluiert; das Workflow-Cheat-Sheet
+
+        ergänzt `pnpm check:ci`, `pnpm ci:verify`, Monitoring-/Offline-Bundle-Hinweise
+
+        sowie den Windows-Setup-Pfad. MandalaMap und das Stabilization-Playbook
+
+        spiegeln die Erweiterung, Codexfeedback-Fraktal67 dokumentiert Progress & Hook.
+
+        '
       deliverables:
         - docs/cheatsheets/unified-mandala-workflows.md
         - MandalaMap.md
@@ -956,18 +1017,27 @@ fraktal:
       hook:
         progress: Cheat Sheet deckt DevTalk67-Anforderungen ab; MandalaMap & Playbook
           aktualisiert.
-        next_step:
-          "Stub-/Keys-Governance pr\xFCfen, bestehende Lint-Funde (scripts/advice/merge.mjs,\
-          \ scripts/analyze-conversations.js, scripts/check-meta-score-layer.js, scripts/generate-chronopoem.js)\
-          \ f\xFCr Fraktal68 einplanen."
+        next_step: Stub-/Keys-Governance prüfen, bestehende Lint-Funde (scripts/advice/merge.mjs,
+          scripts/analyze-conversations.js, scripts/check-meta-score-layer.js, scripts/generate-chronopoem.js)
+          für Fraktal68 einplanen.
     - id: 66
       status: done
-      notes: "Fraktal66 MetaHardening: Policy-Suite behandelt Kyverno/Sigillin als optionale\
-        \ Schritte\n(`PANTHEON_DISABLE=1` Standard), loggt Skip-Warnungen, wenn Kyverno-CLI\
-        \ oder\n`sigillins:report` fehlen, `pnpm repomap:*` erzeugt Fallback-Artefakte,\
-        \ wenn\n`dist` nicht materialisiert ist, Repo-Sanity akzeptiert Codexfeedback\
-        \ als YAML oder JSON\nund das Cheat Sheet `docs/cheatsheets/unified-mandala-workflows.md`\
-        \ b\xFCndelt Kern-Workflows\nf\xFCr Dev/CI/Governance.\n"
+      notes: 'Fraktal66 MetaHardening: Policy-Suite behandelt Kyverno/Sigillin als optionale
+        Schritte
+
+        (`PANTHEON_DISABLE=1` Standard), loggt Skip-Warnungen, wenn Kyverno-CLI oder
+
+        `sigillins:report` fehlen, `pnpm repomap:*` erzeugt Fallback-Artefakte, wenn
+
+        `dist` nicht materialisiert ist, Repo-Sanity akzeptiert Codexfeedback als YAML
+        oder JSON
+
+        und das Cheat Sheet `docs/cheatsheets/unified-mandala-workflows.md` bündelt
+        Kern-Workflows
+
+        für Dev/CI/Governance.
+
+        '
       deliverables:
         - scripts/policy-suite.mjs
         - scripts/validate-schemas.mjs
@@ -995,16 +1065,26 @@ fraktal:
         - pnpm repomap:validate
     - id: 65
       status: done
-      notes:
-        "Fraktal65 CIAdaptersStac: CI Core/Extended/Nightly installieren\n`src/adapters/requirements.txt`,\
-        \ `_normalise_href` berechnet hrefs\nrelativ zum STAC-Item-Verzeichnis (Fallback\
-        \ `file://`), der QA-Test-Runner\nrespektiert `PANTHEON_DISABLE` und MandalaMap/Stabilization-Playbook/\n\
-        Trik\u0101ya-Dashboard dokumentieren die Regressionstests.\nFraktal65 Meta-Fix:\
-        \ CI-Core nutzt `pnpm typecheck`, `pnpm test:unit`, `pnpm test:unit:coverage`;\
-        \ Governance-Workflow f\xFChrt\n`pnpm schema:validate`, `pnpm maps:validate`,\
-        \ `pnpm policy:check` aus und `pnpm sanity` validiert `ciBehaviour`-Felder in\n\
-        MandalaMap/Trik\u0101ya-Dashboard/codexfeedback. RepoMap-Workflow baut/validiert\
-        \ \xFCber `pnpm repomap:*`.\n"
+      notes: 'Fraktal65 CIAdaptersStac: CI Core/Extended/Nightly installieren
+
+        `src/adapters/requirements.txt`, `_normalise_href` berechnet hrefs
+
+        relativ zum STAC-Item-Verzeichnis (Fallback `file://`), der QA-Test-Runner
+
+        respektiert `PANTHEON_DISABLE` und MandalaMap/Stabilization-Playbook/
+
+        Trikāya-Dashboard dokumentieren die Regressionstests.
+
+        Fraktal65 Meta-Fix: CI-Core nutzt `pnpm typecheck`, `pnpm test:unit`, `pnpm
+        test:unit:coverage`; Governance-Workflow führt
+
+        `pnpm schema:validate`, `pnpm maps:validate`, `pnpm policy:check` aus und `pnpm
+        sanity` validiert `ciBehaviour`-Felder in
+
+        MandalaMap/Trikāya-Dashboard/codexfeedback. RepoMap-Workflow baut/validiert
+        über `pnpm repomap:*`.
+
+        '
       deliverables:
         - requirements.txt
         - src/adapters/shared/xarray_utils.py
@@ -1049,8 +1129,8 @@ fraktal:
         - pnpm repomap:build
         - pnpm repomap:validate
       hook:
-        progress: "CI-Core nutzt die neuen Skript-Aliase; Governance, Repo-Sanity und\
-          \ Repomap laufen mit schema/maps/policy/sanity Checks gr\xFCn."
+        progress: CI-Core nutzt die neuen Skript-Aliase; Governance, Repo-Sanity und
+          Repomap laufen mit schema/maps/policy/sanity Checks grün.
         next_step: Weitere Adapter und Governance-Schemas auf die neue HREF-/Backend-Logik
           ausweiten; Fraktal66 fokussiert auf restliche Adapter.
     - id: 64
@@ -1076,11 +1156,17 @@ fraktal:
           fixtures and STAC tests cover hrefs.
     - id: 63
       status: done
-      notes: "Fraktal63 AdapterInterop: `open_dataset` prefers netcdf4\u2192h5netcdf\
-        \ with\nclearer error propagation, STAC builders emit POSIX/relative hrefs and\n\
-        schema accepts `uri-reference`, adapter scripts normalisieren Windows-Pfade,\n\
-        der QA-Runner l\xE4dt PantheonPortalAnalytics nun lazy (dist/src) und die\n\
-        Coverage-Suite l\xE4uft \xFCber das neue `pnpm test:unit:coverage`-Skript.\n"
+      notes: 'Fraktal63 AdapterInterop: `open_dataset` prefers netcdf4→h5netcdf with
+
+        clearer error propagation, STAC builders emit POSIX/relative hrefs and
+
+        schema accepts `uri-reference`, adapter scripts normalisieren Windows-Pfade,
+
+        der QA-Runner lädt PantheonPortalAnalytics nun lazy (dist/src) und die
+
+        Coverage-Suite läuft über das neue `pnpm test:unit:coverage`-Skript.
+
+        '
       deliverables:
         - src/adapters/shared/xarray_utils.py
         - src/adapters/core/stac.py
@@ -1109,8 +1195,8 @@ fraktal:
         - pnpm stac:validate
         - pnpm test:unit
       hook:
-        progress: "Coverage-Artefakte laufen jetzt \xFCber `pnpm test:unit:coverage`,\
-          \ STAC- und Adapterpfade sind Windows-sicher."
+        progress: Coverage-Artefakte laufen jetzt über `pnpm test:unit:coverage`, STAC-
+          und Adapterpfade sind Windows-sicher.
         next_step: Coverage-Gate beobachten und STAC/POSIX-Normalisierung auf weitere
           Pipelines ausweiten.
     - id: 62
@@ -1135,11 +1221,12 @@ fraktal:
           und `pnpm cy:run` verifizieren.
     - id: 61
       status: done
-      notes: "Fraktal61 CIArtifacts: ci.core f\xFChrt nun `pnpm test:unit` mit Coverage\
-        \ aus und ver\xF6ffentlicht das Artefakt `coverage-vitest`; policy-check.yml\
-        \ l\xE4dt die Sigillin-Governance separat als GitHub-Artefakt `policy-sigillins`.\
-        \ Dokumentation (Command-Catalog, MandalaMap, Stabilization-Playbook) beschreibt\
-        \ die neuen Artefakte.\n"
+      notes: 'Fraktal61 CIArtifacts: ci.core führt nun `pnpm test:unit` mit Coverage
+        aus und veröffentlicht das Artefakt `coverage-vitest`; policy-check.yml lädt
+        die Sigillin-Governance separat als GitHub-Artefakt `policy-sigillins`. Dokumentation
+        (Command-Catalog, MandalaMap, Stabilization-Playbook) beschreibt die neuen Artefakte.
+
+        '
       deliverables:
         - .github/workflows/ci.core.yml
         - .github/workflows/policy-check.yml
@@ -1157,8 +1244,8 @@ fraktal:
         - codexfeedback.json
         - codexfeedback.yaml
       hook:
-        progress: "Coverage- und Sigillin-Artefakte werden jetzt automatisch in den\
-          \ CI-Workflows ver\xF6ffentlicht."
+        progress: Coverage- und Sigillin-Artefakte werden jetzt automatisch in den CI-Workflows
+          veröffentlicht.
         next_step: Coverage-Schwellenwerte evaluieren und optional als Gate in ci.core
           verankern.
     - id: 60
@@ -1195,17 +1282,25 @@ fraktal:
         progress:
           Policy suite Artefakte enthalten jetzt Sigillin-Reports unter out/policy/sigillins/;
           Governance hat eine einheitliche Ablagestelle.
-        next_step: "CI policy-check Workflow optional erweitern, um die Sigillin-Reports\
-          \ als Upload-Artefakt zu ver\xF6ffentlichen."
+        next_step: CI policy-check Workflow optional erweitern, um die Sigillin-Reports
+          als Upload-Artefakt zu veröffentlichen.
     - id: 59
       status: done
-      notes:
-        "Fraktal59 SigillinGovernance: validatorlogik wurde in\nscripts/lib/sigillin-validator.mjs\
-        \ zentralisiert; validate-sigillins.mjs\nnutzt den Helper und neue CLIs pr\xFC\
-        fen nur ge\xE4nderte Bridges bzw.\ngenerieren JUnit/Markdown-Reports f\xFCr\
-        \ Governance-Flows. Husky ruft\n`pnpm validate:sigillins:changed` vor lint-staged\
-        \ auf und `pnpm\nsigillins:report` liefert Berichte, Command-Catalog + MandalaMap\n\
-        dokumentieren den Flow samt Link auf die neuen Skripte.\n"
+      notes: 'Fraktal59 SigillinGovernance: validatorlogik wurde in
+
+        scripts/lib/sigillin-validator.mjs zentralisiert; validate-sigillins.mjs
+
+        nutzt den Helper und neue CLIs prüfen nur geänderte Bridges bzw.
+
+        generieren JUnit/Markdown-Reports für Governance-Flows. Husky ruft
+
+        `pnpm validate:sigillins:changed` vor lint-staged auf und `pnpm
+
+        sigillins:report` liefert Berichte, Command-Catalog + MandalaMap
+
+        dokumentieren den Flow samt Link auf die neuen Skripte.
+
+        '
       deliverables:
         - scripts/lib/sigillin-validator.mjs
         - scripts/validate-sigillins.mjs
@@ -1220,20 +1315,29 @@ fraktal:
         - MandalaMap.yaml
         - MandalaMap.json
       hook:
-        progress: "Git-Hooks pr\xFCfen Sigillin-\xC4nderungen automatisch und Governance\
-          \ erh\xE4lt JUnit/Markdown-Reports ohne manuellen Schritt."
-        next_step: "sigillins:report in CI policy:check einh\xE4ngen und Reports als\
-          \ Artefakt publizieren."
+        progress: Git-Hooks prüfen Sigillin-Änderungen automatisch und Governance erhält
+          JUnit/Markdown-Reports ohne manuellen Schritt.
+        next_step: sigillins:report in CI policy:check einhängen und Reports als Artefakt
+          publizieren.
     - id: 58
       status: done
-      notes: "Fraktal58 AdapterHardening: adapters.shared.xarray_utils.open_dataset\
-        \ bevorzugt\n`netcdf4`/`h5netcdf`, sodass ERA5/OISST Pipelines ohne manuelle\
-        \ Engine-Flags\nlaufen und Datens\xE4tze geschlossen werden; STAC-Assets liefern\
-        \ `file://`-URIs.\nGhostshell-NGINX erzeugt Platzhalter-Eintr\xE4ge (`${PORT_BASE:-3000}`\
-        \ \u2026) und\nakzeptiert optional statische Ports. CLI-Skripte (generate-api-docs,\n\
-        generate-next-sigil, generate-agent-docs) sind nun reine ES-Module \u2013 passend\
-        \ zu\n`\"type\": \"module\"` \u2013 und `@vitest/coverage-v8` wurde auf ^1.6.0\
-        \ synchronisiert.\n"
+      notes: 'Fraktal58 AdapterHardening: adapters.shared.xarray_utils.open_dataset
+        bevorzugt
+
+        `netcdf4`/`h5netcdf`, sodass ERA5/OISST Pipelines ohne manuelle Engine-Flags
+
+        laufen und Datensätze geschlossen werden; STAC-Assets liefern `file://`-URIs.
+
+        Ghostshell-NGINX erzeugt Platzhalter-Einträge (`${PORT_BASE:-3000}` …) und
+
+        akzeptiert optional statische Ports. CLI-Skripte (generate-api-docs,
+
+        generate-next-sigil, generate-agent-docs) sind nun reine ES-Module – passend
+        zu
+
+        `"type": "module"` – und `@vitest/coverage-v8` wurde auf ^1.6.0 synchronisiert.
+
+        '
       deliverables:
         - src/adapters/shared/xarray_utils.py
         - src/adapters/era5/resample.py
@@ -1254,22 +1358,21 @@ fraktal:
         - codexfeedback.json
         - codexfeedback.md
       hook:
-        progress: "Adapterpipelines \xF6ffnen NetCDF-Dateien plattformstabil; Ghostshell\
-          \ Config beh\xE4lt die erwarteten Platzhalter; CLI-Skripte laufen mit Node\
-          \ ESM."
-        next_step: "STAC-Validator erneut ausf\xFChren (`pnpm stac:validate`) und Windows\
-          \ README-Snippets aktualisieren, falls weitere Hinweise n\xF6tig sind."
+        progress: Adapterpipelines öffnen NetCDF-Dateien plattformstabil; Ghostshell
+          Config behält die erwarteten Platzhalter; CLI-Skripte laufen mit Node ESM.
+        next_step: STAC-Validator erneut ausführen (`pnpm stac:validate`) und Windows
+          README-Snippets aktualisieren, falls weitere Hinweise nötig sind.
     - id: 57
       status: done
-      notes: "Fraktal57 JetStream-Bus stabilisiert & AutoCleanup: Vitest-Migration,\
-        \ `pnpm nats:doctor` liefert `$JS.API.INFO`-Fallback und detaillierte Hinweise\
-        \ (fehlendes `-js`, Timeout/Proxy, Berechtigungen) bei Docker-NATS im CI type-and-tests.\
-        \ README (Windows-Quickstart), Runbooks, MandalaMap.* und Command-Catalog dokumentieren\
-        \ JetStream-Setup und das neue Auto-Cleanup (`pnpm dlx kill-port`, Opt-out `UM_DEV_SERVICES_AUTOFREE_PORTS=0`).\
-        \ Dev-Stack r\xE4umt Ports automatisch, `pnpm nats:docker` orchestriert JetStream\
-        \ lokal, Emergence-Scan nutzt weiterhin einen eingecheckten `SIGILLIN_GENESIS.md`-Placeholder\
-        \ bzw. Fallback auf `docs/sigillin/GENESIS.md` und Adapter-Builds greifen via\
-        \ `scripts/lib/python.mjs` auf die Projekt-venv (Windows-kompatibel)."
+      notes: 'Fraktal57 JetStream-Bus stabilisiert & AutoCleanup: Vitest-Migration,
+        `pnpm nats:doctor` liefert `$JS.API.INFO`-Fallback und detaillierte Hinweise
+        (fehlendes `-js`, Timeout/Proxy, Berechtigungen) bei Docker-NATS im CI type-and-tests.
+        README (Windows-Quickstart), Runbooks, MandalaMap.* und Command-Catalog dokumentieren
+        JetStream-Setup und das neue Auto-Cleanup (`pnpm dlx kill-port`, Opt-out `UM_DEV_SERVICES_AUTOFREE_PORTS=0`).
+        Dev-Stack räumt Ports automatisch, `pnpm nats:docker` orchestriert JetStream
+        lokal, Emergence-Scan nutzt weiterhin einen eingecheckten `SIGILLIN_GENESIS.md`-Placeholder
+        bzw. Fallback auf `docs/sigillin/GENESIS.md` und Adapter-Builds greifen via
+        `scripts/lib/python.mjs` auf die Projekt-venv (Windows-kompatibel).'
       deliverables:
         - tests/event-bus/jetstream-bus.test.ts
         - package.json
@@ -1303,31 +1406,30 @@ fraktal:
         - scripts/build-adapter-oisst.mjs
         - scripts/build-adapter-effis.mjs
       hook:
-        progress: "Vitest-Test gr\xFCn, CI startet Docker-NATS + Selfcheck; Dev-Stack\
-          \ r\xE4umt Ports automatisch via `pnpm dlx kill-port` (Opt-out `UM_DEV_SERVICES_AUTOFREE_PORTS=0`),\
-          \ verweist bei Bedarf auf `pnpm dev:ports:free`, `pnpm nats:docker` steht\
-          \ bereit und das JetStream-Runbook (`docs/runbooks/nats-jetstream.md`) b\xFC\
-          ndelt Setup, `$JS.API.INFO`-Fallback sowie Fehlertipps (kein `-js`, Timeout,\
-          \ Berechtigungen). README (Windows-Quickstart), MandalaMap.* und Command-Catalog\
-          \ spiegeln Auto-Cleanup & Troubleshooting; Adapter-Builds greifen via `scripts/lib/python.mjs`\
-          \ weiterhin automatisch auf die Projekt-venv zu. README-Quickstart erg\xE4\
-          nzt PowerShell-Hinweise (`Get-Content`/`type`, `$env:`); docs/maps/RepoMap.yaml\
-          \ f\xFChrt `repo`, ProgramFlow.yaml `meta`, womit `pnpm maps:validate` Pflichtfelder\
-          \ pr\xFCft."
-        next_step: "Extended-/Experimental-Workflows auf JetStream-Checks synchronisieren\
-          \ und policy-suite ggf. um Runbook-Hinweise erg\xE4nzen."
+        progress: Vitest-Test grün, CI startet Docker-NATS + Selfcheck; Dev-Stack räumt
+          Ports automatisch via `pnpm dlx kill-port` (Opt-out `UM_DEV_SERVICES_AUTOFREE_PORTS=0`),
+          verweist bei Bedarf auf `pnpm dev:ports:free`, `pnpm nats:docker` steht bereit
+          und das JetStream-Runbook (`docs/runbooks/nats-jetstream.md`) bündelt Setup,
+          `$JS.API.INFO`-Fallback sowie Fehlertipps (kein `-js`, Timeout, Berechtigungen).
+          README (Windows-Quickstart), MandalaMap.* und Command-Catalog spiegeln Auto-Cleanup
+          & Troubleshooting; Adapter-Builds greifen via `scripts/lib/python.mjs` weiterhin
+          automatisch auf die Projekt-venv zu. README-Quickstart ergänzt PowerShell-Hinweise
+          (`Get-Content`/`type`, `$env:`); docs/maps/RepoMap.yaml führt `repo`, ProgramFlow.yaml
+          `meta`, womit `pnpm maps:validate` Pflichtfelder prüft.
+        next_step: Extended-/Experimental-Workflows auf JetStream-Checks synchronisieren
+          und policy-suite ggf. um Runbook-Hinweise ergänzen.
     - id: 56
       status: done
-      notes: "Fraktal56 WindowsBootstrap: PowerShell-Setup (`scripts/setup-dev-env.ps1`)\
-        \ trackt InstallState (Git/Node/Python/Corepack/pnpm/Docker/NATS), exportiert\
-        \ eine JSON-Zusammenfassung (`out/setup/install-state.json`), fixt den PowerShell-ParserError\
-        \ via `(Test-CommandExists ...)` in `-and`-Checks und unterst\xFCtzt PowerShell\
-        \ 5.1; Node-Wrapper (`scripts/run-powershell.mjs`) sichert pwsh/powershell-Fallback;\
-        \ Docs/MandalaMap/Command-Catalog aktualisiert; Corepack-Admin-Check \xFCberspringt\
-        \ `corepack enable` ohne Elevation, protokolliert Aktivierungsmodus und erg\xE4\
-        nzt NATS-Installationshinweise; pnpm dev:breath (`scripts/emergence-breath.mjs`)\
-        \ automatisiert Sigillin/Trik\u0101ya-Checks und das UI-Smoke-Skript respektiert\
-        \ `UI_DEV_URL` ohne zus\xE4tzliche Vite-Instanz."
+      notes: 'Fraktal56 WindowsBootstrap: PowerShell-Setup (`scripts/setup-dev-env.ps1`)
+        trackt InstallState (Git/Node/Python/Corepack/pnpm/Docker/NATS), exportiert
+        eine JSON-Zusammenfassung (`out/setup/install-state.json`), fixt den PowerShell-ParserError
+        via `(Test-CommandExists ...)` in `-and`-Checks und unterstützt PowerShell 5.1;
+        Node-Wrapper (`scripts/run-powershell.mjs`) sichert pwsh/powershell-Fallback;
+        Docs/MandalaMap/Command-Catalog aktualisiert; Corepack-Admin-Check überspringt
+        `corepack enable` ohne Elevation, protokolliert Aktivierungsmodus und ergänzt
+        NATS-Installationshinweise; pnpm dev:breath (`scripts/emergence-breath.mjs`)
+        automatisiert Sigillin/Trikāya-Checks und das UI-Smoke-Skript respektiert `UI_DEV_URL`
+        ohne zusätzliche Vite-Instanz.'
       deliverables:
         - scripts/setup-dev-env.ps1
         - scripts/run-powershell.mjs
@@ -1350,16 +1452,15 @@ fraktal:
         - docs/roadmap/v1.0-stabilization-playbook.yaml
         - codexfeedback-fraktal56.yaml
       hook:
-        progress: "Windows-Bootstrap dokumentiert; ParserFix + InstallState-Export best\xE4\
-          tigt, `pnpm dev:breath` verbindet Sigillin-Validator & Trik\u0101ya-Dashboard\
-          \ mit Watcher-Cycle und das UI-Smoke-Skript respektiert `UI_DEV_URL` ohne\
-          \ zus\xE4tzliche Vite-Instanz."
-        next_step: "Compose-/Docker-Windows-Flows dokumentieren (`docker_windows_profile`)\
-          \ und DevTalk-Track um Emergence-Breath-Status erg\xE4nzen."
+        progress: Windows-Bootstrap dokumentiert; ParserFix + InstallState-Export bestätigt,
+          `pnpm dev:breath` verbindet Sigillin-Validator & Trikāya-Dashboard mit Watcher-Cycle
+          und das UI-Smoke-Skript respektiert `UI_DEV_URL` ohne zusätzliche Vite-Instanz.
+        next_step: Compose-/Docker-Windows-Flows dokumentieren (`docker_windows_profile`)
+          und DevTalk-Track um Emergence-Breath-Status ergänzen.
     - id: 55
       status: done
-      notes: "Fraktal55 DevTalk Windows Hardening: yaml-lint powered `pnpm find-bad-yaml`,\
-        \ repo-map auto-generation for `audit:ui-vr`, und ESM-Update f\xFCr `scripts/generate-agents-diagram.js`."
+      notes: 'Fraktal55 DevTalk Windows Hardening: yaml-lint powered `pnpm find-bad-yaml`,
+        repo-map auto-generation for `audit:ui-vr`, und ESM-Update für `scripts/generate-agents-diagram.js`.'
       deliverables:
         - package.json
         - pnpm-lock.yaml
@@ -1372,16 +1473,15 @@ fraktal:
         - docs/runbooks/command-catalog.json
         - codexfeedback-fraktal55.yaml
       hook:
-        progress: "yaml-lint integriert (`pnpm find-bad-yaml`), audit:ui-vr erzeugt\
-          \ repo-map bei Bedarf, Agents-Diagramm l\xE4uft ohne require."
+        progress: yaml-lint integriert (`pnpm find-bad-yaml`), audit:ui-vr erzeugt repo-map
+          bei Bedarf, Agents-Diagramm läuft ohne require.
         next_step: Windows-Feedback zum Sigillin-Validator beobachten und weitere Fix-Pack-Fragmente
           einspeisen, sobald sie eintreffen.
     - id: 54
       status: done
-      notes: "Fraktal54 SigillinFix: neues CLI `pnpm sigil:fix` pr\xFCft Bridges auf\
-        \ Trik\u0101ya, CREP und N\xE4chste Schritte; README/Doku aktualisiert. 2025-10-21:\
-        \ Governance-Report auf deferred gesetzt, pre-commit Hook bleibt optional \u2013\
-        \ Lauf geschlossen."
+      notes: 'Fraktal54 SigillinFix: neues CLI `pnpm sigil:fix` prüft Bridges auf Trikāya,
+        CREP und Nächste Schritte; README/Doku aktualisiert. 2025-10-21: Governance-Report
+        auf deferred gesetzt, pre-commit Hook bleibt optional – Lauf geschlossen.'
       deliverables:
         - scripts/fix-sigillin.ts
         - package.json
@@ -1392,15 +1492,15 @@ fraktal:
         - MandalaMap.yaml
         - MandalaMap.json
       hook:
-        progress: "Fix-Skript einsatzbereit, README-Abschnitt erg\xE4nzt; Governance-Report\
-          \ deferred, pre-commit Hook optional \u2013 Fraktal54 abgeschlossen."
-        next_step: "Keine weiteren Fraktal54-spezifischen Aufgaben; Monitoring \xFC\
-          ber neue Fragmente."
+        progress: Fix-Skript einsatzbereit, README-Abschnitt ergänzt; Governance-Report
+          deferred, pre-commit Hook optional – Fraktal54 abgeschlossen.
+        next_step: Keine weiteren Fraktal54-spezifischen Aufgaben; Monitoring über neue
+          Fragmente.
     - id: 53
       status: done
-      notes: "Fraktal53 DevTalkPart5 WindowsFlow: Command-Catalog erg\xE4nzt Corepack-Bootstrap,\
-        \ pnpm exec tsc fallback und pnpm -w -r build f\xFCr Windows-Verifikation; yaml-lint\
-        \ (`pnpm find-bad-yaml`) erg\xE4nzt Windows-Lint-Tooling."
+      notes: 'Fraktal53 DevTalkPart5 WindowsFlow: Command-Catalog ergänzt Corepack-Bootstrap,
+        pnpm exec tsc fallback und pnpm -w -r build für Windows-Verifikation; yaml-lint
+        (`pnpm find-bad-yaml`) ergänzt Windows-Lint-Tooling.'
       deliverables:
         - docs/runbooks/command-catalog.md
         - docs/runbooks/command-catalog.yaml
@@ -1409,10 +1509,10 @@ fraktal:
         - codexfeedback.json
         - codexfeedback.yaml
       hook:
-        progress: "DevTalk Part5 analysiert \u2013 Windows-Corepack-Fluss dokumentiert,\
-          \ tsc-Fallback beschrieben, yaml-lint f\xFCr Strict-L\xE4ufe erg\xE4nzt."
-        next_step: "Weitere Fragmente pr\xFCfen (UI-Smokes, MandalaMap) und Command-Catalog\
-          \ bei Bedarf erg\xE4nzen."
+        progress: DevTalk Part5 analysiert – Windows-Corepack-Fluss dokumentiert, tsc-Fallback
+          beschrieben, yaml-lint für Strict-Läufe ergänzt.
+        next_step: Weitere Fragmente prüfen (UI-Smokes, MandalaMap) und Command-Catalog
+          bei Bedarf ergänzen.
     - id: 52
       status: done
       notes: 'Fraktal52 DevStack Windows: UI-Smoke liest UI_DEV_URL, dev-services setzen
@@ -1434,70 +1534,68 @@ fraktal:
       hook:
         progress: 'Windows-/PowerShell-Lauf stabilisiert: Ports werden per Default getrennt,
           Smoke-Skript akzeptiert UI_DEV_URL.'
-        next_step: "Optional MandalaMap-Port-Matrix erg\xE4nzen und Fraktal52-Tests\
-          \ in Nightly spiegeln."
+        next_step: Optional MandalaMap-Port-Matrix ergänzen und Fraktal52-Tests in Nightly
+          spiegeln.
     - id: 51
       status: done
-      notes: "Fraktal51 CommandCatalog b\xFCndelt pnpm-Kommandos, Docker-Profile und\
-        \ Tooling-Hooks in docs/runbooks/command-catalog.(md|json|yaml); Tracker auf\
-        \ Fraktal51 aktualisiert."
+      notes: Fraktal51 CommandCatalog bündelt pnpm-Kommandos, Docker-Profile und Tooling-Hooks
+        in docs/runbooks/command-catalog.(md|json|yaml); Tracker auf Fraktal51 aktualisiert.
       deliverables:
         - docs/runbooks/command-catalog.md
         - docs/runbooks/command-catalog.yaml
         - docs/runbooks/command-catalog.json
       hook:
-        progress: "Command-Inventar liegt vor; Folgefragmente k\xF6nnen neue Skripte\
-          \ direkt erg\xE4nzen."
-        next_step: "Bei neuen Services die Tabelle erweitern und MandalaMap-Verweis\
-          \ pr\xFCfen."
+        progress: Command-Inventar liegt vor; Folgefragmente können neue Skripte direkt
+          ergänzen.
+        next_step: Bei neuen Services die Tabelle erweitern und MandalaMap-Verweis prüfen.
     - id: 50
       status: done
-      notes: "Fraktal50 Windows-Pfadnormalisierung f\xFCr sigillin validator aktiv,\
-        \ Skip-Logs mit Gr\xFCnden; 2025-10-21 Evaluierung: Windows-Feedback ohne neue\
-        \ Findings, Docker-Follow-up vertagt \u2013 Lauf geschlossen."
+      notes: 'Fraktal50 Windows-Pfadnormalisierung für sigillin validator aktiv, Skip-Logs
+        mit Gründen; 2025-10-21 Evaluierung: Windows-Feedback ohne neue Findings, Docker-Follow-up
+        vertagt – Lauf geschlossen.'
       hook:
-        progress: "Windows-/PowerShell-Lauf stabilisiert; Validator-Feedback gepr\xFC\
-          ft, Docker-Follow-up vertagt."
+        progress: Windows-/PowerShell-Lauf stabilisiert; Validator-Feedback geprüft,
+          Docker-Follow-up vertagt.
         next_step: Docker-Setup bei Bedarf in neuem Fragment adressieren.
     - id: 49
       status: done
-      notes: "Validator scope konzentriert sich auf sigils/bridges, Repo-Sanity wartet\
-        \ auf den UI-Build und AgentWorkflowEngine setzt ethical_guardrails standardm\xE4\
-        \xDFig. 2025-10-21 Evaluierung: Policy-Scope & dist-first Runner in Folgefraktalen\
-        \ \u2013 Lauf geschlossen."
+      notes: 'Validator scope konzentriert sich auf sigils/bridges, Repo-Sanity wartet
+        auf den UI-Build und AgentWorkflowEngine setzt ethical_guardrails standardmäßig.
+        2025-10-21 Evaluierung: Policy-Scope & dist-first Runner in Folgefraktalen –
+        Lauf geschlossen.'
       hook:
         progress: Validator-Fokus & Repo-Sanity stabil; Folgearbeiten (Policy, dist-first)
           werden bei Bedarf in neuen Fragmenten verfolgt.
-        next_step: "Keine direkten Aufgaben \u2013 Monitoring via k\xFCnftige Fragmente."
+        next_step: Keine direkten Aufgaben – Monitoring via künftige Fragmente.
     - id: 48
       status: done
-      notes: "CI follow-ups (sigillin validator, MandalaMap artifacts) implemented;\
-        \ Trik\u0101ya dashboard exploration pending."
+      notes: CI follow-ups (sigillin validator, MandalaMap artifacts) implemented; Trikāya
+        dashboard exploration pending.
     - id: 46
       status: done
       notes: MandalaMap.* refreshed; CI follow-up jobs separated via mandala-map workflow;
         sigillin validator hardened.
     - id: 45
       status: done
-      notes: "Type-and-tests Lauf (`pnpm test:ts:ci`) scheiterte an ESLint-Config ohne\
-        \ plugin:@typescript-eslint/recommended; Extend hinzugef\xFCgt und Lauf erfolgreich\
-        \ verifiziert."
+      notes: Type-and-tests Lauf (`pnpm test:ts:ci`) scheiterte an ESLint-Config ohne
+        plugin:@typescript-eslint/recommended; Extend hinzugefügt und Lauf erfolgreich
+        verifiziert.
       validations:
         - pnpm test:ts:ci
     - id: 44
       status: done
-      notes: "Abschlusslauf \u2013 Fraktal40/41/43 konsolidiert, Dist-First Release\
-        \ Drill, Sigillin-Validator & Governance-Tiefenaudit abgeschlossen."
+      notes: Abschlusslauf – Fraktal40/41/43 konsolidiert, Dist-First Release Drill,
+        Sigillin-Validator & Governance-Tiefenaudit abgeschlossen.
     - id: 43
       status: done
-      notes: "Dist-first Runner (scripts/run-dist.mjs) + AI-Policy-Beispiele implementiert;\
-        \ Fraktal44 best\xE4tigte Nightly-Auswertung & Dev-Script-Refactor (`pnpm dev`,\
-        \ `pnpm dev:stack`)."
+      notes: Dist-first Runner (scripts/run-dist.mjs) + AI-Policy-Beispiele implementiert;
+        Fraktal44 bestätigte Nightly-Auswertung & Dev-Script-Refactor (`pnpm dev`, `pnpm
+        dev:stack`).
     - id: 41
       status: done
-      notes: "CI-Core erweitert (Lint/Format/Coverage-Hooks), Extended-Workflow auf\
-        \ Node20 mit Coverage-Job, Monitoring-Profil produktiv \u2013 Fraktal44 schloss\
-        \ Alerts & Fail-Fast ab."
+      notes: CI-Core erweitert (Lint/Format/Coverage-Hooks), Extended-Workflow auf Node20
+        mit Coverage-Job, Monitoring-Profil produktiv – Fraktal44 schloss Alerts & Fail-Fast
+        ab.
     - id: 40
       status: done
       notes: v1.0 Stabilization Playbook (docs/roadmap/v1.0-stabilization-playbook.*)
@@ -1508,8 +1606,8 @@ fraktal:
         workflow'
     - id: 38
       status: done
-      notes: "ESLint/Prettier Hooks, dist-first Service-Runner und Doku-Refresh f\xFC\
-        r v1.0 Stabilisierung"
+      notes: ESLint/Prettier Hooks, dist-first Service-Runner und Doku-Refresh für v1.0
+        Stabilisierung
     - id: 37b
       status: done
       notes: Node20 toolchain, policy guardrail audit-mode, repo-sanity warnings allowed
@@ -1529,12 +1627,11 @@ fraktal:
       notes: CI split (core/extended/experimental), UI alias fix, Node22 dev server
     - id: 32
       status: done
-      notes: "Conscious-CI stabil: metrics singleton, Vitest offline (globals+fetch),\
-        \ LowMem membrane \u2013 Fraktal44 best\xE4tigte Observability-Bindung und Nightly\
-        \ Monitoring."
+      notes: 'Conscious-CI stabil: metrics singleton, Vitest offline (globals+fetch),
+        LowMem membrane – Fraktal44 bestätigte Observability-Bindung und Nightly Monitoring.'
     - id: 25
       status: done
-      notes: "pyright strict gr\xFCn; OISST var=sst normalisiert"
+      notes: pyright strict grün; OISST var=sst normalisiert
     - id: 21
       status: done
       checkpoints:
@@ -1542,8 +1639,8 @@ fraktal:
         - 'Vitest: stream-json fix'
         - 'Prompt Coach: CLI + PR dry-run'
         - 'CI matrix: adapters cache + typechecks'
-      notes: "Abschlussbewertung in Fraktal44 \u2013 alle Kernaufgaben verifiziert,\
-        \ optionale Follow-ups ins Backlog verschoben."
+      notes: Abschlussbewertung in Fraktal44 – alle Kernaufgaben verifiziert, optionale
+        Follow-ups ins Backlog verschoben.
   owner: Codex
   needs_repeat: false
   progress:
@@ -1557,14 +1654,13 @@ fraktal:
 fraktal44:
   status: done
   summary:
-    - "Fraktal40/41/43 Backlog harmonisiert, alle Checkpoints gr\xFCn (CI, Governance,\
-      \ Dist-First)."
+    - Fraktal40/41/43 Backlog harmonisiert, alle Checkpoints grün (CI, Governance, Dist-First).
     - Sigillin-Validator & Workflow (`pnpm validate:sigillins`, `.github/workflows/sigillin-validate.yml`)
       integriert.
     - Dev-Skripte neu sortiert (`pnpm dev`, `pnpm dev:services`, `pnpm dev:stack`) und
       README/CONTRIBUTING aktualisiert.
-    - "Release-Drill inkl. Monitoring (`docker compose --profile prod up`) erneut durchgef\xFC\
-      hrt, Alerts dokumentiert."
+    - Release-Drill inkl. Monitoring (`docker compose --profile prod up`) erneut durchgeführt,
+      Alerts dokumentiert.
   artifacts:
     - codexfeedback-fraktal44.yaml
     - fraktal44.md
@@ -1572,18 +1668,17 @@ fraktal44:
 fraktal43:
   status: done
   checkpoints:
-    - "scripts/run-dist.mjs ersetzt ts-node f\xFCr Produktionskommandos"
+    - scripts/run-dist.mjs ersetzt ts-node für Produktionskommandos
     - AI_POLICY.md/.yaml enthalten Allow/Review/Block Beispiele
     - ci.nightly.yml spiegelt type-and-tests (Node20/Python3.11) inkl. Toolchain-Artefakt
-    - "Dockerfile.dev Node20+Python3 f\xFCr Compose-Parit\xE4t, light-static-smoke verf\xFC\
-      gbar"
+    - Dockerfile.dev Node20+Python3 für Compose-Parität, light-static-smoke verfügbar
   outcome:
-    - "Nightly-Auswertung & Dist-First-Routinen in Fraktal44 best\xE4tigt; Light-Static\
-      \ Smoke dauerhaft gebunden."
+    - Nightly-Auswertung & Dist-First-Routinen in Fraktal44 bestätigt; Light-Static
+      Smoke dauerhaft gebunden.
 fraktal41:
   status: done
   subgoals:
-    - name: "CI-H\xE4rtung (Fail-Fast-Pipelines)"
+    - name: CI-Härtung (Fail-Fast-Pipelines)
       implemented: true
     - name: Kyverno-Policytest integriert
       implemented: true
@@ -1598,7 +1693,7 @@ fraktal41:
 fraktal40:
   status: done
   checkpoints:
-    - "Playbook ver\xF6ffentlicht: docs/roadmap/v1.0-stabilization-playbook.md"
+    - 'Playbook veröffentlicht: docs/roadmap/v1.0-stabilization-playbook.md'
     - 'Blueprint erstellt: docs/roadmap/v1.0-stabilization-playbook.yaml'
   tracker:
     stability:
@@ -1617,19 +1712,19 @@ fraktal40:
     governance:
       owner: AI Governance Council / PactDepthGatekeeper
       status: done
-      notes: "Kyverno & Policy-Doku abgeschlossen, Monitoring weiterf\xFChren"
+      notes: Kyverno & Policy-Doku abgeschlossen, Monitoring weiterführen
     observability:
       owner: TelemetryOps / Health Maintainers
       status: done
-      notes: "`prom-compose` aktiv, `/metrics`-Rollout in Release-Drill best\xE4tigt;\
-        \ Alerts dokumentiert."
+      notes: '`prom-compose` aktiv, `/metrics`-Rollout in Release-Drill bestätigt;
+        Alerts dokumentiert.'
   next: []
 fraktal46:
   status: done
   summary:
     - MandalaMap.yaml/json/md refreshed with bridge registry index and updated follow-ups.
-    - "Sigillin validator tightened (CREP metrics, Trik\u0101ya, next actions) and workflow\
-      \ marked required."
+    - Sigillin validator tightened (CREP metrics, Trikāya, next actions) and workflow
+      marked required.
     - Mandala-map CI workflow added to publish artifacts without blocking merges.
   artifacts:
     - MandalaMap.yaml
@@ -1647,7 +1742,7 @@ fraktal45:
     - Lauf erneut validiert (Vitest low-memory)
   notes:
     - 'Ursache: fehlende Recommended-Extends verhinderte ESLint-Regelsatz in Tests/eslint-config.test.ts'
-    - "L\xF6sung: `.eslintrc.cjs` erweitert, Tests erneut gr\xFCn"
+    - 'Lösung: `.eslintrc.cjs` erweitert, Tests erneut grün'
   repeat_required: false
   validation:
     - pnpm test:ts
@@ -1655,11 +1750,10 @@ fraktal45:
 fraktal21:
   status: done
   checkpoints:
-    - "OISST pipeline restored: fetch \u2192 postprocess \u2192 STAC \u2192 CREP \u2192\
-      \ adapters_index.json"
+    - 'OISST pipeline restored: fetch → postprocess → STAC → CREP → adapters_index.json'
     - CI smoke asserts OISST presence in out/adapters_index.json
     - Vitest low-memory config (workers=1, heap 3-4GB) + jsdom polyfills
-    - "check:ci \u2192 tsc + vitest(low-mem) + pyright"
+    - check:ci → tsc + vitest(low-mem) + pyright
     - 'CI splits: adapters-offline + type-and-tests'
     - 'Metrics: global Registry + getOrCreate-Helper verhindern Doppel-Registrierung'
   notes:
@@ -1674,8 +1768,8 @@ fraktal22:
     - adapters_offline_smoke_guard: true
   checkpoints:
     - 'CI split: adapters-offline + type-and-tests + prompt-lint'
-    - "PR-Kommentar f\xFCr Prompt-Coach (dry-run)"
-    - "Smoke-Test f\xFCr adapters_index.json (OISST present)"
+    - PR-Kommentar für Prompt-Coach (dry-run)
+    - Smoke-Test für adapters_index.json (OISST present)
   next: []
 fraktal23:
   status: done
@@ -1701,26 +1795,26 @@ fraktal32:
     - CI env OFFLINE/LOW_MEM global; OISST smoke present
     - ERA5 offline stub & smoke
   next:
-    - "Validiert in Fraktal44; weiterf\xFChrende Coverage-Experimente optional."
+    - Validiert in Fraktal44; weiterführende Coverage-Experimente optional.
 fraktal34:
   status: done
   checkpoints:
     - CI split into core/extended/experimental
     - UI alias ~config & Node22 dev-server ESM
   next:
-    - "Labels werden im Rahmen von Fraktal44/CI-Review \xFCberwacht \u2013 kein separater\
-      \ Lauf n\xF6tig."
+    - Labels werden im Rahmen von Fraktal44/CI-Review überwacht – kein separater Lauf
+      nötig.
 fraktal48:
   status: done
   summary:
     - 'CI follow-ups delivered: wait-on in smoke workflow, required sigillin validation,
       MandalaMap artifact job.'
     - MandalaMap.* updated with bridge registry visibility and follow-up status adjustments.
-    - "Sigillin authoring CLI & Trik\u0101ya dashboard generator verf\xFCgbar (analysis/trikaya-dashboard.(json|md|yaml));\
-      \ Stub-Roadmap in docs/roadmap/stub-replacement-roadmap.(md|yaml) abgelegt."
+    - Sigillin authoring CLI & Trikāya dashboard generator verfügbar (analysis/trikaya-dashboard.(json|md|yaml));
+      Stub-Roadmap in docs/roadmap/stub-replacement-roadmap.(md|yaml) abgelegt.
   hooks:
     - Stub-Usage Audit (scripts/check-stub-usage.mjs) als optionaler MandalaMap-Hook.
-    - "Kyverno/OPA Policy f\xFCr keys/-Automation vorbereiten."
+    - Kyverno/OPA Policy für keys/-Automation vorbereiten.
   repeat_required: false
 hook:
   progress: Pytest-Wrapper & Mini-Sigillin-Validator live; Docs/Maps/Feedback synchronisiert,

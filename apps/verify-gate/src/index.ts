@@ -1,6 +1,9 @@
 import { randomUUID } from 'node:crypto';
 import type { IncomingHttpHeaders } from 'node:http';
-import express, { type Request, type Response } from 'express';
+import { Readable } from 'node:stream';
+import express, { type NextFunction, type Request, type Response } from 'express';
+import helmet from 'helmet';
+import rateLimit from 'express-rate-limit';
 import { fetch } from 'undici';
 
 type VerdictColor = 'green' | 'yellow' | 'red';
@@ -27,7 +30,36 @@ interface JsonFailure {
 type JsonResult<T> = JsonSuccess<T> | JsonFailure;
 
 const app = express();
-app.use(express.json({ limit: '1mb' }));
+app.set('trust proxy', ['loopback', 'linklocal', 'uniquelocal']);
+app.disable('x-powered-by');
+app.use(helmet({ crossOriginResourcePolicy: false }));
+
+function requestIdMiddleware(req: Request, res: Response, next: NextFunction): void {
+  const existing = req.get('x-request-id');
+  const id = existing && existing.toString().length > 0 ? existing.toString() : randomUUID();
+  const mutableHeaders = req.headers as Record<string, unknown>;
+  if (!mutableHeaders['x-request-id']) {
+    mutableHeaders['x-request-id'] = id;
+  }
+  (req as Request & { id?: string }).id = id;
+  res.locals.requestId = id;
+  res.setHeader('x-request-id', id);
+  next();
+}
+
+app.use(requestIdMiddleware);
+
+const jsonLimit = process.env.GATE_JSON_LIMIT ?? '1mb';
+app.use(express.json({ limit: jsonLimit }));
+
+const rateLimiter = rateLimit({
+  windowMs: 10_000,
+  max: Number.parseInt(process.env.VERIFY_RATE_RPS ?? '120', 10),
+  standardHeaders: true,
+  legacyHeaders: false,
+});
+
+app.use(rateLimiter);
 
 const offset = Number.parseInt(process.env.PORT_OFFSET ?? '0', 10) || 0;
 const defaultPort = 3111 + offset;
@@ -39,6 +71,11 @@ const ethicsPort = Number.parseInt(process.env.ETHICS_PORT ?? '', 10);
 const defaultEthicsPort = Number.isFinite(ethicsPort) ? ethicsPort + offset : 3110 + offset;
 const ethicsBase = (process.env.VERIFY_ETHICS_URL ?? `http://127.0.0.1:${defaultEthicsPort}`).replace(/\/+$/, '');
 const upstreamBase = (process.env.VERIFY_UPSTREAM_URL ?? `http://127.0.0.1:${4000 + offset}`).replace(/\/+$/, '');
+const upstreamAllowlist = (process.env.VERIFY_UPSTREAM_ALLOWLIST ?? upstreamBase)
+  .split(',')
+  .map((entry) => entry.trim())
+  .filter((entry) => entry.length > 0);
+const strictSameHost = process.env.VERIFY_STRICT_SAME_HOST === '1';
 
 const HOP_BY_HOP = new Set([
   'connection',
@@ -58,7 +95,7 @@ function forwardPath(originalUrl: string): string {
   return stripped.startsWith('/') ? stripped : `/${stripped}`;
 }
 
-async function postJson<T>(url: string, body: unknown): Promise<JsonResult<T>> {
+async function postJson<T>(url: string, body: unknown, headers: Record<string, string> = {}): Promise<JsonResult<T>> {
   const controller = new AbortController();
   const timeoutMs = Number.parseInt(process.env.VERIFY_GATE_TIMEOUT_MS ?? '2000', 10);
   const timeout = setTimeout(() => controller.abort(), timeoutMs);
@@ -66,7 +103,7 @@ async function postJson<T>(url: string, body: unknown): Promise<JsonResult<T>> {
   try {
     const response = await fetch(url, {
       method: 'POST',
-      headers: { 'content-type': 'application/json' },
+      headers: { 'content-type': 'application/json', ...headers },
       body: JSON.stringify(body ?? {}),
       signal: controller.signal,
     });
@@ -119,10 +156,42 @@ function buildProxyHeaders(req: Request, hasBody: boolean): Record<string, strin
   }
 
   if (!('x-request-id' in outgoing)) {
-    outgoing['x-request-id'] = req.get('x-request-id') ?? randomUUID();
+    const requestId = (req as Request & { id?: string }).id ?? req.get('x-request-id') ?? randomUUID();
+    outgoing['x-request-id'] = requestId;
   }
 
   return outgoing;
+}
+
+function allowedTarget(target: URL): boolean {
+  if (strictSameHost && !['127.0.0.1', 'localhost'].includes(target.hostname)) {
+    return false;
+  }
+  if (upstreamAllowlist.length === 0) {
+    return false;
+  }
+  const href = target.href;
+  return upstreamAllowlist.some((prefix) => href.startsWith(prefix));
+}
+
+function exposeHeaders(res: Response, headers: string[]): void {
+  const existing = res.getHeader('Access-Control-Expose-Headers');
+  const current = new Set<string>();
+  if (typeof existing === 'string') {
+    existing.split(',').map((value) => value.trim()).filter(Boolean).forEach((value) => current.add(value));
+  } else if (Array.isArray(existing)) {
+    existing
+      .flatMap((value) =>
+        typeof value === 'string'
+          ? value.split(',')
+          : [],
+      )
+      .map((value) => value.trim())
+      .filter(Boolean)
+      .forEach((value) => current.add(value));
+  }
+  headers.forEach((header) => current.add(header));
+  res.setHeader('Access-Control-Expose-Headers', Array.from(current).join(', '));
 }
 
 app.get('/health', (_req: Request, res: Response) => {
@@ -131,14 +200,19 @@ app.get('/health', (_req: Request, res: Response) => {
 
 app.post('/gate/*', async (req: Request, res: Response) => {
   const ethicsUrl = `${ethicsBase}/ethics/check`;
+  const requestId = typeof res.locals.requestId === 'string' ? res.locals.requestId : randomUUID();
+  res.locals.requestId = requestId;
   const verdictResult = await postJson<EthicsResponseBody>(ethicsUrl, {
     intent: req.originalUrl.replace(/^\/gate\//, ''),
     content: req.body,
     context: req.body?.context,
-  });
+  }, { 'x-request-id': requestId });
 
   if (!verdictResult.ok) {
     const statusCode = verdictResult.status ?? 503;
+    res.setHeader('x-ethics-verdict', 'red');
+    res.setHeader('x-ethics-evidence-count', '0');
+    exposeHeaders(res, ['x-ethics-verdict', 'x-ethics-evidence-count']);
     return res.status(statusCode >= 400 ? statusCode : 503).json({
       ok: false,
       verdict: 'red',
@@ -151,6 +225,10 @@ app.post('/gate/*', async (req: Request, res: Response) => {
 
   const verdict = verdictBody?.verdict ?? 'red';
   if (verdict !== 'green') {
+    const evidenceCount = Array.isArray(verdictBody?.neededEvidence) ? verdictBody.neededEvidence.length : 0;
+    res.setHeader('x-ethics-verdict', verdict);
+    res.setHeader('x-ethics-evidence-count', String(evidenceCount));
+    exposeHeaders(res, ['x-ethics-verdict', 'x-ethics-evidence-count']);
     return res.status(428).json({
       ok: false,
       verdict,
@@ -160,12 +238,27 @@ app.post('/gate/*', async (req: Request, res: Response) => {
   }
 
   const path = forwardPath(req.originalUrl);
-  const targetUrl = `${upstreamBase}${path}`;
+  let target: URL | null = null;
+  try {
+    target = new URL(path, `${upstreamBase}/`);
+  } catch {
+    res.setHeader('x-ethics-verdict', 'red');
+    res.setHeader('x-ethics-evidence-count', '0');
+    exposeHeaders(res, ['x-ethics-verdict', 'x-ethics-evidence-count']);
+    return res.status(400).json({ ok: false, error: 'INVALID_TARGET_URL' });
+  }
+
+  if (!allowedTarget(target)) {
+    res.setHeader('x-ethics-verdict', 'red');
+    res.setHeader('x-ethics-evidence-count', '0');
+    exposeHeaders(res, ['x-ethics-verdict', 'x-ethics-evidence-count']);
+    return res.status(403).json({ ok: false, error: 'TARGET_NOT_ALLOWED' });
+  }
 
   try {
     const body = req.body !== undefined && req.body !== null ? JSON.stringify(req.body) : undefined;
     const hasBody = body !== undefined;
-    const response = await fetch(targetUrl, {
+    const response = await fetch(target.toString(), {
       method: req.method,
       headers: buildProxyHeaders(req, hasBody),
       body,
@@ -198,11 +291,26 @@ app.post('/gate/*', async (req: Request, res: Response) => {
     const evidenceCount = Array.isArray(verdictBody?.neededEvidence) ? verdictBody.neededEvidence.length : 0;
     res.setHeader('x-ethics-verdict', verdict);
     res.setHeader('x-ethics-evidence-count', String(evidenceCount));
+    exposeHeaders(res, ['x-ethics-verdict', 'x-ethics-evidence-count']);
 
-    const payload = Buffer.from(await response.arrayBuffer());
-    res.status(response.status).send(payload);
+    res.status(response.status);
+
+    const upstreamBody = response.body;
+    if (!upstreamBody) {
+      res.end();
+      return;
+    }
+
+    const stream = Readable.fromWeb(upstreamBody as unknown as ReadableStream<Uint8Array>);
+    stream.on('error', (error) => {
+      res.destroy(error instanceof Error ? error : new Error(String(error)));
+    });
+    stream.pipe(res);
   } catch (error) {
-    console.error('[verify-gate] upstream call failed', targetUrl, error);
+    console.error('[verify-gate] upstream call failed', target?.toString(), error);
+    res.setHeader('x-ethics-verdict', 'red');
+    res.setHeader('x-ethics-evidence-count', '0');
+    exposeHeaders(res, ['x-ethics-verdict', 'x-ethics-evidence-count']);
     res.status(502).json({ ok: false, error: 'upstream_failed', detail: String((error as Error).message ?? error) });
   }
 });

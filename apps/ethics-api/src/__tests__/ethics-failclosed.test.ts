@@ -83,4 +83,17 @@ describe('ethics fail-closed behaviour', () => {
     expect(response.body.verdict).toBe('red');
     expect(response.body.reason).toBe('boundary_unreachable');
   });
+
+  test('rejects malformed payloads with 400', async () => {
+    const { app } = await import('../index');
+
+    const response = await request(app)
+      .post('/ethics/check')
+      .send({ intent: 'demo' });
+
+    expect(response.status).toBe(400);
+    expect(response.body.ok).toBe(false);
+    expect(response.body.error).toBe('BAD_REQUEST');
+    expect(Array.isArray(response.body.issues)).toBe(true);
+  });
 });

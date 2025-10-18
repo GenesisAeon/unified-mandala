@@ -1,4 +1,8 @@
-import express, { type Request, type Response } from 'express';
+import { randomUUID } from 'node:crypto';
+import express, { type NextFunction, type Request, type Response } from 'express';
+import helmet from 'helmet';
+import Ajv from 'ajv';
+import addFormats from 'ajv-formats';
 import {
   collectDefaultMetrics,
   Counter,
@@ -9,11 +13,12 @@ import {
 import { fetchJson } from './http-client.js';
 import {
   configureBoundaryCircuit,
-  getBoundaryCircuitState,
+  getBoundaryCircuitStateValue,
   observeBoundary,
   type BoundaryResponse,
   type BoundaryViolation,
 } from './boundary-client.js';
+import { EthicsCheckSchema, type EthicsCheckInput } from './schemas.js';
 
 interface RagCitation {
   uri?: string;
@@ -31,13 +36,6 @@ interface RagResponse {
 interface EthicsVerdict {
   verdict: 'green' | 'yellow' | 'red';
   reason: string;
-}
-
-interface EthicsCheckPayload {
-  intent?: unknown;
-  content?: unknown;
-  context?: Record<string, unknown>;
-  evidence?: string[];
 }
 
 interface EthicsCheckResult {
@@ -62,7 +60,29 @@ interface EthicsCheckResult {
 }
 
 const app = express();
-app.use(express.json({ limit: '1mb' }));
+app.disable('x-powered-by');
+app.use(helmet({ crossOriginResourcePolicy: false }));
+
+const ajv = addFormats(new Ajv({ allErrors: true }));
+const validateEthics = ajv.compile<EthicsCheckInput>(EthicsCheckSchema);
+
+function requestIdMiddleware(req: Request, res: Response, next: NextFunction): void {
+  const existing = req.get('x-request-id');
+  const id = existing && existing.toString().length > 0 ? existing.toString() : randomUUID();
+  const mutableHeaders = req.headers as Record<string, unknown>;
+  if (!mutableHeaders['x-request-id']) {
+    mutableHeaders['x-request-id'] = id;
+  }
+  (req as Request & { id?: string }).id = id;
+  res.locals.requestId = id;
+  res.setHeader('x-request-id', id);
+  next();
+}
+
+app.use(requestIdMiddleware);
+
+const bodyLimit = process.env.ETHICS_JSON_LIMIT ?? '1mb';
+app.use(express.json({ limit: bodyLimit }));
 
 const offset = Number.parseInt(process.env.PORT_OFFSET ?? '0', 10) || 0;
 const defaultPort = 3110 + offset;
@@ -117,20 +137,8 @@ if (Number.isFinite(cbCooldownMs)) {
 }
 configureBoundaryCircuit(circuitOptions);
 
-function mapCircuitStateToValue(state: ReturnType<typeof getBoundaryCircuitState>): number {
-  switch (state) {
-    case 'half_open':
-      return 1;
-    case 'open':
-      return 2;
-    case 'closed':
-    default:
-      return 0;
-  }
-}
-
 function updateCircuitGauge(): void {
-  circuitGauge.set(mapCircuitStateToValue(getBoundaryCircuitState()));
+  circuitGauge.set(getBoundaryCircuitStateValue());
 }
 
 updateCircuitGauge();
@@ -172,30 +180,45 @@ app.get('/metrics', async (_req: Request, res: Response) => {
 });
 
 app.get('/readyz', (_req: Request, res: Response) => {
-  const state = getBoundaryCircuitState();
   updateCircuitGauge();
-  if (state === 'open') {
-    return res.status(503).json({ ok: false, reason: 'boundary_circuit_open' });
+  const value = getBoundaryCircuitStateValue();
+  if (value !== 0) {
+    return res.status(503).json({ ok: false, cb: value });
   }
   return res.json({ ok: true });
 });
 
-app.post('/ethics/check', async (req: Request<unknown, unknown, EthicsCheckPayload>, res: Response) => {
+app.post('/ethics/check', async (req: Request<unknown, unknown, EthicsCheckInput>, res: Response) => {
   const stopTimer = checkDuration.startTimer();
   try {
-    const { intent, content, context } = req.body ?? {};
+    const payload = (req.body ?? {}) as EthicsCheckInput;
+    if (!validateEthics(payload)) {
+      const issues = (validateEthics.errors ?? []).map((error) => ({
+        instancePath: error.instancePath,
+        message: error.message,
+        keyword: error.keyword,
+      }));
+      return res.status(400).json({ ok: false, error: 'BAD_REQUEST', issues });
+    }
+
+    const { intent, content, context } = payload;
     const minEvidenceRequired = Number.parseInt(process.env.VERIFY_MIN_EVIDENCE ?? '2', 10);
     const text = parseText(content ?? intent);
+    const requestId = typeof res.locals.requestId === 'string' ? res.locals.requestId : randomUUID();
+    res.locals.requestId = requestId;
 
-    const boundaryResult = await observeBoundary(boundaryUrl, text, context);
+    const boundaryResult = await observeBoundary(boundaryUrl, text, context, {
+      headers: { 'x-request-id': requestId },
+    });
     updateCircuitGauge();
 
     if (!boundaryResult.ok) {
-      dependencyFailureCounter.inc({ dependency: 'boundary', reason: boundaryResult.error ?? 'unknown' });
+      const reason = boundaryResult.error === 'CB_OPEN' ? 'circuit_open' : boundaryResult.error ?? 'unknown';
+      dependencyFailureCounter.inc({ dependency: 'boundary', reason });
       const failureResponse: EthicsCheckResult = {
         ok: false,
         verdict: 'red',
-        reason: 'boundary_unreachable',
+        reason: reason === 'circuit_open' ? 'boundary_circuit_open' : 'boundary_unreachable',
         neededEvidence: [],
         deps: { boundary: boundaryResult.error },
         grounding: { score: 0, citations: [] },
@@ -224,6 +247,7 @@ app.post('/ethics/check', async (req: Request<unknown, unknown, EthicsCheckPaylo
         },
         timeoutMs: Number.parseInt(process.env.RAG_TIMEOUT_MS ?? '1500', 10),
         retries: Number.parseInt(process.env.RAG_RETRIES ?? '1', 10),
+        headers: { 'x-request-id': requestId },
       });
       if (ragResult.ok) {
         ragResponse = ragResult.data;
