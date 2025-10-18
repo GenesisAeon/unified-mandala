@@ -1,5 +1,6 @@
 #!/usr/bin/env -S tsx
 import { spawn } from 'node:child_process';
+import net from 'node:net';
 import process from 'node:process';
 
 function computeHealthPort(): number {
@@ -28,6 +29,21 @@ async function waitOn(urls: string[], timeoutMs = 90_000): Promise<void> {
   await waitOn.default({ resources: urls, timeout: timeoutMs, window: 500 });
 }
 
+async function isPortFree(port: number, host = '127.0.0.1'): Promise<boolean> {
+  return new Promise((resolve) => {
+    const server = net.createServer();
+    const done = (result: boolean) => {
+      try {
+        server.close();
+      } catch {}
+      resolve(result);
+    };
+    server.once('error', () => done(false));
+    server.once('listening', () => done(true));
+    server.listen(port, host);
+  });
+}
+
 async function main() {
   const healthPort = computeHealthPort();
   const healthUrl = `http://127.0.0.1:${healthPort}/health`;
@@ -45,7 +61,13 @@ async function main() {
   procs.push(run('stack', 'pnpm', ['dev:stack']));
 
   // Health aggregator
-  procs.push(run('health', 'pnpm', ['dev:health']));
+  if (await isPortFree(healthPort)) {
+    procs.push(run('health', 'pnpm', ['dev:health']));
+  } else {
+    console.log(
+      `[start-verified] Health service already listening on port ${healthPort}; skipping duplicate start.`,
+    );
+  }
 
   let shuttingDown = false;
   function shutdown(code = 0) {
