@@ -2,6 +2,8 @@ import { useMemo, useState } from 'react';
 import MetricsWidget from './MetricsWidget';
 import BoundaryMiniTile from './BoundaryMiniTile';
 import SettingsRUM from './SettingsRUM';
+import EthicsBadge from './EthicsBadge';
+import { fetchJsonWithEthics } from '../lib/fetchWithEthics';
 
 type PlaygroundState = 'idle' | 'loading' | 'done' | 'error';
 
@@ -59,6 +61,8 @@ export function MandalaAIPlayground() {
   const [verifyScore, setVerifyScore] = useState<'red' | 'yellow' | 'green'>('red');
   const [publishBusy, setPublishBusy] = useState<boolean>(false);
   const [publishNote, setPublishNote] = useState<string>('');
+  const [ethicsVerdict, setEthicsVerdict] = useState<'green' | 'yellow' | 'red' | 'unknown'>('unknown');
+  const [ethicsEvidenceCount, setEthicsEvidenceCount] = useState<number>(0);
 
   async function maybeRunIntentsFrom(text: string) {
     try {
@@ -129,23 +133,26 @@ export function MandalaAIPlayground() {
     setState('loading');
     setError(null);
     setAnswer(null);
+    setEthicsVerdict('unknown');
+    setEthicsEvidenceCount(0);
 
     try {
-      const response = await fetch(endpoint, {
+      const { data: payload, ethics, response } = await fetchJsonWithEthics<any>(endpoint, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
+        jsonBody: {
           messages: [
             { role: 'system', content: systemPrompt },
             { role: 'user', content: prompt },
           ],
           temperature: 0.2,
-        }),
+        },
       });
 
-      const payload = await safeJson(response);
+      setEthicsVerdict(ethics.verdict);
+      setEthicsEvidenceCount(ethics.evidenceCount);
+
       if (!response.ok) {
-        throw new Error(payload?.error ?? `Request failed with status ${response.status}`);
+        throw new Error((payload as any)?.error ?? `Request failed with status ${response.status}`);
       }
 
       function pickOutputText(result: any): string {
@@ -166,6 +173,7 @@ export function MandalaAIPlayground() {
     } catch (err) {
       setError(err instanceof Error ? err.message : String(err));
       setState('error');
+      setEthicsVerdict('red');
     }
   }
 
@@ -370,9 +378,12 @@ export function MandalaAIPlayground() {
         </p>
       </header>
 
-      <div className="mt-3 flex flex-col md:flex-row gap-3">
+      <div className="mt-3 flex flex-col gap-3 md:flex-row md:items-start">
         <div className="flex-1" />
-        <MetricsWidget />
+        <div className="flex flex-col items-end gap-2">
+          <EthicsBadge verdict={ethicsVerdict} evidenceCount={ethicsEvidenceCount} />
+          <MetricsWidget />
+        </div>
       </div>
 
       {/* Quick tiles row */}

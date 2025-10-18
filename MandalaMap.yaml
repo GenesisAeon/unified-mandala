@@ -1,7 +1,7 @@
 meta:
   version: '1.0'
-  generated: '2025-12-10 00:00:00+00:00'
-  fraktal: 99
+  generated: '2025-12-11 00:00:00+00:00'
+  fraktal: 102
   repo: unified-mandala
   source: ChefDevAI MandalaMap bootstrap
   reference_docs:
@@ -109,6 +109,7 @@ entries:
     notes:
       - 'Fraktal99: Circuit-Breaker + fail-closed (`ETHICS_DEP_FAIL_MODE`), Counter `ethics_dependency_unreachable_total`, Gauge `boundary_circuit_state`, `/readyz`.'
       - 'Timeout/Retry-Client (`fetchJson`) schützt Boundary/RAG-Aufrufe; Grounding/Boundary-Resultate bleiben synchron zur Verify-Gate-Pipeline.'
+      - 'Fraktal102: Ajv-Schema-Validierung (`EthicsCheckSchema`), Request-ID-Middleware (`x-request-id`), Circuit-basierte `/readyz`-Antwort (`cb` 0/1/2), optionaler Service-Bearer (`INTERNAL_BEARER`) und weitergereichte Request-IDs zu Boundary/RAG.'
     links:
       - label: index.ts
         path: apps/ethics-api/src/index.ts
@@ -124,6 +125,7 @@ entries:
     notes:
       - 'Fraktal99: Reicht Client-Header (Authorization, Cookies) durch, setzt `x-ethics-verdict`/`x-ethics-evidence-count` und liefert 5xx, wenn der Ethics-Check ausfällt.'
       - 'Filtert Hop-by-Hop-Header, erzeugt `x-request-id`, nutzt `VERIFY_GATE_TIMEOUT_MS` und Tests sichern Header-Forwarding & Fail-Closed-Pfade.'
+      - 'Fraktal102: JSON-/Rate-Limits (`GATE_JSON_LIMIT`, `VERIFY_RATE_RPS`), SSRF-Allowlist (`VERIFY_UPSTREAM_ALLOWLIST`, `VERIFY_STRICT_SAME_HOST`), Streaming-Proxying, CORS-Expose für `x-ethics-*` sowie Request-ID-Weitergabe an Ethics.'
     links:
       - label: index.ts
         path: apps/verify-gate/src/index.ts

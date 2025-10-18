@@ -13,6 +13,14 @@ const softMode =
   args.has('--soft') || args.has('--diagnostic') || process.env.UM_SMOKE_LIVE_SOFT === '1';
 const diagMode = args.has('--diagnostic');
 
+const ethicsPort = Number.parseInt(process.env.ETHICS_PORT || '', 10);
+const resolvedEthicsPort = Number.isFinite(ethicsPort) ? ethicsPort + offset : 3110 + offset;
+const ethicsOrigin = `http://127.0.0.1:${resolvedEthicsPort}`;
+
+const verifyPort = Number.parseInt(process.env.VERIFY_PORT || '', 10);
+const resolvedVerifyPort = Number.isFinite(verifyPort) ? verifyPort + offset : 3111 + offset;
+const verifyOrigin = `http://127.0.0.1:${resolvedVerifyPort}`;
+
 async function ping(url) {
   try {
     const r = await fetch(url);
@@ -35,24 +43,35 @@ async function smoke() {
     okChat = r.ok;
   } catch {}
 
-  const ok = okHealth && okChat;
+  const okEthics = await ping(`${ethicsOrigin}/readyz`);
+  const okVerify = await ping(`${verifyOrigin}/health`);
+
+  const ok = okHealth && okChat && okEthics && okVerify;
 
   if (asJson) {
     console.log(
       JSON.stringify({
         healthUrl: `${healthOrigin}/health`,
         chatUrl: `${aiOrigin}/api/ai/chat`,
+        ethicsUrl: `${ethicsOrigin}/readyz`,
+        verifyUrl: `${verifyOrigin}/health`,
         okHealth,
         okChat,
+        okEthics,
+        okVerify,
         ok,
         mode: diagMode ? 'diagnostic' : 'standard',
       }),
     );
   } else if (ok) {
-    console.log('✅ live-smoke: health and chat endpoints respond');
+    console.log(
+      '✅ live-smoke: health aggregator, ethics readyz, verify gate and chat endpoints respond',
+    );
   } else {
     if (!okHealth) console.error('❌ live-smoke: health aggregator not reachable');
     if (!okChat) console.error('❌ live-smoke: AI chat endpoint not reachable');
+    if (!okEthics) console.error('❌ live-smoke: ethics /readyz not reachable');
+    if (!okVerify) console.error('❌ live-smoke: verify-gate /health not reachable');
   }
 
   if (ok) {

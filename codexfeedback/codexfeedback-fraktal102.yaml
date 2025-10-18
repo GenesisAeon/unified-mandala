@@ -1,0 +1,41 @@
+fraktal: 102
+status: done
+owner: Johann
+summary:
+  - '`apps/ethics-api/src/index.ts` validiert eingehende Payloads via Ajv (`EthicsCheckSchema`), erzwingt `x-request-id`, koppelt `/readyz` direkt an den Circuit-State (`cb` 0/1/2) und reicht optionale Service-Bearer (`INTERNAL_BEARER`) über den Boundary/RAG-Client weiter.'
+  - '`apps/verify-gate/src/index.ts` ergänzt JSON-/Rate-Limits (`GATE_JSON_LIMIT`, `VERIFY_RATE_RPS`), SSRF-Allowlist (`VERIFY_UPSTREAM_ALLOWLIST`, `VERIFY_STRICT_SAME_HOST`), Streaming-Proxying ohne Buffering sowie `Access-Control-Expose-Headers` für `x-ethics-*`.'
+  - 'UI zeigt Ethics-Verdicts via `EthicsBadge` + `fetchJsonWithEthics`, Live-Smoke prüft Health/Verify/Ethics/Chat, Grafana enthält `grafana/dashboards/mandala-ethics-gate.json`; Stabilization-Playbook, MandalaMap & `.env.example` spiegeln den Lauf.'
+deliverables:
+  - apps/ethics-api/src/index.ts
+  - apps/ethics-api/src/boundary-client.ts
+  - apps/ethics-api/src/http-client.ts
+  - apps/ethics-api/src/schemas.ts
+  - apps/ethics-api/src/__tests__/ethics-failclosed.test.ts
+  - apps/verify-gate/src/index.ts
+  - apps/verify-gate/src/__tests__/proxy-headers.test.ts
+  - apps/ui/src/components/MandalaAIPlayground.tsx
+  - apps/ui/src/components/EthicsBadge.tsx
+  - apps/ui/src/lib/fetchWithEthics.ts
+  - apps/ui/src/lib/streamWithEthics.ts
+  - scripts/smoke/live-smoke.mjs
+  - grafana/dashboards/mandala-ethics-gate.json
+  - .env.example
+  - docs/roadmap/v1.0-stabilization-playbook.md
+  - docs/roadmap/v1.0-stabilization-playbook.yaml
+  - MandalaMap.md
+  - MandalaMap.yaml
+  - MandalaMap.json
+  - codexfeedback.md
+  - codexfeedback.json
+  - codexfeedback.yaml
+  - codexfeedback/codexfeedback-latest.md
+  - codexfeedback/codexfeedback-latest.json
+  - codexfeedback/codexfeedback-latest.yaml
+  - analysis/devtalk102-evaluation.md
+commands:
+  - pnpm vitest run apps/ethics-api/src/__tests__/ethics-failclosed.test.ts
+  - pnpm vitest run apps/verify-gate/src/__tests__/proxy-headers.test.ts
+hook:
+  progress: Ethics Ajv/Request-ID + Verify-Gate Rate-Limit/Streaming aktiv, UI & Observability synchronisiert.
+  next_step: Ethics/RAG Alerting & Verify-Gate Streaming-E2E im UI finalisieren.
+repeat_required: false

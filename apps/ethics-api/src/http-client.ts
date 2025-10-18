@@ -43,12 +43,17 @@ export async function fetchJson<T>(url: string, options: FetchJsonOptions = {}):
     const timeout = setTimeout(() => controller.abort(), timeoutMs);
 
     try {
+      const baseHeaders: JsonHeaders = {
+        'content-type': 'application/json',
+        ...headers,
+      };
+      if (!baseHeaders.authorization && process.env.INTERNAL_BEARER) {
+        baseHeaders.authorization = `Bearer ${process.env.INTERNAL_BEARER}`;
+      }
+
       const response = await fetch(url, {
         method,
-        headers: {
-          'content-type': 'application/json',
-          ...headers,
-        },
+        headers: baseHeaders,
         body: body !== undefined ? JSON.stringify(body) : undefined,
         signal: controller.signal,
       });

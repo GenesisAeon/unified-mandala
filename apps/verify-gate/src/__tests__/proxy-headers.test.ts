@@ -38,6 +38,7 @@ describe('verify gate header forwarding', () => {
     process.env.NODE_ENV = 'test';
     process.env.PORT_OFFSET = '0';
     process.env.VERIFY_GATE_TIMEOUT_MS = '200';
+    process.env.VERIFY_RATE_RPS = '500';
   });
 
   afterEach(() => {
@@ -78,6 +79,7 @@ describe('verify gate header forwarding', () => {
       expect(response.body).toEqual({ ok: true, echo: { foo: 'bar' } });
       expect(response.headers['x-ethics-verdict']).toBe('green');
       expect(response.headers['x-ethics-evidence-count']).toBe('0');
+      expect(response.headers['access-control-expose-headers']).toContain('x-ethics-verdict');
 
       expect(receivedHeaders).not.toBeNull();
       expect((receivedHeaders as Record<string, unknown>)['authorization']).toBe('Bearer abc123');
