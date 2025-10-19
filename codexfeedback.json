@@ -1,6 +1,29 @@
 {
   "runs": [
     {
+      "fraktalrun": "Fraktal108 SSRF Hardening",
+      "status": "done",
+      "notes": "Verify-Gate resolved A- und AAAA-Records via `dns.lookup(..., { all: true, verbatim: true })`, fällt bei DNS-Fehlern fail-closed, blockiert ::1/Private deterministisch, zählt DNS-Probleme über `verify_gate_ssrf_resolve_error_total`/`verify_gate_ssrf_resolve_empty_total` und `makePinnedAgent` übernimmt die aufgelöste IP; Tests & Docs aktualisiert.",
+      "deliverables": [
+        "apps/verify-gate/src/security/ssrf.ts",
+        "apps/verify-gate/src/index.ts",
+        "apps/verify-gate/src/security/agent.ts",
+        "apps/verify-gate/src/metrics.ts",
+        "apps/verify-gate/src/__tests__/ssrf-allowlist.test.ts",
+        "apps/verify-gate/src/__tests__/ssrf-aaaa-loopback.test.ts",
+        "docs/roadmap/v1.0-stabilization-playbook.md",
+        "docs/roadmap/v1.0-stabilization-playbook.yaml",
+        "MandalaMap.yaml",
+        "MandalaMap.json",
+        "analysis/devtalk108-evaluation.md"
+      ],
+      "hook": {
+        "progress": "DNS-basierte SSRF-Schutzmaßnahmen aktiv, Prometheus-Counter für Resolver-Fehler verfügbar, Agenten pinnen resolvierte IP.",
+        "next_step": "Remote-IP-Validierung und Grafana/Alertmanager-Kennzahlen für `verify_gate_ssrf_resolve_*` evaluieren.",
+        "repeat_required": false
+      }
+    },
+    {
       "fraktalrun": "Fraktal106 GrafanaAlerts",
       "status": "done",
       "notes": "Grafana-Minidashboard `grafana/dashboards/verify-gate-ethics-mini.json` visualisiert Verify-Gate Idempotency-/SSRF-/Token-Metriken samt Upstream-p95 & Ethics-Degradation; Prometheus-Alerts `observability/alerts/verify-gate.yaml` triggern Replay-/SSRF-/Token-Spitzen und verlinken das JWT-Rotation-Runbook. docs/roadmap v1.0-Playbook, MandalaMap.*, analysis/devtalk106-evaluation.md und codexfeedback\\* referenzieren das Bundle; nächste Schritte: Alertmanager/Webhook-Routing, OPA-Bundle-Artefakte, optionaler „Strong only“-Filter."

@@ -1,0 +1,40 @@
+fraktal: 108
+status: done
+owner: Johann
+summary:
+  - '`apps/verify-gate/src/security/ssrf.ts` ersetzt den Resolver-Fallback durch `dns.lookup(..., { all: true, verbatim: true })`,
+    wirft bei leeren/fehlgeschlagenen DNS-Lookups fail-closed (`SSRFDenyError`), zählt Ereignisse über
+    `verify_gate_ssrf_resolve_error_total`/`verify_gate_ssrf_resolve_empty_total` und blockiert ::1/Private-Adressen deterministisch.'
+  - '`apps/verify-gate/src/index.ts` konsumiert das neue Allowlist-Ergebnis (`assertAllowed` liefert resolvierte IPs) und vermeidet
+    doppelte Counter-Inkremente; `apps/verify-gate/src/security/agent.ts` pinnt Upstream-Verbindungen mit der aufgelösten IP.'
+  - 'Neue Vitest-Suite `apps/verify-gate/src/__tests__/ssrf-aaaa-loopback.test.ts` beweist, dass AAAA-only ::1 Hosts blockiert werden;
+    bestehende Allowlist-Tests erwarten jetzt die zurückgegebene IP.'
+  - 'Docs & Tracker (`docs/roadmap/v1.0-stabilization-playbook.*`, `MandalaMap.*`, `codexfeedback-latest.*`, `codexfeedback.yaml`) spiegeln
+    den Fraktal108-Lauf mit DNS-Metriken & SSRF-Hardening wider.'
+deliverables:
+  - apps/verify-gate/src/security/ssrf.ts
+  - apps/verify-gate/src/security/agent.ts
+  - apps/verify-gate/src/index.ts
+  - apps/verify-gate/src/metrics.ts
+  - apps/verify-gate/src/__tests__/ssrf-allowlist.test.ts
+  - apps/verify-gate/src/__tests__/ssrf-aaaa-loopback.test.ts
+  - docs/roadmap/v1.0-stabilization-playbook.md
+  - docs/roadmap/v1.0-stabilization-playbook.yaml
+  - MandalaMap.yaml
+  - MandalaMap.json
+  - codexfeedback.yaml
+  - codexfeedback.md
+  - codexfeedback.json
+  - codexfeedback/codexfeedback-latest.md
+  - codexfeedback/codexfeedback-latest.yaml
+  - codexfeedback/codexfeedback-latest.json
+  - analysis/devtalk108-evaluation.md
+commands:
+  - pnpm -w vitest run apps/verify-gate/src/__tests__/ssrf-allowlist.test.ts
+  - pnpm -w vitest run apps/verify-gate/src/__tests__/ssrf-aaaa-loopback.test.ts
+hook:
+  progress:
+    DNS- und SSRF-Wächter schließen IPv6-Lücken, neue Prometheus-Counter decken Resolution-Fehler ab, Upstream-Agenten pinnen die
+    verifizierte IP.
+  next_step: Optional CNAME-/Remote-IP-Validierung für Undici-Agenten evaluieren und SSRF-Metriken in Grafana/Dashboards aufnehmen.
+repeat_required: false

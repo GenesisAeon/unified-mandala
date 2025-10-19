@@ -1,6 +1,29 @@
 fraktal:
-  current: 106
+  current: 108
   history:
+    - id: 108-ssrf-hardening
+      status: done
+      notes:
+        'Fraktal108 SSRF Hardening: Verify-Gate resolved A- und AAAA-Records via `dns.lookup(..., { all: true, verbatim: true })`,
+        fällt bei DNS-Fehlern fail-closed (kein `[host]`-Fallback), blockiert ::1/Private deterministisch, zählt DNS-Probleme über
+        `verify_gate_ssrf_resolve_error_total`/`verify_gate_ssrf_resolve_empty_total` und `makePinnedAgent` übernimmt die aufgelöste IP;
+        Tests & Docs (Stabilization-Playbook, MandalaMap, codexfeedback-latest.*) dokumentieren den Lauf.'
+      deliverables:
+        - apps/verify-gate/src/security/ssrf.ts
+        - apps/verify-gate/src/index.ts
+        - apps/verify-gate/src/security/agent.ts
+        - apps/verify-gate/src/metrics.ts
+        - apps/verify-gate/src/__tests__/ssrf-allowlist.test.ts
+        - apps/verify-gate/src/__tests__/ssrf-aaaa-loopback.test.ts
+        - docs/roadmap/v1.0-stabilization-playbook.md
+        - docs/roadmap/v1.0-stabilization-playbook.yaml
+        - MandalaMap.yaml
+        - MandalaMap.json
+        - analysis/devtalk108-evaluation.md
+      hook:
+        progress: DNS-basierte SSRF-Schutzmaßnahmen aktiv, Prometheus-Counter für Resolver-Fehler verfügbar, Agenten pinnen resolvierte IP.
+        next_step: Remote-IP-Validierung und Grafana/Alertmanager-Kennzahlen für `verify_gate_ssrf_resolve_*` evaluieren.
+        repeat_required: false
     - id: 106-grafana-alerts
       status: done
       notes:

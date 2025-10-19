@@ -1,6 +1,11 @@
-import { Resolver } from 'node:dns/promises';
+import { lookup as dnsLookup } from 'node:dns/promises';
+import { isIP } from 'node:net';
 import { URL } from 'node:url';
-import ipaddr from 'ipaddr.js';
+import {
+  ssrfBlocks,
+  ssrfResolveEmpty,
+  ssrfResolveErrors,
+} from '../metrics.js';
 
 type AllowPattern = {
   host: string;
@@ -8,8 +13,32 @@ type AllowPattern = {
   protocols: Set<string> | null;
 };
 
+export class SSRFDenyError extends Error {
+  public readonly code = 'SSRF_DENY';
+  public readonly resolvedIp?: string;
+
+  constructor(message: string, resolvedIp?: string) {
+    super(message);
+    this.name = 'SSRFDenyError';
+    this.resolvedIp = resolvedIp;
+  }
+}
+
+interface AllowResult {
+  ip: string;
+  url: URL;
+  addresses: string[];
+}
+
 function normalizeHost(value: string): string {
   return value.trim().toLowerCase();
+}
+
+function stripBrackets(value: string): string {
+  if (value.startsWith('[') && value.endsWith(']')) {
+    return value.slice(1, -1);
+  }
+  return value;
 }
 
 function parseAllowEntry(entry: string): AllowPattern | null {
@@ -108,8 +137,6 @@ const allowedProtocols = new Set(
     .filter(Boolean),
 );
 
-const resolver = new Resolver();
-
 function hostMatches(entryHost: string, candidateHost: string): boolean {
   if (entryHost === candidateHost) {
     return true;
@@ -147,75 +174,149 @@ function isSuspiciousLiteral(host: string): boolean {
   return /^0x/i.test(host) || /^0[0-9]/.test(host) || /\d{8,}/.test(host);
 }
 
-function parseAddress(address: string): ipaddr.IPv4 | ipaddr.IPv6 | null {
-  try {
-    if (address.includes(':') && !address.includes('%')) {
-      return ipaddr.parse(address);
+function normalizeIp(address: string): string {
+  const stripped = stripBrackets(address);
+  const lower = stripped.toLowerCase();
+  if (lower.startsWith('::ffff:')) {
+    const maybeIpv4 = stripped.slice(7);
+    if (/^\d{1,3}(?:\.\d{1,3}){3}$/.test(maybeIpv4)) {
+      return maybeIpv4;
     }
-    return ipaddr.parse(address);
-  } catch {
-    return null;
   }
+  return stripped;
 }
 
-function isBlockedAddress(address: ipaddr.IPv4 | ipaddr.IPv6): boolean {
-  const range = address.range();
-  if (range && ['loopback', 'linkLocal', 'uniqueLocal', 'multicast', 'unspecified', 'private'].includes(range)) {
+function isIpv4Address(value: string): boolean {
+  return /^\d{1,3}(?:\.\d{1,3}){3}$/.test(value);
+}
+
+function isPrivateIpv4(value: string): boolean {
+  if (value.startsWith('10.')) return true;
+  if (value.startsWith('127.')) return true;
+  if (value.startsWith('169.254.')) return true;
+  if (value.startsWith('192.168.')) return true;
+  if (value.startsWith('0.')) return true;
+  if (value.startsWith('172.')) {
+    const second = Number.parseInt(value.split('.')[1] ?? '', 10);
+    if (Number.isFinite(second) && second >= 16 && second <= 31) {
+      return true;
+    }
+  }
+  if (value.startsWith('100.')) {
+    const second = Number.parseInt(value.split('.')[1] ?? '', 10);
+    if (Number.isFinite(second) && second >= 64 && second <= 127) {
+      return true;
+    }
+  }
+  if (value.startsWith('192.0.0.')) return true;
+  if (value.startsWith('192.0.2.')) return true;
+  if (value.startsWith('198.18.') || value.startsWith('198.19.')) return true;
+  if (value.startsWith('198.51.100.')) return true;
+  if (value.startsWith('203.0.113.')) return true;
+  return value === '255.255.255.255';
+}
+
+function isPrivateIpv6(value: string): boolean {
+  const lower = value.toLowerCase();
+  if (lower === '::1' || lower === '::') {
     return true;
   }
-  if (address.kind() === 'ipv4') {
-    return address.match(ipaddr.parse('0.0.0.0'), 8) || address.match(ipaddr.parse('127.0.0.0'), 8);
+  if (lower.startsWith('fc') || lower.startsWith('fd')) {
+    return true;
   }
-  if (address.kind() === 'ipv6') {
-    return address.match(ipaddr.parse('::'), 128);
+  if (lower.startsWith('fe8') || lower.startsWith('fe9') || lower.startsWith('fea') || lower.startsWith('feb')) {
+    return true;
+  }
+  if (lower.startsWith('2001:db8:')) {
+    return true;
+  }
+  if (lower.startsWith('::ffff:')) {
+    return true;
   }
   return false;
 }
 
-async function resolveHost(host: string): Promise<string[]> {
-  if (isSuspiciousLiteral(host)) {
-    return [host];
+function isPrivateOrLoopbackAddress(address: string): boolean {
+  const normalized = normalizeIp(address);
+  if (isIpv4Address(normalized)) {
+    return isPrivateIpv4(normalized);
   }
-  try {
-    const answers = await resolver.resolve(host);
-    if (Array.isArray(answers) && answers.length > 0) {
-      return answers.map((entry) => String(entry));
-    }
-  } catch {}
-  return [host];
+  return isPrivateIpv6(normalized);
 }
 
-export async function assertAllowed(target: string): Promise<void> {
-  const url = new URL(target);
-  const protocol = url.protocol.replace(/:$/, '').toLowerCase();
-  if (!allowedProtocols.has(protocol)) {
-    throw new Error('protocol_not_allowed');
-  }
-  const port = url.port ? Number.parseInt(url.port, 10) : protocol === 'https' ? 443 : 80;
-  if (!Number.isFinite(port)) {
-    throw new Error('port_not_allowed');
+async function resolveHostAll(host: string): Promise<string[]> {
+  const strippedHost = stripBrackets(host);
+  const hostLabel = normalizeHost(strippedHost);
+
+  if (isSuspiciousLiteral(strippedHost)) {
+    throw new SSRFDenyError('upstream_private_blocked', strippedHost);
   }
 
-  if (isSuspiciousLiteral(url.hostname)) {
-    const err = new Error('upstream_private_blocked');
-    (err as Error & { resolvedIp?: string }).resolvedIp = url.hostname;
-    throw err;
+  if (isIP(strippedHost)) {
+    return [normalizeIp(strippedHost)];
   }
 
-  if (!isAllowed(url.hostname, port, protocol)) {
-    throw new Error('upstream_not_allowlisted');
-  }
-
-  const resolved = await resolveHost(url.hostname);
-  for (const address of resolved) {
-    const parsed = parseAddress(address.replace(/[\[\]]/g, ''));
-    if (!parsed) {
-      continue;
+  try {
+    const records = await dnsLookup(strippedHost, { all: true, verbatim: true });
+    const addresses = Array.from(new Set(records.map((record) => normalizeIp(record.address))));
+    if (addresses.length === 0) {
+      ssrfResolveEmpty.inc({ host: hostLabel });
+      throw new SSRFDenyError('dns_no_records');
     }
-    if (isBlockedAddress(parsed) && !isAllowed(parsed.toString(), port, protocol)) {
-      const error = new Error('upstream_private_blocked') as Error & { resolvedIp?: string };
-      error.resolvedIp = parsed.toString();
+    return addresses;
+  } catch (error) {
+    if (error instanceof SSRFDenyError) {
       throw error;
     }
+    ssrfResolveErrors.inc({ host: hostLabel });
+    throw new SSRFDenyError('dns_resolution_failed');
   }
+}
+
+function recordBlock(host: string, message: string, resolvedIp?: string): never {
+  const normalizedHost = host.trim().length > 0 ? host : 'unknown';
+  ssrfBlocks.inc({ host: normalizedHost, resolved_ip: resolvedIp ?? 'unknown' });
+  throw new SSRFDenyError(message, resolvedIp);
+}
+
+export async function assertAllowed(target: string): Promise<AllowResult> {
+  const url = new URL(target);
+  const protocol = url.protocol.replace(/:$/, '').toLowerCase();
+  const host = url.hostname;
+  const port = url.port ? Number.parseInt(url.port, 10) : protocol === 'https' ? 443 : 80;
+
+  if (!allowedProtocols.has(protocol)) {
+    return recordBlock(host, 'protocol_not_allowed');
+  }
+
+  if (!Number.isFinite(port)) {
+    return recordBlock(host, 'port_not_allowed');
+  }
+
+  if (isSuspiciousLiteral(host)) {
+    return recordBlock(host, 'upstream_private_blocked', host);
+  }
+
+  if (!isAllowed(host, port, protocol)) {
+    return recordBlock(host, 'upstream_not_allowlisted');
+  }
+
+  let addresses: string[];
+  try {
+    addresses = await resolveHostAll(host);
+  } catch (error) {
+    if (error instanceof SSRFDenyError) {
+      ssrfBlocks.inc({ host, resolved_ip: error.resolvedIp ?? 'unknown' });
+    }
+    throw error;
+  }
+
+  for (const address of addresses) {
+    const normalizedAddress = normalizeIp(address);
+    if (isPrivateOrLoopbackAddress(normalizedAddress) && !isAllowed(normalizedAddress, port, protocol)) {
+      return recordBlock(host, 'upstream_private_blocked', normalizedAddress);
+    }
+  }
+
+  return { ip: addresses[0], url, addresses };
 }

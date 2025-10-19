@@ -11,6 +11,7 @@ Codexfeedback
 - codexfeedback-87-qwen-rollout.yaml — docs/fraktal/codexfeedback/codexfeedback-87-qwen-rollout.yaml
 - codexfeedback-88-devtalk.yaml — docs/fraktal/codexfeedback/codexfeedback-88-devtalk.yaml
 - codexfeedback-fraktal100.yaml — docs/fraktal/codexfeedback/codexfeedback-fraktal100.yaml
+- codexfeedback-fraktal107.yaml — docs/fraktal/codexfeedback/codexfeedback-fraktal107.yaml
 - codexfeedback-fraktal44.yaml — docs/fraktal/codexfeedback/codexfeedback-fraktal44.yaml
 - codexfeedback-fraktal45.yaml — docs/fraktal/codexfeedback/codexfeedback-fraktal45.yaml
 - codexfeedback-fraktal46.yaml — docs/fraktal/codexfeedback/codexfeedback-fraktal46.yaml

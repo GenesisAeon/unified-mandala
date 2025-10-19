@@ -33,6 +33,20 @@ export const ssrfBlocks = new client.Counter({
   registers: [registry],
 });
 
+export const ssrfResolveErrors = new client.Counter({
+  name: 'verify_gate_ssrf_resolve_error_total',
+  help: 'DNS resolution errors while evaluating SSRF allowlist entries',
+  labelNames: ['host'],
+  registers: [registry],
+});
+
+export const ssrfResolveEmpty = new client.Counter({
+  name: 'verify_gate_ssrf_resolve_empty_total',
+  help: 'Empty DNS A/AAAA resolution results for SSRF allowlist entries',
+  labelNames: ['host'],
+  registers: [registry],
+});
+
 export const tokenFails = new client.Counter({
   name: 'verify_gate_token_fail_total',
   help: 'Upstream refused verdict token or token missing',
