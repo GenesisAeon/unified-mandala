@@ -8,7 +8,11 @@ import { fetch } from 'undici';
 import { buildUpstreamHeaders, exposeEthicsHeaders } from './http/headerForward.js';
 import { assertAllowed, hasAllowlistEntries } from './security/ssrf.js';
 import { makePinnedAgent } from './security/agent.js';
-import { forget, makeKey, rememberFinal, rememberPending, seen } from './idempotency/index.js';
+import { bodySha256, verdictFingerprint } from './security/fingerprint.js';
+import { RateLimiter } from './security/rateLimiter.js';
+import { JtiStore } from './idempotency/jtiStore.js';
+import { db, forget, makeKey, rememberFinal, rememberPending, seen } from './idempotency/index.js';
+import { scheduleGc } from './idempotency/scheduler.js';
 import { signVerdict } from './verdictToken.js';
 import {
   httpResponses,
@@ -18,6 +22,7 @@ import {
   ssrfBlocks,
   startUpstreamTimer,
   tokenFails,
+  rateLimitBlocks,
 } from './metrics.js';
 
 type VerdictColor = 'green' | 'yellow' | 'red';
@@ -27,6 +32,10 @@ interface EthicsResponseBody {
   verdict?: VerdictColor;
   reason?: string;
   neededEvidence?: string[];
+  grounding?: { citations?: Array<Record<string, unknown>> };
+  boundary?: { violations?: Array<Record<string, unknown>> };
+  evidence?: { domains?: string[]; strong?: number };
+  deps?: Record<string, unknown>;
 }
 
 interface JsonMeta {
@@ -48,6 +57,82 @@ interface JsonFailure {
 }
 
 type JsonResult<T> = JsonSuccess<T> | JsonFailure;
+
+const tokenTtlSeconds = Math.max(Number.parseInt(process.env.VERIFY_GATE_TOKEN_TTL_SEC ?? '60', 10), 5);
+const rateLimitRpm = Number.parseInt(process.env.VERIFY_GATE_RATE_RPM ?? '0', 10);
+
+const jtiStore = new JtiStore(db);
+scheduleGc(() => jtiStore.purge(), Number(process.env.VERIFY_GATE_GC_MS ?? process.env.VERIFY_GATE_IDEMP_TTL_MS ?? '60000'));
+
+const rateLimiter = rateLimitRpm > 0 ? new RateLimiter(db, rateLimitRpm) : null;
+
+function deriveSubject(req: Request): string {
+  const auth = typeof req.headers.authorization === 'string' ? req.headers.authorization : undefined;
+  if (auth) {
+    return `auth:${createHash('sha1').update(auth).digest('hex')}`;
+  }
+  const cookie = typeof req.headers.cookie === 'string' ? req.headers.cookie : undefined;
+  if (cookie) {
+    return `cookie:${createHash('sha1').update(cookie).digest('hex')}`;
+  }
+  return `ip:${req.ip}`;
+}
+
+function evidenceDomainsFrom(verdictBody: EthicsResponseBody): { domains: string[]; strongCount: number } {
+  const domains: string[] = [];
+  let strongCount = 0;
+  const citations = Array.isArray(verdictBody?.grounding?.citations)
+    ? (verdictBody.grounding.citations as Array<Record<string, unknown>>)
+    : [];
+  for (const citation of citations) {
+    const domainRaw = typeof citation.domain === 'string' ? citation.domain : undefined;
+    const uri = typeof citation.uri === 'string' ? citation.uri : undefined;
+    let domain = domainRaw;
+    if (!domain && uri) {
+      try {
+        domain = new URL(uri).hostname.replace(/^www\./, '');
+      } catch {}
+    }
+    if (domain) {
+      const normalized = domain.toLowerCase();
+      if (!domains.includes(normalized)) {
+        domains.push(normalized);
+      }
+    }
+    const strength = typeof citation.strength === 'string' ? citation.strength.toLowerCase() : undefined;
+    if (strength === 'strong') {
+      strongCount += 1;
+    }
+  }
+  const explicit = Array.isArray(verdictBody?.evidence?.domains)
+    ? (verdictBody.evidence?.domains as string[])
+    : [];
+  for (const domain of explicit) {
+    if (typeof domain === 'string') {
+      const normalized = domain.toLowerCase();
+      if (!domains.includes(normalized)) {
+        domains.push(normalized);
+      }
+    }
+  }
+  if (typeof verdictBody?.evidence?.strong === 'number') {
+    strongCount = Math.max(strongCount, verdictBody.evidence.strong);
+  }
+  return { domains, strongCount };
+}
+
+function boundaryHitsFrom(verdictBody: EthicsResponseBody): string[] {
+  const violations = Array.isArray(verdictBody?.boundary?.violations)
+    ? (verdictBody.boundary?.violations as Array<Record<string, unknown>>)
+    : [];
+  const hits: string[] = [];
+  for (const violation of violations) {
+    const rule = typeof violation.ruleId === 'string' ? violation.ruleId : typeof violation.rule === 'string' ? violation.rule : 'unknown';
+    const severity = typeof violation.severity === 'string' ? violation.severity : 'unknown';
+    hits.push(`${rule}:${severity}`);
+  }
+  return hits;
+}
 
 const app = express();
 app.set('trust proxy', ['loopback', 'linklocal', 'uniquelocal']);
@@ -198,9 +283,11 @@ app.post('/gate/*', async (req: Request, res: Response) => {
 
   const targetUrl = target.toString();
   const routeKey = target.pathname || '/';
+  const pathHash = sha1(`${(req.method ?? 'GET').toUpperCase()}:${target.pathname}`);
   const headerSignature = typeof req.headers.authorization === 'string' ? req.headers.authorization : '';
   const incomingIdempotencyKey = typeof req.headers['idempotency-key'] === 'string' ? req.headers['idempotency-key'] : undefined;
   const idemKey = incomingIdempotencyKey ?? makeKey(req.method ?? 'GET', targetUrl, req.body, headerSignature);
+  const subject = deriveSubject(req);
   const prior = seen(idemKey);
   if (prior) {
     idemHits.inc();
@@ -216,6 +303,14 @@ app.post('/gate/*', async (req: Request, res: Response) => {
     return res.status(409).json({ ok: false, reason: 'duplicate', requestId: reuseRequestId });
   }
 
+  if (rateLimiter) {
+    const decision = rateLimiter.take(subject);
+    if (!decision.allowed) {
+      rateLimitBlocks.inc({ scope: 'subject' });
+      return res.status(429).json({ ok: false, error: 'rate_limited', scope: 'subject' });
+    }
+  }
+
   const ethicsUrl = `${ethicsBase}/ethics/check`;
   const verdictResult = await postJson<EthicsResponseBody>(
     ethicsUrl,
@@ -227,10 +322,11 @@ app.post('/gate/*', async (req: Request, res: Response) => {
     { 'x-request-id': requestId },
   );
 
-  if (verdictResult.meta?.degraded) {
+  let degradedHeaderValue: string | null = null;
+  if (typeof verdictResult.meta?.degraded === 'string') {
     const degradedValue = verdictResult.meta.degraded.trim();
-    const headerValue = degradedValue.length > 0 ? degradedValue : '1';
-    res.setHeader('x-verify-degraded', headerValue);
+    degradedHeaderValue = degradedValue.length > 0 ? degradedValue : '1';
+    res.setHeader('x-verify-degraded', degradedHeaderValue);
   }
 
   if (!verdictResult.ok) {
@@ -267,25 +363,52 @@ app.post('/gate/*', async (req: Request, res: Response) => {
     await assertAllowed(targetUrl);
   } catch (error) {
     const hostLabel = target.hostname || target.host || 'unknown';
-    ssrfBlocks.inc({ host: hostLabel });
+    const resolvedIp = typeof (error as Error & { resolvedIp?: string }).resolvedIp === 'string'
+      ? (error as Error & { resolvedIp?: string }).resolvedIp!
+      : 'unknown';
+    ssrfBlocks.inc({ host: hostLabel, resolved_ip: resolvedIp });
     return res.status(403).json({ ok: false, error: (error as Error).message ?? 'TARGET_NOT_ALLOWED' });
   }
 
+  const bodyHash = bodySha256(req.body);
   const body = req.body !== undefined && req.body !== null ? JSON.stringify(req.body) : undefined;
   const headers = buildUpstreamHeaders(req, target.host);
-  if (verdictResult.meta?.degraded) {
-    const degradedValue = verdictResult.meta.degraded.trim();
-    const headerValue = degradedValue.length > 0 ? degradedValue : '1';
-    headers.set('x-verify-degraded', headerValue);
+  if (degradedHeaderValue) {
+    headers.set('x-verify-degraded', degradedHeaderValue);
   }
+  const { domains: evidenceDomains } = evidenceDomainsFrom(verdictBody);
+  const boundaryHits = boundaryHitsFrom(verdictBody);
+  const fingerprint = verdictFingerprint({
+    reqId: requestId,
+    method: req.method ?? 'GET',
+    path: routeKey,
+    bodyHash,
+    evidenceDomains,
+    boundaryHits,
+  });
+  const jti = createHash('sha256').update(`${subject}|${bodyHash}|${routeKey}`).digest('hex');
+  const degradedActive = Boolean(degradedHeaderValue);
+
   try {
-    const verdictToken = signVerdict({
-      v: verdict,
-      ec: evidenceCount,
-      rid: requestId,
-      pth: sha1(`${(req.method ?? 'GET').toUpperCase()}:${target.pathname}`),
-      exp: Math.floor(Date.now() / 1000) + 60,
+    const { token: verdictToken, claims } = signVerdict({
+      subject,
+      audience: routeKey,
+      verdict,
+      evidenceCount,
+      requestId,
+      pathHash,
+      fingerprint,
+      contentHash: bodyHash,
+      evidenceDomains,
+      boundaryHits,
+      degraded: degradedActive,
+      ttlSeconds: tokenTtlSeconds,
+      jti,
     });
+    if (jtiStore.seen(claims.jti, claims.exp)) {
+      rateLimitBlocks.inc({ scope: 'jti' });
+      return res.status(409).json({ ok: false, reason: 'jwt_replay', requestId });
+    }
     headers.set('x-ethics-token', verdictToken);
   } catch (error) {
     tokenFails.inc({ reason: 'sign_error' });

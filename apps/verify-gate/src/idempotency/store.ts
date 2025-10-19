@@ -1,4 +1,5 @@
 import Database from 'better-sqlite3';
+import { scheduleGc } from './scheduler.js';
 
 type VerdictColor = 'green' | 'yellow' | 'red';
 
@@ -21,7 +22,7 @@ type StoreEntry = {
   pending: boolean;
 };
 
-function resolveDbPath(): string {
+export function resolveDbPath(): string {
   const candidate = process.env.VERIFY_GATE_IDEMP_DB;
   if (candidate && candidate.trim().length > 0) {
     return candidate.trim();
@@ -34,8 +35,9 @@ function resolveTtl(): number {
   return Number.isFinite(raw) && raw > 0 ? raw : 120000;
 }
 
-const db = new Database(resolveDbPath());
+export const db = new Database(resolveDbPath());
 db.pragma('journal_mode = WAL');
+db.pragma('synchronous = NORMAL');
 
 db.exec(`
   CREATE TABLE IF NOT EXISTS idem (
@@ -176,7 +178,7 @@ export function count(): number {
   }
 }
 
-const gcInterval = Math.max(30000, resolveTtl());
-setInterval(purgeExpired, gcInterval).unref();
+const gcInterval = Number(process.env.VERIFY_GATE_GC_MS ?? resolveTtl());
+scheduleGc(purgeExpired, gcInterval);
 
 export type { StoreEntry };

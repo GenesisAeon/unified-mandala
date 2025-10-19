@@ -60,6 +60,11 @@ export function MandalaAIPlayground() {
   const [requireVerify, setRequireVerify] = useState<boolean>(true);
   const [verifyBlock, setVerifyBlock] = useState<VerifyBlock | null>(null);
   const evidenceItems = useMemo(() => toEvidenceChipItems(verifyBlock), [verifyBlock]);
+  const [strongOnly, setStrongOnly] = useState(false);
+  const filteredEvidenceItems = useMemo(
+    () => (strongOnly ? evidenceItems.filter((item) => item.strength === 'strong') : evidenceItems),
+    [evidenceItems, strongOnly],
+  );
   const [verifyScore, setVerifyScore] = useState<'red' | 'yellow' | 'green'>('red');
   const [publishBusy, setPublishBusy] = useState<boolean>(false);
   const [publishNote, setPublishNote] = useState<string>('');
@@ -528,7 +533,28 @@ export function MandalaAIPlayground() {
               </span>
             </span>
           </div>
-          <EvidenceChips evidence={evidenceItems} />
+          <div className="flex flex-wrap items-center justify-between gap-2">
+            <span className="text-xs text-slate-600">
+              <label className="inline-flex items-center gap-2">
+                <input
+                  type="checkbox"
+                  className="h-4 w-4"
+                  checked={strongOnly}
+                  onChange={(e) => setStrongOnly(e.target.checked)}
+                />
+                Strong-only Evidenz
+              </label>
+            </span>
+            {strongOnly && (
+              <span className="text-[11px] text-slate-500">
+                {filteredEvidenceItems.length} / {evidenceItems.length} Quellen sichtbar
+              </span>
+            )}
+          </div>
+          <EvidenceChips evidence={filteredEvidenceItems} />
+          {strongOnly && filteredEvidenceItems.length === 0 ? (
+            <p className="text-xs text-amber-600">Keine starken Evidenzen verfügbar – bitte weitere Quellen angeben.</p>
+          ) : null}
           <pre className="max-h-48 overflow-auto rounded-xl border bg-slate-50 p-2 text-xs whitespace-pre-wrap">
             {verifyBlock ? JSON.stringify(verifyBlock, null, 2) : 'No verify block detected.'}
           </pre>

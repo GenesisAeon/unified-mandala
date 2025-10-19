@@ -4,6 +4,8 @@ interface OpaResult {
   enforced: boolean;
   deny: boolean;
   reason?: string;
+  reasons?: string[];
+  output?: Record<string, unknown>;
 }
 
 const timeoutMs = Number.parseInt(process.env.ETHICS_OPA_TIMEOUT_MS ?? '1500', 10);
@@ -86,8 +88,23 @@ export async function evaluateOpa(input: unknown): Promise<OpaResult> {
         const raw = Buffer.concat(stdoutChunks).toString('utf8') || '{}';
         const parsed = JSON.parse(raw) as { result?: Array<{ expressions?: Array<{ value: unknown }> }> };
         const expressions = parsed.result?.[0]?.expressions ?? [];
-        const deny = expressions.some((expr) => Boolean(expr.value));
-        finish({ enforced: true, deny, reason: deny ? 'opa_policy_deny' : undefined });
+        let deny = false;
+        let reasons: string[] | undefined;
+        let output: Record<string, unknown> | undefined;
+        for (const expr of expressions) {
+          const value = expr.value as unknown;
+          if (typeof value === 'boolean') {
+            deny = deny || Boolean(value);
+          } else if (value && typeof value === 'object' && 'deny' in (value as Record<string, unknown>)) {
+            const objectValue = value as Record<string, unknown>;
+            deny = deny || Boolean(objectValue.deny);
+            if (Array.isArray(objectValue.reasons)) {
+              reasons = objectValue.reasons.map((entry) => String(entry));
+            }
+            output = objectValue;
+          }
+        }
+        finish({ enforced: true, deny, reason: deny ? (reasons?.[0] ?? 'opa_policy_deny') : undefined, reasons, output });
       } catch (error) {
         finish({ enforced: true, deny: true, reason: error instanceof Error ? error.message : 'opa_parse_error' });
       }

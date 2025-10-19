@@ -60,6 +60,7 @@ interface EthicsCheckResult {
   };
   neededEvidence: string[];
   deps?: Record<string, unknown>;
+  evidence?: { domains: string[]; strong: number };
 }
 
 const app = express();
@@ -519,6 +520,7 @@ app.post(
       ? (ragResponse?.citations as RagCitation[])
       : [];
     const { filtered: canonicalCitations, domains } = canonicalizeCitations(citations);
+    const strongEvidenceCount = canonicalCitations.filter((citation) => citation.strength === 'strong').length;
     domains.forEach((domain) => {
       evidenceDomainCounter.inc({ domain });
     });
@@ -555,18 +557,37 @@ app.post(
         riskScore: violations.length > 0 ? 0.9 : 0.1,
       },
       neededEvidence: baseNeededEvidence,
+      deps: {},
+      evidence: {
+        domains,
+        strong: strongEvidenceCount,
+      },
     };
+
+    (response.deps as Record<string, unknown>).evidence = response.evidence;
 
     const opaFlags: Record<string, unknown> = payload.flags ?? {};
 
-    const opaResult = await evaluateOpa({
-      intent,
-      verdict: response.verdict,
-      boundary: response.boundary,
-      grounding: { domains, citations: canonicalCitations },
+    const fallbackIntentCandidate = (payload as Record<string, unknown>)['intentType'];
+    const fallbackIntent =
+      typeof fallbackIntentCandidate === 'string' ? fallbackIntentCandidate : '';
+
+    const opaInput = {
+      degraded: false,
+      intent:
+        typeof payload.intent === 'string' && payload.intent.length > 0
+          ? payload.intent
+          : fallbackIntent,
+      risk: { high: violations.length > 0 || score < 0.5 },
+      evidence: {
+        domains,
+        domains_distinct: domains.length,
+        strong: strongEvidenceCount,
+      },
       flags: opaFlags,
-      evidence_domains_distinct: domains.length,
-    });
+    };
+
+    const opaResult = await evaluateOpa(opaInput);
 
     if (opaResult.enforced && opaResult.deny) {
       response = {
@@ -574,8 +595,14 @@ app.post(
         ok: false,
         verdict: 'red',
         reason: opaResult.reason ?? 'policy_denied',
-        neededEvidence: [],
-        deps: { ...(response.deps ?? {}), opa: opaResult.reason ?? 'policy_denied' },
+        neededEvidence: opaResult.reasons && opaResult.reasons.length > 0 ? opaResult.reasons : [],
+        deps: {
+          ...(response.deps ?? {}),
+          opa: {
+            reason: opaResult.reason ?? 'policy_denied',
+            reasons: opaResult.reasons ?? [],
+          },
+        },
       };
     }
 

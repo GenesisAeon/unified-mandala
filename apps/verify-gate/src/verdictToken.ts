@@ -1,11 +1,37 @@
 import jwt from 'jsonwebtoken';
 
-export type VerdictClaims = {
+export type SignedVerdictClaims = {
+  iss: 'verify-gate';
+  sub: string;
+  aud: string;
   v: 'green' | 'yellow' | 'red';
   ec: number;
   rid: string;
   pth: string;
+  fp: string;
+  ch: string;
+  ed?: string[];
+  bh?: string[];
+  degraded?: number;
+  jti: string;
+  iat: number;
   exp: number;
+};
+
+export type SignVerdictInput = {
+  subject: string;
+  audience: string;
+  verdict: 'green' | 'yellow' | 'red';
+  evidenceCount: number;
+  requestId: string;
+  pathHash: string;
+  fingerprint: string;
+  contentHash: string;
+  evidenceDomains: string[];
+  boundaryHits: string[];
+  degraded: boolean;
+  ttlSeconds: number;
+  jti: string;
 };
 
 type SecretEntry = { kid?: string; secret: Buffer | string };
@@ -47,11 +73,29 @@ function resolveActiveSecret(): SecretEntry {
   throw new Error('VERIFY_GATE_JWT_SECRETS or VERIFY_GATE_JWT_SECRET is required to sign verdict tokens');
 }
 
-export function signVerdict(claims: VerdictClaims): string {
+export function signVerdict(payload: SignVerdictInput): { token: string; claims: SignedVerdictClaims } {
   const { kid, secret } = resolveActiveSecret();
+  const nowSeconds = Math.floor(Date.now() / 1000);
+  const claims: SignedVerdictClaims = {
+    iss: 'verify-gate',
+    sub: payload.subject,
+    aud: payload.audience,
+    v: payload.verdict,
+    ec: payload.evidenceCount,
+    rid: payload.requestId,
+    pth: payload.pathHash,
+    fp: payload.fingerprint,
+    ch: payload.contentHash,
+    ed: payload.evidenceDomains.length ? [...new Set(payload.evidenceDomains)].sort() : undefined,
+    bh: payload.boundaryHits.length ? [...new Set(payload.boundaryHits)].sort() : undefined,
+    degraded: payload.degraded ? 1 : undefined,
+    jti: payload.jti,
+    iat: nowSeconds,
+    exp: nowSeconds + Math.max(payload.ttlSeconds, 1),
+  };
   const options: jwt.SignOptions = { algorithm: 'HS256', noTimestamp: true };
   if (kid) {
     options.header = { kid, alg: 'HS256', typ: 'JWT' };
   }
-  return jwt.sign(claims, secret, options);
+  return { token: jwt.sign(claims, secret, options), claims };
 }
