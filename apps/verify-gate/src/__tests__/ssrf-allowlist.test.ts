@@ -110,6 +110,7 @@ describe('ssrf allowlist parsing', () => {
     process.env.VERIFY_GATE_SSRF_ALLOWLIST = 'http://127.0.0.1:*';
     process.env.VERIFY_GATE_ALLOW_PROTOCOLS = 'http';
     const mod = await import('../security/ssrf');
-    await expect(mod.assertAllowed('http://127.0.0.1:43210')).resolves.not.toThrow();
+    const result = await mod.assertAllowed('http://127.0.0.1:43210');
+    expect(result.ip).toBe('127.0.0.1');
   });
 });

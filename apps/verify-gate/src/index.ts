@@ -19,7 +19,6 @@ import {
   idemHits,
   inflightGauge,
   registry,
-  ssrfBlocks,
   startUpstreamTimer,
   tokenFails,
   rateLimitBlocks,
@@ -359,15 +358,15 @@ app.post('/gate/*', async (req: Request, res: Response) => {
     });
   }
 
+  let allowResult: Awaited<ReturnType<typeof assertAllowed>> | null = null;
   try {
-    await assertAllowed(targetUrl);
+    allowResult = await assertAllowed(targetUrl);
   } catch (error) {
-    const hostLabel = target.hostname || target.host || 'unknown';
-    const resolvedIp = typeof (error as Error & { resolvedIp?: string }).resolvedIp === 'string'
-      ? (error as Error & { resolvedIp?: string }).resolvedIp!
-      : 'unknown';
-    ssrfBlocks.inc({ host: hostLabel, resolved_ip: resolvedIp });
     return res.status(403).json({ ok: false, error: (error as Error).message ?? 'TARGET_NOT_ALLOWED' });
+  }
+
+  if (!allowResult) {
+    return res.status(403).json({ ok: false, error: 'TARGET_NOT_ALLOWED' });
   }
 
   const bodyHash = bodySha256(req.body);
@@ -421,7 +420,7 @@ app.post('/gate/*', async (req: Request, res: Response) => {
 
   try {
     rememberPending(idemKey, requestId);
-    const agent = await makePinnedAgent(targetUrl);
+    const agent = await makePinnedAgent(targetUrl, allowResult.ip);
     const upstreamResponse = await fetch(targetUrl, {
       method: req.method,
       headers,
