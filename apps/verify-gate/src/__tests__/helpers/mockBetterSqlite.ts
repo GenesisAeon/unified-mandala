@@ -10,7 +10,12 @@ type StoredRow = {
   pending: number;
 };
 
+type JtiRow = {
+  exp: number;
+};
+
 const GLOBAL_STORE_KEY = Symbol.for('verify-gate-idem-stores');
+const GLOBAL_JTI_STORE_KEY = Symbol.for('verify-gate-jti-stores');
 
 function getStore(filename: string): Map<string, StoredRow> {
   const globalStores = (globalThis as unknown as Record<symbol, Map<string, Map<string, StoredRow>>>)[GLOBAL_STORE_KEY] ??=
@@ -23,8 +28,29 @@ function getStore(filename: string): Map<string, StoredRow> {
   return store;
 }
 
+function getJtiStore(filename: string): Map<string, JtiRow> {
+  const globalStores = (globalThis as unknown as Record<symbol, Map<string, Map<string, JtiRow>>>)[GLOBAL_JTI_STORE_KEY] ??=
+    new Map<string, Map<string, JtiRow>>();
+  let store = globalStores.get(filename);
+  if (!store) {
+    store = new Map<string, JtiRow>();
+    globalStores.set(filename, store);
+  }
+  return store;
+}
+
 class Statement<T = unknown> {
-  constructor(private readonly filename: string, private readonly kind: 'select' | 'insert' | 'deleteKey' | 'deleteExpired' | 'count') {}
+  constructor(
+    private readonly filename: string,
+    private readonly kind:
+      | 'select'
+      | 'insert'
+      | 'deleteKey'
+      | 'deleteExpired'
+      | 'count'
+      | 'insertJti'
+      | 'deleteJtiExpired',
+  ) {}
 
   run(payload?: unknown): { changes: number; lastInsertRowid: number } {
     const store = getStore(this.filename);
@@ -52,6 +78,33 @@ class Statement<T = unknown> {
       for (const [key, row] of store.entries()) {
         if (row.exp <= cutoff) {
           store.delete(key);
+          changes += 1;
+        }
+      }
+      return { changes, lastInsertRowid: 0 };
+    }
+    if (this.kind === 'insertJti' && payload && typeof payload === 'object') {
+      const entry = payload as Record<string, unknown>;
+      const key = String(entry.j ?? '');
+      if (!key) {
+        return { changes: 0, lastInsertRowid: 0 };
+      }
+      const jtiStore = getJtiStore(this.filename);
+      const exists = jtiStore.has(key);
+      if (!exists) {
+        jtiStore.set(key, { exp: Number(entry.exp ?? 0) });
+      }
+      return { changes: exists ? 0 : 1, lastInsertRowid: 0 };
+    }
+    if (this.kind === 'deleteJtiExpired') {
+      const params = (payload as Record<string, unknown>) ?? {};
+      const cutoff = Number(params.cutoff ?? params.exp ?? Date.now());
+      const limit = Number(params.limit ?? params.LIMIT ?? Number.POSITIVE_INFINITY);
+      let changes = 0;
+      const jtiStore = getJtiStore(this.filename);
+      for (const [key, row] of Array.from(jtiStore.entries())) {
+        if (row.exp <= cutoff && changes < limit) {
+          jtiStore.delete(key);
           changes += 1;
         }
       }
@@ -95,6 +148,12 @@ class MockDatabase {
   }
 
   prepare<T = unknown>(sql: string): Statement<T> {
+    if (sql.startsWith('INSERT OR IGNORE INTO jti')) {
+      return new Statement<T>(this.filename, 'insertJti');
+    }
+    if (sql.startsWith('DELETE FROM jti')) {
+      return new Statement<T>(this.filename, 'deleteJtiExpired');
+    }
     if (sql.startsWith('INSERT INTO idem')) {
       return new Statement<T>(this.filename, 'insert');
     }

@@ -3,10 +3,20 @@ import jwt from 'jsonwebtoken';
 import crypto from 'node:crypto';
 
 type VerdictClaims = {
+  iss: 'verify-gate';
+  sub: string;
+  aud: string;
   v: 'green' | 'yellow' | 'red';
   ec: number;
   rid: string;
   pth: string;
+  fp: string;
+  ch: string;
+  ed?: string[];
+  bh?: string[];
+  degraded?: number;
+  jti: string;
+  iat: number;
   exp: number;
 };
 
@@ -14,6 +24,37 @@ function sha1(value: string): string {
   const hash = crypto.createHash('sha1');
   hash.update(value);
   return hash.digest('hex');
+}
+
+function bodySha256(body: unknown): string {
+  if (typeof body === 'string') {
+    return crypto.createHash('sha256').update(body).digest('hex');
+  }
+  try {
+    return crypto.createHash('sha256').update(JSON.stringify(body ?? {})).digest('hex');
+  } catch {
+    return crypto.createHash('sha256').update(String(body ?? '')).digest('hex');
+  }
+}
+
+function verdictFingerprint(input: {
+  reqId: string;
+  method: string;
+  path: string;
+  bodyHash: string;
+  evidenceDomains: string[];
+  boundaryHits: string[];
+}): string {
+  const payload = JSON.stringify({
+    v: 1,
+    r: input.reqId,
+    m: input.method.toUpperCase(),
+    p: input.path,
+    b: input.bodyHash,
+    d: [...new Set(input.evidenceDomains)].sort(),
+    bh: [...new Set(input.boundaryHits)].sort(),
+  });
+  return crypto.createHash('sha256').update(payload).digest('hex');
 }
 
 type SecretStore = { map: Map<string, Buffer>; fallback?: string };
@@ -84,11 +125,40 @@ export function verifyEthics(req: Request, res: Response, next: NextFunction): v
       clockTolerance: 5,
     }) as VerdictClaims;
     const wantHash = sha1(`${(req.method ?? 'GET').toUpperCase()}:${req.path}`);
-    if (claims.v !== 'green' || claims.pth !== wantHash || typeof claims.ec !== 'number') {
+    const evidenceDomains = Array.isArray(claims.ed) ? claims.ed : [];
+    const boundaryHits = Array.isArray(claims.bh) ? claims.bh : [];
+    const headerRequestId = Array.isArray(req.headers['x-request-id'])
+      ? req.headers['x-request-id'][0]
+      : typeof req.headers['x-request-id'] === 'string'
+        ? req.headers['x-request-id']
+        : undefined;
+    const requestId = headerRequestId ?? claims.rid;
+    const bodyHash = bodySha256(req.body);
+    const wantFingerprint = verdictFingerprint({
+      reqId: requestId,
+      method: req.method ?? 'GET',
+      path: req.path,
+      bodyHash,
+      evidenceDomains,
+      boundaryHits,
+    });
+    if (
+      claims.v !== 'green' ||
+      claims.pth !== wantHash ||
+      typeof claims.ec !== 'number' ||
+      claims.fp !== wantFingerprint ||
+      claims.ch !== bodyHash ||
+      claims.rid !== requestId
+    ) {
       throw new Error('not_green_or_mismatch');
     }
     res.setHeader('x-ethics-verdict', 'green');
     res.setHeader('x-ethics-evidence-count', String(claims.ec));
+    res.locals.verify = {
+      subject: claims.sub,
+      evidenceDomains,
+      boundaryHits,
+    };
     next();
   } catch (error) {
     res.status(428).json({ ok: false, reason: 'ethics_verification_failed', detail: String((error as Error).message ?? error) });

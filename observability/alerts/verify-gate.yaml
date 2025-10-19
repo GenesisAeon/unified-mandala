@@ -31,3 +31,23 @@ groups:
           summary: 'Verify Gate token verification failures'
           description: 'Token guard rejected one or more requests in the last 5 minutes. Check JWT rotation status and verify upstream secrets.'
           runbook: docs/runbooks/verify-gate-jwt-rotation.md
+      - alert: EthicsDegradedActive
+        expr: job:ethics_degraded_rate_5m > 0
+        for: 1m
+        labels:
+          severity: warning
+          service: ethics-api
+        annotations:
+          summary: 'Ethics API fail-closed Pfad aktiv'
+          description: 'ethics_degraded_total steigt – Boundary/OPA prüfen und Verify-Gate-Banner kontrollieren.'
+          runbook: docs/runbooks/verify-gate-jwt-rotation.md
+      - alert: VerifyGateTokenFailSpike
+        expr: job:verify_gate_token_fail_rate_5m > 0.5
+        for: 10m
+        labels:
+          severity: critical
+          service: verify-gate
+        annotations:
+          summary: 'Verstärktes Scheitern von Verdict-Tokens'
+          description: 'Sustained token_fail Rate > 0.5/s über 10m. Rotation oder Upstream-Signatur prüfen.'
+          runbook: docs/runbooks/verify-gate-jwt-rotation.md

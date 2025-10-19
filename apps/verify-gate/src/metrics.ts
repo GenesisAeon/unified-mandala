@@ -29,7 +29,7 @@ export const idemHits = new client.Counter({
 export const ssrfBlocks = new client.Counter({
   name: 'verify_gate_ssrf_block_total',
   help: 'Requests blocked by SSRF allowlist',
-  labelNames: ['host'],
+  labelNames: ['host', 'resolved_ip'],
   registers: [registry],
 });
 
@@ -37,6 +37,13 @@ export const tokenFails = new client.Counter({
   name: 'verify_gate_token_fail_total',
   help: 'Upstream refused verdict token or token missing',
   labelNames: ['reason'],
+  registers: [registry],
+});
+
+export const rateLimitBlocks = new client.Counter({
+  name: 'verify_gate_rate_limit_total',
+  help: 'Requests blocked due to rate limits',
+  labelNames: ['scope'],
   registers: [registry],
 });
 

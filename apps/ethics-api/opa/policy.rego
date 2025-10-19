@@ -1,33 +1,72 @@
-package ethics
+package mandala.ethics
 
 default deny = false
 
-deny {
-  input.evidence_domains_distinct < 2
-}
+default reasons = []
 
-deny {
-  input.claim_type == "factual"
-  not strong_source_present
-}
+default strong_required = false
 
-strong_source_present {
-  some i
-  input.evidence[i].strength == "strong"
-}
+default degraded = false
 
-deny {
-  input.intent == "impersonation"
-}
-
-deny {
-  input.intent == "payment_scam"
-}
-
-deny {
-  input.intent == "malware"
-}
-
-deny {
+degraded {
   input.degraded == true
+}
+
+risky_intent {
+  input.intent == "factual"
+} else = risky_intent {
+  input.intent == "climate"
+} else = risky_intent {
+  input.risk == "high"
+}
+
+has_two_domains {
+  input.evidence.domains_distinct >= 2
+}
+
+has_strong_evidence {
+  input.evidence.strong >= 1
+}
+
+deny {
+  degraded
+}
+
+reasons[msg] {
+  degraded
+  msg := "service_degraded_fail_closed"
+}
+
+deny {
+  risky_intent
+  not has_two_domains
+}
+
+reasons[msg] {
+  risky_intent
+  not has_two_domains
+  msg := sprintf("insufficient_domain_diversity:%v", [input.evidence.domains])
+}
+
+deny {
+  risky_intent
+  not has_strong_evidence
+}
+
+reasons[msg] {
+  risky_intent
+  not has_strong_evidence
+  msg := "strong_evidence_required"
+}
+
+output := {
+  "deny": deny,
+  "reasons": reasons,
+  "risky": risky_intent,
+  "degraded": degraded,
+  "evidence": {
+    "domains_distinct": input.evidence.domains_distinct,
+    "strong": input.evidence.strong,
+    "domains": input.evidence.domains,
+  },
 }

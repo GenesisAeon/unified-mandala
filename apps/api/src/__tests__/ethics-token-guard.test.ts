@@ -12,22 +12,58 @@ let app: import('express').Express;
 
 const ORIGINAL_ENV = { ...process.env } as NodeJS.ProcessEnv;
 
+const defaultBody = { messages: [{ role: 'user', content: 'hi' }] };
+
+function bodySha256(body: unknown): string {
+  if (typeof body === 'string') {
+    return crypto.createHash('sha256').update(body).digest('hex');
+  }
+  return crypto.createHash('sha256').update(JSON.stringify(body ?? {})).digest('hex');
+}
+
+function verdictFingerprint(method: string, path: string, bodyHash: string, evidenceDomains: string[], boundaryHits: string[]) {
+  const payload = JSON.stringify({
+    v: 1,
+    r: 'guard-test',
+    m: method.toUpperCase(),
+    p: path,
+    b: bodyHash,
+    d: [...new Set(evidenceDomains)].sort(),
+    bh: [...new Set(boundaryHits)].sort(),
+  });
+  return crypto.createHash('sha256').update(payload).digest('hex');
+}
+
 function makeToken(
   path: string,
   method = 'POST',
   verdict: 'green' | 'yellow' | 'red' = 'green',
   kid = 'kidA',
   secret = 'guard-secret',
+  body: unknown = defaultBody,
 ) {
-  const hash = crypto.createHash('sha1');
-  hash.update(`${method}:${path}`);
+  const pathHash = crypto.createHash('sha1').update(`${method}:${path}`).digest('hex');
+  const bodyHash = bodySha256(body);
+  const evidenceDomains = ['doi.org'];
+  const boundaryHits: string[] = [];
+  const fingerprint = verdictFingerprint(method, path, bodyHash, evidenceDomains, boundaryHits);
+  const now = Math.floor(Date.now() / 1000);
   return jwt.sign(
     {
+      iss: 'verify-gate',
+      sub: 'auth:test',
+      aud: path,
       v: verdict,
       ec: 2,
       rid: 'guard-test',
-      pth: hash.digest('hex'),
-      exp: Math.floor(Date.now() / 1000) + 60,
+      pth: pathHash,
+      fp: fingerprint,
+      ch: bodyHash,
+      ed: evidenceDomains,
+      bh: boundaryHits,
+      jti: 'test-jti',
+      iat: now,
+      exp: now + 60,
     },
     secret,
     { algorithm: 'HS256', noTimestamp: true, header: kid ? { kid } : undefined },

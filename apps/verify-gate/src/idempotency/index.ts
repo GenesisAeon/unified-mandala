@@ -69,4 +69,5 @@ export function getEntryCount(): number {
   return count();
 }
 
+export { db } from './store.js';
 export type { Entry };

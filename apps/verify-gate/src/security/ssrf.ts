@@ -1,6 +1,6 @@
-import dns from 'node:dns/promises';
-import net from 'node:net';
+import { Resolver } from 'node:dns/promises';
 import { URL } from 'node:url';
+import ipaddr from 'ipaddr.js';
 
 type AllowPattern = {
   host: string;
@@ -108,6 +108,8 @@ const allowedProtocols = new Set(
     .filter(Boolean),
 );
 
+const resolver = new Resolver();
+
 function hostMatches(entryHost: string, candidateHost: string): boolean {
   if (entryHost === candidateHost) {
     return true;
@@ -141,30 +143,46 @@ export function hasAllowlistEntries(): boolean {
   return allowlistPatterns.length > 0;
 }
 
-function isPrivate(address: string): boolean {
-  if (!net.isIP(address)) {
-    return false;
-  }
+function isSuspiciousLiteral(host: string): boolean {
+  return /^0x/i.test(host) || /^0[0-9]/.test(host) || /\d{8,}/.test(host);
+}
 
-  if (address === '127.0.0.1' || address === '::1') {
+function parseAddress(address: string): ipaddr.IPv4 | ipaddr.IPv6 | null {
+  try {
+    if (address.includes(':') && !address.includes('%')) {
+      return ipaddr.parse(address);
+    }
+    return ipaddr.parse(address);
+  } catch {
+    return null;
+  }
+}
+
+function isBlockedAddress(address: ipaddr.IPv4 | ipaddr.IPv6): boolean {
+  const range = address.range();
+  if (range && ['loopback', 'linkLocal', 'uniqueLocal', 'multicast', 'unspecified', 'private'].includes(range)) {
     return true;
   }
-
-  if (address.includes(':')) {
-    // IPv6 private ranges – loopback already handled, treat fc00::/7 as private.
-    return address.toLowerCase().startsWith('fc') || address.toLowerCase().startsWith('fd');
+  if (address.kind() === 'ipv4') {
+    return address.match(ipaddr.parse('0.0.0.0'), 8) || address.match(ipaddr.parse('127.0.0.0'), 8);
   }
-
-  const parts = address.split('.').map((segment) => Number.parseInt(segment, 10));
-  if (parts.length !== 4 || parts.some((segment) => Number.isNaN(segment))) {
-    return false;
+  if (address.kind() === 'ipv6') {
+    return address.match(ipaddr.parse('::'), 128);
   }
+  return false;
+}
 
-  return (
-    parts[0] === 10 ||
-    (parts[0] === 172 && parts[1] >= 16 && parts[1] <= 31) ||
-    (parts[0] === 192 && parts[1] === 168)
-  );
+async function resolveHost(host: string): Promise<string[]> {
+  if (isSuspiciousLiteral(host)) {
+    return [host];
+  }
+  try {
+    const answers = await resolver.resolve(host);
+    if (Array.isArray(answers) && answers.length > 0) {
+      return answers.map((entry) => String(entry));
+    }
+  } catch {}
+  return [host];
 }
 
 export async function assertAllowed(target: string): Promise<void> {
@@ -178,21 +196,26 @@ export async function assertAllowed(target: string): Promise<void> {
     throw new Error('port_not_allowed');
   }
 
+  if (isSuspiciousLiteral(url.hostname)) {
+    const err = new Error('upstream_private_blocked');
+    (err as Error & { resolvedIp?: string }).resolvedIp = url.hostname;
+    throw err;
+  }
+
   if (!isAllowed(url.hostname, port, protocol)) {
     throw new Error('upstream_not_allowlisted');
   }
 
-  const addresses = await dns
-    .lookup(url.hostname, { all: true, verbatim: false })
-    .catch(() => [] as Array<{ address: string }>);
-  if (addresses.length === 0) {
-    return;
-  }
-
-  for (const entry of addresses) {
-    const resolvedHost = normalizeHost(entry.address);
-    if (isPrivate(entry.address) && !isAllowed(resolvedHost, port, protocol)) {
-      throw new Error('upstream_private_blocked');
+  const resolved = await resolveHost(url.hostname);
+  for (const address of resolved) {
+    const parsed = parseAddress(address.replace(/[\[\]]/g, ''));
+    if (!parsed) {
+      continue;
+    }
+    if (isBlockedAddress(parsed) && !isAllowed(parsed.toString(), port, protocol)) {
+      const error = new Error('upstream_private_blocked') as Error & { resolvedIp?: string };
+      error.resolvedIp = parsed.toString();
+      throw error;
     }
   }
 }
