@@ -2,29 +2,29 @@ fraktal: 106
 status: done
 owner: Johann
 summary:
-  - '`apps/verify-gate/src/index.ts` nutzt das neue `metrics.ts` (Counter `verify_gate_idem_hits_total`, `verify_gate_ssrf_block_total{host}`, `verify_gate_token_fail_total{reason}`, Histogram `verify_gate_upstream_duration_ms{method,route,code}`), trackt SSRF-Denies & Token-Sign-Fehler und reagiert fail-closed bei Secret-Problemen.'
-  - '`apps/verify-gate/src/verdictToken.ts` + `apps/api/src/middleware/verifyEthics.ts` rotieren Verdict-Tokens via `VERIFY_GATE_JWT_SECRETS`/`VERIFY_GATE_JWT_ACTIVE_KID` (kid-Header) und wählen Secrets kid-basiert oder per Legacy-Fallback; Tests (`ethics-token-guard.test.ts`) decken den Pfad ab.'
-  - '`apps/ethics-api/src/opa.ts` wertet Bundles über `ETHICS_OPA_ENABLE`/`ETHICS_OPA_PATH` (Policy `apps/ethics-api/opa/policy.rego`) per execFile/`--stdin-input` aus, liefert `evidence_domains_distinct` an Policies und bleibt beim Timeout fail-closed; `analysis/devtalk106-evaluation.md` dokumentiert den DevTalk-Abgleich.'
-  - '`apps/ui/src/components/MandalaAIPlayground.tsx` zeigt EvidenceChips (Domains + Strong-Badges) via neuem `EvidenceChips`-Component; MandalaMap.*, Stabilization-Playbook & codexfeedback.* spiegeln Fraktal106, Nightly (`ci.nightly.yml`) führt Chaos-Drill (`pnpm chaos:ethics --scenario boundary-down`) aus.'
-  - '`scripts/chaos/ethics-chaos.mjs` erhält CLI-Szenarien (Boundary-Kill via `lsof`, Fail-Closed-Assert), Nightly-Workflow startet Stack + Drill; Docs (`docs/roadmap/v1.0-stabilization-playbook.*`) und `analysis/devtalk106-evaluation.md` verankern den Lauf.'
+  - '`apps/verify-gate/src/idempotency/index.ts` + `apps/verify-gate/src/idempotency/store.ts` persistieren Idempotency-Keys via `better-sqlite3` (`VERIFY_GATE_IDEMP_DB`, TTL `VERIFY_GATE_IDEMP_TTL_MS`), aktualisieren die Header-Safelist (authorization/cookie/user-agent/accept/accept-language/content-type/x-request-id/x-forwarded-for/x-forwarded-proto/x-ethics-token) und halten Idempotency/SSRF/Token-Metriken (`metrics.ts`) inklusive `X-Verify-Degraded`-Weitergabe.'
+  - '`apps/api/src/middleware/verifyEthics.ts` reicht `X-Verify-Degraded` an Clients weiter; `apps/ui/src/lib/fetchWithEthics.ts` + `apps/ui/src/components/MandalaAIPlayground.tsx` zeigen Fail-closed-Banner mit Quelle, sodass Degraded-Modus in der UI sichtbar bleibt.'
+  - '`apps/api/src/__tests__/ethics-token-guard.test.ts` deckt Kid-Rotation & Drop-Szenarien ab, `docs/runbooks/verify-gate-jwt-rotation.md` dokumentiert den Rotation-Workflow und `analysis/devtalk106-evaluation.md` protokolliert Persistenz/Safelist/Degraded-Hooks.'
+  - '`apps/ethics-api/opa/policy.rego` verlangt starke Evidenz bei Fakten und verweigert Antworten, wenn `input.degraded == true`; Chaos-Skript `pnpm chaos:ethics --scenario boundary-down` bleibt Nightly-Drill (`ci.nightly.yml`).'
 deliverables:
   - apps/verify-gate/src/index.ts
   - apps/verify-gate/src/metrics.ts
   - apps/verify-gate/src/verdictToken.ts
+  - apps/verify-gate/src/idempotency/index.ts
+  - apps/verify-gate/src/idempotency/store.ts
+  - apps/verify-gate/src/http/headerForward.ts
   - apps/verify-gate/src/__tests__/idempotency.test.ts
-  - apps/verify-gate/src/__tests__/proxy-headers.test.ts
-  - apps/verify-gate/src/__tests__/streaming-preserves-headers.test.ts
-  - apps/verify-gate/src/__tests__/ssrf-allowlist.test.ts
   - apps/api/src/middleware/verifyEthics.ts
   - apps/api/src/__tests__/ethics-token-guard.test.ts
   - apps/ethics-api/src/opa.ts
   - apps/ethics-api/src/index.ts
   - apps/ethics-api/src/__tests__/ethics-failclosed.test.ts
   - apps/ethics-api/opa/policy.rego
+  - apps/ui/src/lib/fetchWithEthics.ts
   - apps/ui/src/components/MandalaAIPlayground.tsx
-  - apps/ui/src/components/EvidenceChips.tsx
   - scripts/chaos/ethics-chaos.mjs
   - .github/workflows/ci.nightly.yml
+  - docs/runbooks/verify-gate-jwt-rotation.md
   - docs/roadmap/v1.0-stabilization-playbook.md
   - docs/roadmap/v1.0-stabilization-playbook.yaml
   - MandalaMap.md
@@ -42,6 +42,6 @@ commands:
   - pnpm -w vitest run apps/api/src/__tests__/ethics-token-guard.test.ts
   - pnpm -w vitest run apps/ethics-api/src/__tests__/ethics-failclosed.test.ts
 hook:
-  progress: Metrics + JWT-Rotation + OPA-Bundle-Hook & Chaos-Drill laufen im Verify-Gate/Ethics-Stack.
-  next_step: Grafana-Panels/Alerts für Idempotency/SSRF/Token-Counter, Secret-Rotation-Runbook & OPA-Bundle-Artefakt ergänzen.
+  progress: Persistenter Idempotency-Store, Safelist, `X-Verify-Degraded`-Propagation, UI-Banner & JWT-Rotation-Runbook laufen im Verify-Gate/Ethics-Stack; Grafana-Minidashboard & Prometheus-Alerts ergänzen die Observability.
+  next_step: Alertmanager/Webhook-Routing dokumentieren, OPA-Bundle-Artefakte+Badges in CI integrieren und optionalen „Strong only“-Filter ausrollen.
 repeat_required: false

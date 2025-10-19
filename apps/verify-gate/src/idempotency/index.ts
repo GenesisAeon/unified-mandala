@@ -1,24 +1,29 @@
 import crypto from 'node:crypto';
+import { count, get, remove, setFinal, setPending, type StoreEntry } from './store.js';
+
+type VerdictColor = 'green' | 'yellow' | 'red';
 
 type Entry = {
   status: number;
   ts: number;
   requestId: string;
-  verdict?: 'green' | 'yellow' | 'red';
+  verdict?: VerdictColor;
   evidenceCount?: number;
   pending: boolean;
 };
 
-const TTL_MS = Number(process.env.VERIFY_GATE_IDEMP_TTL_MS ?? '60000');
-const store = new Map<string, Entry>();
-
-function cleanupExpired(): void {
-  const now = Date.now();
-  for (const [key, entry] of store) {
-    if (now - entry.ts > TTL_MS) {
-      store.delete(key);
-    }
+function mapStoreEntry(row: StoreEntry | null): Entry | null {
+  if (!row) {
+    return null;
   }
+  return {
+    status: row.status,
+    ts: row.ts,
+    requestId: row.requestId,
+    verdict: row.verdict,
+    evidenceCount: row.evidenceCount,
+    pending: row.pending,
+  };
 }
 
 export function makeKey(
@@ -39,48 +44,29 @@ export function makeKey(
 }
 
 export function seen(key: string): Entry | null {
-  cleanupExpired();
-  const entry = store.get(key);
-  if (!entry) {
-    return null;
-  }
-  if (Date.now() - entry.ts > TTL_MS) {
-    store.delete(key);
-    return null;
-  }
-  return entry;
+  return mapStoreEntry(get(key));
 }
 
 export function rememberPending(key: string, requestId: string): void {
-  cleanupExpired();
-  store.set(key, { status: -1, ts: Date.now(), requestId, pending: true });
+  setPending(key, requestId);
 }
 
 export function rememberFinal(
   key: string,
   status: number,
   requestId: string,
-  verdict: 'green' | 'yellow' | 'red',
+  verdict: VerdictColor,
   evidenceCount: number,
 ): void {
-  cleanupExpired();
-  store.set(key, {
-    status,
-    ts: Date.now(),
-    requestId,
-    verdict,
-    evidenceCount,
-    pending: false,
-  });
+  setFinal(key, status, requestId, verdict, evidenceCount);
 }
 
 export function forget(key: string): void {
-  store.delete(key);
+  remove(key);
 }
 
 export function getEntryCount(): number {
-  cleanupExpired();
-  return store.size;
+  return count();
 }
 
-setInterval(cleanupExpired, TTL_MS).unref();
+export type { Entry };

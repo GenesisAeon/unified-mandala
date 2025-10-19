@@ -8,7 +8,7 @@ import { fetch } from 'undici';
 import { buildUpstreamHeaders, exposeEthicsHeaders } from './http/headerForward.js';
 import { assertAllowed, hasAllowlistEntries } from './security/ssrf.js';
 import { makePinnedAgent } from './security/agent.js';
-import { forget, makeKey, rememberFinal, rememberPending, seen } from './idempotency.js';
+import { forget, makeKey, rememberFinal, rememberPending, seen } from './idempotency/index.js';
 import { signVerdict } from './verdictToken.js';
 import {
   httpResponses,
@@ -29,16 +29,22 @@ interface EthicsResponseBody {
   neededEvidence?: string[];
 }
 
+interface JsonMeta {
+  degraded?: string | null;
+}
+
 interface JsonSuccess<T> {
   ok: true;
   status: number;
   data: T;
+  meta: JsonMeta;
 }
 
 interface JsonFailure {
   ok: false;
   status: number | null;
   error: string;
+  meta: JsonMeta;
 }
 
 type JsonResult<T> = JsonSuccess<T> | JsonFailure;
@@ -133,15 +139,16 @@ async function postJson<T>(url: string, body: unknown, headers: Record<string, s
       signal: controller.signal,
     });
 
+    const degraded = response.headers.get('x-ethics-degraded');
     if (!response.ok) {
-      return { ok: false, status: response.status, error: `HTTP_${response.status}` };
+      return { ok: false, status: response.status, error: `HTTP_${response.status}`, meta: { degraded } };
     }
 
     const data = (await response.json()) as T;
-    return { ok: true, status: response.status, data };
+    return { ok: true, status: response.status, data, meta: { degraded } };
   } catch (error) {
     const reason = error instanceof Error ? (error.name === 'AbortError' ? 'TIMEOUT' : error.message) : 'NETWORK_ERROR';
-    return { ok: false, status: null, error: reason ?? 'NETWORK_ERROR' };
+    return { ok: false, status: null, error: reason ?? 'NETWORK_ERROR', meta: { degraded: undefined } };
   } finally {
     clearTimeout(timeout);
   }
@@ -220,6 +227,12 @@ app.post('/gate/*', async (req: Request, res: Response) => {
     { 'x-request-id': requestId },
   );
 
+  if (verdictResult.meta?.degraded) {
+    const degradedValue = verdictResult.meta.degraded.trim();
+    const headerValue = degradedValue.length > 0 ? degradedValue : '1';
+    res.setHeader('x-verify-degraded', headerValue);
+  }
+
   if (!verdictResult.ok) {
     const statusCode = verdictResult.status ?? 503;
     res.setHeader('x-ethics-verdict', 'red');
@@ -260,6 +273,11 @@ app.post('/gate/*', async (req: Request, res: Response) => {
 
   const body = req.body !== undefined && req.body !== null ? JSON.stringify(req.body) : undefined;
   const headers = buildUpstreamHeaders(req, target.host);
+  if (verdictResult.meta?.degraded) {
+    const degradedValue = verdictResult.meta.degraded.trim();
+    const headerValue = degradedValue.length > 0 ? degradedValue : '1';
+    headers.set('x-verify-degraded', headerValue);
+  }
   try {
     const verdictToken = signVerdict({
       v: verdict,

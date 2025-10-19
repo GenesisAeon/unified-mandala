@@ -10,6 +10,7 @@ Diary
 Codexfeedback
 - codexfeedback-87-qwen-rollout.yaml — docs/fraktal/codexfeedback/codexfeedback-87-qwen-rollout.yaml
 - codexfeedback-88-devtalk.yaml — docs/fraktal/codexfeedback/codexfeedback-88-devtalk.yaml
+- codexfeedback-fraktal100.yaml — docs/fraktal/codexfeedback/codexfeedback-fraktal100.yaml
 - codexfeedback-fraktal44.yaml — docs/fraktal/codexfeedback/codexfeedback-fraktal44.yaml
 - codexfeedback-fraktal45.yaml — docs/fraktal/codexfeedback/codexfeedback-fraktal45.yaml
 - codexfeedback-fraktal46.yaml — docs/fraktal/codexfeedback/codexfeedback-fraktal46.yaml
@@ -49,9 +50,14 @@ Codexfeedback
 - codexfeedback-fraktal81.yaml — docs/fraktal/codexfeedback/codexfeedback-fraktal81.yaml
 - codexfeedback-fraktal82.yaml — docs/fraktal/codexfeedback/codexfeedback-fraktal82.yaml
 - codexfeedback-fraktal83.yaml — docs/fraktal/codexfeedback/codexfeedback-fraktal83.yaml
-- codexfeedback-fraktal97.yaml — docs/fraktal/codexfeedback/codexfeedback-fraktal97.yaml
 - codexfeedback-fraktal85.yaml — docs/fraktal/codexfeedback/codexfeedback-fraktal85.yaml
 - codexfeedback-fraktal86.yaml — docs/fraktal/codexfeedback/codexfeedback-fraktal86.yaml
 - codexfeedback-fraktal87.yaml — docs/fraktal/codexfeedback/codexfeedback-fraktal87.yaml
 - codexfeedback-fraktal90.yaml — docs/fraktal/codexfeedback/codexfeedback-fraktal90.yaml
+- codexfeedback-fraktal93.yaml — docs/fraktal/codexfeedback/codexfeedback-fraktal93.yaml
+- codexfeedback-fraktal94.yaml — docs/fraktal/codexfeedback/codexfeedback-fraktal94.yaml
+- codexfeedback-fraktal95.yaml — docs/fraktal/codexfeedback/codexfeedback-fraktal95.yaml
+- codexfeedback-fraktal96.yaml — docs/fraktal/codexfeedback/codexfeedback-fraktal96.yaml
+- codexfeedback-fraktal97.yaml — docs/fraktal/codexfeedback/codexfeedback-fraktal97.yaml
+- codexfeedback-fraktal98.yaml — docs/fraktal/codexfeedback/codexfeedback-fraktal98.yaml
 - codexfeedback.yaml — docs/fraktal/codexfeedback/codexfeedback.yaml

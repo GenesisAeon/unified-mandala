@@ -24,19 +24,8 @@
       "title": "API Lite Proxy"
     },
     {
-      "path": "apps/ethics-api/",
       "category": "observability",
-      "status": "active",
-      "title": "Ethics fail-closed service",
       "description": "Express-basierter Ethics-Check (Boundary + RAG) mit Circuit-Breaker, fail-closed Modus und Prometheus-Metriken.",
-      "notes": [
-        "Fraktal99: Circuit-Breaker + fail-closed (`ETHICS_DEP_FAIL_MODE`), Counter `ethics_dependency_unreachable_total`, Gauge `boundary_circuit_state`, `/readyz`.",
-        "Timeout/Retry-Client (`fetchJson`) schützt Boundary/RAG-Aufrufe; Grounding/Boundary-Resultate bleiben synchron zur Verify-Gate-Pipeline.",
-        "Fraktal102: Ajv-Schema-Validierung (`EthicsCheckSchema`), Request-ID-Middleware (`x-request-id`), Circuit-basierte `/readyz`-Antwort (`cb` 0/1/2) und optionaler Service-Bearer (`INTERNAL_BEARER`) für Boundary/RAG-Aufrufe.",
-        "Fraktal103: Degradierte Modi (`x-ethics-degraded`, Counter `ethics_degraded_total`), Lifeboat-Regeln (Hate/PII/Scam), Boundary-Cache (`ETHICS_CACHE_TTL_MS`) per SHA1, Evidenz-Dedupe (`ETHICS_REQUIRE_UNIQUE_EVIDENCE_DOMAINS`), Counter `ethics_decision_log_total`/`ethics_evidence_domains_total`, Trace-Forwarding & gehashte Decision-Logs.",
-        "Fraktal104: PSL-basierte Evidenz (tldts) markiert starke Domains (DOI/arXiv/Gov), Lifeboat-Regeln umfassen Payment-Scam/Malware/Impersonation, Log-Sampling (`LOG_SAMPLE_GREEN`), `/readyz` meldet `boundary_cache_warm`, optionaler OPA-Deny (`ETHICS_OPA_*`). Vitest deckt Token-Guard & Idempotency-Flow ab.",
-        "Fraktal106: OPA-Evaluierung via `ETHICS_OPA_ENABLE` + `ETHICS_OPA_PATH` (execFile mit stdin-input, Bundle `apps/ethics-api/opa/policy.rego`), Antwort liefert `evidence_domains_distinct` und Playground zeigt EvidenceChips für Domains/Stärken."
-      ],
       "links": [
         {
           "label": "index.ts",
@@ -54,23 +43,23 @@
           "label": "opa policy",
           "path": "apps/ethics-api/opa/policy.rego"
         }
-      ]
+      ],
+      "notes": [
+        "Fraktal99: Circuit-Breaker + fail-closed (`ETHICS_DEP_FAIL_MODE`), Counter `ethics_dependency_unreachable_total`, Gauge `boundary_circuit_state`, `/readyz`.",
+        "Timeout/Retry-Client (`fetchJson`) schützt Boundary/RAG-Aufrufe; Grounding/Boundary-Resultate bleiben synchron zur Verify-Gate-Pipeline.",
+        "Fraktal102: Ajv-Schema-Validierung (`EthicsCheckSchema`), Request-ID-Middleware (`x-request-id`), Circuit-basierte `/readyz`-Antwort (`cb` 0/1/2), optionaler Service-Bearer (`INTERNAL_BEARER`) und weitergereichte Request-IDs zu Boundary/RAG.",
+        "Fraktal103: Degradierte Modi (`x-ethics-degraded`, Counter `ethics_degraded_total`), Lifeboat-Regeln (Hate/PII/Scam), Boundary-Cache (`ETHICS_CACHE_TTL_MS`) per SHA1, Evidenz-Dedupe (`ETHICS_REQUIRE_UNIQUE_EVIDENCE_DOMAINS`), Counter `ethics_decision_log_total`/`ethics_evidence_domains_total`, Trace-Forwarding & gehashte Decision-Logs.",
+        "Fraktal104: PSL-basierte Evidenz (tldts) markiert starke Domains (DOI/arXiv/Gov), Lifeboat-Regeln umfassen Payment-Scam/Malware/Impersonation, Log-Sampling (`LOG_SAMPLE_GREEN`), `/readyz` meldet `boundary_cache_warm`, optionaler OPA-Deny (`ETHICS_OPA_*`). Vitest deckt Token-Guard & Idempotency-Flow ab.",
+        "Fraktal106: OPA-Evaluierung nutzt `ETHICS_OPA_ENABLE` + `ETHICS_OPA_PATH` (execFile mit stdin-input, Bundle `apps/ethics-api/opa/policy.rego`), Ethics-Antwort liefert `evidence_domains_distinct` für Policies; EvidenceChips im Playground zeigen Domains/Stärken.",
+        "Fraktal106 Update: Policy verlangt starke Quellen bei Fakten (`apps/ethics-api/opa/policy.rego`), `input.degraded == true` verweigert Antworten; `X-Verify-Degraded` propagiert, MandalaMap & codexfeedback dokumentieren neue Knobs."
+      ],
+      "path": "apps/ethics-api/",
+      "status": "active",
+      "title": "Ethics fail-closed service"
     },
     {
-      "path": "apps/verify-gate/",
       "category": "core-runtime",
-      "status": "active",
-      "title": "Verify gate proxy",
       "description": "Proxy, der Requests nur mit grünem Ethics-Verdict an das Ziel weiterleitet und Telemetrie-Header setzt.",
-      "notes": [
-        "Fraktal99: Reicht Client-Header (Authorization, Cookies) durch, setzt `x-ethics-verdict`/`x-ethics-evidence-count` und liefert 5xx, wenn der Ethics-Check ausfällt.",
-        "Filtert Hop-by-Hop-Header, erzeugt `x-request-id`, nutzt `VERIFY_GATE_TIMEOUT_MS` und Tests sichern Header-Forwarding & Fail-Closed-Pfade.",
-        "Fraktal102: JSON-/Rate-Limits (`VERIFY_GATE_JSON_LIMIT`, `VERIFY_GATE_RPS`), SSRF-Allowlist (`VERIFY_UPSTREAM_ALLOWLIST`, `VERIFY_STRICT_SAME_HOST`), Streaming-Proxying und CORS-Expose für `x-ethics-*`-Header; Request-ID wird zum Ethics-Check durchgereicht.",
-        "Fraktal103: Header-Drop-Liste (spoofbare Metadaten), DNS-basierte SSRF-Allowlist (`VERIFY_GATE_UPSTREAM_ALLOWLIST`), Prometheus (`verify_gate_inflight`, `verify_gate_upstream_duration_ms`, `verify_gate_http_responses_total`) inklusive `/metrics`, Vitest für Streaming/SSRF.",
-        "Fraktal104: Idempotency-Cache (`VERIFY_GATE_IDEMP_TTL_MS`) stoppt Duplikate (409), JWT-signierte Ethics-Tokens (`VERIFY_GATE_JWT_SECRET`) + Upstream-Verifikation (`x-ethics-token`), IP-Pinning-Agent, `/readyz` prüft Allowlist + Ethics. `apps/api` schützt `/api/ai/chat` per `verifyEthics`, Chaos-Skript `pnpm chaos:ethics` dokumentiert Fail-Closed-Proben.",
-        "Fraktal105: Vitest aliasiert @opentelemetry/api auf Stub (tests/__mocks__/otel-api.ts), tests/setup/ci.ts setzt Loopback-Allowlists (VERIFY_GATE_SSRF_ALLOWLIST=http://127.0.0.1:*,http://localhost:*), SSRF-Gate akzeptiert Protokoll-/Port-Wildcards und verifyEthics prüft HS256 mit clockTolerance 5.",
-        "Fraktal106: Metrics nach metrics.ts ausgelagert (`verify_gate_idem_hits_total`, `verify_gate_ssrf_block_total{host}`, `verify_gate_token_fail_total{reason}`, Histogram `verify_gate_upstream_duration_ms{method,route,code}`), SSRF-Blocks & Token-Sign-Fehler werden gezählt, Verdict-Tokens rotieren via `VERIFY_GATE_JWT_SECRETS`/`VERIFY_GATE_JWT_ACTIVE_KID` mit `kid`-Header; Chaos-Skript `pnpm chaos:ethics --scenario boundary-down` + Nightly-Job prüfen Fail-Closed."
-      ],
       "links": [
         {
           "label": "index.ts",
@@ -84,7 +73,20 @@
           "label": "metrics.ts",
           "path": "apps/verify-gate/src/metrics.ts"
         }
-      ]
+      ],
+      "notes": [
+        "Fraktal99: Reicht Client-Header (Authorization, Cookies) durch, setzt `x-ethics-verdict`/`x-ethics-evidence-count` und liefert 5xx, wenn der Ethics-Check ausfällt.",
+        "Filtert Hop-by-Hop-Header, erzeugt `x-request-id`, nutzt `VERIFY_GATE_TIMEOUT_MS` und Tests sichern Header-Forwarding & Fail-Closed-Pfade.",
+        "Fraktal102: JSON-/Rate-Limits (`VERIFY_GATE_JSON_LIMIT`, `VERIFY_GATE_RPS`), SSRF-Allowlist (`VERIFY_UPSTREAM_ALLOWLIST`, `VERIFY_STRICT_SAME_HOST`), Streaming-Proxying, CORS-Expose für `x-ethics-*` sowie Request-ID-Weitergabe an Ethics.",
+        "Fraktal103: Header-Drop-Liste (spoofbare Metadaten), DNS-basierte SSRF-Allowlist (`VERIFY_GATE_UPSTREAM_ALLOWLIST`), Prometheus (`verify_gate_inflight`, `verify_gate_upstream_duration_ms`, `verify_gate_http_responses_total`) inklusive `/metrics`, Vitest für Streaming/SSRF.",
+        "Fraktal104: Idempotency-Cache (`VERIFY_GATE_IDEMP_TTL_MS`) stoppt Duplikate (409), JWT-signierte Ethics-Tokens (`VERIFY_GATE_JWT_SECRET`) + Upstream-Verifikation (`x-ethics-token`), IP-Pinning-Agent, `/readyz` prüft Allowlist + Ethics. `apps/api` schützt `/api/ai/chat` per `verifyEthics`, Chaos-Skript `pnpm chaos:ethics` dokumentiert Fail-Closed-Proben.",
+        "Fraktal105: Vitest aliasiert `@opentelemetry/api` auf Stub (`tests/__mocks__/otel-api.ts`), `tests/setup/ci.ts` setzt Loopback-Allowlists (`VERIFY_GATE_SSRF_ALLOWLIST=http://127.0.0.1:*,http://localhost:*`), SSRF-Gate akzeptiert Protokoll-/Port-Wildcards und Upstream `verifyEthics` prüft HS256 mit `clockTolerance: 5`.",
+        "Fraktal106: Metrics nach `metrics.ts` extrahiert (`verify_gate_idem_hits_total`, `verify_gate_ssrf_block_total{host}`, `verify_gate_token_fail_total{reason}`, Histogram mit `method/route/code`), SSRF-Denies & Token-Sign-Fehler werden gezählt, Verdict-Tokens rotieren via `VERIFY_GATE_JWT_SECRETS` + `VERIFY_GATE_JWT_ACTIVE_KID` mit `kid`-Header und SSRF-Blockierungen melden den Host. Chaos-Skript `pnpm chaos:ethics --scenario boundary-down` + Nightly-Job prüfen Fail-Closed.",
+        "Fraktal106 Update: Idempotency-Store persistiert via `better-sqlite3` (`VERIFY_GATE_IDEMP_DB`, TTL `VERIFY_GATE_IDEMP_TTL_MS`), `persist-replay`-Vitest deckt Neustarts ab; Header-Safelist (auth/cookie/user-agent/accept/accept-language/content-type/x-request-id/x-forwarded-for/x-forwarded-proto/x-ethics-token) ersetzt Drop-Liste, `X-Verify-Degraded` propagiert bis UI (`MandalaAIPlayground` Fail-Closed-Banner) und Runbook `docs/runbooks/verify-gate-jwt-rotation.md` beschreibt Kid-Rotation."
+      ],
+      "path": "apps/verify-gate/",
+      "status": "active",
+      "title": "Verify gate proxy"
     },
     {
       "category": "support",
@@ -193,6 +195,30 @@
       "path": "grafana/dashboards/rum-traces.json",
       "status": "active",
       "title": "RUM Traces Dashboard (Tempo)"
+    },
+    {
+      "category": "observability",
+      "description": "Lightweight Grafana board aggregating Verify-Gate counters (Idempotency, SSRF, Token-Fails), upstream latency p95 und Ethics-Degradierungen.",
+      "links": [
+        {
+          "label": "Prometheus alerts",
+          "path": "observability/alerts/verify-gate.yaml"
+        },
+        {
+          "label": "JWT rotation runbook",
+          "path": "docs/runbooks/verify-gate-jwt-rotation.md"
+        }
+      ],
+      "notes": [
+        {
+          "Fraktal106 Follow-up": "Schließt den DevTalk-Grafana-Hook; Panels nutzen Prometheus-Queries aus `apps/verify-gate/src/metrics.ts`."
+        },
+        "SSRF-Top5 Bargauge gruppiert nach `host`, Token-Fail Gauge nach `reason`; Idempotency-Stat nutzt `rate()` pro Minute.",
+        "Monitoring-Compose mountet Dashboards nach `/var/lib/grafana/dashboards` (siehe `docker-compose.yml` Profil `monitoring`)."
+      ],
+      "path": "grafana/dashboards/verify-gate-ethics-mini.json",
+      "status": "active",
+      "title": "Verify Gate & Ethics – Mini Dashboard"
     },
     {
       "category": "automation",
@@ -363,7 +389,7 @@
         "Fraktal79 ergänzt `pnpm start:cosmic-web` als orchestrierten Demo-Starter (NATS, Artefakte, Services, UI, Smoke) und verdrahtet mandala-ui direkt auf `/demo/ai-playground`.",
         "mandala-ui rendert den Playground selbst; der Dev-Server proxyt `/api/ai` auf Port 4000 (AI-Service `apps/api`, steuerbar via `MANDALA_AI_API_ORIGIN`).",
         "Fraktal83 behebt 400er-Antworten (\"Invalid value: 'text'\") durch korrektes Responses-Mapping (`input_text`/`output_text`) in `packages/ai`; UI-Smokes funktionieren wieder, sobald `OPENAI_API_KEY` gesetzt ist.",
-        "Fraktal98 ergänzt konditionale `vitest`/`test`/`development`-Exports in `packages/ai` und `resolve.conditions` in `vitest.config.ts`, damit Pre-Commit Vitest-Läufe ohne vorab gebaute `dist/`-Artefakte funktionieren (DevTalk Option A)."
+        "Fraktal98 setzt konditionale `vitest`/`test`/`development`-Exports in `packages/ai` und ergänzt `resolve.conditions` in `vitest.config.ts`, sodass Vitest-Pre-Commits ohne vorab gebaute `dist/`-Artefakte laufen (DevTalk Option A)."
       ],
       "path": "apps/",
       "status": "active",
@@ -855,7 +881,7 @@
       "links": [],
       "notes": [
         "Keep versioned with tools/kyverno-dry-run.mjs expectations.",
-        "Fraktal94: schemas/sigil-message/1-0-0.schema.json (Fingerprint + Valid/Invalid-Fixtures) runs strictly in pnpm schema:validate via scripts/validate-schemas.mjs (Ajv 2020)."
+        "Fraktal94: `schemas/sigil-message/1-0-0.schema.json` (Fingerprint + Valid/Invalid-Fixtures) läuft strikt im `pnpm schema:validate`-Gate (`scripts/validate-schemas.mjs`, Ajv 2020)."
       ],
       "path": "schemas/",
       "status": "active",
@@ -912,6 +938,10 @@
         {
           "label": "hook:qwen-smoke",
           "path": "scripts/hooks/qwen-smoke-trigger.mjs"
+        },
+        {
+          "label": "boundary-service",
+          "path": "scripts/boundary-service.ts"
         }
       ],
       "notes": [
@@ -933,11 +963,14 @@
         "Fraktal79 liefert `scripts/start-cosmic-web.mjs` als One-Command-Orchestrator (NATS, Artefakte, Services, UI, Smoke) und `scripts/ci/no-local-path-leaks.mjs` verhindert versehentliche Windows-Pfade oder Secrets im Staging-Bereich.",
         "Fraktal86 exportiert im Dev-Helper (`scripts/dev-helper.ps1`) eine Port-Matrix (share/experiments/rag/flags/api/health/realtime) inkl. Offset; `config/ports.ts` und `apps/ui/vite.config.ts` interpretieren Env-Overrides als absolute Ports, `scripts/dev-services.mjs` prüft Konflikte ohne Doppel-Offsets und der Health-Aggregator nutzt dynamische Portwerte.",
         "Fraktal87 startet den Qwen-Rollout: `scripts/smoke/qwen-smoke.mjs` liefert `pnpm smoke:qwen`, der Pre-Push-Trigger `scripts/hooks/qwen-smoke-trigger.mjs` (`pnpm hook:qwen-smoke`) läuft nur bei `AI_PROVIDER=qwen-*`/`UM_RUN_QWEN_SMOKE=1`; `.github/workflows/ci.qwen-smoke.yml` und `docs/roadmap/RoleOutCommands.(md|json|yaml)` spiegeln denselben Flow.",
-        "Fraktal95 Update versieht `scripts/smoke/boundary-smoke.mjs` mit einer `eventKey`-Dedupe-Prüfung, `tests/smoke/boundary-smoke.spec.ts` testet die Helper und `docs/runbooks/sigil-publisher.md` erklärt die Publisher-Integration.",
-        "Fraktal95 Runtime Hardening erzwingt TTL-Dedupe direkt im Boundary-Service (`409 duplicate_eventKey` + JSONL/Snapshot-Skip), exportiert `boundary_law_deduped_total`/`boundary_dedupe_store_size` und ergänzt Grafana-Kacheln sowie den Smoke-Metrik-Check.",
-        "Fraktal95 Canonical Hardening (2025-12-07) kanonisiert Payloads in `stableBoundaryEventKey`, schreibt Boundary-Snapshots atomar (`laws.json.tmp` → `laws.json`) und zählt HTTP-Statuscodes via `boundary_http_responses_total`.",
-        "Fraktal97 Publisher Rollout sorgt dafür, dass src/boundary/publisher.ts im Standard-HTTP-Fallback den Idempotency-Key mitsendet; Nicht-JS-Bridges bleiben als Follow-up.",
-        "Fraktal97 Observability Update (2025-12-09) erweitert `scripts/boundary-service.ts` um `boundary_observe_total{result=\"accepted|duplicate|invalid\"}`, `boundary_idempotency_missing_total`, CORS-Expose für `Idempotency-Key` und OTel-Attribute `boundary.event_key`/`boundary.dedupe.hit` im Smoke-Test."
+        "Fraktal95 Update versieht `scripts/smoke/boundary-smoke.mjs` mit `eventKey`-Dedupe-Prüfung, `tests/smoke/boundary-smoke.spec.ts` sichert die Helper und das Runbook `docs/runbooks/sigil-publisher.md` dokumentiert die Publisher-Integration.",
+        "Fraktal95 Runtime Hardening erzwingt TTL-Dedupe direkt im Boundary-Service (`409 duplicate_eventKey`, JSONL/Snapshot-Skip), exportiert `boundary_law_deduped_total` & `boundary_dedupe_store_size` und ergänzt Grafana-Kacheln plus Smoke-Metrik-Check.",
+        "Fraktal95 Canonical Hardening kanonisiert Payloads in `stableBoundaryEventKey`, schreibt Boundary-Snapshots atomar (`laws.json.tmp` → `laws.json`) und zählt HTTP-Statuscodes via `boundary_http_responses_total` für Alerting (202 vs. 409/5xx).",
+        "Fraktal97 Idempotency Alignment spiegelt `Idempotency-Key`, liefert `/boundary/status` (Dedupes/min, Cache, letzte 409, Snapshot-Errors), erweitert Prometheus (`boundary_http_response_family_total`, `boundary_snapshot_write_errors_total`), aktualisiert den Smoke-Test (Header-Echo + Status.json) und ergänzt `/demo/boundary` um Dedupe-/Cache-Badges.",
+        "Fraktal97 Publisher Rollout sorgt dafür, dass `src/boundary/publisher.ts` im Standard-HTTP-Fallback den `Idempotency-Key` mitsendet; Nicht-JS-Bridges bleiben als Follow-up im Tracker.",
+        {
+          "Fraktal97 Observability Update (2025-12-09) erweitert `/metrics` um `boundary_observe_total{result=\"accepted|duplicate|invalid\"}` sowie `boundary_idempotency_missing_total`, beantwortet `OPTIONS /boundary/observe` mit CORS-Headern (`Access-Control-Expose-Headers": "Idempotency-Key`) und setzt OTel-Attribute `boundary.event_key` / `boundary.dedupe.hit` für aktive Spans."
+        }
       ],
       "path": "scripts/",
       "status": "active",
@@ -1224,8 +1257,8 @@
     }
   },
   "meta": {
-    "fraktal": 105,
-    "generated": "2025-12-14T00:00:00Z",
+    "fraktal": 106,
+    "generated": "2025-12-14 12:00:00+00:00",
     "reference_docs": [
       "docs/roadmap/v1.0-stabilization-playbook.md",
       "docs/roadmap/v1.0-stabilization-playbook.yaml"

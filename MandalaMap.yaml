@@ -1,7 +1,7 @@
 meta:
   version: '1.0'
-  generated: '2025-12-14 00:00:00+00:00'
-  fraktal: 105
+  generated: '2025-12-14 12:00:00+00:00'
+  fraktal: 106
   repo: unified-mandala
   source: ChefDevAI MandalaMap bootstrap
   reference_docs:
@@ -113,6 +113,7 @@ entries:
       - 'Fraktal103: Degradierte Modi (`x-ethics-degraded`, Counter `ethics_degraded_total`), Lifeboat-Regeln (Hate/PII/Scam), Boundary-Cache (`ETHICS_CACHE_TTL_MS`) per SHA1, Evidenz-Dedupe (`ETHICS_REQUIRE_UNIQUE_EVIDENCE_DOMAINS`), Counter `ethics_decision_log_total`/`ethics_evidence_domains_total`, Trace-Forwarding & gehashte Decision-Logs.'
       - 'Fraktal104: PSL-basierte Evidenz (tldts) markiert starke Domains (DOI/arXiv/Gov), Lifeboat-Regeln umfassen Payment-Scam/Malware/Impersonation, Log-Sampling (`LOG_SAMPLE_GREEN`), `/readyz` meldet `boundary_cache_warm`, optionaler OPA-Deny (`ETHICS_OPA_*`). Vitest deckt Token-Guard & Idempotency-Flow ab.'
       - 'Fraktal106: OPA-Evaluierung nutzt `ETHICS_OPA_ENABLE` + `ETHICS_OPA_PATH` (execFile mit stdin-input, Bundle `apps/ethics-api/opa/policy.rego`), Ethics-Antwort liefert `evidence_domains_distinct` für Policies; EvidenceChips im Playground zeigen Domains/Stärken.'
+      - 'Fraktal106 Update: Policy verlangt starke Quellen bei Fakten (`apps/ethics-api/opa/policy.rego`), `input.degraded == true` verweigert Antworten; `X-Verify-Degraded` propagiert, MandalaMap & codexfeedback dokumentieren neue Knobs.'
     links:
       - label: index.ts
         path: apps/ethics-api/src/index.ts
@@ -135,6 +136,7 @@ entries:
       - 'Fraktal104: Idempotency-Cache (`VERIFY_GATE_IDEMP_TTL_MS`) stoppt Duplikate (409), JWT-signierte Ethics-Tokens (`VERIFY_GATE_JWT_SECRET`) + Upstream-Verifikation (`x-ethics-token`), IP-Pinning-Agent, `/readyz` prüft Allowlist + Ethics. `apps/api` schützt `/api/ai/chat` per `verifyEthics`, Chaos-Skript `pnpm chaos:ethics` dokumentiert Fail-Closed-Proben.'
       - 'Fraktal105: Vitest aliasiert `@opentelemetry/api` auf Stub (`tests/__mocks__/otel-api.ts`), `tests/setup/ci.ts` setzt Loopback-Allowlists (`VERIFY_GATE_SSRF_ALLOWLIST=http://127.0.0.1:*,http://localhost:*`), SSRF-Gate akzeptiert Protokoll-/Port-Wildcards und Upstream `verifyEthics` prüft HS256 mit `clockTolerance: 5`.'
       - 'Fraktal106: Metrics nach `metrics.ts` extrahiert (`verify_gate_idem_hits_total`, `verify_gate_ssrf_block_total{host}`, `verify_gate_token_fail_total{reason}`, Histogram mit `method/route/code`), SSRF-Denies & Token-Sign-Fehler werden gezählt, Verdict-Tokens rotieren via `VERIFY_GATE_JWT_SECRETS` + `VERIFY_GATE_JWT_ACTIVE_KID` mit `kid`-Header und SSRF-Blockierungen melden den Host. Chaos-Skript `pnpm chaos:ethics --scenario boundary-down` + Nightly-Job prüfen Fail-Closed.'
+      - 'Fraktal106 Update: Idempotency-Store persistiert via `better-sqlite3` (`VERIFY_GATE_IDEMP_DB`, TTL `VERIFY_GATE_IDEMP_TTL_MS`), `persist-replay`-Vitest deckt Neustarts ab; Header-Safelist (auth/cookie/user-agent/accept/accept-language/content-type/x-request-id/x-forwarded-for/x-forwarded-proto/x-ethics-token) ersetzt Drop-Liste, `X-Verify-Degraded` propagiert bis UI (`MandalaAIPlayground` Fail-Closed-Banner) und Runbook `docs/runbooks/verify-gate-jwt-rotation.md` beschreibt Kid-Rotation.'
     links:
       - label: index.ts
         path: apps/verify-gate/src/index.ts
@@ -238,6 +240,20 @@ entries:
         path: docs/observability/otel/otel-collector.yaml
       - label: Tempo config
         path: docs/observability/tempo/tempo.yaml
+  - path: grafana/dashboards/verify-gate-ethics-mini.json
+    category: observability
+    status: active
+    title: Verify Gate & Ethics – Mini Dashboard
+    description: Lightweight Grafana board aggregating Verify-Gate counters (Idempotency, SSRF, Token-Fails), upstream latency p95 und Ethics-Degradierungen.
+    notes:
+      - Fraktal106 Follow-up: Schließt den DevTalk-Grafana-Hook; Panels nutzen Prometheus-Queries aus `apps/verify-gate/src/metrics.ts`.
+      - SSRF-Top5 Bargauge gruppiert nach `host`, Token-Fail Gauge nach `reason`; Idempotency-Stat nutzt `rate()` pro Minute.
+      - Monitoring-Compose mountet Dashboards nach `/var/lib/grafana/dashboards` (siehe `docker-compose.yml` Profil `monitoring`).
+    links:
+      - label: Prometheus alerts
+        path: observability/alerts/verify-gate.yaml
+      - label: JWT rotation runbook
+        path: docs/runbooks/verify-gate-jwt-rotation.md
   - path: scripts/meta/backlog-consolidate.mjs
     category: automation
     status: active

@@ -2,6 +2,7 @@ import { AddressInfo } from 'node:net';
 import express from 'express';
 import request from 'supertest';
 import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest';
+import { mockBetterSqlite } from './helpers/mockBetterSqlite.js';
 
 const ORIGINAL_ENV = { ...process.env };
 
@@ -41,6 +42,7 @@ describe('verify gate header forwarding', () => {
       default: () => (_req: unknown, _res: unknown, next: () => void) => next(),
       __esModule: true,
     }));
+    mockBetterSqlite();
     vi.mock('prom-client', () => {
       class MockCounter {
         inc(): void {}
