@@ -565,6 +565,7 @@ app.post(
       boundary: response.boundary,
       grounding: { domains, citations: canonicalCitations },
       flags: opaFlags,
+      evidence_domains_distinct: domains.length,
     });
 
     if (opaResult.enforced && opaResult.deny) {

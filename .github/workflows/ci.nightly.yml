@@ -28,3 +28,17 @@ jobs:
           pnpm install --frozen-lockfile
           pnpm --if-present repomap:build
           pnpm --if-present repomap:validate
+      - name: Chaos drill – ethics fail-closed
+        shell: bash
+        run: |
+          pnpm install --frozen-lockfile
+          pnpm dev:stack > devstack.log 2>&1 &
+          stack_pid=$!
+          cleanup() {
+            if kill -0 "$stack_pid" 2>/dev/null; then
+              kill "$stack_pid" 2>/dev/null || true
+            fi
+          }
+          trap cleanup EXIT
+          sleep 15
+          pnpm chaos:ethics --scenario boundary-down --expect failclosed

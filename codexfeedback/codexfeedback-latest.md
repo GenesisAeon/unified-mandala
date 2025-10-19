@@ -1,21 +1,21 @@
-# Codexfeedback – Fraktal 105
+# Codexfeedback – Fraktal 106
 
-- Phase: Verify-Gate Test Hardening & DevTalk105 Hooks
-- Status: Vitest aliasiert `@opentelemetry/api` auf einen No-Op-Stub, `tests/setup/ci.ts` setzt Loopback-Allowlists für Verify-Gate, SSRF-Gate akzeptiert Wildcards und Upstream `verifyEthics` toleriert Clock-Skew (HS256).
-- Next Hook: Prometheus-Counter (Idempotency/SSRF/Token-Failures) + Grafana-Alerts ergänzen und OPA-Bundle/CLI in CI verteilen.
+- Phase: Observability & Rotation (Verify-Gate + Ethics-Stack)
+- Status: Verify-Gate bündelt Prometheus (`metrics.ts`) mit Countern für Idempotency/SSRF/Token-Fails und Histogram-Latenzen (`method/route/code`), rotiert Verdict-Tokens via `VERIFY_GATE_JWT_SECRETS`/`VERIFY_GATE_JWT_ACTIVE_KID`, und Ethics-API zieht OPA-Bundles (`apps/ethics-api/opa/policy.rego`) per `execFile` ein; Mandala-Playground zeigt EvidenceChips, Chaos-Drill `pnpm chaos:ethics --scenario boundary-down --expect failclosed` hängt im Nightly.
+- Next Hook: Grafana-Panels/Alerts für die neuen Verify-Gate-Counter bauen, Secret-Rotation-Runbook dokumentieren und OPA-Bundle-Artefakte/Badges verteilen.
 
 What changed
 
-- `vitest.config.ts` (Alias + Inline-Regeln für `@opentelemetry/api`).
-- Neues Stub-Modul `tests/__mocks__/otel-api.ts`.
-- `tests/setup/ci.ts` setzt Loopback-Allowlist (`VERIFY_GATE_SSRF_ALLOWLIST`, `VERIFY_GATE_ALLOW_PROTOCOLS`).
-- `apps/verify-gate/src/security/ssrf.ts` akzeptiert `VERIFY_GATE_SSRF_ALLOWLIST` mit Protokoll-/Port-Wildcards; Test `ssrf-allowlist.test.ts` prüft Wildcards.
-- `apps/api/src/middleware/verifyEthics.ts` erzwingt `algorithms: ['HS256']` + `clockTolerance: 5`.
-- Stabilization-Playbook (MD/YAML), MandalaMap (MD/JSON/YAML) und codexfeedback.\* spiegeln den Lauf.
-- `analysis/devtalk105-evaluation.md` dokumentiert den DevTalk-Abgleich.
+- `apps/verify-gate/src/metrics.ts` registriert Prometheus-Registry + Counter/Histogram und wird in `apps/verify-gate/src/index.ts` angebunden (Idempotency/SSRF/Token-Fail).
+- `apps/verify-gate/src/verdictToken.ts` liest Secret-Mappings (`VERIFY_GATE_JWT_SECRETS`) inkl. Active-KID; Legacy-Secret bleibt Fallback.
+- `apps/api/src/middleware/verifyEthics.ts` akzeptiert JWTs per `kid`-basierter Secret-Auswahl, Test `ethics-token-guard.test.ts` prüft Multi-Secret + Header.
+- `apps/ethics-api/src/opa.ts` wertet Policies (`apps/ethics-api/opa/policy.rego`) via `execFile('opa', … '--stdin-input')` aus und liefert `evidence_domains_distinct`.
+- `apps/ui/src/components/EvidenceChips.tsx` + `MandalaAIPlayground.tsx` zeigen Domain-Diversität/Strong-Badges; Chaos-Skript & Nightly (`scripts/chaos/ethics-chaos.mjs`, `.github/workflows/ci.nightly.yml`) fahren Boundary-Down-Drill.
+- Docs & Mappings (`docs/roadmap/v1.0-stabilization-playbook.*`, `MandalaMap.*`, `codexfeedback.*`, `analysis/devtalk106-evaluation.md`) spiegeln Fraktal106.
 
 Validate
 
-- `pnpm -w vitest run apps/verify-gate/src/__tests__/ssrf-allowlist.test.ts`
+- `pnpm -w vitest run apps/verify-gate/src/__tests__/idempotency.test.ts`
 - `pnpm -w vitest run apps/api/src/__tests__/ethics-token-guard.test.ts`
-- `pnpm -w vitest run tests/api/chat-success.test.ts`
+- `pnpm -w vitest run apps/ethics-api/src/__tests__/ethics-failclosed.test.ts`
+- `pnpm chaos:ethics --scenario boundary-down --expect failclosed` _(Nightly Drill; lokal optional mit laufendem Stack)_

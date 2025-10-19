@@ -1,15 +1,23 @@
 {
-  "fraktal": 105,
-  "phase": "Verify-Gate Test Hardening & DevTalk105 Hooks",
-  "status": "Vitest aliasiert @opentelemetry/api auf einen Stub, tests/setup/ci.ts setzt Loopback-Allowlists, Verify-Gate SSRF akzeptiert Protokoll-/Port-Wildcards und Upstream `verifyEthics` nutzt HS256 + clockTolerance=5.",
-  "nextHook": "Prometheus-Counter (Idempotency/SSRF/Token) & Grafana-Alerts ergänzen sowie OPA-Bundle/CLI in CI ausliefern.",
+  "fraktal": 106,
+  "phase": "Observability & Rotation (Verify-Gate + Ethics-Stack)",
+  "status": "Verify-Gate bündelt Prometheus (metrics.ts) mit Idempotency/SSRF/Token Countern und Histogram-Latenzen (method/route/code), rotiert Verdict-Tokens via VERIFY_GATE_JWT_SECRETS/VERIFY_GATE_JWT_ACTIVE_KID, und Ethics-API lädt OPA-Bundles (apps/ethics-api/opa/policy.rego) über execFile; Mandala-Playground zeigt EvidenceChips und der Chaos-Drill pnpm chaos:ethics --scenario boundary-down --expect failclosed läuft im Nightly.",
+  "nextHook": "Grafana-Panels/Alerts für verify_gate_* Counter liefern, Secret-Rotation-Runbook dokumentieren und OPA-Bundle-Artefakte/Badges verteilen.",
   "changed": [
-    "vitest.config.ts",
-    "tests/__mocks__/otel-api.ts",
-    "tests/setup/ci.ts",
-    "apps/verify-gate/src/security/ssrf.ts",
-    "apps/verify-gate/src/__tests__/ssrf-allowlist.test.ts",
+    "apps/verify-gate/src/metrics.ts",
+    "apps/verify-gate/src/index.ts",
+    "apps/verify-gate/src/verdictToken.ts",
+    "apps/verify-gate/src/__tests__/idempotency.test.ts",
     "apps/api/src/middleware/verifyEthics.ts",
+    "apps/api/src/__tests__/ethics-token-guard.test.ts",
+    "apps/ethics-api/src/opa.ts",
+    "apps/ethics-api/opa/policy.rego",
+    "apps/ethics-api/src/index.ts",
+    "apps/ethics-api/src/__tests__/ethics-failclosed.test.ts",
+    "apps/ui/src/components/EvidenceChips.tsx",
+    "apps/ui/src/components/MandalaAIPlayground.tsx",
+    "scripts/chaos/ethics-chaos.mjs",
+    ".github/workflows/ci.nightly.yml",
     "docs/roadmap/v1.0-stabilization-playbook.md",
     "docs/roadmap/v1.0-stabilization-playbook.yaml",
     "MandalaMap.md",
@@ -20,11 +28,13 @@
     "codexfeedback.yaml",
     "codexfeedback/codexfeedback-latest.md",
     "codexfeedback/codexfeedback-latest.yaml",
-    "analysis/devtalk105-evaluation.md"
+    "analysis/devtalk106-evaluation.md",
+    "codexfeedback/codexfeedback-fraktal106.yaml"
   ],
   "validate": [
-    "pnpm -w vitest run apps/verify-gate/src/__tests__/ssrf-allowlist.test.ts",
+    "pnpm -w vitest run apps/verify-gate/src/__tests__/idempotency.test.ts",
     "pnpm -w vitest run apps/api/src/__tests__/ethics-token-guard.test.ts",
-    "pnpm -w vitest run tests/api/chat-success.test.ts"
+    "pnpm -w vitest run apps/ethics-api/src/__tests__/ethics-failclosed.test.ts",
+    "pnpm chaos:ethics --scenario boundary-down --expect failclosed"
   ]
 }

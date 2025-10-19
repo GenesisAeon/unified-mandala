@@ -43,6 +43,9 @@ describe('verify gate streaming proxy', () => {
         dec(): void {}
       }
       class MockHistogram {
+        labels(): { observe: () => void } {
+          return { observe: () => {} };
+        }
         startTimer(): () => void {
           return () => {};
         }
@@ -53,12 +56,17 @@ describe('verify gate streaming proxy', () => {
           return '';
         }
       }
-      return {
+      const module = {
         collectDefaultMetrics: () => undefined,
         Counter: MockCounter,
         Gauge: MockGauge,
         Histogram: MockHistogram,
         Registry: MockRegistry,
+      };
+      return {
+        __esModule: true,
+        default: module,
+        ...module,
       };
     });
     process.env = { ...ORIGINAL_ENV } as NodeJS.ProcessEnv;

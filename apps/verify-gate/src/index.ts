@@ -5,18 +5,20 @@ import express, { type NextFunction, type Request, type Response } from 'express
 import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
 import { fetch } from 'undici';
-import {
-  collectDefaultMetrics,
-  Counter,
-  Gauge,
-  Histogram,
-  Registry,
-} from 'prom-client';
 import { buildUpstreamHeaders, exposeEthicsHeaders } from './http/headerForward.js';
 import { assertAllowed, hasAllowlistEntries } from './security/ssrf.js';
 import { makePinnedAgent } from './security/agent.js';
 import { forget, makeKey, rememberFinal, rememberPending, seen } from './idempotency.js';
 import { signVerdict } from './verdictToken.js';
+import {
+  httpResponses,
+  idemHits,
+  inflightGauge,
+  registry,
+  ssrfBlocks,
+  startUpstreamTimer,
+  tokenFails,
+} from './metrics.js';
 
 type VerdictColor = 'green' | 'yellow' | 'red';
 
@@ -45,29 +47,6 @@ const app = express();
 app.set('trust proxy', ['loopback', 'linklocal', 'uniquelocal']);
 app.disable('x-powered-by');
 app.use(helmet({ crossOriginResourcePolicy: false }));
-
-const registry = new Registry();
-collectDefaultMetrics({ register: registry });
-
-const inflightGauge = new Gauge({
-  name: 'verify_gate_inflight',
-  help: 'Number of in-flight verify-gate proxy requests',
-  registers: [registry],
-});
-
-const upstreamDuration = new Histogram({
-  name: 'verify_gate_upstream_duration_ms',
-  help: 'Duration of upstream proxy calls in milliseconds',
-  buckets: [25, 50, 100, 250, 500, 1000, 2000, 5000],
-  registers: [registry],
-});
-
-const httpResponses = new Counter({
-  name: 'verify_gate_http_responses_total',
-  help: 'Count of HTTP responses by status code family',
-  labelNames: ['code'],
-  registers: [registry],
-});
 
 function requestIdMiddleware(req: Request, res: Response, next: NextFunction): void {
   const existing = req.get('x-request-id');
@@ -211,11 +190,13 @@ app.post('/gate/*', async (req: Request, res: Response) => {
   }
 
   const targetUrl = target.toString();
+  const routeKey = target.pathname || '/';
   const headerSignature = typeof req.headers.authorization === 'string' ? req.headers.authorization : '';
   const incomingIdempotencyKey = typeof req.headers['idempotency-key'] === 'string' ? req.headers['idempotency-key'] : undefined;
   const idemKey = incomingIdempotencyKey ?? makeKey(req.method ?? 'GET', targetUrl, req.body, headerSignature);
   const prior = seen(idemKey);
   if (prior) {
+    idemHits.inc();
     const reuseRequestId = prior.requestId ?? requestId;
     res.setHeader('x-request-id', reuseRequestId);
     if (prior.verdict) {
@@ -272,21 +253,29 @@ app.post('/gate/*', async (req: Request, res: Response) => {
   try {
     await assertAllowed(targetUrl);
   } catch (error) {
+    const hostLabel = target.hostname || target.host || 'unknown';
+    ssrfBlocks.inc({ host: hostLabel });
     return res.status(403).json({ ok: false, error: (error as Error).message ?? 'TARGET_NOT_ALLOWED' });
   }
 
   const body = req.body !== undefined && req.body !== null ? JSON.stringify(req.body) : undefined;
   const headers = buildUpstreamHeaders(req, target.host);
-  const verdictToken = signVerdict({
-    v: verdict,
-    ec: evidenceCount,
-    rid: requestId,
-    pth: sha1(`${(req.method ?? 'GET').toUpperCase()}:${target.pathname}`),
-    exp: Math.floor(Date.now() / 1000) + 60,
-  });
-  headers.set('x-ethics-token', verdictToken);
+  try {
+    const verdictToken = signVerdict({
+      v: verdict,
+      ec: evidenceCount,
+      rid: requestId,
+      pth: sha1(`${(req.method ?? 'GET').toUpperCase()}:${target.pathname}`),
+      exp: Math.floor(Date.now() / 1000) + 60,
+    });
+    headers.set('x-ethics-token', verdictToken);
+  } catch (error) {
+    tokenFails.inc({ reason: 'sign_error' });
+    console.error('[verify-gate] failed to sign verdict token', error);
+    return res.status(500).json({ ok: false, error: 'verdict_token_sign_failed' });
+  }
   const controller = new AbortController();
-  const stopTimer = upstreamDuration.startTimer();
+  const stopTimer = startUpstreamTimer(req.method ?? 'GET', routeKey);
   req.on('close', () => controller.abort());
 
   try {
@@ -300,7 +289,22 @@ app.post('/gate/*', async (req: Request, res: Response) => {
       signal: controller.signal,
     });
 
-    stopTimer();
+    stopTimer(String(upstreamResponse.status));
+
+    const metricClone = typeof upstreamResponse.clone === 'function' ? upstreamResponse.clone() : null;
+    if (upstreamResponse.status === 428 || upstreamResponse.status === 401) {
+      let reason = upstreamResponse.status === 401 ? 'upstream_401' : 'upstream_428';
+      const contentType = metricClone?.headers.get('content-type') ?? '';
+      if (metricClone && /application\/json/i.test(contentType)) {
+        try {
+          const payload = (await metricClone.json()) as { reason?: unknown };
+          if (typeof payload?.reason === 'string' && payload.reason.length > 0) {
+            reason = payload.reason;
+          }
+        } catch {}
+      }
+      tokenFails.inc({ reason });
+    }
 
     const headerIterator = upstreamResponse.headers[Symbol.iterator]?.bind(upstreamResponse.headers);
     if (typeof (upstreamResponse.headers as unknown as { getSetCookie?: () => string[] }).getSetCookie === 'function') {
@@ -350,7 +354,7 @@ app.post('/gate/*', async (req: Request, res: Response) => {
     });
     stream.pipe(res);
   } catch (error) {
-    stopTimer();
+    stopTimer('error');
     console.error('[verify-gate] upstream call failed', target.toString(), error);
     forget(idemKey);
     res.status(502).json({ ok: false, error: 'upstream_failed', detail: String((error as Error).message ?? error) });

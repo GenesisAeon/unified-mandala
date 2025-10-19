@@ -1,6 +1,47 @@
 fraktal:
-  current: 105
+  current: 106
   history:
+    - id: 106
+      status: done
+      notes: 'Fraktal106 Observability & Rotation: Verify-Gate bündelt Prometheus (`metrics.ts` mit `verify_gate_idem_hits_total`, `verify_gate_ssrf_block_total{host}`, `verify_gate_token_fail_total{reason}`, Histogram `verify_gate_upstream_duration_ms{method,route,code}`), zählt SSRF-Denies/Token-Fails und rotiert Verdict-Secrets via `VERIFY_GATE_JWT_SECRETS`/`VERIFY_GATE_JWT_ACTIVE_KID`; `verifyEthics` akzeptiert kid-basierte Secrets. `apps/ethics-api` evaluiert Bundles über `ETHICS_OPA_ENABLE`/`ETHICS_OPA_PATH` (`apps/ethics-api/opa/policy.rego`) inkl. `evidence_domains_distinct`, Mandala-Playground zeigt EvidenceChips, Chaos-Skript `pnpm chaos:ethics --scenario boundary-down` + Nightly-Job sichern Fail-Closed, Docs & codexfeedback aktualisiert.'
+      deliverables:
+        - apps/verify-gate/src/index.ts
+        - apps/verify-gate/src/metrics.ts
+        - apps/verify-gate/src/verdictToken.ts
+        - apps/verify-gate/src/__tests__/idempotency.test.ts
+        - apps/verify-gate/src/__tests__/proxy-headers.test.ts
+        - apps/verify-gate/src/__tests__/streaming-preserves-headers.test.ts
+        - apps/verify-gate/src/__tests__/ssrf-allowlist.test.ts
+        - apps/api/src/middleware/verifyEthics.ts
+        - apps/api/src/__tests__/ethics-token-guard.test.ts
+        - apps/ethics-api/src/opa.ts
+        - apps/ethics-api/src/index.ts
+        - apps/ethics-api/src/__tests__/ethics-failclosed.test.ts
+        - apps/ethics-api/opa/policy.rego
+        - apps/ui/src/components/MandalaAIPlayground.tsx
+        - apps/ui/src/components/EvidenceChips.tsx
+        - scripts/chaos/ethics-chaos.mjs
+        - .github/workflows/ci.nightly.yml
+        - docs/roadmap/v1.0-stabilization-playbook.md
+        - docs/roadmap/v1.0-stabilization-playbook.yaml
+        - MandalaMap.md
+        - MandalaMap.yaml
+        - MandalaMap.json
+        - codexfeedback.md
+        - codexfeedback.json
+        - codexfeedback.yaml
+        - codexfeedback/codexfeedback-latest.md
+        - codexfeedback/codexfeedback-latest.json
+        - codexfeedback/codexfeedback-latest.yaml
+        - analysis/devtalk106-evaluation.md
+      commands:
+        - pnpm -w vitest run apps/verify-gate/src/__tests__/idempotency.test.ts
+        - pnpm -w vitest run apps/api/src/__tests__/ethics-token-guard.test.ts
+        - pnpm -w vitest run apps/ethics-api/src/__tests__/ethics-failclosed.test.ts
+      hook:
+        progress: Metrics + JWT-Rotation + OPA-Bundle-Hook & Chaos-Drill laufen im Verify-Gate/Ethics-Stack.
+        next_step: Grafana-Panels/Alerts für Idempotency/SSRF/Token-Counter, Secret-Rotation-Runbook & OPA-Bundle-Artefakt ergänzen.
+      repeat_required: false
     - id: 105
       status: done
       notes: 'Fraktal105 VerifyGateTestHardening: vitest.config.ts aliasiert @opentelemetry/api auf Stub (tests/__mocks__/otel-api.ts), tests/setup/ci.ts setzt Loopback-Allowlists (VERIFY_GATE_SSRF_ALLOWLIST), Verify-Gate SSRF akzeptiert Protokoll-/Port-Wildcards, verifyEthics nutzt HS256 + clockTolerance=5; Stabilization-Playbook, MandalaMap, codexfeedback* dokumentieren DevTalk105-Hooks (Prometheus-Counter, OPA-Bundle).'
