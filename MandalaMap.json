@@ -34,7 +34,8 @@
         "Timeout/Retry-Client (`fetchJson`) schützt Boundary/RAG-Aufrufe; Grounding/Boundary-Resultate bleiben synchron zur Verify-Gate-Pipeline.",
         "Fraktal102: Ajv-Schema-Validierung (`EthicsCheckSchema`), Request-ID-Middleware (`x-request-id`), Circuit-basierte `/readyz`-Antwort (`cb` 0/1/2) und optionaler Service-Bearer (`INTERNAL_BEARER`) für Boundary/RAG-Aufrufe.",
         "Fraktal103: Degradierte Modi (`x-ethics-degraded`, Counter `ethics_degraded_total`), Lifeboat-Regeln (Hate/PII/Scam), Boundary-Cache (`ETHICS_CACHE_TTL_MS`) per SHA1, Evidenz-Dedupe (`ETHICS_REQUIRE_UNIQUE_EVIDENCE_DOMAINS`), Counter `ethics_decision_log_total`/`ethics_evidence_domains_total`, Trace-Forwarding & gehashte Decision-Logs.",
-        "Fraktal104: PSL-basierte Evidenz (tldts) markiert starke Domains (DOI/arXiv/Gov), Lifeboat-Regeln umfassen Payment-Scam/Malware/Impersonation, Log-Sampling (`LOG_SAMPLE_GREEN`), `/readyz` meldet `boundary_cache_warm`, optionaler OPA-Deny (`ETHICS_OPA_*`). Vitest deckt Token-Guard & Idempotency-Flow ab."
+        "Fraktal104: PSL-basierte Evidenz (tldts) markiert starke Domains (DOI/arXiv/Gov), Lifeboat-Regeln umfassen Payment-Scam/Malware/Impersonation, Log-Sampling (`LOG_SAMPLE_GREEN`), `/readyz` meldet `boundary_cache_warm`, optionaler OPA-Deny (`ETHICS_OPA_*`). Vitest deckt Token-Guard & Idempotency-Flow ab.",
+        "Fraktal106: OPA-Evaluierung via `ETHICS_OPA_ENABLE` + `ETHICS_OPA_PATH` (execFile mit stdin-input, Bundle `apps/ethics-api/opa/policy.rego`), Antwort liefert `evidence_domains_distinct` und Playground zeigt EvidenceChips für Domains/Stärken."
       ],
       "links": [
         {
@@ -48,6 +49,10 @@
         {
           "label": "circuit-breaker",
           "path": "apps/ethics-api/src/circuit-breaker.ts"
+        },
+        {
+          "label": "opa policy",
+          "path": "apps/ethics-api/opa/policy.rego"
         }
       ]
     },
@@ -63,7 +68,8 @@
         "Fraktal102: JSON-/Rate-Limits (`VERIFY_GATE_JSON_LIMIT`, `VERIFY_GATE_RPS`), SSRF-Allowlist (`VERIFY_UPSTREAM_ALLOWLIST`, `VERIFY_STRICT_SAME_HOST`), Streaming-Proxying und CORS-Expose für `x-ethics-*`-Header; Request-ID wird zum Ethics-Check durchgereicht.",
         "Fraktal103: Header-Drop-Liste (spoofbare Metadaten), DNS-basierte SSRF-Allowlist (`VERIFY_GATE_UPSTREAM_ALLOWLIST`), Prometheus (`verify_gate_inflight`, `verify_gate_upstream_duration_ms`, `verify_gate_http_responses_total`) inklusive `/metrics`, Vitest für Streaming/SSRF.",
         "Fraktal104: Idempotency-Cache (`VERIFY_GATE_IDEMP_TTL_MS`) stoppt Duplikate (409), JWT-signierte Ethics-Tokens (`VERIFY_GATE_JWT_SECRET`) + Upstream-Verifikation (`x-ethics-token`), IP-Pinning-Agent, `/readyz` prüft Allowlist + Ethics. `apps/api` schützt `/api/ai/chat` per `verifyEthics`, Chaos-Skript `pnpm chaos:ethics` dokumentiert Fail-Closed-Proben.",
-        "Fraktal105: Vitest aliasiert @opentelemetry/api auf Stub (tests/__mocks__/otel-api.ts), tests/setup/ci.ts setzt Loopback-Allowlists (VERIFY_GATE_SSRF_ALLOWLIST=http://127.0.0.1:*,http://localhost:*), SSRF-Gate akzeptiert Protokoll-/Port-Wildcards und verifyEthics prüft HS256 mit clockTolerance 5."
+        "Fraktal105: Vitest aliasiert @opentelemetry/api auf Stub (tests/__mocks__/otel-api.ts), tests/setup/ci.ts setzt Loopback-Allowlists (VERIFY_GATE_SSRF_ALLOWLIST=http://127.0.0.1:*,http://localhost:*), SSRF-Gate akzeptiert Protokoll-/Port-Wildcards und verifyEthics prüft HS256 mit clockTolerance 5.",
+        "Fraktal106: Metrics nach metrics.ts ausgelagert (`verify_gate_idem_hits_total`, `verify_gate_ssrf_block_total{host}`, `verify_gate_token_fail_total{reason}`, Histogram `verify_gate_upstream_duration_ms{method,route,code}`), SSRF-Blocks & Token-Sign-Fehler werden gezählt, Verdict-Tokens rotieren via `VERIFY_GATE_JWT_SECRETS`/`VERIFY_GATE_JWT_ACTIVE_KID` mit `kid`-Header; Chaos-Skript `pnpm chaos:ethics --scenario boundary-down` + Nightly-Job prüfen Fail-Closed."
       ],
       "links": [
         {
@@ -73,6 +79,10 @@
         {
           "label": "proxy headers test",
           "path": "apps/verify-gate/src/__tests__/proxy-headers.test.ts"
+        },
+        {
+          "label": "metrics.ts",
+          "path": "apps/verify-gate/src/metrics.ts"
         }
       ]
     },

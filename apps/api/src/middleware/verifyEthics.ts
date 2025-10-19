@@ -16,12 +16,46 @@ function sha1(value: string): string {
   return hash.digest('hex');
 }
 
-function getSecret(): string {
-  const secret = process.env.VERIFY_GATE_JWT_SECRET;
-  if (!secret) {
-    throw new Error('VERIFY_GATE_JWT_SECRET missing for upstream verification');
+type SecretStore = { map: Map<string, Buffer>; fallback?: string };
+
+function parseSecrets(): SecretStore {
+  const raw = process.env.VERIFY_GATE_JWT_SECRETS;
+  const map = new Map<string, Buffer>();
+  if (raw) {
+    for (const entry of raw.split(',').map((piece) => piece.trim()).filter(Boolean)) {
+      const [kid, secret] = entry.split(':');
+      if (!kid || !secret) {
+        continue;
+      }
+      try {
+        map.set(kid, Buffer.from(secret, 'base64'));
+      } catch {
+        continue;
+      }
+    }
   }
-  return secret;
+  const fallback = process.env.VERIFY_GATE_JWT_SECRET;
+  return { map, fallback };
+}
+
+function getSecretForKid(kid?: string): Buffer | string {
+  const { map, fallback } = parseSecrets();
+  if (kid && map.has(kid)) {
+    return map.get(kid)!;
+  }
+  if (!kid && map.size > 0) {
+    return map.values().next().value as Buffer;
+  }
+  if (map.size > 0 && fallback) {
+    return fallback;
+  }
+  if (fallback) {
+    return fallback;
+  }
+  if (map.size > 0) {
+    return map.values().next().value as Buffer;
+  }
+  throw new Error('VERIFY_GATE_JWT_SECRETS or VERIFY_GATE_JWT_SECRET missing for upstream verification');
 }
 
 export function verifyEthics(req: Request, res: Response, next: NextFunction): void {
@@ -32,7 +66,10 @@ export function verifyEthics(req: Request, res: Response, next: NextFunction): v
   }
 
   try {
-    const claims = jwt.verify(String(tokenHeader), getSecret(), {
+    const token = String(tokenHeader);
+    const decoded = jwt.decode(token, { complete: true }) as { header?: { kid?: string } } | null;
+    const kid = decoded?.header?.kid;
+    const claims = jwt.verify(token, getSecretForKid(kid), {
       algorithms: ['HS256'],
       clockTolerance: 5,
     }) as VerdictClaims;

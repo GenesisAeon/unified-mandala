@@ -3,6 +3,7 @@ import MetricsWidget from './MetricsWidget';
 import BoundaryMiniTile from './BoundaryMiniTile';
 import SettingsRUM from './SettingsRUM';
 import EthicsBadge from './EthicsBadge';
+import { EvidenceChips, type EvidenceChipItem } from './EvidenceChips';
 import { fetchJsonWithEthics } from '../lib/fetchWithEthics';
 
 type PlaygroundState = 'idle' | 'loading' | 'done' | 'error';
@@ -58,6 +59,7 @@ export function MandalaAIPlayground() {
   // Verify-Gate state
   const [requireVerify, setRequireVerify] = useState<boolean>(true);
   const [verifyBlock, setVerifyBlock] = useState<VerifyBlock | null>(null);
+  const evidenceItems = useMemo(() => toEvidenceChipItems(verifyBlock), [verifyBlock]);
   const [verifyScore, setVerifyScore] = useState<'red' | 'yellow' | 'green'>('red');
   const [publishBusy, setPublishBusy] = useState<boolean>(false);
   const [publishNote, setPublishNote] = useState<string>('');
@@ -509,6 +511,7 @@ export function MandalaAIPlayground() {
               </span>
             </span>
           </div>
+          <EvidenceChips evidence={evidenceItems} />
           <pre className="max-h-48 overflow-auto rounded-xl border bg-slate-50 p-2 text-xs whitespace-pre-wrap">
             {verifyBlock ? JSON.stringify(verifyBlock, null, 2) : 'No verify block detected.'}
           </pre>
@@ -1042,6 +1045,58 @@ function assessVerify(v: VerifyBlock | null): 'red' | 'yellow' | 'green' {
   if (grounded && ev.length >= 2) return 'green';
   if (ev.length >= 1 || String(v.status ?? '').length > 0) return 'yellow';
   return 'red';
+}
+
+function domainFromUrl(value: string): string {
+  if (!value) return '';
+  try {
+    const hostname = new URL(value).hostname;
+    return hostname.replace(/^www\./, '');
+  } catch {
+    return value.replace(/^https?:\/\/(www\.)?/, '').split('/')[0] ?? value;
+  }
+}
+
+function toEvidenceChipItems(block: VerifyBlock | null): EvidenceChipItem[] {
+  if (!block) {
+    return [];
+  }
+  const raw: any[] = Array.isArray(block.evidence)
+    ? (block.evidence as any[]).filter(Boolean)
+    : typeof block.evidence === 'string' && block.evidence.trim().length > 0
+      ? [block.evidence]
+      : [];
+  const items: EvidenceChipItem[] = [];
+  for (const entry of raw) {
+    if (typeof entry === 'string') {
+      const url = entry;
+      const domain = domainFromUrl(url);
+      items.push({ url, domain, strength: 'standard' });
+      continue;
+    }
+    if (entry && typeof entry === 'object') {
+      const record = entry as Record<string, unknown>;
+      const url = typeof record.url === 'string'
+        ? record.url
+        : typeof record.uri === 'string'
+          ? record.uri
+          : '';
+      const explicitDomain = typeof record.domain === 'string' ? record.domain : '';
+      const domain = explicitDomain || (url ? domainFromUrl(url) : '');
+      const strengthRaw = typeof record.strength === 'string' ? record.strength.toLowerCase() : undefined;
+      const strength: EvidenceChipItem['strength'] = strengthRaw === 'strong'
+        ? 'strong'
+        : strengthRaw === 'weak'
+          ? 'weak'
+          : strengthRaw === 'standard'
+            ? 'standard'
+            : undefined;
+      if (domain || url) {
+        items.push({ url: url || domain || 'unknown', domain: domain || 'unknown', strength });
+      }
+    }
+  }
+  return items;
 }
 
 // end of file helpers

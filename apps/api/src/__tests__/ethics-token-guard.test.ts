@@ -1,7 +1,8 @@
-import { beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
+import { afterAll, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
 import request from 'supertest';
 import jwt from 'jsonwebtoken';
 import crypto from 'node:crypto';
+import { Buffer } from 'node:buffer';
 
 vi.mock('@unified-mandala/ai', () => ({
   askOpenAI: vi.fn(async () => ({ text: 'ok', model: 'mock', usage: { total_tokens: 1 } })),
@@ -9,7 +10,9 @@ vi.mock('@unified-mandala/ai', () => ({
 
 let app: import('express').Express;
 
-function makeToken(path: string, method = 'POST', verdict: 'green' | 'yellow' | 'red' = 'green') {
+const ORIGINAL_ENV = { ...process.env } as NodeJS.ProcessEnv;
+
+function makeToken(path: string, method = 'POST', verdict: 'green' | 'yellow' | 'red' = 'green', kid = 'kidA') {
   const hash = crypto.createHash('sha1');
   hash.update(`${method}:${path}`);
   return jwt.sign(
@@ -21,14 +24,21 @@ function makeToken(path: string, method = 'POST', verdict: 'green' | 'yellow' | 
       exp: Math.floor(Date.now() / 1000) + 60,
     },
     'guard-secret',
-    { algorithm: 'HS256', noTimestamp: true },
+    { algorithm: 'HS256', noTimestamp: true, header: kid ? { kid } : undefined },
   );
 }
 
 beforeAll(async () => {
-  process.env.VERIFY_GATE_JWT_SECRET = 'guard-secret';
+  process.env = { ...ORIGINAL_ENV } as NodeJS.ProcessEnv;
+  process.env.VERIFY_GATE_JWT_SECRETS = `kidA:${Buffer.from('guard-secret').toString('base64')}`;
+  process.env.VERIFY_GATE_JWT_ACTIVE_KID = 'kidA';
+  delete process.env.VERIFY_GATE_JWT_SECRET;
   const mod = await import('../index');
   app = mod.app;
+});
+
+afterAll(() => {
+  process.env = { ...ORIGINAL_ENV } as NodeJS.ProcessEnv;
 });
 
 beforeEach(() => {

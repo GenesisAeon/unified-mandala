@@ -1,6 +1,11 @@
 {
   "runs": [
     {
+      "fraktalrun": "Fraktal106 ObservabilityRotation",
+      "status": "done",
+      "notes": "Verify-Gate konsolidiert Prometheus (`metrics.ts` mit `verify_gate_idem_hits_total`, `verify_gate_ssrf_block_total{host}`, `verify_gate_token_fail_total{reason}`, Histogram `verify_gate_upstream_duration_ms{method,route,code}`), zählt SSRF-Denies & Token-Fails und rotiert Verdict-Secrets via `VERIFY_GATE_JWT_SECRETS`/`VERIFY_GATE_JWT_ACTIVE_KID`; `verifyEthics` akzeptiert kid-basierte Secrets. `apps/ethics-api` evaluiert Bundles über `ETHICS_OPA_ENABLE`/`ETHICS_OPA_PATH` (`apps/ethics-api/opa/policy.rego`) inkl. `evidence_domains_distinct`, Mandala-Playground zeigt EvidenceChips, Chaos-Skript `pnpm chaos:ethics --scenario boundary-down` + Nightly-Job sichern Fail-Closed; Stabilization-Playbook, MandalaMap.* und codexfeedback* dokumentieren den Lauf."
+    },
+    {
       "fraktalrun": "Fraktal105 VerifyGateTestHardening",
       "status": "done",
       "notes": "Vitest aliasiert @opentelemetry/api auf einen Stub (tests/__mocks__/otel-api.ts), tests/setup/ci.ts setzt Loopback-Allowlists (VERIFY_GATE_SSRF_ALLOWLIST), Verify-Gate SSRF akzeptiert Protokoll-/Port-Wildcards und Upstream verifyEthics nutzt HS256 + clockTolerance=5; Stabilization-Playbook, MandalaMap und codexfeedback* dokumentieren DevTalk105-Hooks (Prometheus-Counter, OPA-Bundle)."

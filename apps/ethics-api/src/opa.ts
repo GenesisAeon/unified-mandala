@@ -6,17 +6,45 @@ interface OpaResult {
   reason?: string;
 }
 
-const query = process.env.ETHICS_OPA_QUERY;
-const bundle = process.env.ETHICS_OPA_BUNDLE;
-const timeoutMs = Number.parseInt(process.env.ETHICS_OPA_TIMEOUT_MS ?? '400', 10);
+const timeoutMs = Number.parseInt(process.env.ETHICS_OPA_TIMEOUT_MS ?? '1500', 10);
+
+function shouldEnable(path?: string): boolean {
+  const flag = (process.env.ETHICS_OPA_ENABLE ?? '').toLowerCase();
+  if (!path) {
+    return false;
+  }
+  return flag === '1' || flag === 'true' || flag === 'yes';
+}
+
+function buildArgs(): string[] | null {
+  const defaultQuery = process.env.ETHICS_OPA_QUERY ?? 'data.ethics.deny';
+  const opaPath = process.env.ETHICS_OPA_PATH;
+  const dataPath = process.env.ETHICS_OPA_DATA_PATH;
+  if (shouldEnable(opaPath)) {
+    const args = ['eval', '--format=json', '--stdin-input'];
+    if (dataPath) {
+      args.push('-d', dataPath);
+    }
+    args.push('-d', opaPath as string, defaultQuery);
+    return args;
+  }
+
+  const legacyBundle = process.env.ETHICS_OPA_BUNDLE;
+  const legacyQuery = process.env.ETHICS_OPA_QUERY;
+  if (legacyBundle && legacyQuery) {
+    return ['eval', '--format=json', '--stdin-input', '-d', legacyBundle, legacyQuery];
+  }
+  return null;
+}
 
 export async function evaluateOpa(input: unknown): Promise<OpaResult> {
-  if (!query || !bundle) {
+  const args = buildArgs();
+  if (!args) {
     return { enforced: false, deny: false };
   }
 
   return await new Promise<OpaResult>((resolve) => {
-    const proc = spawn('opa', ['eval', '--format=json', '-I', '-d', bundle, query], {
+    const proc = spawn('opa', args, {
       stdio: ['pipe', 'pipe', 'pipe'],
     });
 
@@ -31,7 +59,7 @@ export async function evaluateOpa(input: unknown): Promise<OpaResult> {
     const timer = setTimeout(() => {
       proc.kill('SIGKILL');
       finish({ enforced: true, deny: true, reason: 'opa_timeout' });
-    }, timeoutMs > 0 ? timeoutMs : 400);
+    }, timeoutMs > 0 ? timeoutMs : 1500);
 
     const stdoutChunks: Buffer[] = [];
     const stderrChunks: Buffer[] = [];
