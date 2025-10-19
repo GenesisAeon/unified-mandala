@@ -1,13 +1,61 @@
 fraktal:
   current: 106
   history:
+    - id: 106-grafana-alerts
+      status: done
+      notes:
+        'Fraktal106 GrafanaAlerts: Grafana-Minidashboard `grafana/dashboards/verify-gate-ethics-mini.json`
+        visualisiert Verify-Gate Idempotency-/SSRF-/Token-Metriken samt Upstream-p95
+        und Ethics-Degradierungen; Prometheus-Alerts `observability/alerts/verify-gate.yaml`
+        triggern Replay-/SSRF-/Token-Spitzen und verlinken das JWT-Rotation-Runbook.
+        docs/roadmap v1.0-Stabilization-Playbook, MandalaMap.*, analysis/devtalk106-evaluation.md
+        sowie codexfeedback\* verweisen auf das Bundle; nächste Schritte: Alertmanager/Webhook-Routing,
+        OPA-Bundle-Artefakte, optionaler „Strong only“-Filter.'
+      deliverables:
+        - grafana/dashboards/verify-gate-ethics-mini.json
+        - observability/alerts/verify-gate.yaml
+        - docs/roadmap/v1.0-stabilization-playbook.md
+        - docs/roadmap/v1.0-stabilization-playbook.yaml
+        - MandalaMap.md
+        - MandalaMap.yaml
+        - MandalaMap.json
+        - analysis/devtalk106-evaluation.md
+        - codexfeedback.md
+        - codexfeedback.json
+        - codexfeedback.yaml
+        - codexfeedback/codexfeedback-latest.md
+        - codexfeedback/codexfeedback-latest.json
+        - codexfeedback/codexfeedback-latest.yaml
+      hook:
+        progress: Grafana-Minidashboard & Prometheus-Alerts aktiv, Docs/MandalaMap/codexfeedback
+          referenzieren den Satz.
+        next_step: Alertmanager/Webhook-Routing dokumentieren, OPA-Bundle-Artefakte
+          & Badges im CI veröffentlichen, optionalen „Strong only“-Filter in der UI
+          ergänzen.
+        repeat_required: false
     - id: 106
       status: done
-      notes: 'Fraktal106 Observability & Rotation: Verify-Gate bündelt Prometheus (`metrics.ts` mit `verify_gate_idem_hits_total`, `verify_gate_ssrf_block_total{host}`, `verify_gate_token_fail_total{reason}`, Histogram `verify_gate_upstream_duration_ms{method,route,code}`), zählt SSRF-Denies/Token-Fails und rotiert Verdict-Secrets via `VERIFY_GATE_JWT_SECRETS`/`VERIFY_GATE_JWT_ACTIVE_KID`; `verifyEthics` akzeptiert kid-basierte Secrets. `apps/ethics-api` evaluiert Bundles über `ETHICS_OPA_ENABLE`/`ETHICS_OPA_PATH` (`apps/ethics-api/opa/policy.rego`) inkl. `evidence_domains_distinct`, Mandala-Playground zeigt EvidenceChips, Chaos-Skript `pnpm chaos:ethics --scenario boundary-down` + Nightly-Job sichern Fail-Closed, Docs & codexfeedback aktualisiert.'
+      notes: 'Fraktal106 Observability & Rotation: Verify-Gate persistiert Idempotency-Keys
+        via `apps/verify-gate/src/idempotency/store.ts` (better-sqlite3, `VERIFY_GATE_IDEMP_DB`,
+        TTL `VERIFY_GATE_IDEMP_TTL_MS`) – `persist-replay` Vitest deckt Neustarts ab;
+        Header-Safelist (authorization/cookie/user-agent/accept/accept-language/content-type/x-request-id/x-forwarded-for/x-forwarded-proto/x-ethics-token)
+        ersetzt Drop-Liste. `X-Verify-Degraded` propagiert bis API/UI (`apps/api` setzt
+        Header weiter, `fetchJsonWithEthics` liefert Degraded-Meta, `MandalaAIPlayground`
+        zeigt Fail-closed-Banner) und Prometheus-Metriken bleiben in `metrics.ts` (Idempotency/SSRF/Token
+        Counter, Upstream Histogram). Verdict-Tokens rotieren via `VERIFY_GATE_JWT_SECRETS`/`VERIFY_GATE_JWT_ACTIVE_KID`;
+        Runbook `docs/runbooks/verify-gate-jwt-rotation.md` + `ethics-token-guard.test.ts`
+        decken Legacy/Rotation/Drop. `apps/ethics-api/opa/policy.rego` verlangt starke
+        Evidenz bei Fakten und verweigert bei `input.degraded == true`. Chaos-Skript
+        `pnpm chaos:ethics --scenario boundary-down` läuft nightly (`ci.nightly.yml`);
+        Stabilization-Playbook, MandalaMap.* und codexfeedback* spiegeln die neuen Knobs
+        (`VERIFY_GATE_IDEMP_DB`, `X-Verify-Degraded`).'
       deliverables:
         - apps/verify-gate/src/index.ts
         - apps/verify-gate/src/metrics.ts
         - apps/verify-gate/src/verdictToken.ts
+        - apps/verify-gate/src/idempotency/index.ts
+        - apps/verify-gate/src/idempotency/store.ts
+        - apps/verify-gate/src/http/headerForward.ts
         - apps/verify-gate/src/__tests__/idempotency.test.ts
         - apps/verify-gate/src/__tests__/proxy-headers.test.ts
         - apps/verify-gate/src/__tests__/streaming-preserves-headers.test.ts
@@ -18,6 +66,7 @@ fraktal:
         - apps/ethics-api/src/index.ts
         - apps/ethics-api/src/__tests__/ethics-failclosed.test.ts
         - apps/ethics-api/opa/policy.rego
+        - apps/ui/src/lib/fetchWithEthics.ts
         - apps/ui/src/components/MandalaAIPlayground.tsx
         - apps/ui/src/components/EvidenceChips.tsx
         - scripts/chaos/ethics-chaos.mjs
@@ -27,24 +76,32 @@ fraktal:
         - MandalaMap.md
         - MandalaMap.yaml
         - MandalaMap.json
+        - docs/runbooks/verify-gate-jwt-rotation.md
         - codexfeedback.md
         - codexfeedback.json
         - codexfeedback.yaml
         - codexfeedback/codexfeedback-latest.md
         - codexfeedback/codexfeedback-latest.json
         - codexfeedback/codexfeedback-latest.yaml
+        - codexfeedback/codexfeedback-fraktal106.yaml
         - analysis/devtalk106-evaluation.md
       commands:
         - pnpm -w vitest run apps/verify-gate/src/__tests__/idempotency.test.ts
         - pnpm -w vitest run apps/api/src/__tests__/ethics-token-guard.test.ts
         - pnpm -w vitest run apps/ethics-api/src/__tests__/ethics-failclosed.test.ts
       hook:
-        progress: Metrics + JWT-Rotation + OPA-Bundle-Hook & Chaos-Drill laufen im Verify-Gate/Ethics-Stack.
-        next_step: Grafana-Panels/Alerts für Idempotency/SSRF/Token-Counter, Secret-Rotation-Runbook & OPA-Bundle-Artefakt ergänzen.
+        progress: Persistenter Idempotency-Store, Safelist, `X-Verify-Degraded`-Propagation,
+          UI-Banner & JWT-Rotation-Runbook laufen im Verify-Gate/Ethics-Stack.
+        next_step: Grafana-Panels/Alerts für Idempotency/SSRF/Token-Counter sowie gebündelte
+          OPA-Bundles/Artefakte im CI ergänzen.
       repeat_required: false
     - id: 105
       status: done
-      notes: 'Fraktal105 VerifyGateTestHardening: vitest.config.ts aliasiert @opentelemetry/api auf Stub (tests/__mocks__/otel-api.ts), tests/setup/ci.ts setzt Loopback-Allowlists (VERIFY_GATE_SSRF_ALLOWLIST), Verify-Gate SSRF akzeptiert Protokoll-/Port-Wildcards, verifyEthics nutzt HS256 + clockTolerance=5; Stabilization-Playbook, MandalaMap, codexfeedback* dokumentieren DevTalk105-Hooks (Prometheus-Counter, OPA-Bundle).'
+      notes: 'Fraktal105 VerifyGateTestHardening: vitest.config.ts aliasiert @opentelemetry/api
+        auf Stub (tests/__mocks__/otel-api.ts), tests/setup/ci.ts setzt Loopback-Allowlists
+        (VERIFY_GATE_SSRF_ALLOWLIST), Verify-Gate SSRF akzeptiert Protokoll-/Port-Wildcards,
+        verifyEthics nutzt HS256 + clockTolerance=5; Stabilization-Playbook, MandalaMap,
+        codexfeedback* dokumentieren DevTalk105-Hooks (Prometheus-Counter, OPA-Bundle).'
       deliverables:
         - vitest.config.ts
         - tests/__mocks__/otel-api.ts
@@ -69,19 +126,23 @@ fraktal:
         - pnpm -w vitest run apps/api/src/__tests__/ethics-token-guard.test.ts
         - pnpm -w vitest run tests/api/chat-success.test.ts
       hook:
-        progress: Verify-Gate Tests laufen deterministisch (OTel-Stub, Loopback-Allowlist, Clock-Skew-Handhabung).
-        next_step: Prometheus-Counter & Grafana-Alerts für Idempotency/SSRF/Token-Failures ergänzen und OPA-Bundle in CI verteilen.
+        progress: Verify-Gate Tests laufen deterministisch (OTel-Stub, Loopback-Allowlist,
+          Clock-Skew-Handhabung).
+        next_step: Prometheus-Counter & Grafana-Alerts für Idempotency/SSRF/Token-Failures
+          ergänzen und OPA-Bundle in CI verteilen.
       repeat_required: false
     - id: 103
       status: done
-      notes:
-        'Fraktal103 VerifyGateDefense: Verify-Gate säubert Header (Drop-Liste), prüft DNS-basierte SSRF-Allowlists (`VERIFY_GATE_UPSTREAM_ALLOWLIST`),
-        exportiert Prometheus (`verify_gate_inflight`, `verify_gate_upstream_duration_ms`, `verify_gate_http_responses_total`) samt
-        `/metrics` und deckt Streaming/SSRF mit neuen Vitest-Suiten ab. Ethics-API signalisiert degradierte Abhängigkeiten (`x-ethics-degraded`,
-        Counter `ethics_degraded_total`), nutzt Lifeboat-Regeln (Hate/PII/Scam), cached Boundary-Ergebnisse (`ETHICS_CACHE_TTL_MS`) per SHA1,
-        erzwingt eindeutige Evidenz-Domains (`ETHICS_REQUIRE_UNIQUE_EVIDENCE_DOMAINS`) und zählt Decisions/Evidenz-Domains via Prometheus.
-        `.env.example`, Stabilization-Playbook (MD/YAML), MandalaMap.* sowie analysis/devtalk103-evaluation.md und codexfeedback-latest.* dokumentieren
-        die Defense-in-Depth-Hooks (Grafana-Alerts, DOI/Handle-Validator).'
+      notes: 'Fraktal103 VerifyGateDefense: Verify-Gate säubert Header (Drop-Liste),
+        prüft DNS-basierte SSRF-Allowlists (`VERIFY_GATE_UPSTREAM_ALLOWLIST`), exportiert
+        Prometheus (`verify_gate_inflight`, `verify_gate_upstream_duration_ms`, `verify_gate_http_responses_total`)
+        samt `/metrics` und deckt Streaming/SSRF mit neuen Vitest-Suiten ab. Ethics-API
+        signalisiert degradierte Abhängigkeiten (`x-ethics-degraded`, Counter `ethics_degraded_total`),
+        nutzt Lifeboat-Regeln (Hate/PII/Scam), cached Boundary-Ergebnisse (`ETHICS_CACHE_TTL_MS`)
+        per SHA1, erzwingt eindeutige Evidenz-Domains (`ETHICS_REQUIRE_UNIQUE_EVIDENCE_DOMAINS`)
+        und zählt Decisions/Evidenz-Domains via Prometheus. `.env.example`, Stabilization-Playbook
+        (MD/YAML), MandalaMap.* sowie analysis/devtalk103-evaluation.md und codexfeedback-latest.*
+        dokumentieren die Defense-in-Depth-Hooks (Grafana-Alerts, DOI/Handle-Validator).'
       deliverables:
         - apps/verify-gate/src/index.ts
         - apps/verify-gate/src/http/headerForward.ts
@@ -104,10 +165,13 @@ fraktal:
         - codexfeedback/codexfeedback-latest.yaml
         - codexfeedback/codexfeedback-fraktal103.yaml
       commands:
-        - pnpm vitest run apps/verify-gate/src/__tests__/proxy-headers.test.ts apps/verify-gate/src/__tests__/streaming-preserves-headers.test.ts apps/verify-gate/src/__tests__/ssrf-allowlist.test.ts apps/ethics-api/src/__tests__/ethics-failclosed.test.ts
+        - pnpm vitest run apps/verify-gate/src/__tests__/proxy-headers.test.ts apps/verify-gate/src/__tests__/streaming-preserves-headers.test.ts
+          apps/verify-gate/src/__tests__/ssrf-allowlist.test.ts apps/ethics-api/src/__tests__/ethics-failclosed.test.ts
       hook:
-        progress: Verify-Gate & Ethics-API Defense-in-Depth aktiv (Header-Sanitizing, DNS-SSRF, Degraded-Signale, Evidenz-Dedupe).
-        next_step: Grafana-Alerts für neue Verify/Ethics-Metriken und DOI/Handle-Validator für Evidenz-Stärke umsetzen.
+        progress: Verify-Gate & Ethics-API Defense-in-Depth aktiv (Header-Sanitizing,
+          DNS-SSRF, Degraded-Signale, Evidenz-Dedupe).
+        next_step: Grafana-Alerts für neue Verify/Ethics-Metriken und DOI/Handle-Validator
+          für Evidenz-Stärke umsetzen.
       repeat_required: false
     - id: 102
       status: done

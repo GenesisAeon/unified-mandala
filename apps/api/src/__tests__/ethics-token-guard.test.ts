@@ -12,7 +12,13 @@ let app: import('express').Express;
 
 const ORIGINAL_ENV = { ...process.env } as NodeJS.ProcessEnv;
 
-function makeToken(path: string, method = 'POST', verdict: 'green' | 'yellow' | 'red' = 'green', kid = 'kidA') {
+function makeToken(
+  path: string,
+  method = 'POST',
+  verdict: 'green' | 'yellow' | 'red' = 'green',
+  kid = 'kidA',
+  secret = 'guard-secret',
+) {
   const hash = crypto.createHash('sha1');
   hash.update(`${method}:${path}`);
   return jwt.sign(
@@ -23,7 +29,7 @@ function makeToken(path: string, method = 'POST', verdict: 'green' | 'yellow' | 
       pth: hash.digest('hex'),
       exp: Math.floor(Date.now() / 1000) + 60,
     },
-    'guard-secret',
+    secret,
     { algorithm: 'HS256', noTimestamp: true, header: kid ? { kid } : undefined },
   );
 }
@@ -81,5 +87,54 @@ describe('verifyEthics middleware', () => {
     expect(res.status).toBe(200);
     expect(res.headers['x-ethics-verdict']).toBe('green');
     expect(res.headers['x-ethics-evidence-count']).toBe('2');
+  });
+});
+
+describe('kid rotation', () => {
+  it('accepts legacy kid during rotation window and rejects after removal', async () => {
+    const originalSecrets = process.env.VERIFY_GATE_JWT_SECRETS;
+    const originalActive = process.env.VERIFY_GATE_JWT_ACTIVE_KID;
+    const originalFallback = process.env.VERIFY_GATE_JWT_SECRET;
+    const kidASecret = 'legacy-secret';
+    const kidBSecret = 'next-secret';
+
+    try {
+      process.env.VERIFY_GATE_JWT_SECRETS = `kidA:${Buffer.from(kidASecret).toString('base64')},kidB:${Buffer.from(kidBSecret).toString('base64')}`;
+      process.env.VERIFY_GATE_JWT_ACTIVE_KID = 'kidB';
+      delete process.env.VERIFY_GATE_JWT_SECRET;
+
+      const resNewKid = await request(app)
+        .post('/api/ai/chat')
+        .set('x-ethics-token', makeToken('/api/ai/chat', 'POST', 'green', 'kidB', kidBSecret))
+        .send({ messages: [{ role: 'user', content: 'hi' }] });
+      expect(resNewKid.status).toBe(200);
+
+      const resLegacyKid = await request(app)
+        .post('/api/ai/chat')
+        .set('x-ethics-token', makeToken('/api/ai/chat', 'POST', 'green', 'kidA', kidASecret))
+        .send({ messages: [{ role: 'user', content: 'hi' }] });
+      expect(resLegacyKid.status).toBe(200);
+
+      process.env.VERIFY_GATE_JWT_SECRETS = `kidB:${Buffer.from(kidBSecret).toString('base64')}`;
+
+      const resLegacyAfterDrop = await request(app)
+        .post('/api/ai/chat')
+        .set('x-ethics-token', makeToken('/api/ai/chat', 'POST', 'green', 'kidA', kidASecret))
+        .send({ messages: [{ role: 'user', content: 'hi' }] });
+      expect(resLegacyAfterDrop.status).toBe(428);
+      expect(resLegacyAfterDrop.body.reason).toBe('ethics_verification_failed');
+    } finally {
+      process.env.VERIFY_GATE_JWT_SECRETS = originalSecrets;
+      if (originalActive) {
+        process.env.VERIFY_GATE_JWT_ACTIVE_KID = originalActive;
+      } else {
+        delete process.env.VERIFY_GATE_JWT_ACTIVE_KID;
+      }
+      if (originalFallback) {
+        process.env.VERIFY_GATE_JWT_SECRET = originalFallback;
+      } else {
+        delete process.env.VERIFY_GATE_JWT_SECRET;
+      }
+    }
   });
 });

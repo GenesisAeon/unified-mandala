@@ -10,15 +10,27 @@ const DROP_INBOUND = new Set([
   'host',
   'via',
   'x-forwarded-host',
-  'x-forwarded-proto',
   'x-ethics-verdict',
   'x-ethics-evidence-count',
-  'x-request-id',
+  'x-verify-degraded',
   'traceparent',
   'tracestate',
 ]);
 
-const ALLOW_RESPONSE_EXPOSE = ['x-ethics-verdict', 'x-ethics-evidence-count', 'x-request-id'];
+const SAFE_FORWARD = new Set([
+  'authorization',
+  'cookie',
+  'user-agent',
+  'accept',
+  'accept-language',
+  'content-type',
+  'x-request-id',
+  'x-forwarded-for',
+  'x-forwarded-proto',
+  'x-ethics-token',
+]);
+
+const ALLOW_RESPONSE_EXPOSE = ['x-ethics-verdict', 'x-ethics-evidence-count', 'x-request-id', 'x-verify-degraded'];
 
 export function buildUpstreamHeaders(
   req: import('express').Request,
@@ -31,6 +43,9 @@ export function buildUpstreamHeaders(
     }
     const lower = key.toLowerCase();
     if (DROP_INBOUND.has(lower)) {
+      continue;
+    }
+    if (!SAFE_FORWARD.has(lower)) {
       continue;
     }
     const normalized = Array.isArray(value) ? value.join(',') : String(value);
@@ -58,13 +73,6 @@ export function buildUpstreamHeaders(
     if (requestId) {
       headers.set('x-request-id', requestId);
     }
-  }
-
-  if (!headers.has('traceparent') && typeof req.headers.traceparent === 'string') {
-    headers.set('traceparent', req.headers.traceparent);
-  }
-  if (!headers.has('tracestate') && typeof req.headers.tracestate === 'string') {
-    headers.set('tracestate', req.headers.tracestate);
   }
 
   if (!headers.has('content-type')) {

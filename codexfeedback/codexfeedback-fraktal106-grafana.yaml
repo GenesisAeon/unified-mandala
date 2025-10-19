@@ -1,0 +1,27 @@
+fraktal: 106
+status: done
+owner: Johann
+summary:
+  - 'Grafana-Minidashboard `grafana/dashboards/verify-gate-ethics-mini.json` zeigt Idempotency-/SSRF-/Token-Fails, Upstream-p95 und Ethics-Degradierungen; Panels nutzen `rate()`, `topk()` und `histogram_quantile` auf den Verify-Gate-Countern aus `apps/verify-gate/src/metrics.ts`.'
+  - 'Prometheus-Alerts `observability/alerts/verify-gate.yaml` überwachen Replay-, SSRF- und Token-Spitzen (Increase über 5m) und verlinken das JWT-Rotation-Runbook als Runbook-Hinweis.'
+  - 'Docs & Karten (`docs/roadmap/v1.0-stabilization-playbook.*`, `MandalaMap.*`, `analysis/devtalk106-evaluation.md`, codexfeedback\*) referenzieren Dashboard & Alerts; Status/Hooks aktualisiert auf Alert-Routing + OPA-Bundle.'
+deliverables:
+  - grafana/dashboards/verify-gate-ethics-mini.json
+  - observability/alerts/verify-gate.yaml
+  - docs/roadmap/v1.0-stabilization-playbook.md
+  - docs/roadmap/v1.0-stabilization-playbook.yaml
+  - MandalaMap.md
+  - MandalaMap.yaml
+  - MandalaMap.json
+  - analysis/devtalk106-evaluation.md
+  - codexfeedback.md
+  - codexfeedback.json
+  - codexfeedback.yaml
+  - codexfeedback/codexfeedback-latest.md
+  - codexfeedback/codexfeedback-latest.json
+  - codexfeedback/codexfeedback-latest.yaml
+commands: []
+hook:
+  progress: Grafana-Minidashboard & Prometheus-Alerts aktiv; Dokumentation verweist auf das Bundle.
+  next_step: Alertmanager/Webhook-Routing dokumentieren, OPA-Bundle-Artefakte+Badges im CI verteilen, optionalen „Strong only“-Filter ins UI übernehmen.
+repeat_required: false

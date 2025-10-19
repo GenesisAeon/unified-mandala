@@ -1,9 +1,14 @@
 {
   "runs": [
     {
+      "fraktalrun": "Fraktal106 GrafanaAlerts",
+      "status": "done",
+      "notes": "Grafana-Minidashboard `grafana/dashboards/verify-gate-ethics-mini.json` visualisiert Verify-Gate Idempotency-/SSRF-/Token-Metriken samt Upstream-p95 & Ethics-Degradation; Prometheus-Alerts `observability/alerts/verify-gate.yaml` triggern Replay-/SSRF-/Token-Spitzen und verlinken das JWT-Rotation-Runbook. docs/roadmap v1.0-Playbook, MandalaMap.*, analysis/devtalk106-evaluation.md und codexfeedback\\* referenzieren das Bundle; nächste Schritte: Alertmanager/Webhook-Routing, OPA-Bundle-Artefakte, optionaler „Strong only“-Filter."
+    },
+    {
       "fraktalrun": "Fraktal106 ObservabilityRotation",
       "status": "done",
-      "notes": "Verify-Gate konsolidiert Prometheus (`metrics.ts` mit `verify_gate_idem_hits_total`, `verify_gate_ssrf_block_total{host}`, `verify_gate_token_fail_total{reason}`, Histogram `verify_gate_upstream_duration_ms{method,route,code}`), zählt SSRF-Denies & Token-Fails und rotiert Verdict-Secrets via `VERIFY_GATE_JWT_SECRETS`/`VERIFY_GATE_JWT_ACTIVE_KID`; `verifyEthics` akzeptiert kid-basierte Secrets. `apps/ethics-api` evaluiert Bundles über `ETHICS_OPA_ENABLE`/`ETHICS_OPA_PATH` (`apps/ethics-api/opa/policy.rego`) inkl. `evidence_domains_distinct`, Mandala-Playground zeigt EvidenceChips, Chaos-Skript `pnpm chaos:ethics --scenario boundary-down` + Nightly-Job sichern Fail-Closed; Stabilization-Playbook, MandalaMap.* und codexfeedback* dokumentieren den Lauf."
+      "notes": "Verify-Gate persistiert Idempotency-Keys via `apps/verify-gate/src/idempotency/store.ts` (better-sqlite3, `VERIFY_GATE_IDEMP_DB`, TTL `VERIFY_GATE_IDEMP_TTL_MS`) – `persist-replay` Vitest deckt Neustarts ab; Header-Safelist (authorization/cookie/user-agent/accept/accept-language/content-type/x-request-id/x-forwarded-for/x-forwarded-proto/x-ethics-token) ersetzt Drop-Liste. `X-Verify-Degraded` propagiert bis API/UI (`apps/api` setzt Header weiter, `fetchJsonWithEthics` liefert Degraded-Meta, `MandalaAIPlayground` zeigt Fail-closed-Banner) und Prometheus-Metriken bleiben in `metrics.ts` (Idempotency/SSRF/Token Counter, Upstream Histogram). Verdict-Tokens rotieren via `VERIFY_GATE_JWT_SECRETS`/`VERIFY_GATE_JWT_ACTIVE_KID`; Runbook `docs/runbooks/verify-gate-jwt-rotation.md` + `ethics-token-guard.test.ts` decken Legacy/Rotation/Drop. `apps/ethics-api/opa/policy.rego` verlangt starke Evidenz für Fakten und verweigert bei `input.degraded == true`. Chaos-Skript `pnpm chaos:ethics --scenario boundary-down` läuft nightly (`ci.nightly.yml`); Stabilization-Playbook, MandalaMap.* und codexfeedback* dokumentieren die neuen Knobs (`VERIFY_GATE_IDEMP_DB`, `X-Verify-Degraded`)."
     },
     {
       "fraktalrun": "Fraktal105 VerifyGateTestHardening",

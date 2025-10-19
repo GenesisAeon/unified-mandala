@@ -1,5 +1,5 @@
 {
-  "root": {
+  "/workspace/unified-mandala": {
     "build:agents": "tsc -p tsconfig.agents.json && node -e \"const fs=require('fs'),p='dist/agents/personhood/AIJuristicAgent.js';if(fs.existsSync(p))fs.renameSync(p,p.replace(/\\.js$/,'.cjs'));\"",
     "build": "tsc -p tsconfig.build.json && pnpm build:agents",
     "typecheck": "tsc -p tsconfig.json --noEmit",
@@ -29,6 +29,8 @@
     "start:all": "pnpm dev:stack",
     "start:cosmic-web": "node scripts/start-cosmic-web.mjs",
     "start:ollama-proxy": "cross-env QWEN_ENDPOINT=http://localhost:11434 QWEN_MODEL=qwen2.5:7b PORT=4000 node apps/api-lite/ollama-proxy.mjs",
+    "start:ethics": "tsx apps/ethics-api/src/index.ts",
+    "start:verify-gate": "tsx apps/verify-gate/src/index.ts",
     "sub:cosmic": "node scripts/realtime/sub-cosmic.mjs",
     "demo:cosmic:generate": "python src/adapters/cosmic_web/mock.py",
     "demo:cosmic:stac": "node scripts/demos/build-cosmic-web-stac.mjs",
@@ -51,6 +53,7 @@
     "guard:no-dotenv": "node scripts/ci/guard-no-dotenv.mjs",
     "maps:sync": "pnpm repomap:build && pnpm repomap:validate && node scripts/mandala-map-validate.mjs",
     "backlog:consolidate": "node scripts/meta/backlog-consolidate.mjs",
+    "dev:boundary": "cross-env ENABLE_BOUNDARY=1 BOUNDARY_PORT=4010 tsx scripts/boundary-service.ts",
     "dev:health": "tsx scripts/health-aggregator.ts",
     "start:verified": "tsx scripts/start-verified.ts",
     "smoke:live": "node scripts/smoke/live-smoke.mjs",
@@ -58,7 +61,9 @@
     "smoke:memory": "node scripts/smoke/memory-smoke.mjs",
     "smoke:rag": "node scripts/smoke/rag-smoke.mjs",
     "smoke:fs": "node scripts/smoke/fs-smoke.mjs",
+    "smoke:boundary:svc": "node scripts/smoke/boundary-service-smoke.mjs",
     "smoke:boundary": "node scripts/smoke/boundary-smoke.mjs",
+    "chaos:ethics": "node scripts/chaos/ethics-chaos.mjs",
     "boundary:run": "tsx scripts/boundary-runner.ts --input scripts/boundary-demo.rules.json --out data://logs/boundary/laws.json",
     "boundary:demo": "tsx scripts/boundary-runner.ts --demo --out data://logs/boundary/laws.demo.json",
     "build:boundary": "pnpm -r --filter @mandala/boundary-core build && pnpm -r --filter @mandala/boundary-engine build && pnpm -r --filter @mandala/boundary-ui build",

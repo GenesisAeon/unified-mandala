@@ -59,6 +59,16 @@ function getSecretForKid(kid?: string): Buffer | string {
 }
 
 export function verifyEthics(req: Request, res: Response, next: NextFunction): void {
+  const degradedHeader = req.headers['x-verify-degraded'];
+  if (typeof degradedHeader === 'string' && degradedHeader.trim().length > 0) {
+    res.setHeader('x-verify-degraded', degradedHeader.trim());
+  } else if (Array.isArray(degradedHeader) && degradedHeader.length > 0) {
+    const value = degradedHeader.find((entry) => typeof entry === 'string' && entry.trim().length > 0);
+    if (value) {
+      res.setHeader('x-verify-degraded', value.trim());
+    }
+  }
+
   const tokenHeader = req.headers['x-ethics-token'];
   if (!tokenHeader) {
     res.status(428).json({ ok: false, reason: 'missing_ethics_token' });

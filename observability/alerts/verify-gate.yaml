@@ -1,0 +1,33 @@
+groups:
+  - name: verify-gate-ethics
+    rules:
+      - alert: VerifyGateIdempotencyReplaySpike
+        expr: increase(verify_gate_idem_hits_total[5m]) > 3
+        for: 5m
+        labels:
+          severity: warning
+          service: verify-gate
+        annotations:
+          summary: 'Verify Gate is rejecting duplicate requests'
+          description: 'verify_gate_idem_hits_total exceeded the expected window baseline (>3 hits in 5m). Investigate client retries or replay attacks.'
+          runbook: docs/runbooks/verify-gate-jwt-rotation.md
+      - alert: VerifyGateSSRFBlockSpike
+        expr: increase(verify_gate_ssrf_block_total[5m]) > 0
+        for: 1m
+        labels:
+          severity: critical
+          service: verify-gate
+        annotations:
+          summary: 'Verify Gate blocked SSRF attempts'
+          description: 'At least one SSRF attempt was blocked within the last 5 minutes. Review upstream origin logs and allowlist configuration.'
+          runbook: docs/runbooks/verify-gate-jwt-rotation.md
+      - alert: VerifyGateTokenFailures
+        expr: increase(verify_gate_token_fail_total[5m]) > 0
+        for: 1m
+        labels:
+          severity: critical
+          service: verify-gate
+        annotations:
+          summary: 'Verify Gate token verification failures'
+          description: 'Token guard rejected one or more requests in the last 5 minutes. Check JWT rotation status and verify upstream secrets.'
+          runbook: docs/runbooks/verify-gate-jwt-rotation.md

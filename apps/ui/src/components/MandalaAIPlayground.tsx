@@ -4,7 +4,7 @@ import BoundaryMiniTile from './BoundaryMiniTile';
 import SettingsRUM from './SettingsRUM';
 import EthicsBadge from './EthicsBadge';
 import { EvidenceChips, type EvidenceChipItem } from './EvidenceChips';
-import { fetchJsonWithEthics } from '../lib/fetchWithEthics';
+import { fetchJsonWithEthics, type DegradedMeta } from '../lib/fetchWithEthics';
 
 type PlaygroundState = 'idle' | 'loading' | 'done' | 'error';
 
@@ -65,6 +65,7 @@ export function MandalaAIPlayground() {
   const [publishNote, setPublishNote] = useState<string>('');
   const [ethicsVerdict, setEthicsVerdict] = useState<'green' | 'yellow' | 'red' | 'unknown'>('unknown');
   const [ethicsEvidenceCount, setEthicsEvidenceCount] = useState<number>(0);
+  const [verifyDegraded, setVerifyDegraded] = useState<DegradedMeta>({ active: false });
 
   async function maybeRunIntentsFrom(text: string) {
     try {
@@ -137,6 +138,7 @@ export function MandalaAIPlayground() {
     setAnswer(null);
     setEthicsVerdict('unknown');
     setEthicsEvidenceCount(0);
+    setVerifyDegraded({ active: false });
 
     try {
       const { data: payload, ethics, response } = await fetchJsonWithEthics<any>(endpoint, {
@@ -152,6 +154,7 @@ export function MandalaAIPlayground() {
 
       setEthicsVerdict(ethics.verdict);
       setEthicsEvidenceCount(ethics.evidenceCount);
+      setVerifyDegraded(ethics.degraded);
 
       if (!response.ok) {
         throw new Error((payload as any)?.error ?? `Request failed with status ${response.status}`);
@@ -379,6 +382,20 @@ export function MandalaAIPlayground() {
           <code>apps/api</code>) auf Port 4000.
         </p>
       </header>
+
+      {verifyDegraded.active && (
+        <div className="rounded-lg border border-amber-300 bg-amber-50 px-4 py-3 text-amber-900 shadow-sm">
+          <p className="text-sm font-semibold">Fail-closed Mode aktiv</p>
+          <p className="text-sm">
+            Evidenz erforderlich / Veröffentlichung blockiert.
+            {verifyDegraded.source ? (
+              <span className="ml-1 font-normal text-amber-800">
+                Quelle: {verifyDegraded.source}
+              </span>
+            ) : null}
+          </p>
+        </div>
+      )}
 
       <div className="mt-3 flex flex-col gap-3 md:flex-row md:items-start">
         <div className="flex-1" />

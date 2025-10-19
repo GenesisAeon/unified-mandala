@@ -1,9 +1,56 @@
 import express from 'express';
 import request from 'supertest';
 import { AddressInfo } from 'node:net';
+import { mkdtempSync, rmSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { mockBetterSqlite } from './helpers/mockBetterSqlite.js';
 
 const ORIGINAL_ENV = { ...process.env };
+
+function applyModuleMocks(): void {
+  vi.mock('helmet', () => ({
+    default: () => (_req: unknown, _res: unknown, next: () => void) => next(),
+    __esModule: true,
+  }));
+  mockBetterSqlite();
+  vi.mock('prom-client', () => {
+    class MockCounter {
+      inc(): void {}
+    }
+    class MockGauge {
+      inc(): void {}
+      dec(): void {}
+    }
+    class MockHistogram {
+      labels(): { observe: () => void } {
+        return { observe: () => {} };
+      }
+      startTimer(): () => void {
+        return () => {};
+      }
+    }
+    class MockRegistry {
+      public contentType = 'text/plain';
+      async metrics(): Promise<string> {
+        return '';
+      }
+    }
+    const module = {
+      collectDefaultMetrics: () => undefined,
+      Counter: MockCounter,
+      Gauge: MockGauge,
+      Histogram: MockHistogram,
+      Registry: MockRegistry,
+    };
+    return {
+      __esModule: true,
+      default: module,
+      ...module,
+    };
+  });
+}
 
 async function startServer(app: express.Express): Promise<{ url: string; close: () => Promise<void> }> {
   return await new Promise((resolve) => {
@@ -27,57 +74,27 @@ async function startServer(app: express.Express): Promise<{ url: string; close: 
 }
 
 describe('verify gate idempotency guard', () => {
+  let tempDir: string | null = null;
+
   beforeEach(() => {
     vi.resetModules();
-    vi.mock('helmet', () => ({
-      default: () => (_req: unknown, _res: unknown, next: () => void) => next(),
-      __esModule: true,
-    }));
-    vi.mock('prom-client', () => {
-      class MockCounter {
-        inc(): void {}
-      }
-      class MockGauge {
-        inc(): void {}
-        dec(): void {}
-      }
-      class MockHistogram {
-        labels(): { observe: () => void } {
-          return { observe: () => {} };
-        }
-        startTimer(): () => void {
-          return () => {};
-        }
-      }
-      class MockRegistry {
-        public contentType = 'text/plain';
-        async metrics(): Promise<string> {
-          return '';
-        }
-      }
-      const module = {
-        collectDefaultMetrics: () => undefined,
-        Counter: MockCounter,
-        Gauge: MockGauge,
-        Histogram: MockHistogram,
-        Registry: MockRegistry,
-      };
-      return {
-        __esModule: true,
-        default: module,
-        ...module,
-      };
-    });
+    applyModuleMocks();
     process.env = { ...ORIGINAL_ENV } as NodeJS.ProcessEnv;
     process.env.NODE_ENV = 'test';
     process.env.VERIFY_GATE_TIMEOUT_MS = '250';
     process.env.VERIFY_GATE_RPS = '1000';
     process.env.VERIFY_GATE_IDEMP_TTL_MS = '5000';
     process.env.VERIFY_GATE_JWT_SECRET = 'test-secret';
+    tempDir = mkdtempSync(join(tmpdir(), 'verify-gate-idem-'));
+    process.env.VERIFY_GATE_IDEMP_DB = join(tempDir, 'idem.db');
   });
 
   afterEach(() => {
     process.env = { ...ORIGINAL_ENV } as NodeJS.ProcessEnv;
+    if (tempDir) {
+      rmSync(tempDir, { recursive: true, force: true });
+      tempDir = null;
+    }
   });
 
   it('returns 409 for duplicate requests with the same payload', async () => {
@@ -110,6 +127,44 @@ describe('verify gate idempotency guard', () => {
       const second = await request(app).post('/gate/dup').send({ foo: 'bar' });
       expect(second.status).toBe(409);
       expect(second.body.reason).toBe('duplicate');
+      expect(second.headers['x-request-id']).toBe(requestId);
+    } finally {
+      await ethics.close();
+      await upstream.close();
+    }
+  });
+
+  it('persists duplicate detection across module reloads', async () => {
+    const ethicsApp = express();
+    ethicsApp.use(express.json());
+    ethicsApp.post('/ethics/check', (_req, res) => {
+      res.json({ ok: true, verdict: 'green', reason: 'grounded', neededEvidence: ['ref'] });
+    });
+    const ethics = await startServer(ethicsApp);
+
+    const upstreamApp = express();
+    upstreamApp.use(express.json());
+    upstreamApp.post('/dup', (_req, res) => {
+      res.json({ ok: true });
+    });
+    const upstream = await startServer(upstreamApp);
+
+    process.env.VERIFY_ETHICS_URL = `${ethics.url}`;
+    process.env.VERIFY_UPSTREAM_URL = `${upstream.url}`;
+    process.env.VERIFY_GATE_UPSTREAM_ALLOWLIST = new URL(upstream.url).host;
+
+    try {
+      const firstModule = await import('../index');
+      const first = await request(firstModule.app).post('/gate/dup').send({ foo: 'bar' });
+      expect(first.status).toBe(200);
+      const requestId = first.headers['x-request-id'];
+      expect(typeof requestId).toBe('string');
+
+      vi.resetModules();
+      applyModuleMocks();
+      const secondModule = await import('../index');
+      const second = await request(secondModule.app).post('/gate/dup').send({ foo: 'bar' });
+      expect(second.status).toBe(409);
       expect(second.headers['x-request-id']).toBe(requestId);
     } finally {
       await ethics.close();
