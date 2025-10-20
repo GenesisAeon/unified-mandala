@@ -2,10 +2,13 @@ import { defineConfig } from 'vitest/config';
 import path from 'node:path';
 import fs from 'node:fs';
 import { fileURLToPath } from 'node:url';
+import { createRequire } from 'node:module';
 
 const toBool = (value: string | undefined) => value === '1' || value?.toLowerCase() === 'true';
 
 const otelStubRoot = fileURLToPath(new URL('./tests/__mocks__/otel-api', import.meta.url));
+const require = createRequire(import.meta.url);
+const ipaddrEntry = require.resolve('ipaddr.js');
 const resolveOtelStub = (id: string): string | null => {
   const aliases = new Map<string, string>([
     ['@opentelemetry/api', path.join(otelStubRoot, 'index.ts')],
@@ -92,6 +95,7 @@ export default defineConfig({
         new URL('./tests/__mocks__/otel-api/build/esm/index.ts', import.meta.url),
       ),
       tldts: fileURLToPath(new URL('./tests/__mocks__/tldts.ts', import.meta.url)),
+      'ipaddr.js': ipaddrEntry,
     },
     preserveSymlinks: true,
   },
@@ -110,6 +114,7 @@ export default defineConfig({
           /^express$/,
           /^react$/,
           /^@opentelemetry\/api(\/.*)?$/,
+          /^ipaddr\.js$/,
         ],
       },
     },
@@ -117,7 +122,7 @@ export default defineConfig({
       optimizer: {
         enabled: false,
         ssr: {
-          include: ['@unified-mandala/ai', 'openai', 'nats', 'express', 'react'],
+          include: ['@unified-mandala/ai', 'openai', 'nats', 'express', 'react', 'ipaddr.js'],
         },
       },
     },

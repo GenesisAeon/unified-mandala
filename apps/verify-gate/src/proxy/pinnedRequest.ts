@@ -14,18 +14,37 @@ export type PinnedRequestOptions = {
   headersTimeoutMs?: number;
 };
 
+const HOP_BY_HOP_HEADERS = new Set([
+  'connection',
+  'keep-alive',
+  'proxy-connection',
+  'proxy-authenticate',
+  'proxy-authorization',
+  'te',
+  'transfer-encoding',
+  'upgrade',
+  'trailer',
+  'content-length',
+  'host',
+  'via',
+]);
+
 function sanitizeHeaders(headers: Record<string, string | string[] | undefined>, host: string): Headers {
   const filtered = new Headers();
   for (const [key, value] of Object.entries(headers)) {
     if (value === undefined) {
       continue;
     }
+    const normalizedKey = key.toLowerCase();
+    if (HOP_BY_HOP_HEADERS.has(normalizedKey) || normalizedKey.startsWith('proxy-')) {
+      continue;
+    }
     if (Array.isArray(value)) {
       for (const entry of value) {
-        filtered.append(key, entry);
+        filtered.append(normalizedKey, entry);
       }
     } else {
-      filtered.append(key, value);
+      filtered.append(normalizedKey, value);
     }
   }
   filtered.set('host', host);

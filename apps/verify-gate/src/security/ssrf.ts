@@ -4,13 +4,8 @@ import {
   ssrfResolveEmpty,
   ssrfResolveErrors,
 } from '../metrics.js';
-import {
-  resolveHostStrictTTL,
-  SSRFDNSResolveError,
-  SSRFDNSEmptyError,
-  SSRFPrivateTargetError,
-  type ResolveResult,
-} from './resolve.js';
+import { SSRFDNSResolveError, SSRFDNSEmptyError, SSRFPrivateTargetError, type ResolveResult } from './resolve.js';
+import { resolveWithCache } from './dnsCache.js';
 import { isPrivateOrBlocked, normalizeIp } from './ipRanges.js';
 
 type AllowPattern = {
@@ -30,7 +25,7 @@ export class SSRFDenyError extends Error {
   }
 }
 
-interface AllowResult {
+export interface AllowResult {
   ip: string;
   ips: string[];
   minTTLsec: number;
@@ -217,7 +212,7 @@ export async function assertAllowed(target: string): Promise<AllowResult> {
 
   let resolved: ResolveResult;
   try {
-    resolved = await resolveHostStrictTTL(host);
+    resolved = await resolveWithCache(host);
   } catch (error) {
     if (error instanceof SSRFPrivateTargetError || (error as { code?: string }).code === 'SSRFPrivateTargetError') {
       ssrfBlocks.inc({ host, resolved_ip: (error as SSRFPrivateTargetError & { resolvedIp?: string }).resolvedIp ?? 'unknown' });

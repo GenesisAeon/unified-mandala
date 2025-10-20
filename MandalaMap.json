@@ -84,7 +84,8 @@
         "Fraktal106: Metrics nach `metrics.ts` extrahiert (`verify_gate_idem_hits_total`, `verify_gate_ssrf_block_total{host}`, `verify_gate_token_fail_total{reason}`, Histogram mit `method/route/code`), SSRF-Denies & Token-Sign-Fehler werden gezählt, Verdict-Tokens rotieren via `VERIFY_GATE_JWT_SECRETS` + `VERIFY_GATE_JWT_ACTIVE_KID` mit `kid`-Header und SSRF-Blockierungen melden den Host. Chaos-Skript `pnpm chaos:ethics --scenario boundary-down` + Nightly-Job prüfen Fail-Closed.",
         "Fraktal106 Update: Idempotency-Store persistiert via `better-sqlite3` (`VERIFY_GATE_IDEMP_DB`, TTL `VERIFY_GATE_IDEMP_TTL_MS`), `persist-replay`-Vitest deckt Neustarts ab; Header-Safelist (auth/cookie/user-agent/accept/accept-language/content-type/x-request-id/x-forwarded-for/x-forwarded-proto/x-ethics-token) ersetzt Drop-Liste, `X-Verify-Degraded` propagiert bis UI (`MandalaAIPlayground` Fail-Closed-Banner) und Runbook `docs/runbooks/verify-gate-jwt-rotation.md` beschreibt Kid-Rotation.",
         "Fraktal108: SSRF-Guard löst jetzt A- und AAAA-Records via `dns.lookup(..., { all: true, verbatim: true })`, fällt bei DNS-Fehlern fail-closed (kein `[host]`-Fallback), blockiert ::1/Private deterministisch, zählt DNS-Probleme über `verify_gate_ssrf_resolve_error_total` bzw. leere Antworten über `verify_gate_ssrf_resolve_empty_total` und `makePinnedAgent` übernimmt die aufgelöste IP für das Upstream-Binding.",
-        "Fraktal108 Follow-up: Hardening Pack plant TTL-Pinning/Resolver-Cache, CNAME-/IDNA-Checks, TLS-SAN & remoteAddress-Vergleich, Redirect-Limits (≤3 Hops, http/https), IPv6-/NAT64-Blocklisten sowie neue Counter/OPA-Inputs; siehe analysis/devtalk109-evaluation.md, docs/roadmap v1.0 & codexfeedback*."
+        "Fraktal108 Follow-up: Hardening Pack plant TTL-Pinning/Resolver-Cache, CNAME-/IDNA-Checks, TLS-SAN & remoteAddress-Vergleich, Redirect-Limits (≤3 Hops, http/https), IPv6-/NAT64-Blocklisten sowie neue Counter/OPA-Inputs; siehe analysis/devtalk109-evaluation.md, docs/roadmap v1.0 & codexfeedback*.",
+        "Fraktal111: Redirect-Kette validiert jeden Hop vor dem Netz-Request, DNS-Cache jittert TTLs mit Request-Coalescing, HTTPS-Ziele laufen durch TLS/SAN-Preflight; Prometheus zählt `verify_gate_ip_mismatch_total`, `verify_gate_tls_name_mismatch_total`, Redirect-Block-Gründe für Grafana & Alerts."
       ],
       "path": "apps/verify-gate/",
       "status": "active",
@@ -1269,8 +1270,8 @@
     }
   },
   "meta": {
-    "fraktal": 108,
-    "generated": "2025-12-22 12:00:00+00:00",
+    "fraktal": 111,
+    "generated": "2025-12-22 18:00:00+00:00",
     "reference_docs": [
       "docs/roadmap/v1.0-stabilization-playbook.md",
       "docs/roadmap/v1.0-stabilization-playbook.yaml"

@@ -480,3 +480,9 @@ status_updates:
       security: Guarded FS endpoints, API-Key, loopback bind (HOST=127.0.0.1) and rate limits in proxy.
       observability: Lightweight audit logging for proxy requests.
       smokes: FS smoke (pnpm smoke:fs) added; Qwen smoke green (pnpm smoke:qwen).
+  - id: fraktal111
+    date: '2025-12-22'
+    notes:
+      security: Verify-Gate nutzt einen jitterned DNS-TTL-Cache mit Request-Coalescing, folgt Redirects nur noch nach erfolgreichem Allowlist-Check und führt vor HTTPS-Requests einen TLS/SAN-Preflight gegen die gepinnte IP aus.
+      observability: Neue Counter für TLS/IP-Mismatches und Redirect-Blocks speisen die Grafana-Queries (TTL p95, Block-Topliste), Alerts referenzieren die TLS-Preflight-Gründe.
+      docs: Stabilization-Playbook, MandalaMap und Codexfeedback spiegeln Fraktal109/111 Abschluss, TLS/DNS-Runbooks ergänzt.
