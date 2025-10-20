@@ -1,13 +1,32 @@
 fraktal:
   current: 108
   history:
+    - id: 108-hardening-pack
+      status: in-progress
+      notes: >-
+        Fraktal108 Hardening Pack: `analysis/devtalk109-evaluation.md` priorisiert TTL-bewusste DNS-Pins (Resolver-Cache, Keep-Alive ≤ `minTTL`), CNAME-/IDNA-Validierung, TLS-SAN/IP-Vergleich & Remote-IP-Prüfung, Redirect-Guards (≤3 Hops, http/https), IPv6/NAT64-Blocklisten sowie neue Counter (`verify_gate_dns_ttl_pinned_seconds_bucket`, `verify_gate_redirect_block_total`, `verify_gate_ip_mismatch_total`, `verify_gate_tls_name_mismatch_total`) und OPA-Inputs (`resolved_ip`, `cname_chain`, `min_ttl_sec`). MandalaMap.*, Stabilization-Playbook.* und codexfeedback* markieren den Lauf als in progress; Umsetzung & Tests folgen.
+      deliverables:
+        - analysis/devtalk109-evaluation.md
+        - docs/roadmap/v1.0-stabilization-playbook.md
+        - docs/roadmap/v1.0-stabilization-playbook.yaml
+        - MandalaMap.md
+        - MandalaMap.yaml
+        - MandalaMap.json
+        - codexfeedback.md
+        - codexfeedback.json
+        - codexfeedback.yaml
+        - codexfeedback/codexfeedback-latest.md
+        - codexfeedback/codexfeedback-latest.json
+        - codexfeedback/codexfeedback-latest.yaml
+        - codexfeedback/codexfeedback-fraktal108-hardening.yaml
+      hook:
+        progress: Bewertung & Scope-Definition abgeschlossen; Prioritätenliste für Resolver, TLS, Redirects, IPv6 und Telemetrie steht.
+        next_step: Implementierung der Hardening-Maßnahmen (TTL-Cache, CNAME/IDNA, TLS-SAN, Redirect-Gates, neue Counter) inkl. Vitest-Tabelle & Chaos-Drill.
+        repeat_required: true
     - id: 108-ssrf-hardening
       status: done
-      notes:
-        'Fraktal108 SSRF Hardening: Verify-Gate resolved A- und AAAA-Records via `dns.lookup(..., { all: true, verbatim: true })`,
-        fällt bei DNS-Fehlern fail-closed (kein `[host]`-Fallback), blockiert ::1/Private deterministisch, zählt DNS-Probleme über
-        `verify_gate_ssrf_resolve_error_total`/`verify_gate_ssrf_resolve_empty_total` und `makePinnedAgent` übernimmt die aufgelöste IP;
-        Tests & Docs (Stabilization-Playbook, MandalaMap, codexfeedback-latest.*) dokumentieren den Lauf.'
+      notes: >-
+        Fraktal108 SSRF Hardening: Verify-Gate resolved A- und AAAA-Records via `dns.lookup(..., { all: true, verbatim: true })`, fällt bei DNS-Fehlern fail-closed (kein `[host]`-Fallback), blockiert ::1/Private deterministisch, zählt DNS-Probleme über `verify_gate_ssrf_resolve_error_total`/`verify_gate_ssrf_resolve_empty_total` und `makePinnedAgent` übernimmt die aufgelöste IP; Tests & Docs (Stabilization-Playbook, MandalaMap, codexfeedback-latest.*) dokumentieren den Lauf.
       deliverables:
         - apps/verify-gate/src/security/ssrf.ts
         - apps/verify-gate/src/index.ts
