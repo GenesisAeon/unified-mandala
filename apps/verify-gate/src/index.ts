@@ -8,7 +8,7 @@ import { buildUpstreamHeaders, exposeEthicsHeaders } from './http/headerForward.
 import { assertAllowed, hasAllowlistEntries, SSRFDenyError } from './security/ssrf.js';
 import { isPrivateOrBlocked, normalizeIp } from './security/ipRanges.js';
 import {
-  followRedirects,
+  followRedirectsWithPreflight,
   RedirectBadSchemeError,
   RedirectPrivateTargetError,
   RedirectTooManyError,
@@ -341,12 +341,11 @@ app.post('/gate/*', async (req: Request, res: Response) => {
   let redirectHops = 0;
   let schemeHistory: string[] = [finalTarget.protocol.replace(/:$/, '')];
   const maxRedirects = Number.parseInt(process.env.VERIFY_GATE_MAX_REDIRECTS ?? '3', 10);
-  const pinnedIpNormalized = normalizeIp(allowResult.ip);
   let tlsRemoteIp: string | undefined;
   let tlsSanOk: boolean | undefined;
   let tlsIpMismatch = false;
   try {
-    const redirectResult = await followRedirects(
+    const redirectResult = await followRedirectsWithPreflight(
       target,
       { allow: allowResult },
       Number.isFinite(maxRedirects) ? maxRedirects : 3,
@@ -368,6 +367,42 @@ app.post('/gate/*', async (req: Request, res: Response) => {
     return res.status(502).json({ ok: false, error: 'redirect_follow_failed' });
   }
 
+  try {
+    allowResult = await assertAllowed(finalTarget.toString());
+  } catch (error) {
+    if (error instanceof SSRFDenyError) {
+      return res.status(403).json({ ok: false, error: error.message });
+    }
+    return res.status(403).json({ ok: false, error: 'TARGET_NOT_ALLOWED' });
+  }
+
+  const pinnedIpNormalized = normalizeIp(allowResult.ip);
+
+  if (finalTarget.protocol === 'https:') {
+    try {
+      const { remoteAddress, sanOk } = await tlsPreflight(
+        finalTarget.hostname,
+        allowResult.ip,
+        Number(finalTarget.port || 443),
+      );
+      tlsSanOk = sanOk;
+      tlsRemoteIp = remoteAddress;
+      const remoteNormalized = remoteAddress ? normalizeIp(remoteAddress) : undefined;
+      if (remoteNormalized && remoteNormalized !== pinnedIpNormalized) {
+        ipMismatch.inc({ host: finalTarget.hostname });
+        tlsIpMismatch = true;
+        throw new Error('IP_MISMATCH_PREFLIGHT');
+      }
+      if (!sanOk) {
+        tlsNameMismatch.inc({ host: finalTarget.hostname });
+        throw new Error('TLS_SAN_MISMATCH');
+      }
+    } catch (error) {
+      redirectBlocks.inc({ reason: 'tls-preflight-fail', start_host: target.hostname });
+      return res.status(502).json({ ok: false, error: 'tls_preflight_failed' });
+    }
+  }
+
   dnsTtlPinned.labels(allowResult.hostname).observe(allowResult.minTTLsec);
 
   const netContext = {
@@ -384,24 +419,26 @@ app.post('/gate/*', async (req: Request, res: Response) => {
 
   const ttlLevel = allowResult.minTTLsec < 10 ? 'critical' : allowResult.minTTLsec < 30 ? 'warn' : 'ok';
   const redirectLevel = redirectHops >= 3 ? 'critical' : redirectHops > 0 ? 'warn' : 'ok';
-  const tlsLevel =
-    finalTarget.protocol === 'https:' ? (!tlsSanOk || tlsIpMismatch ? 'critical' : 'ok') : 'ok';
-
-  const networkSignals = {
-    ttl: { seconds: allowResult.minTTLsec, level: ttlLevel },
-    redirect: { hops: redirectHops, level: redirectLevel, schemes: schemeHistory },
-    tls:
-      finalTarget.protocol === 'https:'
-        ? {
-            sanOk: tlsSanOk ?? false,
-            ipMismatch: tlsIpMismatch,
-            remoteIp: tlsRemoteIp,
-            pinnedIp: pinnedIpNormalized,
-            level: tlsLevel,
-          }
-        : undefined,
+  const buildNetworkSignals = () => {
+    const tlsLevel =
+      finalTarget.protocol === 'https:' ? (!tlsSanOk || tlsIpMismatch ? 'critical' : 'ok') : 'ok';
+    return {
+      ttl: { seconds: allowResult.minTTLsec, level: ttlLevel },
+      redirect: { hops: redirectHops, level: redirectLevel, schemes: schemeHistory },
+      tls:
+        finalTarget.protocol === 'https:'
+          ? {
+              sanOk: tlsSanOk ?? false,
+              ipMismatch: tlsIpMismatch,
+              remoteIp: tlsRemoteIp,
+              pinnedIp: pinnedIpNormalized,
+              level: tlsLevel,
+            }
+          : undefined,
+    };
   };
 
+  let networkSignals = buildNetworkSignals();
   res.setHeader('x-verify-network', JSON.stringify(networkSignals));
 
   const ethicsUrl = `${ethicsBase}/ethics/check`;
@@ -520,31 +557,6 @@ app.post('/gate/*', async (req: Request, res: Response) => {
 
     const upstreamMethod = ((req.method ?? 'GET').toUpperCase() as Dispatcher.HttpMethod);
 
-    if (finalTarget.protocol === 'https:') {
-      try {
-        const { remoteAddress, sanOk } = await tlsPreflight(
-          finalTarget.hostname,
-          allowResult.ip,
-          Number(finalTarget.port || 443),
-        );
-        tlsSanOk = sanOk;
-        tlsRemoteIp = remoteAddress;
-        const remoteNormalized = remoteAddress ? normalizeIp(remoteAddress) : undefined;
-        if (remoteNormalized && remoteNormalized !== pinnedIpNormalized) {
-          ipMismatch.inc({ host: finalTarget.hostname });
-          tlsIpMismatch = true;
-          throw new Error('IP_MISMATCH_PREFLIGHT');
-        }
-        if (!sanOk) {
-          tlsNameMismatch.inc({ host: finalTarget.hostname });
-          throw new Error('TLS_SAN_MISMATCH');
-        }
-      } catch (error) {
-        redirectBlocks.inc({ reason: 'tls-preflight-fail', start_host: target.hostname });
-        throw error;
-      }
-    }
-
     const pinned = await pinnedRequest({
       originalUrl: finalTarget,
       pinnedIp: allowResult.ip,
@@ -554,6 +566,15 @@ app.post('/gate/*', async (req: Request, res: Response) => {
       body,
       signal: controller.signal,
     });
+
+    if (!tlsRemoteIp && pinned.remoteIp) {
+      tlsRemoteIp = pinned.remoteIp;
+    }
+    if (typeof pinned.sanOk === 'boolean') {
+      tlsSanOk = pinned.sanOk;
+    }
+    networkSignals = buildNetworkSignals();
+    res.setHeader('x-verify-network', JSON.stringify(networkSignals));
 
     stopOnce(String(pinned.res.statusCode));
 

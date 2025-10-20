@@ -1,6 +1,10 @@
-import { Agent, Headers, request, buildConnector, type Dispatcher } from 'undici';
+import { Agent, Headers, request, type Dispatcher } from 'undici';
+import tls from 'node:tls';
+import net from 'node:net';
 import { Readable } from 'node:stream';
 import { pipeline } from 'node:stream/promises';
+import { ipMismatch, tlsNameMismatch } from '../metrics.js';
+import { normalizeIp } from '../security/ipRanges.js';
 
 export type PinnedRequestOptions = {
   originalUrl: URL;
@@ -13,6 +17,84 @@ export type PinnedRequestOptions = {
   bodyTimeoutMs?: number;
   headersTimeoutMs?: number;
 };
+
+export type PinnedRequestResult = {
+  res: import('undici').Dispatcher.ResponseData;
+  remoteIp?: string;
+  sanOk?: boolean;
+  pipeTo(response: import('express').Response): Promise<void>;
+  dispose(): void;
+};
+
+type ConnectionTelemetry = {
+  remoteIp?: string;
+  sanOk?: boolean;
+};
+
+function makePinnedConnector(
+  pinnedIp: string,
+  host: string,
+  telemetry: ConnectionTelemetry,
+  httpsPreferred: boolean,
+) {
+  const normalizedPinned = normalizeIp(pinnedIp);
+  return function connect(
+    opts: any,
+    cb: (err: Error | null, socket: tls.TLSSocket | net.Socket | null) => void,
+  ) {
+    const protocol = typeof opts?.protocol === 'string' ? opts.protocol : httpsPreferred ? 'https:' : 'http:';
+    const port = Number(opts?.port ?? (protocol === 'https:' ? 443 : 80));
+    const isHttps = protocol === 'https:';
+
+    const onSecure = (socket: tls.TLSSocket | net.Socket) => {
+      const remote = normalizeIp((socket as tls.TLSSocket).remoteAddress ?? '');
+      if (remote) {
+        telemetry.remoteIp = remote;
+      }
+      if (remote && normalizedPinned && remote !== normalizedPinned) {
+        ipMismatch.inc({ host });
+        socket.destroy(new Error('IP_MISMATCH'));
+        return;
+      }
+      cb(null, socket);
+    };
+
+    if (isHttps) {
+      let sanValid = true;
+      const socket = tls.connect({
+        host: pinnedIp,
+        port,
+        servername: host,
+        checkServerIdentity: (_hostname, cert) => {
+          const err = tls.checkServerIdentity(host, cert);
+          if (err) {
+            sanValid = false;
+            telemetry.sanOk = false;
+            tlsNameMismatch.inc({ host });
+          }
+          return err ?? undefined;
+        },
+      });
+      socket.once('secureConnect', () => {
+        if (sanValid) {
+          telemetry.sanOk = true;
+        }
+        onSecure(socket);
+      });
+      socket.once('error', (error) => {
+        cb(error instanceof Error ? error : new Error(String(error)), null);
+      });
+      return socket;
+    }
+
+    const socket = net.connect({ host: pinnedIp, port });
+    socket.once('connect', () => onSecure(socket));
+    socket.once('error', (error) => {
+      cb(error instanceof Error ? error : new Error(String(error)), null);
+    });
+    return socket;
+  };
+}
 
 const HOP_BY_HOP_HEADERS = new Set([
   'connection',
@@ -39,6 +121,9 @@ function sanitizeHeaders(headers: Record<string, string | string[] | undefined>,
     if (HOP_BY_HOP_HEADERS.has(normalizedKey) || normalizedKey.startsWith('proxy-')) {
       continue;
     }
+    if (normalizedKey === 'expect') {
+      continue;
+    }
     if (Array.isArray(value)) {
       for (const entry of value) {
         filtered.append(normalizedKey, entry);
@@ -51,7 +136,7 @@ function sanitizeHeaders(headers: Record<string, string | string[] | undefined>,
   return filtered;
 }
 
-export async function pinnedRequest(options: PinnedRequestOptions) {
+export async function pinnedRequest(options: PinnedRequestOptions): Promise<PinnedRequestResult> {
   const {
     originalUrl,
     pinnedIp,
@@ -79,14 +164,14 @@ export async function pinnedRequest(options: PinnedRequestOptions) {
     ),
   );
 
+  const telemetry: ConnectionTelemetry = {};
   const agentOptions: Agent.Options = {
     keepAliveTimeout: ttlCapMs,
     keepAliveMaxTimeout: ttlCapMs,
+    connect: {
+      connector: makePinnedConnector(pinnedIp, originalUrl.hostname, telemetry, isHttps),
+    } as any,
   };
-
-  if (isHttps) {
-    agentOptions.connect = buildConnector({ servername: originalUrl.hostname });
-  }
 
   const agent = new Agent(agentOptions);
 
@@ -103,6 +188,8 @@ export async function pinnedRequest(options: PinnedRequestOptions) {
 
   return {
     res,
+    remoteIp: telemetry.remoteIp,
+    sanOk: telemetry.sanOk,
     async pipeTo(response: import('express').Response) {
       for (const [key, value] of Object.entries(res.headers)) {
         if (/^(connection|keep-alive|proxy-connection|upgrade|te|transfer-encoding|content-length)$/i.test(key)) {

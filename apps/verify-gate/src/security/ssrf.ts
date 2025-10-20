@@ -1,4 +1,5 @@
 import { URL } from 'node:url';
+import * as punycode from 'node:punycode';
 import {
   ssrfBlocks,
   ssrfResolveEmpty,
@@ -35,7 +36,15 @@ export interface AllowResult {
 }
 
 function normalizeHost(value: string): string {
-  return value.trim().toLowerCase();
+  const trimmed = value.trim();
+  if (trimmed.length === 0) {
+    return '';
+  }
+  try {
+    return punycode.toASCII(trimmed).toLowerCase();
+  } catch {
+    return trimmed.toLowerCase();
+  }
 }
 
 function parseAllowEntry(entry: string): AllowPattern | null {
@@ -179,21 +188,22 @@ export async function assertAllowed(target: string): Promise<AllowResult> {
   const url = new URL(target);
   const protocol = url.protocol.replace(/:$/, '').toLowerCase();
   const host = url.hostname;
+  const hostAscii = normalizeHost(host);
   const port = url.port ? Number.parseInt(url.port, 10) : protocol === 'https' ? 443 : 80;
 
   if (!allowedProtocols.has(protocol)) {
-    return recordBlock(host, 'protocol_not_allowed');
+    return recordBlock(hostAscii || host, 'protocol_not_allowed');
   }
 
   if (!Number.isFinite(port)) {
-    return recordBlock(host, 'port_not_allowed');
+    return recordBlock(hostAscii || host, 'port_not_allowed');
   }
 
-  if (!isAllowed(host, port, protocol)) {
-    return recordBlock(host, 'upstream_not_allowlisted');
+  if (!isAllowed(hostAscii || host, port, protocol)) {
+    return recordBlock(hostAscii || host, 'upstream_not_allowlisted');
   }
 
-  const literalCandidate = host.replace(/^\[|\]$/g, '');
+  const literalCandidate = hostAscii.replace(/^\[|\]$/g, '');
   const isLiteralIp = /^[0-9.]+$/.test(literalCandidate) || /^[0-9a-f:.]+$/i.test(literalCandidate);
   if (isLiteralIp) {
     const normalizedLiteral = normalizeIp(literalCandidate);
@@ -212,18 +222,18 @@ export async function assertAllowed(target: string): Promise<AllowResult> {
 
   let resolved: ResolveResult;
   try {
-    resolved = await resolveWithCache(host);
+    resolved = await resolveWithCache(hostAscii || host);
   } catch (error) {
     if (error instanceof SSRFPrivateTargetError || (error as { code?: string }).code === 'SSRFPrivateTargetError') {
-      ssrfBlocks.inc({ host, resolved_ip: (error as SSRFPrivateTargetError & { resolvedIp?: string }).resolvedIp ?? 'unknown' });
+      ssrfBlocks.inc({ host: hostAscii || host, resolved_ip: (error as SSRFPrivateTargetError & { resolvedIp?: string }).resolvedIp ?? 'unknown' });
       throw new SSRFDenyError('upstream_private_blocked');
     }
     if (error instanceof SSRFDNSEmptyError || (error as { code?: string }).code === 'SSRFDNSEmptyError') {
-      ssrfResolveEmpty.inc({ host });
+      ssrfResolveEmpty.inc({ host: hostAscii || host });
       throw new SSRFDenyError('dns_no_records');
     }
     if (error instanceof SSRFDNSResolveError || (error as { code?: string }).code === 'SSRFDNSResolveError') {
-      ssrfResolveErrors.inc({ host });
+      ssrfResolveErrors.inc({ host: hostAscii || host });
       throw new SSRFDenyError('dns_resolution_failed');
     }
     throw error;

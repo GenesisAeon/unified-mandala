@@ -33,7 +33,7 @@ function extractLocation(headers: import('undici').Dispatcher.ResponseData['head
   return Array.isArray(raw) ? raw[0] : raw;
 }
 
-export async function followRedirects(
+export async function followRedirectsWithPreflight(
   start: URL,
   startCtx: RedirectContext,
   maxHops = 3,
@@ -44,7 +44,20 @@ export async function followRedirects(
   const schemeHistory = [currentUrl.protocol.replace(/:$/, '')];
 
   for (let hop = 0; hop < maxHops; hop += 1) {
-    let headResponse: Awaited<ReturnType<typeof pinnedRequest>>;
+    // Ensure the current hop is still allowlisted before any network I/O
+    if (hop > 0) {
+      try {
+        ctx = { allow: await assertAllowed(currentUrl.toString()) };
+      } catch (error) {
+        if (error instanceof SSRFDenyError) {
+          redirectBlocks.inc({ reason: 'private-target', start_host: startHost });
+          throw new RedirectPrivateTargetError(error.message);
+        }
+        throw error;
+      }
+    }
+
+    let headResponse: Awaited<ReturnType<typeof pinnedRequest>> | undefined;
     try {
       headResponse = await pinnedRequest({
         originalUrl: currentUrl,
@@ -98,10 +111,12 @@ export async function followRedirects(
       ctx = { allow: allowNext };
       schemeHistory.push(currentUrl.protocol.replace(/:$/, ''));
     } finally {
-      headResponse.dispose();
+      headResponse?.dispose();
     }
   }
 
   redirectBlocks.inc({ reason: 'too-many', start_host: startHost });
   throw new RedirectTooManyError('too_many_redirects');
 }
+
+export const followRedirects = followRedirectsWithPreflight;
