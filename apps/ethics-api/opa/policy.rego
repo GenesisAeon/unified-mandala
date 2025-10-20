@@ -38,6 +38,26 @@ reasons[msg] {
 }
 
 deny {
+  input.net.is_private == true
+}
+
+reasons[msg] {
+  input.net.is_private == true
+  msg := "net_private_target"
+}
+
+deny {
+  input.net.min_ttl_sec != null
+  input.net.min_ttl_sec < 20
+}
+
+reasons[msg] {
+  input.net.min_ttl_sec != null
+  input.net.min_ttl_sec < 20
+  msg := "net_ttl_too_low"
+}
+
+deny {
   risky_intent
   not has_two_domains
 }

@@ -1,13 +1,19 @@
 import { createHash, randomUUID } from 'node:crypto';
-import { Readable } from 'node:stream';
-import type { ReadableStream as NodeReadableStream } from 'stream/web';
 import express, { type NextFunction, type Request, type Response } from 'express';
 import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
 import { fetch } from 'undici';
+import type { Dispatcher } from 'undici';
 import { buildUpstreamHeaders, exposeEthicsHeaders } from './http/headerForward.js';
-import { assertAllowed, hasAllowlistEntries } from './security/ssrf.js';
-import { makePinnedAgent } from './security/agent.js';
+import { assertAllowed, hasAllowlistEntries, SSRFDenyError } from './security/ssrf.js';
+import { isPrivateOrBlocked } from './security/ipRanges.js';
+import {
+  followRedirects,
+  RedirectBadSchemeError,
+  RedirectPrivateTargetError,
+  RedirectTooManyError,
+} from './proxy/followRedirects.js';
+import { pinnedRequest } from './proxy/pinnedRequest.js';
 import { bodySha256, verdictFingerprint } from './security/fingerprint.js';
 import { RateLimiter } from './security/rateLimiter.js';
 import { JtiStore } from './idempotency/jtiStore.js';
@@ -22,6 +28,7 @@ import {
   startUpstreamTimer,
   tokenFails,
   rateLimitBlocks,
+  dnsTtlPinned,
 } from './metrics.js';
 
 type VerdictColor = 'green' | 'yellow' | 'red';
@@ -310,6 +317,44 @@ app.post('/gate/*', async (req: Request, res: Response) => {
     }
   }
 
+  let finalTarget = new URL(target.toString());
+  const maxRedirects = Number.parseInt(process.env.VERIFY_GATE_MAX_REDIRECTS ?? '3', 10);
+  try {
+    const redirectResult = await followRedirects(target, Number.isFinite(maxRedirects) ? maxRedirects : 3);
+    finalTarget = redirectResult.final;
+  } catch (error) {
+    if (error instanceof RedirectBadSchemeError) {
+      return res.status(400).json({ ok: false, error: 'redirect_bad_scheme' });
+    }
+    if (error instanceof RedirectPrivateTargetError) {
+      return res.status(403).json({ ok: false, error: 'redirect_private_target' });
+    }
+    if (error instanceof RedirectTooManyError) {
+      return res.status(400).json({ ok: false, error: 'redirect_too_many' });
+    }
+    return res.status(502).json({ ok: false, error: 'redirect_follow_failed' });
+  }
+
+  let allowResult: Awaited<ReturnType<typeof assertAllowed>>;
+  try {
+    allowResult = await assertAllowed(finalTarget.toString());
+  } catch (error) {
+    if (error instanceof SSRFDenyError) {
+      return res.status(403).json({ ok: false, error: error.message });
+    }
+    return res.status(403).json({ ok: false, error: 'TARGET_NOT_ALLOWED' });
+  }
+
+  dnsTtlPinned.labels(allowResult.hostname).observe(allowResult.minTTLsec);
+
+  const netContext = {
+    hostname_ascii: allowResult.hostname,
+    resolved_ip: allowResult.ip,
+    cname_chain: allowResult.chain,
+    min_ttl_sec: allowResult.minTTLsec,
+    is_private: allowResult.ips.some((ip) => isPrivateOrBlocked(ip)),
+  };
+
   const ethicsUrl = `${ethicsBase}/ethics/check`;
   const verdictResult = await postJson<EthicsResponseBody>(
     ethicsUrl,
@@ -317,6 +362,7 @@ app.post('/gate/*', async (req: Request, res: Response) => {
       intent: req.originalUrl.replace(/^\/gate\//, ''),
       content: req.body,
       context: req.body?.context,
+      net: netContext,
     },
     { 'x-request-id': requestId },
   );
@@ -358,22 +404,11 @@ app.post('/gate/*', async (req: Request, res: Response) => {
     });
   }
 
-  let allowResult: Awaited<ReturnType<typeof assertAllowed>> | null = null;
-  try {
-    allowResult = await assertAllowed(targetUrl);
-  } catch (error) {
-    return res.status(403).json({ ok: false, error: (error as Error).message ?? 'TARGET_NOT_ALLOWED' });
-  }
-
-  if (!allowResult) {
-    return res.status(403).json({ ok: false, error: 'TARGET_NOT_ALLOWED' });
-  }
-
   const bodyHash = bodySha256(req.body);
   const body = req.body !== undefined && req.body !== null ? JSON.stringify(req.body) : undefined;
-  const headers = buildUpstreamHeaders(req, target.host);
+  const upstreamHeaders = buildUpstreamHeaders(req, finalTarget.host);
   if (degradedHeaderValue) {
-    headers.set('x-verify-degraded', degradedHeaderValue);
+    upstreamHeaders.set('x-verify-degraded', degradedHeaderValue);
   }
   const { domains: evidenceDomains } = evidenceDomainsFrom(verdictBody);
   const boundaryHits = boundaryHitsFrom(verdictBody);
@@ -408,7 +443,7 @@ app.post('/gate/*', async (req: Request, res: Response) => {
       rateLimitBlocks.inc({ scope: 'jti' });
       return res.status(409).json({ ok: false, reason: 'jwt_replay', requestId });
     }
-    headers.set('x-ethics-token', verdictToken);
+    upstreamHeaders.set('x-ethics-token', verdictToken);
   } catch (error) {
     tokenFails.inc({ reason: 'sign_error' });
     console.error('[verify-gate] failed to sign verdict token', error);
@@ -416,86 +451,53 @@ app.post('/gate/*', async (req: Request, res: Response) => {
   }
   const controller = new AbortController();
   const stopTimer = startUpstreamTimer(req.method ?? 'GET', routeKey);
+  let timerStopped = false;
+  const stopOnce = (code: string) => {
+    if (!timerStopped) {
+      stopTimer(code);
+      timerStopped = true;
+    }
+  };
+
   req.on('close', () => controller.abort());
 
   try {
     rememberPending(idemKey, requestId);
-    const agent = await makePinnedAgent(targetUrl, allowResult.ip);
-    const upstreamResponse = await fetch(targetUrl, {
-      method: req.method,
-      headers,
+
+    const headerRecord: Record<string, string | string[]> = {};
+    upstreamHeaders.forEach((value, key) => {
+      headerRecord[key] = value;
+    });
+
+    const upstreamMethod = ((req.method ?? 'GET').toUpperCase() as Dispatcher.HttpMethod);
+    const pinned = await pinnedRequest({
+      originalUrl: finalTarget,
+      pinnedIp: allowResult.ip,
+      minTTLsec: allowResult.minTTLsec,
+      method: upstreamMethod,
+      headers: headerRecord,
       body,
-      dispatcher: agent,
       signal: controller.signal,
     });
 
-    stopTimer(String(upstreamResponse.status));
+    stopOnce(String(pinned.res.statusCode));
 
-    const metricClone = typeof upstreamResponse.clone === 'function' ? upstreamResponse.clone() : null;
-    if (upstreamResponse.status === 428 || upstreamResponse.status === 401) {
-      let reason = upstreamResponse.status === 401 ? 'upstream_401' : 'upstream_428';
-      const contentType = metricClone?.headers.get('content-type') ?? '';
-      if (metricClone && /application\/json/i.test(contentType)) {
-        try {
-          const payload = (await metricClone.json()) as { reason?: unknown };
-          if (typeof payload?.reason === 'string' && payload.reason.length > 0) {
-            reason = payload.reason;
-          }
-        } catch {}
-      }
-      tokenFails.inc({ reason });
+    if (pinned.res.statusCode === 428 || pinned.res.statusCode === 401) {
+      tokenFails.inc({ reason: pinned.res.statusCode === 401 ? 'upstream_401' : 'upstream_428' });
     }
 
-    const headerIterator = upstreamResponse.headers[Symbol.iterator]?.bind(upstreamResponse.headers);
-    if (typeof (upstreamResponse.headers as unknown as { getSetCookie?: () => string[] }).getSetCookie === 'function') {
-      const cookies = (upstreamResponse.headers as unknown as { getSetCookie: () => string[] }).getSetCookie();
-      if (cookies.length > 0) {
-        res.setHeader('set-cookie', cookies);
-      }
-    }
-
-    const applyHeader = (key: string, value: string) => {
-      const lower = key.toLowerCase();
-      if (lower === 'content-length' || lower === 'set-cookie') {
-        return;
-      }
-      res.setHeader(key, value);
-    };
-
-    if (headerIterator) {
-      for (const [key, value] of headerIterator() as Iterable<[string, string]>) {
-        applyHeader(key, value);
-      }
-    } else {
-      upstreamResponse.headers.forEach((value, key) => {
-        applyHeader(key, value);
-      });
-    }
-
-    res.status(upstreamResponse.status);
-
-    const upstreamBody = upstreamResponse.body;
-    if (!upstreamBody) {
-      rememberFinal(idemKey, upstreamResponse.status, requestId, verdict, evidenceCount);
-      res.end();
-      return;
-    }
-
-    const stream = Readable.fromWeb(upstreamBody as unknown as NodeReadableStream);
-    stream.on('error', (error) => {
+    try {
+      await pinned.pipeTo(res);
+      rememberFinal(idemKey, pinned.res.statusCode, requestId, verdict, evidenceCount);
+    } catch (streamError) {
       forget(idemKey);
-      res.destroy(error instanceof Error ? error : new Error(String(error)));
-    });
-    stream.on('end', () => {
-      rememberFinal(idemKey, upstreamResponse.status, requestId, verdict, evidenceCount);
-    });
-    stream.on('close', () => {
-      rememberFinal(idemKey, upstreamResponse.status, requestId, verdict, evidenceCount);
-    });
-    stream.pipe(res);
+      throw streamError;
+    } finally {
+      pinned.dispose();
+    }
   } catch (error) {
-    stopTimer('error');
-    console.error('[verify-gate] upstream call failed', target.toString(), error);
+    stopOnce('error');
+    console.error('[verify-gate] upstream call failed', finalTarget.toString(), error);
     forget(idemKey);
     res.status(502).json({ ok: false, error: 'upstream_failed', detail: String((error as Error).message ?? error) });
   }

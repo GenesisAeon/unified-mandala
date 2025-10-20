@@ -47,6 +47,42 @@ export const ssrfResolveEmpty = new client.Counter({
   registers: [registry],
 });
 
+export const dnsTtlPinned = new client.Histogram({
+  name: 'verify_gate_dns_ttl_pinned_seconds',
+  help: 'Pinned DNS TTL (seconds) used to bound keep-alive',
+  buckets: [1, 5, 10, 20, 30, 60, 120, 300],
+  labelNames: ['host'],
+  registers: [registry],
+});
+
+export const redirectFollow = new client.Counter({
+  name: 'verify_gate_redirect_follow_total',
+  help: 'Redirects successfully followed before proxying',
+  labelNames: ['hops', 'start_host'],
+  registers: [registry],
+});
+
+export const redirectBlocks = new client.Counter({
+  name: 'verify_gate_redirect_block_total',
+  help: 'Redirect chains blocked due to policy or scheme',
+  labelNames: ['reason', 'start_host'],
+  registers: [registry],
+});
+
+export const ipMismatch = new client.Counter({
+  name: 'verify_gate_ip_mismatch_total',
+  help: 'Pinned IP did not match connected remote',
+  labelNames: ['host'],
+  registers: [registry],
+});
+
+export const tlsNameMismatch = new client.Counter({
+  name: 'verify_gate_tls_name_mismatch_total',
+  help: 'TLS SAN validation failed for pinned request',
+  labelNames: ['host'],
+  registers: [registry],
+});
+
 export const tokenFails = new client.Counter({
   name: 'verify_gate_token_fail_total',
   help: 'Upstream refused verdict token or token missing',
