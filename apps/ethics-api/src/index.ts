@@ -572,6 +572,28 @@ app.post(
     const fallbackIntent =
       typeof fallbackIntentCandidate === 'string' ? fallbackIntentCandidate : '';
 
+    const netPayload = payload.net;
+    const opaNet = netPayload
+      ? {
+          hostname_ascii:
+            typeof netPayload.hostname_ascii === 'string' && netPayload.hostname_ascii.length > 0
+              ? netPayload.hostname_ascii
+              : undefined,
+          resolved_ip:
+            typeof netPayload.resolved_ip === 'string' && netPayload.resolved_ip.length > 0
+              ? netPayload.resolved_ip
+              : undefined,
+          cname_chain: Array.isArray(netPayload.cname_chain)
+            ? netPayload.cname_chain.filter((entry): entry is string => typeof entry === 'string')
+            : [],
+          min_ttl_sec:
+            typeof netPayload.min_ttl_sec === 'number' && Number.isFinite(netPayload.min_ttl_sec)
+              ? netPayload.min_ttl_sec
+              : undefined,
+          is_private: netPayload.is_private === true,
+        }
+      : undefined;
+
     const opaInput = {
       degraded: false,
       intent:
@@ -585,6 +607,7 @@ app.post(
         strong: strongEvidenceCount,
       },
       flags: opaFlags,
+      net: opaNet,
     };
 
     const opaResult = await evaluateOpa(opaInput);

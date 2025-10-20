@@ -1,0 +1,31 @@
+fraktal: 109
+status: in-progress
+owner: Johann
+summary:
+  - 'Verify-Gate verfolgt Redirects fail-closed (`HEAD`-Guard, Scheme-Check) und pinnt DNS-A/AAAA mit TTL-Kappen pro Hop.'
+  - 'Private/NAT64/Loopback-Ranges werden deterministisch erkannt (`ipaddr.js`), Ethics erhält Netzkontext (TTL, CNAME, IP).' 
+  - 'OPA-Policy blockt private Ziele sowie TTL < 20s, Prometheus trackt Redirect- und TTL-Metriken inkl. neuen Alerts.'
+deliverables:
+  - apps/verify-gate/src/index.ts
+  - apps/verify-gate/src/security/ipRanges.ts
+  - apps/verify-gate/src/security/resolve.ts
+  - apps/verify-gate/src/security/ssrf.ts
+  - apps/verify-gate/src/proxy/followRedirects.ts
+  - apps/verify-gate/src/proxy/pinnedRequest.ts
+  - apps/verify-gate/src/metrics.ts
+  - apps/ethics-api/src/index.ts
+  - apps/ethics-api/src/schemas.ts
+  - apps/ethics-api/opa/policy.rego
+  - observability/prometheus/recording-rules.yaml
+  - observability/alerts/verify-gate.yaml
+follow_up:
+  pinned_socket_verification:
+    description: 'Socket-Remote-IP/TLS-SAN Checks verdrahten, sobald undici-Dispatcher Hook verfügbar ist.'
+    status: todo
+  ttl_cache:
+    description: 'DNS-Ergebnisse optional cachen (jittered expiry) um repeated lookups zu vermeiden.'
+    status: planned
+hook:
+  progress: 'Redirect-Guard + DNS-TTL-Pinning live, Ethics-OPA zieht Netzkontext, Observability-Alarme aktiv. Socket-Pinning fehlt noch.'
+  next_step: 'Remote-IP-Inspection und TLS-SAN Counter ergänzen, anschließend DNS-Cache entkoppeln.'
+repeat_required: false

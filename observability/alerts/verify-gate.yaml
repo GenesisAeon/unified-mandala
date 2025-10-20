@@ -51,3 +51,13 @@ groups:
           summary: 'Verstärktes Scheitern von Verdict-Tokens'
           description: 'Sustained token_fail Rate > 0.5/s über 10m. Rotation oder Upstream-Signatur prüfen.'
           runbook: docs/runbooks/verify-gate-jwt-rotation.md
+      - alert: VerifyGateRedirectSpike
+        expr: rate:verify_gate_redirect_block_total_5m > 1
+        for: 10m
+        labels:
+          severity: warning
+          service: verify-gate
+        annotations:
+          summary: 'Redirect blocks elevated'
+          description: 'Verify-Gate is blocking >1 redirect per second over 10 minutes. Check allowlist und Ursprungstraffic.'
+          runbook: docs/runbooks/verify-gate-jwt-rotation.md

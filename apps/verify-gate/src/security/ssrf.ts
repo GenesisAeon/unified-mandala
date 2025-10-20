@@ -1,11 +1,17 @@
-import { lookup as dnsLookup } from 'node:dns/promises';
-import { isIP } from 'node:net';
 import { URL } from 'node:url';
 import {
   ssrfBlocks,
   ssrfResolveEmpty,
   ssrfResolveErrors,
 } from '../metrics.js';
+import {
+  resolveHostStrictTTL,
+  SSRFDNSResolveError,
+  SSRFDNSEmptyError,
+  SSRFPrivateTargetError,
+  type ResolveResult,
+} from './resolve.js';
+import { isPrivateOrBlocked, normalizeIp } from './ipRanges.js';
 
 type AllowPattern = {
   host: string;
@@ -26,19 +32,15 @@ export class SSRFDenyError extends Error {
 
 interface AllowResult {
   ip: string;
+  ips: string[];
+  minTTLsec: number;
+  chain: string[];
+  hostname: string;
   url: URL;
-  addresses: string[];
 }
 
 function normalizeHost(value: string): string {
   return value.trim().toLowerCase();
-}
-
-function stripBrackets(value: string): string {
-  if (value.startsWith('[') && value.endsWith(']')) {
-    return value.slice(1, -1);
-  }
-  return value;
 }
 
 function parseAllowEntry(entry: string): AllowPattern | null {
@@ -137,6 +139,8 @@ const allowedProtocols = new Set(
     .filter(Boolean),
 );
 
+const FALLBACK_TTL_SEC = Number.parseInt(process.env.VERIFY_GATE_TTL_FALLBACK_SEC ?? '30', 10);
+
 function hostMatches(entryHost: string, candidateHost: string): boolean {
   if (entryHost === candidateHost) {
     return true;
@@ -170,109 +174,6 @@ export function hasAllowlistEntries(): boolean {
   return allowlistPatterns.length > 0;
 }
 
-function isSuspiciousLiteral(host: string): boolean {
-  return /^0x/i.test(host) || /^0[0-9]/.test(host) || /\d{8,}/.test(host);
-}
-
-function normalizeIp(address: string): string {
-  const stripped = stripBrackets(address);
-  const lower = stripped.toLowerCase();
-  if (lower.startsWith('::ffff:')) {
-    const maybeIpv4 = stripped.slice(7);
-    if (/^\d{1,3}(?:\.\d{1,3}){3}$/.test(maybeIpv4)) {
-      return maybeIpv4;
-    }
-  }
-  return stripped;
-}
-
-function isIpv4Address(value: string): boolean {
-  return /^\d{1,3}(?:\.\d{1,3}){3}$/.test(value);
-}
-
-function isPrivateIpv4(value: string): boolean {
-  if (value.startsWith('10.')) return true;
-  if (value.startsWith('127.')) return true;
-  if (value.startsWith('169.254.')) return true;
-  if (value.startsWith('192.168.')) return true;
-  if (value.startsWith('0.')) return true;
-  if (value.startsWith('172.')) {
-    const second = Number.parseInt(value.split('.')[1] ?? '', 10);
-    if (Number.isFinite(second) && second >= 16 && second <= 31) {
-      return true;
-    }
-  }
-  if (value.startsWith('100.')) {
-    const second = Number.parseInt(value.split('.')[1] ?? '', 10);
-    if (Number.isFinite(second) && second >= 64 && second <= 127) {
-      return true;
-    }
-  }
-  if (value.startsWith('192.0.0.')) return true;
-  if (value.startsWith('192.0.2.')) return true;
-  if (value.startsWith('198.18.') || value.startsWith('198.19.')) return true;
-  if (value.startsWith('198.51.100.')) return true;
-  if (value.startsWith('203.0.113.')) return true;
-  return value === '255.255.255.255';
-}
-
-function isPrivateIpv6(value: string): boolean {
-  const lower = value.toLowerCase();
-  if (lower === '::1' || lower === '::') {
-    return true;
-  }
-  if (lower.startsWith('fc') || lower.startsWith('fd')) {
-    return true;
-  }
-  if (lower.startsWith('fe8') || lower.startsWith('fe9') || lower.startsWith('fea') || lower.startsWith('feb')) {
-    return true;
-  }
-  if (lower.startsWith('2001:db8:')) {
-    return true;
-  }
-  if (lower.startsWith('::ffff:')) {
-    return true;
-  }
-  return false;
-}
-
-function isPrivateOrLoopbackAddress(address: string): boolean {
-  const normalized = normalizeIp(address);
-  if (isIpv4Address(normalized)) {
-    return isPrivateIpv4(normalized);
-  }
-  return isPrivateIpv6(normalized);
-}
-
-async function resolveHostAll(host: string): Promise<string[]> {
-  const strippedHost = stripBrackets(host);
-  const hostLabel = normalizeHost(strippedHost);
-
-  if (isSuspiciousLiteral(strippedHost)) {
-    throw new SSRFDenyError('upstream_private_blocked', strippedHost);
-  }
-
-  if (isIP(strippedHost)) {
-    return [normalizeIp(strippedHost)];
-  }
-
-  try {
-    const records = await dnsLookup(strippedHost, { all: true, verbatim: true });
-    const addresses = Array.from(new Set(records.map((record) => normalizeIp(record.address))));
-    if (addresses.length === 0) {
-      ssrfResolveEmpty.inc({ host: hostLabel });
-      throw new SSRFDenyError('dns_no_records');
-    }
-    return addresses;
-  } catch (error) {
-    if (error instanceof SSRFDenyError) {
-      throw error;
-    }
-    ssrfResolveErrors.inc({ host: hostLabel });
-    throw new SSRFDenyError('dns_resolution_failed');
-  }
-}
-
 function recordBlock(host: string, message: string, resolvedIp?: string): never {
   const normalizedHost = host.trim().length > 0 ? host : 'unknown';
   ssrfBlocks.inc({ host: normalizedHost, resolved_ip: resolvedIp ?? 'unknown' });
@@ -293,30 +194,63 @@ export async function assertAllowed(target: string): Promise<AllowResult> {
     return recordBlock(host, 'port_not_allowed');
   }
 
-  if (isSuspiciousLiteral(host)) {
-    return recordBlock(host, 'upstream_private_blocked', host);
-  }
-
   if (!isAllowed(host, port, protocol)) {
     return recordBlock(host, 'upstream_not_allowlisted');
   }
 
-  let addresses: string[];
+  const literalCandidate = host.replace(/^\[|\]$/g, '');
+  const isLiteralIp = /^[0-9.]+$/.test(literalCandidate) || /^[0-9a-f:.]+$/i.test(literalCandidate);
+  if (isLiteralIp) {
+    const normalizedLiteral = normalizeIp(literalCandidate);
+    if (isPrivateOrBlocked(normalizedLiteral) && !isAllowed(normalizedLiteral, port, protocol)) {
+      return recordBlock(host, 'upstream_private_blocked', normalizedLiteral);
+    }
+    return {
+      ip: normalizedLiteral,
+      ips: [normalizedLiteral],
+      minTTLsec: FALLBACK_TTL_SEC,
+      chain: [normalizedLiteral],
+      hostname: normalizedLiteral,
+      url,
+    };
+  }
+
+  let resolved: ResolveResult;
   try {
-    addresses = await resolveHostAll(host);
+    resolved = await resolveHostStrictTTL(host);
   } catch (error) {
-    if (error instanceof SSRFDenyError) {
-      ssrfBlocks.inc({ host, resolved_ip: error.resolvedIp ?? 'unknown' });
+    if (error instanceof SSRFPrivateTargetError || (error as { code?: string }).code === 'SSRFPrivateTargetError') {
+      ssrfBlocks.inc({ host, resolved_ip: (error as SSRFPrivateTargetError & { resolvedIp?: string }).resolvedIp ?? 'unknown' });
+      throw new SSRFDenyError('upstream_private_blocked');
+    }
+    if (error instanceof SSRFDNSEmptyError || (error as { code?: string }).code === 'SSRFDNSEmptyError') {
+      ssrfResolveEmpty.inc({ host });
+      throw new SSRFDenyError('dns_no_records');
+    }
+    if (error instanceof SSRFDNSResolveError || (error as { code?: string }).code === 'SSRFDNSResolveError') {
+      ssrfResolveErrors.inc({ host });
+      throw new SSRFDenyError('dns_resolution_failed');
     }
     throw error;
   }
 
-  for (const address of addresses) {
-    const normalizedAddress = normalizeIp(address);
-    if (isPrivateOrLoopbackAddress(normalizedAddress) && !isAllowed(normalizedAddress, port, protocol)) {
-      return recordBlock(host, 'upstream_private_blocked', normalizedAddress);
+  const firstIp = resolved.ips[0];
+  if (!firstIp) {
+    return recordBlock(host, 'dns_no_records');
+  }
+
+  for (const ip of resolved.ips) {
+    if (isPrivateOrBlocked(ip) && !isAllowed(ip, port, protocol)) {
+      return recordBlock(host, 'upstream_private_blocked', ip);
     }
   }
 
-  return { ip: addresses[0], url, addresses };
+  return {
+    ip: normalizeIp(firstIp),
+    ips: resolved.ips,
+    minTTLsec: resolved.minTTLsec,
+    chain: resolved.chain,
+    hostname: resolved.hostnameASCII,
+    url,
+  };
 }
