@@ -1,0 +1,23 @@
+fraktal: 112
+status: done
+owner: Johann
+summary:
+  - 'SSRf-Gate führt Allowlist-Prüfung strikt vor jedem Netzaufruf und folgt Redirects nur nach erneutem Preflight; finale Ziele werden defensiv erneut geprüft.'
+  - 'DNS-Resolver nutzt Resolver.resolve4/6 mit TTL-Erfassung, wertet CNAME-Ketten aus und verweigert Ergebnisse ohne belastbaren TTL.'
+  - 'Pinned Upstream-Requests setzen einen dedizierten Connector mit SAN-Validierung, Remote-IP-Telemetrie und Expect-Header-Filtern ein; TLS/IP-Metriken werden automatisch erhoben.'
+deliverables:
+  - apps/verify-gate/src/index.ts
+  - apps/verify-gate/src/proxy/followRedirects.ts
+  - apps/verify-gate/src/proxy/pinnedRequest.ts
+  - apps/verify-gate/src/security/ssrf.ts
+  - apps/verify-gate/src/security/resolve.ts
+  - codexfeedback/codexfeedback-fraktal112-followup.yaml
+commands:
+  - pnpm -w vitest run apps/verify-gate/src/__tests__/ssrf-allowlist.test.ts apps/verify-gate/src/__tests__/ssrf-aaaa-loopback.test.ts apps/verify-gate/src/__tests__/chaos-dns-rebind.test.ts apps/verify-gate/src/__tests__/chaos-redirect-loop.test.ts
+  - pnpm smoke:live
+  - pnpm chaos:verify-dns-rebind
+  - pnpm chaos:verify-redirect-loop
+hook:
+  progress: Allowlist-Preflight, DNS-TTL-Erfassung und SAN/IP-Telemetrie implementiert.
+  next_step: Ergänzende Vitest-Suiten für IP/TLS-Mismatch sowie Grafana-Panels auf neue Counter anpassen.
+repeat_required: false
