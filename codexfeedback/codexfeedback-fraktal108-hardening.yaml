@@ -1,0 +1,25 @@
+fraktal: 108
+status: in-progress
+owner: Johann
+summary:
+  - '`analysis/devtalk109-evaluation.md` priorisiert TTL-bewusste DNS-Pins, CNAME-/IDNA-Validierung, TLS-SAN/IP-Prüfung,
+    Redirect-Gates, IPv6-/NAT64-Checks sowie neue Telemetrie/OPA-Inputs für Verify-Gate.'
+  - '`docs/roadmap/v1.0-stabilization-playbook.(md|yaml)` und `MandalaMap.(md|json|yaml)` führen das Hardening Pack als Follow-up,
+    codexfeedback* markiert den Fraktal als in progress.'
+deliverables:
+  - analysis/devtalk109-evaluation.md
+  - docs/roadmap/v1.0-stabilization-playbook.md
+  - docs/roadmap/v1.0-stabilization-playbook.yaml
+  - MandalaMap.md
+  - MandalaMap.yaml
+  - MandalaMap.json
+  - codexfeedback.md
+  - codexfeedback.yaml
+  - codexfeedback.json
+  - codexfeedback/codexfeedback-latest.md
+  - codexfeedback/codexfeedback-latest.yaml
+  - codexfeedback/codexfeedback-latest.json
+hook:
+  progress: Evaluation abgeschlossen, Scope & Prioritäten sind dokumentiert.
+  next_step: Resolver/TLS/Redirect/IPv6-Hooks implementieren, Telemetrie & Tests ergänzen.
+repeat_required: true

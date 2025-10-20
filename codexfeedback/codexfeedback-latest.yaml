@@ -1,25 +1,26 @@
 fraktal: 108
-phase: Verify-Gate SSRF Hardening & DNS Telemetrie
-status: >-
-  Verify-Gate resolved jetzt A- und AAAA-Records via `dns.lookup(..., { all: true, verbatim: true })`,
-  entfernt den `[host]`-Fallback und blockiert ::1/Private deterministisch. Neue Counter
-  `verify_gate_ssrf_resolve_error_total`/`verify_gate_ssrf_resolve_empty_total` erfassen
-  DNS-Fehler, `makePinnedAgent` übernimmt die aufgelöste IP und Tests decken AAAA-only Loopback ab.
-nextHook: >-
-  Remote-IP-Validierung/CNAME-Telemetrie evaluieren und DNS-Counter in Grafana/Alertmanager
-  aufnehmen.
+phase: Verify-Gate Hardening Pack (TTL/CNAME/TLS)
+status: '`analysis/devtalk109-evaluation.md` fasst das Hardening-Pack zusammen: TTL-bewusster
+  DNS-Cache mit Keep-Alive ≤ minTTL, CNAME-/IDNA-Validierung, TLS-SAN/IP-Abgleich
+  inkl. remoteAddress-Check, Redirect-Gates (≤3 Hops, http/https), IPv6-/NAT64-Blocklisten
+  sowie neue Counter `verify_gate_dns_ttl_pinned_seconds_bucket`/`verify_gate_redirect_block_total`/`verify_gate_ip_mismatch_total`/`verify_gate_tls_name_mismatch_total`
+  und OPA-Inputs (`resolved_ip`, `cname_chain`, `min_ttl_sec`). MandalaMap.*, Stabilization-Playbook.*
+  und codexfeedback* markieren den Follow-up als in progress.'
+nextHook: Resolver/TLS/Redirect-Hooks implementieren, IPv6/NAT64-Checks ergänzen,
+  Vitest-Tabelle + TTL-Rebind-Chaosdrill sowie Grafana/Alert-Updates liefern.
 changed:
-  - apps/verify-gate/src/security/ssrf.ts
-  - apps/verify-gate/src/index.ts
-  - apps/verify-gate/src/security/agent.ts
-  - apps/verify-gate/src/metrics.ts
-  - apps/verify-gate/src/__tests__/ssrf-allowlist.test.ts
-  - apps/verify-gate/src/__tests__/ssrf-aaaa-loopback.test.ts
+  - analysis/devtalk109-evaluation.md
   - docs/roadmap/v1.0-stabilization-playbook.md
   - docs/roadmap/v1.0-stabilization-playbook.yaml
+  - MandalaMap.md
   - MandalaMap.yaml
   - MandalaMap.json
-  - analysis/devtalk108-evaluation.md
+  - codexfeedback.md
+  - codexfeedback.yaml
+  - codexfeedback.json
+  - codexfeedback/codexfeedback-latest.md
+  - codexfeedback/codexfeedback-latest.json
+  - codexfeedback/codexfeedback-fraktal108-hardening.yaml
 validate:
-  - pnpm -w vitest run apps/verify-gate/src/__tests__/ssrf-allowlist.test.ts
-  - pnpm -w vitest run apps/verify-gate/src/__tests__/ssrf-aaaa-loopback.test.ts
+  - 'pending: pnpm -w vitest run apps/verify-gate/src/__tests__/ssrf-hardening.spec.ts'
+  - 'pending: pnpm chaos:ethics --scenario dns-rebind'
