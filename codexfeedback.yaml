@@ -1,6 +1,40 @@
 fraktal:
-  current: 111
+  current: 112
   history:
+    - id: 112-ipv6-observability
+      status: done
+      notes: >-
+        Fraktal112 IPv6 Observability: Verify-Gate normalisiert Remote-Adressen (Scope-ID entfernt), blockt NAT64/Teredo-Präfixe,
+        liefert Netzwerk-Signale (`x-verify-network`) für TTL/Redirect/TLS und versieht Mandala Playground mit NetworkRiskBadges.
+        Prometheus Recording-Rules & Alerts beobachten TLS/IP-Mismatch sowie DNS TTL p95, Grafana-Dashboard ergänzt Panels und
+        `pnpm lint:format` läuft jetzt im `ci.core`; neue Chaos-Drills (`pnpm chaos:verify-dns-rebind`, `pnpm chaos:verify-redirect-loop`)
+        prüfen TTL-Rebind & Redirect-Loops und laufen im Nightly-Workflow. DevTalk112-Evaluation, Stabilization-Playbook und MandalaMap spiegeln den Lauf.
+      deliverables:
+        - apps/verify-gate/src/security/ipRanges.ts
+        - apps/verify-gate/src/security/tlsPreflight.ts
+        - apps/verify-gate/src/index.ts
+        - apps/verify-gate/src/http/headerForward.ts
+        - apps/verify-gate/src/__tests__/ip-ranges.test.ts
+        - apps/verify-gate/src/__tests__/tls-preflight.test.ts
+        - apps/verify-gate/src/__tests__/chaos-dns-rebind.test.ts
+        - apps/verify-gate/src/__tests__/chaos-redirect-loop.test.ts
+        - apps/ui/src/lib/fetchWithEthics.ts
+        - apps/ui/src/components/MandalaAIPlayground.tsx
+        - apps/ui/src/components/NetworkRiskBadges.tsx
+        - observability/prometheus/recording-rules.yaml
+        - observability/alerts/verify-gate.yaml
+        - grafana/dashboards/verify-gate-ethics-mini.json
+        - analysis/devtalk112-evaluation.md
+        - docs/fraktal/codexfeedback/codexfeedback-fraktal112.yaml
+        - package.json
+        - scripts/chaos/verifygate-dns-rebind.mjs
+        - scripts/chaos/verifygate-redirect-loop.mjs
+        - .github/workflows/ci.core.yml
+        - .github/workflows/ci.nightly.yml
+      hook:
+        progress: IPv6/TLS-Risiken sichtbar, Alerts aktiv, Chaos-Drills & Format-Lint laufen in CI.
+        next_step: Alertmanager-Routing & README-Badges dokumentieren, Husky-Entscheidung zu `pnpm lint:format` treffen.
+        repeat_required: false
     - id: 111-redirect-tls-closeout
       status: done
       notes: >-

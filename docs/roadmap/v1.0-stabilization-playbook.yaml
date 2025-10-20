@@ -259,6 +259,11 @@ streams:
           führt `repo`, ProgramFlow.yaml einen `meta`-Block, wodurch `pnpm maps:validate`
           wieder grün läuft. Fraktal67
 
+          Fraktal112 ergänzt `package.json` um `pnpm lint:format` als Format-Check,
+          bindet den Lauf in `ci.core` ein und hinterlegt neue Verify-Gate Chaos-Drills
+          (`pnpm chaos:verify-dns-rebind`, `pnpm chaos:verify-redirect-loop`) für den
+          Nightly-Workflow.
+
           erweitert das Cheat Sheet um `pnpm check:precommit`, `pnpm check:prepush`, `pnpm
           check:ci`, `pnpm ci:verify`, Monitoring-/Offline-Bundle-Hinweise und verweist
 

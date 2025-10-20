@@ -4,7 +4,8 @@ import BoundaryMiniTile from './BoundaryMiniTile';
 import SettingsRUM from './SettingsRUM';
 import EthicsBadge from './EthicsBadge';
 import { EvidenceChips, type EvidenceChipItem } from './EvidenceChips';
-import { fetchJsonWithEthics, type DegradedMeta } from '../lib/fetchWithEthics';
+import { fetchJsonWithEthics, type DegradedMeta, type NetworkSignals } from '../lib/fetchWithEthics';
+import NetworkRiskBadges from './NetworkRiskBadges';
 
 type PlaygroundState = 'idle' | 'loading' | 'done' | 'error';
 
@@ -71,6 +72,7 @@ export function MandalaAIPlayground() {
   const [ethicsVerdict, setEthicsVerdict] = useState<'green' | 'yellow' | 'red' | 'unknown'>('unknown');
   const [ethicsEvidenceCount, setEthicsEvidenceCount] = useState<number>(0);
   const [verifyDegraded, setVerifyDegraded] = useState<DegradedMeta>({ active: false });
+  const [networkSignals, setNetworkSignals] = useState<NetworkSignals | null>(null);
 
   async function maybeRunIntentsFrom(text: string) {
     try {
@@ -144,6 +146,7 @@ export function MandalaAIPlayground() {
     setEthicsVerdict('unknown');
     setEthicsEvidenceCount(0);
     setVerifyDegraded({ active: false });
+    setNetworkSignals(null);
 
     try {
       const { data: payload, ethics, response } = await fetchJsonWithEthics<any>(endpoint, {
@@ -160,6 +163,7 @@ export function MandalaAIPlayground() {
       setEthicsVerdict(ethics.verdict);
       setEthicsEvidenceCount(ethics.evidenceCount);
       setVerifyDegraded(ethics.degraded);
+      setNetworkSignals(ethics.network ?? null);
 
       if (!response.ok) {
         throw new Error((payload as any)?.error ?? `Request failed with status ${response.status}`);
@@ -184,6 +188,7 @@ export function MandalaAIPlayground() {
       setError(err instanceof Error ? err.message : String(err));
       setState('error');
       setEthicsVerdict('red');
+      setNetworkSignals(null);
     }
   }
 
@@ -406,6 +411,7 @@ export function MandalaAIPlayground() {
         <div className="flex-1" />
         <div className="flex flex-col items-end gap-2">
           <EthicsBadge verdict={ethicsVerdict} evidenceCount={ethicsEvidenceCount} />
+          <NetworkRiskBadges signals={networkSignals} />
           <MetricsWidget />
         </div>
       </div>

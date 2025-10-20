@@ -13,6 +13,7 @@ const DROP_INBOUND = new Set([
   'x-ethics-verdict',
   'x-ethics-evidence-count',
   'x-verify-degraded',
+  'x-verify-network',
   'traceparent',
   'tracestate',
 ]);
@@ -30,7 +31,13 @@ const SAFE_FORWARD = new Set([
   'x-ethics-token',
 ]);
 
-const ALLOW_RESPONSE_EXPOSE = ['x-ethics-verdict', 'x-ethics-evidence-count', 'x-request-id', 'x-verify-degraded'];
+const ALLOW_RESPONSE_EXPOSE = [
+  'x-ethics-verdict',
+  'x-ethics-evidence-count',
+  'x-request-id',
+  'x-verify-degraded',
+  'x-verify-network',
+];
 
 export function buildUpstreamHeaders(
   req: import('express').Request,

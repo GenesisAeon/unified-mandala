@@ -1,7 +1,7 @@
 meta:
   version: '1.0'
-  generated: '2025-12-22 18:00:00+00:00'
-  fraktal: 111
+  generated: '2025-12-23 00:00:00+00:00'
+  fraktal: 112
   repo: unified-mandala
   source: ChefDevAI MandalaMap bootstrap
   reference_docs:
@@ -140,6 +140,7 @@ entries:
       - 'Fraktal108: SSRF-Guard löst jetzt A- und AAAA-Records via `dns.lookup(..., { all: true, verbatim: true })`, fällt bei DNS-Fehlern fail-closed (kein `[host]`-Fallback), blockiert ::1/Private deterministisch, zählt DNS-Probleme über `verify_gate_ssrf_resolve_error_total` bzw. leere Antworten über `verify_gate_ssrf_resolve_empty_total` und `makePinnedAgent` übernimmt die aufgelöste IP für das Upstream-Binding.'
       - 'Fraktal108 Follow-up: Hardening Pack plant TTL-Pinning/Resolver-Cache, CNAME-/IDNA-Checks, TLS-SAN & `remoteAddress`-Vergleich, Redirect-Limits (≤3 Hops, http/https), IPv6-/NAT64-Blocklisten sowie neue Counter/OPA-Inputs; siehe `analysis/devtalk109-evaluation.md`, docs/roadmap v1.0 & codexfeedback*.'
       - 'Fraktal111: Redirect-Kette validiert jeden Hop vor dem ersten Netz-Request, DNS-Cache jittert TTLs mit Request-Coalescing, HTTPS-Ziele durchlaufen TLS/SAN-Preflight (remoteAddress/SAN). Prometheus zählt `verify_gate_ip_mismatch_total`, `verify_gate_tls_name_mismatch_total` und `verify_gate_redirect_block_total{reason="tls-preflight-fail"}` für Grafana/Alerting; Stabilization-Playbook & Codexfeedback vermerken den Abschluss.'
+      - 'Fraktal112: TLS-Preflight normalisiert IPv6-Remote-Adressen, NAT64/Teredo-Präfixe stehen auf der Blockliste, `x-verify-network` liefert TTL/Redirect/TLS-Level für OPA & UI (NetworkRiskBadges), Prometheus/Grafana/Alerts beobachten TLS/IP-Mismatch & DNS TTL p95; Chaos-Drills (`pnpm chaos:verify-dns-rebind`, `pnpm chaos:verify-redirect-loop`) sichern TTL-Rebind/Redirect-Loops und laufen nightly.'
     links:
       - label: index.ts
         path: apps/verify-gate/src/index.ts
@@ -200,6 +201,8 @@ entries:
         (`pnpm schema:validate`, `pnpm maps:validate`, `pnpm sanity`, `pnpm policy:check`)
         als Pflichtlauf; Artefakt `coverage-vitest` wird hochgeladen, Label `ci:advisory`
         triggert `pnpm check:ci` als Soft-Fail.'
+      - 'Fraktal112 Follow-up: `ci.core` ergänzt `pnpm lint:format` im Type/Lint-Gate, `ci.nightly`
+        ruft Verify-Gate-Chaosdrills (`pnpm chaos:verify-dns-rebind`, `pnpm chaos:verify-redirect-loop`) aus.'
       - '`ci.runtime.yml` startet NATS + AI-Smoketest, ausgelöst durch Label `ci:runtime`.'
       - 'Fraktal87 ergänzt `.github/workflows/ci.qwen-smoke.yml` als Self-Hosted-Lane (Label `ci:qwen-smoke`, optional
         `workflow_dispatch`) für den Qwen-Smoke (`pnpm smoke:qwen`); verweist auf `RoleOutCommands.*` und den Pre-Push-Hook

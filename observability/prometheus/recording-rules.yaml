@@ -13,6 +13,8 @@ groups:
         expr: rate(verify_gate_redirect_follow_total[5m])
       - record: rate:verify_gate_ip_mismatch_total_5m
         expr: rate(verify_gate_ip_mismatch_total[5m])
+      - record: rate:verify_gate_tls_name_mismatch_total_5m
+        expr: rate(verify_gate_tls_name_mismatch_total[5m])
       - record: p95:verify_gate_dns_ttl_pinned_seconds
         expr: histogram_quantile(0.95, sum(rate(verify_gate_dns_ttl_pinned_seconds_bucket[5m])) by (le))
   - name: ethics

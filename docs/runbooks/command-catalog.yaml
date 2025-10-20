@@ -902,6 +902,24 @@ categories:
         description: Validates the light static server responses (Brotli/Gzip).
         source:
           - package.json#scripts.smoke:light-static
+      - id: chaos.verify-dns-rebind
+        name: Verify-Gate DNS rebind drill
+        command: pnpm chaos:verify-dns-rebind
+        type: pnpm
+        runs: node scripts/chaos/verifygate-dns-rebind.mjs
+        description: Executes the Vitest chaos harness that simulates a TTL rebind from a public IP to loopback and asserts the gate blocks the rebound.
+        source:
+          - package.json#scripts.chaos:verify-dns-rebind
+          - scripts/chaos/verifygate-dns-rebind.mjs
+      - id: chaos.verify-redirect-loop
+        name: Verify-Gate redirect loop drill
+        command: pnpm chaos:verify-redirect-loop
+        type: pnpm
+        runs: node scripts/chaos/verifygate-redirect-loop.mjs
+        description: Runs the redirect-loop chaos suite to ensure verify-gate stops excessive hops and private redirect targets.
+        source:
+          - package.json#scripts.chaos:verify-redirect-loop
+          - scripts/chaos/verifygate-redirect-loop.mjs
       - id: smoke.nats-docker-up
         name: Docker JetStream (up)
         command: pnpm nats:docker

@@ -1,34 +1,21 @@
-fraktal: 111
-phase: Verify-Gate Hardening Pack (TTL/CNAME/TLS)
-status: 'Fraktal111 liefert den jitterned DNS-TTL-Cache mit Request-Coalescing, TLS/SAN-Preflight
-  gegen gepinnte IPs und streng validierte Redirect-Ketten (IP-gepinnte HEADs vor jedem Hop).
-  Neue Tests (`dns-cache`, `tls-preflight`, `follow-redirects`) sichern die Guards, netContext
-  enthält `redirect_hops`/`scheme_history`, Prometheus zählt TLS/IP-Mismatches + Redirect-Block-Gründe;
-  Stabilization-Playbook & MandalaMap dokumentieren den Abschluss.'
-nextHook: IPv6/NAT64-Blocklisten und Redirect-Metrik-Panels finalisieren, OPA/UI-Badges
-  für kurze TTLs/redirect_hops ergänzen.
-changed:
-  - apps/verify-gate/src/security/dnsCache.ts
+fraktal: 112
+phase: Verify-Gate Hardening Finish (IPv6/TLS Signals)
+status: TLS-Preflight normalisiert Remote IPv6, NAT64/Teredo stehen auf der Blockliste, `x-verify-network` liefert TTL/Redirect/TLS-Level an UI & OPA; Mandala Playground rendert NetworkRiskBadges, Prometheus/Grafana/Alerts beobachten TLS/IP-Mismatch & DNS TTL p95, `pnpm lint:format` ergänzt die Format-Pipeline.
+next_hook: Chaos-DNS-Rebind & Redirect-Loop Drills, Alertmanager-Routing dokumentieren, Format-Lint in CI prüfen.
+changes:
+  - apps/verify-gate/src/security/ipRanges.ts
   - apps/verify-gate/src/security/tlsPreflight.ts
-  - apps/verify-gate/src/security/ssrf.ts
-  - apps/verify-gate/src/proxy/followRedirects.ts
-  - apps/verify-gate/src/proxy/pinnedRequest.ts
   - apps/verify-gate/src/index.ts
-  - apps/verify-gate/src/metrics.ts
-  - apps/verify-gate/src/__tests__/dns-cache.test.ts
+  - apps/verify-gate/src/http/headerForward.ts
+  - apps/verify-gate/src/__tests__/ip-ranges.test.ts
   - apps/verify-gate/src/__tests__/tls-preflight.test.ts
-  - apps/verify-gate/src/__tests__/follow-redirects.test.ts
-  - docs/roadmap/v1.0-stabilization-playbook.md
-  - docs/roadmap/v1.0-stabilization-playbook.yaml
-  - MandalaMap.md
-  - MandalaMap.yaml
-  - MandalaMap.json
-  - codexfeedback-fraktal111.yaml
-  - codexfeedback/codexfeedback-fraktal111.yaml
-  - codexfeedback/codexfeedback-latest.md
-  - codexfeedback/codexfeedback-latest.json
-  - codexfeedback/codexfeedback-latest.yaml
+  - apps/ui/src/lib/fetchWithEthics.ts
+  - apps/ui/src/components/MandalaAIPlayground.tsx
+  - apps/ui/src/components/NetworkRiskBadges.tsx
+  - observability/prometheus/recording-rules.yaml
+  - observability/alerts/verify-gate.yaml
+  - grafana/dashboards/verify-gate-ethics-mini.json
 validate:
-  - 'pending: pnpm -w vitest run apps/verify-gate/src/__tests__/dns-cache.test.ts'
-  - 'pending: pnpm -w vitest run apps/verify-gate/src/__tests__/tls-preflight.test.ts'
-  - 'pending: pnpm -w vitest run apps/verify-gate/src/__tests__/follow-redirects.test.ts'
+  - pnpm -w vitest run apps/verify-gate/src/__tests__/ip-ranges.test.ts
+  - pnpm -w vitest run apps/verify-gate/src/__tests__/tls-preflight.test.ts
+  - pnpm lint:types
