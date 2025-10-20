@@ -1,7 +1,9 @@
 import * as ipaddr from 'ipaddr.js';
 
 export function normalizeIp(ip: string): string {
-  const parsed = ipaddr.parse(ip);
+  const trimmed = ip.trim();
+  const withoutZone = trimmed.includes('%') ? trimmed.split('%', 1)[0] ?? '' : trimmed;
+  const parsed = ipaddr.parse(withoutZone);
   if (parsed.kind() === 'ipv6' && (parsed as ipaddr.IPv6).isIPv4MappedAddress()) {
     return (parsed as ipaddr.IPv6).toIPv4Address().toString();
   }
@@ -47,8 +49,11 @@ export function isPrivateOrBlocked(ip: string): boolean {
     v6.match(ipaddr.parseCIDR('fe80::/10')) ||
     v6.match(ipaddr.parseCIDR('2001:db8::/32')) ||
     v6.match(ipaddr.parseCIDR('2001::/32')) ||
+    v6.match(ipaddr.parseCIDR('2001:2::/48')) ||
+    v6.match(ipaddr.parseCIDR('2001:10::/28')) ||
     v6.match(ipaddr.parseCIDR('2002::/16')) ||
     v6.match(ipaddr.parseCIDR('64:ff9b::/96')) ||
+    v6.match(ipaddr.parseCIDR('64:ff9b:1::/48')) ||
     v6.match(ipaddr.parseCIDR('ff00::/8'))
   );
 }

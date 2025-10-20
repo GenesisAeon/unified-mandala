@@ -104,6 +104,10 @@ jobs:
         uses: ./.github/actions/run-pnpm-task
         with:
           task: lint:eslint
+      - name: Format check
+        uses: ./.github/actions/run-pnpm-task
+        with:
+          task: lint:format
       - name: Build API workspace
         uses: ./.github/actions/run-pnpm-task
         with:

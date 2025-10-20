@@ -51,6 +51,26 @@ groups:
           summary: 'Verstärktes Scheitern von Verdict-Tokens'
           description: 'Sustained token_fail Rate > 0.5/s über 10m. Rotation oder Upstream-Signatur prüfen.'
           runbook: docs/runbooks/verify-gate-jwt-rotation.md
+      - alert: VerifyGateTLSMismatch
+        expr: rate:verify_gate_tls_name_mismatch_total_5m > 0
+        for: 5m
+        labels:
+          severity: critical
+          service: verify-gate
+        annotations:
+          summary: 'TLS SAN Validation mismatch'
+          description: 'TLS preflight SAN validation failed within the last 5 minutes. Inspect certificates & pinned IPs.'
+          runbook: docs/runbooks/verify-gate-jwt-rotation.md
+      - alert: VerifyGateIPMismatch
+        expr: rate:verify_gate_ip_mismatch_total_5m > 0
+        for: 5m
+        labels:
+          severity: warning
+          service: verify-gate
+        annotations:
+          summary: 'Remote IP differs from pinned DNS result'
+          description: 'Verify Gate detected remote IP != pinned DNS IP during TLS preflight in the last 5 minutes. Investigate DNS rebind or proxy.'
+          runbook: docs/runbooks/verify-gate-jwt-rotation.md
       - alert: VerifyGateRedirectSpike
         expr: rate:verify_gate_redirect_block_total_5m > 1
         for: 10m

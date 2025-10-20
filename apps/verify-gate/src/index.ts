@@ -6,7 +6,7 @@ import { fetch } from 'undici';
 import type { Dispatcher } from 'undici';
 import { buildUpstreamHeaders, exposeEthicsHeaders } from './http/headerForward.js';
 import { assertAllowed, hasAllowlistEntries, SSRFDenyError } from './security/ssrf.js';
-import { isPrivateOrBlocked } from './security/ipRanges.js';
+import { isPrivateOrBlocked, normalizeIp } from './security/ipRanges.js';
 import {
   followRedirects,
   RedirectBadSchemeError,
@@ -341,6 +341,10 @@ app.post('/gate/*', async (req: Request, res: Response) => {
   let redirectHops = 0;
   let schemeHistory: string[] = [finalTarget.protocol.replace(/:$/, '')];
   const maxRedirects = Number.parseInt(process.env.VERIFY_GATE_MAX_REDIRECTS ?? '3', 10);
+  const pinnedIpNormalized = normalizeIp(allowResult.ip);
+  let tlsRemoteIp: string | undefined;
+  let tlsSanOk: boolean | undefined;
+  let tlsIpMismatch = false;
   try {
     const redirectResult = await followRedirects(
       target,
@@ -374,7 +378,31 @@ app.post('/gate/*', async (req: Request, res: Response) => {
     is_private: allowResult.ips.some((ip) => isPrivateOrBlocked(ip)),
     redirect_hops: redirectHops,
     scheme_history: schemeHistory,
+    tls_remote_ip: tlsRemoteIp,
+    tls_san_ok: tlsSanOk,
   };
+
+  const ttlLevel = allowResult.minTTLsec < 10 ? 'critical' : allowResult.minTTLsec < 30 ? 'warn' : 'ok';
+  const redirectLevel = redirectHops >= 3 ? 'critical' : redirectHops > 0 ? 'warn' : 'ok';
+  const tlsLevel =
+    finalTarget.protocol === 'https:' ? (!tlsSanOk || tlsIpMismatch ? 'critical' : 'ok') : 'ok';
+
+  const networkSignals = {
+    ttl: { seconds: allowResult.minTTLsec, level: ttlLevel },
+    redirect: { hops: redirectHops, level: redirectLevel, schemes: schemeHistory },
+    tls:
+      finalTarget.protocol === 'https:'
+        ? {
+            sanOk: tlsSanOk ?? false,
+            ipMismatch: tlsIpMismatch,
+            remoteIp: tlsRemoteIp,
+            pinnedIp: pinnedIpNormalized,
+            level: tlsLevel,
+          }
+        : undefined,
+  };
+
+  res.setHeader('x-verify-network', JSON.stringify(networkSignals));
 
   const ethicsUrl = `${ethicsBase}/ethics/check`;
   const verdictResult = await postJson<EthicsResponseBody>(
@@ -499,8 +527,12 @@ app.post('/gate/*', async (req: Request, res: Response) => {
           allowResult.ip,
           Number(finalTarget.port || 443),
         );
-        if (remoteAddress && remoteAddress !== allowResult.ip) {
+        tlsSanOk = sanOk;
+        tlsRemoteIp = remoteAddress;
+        const remoteNormalized = remoteAddress ? normalizeIp(remoteAddress) : undefined;
+        if (remoteNormalized && remoteNormalized !== pinnedIpNormalized) {
           ipMismatch.inc({ host: finalTarget.hostname });
+          tlsIpMismatch = true;
           throw new Error('IP_MISMATCH_PREFLIGHT');
         }
         if (!sanOk) {

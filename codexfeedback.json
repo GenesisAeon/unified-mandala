@@ -1,6 +1,39 @@
 {
   "runs": [
     {
+      "fraktalrun": "Fraktal112 IPv6 Observability",
+      "status": "done",
+      "notes": "Verify-Gate normalisiert IPv6-Remote-Adressen (Scope-ID entfernt), blockt NAT64/Teredo-Präfixe und liefert `x-verify-network` (TTL/Redirect/TLS) an UI & OPA. Mandala Playground rendert NetworkRiskBadges, Prometheus Recording-Rules/Alerts beobachten TLS/IP-Mismatch & DNS TTL p95 und Grafana ergänzt Panels. `pnpm lint:format` läuft jetzt im `ci.core`; neue Chaos-Drills (`pnpm chaos:verify-dns-rebind`, `pnpm chaos:verify-redirect-loop`) prüfen TTL-Rebind & Redirect-Loops und laufen im Nightly-Workflow.",
+      "deliverables": [
+        "apps/verify-gate/src/security/ipRanges.ts",
+        "apps/verify-gate/src/security/tlsPreflight.ts",
+        "apps/verify-gate/src/index.ts",
+        "apps/verify-gate/src/http/headerForward.ts",
+        "apps/verify-gate/src/__tests__/ip-ranges.test.ts",
+        "apps/verify-gate/src/__tests__/tls-preflight.test.ts",
+        "apps/ui/src/lib/fetchWithEthics.ts",
+        "apps/ui/src/components/MandalaAIPlayground.tsx",
+        "apps/ui/src/components/NetworkRiskBadges.tsx",
+        "observability/prometheus/recording-rules.yaml",
+        "observability/alerts/verify-gate.yaml",
+        "grafana/dashboards/verify-gate-ethics-mini.json",
+        "analysis/devtalk112-evaluation.md",
+        "docs/fraktal/codexfeedback/codexfeedback-fraktal112.yaml",
+        "package.json",
+        "apps/verify-gate/src/__tests__/chaos-dns-rebind.test.ts",
+        "apps/verify-gate/src/__tests__/chaos-redirect-loop.test.ts",
+        "scripts/chaos/verifygate-dns-rebind.mjs",
+        "scripts/chaos/verifygate-redirect-loop.mjs",
+        ".github/workflows/ci.core.yml",
+        ".github/workflows/ci.nightly.yml"
+      ],
+      "hook": {
+        "progress": "IPv6/IP-Mismatch Bug geschlossen, Netzwerk-Risiken im UI sichtbar, Chaos-Drills & Format-Lint laufen in CI.",
+        "next_step": "Alertmanager-Routing & README-Badges dokumentieren, Format-Hook-Entscheidung (Husky) treffen.",
+        "repeat_required": false
+      }
+    },
+    {
       "fraktalrun": "Fraktal111 Redirect/TLS Close-out",
       "status": "done",
       "notes": "Verify-Gate besitzt einen jitterned DNS-TTL-Cache mit Request-Coalescing, verfolgt Redirects nur nach Allowlist/IP-Pinning und prüft HTTPS-Ziele via TLS/SAN-Preflight gegen die gepinnte Adresse. Neue Metriken (ip_mismatch_total, tls_name_mismatch_total, Redirect-Block-Gründe) sowie net.redirect_hops/scheme_history speisen Grafana & OPA; Stabilization-Playbook, MandalaMap und codexfeedback-fraktal111 dokumentieren den Abschluss.",

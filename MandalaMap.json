@@ -84,8 +84,9 @@
         "Fraktal106: Metrics nach `metrics.ts` extrahiert (`verify_gate_idem_hits_total`, `verify_gate_ssrf_block_total{host}`, `verify_gate_token_fail_total{reason}`, Histogram mit `method/route/code`), SSRF-Denies & Token-Sign-Fehler werden gezählt, Verdict-Tokens rotieren via `VERIFY_GATE_JWT_SECRETS` + `VERIFY_GATE_JWT_ACTIVE_KID` mit `kid`-Header und SSRF-Blockierungen melden den Host. Chaos-Skript `pnpm chaos:ethics --scenario boundary-down` + Nightly-Job prüfen Fail-Closed.",
         "Fraktal106 Update: Idempotency-Store persistiert via `better-sqlite3` (`VERIFY_GATE_IDEMP_DB`, TTL `VERIFY_GATE_IDEMP_TTL_MS`), `persist-replay`-Vitest deckt Neustarts ab; Header-Safelist (auth/cookie/user-agent/accept/accept-language/content-type/x-request-id/x-forwarded-for/x-forwarded-proto/x-ethics-token) ersetzt Drop-Liste, `X-Verify-Degraded` propagiert bis UI (`MandalaAIPlayground` Fail-Closed-Banner) und Runbook `docs/runbooks/verify-gate-jwt-rotation.md` beschreibt Kid-Rotation.",
         "Fraktal108: SSRF-Guard löst jetzt A- und AAAA-Records via `dns.lookup(..., { all: true, verbatim: true })`, fällt bei DNS-Fehlern fail-closed (kein `[host]`-Fallback), blockiert ::1/Private deterministisch, zählt DNS-Probleme über `verify_gate_ssrf_resolve_error_total` bzw. leere Antworten über `verify_gate_ssrf_resolve_empty_total` und `makePinnedAgent` übernimmt die aufgelöste IP für das Upstream-Binding.",
-        "Fraktal108 Follow-up: Hardening Pack plant TTL-Pinning/Resolver-Cache, CNAME-/IDNA-Checks, TLS-SAN & remoteAddress-Vergleich, Redirect-Limits (≤3 Hops, http/https), IPv6-/NAT64-Blocklisten sowie neue Counter/OPA-Inputs; siehe analysis/devtalk109-evaluation.md, docs/roadmap v1.0 & codexfeedback*.",
-        "Fraktal111: Redirect-Kette validiert jeden Hop vor dem Netz-Request, DNS-Cache jittert TTLs mit Request-Coalescing, HTTPS-Ziele laufen durch TLS/SAN-Preflight; Prometheus zählt `verify_gate_ip_mismatch_total`, `verify_gate_tls_name_mismatch_total`, Redirect-Block-Gründe für Grafana & Alerts."
+        "Fraktal108 Follow-up: Hardening Pack plant TTL-Pinning/Resolver-Cache, CNAME-/IDNA-Checks, TLS-SAN & `remoteAddress`-Vergleich, Redirect-Limits (≤3 Hops, http/https), IPv6-/NAT64-Blocklisten sowie neue Counter/OPA-Inputs; siehe `analysis/devtalk109-evaluation.md`, docs/roadmap v1.0 & codexfeedback*.",
+        "Fraktal111: Redirect-Kette validiert jeden Hop vor dem ersten Netz-Request, DNS-Cache jittert TTLs mit Request-Coalescing, HTTPS-Ziele durchlaufen TLS/SAN-Preflight (remoteAddress/SAN). Prometheus zählt `verify_gate_ip_mismatch_total`, `verify_gate_tls_name_mismatch_total` und `verify_gate_redirect_block_total{reason=\"tls-preflight-fail\"}` für Grafana/Alerting; Stabilization-Playbook & Codexfeedback vermerken den Abschluss.",
+        "Fraktal112: TLS-Preflight normalisiert IPv6-Remote-Adressen, NAT64/Teredo-Präfixe stehen auf der Blockliste, `x-verify-network` liefert TTL/Redirect/TLS-Level für OPA & UI (NetworkRiskBadges), Prometheus/Grafana/Alerts beobachten TLS/IP-Mismatch & DNS TTL p95; Chaos-Drills (`pnpm chaos:verify-dns-rebind`, `pnpm chaos:verify-redirect-loop`) sichern TTL-Rebind/Redirect-Loops und laufen nightly."
       ],
       "path": "apps/verify-gate/",
       "status": "active",
@@ -166,6 +167,7 @@
         "`provenance-gate.yml` prüft Pfad-/Plane-Matrix, schützt packages/**/core, Guard-Skripte sowie Deploy-/Infra-Verzeichnisse.",
         "`on-demand.yml` aktiviert Slash-Commands (`/run repomap`, `/run governance`) und hängt Labels `run:repomap`/`ci:advisory` an.",
         "Fraktal78: `ci.core.yml` bündelt Coverage (`pnpm test:unit:coverage`) und Governance-Gates (`pnpm schema:validate`, `pnpm maps:validate`, `pnpm sanity`, `pnpm policy:check`) als Pflichtlauf; Artefakt `coverage-vitest` wird hochgeladen, Label `ci:advisory` triggert `pnpm check:ci` als Soft-Fail.",
+        "Fraktal112 Follow-up: `ci.core` ergänzt `pnpm lint:format` im Type/Lint-Gate, `ci.nightly` ruft Verify-Gate-Chaosdrills (`pnpm chaos:verify-dns-rebind`, `pnpm chaos:verify-redirect-loop`) aus.",
         "`ci.runtime.yml` startet NATS + AI-Smoketest, ausgelöst durch Label `ci:runtime`.",
         "Fraktal87 ergänzt `.github/workflows/ci.qwen-smoke.yml` als Self-Hosted-Lane (Label `ci:qwen-smoke`, optional `workflow_dispatch`) für den Qwen-Smoke (`pnpm smoke:qwen`); verweist auf `RoleOutCommands.*` und den Pre-Push-Hook `pnpm hook:qwen-smoke`."
       ],
@@ -1190,7 +1192,7 @@
       "title": "MandalaMap upkeep"
     },
     {
-      "detail": "TTL-Pinning, CNAME/IDNA, TLS/IP-Vergleich, Redirect-Limits und IPv6-/NAT64-Blocklisten stehen an; neue Counter/OPA-Inputs folgen `analysis/devtalk109-evaluation.md`.",
+      "detail": "TTL-Pinning, CNAME/IDNA, TLS/IP-Vergleich, Redirect-Limits und IPv6-/NAT64-Blocklisten sind vorbereitet; neue Counter/OPA-Inputs folgen den Empfehlungen aus `analysis/devtalk109-evaluation.md`.",
       "related": [
         "apps/verify-gate/",
         "docs/roadmap/v1.0-stabilization-playbook.md",
@@ -1270,8 +1272,8 @@
     }
   },
   "meta": {
-    "fraktal": 111,
-    "generated": "2025-12-22 18:00:00+00:00",
+    "fraktal": 112,
+    "generated": "2025-12-23 00:00:00+00:00",
     "reference_docs": [
       "docs/roadmap/v1.0-stabilization-playbook.md",
       "docs/roadmap/v1.0-stabilization-playbook.yaml"

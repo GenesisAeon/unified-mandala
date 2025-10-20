@@ -73,4 +73,17 @@ describe('tlsPreflight', () => {
 
     await expect(preflight).rejects.toThrow('TLS_PREFLIGHT_TIMEOUT');
   });
+
+  it('normalizes IPv6 remote addresses', async () => {
+    const socket = new FakeSocket();
+    socket.remoteAddress = '2001:0db8:0000:0000:0000:0000:0000:0001';
+    socket.authorized = true;
+
+    vi.spyOn(tls, 'connect').mockReturnValue(socket as unknown as tls.TLSSocket);
+
+    const resultPromise = tlsPreflight('example.net', '2001:db8::1', 443, 1000);
+    socket.emit('secureConnect');
+
+    await expect(resultPromise).resolves.toEqual({ remoteAddress: '2001:db8:0:0:0:0:0:1', sanOk: true });
+  });
 });

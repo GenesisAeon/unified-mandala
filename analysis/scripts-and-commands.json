@@ -6,6 +6,7 @@
     "build:ui": "pnpm -F mandala-ui build",
     "lint": "pnpm lint:types && pnpm lint:eslint",
     "lint:types": "tsc -p tsconfig.json --noEmit",
+    "lint:format": "pnpm format:check",
     "lint:eslint": "eslint \"{scripts,services,src,tests}/**/*.{ts,tsx,js,jsx,cjs,mjs}\" --max-warnings=0 --cache",
     "format": "prettier --write README.md CONTRIBUTING.md docs/ONBOARDING.md codexfeedback.* scripts/dev-services.mjs",
     "format:check": "prettier --check README.md CONTRIBUTING.md docs/ONBOARDING.md codexfeedback.* scripts/dev-services.mjs",

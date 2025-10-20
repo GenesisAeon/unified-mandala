@@ -42,3 +42,11 @@ jobs:
           trap cleanup EXIT
           sleep 15
           pnpm chaos:ethics --scenario boundary-down --expect failclosed
+      - name: Chaos drill – verify-gate DNS rebind
+        uses: ./.github/actions/run-pnpm-task
+        with:
+          task: chaos:verify-dns-rebind
+      - name: Chaos drill – verify-gate redirect loop
+        uses: ./.github/actions/run-pnpm-task
+        with:
+          task: chaos:verify-redirect-loop

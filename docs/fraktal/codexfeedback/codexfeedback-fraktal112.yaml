@@ -1,0 +1,39 @@
+fraktal: 112
+status: done
+owner: Johann
+summary:
+  - 'IPv6-Preflight normalisiert Remote-Adressen (Scope-ID entfernt) und vergleicht gegen gepinnte IPs; NAT64/Teredo-Präfixe sind als blocked markiert.'
+  - 'Verify-Gate sendet `x-verify-network` (TTL-Level, Redirect-Hops, TLS-Status), Mandala Playground zeigt NetworkRiskBadges.'
+  - 'Prometheus/Grafana/Alertmanager decken TLS/IP-Mismatches und DNS-TTL p95 ab; `pnpm lint:format` ergänzt die Format-Pipeline, Chaos-Drills laufen via Vitest (`chaos:verify-dns-rebind`, `chaos:verify-redirect-loop`).'
+deliverables:
+  - apps/verify-gate/src/security/ipRanges.ts
+  - apps/verify-gate/src/security/tlsPreflight.ts
+  - apps/verify-gate/src/index.ts
+  - apps/verify-gate/src/http/headerForward.ts
+  - apps/verify-gate/src/__tests__/ip-ranges.test.ts
+  - apps/verify-gate/src/__tests__/tls-preflight.test.ts
+  - apps/verify-gate/src/__tests__/chaos-dns-rebind.test.ts
+  - apps/verify-gate/src/__tests__/chaos-redirect-loop.test.ts
+  - apps/ui/src/lib/fetchWithEthics.ts
+  - apps/ui/src/components/MandalaAIPlayground.tsx
+  - apps/ui/src/components/NetworkRiskBadges.tsx
+  - observability/prometheus/recording-rules.yaml
+  - observability/alerts/verify-gate.yaml
+  - grafana/dashboards/verify-gate-ethics-mini.json
+  - analysis/devtalk112-evaluation.md
+  - package.json
+  - scripts/chaos/verifygate-dns-rebind.mjs
+  - scripts/chaos/verifygate-redirect-loop.mjs
+  - .github/workflows/ci.core.yml
+  - .github/workflows/ci.nightly.yml
+follow_up:
+  chaos_rebind:
+    description: 'Chaos-Drills via Vitest (`pnpm chaos:verify-dns-rebind`, `pnpm chaos:verify-redirect-loop`) prüfen TTL-Rebind & Redirect-Loops; Nightly führt beide Kommandos aus.'
+    status: done
+  lint_pipeline_ci:
+    description: 'Format-Gate läuft im `ci.core`; Folgeentscheidung: Husky/Docs für lokale Hooks aktualisieren.'
+    status: planned
+hook:
+  progress: 'IPv6/IP-Mismatch Bug geschlossen, Netzwerk-Risiken im UI sichtbar, Chaos-Drills & Format-Lint laufen in CI.'
+  next_step: 'Alertmanager-Routing & README-Badges dokumentieren, Format-Hook-Entscheidung (Husky) treffen.'
+  repeat_required: false

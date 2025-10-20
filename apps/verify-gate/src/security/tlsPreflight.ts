@@ -1,4 +1,5 @@
 import tls, { type TLSSocket } from 'node:tls';
+import { normalizeIp } from './ipRanges.js';
 
 export type TlsPreflightResult = {
   remoteAddress: string | undefined;
@@ -26,7 +27,8 @@ export async function tlsPreflight(
 
     socket.once('secureConnect', function onSecure(this: TLSSocket) {
       const sanOk = this.authorized === true;
-      const remoteAddress = typeof this.remoteAddress === 'string' ? this.remoteAddress : undefined;
+      const remoteRaw = typeof this.remoteAddress === 'string' ? this.remoteAddress : undefined;
+      const remoteAddress = remoteRaw ? normalizeIp(remoteRaw) : undefined;
       this.end();
       this.destroy();
       resolve({ remoteAddress, sanOk });

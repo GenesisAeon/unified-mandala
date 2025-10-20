@@ -7,7 +7,16 @@ export type EthicsMeta = {
   verdict: 'green' | 'yellow' | 'red' | 'unknown';
   evidenceCount: number;
   degraded: DegradedMeta;
+  network?: NetworkSignals;
 };
+
+export type RiskLevel = 'ok' | 'warn' | 'critical';
+
+export interface NetworkSignals {
+  ttl: { seconds: number; level: RiskLevel };
+  redirect: { hops: number; level: RiskLevel; schemes?: string[] };
+  tls?: { sanOk: boolean; ipMismatch: boolean; remoteIp?: string; pinnedIp?: string; level: RiskLevel };
+}
 
 export async function fetchJsonWithEthics<T = unknown>(
   input: RequestInfo | URL,
@@ -34,9 +43,20 @@ export async function fetchJsonWithEthics<T = unknown>(
       ? { active: true, source: trimmed === '1' ? undefined : trimmed }
       : { active: false };
 
+  let network: NetworkSignals | undefined;
+  const networkHeader = response.headers.get('x-verify-network');
+  if (networkHeader) {
+    try {
+      const parsed = JSON.parse(networkHeader) as NetworkSignals;
+      if (parsed && typeof parsed === 'object') {
+        network = parsed;
+      }
+    } catch {}
+  }
+
   const contentType = response.headers.get('content-type') ?? '';
   const isJson = contentType.includes('application/json');
   const data = (isJson ? await response.json() : await response.text()) as T;
 
-  return { data, ethics: { verdict, evidenceCount, degraded }, response };
+  return { data, ethics: { verdict, evidenceCount, degraded, network }, response };
 }
