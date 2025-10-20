@@ -16,6 +16,8 @@ import {
 import { pinnedRequest } from './proxy/pinnedRequest.js';
 import { bodySha256, verdictFingerprint } from './security/fingerprint.js';
 import { RateLimiter } from './security/rateLimiter.js';
+import { scheduleCacheMaintenance } from './security/dnsCache.js';
+import { tlsPreflight } from './security/tlsPreflight.js';
 import { JtiStore } from './idempotency/jtiStore.js';
 import { db, forget, makeKey, rememberFinal, rememberPending, seen } from './idempotency/index.js';
 import { scheduleGc } from './idempotency/scheduler.js';
@@ -29,6 +31,9 @@ import {
   tokenFails,
   rateLimitBlocks,
   dnsTtlPinned,
+  ipMismatch,
+  tlsNameMismatch,
+  redirectBlocks,
 } from './metrics.js';
 
 type VerdictColor = 'green' | 'yellow' | 'red';
@@ -71,6 +76,11 @@ const jtiStore = new JtiStore(db);
 scheduleGc(() => jtiStore.purge(), Number(process.env.VERIFY_GATE_GC_MS ?? process.env.VERIFY_GATE_IDEMP_TTL_MS ?? '60000'));
 
 const rateLimiter = rateLimitRpm > 0 ? new RateLimiter(db, rateLimitRpm) : null;
+
+if (process.env.NODE_ENV !== 'test') {
+  const purgeMs = Number.parseInt(process.env.VERIFY_GATE_DNS_CACHE_PURGE_MS ?? '60000', 10);
+  scheduleCacheMaintenance(Number.isFinite(purgeMs) && purgeMs > 0 ? purgeMs : 60000);
+}
 
 function deriveSubject(req: Request): string {
   const auth = typeof req.headers.authorization === 'string' ? req.headers.authorization : undefined;
@@ -317,11 +327,30 @@ app.post('/gate/*', async (req: Request, res: Response) => {
     }
   }
 
-  let finalTarget = new URL(target.toString());
+  let allowResult: Awaited<ReturnType<typeof assertAllowed>>;
+  try {
+    allowResult = await assertAllowed(target.toString());
+  } catch (error) {
+    if (error instanceof SSRFDenyError) {
+      return res.status(403).json({ ok: false, error: error.message });
+    }
+    return res.status(403).json({ ok: false, error: 'TARGET_NOT_ALLOWED' });
+  }
+
+  let finalTarget = new URL(allowResult.url.toString());
+  let redirectHops = 0;
+  let schemeHistory: string[] = [finalTarget.protocol.replace(/:$/, '')];
   const maxRedirects = Number.parseInt(process.env.VERIFY_GATE_MAX_REDIRECTS ?? '3', 10);
   try {
-    const redirectResult = await followRedirects(target, Number.isFinite(maxRedirects) ? maxRedirects : 3);
+    const redirectResult = await followRedirects(
+      target,
+      { allow: allowResult },
+      Number.isFinite(maxRedirects) ? maxRedirects : 3,
+    );
     finalTarget = redirectResult.final;
+    allowResult = redirectResult.ctx.allow;
+    redirectHops = redirectResult.hops;
+    schemeHistory = redirectResult.schemeHistory;
   } catch (error) {
     if (error instanceof RedirectBadSchemeError) {
       return res.status(400).json({ ok: false, error: 'redirect_bad_scheme' });
@@ -335,16 +364,6 @@ app.post('/gate/*', async (req: Request, res: Response) => {
     return res.status(502).json({ ok: false, error: 'redirect_follow_failed' });
   }
 
-  let allowResult: Awaited<ReturnType<typeof assertAllowed>>;
-  try {
-    allowResult = await assertAllowed(finalTarget.toString());
-  } catch (error) {
-    if (error instanceof SSRFDenyError) {
-      return res.status(403).json({ ok: false, error: error.message });
-    }
-    return res.status(403).json({ ok: false, error: 'TARGET_NOT_ALLOWED' });
-  }
-
   dnsTtlPinned.labels(allowResult.hostname).observe(allowResult.minTTLsec);
 
   const netContext = {
@@ -353,6 +372,8 @@ app.post('/gate/*', async (req: Request, res: Response) => {
     cname_chain: allowResult.chain,
     min_ttl_sec: allowResult.minTTLsec,
     is_private: allowResult.ips.some((ip) => isPrivateOrBlocked(ip)),
+    redirect_hops: redirectHops,
+    scheme_history: schemeHistory,
   };
 
   const ethicsUrl = `${ethicsBase}/ethics/check`;
@@ -470,6 +491,28 @@ app.post('/gate/*', async (req: Request, res: Response) => {
     });
 
     const upstreamMethod = ((req.method ?? 'GET').toUpperCase() as Dispatcher.HttpMethod);
+
+    if (finalTarget.protocol === 'https:') {
+      try {
+        const { remoteAddress, sanOk } = await tlsPreflight(
+          finalTarget.hostname,
+          allowResult.ip,
+          Number(finalTarget.port || 443),
+        );
+        if (remoteAddress && remoteAddress !== allowResult.ip) {
+          ipMismatch.inc({ host: finalTarget.hostname });
+          throw new Error('IP_MISMATCH_PREFLIGHT');
+        }
+        if (!sanOk) {
+          tlsNameMismatch.inc({ host: finalTarget.hostname });
+          throw new Error('TLS_SAN_MISMATCH');
+        }
+      } catch (error) {
+        redirectBlocks.inc({ reason: 'tls-preflight-fail', start_host: target.hostname });
+        throw error;
+      }
+    }
+
     const pinned = await pinnedRequest({
       originalUrl: finalTarget,
       pinnedIp: allowResult.ip,

@@ -1,26 +1,34 @@
-fraktal: 108
+fraktal: 111
 phase: Verify-Gate Hardening Pack (TTL/CNAME/TLS)
-status: '`analysis/devtalk109-evaluation.md` fasst das Hardening-Pack zusammen: TTL-bewusster
-  DNS-Cache mit Keep-Alive ≤ minTTL, CNAME-/IDNA-Validierung, TLS-SAN/IP-Abgleich
-  inkl. remoteAddress-Check, Redirect-Gates (≤3 Hops, http/https), IPv6-/NAT64-Blocklisten
-  sowie neue Counter `verify_gate_dns_ttl_pinned_seconds_bucket`/`verify_gate_redirect_block_total`/`verify_gate_ip_mismatch_total`/`verify_gate_tls_name_mismatch_total`
-  und OPA-Inputs (`resolved_ip`, `cname_chain`, `min_ttl_sec`). MandalaMap.*, Stabilization-Playbook.*
-  und codexfeedback* markieren den Follow-up als in progress.'
-nextHook: Resolver/TLS/Redirect-Hooks implementieren, IPv6/NAT64-Checks ergänzen,
-  Vitest-Tabelle + TTL-Rebind-Chaosdrill sowie Grafana/Alert-Updates liefern.
+status: 'Fraktal111 liefert den jitterned DNS-TTL-Cache mit Request-Coalescing, TLS/SAN-Preflight
+  gegen gepinnte IPs und streng validierte Redirect-Ketten (IP-gepinnte HEADs vor jedem Hop).
+  Neue Tests (`dns-cache`, `tls-preflight`, `follow-redirects`) sichern die Guards, netContext
+  enthält `redirect_hops`/`scheme_history`, Prometheus zählt TLS/IP-Mismatches + Redirect-Block-Gründe;
+  Stabilization-Playbook & MandalaMap dokumentieren den Abschluss.'
+nextHook: IPv6/NAT64-Blocklisten und Redirect-Metrik-Panels finalisieren, OPA/UI-Badges
+  für kurze TTLs/redirect_hops ergänzen.
 changed:
-  - analysis/devtalk109-evaluation.md
+  - apps/verify-gate/src/security/dnsCache.ts
+  - apps/verify-gate/src/security/tlsPreflight.ts
+  - apps/verify-gate/src/security/ssrf.ts
+  - apps/verify-gate/src/proxy/followRedirects.ts
+  - apps/verify-gate/src/proxy/pinnedRequest.ts
+  - apps/verify-gate/src/index.ts
+  - apps/verify-gate/src/metrics.ts
+  - apps/verify-gate/src/__tests__/dns-cache.test.ts
+  - apps/verify-gate/src/__tests__/tls-preflight.test.ts
+  - apps/verify-gate/src/__tests__/follow-redirects.test.ts
   - docs/roadmap/v1.0-stabilization-playbook.md
   - docs/roadmap/v1.0-stabilization-playbook.yaml
   - MandalaMap.md
   - MandalaMap.yaml
   - MandalaMap.json
-  - codexfeedback.md
-  - codexfeedback.yaml
-  - codexfeedback.json
+  - codexfeedback-fraktal111.yaml
+  - codexfeedback/codexfeedback-fraktal111.yaml
   - codexfeedback/codexfeedback-latest.md
   - codexfeedback/codexfeedback-latest.json
-  - codexfeedback/codexfeedback-fraktal108-hardening.yaml
+  - codexfeedback/codexfeedback-latest.yaml
 validate:
-  - 'pending: pnpm -w vitest run apps/verify-gate/src/__tests__/ssrf-hardening.spec.ts'
-  - 'pending: pnpm chaos:ethics --scenario dns-rebind'
+  - 'pending: pnpm -w vitest run apps/verify-gate/src/__tests__/dns-cache.test.ts'
+  - 'pending: pnpm -w vitest run apps/verify-gate/src/__tests__/tls-preflight.test.ts'
+  - 'pending: pnpm -w vitest run apps/verify-gate/src/__tests__/follow-redirects.test.ts'

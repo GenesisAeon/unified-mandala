@@ -1,10 +1,5 @@
-import { request } from 'undici';
-import {
-  resolveHostStrictTTL,
-  SSRFPrivateTargetError,
-  type ResolveResult,
-} from '../security/resolve.js';
-import { isPrivateOrBlocked } from '../security/ipRanges.js';
+import { pinnedRequest } from './pinnedRequest.js';
+import { assertAllowed, type AllowResult, SSRFDenyError } from '../security/ssrf.js';
 import { redirectBlocks, redirectFollow } from '../metrics.js';
 
 export class RedirectBadSchemeError extends Error {
@@ -19,54 +14,92 @@ export class RedirectPrivateTargetError extends Error {
   public readonly code = 'REDIRECT_PRIVATE' as const;
 }
 
-type RedirectResult = {
-  final: URL;
-  hops: number;
-  lastResolve?: ResolveResult;
+export type RedirectContext = {
+  allow: AllowResult;
 };
 
-export async function followRedirects(start: URL, maxHops = 3): Promise<RedirectResult> {
-  let url = new URL(start.toString());
-  const startHost = url.hostname;
-  let hops = 0;
-  let lastResolve: ResolveResult | undefined;
+export type RedirectResult = {
+  final: URL;
+  hops: number;
+  ctx: RedirectContext;
+  schemeHistory: string[];
+};
 
-  for (; hops < maxHops; hops += 1) {
-    let head;
+function extractLocation(headers: import('undici').Dispatcher.ResponseData['headers']): string | undefined {
+  const raw = headers.location;
+  if (!raw) {
+    return undefined;
+  }
+  return Array.isArray(raw) ? raw[0] : raw;
+}
+
+export async function followRedirects(
+  start: URL,
+  startCtx: RedirectContext,
+  maxHops = 3,
+): Promise<RedirectResult> {
+  let currentUrl = new URL(start.toString());
+  let ctx: RedirectContext = { allow: startCtx.allow };
+  const startHost = start.hostname;
+  const schemeHistory = [currentUrl.protocol.replace(/:$/, '')];
+
+  for (let hop = 0; hop < maxHops; hop += 1) {
+    let headResponse: Awaited<ReturnType<typeof pinnedRequest>>;
     try {
-      head = await request(url, { method: 'HEAD', maxRedirections: 0 });
+      headResponse = await pinnedRequest({
+        originalUrl: currentUrl,
+        pinnedIp: ctx.allow.ip,
+        minTTLsec: ctx.allow.minTTLsec,
+        method: 'HEAD',
+        headers: {
+          accept: '*/*',
+          'user-agent': 'verify-gate/redirect-probe',
+        },
+        headersTimeoutMs: 5000,
+        bodyTimeoutMs: 5000,
+      });
     } catch {
-      redirectFollow.inc({ hops: String(hops), start_host: startHost });
-      return { final: url, hops, lastResolve };
-    }
-    const rawLocation = head.headers.location;
-    const location = Array.isArray(rawLocation) ? rawLocation[0] : rawLocation;
-    if (!location || head.statusCode < 300 || head.statusCode > 399) {
-      redirectFollow.inc({ hops: String(hops), start_host: startHost });
-      return { final: url, hops, lastResolve };
-    }
-
-    const next = new URL(location, url);
-    if (!/^https?:$/.test(next.protocol)) {
-      redirectBlocks.inc({ reason: 'bad-scheme', start_host: startHost });
-      throw new RedirectBadSchemeError('redirect_scheme_not_allowed');
+      redirectFollow.inc({ hops: String(hop), start_host: startHost });
+      return { final: currentUrl, hops: hop, ctx, schemeHistory };
     }
 
     try {
-      const resolved = await resolveHostStrictTTL(next.hostname);
-      if (resolved.ips.some(isPrivateOrBlocked)) {
-        redirectBlocks.inc({ reason: 'private-target', start_host: startHost });
-        throw new RedirectPrivateTargetError('redirect_target_private');
+      const { res } = headResponse;
+      const { statusCode } = res;
+      if (!statusCode || statusCode < 300 || statusCode > 399) {
+        redirectFollow.inc({ hops: String(hop), start_host: startHost });
+        return { final: currentUrl, hops: hop, ctx, schemeHistory };
       }
-      lastResolve = resolved;
-    } catch (error) {
-      if (error instanceof SSRFPrivateTargetError || (error as { code?: string }).code === 'SSRFPrivateTargetError') {
-        redirectBlocks.inc({ reason: 'private-target', start_host: startHost });
-      }
-      throw error;
-    }
 
-    url = next;
+      const location = extractLocation(res.headers);
+      if (!location) {
+        redirectFollow.inc({ hops: String(hop), start_host: startHost });
+        return { final: currentUrl, hops: hop, ctx, schemeHistory };
+      }
+
+      const next = new URL(location, currentUrl);
+      if (!/^https?:$/.test(next.protocol)) {
+        redirectBlocks.inc({ reason: 'bad-scheme', start_host: startHost });
+        throw new RedirectBadSchemeError('redirect_scheme_not_allowed');
+      }
+
+      let allowNext: AllowResult;
+      try {
+        allowNext = await assertAllowed(next.toString());
+      } catch (error) {
+        if (error instanceof SSRFDenyError) {
+          redirectBlocks.inc({ reason: 'private-target', start_host: startHost });
+          throw new RedirectPrivateTargetError(error.message);
+        }
+        throw error;
+      }
+
+      currentUrl = next;
+      ctx = { allow: allowNext };
+      schemeHistory.push(currentUrl.protocol.replace(/:$/, ''));
+    } finally {
+      headResponse.dispose();
+    }
   }
 
   redirectBlocks.inc({ reason: 'too-many', start_host: startHost });

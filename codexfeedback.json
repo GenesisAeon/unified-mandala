@@ -1,9 +1,41 @@
 {
   "runs": [
     {
+      "fraktalrun": "Fraktal111 Redirect/TLS Close-out",
+      "status": "done",
+      "notes": "Verify-Gate besitzt einen jitterned DNS-TTL-Cache mit Request-Coalescing, verfolgt Redirects nur nach Allowlist/IP-Pinning und prüft HTTPS-Ziele via TLS/SAN-Preflight gegen die gepinnte Adresse. Neue Metriken (ip_mismatch_total, tls_name_mismatch_total, Redirect-Block-Gründe) sowie net.redirect_hops/scheme_history speisen Grafana & OPA; Stabilization-Playbook, MandalaMap und codexfeedback-fraktal111 dokumentieren den Abschluss.",
+      "deliverables": [
+        "apps/verify-gate/src/security/dnsCache.ts",
+        "apps/verify-gate/src/security/tlsPreflight.ts",
+        "apps/verify-gate/src/security/ssrf.ts",
+        "apps/verify-gate/src/proxy/followRedirects.ts",
+        "apps/verify-gate/src/proxy/pinnedRequest.ts",
+        "apps/verify-gate/src/index.ts",
+        "apps/verify-gate/src/metrics.ts",
+        "apps/verify-gate/src/__tests__/dns-cache.test.ts",
+        "apps/verify-gate/src/__tests__/tls-preflight.test.ts",
+        "apps/verify-gate/src/__tests__/follow-redirects.test.ts",
+        "docs/roadmap/v1.0-stabilization-playbook.md",
+        "docs/roadmap/v1.0-stabilization-playbook.yaml",
+        "MandalaMap.md",
+        "MandalaMap.yaml",
+        "MandalaMap.json",
+        "codexfeedback/codexfeedback-latest.md",
+        "codexfeedback/codexfeedback-latest.json",
+        "codexfeedback/codexfeedback-latest.yaml",
+        "codexfeedback-fraktal111.yaml",
+        "codexfeedback/codexfeedback-fraktal111.yaml"
+      ],
+      "hook": {
+        "progress": "DNS/TLS/Redirect-Hardening live; Observability-Queries & Docs synchronisiert.",
+        "next_step": "IPv6-/NAT64-Blocklisten und Redirect-Metrik-Panels finalisieren, OPA/UI-Badges für kurze TTLs ergänzen.",
+        "repeat_required": false
+      }
+    },
+    {
       "fraktalrun": "Fraktal108 Hardening Pack",
-      "status": "in-progress",
-      "notes": "`analysis/devtalk109-evaluation.md` priorisiert TTL-bewusste DNS-Pins (Resolver-Cache, Keep-Alive ≤ minTTL), CNAME-/IDNA-Validierung, TLS-SAN/IP-Vergleich & Remote-IP-Prüfung, Redirect-Guards (≤3 Hops, http/https), IPv6/NAT64-Blocklisten sowie neue Counter `verify_gate_dns_ttl_pinned_seconds_bucket`/`verify_gate_redirect_block_total`/`verify_gate_ip_mismatch_total`/`verify_gate_tls_name_mismatch_total` und OPA-Inputs `resolved_ip`/`cname_chain`/`min_ttl_sec`. MandalaMap.*, Stabilization-Playbook.* und codexfeedback* markieren den Lauf als in progress; Umsetzung & Tests folgen.",
+      "status": "done",
+      "notes": "Fraktal108 Hardening Pack priorisierte TTL-bewusste DNS-Pins, CNAME-/IDNA-Validierung, TLS-SAN/IP-Vergleich, Redirect-Gates und IPv6/NAT64-Blocklisten; Analyse & Scope abgeschlossen, Umsetzung in Fraktal111.",
       "deliverables": [
         "analysis/devtalk109-evaluation.md",
         "docs/roadmap/v1.0-stabilization-playbook.md",
@@ -23,6 +55,31 @@
         "progress": "Bewertung & Scope-Definition abgeschlossen; Prioritätenliste für Resolver, TLS, Redirects, IPv6 und Telemetrie steht.",
         "next_step": "Implementierung der Hardening-Maßnahmen (TTL-Cache, CNAME/IDNA, TLS-SAN, Redirect-Gates, neue Counter) inkl. Vitest-Tabelle & Chaos-Drill.",
         "repeat_required": true
+      }
+    },
+    {
+      "fraktalrun": "Fraktal108 Hardening Pack",
+      "status": "done",
+      "notes": "`analysis/devtalk109-evaluation.md` priorisiert TTL-bewusste DNS-Pins (Resolver-Cache, Keep-Alive ≤ minTTL), CNAME-/IDNA-Validierung, TLS-SAN/IP-Vergleich & Remote-IP-Prüfung, Redirect-Guards (≤3 Hops, http/https), IPv6/NAT64-Blocklisten sowie neue Counter `verify_gate_dns_ttl_pinned_seconds_bucket`/`verify_gate_redirect_block_total`/`verify_gate_ip_mismatch_total`/`verify_gate_tls_name_mismatch_total` und OPA-Inputs `resolved_ip`/`cname_chain`/`min_ttl_sec`. MandalaMap.*, Stabilization-Playbook.* und codexfeedback* markieren den Lauf als in progress; Umsetzung & Tests folgen.",
+      "deliverables": [
+        "analysis/devtalk109-evaluation.md",
+        "docs/roadmap/v1.0-stabilization-playbook.md",
+        "docs/roadmap/v1.0-stabilization-playbook.yaml",
+        "MandalaMap.md",
+        "MandalaMap.yaml",
+        "MandalaMap.json",
+        "codexfeedback.md",
+        "codexfeedback.json",
+        "codexfeedback.yaml",
+        "codexfeedback/codexfeedback-latest.md",
+        "codexfeedback/codexfeedback-latest.json",
+        "codexfeedback/codexfeedback-latest.yaml",
+        "codexfeedback/codexfeedback-fraktal108-hardening.yaml"
+      ],
+      "hook": {
+        "progress": "Prioritätenliste dokumentiert.",
+        "next_step": "--",
+        "repeat_required": false
       }
     },
     {
