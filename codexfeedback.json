@@ -1,6 +1,45 @@
 {
   "runs": [
     {
+      "fraktalrun": "FR-UM-2025-12-24-Fraktal114-PolicyBundleSigning",
+      "status": "done",
+      "notes": "CI baut, signiert und verifiziert das Ethics-OPA-Bundle (`pnpm opa:bundle`/`opa:sign`/`opa:verify`/`opa:bundle:sign`), lädt `dist/opa/mandala-ethics-bundle.tar.gz{,.sha256,.asc}` als Artefakt hoch und führt `/policy/status`-/`/readyz`-Signaturprüfungen für Ethics (`ETHICS_POLICY_SIGNATURE_REQUIRED`) und Verify-Gate (`VERIFY_GATE_REQUIRE_POLICY_SIGNATURE`) ein. Command Catalog, Stabilization-Playbook, MandalaMap und codexfeedback* spiegeln die neuen Kommandos und Gates wider.",
+      "deliverables": [
+        "package.json",
+        "scripts/opa/build-opa-bundle.mjs",
+        "scripts/opa/sign-opa-bundle.mjs",
+        "scripts/opa/verify-opa-bundle.mjs",
+        "apps/ethics-api/src/policyStatus.ts",
+        "apps/ethics-api/src/index.ts",
+        "apps/ethics-api/src/__tests__/opa-policy.bundle.test.ts",
+        "apps/verify-gate/src/app.ts",
+        "apps/verify-gate/src/http/headerForward.ts",
+        "apps/verify-gate/src/verdictToken.ts",
+        ".github/workflows/ci.core.yml",
+        ".github/workflows/ci.nightly.yml",
+        ".env.example",
+        "docs/runbooks/command-catalog.md",
+        "docs/runbooks/command-catalog.json",
+        "docs/runbooks/command-catalog.yaml",
+        "docs/roadmap/v1.0-stabilization-playbook.md",
+        "docs/roadmap/v1.0-stabilization-playbook.yaml",
+        "MandalaMap.md",
+        "MandalaMap.json",
+        "MandalaMap.yaml",
+        "codexfeedback.md",
+        "codexfeedback.json",
+        "codexfeedback.yaml",
+        "codexfeedback/codexfeedback-latest.md",
+        "codexfeedback/codexfeedback-latest.json",
+        "codexfeedback/codexfeedback-latest.yaml"
+      ],
+      "hook": {
+        "progress": "Bundle-Build, Signatur-Verifikation und Readyz-Gates sind aktiv; Artefakte liegen unter `dist/opa/`.",
+        "next_step": "Alertmanager-Routing und Langzeit-Aufbewahrung der Bundle-Artefakte dokumentieren.",
+        "repeat_required": false
+      }
+    },
+    {
       "fraktalrun": "FR-UM-2025-12-24-Fraktal114-CommandCatalogFix",
       "status": "done",
       "notes": "Command Catalog-Markdown wurde auf das kanonische Layout zurückgesetzt (nur `pnpm opa:test` bleibt) und codexfeedback-Artefakte dokumentieren die Bereinigung; MandalaMap-Paritätslauf bleibt optional offen.",

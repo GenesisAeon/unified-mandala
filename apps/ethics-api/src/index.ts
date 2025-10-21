@@ -21,6 +21,7 @@ import {
 import { EthicsCheckSchema, type EthicsCheckInput } from './schemas.js';
 import { parse as parseDomain } from 'tldts';
 import { runOpaEval } from './opa.js';
+import { getPolicyStatus, refreshPolicyStatus, type PolicyStatusSnapshot } from './policyStatus.js';
 import {
   assertEthicsInput,
   assertNetworkSignals,
@@ -93,6 +94,8 @@ app.use(requestIdMiddleware);
 
 const bodyLimit = process.env.ETHICS_JSON_LIMIT ?? '1mb';
 app.use(express.json({ limit: bodyLimit }));
+
+refreshPolicyStatus();
 
 const offset = Number.parseInt(process.env.PORT_OFFSET ?? '0', 10) || 0;
 const defaultPort = 3110 + offset;
@@ -190,6 +193,28 @@ const EXPOSE_HEADERS = [
   'traceparent',
   'tracestate',
 ];
+
+function policyStatusToJson(status: PolicyStatusSnapshot) {
+  return {
+    ok: status.ok,
+    revision: status.revision ?? null,
+    bundle_path: status.bundlePath,
+    bundle_exists: status.bundleExists,
+    sha256: status.sha256 ?? null,
+    sha_match: status.shaMatch,
+    sha_expected: status.shaExpected ?? null,
+    sha_source: status.shaSource ?? null,
+    signature_required: status.signatureRequired,
+    gpg: {
+      present: status.gpg.present,
+      ok: status.gpg.ok,
+      issuer: status.gpg.issuer ?? null,
+      error: status.gpg.error ?? null,
+    },
+    checked_at: status.checkedAt,
+    reason: status.reason ?? null,
+  };
+}
 
 interface LifeboatFinding {
   rule: string;
@@ -397,14 +422,27 @@ app.get('/metrics', async (_req: Request, res: Response) => {
   res.end(await registry.metrics());
 });
 
+app.get('/policy/status', (_req: Request, res: Response) => {
+  const status = refreshPolicyStatus();
+  res.json(policyStatusToJson(status));
+});
+
 app.get('/readyz', (_req: Request, res: Response) => {
   updateCircuitGauge();
   const value = getBoundaryCircuitStateValue();
   const warm = boundaryCache.size > 0;
+  const policyStatus = refreshPolicyStatus();
   if (value !== 0) {
-    return res.status(503).json({ ok: false, cb: value, boundary_cache_warm: warm });
+    return res
+      .status(503)
+      .json({ ok: false, cb: value, boundary_cache_warm: warm, policy: policyStatusToJson(policyStatus) });
   }
-  return res.json({ ok: true, boundary_cache_warm: warm });
+  if (policyStatus.signatureRequired && !policyStatus.ok) {
+    return res
+      .status(503)
+      .json({ ok: false, reason: 'policy_signature_invalid', policy: policyStatusToJson(policyStatus) });
+  }
+  return res.json({ ok: true, boundary_cache_warm: warm, policy: policyStatusToJson(policyStatus) });
 });
 
 app.post(
@@ -422,6 +460,14 @@ app.post(
       return res.status(400).json({ ok: false, error: 'BAD_REQUEST', issues });
     }
 
+    const policyStatus = getPolicyStatus();
+    let policyRevisionHeader = policyStatus.revision ?? process.env.ETHICS_POLICY_REV?.trim() ?? 'unknown';
+    if (policyRevisionHeader.length > 0) {
+      res.setHeader('x-ethics-policy-rev', policyRevisionHeader);
+    }
+    let policySignatureState: 'valid' | 'invalid' = policyStatus.ok ? 'valid' : 'invalid';
+    res.setHeader('x-ethics-policy-sig', policySignatureState);
+
     const { intent, content, context } = payload;
     const minEvidenceRequired = Number.parseInt(process.env.VERIFY_MIN_EVIDENCE ?? '2', 10);
     const text = parseText(content ?? intent);
@@ -436,7 +482,11 @@ app.post(
         verdict: 'red',
         reason: lifeboat.reason,
         neededEvidence: [],
-        deps: { lifeboatRule: lifeboat.rule },
+        deps: {
+          lifeboatRule: lifeboat.rule,
+          policy_revision: policyRevisionHeader,
+          policy_signature: policySignatureState,
+        },
         grounding: { score: 0, citations: [] },
         boundary: { count: 0, violations: [] },
         impact: { co2eKgMin: 0, co2eKgMax: 0, riskScore: 1 },
@@ -474,7 +524,11 @@ app.post(
           verdict: 'red',
           reason: reason === 'circuit_open' ? 'boundary_circuit_open' : 'boundary_unreachable',
           neededEvidence: [],
-          deps: { boundary: boundaryResult.error },
+          deps: {
+            boundary: boundaryResult.error,
+            policy_revision: policyRevisionHeader,
+            policy_signature: policySignatureState,
+          },
           grounding: { score: 0, citations: [] },
           boundary: { count: 0, violations: [] },
           impact: { co2eKgMin: 0, co2eKgMax: 0, riskScore: 1 },
@@ -563,7 +617,10 @@ app.post(
         riskScore: violations.length > 0 ? 0.9 : 0.1,
       },
       neededEvidence: baseNeededEvidence,
-      deps: {},
+      deps: {
+        policy_revision: policyRevisionHeader,
+        policy_signature: policySignatureState,
+      },
       evidence: {
         domains,
         strong: strongEvidenceCount,
@@ -671,6 +728,14 @@ app.post(
     }
 
     const opaDecision = await runOpaEval(opaInput);
+
+    if (typeof opaDecision.policyRev === 'string' && opaDecision.policyRev.length > 0) {
+      policyRevisionHeader = opaDecision.policyRev;
+      res.setHeader('x-ethics-policy-rev', policyRevisionHeader);
+      if (response.deps) {
+        (response.deps as Record<string, unknown>).policy_revision = policyRevisionHeader;
+      }
+    }
 
     const policyNeeded = Array.isArray(opaDecision.neededEvidence)
       ? opaDecision.neededEvidence

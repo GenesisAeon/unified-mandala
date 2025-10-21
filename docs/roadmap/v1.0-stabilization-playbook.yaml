@@ -199,11 +199,15 @@ streams:
           \ docs/maps/RepoMap.yaml\nf\xFChrt `repo`, ProgramFlow.yaml einen `meta`-Block,\
           \ wodurch `pnpm maps:validate` wieder gr\xFCn l\xE4uft. Fraktal67\nFraktal112\
           \ erg\xE4nzt `package.json` um `pnpm lint:format` als Format-Check, Fraktal114\
-          \ erg\xE4nzt `package.json` um `pnpm opa:test`, installiert den OPA-Binary in\
-          \ `ci.core`/`ci.nightly` und f\xFChrt `pnpm opa:test -- --timeout 5s` als Policy-Gate\
-          \ aus; die neue Policy `apps/ethics-api/opa/policy.rego` erzwingt Netzsignale\
-          \ (`ttl_sec`, `tls_san_ok`, `redirect_hops`). bindet den Lauf in `ci.core` ein\
-          \ und hinterlegt neue Verify-Gate Chaos-Drills (`pnpm chaos:verify-dns-rebind`,\
+          \ erg\xE4nzt `package.json` um `pnpm opa:test`, `pnpm opa:bundle`, `pnpm opa:sign`,\
+          \ `pnpm opa:verify`, `pnpm opa:bundle:sign`, installiert den OPA-Binary in\
+          \ `ci.core`/`ci.nightly`, f\xFChrt `pnpm opa:test -- --timeout 5s` als Policy-Gate\
+          \ aus, baut/signiert/verifiziert Bundles (`dist/opa/mandala-ethics-bundle.tar.gz{,.sha256,.asc}`)\
+          \ und l\xE4dt das Artefakt hoch; die neue Policy `apps/ethics-api/opa/policy.rego`\
+          \ erzwingt Netzsignale (`ttl_sec`, `tls_san_ok`, `redirect_hops`), Ethics-API\
+          \ exponiert `/policy/status` + Signatur-Readyz (`ETHICS_POLICY_SIGNATURE_REQUIRED`)\
+          \ und Verify-Gate `/readyz` spiegelt das Gate (`VERIFY_GATE_REQUIRE_POLICY_SIGNATURE`);\
+          \ hinterlegt neue Verify-Gate Chaos-Drills (`pnpm chaos:verify-dns-rebind`,\
           \ `pnpm chaos:verify-redirect-loop`) f\xFCr den Nightly-Workflow.\nerweitert\
           \ das Cheat Sheet um `pnpm check:precommit`, `pnpm check:prepush`, `pnpm check:ci`,\
           \ `pnpm ci:verify`, Monitoring-/Offline-Bundle-Hinweise und verweist\nexplizit\

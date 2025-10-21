@@ -1452,6 +1452,42 @@
           "source": ["package.json#scripts.opa:test"]
         },
         {
+          "id": "policy.opa-bundle",
+          "name": "OPA bundle build",
+          "command": "pnpm opa:bundle",
+          "type": "pnpm",
+          "runs": "node scripts/opa/build-opa-bundle.mjs",
+          "description": "Builds the Mandala ethics OPA bundle (`dist/opa/mandala-ethics-bundle.tar.gz`) and writes revision metadata.",
+          "source": ["package.json#scripts.opa:bundle", "scripts/opa/build-opa-bundle.mjs"]
+        },
+        {
+          "id": "policy.opa-sign",
+          "name": "OPA bundle sign",
+          "command": "pnpm opa:sign",
+          "type": "pnpm",
+          "runs": "node scripts/opa/sign-opa-bundle.mjs",
+          "description": "Computes the bundle SHA256 fingerprint and optionally GPG-signs it (`OPA_SIGN_ENABLE=1`).",
+          "source": ["package.json#scripts.opa:sign", "scripts/opa/sign-opa-bundle.mjs"]
+        },
+        {
+          "id": "policy.opa-verify",
+          "name": "OPA bundle verify",
+          "command": "pnpm opa:verify",
+          "type": "pnpm",
+          "runs": "node scripts/opa/verify-opa-bundle.mjs",
+          "description": "Verifies SHA256/GPG signatures and performs a smoke `opa eval` against the bundle.",
+          "source": ["package.json#scripts.opa:verify", "scripts/opa/verify-opa-bundle.mjs"]
+        },
+        {
+          "id": "policy.opa-bundle-sign",
+          "name": "OPA bundle build+sign",
+          "command": "pnpm opa:bundle:sign",
+          "type": "pnpm",
+          "runs": "pnpm opa:bundle && pnpm opa:sign && pnpm opa:verify",
+          "description": "Convenience wrapper to build, sign, and verify the ethics bundle in one step (CI artefact path `dist/opa/`).",
+          "source": ["package.json#scripts.opa:bundle:sign"]
+        },
+        {
           "id": "policy.kyverno-validate",
           "name": "Kyverno dry run",
           "command": "pnpm kyverno:validate",

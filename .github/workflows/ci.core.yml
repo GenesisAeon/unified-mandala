@@ -151,6 +151,22 @@ jobs:
       - name: OPA policy tests
         run: pnpm opa:test -- --timeout 5s
 
+      - name: OPA build + sign + verify
+        env:
+          OPA_SIGN_ENABLE: '1'
+          OPA_SIGN_GPG_BIN: gpg
+          OPA_SIGN_GPG_KEY: ${{ secrets.MANDALA_GPG_KEY_ID }}
+        run: pnpm opa:bundle:sign
+
+      - name: Upload OPA bundle artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: mandala-ethics-bundle
+          path: |
+            dist/opa/mandala-ethics-bundle.tar.gz
+            dist/opa/mandala-ethics-bundle.tar.gz.sha256
+            dist/opa/mandala-ethics-bundle.tar.gz.asc
+
   ai_commit_guard:
     name: AI commit guard
     runs-on: ubuntu-latest

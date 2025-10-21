@@ -15,6 +15,8 @@ const DROP_INBOUND = new Set([
   'x-ethics-evidence-count',
   'x-verify-degraded',
   'x-verify-network',
+  'x-ethics-policy-rev',
+  'x-ethics-policy-sig',
   'expect',
   'traceparent',
   'tracestate',
@@ -39,6 +41,8 @@ const ALLOW_RESPONSE_EXPOSE = [
   'x-request-id',
   'x-verify-degraded',
   'x-verify-network',
+  'x-ethics-policy-rev',
+  'x-ethics-policy-sig',
 ];
 
 export function buildUpstreamHeaders(

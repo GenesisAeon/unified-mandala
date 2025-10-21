@@ -1269,7 +1269,7 @@
     },
     {
       "title": "OPA bundle & TTL playbooks",
-      "detail": "Command Catalog führt `pnpm opa:test`, Observability-Runbook beschreibt TTL-p95-Alerting & VerifyGateLowDNSTTL; nächster Schritt: OPA-Bundle-Artefakte/Alertmanager-Routing dokumentieren.",
+      "detail": "Command Catalog führt `pnpm opa:test`, `pnpm opa:bundle`, `pnpm opa:sign`, `pnpm opa:verify`, `pnpm opa:bundle:sign`; Observability-Runbook beschreibt TTL-p95-Alerting & VerifyGateLowDNSTTL; Ethics-API exponiert `/policy/status` + Signatur-Readyz, Verify-Gate `/readyz` spiegelt das Gate. Nächster Schritt: OPA-Bundle-Artefakte/Alertmanager-Routing dokumentieren.",
       "related": [
         "scripts/opa/run-opa-test.mjs",
         "docs/runbooks/observability.md",
