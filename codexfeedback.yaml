@@ -1,6 +1,22 @@
 fraktal:
   current: 114
   history:
+    - id: 114-opa-test-hardening
+      status: done
+      notes: 'Rego-Regressionstests nutzen `object.union`, der OPA-Runner setzt `spawnSync` + Pretty/Verbose-Ausgabe ein und `package.json` ergänzt `pnpm opa:fmt`/`pnpm opa:lint` mit Windows-tauglichem Exit-Handling; codexfeedback-latest.* dokumentiert den Runner-Refresh und verweist auf Bundle-/Alertmanager-Doku.'
+      deliverables:
+        - apps/ethics-api/opa/policy_test.rego
+        - scripts/opa/run-opa-test.mjs
+        - package.json
+        - codexfeedback.md
+        - codexfeedback.json
+        - codexfeedback.yaml
+        - codexfeedback/codexfeedback-latest.md
+        - codexfeedback/codexfeedback-latest.json
+        - codexfeedback/codexfeedback-latest.yaml
+      hook:
+        progress: OPA-Tests laufen parserfrei, Runner bevorzugt `bin/opa` und meldet Pretty/Verbose-Ausgaben.
+        next_step: Optional Bundle-/Alertmanager-Doku ergänzen und MandalaMap nur bei neuen Policy-Artefakten aktualisieren.
     - id: 114-policy-bundle-signing
       status: done
       notes:

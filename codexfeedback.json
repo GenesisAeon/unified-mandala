@@ -1,6 +1,27 @@
 {
   "runs": [
     {
+      "fraktalrun": "FR-UM-2025-12-24-Fraktal114-OPA-Test-Hardening",
+      "status": "done",
+      "notes": "Rego-Regressionstests modellieren Eingaben via `object.union`, der Test-Runner nutzt `spawnSync` + Pretty/Verbose-Ausgabe und package.json ergänzt `pnpm opa:fmt`/`pnpm opa:lint` mit Windows-kompatiblem Exit.",
+      "deliverables": [
+        "apps/ethics-api/opa/policy_test.rego",
+        "scripts/opa/run-opa-test.mjs",
+        "package.json",
+        "codexfeedback.md",
+        "codexfeedback.json",
+        "codexfeedback.yaml",
+        "codexfeedback/codexfeedback-latest.md",
+        "codexfeedback/codexfeedback-latest.json",
+        "codexfeedback/codexfeedback-latest.yaml"
+      ],
+      "hook": {
+        "progress": "OPA-Tests laufen ohne Parserfehler; Runner bevorzugt `bin/opa` und meldet Pretty/Verbose-Ausgaben.",
+        "next_step": "Optional Bundle-/Alertmanager-Doku aktualisieren und MandalaMap nur bei Policy-Artefakten refreshen.",
+        "repeat_required": false
+      }
+    },
+    {
       "fraktalrun": "FR-UM-2025-12-24-Fraktal114-PolicyBundleSigning",
       "status": "done",
       "notes": "CI baut, signiert und verifiziert das Ethics-OPA-Bundle (`pnpm opa:bundle`/`opa:sign`/`opa:verify`/`opa:bundle:sign`), lädt `dist/opa/mandala-ethics-bundle.tar.gz{,.sha256,.asc}` als Artefakt hoch und führt `/policy/status`-/`/readyz`-Signaturprüfungen für Ethics (`ETHICS_POLICY_SIGNATURE_REQUIRED`) und Verify-Gate (`VERIFY_GATE_REQUIRE_POLICY_SIGNATURE`) ein. Command Catalog, Stabilization-Playbook, MandalaMap und codexfeedback* spiegeln die neuen Kommandos und Gates wider.",

@@ -1,0 +1,21 @@
+fraktal: 114
+status: done
+owner: ChefDevAI
+summary:
+  - 'Rego-Tests modellieren Eingaben ohne `with default` Syntax und laufen mit OPA 0.66 Parsern.'
+  - 'OPA-Test-Runner nutzt `spawnSync`, Pretty/Verbose-Ausgabe und bevorzugt das lokale `bin/opa` Binary.'
+  - '`package.json` ergänzt Format-/Lint-Skripte für OPA Policies und codexfeedback-latest.* dokumentiert den Runner-Refresh.'
+deliverables:
+  - apps/ethics-api/opa/policy_test.rego
+  - scripts/opa/run-opa-test.mjs
+  - package.json
+  - codexfeedback/codexfeedback-latest.md
+  - codexfeedback/codexfeedback-latest.json
+  - codexfeedback/codexfeedback-latest.yaml
+  - codexfeedback.md
+  - codexfeedback.json
+  - codexfeedback.yaml
+hook:
+  progress: 'OPA-Tests laufen parserfrei mit Pretty/Verbose Ausgabe; neue Skripte sichern fmt/check Workflows.'
+  next_step: 'Optional OPA-Bundle-/Alertmanager-Dokumentation synchronisieren, MandalaMap bleibt unverändert.'
+  repeat_required: false

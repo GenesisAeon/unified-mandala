@@ -1,17 +1,21 @@
 {
   "fraktal": 114,
-  "phase": "Command Catalog Cleanup",
-  "status": "Command Catalog-Markdown wiederhergestellt; `pnpm opa:test` bleibt der einzige neue Eintrag.",
-  "next_hook": "Optional `pnpm meta:mandala:sync` für MandalaMap-Parität; OPA-Bundle-/Alertmanager-Doku bleibt geplant.",
+  "phase": "OPA Test Runner Refresh",
+  "status": "Rego-Tests nutzen valide `with input as …` und der Runner pinnt das lokale OPA-Binary mit Pretty/Verbose-Ausgabe.",
+  "next_hook": "Optional OPA-Bundle-/Alertmanager-Doku synchronisieren; MandalaMap-Updates nur bei weiteren Policy-Artefakten.",
   "changes": [
-    "docs/runbooks/command-catalog.md",
+    "apps/ethics-api/opa/policy_test.rego",
+    "scripts/opa/run-opa-test.mjs",
+    "package.json",
+    "codexfeedback/codexfeedback-latest.md",
     "codexfeedback.md",
     "codexfeedback.json",
     "codexfeedback.yaml"
   ],
-  "validate": [],
+  "validate": ["pnpm opa:test"],
   "what_changed": [
-    "Command Catalog Markdown zurück auf Baseline mit erhaltener `pnpm opa:test`-Zeile.",
-    "codexfeedback-Artefakte aktualisiert und Hinweis auf optionalen MandalaMap-Sync ergänzt."
+    "Rego-Tests modellieren Eingaben via `object.union` statt unzulässiger `with default`-Syntax.",
+    "OPA-Test-Runner nutzt spawnSync, bevorzugt `bin/opa` und aktiviert Pretty/Verbose-Ausgabe.",
+    "Package.json ergänzt `pnpm opa:fmt` und `pnpm opa:lint` mit Windows-tauglichem Exit-Handling."
   ]
 }

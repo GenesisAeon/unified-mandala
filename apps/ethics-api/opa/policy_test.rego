@@ -31,21 +31,25 @@ test_allow_when_all_good {
 }
 
 test_deny_when_degraded {
-  in := base_ok with input.degraded as true
+  in := object.union(base_ok, {"degraded": true})
   ethics.deny with input as in
   not ethics.allow with input as in
   ethics.output.deny with input as in
 }
 
 test_deny_private_ipv6 {
-  in := base_ok with input.network.resolved_ip as "::1"
+  in := object.union(base_ok, {
+    "network": object.union(base_ok.network, {"resolved_ip": "::1"})
+  })
   ethics.deny with input as in
   reasons := ethics.output.reasons with input as in
   reasons[_] == "private_target"
 }
 
 test_deny_ttl_short {
-  in := base_ok with input.network.ttl_sec as 5
+  in := object.union(base_ok, {
+    "network": object.union(base_ok.network, {"ttl_sec": 5})
+  })
   ethics.deny with input as in
   reasons := ethics.output.reasons with input as in
   some r
@@ -54,10 +58,13 @@ test_deny_ttl_short {
 }
 
 test_deny_risky_needs_evidence {
-  in := base_ok
-       with input.boundary.severity_max as "high"
-       with input.evidence.domains_distinct as 1
-       with input.evidence.strong_count as 0
+  in := object.union(base_ok, {
+    "boundary": object.union(base_ok.boundary, {"severity_max": "high"}),
+    "evidence": object.union(base_ok.evidence, {
+      "domains_distinct": 1,
+      "strong_count": 0,
+    }),
+  })
   ethics.deny with input as in
   reasons := ethics.output.reasons with input as in
   reasons[_] == "need_two_independent_domains"
@@ -65,7 +72,9 @@ test_deny_risky_needs_evidence {
 }
 
 test_allow_risky_with_evidence {
-  in := base_ok with input.boundary.severity_max as "high"
+  in := object.union(base_ok, {
+    "boundary": object.union(base_ok.boundary, {"severity_max": "high"})
+  })
   ethics.allow with input as in
   not ethics.deny with input as in
 }
