@@ -21,6 +21,12 @@ import {
 import { EthicsCheckSchema, type EthicsCheckInput } from './schemas.js';
 import { parse as parseDomain } from 'tldts';
 import { evaluateOpa } from './opa.js';
+import {
+  assertEthicsInput,
+  assertNetworkSignals,
+  InvalidEthicsInputError,
+  MissingNetworkSignalsError,
+} from './schemas/opa-input.schema.js';
 
 interface RagCitation {
   uri?: string;
@@ -567,48 +573,95 @@ app.post(
     (response.deps as Record<string, unknown>).evidence = response.evidence;
 
     const opaFlags: Record<string, unknown> = payload.flags ?? {};
+    const flagsRecord = payload.flags as Record<string, unknown> | undefined;
+    const degradeFlag = flagsRecord?.degraded === true;
 
     const fallbackIntentCandidate = (payload as Record<string, unknown>)['intentType'];
     const fallbackIntent =
       typeof fallbackIntentCandidate === 'string' ? fallbackIntentCandidate : '';
 
-    const netPayload = payload.net;
+    const netPayload = payload.net as (typeof payload.net & Record<string, unknown>) | undefined;
     const opaNet = netPayload
       ? {
-          hostname_ascii:
-            typeof netPayload.hostname_ascii === 'string' && netPayload.hostname_ascii.length > 0
-              ? netPayload.hostname_ascii
+          ttl_sec:
+            typeof netPayload.ttl_sec === 'number' && Number.isFinite(netPayload.ttl_sec)
+              ? netPayload.ttl_sec
+              : typeof netPayload.min_ttl_sec === 'number' && Number.isFinite(netPayload.min_ttl_sec)
+                ? netPayload.min_ttl_sec
+                : undefined,
+          min_ttl_sec:
+            typeof netPayload.min_ttl_sec === 'number' && Number.isFinite(netPayload.min_ttl_sec)
+              ? netPayload.min_ttl_sec
+              : undefined,
+          tls_san_ok:
+            typeof netPayload.tls_san_ok === 'boolean'
+              ? Boolean(netPayload.tls_san_ok)
               : undefined,
           resolved_ip:
             typeof netPayload.resolved_ip === 'string' && netPayload.resolved_ip.length > 0
               ? netPayload.resolved_ip
               : undefined,
-          cname_chain: Array.isArray(netPayload.cname_chain)
-            ? netPayload.cname_chain.filter((entry): entry is string => typeof entry === 'string')
-            : [],
-          min_ttl_sec:
-            typeof netPayload.min_ttl_sec === 'number' && Number.isFinite(netPayload.min_ttl_sec)
-              ? netPayload.min_ttl_sec
+          redirect_hops:
+            typeof netPayload.redirect_hops === 'number'
+              ? Number(netPayload.redirect_hops)
               : undefined,
           is_private: netPayload.is_private === true,
         }
       : undefined;
 
+    const severityValues = violations
+      .map((violation) => (typeof violation.severity === 'string' ? violation.severity.toLowerCase() : undefined))
+      .filter((value): value is 'low' | 'medium' | 'high' => value === 'low' || value === 'medium' || value === 'high');
+
+    let severityMax: 'low' | 'medium' | 'high' | undefined;
+    if (severityValues.includes('high')) {
+      severityMax = 'high';
+    } else if (severityValues.includes('medium')) {
+      severityMax = 'medium';
+    } else if (severityValues.includes('low')) {
+      severityMax = 'low';
+    }
+
+    const boundaryMeta = { has_violations: violations.length > 0 } as {
+      has_violations: boolean;
+      severity_max?: 'low' | 'medium' | 'high';
+    };
+    if (severityMax) {
+      boundaryMeta.severity_max = severityMax;
+    }
+
     const opaInput = {
-      degraded: false,
+      degraded: degradeFlag,
       intent:
         typeof payload.intent === 'string' && payload.intent.length > 0
           ? payload.intent
           : fallbackIntent,
+      content: typeof payload.content === 'string' && payload.content.length > 0 ? payload.content : text,
       risk: { high: violations.length > 0 || score < 0.5 },
       evidence: {
         domains,
         domains_distinct: domains.length,
         strong: strongEvidenceCount,
       },
+      boundary: boundaryMeta,
       flags: opaFlags,
-      net: opaNet,
+      network: opaNet,
     };
+
+    try {
+      assertEthicsInput(opaInput);
+      if (!opaInput.degraded) {
+        assertNetworkSignals(opaInput);
+      }
+    } catch (error) {
+      if (error instanceof InvalidEthicsInputError) {
+        return res.status(400).json({ ok: false, error: error.code, details: error.details });
+      }
+      if (error instanceof MissingNetworkSignalsError) {
+        return res.status(428).json({ ok: false, error: 'precondition_required', reason: error.message });
+      }
+      throw error;
+    }
 
     const opaResult = await evaluateOpa(opaInput);
 

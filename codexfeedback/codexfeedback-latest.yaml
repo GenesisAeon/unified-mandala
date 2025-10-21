@@ -1,21 +1,27 @@
-fraktal: 112
-phase: Verify-Gate Hardening Finish (IPv6/TLS Signals)
-status: TLS-Preflight normalisiert Remote IPv6, NAT64/Teredo stehen auf der Blockliste, `x-verify-network` liefert TTL/Redirect/TLS-Level an UI & OPA; Mandala Playground rendert NetworkRiskBadges, Prometheus/Grafana/Alerts beobachten TLS/IP-Mismatch & DNS TTL p95, `pnpm lint:format` ergänzt die Format-Pipeline.
-next_hook: Chaos-DNS-Rebind & Redirect-Loop Drills, Alertmanager-Routing dokumentieren, Format-Lint in CI prüfen.
+fraktal: 114
+phase: Verify-Gate Hardening (Audit + OPA Netzsignale)
+status: >-
+  Verify-Gate protokolliert Entscheidungen über requestContext/logger, mappt typed Errors via recordAndMapError auf HTTP/Metriken
+  und `/readyz` prüft Allowlist/JWT. Redirect-Preflight fallbackt bei HEAD-405/501 auf Range-GET, IDNA-Tests sichern punycode-Allowlists.
+  Ethics-API validiert OPA-Inputs (assertEthicsInput/assertNetworkSignals), normalisiert IPs und erzwingt ttl_sec/tls_san_ok/redirect_hops.
+next_hook: OPA-Policy & Monitoring-Profile auf neue Netzwerkfelder (ttl_sec/tls_san_ok/redirect_hops) erweitern.
 changes:
-  - apps/verify-gate/src/security/ipRanges.ts
-  - apps/verify-gate/src/security/tlsPreflight.ts
-  - apps/verify-gate/src/index.ts
+  - apps/verify-gate/src/app.ts
+  - apps/verify-gate/src/errors-map.ts
+  - apps/verify-gate/src/mw/requestContext.ts
+  - apps/verify-gate/src/logger.ts
+  - apps/verify-gate/src/metrics.ts
+  - apps/verify-gate/src/security/ssrf.ts
+  - apps/verify-gate/src/proxy/followRedirects.ts
   - apps/verify-gate/src/http/headerForward.ts
-  - apps/verify-gate/src/__tests__/ip-ranges.test.ts
-  - apps/verify-gate/src/__tests__/tls-preflight.test.ts
-  - apps/ui/src/lib/fetchWithEthics.ts
-  - apps/ui/src/components/MandalaAIPlayground.tsx
-  - apps/ui/src/components/NetworkRiskBadges.tsx
-  - observability/prometheus/recording-rules.yaml
-  - observability/alerts/verify-gate.yaml
-  - grafana/dashboards/verify-gate-ethics-mini.json
+  - apps/verify-gate/src/__tests__/idna-allowlist.test.ts
+  - apps/verify-gate/src/__tests__/redirect-fallback.test.ts
+  - apps/ethics-api/src/schemas/opa-input.schema.ts
+  - apps/ethics-api/src/index.ts
+  - apps/ethics-api/src/schemas.ts
+  - apps/ethics-api/src/__tests__/opa-input.schema.test.ts
 validate:
-  - pnpm -w vitest run apps/verify-gate/src/__tests__/ip-ranges.test.ts
-  - pnpm -w vitest run apps/verify-gate/src/__tests__/tls-preflight.test.ts
+  - pnpm -w vitest run apps/verify-gate/src/__tests__/redirect-fallback.test.ts
+  - pnpm -w vitest run apps/verify-gate/src/__tests__/idna-allowlist.test.ts
+  - pnpm -w vitest run apps/ethics-api/src/__tests__/opa-input.schema.test.ts
   - pnpm lint:types

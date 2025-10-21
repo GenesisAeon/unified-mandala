@@ -5,6 +5,7 @@ const DROP_INBOUND = new Set([
   'keep-alive',
   'transfer-encoding',
   'upgrade',
+  'proxy-connection',
   'trailer',
   'content-length',
   'host',
@@ -14,6 +15,7 @@ const DROP_INBOUND = new Set([
   'x-ethics-evidence-count',
   'x-verify-degraded',
   'x-verify-network',
+  'expect',
   'traceparent',
   'tracestate',
 ]);

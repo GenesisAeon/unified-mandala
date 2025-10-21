@@ -1,0 +1,41 @@
+fraktal: 114
+status: done
+owner: Johann
+summary:
+  - 'Verify-Gate protokolliert Entscheidungen via `requestContext` + Pino-Audit, kapselt Error→HTTP-Mapping in `recordAndMapError` und prüft `/readyz` jetzt auf Allowlist- & JWT-Konfiguration.'
+  - 'Redirect-Preflight fällt bei HEAD-405/501 auf einen Range-GET zurück, IDNA-Tests sichern punycode-normalisierte Allowlists; neue Tests beobachten Fallback & Unicode-Hosts.'
+  - 'Ethics-API validiert OPA-Payloads (`assertEthicsInput`/`assertNetworkSignals`), normalisiert IPs und erzwingt Netzsignale (`ttl_sec`, `tls_san_ok`, `redirect_hops`) inklusive Vitest-Suite.'
+deliverables:
+  - apps/verify-gate/src/app.ts
+  - apps/verify-gate/src/errors-map.ts
+  - apps/verify-gate/src/mw/requestContext.ts
+  - apps/verify-gate/src/logger.ts
+  - apps/verify-gate/src/metrics.ts
+  - apps/verify-gate/src/security/ssrf.ts
+  - apps/verify-gate/src/proxy/followRedirects.ts
+  - apps/verify-gate/src/http/headerForward.ts
+  - apps/verify-gate/src/__tests__/idna-allowlist.test.ts
+  - apps/verify-gate/src/__tests__/redirect-fallback.test.ts
+  - apps/ethics-api/src/schemas/opa-input.schema.ts
+  - apps/ethics-api/src/index.ts
+  - apps/ethics-api/src/schemas.ts
+  - apps/ethics-api/src/__tests__/opa-input.schema.test.ts
+  - docs/roadmap/v1.0-stabilization-playbook.md
+  - docs/roadmap/v1.0-stabilization-playbook.yaml
+  - MandalaMap.md
+  - MandalaMap.yaml
+  - MandalaMap.json
+  - codexfeedback.md
+  - codexfeedback.json
+  - codexfeedback.yaml
+  - codexfeedback/codexfeedback-latest.md
+  - codexfeedback/codexfeedback-latest.json
+  - codexfeedback/codexfeedback-latest.yaml
+follow_up:
+  opa_policy_extension:
+    description: 'OPA-Policy um neue Netz-Signale (`ttl_sec`, `tls_san_ok`, `redirect_hops`) erweitern und Alerts/Dashboards referenzieren.'
+    status: planned
+hook:
+  progress: 'Verify-Gate mapped typed Errors deterministisch auf Metriken/HTTP, Audit-Logs tragen Netzsignale & Redirect-Hops; Ethics-API validiert OPA-Inputs mit normalisierten IPs.'
+  next_step: 'OPA-Regeln & Observability-Doku auf neue Netzwerkfelder anpassen und Monitoring-Profile synchronisieren.'
+  repeat_required: false

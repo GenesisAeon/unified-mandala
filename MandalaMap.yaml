@@ -1,7 +1,7 @@
 meta:
   version: '1.0'
   generated: '2025-12-24 00:00:00+00:00'
-  fraktal: 113
+  fraktal: 114
   repo: unified-mandala
   source: ChefDevAI MandalaMap bootstrap
   reference_docs:
@@ -114,6 +114,7 @@ entries:
       - 'Fraktal104: PSL-basierte Evidenz (tldts) markiert starke Domains (DOI/arXiv/Gov), Lifeboat-Regeln umfassen Payment-Scam/Malware/Impersonation, Log-Sampling (`LOG_SAMPLE_GREEN`), `/readyz` meldet `boundary_cache_warm`, optionaler OPA-Deny (`ETHICS_OPA_*`). Vitest deckt Token-Guard & Idempotency-Flow ab.'
       - 'Fraktal106: OPA-Evaluierung nutzt `ETHICS_OPA_ENABLE` + `ETHICS_OPA_PATH` (execFile mit stdin-input, Bundle `apps/ethics-api/opa/policy.rego`), Ethics-Antwort liefert `evidence_domains_distinct` für Policies; EvidenceChips im Playground zeigen Domains/Stärken.'
       - 'Fraktal106 Update: Policy verlangt starke Quellen bei Fakten (`apps/ethics-api/opa/policy.rego`), `input.degraded == true` verweigert Antworten; `X-Verify-Degraded` propagiert, MandalaMap & codexfeedback dokumentieren neue Knobs.'
+      - 'Fraktal114: `assertEthicsInput`/`assertNetworkSignals` prüfen OPA-Payloads (IP-Normalisierung, ttl_sec/tls_san_ok/redirect_hops), neues Schema `schemas/opa-input.schema.ts` + Vitest sichern Netzsignale.'
     links:
       - label: index.ts
         path: apps/ethics-api/src/index.ts
@@ -142,6 +143,7 @@ entries:
       - 'Fraktal111: Redirect-Kette validiert jeden Hop vor dem ersten Netz-Request, DNS-Cache jittert TTLs mit Request-Coalescing, HTTPS-Ziele durchlaufen TLS/SAN-Preflight (remoteAddress/SAN). Prometheus zählt `verify_gate_ip_mismatch_total`, `verify_gate_tls_name_mismatch_total` und `verify_gate_redirect_block_total{reason="tls-preflight-fail"}` für Grafana/Alerting; Stabilization-Playbook & Codexfeedback vermerken den Abschluss.'
       - 'Fraktal112: TLS-Preflight normalisiert IPv6-Remote-Adressen, NAT64/Teredo-Präfixe stehen auf der Blockliste, `x-verify-network` liefert TTL/Redirect/TLS-Level für OPA & UI (NetworkRiskBadges), Prometheus/Grafana/Alerts beobachten TLS/IP-Mismatch & DNS TTL p95; Chaos-Drills (`pnpm chaos:verify-dns-rebind`, `pnpm chaos:verify-redirect-loop`) sichern TTL-Rebind/Redirect-Loops und laufen nightly.'
       - 'Fraktal113: Typed Error-Hierarchie (`errors.ts`), `createApp({registry})`-Factory und Metrics-Rebinding für Tests, TLS/IP-Mismatch-E2E-Suites mit Registry-Injektion, neues Grafana-Dashboard `verify-gate-network-safety.json` + Recording-Rule (`verify_gate_dns_ttl_seconds_bucket`) sowie Registry-fähiges `metrics.ts`.'
+      - 'Fraktal114: Audit-Middleware (`requestContext`, `logger.ts`), `recordAndMapError` koppelt typed Errors an Metriken/HTTP, `/readyz` prüft Allowlist/JWT; Redirect-Preflight nutzt Range-GET-Fallback, IDNA-/Redirect-Tests sichern Unicode & 405-Szenarien, Ethics erhält `ttl_sec`/`tls_san_ok`/`redirect_hops`.'
     links:
       - label: index.ts
         path: apps/verify-gate/src/index.ts

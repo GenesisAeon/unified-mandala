@@ -79,8 +79,6 @@ vi.mock('../proxy/pinnedRequest.js', () => ({
       };
     }
     const { TlsNameMismatchError } = await import('../errors.js');
-    const metricsModule = await import('../metrics.js');
-    metricsModule.incTlsNameMismatch(opts.originalUrl.hostname);
     throw new TlsNameMismatchError();
   }),
 }));
