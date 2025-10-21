@@ -55,28 +55,36 @@ Diese Sammlung bündelt pnpm-Skripte, Shell-Kommandos sowie wiederverwendbare To
 
 > Unit, integration, and regression test commands.
 
-| Command                 | Type | Runs                             | Beschreibung                                                  |
-| ----------------------- | ---- | -------------------------------- | ------------------------------------------------------------- |
-| pnpm test               | pnpm | itest run                        | Runs the default Vitest suite.                                |
-| pnpm test:unit          | pnpm | itest run                        | Unit test suite with workspace defaults.                      |
-| pnpm test:membrane      | pnpm | itest run --reporter=dot <files> | Focused Membrane/KPI suites for fast iteration.               |
-| pnpm test:unit:coverage | pnpm | itest run --coverage             | Unit test suite with coverage enabled.                        |
-| pnpm check:ci           | pnpm | combined CI gates                | Typecheck, unit tests, schema/maps/sanity, policy in one run. |
-
-## Build & Documentation
-
-> Build pipelines, documentation exporters, and release assets.
-
-| Command                        | Type   | Runs                                                       | Beschreibung                                                                                       |
-| ------------------------------ | ------ | ---------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
-| `pnpm build`                   | `pnpm` | `tsc -p tsconfig.build.json && pnpm build:agents`          | Builds the TypeScript workspace and agent bundle artifacts.                                        |
-| `pnpm -w -r build`             | `pnpm` | `pnpm -w -r build`                                         | Runs the workspace build script across all packages via pnpm recursive mode (Windows parity flow). |
-| `pnpm build:agents`            | `pnpm` | `tsc -p tsconfig.agents.json && node -e ...`               | Compiles agent TypeScript and normalizes CommonJS outputs.                                         |
-| `pnpm build:ui`                | `pnpm` | `pnpm -F mandala-ui build`                                 | Generates the UI distribution bundle via the mandala-ui workspace.                                 |
-| `pnpm docs:build`              | `pnpm` | `typedoc`                                                  | Builds API documentation via TypeDoc.                                                              |
-| `pnpm docs:auto`               | `pnpm` | `node scripts/generate-api-docs.js`                        | Generates API documentation with custom script automation.                                         |
-| `pnpm generate:changelog`      | `pnpm` | `node scripts/generate-changelog.js`                       | Outputs changelog entries from commit metadata.                                                    |
-| `pnpm compile:agents-manifest` | `pnpm` | `node scripts/compile_agents_manifest.js`                  | Assembles the consolidated agents manifest for documentation.                                      |
+| Command                          | Type                                            | Runs              | Beschreibung                                                  |
+| -------------------------------- | ----------------------------------------------- | ----------------- | ------------------------------------------------------------- |
+| pnpm test                        | pnpm                                            |
+| itest run                        | Runs the default Vitest suite.                  |
+| pnpm test:unit                   | pnpm                                            |
+| itest run                        | Unit test suite with workspace defaults.        |
+| pnpm test:membrane               | pnpm                                            |
+| itest run --reporter=dot <files> | Focused Membrane/KPI suites for fast iteration. |
+| pnpm test:unit:coverage          | pnpm                                            |
+| itest run --coverage             | Unit test suite with coverage enabled.          |
+| pnpm check:ci                    | pnpm                                            | combined CI gates | Typecheck, unit tests, schema/maps/sanity, policy in one run. |
+| Command                           | Type   | Runs                                                                             | Beschreibung                                                                                                                                          |
+| --------------------------------- | ------ | -------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `pnpm smoke:ui`                   | `pnpm` | `node scripts/smoke/ui-dev-smoke.mjs`                                            | Performs smoke testing against the UI dev server (respects `UI_DEV_URL` without spawning another Vite instance).                                      |
+| `pnpm smoke:dev`                  | `pnpm` | `node scripts/smoke/dev-server-smoke.mjs`                                        | Checks dev server readiness endpoints.                                                                                                                |
+| `pnpm smoke:mrv`                  | `pnpm` | `node scripts/smoke/mrv-smoke.mjs`                                               | Executes MRV smoke validation routine.                                                                                                                |
+| `pnpm smoke:light-static`         | `pnpm` | `node scripts/smoke/light-static-smoke.mjs`                                      | Validates the light static server responses (Brotli/Gzip).                                                                                            |
+| `pnpm chaos:verify-dns-rebind`    | `pnpm` | `node scripts/chaos/verifygate-dns-rebind.mjs`                                   | Executes the Vitest chaos harness simulating a TTL rebind from public IP to loopback and asserts the gate blocks the rebound.                         |
+| `pnpm chaos:verify-redirect-loop` | `pnpm` | `node scripts/chaos/verifygate-redirect-loop.mjs`                                | Runs the redirect-loop chaos suite to ensure verify-gate stops excessive hops and private redirect targets.                                           |
+| `pnpm nats:docker`                | `pnpm` | `node scripts/nats-docker.mjs up`                                                | Starts or reuses the JetStream-enabled Docker container (`nats:latest -js`) on ports 4222/8222.                                                       |
+| `pnpm nats:docker:restart`        | `pnpm` | `node scripts/nats-docker.mjs restart`                                           | Recreates the JetStream container (helpful after configuration changes).                                                                              |
+| `pnpm nats:docker:down`           | `pnpm` | `node scripts/nats-docker.mjs down`                                              | Stops and removes the local JetStream container.                                                                                                      |
+| `pnpm nats:docker:status`         | `pnpm` | `node scripts/nats-docker.mjs status`                                            | Prints the state of the managed JetStream container.                                                                                                  |
+| `pnpm nats:doctor`                | `pnpm` | `node scripts/nats-doctor.mjs`                                                   | Checks JetStream readiness with retries, falls back to `$JS.API.INFO`, and prints troubleshooting hints (missing `-js`, timeouts, permission issues). |
+| `pnpm smoke:ttfb`                 | `pnpm` | `pnpm -s build:ui && node scripts/smoke/ttfb-smoke.mjs`                          | Measures time-to-first-byte after building the UI.                                                                                                    |
+| `pnpm smoke:agents`               | `pnpm` | `node scripts/smoke/agents-smoke.mjs`                                            | Runs smoke tests across agent services.                                                                                                               |
+| `pnpm start`                      | `pnpm` | `pnpm -s build:ui && pnpm -s dev`                                                | Builds the UI then launches the dev server.                                                                                                           |
+| `pnpm start:light`                | `pnpm` | `pnpm -s build:ui && node scripts/light-static-server.mjs`                       | Serves the built UI via the light static Node server.                                                                                                 |
+| `pnpm start:services`             | `pnpm` | `pnpm -s build && NODE_ENV=production node scripts/dev-services.mjs --mode=prod` | Builds the workspace and starts services in production mode.                                                                                          |
+| `pnpm start:all`                  | `pnpm` | `pnpm dev:stack`                                                                 | Convenience alias to boot the full dev stack.                                                                                                         |
 | `pnpm export:crep-docs`        | `pnpm` | `node scripts/export-crep-docs.js`                         | Generates CREP documentation artifacts.                                                            |
 | `pnpm export_depth_bundle`     | `pnpm` | `node scripts/run-dist.mjs scripts/export-depth-bundle.ts` | Creates Sigillin depth bundles and related media artifacts.                                        |
 | `pnpm generate:next-sigil`     | `pnpm` | `node scripts/generate-next-sigil.js`                      | Produces the next sigil candidate and updates indices.                                             |
@@ -216,6 +224,7 @@ Diese Sammlung bündelt pnpm-Skripte, Shell-Kommandos sowie wiederverwendbare To
 | -------------------------- | ------ | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `pnpm observability:check` | `pnpm` | `node scripts/run-dist.mjs scripts/observability/prometheus-target-check.ts` | Verifies Prometheus `/api/v1/targets` and Grafana `/api/health` (Port 3300); `PROMETHEUS_REQUIRE_ACTIVE=0` erlaubt leere Targets, `OBSERVABILITY_SKIP_GRAFANA=1` überspringt den Grafana-Teil. |
 
+| `pnpm opa:test`            | `pnpm` | `node scripts/opa/run-opa-test.mjs`                                                                    | Executes `opa test` for `apps/ethics-api/opa`, honours `OPA_BIN`/`./bin/opa`, and forwards extra CLI flags.          |
 ## Conversations & Task Automation
 
 > Conversation parsing, to-do curation, and fractal task orchestration.

@@ -1443,6 +1443,15 @@
           "source": ["package.json#scripts.policy:check"]
         },
         {
+          "id": "policy.opa-test",
+          "name": "OPA policy tests",
+          "command": "pnpm opa:test",
+          "type": "pnpm",
+          "runs": "node scripts/opa/run-opa-test.mjs",
+          "description": "Runs `opa test` for `apps/ethics-api/opa`, honours OPA_BIN or ./bin/opa and forwards extra CLI flags.",
+          "source": ["package.json#scripts.opa:test"]
+        },
+        {
           "id": "policy.kyverno-validate",
           "name": "Kyverno dry run",
           "command": "pnpm kyverno:validate",

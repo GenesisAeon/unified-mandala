@@ -46,7 +46,7 @@
   - Redirect-Limits & Scheme-Guards implementieren.
   - Body-/Zeit-Limits für Streams konfigurieren.
 - Telemetrie & Policy
-- `apps/verify-gate/src/metrics.ts`: zusätzliche Counter/Histogramme (`verify_gate_dns_ttl_seconds_bucket`, `verify_gate_redirect_block_total`, `verify_gate_ip_mismatch_total`, `verify_gate_tls_name_mismatch_total`).
+- `apps/verify-gate/src/metrics.ts`: zusätzliche Counter/Histogramme (`verify_gate_dns_ttl_pinned_seconds_bucket`, `verify_gate_redirect_block_total`, `verify_gate_ip_mismatch_total`, `verify_gate_tls_name_mismatch_total`).
   - `apps/ethics-api/opa/policy.rego`: neue Inputs konsumieren, private Ziele/kurze TTLs ablehnen.
 - Tests & Docs
   - Neue Vitest-Suite `apps/verify-gate/src/__tests__/ssrf-hardening.spec.ts` (table-driven, NAT64, CNAME, Redirect, TTL-Rebind via Fake Timers).

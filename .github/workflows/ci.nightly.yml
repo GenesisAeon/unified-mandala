@@ -22,6 +22,15 @@ jobs:
         uses: ./.github/actions/run-pnpm-task
         with:
           task: test:unit:coverage
+      - name: Install OPA (static)
+        if: runner.os == 'Linux'
+        run: |
+          mkdir -p bin
+          curl -L -o bin/opa https://openpolicyagent.org/downloads/v0.66.0/opa_linux_amd64_static
+          chmod +x bin/opa
+        shell: bash
+      - name: OPA policy tests
+        run: pnpm opa:test -- --timeout 5s
       - name: Repomap full
         shell: bash
         run: |

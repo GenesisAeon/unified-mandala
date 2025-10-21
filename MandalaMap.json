@@ -42,6 +42,14 @@
         {
           "label": "opa policy",
           "path": "apps/ethics-api/opa/policy.rego"
+        },
+        {
+          "label": "opa policy tests",
+          "path": "apps/ethics-api/opa/policy_test.rego"
+        },
+        {
+          "label": "opa test cli",
+          "path": "scripts/opa/run-opa-test.mjs"
         }
       ],
       "notes": [
@@ -52,7 +60,8 @@
         "Fraktal104: PSL-basierte Evidenz (tldts) markiert starke Domains (DOI/arXiv/Gov), Lifeboat-Regeln umfassen Payment-Scam/Malware/Impersonation, Log-Sampling (`LOG_SAMPLE_GREEN`), `/readyz` meldet `boundary_cache_warm`, optionaler OPA-Deny (`ETHICS_OPA_*`). Vitest deckt Token-Guard & Idempotency-Flow ab.",
         "Fraktal106: OPA-Evaluierung nutzt `ETHICS_OPA_ENABLE` + `ETHICS_OPA_PATH` (execFile mit stdin-input, Bundle `apps/ethics-api/opa/policy.rego`), Ethics-Antwort liefert `evidence_domains_distinct` für Policies; EvidenceChips im Playground zeigen Domains/Stärken.",
         "Fraktal106 Update: Policy verlangt starke Quellen bei Fakten (`apps/ethics-api/opa/policy.rego`), `input.degraded == true` verweigert Antworten; `X-Verify-Degraded` propagiert, MandalaMap & codexfeedback dokumentieren neue Knobs.",
-        "Fraktal114: `assertEthicsInput`/`assertNetworkSignals` sichern OPA-Payloads (IP-Normalisierung, ttl_sec/tls_san_ok/redirect_hops), neues Schema `schemas/opa-input.schema.ts` + Vitest decken Netzsignale."
+        "Fraktal114: `assertEthicsInput`/`assertNetworkSignals` sichern OPA-Payloads (IP-Normalisierung, ttl_sec/tls_san_ok/redirect_hops), neues Schema `schemas/opa-input.schema.ts` + Vitest decken Netzsignale.",
+        "Fraktal114 Update: Rego-Policy prüft `ttl_sec`/`tls_san_ok`/`redirect_hops`, `pnpm opa:test` läuft lokal/CI via `scripts/opa/run-opa-test.mjs` (GitHub Actions lädt statischen OPA-Binary)."
       ],
       "path": "apps/ethics-api/",
       "status": "active",
@@ -104,7 +113,7 @@
         "Fraktal108 Follow-up: Hardening Pack plant TTL-Pinning/Resolver-Cache, CNAME-/IDNA-Checks, TLS-SAN & `remoteAddress`-Vergleich, Redirect-Limits (≤3 Hops, http/https), IPv6-/NAT64-Blocklisten sowie neue Counter/OPA-Inputs; siehe `analysis/devtalk109-evaluation.md`, docs/roadmap v1.0 & codexfeedback*.",
         "Fraktal111: Redirect-Kette validiert jeden Hop vor dem ersten Netz-Request, DNS-Cache jittert TTLs mit Request-Coalescing, HTTPS-Ziele durchlaufen TLS/SAN-Preflight (remoteAddress/SAN). Prometheus zählt `verify_gate_ip_mismatch_total`, `verify_gate_tls_name_mismatch_total` und `verify_gate_redirect_block_total{reason=\"tls-preflight-fail\"}` für Grafana/Alerting; Stabilization-Playbook & Codexfeedback vermerken den Abschluss.",
         "Fraktal112: TLS-Preflight normalisiert IPv6-Remote-Adressen, NAT64/Teredo-Präfixe stehen auf der Blockliste, `x-verify-network` liefert TTL/Redirect/TLS-Level für OPA & UI (NetworkRiskBadges), Prometheus/Grafana/Alerts beobachten TLS/IP-Mismatch & DNS TTL p95; Chaos-Drills (`pnpm chaos:verify-dns-rebind`, `pnpm chaos:verify-redirect-loop`) sichern TTL-Rebind/Redirect-Loops und laufen nightly.",
-        "Fraktal113: Typed Error-Hierarchie (`errors.ts`), `createApp({registry})`-Factory und Metrics-Rebinding für Tests, TLS/IP-Mismatch-E2E-Suites mit Registry-Injektion, neues Grafana-Dashboard `verify-gate-network-safety.json` + Recording-Rule (`verify_gate_dns_ttl_seconds_bucket`) sowie Registry-fähiges `metrics.ts`.",
+        "Fraktal113: Typed Error-Hierarchie (`errors.ts`), `createApp({registry})`-Factory und Metrics-Rebinding für Tests, TLS/IP-Mismatch-E2E-Suites mit Registry-Injektion, neues Grafana-Dashboard `verify-gate-network-safety.json` + Recording-Rule (`verify_gate_dns_ttl_pinned_seconds_bucket`) sowie Registry-fähiges `metrics.ts`.",
         "Fraktal114: Audit-Middleware (`requestContext`, `logger.ts`), `recordAndMapError` mappt typed Errors → HTTP/Metriken, `/readyz` prüft Allowlist/JWT; Redirect-Preflight nutzt Range-GET-Fallback, IDNA-/Redirect-Tests sichern Unicode & 405-Szenarien, Ethics erhält `ttl_sec`/`tls_san_ok`/`redirect_hops`."
       ],
       "path": "apps/verify-gate/",
@@ -1189,6 +1198,44 @@
       "path": "sigils/bridges/bridges.index.yaml",
       "status": "active",
       "title": "Bridge registry index"
+    },
+    {
+      "category": "observability",
+      "title": "Verify-Gate network recording rules",
+      "path": "observability/prometheus/recording-rules.yaml",
+      "status": "active",
+      "description": "Prometheus recording rules bundling TLS/IP mismatch counters and DNS TTL p95 for Verify-Gate.",
+      "notes": [
+        "Fraktal114: Neue Gruppe `verify-gate-network` aggregiert `rate:verify_gate_tls_name_mismatch_total_5m`, `rate:verify_gate_ip_mismatch_total_5m` und `p95:verify_gate_dns_ttl_pinned_seconds`.",
+        "Dashboards (`verify-gate-ethics-mini.json`, `verify-gate-network-safety.json`) ziehen die aktualisierten Kennzahlen."
+      ],
+      "links": [
+        {
+          "label": "grafana dashboard",
+          "path": "grafana/dashboards/verify-gate-network-safety.json"
+        },
+        {
+          "label": "grafana mini dashboard",
+          "path": "grafana/dashboards/verify-gate-ethics-mini.json"
+        }
+      ]
+    },
+    {
+      "category": "observability",
+      "title": "Verify-Gate alerting rules",
+      "path": "observability/alerts/verify-gate.yaml",
+      "status": "active",
+      "description": "Alertmanager rules tracking Verify-Gate replay, TLS/IP mismatch and DNS TTL anomalies.",
+      "notes": [
+        "Fraktal114: Ergänzt `VerifyGateTLSNameMismatchSpike` (Rate >0.5/min) und `VerifyGateLowDNSTTL` (p95 TTL <20s) für Netzsignale.",
+        "Runbook-Verlinkung bleibt `docs/runbooks/verify-gate-jwt-rotation.md`."
+      ],
+      "links": [
+        {
+          "label": "runbook",
+          "path": "docs/runbooks/verify-gate-jwt-rotation.md"
+        }
+      ]
     }
   ],
   "follow_up": [
@@ -1211,14 +1258,25 @@
       "title": "MandalaMap upkeep"
     },
     {
-      "detail": "TTL-Pinning, CNAME/IDNA, TLS/IP-Vergleich, Redirect-Limits und IPv6-/NAT64-Blocklisten sind vorbereitet; neue Counter/OPA-Inputs folgen den Empfehlungen aus `analysis/devtalk109-evaluation.md`.",
+      "detail": "TTL-Pinning, CNAME/IDNA, TLS/IP-Vergleich, Redirect-Limits und IPv6-/NAT64-Blocklisten aus Fraktal108-114 sind produktiv (Redirect/TLS Preflight, Netzwerk-Metriken, Chaos-Drills, OPA-Netzsignale, Runbook-Updates).",
       "related": [
         "apps/verify-gate/",
         "docs/roadmap/v1.0-stabilization-playbook.md",
         "analysis/devtalk109-evaluation.md"
       ],
-      "status": "in-progress",
+      "status": "done",
       "title": "Verify-Gate Hardening Pack"
+    },
+    {
+      "title": "OPA bundle & TTL playbooks",
+      "detail": "Command Catalog führt `pnpm opa:test`, Observability-Runbook beschreibt TTL-p95-Alerting & VerifyGateLowDNSTTL; nächster Schritt: OPA-Bundle-Artefakte/Alertmanager-Routing dokumentieren.",
+      "related": [
+        "scripts/opa/run-opa-test.mjs",
+        "docs/runbooks/observability.md",
+        "docs/runbooks/command-catalog.md",
+        "docs/roadmap/v1.0-stabilization-playbook.md"
+      ],
+      "status": "done"
     }
   ],
   "legend": {

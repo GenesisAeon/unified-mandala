@@ -41,6 +41,10 @@ export interface OpaEthicsInput {
   network?: OpaNetworkMeta;
   risk?: { high?: boolean };
   flags?: Record<string, unknown>;
+  policy?: {
+    min_ttl_sec?: number;
+    max_redirect_hops?: number;
+  };
 }
 
 const evidenceItemSchema: JSONSchemaType<EvidenceItem> = {
@@ -116,6 +120,15 @@ const opaEthicsInputSchema: AnySchema = {
       type: 'object',
       additionalProperties: true,
     } as any,
+    policy: {
+      type: 'object',
+      additionalProperties: false,
+      properties: {
+        min_ttl_sec: { type: 'number', minimum: 0 } as any,
+        max_redirect_hops: { type: 'integer', minimum: 0, maximum: 10 } as any,
+      },
+      required: [],
+    } as any,
   },
   required: [],
   anyOf: [{ required: ['intent'] }, { required: ['content'] }],
@@ -177,6 +190,14 @@ export function assertEthicsInput(payload: unknown): asserts payload is OpaEthic
 
   if (typeof typed.network?.ttl_sec === 'number' && !Number.isFinite(typed.network.ttl_sec)) {
     throw new InvalidEthicsInputError('Invalid network.ttl_sec', ['ttl_sec must be finite']);
+  }
+
+  if (typeof typed.policy?.min_ttl_sec === 'number' && !Number.isFinite(typed.policy.min_ttl_sec)) {
+    throw new InvalidEthicsInputError('Invalid policy.min_ttl_sec', ['min_ttl_sec must be finite']);
+  }
+
+  if (typeof typed.policy?.max_redirect_hops === 'number' && !Number.isInteger(typed.policy.max_redirect_hops)) {
+    throw new InvalidEthicsInputError('Invalid policy.max_redirect_hops', ['max_redirect_hops must be an integer']);
   }
 }
 

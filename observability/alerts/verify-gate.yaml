@@ -51,15 +51,15 @@ groups:
           summary: 'Verstärktes Scheitern von Verdict-Tokens'
           description: 'Sustained token_fail Rate > 0.5/s über 10m. Rotation oder Upstream-Signatur prüfen.'
           runbook: docs/runbooks/verify-gate-jwt-rotation.md
-      - alert: VerifyGateTLSMismatch
-        expr: rate:verify_gate_tls_name_mismatch_total_5m > 0
-        for: 5m
+      - alert: VerifyGateTLSNameMismatchSpike
+        expr: rate:verify_gate_tls_name_mismatch_total_5m > 0.5
+        for: 10m
         labels:
-          severity: critical
+          severity: warning
           service: verify-gate
         annotations:
-          summary: 'TLS SAN Validation mismatch'
-          description: 'TLS preflight SAN validation failed within the last 5 minutes. Inspect certificates & pinned IPs.'
+          summary: 'TLS SAN mismatches rising'
+          description: 'Rate > 0.5/min über 10m. Zertifikate, Allowlist und Pinning prüfen.'
           runbook: docs/runbooks/verify-gate-jwt-rotation.md
       - alert: VerifyGateIPMismatch
         expr: rate:verify_gate_ip_mismatch_total_5m > 0
@@ -80,4 +80,14 @@ groups:
         annotations:
           summary: 'Redirect blocks elevated'
           description: 'Verify-Gate is blocking >1 redirect per second over 10 minutes. Check allowlist und Ursprungstraffic.'
+          runbook: docs/runbooks/verify-gate-jwt-rotation.md
+      - alert: VerifyGateLowDNSTTL
+        expr: p95:verify_gate_dns_ttl_pinned_seconds < 20
+        for: 15m
+        labels:
+          severity: warning
+          service: verify-gate
+        annotations:
+          summary: 'Viele Zielhosts mit sehr niedrigen DNS TTLs'
+          description: 'p95 TTL < 20s kann auf Rebinding oder unstabile Upstreams hindeuten.'
           runbook: docs/runbooks/verify-gate-jwt-rotation.md
