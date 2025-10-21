@@ -1,6 +1,44 @@
 {
   "runs": [
     {
+      "fraktalrun": "Fraktal114 VerifyGateAudit",
+      "status": "done",
+      "notes": "Verify-Gate hat ein Audit-Middleware (`requestContext`/`logger.ts`), kapselt Error→HTTP/Metriken via `recordAndMapError` und härtet `/readyz` (Allowlist/JWT). Redirect-Preflight fällt bei HEAD-405 auf Range-GET zurück, IDNA-Tests decken punycode-Allowlists ab. Ethics-API validiert OPA-Inputs (`assertEthicsInput`/`assertNetworkSignals`), normalisiert IPs und erzwingt Netzsignale (ttl_sec/tls_san_ok/redirect_hops) inklusive Vitest-Suite.",
+      "deliverables": [
+        "apps/verify-gate/src/app.ts",
+        "apps/verify-gate/src/errors-map.ts",
+        "apps/verify-gate/src/mw/requestContext.ts",
+        "apps/verify-gate/src/logger.ts",
+        "apps/verify-gate/src/metrics.ts",
+        "apps/verify-gate/src/security/ssrf.ts",
+        "apps/verify-gate/src/proxy/followRedirects.ts",
+        "apps/verify-gate/src/http/headerForward.ts",
+        "apps/verify-gate/src/__tests__/idna-allowlist.test.ts",
+        "apps/verify-gate/src/__tests__/redirect-fallback.test.ts",
+        "apps/ethics-api/src/schemas/opa-input.schema.ts",
+        "apps/ethics-api/src/index.ts",
+        "apps/ethics-api/src/schemas.ts",
+        "apps/ethics-api/src/__tests__/opa-input.schema.test.ts",
+        "docs/roadmap/v1.0-stabilization-playbook.md",
+        "docs/roadmap/v1.0-stabilization-playbook.yaml",
+        "MandalaMap.md",
+        "MandalaMap.yaml",
+        "MandalaMap.json",
+        "codexfeedback.md",
+        "codexfeedback.json",
+        "codexfeedback.yaml",
+        "codexfeedback/codexfeedback-latest.md",
+        "codexfeedback/codexfeedback-latest.json",
+        "codexfeedback/codexfeedback-latest.yaml",
+        "docs/fraktal/codexfeedback/codexfeedback-fraktal114.yaml"
+      ],
+      "hook": {
+        "progress": "Audit-Logs & Error-Mapping aktiv, Redirect-Fallback & IDNA-Tests decken neue Pfade; OPA-Input-Schema schützt Netzsignale.",
+        "next_step": "OPA-Policy und Monitoring-Profile auf neue Netzwerkfelder (ttl_sec/tls_san_ok/redirect_hops) erweitern.",
+        "repeat_required": false
+      }
+    },
+    {
       "fraktalrun": "Fraktal113 VerifyGateFactory",
       "status": "done",
       "notes": "Verify-Gate nutzt Typed Errors + createApp({registry}), Metrics-Rebinding erlaubt Registry-Injektion; TLS/IP-Mismatch-E2E-Tests und Dashboard `verify-gate-network-safety.json` überwachen Redirect-Blocks, DNS-TTL & Ethics-Degradation."

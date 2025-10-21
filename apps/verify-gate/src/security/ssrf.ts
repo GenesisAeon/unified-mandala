@@ -6,6 +6,8 @@ import {
   ssrfResolveErrors,
   incResolveEmpty,
   incResolveError,
+  incSsrfBlock,
+  incSsrfResolve,
 } from '../metrics.js';
 import {
   SSRFDNSResolveError,
@@ -178,6 +180,7 @@ export function hasAllowlistEntries(): boolean {
 function recordBlock(host: string, message: string, resolvedIp?: string): never {
   const normalizedHost = host.trim().length > 0 ? host : 'unknown';
   ssrfBlocks.inc({ host: normalizedHost, resolved_ip: resolvedIp ?? 'unknown' });
+  incSsrfBlock(message);
   throw new SSRFDenyError(message, resolvedIp);
 }
 
@@ -227,10 +230,12 @@ export async function assertAllowed(target: string): Promise<AllowResult> {
     }
     if (error instanceof SSRFDNSEmptyError || (error as { code?: string }).code === 'SSRFDNSEmptyError') {
       incResolveEmpty(hostAscii || host);
+      incSsrfResolve('empty');
       throw new DNSEmptyAnswerError('dns_no_records');
     }
     if (error instanceof SSRFDNSResolveError || (error as { code?: string }).code === 'SSRFDNSResolveError') {
       incResolveError(hostAscii || host);
+      incSsrfResolve('error');
       throw new DNSResolveError('dns_resolution_failed');
     }
     throw error;
@@ -239,6 +244,7 @@ export async function assertAllowed(target: string): Promise<AllowResult> {
   const firstIp = resolved.ips[0];
   if (!firstIp) {
     ssrfResolveEmpty.inc({ host: hostAscii || host });
+    incSsrfResolve('empty');
     throw new DNSEmptyAnswerError('dns_no_records');
   }
 

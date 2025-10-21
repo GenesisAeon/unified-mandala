@@ -79,8 +79,6 @@ vi.mock('../proxy/pinnedRequest.js', () => ({
       };
     }
     const { IpMismatchError } = await import('../errors.js');
-    const metricsModule = await import('../metrics.js');
-    metricsModule.incIpMismatch(opts.originalUrl.hostname);
     throw new IpMismatchError();
   }),
 }));

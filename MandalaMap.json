@@ -51,7 +51,8 @@
         "Fraktal103: Degradierte Modi (`x-ethics-degraded`, Counter `ethics_degraded_total`), Lifeboat-Regeln (Hate/PII/Scam), Boundary-Cache (`ETHICS_CACHE_TTL_MS`) per SHA1, Evidenz-Dedupe (`ETHICS_REQUIRE_UNIQUE_EVIDENCE_DOMAINS`), Counter `ethics_decision_log_total`/`ethics_evidence_domains_total`, Trace-Forwarding & gehashte Decision-Logs.",
         "Fraktal104: PSL-basierte Evidenz (tldts) markiert starke Domains (DOI/arXiv/Gov), Lifeboat-Regeln umfassen Payment-Scam/Malware/Impersonation, Log-Sampling (`LOG_SAMPLE_GREEN`), `/readyz` meldet `boundary_cache_warm`, optionaler OPA-Deny (`ETHICS_OPA_*`). Vitest deckt Token-Guard & Idempotency-Flow ab.",
         "Fraktal106: OPA-Evaluierung nutzt `ETHICS_OPA_ENABLE` + `ETHICS_OPA_PATH` (execFile mit stdin-input, Bundle `apps/ethics-api/opa/policy.rego`), Ethics-Antwort liefert `evidence_domains_distinct` für Policies; EvidenceChips im Playground zeigen Domains/Stärken.",
-        "Fraktal106 Update: Policy verlangt starke Quellen bei Fakten (`apps/ethics-api/opa/policy.rego`), `input.degraded == true` verweigert Antworten; `X-Verify-Degraded` propagiert, MandalaMap & codexfeedback dokumentieren neue Knobs."
+        "Fraktal106 Update: Policy verlangt starke Quellen bei Fakten (`apps/ethics-api/opa/policy.rego`), `input.degraded == true` verweigert Antworten; `X-Verify-Degraded` propagiert, MandalaMap & codexfeedback dokumentieren neue Knobs.",
+        "Fraktal114: `assertEthicsInput`/`assertNetworkSignals` sichern OPA-Payloads (IP-Normalisierung, ttl_sec/tls_san_ok/redirect_hops), neues Schema `schemas/opa-input.schema.ts` + Vitest decken Netzsignale."
       ],
       "path": "apps/ethics-api/",
       "status": "active",
@@ -103,7 +104,8 @@
         "Fraktal108 Follow-up: Hardening Pack plant TTL-Pinning/Resolver-Cache, CNAME-/IDNA-Checks, TLS-SAN & `remoteAddress`-Vergleich, Redirect-Limits (≤3 Hops, http/https), IPv6-/NAT64-Blocklisten sowie neue Counter/OPA-Inputs; siehe `analysis/devtalk109-evaluation.md`, docs/roadmap v1.0 & codexfeedback*.",
         "Fraktal111: Redirect-Kette validiert jeden Hop vor dem ersten Netz-Request, DNS-Cache jittert TTLs mit Request-Coalescing, HTTPS-Ziele durchlaufen TLS/SAN-Preflight (remoteAddress/SAN). Prometheus zählt `verify_gate_ip_mismatch_total`, `verify_gate_tls_name_mismatch_total` und `verify_gate_redirect_block_total{reason=\"tls-preflight-fail\"}` für Grafana/Alerting; Stabilization-Playbook & Codexfeedback vermerken den Abschluss.",
         "Fraktal112: TLS-Preflight normalisiert IPv6-Remote-Adressen, NAT64/Teredo-Präfixe stehen auf der Blockliste, `x-verify-network` liefert TTL/Redirect/TLS-Level für OPA & UI (NetworkRiskBadges), Prometheus/Grafana/Alerts beobachten TLS/IP-Mismatch & DNS TTL p95; Chaos-Drills (`pnpm chaos:verify-dns-rebind`, `pnpm chaos:verify-redirect-loop`) sichern TTL-Rebind/Redirect-Loops und laufen nightly.",
-        "Fraktal113: Typed Error-Hierarchie (`errors.ts`), `createApp({registry})`-Factory und Metrics-Rebinding für Tests, TLS/IP-Mismatch-E2E-Suites mit Registry-Injektion, neues Grafana-Dashboard `verify-gate-network-safety.json` + Recording-Rule (`verify_gate_dns_ttl_seconds_bucket`) sowie Registry-fähiges `metrics.ts`."
+        "Fraktal113: Typed Error-Hierarchie (`errors.ts`), `createApp({registry})`-Factory und Metrics-Rebinding für Tests, TLS/IP-Mismatch-E2E-Suites mit Registry-Injektion, neues Grafana-Dashboard `verify-gate-network-safety.json` + Recording-Rule (`verify_gate_dns_ttl_seconds_bucket`) sowie Registry-fähiges `metrics.ts`.",
+        "Fraktal114: Audit-Middleware (`requestContext`, `logger.ts`), `recordAndMapError` mappt typed Errors → HTTP/Metriken, `/readyz` prüft Allowlist/JWT; Redirect-Preflight nutzt Range-GET-Fallback, IDNA-/Redirect-Tests sichern Unicode & 405-Szenarien, Ethics erhält `ttl_sec`/`tls_san_ok`/`redirect_hops`."
       ],
       "path": "apps/verify-gate/",
       "status": "active",
@@ -1289,7 +1291,7 @@
     }
   },
   "meta": {
-    "fraktal": 113,
+    "fraktal": 114,
     "generated": "2025-12-24 00:00:00+00:00",
     "reference_docs": [
       "docs/roadmap/v1.0-stabilization-playbook.md",

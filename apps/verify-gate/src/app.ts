@@ -1,5 +1,5 @@
 import { createHash, randomUUID } from 'node:crypto';
-import express, { type NextFunction, type Request, type Response } from 'express';
+import express, { type Request, type Response } from 'express';
 import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
 import { fetch } from 'undici';
@@ -32,12 +32,14 @@ import {
   incTlsNameMismatch,
   incRedirectBlock,
 } from './metrics.js';
+import { recordAndMapError } from './errors-map.js';
+import { requestContext } from './mw/requestContext.js';
+import { log } from './logger.js';
 import {
   SSRFDenyError,
   RedirectBadSchemeError,
   RedirectPrivateTargetError,
   RedirectTooManyError,
-  toHttp,
 } from './errors.js';
 
 type VerdictColor = 'green' | 'yellow' | 'red';
@@ -167,19 +169,6 @@ export function createApp(deps: AppDeps = {}): express.Express {
   app.disable('x-powered-by');
   app.use(helmet({ crossOriginResourcePolicy: false }));
 
-  function requestIdMiddleware(req: Request, res: Response, next: NextFunction): void {
-    const existing = req.get('x-request-id');
-    const id = existing && existing.toString().length > 0 ? existing.toString() : randomUUID();
-    const mutableHeaders = req.headers as Record<string, unknown>;
-    if (!mutableHeaders['x-request-id']) {
-      mutableHeaders['x-request-id'] = id;
-    }
-    (req as Request & { id?: string }).id = id;
-    res.locals.requestId = id;
-    res.setHeader('x-request-id', id);
-    next();
-  }
-
   app.use((req, res, next) => {
     inflightGauge.inc();
     let decremented = false;
@@ -197,7 +186,22 @@ export function createApp(deps: AppDeps = {}): express.Express {
     next();
   });
 
-  app.use(requestIdMiddleware);
+  app.use(requestContext());
+  app.use((req, _res, next) => {
+    const rid = (req as Request & { rid?: string }).rid ?? randomUUID();
+    (req as Request & { audit?: (extra: Record<string, unknown>) => void }).audit = (extra) => {
+      log.info(
+        {
+          rid,
+          route: req.path,
+          method: req.method,
+          ...extra,
+        },
+        'verify-gate decision',
+      );
+    };
+    next();
+  });
 
   const jsonLimit = process.env.VERIFY_GATE_JSON_LIMIT ?? '128kb';
   app.use(express.json({ limit: jsonLimit }));
@@ -272,8 +276,18 @@ app.get('/metrics', async (_req: Request, res: Response) => {
 });
 
 app.get('/readyz', async (_req: Request, res: Response) => {
+  const allowlistRaw =
+    (process.env.VERIFY_GATE_SSRF_ALLOWLIST ?? process.env.VERIFY_GATE_UPSTREAM_ALLOWLIST ?? '').trim();
+  if (!allowlistRaw) {
+    return res.status(503).json({ ok: false, reason: 'config_missing_allowlist' });
+  }
   if (!hasAllowlistEntries()) {
     return res.status(503).json({ ok: false, reason: 'allowlist_unset' });
+  }
+
+  const jwtMaterial = (process.env.VERIFY_GATE_JWT_SECRETS ?? process.env.VERIFY_GATE_JWT_SECRET ?? '').trim();
+  if (!jwtMaterial) {
+    return res.status(503).json({ ok: false, reason: 'config_missing_jwt' });
   }
 
   const controller = new AbortController();
@@ -296,11 +310,19 @@ app.post('/gate/*', async (req: Request, res: Response) => {
   const requestId = typeof res.locals.requestId === 'string' ? res.locals.requestId : randomUUID();
   res.locals.requestId = requestId;
 
+  const auditFn = (req as Request & { audit?: (extra: Record<string, unknown>) => void }).audit;
+  let targetHost = 'unknown';
+  const auditLog = (extra: Record<string, unknown>) => {
+    auditFn?.({ request_id: requestId, target: targetHost, ...extra });
+  };
+
   const path = forwardPath(req.originalUrl);
   let target: URL;
   try {
     target = new URL(path, `${upstreamBase}/`);
+    targetHost = target.hostname;
   } catch {
+    auditLog({ verdict: 'blocked', error: 'INVALID_TARGET_URL' });
     return res.status(400).json({ ok: false, error: 'INVALID_TARGET_URL' });
   }
 
@@ -323,6 +345,7 @@ app.post('/gate/*', async (req: Request, res: Response) => {
       res.setHeader('x-ethics-evidence-count', String(prior.evidenceCount));
     }
     exposeEthicsHeaders(res);
+    auditLog({ verdict: 'duplicate', error: 'idempotent_reuse', replay_request_id: reuseRequestId });
     return res.status(409).json({ ok: false, reason: 'duplicate', requestId: reuseRequestId });
   }
 
@@ -330,6 +353,7 @@ app.post('/gate/*', async (req: Request, res: Response) => {
     const decision = rateLimiter.take(subject);
     if (!decision.allowed) {
       rateLimitBlocks.inc({ scope: 'subject' });
+      auditLog({ verdict: 'blocked', error: 'rate_limited', scope: 'subject' });
       return res.status(429).json({ ok: false, error: 'rate_limited', scope: 'subject' });
     }
   }
@@ -339,8 +363,10 @@ app.post('/gate/*', async (req: Request, res: Response) => {
     allowResult = await assertAllowed(target.toString());
   } catch (error) {
     if (error instanceof SSRFDenyError) {
+      auditLog({ verdict: 'blocked', error: error.message });
       return res.status(403).json({ ok: false, error: error.message });
     }
+    auditLog({ verdict: 'blocked', error: 'TARGET_NOT_ALLOWED' });
     return res.status(403).json({ ok: false, error: 'TARGET_NOT_ALLOWED' });
   }
 
@@ -361,16 +387,21 @@ app.post('/gate/*', async (req: Request, res: Response) => {
     allowResult = redirectResult.ctx.allow;
     redirectHops = redirectResult.hops;
     schemeHistory = redirectResult.schemeHistory;
+    targetHost = finalTarget.hostname;
   } catch (error) {
     if (error instanceof RedirectBadSchemeError) {
+      auditLog({ verdict: 'blocked', error: 'redirect_bad_scheme' });
       return res.status(400).json({ ok: false, error: 'redirect_bad_scheme' });
     }
     if (error instanceof RedirectPrivateTargetError) {
+      auditLog({ verdict: 'blocked', error: 'redirect_private_target' });
       return res.status(403).json({ ok: false, error: 'redirect_private_target' });
     }
     if (error instanceof RedirectTooManyError) {
+      auditLog({ verdict: 'blocked', error: 'redirect_too_many' });
       return res.status(400).json({ ok: false, error: 'redirect_too_many' });
     }
+    auditLog({ verdict: 'blocked', error: 'redirect_follow_failed' });
     return res.status(502).json({ ok: false, error: 'redirect_follow_failed' });
   }
 
@@ -378,8 +409,10 @@ app.post('/gate/*', async (req: Request, res: Response) => {
     allowResult = await assertAllowed(finalTarget.toString());
   } catch (error) {
     if (error instanceof SSRFDenyError) {
+      auditLog({ verdict: 'blocked', error: error.message });
       return res.status(403).json({ ok: false, error: error.message });
     }
+    auditLog({ verdict: 'blocked', error: 'TARGET_NOT_ALLOWED' });
     return res.status(403).json({ ok: false, error: 'TARGET_NOT_ALLOWED' });
   }
 
@@ -406,6 +439,7 @@ app.post('/gate/*', async (req: Request, res: Response) => {
       }
     } catch (error) {
       incRedirectBlock('tls-preflight-fail', target.hostname);
+      auditLog({ verdict: 'blocked', error: 'tls_preflight_failed' });
       return res.status(502).json({ ok: false, error: 'tls_preflight_failed' });
     }
   }
@@ -417,11 +451,13 @@ app.post('/gate/*', async (req: Request, res: Response) => {
     resolved_ip: allowResult.ip,
     cname_chain: allowResult.chain,
     min_ttl_sec: allowResult.minTTLsec,
+    ttl_sec: allowResult.minTTLsec,
     is_private: allowResult.ips.some((ip) => isPrivateOrBlocked(ip)),
     redirect_hops: redirectHops,
     scheme_history: schemeHistory,
     tls_remote_ip: tlsRemoteIp,
     tls_san_ok: tlsSanOk,
+    tls_ip_mismatch: tlsIpMismatch,
   };
 
   const ttlLevel = allowResult.minTTLsec < 10 ? 'critical' : allowResult.minTTLsec < 30 ? 'warn' : 'ok';
@@ -472,6 +508,7 @@ app.post('/gate/*', async (req: Request, res: Response) => {
     res.setHeader('x-ethics-verdict', 'red');
     res.setHeader('x-ethics-evidence-count', '0');
     exposeEthicsHeaders(res);
+    auditLog({ verdict: 'blocked', error: 'ethics_unreachable', status: statusCode, redirect_hops: redirectHops });
     return res.status(statusCode >= 400 ? statusCode : 503).json({
       ok: false,
       verdict: 'red',
@@ -489,6 +526,7 @@ app.post('/gate/*', async (req: Request, res: Response) => {
   exposeEthicsHeaders(res);
 
   if (verdict !== 'green') {
+    auditLog({ verdict, error: verdictBody?.reason ?? 'verification_failed', redirect_hops: redirectHops });
     return res.status(428).json({
       ok: false,
       verdict,
@@ -539,7 +577,7 @@ app.post('/gate/*', async (req: Request, res: Response) => {
     upstreamHeaders.set('x-ethics-token', verdictToken);
   } catch (error) {
     tokenFails.inc({ reason: 'sign_error' });
-    console.error('[verify-gate] failed to sign verdict token', error);
+    log.error({ err: error, rid: requestId }, 'verify-gate failed to sign verdict token');
     return res.status(500).json({ ok: false, error: 'verdict_token_sign_failed' });
   }
   const controller = new AbortController();
@@ -592,6 +630,14 @@ app.post('/gate/*', async (req: Request, res: Response) => {
     try {
       await pinned.pipeTo(res);
       rememberFinal(idemKey, pinned.res.statusCode, requestId, verdict, evidenceCount);
+      auditLog({
+        verdict: 'proxied',
+        status: pinned.res.statusCode,
+        redirect_hops: redirectHops,
+        tls_san_ok: tlsSanOk ?? null,
+        ttl_sec: allowResult.minTTLsec,
+        resolved_ip: allowResult.ip,
+      });
     } catch (streamError) {
       forget(idemKey);
       throw streamError;
@@ -600,9 +646,25 @@ app.post('/gate/*', async (req: Request, res: Response) => {
     }
   } catch (error) {
     stopOnce('error');
-    console.error('[verify-gate] upstream call failed', finalTarget.toString(), error);
+    log.error(
+      {
+        err: error,
+        target: finalTarget?.toString() ?? targetUrl,
+        rid: requestId,
+      },
+      'verify-gate upstream call failed',
+    );
     forget(idemKey);
-    const mapped = toHttp(error);
+    const mapped = recordAndMapError(error, metricsApi, { host: targetHost });
+    auditLog({
+      verdict: 'error',
+      error: mapped.code,
+      message: mapped.message,
+      redirect_hops: redirectHops,
+      tls_san_ok: tlsSanOk ?? null,
+      ttl_sec: allowResult.minTTLsec,
+      resolved_ip: allowResult.ip,
+    });
     res.status(mapped.status).json({ ok: false, error: mapped.code, message: mapped.message });
   }
   });

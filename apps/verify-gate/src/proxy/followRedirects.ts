@@ -46,9 +46,9 @@ export async function followRedirectsWithPreflight(
       }
     }
 
-    let headResponse: Awaited<ReturnType<typeof pinnedRequest>> | undefined;
+    let probeResponse: Awaited<ReturnType<typeof pinnedRequest>> | undefined;
     try {
-      headResponse = await pinnedRequest({
+      probeResponse = await pinnedRequest({
         originalUrl: currentUrl,
         pinnedIp: ctx.allow.ip,
         minTTLsec: ctx.allow.minTTLsec,
@@ -66,8 +66,28 @@ export async function followRedirectsWithPreflight(
     }
 
     try {
-      const { res } = headResponse;
-      const { statusCode } = res;
+      let { res } = probeResponse;
+      let { statusCode } = res;
+
+      if (statusCode === 405 || statusCode === 501) {
+        probeResponse.dispose();
+        probeResponse = await pinnedRequest({
+          originalUrl: currentUrl,
+          pinnedIp: ctx.allow.ip,
+          minTTLsec: ctx.allow.minTTLsec,
+          method: 'GET',
+          headers: {
+            accept: '*/*',
+            range: 'bytes=0-0',
+            'user-agent': 'verify-gate/redirect-probe',
+          },
+          headersTimeoutMs: 5000,
+          bodyTimeoutMs: 5000,
+        });
+        res = probeResponse.res;
+        statusCode = res.statusCode ?? 0;
+      }
+
       if (!statusCode || statusCode < 300 || statusCode > 399) {
         redirectFollow.inc({ hops: String(hop), start_host: startHost });
         return { final: currentUrl, hops: hop, ctx, schemeHistory };
@@ -100,7 +120,7 @@ export async function followRedirectsWithPreflight(
       ctx = { allow: allowNext };
       schemeHistory.push(currentUrl.protocol.replace(/:$/, ''));
     } finally {
-      headResponse?.dispose();
+      probeResponse?.dispose();
     }
   }
 

@@ -27,6 +27,11 @@ export const EthicsCheckSchema = {
         },
         min_ttl_sec: { type: 'number', minimum: 0 },
         is_private: { type: 'boolean' },
+        ttl_sec: { type: 'number', minimum: 0 },
+        redirect_hops: { type: 'number', minimum: 0 },
+        tls_san_ok: { type: 'boolean' },
+        tls_ip_mismatch: { type: 'boolean' },
+        tls_remote_ip: { type: 'string' },
       },
     },
     evidence: {
@@ -50,6 +55,11 @@ export type EthicsCheckInput = {
     cname_chain?: string[];
     min_ttl_sec?: number;
     is_private?: boolean;
+    ttl_sec?: number;
+    redirect_hops?: number;
+    tls_san_ok?: boolean;
+    tls_ip_mismatch?: boolean;
+    tls_remote_ip?: string;
   };
   evidence?: string[];
   flags?: Record<string, unknown>;

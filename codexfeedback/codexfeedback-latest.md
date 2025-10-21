@@ -1,18 +1,19 @@
-# Codexfeedback – Fraktal 112 IPv6 Observability
+# Codexfeedback – Fraktal 114 VerifyGateAudit
 
-- Phase: Verify-Gate Hardening Finish (IPv6/TLS Signals)
-- Status: TLS-Preflight vergleicht normalisierte IPv6-Remote-Adressen, NAT64/Teredo-Präfixe stehen auf der Blockliste und `x-verify-network` liefert TTL/Redirect/TLS-Level an OPA & UI. Mandala Playground zeigt NetworkRiskBadges; Prometheus Recording-Rules/Alerts decken TLS/IP-Mismatch & DNS TTL p95, Grafana ergänzt Panels. `pnpm lint:format` ergänzt die Format-Pipeline.
-- Next Hook: Chaos-DNS-Rebind & Redirect-Loop Drills bauen, Alertmanager-Routing + README-Badges dokumentieren, `pnpm lint:format` in CI integrieren.
+- Phase: Verify-Gate Hardening (Audit + OPA Netzsignale)
+- Status: Verify-Gate setzt per `requestContext` & `logger.ts` strukturierte Audit-Logs, mappt typed Errors über `recordAndMapError` auf Metriken/HTTP und `/readyz` prüft Allowlist/JWT-Konfiguration. Redirect-Preflight fallbackt bei HEAD-405/501 auf Range-GET, IDNA-Tests sichern punycode-Allowlists. Ethics-API validiert OPA-Payloads (`assertEthicsInput`/`assertNetworkSignals`), normalisiert IPs und erzwingt `ttl_sec`/`tls_san_ok`/`redirect_hops`.
+- Next Hook: OPA-Policy & Observability-Doku auf neue Netzfelder erweitern und Monitoring-Profile synchronisieren.
 
 What changed
 
-- `apps/verify-gate/src/security/ipRanges.ts` entfernt Scope-IDs vor dem Normalisieren, erweitert NAT64/Teredo-Blocklisten.
-- `apps/verify-gate/src/security/tlsPreflight.ts` + `src/index.ts` normalisieren Remote-IP, setzen `x-verify-network` und reichen TLS-Netzkontext an OPA weiter; Tests (`ip-ranges.test.ts`, `tls-preflight.test.ts`) decken die Pfade.
-- `apps/ui/src/lib/fetchWithEthics.ts` parst Netzwerk-Signale; `NetworkRiskBadges.tsx` + Mandala Playground visualisieren TTL-/Redirect-/TLS-Risiken.
-- `observability/prometheus/recording-rules.yaml`, `observability/alerts/verify-gate.yaml`, `grafana/dashboards/verify-gate-ethics-mini.json` ergänzen TLS/IP-Mismatch-Rate & DNS TTL p95 Panels/Alerts.
+- `apps/verify-gate/src/app.ts` erhält Audit-Middleware, nutzt `recordAndMapError` im Proxy-Catch, härtet `/readyz` und sendet Netzwerk-Signale (`ttl_sec`, `tls_san_ok`, `redirect_hops`).
+- `apps/verify-gate/src/errors-map.ts`, `metrics.ts`, `logger.ts`, `mw/requestContext.ts` und neue Tests (`idna-allowlist.test.ts`, `redirect-fallback.test.ts`) decken Error→Metrics-Mapping, Audit-Logs und Redirect-GET-Fallback ab.
+- `apps/verify-gate/src/security/ssrf.ts`, `proxy/followRedirects.ts`, `http/headerForward.ts` erweitern SSRF-Metriken, erlauben Range-GET-Fallback und normalisieren Header-Safelist.
+- `apps/ethics-api/src/schemas/opa-input.schema.ts`, `index.ts`, `schemas.ts` + Vitest prüfen OPA-Input-Schema, normalisieren `resolved_ip` und erzwingen Netzsignale.
 
 Validate
 
-- pending: pnpm -w vitest run apps/verify-gate/src/**tests**/ip-ranges.test.ts
-- pending: pnpm -w vitest run apps/verify-gate/src/**tests**/tls-preflight.test.ts
+- pending: pnpm -w vitest run apps/verify-gate/src/**tests**/redirect-fallback.test.ts
+- pending: pnpm -w vitest run apps/verify-gate/src/**tests**/idna-allowlist.test.ts
+- pending: pnpm -w vitest run apps/ethics-api/src/**tests**/opa-input.schema.test.ts
 - pending: pnpm lint:types

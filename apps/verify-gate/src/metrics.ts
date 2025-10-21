@@ -12,11 +12,14 @@ export type MetricsApi = {
   ssrfBlocks: Counter<'host' | 'resolved_ip'>;
   ssrfResolveErrors: Counter<'host'>;
   ssrfResolveEmpty: Counter<'host'>;
+  ssrfBlockReasons: Counter<'reason'>;
+  ssrfResolveReasons: Counter<'kind'>;
   dnsTtl: Histogram<'host'>;
   redirectFollow: Counter<'hops' | 'start_host'>;
   redirectBlock: Counter<'code' | 'start_host'>;
   ipMismatch: Counter<'host'>;
   tlsNameMismatch: Counter<'host'>;
+  upstreamErrors: Counter<'reason'>;
   tokenFails: Counter<'reason'>;
   rateLimitBlocks: Counter<'scope'>;
   upstreamDuration: Histogram<'method' | 'route' | 'code'>;
@@ -24,10 +27,13 @@ export type MetricsApi = {
   startUpstreamTimer(method: MethodLabel, route: RouteLabel): (code: CodeLabel) => void;
   observeTtl(host: string, ttlSeconds: number): void;
   incRedirectBlock(code: string, startHost?: string): void;
-  incIpMismatch(host: string): void;
-  incTlsNameMismatch(host: string): void;
+  incIpMismatch(host?: string): void;
+  incTlsNameMismatch(host?: string): void;
   incResolveError(host: string): void;
   incResolveEmpty(host: string): void;
+  incSsrfBlock(reason: string): void;
+  incSsrfResolve(kind: 'error' | 'empty'): void;
+  incUpstream(reason: string): void;
 };
 
 let singleton: MetricsApi | null = null;
@@ -76,6 +82,20 @@ function buildMetrics(customRegistry?: Registry): MetricsApi {
     registers: [registry],
   });
 
+  const ssrfBlockReasons = new Counter({
+    name: 'verify_gate_ssrf_block_reason_total',
+    help: 'Reason for SSRF blocks mapped from typed errors',
+    labelNames: ['reason'],
+    registers: [registry],
+  });
+
+  const ssrfResolveReasons = new Counter({
+    name: 'verify_gate_ssrf_resolve_reason_total',
+    help: 'Reason for SSRF DNS resolution issues mapped from typed errors',
+    labelNames: ['kind'],
+    registers: [registry],
+  });
+
   const dnsTtl = new Histogram({
     name: 'verify_gate_dns_ttl_seconds',
     help: 'Authoritative DNS TTL (seconds) used to bound keep-alive',
@@ -109,6 +129,13 @@ function buildMetrics(customRegistry?: Registry): MetricsApi {
     name: 'verify_gate_tls_name_mismatch_total',
     help: 'TLS SAN validation failed for pinned request',
     labelNames: ['host'],
+    registers: [registry],
+  });
+
+  const upstreamErrors = new Counter({
+    name: 'verify_gate_upstream_error_total',
+    help: 'Upstream failures classified by reason',
+    labelNames: ['reason'],
     registers: [registry],
   });
 
@@ -158,11 +185,14 @@ function buildMetrics(customRegistry?: Registry): MetricsApi {
     ssrfBlocks,
     ssrfResolveErrors,
     ssrfResolveEmpty,
+    ssrfBlockReasons,
+    ssrfResolveReasons,
     dnsTtl,
     redirectFollow,
     redirectBlock,
     ipMismatch,
     tlsNameMismatch,
+    upstreamErrors,
     tokenFails,
     rateLimitBlocks,
     upstreamDuration,
@@ -170,10 +200,13 @@ function buildMetrics(customRegistry?: Registry): MetricsApi {
     startUpstreamTimer,
     observeTtl: (host, ttlSeconds) => dnsTtl.labels(host).observe(ttlSeconds),
     incRedirectBlock: (code, startHost) => redirectBlock.inc({ code, start_host: startHost ?? 'unknown' }),
-    incIpMismatch: (host) => ipMismatch.inc({ host }),
-    incTlsNameMismatch: (host) => tlsNameMismatch.inc({ host }),
+    incIpMismatch: (host) => ipMismatch.inc({ host: host ?? 'unknown' }),
+    incTlsNameMismatch: (host) => tlsNameMismatch.inc({ host: host ?? 'unknown' }),
     incResolveError: (host) => ssrfResolveErrors.inc({ host }),
     incResolveEmpty: (host) => ssrfResolveEmpty.inc({ host }),
+    incSsrfBlock: (reason) => ssrfBlockReasons.inc({ reason }),
+    incSsrfResolve: (kind) => ssrfResolveReasons.inc({ kind }),
+    incUpstream: (reason) => upstreamErrors.inc({ reason }),
   };
 
   return api;
@@ -201,11 +234,14 @@ export function setMetrics(api: MetricsApi): void {
   ssrfBlocks = api.ssrfBlocks;
   ssrfResolveErrors = api.ssrfResolveErrors;
   ssrfResolveEmpty = api.ssrfResolveEmpty;
+  ssrfBlockReasons = api.ssrfBlockReasons;
+  ssrfResolveReasons = api.ssrfResolveReasons;
   dnsTtl = api.dnsTtl;
   redirectFollow = api.redirectFollow;
   redirectBlock = api.redirectBlock;
   ipMismatch = api.ipMismatch;
   tlsNameMismatch = api.tlsNameMismatch;
+  upstreamErrors = api.upstreamErrors;
   tokenFails = api.tokenFails;
   rateLimitBlocks = api.rateLimitBlocks;
   upstreamDuration = api.upstreamDuration;
@@ -217,6 +253,9 @@ export function setMetrics(api: MetricsApi): void {
   incTlsNameMismatch = api.incTlsNameMismatch;
   incResolveError = api.incResolveError;
   incResolveEmpty = api.incResolveEmpty;
+  incSsrfBlock = api.incSsrfBlock;
+  incSsrfResolve = api.incSsrfResolve;
+  incUpstream = api.incUpstream;
 }
 
 export let {
@@ -227,11 +266,14 @@ export let {
   ssrfBlocks,
   ssrfResolveErrors,
   ssrfResolveEmpty,
+  ssrfBlockReasons,
+  ssrfResolveReasons,
   dnsTtl,
   redirectFollow,
   redirectBlock,
   ipMismatch,
   tlsNameMismatch,
+  upstreamErrors,
   tokenFails,
   rateLimitBlocks,
   upstreamDuration,
@@ -243,4 +285,7 @@ export let {
   incTlsNameMismatch,
   incResolveError,
   incResolveEmpty,
+  incSsrfBlock,
+  incSsrfResolve,
+  incUpstream,
 } = metrics;

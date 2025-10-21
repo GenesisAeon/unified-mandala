@@ -157,7 +157,18 @@ describe('ethics fail-closed behaviour', () => {
 
     const response = await request(app)
       .post('/ethics/check')
-      .send({ intent: 'demo', content: 'neutral content' });
+      .send({
+        intent: 'demo',
+        content: 'neutral content',
+        net: {
+          hostname_ascii: 'example.com',
+          resolved_ip: '203.0.113.10',
+          min_ttl_sec: 60,
+          ttl_sec: 60,
+          redirect_hops: 0,
+          tls_san_ok: true,
+        },
+      });
 
     expect(response.status).toBe(200);
     expect(response.body.ok).toBe(true);
