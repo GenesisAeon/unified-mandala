@@ -1,16 +1,22 @@
-import { Agent, Headers, request, type Dispatcher } from 'undici';
+import { Agent, Headers, request } from 'undici';
 import tls from 'node:tls';
 import net from 'node:net';
 import { Readable } from 'node:stream';
 import { pipeline } from 'node:stream/promises';
-import { ipMismatch, tlsNameMismatch } from '../metrics.js';
+import { incIpMismatch, incTlsNameMismatch } from '../metrics.js';
 import { normalizeIp } from '../security/ipRanges.js';
+import {
+  IpMismatchError,
+  TlsNameMismatchError,
+  UpstreamBadGatewayError,
+  UpstreamTimeoutError,
+} from '../errors.js';
 
 export type PinnedRequestOptions = {
   originalUrl: URL;
   pinnedIp: string;
   minTTLsec: number;
-  method: Dispatcher.HttpMethod;
+  method: string;
   headers: Record<string, string | string[] | undefined>;
   body?: string | Buffer | null;
   signal?: AbortSignal;
@@ -31,71 +37,6 @@ type ConnectionTelemetry = {
   sanOk?: boolean;
 };
 
-function makePinnedConnector(
-  pinnedIp: string,
-  host: string,
-  telemetry: ConnectionTelemetry,
-  httpsPreferred: boolean,
-) {
-  const normalizedPinned = normalizeIp(pinnedIp);
-  return function connect(
-    opts: any,
-    cb: (err: Error | null, socket: tls.TLSSocket | net.Socket | null) => void,
-  ) {
-    const protocol = typeof opts?.protocol === 'string' ? opts.protocol : httpsPreferred ? 'https:' : 'http:';
-    const port = Number(opts?.port ?? (protocol === 'https:' ? 443 : 80));
-    const isHttps = protocol === 'https:';
-
-    const onSecure = (socket: tls.TLSSocket | net.Socket) => {
-      const remote = normalizeIp((socket as tls.TLSSocket).remoteAddress ?? '');
-      if (remote) {
-        telemetry.remoteIp = remote;
-      }
-      if (remote && normalizedPinned && remote !== normalizedPinned) {
-        ipMismatch.inc({ host });
-        socket.destroy(new Error('IP_MISMATCH'));
-        return;
-      }
-      cb(null, socket);
-    };
-
-    if (isHttps) {
-      let sanValid = true;
-      const socket = tls.connect({
-        host: pinnedIp,
-        port,
-        servername: host,
-        checkServerIdentity: (_hostname, cert) => {
-          const err = tls.checkServerIdentity(host, cert);
-          if (err) {
-            sanValid = false;
-            telemetry.sanOk = false;
-            tlsNameMismatch.inc({ host });
-          }
-          return err ?? undefined;
-        },
-      });
-      socket.once('secureConnect', () => {
-        if (sanValid) {
-          telemetry.sanOk = true;
-        }
-        onSecure(socket);
-      });
-      socket.once('error', (error) => {
-        cb(error instanceof Error ? error : new Error(String(error)), null);
-      });
-      return socket;
-    }
-
-    const socket = net.connect({ host: pinnedIp, port });
-    socket.once('connect', () => onSecure(socket));
-    socket.once('error', (error) => {
-      cb(error instanceof Error ? error : new Error(String(error)), null);
-    });
-    return socket;
-  };
-}
-
 const HOP_BY_HOP_HEADERS = new Set([
   'connection',
   'keep-alive',
@@ -109,6 +50,7 @@ const HOP_BY_HOP_HEADERS = new Set([
   'content-length',
   'host',
   'via',
+  'expect',
 ]);
 
 function sanitizeHeaders(headers: Record<string, string | string[] | undefined>, host: string): Headers {
@@ -121,9 +63,6 @@ function sanitizeHeaders(headers: Record<string, string | string[] | undefined>,
     if (HOP_BY_HOP_HEADERS.has(normalizedKey) || normalizedKey.startsWith('proxy-')) {
       continue;
     }
-    if (normalizedKey === 'expect') {
-      continue;
-    }
     if (Array.isArray(value)) {
       for (const entry of value) {
         filtered.append(normalizedKey, entry);
@@ -134,6 +73,66 @@ function sanitizeHeaders(headers: Record<string, string | string[] | undefined>,
   }
   filtered.set('host', host);
   return filtered;
+}
+
+function makePinnedConnector(pinnedIp: string, host: string, telemetry: ConnectionTelemetry, isHttps: boolean) {
+  const normalizedPinned = normalizeIp(pinnedIp);
+  return function connect(
+    opts: any,
+    cb: (err: Error | null, socket: tls.TLSSocket | net.Socket | null) => void,
+  ) {
+    const protocol = typeof opts?.protocol === 'string' ? opts.protocol : isHttps ? 'https:' : 'http:';
+    const port = Number(opts?.port ?? (protocol === 'https:' ? 443 : 80));
+    const prefersHttps = protocol === 'https:';
+
+    const finalize = (socket: tls.TLSSocket | net.Socket) => {
+      const remote = normalizeIp((socket as tls.TLSSocket).remoteAddress ?? '');
+      if (remote) {
+        telemetry.remoteIp = remote;
+      }
+      if (remote && normalizedPinned && remote !== normalizedPinned) {
+        incIpMismatch(host);
+        socket.destroy(new IpMismatchError());
+        return;
+      }
+      cb(null, socket);
+    };
+
+    if (prefersHttps) {
+      let sanValid = true;
+      const socket = tls.connect({
+        host: pinnedIp,
+        port,
+        servername: host,
+        checkServerIdentity: (_hostname, cert) => {
+          const err = tls.checkServerIdentity(host, cert);
+          if (err) {
+            sanValid = false;
+            telemetry.sanOk = false;
+            incTlsNameMismatch(host);
+          }
+          return err ?? undefined;
+        },
+      });
+      socket.once('secureConnect', () => {
+        if (sanValid) {
+          telemetry.sanOk = true;
+        }
+        finalize(socket);
+      });
+      socket.once('error', (error) => {
+        cb(error instanceof Error ? error : new Error(String(error)), null);
+      });
+      return socket;
+    }
+
+    const socket = net.connect({ host: pinnedIp, port });
+    socket.once('connect', () => finalize(socket));
+    socket.once('error', (error) => {
+      cb(error instanceof Error ? error : new Error(String(error)), null);
+    });
+    return socket;
+  };
 }
 
 export async function pinnedRequest(options: PinnedRequestOptions): Promise<PinnedRequestResult> {
@@ -175,58 +174,73 @@ export async function pinnedRequest(options: PinnedRequestOptions): Promise<Pinn
 
   const agent = new Agent(agentOptions);
 
-  const res = await request(pinned, {
-    method,
-    headers: sanitizeHeaders(headers, originalUrl.host),
-    body: body ?? null,
-    dispatcher: agent,
-    maxRedirections: 0,
-    bodyTimeout: bodyTimeoutMs,
-    headersTimeout: headersTimeoutMs,
-    signal,
-  });
+  try {
+    const normalizedMethod = method.toUpperCase() as import('undici').Dispatcher.HttpMethod;
+    const res = await request(pinned, {
+      method: normalizedMethod,
+      headers: sanitizeHeaders(headers, originalUrl.host),
+      body: body ?? null,
+      dispatcher: agent,
+      maxRedirections: 0,
+      bodyTimeout: bodyTimeoutMs,
+      headersTimeout: headersTimeoutMs,
+      signal,
+    });
 
-  return {
-    res,
-    remoteIp: telemetry.remoteIp,
-    sanOk: telemetry.sanOk,
-    async pipeTo(response: import('express').Response) {
-      for (const [key, value] of Object.entries(res.headers)) {
-        if (/^(connection|keep-alive|proxy-connection|upgrade|te|transfer-encoding|content-length)$/i.test(key)) {
-          continue;
-        }
-        if (Array.isArray(value)) {
-          for (const entry of value) {
-            response.append(key, entry);
+    return {
+      res,
+      remoteIp: telemetry.remoteIp,
+      sanOk: telemetry.sanOk,
+      async pipeTo(response: import('express').Response) {
+        for (const [key, value] of Object.entries(res.headers)) {
+          if (/^(connection|keep-alive|proxy-connection|upgrade|te|transfer-encoding|content-length)$/i.test(key)) {
+            continue;
           }
-          continue;
-        }
-        if (typeof value === 'string') {
-          if (key.toLowerCase() === 'set-cookie') {
-            response.append(key, value);
-          } else {
-            response.setHeader(key, value);
+          if (Array.isArray(value)) {
+            for (const entry of value) {
+              response.append(key, entry);
+            }
+            continue;
+          }
+          if (typeof value === 'string') {
+            if (key.toLowerCase() === 'set-cookie') {
+              response.append(key, value);
+            } else {
+              response.setHeader(key, value);
+            }
           }
         }
-      }
-      response.status(res.statusCode);
+        response.status(res.statusCode);
 
-      const rawBody = res.body;
-      if (!rawBody) {
-        response.end();
-        return;
-      }
+        const rawBody = res.body;
+        if (!rawBody) {
+          response.end();
+          return;
+        }
 
-      const nodeReadable =
-        typeof (rawBody as unknown as { pipe: unknown }).pipe === 'function'
-          ? (rawBody as NodeJS.ReadableStream)
-          : // @ts-ignore - Node 18+ exposes Readable.fromWeb
-            Readable.fromWeb?.(rawBody as unknown as ReadableStream<unknown>) ?? Readable.from(rawBody as AsyncIterable<unknown>);
+        const nodeReadable =
+          typeof (rawBody as unknown as { pipe: unknown }).pipe === 'function'
+            ? (rawBody as NodeJS.ReadableStream)
+            : // @ts-ignore Node 18 exposes Readable.fromWeb
+              Readable.fromWeb?.(rawBody as unknown as ReadableStream<unknown>) ?? Readable.from(rawBody as AsyncIterable<unknown>);
 
-      await pipeline(nodeReadable, response);
-    },
-    dispose() {
-      agent.close();
-    },
-  };
+        await pipeline(nodeReadable, response);
+      },
+      dispose() {
+        agent.close();
+      },
+    };
+  } catch (error) {
+    agent.close();
+    if (error instanceof IpMismatchError || (error as { code?: string }).code === 'IP_MISMATCH') {
+      throw new IpMismatchError();
+    }
+    if (error instanceof TlsNameMismatchError || (error as { code?: string }).code === 'TLS_NAME_MISMATCH') {
+      throw new TlsNameMismatchError();
+    }
+    if ((error as { code?: string }).code === 'UND_ERR_HEADERS_TIMEOUT' || (error as { code?: string }).code === 'UND_ERR_BODY_TIMEOUT') {
+      throw new UpstreamTimeoutError();
+    }
+    throw new UpstreamBadGatewayError((error as Error)?.message ?? 'upstream_failed');
+  }
 }

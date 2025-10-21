@@ -1,6 +1,11 @@
 {
   "runs": [
     {
+      "fraktalrun": "Fraktal113 VerifyGateFactory",
+      "status": "done",
+      "notes": "Verify-Gate nutzt Typed Errors + createApp({registry}), Metrics-Rebinding erlaubt Registry-Injektion; TLS/IP-Mismatch-E2E-Tests und Dashboard `verify-gate-network-safety.json` überwachen Redirect-Blocks, DNS-TTL & Ethics-Degradation."
+    },
+    {
       "fraktalrun": "Fraktal112 IPv6 Observability",
       "status": "done",
       "notes": "Verify-Gate normalisiert IPv6-Remote-Adressen (Scope-ID entfernt), blockt NAT64/Teredo-Präfixe und liefert `x-verify-network` (TTL/Redirect/TLS) an UI & OPA. Mandala Playground rendert NetworkRiskBadges, Prometheus Recording-Rules/Alerts beobachten TLS/IP-Mismatch & DNS TTL p95 und Grafana ergänzt Panels. `pnpm lint:format` läuft jetzt im `ci.core`; neue Chaos-Drills (`pnpm chaos:verify-dns-rebind`, `pnpm chaos:verify-redirect-loop`) prüfen TTL-Rebind & Redirect-Loops und laufen im Nightly-Workflow.",
@@ -93,7 +98,7 @@
     {
       "fraktalrun": "Fraktal108 Hardening Pack",
       "status": "done",
-      "notes": "`analysis/devtalk109-evaluation.md` priorisiert TTL-bewusste DNS-Pins (Resolver-Cache, Keep-Alive ≤ minTTL), CNAME-/IDNA-Validierung, TLS-SAN/IP-Vergleich & Remote-IP-Prüfung, Redirect-Guards (≤3 Hops, http/https), IPv6/NAT64-Blocklisten sowie neue Counter `verify_gate_dns_ttl_pinned_seconds_bucket`/`verify_gate_redirect_block_total`/`verify_gate_ip_mismatch_total`/`verify_gate_tls_name_mismatch_total` und OPA-Inputs `resolved_ip`/`cname_chain`/`min_ttl_sec`. MandalaMap.*, Stabilization-Playbook.* und codexfeedback* markieren den Lauf als in progress; Umsetzung & Tests folgen.",
+      "notes": "`analysis/devtalk109-evaluation.md` priorisiert TTL-bewusste DNS-Pins (Resolver-Cache, Keep-Alive ≤ minTTL), CNAME-/IDNA-Validierung, TLS-SAN/IP-Vergleich & Remote-IP-Prüfung, Redirect-Guards (≤3 Hops, http/https), IPv6/NAT64-Blocklisten sowie neue Counter `verify_gate_dns_ttl_seconds_bucket`/`verify_gate_redirect_block_total`/`verify_gate_ip_mismatch_total`/`verify_gate_tls_name_mismatch_total` und OPA-Inputs `resolved_ip`/`cname_chain`/`min_ttl_sec`. MandalaMap.*, Stabilization-Playbook.* und codexfeedback* markieren den Lauf als in progress; Umsetzung & Tests folgen.",
       "deliverables": [
         "analysis/devtalk109-evaluation.md",
         "docs/roadmap/v1.0-stabilization-playbook.md",

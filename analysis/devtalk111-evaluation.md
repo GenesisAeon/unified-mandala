@@ -10,7 +10,7 @@
 
 1. **DNS-TTL-Cache & Resolver-Context**
    - Implementiert: `apps/verify-gate/src/security/dnsCache.ts` liefert jittered TTL + Request-Coalescing, wird via `resolveWithCache` im SSRF-Pfad genutzt.
-   - Metrics: `verify_gate_dns_ttl_pinned_seconds_bucket` bereits vorhanden; Jitter schützt gegen thundering herd.
+   - Metrics: `verify_gate_dns_ttl_seconds_bucket` bereits vorhanden; Jitter schützt gegen thundering herd.
 2. **Redirect-Validierung vor Netz-Hop**
    - `apps/verify-gate/src/proxy/followRedirects.ts` prüft Start-URL über `assertAllowed`, verfolgt Redirects IP-gepinnt und validiert jeden Hop, bevor ein HEAD-Request gesendet wird.
    - `apps/verify-gate/src/index.ts` verwendet den validierten Kontext (Pinned IP, TTL) und blockt vor dem ersten Hop (`verify_gate_ssrf_block_total{reason="preflight"}`).

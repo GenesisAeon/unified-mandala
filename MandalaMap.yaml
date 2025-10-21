@@ -1,7 +1,7 @@
 meta:
   version: '1.0'
-  generated: '2025-12-23 00:00:00+00:00'
-  fraktal: 112
+  generated: '2025-12-24 00:00:00+00:00'
+  fraktal: 113
   repo: unified-mandala
   source: ChefDevAI MandalaMap bootstrap
   reference_docs:
@@ -141,13 +141,22 @@ entries:
       - 'Fraktal108 Follow-up: Hardening Pack plant TTL-Pinning/Resolver-Cache, CNAME-/IDNA-Checks, TLS-SAN & `remoteAddress`-Vergleich, Redirect-Limits (≤3 Hops, http/https), IPv6-/NAT64-Blocklisten sowie neue Counter/OPA-Inputs; siehe `analysis/devtalk109-evaluation.md`, docs/roadmap v1.0 & codexfeedback*.'
       - 'Fraktal111: Redirect-Kette validiert jeden Hop vor dem ersten Netz-Request, DNS-Cache jittert TTLs mit Request-Coalescing, HTTPS-Ziele durchlaufen TLS/SAN-Preflight (remoteAddress/SAN). Prometheus zählt `verify_gate_ip_mismatch_total`, `verify_gate_tls_name_mismatch_total` und `verify_gate_redirect_block_total{reason="tls-preflight-fail"}` für Grafana/Alerting; Stabilization-Playbook & Codexfeedback vermerken den Abschluss.'
       - 'Fraktal112: TLS-Preflight normalisiert IPv6-Remote-Adressen, NAT64/Teredo-Präfixe stehen auf der Blockliste, `x-verify-network` liefert TTL/Redirect/TLS-Level für OPA & UI (NetworkRiskBadges), Prometheus/Grafana/Alerts beobachten TLS/IP-Mismatch & DNS TTL p95; Chaos-Drills (`pnpm chaos:verify-dns-rebind`, `pnpm chaos:verify-redirect-loop`) sichern TTL-Rebind/Redirect-Loops und laufen nightly.'
+      - 'Fraktal113: Typed Error-Hierarchie (`errors.ts`), `createApp({registry})`-Factory und Metrics-Rebinding für Tests, TLS/IP-Mismatch-E2E-Suites mit Registry-Injektion, neues Grafana-Dashboard `verify-gate-network-safety.json` + Recording-Rule (`verify_gate_dns_ttl_seconds_bucket`) sowie Registry-fähiges `metrics.ts`.'
     links:
       - label: index.ts
         path: apps/verify-gate/src/index.ts
+      - label: app.ts
+        path: apps/verify-gate/src/app.ts
       - label: proxy headers test
         path: apps/verify-gate/src/__tests__/proxy-headers.test.ts
       - label: metrics.ts
         path: apps/verify-gate/src/metrics.ts
+      - label: ip mismatch test
+        path: apps/verify-gate/src/__tests__/ip-mismatch.e2e.test.ts
+      - label: tls mismatch test
+        path: apps/verify-gate/src/__tests__/tls-name-mismatch.e2e.test.ts
+      - label: network safety dashboard
+        path: grafana/dashboards/verify-gate-network-safety.json
   - path: .git/
     category: support
     status: system

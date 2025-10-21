@@ -4,27 +4,24 @@ import {
   ssrfBlocks,
   ssrfResolveEmpty,
   ssrfResolveErrors,
+  incResolveEmpty,
+  incResolveError,
 } from '../metrics.js';
-import { SSRFDNSResolveError, SSRFDNSEmptyError, SSRFPrivateTargetError, type ResolveResult } from './resolve.js';
+import {
+  SSRFDNSResolveError,
+  SSRFDNSEmptyError,
+  SSRFPrivateTargetError,
+  type ResolveResult,
+} from './resolve.js';
 import { resolveWithCache } from './dnsCache.js';
 import { isPrivateOrBlocked, normalizeIp } from './ipRanges.js';
+import { DNSEmptyAnswerError, DNSResolveError, SSRFDenyError } from '../errors.js';
 
 type AllowPattern = {
   host: string;
   port: number | '*';
   protocols: Set<string> | null;
 };
-
-export class SSRFDenyError extends Error {
-  public readonly code = 'SSRF_DENY';
-  public readonly resolvedIp?: string;
-
-  constructor(message: string, resolvedIp?: string) {
-    super(message);
-    this.name = 'SSRFDenyError';
-    this.resolvedIp = resolvedIp;
-  }
-}
 
 export interface AllowResult {
   ip: string;
@@ -225,23 +222,24 @@ export async function assertAllowed(target: string): Promise<AllowResult> {
     resolved = await resolveWithCache(hostAscii || host);
   } catch (error) {
     if (error instanceof SSRFPrivateTargetError || (error as { code?: string }).code === 'SSRFPrivateTargetError') {
-      ssrfBlocks.inc({ host: hostAscii || host, resolved_ip: (error as SSRFPrivateTargetError & { resolvedIp?: string }).resolvedIp ?? 'unknown' });
-      throw new SSRFDenyError('upstream_private_blocked');
+      const resolvedIp = (error as SSRFPrivateTargetError & { resolvedIp?: string }).resolvedIp;
+      return recordBlock(hostAscii || host, 'upstream_private_blocked', resolvedIp);
     }
     if (error instanceof SSRFDNSEmptyError || (error as { code?: string }).code === 'SSRFDNSEmptyError') {
-      ssrfResolveEmpty.inc({ host: hostAscii || host });
-      throw new SSRFDenyError('dns_no_records');
+      incResolveEmpty(hostAscii || host);
+      throw new DNSEmptyAnswerError('dns_no_records');
     }
     if (error instanceof SSRFDNSResolveError || (error as { code?: string }).code === 'SSRFDNSResolveError') {
-      ssrfResolveErrors.inc({ host: hostAscii || host });
-      throw new SSRFDenyError('dns_resolution_failed');
+      incResolveError(hostAscii || host);
+      throw new DNSResolveError('dns_resolution_failed');
     }
     throw error;
   }
 
   const firstIp = resolved.ips[0];
   if (!firstIp) {
-    return recordBlock(host, 'dns_no_records');
+    ssrfResolveEmpty.inc({ host: hostAscii || host });
+    throw new DNSEmptyAnswerError('dns_no_records');
   }
 
   for (const ip of resolved.ips) {
@@ -259,3 +257,5 @@ export async function assertAllowed(target: string): Promise<AllowResult> {
     url,
   };
 }
+
+export { SSRFDenyError };
