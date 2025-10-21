@@ -57,6 +57,8 @@ interface EthicsResponseBody {
 
 interface JsonMeta {
   degraded?: string | null;
+  policyRev?: string | null;
+  policySig?: string | null;
 }
 
 interface JsonSuccess<T> {
@@ -74,6 +76,81 @@ interface JsonFailure {
 }
 
 type JsonResult<T> = JsonSuccess<T> | JsonFailure;
+
+type PolicySignatureState = 'valid' | 'invalid';
+
+const requirePolicySignature = process.env.VERIFY_GATE_REQUIRE_POLICY_SIGNATURE === '1';
+
+type PolicyCacheState = {
+  revision?: string | null;
+  signature?: PolicySignatureState;
+  fetchedAt: number;
+};
+
+const policyCache: PolicyCacheState = { fetchedAt: 0 };
+
+function parsePolicySignature(value: string | null | undefined): PolicySignatureState | undefined {
+  if (!value) {
+    return undefined;
+  }
+  const normalized = value.trim().toLowerCase();
+  if (normalized === 'invalid') {
+    return 'invalid';
+  }
+  if (normalized === 'valid') {
+    return 'valid';
+  }
+  return undefined;
+}
+
+function rememberPolicyStatus(revision?: string | null, signature?: PolicySignatureState): void {
+  let changed = false;
+  if (revision && revision.trim().length > 0) {
+    policyCache.revision = revision;
+    changed = true;
+  }
+  if (signature) {
+    policyCache.signature = signature;
+    changed = true;
+  }
+  if (changed) {
+    policyCache.fetchedAt = Date.now();
+  }
+}
+
+function cachedPolicyRevision(): string | undefined {
+  const cached = policyCache.revision;
+  if (cached && cached.length > 0) {
+    return cached;
+  }
+  const env = process.env.ETHICS_POLICY_REV?.trim();
+  return env && env.length > 0 ? env : undefined;
+}
+
+function cachedPolicySignature(): PolicySignatureState | undefined {
+  return policyCache.signature;
+}
+
+function applyPolicyHeaders(res: Response, revision?: string | null, signature?: string | null): void {
+  const parsedSig = parsePolicySignature(signature);
+  if (revision && revision.trim().length > 0) {
+    res.setHeader('x-ethics-policy-rev', revision);
+  } else {
+    const cached = cachedPolicyRevision();
+    if (cached) {
+      res.setHeader('x-ethics-policy-rev', cached);
+    }
+  }
+  if (parsedSig) {
+    res.setHeader('x-ethics-policy-sig', parsedSig);
+  } else {
+    const cachedSig = cachedPolicySignature();
+    if (cachedSig) {
+      res.setHeader('x-ethics-policy-sig', cachedSig);
+    }
+  }
+  rememberPolicyStatus(revision, parsedSig);
+}
 
 const tokenTtlSeconds = Math.max(Number.parseInt(process.env.VERIFY_GATE_TOKEN_TTL_SEC ?? '60', 10), 5);
 const rateLimitRpm = Number.parseInt(process.env.VERIFY_GATE_RATE_RPM ?? '0', 10);
@@ -252,15 +329,30 @@ async function postJson<T>(url: string, body: unknown, headers: Record<string, s
     });
 
     const degraded = response.headers.get('x-ethics-degraded');
+    const policyRevHeader = response.headers.get('x-ethics-policy-rev');
+    const policySigHeader = response.headers.get('x-ethics-policy-sig');
+    rememberPolicyStatus(policyRevHeader ?? undefined, parsePolicySignature(policySigHeader));
+    const meta: JsonMeta = {
+      degraded,
+      policyRev: policyRevHeader,
+      policySig: policySigHeader,
+    };
     if (!response.ok) {
-      return { ok: false, status: response.status, error: `HTTP_${response.status}`, meta: { degraded } };
+      return { ok: false, status: response.status, error: `HTTP_${response.status}`, meta };
     }
 
     const data = (await response.json()) as T;
-    return { ok: true, status: response.status, data, meta: { degraded } };
+    return { ok: true, status: response.status, data, meta };
   } catch (error) {
     const reason = error instanceof Error ? (error.name === 'AbortError' ? 'TIMEOUT' : error.message) : 'NETWORK_ERROR';
-    return { ok: false, status: null, error: reason ?? 'NETWORK_ERROR', meta: { degraded: undefined } };
+    const cachedRev = cachedPolicyRevision() ?? null;
+    const cachedSig = cachedPolicySignature() ?? null;
+    return {
+      ok: false,
+      status: null,
+      error: reason ?? 'NETWORK_ERROR',
+      meta: { degraded: undefined, policyRev: cachedRev, policySig: cachedSig },
+    };
   } finally {
     clearTimeout(timeout);
   }
@@ -298,7 +390,46 @@ app.get('/readyz', async (_req: Request, res: Response) => {
       return res.status(503).json({ ok: false, reason: 'ethics_unavailable', status: response.status });
     }
     const payload = (await response.json().catch(() => ({}))) as Record<string, unknown>;
-    return res.json({ ok: true, ethics: payload });
+    let policyPayload: Record<string, unknown> | null = null;
+    try {
+      const policyController = new AbortController();
+      const policyTimeout = setTimeout(() => policyController.abort(), 1500);
+      try {
+        const policyResponse = await fetch(`${ethicsBase}/policy/status`, { signal: policyController.signal });
+        if (policyResponse.ok) {
+          policyPayload = (await policyResponse.json().catch(() => ({}))) as Record<string, unknown>;
+          const revision = typeof policyPayload?.revision === 'string' ? policyPayload.revision : null;
+          const sigOk = policyPayload?.ok === true;
+          rememberPolicyStatus(revision ?? undefined, sigOk ? 'valid' : 'invalid');
+          if (requirePolicySignature && !sigOk) {
+            return res
+              .status(503)
+              .json({ ok: false, reason: 'ethics_policy_signature_invalid', policy: policyPayload });
+          }
+        } else if (requirePolicySignature) {
+          return res
+            .status(503)
+            .json({ ok: false, reason: 'ethics_policy_status_unreachable', status: policyResponse.status });
+        }
+      } finally {
+        clearTimeout(policyTimeout);
+      }
+    } catch (policyError) {
+      if (requirePolicySignature) {
+        return res.status(503).json({
+          ok: false,
+          reason: 'ethics_policy_status_error',
+          detail: String((policyError as Error).message ?? policyError),
+        });
+      }
+    }
+
+    const fallbackPolicy = policyPayload ?? {
+      ok: cachedPolicySignature() !== 'invalid',
+      revision: cachedPolicyRevision() ?? null,
+      cached: true,
+    };
+    return res.json({ ok: true, ethics: payload, policy: fallbackPolicy });
   } catch (error) {
     return res.status(503).json({ ok: false, reason: 'ethics_check_failed', detail: String((error as Error).message ?? error) });
   } finally {
@@ -496,6 +627,9 @@ app.post('/gate/*', async (req: Request, res: Response) => {
     { 'x-request-id': requestId },
   );
 
+  applyPolicyHeaders(res, verdictResult.meta?.policyRev ?? null, verdictResult.meta?.policySig ?? null);
+  const policyRevisionHint = verdictResult.meta?.policyRev ?? cachedPolicyRevision();
+
   let degradedHeaderValue: string | null = null;
   if (typeof verdictResult.meta?.degraded === 'string') {
     const degradedValue = verdictResult.meta.degraded.trim();
@@ -569,6 +703,7 @@ app.post('/gate/*', async (req: Request, res: Response) => {
       degraded: degradedActive,
       ttlSeconds: tokenTtlSeconds,
       jti,
+      policyRevision: policyRevisionHint ?? undefined,
     });
     if (jtiStore.seen(claims.jti, claims.exp)) {
       rateLimitBlocks.inc({ scope: 'jti' });

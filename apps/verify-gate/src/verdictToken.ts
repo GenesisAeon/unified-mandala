@@ -13,6 +13,7 @@ export type SignedVerdictClaims = {
   ed?: string[];
   bh?: string[];
   degraded?: number;
+  opr?: string;
   jti: string;
   iat: number;
   exp: number;
@@ -32,6 +33,7 @@ export type SignVerdictInput = {
   degraded: boolean;
   ttlSeconds: number;
   jti: string;
+  policyRevision?: string;
 };
 
 type SecretEntry = { kid?: string; secret: Buffer | string };
@@ -89,6 +91,7 @@ export function signVerdict(payload: SignVerdictInput): { token: string; claims:
     ed: payload.evidenceDomains.length ? [...new Set(payload.evidenceDomains)].sort() : undefined,
     bh: payload.boundaryHits.length ? [...new Set(payload.boundaryHits)].sort() : undefined,
     degraded: payload.degraded ? 1 : undefined,
+    opr: payload.policyRevision,
     jti: payload.jti,
     iat: nowSeconds,
     exp: nowSeconds + Math.max(payload.ttlSeconds, 1),
