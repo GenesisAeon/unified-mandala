@@ -141,6 +141,15 @@ jobs:
         uses: ./.github/actions/run-pnpm-task
         with:
           task: policy:check
+      - name: Install OPA (static)
+        if: runner.os == 'Linux'
+        run: |
+          mkdir -p bin
+          curl -L -o bin/opa https://openpolicyagent.org/downloads/v0.66.0/opa_linux_amd64_static
+          chmod +x bin/opa
+        shell: bash
+      - name: OPA policy tests
+        run: pnpm opa:test -- --timeout 5s
 
   ai_commit_guard:
     name: AI commit guard

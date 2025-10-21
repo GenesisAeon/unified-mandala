@@ -79,6 +79,7 @@
     "chaos:verify-restart-replay": "node scripts/chaos/verifygate-restart-replay.mjs",
     "chaos:verify-dns-rebind": "node scripts/chaos/verifygate-dns-rebind.mjs",
     "chaos:verify-redirect-loop": "node scripts/chaos/verifygate-redirect-loop.mjs",
+    "opa:test": "node scripts/opa/run-opa-test.mjs",
     "opa:bundle": "node scripts/opa/build-bundle.mjs",
     "boundary:run": "tsx scripts/boundary-runner.ts --input scripts/boundary-demo.rules.json --out data://logs/boundary/laws.json",
     "boundary:demo": "tsx scripts/boundary-runner.ts --demo --out data://logs/boundary/laws.demo.json",

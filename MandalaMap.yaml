@@ -142,7 +142,7 @@ entries:
       - 'Fraktal108 Follow-up: Hardening Pack plant TTL-Pinning/Resolver-Cache, CNAME-/IDNA-Checks, TLS-SAN & `remoteAddress`-Vergleich, Redirect-Limits (≤3 Hops, http/https), IPv6-/NAT64-Blocklisten sowie neue Counter/OPA-Inputs; siehe `analysis/devtalk109-evaluation.md`, docs/roadmap v1.0 & codexfeedback*.'
       - 'Fraktal111: Redirect-Kette validiert jeden Hop vor dem ersten Netz-Request, DNS-Cache jittert TTLs mit Request-Coalescing, HTTPS-Ziele durchlaufen TLS/SAN-Preflight (remoteAddress/SAN). Prometheus zählt `verify_gate_ip_mismatch_total`, `verify_gate_tls_name_mismatch_total` und `verify_gate_redirect_block_total{reason="tls-preflight-fail"}` für Grafana/Alerting; Stabilization-Playbook & Codexfeedback vermerken den Abschluss.'
       - 'Fraktal112: TLS-Preflight normalisiert IPv6-Remote-Adressen, NAT64/Teredo-Präfixe stehen auf der Blockliste, `x-verify-network` liefert TTL/Redirect/TLS-Level für OPA & UI (NetworkRiskBadges), Prometheus/Grafana/Alerts beobachten TLS/IP-Mismatch & DNS TTL p95; Chaos-Drills (`pnpm chaos:verify-dns-rebind`, `pnpm chaos:verify-redirect-loop`) sichern TTL-Rebind/Redirect-Loops und laufen nightly.'
-      - 'Fraktal113: Typed Error-Hierarchie (`errors.ts`), `createApp({registry})`-Factory und Metrics-Rebinding für Tests, TLS/IP-Mismatch-E2E-Suites mit Registry-Injektion, neues Grafana-Dashboard `verify-gate-network-safety.json` + Recording-Rule (`verify_gate_dns_ttl_seconds_bucket`) sowie Registry-fähiges `metrics.ts`.'
+      - 'Fraktal113: Typed Error-Hierarchie (`errors.ts`), `createApp({registry})`-Factory und Metrics-Rebinding für Tests, TLS/IP-Mismatch-E2E-Suites mit Registry-Injektion, neues Grafana-Dashboard `verify-gate-network-safety.json` + Recording-Rule (`verify_gate_dns_ttl_pinned_seconds_bucket`) sowie Registry-fähiges `metrics.ts`.'
       - 'Fraktal114: Audit-Middleware (`requestContext`, `logger.ts`), `recordAndMapError` koppelt typed Errors an Metriken/HTTP, `/readyz` prüft Allowlist/JWT; Redirect-Preflight nutzt Range-GET-Fallback, IDNA-/Redirect-Tests sichern Unicode & 405-Szenarien, Ethics erhält `ttl_sec`/`tls_san_ok`/`redirect_hops`.'
     links:
       - label: index.ts
@@ -1110,9 +1110,17 @@ follow_up:
       - MandalaMap.md
     status: ongoing
   - title: Verify-Gate Hardening Pack
-    detail: TTL-Pinning, CNAME/IDNA, TLS/IP-Vergleich, Redirect-Limits und IPv6-/NAT64-Blocklisten sind vorbereitet; neue Counter/OPA-Inputs folgen den Empfehlungen aus `analysis/devtalk109-evaluation.md`.
+    detail: TTL-Pinning, CNAME/IDNA, TLS/IP-Vergleich, Redirect-Limits und IPv6-/NAT64-Blocklisten aus Fraktal108-114 sind produktiv (Redirect/TLS Preflight, Netzwerk-Metriken, Chaos-Drills, OPA-Netzsignale, Runbook-Updates).
     related:
       - apps/verify-gate/
       - docs/roadmap/v1.0-stabilization-playbook.md
       - analysis/devtalk109-evaluation.md
-    status: in-progress
+    status: done
+  - title: OPA bundle & TTL playbooks
+    detail: 'Command Catalog führt `pnpm opa:test`, Observability-Runbook beschreibt TTL-p95-Alerting & VerifyGateLowDNSTTL; nächster Schritt: OPA-Bundle-Artefakte/Alertmanager-Routing dokumentieren.'
+    related:
+      - scripts/opa/run-opa-test.mjs
+      - docs/runbooks/observability.md
+      - docs/runbooks/command-catalog.md
+      - docs/roadmap/v1.0-stabilization-playbook.md
+    status: done

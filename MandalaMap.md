@@ -47,11 +47,16 @@ Samples:
   - Documentation (active) — docs/
   - Governance policies (active) — governance/
   - Manifest documents (active) — manifest/
+  - Ethics OPA policy (active) — apps/ethics-api/opa/policy.rego
+  - OPA regression suite (active) — apps/ethics-api/opa/policy_test.rego
 - ci-infra:
   - GitHub workflows & templates (active) — .github/
   - MandalaMap strict (label gate) (active) — .github/workflows/mandala-map-strict.yml
   - Git hooks (active) — .husky/
   - AWS deployment stubs (active) — aws/
   - Helm charts (active) — charts/
+- observability:
+  - Verify-Gate network metrics (active) — observability/prometheus/recording-rules.yaml
+  - Verify-Gate alerting (active) — observability/alerts/verify-gate.yaml
 
 _Auto-generated summary. Edit YAML as the source of truth._

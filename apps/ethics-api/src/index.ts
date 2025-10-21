@@ -20,7 +20,7 @@ import {
 } from './boundary-client.js';
 import { EthicsCheckSchema, type EthicsCheckInput } from './schemas.js';
 import { parse as parseDomain } from 'tldts';
-import { evaluateOpa } from './opa.js';
+import { runOpaEval } from './opa.js';
 import {
   assertEthicsInput,
   assertNetworkSignals,
@@ -581,33 +581,33 @@ app.post(
       typeof fallbackIntentCandidate === 'string' ? fallbackIntentCandidate : '';
 
     const netPayload = payload.net as (typeof payload.net & Record<string, unknown>) | undefined;
-    const opaNet = netPayload
-      ? {
-          ttl_sec:
-            typeof netPayload.ttl_sec === 'number' && Number.isFinite(netPayload.ttl_sec)
-              ? netPayload.ttl_sec
-              : typeof netPayload.min_ttl_sec === 'number' && Number.isFinite(netPayload.min_ttl_sec)
-                ? netPayload.min_ttl_sec
-                : undefined,
-          min_ttl_sec:
-            typeof netPayload.min_ttl_sec === 'number' && Number.isFinite(netPayload.min_ttl_sec)
-              ? netPayload.min_ttl_sec
-              : undefined,
-          tls_san_ok:
-            typeof netPayload.tls_san_ok === 'boolean'
-              ? Boolean(netPayload.tls_san_ok)
-              : undefined,
-          resolved_ip:
-            typeof netPayload.resolved_ip === 'string' && netPayload.resolved_ip.length > 0
-              ? netPayload.resolved_ip
-              : undefined,
-          redirect_hops:
-            typeof netPayload.redirect_hops === 'number'
-              ? Number(netPayload.redirect_hops)
-              : undefined,
-          is_private: netPayload.is_private === true,
-        }
-      : undefined;
+    const ttlCandidate =
+      typeof netPayload?.ttl_sec === 'number' && Number.isFinite(netPayload.ttl_sec)
+        ? netPayload.ttl_sec
+        : typeof netPayload?.min_ttl_sec === 'number' && Number.isFinite(netPayload.min_ttl_sec)
+          ? netPayload.min_ttl_sec
+          : undefined;
+    const resolvedIp =
+      typeof netPayload?.resolved_ip === 'string' && netPayload.resolved_ip.length > 0
+        ? netPayload.resolved_ip
+        : undefined;
+    const tlsSanOk =
+      typeof netPayload?.tls_san_ok === 'boolean' ? Boolean(netPayload.tls_san_ok) : undefined;
+    const redirectHops =
+      typeof netPayload?.redirect_hops === 'number' && Number.isFinite(netPayload.redirect_hops)
+        ? Number(netPayload.redirect_hops)
+        : 0;
+
+    const opaNetwork: Record<string, unknown> = { redirect_hops: redirectHops };
+    if (ttlCandidate !== undefined) {
+      opaNetwork.ttl_sec = ttlCandidate;
+    }
+    if (tlsSanOk !== undefined) {
+      opaNetwork.tls_san_ok = tlsSanOk;
+    }
+    if (resolvedIp) {
+      opaNetwork.resolved_ip = resolvedIp;
+    }
 
     const severityValues = violations
       .map((violation) => (typeof violation.severity === 'string' ? violation.severity.toLowerCase() : undefined))
@@ -630,6 +630,9 @@ app.post(
       boundaryMeta.severity_max = severityMax;
     }
 
+    const policyMinTtl = Number.parseInt(process.env.ETHICS_MIN_TTL_SEC ?? '20', 10);
+    const policyMaxRedirects = Number.parseInt(process.env.ETHICS_MAX_REDIRECTS ?? '3', 10);
+
     const opaInput = {
       degraded: degradeFlag,
       intent:
@@ -641,11 +644,15 @@ app.post(
       evidence: {
         domains,
         domains_distinct: domains.length,
-        strong: strongEvidenceCount,
+        strong_count: strongEvidenceCount,
       },
       boundary: boundaryMeta,
       flags: opaFlags,
-      network: opaNet,
+      network: opaNetwork,
+      policy: {
+        min_ttl_sec: Number.isFinite(policyMinTtl) ? policyMinTtl : 20,
+        max_redirect_hops: Number.isFinite(policyMaxRedirects) ? policyMaxRedirects : 3,
+      },
     };
 
     try {
@@ -663,23 +670,72 @@ app.post(
       throw error;
     }
 
-    const opaResult = await evaluateOpa(opaInput);
+    const opaDecision = await runOpaEval(opaInput);
 
-    if (opaResult.enforced && opaResult.deny) {
-      response = {
-        ...response,
-        ok: false,
-        verdict: 'red',
-        reason: opaResult.reason ?? 'policy_denied',
-        neededEvidence: opaResult.reasons && opaResult.reasons.length > 0 ? opaResult.reasons : [],
-        deps: {
-          ...(response.deps ?? {}),
-          opa: {
-            reason: opaResult.reason ?? 'policy_denied',
-            reasons: opaResult.reasons ?? [],
-          },
-        },
-      };
+    const policyNeeded = Array.isArray(opaDecision.neededEvidence)
+      ? opaDecision.neededEvidence
+      : [];
+
+    const formatNeededEvidence = (entry: unknown): string | null => {
+      if (typeof entry === 'string') {
+        return entry;
+      }
+      if (entry && typeof entry === 'object') {
+        const record = entry as Record<string, unknown>;
+        if (typeof record.type === 'string' && record.type.length > 0) {
+          const detailPairs = Object.entries(record)
+            .filter(([key]) => key !== 'type' && record[key] !== undefined)
+            .map(([key, value]) => {
+              if (Array.isArray(value)) {
+                return `${key}=${value.join(',')}`;
+              }
+              return `${key}=${value}`;
+            });
+          if (detailPairs.length > 0) {
+            return `${record.type}:${detailPairs.join('|')}`;
+          }
+          return record.type;
+        }
+      }
+      return null;
+    };
+
+    const formattedNeeded = policyNeeded
+      .map(formatNeededEvidence)
+      .filter((value): value is string => Boolean(value));
+
+    const opaDeps = {
+      allow: opaDecision.allow,
+      deny: opaDecision.deny,
+      reasons: opaDecision.reasons,
+      neededEvidence: policyNeeded,
+      policyRev: opaDecision.policyRev,
+      enforced: opaDecision.enforced,
+      output: opaDecision.output,
+    };
+
+    if (!response.deps) {
+      response.deps = {};
+    }
+    (response.deps as Record<string, unknown>).opa = opaDeps;
+
+    if (opaDecision.enforced) {
+      const needed = new Set(response.neededEvidence ?? []);
+      for (const entry of formattedNeeded) {
+        needed.add(entry);
+      }
+
+      if (opaDecision.deny) {
+        response = {
+          ...response,
+          ok: false,
+          verdict: 'red',
+          reason: opaDecision.reasons[0] ?? response.reason ?? 'policy_denied',
+          neededEvidence: Array.from(needed),
+        };
+      } else if (needed.size !== (response.neededEvidence ?? []).length) {
+        response.neededEvidence = Array.from(needed);
+      }
     }
 
     verdictCounter.inc({ verdict: response.verdict });

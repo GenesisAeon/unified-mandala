@@ -97,8 +97,8 @@ function buildMetrics(customRegistry?: Registry): MetricsApi {
   });
 
   const dnsTtl = new Histogram({
-    name: 'verify_gate_dns_ttl_seconds',
-    help: 'Authoritative DNS TTL (seconds) used to bound keep-alive',
+    name: 'verify_gate_dns_ttl_pinned_seconds',
+    help: 'Authoritative DNS TTL (seconds) used to bound keep-alive for pinned upstreams',
     buckets: [1, 5, 10, 20, 30, 60, 120, 300, 600, 1800, 3600],
     labelNames: ['host'],
     registers: [registry],

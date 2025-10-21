@@ -1,24 +1,71 @@
 {
   "runs": [
     {
+      "fraktalrun": "FR-UM-2025-12-24-Fraktal114-CommandCatalogFix",
+      "status": "done",
+      "notes": "Command Catalog-Markdown wurde auf das kanonische Layout zurückgesetzt (nur `pnpm opa:test` bleibt) und codexfeedback-Artefakte dokumentieren die Bereinigung; MandalaMap-Paritätslauf bleibt optional offen.",
+      "deliverables": [
+        "docs/runbooks/command-catalog.md",
+        "codexfeedback.md",
+        "codexfeedback.json",
+        "codexfeedback.yaml",
+        "codexfeedback/codexfeedback-latest.md",
+        "codexfeedback/codexfeedback-latest.json",
+        "codexfeedback/codexfeedback-latest.yaml"
+      ],
+      "hook": {
+        "progress": "Command Catalog-Zeile für `pnpm opa:test` ist erhalten, Markdown-Layout wieder stabilisiert.",
+        "next_step": "Optional: `pnpm meta:mandala:sync` ausführen, um YAML/JSON-Divergenzen im MandalaMap-Set zu glätten.",
+        "repeat_required": false
+      }
+    },
+    {
+      "fraktalrun": "FR-UM-2025-12-24-Fraktal114-RunbookFollowup",
+      "status": "done",
+      "notes": "Command Catalog führt `pnpm opa:test`, Observability-Runbook beschreibt TTL-p95-Alerting (`VerifyGateLowDNSTTL`); MandalaMap/codexfeedback markieren Hardening-Pack-Follow-up als abgeschlossen und `analysis/devtalk114-evaluation.md` hält Restarbeiten (OPA-Bundle, `/ethics/check` Integrationstest) fest.",
+      "deliverables": [
+        "analysis/devtalk114-evaluation.md",
+        "docs/runbooks/command-catalog.md",
+        "docs/runbooks/command-catalog.yaml",
+        "docs/runbooks/command-catalog.json",
+        "docs/runbooks/observability.md",
+        "docs/roadmap/v1.0-stabilization-playbook.md",
+        "docs/roadmap/v1.0-stabilization-playbook.yaml",
+        "MandalaMap.yaml",
+        "MandalaMap.json",
+        "codexfeedback.md",
+        "codexfeedback.json",
+        "codexfeedback.yaml",
+        "codexfeedback/codexfeedback-latest.md",
+        "codexfeedback/codexfeedback-latest.json",
+        "codexfeedback/codexfeedback-latest.yaml"
+      ],
+      "hook": {
+        "progress": "Runbooks & Command Catalog spiegeln `pnpm opa:test` + TTL-p95 Alert, MandalaMap follow_up → done.",
+        "next_step": "OPA-Bundle (`opa build`) + Alertmanager-Routing dokumentieren; Integrationstest für `/ethics/check` Deny-Flow planen.",
+        "repeat_required": false
+      }
+    },
+    {
       "fraktalrun": "Fraktal114 VerifyGateAudit",
       "status": "done",
-      "notes": "Verify-Gate hat ein Audit-Middleware (`requestContext`/`logger.ts`), kapselt Error→HTTP/Metriken via `recordAndMapError` und härtet `/readyz` (Allowlist/JWT). Redirect-Preflight fällt bei HEAD-405 auf Range-GET zurück, IDNA-Tests decken punycode-Allowlists ab. Ethics-API validiert OPA-Inputs (`assertEthicsInput`/`assertNetworkSignals`), normalisiert IPs und erzwingt Netzsignale (ttl_sec/tls_san_ok/redirect_hops) inklusive Vitest-Suite.",
+      "notes": "Verify-Gate hält Audit-/Redirect-Hardening und ergänzt Recording-Gruppe `verify-gate-network` + Alerts (`VerifyGateTLSNameMismatchSpike`, `VerifyGateLowDNSTTL`). Ethics-API führt die Netzsignal-Policy (`apps/ethics-api/opa/policy.rego`), Regressionstests (`policy_test.rego`) und das CLI `pnpm opa:test` (inkl. CI-Install der OPA-Binary) ein.",
       "deliverables": [
-        "apps/verify-gate/src/app.ts",
-        "apps/verify-gate/src/errors-map.ts",
-        "apps/verify-gate/src/mw/requestContext.ts",
-        "apps/verify-gate/src/logger.ts",
-        "apps/verify-gate/src/metrics.ts",
-        "apps/verify-gate/src/security/ssrf.ts",
-        "apps/verify-gate/src/proxy/followRedirects.ts",
-        "apps/verify-gate/src/http/headerForward.ts",
-        "apps/verify-gate/src/__tests__/idna-allowlist.test.ts",
-        "apps/verify-gate/src/__tests__/redirect-fallback.test.ts",
-        "apps/ethics-api/src/schemas/opa-input.schema.ts",
         "apps/ethics-api/src/index.ts",
-        "apps/ethics-api/src/schemas.ts",
+        "apps/ethics-api/src/opa.ts",
+        "apps/ethics-api/src/schemas/opa-input.schema.ts",
         "apps/ethics-api/src/__tests__/opa-input.schema.test.ts",
+        "apps/ethics-api/opa/policy.rego",
+        "apps/ethics-api/opa/policy_test.rego",
+        "apps/ethics-api/package.json",
+        "scripts/opa/run-opa-test.mjs",
+        "package.json",
+        ".github/workflows/ci.core.yml",
+        ".github/workflows/ci.nightly.yml",
+        "observability/prometheus/recording-rules.yaml",
+        "observability/alerts/verify-gate.yaml",
+        "grafana/dashboards/verify-gate-network-safety.json",
+        "grafana/dashboards/verify-gate-ethics-mini.json",
         "docs/roadmap/v1.0-stabilization-playbook.md",
         "docs/roadmap/v1.0-stabilization-playbook.yaml",
         "MandalaMap.md",
@@ -33,8 +80,8 @@
         "docs/fraktal/codexfeedback/codexfeedback-fraktal114.yaml"
       ],
       "hook": {
-        "progress": "Audit-Logs & Error-Mapping aktiv, Redirect-Fallback & IDNA-Tests decken neue Pfade; OPA-Input-Schema schützt Netzsignale.",
-        "next_step": "OPA-Policy und Monitoring-Profile auf neue Netzwerkfelder (ttl_sec/tls_san_ok/redirect_hops) erweitern.",
+        "progress": "OPA-Policy + CLI laufen fail-closed, Verify-Gate liefert Netzwerk-Recording/Alerts auf TLS/IP/TTL.",
+        "next_step": "OPA-Bundle & Alertmanager-Doku um TTL-Schwellen erweitern, Monitoring-Playbooks angleichen.",
         "repeat_required": false
       }
     },
@@ -136,7 +183,7 @@
     {
       "fraktalrun": "Fraktal108 Hardening Pack",
       "status": "done",
-      "notes": "`analysis/devtalk109-evaluation.md` priorisiert TTL-bewusste DNS-Pins (Resolver-Cache, Keep-Alive ≤ minTTL), CNAME-/IDNA-Validierung, TLS-SAN/IP-Vergleich & Remote-IP-Prüfung, Redirect-Guards (≤3 Hops, http/https), IPv6/NAT64-Blocklisten sowie neue Counter `verify_gate_dns_ttl_seconds_bucket`/`verify_gate_redirect_block_total`/`verify_gate_ip_mismatch_total`/`verify_gate_tls_name_mismatch_total` und OPA-Inputs `resolved_ip`/`cname_chain`/`min_ttl_sec`. MandalaMap.*, Stabilization-Playbook.* und codexfeedback* markieren den Lauf als in progress; Umsetzung & Tests folgen.",
+      "notes": "`analysis/devtalk109-evaluation.md` priorisiert TTL-bewusste DNS-Pins (Resolver-Cache, Keep-Alive ≤ minTTL), CNAME-/IDNA-Validierung, TLS-SAN/IP-Vergleich & Remote-IP-Prüfung, Redirect-Guards (≤3 Hops, http/https), IPv6/NAT64-Blocklisten sowie neue Counter `verify_gate_dns_ttl_pinned_seconds_bucket`/`verify_gate_redirect_block_total`/`verify_gate_ip_mismatch_total`/`verify_gate_tls_name_mismatch_total` und OPA-Inputs `resolved_ip`/`cname_chain`/`min_ttl_sec`. MandalaMap.*, Stabilization-Playbook.* und codexfeedback* markieren den Lauf als in progress; Umsetzung & Tests folgen.",
       "deliverables": [
         "analysis/devtalk109-evaluation.md",
         "docs/roadmap/v1.0-stabilization-playbook.md",
