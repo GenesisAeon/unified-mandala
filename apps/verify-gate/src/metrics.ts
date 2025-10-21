@@ -1,122 +1,246 @@
-import client from 'prom-client';
+import { Counter, Gauge, Histogram, Registry, collectDefaultMetrics } from 'prom-client';
 
 type MethodLabel = string;
 type RouteLabel = string;
 type CodeLabel = string;
 
-export const registry = new client.Registry();
-client.collectDefaultMetrics({ register: registry });
+export type MetricsApi = {
+  registry: Registry;
+  inflightGauge: Gauge<string>;
+  httpResponses: Counter<'code'>;
+  idemHits: Counter<string>;
+  ssrfBlocks: Counter<'host' | 'resolved_ip'>;
+  ssrfResolveErrors: Counter<'host'>;
+  ssrfResolveEmpty: Counter<'host'>;
+  dnsTtl: Histogram<'host'>;
+  redirectFollow: Counter<'hops' | 'start_host'>;
+  redirectBlock: Counter<'code' | 'start_host'>;
+  ipMismatch: Counter<'host'>;
+  tlsNameMismatch: Counter<'host'>;
+  tokenFails: Counter<'reason'>;
+  rateLimitBlocks: Counter<'scope'>;
+  upstreamDuration: Histogram<'method' | 'route' | 'code'>;
+  observeUpstreamDuration(method: MethodLabel, route: RouteLabel, code: CodeLabel, durationMs: number): void;
+  startUpstreamTimer(method: MethodLabel, route: RouteLabel): (code: CodeLabel) => void;
+  observeTtl(host: string, ttlSeconds: number): void;
+  incRedirectBlock(code: string, startHost?: string): void;
+  incIpMismatch(host: string): void;
+  incTlsNameMismatch(host: string): void;
+  incResolveError(host: string): void;
+  incResolveEmpty(host: string): void;
+};
 
-export const inflightGauge = new client.Gauge({
-  name: 'verify_gate_inflight',
-  help: 'Number of in-flight verify-gate proxy requests',
-  registers: [registry],
-});
+let singleton: MetricsApi | null = null;
 
-export const httpResponses = new client.Counter({
-  name: 'verify_gate_http_responses_total',
-  help: 'Count of HTTP responses by status code family',
-  labelNames: ['code'],
-  registers: [registry],
-});
+function buildMetrics(customRegistry?: Registry): MetricsApi {
+  const registry = customRegistry ?? new Registry();
+  collectDefaultMetrics({ register: registry });
 
-export const idemHits = new client.Counter({
-  name: 'verify_gate_idem_hits_total',
-  help: 'Duplicate or replayed requests blocked',
-  registers: [registry],
-});
+  const inflightGauge = new Gauge({
+    name: 'verify_gate_inflight',
+    help: 'Number of in-flight verify-gate proxy requests',
+    registers: [registry],
+  });
 
-export const ssrfBlocks = new client.Counter({
-  name: 'verify_gate_ssrf_block_total',
-  help: 'Requests blocked by SSRF allowlist',
-  labelNames: ['host', 'resolved_ip'],
-  registers: [registry],
-});
+  const httpResponses = new Counter({
+    name: 'verify_gate_http_responses_total',
+    help: 'Count of HTTP responses by status code family',
+    labelNames: ['code'],
+    registers: [registry],
+  });
 
-export const ssrfResolveErrors = new client.Counter({
-  name: 'verify_gate_ssrf_resolve_error_total',
-  help: 'DNS resolution errors while evaluating SSRF allowlist entries',
-  labelNames: ['host'],
-  registers: [registry],
-});
+  const idemHits = new Counter({
+    name: 'verify_gate_idem_hits_total',
+    help: 'Duplicate or replayed requests blocked',
+    registers: [registry],
+  });
 
-export const ssrfResolveEmpty = new client.Counter({
-  name: 'verify_gate_ssrf_resolve_empty_total',
-  help: 'Empty DNS A/AAAA resolution results for SSRF allowlist entries',
-  labelNames: ['host'],
-  registers: [registry],
-});
+  const ssrfBlocks = new Counter({
+    name: 'verify_gate_ssrf_block_total',
+    help: 'Requests blocked by SSRF allowlist',
+    labelNames: ['host', 'resolved_ip'],
+    registers: [registry],
+  });
 
-export const dnsTtlPinned = new client.Histogram({
-  name: 'verify_gate_dns_ttl_pinned_seconds',
-  help: 'Pinned DNS TTL (seconds) used to bound keep-alive',
-  buckets: [1, 5, 10, 20, 30, 60, 120, 300],
-  labelNames: ['host'],
-  registers: [registry],
-});
+  const ssrfResolveErrors = new Counter({
+    name: 'verify_gate_ssrf_resolve_error_total',
+    help: 'DNS resolution errors while evaluating SSRF allowlist entries',
+    labelNames: ['host'],
+    registers: [registry],
+  });
 
-export const redirectFollow = new client.Counter({
-  name: 'verify_gate_redirect_follow_total',
-  help: 'Redirects successfully followed before proxying',
-  labelNames: ['hops', 'start_host'],
-  registers: [registry],
-});
+  const ssrfResolveEmpty = new Counter({
+    name: 'verify_gate_ssrf_resolve_empty_total',
+    help: 'Empty DNS A/AAAA resolution results for SSRF allowlist entries',
+    labelNames: ['host'],
+    registers: [registry],
+  });
 
-export const redirectBlocks = new client.Counter({
-  name: 'verify_gate_redirect_block_total',
-  help: 'Redirect chains blocked due to policy or scheme',
-  labelNames: ['reason', 'start_host'],
-  registers: [registry],
-});
+  const dnsTtl = new Histogram({
+    name: 'verify_gate_dns_ttl_seconds',
+    help: 'Authoritative DNS TTL (seconds) used to bound keep-alive',
+    buckets: [1, 5, 10, 20, 30, 60, 120, 300, 600, 1800, 3600],
+    labelNames: ['host'],
+    registers: [registry],
+  });
 
-export const ipMismatch = new client.Counter({
-  name: 'verify_gate_ip_mismatch_total',
-  help: 'Pinned IP did not match connected remote',
-  labelNames: ['host'],
-  registers: [registry],
-});
+  const redirectFollow = new Counter({
+    name: 'verify_gate_redirect_follow_total',
+    help: 'Redirects successfully followed before proxying',
+    labelNames: ['hops', 'start_host'],
+    registers: [registry],
+  });
 
-export const tlsNameMismatch = new client.Counter({
-  name: 'verify_gate_tls_name_mismatch_total',
-  help: 'TLS SAN validation failed for pinned request',
-  labelNames: ['host'],
-  registers: [registry],
-});
+  const redirectBlock = new Counter({
+    name: 'verify_gate_redirect_block_total',
+    help: 'Redirect chains blocked due to policy or scheme',
+    labelNames: ['code', 'start_host'],
+    registers: [registry],
+  });
 
-export const tokenFails = new client.Counter({
-  name: 'verify_gate_token_fail_total',
-  help: 'Upstream refused verdict token or token missing',
-  labelNames: ['reason'],
-  registers: [registry],
-});
+  const ipMismatch = new Counter({
+    name: 'verify_gate_ip_mismatch_total',
+    help: 'Pinned IP did not match connected remote',
+    labelNames: ['host'],
+    registers: [registry],
+  });
 
-export const rateLimitBlocks = new client.Counter({
-  name: 'verify_gate_rate_limit_total',
-  help: 'Requests blocked due to rate limits',
-  labelNames: ['scope'],
-  registers: [registry],
-});
+  const tlsNameMismatch = new Counter({
+    name: 'verify_gate_tls_name_mismatch_total',
+    help: 'TLS SAN validation failed for pinned request',
+    labelNames: ['host'],
+    registers: [registry],
+  });
 
-export const upstreamDuration = new client.Histogram({
-  name: 'verify_gate_upstream_duration_ms',
-  help: 'Latency to upstream (ms)',
-  buckets: [50, 100, 250, 500, 1000, 2000, 5000],
-  labelNames: ['method', 'route', 'code'],
-  registers: [registry],
-});
+  const tokenFails = new Counter({
+    name: 'verify_gate_token_fail_total',
+    help: 'Upstream refused verdict token or token missing',
+    labelNames: ['reason'],
+    registers: [registry],
+  });
 
-export function observeUpstreamDuration(method: MethodLabel, route: RouteLabel, code: CodeLabel, durationMs: number): void {
-  const safeMethod = method?.toUpperCase?.() ?? 'GET';
-  const safeRoute = route && route.length > 0 ? route : '/';
-  const safeCode = code && code.length > 0 ? code : 'unknown';
-  upstreamDuration.labels(safeMethod, safeRoute, safeCode).observe(durationMs);
-}
+  const rateLimitBlocks = new Counter({
+    name: 'verify_gate_rate_limit_total',
+    help: 'Requests blocked due to rate limits',
+    labelNames: ['scope'],
+    registers: [registry],
+  });
 
-export function startUpstreamTimer(method: MethodLabel, route: RouteLabel): (code: CodeLabel) => void {
-  const start = process.hrtime.bigint();
-  return (code: CodeLabel) => {
-    const delta = process.hrtime.bigint() - start;
-    const durationMs = Number(delta) / 1_000_000;
-    observeUpstreamDuration(method, route, code, durationMs);
+  const upstreamDuration = new Histogram({
+    name: 'verify_gate_upstream_duration_ms',
+    help: 'Latency to upstream (ms)',
+    buckets: [50, 100, 200, 400, 800, 1600, 3200, 6400],
+    labelNames: ['method', 'route', 'code'],
+    registers: [registry],
+  });
+
+  const observeUpstreamDuration = (method: MethodLabel, route: RouteLabel, code: CodeLabel, durationMs: number) => {
+    const safeMethod = method?.toUpperCase?.() ?? 'GET';
+    const safeRoute = route && route.length > 0 ? route : '/';
+    const safeCode = code && code.length > 0 ? code : 'unknown';
+    upstreamDuration.labels(safeMethod, safeRoute, safeCode).observe(durationMs);
   };
+
+  const startUpstreamTimer = (method: MethodLabel, route: RouteLabel) => {
+    const start = process.hrtime.bigint();
+    return (code: CodeLabel) => {
+      const delta = process.hrtime.bigint() - start;
+      const durationMs = Number(delta) / 1_000_000;
+      observeUpstreamDuration(method, route, code, durationMs);
+    };
+  };
+
+  const api: MetricsApi = {
+    registry,
+    inflightGauge,
+    httpResponses,
+    idemHits,
+    ssrfBlocks,
+    ssrfResolveErrors,
+    ssrfResolveEmpty,
+    dnsTtl,
+    redirectFollow,
+    redirectBlock,
+    ipMismatch,
+    tlsNameMismatch,
+    tokenFails,
+    rateLimitBlocks,
+    upstreamDuration,
+    observeUpstreamDuration,
+    startUpstreamTimer,
+    observeTtl: (host, ttlSeconds) => dnsTtl.labels(host).observe(ttlSeconds),
+    incRedirectBlock: (code, startHost) => redirectBlock.inc({ code, start_host: startHost ?? 'unknown' }),
+    incIpMismatch: (host) => ipMismatch.inc({ host }),
+    incTlsNameMismatch: (host) => tlsNameMismatch.inc({ host }),
+    incResolveError: (host) => ssrfResolveErrors.inc({ host }),
+    incResolveEmpty: (host) => ssrfResolveEmpty.inc({ host }),
+  };
+
+  return api;
 }
+
+export function configureMetrics(customRegistry?: Registry): MetricsApi {
+  if (!customRegistry && singleton) {
+    return singleton;
+  }
+  const api = buildMetrics(customRegistry);
+  if (!customRegistry) {
+    singleton = api;
+  }
+  return api;
+}
+
+export let metrics = configureMetrics();
+
+export function setMetrics(api: MetricsApi): void {
+  metrics = api;
+  registry = api.registry;
+  inflightGauge = api.inflightGauge;
+  httpResponses = api.httpResponses;
+  idemHits = api.idemHits;
+  ssrfBlocks = api.ssrfBlocks;
+  ssrfResolveErrors = api.ssrfResolveErrors;
+  ssrfResolveEmpty = api.ssrfResolveEmpty;
+  dnsTtl = api.dnsTtl;
+  redirectFollow = api.redirectFollow;
+  redirectBlock = api.redirectBlock;
+  ipMismatch = api.ipMismatch;
+  tlsNameMismatch = api.tlsNameMismatch;
+  tokenFails = api.tokenFails;
+  rateLimitBlocks = api.rateLimitBlocks;
+  upstreamDuration = api.upstreamDuration;
+  observeUpstreamDuration = api.observeUpstreamDuration;
+  startUpstreamTimer = api.startUpstreamTimer;
+  observeTtl = api.observeTtl;
+  incRedirectBlock = api.incRedirectBlock;
+  incIpMismatch = api.incIpMismatch;
+  incTlsNameMismatch = api.incTlsNameMismatch;
+  incResolveError = api.incResolveError;
+  incResolveEmpty = api.incResolveEmpty;
+}
+
+export let {
+  registry,
+  inflightGauge,
+  httpResponses,
+  idemHits,
+  ssrfBlocks,
+  ssrfResolveErrors,
+  ssrfResolveEmpty,
+  dnsTtl,
+  redirectFollow,
+  redirectBlock,
+  ipMismatch,
+  tlsNameMismatch,
+  tokenFails,
+  rateLimitBlocks,
+  upstreamDuration,
+  observeUpstreamDuration,
+  startUpstreamTimer,
+  observeTtl,
+  incRedirectBlock,
+  incIpMismatch,
+  incTlsNameMismatch,
+  incResolveError,
+  incResolveEmpty,
+} = metrics;

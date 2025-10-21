@@ -260,7 +260,7 @@
       },
       "targets": [
         {
-          "expr": "p95:verify_gate_dns_ttl_pinned_seconds",
+          "expr": "p95:verify_gate_dns_ttl_seconds",
           "legendFormat": "p95",
           "refId": "A"
         }

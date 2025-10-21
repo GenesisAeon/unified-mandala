@@ -1,18 +1,7 @@
 import { pinnedRequest } from './pinnedRequest.js';
 import { assertAllowed, type AllowResult, SSRFDenyError } from '../security/ssrf.js';
-import { redirectBlocks, redirectFollow } from '../metrics.js';
-
-export class RedirectBadSchemeError extends Error {
-  public readonly code = 'REDIRECT_BAD_SCHEME' as const;
-}
-
-export class RedirectTooManyError extends Error {
-  public readonly code = 'REDIRECT_TOO_MANY' as const;
-}
-
-export class RedirectPrivateTargetError extends Error {
-  public readonly code = 'REDIRECT_PRIVATE' as const;
-}
+import { incRedirectBlock, redirectFollow } from '../metrics.js';
+import { RedirectBadSchemeError, RedirectPrivateTargetError, RedirectTooManyError } from '../errors.js';
 
 export type RedirectContext = {
   allow: AllowResult;
@@ -50,7 +39,7 @@ export async function followRedirectsWithPreflight(
         ctx = { allow: await assertAllowed(currentUrl.toString()) };
       } catch (error) {
         if (error instanceof SSRFDenyError) {
-          redirectBlocks.inc({ reason: 'private-target', start_host: startHost });
+          incRedirectBlock('private-target', startHost);
           throw new RedirectPrivateTargetError(error.message);
         }
         throw error;
@@ -92,7 +81,7 @@ export async function followRedirectsWithPreflight(
 
       const next = new URL(location, currentUrl);
       if (!/^https?:$/.test(next.protocol)) {
-        redirectBlocks.inc({ reason: 'bad-scheme', start_host: startHost });
+        incRedirectBlock('bad-scheme', startHost);
         throw new RedirectBadSchemeError('redirect_scheme_not_allowed');
       }
 
@@ -101,7 +90,7 @@ export async function followRedirectsWithPreflight(
         allowNext = await assertAllowed(next.toString());
       } catch (error) {
         if (error instanceof SSRFDenyError) {
-          redirectBlocks.inc({ reason: 'private-target', start_host: startHost });
+          incRedirectBlock('private-target', startHost);
           throw new RedirectPrivateTargetError(error.message);
         }
         throw error;
@@ -115,8 +104,14 @@ export async function followRedirectsWithPreflight(
     }
   }
 
-  redirectBlocks.inc({ reason: 'too-many', start_host: startHost });
+  incRedirectBlock('too-many', startHost);
   throw new RedirectTooManyError('too_many_redirects');
 }
 
 export const followRedirects = followRedirectsWithPreflight;
+
+export {
+  RedirectBadSchemeError,
+  RedirectPrivateTargetError,
+  RedirectTooManyError,
+};
