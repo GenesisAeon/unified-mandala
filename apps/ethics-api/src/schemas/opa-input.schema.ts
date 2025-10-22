@@ -31,6 +31,13 @@ export interface OpaNetworkMeta {
   tls_ip_mismatch?: boolean;
 }
 
+export interface EthicsOPANetworkSignals extends OpaNetworkMeta {
+  ttl_sec: number;
+  tls_san_ok: boolean;
+  resolved_ip: string;
+  redirect_hops: number;
+}
+
 export interface OpaEthicsInput {
   intent?: string;
   content?: string;
@@ -45,6 +52,24 @@ export interface OpaEthicsInput {
     min_ttl_sec?: number;
     max_redirect_hops?: number;
   };
+}
+
+export interface EthicsOPAEvidence extends OpaEvidenceMeta {
+  domains_distinct: number;
+  strong_count: number;
+}
+
+export interface EthicsOPAPolicyConfig {
+  min_ttl_sec: number;
+  max_redirect_hops: number;
+}
+
+export interface EthicsOPAInput extends OpaEthicsInput {
+  degraded: boolean;
+  network: EthicsOPANetworkSignals;
+  evidence: EthicsOPAEvidence;
+  boundary: OpaBoundaryMeta & { severity_max: 'low' | 'medium' | 'high' };
+  policy: EthicsOPAPolicyConfig;
 }
 
 const evidenceItemSchema: JSONSchemaType<EvidenceItem> = {
