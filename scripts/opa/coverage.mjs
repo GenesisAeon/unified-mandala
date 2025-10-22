@@ -9,8 +9,8 @@ import { argv, exit, stdin as stdinStream } from 'node:process';
 function parseArgs() {
   const args = {
     file: null,
-    min: Number(process.env.OPA_MIN_COVERAGE ?? '0.85'),
-    top: Number(process.env.OPA_COVERAGE_REPORT_COUNT ?? '5'),
+    min: Number(process.env.OPA_COVER_MIN ?? '0.85'),
+    top: Number(process.env.OPA_COVER_TOP ?? '5'),
     failOnFailures: true,
   };
 
@@ -153,6 +153,16 @@ function computeCoverage(files) {
     console.error(error?.message ?? error);
     exit(3);
     return;
+  }
+
+  const zeroLineFiles = Object.entries(files).filter(([, details]) => {
+    return !Array.isArray(details?.covered) && !Array.isArray(details?.not_covered);
+  });
+  if (zeroLineFiles.length) {
+    console.warn(`WARN: ${zeroLineFiles.length} file(s) reported no line data`);
+    for (const [file] of zeroLineFiles) {
+      console.warn(` - ${file}`);
+    }
   }
 
   const { covered, total, offenders } = computeCoverage(files);
