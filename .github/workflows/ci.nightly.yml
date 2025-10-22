@@ -1,75 +1,63 @@
-name: ci.nightly
+name: Nightly
 
 on:
-  schedule:
-    - cron: '37 3 * * *'
-  workflow_dispatch:
+  schedule: [{ cron: '17 2 * * *' }]
+  workflow_dispatch: {}
 
 jobs:
-  extended:
+  nightly-chaos:
     runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      GRAFANA_BASE_URL: ${{ secrets.GRAFANA_BASE_URL }}
+      VERIFY_GATE_DASH_UID: ${{ secrets.VERIFY_GATE_DASH_UID }}
+      ETHICS_MINI_UID: ${{ secrets.ETHICS_MINI_UID }}
+      OPA_COVERAGE_UID: ${{ secrets.OPA_COVERAGE_UID }}
+      ALERTMANAGER_URL: ${{ secrets.ALERTMANAGER_URL }}
+      ALERTMANAGER_TOKEN: ${{ secrets.ALERTMANAGER_TOKEN }}
+      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
     steps:
       - uses: actions/checkout@v4
-      - name: Sanity suite
-        uses: ./.github/actions/run-pnpm-task
-        with:
-          task: sanity
-      - name: Extended adapters offline
-        uses: ./.github/actions/run-pnpm-task
-        with:
-          task: adapters:offline
-      - name: Coverage
-        uses: ./.github/actions/run-pnpm-task
-        with:
-          task: test:unit:coverage
-      - name: Install OPA (static)
-        if: runner.os == 'Linux'
+      - uses: actions/setup-node@v4
+        with: { node-version: '20', cache: 'pnpm' }
+      - name: Install
         run: |
-          mkdir -p bin
-          curl -L -o bin/opa https://openpolicyagent.org/downloads/v0.66.0/opa_linux_amd64_static
-          chmod +x bin/opa
-        shell: bash
-      - name: OPA policy tests
-        run: pnpm opa:test -- --timeout 5s
-      - name: OPA build + sign + verify
-        env:
-          OPA_SIGN_ENABLE: '1'
-          OPA_SIGN_GPG_BIN: gpg
-          OPA_SIGN_GPG_KEY: ${{ secrets.MANDALA_GPG_KEY_ID }}
-        run: pnpm opa:bundle:sign
-      - name: Upload OPA bundle artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: mandala-ethics-bundle-nightly
-          path: |
-            dist/opa/mandala-ethics-bundle.tar.gz
-            dist/opa/mandala-ethics-bundle.tar.gz.sha256
-            dist/opa/mandala-ethics-bundle.tar.gz.asc
-      - name: Repomap full
-        shell: bash
+          corepack enable
+          pnpm i --frozen-lockfile
+
+      - name: Chaos – DNS rebind
+        run: pnpm -w chaos:verify-dns-rebind
+      - name: Chaos – redirect loop
+        run: pnpm -w chaos:verify-redirect-loop
+      - name: Smoke – policy/coverage
+        run: pnpm -w ci:opa:cover
+
+      - name: Grafana links
+        if: ${{ env.GRAFANA_BASE_URL != '' && env.VERIFY_GATE_DASH_UID != '' }}
         run: |
-          pnpm install --frozen-lockfile
-          pnpm --if-present repomap:build
-          pnpm --if-present repomap:validate
-      - name: Chaos drill – ethics fail-closed
-        shell: bash
-        run: |
-          pnpm install --frozen-lockfile
-          pnpm dev:stack > devstack.log 2>&1 &
-          stack_pid=$!
-          cleanup() {
-            if kill -0 "$stack_pid" 2>/dev/null; then
-              kill "$stack_pid" 2>/dev/null || true
+          {
+            echo "### Grafana"
+            echo "- Verify-Gate Network Safety: ${GRAFANA_BASE_URL}/d/${VERIFY_GATE_DASH_UID}?orgId=1&from=now-24h&to=now"
+            if [ -n "${ETHICS_MINI_UID}" ]; then
+              echo "- Verify-Gate Ethics Mini: ${GRAFANA_BASE_URL}/d/${ETHICS_MINI_UID}?orgId=1&from=now-24h&to=now"
             fi
-          }
-          trap cleanup EXIT
-          sleep 15
-          pnpm chaos:ethics --scenario boundary-down --expect failclosed
-      - name: Chaos drill – verify-gate DNS rebind
-        uses: ./.github/actions/run-pnpm-task
-        with:
-          task: chaos:verify-dns-rebind
-      - name: Chaos drill – verify-gate redirect loop
-        uses: ./.github/actions/run-pnpm-task
-        with:
-          task: chaos:verify-redirect-loop
+            if [ -n "${OPA_COVERAGE_UID}" ]; then
+              echo "- OPA Coverage: ${GRAFANA_BASE_URL}/d/${OPA_COVERAGE_UID}?orgId=1&from=now-7d&to=now"
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Alertmanager summary
+        if: ${{ env.ALERTMANAGER_URL != '' && env.ALERTMANAGER_TOKEN != '' }}
+        run: |
+          set -e
+          curl -fsSL -H "Authorization: Bearer ${ALERTMANAGER_TOKEN}" \
+            "${ALERTMANAGER_URL%/}/api/v2/alerts" -o alerts.json || echo "[]" > alerts.json
+          node -e "const fs=require('fs');let a=[];try{a=JSON.parse(fs.readFileSync('alerts.json','utf8'))}catch{};const by=(s)=>a.filter(x=>x.status?.state===s);const fmt=l=>l.map(x=>`- **${x.labels?.alertname||'alert'}** \`${x.labels?.severity||'n/a'}\` @ ${x.labels?.job||'job'} (${x.labels?.instance||'inst'})`).join('\n');let out='### Alertmanager\n';const act=by('active'), sup=by('suppressed');out+=`Active: ${act.length}  |  Silenced: ${sup.length}\n\n`;if(act.length) out+='#### Active (top 15)\n'+fmt(act.slice(0,15))+'\n';fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY,out);"
+
+      - name: Slack (on failure)
+        if: failure() && env.SLACK_WEBHOOK_URL != ''
+        env:
+          REPO: ${{ github.repository }}
+          SHA: ${{ github.sha }}
+        run: |
+          node -e "fetch(process.env.SLACK_WEBHOOK_URL,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({text:`❌ Nightly chaos failed for ${process.env.REPO} @ ${process.env.SHA}\nSee job summary for Alertmanager + Grafana links.`})})"

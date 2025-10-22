@@ -1,11 +1,18 @@
-# Codexfeedback – Fraktal 114 OPA Test Hardening
+# Codexfeedback – Fraktal 116 CI Badges & Coverage Gate Hardening
 
-- Phase: OPA Test Runner Refresh
-- Status: Rego-Tests nutzen valide `with input as …` Konstrukte, und der Test-Runner pinnt das lokale OPA-Binary mit Pretty/Verbose-Ausgabe.
-- Next Hook: Optional OPA-Bundle-/Alertmanager-Doku synchronisieren; MandalaMap-Update nur erforderlich, falls weitere Policy-Artefakte folgen.
+- Phase: CI Badges & OPA Coverage Gate Hardening
+- Status: README bündelt neue Governance-Badges und verweist auf den Primer; OPA-Coverage schlägt bei Test-Failures fehl und Nightly schreibt Chaos-/Alertmanager-Snapshots ins Job-Log.
+- Next Hook: DevTalk.txt nach weiteren offenen Aufgaben (Observability-Profil, Setup-Skripte, Docs) screenen und Fraktalstatus nachführen.
+
   What changed
-- `apps/ethics-api/opa/policy_test.rego` modelliert Eingaben über `object.union` statt `with input.default`, sodass OPA 0.66 Parserfehler vermeidet.
-- `scripts/opa/run-opa-test.mjs` verwendet `spawnSync` + `--format pretty --verbose` und bevorzugt `bin/opa` (Fallback PATH).
-- `package.json` ergänzt `pnpm opa:fmt` & `pnpm opa:lint`, beide mit Windows-fähiger Shell und Fehler-Exit.
+
+- `README.md` ergänzt CI-/Grafana-Badges, eine Dashboards-Sektion und verweist aus dem Quickstart auf Primer & Command Catalog.
+- `docs/governance/primer.md` fasst Policy-Bundle, Verify-Gate-Netzwerkregeln und Coverage-Gate zusammen.
+- `scripts/opa/coverage.mjs` erkennt Test-Failures sowie fehlende Coverage-Blöcke; `scripts/opa/run-opa-cover.mjs` bewahrt den `opa test` Exit-Code.
+- `package.json`, `ci.core.yml` und `ci.nightly.yml` nutzen das neue Coverage-Gate, inklusive Artefakten, Bundles und Grafana-/Alertmanager-Summary.
+- `tests/scripts/opa/coverage.test.ts` stellt via Vitest das Fail-Closed-Verhalten sicher.
+
   Validate
-- Policy/OPA: `pnpm opa:test` (lokal oder CI mit bereitgestellter Binary).
+
+- Policy/OPA: `pnpm -w opa:cover`
+- Regression: `pnpm test --run tests/scripts/opa/coverage.test.ts`

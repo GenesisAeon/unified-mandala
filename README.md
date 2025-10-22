@@ -1,8 +1,11 @@
 # UnifiedMandala
 
-[![CI Core](https://github.com/ChefDevAI/unified-mandala/actions/workflows/ci.core.yml/badge.svg)](https://github.com/ChefDevAI/unified-mandala/actions/workflows/ci.core.yml)
-[![CI Nightly](https://github.com/ChefDevAI/unified-mandala/actions/workflows/ci.nightly.yml/badge.svg)](https://github.com/ChefDevAI/unified-mandala/actions/workflows/ci.nightly.yml)
-[![CI Experimental](https://github.com/ChefDevAI/unified-mandala/actions/workflows/ci.experimental.yml/badge.svg)](https://github.com/ChefDevAI/unified-mandala/actions/workflows/ci.experimental.yml)
+[![CI Core](https://github.com/ChefDevAI/unified-mandala/actions/workflows/ci.core.yml/badge.svg)](../../actions/workflows/ci.core.yml)
+[![Nightly](https://github.com/ChefDevAI/unified-mandala/actions/workflows/ci.nightly.yml/badge.svg)](../../actions/workflows/ci.nightly.yml)
+[![OPA Coverage Gate](https://img.shields.io/badge/opa--coverage-gate-%E2%9C%93-brightgreen)](./docs/runbooks/command-catalog.md#opa)
+[![Verify-Gate Network Safety](https://img.shields.io/badge/grafana-verify--gate--network--safety-1f6feb)](#dashboards)
+[![Ethics Mini](https://img.shields.io/badge/grafana-ethics--mini-1f6feb)](#dashboards)
+[![OPA Coverage](https://img.shields.io/badge/grafana-opa--coverage-1f6feb)](#dashboards)
 
 > „Ein Betriebssystem, das atmet – ein Mandala, das denkt.“
 
@@ -48,6 +51,15 @@ docker compose -f docs/offline/docker-compose.yml up
 docker compose --profile monitoring up
 # -> Prometheus http://localhost:9090, Grafana http://localhost:3300 (admin/admin)
 ```
+
+> 🔐 Governance-Gates im Überblick: Lies den [Mandala Governance Primer](docs/governance/primer.md) für Signatur-, Coverage- und Verify-Gate-Regeln. Die konkreten Befehle findest du im [Command Catalog](docs/runbooks/command-catalog.md#opa).
+
+### Dashboards
+
+- Verify-Gate Network Safety: `${GRAFANA_BASE_URL}/d/${VERIFY_GATE_DASH_UID}?orgId=1&from=now-24h&to=now`
+- Verify-Gate Ethics Mini: `${GRAFANA_BASE_URL}/d/${ETHICS_MINI_UID}?orgId=1&from=now-24h&to=now`
+- OPA Coverage: `${GRAFANA_BASE_URL}/d/${OPA_COVERAGE_UID}?orgId=1&from=now-7d&to=now`
+  > Set the UIDs/URL as repo/environment secrets if you want CI summaries with live links.
 
 ### Health Aggregator (lokal)
 
