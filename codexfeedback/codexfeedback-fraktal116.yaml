@@ -1,0 +1,14 @@
+fraktal: 116
+status: in-progress
+owner: ChefDevAI
+summary:
+  - 'README zeigt konsolidierte CI- und Grafana-Badges und verweist auf Governance-Primer & Command Catalog.'
+  - 'Mandala Governance Primer dokumentiert Policy-Bundles, Coverage-Gate und Verify-Gate-Regeln.'
+  - 'ci.core.yml hat einen dedizierten "OPA Policy & Coverage"-Job mit Coverage-Summary, Artefakten und Bundle-Signing.'
+  - 'ci.nightly.yml triggert Chaos-/Smoke-Checks und schreibt bei vorhandenen Secrets Grafana- und Alertmanager-Snapshots.'
+  - '`scripts/opa/coverage.mjs` schlägt auf Test-Failures fehl; `run-opa-cover.mjs` erhält `opa test` Exit-Codes, Tests sichern das Verhalten.'
+  - 'Neue vitest-Suite überwacht das Fail-Closed-Verhalten des Coverage-Parsers.'
+next_hook:
+  progress: 'CI-Badges & Governance-Primer stehen, OPA-Gate läuft fail-closed. Nightly deckt Chaos + Coverage ab.'
+  next_step: 'DevTalk.txt nach verbleibenden Maßnahmen scannen (z. B. Observability-Profil, Setup-Skripte) und Statusfelder aktualisieren.'
+  repeat_required: false

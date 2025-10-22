@@ -1,6 +1,26 @@
 fraktal:
-  current: 114
+  current: 116
   history:
+    - id: 116-ci-governance-badges
+      status: in-progress
+      notes: 'README bündelt CI-/Grafana-Badges und verweist auf Primer/Command-Catalog; Governance-Primer, Workflows & Skripte härten das OPA-Coverage-Gate (fail-closed, Bundle-Signing, Chaos Nightly).'
+      deliverables:
+        - README.md
+        - docs/governance/primer.md
+        - scripts/opa/coverage.mjs
+        - scripts/opa/run-opa-cover.mjs
+        - package.json
+        - .github/workflows/ci.core.yml
+        - .github/workflows/ci.nightly.yml
+        - tests/scripts/opa/coverage.test.ts
+        - codexfeedback/codexfeedback-latest.md
+        - codexfeedback/codexfeedback-latest.json
+        - codexfeedback/codexfeedback-latest.yaml
+        - codexfeedback/codexfeedback-fraktal116.yaml
+      hook:
+        progress: CI-Badges & Governance-Primer stehen; OPA-Coverage läuft fail-closed und Nightly liefert Chaos-/Grafana-/Alertmanager-Summary.
+        next_step: DevTalk.txt nach weiteren Tasks (Observability, Setup) scannen und Statusfolge planen.
+        repeat_required: false
     - id: 114-opa-test-hardening
       status: done
       notes: 'Rego-Regressionstests nutzen `object.union`, der OPA-Runner setzt `spawnSync` + Pretty/Verbose-Ausgabe ein und `package.json` ergänzt `pnpm opa:fmt`/`pnpm opa:lint` mit Windows-tauglichem Exit-Handling; codexfeedback-latest.* dokumentiert den Runner-Refresh und verweist auf Bundle-/Alertmanager-Doku.'

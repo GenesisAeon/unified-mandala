@@ -84,7 +84,7 @@
     "opa:lint": "node scripts/opa/download-opa.mjs && bin/opa check apps/ethics-api/opa",
     "opa:test": "node scripts/opa/download-opa.mjs && bin/opa test --format=pretty --verbose apps/ethics-api/opa",
     "opa:test:json": "node scripts/opa/download-opa.mjs && bin/opa test --format=json apps/ethics-api/opa",
-    "opa:cover": "node scripts/opa/download-opa.mjs && bin/opa test --coverage --format=json apps/ethics-api/opa | node scripts/opa/coverage.mjs --min 0.85 --top 5",
+    "opa:cover": "node scripts/opa/download-opa.mjs && node scripts/opa/run-opa-cover.mjs --min 0.85 --top 5",
     "opa:cover:file": "node scripts/opa/download-opa.mjs && bin/opa test --coverage --format=json apps/ethics-api/opa > dist/opa/coverage.json && node scripts/opa/coverage.mjs --file dist/opa/coverage.json --min 0.85 --top 5",
     "ci:opa:cover": "pnpm -s opa:fmt && pnpm -s opa:lint && pnpm -s opa:cover",
     "opa:bundle": "node scripts/opa/build-opa-bundle.mjs",

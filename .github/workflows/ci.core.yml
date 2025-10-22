@@ -141,25 +141,62 @@ jobs:
         uses: ./.github/actions/run-pnpm-task
         with:
           task: policy:check
-      - name: Install OPA (static)
-        if: runner.os == 'Linux'
-        run: |
-          mkdir -p bin
-          curl -L -o bin/opa https://openpolicyagent.org/downloads/v0.66.0/opa_linux_amd64_static
-          chmod +x bin/opa
-        shell: bash
-      - name: OPA policy tests
-        run: pnpm opa:test -- --timeout 5s
 
-      - name: OPA coverage gate
-        run: pnpm -w ci:opa:cover
+  opa_policy:
+    name: OPA Policy & Coverage
+    runs-on: ubuntu-latest
+    needs: [decide]
+    timeout-minutes: 15
+    if: >-
+      ${{
+        github.event_name == 'push' ||
+        needs.decide.outputs.code_changed == 'true' ||
+        needs.decide.outputs.docs_changed == 'true' ||
+        contains(fromJSON(needs.decide.outputs.labels), 'ci:extended')
+      }}
+    env:
+      OPA_MIN_COVERAGE: ${{ github.ref == 'refs/heads/main' && '0.9' || '0.85' }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+
+      - name: Enable corepack & install
+        run: |
+          corepack enable
+          pnpm i --frozen-lockfile
+
+      - name: OPA format
+        run: pnpm -w opa:fmt
+
+      - name: OPA lint
+        run: pnpm -w opa:lint
+
+      - name: Run OPA tests with coverage
+        run: pnpm -w opa:cover
+
+      - name: Upload coverage JSON
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: opa-coverage-json
+          path: dist/opa/coverage.json
+          if-no-files-found: warn
+
+      - name: Summarize coverage
+        if: always()
+        run: |
+          node -e "const fs=require('fs');const p='dist/opa/coverage.json';if(!fs.existsSync(p)){process.exit(0);}const r=JSON.parse(fs.readFileSync(p,'utf8'));const f=r.coverage?.files||{};let c=0,t=0;for(const v of Object.values(f)){const a=(v.covered||[]).length,b=(v.not_covered||[]).length;c+=a;t+=a+b}const pct=t?((c/t)*100).toFixed(2):'0.00';fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY,`### OPA Coverage\n\n**${pct}%** (${c}/${t})\n`);"
 
       - name: OPA build + sign + verify
         env:
           OPA_SIGN_ENABLE: '1'
           OPA_SIGN_GPG_BIN: gpg
           OPA_SIGN_GPG_KEY: ${{ secrets.MANDALA_GPG_KEY_ID }}
-        run: pnpm opa:bundle:sign
+        run: pnpm -w opa:bundle:sign
 
       - name: Upload OPA bundle artifact
         uses: actions/upload-artifact@v4

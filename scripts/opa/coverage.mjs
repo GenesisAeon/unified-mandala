@@ -1,146 +1,183 @@
 #!/usr/bin/env node
-/**
- * OPA coverage gate (fail-closed).
- * - parses JSON from `opa test --coverage --format=json`
- * - expects data under `coverage.files`
- * - exits non-zero if coverage is missing or below threshold
- *
- * Usage:
- *   opa test --coverage --format=json ./apps/ethics-api/opa | node scripts/opa/coverage.mjs --min 0.85
- *   node scripts/opa/coverage.mjs --file dist/opa/coverage.json --min 0.9
- */
-import fs from 'node:fs';
-import { argv, exit } from 'node:process';
+// Fail-closed OPA coverage parser: validates coverage payloads, fails on
+// test failures, and enforces minimum thresholds.
 
-function parseArgs(a = argv.slice(2)) {
-  const out = {
-    min: Number(process.env.OPA_MIN_COVERAGE ?? '0.8'),
+import fs from 'node:fs';
+import path from 'node:path';
+import { argv, exit, stdin as stdinStream } from 'node:process';
+
+function parseArgs() {
+  const args = {
     file: null,
-    top: Number(process.env.OPA_COVERAGE_REPORT_COUNT ?? '0'),
+    min: Number(process.env.OPA_MIN_COVERAGE ?? '0.85'),
+    top: Number(process.env.OPA_COVERAGE_REPORT_COUNT ?? '5'),
+    failOnFailures: true,
   };
-  for (let i = 0; i < a.length; i++) {
-    const t = a[i];
-    if (t === '--min' && a[i + 1]) {
-      out.min = Number(a[++i]);
+
+  for (let i = 2; i < argv.length; i++) {
+    const token = argv[i];
+    if ((token === '--file' || token === '-f') && argv[i + 1]) {
+      args.file = argv[++i];
       continue;
     }
-    if ((t === '--file' || t === '-f') && a[i + 1]) {
-      out.file = a[++i];
+    if (token === '--min' && argv[i + 1]) {
+      args.min = Number(argv[++i]);
       continue;
     }
-    if (t === '--top' && a[i + 1]) {
-      out.top = Number(a[++i]);
+    if (token === '--top' && argv[i + 1]) {
+      args.top = Number(argv[++i]);
       continue;
     }
-    if (t === '--help' || t === '-h') {
-      console.log('Usage: coverage.mjs [--min 0.85] [--file path|-] [--top N]');
+    if (token === '--no-fail-on-failures') {
+      args.failOnFailures = false;
+      continue;
+    }
+    if (token === '--help' || token === '-h') {
+      console.log('Usage: coverage.mjs [--file path|-] [--min 0.85] [--top 5]');
       exit(0);
     }
   }
-  if (!Number.isFinite(out.min) || out.min <= 0 || out.min > 1) {
-    console.error(`ERR: --min must be (0,1], got ${out.min}`);
+
+  if (!Number.isFinite(args.min) || args.min <= 0 || args.min > 1) {
+    console.error(`COVERAGE_INVALID_THRESHOLD: --min must be between 0 and 1, got ${args.min}`);
     exit(2);
   }
-  return out;
+
+  if (!Number.isFinite(args.top) || args.top < 0) {
+    console.error(`COVERAGE_INVALID_TOP: --top must be >= 0, got ${args.top}`);
+    exit(2);
+  }
+
+  return args;
 }
 
-async function readJsonFrom(file) {
-  if (file && file !== '-') return JSON.parse(fs.readFileSync(file, 'utf8'));
-  // stdin
+async function readJsonFromStdin() {
   const chunks = [];
-  for await (const c of process.stdin) chunks.push(c);
-  const buf = Buffer.concat(chunks.map((c) => (Buffer.isBuffer(c) ? c : Buffer.from(c))));
-  if (!buf.length) {
-    console.error('ERR: no input provided to coverage gate (stdin empty and no --file)');
-    exit(2);
+  for await (const chunk of stdinStream) {
+    chunks.push(Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk));
   }
-  return JSON.parse(buf.toString('utf8'));
+  const raw = Buffer.concat(chunks).toString('utf8').trim();
+  return raw.length ? JSON.parse(raw) : {};
 }
 
-function getCoverageFiles(report) {
-  // Expected structure: { coverage: { files: { "<path>": { covered:[], not_covered:[] } } } }
-  const cov = report && report.coverage;
-  const files = cov && cov.files;
+function loadReport({ file }) {
+  if (file && file !== '-') {
+    const abs = path.resolve(process.cwd(), file);
+    return JSON.parse(fs.readFileSync(abs, 'utf8'));
+  }
+  return readJsonFromStdin();
+}
+
+function ensureCoverageBlock(report) {
+  if (!report || typeof report !== 'object') {
+    throw new Error('COVERAGE_REPORT_INVALID: expected JSON object');
+  }
+  const coverage = report.coverage;
+  if (!coverage || typeof coverage !== 'object') {
+    throw new Error('COVERAGE_MISSING: expected report.coverage object');
+  }
+  const files = coverage.files;
   if (!files || typeof files !== 'object' || !Object.keys(files).length) {
-    throw new Error('COVERAGE_MISSING');
+    throw new Error('COVERAGE_FILES_MISSING: expected report.coverage.files map');
   }
   return files;
 }
 
-function compute(files) {
+function countTestFailures(report) {
+  if (!report || typeof report !== 'object') return 0;
+  if (Array.isArray(report.failures)) return report.failures.length;
+  if (typeof report.failures === 'number') return report.failures;
+  const results = Array.isArray(report.result) ? report.result : [];
+  return results.filter((entry) => entry && entry.pass === false).length;
+}
+
+function computeCoverage(files) {
   let covered = 0;
   let total = 0;
-  const perFile = [];
-  for (const [name, fileReport] of Object.entries(files)) {
-    const c = Array.isArray(fileReport.covered) ? fileReport.covered.length : 0;
-    const n = Array.isArray(fileReport.not_covered) ? fileReport.not_covered.length : 0;
-    covered += c;
-    total += c + n;
-    perFile.push({ name, covered: c, notCovered: n, total: c + n, pct: c + n ? c / (c + n) : 1 });
+  const offenders = [];
+
+  for (const [file, details] of Object.entries(files)) {
+    const coveredLines = Array.isArray(details.covered) ? details.covered.length : 0;
+    const missingLines = Array.isArray(details.not_covered) ? details.not_covered.length : 0;
+    const fileTotal = coveredLines + missingLines;
+    covered += coveredLines;
+    total += fileTotal;
+    const pct = fileTotal > 0 ? coveredLines / fileTotal : 1;
+    offenders.push({
+      file,
+      pct,
+      covered: coveredLines,
+      notCovered: missingLines,
+      total: fileTotal,
+    });
   }
-  if (total === 0) {
-    throw new Error('COVERAGE_ZERO_LINES');
-  }
-  return { covered, total, pct: covered / total, perFile };
+
+  return { covered, total, offenders: offenders.sort((a, b) => a.pct - b.pct) };
 }
 
-function formatPct(p) {
-  return `${(p * 100).toFixed(2)}%`;
-}
-
-async function main() {
+(async () => {
   const args = parseArgs();
   let report;
   try {
-    report = await readJsonFrom(args.file);
-  } catch (e) {
-    console.error('ERR: failed to parse coverage JSON:', e?.message || e);
+    report = await loadReport(args);
+  } catch (error) {
+    console.error(`COVERAGE_PARSE_ERROR: ${error?.message ?? error}`);
     exit(2);
+    return;
   }
+
+  const failures = countTestFailures(report);
+  if (failures > 0 && args.failOnFailures) {
+    console.error(`OPA tests failed: ${failures} failure(s) reported.`);
+    if (Array.isArray(report.failures)) {
+      for (const failure of report.failures.slice(0, 10)) {
+        const location = failure?.location;
+        const locStr = location
+          ? `${location.file ?? ''}:${location.row ?? ''}`.replace(/:?$/, '')
+          : '';
+        const message = failure?.message ?? 'Test failure';
+        console.error(` - ${message}${locStr ? ` (${locStr})` : ''}`);
+      }
+      if (report.failures.length > 10) {
+        console.error(' - ...');
+      }
+    }
+    exit(2);
+    return;
+  }
+
   let files;
   try {
-    files = getCoverageFiles(report);
-  } catch (e) {
-    if (e?.message === 'COVERAGE_MISSING') {
-      console.error(
-        'ERR: report.coverage.files missing/empty – did you run `opa test --coverage --format=json`?',
-      );
-    } else {
-      console.error('ERR:', e?.message || e);
-    }
-    exit(2);
-  }
-  let result;
-  try {
-    result = compute(files);
-  } catch (e) {
-    if (e?.message === 'COVERAGE_ZERO_LINES') {
-      console.error('ERR: no measurable lines found – refusing to assume 100% coverage.');
-    } else {
-      console.error('ERR:', e?.message || e);
-    }
-    exit(2);
+    files = ensureCoverageBlock(report);
+  } catch (error) {
+    console.error(error?.message ?? error);
+    exit(3);
+    return;
   }
 
-  const pct = result.pct;
-  console.log(
-    `OPA coverage: ${formatPct(pct)} (${result.covered}/${result.total})  threshold: ${formatPct(args.min)}`,
-  );
-  if (args.top > 0) {
-    const worst = [...result.perFile].sort((a, b) => a.pct - b.pct).slice(0, args.top);
-    for (const f of worst) {
-      console.log(
-        `  - ${f.name}: ${formatPct(f.pct)} (${f.covered}/${f.total})  not-covered=${f.notCovered}`,
-      );
+  const { covered, total, offenders } = computeCoverage(files);
+  const pct = total > 0 ? covered / total : 0;
+  const pctStr = (pct * 100).toFixed(2);
+
+  console.log(`OPA coverage: ${pctStr}% (${covered}/${total})`);
+
+  const top = Math.max(0, Number.isFinite(args.top) ? args.top : 0);
+  if (top > 0 && offenders.length) {
+    console.log(`Worst files (top ${top}):`);
+    for (const entry of offenders.slice(0, top)) {
+      const entryPct = (entry.pct * 100).toFixed(2);
+      console.log(` - ${entry.file}: ${entryPct}% (${entry.covered}/${entry.total})`);
     }
   }
-  if (pct + 1e-12 < args.min) {
-    console.error('FAIL: OPA coverage below threshold.');
-    exit(1);
-  }
-}
 
-main().catch((e) => {
-  console.error('ERR: unexpected coverage gate failure:', e?.message || e);
-  exit(2);
+  if (!(pct >= args.min)) {
+    console.error(`COVERAGE_BELOW_THRESHOLD: got ${pctStr}% < ${(args.min * 100).toFixed(2)}%`);
+    exit(4);
+    return;
+  }
+
+  exit(0);
+})().catch((error) => {
+  console.error(`COVERAGE_UNEXPECTED_ERROR: ${error?.message ?? error}`);
+  exit(5);
 });

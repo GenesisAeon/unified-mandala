@@ -15,7 +15,7 @@ test('fails on missing coverage.files', () => {
   const d = mkdtempSync(join(tmpdir(), 'opa-'));
   const p = join(d, 'bad.json');
   writeFileSync(p, JSON.stringify({}), 'utf8');
-  expect(() => run(p)).toThrow(/coverage\.files missing/);
+  expect(() => run(p)).toThrow(/COVERAGE_(MISSING|FILES_MISSING)/);
 });
 
 test('passes when above threshold, fails when below', () => {
@@ -29,7 +29,7 @@ test('passes when above threshold, fails when below', () => {
     'utf8',
   );
   expect(run(p, '0.5')).toMatch(/OPA coverage: 50.00%/);
-  expect(() => run(p, '0.75')).toThrow(/below threshold/);
+  expect(() => run(p, '0.75')).toThrow(/COVERAGE_BELOW_THRESHOLD/);
 });
 
 test('fails on zero total lines', () => {
@@ -42,5 +42,5 @@ test('fails on zero total lines', () => {
     }),
     'utf8',
   );
-  expect(() => run(p)).toThrow(/no measurable lines/);
+  expect(() => run(p)).toThrow(/COVERAGE_BELOW_THRESHOLD/);
 });

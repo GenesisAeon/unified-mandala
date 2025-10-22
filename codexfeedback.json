@@ -1,6 +1,30 @@
 {
   "runs": [
     {
+      "fraktalrun": "FR-UM-2025-12-24-Fraktal116-CIGovernanceBadges",
+      "status": "in-progress",
+      "notes": "README bündelt CI-/Grafana-Badges, Governance-Primer dokumentiert Bundles/Coverage, und neue Workflows & Skripte härten das OPA-Coverage-Gate ab (fail-closed, Bundle-Signing, Nightly-Chaos).",
+      "deliverables": [
+        "README.md",
+        "docs/governance/primer.md",
+        "scripts/opa/coverage.mjs",
+        "scripts/opa/run-opa-cover.mjs",
+        "package.json",
+        ".github/workflows/ci.core.yml",
+        ".github/workflows/ci.nightly.yml",
+        "tests/scripts/opa/coverage.test.ts",
+        "codexfeedback/codexfeedback-latest.md",
+        "codexfeedback/codexfeedback-latest.json",
+        "codexfeedback/codexfeedback-latest.yaml",
+        "codexfeedback/codexfeedback-fraktal116.yaml"
+      ],
+      "hook": {
+        "progress": "CI-Badges & Governance-Primer stehen, OPA-Coverage läuft fail-closed; Nightly protokolliert Chaos + Grafana/Alertmanager bei gesetzten Secrets.",
+        "next_step": "DevTalk.txt auf weitere Fraktal-Tasks prüfen (Observability-Profil, Setup-Skripte) und Status nachführen.",
+        "repeat_required": false
+      }
+    },
+    {
       "fraktalrun": "FR-UM-2025-12-24-Fraktal114-OPA-Test-Hardening",
       "status": "done",
       "notes": "Rego-Regressionstests modellieren Eingaben via `object.union`, der Test-Runner nutzt `spawnSync` + Pretty/Verbose-Ausgabe und package.json ergänzt `pnpm opa:fmt`/`pnpm opa:lint` mit Windows-kompatiblem Exit.",
