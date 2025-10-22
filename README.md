@@ -379,3 +379,80 @@ MIT. Datenquellen: jeweilige Nutzungsbedingungen beachten.
 - Die Fraktal‑Dokumente liegen künftig unter `docs/fraktal/diary` (Codexfeedback unter `docs/fraktal/codexfeedback`).
 - Übersicht: siehe `docs/fraktal/index.md`.
 - Beim Umzug erzeugt `pnpm meta:fraktal:organize` automatisch Redirect‑Stubs an den alten Pfaden, damit bestehende Links nicht ins Leere laufen.
+
+## 🚀 Quick Start (All-in-One, Port-Aware)
+
+**Prereqs**
+
+- Node 20.18.x, pnpm ≥ 10
+- Ollama running locally with models:
+  - `qwen2.5:7b` (chat)
+  - `nomic-embed-text` (embeddings)
+
+**One-time model pulls**
+
+```bash
+ollama pull qwen2.5:7b
+ollama pull nomic-embed-text
+```
+
+**Start everything**
+
+```bash
+# macOS/Linux
+PORT_OFFSET=0 pnpm dev:all
+
+# Windows PowerShell
+$env:PORT_OFFSET="0"; pnpm dev:all
+```
+
+The launcher will:
+
+- ensure a local **OPA** binary is available,
+- set safe local defaults (Ollama, Verify-Gate, Boundary, RAG),
+- free common dev ports (respecting `PORT_OFFSET`),
+- start **dev stack** (boundary, health, RAG, flags, experiments, API, realtime),
+- start **ethics API**, **verify-gate**, and **UI**.
+
+**Default ports (base + offset)**
+
+- Health: `3999 + PORT_OFFSET`
+- API: `4000 + PORT_OFFSET`
+- Boundary: `4010 + PORT_OFFSET`
+- Realtime: `4020 + PORT_OFFSET`
+- RAG/Experiments/Flags: `3003/3002/3004 + PORT_OFFSET`
+- UI: Vite chooses `5173..5175` automatically
+
+**Local LLM wiring (Ollama)**
+
+```
+AI_PROVIDER=openai
+AI_BASE_URL=http://127.0.0.1:11434/v1
+OPENAI_API_KEY=ollama
+OPENAI_MODEL=qwen2.5:7b
+OPENAI_EMBEDDING_MODEL=nomic-embed-text
+EMBEDDINGS_BASE_URL=http://127.0.0.1:11434/v1
+```
+
+> Tip: Create `.env.dev.local` with your overrides. The launcher merges env and forwards to children.
+
+**Sanity checks**
+
+```bash
+curl -s http://127.0.0.1:3999/health | jq .
+# UI: http://localhost:5173  (or 5174/5175)
+# Chat via gate guarded: POST http://127.0.0.1:4000/api/ai/chat
+```
+
+**OPA policy workflow**
+
+```bash
+# Build + sign + verify bundle
+pnpm opa:bundle && pnpm opa:sign && pnpm opa:verify
+
+# Format + lint + test
+pnpm opa:fmt && pnpm opa:lint && pnpm opa:test -- --timeout 5s
+
+# Coverage gate (fail <85%)
+OPA_COVERAGE_MIN=0.85 pnpm opa:cover
+```
