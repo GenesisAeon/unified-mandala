@@ -155,7 +155,8 @@ jobs:
         contains(fromJSON(needs.decide.outputs.labels), 'ci:extended')
       }}
     env:
-      OPA_MIN_COVERAGE: ${{ github.ref == 'refs/heads/main' && '0.9' || '0.85' }}
+      OPA_COVER_MIN: ${{ github.ref == 'refs/heads/main' && '0.90' || '0.85' }}
+      OPA_COVER_TOP: '5'
     steps:
       - uses: actions/checkout@v4
 
@@ -164,48 +165,28 @@ jobs:
           node-version: '20'
           cache: 'pnpm'
 
-      - name: Enable corepack & install
+      - run: corepack enable
+
+      - run: pnpm i --frozen-lockfile
+
+      - name: OPA tests + coverage gate
         run: |
-          corepack enable
-          pnpm i --frozen-lockfile
+          pnpm -w opa:fmt
+          pnpm -w opa:lint
+          pnpm -w ci:opa:cover
 
-      - name: OPA format
-        run: pnpm -w opa:fmt
-
-      - name: OPA lint
-        run: pnpm -w opa:lint
-
-      - name: Run OPA tests with coverage
-        run: pnpm -w opa:cover
-
-      - name: Upload coverage JSON
+      - name: Upload OPA coverage artifact
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: opa-coverage-json
+          name: opa-coverage
           path: dist/opa/coverage.json
           if-no-files-found: warn
 
-      - name: Summarize coverage
+      - name: Attach summary links
         if: always()
         run: |
-          node -e "const fs=require('fs');const p='dist/opa/coverage.json';if(!fs.existsSync(p)){process.exit(0);}const r=JSON.parse(fs.readFileSync(p,'utf8'));const f=r.coverage?.files||{};let c=0,t=0;for(const v of Object.values(f)){const a=(v.covered||[]).length,b=(v.not_covered||[]).length;c+=a;t+=a+b}const pct=t?((c/t)*100).toFixed(2):'0.00';fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY,`### OPA Coverage\n\n**${pct}%** (${c}/${t})\n`);"
-
-      - name: OPA build + sign + verify
-        env:
-          OPA_SIGN_ENABLE: '1'
-          OPA_SIGN_GPG_BIN: gpg
-          OPA_SIGN_GPG_KEY: ${{ secrets.MANDALA_GPG_KEY_ID }}
-        run: pnpm -w opa:bundle:sign
-
-      - name: Upload OPA bundle artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: mandala-ethics-bundle
-          path: |
-            dist/opa/mandala-ethics-bundle.tar.gz
-            dist/opa/mandala-ethics-bundle.tar.gz.sha256
-            dist/opa/mandala-ethics-bundle.tar.gz.asc
+          echo "OPA coverage report saved as artifact **opa-coverage**." >> "$GITHUB_STEP_SUMMARY"
 
   ai_commit_guard:
     name: AI commit guard

@@ -54,6 +54,16 @@ docker compose --profile monitoring up
 
 > 🔐 Governance-Gates im Überblick: Lies den [Mandala Governance Primer](docs/governance/primer.md) für Signatur-, Coverage- und Verify-Gate-Regeln. Die konkreten Befehle findest du im [Command Catalog](docs/runbooks/command-catalog.md#opa).
 
+**Policy quality gate**  
+Run OPA tests + coverage locally:
+
+```bash
+pnpm opa:fmt && pnpm opa:lint
+OPA_COVER_MIN=0.90 pnpm opa:cover
+```
+
+CI will fail if tests fail **or** coverage drops below the configured threshold.
+
 ### Dashboards
 
 - Verify-Gate Network Safety: `${GRAFANA_BASE_URL}/d/${VERIFY_GATE_DASH_UID}?orgId=1&from=now-24h&to=now`
