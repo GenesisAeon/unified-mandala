@@ -456,3 +456,22 @@ pnpm opa:fmt && pnpm opa:lint && pnpm opa:test -- --timeout 5s
 # Coverage gate (fail <85%)
 OPA_COVERAGE_MIN=0.85 pnpm opa:cover
 ```
+
+### OPA Coverage Gate
+
+```bash
+# Pretty tests (human)
+pnpm opa:test
+
+# Coverage (JSON → gate; fails below 85%)
+pnpm opa:cover
+# or write to file then check
+pnpm opa:cover:file
+```
+
+Outputs:
+
+```
+OPA coverage: 87.50% (70/80)  threshold: 85.00%
+  - apps/ethics-api/opa/policy.rego: 81.82% (18/22)  not-covered=4
+```

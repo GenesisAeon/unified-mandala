@@ -200,6 +200,7 @@ export default defineConfig({
       'packages/**/test/**/*.{test,spec}.ts',
       'packages/**/src/**/*.{test,spec}.ts',
       'apps/**/src/**/*.{test,spec}.ts',
+      'scripts/opa/__tests__/**/*.test.mjs',
     ],
     exclude: Array.from(exclude),
   },

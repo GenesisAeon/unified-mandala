@@ -151,6 +151,9 @@ jobs:
       - name: OPA policy tests
         run: pnpm opa:test -- --timeout 5s
 
+      - name: OPA coverage gate
+        run: pnpm -w ci:opa:cover
+
       - name: OPA build + sign + verify
         env:
           OPA_SIGN_ENABLE: '1'

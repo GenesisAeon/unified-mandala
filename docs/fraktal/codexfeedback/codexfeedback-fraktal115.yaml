@@ -30,9 +30,9 @@ follow_up:
     status: planned
 hook:
   progress: >-
-    Quickstart gebootstrapped; OPA-Gate läuft lokal via `pnpm opa:cover`,
-    Coverage-Panel liegt bereit.
+    Coverage-Gate läuft lokal (`pnpm opa:cover`) und in CI (`pnpm -w ci:opa:cover`),
+    Playbook/MandalaMap spiegeln das Gate, README beschreibt den Output-Flow.
   next_step: >-
-    CI-Workflows um Coverage-Gate/Bootstrapper erweitern und DevTalk-Roadmappunkte
-    in MandalaMap + Playbook einpflegen.
+    DevTalk-Roadmappunkte (CI-Badges, Nightly-Smokes, Governance-Primer) priorisieren
+    und in MandalaMap/Playbook einspeisen.
   repeat_required: false

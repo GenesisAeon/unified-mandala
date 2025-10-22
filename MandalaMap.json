@@ -1269,12 +1269,13 @@
     },
     {
       "title": "OPA bundle & TTL playbooks",
-      "detail": "Command Catalog führt `pnpm opa:test`, `pnpm opa:bundle`, `pnpm opa:sign`, `pnpm opa:verify`, `pnpm opa:bundle:sign`; Observability-Runbook beschreibt TTL-p95-Alerting & VerifyGateLowDNSTTL; Ethics-API exponiert `/policy/status` + Signatur-Readyz, Verify-Gate `/readyz` spiegelt das Gate. Nächster Schritt: OPA-Bundle-Artefakte/Alertmanager-Routing dokumentieren.",
+      "detail": "Command Catalog führt `pnpm opa:test`, `pnpm opa:bundle`, `pnpm opa:sign`, `pnpm opa:verify`, `pnpm opa:bundle:sign` sowie das Coverage-Gate `pnpm opa:cover`/`pnpm opa:cover:file`; Observability-Runbook beschreibt TTL-p95-Alerting & VerifyGateLowDNSTTL; Ethics-API exponiert `/policy/status` + Signatur-Readyz, Verify-Gate `/readyz` spiegelt das Gate, `ci.core` ruft `pnpm -w ci:opa:cover` auf. Nächster Schritt: OPA-Bundle-Artefakte/Alertmanager-Routing dokumentieren.",
       "related": [
         "scripts/opa/run-opa-test.mjs",
         "docs/runbooks/observability.md",
         "docs/runbooks/command-catalog.md",
-        "docs/roadmap/v1.0-stabilization-playbook.md"
+        "docs/roadmap/v1.0-stabilization-playbook.md",
+        "scripts/opa/coverage.mjs"
       ],
       "status": "done"
     }
