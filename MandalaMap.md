@@ -55,6 +55,7 @@ Samples:
   - Git hooks (active) — .husky/
   - AWS deployment stubs (active) — aws/
   - Helm charts (active) — charts/
+  - OPA coverage gate (active) — scripts/opa/coverage.mjs
 - observability:
   - Verify-Gate network metrics (active) — observability/prometheus/recording-rules.yaml
   - Verify-Gate alerting (active) — observability/alerts/verify-gate.yaml
