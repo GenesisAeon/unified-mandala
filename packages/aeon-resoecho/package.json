@@ -1,0 +1,19 @@
+{
+  "name": "@mandala/aeon-resoecho",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "CREP-Zeitlinienarchiv und Resonanz-Echo System – Memory, Pattern Detection und Feedback Loops",
+  "exports": "./src/index.ts",
+  "types": "./src/index.ts",
+  "dependencies": {
+    "@mandala/crep": "workspace:*"
+  },
+  "devDependencies": {
+    "vitest": "^1.6.0"
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  }
+}
