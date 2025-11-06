@@ -1,4 +1,4 @@
-import { ChannelScribe } from '../ChannelScribe';
+import { ChannelScribe } from './ChannelScribe';
 
 describe('ChannelScribe', () => {
   it('records and retrieves channel messages', () => {
