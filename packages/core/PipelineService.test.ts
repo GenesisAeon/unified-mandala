@@ -1,5 +1,5 @@
-import { PipelineService } from '../PipelineService';
-import { LocalEventBus, Subjects } from '../../event-bus';
+import { PipelineService } from './PipelineService';
+import { LocalEventBus, Subjects } from '../event-bus';
 
 test('runs steps sequentially and emits events', async () => {
   const bus = new LocalEventBus();
