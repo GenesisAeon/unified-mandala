@@ -1,0 +1,133 @@
+{
+  "id": null,
+  "uid": "mandala-ethics-gate",
+  "title": "Unified Mandala — Ethics & Verify Gate",
+  "timezone": "browser",
+  "schemaVersion": 39,
+  "version": 1,
+  "tags": ["mandala", "ethics", "verify-gate"],
+  "refresh": "10s",
+  "panels": [
+    {
+      "type": "bargauge",
+      "title": "Verdicts (5m increase)",
+      "gridPos": { "h": 8, "w": 9, "x": 0, "y": 0 },
+      "options": {
+        "displayMode": "basic",
+        "orientation": "horizontal",
+        "showUnfilled": true
+      },
+      "targets": [
+        {
+          "expr": "sum by (verdict) (increase(ethics_verdict_total[5m]))",
+          "legendFormat": "{{verdict}}",
+          "refId": "A"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              { "color": "gray", "value": null },
+              { "color": "green", "value": 1 },
+              { "color": "yellow", "value": 5 },
+              { "color": "red", "value": 10 }
+            ]
+          }
+        },
+        "overrides": []
+      }
+    },
+    {
+      "type": "timeseries",
+      "title": "Ethics Check Duration — P95",
+      "gridPos": { "h": 8, "w": 9, "x": 9, "y": 0 },
+      "options": { "legend": { "displayMode": "table", "placement": "right" } },
+      "targets": [
+        {
+          "expr": "histogram_quantile(0.95, sum by (le) (rate(ethics_check_duration_ms_bucket[5m])))",
+          "legendFormat": "p95",
+          "refId": "A"
+        },
+        {
+          "expr": "sum(rate(ethics_check_duration_ms_sum[5m])) / sum(rate(ethics_check_duration_ms_count[5m]))",
+          "legendFormat": "avg",
+          "refId": "B"
+        }
+      ],
+      "fieldConfig": { "defaults": { "unit": "ms" }, "overrides": [] }
+    },
+    {
+      "type": "stat",
+      "title": "Dependency Unreachable (Boundary) — 5m",
+      "gridPos": { "h": 8, "w": 6, "x": 18, "y": 0 },
+      "targets": [
+        {
+          "expr": "increase(ethics_dependency_unreachable_total[5m])",
+          "legendFormat": "deps_unreachable",
+          "refId": "A"
+        }
+      ],
+      "options": {
+        "reduceOptions": { "calcs": ["lastNotNull"], "fields": "", "values": false },
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "none",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              { "color": "green", "value": null },
+              { "color": "yellow", "value": 1 },
+              { "color": "red", "value": 3 }
+            ]
+          }
+        },
+        "overrides": []
+      }
+    },
+    {
+      "type": "timeseries",
+      "title": "Verify Gate RPS (2xx/4xx/5xx)",
+      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 8 },
+      "targets": [
+        {
+          "expr": "sum by (code) (rate(verify_gate_http_responses_total[1m]))",
+          "legendFormat": "{{code}}",
+          "refId": "A"
+        }
+      ],
+      "fieldConfig": { "defaults": { "unit": "req/s" }, "overrides": [] }
+    },
+    {
+      "type": "timeseries",
+      "title": "Ethics Fail-Closed Activations",
+      "gridPos": { "h": 8, "w": 12, "x": 12, "y": 8 },
+      "targets": [
+        {
+          "expr": "rate(ethics_failclosed_triggered_total[1m])",
+          "legendFormat": "failclosed",
+          "refId": "A"
+        }
+      ],
+      "fieldConfig": { "defaults": { "unit": "req/s" }, "overrides": [] }
+    }
+  ],
+  "templating": {
+    "list": [
+      {
+        "type": "query",
+        "name": "job",
+        "label": "Prometheus job",
+        "datasource": null,
+        "query": "label_values(up, job)",
+        "refresh": 2
+      }
+    ]
+  }
+}

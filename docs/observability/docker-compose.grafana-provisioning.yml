@@ -1,0 +1,11 @@
+services:
+  grafana:
+    volumes:
+      - ./grafana/dashboards:/var/lib/grafana/dashboards:ro
+      - ./grafana/provisioning:/etc/grafana/provisioning:ro
+    environment:
+      - GF_AUTH_ANONYMOUS_ENABLED=true
+      - GF_AUTH_ANONYMOUS_ORG_ROLE=Viewer
+  prometheus:
+    volumes:
+      - ./docs/observability/alerts:/etc/prometheus/alerts:ro

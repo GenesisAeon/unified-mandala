@@ -5,11 +5,17 @@ import net from 'node:net';
 import path from 'node:path';
 import process from 'node:process';
 import { fileURLToPath } from 'node:url';
+import { execa } from 'execa';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const repoRoot = path.resolve(__dirname, '..');
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+const portOffset = Number.parseInt(process.env.PORT_OFFSET || '0', 10) || 0;
+const basePrefreePorts = [
+  3999, 4000, 4010, 4020, 4021, 3001, 3002, 3003, 3004, 4100, 4120, 4121, 5173, 5174, 5175, 3110,
+  3111,
+];
 
 const modeArg = process.argv.find((arg) => arg.startsWith('--mode='));
 const profileArg = process.argv.find((arg) => arg.startsWith('--profile='));
@@ -100,6 +106,24 @@ if (resolvedProfile === 'lite' || resolvedProfile === 'light' || resolvedProfile
   );
 }
 
+// Optional Boundary service (opt-in)
+if (process.env.ENABLE_BOUNDARY === '1') {
+  const port = process.env.BOUNDARY_PORT || '4010';
+  serviceDefinitions = [
+    ...serviceDefinitions,
+    {
+      name: 'boundary',
+      script: 'scripts/boundary-service.ts',
+      envDefaults: { BOUNDARY_PORT: port },
+      portKeys: ['BOUNDARY_PORT'],
+    },
+  ];
+  // Health Aggregator Extra-Target
+  const extra = `http://127.0.0.1:${port}/boundary/health`;
+  const prev = process.env.HEALTH_TARGETS_EXTRA || '';
+  process.env.HEALTH_TARGETS_EXTRA = [prev, extra].filter(Boolean).join(',');
+}
+
 const missingProdTargets = [];
 if (resolvedMode === 'prod') {
   for (const service of serviceDefinitions) {
@@ -119,6 +143,7 @@ if (resolvedMode === 'prod') {
 }
 
 const skipPortChecks = process.env.UM_DEV_SERVICES_SKIP_PORT_CHECK === '1';
+const prefreePortsEnabled = process.env.UM_DEV_SERVICES_PREFREE_PORTS !== '0';
 const autoFreePortsEnabled = process.env.UM_DEV_SERVICES_AUTOFREE_PORTS !== '0';
 const attemptedAutoFree = new Set();
 
@@ -157,6 +182,28 @@ async function detectNatsAvailability() {
   }
 
   return ok;
+}
+
+async function prefreeCommonPorts() {
+  if (!prefreePortsEnabled) {
+    return;
+  }
+
+  const ports = basePrefreePorts.map((base) => base + portOffset);
+  if (ports.length === 0) {
+    return;
+  }
+
+  try {
+    console.log(
+      `[dev-services] Attempting to free occupied ports via "pnpm dlx kill-port": ${ports.join(', ')}`,
+    );
+    await execa('pnpm', ['dlx', 'kill-port', ...ports.map((p) => String(p))], { stdio: 'inherit' });
+    console.log('[dev-services] Base port sweep completed.');
+  } catch (error) {
+    const message = error?.shortMessage || error?.stderr || error?.message || String(error);
+    console.warn('[dev-services] Base port sweep failed (continuing):', message.trim());
+  }
 }
 
 function createServiceEnv(service) {
@@ -241,6 +288,7 @@ process.on('SIGTERM', () => {
   shutdown('SIGTERM');
 });
 
+await prefreeCommonPorts();
 await ensureWorkspacePrebuilds();
 const natsAvailable = await detectNatsAvailability();
 

@@ -1,0 +1,35 @@
+fraktal: 105
+status: done
+owner: Johann
+summary:
+  - 'Vitest aliasiert `@opentelemetry/api` auf einen leichten Stub (`tests/__mocks__/otel-api.ts`), damit Unit-Tests ohne echte OTel-ESM-Abhängigkeit laufen.'
+  - '`tests/setup/ci.ts` setzt `VERIFY_GATE_SSRF_ALLOWLIST=http://127.0.0.1:*,http://localhost:*` und `VERIFY_GATE_ALLOW_PROTOCOLS=http` als Loopback-Defaults für Vitest.'
+  - '`apps/verify-gate/src/security/ssrf.ts` akzeptiert Protokoll-/Port-Wildcards und mappt Loopback-Adressen korrekt auf Allowlist-Einträge; neue Vitest prüft die Wildcard.'
+  - '`apps/api/src/middleware/verifyEthics.ts` erzwingt HS256 + `clockTolerance: 5` für JWT-Verdicts und reduziert flakey 428-Fehler; DevTalk105-Evaluation dokumentiert die Maßnahmen.'
+deliverables:
+  - vitest.config.ts
+  - tests/__mocks__/otel-api.ts
+  - tests/setup/ci.ts
+  - apps/verify-gate/src/security/ssrf.ts
+  - apps/verify-gate/src/__tests__/ssrf-allowlist.test.ts
+  - apps/api/src/middleware/verifyEthics.ts
+  - docs/roadmap/v1.0-stabilization-playbook.md
+  - docs/roadmap/v1.0-stabilization-playbook.yaml
+  - MandalaMap.md
+  - MandalaMap.yaml
+  - MandalaMap.json
+  - codexfeedback.md
+  - codexfeedback.json
+  - codexfeedback.yaml
+  - codexfeedback/codexfeedback-latest.md
+  - codexfeedback/codexfeedback-latest.json
+  - codexfeedback/codexfeedback-latest.yaml
+  - analysis/devtalk105-evaluation.md
+commands:
+  - pnpm -w vitest run apps/verify-gate/src/__tests__/ssrf-allowlist.test.ts
+  - pnpm -w vitest run apps/api/src/__tests__/ethics-token-guard.test.ts
+  - pnpm -w vitest run tests/api/chat-success.test.ts
+hook:
+  progress: Verify-Gate Tests laufen deterministisch (OTel-Stub, Loopback-Allowlist, Clock-Skew-Handhabung).
+  next_step: Prometheus-Counter & Grafana-Alerts für Idempotency/SSRF/Token-Failures ergänzen und OPA-Bundle in CI verteilen.
+repeat_required: false

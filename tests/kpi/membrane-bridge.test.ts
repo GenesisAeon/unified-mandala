@@ -16,6 +16,7 @@ describe('kpi/membrane-bridge stepOrBypass', () => {
 
   it('bypasses when membrane feature is off or LOW_MEM=1', async () => {
     process.env.LOW_MEM = '1';
+    const { membraneSigil } = await import('../../src/membrane');
     const { stepOrBypass } = await import('../../src/kpi/membrane-bridge');
     const r = stepOrBypass('t2m', Date.now(), 1.23);
     expect(r).toEqual({ A: undefined, sigil: '[ok]', severity: 'ok' });

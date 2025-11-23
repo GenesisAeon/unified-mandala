@@ -1,0 +1,38 @@
+fraktal: 115
+status: done
+owner: Johann
+summary:
+  - >-
+    OPA-Toolchain erhält Coverage-Gate (`scripts/opa/coverage.mjs`), Bootstrapper
+    (`scripts/opa/download-opa.mjs`) und Table-Tests für `mandala.ethics` (Policy
+    bleibt fail-closed).
+  - >-
+    Dev-Starter `pnpm dev:all` orchestriert Stack, Ethics-API, Verify-Gate und UI
+    port-aware inkl. Ollama-Defaults.
+  - >-
+    README Quick Start, Grafana-Panel (`opa-coverage-stat.json`) und
+    TypeScript-Fixtures halten Rego/TS-Schema synchron.
+deliverables:
+  - README.md
+  - package.json
+  - apps/ethics-api/opa/policy_table_test.rego
+  - apps/ethics-api/src/schemas/opa-input.schema.ts
+  - apps/ethics-api/src/testing/fixtures.ts
+  - grafana/dashboards/panels/opa-coverage-stat.json
+  - scripts/dev/start-all.mjs
+  - scripts/opa/coverage.mjs
+  - scripts/opa/download-opa.mjs
+follow_up:
+  devtalk-roadmap-alignment:
+    description: >-
+      DevTalk.txt Themen (CI-Badges, Nightly-Smokes, Governance-Primer)
+      priorisieren und in bestehende Roadmap-Tasks aufnehmen.
+    status: planned
+hook:
+  progress: >-
+    Coverage-Gate läuft lokal (`pnpm opa:cover`) und in CI (`pnpm -w ci:opa:cover`),
+    Playbook/MandalaMap spiegeln das Gate, README beschreibt den Output-Flow.
+  next_step: >-
+    DevTalk-Roadmappunkte (CI-Badges, Nightly-Smokes, Governance-Primer) priorisieren
+    und in MandalaMap/Playbook einspeisen.
+  repeat_required: false

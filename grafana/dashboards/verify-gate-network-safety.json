@@ -1,0 +1,132 @@
+{
+  "uid": "verify-gate-net",
+  "title": "Verify-Gate • Network Safety & TLS",
+  "timezone": "browser",
+  "schemaVersion": 39,
+  "version": 1,
+  "editable": true,
+  "refresh": "10s",
+  "time": { "from": "now-6h", "to": "now" },
+  "templating": {
+    "list": [
+      {
+        "type": "datasource",
+        "name": "DS_PROM",
+        "query": "prometheus",
+        "label": "Prometheus",
+        "current": { "text": "Prometheus", "value": "Prometheus" }
+      }
+    ]
+  },
+  "panels": [
+    {
+      "type": "stat",
+      "title": "IP mismatch (5m rate)",
+      "id": 10,
+      "datasource": { "type": "prometheus", "uid": "${DS_PROM}" },
+      "gridPos": { "x": 0, "y": 0, "w": 6, "h": 4 },
+      "options": { "reduceOptions": { "calcs": ["lastNotNull"] }, "colorMode": "value" },
+      "targets": [
+        { "expr": "sum(rate(verify_gate_ip_mismatch_total[5m]))", "legendFormat": "ip_mismatch" }
+      ]
+    },
+    {
+      "type": "stat",
+      "title": "TLS name mismatch (5m rate)",
+      "id": 11,
+      "datasource": { "type": "prometheus", "uid": "${DS_PROM}" },
+      "gridPos": { "x": 6, "y": 0, "w": 6, "h": 4 },
+      "options": { "reduceOptions": { "calcs": ["lastNotNull"] }, "colorMode": "value" },
+      "targets": [
+        {
+          "expr": "sum(rate(verify_gate_tls_name_mismatch_total[5m]))",
+          "legendFormat": "tls_name_mismatch"
+        }
+      ]
+    },
+    {
+      "type": "stat",
+      "title": "Redirect blocks (5m increase)",
+      "id": 12,
+      "datasource": { "type": "prometheus", "uid": "${DS_PROM}" },
+      "gridPos": { "x": 12, "y": 0, "w": 6, "h": 4 },
+      "options": { "reduceOptions": { "calcs": ["lastNotNull"] } },
+      "targets": [
+        {
+          "expr": "sum(increase(verify_gate_redirect_block_total[5m]))",
+          "legendFormat": "redirect_block"
+        }
+      ]
+    },
+    {
+      "type": "stat",
+      "title": "DNS resolve errors/empty (1h)",
+      "id": 13,
+      "datasource": { "type": "prometheus", "uid": "${DS_PROM}" },
+      "gridPos": { "x": 18, "y": 0, "w": 6, "h": 4 },
+      "options": { "reduceOptions": { "calcs": ["lastNotNull"] } },
+      "targets": [
+        {
+          "expr": "sum(increase(verify_gate_ssrf_resolve_error_total[1h]))",
+          "legendFormat": "errors"
+        },
+        {
+          "expr": "sum(increase(verify_gate_ssrf_resolve_empty_total[1h]))",
+          "legendFormat": "empty"
+        }
+      ]
+    },
+    {
+      "type": "timeseries",
+      "title": "DNS TTL p95",
+      "id": 20,
+      "gridPos": { "x": 0, "y": 4, "w": 12, "h": 8 },
+      "datasource": { "type": "prometheus", "uid": "${DS_PROM}" },
+      "fieldConfig": { "defaults": { "unit": "s" }, "overrides": [] },
+      "targets": [
+        {
+          "expr": "histogram_quantile(0.95, sum(rate(verify_gate_dns_ttl_pinned_seconds_bucket[5m])) by (le))",
+          "legendFormat": "ttl_p95"
+        }
+      ]
+    },
+    {
+      "type": "timeseries",
+      "title": "Upstream latency p95 (by route)",
+      "id": 21,
+      "gridPos": { "x": 12, "y": 4, "w": 12, "h": 8 },
+      "datasource": { "type": "prometheus", "uid": "${DS_PROM}" },
+      "fieldConfig": { "defaults": { "unit": "ms" } },
+      "targets": [
+        {
+          "expr": "histogram_quantile(0.95, sum(rate(verify_gate_upstream_duration_ms_bucket[5m])) by (le, route))",
+          "legendFormat": "{{route}}"
+        }
+      ]
+    },
+    {
+      "type": "bargauge",
+      "title": "Top blocked hosts (SSRF/1h)",
+      "id": 22,
+      "gridPos": { "x": 0, "y": 12, "w": 12, "h": 8 },
+      "datasource": { "type": "prometheus", "uid": "${DS_PROM}" },
+      "options": { "displayMode": "gradient" },
+      "targets": [
+        {
+          "expr": "topk(10, sum(increase(verify_gate_ssrf_block_total[1h])) by (host))",
+          "legendFormat": "{{host}}"
+        }
+      ]
+    },
+    {
+      "type": "stat",
+      "title": "Ethics degraded (5m increase)",
+      "id": 23,
+      "gridPos": { "x": 12, "y": 12, "w": 12, "h": 8 },
+      "datasource": { "type": "prometheus", "uid": "${DS_PROM}" },
+      "targets": [
+        { "expr": "sum(increase(ethics_degraded_total[5m]))", "legendFormat": "ethics_degraded" }
+      ]
+    }
+  ]
+}

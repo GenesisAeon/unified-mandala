@@ -34,7 +34,7 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
       - name: Validate MandalaMap
-        run: pnpm map:mandala
+        run: pnpm maps:sync
       - name: Upload map artifacts
         if: always()
         uses: actions/upload-artifact@v4

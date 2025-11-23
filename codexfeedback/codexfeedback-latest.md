@@ -1,22 +1,18 @@
-# Codexfeedback – Fraktal 92
+# Codexfeedback – Fraktal 116 CI Badges & Coverage Gate Hardening
 
-- Phase: Re-Entry + Qwen Tools
-- Status: Proxy/Health ok; UI renders output_text; qwen-smoke stabilized; FS list + Memory endpoints added; memory smoke added
-- Next: Optional Vite proxy header for Plan B; expand memory to embeddings (later)
+- Phase: CI Badges & OPA Coverage Gate Hardening
+- Status: README bündelt neue Governance-Badges und verweist auf den Primer; OPA-Coverage schlägt bei Test-Failures fehl und Nightly schreibt Chaos-/Alertmanager-Snapshots ins Job-Log.
+- Next Hook: DevTalk.txt nach weiteren offenen Aufgaben (Observability-Profil, Setup-Skripte, Docs) screenen und Fraktalstatus nachführen.
 
-What changed
+  What changed
 
-- apps/api-lite/ollama-proxy.mjs: add /api/tools/fs/list; add /api/tools/memory/{remember,recall}
-- scripts/smoke/memory-smoke.mjs: quick memory verify
-- sigils/sigillin_qwen_playground.sigil.yaml: baseline sigillin
-- package.json: add smoke:memory, quick:test scripts (earlier)
+- `README.md` ergänzt CI-/Grafana-Badges, eine Dashboards-Sektion und verweist aus dem Quickstart auf Primer & Command Catalog.
+- `docs/governance/primer.md` fasst Policy-Bundle, Verify-Gate-Netzwerkregeln und Coverage-Gate zusammen.
+- `scripts/opa/coverage.mjs` erkennt Test-Failures sowie fehlende Coverage-Blöcke; `scripts/opa/run-opa-cover.mjs` bewahrt den `opa test` Exit-Code.
+- `package.json`, `ci.core.yml` und `ci.nightly.yml` nutzen das neue Coverage-Gate, inklusive Artefakten, Bundles und Grafana-/Alertmanager-Summary.
+- `tests/scripts/opa/coverage.test.ts` stellt via Vitest das Fail-Closed-Verhalten sicher.
 
-Validate
+  Validate
 
-- pnpm quick:test:a (Plan A) or quick:test:b (Plan B)
-- pnpm smoke:memory
-
-Refs
-
-- docs/roadmap/v1.0-stabilization-playbook.md
-- MandalaMap.yaml, MandalaMap.json, MandalaMap.md
+- Policy/OPA: `pnpm -w opa:cover`
+- Regression: `pnpm test --run tests/scripts/opa/coverage.test.ts`

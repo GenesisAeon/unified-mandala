@@ -1,0 +1,12 @@
+fraktal: 116
+status: done
+owner: ChefDevAI
+summary:
+  - 'OPA-Coverage-Runner liest OPA_COVER_MIN/TOP und schreibt GitHub-Step-Summary-Hinweise.'
+  - '`scripts/opa/coverage.mjs` warnt bei fehlenden Zeilendaten und nutzt dieselben Env-Variablen.'
+  - 'ci.core.yml bündelt Format, Lint und Coverage-Gate (Artefakt + Summary-Link) ohne Bundle-Signing.'
+  - 'README hebt den lokalen Policy-Gate-Workflow hervor (fmt, lint, coverage-Threshold).'
+next_hook:
+  progress: 'Fraktal 116 abgeschlossen: Coverage-Gate env-getrieben, CI-Artefakte & README-Doku stehen.'
+  next_step: 'Nächste Fragmente prüfen und ggf. Observability/Setup-Strecken aus DevTalk anstoßen.'
+  repeat_required: false

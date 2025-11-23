@@ -1,0 +1,35 @@
+fraktal: 111
+status: done
+owner: Johann
+summary:
+  - 'Apps/verify-gate erhält einen jitterned DNS-TTL-Cache (`security/dnsCache.ts`) mit Request-Coalescing, purge-Intervall und Tests; SSRF-Checks nutzen den Cache und stellen Min-TTL/Chain weiterhin bereit.'
+  - 'Redirect-Kette prüft jeden Hop vor dem ersten Netzaufruf (`proxy/followRedirects.ts`), kontextualisiert Redirect-Hops/Schemata für OPA und blockt private Ziele ohne zusätzliche Requests.'
+  - 'HTTPS-Proxy-Aufrufe laufen durch einen TLS/SAN-Preflight (`security/tlsPreflight.ts`), der remoteAddress/SAN validiert und Metriken (`ip_mismatch_total`, `tls_name_mismatch_total`, Redirect-Block-Gründe) befüllt; OPA-Netzkontext enthält redirect_hops & scheme_history.'
+  - 'Neue Vitest-Suites (`dns-cache.test.ts`, `tls-preflight.test.ts`, `follow-redirects.test.ts`) sichern Cache-Coalescing, TLS-Fehlerpfade und SSRF-Guards; Stabilization-Playbook & MandalaMap spiegeln den Fraktal111-Abschluss.'
+deliverables:
+  - apps/verify-gate/src/security/dnsCache.ts
+  - apps/verify-gate/src/security/tlsPreflight.ts
+  - apps/verify-gate/src/security/ssrf.ts
+  - apps/verify-gate/src/proxy/followRedirects.ts
+  - apps/verify-gate/src/proxy/pinnedRequest.ts
+  - apps/verify-gate/src/index.ts
+  - apps/verify-gate/src/metrics.ts
+  - apps/verify-gate/src/__tests__/dns-cache.test.ts
+  - apps/verify-gate/src/__tests__/tls-preflight.test.ts
+  - apps/verify-gate/src/__tests__/follow-redirects.test.ts
+  - docs/roadmap/v1.0-stabilization-playbook.md
+  - docs/roadmap/v1.0-stabilization-playbook.yaml
+  - MandalaMap.yaml
+  - MandalaMap.md
+  - MandalaMap.json
+  - codexfeedback/codexfeedback-latest.yaml
+  - codexfeedback/codexfeedback-latest.md
+  - codexfeedback/codexfeedback-latest.json
+commands:
+  - pnpm -w vitest run apps/verify-gate/src/__tests__/dns-cache.test.ts
+  - pnpm -w vitest run apps/verify-gate/src/__tests__/tls-preflight.test.ts
+  - pnpm -w vitest run apps/verify-gate/src/__tests__/follow-redirects.test.ts
+hook:
+  progress: DNS-Cache + TLS-Preflight + Redirect-Guards umgesetzt; MandalaMap/Stabilization-Playbook aktualisiert.
+  next_step: IPv6/NAT64 Blocklisten & Redirect-Metriken in Grafana-Dashboards feinjustieren, OPA-Badges (redirect_hops) im UI markieren.
+repeat_required: false

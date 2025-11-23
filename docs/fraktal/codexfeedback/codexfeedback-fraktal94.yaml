@@ -1,0 +1,35 @@
+fraktal: 94
+status: in-progress
+owner: Johann
+summary:
+  - 'DevTalk94 Review: CI/CD, Governance, Observability und Doku-Checklisten abgeglichen.'
+  - 'SigilMessage 1.0.0 strikt im Schema-Gate (Fingerprint + Valid/Invalid-Fixtures, Sample unter `sigils/samples/`).'
+  - 'MandalaMap & Stabilization-Playbook auf Fraktal94 aktualisiert; Hooks dokumentieren offene UI/Boundary-Schritte.'
+deliverables:
+  - analysis/devtalk94-evaluation.md
+  - schemas/sigil-message/1-0-0.schema.json
+  - schemas/sigil-message/examples/valid.json
+  - schemas/sigil-message/examples/invalid-extra-prop.json
+  - schemas/sigil-message/examples/invalid-ascii-missing.json
+  - schemas/sigil-message/examples/invalid-ts.json
+  - sigils/samples/sigil-message.sample.json
+  - scripts/validate-schemas.mjs
+  - src/adapters/sigil-mapping.ts
+  - tests/sigil/schema.contract.test.ts
+  - docs/membrane/real-membrane-v0.1.md
+  - docs/roadmap/v1.0-stabilization-playbook.md
+  - docs/roadmap/v1.0-stabilization-playbook.yaml
+  - MandalaMap.yaml
+  - MandalaMap.json
+  - MandalaMap.md
+  - codexfeedback/codexfeedback-latest.md
+  - codexfeedback/codexfeedback-latest.json
+  - codexfeedback/codexfeedback-latest.yaml
+commands:
+  - pnpm schema:validate
+  - pnpm observability:check
+hook:
+  progress: 0.6
+  next_step: 'MembranePill ins UI verdrahten und Boundary-Smokes um deduplizierte Events erweitern.'
+repeat_required: conditional
+repeat_reason: 'Wiederholen, falls UI-/Boundary-Follow-ups nicht vor Fraktal95 umgesetzt werden.'

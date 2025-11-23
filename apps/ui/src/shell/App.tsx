@@ -5,6 +5,8 @@ import OpsPanel from '../components/OpsPanel';
 import { CosmicWebDemo } from '../components/CosmicWebDemo';
 import MandalaAIPlayground from '../components/MandalaAIPlayground';
 import RagPlayground from '../components/RagPlayground';
+import RumTopbarToggle from '../components/RumTopbarToggle';
+import BoundaryDemo from '../pages/BoundaryDemo';
 
 export default function App() {
   const route = useMemo(() => {
@@ -30,6 +32,7 @@ export default function App() {
           >
             Cosmic-Web Demo
           </a>
+          <RumTopbarToggle />
         </nav>
         <MandalaAIPlayground />
       </main>
@@ -54,6 +57,34 @@ export default function App() {
           </a>
         </nav>
         <CosmicWebDemo />
+      </main>
+    );
+  }
+
+  if (normalizedRoute.startsWith('/demo/boundary')) {
+    return (
+      <main className="min-h-screen bg-slate-100 p-6">
+        <nav className="mb-6 flex items-center gap-4 text-sm text-slate-600">
+          <a
+            className="rounded-lg border border-transparent px-3 py-1 transition hover:border-indigo-200 hover:text-indigo-600"
+            href="/"
+          >
+            ← Zurück zum Dashboard
+          </a>
+          <a
+            className="rounded-lg border border-transparent px-3 py-1 transition hover:border-indigo-200 hover:text-indigo-600"
+            href="/demo/ai-playground"
+          >
+            AI Playground
+          </a>
+          <a
+            className="rounded-lg border border-transparent px-3 py-1 transition hover:border-indigo-200 hover:text-indigo-600"
+            href="/demo/cosmic-web"
+          >
+            Cosmic-Web Demo
+          </a>
+        </nav>
+        <BoundaryDemo />
       </main>
     );
   }

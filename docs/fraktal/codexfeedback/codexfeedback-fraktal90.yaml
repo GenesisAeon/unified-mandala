@@ -1,0 +1,16 @@
+id: Fraktal90
+date: 2025-10-12
+title: Membrane low-mem sigil consistency + proxy stability + playground ops
+branches:
+  - feat/membrane-lowmem-sigil
+  - feat/membrane-sigil-central
+summary: >
+  Low‑mem Sigil konsistent (Code+Tests). Proxy/Playground Metriken & Smokes.
+  Zentralisierung der Sigil‑Abbildung in membrane-bridge.
+checks:
+  - precommit green
+  - unit green
+  - schema/map/sanity/policy green
+links:
+  - https://github.com/GenesisAeon/unified-mandala/pull/new/feat/membrane-lowmem-sigil
+  - https://github.com/GenesisAeon/unified-mandala/pull/new/feat/membrane-sigil-central

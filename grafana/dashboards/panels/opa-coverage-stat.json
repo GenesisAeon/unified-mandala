@@ -1,0 +1,36 @@
+{
+  "type": "stat",
+  "title": "OPA Coverage % (last run)",
+  "gridPos": { "h": 6, "w": 6, "x": 0, "y": 0 },
+  "options": {
+    "reduceOptions": { "calcs": ["last"], "fields": "", "values": false },
+    "orientation": "auto",
+    "textMode": "value",
+    "colorMode": "value",
+    "graphMode": "none",
+    "justifyMode": "auto"
+  },
+  "targets": [
+    {
+      "datasource": { "type": "prometheus", "uid": "${DS_PROM}" },
+      "refId": "A",
+      "expr": "max(ethics_policy_coverage_ratio) * 100",
+      "legendFormat": "coverage"
+    }
+  ],
+  "fieldConfig": {
+    "defaults": {
+      "unit": "percent",
+      "decimals": 2,
+      "thresholds": {
+        "mode": "absolute",
+        "steps": [
+          { "color": "red", "value": null },
+          { "color": "orange", "value": 70 },
+          { "color": "green", "value": 85 }
+        ]
+      }
+    },
+    "overrides": []
+  }
+}

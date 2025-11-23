@@ -4,6 +4,7 @@ import { z } from 'zod';
 import { askOpenAI } from '@unified-mandala/ai';
 import { requestAI } from './natsClient.js';
 import ports from '@config/ports';
+import { verifyEthics } from './middleware/verifyEthics.js';
 
 const app = (globalThis as any).__UM_TEST_EXPRESS_APP ?? express();
 app.use(cors());
@@ -30,7 +31,7 @@ const ChatSchema = z.object({
   max_tokens: z.number().int().positive().optional(),
 });
 
-app.post('/api/ai/chat', async (req, res) => {
+app.post('/api/ai/chat', verifyEthics, async (req, res) => {
   const parsed = ChatSchema.safeParse(req.body);
   if (!parsed.success) {
     res.status(400).json({ error: parsed.error.issues });

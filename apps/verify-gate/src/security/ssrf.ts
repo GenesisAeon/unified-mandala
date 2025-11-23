@@ -1,0 +1,267 @@
+import { URL } from 'node:url';
+import * as punycode from 'node:punycode';
+import {
+  ssrfBlocks,
+  ssrfResolveEmpty,
+  ssrfResolveErrors,
+  incResolveEmpty,
+  incResolveError,
+  incSsrfBlock,
+  incSsrfResolve,
+} from '../metrics.js';
+import {
+  SSRFDNSResolveError,
+  SSRFDNSEmptyError,
+  SSRFPrivateTargetError,
+  type ResolveResult,
+} from './resolve.js';
+import { resolveWithCache } from './dnsCache.js';
+import { isPrivateOrBlocked, normalizeIp } from './ipRanges.js';
+import { DNSEmptyAnswerError, DNSResolveError, SSRFDenyError } from '../errors.js';
+
+type AllowPattern = {
+  host: string;
+  port: number | '*';
+  protocols: Set<string> | null;
+};
+
+export interface AllowResult {
+  ip: string;
+  ips: string[];
+  minTTLsec: number;
+  chain: string[];
+  hostname: string;
+  url: URL;
+}
+
+function normalizeHost(value: string): string {
+  const trimmed = value.trim();
+  if (trimmed.length === 0) {
+    return '';
+  }
+  try {
+    return punycode.toASCII(trimmed).toLowerCase();
+  } catch {
+    return trimmed.toLowerCase();
+  }
+}
+
+function parseAllowEntry(entry: string): AllowPattern | null {
+  const trimmed = entry.trim();
+  if (!trimmed) {
+    return null;
+  }
+
+  if (trimmed.includes('://')) {
+    let candidate = trimmed;
+    let wildcardPort = false;
+    if (candidate.endsWith(':*')) {
+      wildcardPort = true;
+      candidate = candidate.replace(/:\*$/, ':0');
+    }
+
+    let parsed: URL;
+    try {
+      parsed = new URL(candidate);
+    } catch {
+      return null;
+    }
+
+    const protocol = parsed.protocol.replace(/:$/, '').toLowerCase();
+    const host = normalizeHost(parsed.hostname);
+    if (!host) {
+      return null;
+    }
+
+    if (wildcardPort) {
+      return { host, port: '*', protocols: new Set([protocol]) };
+    }
+
+    const port = parsed.port
+      ? Number.parseInt(parsed.port, 10)
+      : protocol === 'https'
+        ? 443
+        : 80;
+    if (!Number.isFinite(port)) {
+      return null;
+    }
+    return { host, port, protocols: new Set([protocol]) };
+  }
+
+  let hostPart = trimmed;
+  let portPart: string | undefined;
+
+  if (trimmed.startsWith('[')) {
+    const end = trimmed.indexOf(']');
+    if (end === -1) {
+      return null;
+    }
+    hostPart = trimmed.slice(1, end);
+    const rest = trimmed.slice(end + 1);
+    if (rest.startsWith(':')) {
+      portPart = rest.slice(1);
+    } else if (rest.length > 0) {
+      return null;
+    }
+  } else {
+    const lastColon = trimmed.lastIndexOf(':');
+    if (lastColon !== -1) {
+      hostPart = trimmed.slice(0, lastColon);
+      portPart = trimmed.slice(lastColon + 1);
+    }
+  }
+
+  const host = normalizeHost(hostPart);
+  if (!host) {
+    return null;
+  }
+
+  if (!portPart || portPart.length === 0) {
+    return { host, port: 80, protocols: null };
+  }
+  if (portPart === '*') {
+    return { host, port: '*', protocols: null };
+  }
+
+  const parsedPort = Number.parseInt(portPart, 10);
+  if (!Number.isFinite(parsedPort)) {
+    return null;
+  }
+  return { host, port: parsedPort, protocols: null };
+}
+
+const allowlistPatterns = (process.env.VERIFY_GATE_SSRF_ALLOWLIST ?? process.env.VERIFY_GATE_UPSTREAM_ALLOWLIST ?? '127.0.0.1:4000')
+  .split(',')
+  .map((entry: string) => parseAllowEntry(entry))
+  .filter((entry: AllowPattern | null): entry is AllowPattern => entry !== null);
+
+const allowedProtocols = new Set(
+  (process.env.VERIFY_GATE_ALLOW_PROTOCOLS ?? 'http,https')
+    .split(',')
+    .map((value: string) => value.trim().toLowerCase())
+    .filter(Boolean),
+);
+
+const FALLBACK_TTL_SEC = Number.parseInt(process.env.VERIFY_GATE_TTL_FALLBACK_SEC ?? '30', 10);
+
+function hostMatches(entryHost: string, candidateHost: string): boolean {
+  if (entryHost === candidateHost) {
+    return true;
+  }
+  if (entryHost === 'localhost' && (candidateHost === '127.0.0.1' || candidateHost === '::1')) {
+    return true;
+  }
+  if ((entryHost === '127.0.0.1' || entryHost === '::1') && candidateHost === 'localhost') {
+    return true;
+  }
+  return false;
+}
+
+function isAllowed(host: string, port: number, protocol: string): boolean {
+  const normalizedHost = normalizeHost(host);
+  for (const entry of allowlistPatterns) {
+    if (entry.protocols && !entry.protocols.has(protocol)) {
+      continue;
+    }
+    if (!hostMatches(entry.host, normalizedHost)) {
+      continue;
+    }
+    if (entry.port === '*' || entry.port === port) {
+      return true;
+    }
+  }
+  return false;
+}
+
+export function hasAllowlistEntries(): boolean {
+  return allowlistPatterns.length > 0;
+}
+
+function recordBlock(host: string, message: string, resolvedIp?: string): never {
+  const normalizedHost = host.trim().length > 0 ? host : 'unknown';
+  ssrfBlocks.inc({ host: normalizedHost, resolved_ip: resolvedIp ?? 'unknown' });
+  incSsrfBlock(message);
+  throw new SSRFDenyError(message, resolvedIp);
+}
+
+export async function assertAllowed(target: string): Promise<AllowResult> {
+  const url = new URL(target);
+  const protocol = url.protocol.replace(/:$/, '').toLowerCase();
+  const host = url.hostname;
+  const hostAscii = normalizeHost(host);
+  const port = url.port ? Number.parseInt(url.port, 10) : protocol === 'https' ? 443 : 80;
+
+  if (!allowedProtocols.has(protocol)) {
+    return recordBlock(hostAscii || host, 'protocol_not_allowed');
+  }
+
+  if (!Number.isFinite(port)) {
+    return recordBlock(hostAscii || host, 'port_not_allowed');
+  }
+
+  if (!isAllowed(hostAscii || host, port, protocol)) {
+    return recordBlock(hostAscii || host, 'upstream_not_allowlisted');
+  }
+
+  const literalCandidate = hostAscii.replace(/^\[|\]$/g, '');
+  const isLiteralIp = /^[0-9.]+$/.test(literalCandidate) || /^[0-9a-f:.]+$/i.test(literalCandidate);
+  if (isLiteralIp) {
+    const normalizedLiteral = normalizeIp(literalCandidate);
+    if (isPrivateOrBlocked(normalizedLiteral) && !isAllowed(normalizedLiteral, port, protocol)) {
+      return recordBlock(host, 'upstream_private_blocked', normalizedLiteral);
+    }
+    return {
+      ip: normalizedLiteral,
+      ips: [normalizedLiteral],
+      minTTLsec: FALLBACK_TTL_SEC,
+      chain: [normalizedLiteral],
+      hostname: normalizedLiteral,
+      url,
+    };
+  }
+
+  let resolved: ResolveResult;
+  try {
+    resolved = await resolveWithCache(hostAscii || host);
+  } catch (error) {
+    if (error instanceof SSRFPrivateTargetError || (error as { code?: string }).code === 'SSRFPrivateTargetError') {
+      const resolvedIp = (error as SSRFPrivateTargetError & { resolvedIp?: string }).resolvedIp;
+      return recordBlock(hostAscii || host, 'upstream_private_blocked', resolvedIp);
+    }
+    if (error instanceof SSRFDNSEmptyError || (error as { code?: string }).code === 'SSRFDNSEmptyError') {
+      incResolveEmpty(hostAscii || host);
+      incSsrfResolve('empty');
+      throw new DNSEmptyAnswerError('dns_no_records');
+    }
+    if (error instanceof SSRFDNSResolveError || (error as { code?: string }).code === 'SSRFDNSResolveError') {
+      incResolveError(hostAscii || host);
+      incSsrfResolve('error');
+      throw new DNSResolveError('dns_resolution_failed');
+    }
+    throw error;
+  }
+
+  const firstIp = resolved.ips[0];
+  if (!firstIp) {
+    ssrfResolveEmpty.inc({ host: hostAscii || host });
+    incSsrfResolve('empty');
+    throw new DNSEmptyAnswerError('dns_no_records');
+  }
+
+  for (const ip of resolved.ips) {
+    if (isPrivateOrBlocked(ip) && !isAllowed(ip, port, protocol)) {
+      return recordBlock(host, 'upstream_private_blocked', ip);
+    }
+  }
+
+  return {
+    ip: normalizeIp(firstIp),
+    ips: resolved.ips,
+    minTTLsec: resolved.minTTLsec,
+    chain: resolved.chain,
+    hostname: resolved.hostnameASCII,
+    url,
+  };
+}
+
+export { SSRFDenyError };

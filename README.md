@@ -1,8 +1,11 @@
 # UnifiedMandala
 
-[![CI Core](https://github.com/ChefDevAI/unified-mandala/actions/workflows/ci.core.yml/badge.svg)](https://github.com/ChefDevAI/unified-mandala/actions/workflows/ci.core.yml)
-[![CI Nightly](https://github.com/ChefDevAI/unified-mandala/actions/workflows/ci.nightly.yml/badge.svg)](https://github.com/ChefDevAI/unified-mandala/actions/workflows/ci.nightly.yml)
-[![CI Experimental](https://github.com/ChefDevAI/unified-mandala/actions/workflows/ci.experimental.yml/badge.svg)](https://github.com/ChefDevAI/unified-mandala/actions/workflows/ci.experimental.yml)
+[![CI Core](https://github.com/ChefDevAI/unified-mandala/actions/workflows/ci.core.yml/badge.svg)](../../actions/workflows/ci.core.yml)
+[![Nightly](https://github.com/ChefDevAI/unified-mandala/actions/workflows/ci.nightly.yml/badge.svg)](../../actions/workflows/ci.nightly.yml)
+[![OPA Coverage Gate](https://img.shields.io/badge/opa--coverage-gate-%E2%9C%93-brightgreen)](./docs/runbooks/command-catalog.md#opa)
+[![Verify-Gate Network Safety](https://img.shields.io/badge/grafana-verify--gate--network--safety-1f6feb)](#dashboards)
+[![Ethics Mini](https://img.shields.io/badge/grafana-ethics--mini-1f6feb)](#dashboards)
+[![OPA Coverage](https://img.shields.io/badge/grafana-opa--coverage-1f6feb)](#dashboards)
 
 > „Ein Betriebssystem, das atmet – ein Mandala, das denkt.“
 
@@ -48,6 +51,49 @@ docker compose -f docs/offline/docker-compose.yml up
 docker compose --profile monitoring up
 # -> Prometheus http://localhost:9090, Grafana http://localhost:3300 (admin/admin)
 ```
+
+> 🔐 Governance-Gates im Überblick: Lies den [Mandala Governance Primer](docs/governance/primer.md) für Signatur-, Coverage- und Verify-Gate-Regeln. Die konkreten Befehle findest du im [Command Catalog](docs/runbooks/command-catalog.md#opa).
+
+**Policy quality gate**  
+Run OPA tests + coverage locally:
+
+```bash
+pnpm opa:fmt && pnpm opa:lint
+OPA_COVER_MIN=0.90 pnpm opa:cover
+```
+
+CI will fail if tests fail **or** coverage drops below the configured threshold.
+
+### Dashboards
+
+- Verify-Gate Network Safety: `${GRAFANA_BASE_URL}/d/${VERIFY_GATE_DASH_UID}?orgId=1&from=now-24h&to=now`
+- Verify-Gate Ethics Mini: `${GRAFANA_BASE_URL}/d/${ETHICS_MINI_UID}?orgId=1&from=now-24h&to=now`
+- OPA Coverage: `${GRAFANA_BASE_URL}/d/${OPA_COVERAGE_UID}?orgId=1&from=now-7d&to=now`
+  > Set the UIDs/URL as repo/environment secrets if you want CI summaries with live links.
+
+### Health Aggregator (lokal)
+
+- Start: `pnpm dev:health`
+- Check: `http://localhost:3999/health` (oder mit `PORT_OFFSET` verschoben)
+
+Beispiel mit Port-Offset 100: `PORT_OFFSET=100 pnpm dev:health` -> Health auf `http://localhost:4099/health`.
+
+### Real User Monitoring (RUM)
+
+- Aktivierung (Vite-UI): `VITE_ENABLE_RUM=on pnpm dev:ui`
+- Optionaler Collector: `VITE_OTEL_COLLECTOR_URL=http://localhost:4318/v1/traces`
+- Datenschutz: RUM ist standardmäßig deaktiviert. Bitte interne Policies beachten und nur mit informierter Zustimmung aktivieren.
+
+### RUM Traces (Grafana)
+
+- Import dashboard: `grafana/dashboards/rum-traces.json`
+- Explore query (Tempo · TraceQL):
+
+```
+service.name = "mandala-ui" and span.name = "ui.metrics.test"
+```
+
+- Demo-Span senden im Playground: Proxy Metrics → Trace test (RUM muss aktiv sein).
 
 > **Hinweise:**
 > • „Cannot GET /“ auf :3000 bedeutet: Backend servt keine HMR-UI. Entweder **Vite-Dev** (`pnpm dev:ui`) nutzen oder **statisch bauen** (`pnpm build:ui && pnpm dev`).
@@ -129,6 +175,9 @@ Nutze die gebündelten pnpm-Kommandos, um die in DevTalk74 beschriebenen CI-/Gov
 - **Konfiguration:** `config/climate-dashboard.yaml`
 - **Adapter (Stub→Live):** `src/adapters` (ERA5, OISST, EFFIS, Pegel, Biodiversität, Radar, SPEI)
 - **Utilities:** `src/utils` (Resampling, Z-Scores, MRV/STAC)
+
+- **Boundary (Getting Started):** `docs/boundary/GettingStarted.md`
+- **Boundary Demo UI:** open `/demo/boundary` after `pnpm -F mandala-ui dev`
 
 Die Adapter sind initial als Stubs verfügbar und werden schrittweise an echte Feeds gebunden.
 
@@ -352,3 +401,99 @@ MIT. Datenquellen: jeweilige Nutzungsbedingungen beachten.
 - Die Fraktal‑Dokumente liegen künftig unter `docs/fraktal/diary` (Codexfeedback unter `docs/fraktal/codexfeedback`).
 - Übersicht: siehe `docs/fraktal/index.md`.
 - Beim Umzug erzeugt `pnpm meta:fraktal:organize` automatisch Redirect‑Stubs an den alten Pfaden, damit bestehende Links nicht ins Leere laufen.
+
+## 🚀 Quick Start (All-in-One, Port-Aware)
+
+**Prereqs**
+
+- Node 20.18.x, pnpm ≥ 10
+- Ollama running locally with models:
+  - `qwen2.5:7b` (chat)
+  - `nomic-embed-text` (embeddings)
+
+**One-time model pulls**
+
+```bash
+ollama pull qwen2.5:7b
+ollama pull nomic-embed-text
+```
+
+**Start everything**
+
+```bash
+# macOS/Linux
+PORT_OFFSET=0 pnpm dev:all
+
+# Windows PowerShell
+$env:PORT_OFFSET="0"; pnpm dev:all
+```
+
+The launcher will:
+
+- ensure a local **OPA** binary is available,
+- set safe local defaults (Ollama, Verify-Gate, Boundary, RAG),
+- free common dev ports (respecting `PORT_OFFSET`),
+- start **dev stack** (boundary, health, RAG, flags, experiments, API, realtime),
+- start **ethics API**, **verify-gate**, and **UI**.
+
+**Default ports (base + offset)**
+
+- Health: `3999 + PORT_OFFSET`
+- API: `4000 + PORT_OFFSET`
+- Boundary: `4010 + PORT_OFFSET`
+- Realtime: `4020 + PORT_OFFSET`
+- RAG/Experiments/Flags: `3003/3002/3004 + PORT_OFFSET`
+- UI: Vite chooses `5173..5175` automatically
+
+**Local LLM wiring (Ollama)**
+
+```
+AI_PROVIDER=openai
+AI_BASE_URL=http://127.0.0.1:11434/v1
+OPENAI_API_KEY=ollama
+OPENAI_MODEL=qwen2.5:7b
+OPENAI_EMBEDDING_MODEL=nomic-embed-text
+EMBEDDINGS_BASE_URL=http://127.0.0.1:11434/v1
+```
+
+> Tip: Create `.env.dev.local` with your overrides. The launcher merges env and forwards to children.
+
+**Sanity checks**
+
+```bash
+curl -s http://127.0.0.1:3999/health | jq .
+# UI: http://localhost:5173  (or 5174/5175)
+# Chat via gate guarded: POST http://127.0.0.1:4000/api/ai/chat
+```
+
+**OPA policy workflow**
+
+```bash
+# Build + sign + verify bundle
+pnpm opa:bundle && pnpm opa:sign && pnpm opa:verify
+
+# Format + lint + test
+pnpm opa:fmt && pnpm opa:lint && pnpm opa:test -- --timeout 5s
+
+# Coverage gate (fail <85%)
+OPA_COVERAGE_MIN=0.85 pnpm opa:cover
+```
+
+### OPA Coverage Gate
+
+```bash
+# Pretty tests (human)
+pnpm opa:test
+
+# Coverage (JSON → gate; fails below 85%)
+pnpm opa:cover
+# or write to file then check
+pnpm opa:cover:file
+```
+
+Outputs:
+
+```
+OPA coverage: 87.50% (70/80)  threshold: 85.00%
+  - apps/ethics-api/opa/policy.rego: 81.82% (18/22)  not-covered=4
+```

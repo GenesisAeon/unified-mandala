@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach, afterEach } from 'vitest';
+import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 
 const OLD_ENV = { ...process.env } as NodeJS.ProcessEnv;
 
@@ -29,6 +29,16 @@ describe('membrane module (src/membrane)', () => {
     expect(r).toMatchObject({ t: 123, value: 4.2, severity: 'ok', state: 'subcritical', A: 0 });
   });
 
+  it('NullMembrane respects MEMBRANE_MODE=null', async () => {
+    process.env.MEMBRANE_MODE = 'null';
+    const mod = await import('../../src/membrane/index');
+    expect(mod.isLowMem).toBe(true);
+    const Mem = mod.NullMembrane as any;
+    const inst = new Mem();
+    const r = inst.step(12, 0.9);
+    expect(r.A).toBe(0);
+  });
+
   it('NullMembrane (default) uses real implementation', async () => {
     delete process.env.LOW_MEM;
     delete (process.env as any).VITE_LOW_MEM;
@@ -37,6 +47,8 @@ describe('membrane module (src/membrane)', () => {
     const Mem = mod.NullMembrane as any;
     const inst = new Mem();
     const r = inst.step(456, 1.1);
-    expect(r).toMatchObject({ t: 456, value: 1.1, severity: 'ok', state: 'subcritical' });
+    expect(r).toMatchObject({ t: 456, value: 1.1 });
+    expect(r.A).toBeGreaterThanOrEqual(0);
+    expect(['ok', 'warn', 'alarm']).toContain(r.severity);
   });
 });

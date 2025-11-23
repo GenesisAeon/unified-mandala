@@ -1,0 +1,28 @@
+fraktal: 100
+status: in_progress
+owner: GPT-5 Codex
+summary:
+  - 'Start-Verified verhindert Doppelstart des Health-Aggregators und respektiert bestehende Listener.'
+  - 'Live-Smoke und Dev-Stack berücksichtigen PORT_OFFSET und räumen Kern-Ports automatisch frei.'
+  - 'Neue Ethics-API + Verify-Gate bilden das Terminal-of-Trust-Miniloop mit Ampel-Checks und Weiterleitungs-Gate.'
+deliverables:
+  - scripts/start-verified.ts
+  - scripts/smoke/live-smoke.mjs
+  - scripts/dev-services.mjs
+  - apps/api-lite/ollama-proxy.mjs
+  - apps/ethics-api/src/index.ts
+  - apps/ethics-api/package.json
+  - apps/verify-gate/src/index.ts
+  - apps/verify-gate/package.json
+  - package.json
+follow_up:
+  rag_contract_alignment:
+    description: 'RAG-Endpunkte vereinheitlichen und Ethics-API gegen finales Schema (`/rag/ask`) koppeln.'
+    status: planned
+  ui_verify_integration:
+    description: 'Mandala-Playground an Verify-Gate anbinden und Ampelstatus mit benötigter Evidenz anzeigen.'
+    status: planned
+hook:
+  progress: 'Dev-Stack stabilisiert, Ethics/Verify laufen lokal via tsx; Ollama-Proxy crashfix; Smoke grün unter Offset.'
+  next_step: 'UI-Integration des Verify-Gates und Impact-Heuristiken in Ethics-API verfeinern.'
+repeat_required: false

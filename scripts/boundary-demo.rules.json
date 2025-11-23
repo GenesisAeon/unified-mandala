@@ -1,0 +1,14 @@
+[
+  {
+    "id": "no-todo",
+    "description": "No TODO markers",
+    "severity": "warn",
+    "pattern": "\\bTODO\\b"
+  },
+  {
+    "id": "no-secret",
+    "description": "No API_KEY in code",
+    "severity": "error",
+    "pattern": "API_KEY=.*"
+  }
+]

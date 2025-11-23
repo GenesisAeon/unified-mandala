@@ -1,0 +1,24 @@
+{
+  "kind": "SigilMessage",
+  "schemaVersion": "1.0.0",
+  "ts": "2025-01-01T12:00:00Z",
+  "id": "01HZYZ4NBY6Q9W3E4QKQZKYF8N",
+  "kpi": "groundwater",
+  "state": "event",
+  "severity": "alarm",
+  "intent": "escalate",
+  "symbol": "⚠️",
+  "ascii": true,
+  "asciiSymbol": "!!",
+  "A": 0.84,
+  "dA": 0.21,
+  "context": {
+    "source": "membrane",
+    "boundaryLawId": "gw-evt-2025-01",
+    "notes": "Threshold exceeded for three consecutive intervals."
+  },
+  "evidence": ["https://unified.mandala/observability/events/gw-evt-2025-01.json"],
+  "meta": {
+    "region": "delta"
+  }
+}

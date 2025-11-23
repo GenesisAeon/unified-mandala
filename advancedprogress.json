@@ -6369,5 +6369,106 @@
   ],
   "changedFiles": [],
   "lastUpdated": "2025-09-23T09:00:00Z",
-  "commitHash": "743851c2bde0ad40d543d912aeebbbde384e43fd"
+  "commitHash": "743851c2bde0ad40d543d912aeebbbde384e43fd",
+  "backlogIndex": {
+    "updatedAt": "2025-10-13T07:04:03.135Z",
+    "count": 19,
+    "items": [
+      {
+        "path": "advancedToDo_parts/advancedToDo.part1.json",
+        "size": 715,
+        "title": "["
+      },
+      {
+        "path": "advancedToDo_parts/advancedToDo.part1.yaml",
+        "size": 597,
+        "title": "- commit: 'Implement C-Tutor progress workflow'"
+      },
+      {
+        "path": "advancedToDo_parts/advancedToDo.part10.json",
+        "size": 1976,
+        "title": "["
+      },
+      {
+        "path": "advancedToDo_parts/advancedToDo.part10.yaml",
+        "size": 1962,
+        "title": "- commit: Implement PantheonFeedbackRound"
+      },
+      {
+        "path": "advancedToDo_parts/advancedToDo.part2.json",
+        "size": 1847,
+        "title": "["
+      },
+      {
+        "path": "advancedToDo_parts/advancedToDo.part2.yaml",
+        "size": 1571,
+        "title": "- commit: Aeon transition sigil workflow"
+      },
+      {
+        "path": "advancedToDo_parts/advancedToDo.part3.yaml",
+        "size": 1455,
+        "title": "- commit: 'Document Aeon Transition guidelines'"
+      },
+      {
+        "path": "advancedToDo_parts/advancedToDo.part4.json",
+        "size": 597,
+        "title": "["
+      },
+      {
+        "path": "advancedToDo_parts/advancedToDo.part4.yaml",
+        "size": 483,
+        "title": "- commit: 'Add pre-commit hook for ToDo sync'"
+      },
+      {
+        "path": "advancedToDo_parts/advancedToDo.part5.json",
+        "size": 261,
+        "title": "["
+      },
+      {
+        "path": "advancedToDo_parts/advancedToDo.part5.yaml",
+        "size": 219,
+        "title": "- commit: 'Add transition history script'"
+      },
+      {
+        "path": "advancedToDo_parts/advancedToDo.part6.json",
+        "size": 145665,
+        "title": "["
+      },
+      {
+        "path": "advancedToDo_parts/advancedToDo.part6.yaml",
+        "size": 147372,
+        "title": "- commit: >-"
+      },
+      {
+        "path": "advancedToDo_parts/advancedToDo.part7.json",
+        "size": 525,
+        "title": "["
+      },
+      {
+        "path": "advancedToDo_parts/advancedToDo.part7.yaml",
+        "size": 444,
+        "title": "- commit: 'Add PoeticSigillin module'"
+      },
+      {
+        "path": "advancedToDo_parts/advancedToDo.part8.json",
+        "size": 1455,
+        "title": "["
+      },
+      {
+        "path": "advancedToDo_parts/advancedToDo.part8.yaml",
+        "size": 1288,
+        "title": "- commit: 'Implement MemoryManager Service'"
+      },
+      {
+        "path": "advancedToDo_parts/advancedToDo.part9.json",
+        "size": 3319,
+        "title": "["
+      },
+      {
+        "path": "advancedToDo_parts/advancedToDo.part9.yaml",
+        "size": 2816,
+        "title": "- commit: Implement MemoryManager Service"
+      }
+    ]
+  }
 }

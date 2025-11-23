@@ -1,0 +1,25 @@
+version: '3.9'
+services:
+  tempo:
+    image: grafana/tempo:2.4.1
+    command: '-config.file=/etc/tempo.yaml'
+    volumes:
+      - ./tempo/tempo.yaml:/etc/tempo.yaml
+    ports:
+      - '3200:3200' # http api
+      - '4317:4317' # otlp gRPC
+    profiles: ['monitoring']
+
+  otel-collector:
+    image: otel/opentelemetry-collector:0.99.0
+    command: '--config=/etc/otel-collector.yaml'
+    volumes:
+      - ./otel/otel-collector.yaml:/etc/otel-collector.yaml
+    ports:
+      - '4318:4318' # otlp http (point the UI to this)
+    depends_on: [tempo]
+    profiles: ['monitoring']
+
+  grafana:
+    profiles: ['monitoring']
+    # Ensure grafana can reach tempo:3200 and has a Tempo datasource provisioned if desired.

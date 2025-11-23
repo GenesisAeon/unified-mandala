@@ -1,30 +1,18 @@
 {
-  "fraktal": 92,
-  "phase": "Re-Entry + Qwen Tools",
-  "status": {
-    "proxy": "ok",
-    "ui_playground": "ok",
-    "smoke_qwen": "stabilized",
-    "smoke_fs": "ok",
-    "smoke_memory": "added",
-    "api_key_guard": "planA"
-  },
+  "fraktal": 116,
+  "phase": "CI Badges & OPA Coverage Gate Hardening",
+  "status": "README bündelt Governance-Badges, OPA-Coverage schlägt bei Test-Failures fehl und Nightly protokolliert Chaos-/Alertmanager-Snapshots.",
+  "next_hook": "DevTalk.txt auf weitere Tasks prüfen (Observability-Profil, Setup-Skripte) und Fraktalstatus aktualisieren.",
   "changes": [
-    {
-      "file": "apps/api-lite/ollama-proxy.mjs",
-      "desc": "fs.list + memory remember/recall endpoints"
-    },
-    { "file": "scripts/smoke/memory-smoke.mjs", "desc": "memory smoke" },
-    { "file": "sigils/sigillin_qwen_playground.sigil.yaml", "desc": "Qwen Sigillin v1.0" }
+    "README.md",
+    "docs/governance/primer.md",
+    "scripts/opa/coverage.mjs",
+    "scripts/opa/run-opa-cover.mjs",
+    "package.json",
+    ".github/workflows/ci.core.yml",
+    ".github/workflows/ci.nightly.yml",
+    "tests/scripts/opa/coverage.test.ts",
+    "codexfeedback/codexfeedback-fraktal116.yaml"
   ],
-  "next": [
-    { "label": "Vite proxy header (Plan B)", "state": "recommended" },
-    { "label": "Embeddings memory", "state": "later" }
-  ],
-  "refs": [
-    "docs/roadmap/v1.0-stabilization-playbook.md",
-    "MandalaMap.yaml",
-    "MandalaMap.json",
-    "MandalaMap.md"
-  ]
+  "validate": ["pnpm -w opa:cover", "pnpm test --run tests/scripts/opa/coverage.test.ts"]
 }

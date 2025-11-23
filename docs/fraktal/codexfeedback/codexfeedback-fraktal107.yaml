@@ -1,0 +1,36 @@
+fraktal: 107
+status: in-progress
+owner: Johann
+summary:
+  - 'Verify-Gate Verdict-JWTs tragen jetzt deterministische Fingerprints (`fp`/`ch`/`ed`/`bh`) und nutzen einen persistierten JTI-Store gegen Replay-Versuche.'
+  - 'SSRF-Guard blockt nun IPv6-Shortcuts, dezimale IP-Varianten und kennzeichnet geblockte Ziele mit `resolved_ip`; Upstream-Rate-Limits (Subject) und Token-GC besitzen Jitter.'
+  - 'Prometheus erhält Recording-Rules + neue Alerts, Alertmanager routet Warnungen nach Slack/PagerDuty; Chaos-Skripte decken OPA-Timeout und Verify-Gate-Restarts ab.'
+  - 'Mandala Playground bietet einen „Strong-only“-Filter für Evidenzchips, sodass Reviewer sofort harte Quellen erkennen.'
+  - 'OPA-Policy-Bundle erzwingt starke Evidenz und Zwei-Domain-Regeln, Ethics-API liefert strukturierte Evidenz-Metadaten an den Verify-Gate.'
+deliverables:
+  - apps/verify-gate/src/index.ts
+  - apps/verify-gate/src/security/fingerprint.ts
+  - apps/verify-gate/src/idempotency/jtiStore.ts
+  - apps/verify-gate/src/security/rateLimiter.ts
+  - apps/ethics-api/opa/policy.rego
+  - apps/ethics-api/src/index.ts
+  - apps/api/src/middleware/verifyEthics.ts
+  - apps/ui/src/components/MandalaAIPlayground.tsx
+  - observability/prometheus/recording-rules.yaml
+  - observability/alertmanager/alertmanager.yml
+  - scripts/chaos/verifygate-restart-replay.mjs
+  - scripts/chaos/opa-timeout.mjs
+follow_up:
+  verify_gate_subject_limits:
+    description: 'Optionales Dual-Limit pro Subject & Idempotency-Key weiter beobachten; bei Bedarf Scope auf IP/Cookie differenzieren.'
+    status: todo
+  opa_bundle_ci:
+    description: 'OPA-Bundle-Build in CI integrieren und Artefakt signieren.'
+    status: todo
+  ui_evidence_reuse:
+    description: 'Evidence-Chips + Strong-Filter auch in weiteren Mandala-Views aktivieren.'
+    status: planned
+hook:
+  progress: 'JWT-Provenienz + Replay-Abwehr live, Observability-Stack (Recording-Rules, Alertmanager) aktiv, Strong-only-UI produktiv. Folgearbeit: CI-Bundle & Evidence-Reuse.'
+  next_step: 'OPA-Bundle CI-Task und weiterführende Rate-Limit-Telemetrie aufsetzen.'
+repeat_required: false

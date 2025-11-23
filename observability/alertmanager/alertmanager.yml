@@ -1,0 +1,45 @@
+global:
+  resolve_timeout: 5m
+
+route:
+  receiver: slack-notify
+  group_by: [alertname]
+  group_wait: 10s
+  group_interval: 2m
+  repeat_interval: 1h
+  routes:
+    - matchers: [severity="page"]
+      receiver: pagerduty
+      continue: false
+    - matchers: [severity="warning"]
+      receiver: slack-notify
+      continue: false
+
+receivers:
+  - name: slack-notify
+    slack_configs:
+      - send_resolved: true
+        api_url_file: /etc/alertmanager/secrets/slack_webhook_url
+        channel: '#mandala-alerts'
+        title: >-
+          [{{ .Status | toUpper }}] {{ .CommonLabels.alertname }}
+        text: >-
+          *Severity:* `{{ .CommonLabels.severity }}`
+          *Summary:* {{ .CommonAnnotations.summary }}
+          *Instance:* {{ .CommonLabels.instance }}
+          *Details:* {{ range .Alerts }}• {{ .Annotations.description }}\n{{ end }}
+
+  - name: pagerduty
+    pagerduty_configs:
+      - routing_key_file: /etc/alertmanager/secrets/pagerduty_routing_key
+        severity: critical
+        description: >-
+          {{ template "pagerduty.default.description" . }}
+
+templates:
+  - '/etc/alertmanager/templates/*.tmpl'
+
+inhibit_rules:
+  - source_matchers: [severity="page"]
+    target_matchers: [severity="warning"]
+    equal: [alertname]

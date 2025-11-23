@@ -1,0 +1,47 @@
+fraktal: 106
+status: done
+owner: Johann
+summary:
+  - '`apps/verify-gate/src/idempotency/index.ts` + `apps/verify-gate/src/idempotency/store.ts` persistieren Idempotency-Keys via `better-sqlite3` (`VERIFY_GATE_IDEMP_DB`, TTL `VERIFY_GATE_IDEMP_TTL_MS`), aktualisieren die Header-Safelist (authorization/cookie/user-agent/accept/accept-language/content-type/x-request-id/x-forwarded-for/x-forwarded-proto/x-ethics-token) und halten Idempotency/SSRF/Token-Metriken (`metrics.ts`) inklusive `X-Verify-Degraded`-Weitergabe.'
+  - '`apps/api/src/middleware/verifyEthics.ts` reicht `X-Verify-Degraded` an Clients weiter; `apps/ui/src/lib/fetchWithEthics.ts` + `apps/ui/src/components/MandalaAIPlayground.tsx` zeigen Fail-closed-Banner mit Quelle, sodass Degraded-Modus in der UI sichtbar bleibt.'
+  - '`apps/api/src/__tests__/ethics-token-guard.test.ts` deckt Kid-Rotation & Drop-Szenarien ab, `docs/runbooks/verify-gate-jwt-rotation.md` dokumentiert den Rotation-Workflow und `analysis/devtalk106-evaluation.md` protokolliert Persistenz/Safelist/Degraded-Hooks.'
+  - '`apps/ethics-api/opa/policy.rego` verlangt starke Evidenz bei Fakten und verweigert Antworten, wenn `input.degraded == true`; Chaos-Skript `pnpm chaos:ethics --scenario boundary-down` bleibt Nightly-Drill (`ci.nightly.yml`).'
+deliverables:
+  - apps/verify-gate/src/index.ts
+  - apps/verify-gate/src/metrics.ts
+  - apps/verify-gate/src/verdictToken.ts
+  - apps/verify-gate/src/idempotency/index.ts
+  - apps/verify-gate/src/idempotency/store.ts
+  - apps/verify-gate/src/http/headerForward.ts
+  - apps/verify-gate/src/__tests__/idempotency.test.ts
+  - apps/api/src/middleware/verifyEthics.ts
+  - apps/api/src/__tests__/ethics-token-guard.test.ts
+  - apps/ethics-api/src/opa.ts
+  - apps/ethics-api/src/index.ts
+  - apps/ethics-api/src/__tests__/ethics-failclosed.test.ts
+  - apps/ethics-api/opa/policy.rego
+  - apps/ui/src/lib/fetchWithEthics.ts
+  - apps/ui/src/components/MandalaAIPlayground.tsx
+  - scripts/chaos/ethics-chaos.mjs
+  - .github/workflows/ci.nightly.yml
+  - docs/runbooks/verify-gate-jwt-rotation.md
+  - docs/roadmap/v1.0-stabilization-playbook.md
+  - docs/roadmap/v1.0-stabilization-playbook.yaml
+  - MandalaMap.md
+  - MandalaMap.yaml
+  - MandalaMap.json
+  - codexfeedback.md
+  - codexfeedback.json
+  - codexfeedback.yaml
+  - codexfeedback/codexfeedback-latest.md
+  - codexfeedback/codexfeedback-latest.json
+  - codexfeedback/codexfeedback-latest.yaml
+  - analysis/devtalk106-evaluation.md
+commands:
+  - pnpm -w vitest run apps/verify-gate/src/__tests__/idempotency.test.ts
+  - pnpm -w vitest run apps/api/src/__tests__/ethics-token-guard.test.ts
+  - pnpm -w vitest run apps/ethics-api/src/__tests__/ethics-failclosed.test.ts
+hook:
+  progress: Persistenter Idempotency-Store, Safelist, `X-Verify-Degraded`-Propagation, UI-Banner & JWT-Rotation-Runbook laufen im Verify-Gate/Ethics-Stack; Grafana-Minidashboard & Prometheus-Alerts ergänzen die Observability.
+  next_step: Alertmanager/Webhook-Routing dokumentieren, OPA-Bundle-Artefakte+Badges in CI integrieren und optionalen „Strong only“-Filter ausrollen.
+repeat_required: false

@@ -1,0 +1,33 @@
+fraktal: 103
+status: done
+owner: Johann
+summary:
+  - '`apps/verify-gate` erhielt Header-Drop-Liste, DNS-basierte SSRF-Allowlist (`VERIFY_GATE_UPSTREAM_ALLOWLIST`), neue Prometheus-Metriken (`verify_gate_inflight`, `verify_gate_upstream_duration_ms`, `verify_gate_http_responses_total`) samt `/metrics` sowie zusätzliche Vitest-Cases für Streaming- und Allowlist-Pfade.'
+  - '`apps/ethics-api/src/index.ts` signalisiert degradierte Abhängigkeiten (`x-ethics-degraded`, Counter `ethics_degraded_total`), nutzt Lifeboat-Regeln (Hate/PII/Scam), cached Boundary-Ergebnisse (`ETHICS_CACHE_TTL_MS`) per SHA1 und erzwingt eindeutige Evidenz-Domains (`ETHICS_REQUIRE_UNIQUE_EVIDENCE_DOMAINS`) mit neuen Countern (`ethics_decision_log_total`, `ethics_evidence_domains_total`).'
+  - 'Env/Docs aktualisiert (`.env.example`, Stabilization-Playbook, MandalaMap.*), neues DevTalk-Log (`analysis/devtalk103-evaluation.md`) und codexfeedback\* spiegeln den Defense-in-Depth-Lauf inklusive Follow-up-Hooks (Alerting, DOI-Validator).'
+deliverables:
+  - apps/verify-gate/src/index.ts
+  - apps/verify-gate/src/http/headerForward.ts
+  - apps/verify-gate/src/security/ssrf.ts
+  - apps/verify-gate/src/__tests__/proxy-headers.test.ts
+  - apps/verify-gate/src/__tests__/streaming-preserves-headers.test.ts
+  - apps/verify-gate/src/__tests__/ssrf-allowlist.test.ts
+  - apps/ethics-api/src/index.ts
+  - apps/ethics-api/src/__tests__/ethics-failclosed.test.ts
+  - .env.example
+  - docs/roadmap/v1.0-stabilization-playbook.md
+  - docs/roadmap/v1.0-stabilization-playbook.yaml
+  - MandalaMap.md
+  - MandalaMap.yaml
+  - MandalaMap.json
+  - analysis/devtalk103-evaluation.md
+  - codexfeedback.md
+  - codexfeedback/codexfeedback-latest.md
+  - codexfeedback/codexfeedback-latest.json
+  - codexfeedback/codexfeedback-latest.yaml
+commands:
+  - pnpm vitest run apps/verify-gate/src/__tests__/proxy-headers.test.ts apps/verify-gate/src/__tests__/streaming-preserves-headers.test.ts apps/verify-gate/src/__tests__/ssrf-allowlist.test.ts apps/ethics-api/src/__tests__/ethics-failclosed.test.ts
+hook:
+  progress: Verify-Gate & Ethics-API Defense-in-Depth (Header-Sanitizing, DNS-SSRF, Degraded-Signale, Evidenz-Dedupe) produktiv.
+  next_step: Grafana-Alerts für neue Gauge/Counter ergänzen und DOI/Handle-Validator für Evidenz-Stärke einplanen.
+repeat_required: false

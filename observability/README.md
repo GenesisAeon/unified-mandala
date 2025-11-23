@@ -12,6 +12,8 @@ Point Prometheus to `<server>/metrics` to scrape these values.
 
 Import the JSON in `grafana/mandala-haiku-dashboard.json` into Grafana to visualize the Haiku generation rate and basic process metrics.
 
+For Verify-Gate & Ethics observability, load `grafana/dashboards/verify-gate-ethics-mini.json`. It surfaces Idempotency-/SSRF-/Token-Fail Counters (`verify_gate_*`), upstream latency (p95) and Ethics-Degradierungen. Couple it with the Prometheus alert rules in `observability/alerts/verify-gate.yaml` (Replay/SSRF/Token spikes linking to `docs/runbooks/verify-gate-jwt-rotation.md`). Mount `observability/alerts` into `/etc/prometheus/alerts/` when running the monitoring profile to activate the rules.
+
 ## Docker Compose Profile
 
 Launch Prometheus and Grafana locally with the new `monitoring` profile:

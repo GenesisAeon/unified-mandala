@@ -1,0 +1,93 @@
+groups:
+  - name: verify-gate-ethics
+    rules:
+      - alert: VerifyGateIdempotencyReplaySpike
+        expr: increase(verify_gate_idem_hits_total[5m]) > 3
+        for: 5m
+        labels:
+          severity: warning
+          service: verify-gate
+        annotations:
+          summary: 'Verify Gate is rejecting duplicate requests'
+          description: 'verify_gate_idem_hits_total exceeded the expected window baseline (>3 hits in 5m). Investigate client retries or replay attacks.'
+          runbook: docs/runbooks/verify-gate-jwt-rotation.md
+      - alert: VerifyGateSSRFBlockSpike
+        expr: increase(verify_gate_ssrf_block_total[5m]) > 0
+        for: 1m
+        labels:
+          severity: critical
+          service: verify-gate
+        annotations:
+          summary: 'Verify Gate blocked SSRF attempts'
+          description: 'At least one SSRF attempt was blocked within the last 5 minutes. Review upstream origin logs and allowlist configuration.'
+          runbook: docs/runbooks/verify-gate-jwt-rotation.md
+      - alert: VerifyGateTokenFailures
+        expr: increase(verify_gate_token_fail_total[5m]) > 0
+        for: 1m
+        labels:
+          severity: critical
+          service: verify-gate
+        annotations:
+          summary: 'Verify Gate token verification failures'
+          description: 'Token guard rejected one or more requests in the last 5 minutes. Check JWT rotation status and verify upstream secrets.'
+          runbook: docs/runbooks/verify-gate-jwt-rotation.md
+      - alert: EthicsDegradedActive
+        expr: job:ethics_degraded_rate_5m > 0
+        for: 1m
+        labels:
+          severity: warning
+          service: ethics-api
+        annotations:
+          summary: 'Ethics API fail-closed Pfad aktiv'
+          description: 'ethics_degraded_total steigt – Boundary/OPA prüfen und Verify-Gate-Banner kontrollieren.'
+          runbook: docs/runbooks/verify-gate-jwt-rotation.md
+      - alert: VerifyGateTokenFailSpike
+        expr: job:verify_gate_token_fail_rate_5m > 0.5
+        for: 10m
+        labels:
+          severity: critical
+          service: verify-gate
+        annotations:
+          summary: 'Verstärktes Scheitern von Verdict-Tokens'
+          description: 'Sustained token_fail Rate > 0.5/s über 10m. Rotation oder Upstream-Signatur prüfen.'
+          runbook: docs/runbooks/verify-gate-jwt-rotation.md
+      - alert: VerifyGateTLSNameMismatchSpike
+        expr: rate:verify_gate_tls_name_mismatch_total_5m > 0.5
+        for: 10m
+        labels:
+          severity: warning
+          service: verify-gate
+        annotations:
+          summary: 'TLS SAN mismatches rising'
+          description: 'Rate > 0.5/min über 10m. Zertifikate, Allowlist und Pinning prüfen.'
+          runbook: docs/runbooks/verify-gate-jwt-rotation.md
+      - alert: VerifyGateIPMismatch
+        expr: rate:verify_gate_ip_mismatch_total_5m > 0
+        for: 5m
+        labels:
+          severity: warning
+          service: verify-gate
+        annotations:
+          summary: 'Remote IP differs from pinned DNS result'
+          description: 'Verify Gate detected remote IP != pinned DNS IP during TLS preflight in the last 5 minutes. Investigate DNS rebind or proxy.'
+          runbook: docs/runbooks/verify-gate-jwt-rotation.md
+      - alert: VerifyGateRedirectSpike
+        expr: rate:verify_gate_redirect_block_total_5m > 1
+        for: 10m
+        labels:
+          severity: warning
+          service: verify-gate
+        annotations:
+          summary: 'Redirect blocks elevated'
+          description: 'Verify-Gate is blocking >1 redirect per second over 10 minutes. Check allowlist und Ursprungstraffic.'
+          runbook: docs/runbooks/verify-gate-jwt-rotation.md
+      - alert: VerifyGateLowDNSTTL
+        expr: p95:verify_gate_dns_ttl_pinned_seconds < 20
+        for: 15m
+        labels:
+          severity: warning
+          service: verify-gate
+        annotations:
+          summary: 'Viele Zielhosts mit sehr niedrigen DNS TTLs'
+          description: 'p95 TTL < 20s kann auf Rebinding oder unstabile Upstreams hindeuten.'
+          runbook: docs/runbooks/verify-gate-jwt-rotation.md

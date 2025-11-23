@@ -1,0 +1,22 @@
+groups:
+  - name: boundary.rules
+    rules:
+      - alert: BoundaryObserveLatencyP95High
+        expr: histogram_quantile(0.95, sum(rate(boundary_observe_latency_ms_bucket[5m])) by (le)) > 1000
+        for: 10m
+        labels:
+          severity: warning
+          service: boundary
+        annotations:
+          summary: 'Boundary observe p95 > 1s ({{ $value | printf "%.0f" }} ms)'
+          description: 'p95 der /boundary/observe Latenz über 1s für mindestens 10m.'
+
+      - alert: BoundaryLawsRateSurge
+        expr: rate(boundary_laws_accepted_total[5m]) > (avg_over_time(rate(boundary_laws_accepted_total[5m])[1h:]) * 3 + 1)
+        for: 10m
+        labels:
+          severity: info
+          service: boundary
+        annotations:
+          summary: 'Boundary Laws/min Surge'
+          description: 'Signifikanter Anstieg der angenommenen Laws/min gegenüber 1h-Basislinie.'

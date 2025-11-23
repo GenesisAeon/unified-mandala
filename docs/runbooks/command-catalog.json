@@ -849,6 +849,30 @@
           "source": ["package.json#scripts.smoke:light-static"]
         },
         {
+          "id": "chaos.verify-dns-rebind",
+          "name": "Verify-Gate DNS rebind drill",
+          "command": "pnpm chaos:verify-dns-rebind",
+          "type": "pnpm",
+          "runs": "node scripts/chaos/verifygate-dns-rebind.mjs",
+          "description": "Executes the Vitest chaos harness that simulates a TTL rebind from a public IP to loopback and asserts the gate blocks the rebound.",
+          "source": [
+            "package.json#scripts.chaos:verify-dns-rebind",
+            "scripts/chaos/verifygate-dns-rebind.mjs"
+          ]
+        },
+        {
+          "id": "chaos.verify-redirect-loop",
+          "name": "Verify-Gate redirect loop drill",
+          "command": "pnpm chaos:verify-redirect-loop",
+          "type": "pnpm",
+          "runs": "node scripts/chaos/verifygate-redirect-loop.mjs",
+          "description": "Runs the redirect-loop chaos suite to ensure verify-gate stops excessive hops and private redirect targets.",
+          "source": [
+            "package.json#scripts.chaos:verify-redirect-loop",
+            "scripts/chaos/verifygate-redirect-loop.mjs"
+          ]
+        },
+        {
           "id": "smoke.nats-docker-up",
           "name": "Docker JetStream (up)",
           "command": "pnpm nats:docker",
@@ -1419,6 +1443,51 @@
           "source": ["package.json#scripts.policy:check"]
         },
         {
+          "id": "policy.opa-test",
+          "name": "OPA policy tests",
+          "command": "pnpm opa:test",
+          "type": "pnpm",
+          "runs": "node scripts/opa/run-opa-test.mjs",
+          "description": "Runs `opa test` for `apps/ethics-api/opa`, honours OPA_BIN or ./bin/opa and forwards extra CLI flags.",
+          "source": ["package.json#scripts.opa:test"]
+        },
+        {
+          "id": "policy.opa-bundle",
+          "name": "OPA bundle build",
+          "command": "pnpm opa:bundle",
+          "type": "pnpm",
+          "runs": "node scripts/opa/build-opa-bundle.mjs",
+          "description": "Builds the Mandala ethics OPA bundle (`dist/opa/mandala-ethics-bundle.tar.gz`) and writes revision metadata.",
+          "source": ["package.json#scripts.opa:bundle", "scripts/opa/build-opa-bundle.mjs"]
+        },
+        {
+          "id": "policy.opa-sign",
+          "name": "OPA bundle sign",
+          "command": "pnpm opa:sign",
+          "type": "pnpm",
+          "runs": "node scripts/opa/sign-opa-bundle.mjs",
+          "description": "Computes the bundle SHA256 fingerprint and optionally GPG-signs it (`OPA_SIGN_ENABLE=1`).",
+          "source": ["package.json#scripts.opa:sign", "scripts/opa/sign-opa-bundle.mjs"]
+        },
+        {
+          "id": "policy.opa-verify",
+          "name": "OPA bundle verify",
+          "command": "pnpm opa:verify",
+          "type": "pnpm",
+          "runs": "node scripts/opa/verify-opa-bundle.mjs",
+          "description": "Verifies SHA256/GPG signatures and performs a smoke `opa eval` against the bundle.",
+          "source": ["package.json#scripts.opa:verify", "scripts/opa/verify-opa-bundle.mjs"]
+        },
+        {
+          "id": "policy.opa-bundle-sign",
+          "name": "OPA bundle build+sign",
+          "command": "pnpm opa:bundle:sign",
+          "type": "pnpm",
+          "runs": "pnpm opa:bundle && pnpm opa:sign && pnpm opa:verify",
+          "description": "Convenience wrapper to build, sign, and verify the ethics bundle in one step (CI artefact path `dist/opa/`).",
+          "source": ["package.json#scripts.opa:bundle:sign"]
+        },
+        {
           "id": "policy.kyverno-validate",
           "name": "Kyverno dry run",
           "command": "pnpm kyverno:validate",
@@ -1638,6 +1707,16 @@
       "id": "script.setup-dev-container",
       "path": "Dockerfile.dev",
       "description": "Dev container definition aligning Node 20 + Python 3 toolchains."
+    },
+    {
+      "id": "script.start-verified",
+      "path": "scripts/start-verified.ts",
+      "description": "Starts UI + dev stack + health aggregator, waits for readiness, then runs smoke:live."
+    },
+    {
+      "id": "script.backlog-consolidate",
+      "path": "scripts/meta/backlog-consolidate.mjs",
+      "description": "Backlog consolidation: generates out/backlog/fragment-index.json and updates advancedprogress.json."
     }
   ]
 }

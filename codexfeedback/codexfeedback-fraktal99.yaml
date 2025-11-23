@@ -1,0 +1,36 @@
+fraktal: 99
+status: done
+owner: Johann
+summary:
+  - '`apps/ethics-api/src/index.ts` integriert Circuit-Breaker, Fail-Closed-Response (`ETHICS_DEP_FAIL_MODE`), Prometheus (`ethics_dependency_unreachable_total`, `boundary_circuit_state`), `/readyz` sowie einen Shared `fetchJson`-Client mit Timeout/Retry.'
+  - '`apps/ethics-api/src/boundary-client.ts`/`circuit-breaker.ts`/`http-client.ts` kapseln Circuit-State & JSON-Fetch (Jitter-Backoff) für Boundary/RAG-Aufrufe.'
+  - '`apps/verify-gate/src/index.ts` leitet Authorization/Cookie-Header weiter, setzt `x-ethics-verdict`/`x-ethics-evidence-count`, filtert Hop-by-Hop-Header und liefert 5xx bei Ethics-Ausfällen (Timeout via `VERIFY_GATE_TIMEOUT_MS`).'
+  - 'Vitest/Supertest (`apps/ethics-api/src/__tests__/ethics-failclosed.test.ts`, `apps/verify-gate/src/__tests__/proxy-headers.test.ts`) sichern Fail-Closed- & Proxy-Flows; `.env.example`, Stabilization-Playbook (MD/YAML), MandalaMap.(md|json|yaml) und codexfeedback.* spiegeln das Update.'
+deliverables:
+  - apps/ethics-api/src/index.ts
+  - apps/ethics-api/src/boundary-client.ts
+  - apps/ethics-api/src/circuit-breaker.ts
+  - apps/ethics-api/src/http-client.ts
+  - apps/verify-gate/src/index.ts
+  - apps/ethics-api/src/__tests__/ethics-failclosed.test.ts
+  - apps/verify-gate/src/__tests__/proxy-headers.test.ts
+  - .env.example
+  - docs/roadmap/v1.0-stabilization-playbook.md
+  - docs/roadmap/v1.0-stabilization-playbook.yaml
+  - MandalaMap.md
+  - MandalaMap.json
+  - MandalaMap.yaml
+  - codexfeedback.md
+  - codexfeedback.json
+  - codexfeedback.yaml
+  - codexfeedback/codexfeedback-latest.md
+  - codexfeedback/codexfeedback-latest.json
+  - codexfeedback/codexfeedback-latest.yaml
+  - analysis/devtalk99-evaluation.md
+commands:
+  - pnpm vitest run apps/ethics-api/src/__tests__/ethics-failclosed.test.ts
+  - pnpm vitest run apps/verify-gate/src/__tests__/proxy-headers.test.ts
+hook:
+  progress: Fail-Closed Boundary Guard + Verify-Gate Header-Forwarding aktiv, Docs/Env aktualisiert.
+  next_step: Rate-Limits & Boundary-Alerting (Circuit-Open, Dedupes/min) evaluieren.
+repeat_required: false

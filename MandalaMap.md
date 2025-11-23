@@ -4,26 +4,26 @@
 - Fraktal: 93
 - Generated: 2025-12-01 00:00:00+00:00
 
-Total entries: 71
+Total entries: 79
 
 Categories:
 
+- automation: 12
 - governance: 12
-- ci-infra: 10
-- automation: 10
+- ci-infra: 11
+- core-runtime: 8
 - agents: 8
+- observability: 7
 - support: 6
-- core-runtime: 7
 - data-intel: 5
 - research: 5
 - testing: 4
-- observability: 3
 - backlog: 1
 - defined categories: 11
 
 Statuses:
 
-- active: 53
+- active: 61
 - experimental: 7
 - generated: 3
 - stable: 3
@@ -35,26 +35,29 @@ Statuses:
 
 Samples:
 
+- automation:
+  - Backlog Consolidate (active) — scripts/meta/backlog-consolidate.mjs
+  - Verified Starter (active) — scripts/start-verified.ts
+  - Plugin registry cache (active) — .registry/
+  - Codex sync scripts (active) — codex-sync/
+  - Fraktalrun pipelines (active) — fraktalrun/
 - governance:
   - Codex governance manifests (active) — codex/
   - Configuration bundles (active) — config/
   - Documentation (active) — docs/
   - Governance policies (active) — governance/
   - Manifest documents (active) — manifest/
-- core-runtime:
-  - API Lite Proxy (active) — apps/api-lite/
+  - Ethics OPA policy (active) — apps/ethics-api/opa/policy.rego
+  - OPA regression suite (active) — apps/ethics-api/opa/policy_test.rego
 - ci-infra:
   - GitHub workflows & templates (active) — .github/
+  - MandalaMap strict (label gate) (active) — .github/workflows/mandala-map-strict.yml
   - Git hooks (active) — .husky/
   - AWS deployment stubs (active) — aws/
   - Helm charts (active) — charts/
-  - CI support scripts (active) — ci/
-  - Self-hosted Qwen smoke lane (active) — .github/workflows/ci.qwen-smoke.yml
-- automation:
-  - Plugin registry cache (active) — .registry/
-  - Codex sync scripts (active) — codex-sync/
-  - Fraktalrun pipelines (active) — fraktalrun/
-  - Integration helpers (active) — integration/
-  - Process automation (active) — processes/
+  - OPA coverage gate (active) — scripts/opa/coverage.mjs
+- observability:
+  - Verify-Gate network metrics (active) — observability/prometheus/recording-rules.yaml
+  - Verify-Gate alerting (active) — observability/alerts/verify-gate.yaml
 
 _Auto-generated summary. Edit YAML as the source of truth._

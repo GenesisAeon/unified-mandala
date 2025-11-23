@@ -1,0 +1,48 @@
+fraktal: 98
+status: done
+owner: Johann
+summary:
+- "`scripts/boundary-service.ts` erweitert `/metrics` um `boundary_observe_total{result}`\
+  \ & `boundary_idempotency_missing_total`, beantwortet `OPTIONS /boundary/observe`\
+  \ mit CORS-Expose (`Idempotency-Key`) und setzt OTel-Attribute f\xFCr Event-Key/Dedupe-Hit."
+- "`scripts/smoke/boundary-service-smoke.mjs` pr\xFCft Header-Expose, Preflight und\
+  \ neue Counter; `docs/boundary/GettingStarted.md` dokumentiert Curl/OPTIONS-Beispiele."
+- "`src/boundary/publisher.ts` h\xE4ngt im Default-HTTP-Fallback seit Fraktal97 automatisch\
+  \ den `Idempotency-Key` an; Header-Validierung nutzt weiterhin `stableBoundaryEventKey`\
+  \ als Fallback."
+- "`tests/boundary/publisher.test.ts` pr\xFCft auto-generierte und vorgegebene Keys\
+  \ (Header-Echo, JSON-Body) \xFCber Vitest."
+- Docs & Tracker (`docs/runbooks/sigil-publisher.md`, `docs/boundary/GettingStarted.md`,
+  `docs/roadmap/v1.0-stabilization-playbook.(md|yaml)`, `MandalaMap.(md|json|yaml)`,
+  `codexfeedback.*`, `analysis/devtalk96-evaluation.md`) heben den JS-Publisher-Rollout
+  plus Observability-Update hervor; `packages/ai/package.json` + `vitest.config.ts`
+  liefern Zero-Build-Vitest (konditionale Exports, `resolve.conditions`),
+  `analysis/devtalk98-evaluation.md` dokumentiert den DevTalk-Abgleich. Nicht-JS-Bridges
+  & Alerting bleiben Follow-up.
+deliverables:
+- MandalaMap.json
+- MandalaMap.md
+- MandalaMap.yaml
+- analysis/devtalk96-evaluation.md
+- codexfeedback.json
+- codexfeedback.md
+- codexfeedback.yaml
+- codexfeedback/codexfeedback-latest.json
+- codexfeedback/codexfeedback-latest.md
+- codexfeedback/codexfeedback-latest.yaml
+- docs/boundary/GettingStarted.md
+- docs/roadmap/v1.0-stabilization-playbook.md
+- docs/roadmap/v1.0-stabilization-playbook.yaml
+- docs/runbooks/sigil-publisher.md
+- scripts/boundary-service.ts
+- scripts/smoke/boundary-service-smoke.mjs
+- src/boundary/publisher.ts
+- tests/boundary/publisher.test.ts
+commands:
+- node scripts/smoke/boundary-service-smoke.mjs
+- pnpm vitest run tests/boundary/publisher.test.ts
+hook:
+  progress: Boundary-Service liefert neue Observe-/Missing-Counter & CORS-Expose;
+    JS-Publisher bleibt auto-header, Docs synchron.
+  next_step: Nicht-JS-Bridges & Alerting (Dedupes/min, boundary_observe_total) nachziehen.
+repeat_required: false

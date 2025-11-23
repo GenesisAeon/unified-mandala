@@ -92,14 +92,73 @@ entries:
     category: core-runtime
     status: active
     title: API Lite Proxy
-    description: Express proxy bridging mandala-ui to Ollama (11434 \u2192 4000) with `/health` + `output_text` normalization.
+    description: Express proxy bridging mandala-ui to Ollama (11434 \u2192 4000) with `/health`, `/metrics` and `output_text` normalization.
     notes:
       - '`apps/api-lite/ollama-proxy.mjs` starts via `pnpm start:ollama-proxy` or PowerShell (`pnpm ps:umo`).'
-      - 'Proxy + smoke shortcuts (`pnpm smoke:qwen`, `pnpm ps:smoke-qwen`) schlossen den Fraktal87-Rollout ab; Follow-ups (Climate-MVP, Gemini-Link, Health-Badge) laufen unter Fraktal88.'
+      - 'Adds basic metrics tile support (p95/p99, RPM, 5xx), export/reset and optional Auto-RAG in Playground.'
+      - 'Proxy + smoke shortcuts (`pnpm smoke:qwen`, `pnpm smoke:fs`, `pnpm smoke:memory`, `pnpm smoke:rag`) verified in local precommit.'
       - 'Fraktal89: Guarded FS tool routes (`/api/tools/fs/read|write`), API-Key guard, rate limits (chat=60/min, fs=30/min), audit log, HOST loopback bind.'
     links:
       - label: ollama-proxy
         path: apps/api-lite/ollama-proxy.mjs
+  - path: apps/ethics-api/
+    category: observability
+    status: active
+    title: Ethics fail-closed service
+    description: Express-basierter Ethics-Check (Boundary + RAG) mit Circuit-Breaker, fail-closed Modus und Prometheus-Metriken.
+    notes:
+      - 'Fraktal99: Circuit-Breaker + fail-closed (`ETHICS_DEP_FAIL_MODE`), Counter `ethics_dependency_unreachable_total`, Gauge `boundary_circuit_state`, `/readyz`.'
+      - 'Timeout/Retry-Client (`fetchJson`) schützt Boundary/RAG-Aufrufe; Grounding/Boundary-Resultate bleiben synchron zur Verify-Gate-Pipeline.'
+      - 'Fraktal102: Ajv-Schema-Validierung (`EthicsCheckSchema`), Request-ID-Middleware (`x-request-id`), Circuit-basierte `/readyz`-Antwort (`cb` 0/1/2), optionaler Service-Bearer (`INTERNAL_BEARER`) und weitergereichte Request-IDs zu Boundary/RAG.'
+      - 'Fraktal103: Degradierte Modi (`x-ethics-degraded`, Counter `ethics_degraded_total`), Lifeboat-Regeln (Hate/PII/Scam), Boundary-Cache (`ETHICS_CACHE_TTL_MS`) per SHA1, Evidenz-Dedupe (`ETHICS_REQUIRE_UNIQUE_EVIDENCE_DOMAINS`), Counter `ethics_decision_log_total`/`ethics_evidence_domains_total`, Trace-Forwarding & gehashte Decision-Logs.'
+      - 'Fraktal104: PSL-basierte Evidenz (tldts) markiert starke Domains (DOI/arXiv/Gov), Lifeboat-Regeln umfassen Payment-Scam/Malware/Impersonation, Log-Sampling (`LOG_SAMPLE_GREEN`), `/readyz` meldet `boundary_cache_warm`, optionaler OPA-Deny (`ETHICS_OPA_*`). Vitest deckt Token-Guard & Idempotency-Flow ab.'
+      - 'Fraktal106: OPA-Evaluierung nutzt `ETHICS_OPA_ENABLE` + `ETHICS_OPA_PATH` (execFile mit stdin-input, Bundle `apps/ethics-api/opa/policy.rego`), Ethics-Antwort liefert `evidence_domains_distinct` für Policies; EvidenceChips im Playground zeigen Domains/Stärken.'
+      - 'Fraktal106 Update: Policy verlangt starke Quellen bei Fakten (`apps/ethics-api/opa/policy.rego`), `input.degraded == true` verweigert Antworten; `X-Verify-Degraded` propagiert, MandalaMap & codexfeedback dokumentieren neue Knobs.'
+      - 'Fraktal114: `assertEthicsInput`/`assertNetworkSignals` prüfen OPA-Payloads (IP-Normalisierung, ttl_sec/tls_san_ok/redirect_hops), neues Schema `schemas/opa-input.schema.ts` + Vitest sichern Netzsignale.'
+    links:
+      - label: index.ts
+        path: apps/ethics-api/src/index.ts
+      - label: boundary-client
+        path: apps/ethics-api/src/boundary-client.ts
+      - label: circuit-breaker
+        path: apps/ethics-api/src/circuit-breaker.ts
+      - label: opa policy
+        path: apps/ethics-api/opa/policy.rego
+  - path: apps/verify-gate/
+    category: core-runtime
+    status: active
+    title: Verify gate proxy
+    description: Proxy, der Requests nur mit grünem Ethics-Verdict an das Ziel weiterleitet und Telemetrie-Header setzt.
+    notes:
+      - 'Fraktal99: Reicht Client-Header (Authorization, Cookies) durch, setzt `x-ethics-verdict`/`x-ethics-evidence-count` und liefert 5xx, wenn der Ethics-Check ausfällt.'
+      - 'Filtert Hop-by-Hop-Header, erzeugt `x-request-id`, nutzt `VERIFY_GATE_TIMEOUT_MS` und Tests sichern Header-Forwarding & Fail-Closed-Pfade.'
+      - 'Fraktal102: JSON-/Rate-Limits (`VERIFY_GATE_JSON_LIMIT`, `VERIFY_GATE_RPS`), SSRF-Allowlist (`VERIFY_UPSTREAM_ALLOWLIST`, `VERIFY_STRICT_SAME_HOST`), Streaming-Proxying, CORS-Expose für `x-ethics-*` sowie Request-ID-Weitergabe an Ethics.'
+      - 'Fraktal103: Header-Drop-Liste (spoofbare Metadaten), DNS-basierte SSRF-Allowlist (`VERIFY_GATE_UPSTREAM_ALLOWLIST`), Prometheus (`verify_gate_inflight`, `verify_gate_upstream_duration_ms`, `verify_gate_http_responses_total`) inklusive `/metrics`, Vitest für Streaming/SSRF.'
+      - 'Fraktal104: Idempotency-Cache (`VERIFY_GATE_IDEMP_TTL_MS`) stoppt Duplikate (409), JWT-signierte Ethics-Tokens (`VERIFY_GATE_JWT_SECRET`) + Upstream-Verifikation (`x-ethics-token`), IP-Pinning-Agent, `/readyz` prüft Allowlist + Ethics. `apps/api` schützt `/api/ai/chat` per `verifyEthics`, Chaos-Skript `pnpm chaos:ethics` dokumentiert Fail-Closed-Proben.'
+      - 'Fraktal105: Vitest aliasiert `@opentelemetry/api` auf Stub (`tests/__mocks__/otel-api.ts`), `tests/setup/ci.ts` setzt Loopback-Allowlists (`VERIFY_GATE_SSRF_ALLOWLIST=http://127.0.0.1:*,http://localhost:*`), SSRF-Gate akzeptiert Protokoll-/Port-Wildcards und Upstream `verifyEthics` prüft HS256 mit `clockTolerance: 5`.'
+      - 'Fraktal106: Metrics nach `metrics.ts` extrahiert (`verify_gate_idem_hits_total`, `verify_gate_ssrf_block_total{host}`, `verify_gate_token_fail_total{reason}`, Histogram mit `method/route/code`), SSRF-Denies & Token-Sign-Fehler werden gezählt, Verdict-Tokens rotieren via `VERIFY_GATE_JWT_SECRETS` + `VERIFY_GATE_JWT_ACTIVE_KID` mit `kid`-Header und SSRF-Blockierungen melden den Host. Chaos-Skript `pnpm chaos:ethics --scenario boundary-down` + Nightly-Job prüfen Fail-Closed.'
+      - 'Fraktal106 Update: Idempotency-Store persistiert via `better-sqlite3` (`VERIFY_GATE_IDEMP_DB`, TTL `VERIFY_GATE_IDEMP_TTL_MS`), `persist-replay`-Vitest deckt Neustarts ab; Header-Safelist (auth/cookie/user-agent/accept/accept-language/content-type/x-request-id/x-forwarded-for/x-forwarded-proto/x-ethics-token) ersetzt Drop-Liste, `X-Verify-Degraded` propagiert bis UI (`MandalaAIPlayground` Fail-Closed-Banner) und Runbook `docs/runbooks/verify-gate-jwt-rotation.md` beschreibt Kid-Rotation.'
+      - 'Fraktal108: SSRF-Guard löst jetzt A- und AAAA-Records via `dns.lookup(..., { all: true, verbatim: true })`, fällt bei DNS-Fehlern fail-closed (kein `[host]`-Fallback), blockiert ::1/Private deterministisch, zählt DNS-Probleme über `verify_gate_ssrf_resolve_error_total` bzw. leere Antworten über `verify_gate_ssrf_resolve_empty_total` und `makePinnedAgent` übernimmt die aufgelöste IP für das Upstream-Binding.'
+      - 'Fraktal108 Follow-up: Hardening Pack plant TTL-Pinning/Resolver-Cache, CNAME-/IDNA-Checks, TLS-SAN & `remoteAddress`-Vergleich, Redirect-Limits (≤3 Hops, http/https), IPv6-/NAT64-Blocklisten sowie neue Counter/OPA-Inputs; siehe `analysis/devtalk109-evaluation.md`, docs/roadmap v1.0 & codexfeedback*.'
+      - 'Fraktal111: Redirect-Kette validiert jeden Hop vor dem ersten Netz-Request, DNS-Cache jittert TTLs mit Request-Coalescing, HTTPS-Ziele durchlaufen TLS/SAN-Preflight (remoteAddress/SAN). Prometheus zählt `verify_gate_ip_mismatch_total`, `verify_gate_tls_name_mismatch_total` und `verify_gate_redirect_block_total{reason="tls-preflight-fail"}` für Grafana/Alerting; Stabilization-Playbook & Codexfeedback vermerken den Abschluss.'
+      - 'Fraktal112: TLS-Preflight normalisiert IPv6-Remote-Adressen, NAT64/Teredo-Präfixe stehen auf der Blockliste, `x-verify-network` liefert TTL/Redirect/TLS-Level für OPA & UI (NetworkRiskBadges), Prometheus/Grafana/Alerts beobachten TLS/IP-Mismatch & DNS TTL p95; Chaos-Drills (`pnpm chaos:verify-dns-rebind`, `pnpm chaos:verify-redirect-loop`) sichern TTL-Rebind/Redirect-Loops und laufen nightly.'
+      - 'Fraktal113: Typed Error-Hierarchie (`errors.ts`), `createApp({registry})`-Factory und Metrics-Rebinding für Tests, TLS/IP-Mismatch-E2E-Suites mit Registry-Injektion, neues Grafana-Dashboard `verify-gate-network-safety.json` + Recording-Rule (`verify_gate_dns_ttl_pinned_seconds_bucket`) sowie Registry-fähiges `metrics.ts`.'
+      - 'Fraktal114: Audit-Middleware (`requestContext`, `logger.ts`), `recordAndMapError` koppelt typed Errors an Metriken/HTTP, `/readyz` prüft Allowlist/JWT; Redirect-Preflight nutzt Range-GET-Fallback, IDNA-/Redirect-Tests sichern Unicode & 405-Szenarien, Ethics erhält `ttl_sec`/`tls_san_ok`/`redirect_hops`.'
+    links:
+      - label: index.ts
+        path: apps/verify-gate/src/index.ts
+      - label: app.ts
+        path: apps/verify-gate/src/app.ts
+      - label: proxy headers test
+        path: apps/verify-gate/src/__tests__/proxy-headers.test.ts
+      - label: metrics.ts
+        path: apps/verify-gate/src/metrics.ts
+      - label: ip mismatch test
+        path: apps/verify-gate/src/__tests__/ip-mismatch.e2e.test.ts
+      - label: tls mismatch test
+        path: apps/verify-gate/src/__tests__/tls-name-mismatch.e2e.test.ts
+      - label: network safety dashboard
+        path: grafana/dashboards/verify-gate-network-safety.json
   - path: .git/
     category: support
     status: system
@@ -153,6 +212,8 @@ entries:
         (`pnpm schema:validate`, `pnpm maps:validate`, `pnpm sanity`, `pnpm policy:check`)
         als Pflichtlauf; Artefakt `coverage-vitest` wird hochgeladen, Label `ci:advisory`
         triggert `pnpm check:ci` als Soft-Fail.'
+      - 'Fraktal112 Follow-up: `ci.core` ergänzt `pnpm lint:format` im Type/Lint-Gate, `ci.nightly`
+        ruft Verify-Gate-Chaosdrills (`pnpm chaos:verify-dns-rebind`, `pnpm chaos:verify-redirect-loop`) aus.'
       - '`ci.runtime.yml` startet NATS + AI-Smoketest, ausgelöst durch Label `ci:runtime`.'
       - 'Fraktal87 ergänzt `.github/workflows/ci.qwen-smoke.yml` als Self-Hosted-Lane (Label `ci:qwen-smoke`, optional
         `workflow_dispatch`) für den Qwen-Smoke (`pnpm smoke:qwen`); verweist auf `RoleOutCommands.*` und den Pre-Push-Hook
@@ -183,6 +244,68 @@ entries:
         path: .github/workflows/ci.runtime.yml
       - label: Qwen smoke
         path: .github/workflows/ci.qwen-smoke.yml
+  - path: grafana/dashboards/rum-traces.json
+    category: observability
+    status: active
+    title: RUM Traces Dashboard (Tempo)
+    description: Grafana dashboard for browser RUM traces using Tempo (TraceQL panels).
+    notes:
+      - Import via Grafana → Dashboards → Import; select datasource "Tempo" if prompted.
+      - Use the Metrics tile "Trace test" to emit demo spans and verify ingestion.
+      - Optional compose overlay under docs/observability to run Tempo + OTEL Collector locally.
+    links:
+      - label: Tempo compose overlay
+        path: docs/observability/docker-compose.tempo.yml
+      - label: OTEL collector config
+        path: docs/observability/otel/otel-collector.yaml
+      - label: Tempo config
+        path: docs/observability/tempo/tempo.yaml
+  - path: grafana/dashboards/verify-gate-ethics-mini.json
+    category: observability
+    status: active
+    title: Verify Gate & Ethics – Mini Dashboard
+    description: Lightweight Grafana board aggregating Verify-Gate counters (Idempotency, SSRF, Token-Fails), upstream latency p95 und Ethics-Degradierungen.
+    notes:
+      - Fraktal106 Follow-up: Schließt den DevTalk-Grafana-Hook; Panels nutzen Prometheus-Queries aus `apps/verify-gate/src/metrics.ts`.
+      - SSRF-Top5 Bargauge gruppiert nach `host`, Token-Fail Gauge nach `reason`; Idempotency-Stat nutzt `rate()` pro Minute.
+      - Monitoring-Compose mountet Dashboards nach `/var/lib/grafana/dashboards` (siehe `docker-compose.yml` Profil `monitoring`).
+    links:
+      - label: Prometheus alerts
+        path: observability/alerts/verify-gate.yaml
+      - label: JWT rotation runbook
+        path: docs/runbooks/verify-gate-jwt-rotation.md
+  - path: scripts/meta/backlog-consolidate.mjs
+    category: automation
+    status: active
+    title: Backlog Consolidate
+    description: Scans advancedToDo_parts and writes out/backlog/fragment-index.json; updates advancedprogress.json.backlogIndex.
+    notes:
+      - Exposed via `pnpm backlog:consolidate`.
+      - GitHub Action uploads backlog artifacts on changes to advancedToDo_parts/**.
+    links:
+      - label: GH Action
+        path: .github/workflows/backlog-consolidate.yml
+  - path: scripts/start-verified.ts
+    category: automation
+    status: active
+    title: Verified Starter
+    description: Starts UI + dev stack + health aggregator, waits for readiness, then runs smoke:live. Respects PORT_OFFSET.
+    notes:
+      - Run via `pnpm start:verified`. Health URL defaults to http://127.0.0.1:3999/health.
+      - Uses wait-on to coordinate readiness.
+    links:
+      - label: package script
+        path: package.json#scripts.start:verified
+  - path: .github/workflows/mandala-map-strict.yml
+    category: ci-infra
+    status: active
+    title: MandalaMap strict (label gate)
+    description: Optional PR job (label `mandalamap:strict`) that fails on MandalaMap warnings and uploads validation logs.
+    notes:
+      - Complements the soft validation in mandala-map.yml; add the label to enforce strict gating for sensitive PRs.
+    links:
+      - label: Mandala map (soft)
+        path: .github/workflows/mandala-map.yml
   - path: .husky/
     category: ci-infra
     status: active
@@ -282,6 +405,9 @@ entries:
       - 'Fraktal83 behebt 400er-Antworten ("Invalid value: ''text''") durch korrektes
         Responses-Mapping (`input_text`/`output_text`) in `packages/ai`; UI-Smokes
         funktionieren wieder, sobald `OPENAI_API_KEY` gesetzt ist.'
+      - 'Fraktal98 setzt konditionale `vitest`/`test`/`development`-Exports in `packages/ai` und
+        ergänzt `resolve.conditions` in `vitest.config.ts`, sodass Vitest-Pre-Commits
+        ohne vorab gebaute `dist/`-Artefakte laufen (DevTalk Option A).'
     links:
       - label: apps/ui package.json
         path: apps/ui/package.json
@@ -706,6 +832,7 @@ entries:
       scripts.
     notes:
       - Keep versioned with tools/kyverno-dry-run.mjs expectations.
+      - 'Fraktal94: `schemas/sigil-message/1-0-0.schema.json` (Fingerprint + Valid/Invalid-Fixtures) läuft strikt im `pnpm schema:validate`-Gate (`scripts/validate-schemas.mjs`, Ajv 2020).'
     links: []
   - path: scripts/
     category: automation
@@ -757,6 +884,12 @@ entries:
         Fraktal87 startet den Qwen-Rollout: `scripts/smoke/qwen-smoke.mjs` liefert `pnpm smoke:qwen`, der Pre-Push-Trigger
         `scripts/hooks/qwen-smoke-trigger.mjs` (`pnpm hook:qwen-smoke`) läuft nur bei `AI_PROVIDER=qwen-*`/`UM_RUN_QWEN_SMOKE=1`;
         `.github/workflows/ci.qwen-smoke.yml` und `docs/roadmap/RoleOutCommands.(md|json|yaml)` spiegeln denselben Flow.
+      - Fraktal95 Update versieht `scripts/smoke/boundary-smoke.mjs` mit `eventKey`-Dedupe-Prüfung, `tests/smoke/boundary-smoke.spec.ts` sichert die Helper und das Runbook `docs/runbooks/sigil-publisher.md` dokumentiert die Publisher-Integration.
+      - Fraktal95 Runtime Hardening erzwingt TTL-Dedupe direkt im Boundary-Service (`409 duplicate_eventKey`, JSONL/Snapshot-Skip), exportiert `boundary_law_deduped_total` & `boundary_dedupe_store_size` und ergänzt Grafana-Kacheln plus Smoke-Metrik-Check.
+      - Fraktal95 Canonical Hardening kanonisiert Payloads in `stableBoundaryEventKey`, schreibt Boundary-Snapshots atomar (`laws.json.tmp` → `laws.json`) und zählt HTTP-Statuscodes via `boundary_http_responses_total` für Alerting (202 vs. 409/5xx).
+      - Fraktal97 Idempotency Alignment spiegelt `Idempotency-Key`, liefert `/boundary/status` (Dedupes/min, Cache, letzte 409, Snapshot-Errors), erweitert Prometheus (`boundary_http_response_family_total`, `boundary_snapshot_write_errors_total`), aktualisiert den Smoke-Test (Header-Echo + Status.json) und ergänzt `/demo/boundary` um Dedupe-/Cache-Badges.
+      - Fraktal97 Publisher Rollout sorgt dafür, dass `src/boundary/publisher.ts` im Standard-HTTP-Fallback den `Idempotency-Key` mitsendet; Nicht-JS-Bridges bleiben als Follow-up im Tracker.
+      - Fraktal97 Observability Update (2025-12-09) erweitert `/metrics` um `boundary_observe_total{result="accepted|duplicate|invalid"}` sowie `boundary_idempotency_missing_total`, beantwortet `OPTIONS /boundary/observe` mit CORS-Headern (`Access-Control-Expose-Headers: Idempotency-Key`) und setzt OTel-Attribute `boundary.event_key` / `boundary.dedupe.hit` für aktive Spans.
     links:
       - label: run-dist
         path: scripts/run-dist.mjs
@@ -782,6 +915,8 @@ entries:
         path: scripts/smoke/qwen-smoke.mjs
       - label: hook:qwen-smoke
         path: scripts/hooks/qwen-smoke-trigger.mjs
+      - label: boundary-service
+        path: scripts/boundary-service.ts
   - path: services/
     category: core-runtime
     status: active
@@ -856,6 +991,16 @@ entries:
     links:
       - label: Stub replacement roadmap
         path: docs/roadmap/stub-replacement-roadmap.md
+  - path: src/membrane/
+    category: observability
+    status: active
+    title: Membrane engine (TypeScript)
+    description: RealMembrane horizon detection, metrics instrumentation and boundary hooks.
+    notes:
+      - '`MEMBRANE_CFG` steuert N/H/K/T_OK/T_WARN/SIGMA_MIN/MODE/CI_ASCII via ENV.'
+      - 'Prometheus Counter/Histogram + OTel Span (`src/membrane/metrics.ts`, Fraktal93).'
+      - 'TTL-Registry + Boundary-Publisher (event/recovery) speisen KPI Bridge & Alerts.'
+    links: []
   - path: tasks/
     category: automation
     status: active
@@ -970,3 +1115,19 @@ follow_up:
       - MandalaMap.json
       - MandalaMap.md
     status: ongoing
+  - title: Verify-Gate Hardening Pack
+    detail: TTL-Pinning, CNAME/IDNA, TLS/IP-Vergleich, Redirect-Limits und IPv6-/NAT64-Blocklisten aus Fraktal108-114 sind produktiv (Redirect/TLS Preflight, Netzwerk-Metriken, Chaos-Drills, OPA-Netzsignale, Runbook-Updates).
+    related:
+      - apps/verify-gate/
+      - docs/roadmap/v1.0-stabilization-playbook.md
+      - analysis/devtalk109-evaluation.md
+    status: done
+  - title: OPA bundle & TTL playbooks
+    detail: 'Command Catalog führt `pnpm opa:test`, `pnpm opa:bundle`, `pnpm opa:sign`, `pnpm opa:verify`, `pnpm opa:bundle:sign` sowie das Coverage-Gate `pnpm opa:cover`/`pnpm opa:cover:file`; Observability-Runbook beschreibt TTL-p95-Alerting & VerifyGateLowDNSTTL; Ethics-API exponiert `/policy/status` + Signatur-Readyz, Verify-Gate `/readyz` spiegelt das Gate, `ci.core` ruft `pnpm -w ci:opa:cover` auf. Nächster Schritt: OPA-Bundle-Artefakte/Alertmanager-Routing dokumentieren.'
+    related:
+      - scripts/opa/run-opa-test.mjs
+      - scripts/opa/coverage.mjs
+      - docs/runbooks/observability.md
+      - docs/runbooks/command-catalog.md
+      - docs/roadmap/v1.0-stabilization-playbook.md
+    status: done

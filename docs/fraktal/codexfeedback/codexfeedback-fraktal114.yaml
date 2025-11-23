@@ -1,0 +1,49 @@
+fraktal: 114
+status: done
+owner: Johann
+summary:
+- "Verify-Gate protokolliert Entscheidungen via Audit-Pipeline und erg\xE4nzt `verify-gate-network`\
+  \ Recording-Rules + Alerts (`VerifyGateTLSNameMismatchSpike`, `VerifyGateLowDNSTTL`)."
+- "Ethics-API f\xFChrt die Netzsignal-Policy (`apps/ethics-api/opa/policy.rego`),\
+  \ Policy-Tests (`policy_test.rego`) und `pnpm opa:test` als lokal/CI ausf\xFChrbares\
+  \ Gate ein."
+- Docs/MandalaMap/codexfeedback spiegeln OPA-CLI, neue Observability-Kennzahlen und
+  Roadmap-Status (Fraktal114 Update).
+deliverables:
+- apps/ethics-api/src/index.ts
+- apps/ethics-api/src/opa.ts
+- apps/ethics-api/src/schemas/opa-input.schema.ts
+- apps/ethics-api/src/__tests__/opa-input.schema.test.ts
+- apps/ethics-api/opa/policy.rego
+- apps/ethics-api/opa/policy_test.rego
+- apps/ethics-api/package.json
+- scripts/opa/run-opa-test.mjs
+- package.json
+- .github/workflows/ci.core.yml
+- .github/workflows/ci.nightly.yml
+- observability/prometheus/recording-rules.yaml
+- observability/alerts/verify-gate.yaml
+- grafana/dashboards/verify-gate-network-safety.json
+- grafana/dashboards/verify-gate-ethics-mini.json
+- docs/roadmap/v1.0-stabilization-playbook.md
+- docs/roadmap/v1.0-stabilization-playbook.yaml
+- MandalaMap.md
+- MandalaMap.yaml
+- MandalaMap.json
+- codexfeedback.md
+- codexfeedback.json
+- codexfeedback.yaml
+- codexfeedback/codexfeedback-latest.md
+- codexfeedback/codexfeedback-latest.json
+- codexfeedback/codexfeedback-latest.yaml
+follow_up:
+  opa_policy_extension:
+    description: OPA-Policy um neue Netz-Signale (`ttl_sec`, `tls_san_ok`, `redirect_hops`)
+      erweitern und Alerts/Dashboards referenzieren.
+    status: planned
+hook:
+  progress: OPA-Policy & CLI laufen fail-closed (`pnpm opa:test` + CI), Verify-Gate
+    exportiert Netzwerk-Recording/Alerts.
+  next_step: OPA-Bundle/Alertmanager-Doku auf TTL-Schwellen erweitern, Monitoring-Playbooks
+    synchronisieren.
+  repeat_required: false

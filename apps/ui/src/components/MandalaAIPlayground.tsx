@@ -1,5 +1,11 @@
 import { useMemo, useState } from 'react';
 import MetricsWidget from './MetricsWidget';
+import BoundaryMiniTile from './BoundaryMiniTile';
+import SettingsRUM from './SettingsRUM';
+import EthicsBadge from './EthicsBadge';
+import { EvidenceChips, type EvidenceChipItem } from './EvidenceChips';
+import { fetchJsonWithEthics, type DegradedMeta, type NetworkSignals } from '../lib/fetchWithEthics';
+import NetworkRiskBadges from './NetworkRiskBadges';
 
 type PlaygroundState = 'idle' | 'loading' | 'done' | 'error';
 
@@ -54,9 +60,19 @@ export function MandalaAIPlayground() {
   // Verify-Gate state
   const [requireVerify, setRequireVerify] = useState<boolean>(true);
   const [verifyBlock, setVerifyBlock] = useState<VerifyBlock | null>(null);
+  const evidenceItems = useMemo(() => toEvidenceChipItems(verifyBlock), [verifyBlock]);
+  const [strongOnly, setStrongOnly] = useState(false);
+  const filteredEvidenceItems = useMemo(
+    () => (strongOnly ? evidenceItems.filter((item) => item.strength === 'strong') : evidenceItems),
+    [evidenceItems, strongOnly],
+  );
   const [verifyScore, setVerifyScore] = useState<'red' | 'yellow' | 'green'>('red');
   const [publishBusy, setPublishBusy] = useState<boolean>(false);
   const [publishNote, setPublishNote] = useState<string>('');
+  const [ethicsVerdict, setEthicsVerdict] = useState<'green' | 'yellow' | 'red' | 'unknown'>('unknown');
+  const [ethicsEvidenceCount, setEthicsEvidenceCount] = useState<number>(0);
+  const [verifyDegraded, setVerifyDegraded] = useState<DegradedMeta>({ active: false });
+  const [networkSignals, setNetworkSignals] = useState<NetworkSignals | null>(null);
 
   async function maybeRunIntentsFrom(text: string) {
     try {
@@ -127,23 +143,30 @@ export function MandalaAIPlayground() {
     setState('loading');
     setError(null);
     setAnswer(null);
+    setEthicsVerdict('unknown');
+    setEthicsEvidenceCount(0);
+    setVerifyDegraded({ active: false });
+    setNetworkSignals(null);
 
     try {
-      const response = await fetch(endpoint, {
+      const { data: payload, ethics, response } = await fetchJsonWithEthics<any>(endpoint, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
+        jsonBody: {
           messages: [
             { role: 'system', content: systemPrompt },
             { role: 'user', content: prompt },
           ],
           temperature: 0.2,
-        }),
+        },
       });
 
-      const payload = await safeJson(response);
+      setEthicsVerdict(ethics.verdict);
+      setEthicsEvidenceCount(ethics.evidenceCount);
+      setVerifyDegraded(ethics.degraded);
+      setNetworkSignals(ethics.network ?? null);
+
       if (!response.ok) {
-        throw new Error(payload?.error ?? `Request failed with status ${response.status}`);
+        throw new Error((payload as any)?.error ?? `Request failed with status ${response.status}`);
       }
 
       function pickOutputText(result: any): string {
@@ -164,6 +187,8 @@ export function MandalaAIPlayground() {
     } catch (err) {
       setError(err instanceof Error ? err.message : String(err));
       setState('error');
+      setEthicsVerdict('red');
+      setNetworkSignals(null);
     }
   }
 
@@ -368,10 +393,38 @@ export function MandalaAIPlayground() {
         </p>
       </header>
 
-      <div className="mt-3 flex flex-col md:flex-row gap-3">
+      {verifyDegraded.active && (
+        <div className="rounded-lg border border-amber-300 bg-amber-50 px-4 py-3 text-amber-900 shadow-sm">
+          <p className="text-sm font-semibold">Fail-closed Mode aktiv</p>
+          <p className="text-sm">
+            Evidenz erforderlich / Veröffentlichung blockiert.
+            {verifyDegraded.source ? (
+              <span className="ml-1 font-normal text-amber-800">
+                Quelle: {verifyDegraded.source}
+              </span>
+            ) : null}
+          </p>
+        </div>
+      )}
+
+      <div className="mt-3 flex flex-col gap-3 md:flex-row md:items-start">
         <div className="flex-1" />
-        <MetricsWidget />
+        <div className="flex flex-col items-end gap-2">
+          <EthicsBadge verdict={ethicsVerdict} evidenceCount={ethicsEvidenceCount} />
+          <NetworkRiskBadges signals={networkSignals} />
+          <MetricsWidget />
+        </div>
       </div>
+
+      {/* Quick tiles row */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+        <BoundaryMiniTile />
+      </div>
+
+      {/* RUM Settings */}
+      <section className="mt-2">
+        <SettingsRUM />
+      </section>
 
       <label className="grid gap-2">
         <span className="text-sm font-medium text-slate-700">Systemnachricht</span>
@@ -486,6 +539,28 @@ export function MandalaAIPlayground() {
               </span>
             </span>
           </div>
+          <div className="flex flex-wrap items-center justify-between gap-2">
+            <span className="text-xs text-slate-600">
+              <label className="inline-flex items-center gap-2">
+                <input
+                  type="checkbox"
+                  className="h-4 w-4"
+                  checked={strongOnly}
+                  onChange={(e) => setStrongOnly(e.target.checked)}
+                />
+                Strong-only Evidenz
+              </label>
+            </span>
+            {strongOnly && (
+              <span className="text-[11px] text-slate-500">
+                {filteredEvidenceItems.length} / {evidenceItems.length} Quellen sichtbar
+              </span>
+            )}
+          </div>
+          <EvidenceChips evidence={filteredEvidenceItems} />
+          {strongOnly && filteredEvidenceItems.length === 0 ? (
+            <p className="text-xs text-amber-600">Keine starken Evidenzen verfügbar – bitte weitere Quellen angeben.</p>
+          ) : null}
           <pre className="max-h-48 overflow-auto rounded-xl border bg-slate-50 p-2 text-xs whitespace-pre-wrap">
             {verifyBlock ? JSON.stringify(verifyBlock, null, 2) : 'No verify block detected.'}
           </pre>
@@ -1019,6 +1094,58 @@ function assessVerify(v: VerifyBlock | null): 'red' | 'yellow' | 'green' {
   if (grounded && ev.length >= 2) return 'green';
   if (ev.length >= 1 || String(v.status ?? '').length > 0) return 'yellow';
   return 'red';
+}
+
+function domainFromUrl(value: string): string {
+  if (!value) return '';
+  try {
+    const hostname = new URL(value).hostname;
+    return hostname.replace(/^www\./, '');
+  } catch {
+    return value.replace(/^https?:\/\/(www\.)?/, '').split('/')[0] ?? value;
+  }
+}
+
+function toEvidenceChipItems(block: VerifyBlock | null): EvidenceChipItem[] {
+  if (!block) {
+    return [];
+  }
+  const raw: any[] = Array.isArray(block.evidence)
+    ? (block.evidence as any[]).filter(Boolean)
+    : typeof block.evidence === 'string' && block.evidence.trim().length > 0
+      ? [block.evidence]
+      : [];
+  const items: EvidenceChipItem[] = [];
+  for (const entry of raw) {
+    if (typeof entry === 'string') {
+      const url = entry;
+      const domain = domainFromUrl(url);
+      items.push({ url, domain, strength: 'standard' });
+      continue;
+    }
+    if (entry && typeof entry === 'object') {
+      const record = entry as Record<string, unknown>;
+      const url = typeof record.url === 'string'
+        ? record.url
+        : typeof record.uri === 'string'
+          ? record.uri
+          : '';
+      const explicitDomain = typeof record.domain === 'string' ? record.domain : '';
+      const domain = explicitDomain || (url ? domainFromUrl(url) : '');
+      const strengthRaw = typeof record.strength === 'string' ? record.strength.toLowerCase() : undefined;
+      const strength: EvidenceChipItem['strength'] = strengthRaw === 'strong'
+        ? 'strong'
+        : strengthRaw === 'weak'
+          ? 'weak'
+          : strengthRaw === 'standard'
+            ? 'standard'
+            : undefined;
+      if (domain || url) {
+        items.push({ url: url || domain || 'unknown', domain: domain || 'unknown', strength });
+      }
+    }
+  }
+  return items;
 }
 
 // end of file helpers

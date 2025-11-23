@@ -1,10 +1,761 @@
 fraktal:
-  current: 88
+  current: 116
   history:
+    - id: 116-ci-governance-badges
+      status: in-progress
+      notes: 'README bündelt CI-/Grafana-Badges und verweist auf Primer/Command-Catalog; Governance-Primer, Workflows & Skripte härten das OPA-Coverage-Gate (fail-closed, Bundle-Signing, Chaos Nightly).'
+      deliverables:
+        - README.md
+        - docs/governance/primer.md
+        - scripts/opa/coverage.mjs
+        - scripts/opa/run-opa-cover.mjs
+        - package.json
+        - .github/workflows/ci.core.yml
+        - .github/workflows/ci.nightly.yml
+        - tests/scripts/opa/coverage.test.ts
+        - codexfeedback/codexfeedback-latest.md
+        - codexfeedback/codexfeedback-latest.json
+        - codexfeedback/codexfeedback-latest.yaml
+        - codexfeedback/codexfeedback-fraktal116.yaml
+      hook:
+        progress: CI-Badges & Governance-Primer stehen; OPA-Coverage läuft fail-closed und Nightly liefert Chaos-/Grafana-/Alertmanager-Summary.
+        next_step: DevTalk.txt nach weiteren Tasks (Observability, Setup) scannen und Statusfolge planen.
+        repeat_required: false
+    - id: 114-opa-test-hardening
+      status: done
+      notes: 'Rego-Regressionstests nutzen `object.union`, der OPA-Runner setzt `spawnSync` + Pretty/Verbose-Ausgabe ein und `package.json` ergänzt `pnpm opa:fmt`/`pnpm opa:lint` mit Windows-tauglichem Exit-Handling; codexfeedback-latest.* dokumentiert den Runner-Refresh und verweist auf Bundle-/Alertmanager-Doku.'
+      deliverables:
+        - apps/ethics-api/opa/policy_test.rego
+        - scripts/opa/run-opa-test.mjs
+        - package.json
+        - codexfeedback.md
+        - codexfeedback.json
+        - codexfeedback.yaml
+        - codexfeedback/codexfeedback-latest.md
+        - codexfeedback/codexfeedback-latest.json
+        - codexfeedback/codexfeedback-latest.yaml
+      hook:
+        progress: OPA-Tests laufen parserfrei, Runner bevorzugt `bin/opa` und meldet Pretty/Verbose-Ausgaben.
+        next_step: Optional Bundle-/Alertmanager-Doku ergänzen und MandalaMap nur bei neuen Policy-Artefakten aktualisieren.
+    - id: 114-policy-bundle-signing
+      status: done
+      notes:
+        'CI baut, signiert und verifiziert das Ethics-OPA-Bundle (`pnpm opa:bundle`/`opa:sign`/`opa:verify`/`opa:bundle:sign`),
+        lädt `dist/opa/mandala-ethics-bundle.tar.gz{,.sha256,.asc}` als Artefakt hoch
+        und aktiviert `/policy/status`-/`/readyz`-Signaturprüfungen (Ethics: `ETHICS_POLICY_SIGNATURE_REQUIRED`,
+        Verify-Gate: `VERIFY_GATE_REQUIRE_POLICY_SIGNATURE`). Command Catalog, Stabilization-Playbook,
+        MandalaMap und codexfeedback* dokumentieren die neuen Kommandos.'
+      deliverables:
+        - package.json
+        - scripts/opa/build-opa-bundle.mjs
+        - scripts/opa/sign-opa-bundle.mjs
+        - scripts/opa/verify-opa-bundle.mjs
+        - apps/ethics-api/src/policyStatus.ts
+        - apps/ethics-api/src/index.ts
+        - apps/ethics-api/src/__tests__/opa-policy.bundle.test.ts
+        - apps/verify-gate/src/app.ts
+        - apps/verify-gate/src/http/headerForward.ts
+        - apps/verify-gate/src/verdictToken.ts
+        - .github/workflows/ci.core.yml
+        - .github/workflows/ci.nightly.yml
+        - .env.example
+        - docs/runbooks/command-catalog.md
+        - docs/runbooks/command-catalog.json
+        - docs/runbooks/command-catalog.yaml
+        - docs/roadmap/v1.0-stabilization-playbook.md
+        - docs/roadmap/v1.0-stabilization-playbook.yaml
+        - MandalaMap.md
+        - MandalaMap.json
+        - MandalaMap.yaml
+        - codexfeedback.md
+        - codexfeedback.json
+        - codexfeedback.yaml
+        - codexfeedback/codexfeedback-latest.md
+        - codexfeedback/codexfeedback-latest.json
+        - codexfeedback/codexfeedback-latest.yaml
+      hook:
+        progress: Bundle-Build, Signatur-Verifikation und Readyz-Gates laufen; Artefakte
+          liegen unter `dist/opa/`.
+        next_step: Alertmanager-Routing und Langzeit-Aufbewahrung der Bundle-Artefakte
+          dokumentieren.
+        repeat_required: false
+    - id: 114-command-catalog-fix
+      status: done
+      notes: 'Command Catalog-Markdown wurde auf das kanonische Layout zurückgesetzt
+        (nur `pnpm opa:test` bleibt); codexfeedback-Artefakte dokumentieren die Bereinigung.
+        MandalaMap-Parität (`pnpm meta:mandala:sync`) bleibt optional.
+
+        '
+      deliverables:
+        - docs/runbooks/command-catalog.md
+        - codexfeedback.md
+        - codexfeedback.json
+        - codexfeedback.yaml
+        - codexfeedback/codexfeedback-latest.md
+        - codexfeedback/codexfeedback-latest.json
+        - codexfeedback/codexfeedback-latest.yaml
+      hook:
+        progress: Command Catalog-Layout stabilisiert; Zeile `pnpm opa:test` unverändert.
+        next_step: Optional MandalaMap-Sync (`pnpm meta:mandala:sync`) ausführen.
+        repeat_required: false
+    - id: 114-verifygate-audit
+      status: done
+      notes:
+        'Fraktal114 VerifyGateAudit: Verify-Gate besitzt Audit-Middleware + Error→Metric-Mapping
+        und härtet Redirect-Preflight/IDNA. Ethics-API validiert OPA-Inputs (`assertEthicsInput`/`assertNetworkSignals`)
+        mit normalisierten IPs; die neue Rego-Policy erzwingt `ttl_sec`/`tls_san_ok`/`redirect_hops`,
+        `pnpm opa:test` führt `apps/ethics-api/opa/policy.rego` + `policy_test.rego`
+        lokal wie in CI aus. Verify-Gate-Metriken bündeln die Gruppe `verify-gate-network`
+        (TLS/IP/TTL p95) und Alerts melden `VerifyGateTLSNameMismatchSpike` bzw. `VerifyGateLowDNSTTL`;
+        MandalaMap/roadmap/codexfeedback dokumentieren das Update.'
+      deliverables:
+        - apps/ethics-api/src/index.ts
+        - apps/ethics-api/src/opa.ts
+        - apps/ethics-api/src/schemas/opa-input.schema.ts
+        - apps/ethics-api/src/__tests__/opa-input.schema.test.ts
+        - apps/ethics-api/opa/policy.rego
+        - apps/ethics-api/opa/policy_test.rego
+        - apps/ethics-api/package.json
+        - scripts/opa/run-opa-test.mjs
+        - package.json
+        - .github/workflows/ci.core.yml
+        - .github/workflows/ci.nightly.yml
+        - observability/prometheus/recording-rules.yaml
+        - observability/alerts/verify-gate.yaml
+        - grafana/dashboards/verify-gate-network-safety.json
+        - grafana/dashboards/verify-gate-ethics-mini.json
+        - docs/roadmap/v1.0-stabilization-playbook.md
+        - docs/roadmap/v1.0-stabilization-playbook.yaml
+        - MandalaMap.md
+        - MandalaMap.yaml
+        - MandalaMap.json
+        - codexfeedback.md
+        - codexfeedback.json
+        - codexfeedback.yaml
+        - codexfeedback/codexfeedback-latest.md
+        - codexfeedback/codexfeedback-latest.json
+        - codexfeedback/codexfeedback-latest.yaml
+        - docs/fraktal/codexfeedback/codexfeedback-fraktal114.yaml
+      hook:
+        progress: OPA-Policy & CLI laufen fail-closed (`pnpm opa:test` + CI), Verify-Gate
+          exportiert Netzwerk-Recording-Rules & Alerts für TLS/IP/TTL.
+        next_step: OPA-Bundle/Alertmanager-Doku auf neuen Metrics-Kanal ausweiten und
+          Monitoring-Playbooks mit TTL-Schwellen verknüpfen.
+        repeat_required: false
+    - id: 114-runbook-followup
+      status: done
+      notes: 'Fraktal114 Runbook Follow-up: Command Catalog listet `pnpm opa:test`,
+        das Observability-Runbook dokumentiert TTL-p95/`VerifyGateLowDNSTTL` und MandalaMap
+        markiert Hardening-Pack/OPA-Playbook-Follow-ups als erledigt. DevTalk114-Evaluation
+        hält Kontext & Restarbeiten fest.'
+      deliverables:
+        - analysis/devtalk114-evaluation.md
+        - docs/runbooks/command-catalog.md
+        - docs/runbooks/command-catalog.yaml
+        - docs/runbooks/command-catalog.json
+        - docs/runbooks/observability.md
+        - docs/roadmap/v1.0-stabilization-playbook.md
+        - docs/roadmap/v1.0-stabilization-playbook.yaml
+        - MandalaMap.yaml
+        - MandalaMap.json
+        - codexfeedback.md
+        - codexfeedback.json
+        - codexfeedback.yaml
+        - codexfeedback/codexfeedback-latest.md
+        - codexfeedback/codexfeedback-latest.json
+        - codexfeedback/codexfeedback-latest.yaml
+      hook:
+        progress: Runbooks & Command Catalog spiegeln `pnpm opa:test` + TTL-p95 Alert,
+          MandalaMap follow_up → done.
+        next_step: OPA-Bundle (`opa build`) + Alertmanager-Routing dokumentieren; Integrationstest
+          für `/ethics/check` Deny-Flow planen.
+        repeat_required: false
+    - id: 112-ipv6-observability
+      status: done
+      notes: 'Fraktal112 IPv6 Observability: Verify-Gate normalisiert Remote-Adressen
+        (Scope-ID entfernt), blockt NAT64/Teredo-Präfixe, liefert Netzwerk-Signale (`x-verify-network`)
+        für TTL/Redirect/TLS und versieht Mandala Playground mit NetworkRiskBadges.
+        Prometheus Recording-Rules & Alerts beobachten TLS/IP-Mismatch sowie DNS TTL
+        p95, Grafana-Dashboard ergänzt Panels und `pnpm lint:format` läuft jetzt im
+        `ci.core`; neue Chaos-Drills (`pnpm chaos:verify-dns-rebind`, `pnpm chaos:verify-redirect-loop`)
+        prüfen TTL-Rebind & Redirect-Loops und laufen im Nightly-Workflow. DevTalk112-Evaluation,
+        Stabilization-Playbook und MandalaMap spiegeln den Lauf.'
+      deliverables:
+        - apps/verify-gate/src/security/ipRanges.ts
+        - apps/verify-gate/src/security/tlsPreflight.ts
+        - apps/verify-gate/src/index.ts
+        - apps/verify-gate/src/http/headerForward.ts
+        - apps/verify-gate/src/__tests__/ip-ranges.test.ts
+        - apps/verify-gate/src/__tests__/tls-preflight.test.ts
+        - apps/verify-gate/src/__tests__/chaos-dns-rebind.test.ts
+        - apps/verify-gate/src/__tests__/chaos-redirect-loop.test.ts
+        - apps/ui/src/lib/fetchWithEthics.ts
+        - apps/ui/src/components/MandalaAIPlayground.tsx
+        - apps/ui/src/components/NetworkRiskBadges.tsx
+        - observability/prometheus/recording-rules.yaml
+        - observability/alerts/verify-gate.yaml
+        - grafana/dashboards/verify-gate-ethics-mini.json
+        - analysis/devtalk112-evaluation.md
+        - docs/fraktal/codexfeedback/codexfeedback-fraktal112.yaml
+        - package.json
+        - scripts/chaos/verifygate-dns-rebind.mjs
+        - scripts/chaos/verifygate-redirect-loop.mjs
+        - .github/workflows/ci.core.yml
+        - .github/workflows/ci.nightly.yml
+      hook:
+        progress: IPv6/TLS-Risiken sichtbar, Alerts aktiv, Chaos-Drills & Format-Lint
+          laufen in CI.
+        next_step: Alertmanager-Routing & README-Badges dokumentieren, Husky-Entscheidung
+          zu `pnpm lint:format` treffen.
+        repeat_required: false
+    - id: 111-redirect-tls-closeout
+      status: done
+      notes: 'Fraktal111 Redirect/TLS Close-out: Verify-Gate besitzt einen jitterned
+        DNS-TTL-Cache mit Request-Coalescing, verfolgt Redirects ausschließlich nach
+        bestandenem Allowlist-Check per IP-gepinntem HEAD und führt vor HTTPS-Aufrufen
+        einen TLS/SAN-Preflight gegen die gepinnte Adresse aus. Neue Metriken (`verify_gate_ip_mismatch_total`,
+        `verify_gate_tls_name_mismatch_total`, Redirect-Block-Gründe) speisen Grafana/Alerting;
+        netContext reicht `redirect_hops`/`scheme_history` an OPA. Stabilization-Playbook,
+        MandalaMap, codexfeedback-latest.* und `codexfeedback-fraktal111.yaml` dokumentieren
+        den Abschluss.'
+      deliverables:
+        - apps/verify-gate/src/security/dnsCache.ts
+        - apps/verify-gate/src/security/tlsPreflight.ts
+        - apps/verify-gate/src/security/ssrf.ts
+        - apps/verify-gate/src/proxy/followRedirects.ts
+        - apps/verify-gate/src/proxy/pinnedRequest.ts
+        - apps/verify-gate/src/index.ts
+        - apps/verify-gate/src/metrics.ts
+        - apps/verify-gate/src/__tests__/dns-cache.test.ts
+        - apps/verify-gate/src/__tests__/tls-preflight.test.ts
+        - apps/verify-gate/src/__tests__/follow-redirects.test.ts
+        - docs/roadmap/v1.0-stabilization-playbook.md
+        - docs/roadmap/v1.0-stabilization-playbook.yaml
+        - MandalaMap.md
+        - MandalaMap.yaml
+        - MandalaMap.json
+        - codexfeedback/codexfeedback-latest.md
+        - codexfeedback/codexfeedback-latest.json
+        - codexfeedback/codexfeedback-latest.yaml
+        - codexfeedback-fraktal111.yaml
+        - codexfeedback/codexfeedback-fraktal111.yaml
+      hook:
+        progress: DNS/TLS/Redirect-Hardening live; Observability-Queries & Docs synchronisiert.
+        next_step: IPv6-/NAT64-Blocklisten und Redirect-Metrik-Panels finalisieren,
+          OPA/UI-Badges für kurze TTLs ergänzen.
+        repeat_required: false
+    - id: 108-hardening-pack
+      status: done
+      notes: Fraktal108 Hardening Pack priorisierte TTL-bewusste DNS-Pins, CNAME-/IDNA-Validierung,
+        TLS-SAN/IP-Vergleich, Redirect-Gates und IPv6/NAT64-Blocklisten. Analyse & Scope
+        sind abgeschlossen; Umsetzung erfolgte in Fraktal111. MandalaMap.*, Stabilization-Playbook.*
+        und codexfeedback* spiegeln die abgeschlossene Phase wider.
+      deliverables:
+        - analysis/devtalk109-evaluation.md
+        - docs/roadmap/v1.0-stabilization-playbook.md
+        - docs/roadmap/v1.0-stabilization-playbook.yaml
+        - MandalaMap.md
+        - MandalaMap.yaml
+        - MandalaMap.json
+        - codexfeedback.md
+        - codexfeedback.json
+        - codexfeedback.yaml
+        - codexfeedback/codexfeedback-latest.md
+        - codexfeedback/codexfeedback-latest.json
+        - codexfeedback/codexfeedback-latest.yaml
+        - codexfeedback/codexfeedback-fraktal108-hardening.yaml
+      hook:
+        progress: Prioritäten und Evaluierung abgeschlossen.
+        next_step: --
+        repeat_required: false
+    - id: 108-ssrf-hardening
+      status: done
+      notes: 'Fraktal108 SSRF Hardening: Verify-Gate resolved A- und AAAA-Records via
+        `dns.lookup(..., { all: true, verbatim: true })`, fällt bei DNS-Fehlern fail-closed
+        (kein `[host]`-Fallback), blockiert ::1/Private deterministisch, zählt DNS-Probleme
+        über `verify_gate_ssrf_resolve_error_total`/`verify_gate_ssrf_resolve_empty_total`
+        und `makePinnedAgent` übernimmt die aufgelöste IP; Tests & Docs (Stabilization-Playbook,
+        MandalaMap, codexfeedback-latest.*) dokumentieren den Lauf.'
+      deliverables:
+        - apps/verify-gate/src/security/ssrf.ts
+        - apps/verify-gate/src/index.ts
+        - apps/verify-gate/src/security/agent.ts
+        - apps/verify-gate/src/metrics.ts
+        - apps/verify-gate/src/__tests__/ssrf-allowlist.test.ts
+        - apps/verify-gate/src/__tests__/ssrf-aaaa-loopback.test.ts
+        - docs/roadmap/v1.0-stabilization-playbook.md
+        - docs/roadmap/v1.0-stabilization-playbook.yaml
+        - MandalaMap.yaml
+        - MandalaMap.json
+        - analysis/devtalk108-evaluation.md
+      hook:
+        progress: DNS-basierte SSRF-Schutzmaßnahmen aktiv, Prometheus-Counter für Resolver-Fehler
+          verfügbar, Agenten pinnen resolvierte IP.
+        next_step:
+          Remote-IP-Validierung und Grafana/Alertmanager-Kennzahlen für `verify_gate_ssrf_resolve_*`
+          evaluieren.
+        repeat_required: false
+    - id: 106-grafana-alerts
+      status: done
+      notes:
+        'Fraktal106 GrafanaAlerts: Grafana-Minidashboard `grafana/dashboards/verify-gate-ethics-mini.json`
+        visualisiert Verify-Gate Idempotency-/SSRF-/Token-Metriken samt Upstream-p95
+        und Ethics-Degradierungen; Prometheus-Alerts `observability/alerts/verify-gate.yaml`
+        triggern Replay-/SSRF-/Token-Spitzen und verlinken das JWT-Rotation-Runbook.
+        docs/roadmap v1.0-Stabilization-Playbook, MandalaMap.*, analysis/devtalk106-evaluation.md
+        sowie codexfeedback\* verweisen auf das Bundle; nächste Schritte: Alertmanager/Webhook-Routing,
+        OPA-Bundle-Artefakte, optionaler „Strong only“-Filter.'
+      deliverables:
+        - grafana/dashboards/verify-gate-ethics-mini.json
+        - observability/alerts/verify-gate.yaml
+        - docs/roadmap/v1.0-stabilization-playbook.md
+        - docs/roadmap/v1.0-stabilization-playbook.yaml
+        - MandalaMap.md
+        - MandalaMap.yaml
+        - MandalaMap.json
+        - analysis/devtalk106-evaluation.md
+        - codexfeedback.md
+        - codexfeedback.json
+        - codexfeedback.yaml
+        - codexfeedback/codexfeedback-latest.md
+        - codexfeedback/codexfeedback-latest.json
+        - codexfeedback/codexfeedback-latest.yaml
+      hook:
+        progress: Grafana-Minidashboard & Prometheus-Alerts aktiv, Docs/MandalaMap/codexfeedback
+          referenzieren den Satz.
+        next_step: Alertmanager/Webhook-Routing dokumentieren, OPA-Bundle-Artefakte
+          & Badges im CI veröffentlichen, optionalen „Strong only“-Filter in der UI
+          ergänzen.
+        repeat_required: false
+    - id: 106
+      status: done
+      notes: 'Fraktal106 Observability & Rotation: Verify-Gate persistiert Idempotency-Keys
+        via `apps/verify-gate/src/idempotency/store.ts` (better-sqlite3, `VERIFY_GATE_IDEMP_DB`,
+        TTL `VERIFY_GATE_IDEMP_TTL_MS`) – `persist-replay` Vitest deckt Neustarts ab;
+        Header-Safelist (authorization/cookie/user-agent/accept/accept-language/content-type/x-request-id/x-forwarded-for/x-forwarded-proto/x-ethics-token)
+        ersetzt Drop-Liste. `X-Verify-Degraded` propagiert bis API/UI (`apps/api` setzt
+        Header weiter, `fetchJsonWithEthics` liefert Degraded-Meta, `MandalaAIPlayground`
+        zeigt Fail-closed-Banner) und Prometheus-Metriken bleiben in `metrics.ts` (Idempotency/SSRF/Token
+        Counter, Upstream Histogram). Verdict-Tokens rotieren via `VERIFY_GATE_JWT_SECRETS`/`VERIFY_GATE_JWT_ACTIVE_KID`;
+        Runbook `docs/runbooks/verify-gate-jwt-rotation.md` + `ethics-token-guard.test.ts`
+        decken Legacy/Rotation/Drop. `apps/ethics-api/opa/policy.rego` verlangt starke
+        Evidenz bei Fakten und verweigert bei `input.degraded == true`. Chaos-Skript
+        `pnpm chaos:ethics --scenario boundary-down` läuft nightly (`ci.nightly.yml`);
+        Stabilization-Playbook, MandalaMap.* und codexfeedback* spiegeln die neuen Knobs
+        (`VERIFY_GATE_IDEMP_DB`, `X-Verify-Degraded`).'
+      deliverables:
+        - apps/verify-gate/src/index.ts
+        - apps/verify-gate/src/metrics.ts
+        - apps/verify-gate/src/verdictToken.ts
+        - apps/verify-gate/src/idempotency/index.ts
+        - apps/verify-gate/src/idempotency/store.ts
+        - apps/verify-gate/src/http/headerForward.ts
+        - apps/verify-gate/src/__tests__/idempotency.test.ts
+        - apps/verify-gate/src/__tests__/proxy-headers.test.ts
+        - apps/verify-gate/src/__tests__/streaming-preserves-headers.test.ts
+        - apps/verify-gate/src/__tests__/ssrf-allowlist.test.ts
+        - apps/api/src/middleware/verifyEthics.ts
+        - apps/api/src/__tests__/ethics-token-guard.test.ts
+        - apps/ethics-api/src/opa.ts
+        - apps/ethics-api/src/index.ts
+        - apps/ethics-api/src/__tests__/ethics-failclosed.test.ts
+        - apps/ethics-api/opa/policy.rego
+        - apps/ui/src/lib/fetchWithEthics.ts
+        - apps/ui/src/components/MandalaAIPlayground.tsx
+        - apps/ui/src/components/EvidenceChips.tsx
+        - scripts/chaos/ethics-chaos.mjs
+        - .github/workflows/ci.nightly.yml
+        - docs/roadmap/v1.0-stabilization-playbook.md
+        - docs/roadmap/v1.0-stabilization-playbook.yaml
+        - MandalaMap.md
+        - MandalaMap.yaml
+        - MandalaMap.json
+        - docs/runbooks/verify-gate-jwt-rotation.md
+        - codexfeedback.md
+        - codexfeedback.json
+        - codexfeedback.yaml
+        - codexfeedback/codexfeedback-latest.md
+        - codexfeedback/codexfeedback-latest.json
+        - codexfeedback/codexfeedback-latest.yaml
+        - codexfeedback/codexfeedback-fraktal106.yaml
+        - analysis/devtalk106-evaluation.md
+      commands:
+        - pnpm -w vitest run apps/verify-gate/src/__tests__/idempotency.test.ts
+        - pnpm -w vitest run apps/api/src/__tests__/ethics-token-guard.test.ts
+        - pnpm -w vitest run apps/ethics-api/src/__tests__/ethics-failclosed.test.ts
+      hook:
+        progress: Persistenter Idempotency-Store, Safelist, `X-Verify-Degraded`-Propagation,
+          UI-Banner & JWT-Rotation-Runbook laufen im Verify-Gate/Ethics-Stack.
+        next_step: Grafana-Panels/Alerts für Idempotency/SSRF/Token-Counter sowie gebündelte
+          OPA-Bundles/Artefakte im CI ergänzen.
+      repeat_required: false
+    - id: 105
+      status: done
+      notes: 'Fraktal105 VerifyGateTestHardening: vitest.config.ts aliasiert @opentelemetry/api
+        auf Stub (tests/__mocks__/otel-api.ts), tests/setup/ci.ts setzt Loopback-Allowlists
+        (VERIFY_GATE_SSRF_ALLOWLIST), Verify-Gate SSRF akzeptiert Protokoll-/Port-Wildcards,
+        verifyEthics nutzt HS256 + clockTolerance=5; Stabilization-Playbook, MandalaMap,
+        codexfeedback* dokumentieren DevTalk105-Hooks (Prometheus-Counter, OPA-Bundle).'
+      deliverables:
+        - vitest.config.ts
+        - tests/__mocks__/otel-api.ts
+        - tests/setup/ci.ts
+        - apps/verify-gate/src/security/ssrf.ts
+        - apps/verify-gate/src/__tests__/ssrf-allowlist.test.ts
+        - apps/api/src/middleware/verifyEthics.ts
+        - docs/roadmap/v1.0-stabilization-playbook.md
+        - docs/roadmap/v1.0-stabilization-playbook.yaml
+        - MandalaMap.md
+        - MandalaMap.yaml
+        - MandalaMap.json
+        - codexfeedback.md
+        - codexfeedback.json
+        - codexfeedback.yaml
+        - codexfeedback/codexfeedback-latest.md
+        - codexfeedback/codexfeedback-latest.json
+        - codexfeedback/codexfeedback-latest.yaml
+        - analysis/devtalk105-evaluation.md
+      commands:
+        - pnpm -w vitest run apps/verify-gate/src/__tests__/ssrf-allowlist.test.ts
+        - pnpm -w vitest run apps/api/src/__tests__/ethics-token-guard.test.ts
+        - pnpm -w vitest run tests/api/chat-success.test.ts
+      hook:
+        progress: Verify-Gate Tests laufen deterministisch (OTel-Stub, Loopback-Allowlist,
+          Clock-Skew-Handhabung).
+        next_step: Prometheus-Counter & Grafana-Alerts für Idempotency/SSRF/Token-Failures
+          ergänzen und OPA-Bundle in CI verteilen.
+      repeat_required: false
+    - id: 103
+      status: done
+      notes: 'Fraktal103 VerifyGateDefense: Verify-Gate säubert Header (Drop-Liste),
+        prüft DNS-basierte SSRF-Allowlists (`VERIFY_GATE_UPSTREAM_ALLOWLIST`), exportiert
+        Prometheus (`verify_gate_inflight`, `verify_gate_upstream_duration_ms`, `verify_gate_http_responses_total`)
+        samt `/metrics` und deckt Streaming/SSRF mit neuen Vitest-Suiten ab. Ethics-API
+        signalisiert degradierte Abhängigkeiten (`x-ethics-degraded`, Counter `ethics_degraded_total`),
+        nutzt Lifeboat-Regeln (Hate/PII/Scam), cached Boundary-Ergebnisse (`ETHICS_CACHE_TTL_MS`)
+        per SHA1, erzwingt eindeutige Evidenz-Domains (`ETHICS_REQUIRE_UNIQUE_EVIDENCE_DOMAINS`)
+        und zählt Decisions/Evidenz-Domains via Prometheus. `.env.example`, Stabilization-Playbook
+        (MD/YAML), MandalaMap.* sowie analysis/devtalk103-evaluation.md und codexfeedback-latest.*
+        dokumentieren die Defense-in-Depth-Hooks (Grafana-Alerts, DOI/Handle-Validator).'
+      deliverables:
+        - apps/verify-gate/src/index.ts
+        - apps/verify-gate/src/http/headerForward.ts
+        - apps/verify-gate/src/security/ssrf.ts
+        - apps/verify-gate/src/__tests__/proxy-headers.test.ts
+        - apps/verify-gate/src/__tests__/streaming-preserves-headers.test.ts
+        - apps/verify-gate/src/__tests__/ssrf-allowlist.test.ts
+        - apps/ethics-api/src/index.ts
+        - apps/ethics-api/src/__tests__/ethics-failclosed.test.ts
+        - .env.example
+        - docs/roadmap/v1.0-stabilization-playbook.md
+        - docs/roadmap/v1.0-stabilization-playbook.yaml
+        - MandalaMap.md
+        - MandalaMap.yaml
+        - MandalaMap.json
+        - analysis/devtalk103-evaluation.md
+        - codexfeedback.md
+        - codexfeedback/codexfeedback-latest.md
+        - codexfeedback/codexfeedback-latest.json
+        - codexfeedback/codexfeedback-latest.yaml
+        - codexfeedback/codexfeedback-fraktal103.yaml
+      commands:
+        - pnpm vitest run apps/verify-gate/src/__tests__/proxy-headers.test.ts apps/verify-gate/src/__tests__/streaming-preserves-headers.test.ts
+          apps/verify-gate/src/__tests__/ssrf-allowlist.test.ts apps/ethics-api/src/__tests__/ethics-failclosed.test.ts
+      hook:
+        progress: Verify-Gate & Ethics-API Defense-in-Depth aktiv (Header-Sanitizing,
+          DNS-SSRF, Degraded-Signale, Evidenz-Dedupe).
+        next_step: Grafana-Alerts für neue Verify/Ethics-Metriken und DOI/Handle-Validator
+          für Evidenz-Stärke umsetzen.
+      repeat_required: false
+    - id: 102
+      status: done
+      notes:
+        'Fraktal102 EthicsGateHardening: apps/ethics-api validiert via Ajv (`EthicsCheckSchema`),
+        setzt `x-request-id`, koppelt `/readyz` an den Circuit-State (`cb` 0/1/2) und
+        reicht optionale Service-Bearer (`INTERNAL_BEARER`) weiter; apps/verify-gate
+        ergänzt JSON-/Rate-Limits (`VERIFY_GATE_JSON_LIMIT`, `VERIFY_GATE_RPS`), SSRF-Allowlist
+        (`VERIFY_UPSTREAM_ALLOWLIST`, `VERIFY_STRICT_SAME_HOST`), Streaming-Proxying
+        sowie CORS-Expose für `x-ethics-*`. Live-Smoke prüft Health, Verify-Gate, Ethics
+        `/readyz` und Chat; UI (EthicsBadge/fetchJsonWithEthics) & Grafana (mandala-ethics-gate.json)
+        spiegeln den Lauf.'
+      deliverables:
+        - apps/ethics-api/src/index.ts
+        - apps/ethics-api/src/boundary-client.ts
+        - apps/ethics-api/src/http-client.ts
+        - apps/ethics-api/src/schemas.ts
+        - apps/ethics-api/src/__tests__/ethics-failclosed.test.ts
+        - apps/verify-gate/src/index.ts
+        - apps/verify-gate/src/__tests__/proxy-headers.test.ts
+        - apps/ui/src/components/MandalaAIPlayground.tsx
+        - apps/ui/src/components/EthicsBadge.tsx
+        - apps/ui/src/lib/fetchWithEthics.ts
+        - apps/ui/src/lib/streamWithEthics.ts
+        - scripts/smoke/live-smoke.mjs
+        - grafana/dashboards/mandala-ethics-gate.json
+        - .env.example
+        - docs/roadmap/v1.0-stabilization-playbook.md
+        - docs/roadmap/v1.0-stabilization-playbook.yaml
+        - MandalaMap.md
+        - MandalaMap.yaml
+        - MandalaMap.json
+        - codexfeedback.md
+        - codexfeedback.json
+        - codexfeedback.yaml
+        - codexfeedback/codexfeedback-latest.md
+        - codexfeedback/codexfeedback-latest.json
+        - codexfeedback/codexfeedback-latest.yaml
+        - codexfeedback/codexfeedback-fraktal102.yaml
+        - analysis/devtalk102-evaluation.md
+      commands:
+        - pnpm vitest run apps/ethics-api/src/__tests__/ethics-failclosed.test.ts
+        - pnpm vitest run apps/verify-gate/src/__tests__/proxy-headers.test.ts
+      hook:
+        progress: Ethics Ajv/Request-ID + Verify-Gate Rate-Limit/Streaming aktiv, UI
+          & Observability synchronisiert.
+        next_step: Ethics/RAG alerting finalisieren (Grafana Alarme, Boundary-SSRF)
+          und Verify-Gate Streaming-E2E in UI erweitern.
+      repeat_required: false
+    - id: 99
+      status: done
+      notes: 'Fraktal99 EthicsFailClosed: `apps/ethics-api` antwortet Boundary-Ausfälle
+        fail-closed (Circuit-Breaker, Counter `ethics_dependency_unreachable_total`,
+        Gauge `boundary_circuit_state`, `/readyz`, Shared `fetchJson`), während `apps/verify-gate`
+        Client-Header durchreicht, `x-ethics-verdict`/`x-ethics-evidence-count` setzt
+        und Ethics-Ausfälle mit 5xx quittiert. Neue Vitest/Supertest-Suites prüfen Fail-Closed-
+        und Header-Forwarding-Pfade; `.env.example`, Stabilization-Playbook und MandalaMap.*
+        dokumentieren die Env-/Metrics-Erweiterung.'
+      deliverables:
+        - apps/ethics-api/src/index.ts
+        - apps/ethics-api/src/boundary-client.ts
+        - apps/ethics-api/src/circuit-breaker.ts
+        - apps/ethics-api/src/http-client.ts
+        - apps/ethics-api/src/__tests__/ethics-failclosed.test.ts
+        - apps/verify-gate/src/index.ts
+        - apps/verify-gate/src/__tests__/proxy-headers.test.ts
+        - .env.example
+        - docs/roadmap/v1.0-stabilization-playbook.md
+        - docs/roadmap/v1.0-stabilization-playbook.yaml
+        - MandalaMap.md
+        - MandalaMap.yaml
+        - MandalaMap.json
+        - codexfeedback.md
+        - codexfeedback.json
+        - codexfeedback.yaml
+        - codexfeedback/codexfeedback-latest.md
+        - codexfeedback/codexfeedback-latest.json
+        - codexfeedback/codexfeedback-latest.yaml
+        - codexfeedback/codexfeedback-fraktal99.yaml
+        - analysis/devtalk99-evaluation.md
+      commands:
+        - pnpm vitest run apps/ethics-api/src/__tests__/ethics-failclosed.test.ts
+        - pnpm vitest run apps/verify-gate/src/__tests__/proxy-headers.test.ts
+      hook:
+        progress: Boundary-Circuit + Verify-Gate Header-Forwarding aktiv; Docs/Env synchronisiert.
+        next_step: Ethics-Gate Rate-Limits & Boundary-Alerting (Dedupes/min, circuit-open)
+          evaluieren.
+      repeat_required: false
+    - id: 98
+      status: done
+      notes: 'Fraktal98 PublisherRollout & ObserveMetrics: `src/boundary/publisher.ts`
+        hängt den Idempotency-Key im Default-HTTP-Fallback an und `scripts/boundary-service.ts`
+        exportiert zusätzlich boundary_observe_total{result} sowie boundary_idempotency_missing_total,
+        beantwortet OPTIONS /boundary/observe mit CORS-Expose und annotiert OTel-Spans.
+        Vitest & Smoke decken Header-/Counter-Flows ab, Docs (Runbook, GettingStarted,
+        Stabilization-Playbook, MandalaMap, Codexfeedback, DevTalk-Audit) spiegeln den
+        Status; Nicht-JS-Bridges und Alert-Rollout bleiben Follow-up. ZeroBuildVitest
+        ergänzt konditionale `vitest`/`test`/`development`-Exports in `packages/ai`
+        und `resolve.conditions` im Vitest-Config; Playbook/MandalaMap/codexfeedback
+        halten den Audit-Hook auf weitere Pakete & Alerts offen.'
+      deliverables:
+        - MandalaMap.json
+        - MandalaMap.md
+        - MandalaMap.yaml
+        - analysis/devtalk96-evaluation.md
+        - codexfeedback.json
+        - codexfeedback.md
+        - codexfeedback.yaml
+        - codexfeedback/codexfeedback-latest.json
+        - codexfeedback/codexfeedback-latest.md
+        - codexfeedback/codexfeedback-latest.yaml
+        - docs/boundary/GettingStarted.md
+        - docs/fraktal/codexfeedback/codexfeedback-fraktal98.yaml
+        - docs/roadmap/v1.0-stabilization-playbook.md
+        - docs/roadmap/v1.0-stabilization-playbook.yaml
+        - docs/runbooks/sigil-publisher.md
+        - scripts/boundary-service.ts
+        - scripts/smoke/boundary-service-smoke.mjs
+        - src/boundary/publisher.ts
+        - tests/boundary/publisher.test.ts
+      commands:
+        - node scripts/smoke/boundary-service-smoke.mjs
+        - pnpm vitest run tests/boundary/publisher.test.ts
+      hook:
+        progress: Boundary-Service liefert neue Observe-/Missing-Header-Counter + CORS-Expose;
+          Docs & Tracker synchronisiert.
+        next_step: Nicht-JS-Bridges auf Idempotency-Key prüfen und Alerts (Dedupes/min,
+          boundary_observe_total) verankern.
+      repeat_required: false
+    - id: 97
+      status: done
+      notes: 'Fraktal97 BoundaryIdempotency: `scripts/boundary-service.ts` bevorzugt
+        `Idempotency-Key`-Header (Fallback auf `stableBoundaryEventKey`), räumt `.tmp`-Snapshots
+        beim Start auf, wärmt das Dedupe-Cache aus `laws.jsonl`, liefert `/boundary/status`
+        (Dedupes/min, Cache, letzte 409, Snapshot-Errors) und exportiert `boundary_http_response_family_total`
+        sowie `boundary_snapshot_write_errors_total`. `scripts/smoke/boundary-service-smoke.mjs`
+        prüft Header-Echo + Status.json, `apps/ui/src/pages/BoundaryDemo.tsx` rendert
+        Dedupes/min-/Cache-Badges samt "Letzter 409"-Hinweis und `docs/boundary/GettingStarted.md`
+        + `docs/runbooks/sigil-publisher.md` dokumentieren den Header-Flow. Stabilization-Playbook
+        (MD/YAML) & MandalaMap.(md|json|yaml) heben Fraktal97 hervor, codexfeedback*
+        setzt den Hook auf UI/metrics-ready.'
+      deliverables:
+        - scripts/boundary-service.ts
+        - scripts/smoke/boundary-service-smoke.mjs
+        - apps/ui/src/pages/BoundaryDemo.tsx
+        - docs/boundary/GettingStarted.md
+        - docs/runbooks/sigil-publisher.md
+        - docs/roadmap/v1.0-stabilization-playbook.md
+        - docs/roadmap/v1.0-stabilization-playbook.yaml
+        - MandalaMap.md
+        - MandalaMap.yaml
+        - MandalaMap.json
+        - codexfeedback/codexfeedback-latest.md
+        - codexfeedback/codexfeedback-latest.json
+        - codexfeedback/codexfeedback-latest.yaml
+        - codexfeedback.md
+        - codexfeedback.json
+        - codexfeedback.yaml
+        - docs/fraktal/codexfeedback/codexfeedback-fraktal97.yaml
+        - analysis/devtalk96-evaluation.md
+      commands:
+        - node scripts/smoke/boundary-service-smoke.mjs
+      hook:
+        progress: Idempotency-Header & Status-Endpunkt aktiv; UI-Badges zeigen Dedupe-Last
+          und Cache-Verbrauch.
+        next_step: Header-Pflicht in weiteren Publishern verankern und Boundary-Alerts
+          (Dedupes/min vs. Cache) beobachten.
+      repeat_required: false
+    - id: 96
+      status: done
+      notes: 'Fraktal96 BoundaryCanonicalHardening: `packages/boundary-core/src/canonical.ts`
+        kanonisiert Payloads (Schlüssel sortiert, Kreise markiert, Infinity → String)
+        für `stableBoundaryEventKey`; `packages/boundary-core/src/__tests__/event-key.test.ts`
+        beweist gleichbleibende Hashes bei Schlüsselumsortierung & Kreisdaten und `scripts/boundary-service.ts`
+        schreibt `laws.json` atomar (Tmp → Rename) sowie zählt HTTP-Status via `boundary_http_responses_total`.
+        Stabilization-Playbook (MD/YAML) vermerkt den Canonical-Patch, MandalaMap.(md|json|yaml)
+        heben Fraktal96 hervor und codexfeedback* setzt den Hook auf Alert-Monitoring
+        (Dedupes/min vs. 202/409).'
+      deliverables:
+        - packages/boundary-core/src/canonical.ts
+        - packages/boundary-core/src/event-key.ts
+        - packages/boundary-core/src/index.ts
+        - packages/boundary-core/src/__tests__/event-key.test.ts
+        - scripts/boundary-service.ts
+        - docs/roadmap/v1.0-stabilization-playbook.md
+        - docs/roadmap/v1.0-stabilization-playbook.yaml
+        - MandalaMap.md
+        - MandalaMap.yaml
+        - MandalaMap.json
+        - codexfeedback/codexfeedback-latest.md
+        - codexfeedback/codexfeedback-latest.json
+        - codexfeedback/codexfeedback-latest.yaml
+        - codexfeedback.md
+        - codexfeedback.json
+        - codexfeedback.yaml
+        - docs/fraktal/codexfeedback/codexfeedback-fraktal96.yaml
+      commands:
+        - pnpm vitest run packages/boundary-core/src/__tests__/event-key.test.ts
+        - pnpm vitest run packages/boundary-engine
+        - node scripts/smoke/boundary-service-smoke.mjs
+      hook:
+        progress: Canonical helper aktiv; Snapshot-Schreiben atomar & HTTP-Status-Counter
+          aktiv.
+        next_step: Canonical-Pfad auf weitere Publisher/Exporter ausrollen und dedupe
+          Alerts überwachen.
+      repeat_required: false
+    - id: 95
+      status: done
+      notes: 'Fraktal95 BoundaryDedupe: `scripts/smoke/boundary-smoke.mjs` erzwingt
+        `eventKey`-Dedupe (Helper-Exports + Exit Codes), `tests/smoke/boundary-smoke.spec.ts`
+        deckt Missing/Duplicate-Pfade ab, `docs/runbooks/sigil-publisher.md` beschreibt
+        die Publisher-Integration. Runtime Hardening erweitert den Lauf: `scripts/boundary-service.ts`
+        prüft stabile `eventKey`-Hashes mit TTL-Dedupe-Cache (`409 duplicate_eventKey`),
+        skippt JSONL/Snapshot-Writes, exportiert `boundary_law_deduped_total` & `boundary_dedupe_store_size`;
+        `scripts/smoke/boundary-service-smoke.mjs` testet 202/409/Metric-Fluss und Grafana-Dashboards
+        (`grafana/dashboards/boundary*.json`) zeigen Dedupes/min & Cache-Größe. Stabilization-Playbook
+        & MandalaMap.* dokumentieren die Erweiterung, codexfeedback* markiert den Lauf
+        als abgeschlossen.'
+      deliverables:
+        - scripts/smoke/boundary-smoke.mjs
+        - tests/smoke/boundary-smoke.spec.ts
+        - docs/runbooks/sigil-publisher.md
+        - scripts/boundary-service.ts
+        - scripts/smoke/boundary-service-smoke.mjs
+        - packages/boundary-core/src/event-key.ts
+        - packages/boundary-engine/src/extractor.ts
+        - packages/boundary-engine/src/__tests__/engine.smoke.test.ts
+        - src/boundary/publisher.ts
+        - grafana/dashboards/boundary.json
+        - grafana/dashboards/boundary-health-patch.json
+        - docs/roadmap/v1.0-stabilization-playbook.md
+        - docs/roadmap/v1.0-stabilization-playbook.yaml
+        - MandalaMap.md
+        - MandalaMap.yaml
+        - MandalaMap.json
+        - codexfeedback/codexfeedback-latest.md
+        - codexfeedback/codexfeedback-latest.json
+        - codexfeedback/codexfeedback-latest.yaml
+        - codexfeedback.md
+        - codexfeedback.json
+        - codexfeedback.yaml
+        - docs/fraktal/codexfeedback/codexfeedback-fraktal95.yaml
+      commands:
+        - pnpm vitest run tests/smoke/boundary-smoke.spec.ts
+        - pnpm vitest run packages/boundary-engine
+        - node scripts/smoke/boundary-service-smoke.mjs
+      hook:
+        progress: Runtime-Dedupe aktiv (Service 409 + Metrics/Grafana + Smoke), Publisher
+          hook verteilt stabile Keys.
+        next_step: Boundary-Exports beobachten, weitere Bridges auf stabile `eventKey`-Ableitung
+          migrieren.
+      repeat_required: false
+    - id: 94
+      status: done
+      notes: 'Fraktal94 SchemaGateHardening: `analysis/devtalk94-evaluation.md` bestätigt
+        DevTalk94, `schemas/sigil-message/1-0-0.schema.json` (Fingerprint + Valid/Invalid-Fixtures)
+        hängt strikt in `pnpm schema:validate`; `src/adapters/sigil-mapping.ts` & `tests/sigil/schema.contract.test.ts`
+        erzeugen/prüfen das neue Format, MandalaMap.*, Stabilization-Playbook.(md|yaml)
+        und codexfeedback-latest.* dokumentieren offene UI/Boundary-Follow-ups.'
+      deliverables:
+        - analysis/devtalk94-evaluation.md
+        - schemas/sigil-message/1-0-0.schema.json
+        - schemas/sigil-message/examples/valid.json
+        - schemas/sigil-message/examples/invalid-extra-prop.json
+        - schemas/sigil-message/examples/invalid-ascii-missing.json
+        - schemas/sigil-message/examples/invalid-ts.json
+        - sigils/samples/sigil-message.sample.json
+        - scripts/validate-schemas.mjs
+        - src/adapters/sigil-mapping.ts
+        - tests/sigil/schema.contract.test.ts
+        - docs/membrane/real-membrane-v0.1.md
+        - docs/roadmap/v1.0-stabilization-playbook.md
+        - docs/roadmap/v1.0-stabilization-playbook.yaml
+        - MandalaMap.md
+        - MandalaMap.yaml
+        - MandalaMap.json
+        - codexfeedback/codexfeedback-latest.md
+        - codexfeedback/codexfeedback-latest.json
+        - codexfeedback/codexfeedback-latest.yaml
+      commands:
+        - pnpm schema:validate
+        - pnpm observability:check
+      hook:
+        progress: Schema-Gate abgeschlossen; UI/Boundary-Follow-ups nach Fraktal95 umgesetzt.
+        next_step: abgeschlossen.
+      repeat_required: false
     - id: 88
       status: in-progress
-      notes: 'Fraktal88 DevTalkContinuation: `analysis/devtalk88-evaluation.md` bewertet den
-        DevTalk-Plan nach Abschluss des Qwen-Rollouts, bestätigt die erfüllten Gates
+      notes: 'Fraktal88 DevTalkContinuation: `analysis/devtalk88-evaluation.md` bewertet
+        den DevTalk-Plan nach Abschluss des Qwen-Rollouts, bestätigt die erfüllten Gates
         (CI/Governance/Observability/Docs) und verlagert die offenen Aufgaben auf Climate-MVP
         (Phase 4), Gemini-Sigillin-Verlinkung sowie Health-Aggregator-Badge. MandalaMap.*,
         Stabilization-Playbook und codexfeedback* heben Fraktal88 als aktiven Hook hervor.'
@@ -33,8 +784,8 @@ fraktal:
       status: done
       notes: 'Fraktal87 DevTalkStabilization: analysis/devtalk87-evaluation.md bestätigt
         die DevTalk-Ziele (CI/Governance/Observability/Docs) und erweitert den Qwen-Rollout
-        um den Ollama-Proxy (`apps/api-lite/ollama-proxy.mjs` → `pnpm start:ollama-proxy` /
-        `pnpm ps:umo`) sowie den Smoke-Shortcut (`pnpm ps:smoke-qwen`). DEV-SHORTCUTS,
+        um den Ollama-Proxy (`apps/api-lite/ollama-proxy.mjs` → `pnpm start:ollama-proxy`
+        / `pnpm ps:umo`) sowie den Smoke-Shortcut (`pnpm ps:smoke-qwen`). DEV-SHORTCUTS,
         RoleOutCommands.* und MandalaMap.* spiegeln die neue Start-/Smoke-Kette; offene
         Aufgaben wurden nach Fraktal88 verlegt.'
       deliverables:

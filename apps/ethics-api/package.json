@@ -1,0 +1,8 @@
+{
+  "name": "@mandala/ethics-api",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "opa:test": "pnpm --filter unified-mandala run opa:test"
+  }
+}

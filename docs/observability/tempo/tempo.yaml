@@ -1,0 +1,14 @@
+server:
+  http_listen_port: 3200
+distributor: {}
+ingester:
+  max_block_bytes: 10485760
+  max_block_duration: 5m
+compactor: {}
+querier: {}
+query_frontend: {}
+storage:
+  trace:
+    backend: local
+    local:
+      path: /tmp/tempo

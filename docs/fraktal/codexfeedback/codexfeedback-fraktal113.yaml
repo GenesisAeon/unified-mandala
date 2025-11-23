@@ -1,0 +1,36 @@
+fraktal: 113
+status: done
+owner: Johann
+summary:
+  - 'Verify-Gate nutzt jetzt eine typisierte Error-Hierarchie (`errors.ts`) und eine `createApp({registry})`-Factory; Tests und Integrationen können frische Prometheus-Registries einspeisen.'
+  - 'Metrics-Modul unterstützt Rebinding via `configureMetrics`/`setMetrics`, `pinnedRequest` wirft Typed Errors und SSRF-Gate mappt DNS-Fehler auf `DNS_RESOLVE_ERROR`/`DNS_EMPTY_ANSWER`.'
+  - 'Neue E2E-Suites zählen TLS/IP-Mismatch-Counter über `/metrics`, Prometheus-Recording-Rule & Grafana-Dashboard `verify-gate-network-safety.json` beobachten DNS-TTL, Redirect-Blocks und Ethics-Degradation.'
+deliverables:
+  - apps/verify-gate/src/errors.ts
+  - apps/verify-gate/src/app.ts
+  - apps/verify-gate/src/index.ts
+  - apps/verify-gate/src/metrics.ts
+  - apps/verify-gate/src/security/ssrf.ts
+  - apps/verify-gate/src/proxy/pinnedRequest.ts
+  - apps/verify-gate/src/proxy/followRedirects.ts
+  - apps/verify-gate/src/__tests__/ip-mismatch.e2e.test.ts
+  - apps/verify-gate/src/__tests__/tls-name-mismatch.e2e.test.ts
+  - grafana/dashboards/verify-gate-network-safety.json
+  - grafana/dashboards/verify-gate-ethics-mini.json
+  - observability/prometheus/recording-rules.yaml
+  - package.json
+  - docs/roadmap/v1.0-stabilization-playbook.md
+  - docs/roadmap/v1.0-stabilization-playbook.yaml
+  - MandalaMap.yaml
+  - MandalaMap.json
+  - MandalaMap.md
+  - codexfeedback.md
+  - codexfeedback.json
+follow_up:
+  grafana_profile_sync:
+    description: 'Neues Network-Safety-Dashboard in Compose-Monitoring-Profil & Observability-Docs verlinken.'
+    status: planned
+hook:
+  progress: 'Verify-Gate ist typisiert (Errors + Factory), Metrics lassen sich testweise neu registrieren, TLS/IP-Mismatch-Zähler haben E2E-Deckung und Grafana-Panel-Bundle beobachtet Netzwerkpfade.'
+  next_step: 'Monitoring-Profile aktualisieren, OPA-Policy um neue Netz-Attribute (`tls_san_ok`, `ttl_sec`) erweitern.'
+  repeat_required: false

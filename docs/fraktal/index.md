@@ -3,13 +3,19 @@ Fraktal Diary Index
 - Location: `docs/fraktal`
 
 Diary
-
 - fraktal-zyklus.md — docs/fraktal/diary/fraktal-zyklus.md
 - fraktal44.md — docs/fraktal/diary/fraktal44.md
+- fraktal88.md — docs/fraktal/diary/fraktal88.md
 
 Codexfeedback
-
-- codexfeedback-fraktal44.yaml - docs/fraktal/codexfeedback/codexfeedback-fraktal44.yaml
+- codexfeedback-87-qwen-rollout.yaml — docs/fraktal/codexfeedback/codexfeedback-87-qwen-rollout.yaml
+- codexfeedback-88-devtalk.yaml — docs/fraktal/codexfeedback/codexfeedback-88-devtalk.yaml
+- codexfeedback-fraktal100.yaml — docs/fraktal/codexfeedback/codexfeedback-fraktal100.yaml
+- codexfeedback-fraktal107.yaml — docs/fraktal/codexfeedback/codexfeedback-fraktal107.yaml
+- codexfeedback-fraktal109.yaml — docs/fraktal/codexfeedback/codexfeedback-fraktal109.yaml
+- codexfeedback-fraktal111.yaml — docs/fraktal/codexfeedback/codexfeedback-fraktal111.yaml
+- codexfeedback-fraktal112.yaml — docs/fraktal/codexfeedback/codexfeedback-fraktal112.yaml
+- codexfeedback-fraktal44.yaml — docs/fraktal/codexfeedback/codexfeedback-fraktal44.yaml
 - codexfeedback-fraktal45.yaml — docs/fraktal/codexfeedback/codexfeedback-fraktal45.yaml
 - codexfeedback-fraktal46.yaml — docs/fraktal/codexfeedback/codexfeedback-fraktal46.yaml
 - codexfeedback-fraktal48.yaml — docs/fraktal/codexfeedback/codexfeedback-fraktal48.yaml
@@ -50,26 +56,12 @@ Codexfeedback
 - codexfeedback-fraktal83.yaml — docs/fraktal/codexfeedback/codexfeedback-fraktal83.yaml
 - codexfeedback-fraktal85.yaml — docs/fraktal/codexfeedback/codexfeedback-fraktal85.yaml
 - codexfeedback-fraktal86.yaml — docs/fraktal/codexfeedback/codexfeedback-fraktal86.yaml
-- codexfeedback-fraktal87.yaml - docs/fraktal/codexfeedback/codexfeedback-fraktal87.yaml
-
-## Werkzeuge & Flows
-
-- **Dev-Shortcuts (pnpm / npm / yarn):** DEV-SHORTCUTS(../DEV-SHORTCUTS.md)
-- **Playground (Primer, mit Key):** `pnpm start:primer` `npm run npm:start:primer` `yarn yarn:start:primer`
-- **RAG-Smoke:** `pnpm smoke:rag` `npm run npm:smoke:rag` `yarn yarn:smoke:rag`
-
-# Quickstart (Playground 3 Zeilen)
-
-```bash
-# 1) Start (Proxy + UI + Primer + Key)
-pnpm start:primer
-# 2) Smoke (E2E Qwen  optional: pnpm smoke:rag)
-pnpm smoke:qwen
-# 3) Health
-curl -s http://127.0.0.1:4000/health
-```
-
-> Hinweise: npm/yarn-Äquivalente stehen in DEV-SHORTCUTS(../DEV-SHORTCUTS.md).  
-> Für RAG zuerst Embeddings ziehen: `ollama pull nomic-embed-text`.
-
-**Verify-Gate:** Ampel **grün** → Freigeben & protokollieren klicken → der Verify-Block wird als Note unter `data/memory/notes.jsonl` abgelegt (Tags: `verify, approved, grounded`).
+- codexfeedback-fraktal87.yaml — docs/fraktal/codexfeedback/codexfeedback-fraktal87.yaml
+- codexfeedback-fraktal90.yaml — docs/fraktal/codexfeedback/codexfeedback-fraktal90.yaml
+- codexfeedback-fraktal93.yaml — docs/fraktal/codexfeedback/codexfeedback-fraktal93.yaml
+- codexfeedback-fraktal94.yaml — docs/fraktal/codexfeedback/codexfeedback-fraktal94.yaml
+- codexfeedback-fraktal95.yaml — docs/fraktal/codexfeedback/codexfeedback-fraktal95.yaml
+- codexfeedback-fraktal96.yaml — docs/fraktal/codexfeedback/codexfeedback-fraktal96.yaml
+- codexfeedback-fraktal97.yaml — docs/fraktal/codexfeedback/codexfeedback-fraktal97.yaml
+- codexfeedback-fraktal98.yaml — docs/fraktal/codexfeedback/codexfeedback-fraktal98.yaml
+- codexfeedback.yaml — docs/fraktal/codexfeedback/codexfeedback.yaml
