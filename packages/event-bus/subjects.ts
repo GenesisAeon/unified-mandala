@@ -26,4 +26,17 @@ export enum Subjects {
    * Response event for live questions.
    */
   LIVE_ANSWER = 'v1.live.answer',
+  /**
+   * Dead Letter Queue for failed messages that could not be processed
+   * after maximum retry attempts. Enables analysis and manual recovery.
+   */
+  DLQ = 'v1.dlq',
+  /**
+   * Dead Letter Queue for messages that failed due to validation errors.
+   */
+  DLQ_VALIDATION = 'v1.dlq.validation',
+  /**
+   * Dead Letter Queue for messages that failed due to timeout.
+   */
+  DLQ_TIMEOUT = 'v1.dlq.timeout',
 }

@@ -24,15 +24,15 @@ describe('runtime and feature flags', () => {
     expect(runtime.LOW_MEM).toBe(false);
   });
 
-  it('membrane flag is off when LOW_MEM=true, else on by default', async () => {
+  it('membrane flag is off when LOW_MEM=true and remains off until explicitly enabled', async () => {
     process.env.LOW_MEM = '1';
     const feat1 = await import('../featureFlags');
     expect(feat1.isOn('membrane')).toBe(false);
 
-    // Now without LOW_MEM, default turns it on
+    // Now without LOW_MEM, default keeps it disabled
     delete process.env.LOW_MEM;
     vi.resetModules();
     const feat2 = await import('../featureFlags');
-    expect(feat2.isOn('membrane')).toBe(true);
+    expect(feat2.isOn('membrane')).toBe(false);
   });
 });

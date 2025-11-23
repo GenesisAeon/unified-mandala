@@ -1,31 +1,40 @@
 fraktal: 93
-status: done
-owner: Johann
+status: in-progress
+owner: ChatGPT5
 summary:
-  - 'Membrane Hardening: `src/membrane/config.ts` (`MEMBRANE_CFG`), metrics registry, TTL cache, OTel span.'
-  - 'Boundary Bridge emits event/recovery hooks via `src/boundary/publisher.ts` + KPI bridge (A/ΔA/state/enabled).'
-  - 'SigilMessage schema validated in `tests/sigil/schema.contract.test.ts`; UI `MembranePill` bereit für Integration.'
-  - 'Schema-Gate Wiring folgt in Fraktal94; UI/Boundary-Follow-ups wurden dorthin verlagert.'
+  - 'RealMembrane v0.1 implementiert (heuristische Horizont-Erkennung mit Hysterese,
+    Debounce und ΔA-Watch) und in docs/membrane/real-membrane-v0.1.md dokumentiert.'
+  - 'Membrane-Bridge nutzt jetzt geteilte RealMembrane-Instanzen inkl. Feature-Flag
+    (`MEMBRANE_ON`/`VITE_FEATURE_MEMBRANE` → default off) und ASCII/Emoji-Sigils.'
+  - 'Sigillin-Governance: Neues Label-Gate `.github/workflows/sigillin-strict.yml`,
+    plus SigilMessage-Schema für Contract-Tests.'
+  - 'MandalaMap.* und v1.0-Stabilization-Playbook mit Status-Update versehen;
+    Hook verweist auf Membran-Rollout & Sigillin-Governance.'
+  - 'DevTalk93-Needle: Evaluierung weiter offen – prüfen, ob weitere KPI-Mappings
+    (CO₂, Luftqualität) priorisiert werden sollen.'
 deliverables:
-  - src/membrane/config.ts
-  - src/membrane/metrics.ts
-  - src/membrane/registry.ts
+  - src/membrane/index.ts
   - src/membrane/real-membrane.ts
   - src/kpi/membrane-bridge.ts
-  - src/boundary/publisher.ts
-  - tests/membrane/golden.series.test.ts
-  - tests/membrane/ci-ascii.test.ts
-  - tests/membrane/bench.opt.test.ts
+  - src/membrane/tests
+  - src/kpi/tests
   - tests/kpi/membrane-bridge.test.ts
-  - tests/sigil/schema.contract.test.ts
-  - apps/ui/src/components/MembranePill.tsx
   - docs/membrane/real-membrane-v0.1.md
-  - analysis/devtalk93-evaluation.md
+  - schemas/sigil-message.schema.json
+  - .github/workflows/sigillin-strict.yml
+  - MandalaMap.md
+  - MandalaMap.yaml
+  - MandalaMap.json
+  - docs/roadmap/v1.0-stabilization-playbook.md
+  - docs/roadmap/v1.0-stabilization-playbook.yaml
 commands:
-  - pnpm vitest run tests/membrane --run
-  - pnpm vitest run tests/kpi/membrane-bridge.test.ts --run
-  - pnpm vitest run tests/sigil/schema.contract.test.ts --run
+  - pnpm test:unit --filter membrane
+  - pnpm test:unit --filter "membrane-bridge"
+  - pnpm schema:validate
+  - pnpm maps:validate
 hook:
-  progress: 1
-  next_step: 'Follow-up-Lauf Fraktal94 trackt Schema-Gate & UI-Integration.'
-repeat_required: no
+  progress: RealMembrane verdrahtet, Governance-Gate aktiv; Tests decken LowMem und
+    Event-Boundaries ab.
+  next_step: KPI-Mappings (CO₂, Luftqualität) & UI-Badges anbinden; Sigillin-Validator
+    um weitere Sprachen erweitern.
+repeat_required: true

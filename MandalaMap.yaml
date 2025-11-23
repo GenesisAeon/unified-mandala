@@ -1,7 +1,7 @@
 meta:
   version: '1.0'
-  generated: '2025-12-24 00:00:00+00:00'
-  fraktal: 114
+  generated: '2025-12-01 00:00:00+00:00'
+  fraktal: 93
   repo: unified-mandala
   source: ChefDevAI MandalaMap bootstrap
   reference_docs:
@@ -218,6 +218,9 @@ entries:
       - 'Fraktal87 ergänzt `.github/workflows/ci.qwen-smoke.yml` als Self-Hosted-Lane (Label `ci:qwen-smoke`, optional
         `workflow_dispatch`) für den Qwen-Smoke (`pnpm smoke:qwen`); verweist auf `RoleOutCommands.*` und den Pre-Push-Hook
         `pnpm hook:qwen-smoke`.'
+      - 'Fraktal93: `.github/workflows/sigillin-strict.yml` läuft bei Label `sigillin:strict`
+        und führt den Mini-Sigillin-Validator sowie `scripts/fix-sigillin.ts --dry-run`
+        als optionales Governance-Gate aus.'
     links:
       - label: CI Core
         path: .github/workflows/ci.core.yml
@@ -970,6 +973,9 @@ entries:
       - Fraktal72 schärft Typannotationen im Cosmic-Web-Mock (deterministischer RNG, strukturierte
         Points/Features) und unterdrückt Pyright-PrivateUsage-Warnungen für `_normalise_href`
         im OISST-Postprocessing.
+      - 'Fraktal93: `RealMembrane` (Ringpuffer + ΔA/Hysterese) liefert Horizon-States für
+        KPI-Bridges; Feature default off (`MEMBRANE_ON`), Tests decken Low-Mem/Event-
+        Boundaries ab, dokumentiert in `docs/membrane/real-membrane-v0.1.md`.'
     links: []
   - path: stubs/
     category: support

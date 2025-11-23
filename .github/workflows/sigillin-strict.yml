@@ -18,4 +18,4 @@ jobs:
       - run: corepack enable
       - run: pnpm install --frozen-lockfile
       - run: pnpm -w tsx scripts/sigils/mini-sigillin-validator.ts sigils/bridges
-      - run: pnpm -w tsx scripts/fix-sigillin.ts --check sigils/bridges
+      - run: pnpm -w tsx scripts/fix-sigillin.ts --dry-run sigils/bridges

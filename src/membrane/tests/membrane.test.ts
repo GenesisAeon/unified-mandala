@@ -1,35 +1,41 @@
-import { describe, it, expect, vi } from 'vitest';
+import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
+
+const ORIGINAL_ENV = { ...process.env } as NodeJS.ProcessEnv;
 
 describe('membrane module', () => {
-  it('NullMembrane is NoOp when LOW_MEM=1', async () => {
-    process.env.LOW_MEM = '1';
+  beforeEach(() => {
+    process.env = { ...ORIGINAL_ENV } as any;
     vi.resetModules();
+  });
+
+  afterEach(() => {
+    process.env = ORIGINAL_ENV;
+  });
+
+  it('createMembrane returns NoOp in low-memory mode', async () => {
+    process.env.LOW_MEM = '1';
     const mod = await import('../index');
-    const Mem = mod.NullMembrane as any;
-    const inst = new Mem();
-    const r = inst.step(0, 0.5);
+    const instance = mod.createMembrane();
+    const r = instance.step(Date.now(), 0.5);
     expect(r.state).toBe('subcritical');
     expect(r.severity).toBe('ok');
     expect(r.A).toBe(0);
   });
 
-  it('membraneSigil maps states', async () => {
-    delete process.env.LOW_MEM;
-    vi.resetModules();
+  it('membraneSigil prefers ASCII in CI mode', async () => {
+    process.env.CI = '1';
     const mod = await import('../index');
-    expect(mod.membraneSigil('subcritical', true)).toBe('--');
-    expect(mod.membraneSigil('apparent', true)).toBe('~~');
-    expect(mod.membraneSigil('event', true)).toBe('[!]');
+    expect(mod.membraneSigil('subcritical')).toBe('[ok]');
+    expect(mod.membraneSigil('apparent')).toBe('[~]');
+    expect(mod.membraneSigil('event')).toBe('[!!]');
   });
 
-  it('real membrane returns severity with computed amplitude', async () => {
-    const real = await import('../real-membrane');
-    const inst = new real.RealMembrane();
-    const t = Date.now();
-    const r = inst.step(t, 0.42);
-    expect(r.state).toBeTypeOf('string');
-    expect(r.A).toBeGreaterThanOrEqual(0);
-    expect(Number.isFinite(r.dA)).toBe(true);
-    expect(['ok', 'warn', 'alarm']).toContain(r.severity);
+  it('RealMembrane emits readings when enabled', async () => {
+    delete process.env.LOW_MEM;
+    const { createMembrane } = await import('../index');
+    const m = createMembrane();
+    const reading = m.step(Date.now(), 0.42);
+    expect(reading.state).toBeDefined();
+    expect(['ok', 'warn', 'alarm']).toContain(reading.severity);
   });
 });

@@ -1,55 +1,66 @@
-# RealMembrane v0.1 · Horizon Detection Notes
+# RealMembrane v0.1 · Heuristic Horizon Detector
 
-The v0.1 membrane consolidates the heuristics we agreed in Fraktal93. It offers a deterministic, low-allocation state machine that turns raw KPI samples into CREP-aware horizon readings.
+The `RealMembrane` implementation translates raw KPI samples into membrane states
+for the sigillin layer. Version 0.1 focuses on a deterministic, lightweight
+heuristic that can operate in offline and CI environments without external
+dependencies.
 
-## Signal pipeline
+## Signal model
 
-1. **Windowed stats** – keep the last _N_ (=200) samples, update running sum + sum of squares, and derive \(\mu\) and \(\sigma\) with Bessel correction. A floor (`SIGMA_MIN = 1e-3`) prevents divide-by-zero when the stream is flat.
-2. **Amplitude** – compute \(z = \frac{x - \mu}{\sigma}\) and use \(A = |z|\). The delta `dA` compares the new amplitude with the previous step.
-3. **State proposal** – thresholds: `T_OK = 1.0`, `T_WARN = 2.0`. Hysteresis margin `H = 0.2` keeps the band sticky. Values above `T_WARN + H` jump straight to `event`; `dA > 0.5` nudges borderline spikes into `apparent` even if `A` is still inside the band.
-4. **Debounce** – transitions require `K` consecutive confirmations (default 3). The debounce memory resets when the candidate matches the current state.
+- **Ring buffer statistics** – Samples are accumulated in a fixed-size buffer
+  (default 200 points). Each step updates the running mean and variance so the
+  detector reacts to slow drifts without keeping the full history in memory.
+- **Amplitude (`A`)** – Calculated as the absolute z-score of the latest sample,
+  guarded by `σ_min = 0.05` so near-constant signals do not collapse.
+- **Dynamics (`ΔA`)** – Difference between the current and previous amplitude to
+  capture sudden changes even when the absolute deviation is modest.
 
-## Severity mapping
+These metrics are cheap to compute, deterministic and resilient against small
+perturbations.
 
-| Horizon state | CREP resonance     | Sigil (ASCII / Emoji) | Severity |
-| ------------- | ------------------ | --------------------- | -------- |
-| `subcritical` | baseline resonance | `--` / 🟢             | `ok`     |
-| `apparent`    | rising resonance   | `~~` / 🟠             | `warn`   |
-| `event`       | critical resonance | `[!]` / 🛡️            | `alarm`  |
+## State machine
 
-Enable ASCII determinism in CI via `CI=1` or `UM_ASCII_SIGILS=1`. Outside CI the UI and bridges render the emoji variant.
+| State       | Entry rule (defaults)                                | Severity |
+| ----------- | ---------------------------------------------------- | -------- |
+| subcritical | `A < T_ok - H` **and** `ΔA ≤ 0.25`                   | ok       |
+| apparent    | `ΔA > 0.5` **or** `A ≥ T_ok`                         | warn     |
+| event       | `A ≥ T_warn + H` (immediate transition, no debounce) | alarm    |
 
-## Runtime knobs
+Where the default thresholds are `T_ok = 1.2`, `T_warn = 2.0`, hysteresis
+`H = 0.2`, sigma guard `σ_min = 0.05`, warm-up `K_w = 10` samples and debounce
+window `K = 3` consecutive readings. Hysteresis prevents flapping, while the
+pending queue enforces that apparent/subcritical changes persist across several
+steps before they become active. Event transitions bypass the debounce once the
+high threshold is crossed.
+
+## Configuration surface
 
 ```ts
 new RealMembrane({
-  N: 200, // window size
-  T_OK: 1.0, // z-score threshold for ok → apparent
-  T_WARN: 2.0, // z-score threshold for apparent → event
-  H: 0.2, // hysteresis margin
-  K: 3, // debounce confirmations
-  SIGMA_MIN: 1e-3,
+  windowSize: 200, // controls the rolling window size
+  thresholdOk: 1.2,
+  thresholdWarn: 2.0,
+  hysteresis: 0.2,
+  debounce: 3,
+  sigmaMin: 0.05, // guard when variance collapses on near-constant signals
+  warmup: 10,
 });
 ```
 
-The KPI bridge caches one membrane instance per metric so A/ΔA evolve with the stream. Set `LOW_MEM=1` or flip `FEATURES.membrane` to `off` to bypass horizon analysis.
+Specialised KPI bridges can override these defaults (e.g. groundwater uses a
+slightly higher debounce to absorb seasonal swings).
 
-### What changed (v0.1 hardening)
+## Sigil emission
 
-- **H** ↑ → weniger nervöse Umschaltungen (mehr Trägheit)
-- **K** ↑ → robustere Debounce (mehr bestätigte Schritte nötig)
-- **T_OK/T_WARN** ↑ → konservativer (später warn/event)
-- **N** ↑ → glattere A/ΔA, aber trägere Reaktion
-- **SIGMA_MIN** ↑ → stabiler bei Flatlines (verhindert A-Explosion)
+`membraneSigil(state)` returns ASCII sigils (`[ok]`, `[~]`, `[!!]`) in CI or when
+`UM_ASCII_SIGILS=1`. Outside CI the emoji equivalents (`🟢`, `🟠`, `🔴`) are used.
 
-## Verification checklist
+## Feature gating
 
-- `pnpm vitest run tests/membrane --run` – RealMembrane heuristics & ascii/emoji mapping.
-- `pnpm vitest run tests/kpi/membrane-bridge.test.ts --run` – KPI bridge bypass vs. cached membrane path.
-- `pnpm vitest run tests/unit/membrane.null.test.ts --run` – regression to ensure amplitude climbs under drift.
+- `LOW_MEM=1` **or** `VITE_LOW_MEM=on` – activates a `NoOpMembrane` fallback.
+- `MEMBRANE_ON=1|on` **or** `VITE_FEATURE_MEMBRANE=on` – enables membrane
+  processing. Default is `off` to keep production stable until the heuristic is
+  fully battle-tested.
 
-## Hooks for follow-up work
-
-- [x] Promote the schema `schemas/sigil-message/1-0-0.schema.json` (JSON Schema 2020-12, fingerprint + fixtures) into the CI validation suite (`scripts/validate-schemas.mjs`, Fraktal94).
-- [ ] Surface A/ΔA/Severity in the Playground badge (connect to `stepOrBypass`).
-- [ ] Extend validator wordlists (ES/FR) before enabling `sigillin:strict` on every PR.
+Use `src/kpi/membrane-bridge.ts` to access the shared instances with per-metric
+thresholds.
