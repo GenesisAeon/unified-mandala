@@ -225,6 +225,7 @@ class TestDiscover:
 
     def test_discover_handles_instantiation_error(self):
         """Adapter whose __init__ raises is skipped (lines 131-132)."""
+
         class BrokenAdapter(BaseAdapter):
             name = "broken"
 
