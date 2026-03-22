@@ -31,7 +31,7 @@ from unified_mandala.sigillin.bridge import SigillinBridge
 
 app = typer.Typer(
     name="unified-mandala",
-    help="Holistic self-reflecting mandala framework — GenesisAeon revival v0.1.0.",
+    help="Holistic self-reflecting mandala framework — GenesisAeon revival v0.2.0.",
     add_completion=False,
     rich_markup_mode="rich",
 )
@@ -297,5 +297,5 @@ def validate(
     raise typer.Exit(code=0 if result.governance_pass else 1)
 
 
-if __name__ == "__main__":
+if __name__ == "__main__":  # pragma: no cover
     app()

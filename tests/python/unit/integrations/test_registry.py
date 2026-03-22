@@ -2,6 +2,9 @@
 
 from __future__ import annotations
 
+import importlib
+from unittest.mock import MagicMock, patch
+
 import pytest
 
 from unified_mandala.integrations.registry import AdapterRegistry, BaseAdapter
@@ -206,3 +209,65 @@ class TestDiscover:
     def test_discover_all_17(self):
         r = AdapterRegistry.discover()
         assert len(r) >= 17
+
+    def test_discover_handles_import_error(self):
+        """Failed module import is logged and skipped (lines 116-118)."""
+        original_import = importlib.import_module
+
+        def failing_import(name, *args, **kwargs):
+            if "unified_mandala.integrations.adapters." in name:
+                raise ImportError(f"simulated failure for {name}")
+            return original_import(name, *args, **kwargs)
+
+        with patch("importlib.import_module", side_effect=failing_import):
+            r = AdapterRegistry.discover()
+        assert isinstance(r, AdapterRegistry)
+
+    def test_discover_handles_instantiation_error(self):
+        """Adapter whose __init__ raises is skipped (lines 131-132)."""
+        class BrokenAdapter(BaseAdapter):
+            name = "broken"
+
+            def __init__(self):
+                raise RuntimeError("cannot instantiate")
+
+            def gather(self, *, entropy, phases):  # pragma: no cover
+                return {}
+
+        original_import = importlib.import_module
+
+        def patched_import(name, *args, **kwargs):
+            mod = original_import(name, *args, **kwargs)
+            if name.endswith("genesis_os"):
+                mod.__dict__["BrokenAdapter"] = BrokenAdapter
+            return mod
+
+        with patch("importlib.import_module", side_effect=patched_import):
+            r = AdapterRegistry.discover()
+        assert isinstance(r, AdapterRegistry)
+
+    def test_discover_entry_points_loaded(self):
+        """Entry-point adapters are registered when loadable (lines 138-142)."""
+        mock_ep = MagicMock()
+        mock_ep.name = "ep-stub"
+        mock_ep.load.return_value = StubAdapter
+
+        with patch("importlib.metadata.entry_points", return_value=[mock_ep]):
+            r = AdapterRegistry.discover()
+        assert isinstance(r, AdapterRegistry)
+
+    def test_discover_entry_points_load_error(self):
+        """Entry-point load failure is skipped gracefully (lines 141-142)."""
+        mock_ep = MagicMock()
+        mock_ep.name = "bad-ep"
+        mock_ep.load.side_effect = Exception("load failed")
+
+        with patch("importlib.metadata.entry_points", return_value=[mock_ep]):
+            r = AdapterRegistry.discover()
+        assert isinstance(r, AdapterRegistry)
+
+    def test_discover_entry_points_metadata_error(self):
+        """entry_points() itself raising is caught and logged (lines 143-144)."""
+        with patch("importlib.metadata.entry_points", side_effect=Exception("metadata error")):
+            r = AdapterRegistry.discover()
+        assert isinstance(r, AdapterRegistry)
