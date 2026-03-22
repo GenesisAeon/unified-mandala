@@ -6,10 +6,10 @@ import pytest
 
 from unified_mandala.core.crep import CREPEvaluator, ResonanceChannel
 from unified_mandala.core.emergence import EmergenceRate
-from unified_mandala.governance.policy import EntropyGovernor, PolicyGate, PolicyViolation
+from unified_mandala.core.mandala import MandalaOrchestrator
+from unified_mandala.governance.policy import EntropyGovernor, PolicyGate
 from unified_mandala.integrations.registry import AdapterRegistry
 from unified_mandala.sigillin.bridge import SigillinBridge
-from unified_mandala.core.mandala import MandalaOrchestrator
 
 
 class TestOpaPayloadStructure:
@@ -88,7 +88,7 @@ class TestEntropyGovernorEdgeCases:
 
     def test_window_size_respected(self):
         gov = EntropyGovernor(window=3)
-        for i in range(10):
+        for _i in range(10):
             gov.observe(0.5)
         assert len(gov._history) == 3
 

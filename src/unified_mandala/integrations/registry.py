@@ -95,7 +95,7 @@ class AdapterRegistry:
     # ------------------------------------------------------------------
 
     @classmethod
-    def discover(cls) -> "AdapterRegistry":
+    def discover(cls) -> AdapterRegistry:
         """Auto-discover all built-in and entry-point adapters.
 
         Returns:
@@ -113,7 +113,7 @@ class AdapterRegistry:
             mod_name = f"{pkg_name}.{_info.name}"
             try:
                 mod = importlib.import_module(mod_name)
-            except Exception as exc:  # noqa: BLE001
+            except Exception as exc:
                 logger.warning(f"Could not import adapter module {mod_name!r}: {exc}")
                 continue
 
@@ -128,7 +128,7 @@ class AdapterRegistry:
                     try:
                         instance = obj()
                         registry.register(instance)
-                    except Exception as exc:  # noqa: BLE001
+                    except Exception as exc:
                         logger.warning(
                             f"Could not instantiate adapter {attr_name!r}: {exc}"
                         )
@@ -140,9 +140,9 @@ class AdapterRegistry:
                 try:
                     adapter_cls = ep.load()
                     registry.register(adapter_cls())
-                except Exception as exc:  # noqa: BLE001
+                except Exception as exc:
                     logger.warning(f"Entry-point adapter {ep.name!r} failed: {exc}")
-        except Exception as exc:  # noqa: BLE001
+        except Exception as exc:
             logger.debug(f"Entry-point discovery skipped: {exc}")
 
         logger.info(f"AdapterRegistry: {len(registry)} adapters discovered.")
@@ -166,7 +166,7 @@ class AdapterRegistry:
         for name, adapter in self._adapters.items():
             try:
                 states[name] = adapter.gather(entropy=entropy, phases=phases)
-            except Exception as exc:  # noqa: BLE001
+            except Exception as exc:
                 logger.warning(f"Adapter {name!r} gather() failed: {exc}")
                 states[name] = {"phase": 0.0, "weight": 0.0, "error": str(exc)}
         return states

@@ -117,5 +117,5 @@ class TestEmergenceCompute:
 class TestEmergenceResult:
     def test_frozen(self):
         r = EmergenceResult(rate=1.0, entropy=1.0, phi_delta=0.5, constructive=True)
-        with pytest.raises(Exception):
+        with pytest.raises(AttributeError):
             r.rate = 0.0  # type: ignore[misc]

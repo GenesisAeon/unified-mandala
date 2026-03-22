@@ -1,13 +1,12 @@
-"""Exhaustive matrix tests: every adapter × every entropy × every phase count.
+"""Exhaustive matrix tests: every adapter x every entropy x every phase count.
 
-This file alone generates 18 × 9 × 4 = 648 parametrized test cases,
+This file alone generates 18 x 9 x 4 = 648 parametrized test cases,
 ensuring >700 total collected tests across the entire suite.
 """
 
 from __future__ import annotations
 
 import math
-from typing import Type
 
 import pytest
 
@@ -31,7 +30,7 @@ from unified_mandala.integrations.adapters.universums_sim import UniversumsSimAd
 from unified_mandala.integrations.adapters.utac_core import UtacCoreAdapter
 from unified_mandala.integrations.registry import BaseAdapter
 
-ALL_ADAPTERS: list[Type[BaseAdapter]] = [
+ALL_ADAPTERS: list[type[BaseAdapter]] = [
     GenesisOsAdapter,
     UniversumsSimAdapter,
     AeonAiAdapter,

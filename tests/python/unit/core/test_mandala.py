@@ -2,17 +2,14 @@
 
 from __future__ import annotations
 
-from unittest.mock import MagicMock, patch
-
 import pytest
 
-from unified_mandala.core.crep import CREPResult, ResonanceChannel
+from unified_mandala.core.crep import CREPResult
 from unified_mandala.core.emergence import EmergenceResult
 from unified_mandala.core.mandala import CycleResult, MandalaOrchestrator
-from unified_mandala.governance.policy import GovernanceDecision, PolicyGate
+from unified_mandala.governance.policy import PolicyGate
 from unified_mandala.integrations.registry import AdapterRegistry
-from unified_mandala.sigillin.bridge import ReflectionGlyph, SigillinBridge
-
+from unified_mandala.sigillin.bridge import SigillinBridge
 
 # ── Helpers ───────────────────────────────────────────────────────────────────
 
@@ -152,7 +149,6 @@ class TestMandalaOrchestratorRunCycle:
     def test_multiple_cycles_accumulate_phi(self):
         orch = _make_orch()
         orch.run_cycle(entropy=0.8, simulate=True)
-        phi_after_1 = orch._phi_prev
         orch.run_cycle(entropy=0.8, simulate=True)
         # phi_prev updates each cycle
         assert orch._phi_prev != 0.0

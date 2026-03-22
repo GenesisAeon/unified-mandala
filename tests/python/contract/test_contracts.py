@@ -6,6 +6,7 @@ BaseAdapter contract as consumed by MandalaOrchestrator.
 
 from __future__ import annotations
 
+import itertools
 import math
 
 import pytest
@@ -31,7 +32,7 @@ from unified_mandala.integrations.adapters.sigillin_adapter import SigillinAdapt
 from unified_mandala.integrations.adapters.sonification import SonificationAdapter
 from unified_mandala.integrations.adapters.universums_sim import UniversumsSimAdapter
 from unified_mandala.integrations.adapters.utac_core import UtacCoreAdapter
-from unified_mandala.integrations.registry import AdapterRegistry, BaseAdapter
+from unified_mandala.integrations.registry import AdapterRegistry
 from unified_mandala.sigillin.bridge import SigillinBridge
 
 ALL_ADAPTER_CLASSES = [
@@ -129,7 +130,7 @@ class TestSigillinToCrePContract:
         bridge = SigillinBridge()
         scores = [0.0, 0.3, 0.5, 0.72, 0.9, 1.0]
         phis = [bridge.phi(s) for s in scores]
-        for a, b in zip(phis, phis[1:]):
+        for a, b in itertools.pairwise(phis):
             assert a <= b, f"phi not monotone: {a} > {b}"
 
     def test_reflect_accepts_crep_result(self):

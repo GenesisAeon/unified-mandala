@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-import math
+import itertools
 
 import pytest
 
@@ -47,7 +47,7 @@ class TestSigillinBridgePhi:
     def test_phi_monotonically_increasing(self, bridge):
         scores = [i / 20 for i in range(21)]
         phis = [bridge.phi(s) for s in scores]
-        for a, b in zip(phis, phis[1:]):
+        for a, b in itertools.pairwise(phis):
             assert a <= b
 
     def test_phi_in_unit_interval(self, bridge):
@@ -71,7 +71,7 @@ class TestReflectionGlyph:
 
     def test_frozen(self):
         g = ReflectionGlyph(symbol="☉", phi_value=0.5, cycle_id=1, verse="v")
-        with pytest.raises(Exception):
+        with pytest.raises(AttributeError):
             g.symbol = "X"  # type: ignore[misc]
 
 

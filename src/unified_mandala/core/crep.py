@@ -21,9 +21,8 @@ from __future__ import annotations
 
 import math
 import time
+from collections.abc import Sequence
 from dataclasses import dataclass, field
-from typing import Sequence
-
 
 EMERGENCE_THRESHOLD: float = 0.72
 """Score at or above which an emergence event is flagged."""
@@ -146,7 +145,7 @@ class CREPEvaluator:
         cls,
         channels: Sequence[ResonanceChannel],
         threshold: float = EMERGENCE_THRESHOLD,
-    ) -> "CREPResult":
+    ) -> CREPResult:
         """One-shot evaluation without retaining state."""
         ev = cls(threshold=threshold)
         for ch in channels:

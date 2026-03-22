@@ -20,9 +20,9 @@ from unified_mandala.core.crep import CREPEvaluator, CREPResult, ResonanceChanne
 from unified_mandala.core.emergence import EmergenceRate, EmergenceResult
 
 if TYPE_CHECKING:
-    from unified_mandala.governance.policy import GovernanceDecision, PolicyGate
+    from unified_mandala.governance.policy import PolicyGate
     from unified_mandala.integrations.registry import AdapterRegistry
-    from unified_mandala.sigillin.bridge import ReflectionGlyph, SigillinBridge
+    from unified_mandala.sigillin.bridge import SigillinBridge
 
 
 @dataclass
@@ -81,9 +81,9 @@ class MandalaOrchestrator:
 
     def __init__(
         self,
-        registry: "AdapterRegistry",
-        policy_gate: "PolicyGate",
-        sigillin: "SigillinBridge",
+        registry: AdapterRegistry,
+        policy_gate: PolicyGate,
+        sigillin: SigillinBridge,
         crep_threshold: float = 0.72,
     ) -> None:
         self._registry = registry

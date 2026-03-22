@@ -7,4 +7,4 @@ from unified_mandala.governance.policy import (
     PolicyViolation,
 )
 
-__all__ = ["PolicyGate", "GovernanceDecision", "PolicyViolation", "EntropyGovernor"]
+__all__ = ["EntropyGovernor", "GovernanceDecision", "PolicyGate", "PolicyViolation"]

@@ -219,7 +219,7 @@ class TestEntropyGovernor:
         assert 0.4 <= mean <= 0.6
 
     def test_window_truncation(self, gov):
-        for i in range(20):
+        for _i in range(20):
             gov.observe(0.5)
         assert len(gov._history) <= gov.window
 

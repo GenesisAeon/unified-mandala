@@ -36,7 +36,7 @@ class TestE2EGoldenPath:
 
     def test_self_reflect_after_10_cycles(self):
         orch = _make_system()
-        for i in range(10):
+        for _i in range(10):
             orch.run_cycle(entropy=0.5, simulate=True)
         report = orch.self_reflect()
         assert "10" in report

@@ -74,7 +74,7 @@ class SigillinBridge:
     """Translate numerical mandala state into poetic sigils.
 
     The bridge computes the discrete Sigillin field integral using the
-    CREP score as a proxy for ρ(s,t) and maps it to glyphs from the
+    CREP score as a proxy for rho(s,t) and maps it to glyphs from the
     17-symbol mandala ring.
 
     Example::
@@ -114,8 +114,8 @@ class SigillinBridge:
 
     def reflect(
         self,
-        crep_result: "CREPResult",
-        emergence_result: "EmergenceResult",
+        crep_result: CREPResult,
+        emergence_result: EmergenceResult,
         cycle_id: int,
     ) -> ReflectionGlyph:
         """Generate a ReflectionGlyph from the current mandala state.
@@ -145,8 +145,8 @@ class SigillinBridge:
 
     def _choose_symbol(
         self,
-        crep: "CREPResult",
-        em: "EmergenceResult",
+        crep: CREPResult,
+        em: EmergenceResult,
         cycle_id: int,
     ) -> str:
         ring_len = len(self._ring)
@@ -170,8 +170,8 @@ class SigillinBridge:
 
     def _compose_verse(
         self,
-        crep: "CREPResult",
-        em: "EmergenceResult",
+        crep: CREPResult,
+        em: EmergenceResult,
         phi: float,
     ) -> str:
         """Compose a one-line verse reflecting the current state."""

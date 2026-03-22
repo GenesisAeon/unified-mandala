@@ -12,7 +12,7 @@ class FieldtheoryAdapter(BaseAdapter):
     """Adapter for fieldtheory.
 
     Models the scalar field resonance using a damped standing wave:
-    ψ(x,t) = A · sin(kx) · e^(-γt) where x = entropy, t = phases.
+    psi(x,t) = A * sin(kx) * e^(-gamma*t) where x = entropy, t = phases.
     """
 
     name = "fieldtheory"

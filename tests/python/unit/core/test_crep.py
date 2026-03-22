@@ -14,7 +14,6 @@ from unified_mandala.core.crep import (
     ResonanceChannel,
 )
 
-
 # ── Fixtures ───────────────────────────────────────────────────────────────────
 
 @pytest.fixture()
@@ -59,7 +58,7 @@ class TestResonanceChannel:
 
     def test_frozen(self):
         ch = ResonanceChannel(name="t", phase=0.5)
-        with pytest.raises(Exception):
+        with pytest.raises(AttributeError):
             ch.phase = 0.9  # type: ignore[misc]
 
     def test_zero_phase(self):

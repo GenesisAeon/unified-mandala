@@ -21,7 +21,7 @@ class ClimateDashboardAdapter(BaseAdapter):
     _SOLAR_CONST = 1361.0  # W/m² (approximate)
 
     def gather(self, *, entropy: float, phases: int) -> dict[str, Any]:
-        # Energy balance: T_eq = (S(1-α)/4σ)^(1/4) simplified
+        # Energy balance: T_eq = (S(1-a)/4s)^(1/4) simplified
         albedo = 0.3 + 0.4 * entropy  # higher entropy = higher variability
         forcing = self._SOLAR_CONST * (1 - albedo) / 4.0
         # Normalise to [0, 1] where 1 = max coherence (low entropy)

@@ -6,7 +6,6 @@ import pytest
 
 from unified_mandala.integrations.registry import AdapterRegistry, BaseAdapter
 
-
 # ── Stubs ─────────────────────────────────────────────────────────────────────
 
 class StubAdapter(BaseAdapter):

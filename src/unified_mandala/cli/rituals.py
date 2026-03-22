@@ -16,8 +16,7 @@ validate
 
 from __future__ import annotations
 
-import sys
-from typing import Annotated, Optional
+from typing import Annotated
 
 import typer
 from rich.console import Console
@@ -62,7 +61,7 @@ def _version_cb(value: bool) -> None:
 @app.callback()
 def main(
     version: Annotated[
-        Optional[bool],
+        bool | None,
         typer.Option("--version", "-V", callback=_version_cb, is_eager=True, help="Show version."),
     ] = None,
 ) -> None:
@@ -100,7 +99,7 @@ def cycle(
     governor = EntropyGovernor()
     results: list[CycleResult] = []
 
-    for i in range(cycles):
+    for _i in range(cycles):
         governed_entropy = governor.observe(entropy)
         result = orch.run_cycle(
             entropy=governed_entropy,
@@ -199,7 +198,7 @@ def _launch_gui() -> None:
         import gradio as gr
     except ImportError:
         console.print("[red]Error:[/red] Gradio not installed. Run: pip install unified-mandala[gui]")
-        raise typer.Exit(code=1)
+        raise typer.Exit(code=1) from None
 
     orch = _build_orchestrator()
 
