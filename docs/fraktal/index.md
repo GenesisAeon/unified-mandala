@@ -15,6 +15,9 @@ Codexfeedback
 - codexfeedback-fraktal109.yaml — docs/fraktal/codexfeedback/codexfeedback-fraktal109.yaml
 - codexfeedback-fraktal111.yaml — docs/fraktal/codexfeedback/codexfeedback-fraktal111.yaml
 - codexfeedback-fraktal112.yaml — docs/fraktal/codexfeedback/codexfeedback-fraktal112.yaml
+- codexfeedback-fraktal113.yaml — docs/fraktal/codexfeedback/codexfeedback-fraktal113.yaml
+- codexfeedback-fraktal114.yaml — docs/fraktal/codexfeedback/codexfeedback-fraktal114.yaml
+- codexfeedback-fraktal115.yaml — docs/fraktal/codexfeedback/codexfeedback-fraktal115.yaml
 - codexfeedback-fraktal44.yaml — docs/fraktal/codexfeedback/codexfeedback-fraktal44.yaml
 - codexfeedback-fraktal45.yaml — docs/fraktal/codexfeedback/codexfeedback-fraktal45.yaml
 - codexfeedback-fraktal46.yaml — docs/fraktal/codexfeedback/codexfeedback-fraktal46.yaml
