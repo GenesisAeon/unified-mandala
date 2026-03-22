@@ -22,7 +22,8 @@
       "@resonance/*": ["src/utils/resonance/*"],
       "@epistemic/*": ["packages/epistemic/src/*"],
       "@config/*": ["config/*"],
-      "@unified-mandala/*": ["packages/*/src/index.ts", "packages/*/src"]
+      "@unified-mandala/*": ["packages/*/src/index.ts", "packages/*/src"],
+      "@mandala/*": ["packages/*/src/index.ts", "packages/*/src"]
     }
   },
   "include": [
