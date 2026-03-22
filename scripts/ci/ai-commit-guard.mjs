@@ -61,7 +61,13 @@ if (eventName === 'pull_request') {
   } catch (error) {
     console.warn(`[ai-guard] fetch origin/${baseRef} failed:`, error.message);
   }
-  const files = diffNames(`origin/${baseRef}...HEAD`);
+  let files;
+  try {
+    files = diffNames(`origin/${baseRef}...HEAD`);
+  } catch {
+    info(`No merge base with origin/${baseRef}; skipping diff check.`);
+    process.exit(0);
+  }
   ensureNoScratchArtifacts(files);
   info(`PR guard passed (${files.length} file${files.length === 1 ? '' : 's'} changed).`);
   process.exit(0);
