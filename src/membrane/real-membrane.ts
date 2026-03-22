@@ -14,7 +14,9 @@ export type RealMembraneConfig = {
   K?: number;
 };
 
-const DEFAULTS: Required<RealMembraneConfig> = {
+type ResolvedConfig = Required<Omit<RealMembraneConfig, 'N' | 'K'>>;
+
+const DEFAULTS: ResolvedConfig = {
   windowSize: 200,
   thresholdOk: 1.2,
   thresholdWarn: 2.0,
@@ -25,7 +27,7 @@ const DEFAULTS: Required<RealMembraneConfig> = {
 };
 
 export class RealMembrane {
-  private readonly cfg: Required<RealMembraneConfig>;
+  private readonly cfg: ResolvedConfig;
   private readonly buffer: number[];
   private filled = 0;
   private index = 0;
