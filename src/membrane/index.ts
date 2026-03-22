@@ -5,7 +5,8 @@ export const RealMembrane = RealMembraneImpl;
 export const isLowMem = () =>
   process.env.LOW_MEM === '1' ||
   process.env.LOW_MEM === 'true' ||
-  process.env.VITE_LOW_MEM === 'on';
+  process.env.VITE_LOW_MEM === 'on' ||
+  process.env.MEMBRANE_MODE === 'null';
 
 export type HorizonState = 'subcritical' | 'apparent' | 'event';
 export type MembraneReading = {
@@ -36,11 +37,10 @@ const asciiSigil = (state: HorizonState) =>
 const emojiSigil = (state: HorizonState) =>
   state === 'event' ? '🔴' : state === 'apparent' ? '🟠' : '🟢';
 
-export const membraneSigil = (state: HorizonState) => {
-  if (process.env.CI === '1' || process.env.UM_ASCII_SIGILS === '1') {
-    return asciiSigil(state);
-  }
-  return emojiSigil(state);
+export const membraneSigil = (state: HorizonState, ascii?: boolean) => {
+  const useAscii =
+    ascii !== false && (process.env.CI === '1' || process.env.UM_ASCII_SIGILS === '1');
+  return useAscii ? asciiSigil(state) : emojiSigil(state);
 };
 
 export type { RealMembraneConfig };

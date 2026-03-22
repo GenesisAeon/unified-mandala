@@ -32,7 +32,7 @@ describe('membrane module (src/membrane)', () => {
   it('NullMembrane respects MEMBRANE_MODE=null', async () => {
     process.env.MEMBRANE_MODE = 'null';
     const mod = await import('../../src/membrane/index');
-    expect(mod.isLowMem).toBe(true);
+    expect(mod.isLowMem()).toBe(true);
     const Mem = mod.NullMembrane as any;
     const inst = new Mem();
     const r = inst.step(12, 0.9);

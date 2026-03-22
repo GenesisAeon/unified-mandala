@@ -97,12 +97,6 @@ export class RealMembrane {
   }
 
   private transition(candidate: HorizonState) {
-    if (candidate === 'event' && this.state !== 'event') {
-      this.state = 'event';
-      this.pending = { target: null, count: 0 };
-      return;
-    }
-
     if (candidate === this.state) {
       this.pending = { target: null, count: 0 };
       return;
