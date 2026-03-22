@@ -61,10 +61,9 @@ compose(base, patch) = out {
 }
 
 test_all_cases() {
-  every i in [0 .. count(cases) - 1] {
-    c := cases[i]
-    in := compose(base_input, c.patch)
-    deny := E.deny with input as in
+  every c in cases {
+    inp := compose(base_input, c.patch)
+    deny := E.deny with input as inp
     deny == c.deny
   }
 }
