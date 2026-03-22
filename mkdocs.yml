@@ -1,0 +1,72 @@
+site_name: unified-mandala
+site_description: Holistic self-reflecting Mandala framework — CREP, Sigillin, GenesisAeon
+site_url: https://genesisaeon.github.io/unified-mandala
+repo_url: https://github.com/GenesisAeon/unified-mandala
+repo_name: GenesisAeon/unified-mandala
+copyright: "© 2024 GenesisAeon Contributors — MIT License"
+
+theme:
+  name: material
+  palette:
+    - scheme: default
+      primary: deep purple
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: deep purple
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - toc.integrate
+    - content.code.annotate
+  font:
+    text: Inter
+    code: JetBrains Mono
+
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          paths: [src]
+          options:
+            show_source: true
+            show_root_heading: true
+            heading_level: 2
+
+markdown_extensions:
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.superfences
+  - admonition
+  - pymdownx.details
+  - attr_list
+  - md_in_html
+  - footnotes
+  - tables
+
+extra_javascript:
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
+nav:
+  - Home: index.md
+  - Getting Started:
+    - Installation: getting-started/installation.md
+    - Quickstart: getting-started/quickstart.md
+  - Reference:
+    - API Reference: reference.md
+    - CLI Reference: cli.md
+  - Governance: governance.md
+  - Contributing: CONTRIBUTING.md
+
+strict: true

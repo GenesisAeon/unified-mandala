@@ -180,3 +180,6 @@ analysis/mandala-map-summary.json
 data/
 .cache/
 era5_cache.sqlite
+src/unified_mandala/**/__pycache__
+**/__pycache__/
+*.pyc
