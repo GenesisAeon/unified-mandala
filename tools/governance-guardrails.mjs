@@ -10,7 +10,12 @@ if (!fs.existsSync(cfgPath)) {
 const cfg = YAML.parse(fs.readFileSync(cfgPath, 'utf-8'));
 let ok = true;
 const git = (cmd) => cp.execSync(cmd, { encoding: 'utf-8' });
-const touched = git(`git diff --name-only HEAD~1..HEAD`).split('\n').filter(Boolean);
+const hasParent = (() => {
+  try { git('git rev-parse HEAD~1'); return true; } catch { return false; }
+})();
+const touched = hasParent
+  ? git(`git diff --name-only HEAD~1..HEAD`).split('\n').filter(Boolean)
+  : git(`git diff --name-only HEAD`).split('\n').filter(Boolean);
 
 function requiresDocForPolicyChange() {
   const policyTouched = touched.some((f) => f.startsWith('policies/personhood-levels'));
