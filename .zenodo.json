@@ -1,47 +1,15 @@
 {
-  "title": "unified-mandala: Holistic Self-Reflecting Mandala Framework v0.1.0",
-  "description": "Revival package integrating CREP (Coherent Resonance Emergence Protocol), Sigillin poetic-symbolic layer, OPA-compatible ethical governance, and the full GenesisAeon ecosystem (17 adapters). Provides a self-reflecting mandala lifecycle with emergence detection, entropy governance, and a Typer CLI.",
+  "title": "GenesisAeon/unified-mandala: v0.1.0 – Holistisches CREP-Orchestrator-Framework mit Sigillin, Policy-Gates & voller GenesisAeon-Integration",
   "version": "0.1.0",
-  "upload_type": "software",
-  "access_right": "open",
-  "license": "mit",
-  "language": "eng",
-  "keywords": [
-    "mandala",
-    "crep",
-    "sigillin",
-    "entropy",
-    "emergence",
-    "governance",
-    "genesis-aeon",
-    "holistic",
-    "cosmology",
-    "artificial-intelligence",
-    "python"
-  ],
+  "doi": "10.5281/zenodo.19168056",
   "creators": [
     {
-      "name": "GenesisAeon Contributors",
-      "affiliation": "GenesisAeon Open Source Project"
+      "name": "GenesisAeon Project"
     }
   ],
-  "related_identifiers": [
-    {
-      "scheme": "url",
-      "identifier": "https://github.com/GenesisAeon/unified-mandala",
-      "relation": "isSupplementTo",
-      "resource_type": "software"
-    }
-  ],
-  "references": [
-    "Shannon, C. E. (1948). A mathematical theory of communication. Bell System Technical Journal, 27(3), 379-423.",
-    "Friston, K. (2010). The free-energy principle: a unified brain theory? Nature Reviews Neuroscience, 11(2), 127-138.",
-    "Mandelbrot, B. (1982). The Fractal Geometry of Nature. W.H. Freeman."
-  ],
-  "grants": [],
-  "communities": [
-    {
-      "identifier": "zenodo"
-    }
-  ]
+  "description": "Revived holistisches Mandala-Framework: MandalaOrchestrator mit CREP-Evaluator, SigillinBridge Φ = σ(12·(C-0.72)), Policy-Gates, EntropyGovernor und auto-discovery für alle 18 GenesisAeon-Pakete.",
+  "keywords": ["unified-mandala", "CREP", "Sigillin", "Policy-Gate", "self-reflection", "GenesisAeon", "holistic-framework"],
+  "license": "MIT",
+  "upload_type": "software",
+  "access_right": "open"
 }

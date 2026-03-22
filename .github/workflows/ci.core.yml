@@ -108,6 +108,10 @@ jobs:
         uses: ./.github/actions/run-pnpm-task
         with:
           task: lint:format
+      - name: Build @unified-mandala/ai
+        uses: ./.github/actions/run-pnpm-task
+        with:
+          task: -F @unified-mandala/ai build
       - name: Build API workspace
         uses: ./.github/actions/run-pnpm-task
         with:

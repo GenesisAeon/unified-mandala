@@ -1,5 +1,8 @@
 # unified-mandala
 
+**DOI**: [10.5281/zenodo.19168056](https://doi.org/10.5281/zenodo.19168056)
+**Zenodo**: [https://zenodo.org/records/19168056](https://zenodo.org/records/19168056)
+
 **v0.1.0** — Holistic self-reflecting Mandala framework integrating CREP,
 Sigillin, and the full GenesisAeon ecosystem (17 adapters).
 

@@ -24,7 +24,7 @@ jobs:
           cache: 'pnpm'
       - uses: pnpm/action-setup@v4
         with:
-          version: 10.16.1
+          version: 10.29.3
       - run: pnpm install --frozen-lockfile
       - name: Debug toolchain versions
         run: |
@@ -59,7 +59,7 @@ jobs:
           cache: 'pnpm'
       - uses: pnpm/action-setup@v4
         with:
-          version: 10.16.1
+          version: 10.29.3
       - run: pnpm install --frozen-lockfile
       - name: Debug toolchain versions
         run: |
@@ -90,7 +90,7 @@ jobs:
           cache: 'pnpm'
       - uses: pnpm/action-setup@v4
         with:
-          version: 10.16.1
+          version: 10.29.3
       - run: pnpm install --frozen-lockfile
       - name: Debug toolchain versions
         run: |
@@ -118,7 +118,7 @@ jobs:
           cache: 'pnpm'
       - uses: pnpm/action-setup@v4
         with:
-          version: 10.16.1
+          version: 10.29.3
       - run: pnpm install --frozen-lockfile
       - name: Debug toolchain versions
         run: |

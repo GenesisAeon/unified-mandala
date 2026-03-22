@@ -18,7 +18,6 @@ vi.mock('cors', () => ({ default: () => (_req: any, _res: any, next: any) => nex
 
 // zod, askOpenAI, ports can be real or minimally mocked
 vi.mock('@unified-mandala/ai', () => ({ askOpenAI: vi.fn() }));
-vi.mock('@config/ports', () => ({ default: { ai: 3999 } }));
 
 describe('API listen block executes when not test', () => {
   let mod: any;
@@ -26,6 +25,7 @@ describe('API listen block executes when not test', () => {
     vi.resetModules();
     delete process.env.VITEST; // simulate non-vitest
     process.env.NODE_ENV = 'production';
+    process.env.AI_API_PORT = '3999';
     // Ensure app instance injection happens before API import
     const express = await import('express');
     const app: any = (express as any).default();
@@ -34,6 +34,7 @@ describe('API listen block executes when not test', () => {
   });
   afterEach(() => {
     process.env.VITEST = '1';
+    delete process.env.AI_API_PORT;
     vi.restoreAllMocks();
   });
 

@@ -8,9 +8,15 @@ export type RealMembraneConfig = {
   debounce?: number;
   sigmaMin?: number;
   warmup?: number;
+  /** shorthand alias for windowSize */
+  N?: number;
+  /** shorthand alias for debounce */
+  K?: number;
 };
 
-const DEFAULTS: Required<RealMembraneConfig> = {
+type ResolvedConfig = Required<Omit<RealMembraneConfig, 'N' | 'K'>>;
+
+const DEFAULTS: ResolvedConfig = {
   windowSize: 200,
   thresholdOk: 1.2,
   thresholdWarn: 2.0,
@@ -21,7 +27,7 @@ const DEFAULTS: Required<RealMembraneConfig> = {
 };
 
 export class RealMembrane {
-  private readonly cfg: Required<RealMembraneConfig>;
+  private readonly cfg: ResolvedConfig;
   private readonly buffer: number[];
   private filled = 0;
   private index = 0;
@@ -32,7 +38,13 @@ export class RealMembrane {
   private pending: { target: HorizonState | null; count: number } = { target: null, count: 0 };
 
   constructor(config: RealMembraneConfig = {}) {
-    this.cfg = { ...DEFAULTS, ...config };
+    const { N, K, ...rest } = config;
+    this.cfg = {
+      ...DEFAULTS,
+      ...(N !== undefined ? { windowSize: N } : {}),
+      ...(K !== undefined ? { debounce: K } : {}),
+      ...rest,
+    };
     this.buffer = new Array(this.cfg.windowSize).fill(0);
   }
 

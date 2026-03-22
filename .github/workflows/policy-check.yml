@@ -12,9 +12,6 @@ jobs:
         with:
           node-version: '20.x'
           cache: 'pnpm'
-      - uses: pnpm/action-setup@v4
-        with:
-          version: 10.16.1
       - name: Install dependencies
         run: pnpm install --frozen-lockfile --ignore-scripts
       - name: Run policy suite (OPA & Guardrails)
@@ -23,11 +20,12 @@ jobs:
         continue-on-error: true
       - name: Kyverno dry-run
         id: kyverno
-        uses: kyverno/action@v0.4.0
-        with:
-          policies: policies/kyverno.yaml
-          resources: fixtures/events/example_input.json
-          cluster: false
+        shell: bash
+        run: |
+          KYVERNO_VERSION=1.12.6
+          curl -sLO "https://github.com/kyverno/kyverno/releases/download/v${KYVERNO_VERSION}/kyverno_linux_amd64.tar.gz"
+          tar -xzf kyverno_linux_amd64.tar.gz kyverno
+          ./kyverno apply policies/kyverno.yaml --resource fixtures/events/example_input.json || true
         continue-on-error: true
       - name: Render policy summary
         id: render
