@@ -129,9 +129,7 @@ class AdapterRegistry:
                         instance = obj()
                         registry.register(instance)
                     except Exception as exc:
-                        logger.warning(
-                            f"Could not instantiate adapter {attr_name!r}: {exc}"
-                        )
+                        logger.warning(f"Could not instantiate adapter {attr_name!r}: {exc}")
 
         # 2. Entry-point adapters
         try:

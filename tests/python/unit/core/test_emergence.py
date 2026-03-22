@@ -43,6 +43,7 @@ class TestShannonEntropy:
 
     def test_non_negative(self, er):
         import random
+
         rng = random.Random(42)
         for _ in range(50):
             dist = [rng.random() for _ in range(rng.randint(1, 10))]
@@ -102,12 +103,15 @@ class TestEmergenceCompute:
         r_long = er.compute(0.3, 0.6, 100.0, [0.5, 0.5])
         assert r_short.rate > r_long.rate
 
-    @pytest.mark.parametrize("phi_b,phi_a,dt", [
-        (0.0, 1.0, 1.0),
-        (0.5, 0.5, 0.1),
-        (0.9, 0.1, 5.0),
-        (0.618, 0.72, 0.5),
-    ])
+    @pytest.mark.parametrize(
+        "phi_b,phi_a,dt",
+        [
+            (0.0, 1.0, 1.0),
+            (0.5, 0.5, 0.1),
+            (0.9, 0.1, 5.0),
+            (0.618, 0.72, 0.5),
+        ],
+    )
     def test_parametrized_compute(self, er, phi_b, phi_a, dt):
         result = er.compute(phi_b, phi_a, dt, [0.5, 0.5])
         assert isinstance(result, EmergenceResult)

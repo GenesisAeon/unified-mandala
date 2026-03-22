@@ -80,13 +80,15 @@ class TestE2EGovernance:
         orch = _make_system(strict=True)
         result = orch.run_cycle(entropy=0.01, simulate=True)
         assert len(result.governance_notes) >= 1
-        assert any("violation" in n.lower() or "flagged" in n.lower()
-                   for n in result.governance_notes)
+        assert any(
+            "violation" in n.lower() or "flagged" in n.lower() for n in result.governance_notes
+        )
 
 
 class TestE2ESigillinRing:
     def test_17_distinct_glyphs_in_ring(self):
         from unified_mandala.sigillin.bridge import _SIGIL_RING
+
         assert len(_SIGIL_RING) == 17
         assert len(set(_SIGIL_RING)) == 17  # all distinct
 
@@ -100,6 +102,7 @@ class TestE2ESigillinRing:
 
     def test_phi_increases_with_score(self):
         from unified_mandala.sigillin.bridge import SigillinBridge
+
         bridge = SigillinBridge()
         phi_low = bridge.phi(0.3)
         phi_high = bridge.phi(0.9)
@@ -109,6 +112,7 @@ class TestE2ESigillinRing:
 class TestE2ECREPEmergence:
     def test_crep_formula_consistency(self):
         from unified_mandala.core.crep import CREPEvaluator, ResonanceChannel
+
         ev = CREPEvaluator()
         ev.add_channel(ResonanceChannel("a", phase=0.8, weight=1.0, decay=0.0, timestamp=0.0))
         ev.add_channel(ResonanceChannel("b", phase=0.9, weight=1.0, decay=0.0, timestamp=0.0))
@@ -117,6 +121,7 @@ class TestE2ECREPEmergence:
 
     def test_crep_emergence_threshold_exact(self):
         from unified_mandala.core.crep import EMERGENCE_THRESHOLD, CREPEvaluator, ResonanceChannel
+
         ev = CREPEvaluator()
         ev.add_channel(
             ResonanceChannel("x", phase=EMERGENCE_THRESHOLD, weight=1.0, decay=0.0, timestamp=0.0)

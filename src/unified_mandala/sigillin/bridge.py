@@ -186,7 +186,4 @@ class SigillinBridge:
                 f"rate {em.rate:+.4f} — silence before the next seed."
             )
         else:
-            return (
-                f"Resonance holds at Φ={phi:.3f}, "
-                f"CREP={crep.score:.3f} — the mandala breathes."
-            )
+            return f"Resonance holds at Φ={phi:.3f}, CREP={crep.score:.3f} — the mandala breathes."

@@ -14,4 +14,4 @@ const layer = new FourierLayer('L1', 1, [1, 0, 1, 0], { depth: 2 });
 const metrics = layer.analyze();
 ```
 
-Metrics can be consumed by [services/fourier-metrics](../services/fourier-metrics/index.ts) to broadcast via WebSocket.
+Metrics can be consumed by `services/fourier-metrics/index.ts` to broadcast via WebSocket.

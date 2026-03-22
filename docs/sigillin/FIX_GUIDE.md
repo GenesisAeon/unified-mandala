@@ -1,6 +1,6 @@
 # 🛠️ Sigillin-Korrekturleitfaden
 
-Das Skript [`scripts/fix-sigillin.ts`](../../scripts/fix-sigillin.ts) unterstützt Brückenteams dabei,
+Das Skript `scripts/fix-sigillin.ts` unterstützt Brückenteams dabei,
 Inter-AI-Sigillins konsistent zu halten. Es analysiert alle JSON-Brücken unter
 `sigils/bridges/**` (oder ein benutzerdefiniertes Pattern) und erzeugt
 handlungsfähige Vorschläge, die auf Wunsch automatisch angewendet werden.

@@ -8,6 +8,7 @@ from unified_mandala.integrations.registry import AdapterRegistry, BaseAdapter
 
 # ── Stubs ─────────────────────────────────────────────────────────────────────
 
+
 class StubAdapter(BaseAdapter):
     name = "stub"
     version = "1.0.0"
@@ -63,6 +64,7 @@ def registry() -> AdapterRegistry:
 
 # ── Registration ──────────────────────────────────────────────────────────────
 
+
 class TestRegistration:
     def test_register_single(self):
         r = AdapterRegistry()
@@ -99,6 +101,7 @@ class TestRegistration:
 
 
 # ── Query ─────────────────────────────────────────────────────────────────────
+
 
 class TestQuery:
     def test_get_returns_adapter(self, registry):
@@ -138,6 +141,7 @@ class TestQuery:
 
 # ── gather_all ────────────────────────────────────────────────────────────────
 
+
 class TestGatherAll:
     def test_gather_all_returns_all_names(self, registry):
         states = registry.gather_all(entropy=0.5, phases=7)
@@ -159,6 +163,7 @@ class TestGatherAll:
     def test_gather_all_adapter_fail_graceful(self):
         class FailAdapter(BaseAdapter):
             name = "fail"
+
             def gather(self, *, entropy, phases):
                 raise RuntimeError("boom")
 
@@ -179,6 +184,7 @@ class TestGatherAll:
 
 
 # ── Discover ──────────────────────────────────────────────────────────────────
+
 
 class TestDiscover:
     def test_discover_returns_registry(self):

@@ -40,6 +40,7 @@ class TestFullCycleSimulated:
 
     def test_emergence_rate_finite(self, orch):
         import math
+
         result = orch.run_cycle(entropy=0.5, simulate=True)
         assert math.isfinite(result.emergence.rate)
 

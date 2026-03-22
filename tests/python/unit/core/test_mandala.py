@@ -13,6 +13,7 @@ from unified_mandala.sigillin.bridge import SigillinBridge
 
 # ── Helpers ───────────────────────────────────────────────────────────────────
 
+
 def _make_registry(n: int = 3) -> AdapterRegistry:
     registry = AdapterRegistry()
     from unified_mandala.integrations.registry import BaseAdapter
@@ -39,6 +40,7 @@ def _make_orch(n_adapters: int = 3) -> MandalaOrchestrator:
 
 
 # ── CycleResult ───────────────────────────────────────────────────────────────
+
 
 class TestCycleResult:
     def test_summary_contains_cycle_id(self):
@@ -91,6 +93,7 @@ class TestCycleResult:
 
 
 # ── MandalaOrchestrator ───────────────────────────────────────────────────────
+
 
 class TestMandalaOrchestratorInit:
     def test_cycle_counter_starts_at_zero(self):

@@ -36,12 +36,24 @@ from unified_mandala.integrations.registry import AdapterRegistry
 from unified_mandala.sigillin.bridge import SigillinBridge
 
 ALL_ADAPTER_CLASSES = [
-    GenesisOsAdapter, UniversumsSimAdapter, AeonAiAdapter,
-    AdvancedWeightingAdapter, FieldtheoryAdapter, MirrorMachineAdapter,
-    CosmicWebAdapter, EntropyGovernanceAdapter, EntropyTableAdapter,
-    SigillinAdapter, UtacCoreAdapter, MandalaVisualizerAdapter,
-    SonificationAdapter, ClimateDashboardAdapter, ImplosiveGenesisAdapter,
-    FieldResonanceAdapter, QuantumMeshAdapter, FractalMembraneAdapter,
+    GenesisOsAdapter,
+    UniversumsSimAdapter,
+    AeonAiAdapter,
+    AdvancedWeightingAdapter,
+    FieldtheoryAdapter,
+    MirrorMachineAdapter,
+    CosmicWebAdapter,
+    EntropyGovernanceAdapter,
+    EntropyTableAdapter,
+    SigillinAdapter,
+    UtacCoreAdapter,
+    MandalaVisualizerAdapter,
+    SonificationAdapter,
+    ClimateDashboardAdapter,
+    ImplosiveGenesisAdapter,
+    FieldResonanceAdapter,
+    QuantumMeshAdapter,
+    FractalMembraneAdapter,
 ]
 
 
@@ -127,6 +139,7 @@ class TestSigillinToCrePContract:
 
     def test_phi_monotone_with_crep_score(self):
         from unified_mandala.sigillin.bridge import SigillinBridge
+
         bridge = SigillinBridge()
         scores = [0.0, 0.3, 0.5, 0.72, 0.9, 1.0]
         phis = [bridge.phi(s) for s in scores]
@@ -137,6 +150,7 @@ class TestSigillinToCrePContract:
         from unified_mandala.core.crep import CREPResult
         from unified_mandala.core.emergence import EmergenceResult
         from unified_mandala.sigillin.bridge import SigillinBridge
+
         bridge = SigillinBridge()
         cr = CREPResult(score=0.8, emergence=True, channels=(), evaluated_at=0.0)
         er = EmergenceResult(rate=1.0, entropy=1.0, phi_delta=0.5, constructive=True)
@@ -162,6 +176,7 @@ class TestGovernanceToAdapterContract:
         crep_result = ev.evaluate(now=0.0)
 
         from unified_mandala.core.emergence import EmergenceRate
+
         er = EmergenceRate()
         emerge_result = er.compute(0.4, crep_result.score, 1.0, [0.5, 0.5])
 

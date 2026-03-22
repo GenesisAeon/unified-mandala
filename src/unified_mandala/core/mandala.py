@@ -127,9 +127,7 @@ class MandalaOrchestrator:
         if simulate:
             adapter_states = self._simulated_adapter_states(entropy, phases)
         else:
-            adapter_states = self._registry.gather_all(
-                entropy=entropy, phases=phases
-            )
+            adapter_states = self._registry.gather_all(entropy=entropy, phases=phases)
 
         # 2. Build resonance channels from adapter states
         self._crep.clear_channels()
@@ -185,7 +183,7 @@ class MandalaOrchestrator:
 
         duration = time.monotonic() - start
         logger.info(
-            f"[cycle {cid:04d}] done in {duration*1000:.1f}ms | "
+            f"[cycle {cid:04d}] done in {duration * 1000:.1f}ms | "
             f"CREP={crep_result.score:.4f} | "
             f"gov={'PASS' if gov_decision.passed else 'BLOCK'}"
         )
@@ -225,9 +223,7 @@ class MandalaOrchestrator:
     # Private helpers
     # ------------------------------------------------------------------
 
-    def _simulated_adapter_states(
-        self, entropy: float, phases: int
-    ) -> dict[str, Any]:
+    def _simulated_adapter_states(self, entropy: float, phases: int) -> dict[str, Any]:
         """Generate synthetic adapter states for simulation/testing."""
         import math
 

@@ -21,8 +21,13 @@ class TestOpaPayloadStructure:
         er = EmergenceRate().compute(0.3, 0.5, 1.0, [0.5, 0.5])
         payload = gate.to_opa_input(crep, er, entropy=0.5)
         required_keys = [
-            "entropy", "crep_score", "crep_emergence", "emergence_rate",
-            "emergence_constructive", "strict_ethics", "max_emergence_rate",
+            "entropy",
+            "crep_score",
+            "crep_emergence",
+            "emergence_rate",
+            "emergence_constructive",
+            "strict_ethics",
+            "max_emergence_rate",
         ]
         for k in required_keys:
             assert k in payload["input"]

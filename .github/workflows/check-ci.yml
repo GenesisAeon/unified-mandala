@@ -11,14 +11,13 @@ jobs:
       PANTHEON_DISABLE: '1'
     steps:
       - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
       - uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: pnpm
-      - name: Enable corepack
-        run: corepack enable
-      - name: Use pnpm 10.x
-        run: corepack prepare pnpm@10.17.0 --activate
       - name: Install dependencies (JS)
         run: pnpm install --frozen-lockfile
       - name: Setup Python 3.11

@@ -105,9 +105,7 @@ class PolicyGate:
             )
 
         # Rule 2 - CREPSanity
-        if not math.isfinite(crep_result.score) or not (
-            0.0 <= crep_result.score <= 1.0
-        ):
+        if not math.isfinite(crep_result.score) or not (0.0 <= crep_result.score <= 1.0):
             violations.append(
                 PolicyViolation(
                     rule="CREPSanity",
