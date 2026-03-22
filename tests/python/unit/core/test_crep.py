@@ -14,8 +14,8 @@ from unified_mandala.core.crep import (
     ResonanceChannel,
 )
 
-
 # ── Fixtures ───────────────────────────────────────────────────────────────────
+
 
 @pytest.fixture()
 def evaluator() -> CREPEvaluator:
@@ -33,6 +33,7 @@ def low_channel() -> ResonanceChannel:
 
 
 # ── ResonanceChannel ──────────────────────────────────────────────────────────
+
 
 class TestResonanceChannel:
     def test_name(self):
@@ -59,7 +60,7 @@ class TestResonanceChannel:
 
     def test_frozen(self):
         ch = ResonanceChannel(name="t", phase=0.5)
-        with pytest.raises(Exception):
+        with pytest.raises(AttributeError):
             ch.phase = 0.9  # type: ignore[misc]
 
     def test_zero_phase(self):
@@ -80,6 +81,7 @@ class TestResonanceChannel:
 
 
 # ── CREPResult ────────────────────────────────────────────────────────────────
+
 
 class TestCREPResult:
     def test_emergence_true_when_above_threshold(self):
@@ -113,6 +115,7 @@ class TestCREPResult:
 
 # ── CREPEvaluator ─────────────────────────────────────────────────────────────
 
+
 class TestCREPEvaluatorEmpty:
     def test_empty_returns_zero_score(self, evaluator):
         result = evaluator.evaluate(now=100.0)
@@ -129,17 +132,23 @@ class TestCREPEvaluatorEmpty:
 
 class TestCREPEvaluatorSingleChannel:
     def test_single_full_phase(self, evaluator):
-        evaluator.add_channel(ResonanceChannel("x", phase=1.0, weight=1.0, decay=0.0, timestamp=0.0))
+        evaluator.add_channel(
+            ResonanceChannel("x", phase=1.0, weight=1.0, decay=0.0, timestamp=0.0)
+        )
         result = evaluator.evaluate(now=0.0)
         assert result.score == pytest.approx(1.0)
 
     def test_single_zero_phase(self, evaluator):
-        evaluator.add_channel(ResonanceChannel("x", phase=0.0, weight=1.0, decay=0.0, timestamp=0.0))
+        evaluator.add_channel(
+            ResonanceChannel("x", phase=0.0, weight=1.0, decay=0.0, timestamp=0.0)
+        )
         result = evaluator.evaluate(now=0.0)
         assert result.score == pytest.approx(0.0)
 
     def test_single_half_phase(self, evaluator):
-        evaluator.add_channel(ResonanceChannel("x", phase=0.5, weight=1.0, decay=0.0, timestamp=0.0))
+        evaluator.add_channel(
+            ResonanceChannel("x", phase=0.5, weight=1.0, decay=0.0, timestamp=0.0)
+        )
         result = evaluator.evaluate(now=0.0)
         assert result.score == pytest.approx(0.5)
 
@@ -159,12 +168,16 @@ class TestCREPEvaluatorSingleChannel:
         assert result.score == pytest.approx(0.8)
 
     def test_high_phase_triggers_emergence(self, evaluator):
-        evaluator.add_channel(ResonanceChannel("x", phase=0.95, weight=1.0, decay=0.0, timestamp=0.0))
+        evaluator.add_channel(
+            ResonanceChannel("x", phase=0.95, weight=1.0, decay=0.0, timestamp=0.0)
+        )
         result = evaluator.evaluate(now=0.0)
         assert result.emergence is True
 
     def test_low_phase_no_emergence(self, evaluator):
-        evaluator.add_channel(ResonanceChannel("x", phase=0.3, weight=1.0, decay=0.0, timestamp=0.0))
+        evaluator.add_channel(
+            ResonanceChannel("x", phase=0.3, weight=1.0, decay=0.0, timestamp=0.0)
+        )
         result = evaluator.evaluate(now=0.0)
         assert result.emergence is False
 
@@ -179,8 +192,12 @@ class TestCREPEvaluatorMultiChannel:
         assert result.score == pytest.approx(0.7)
 
     def test_weight_skews_score(self, evaluator):
-        evaluator.add_channel(ResonanceChannel("a", phase=1.0, weight=3.0, decay=0.0, timestamp=0.0))
-        evaluator.add_channel(ResonanceChannel("b", phase=0.0, weight=1.0, decay=0.0, timestamp=0.0))
+        evaluator.add_channel(
+            ResonanceChannel("a", phase=1.0, weight=3.0, decay=0.0, timestamp=0.0)
+        )
+        evaluator.add_channel(
+            ResonanceChannel("b", phase=0.0, weight=1.0, decay=0.0, timestamp=0.0)
+        )
         result = evaluator.evaluate(now=0.0)
         assert result.score == pytest.approx(0.75)  # 3/4 * 1.0 + 1/4 * 0.0
 
@@ -207,13 +224,17 @@ class TestCREPEvaluatorMultiChannel:
         assert ch in result.channels
 
     def test_clear_resets_channels(self, evaluator):
-        evaluator.add_channel(ResonanceChannel("x", phase=0.9, weight=1.0, decay=0.0, timestamp=0.0))
+        evaluator.add_channel(
+            ResonanceChannel("x", phase=0.9, weight=1.0, decay=0.0, timestamp=0.0)
+        )
         evaluator.clear_channels()
         result = evaluator.evaluate(now=0.0)
         assert result.score == 0.0
 
     def test_channels_property_is_copy(self, evaluator):
-        evaluator.add_channel(ResonanceChannel("x", phase=0.5, weight=1.0, decay=0.0, timestamp=0.0))
+        evaluator.add_channel(
+            ResonanceChannel("x", phase=0.5, weight=1.0, decay=0.0, timestamp=0.0)
+        )
         chans = evaluator.channels
         chans.clear()
         assert len(evaluator.channels) == 1
@@ -273,31 +294,31 @@ class TestCREPEvaluatorEdgeCases:
 
     def test_large_decay_zeroes_out(self):
         ev = CREPEvaluator()
-        ev.add_channel(
-            ResonanceChannel("x", phase=1.0, weight=1.0, decay=1000.0, timestamp=0.0)
-        )
+        ev.add_channel(ResonanceChannel("x", phase=1.0, weight=1.0, decay=1000.0, timestamp=0.0))
         result = ev.evaluate(now=10.0)
         assert result.score < 1e-6
 
     def test_negative_dt_clamped_to_zero(self):
         ev = CREPEvaluator()
-        ev.add_channel(
-            ResonanceChannel("x", phase=0.8, weight=1.0, decay=1.0, timestamp=10.0)
-        )
+        ev.add_channel(ResonanceChannel("x", phase=0.8, weight=1.0, decay=1.0, timestamp=10.0))
         result = ev.evaluate(now=9.0)  # now < timestamp → dt clamped to 0
         assert result.score == pytest.approx(0.8)
 
     def test_many_channels_all_zero_phase(self):
         ev = CREPEvaluator()
         for i in range(100):
-            ev.add_channel(ResonanceChannel(f"ch{i}", phase=0.0, weight=1.0, decay=0.0, timestamp=0.0))
+            ev.add_channel(
+                ResonanceChannel(f"ch{i}", phase=0.0, weight=1.0, decay=0.0, timestamp=0.0)
+            )
         result = ev.evaluate(now=0.0)
         assert result.score == pytest.approx(0.0)
 
     def test_many_channels_all_unit_phase(self):
         ev = CREPEvaluator()
         for i in range(100):
-            ev.add_channel(ResonanceChannel(f"ch{i}", phase=1.0, weight=1.0, decay=0.0, timestamp=0.0))
+            ev.add_channel(
+                ResonanceChannel(f"ch{i}", phase=1.0, weight=1.0, decay=0.0, timestamp=0.0)
+            )
         result = ev.evaluate(now=0.0)
         assert result.score == pytest.approx(1.0)
 
@@ -305,8 +326,11 @@ class TestCREPEvaluatorEdgeCases:
     def test_score_always_in_unit_interval(self, entropy):
         ev = CREPEvaluator()
         import math as m
+
         ev.add_channel(
-            ResonanceChannel("x", phase=abs(m.sin(entropy * m.pi)), weight=1.0, decay=0.0, timestamp=0.0)
+            ResonanceChannel(
+                "x", phase=abs(m.sin(entropy * m.pi)), weight=1.0, decay=0.0, timestamp=0.0
+            )
         )
         result = ev.evaluate(now=0.0)
         assert 0.0 <= result.score <= 1.0

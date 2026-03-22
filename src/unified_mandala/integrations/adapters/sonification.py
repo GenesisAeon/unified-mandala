@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import math
-from typing import Any
+from typing import Any, ClassVar
 
 from unified_mandala.integrations.registry import BaseAdapter
 
@@ -19,7 +19,7 @@ class SonificationAdapter(BaseAdapter):
     version = "1.0.0"
 
     # Just-intonation ratios for a major scale
-    _JI_RATIOS = [1, 9 / 8, 5 / 4, 4 / 3, 3 / 2, 5 / 3, 15 / 8, 2]
+    _JI_RATIOS: ClassVar[list[float]] = [1, 9 / 8, 5 / 4, 4 / 3, 3 / 2, 5 / 3, 15 / 8, 2]
 
     def gather(self, *, entropy: float, phases: int) -> dict[str, Any]:
         idx = int(entropy * (len(self._JI_RATIOS) - 1))

@@ -5,9 +5,9 @@ from unified_mandala.core.emergence import EmergenceRate
 from unified_mandala.core.mandala import CycleResult, MandalaOrchestrator
 
 __all__ = [
-    "MandalaOrchestrator",
-    "CycleResult",
     "CREPEvaluator",
     "CREPResult",
+    "CycleResult",
     "EmergenceRate",
+    "MandalaOrchestrator",
 ]

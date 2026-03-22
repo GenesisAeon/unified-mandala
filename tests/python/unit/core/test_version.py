@@ -35,6 +35,7 @@ class TestVersion:
 
     def test_package_version_matches_module(self):
         from unified_mandala._version import __version__ as v2
+
         assert __version__ == v2
 
     def test_version_no_prerelease(self):

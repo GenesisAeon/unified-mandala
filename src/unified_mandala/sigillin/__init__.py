@@ -2,4 +2,4 @@
 
 from unified_mandala.sigillin.bridge import ReflectionGlyph, SigillinBridge
 
-__all__ = ["SigillinBridge", "ReflectionGlyph"]
+__all__ = ["ReflectionGlyph", "SigillinBridge"]

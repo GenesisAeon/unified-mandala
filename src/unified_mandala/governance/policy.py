@@ -78,8 +78,8 @@ class PolicyGate:
 
     def evaluate(
         self,
-        crep_result: "CREPResult",
-        emergence_result: "EmergenceResult",
+        crep_result: CREPResult,
+        emergence_result: EmergenceResult,
         entropy: float,
     ) -> GovernanceDecision:
         """Run all policy rules and return a GovernanceDecision.
@@ -95,7 +95,7 @@ class PolicyGate:
         violations: list[PolicyViolation] = []
         notes: list[str] = []
 
-        # Rule 1 – EntropyBounds
+        # Rule 1 - EntropyBounds
         if not (0.0 <= entropy <= 1.0):
             violations.append(
                 PolicyViolation(
@@ -104,10 +104,8 @@ class PolicyGate:
                 )
             )
 
-        # Rule 2 – CREPSanity
-        if not math.isfinite(crep_result.score) or not (
-            0.0 <= crep_result.score <= 1.0
-        ):
+        # Rule 2 - CREPSanity
+        if not math.isfinite(crep_result.score) or not (0.0 <= crep_result.score <= 1.0):
             violations.append(
                 PolicyViolation(
                     rule="CREPSanity",
@@ -115,7 +113,7 @@ class PolicyGate:
                 )
             )
 
-        # Rule 3 – EmergenceRateLimit
+        # Rule 3 - EmergenceRateLimit
         if abs(emergence_result.rate) > self.max_emergence_rate:
             violations.append(
                 PolicyViolation(
@@ -127,7 +125,7 @@ class PolicyGate:
                 )
             )
 
-        # Rule 4 – CoherenceCollapseGuard
+        # Rule 4 - CoherenceCollapseGuard
         if self._prev_crep_score is not None:
             delta = self._prev_crep_score - crep_result.score
             if delta > self.crep_collapse_threshold:
@@ -141,7 +139,7 @@ class PolicyGate:
                     )
                 )
 
-        # Rule 5 – EthicalEntropy
+        # Rule 5 - EthicalEntropy
         if self.strict_ethics:
             if entropy < 0.05:
                 violations.append(
@@ -170,8 +168,8 @@ class PolicyGate:
 
     def to_opa_input(
         self,
-        crep_result: "CREPResult",
-        emergence_result: "EmergenceResult",
+        crep_result: CREPResult,
+        emergence_result: EmergenceResult,
         entropy: float,
     ) -> dict[str, Any]:
         """Serialise inputs as OPA-compatible JSON payload.

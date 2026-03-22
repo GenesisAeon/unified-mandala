@@ -202,6 +202,6 @@ export default defineConfig({
       'apps/**/src/**/*.{test,spec}.ts',
       'scripts/opa/__tests__/**/*.test.mjs',
     ],
-    exclude: Array.from(exclude),
+    exclude: ['**/node_modules/**', ...Array.from(exclude)],
   },
 });

@@ -88,6 +88,9 @@ describe('RetryPolicy', () => {
   });
 
   describe('Backoff Calculation', () => {
+    beforeEach(() => { vi.useFakeTimers(); });
+    afterEach(() => { vi.useRealTimers(); });
+
     it('should apply exponential backoff', async () => {
       const onRetry = vi.fn();
       const policy = new RetryPolicy({
@@ -106,7 +109,9 @@ describe('RetryPolicy', () => {
         .mockRejectedValueOnce(new Error('fail 3'))
         .mockResolvedValue('success');
 
-      await policy.execute(fn);
+      const p = policy.execute(fn);
+      await vi.runAllTimersAsync();
+      await p;
 
       // Check backoff values: 100, 200, 400
       expect(onRetry).toHaveBeenNthCalledWith(
@@ -142,7 +147,9 @@ describe('RetryPolicy', () => {
 
       const fn = vi.fn().mockRejectedValue(new Error('fail'));
 
-      await expect(policy.execute(fn)).rejects.toThrow();
+      const p = expect(policy.execute(fn)).rejects.toThrow();
+      await vi.runAllTimersAsync();
+      await p;
 
       // Backoff: 1000, 2000, 2000 (capped), 2000 (capped), 2000 (capped)
       const backoffs = onRetry.mock.calls.map((call) => call[2]);
@@ -162,7 +169,9 @@ describe('RetryPolicy', () => {
 
       const fn = vi.fn().mockRejectedValue(new Error('fail'));
 
-      await expect(policy.execute(fn)).rejects.toThrow();
+      const p = expect(policy.execute(fn)).rejects.toThrow();
+      await vi.runAllTimersAsync();
+      await p;
 
       // With jitter, backoffs should be randomized between 0 and calculated value
       const backoffs = onRetry.mock.calls.map((call) => call[2]);

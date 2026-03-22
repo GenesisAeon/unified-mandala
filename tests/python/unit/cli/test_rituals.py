@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import pytest
 from typer.testing import CliRunner
 
 from unified_mandala.cli.rituals import app

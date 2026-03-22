@@ -12,10 +12,11 @@ app.post('/start', (req, res) => {
   if (recorder) return res.status(400).json({ error: 'recording already in progress' });
   currentFile = req.body?.output || path.join(process.cwd(), 'recording.mp4');
   const display = process.platform === 'win32' ? 'desktop' : process.env.DISPLAY || ':0.0';
+  const file = currentFile!;
   const args =
     process.platform === 'win32'
-      ? ['-y', '-f', 'gdigrab', '-i', display, currentFile]
-      : ['-y', '-f', 'x11grab', '-i', display, currentFile];
+      ? ['-y', '-f', 'gdigrab', '-i', display, file]
+      : ['-y', '-f', 'x11grab', '-i', display, file];
   recorder = spawn('ffmpeg', args);
   recorder.on('exit', () => {
     recorder = null;

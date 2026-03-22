@@ -18,8 +18,8 @@ negative values indicate coherence collapse.
 from __future__ import annotations
 
 import math
+from collections.abc import Sequence
 from dataclasses import dataclass
-from typing import Sequence
 
 
 @dataclass(frozen=True)
@@ -77,7 +77,7 @@ class EmergenceRate:
         Args:
             phi_before: Sigillin field integral Φ at t₀.
             phi_after:  Sigillin field integral Φ at t₁.
-            delta_t:    Time elapsed t₁ − t₀ (seconds, must be > 0).
+            delta_t:    Time elapsed t1 - t0 (seconds, must be > 0).
             state_distribution: Discrete probability distribution over
                 system microstates used to compute H(S).
 

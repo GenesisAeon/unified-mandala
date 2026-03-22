@@ -12,7 +12,7 @@ class AeonAiAdapter(BaseAdapter):
     """Adapter for aeon-ai v0.2.0.
 
     Integrates the Aeon neural inference engine.  The stellar phase is
-    modulated by a softmax-like normalization of entropy × phases.
+    modulated by a softmax-like normalization of entropy x phases.
     """
 
     name = "aeon-ai"
@@ -22,7 +22,7 @@ class AeonAiAdapter(BaseAdapter):
         # Softmax-style normalisation over phase indices
         logits = [math.exp(entropy * (i + 1) / max(phases, 1)) for i in range(phases)]
         total = sum(logits)
-        probs = [l / total for l in logits]
+        probs = [v / total for v in logits]
         phase = sum(p * (i + 1) / phases for i, p in enumerate(probs))
         return {
             "phase": max(0.0, min(1.0, phase)),

@@ -16,7 +16,7 @@ const provider = new NodeTracerProvider({
 const endpoint = process.env.OTEL_EXPORTER_OTLP_ENDPOINT;
 if (endpoint) {
   provider.addSpanProcessor(
-    new BatchSpanProcessor(new OTLPTraceExporter({ url: `${endpoint}/v1/traces` })),
+    new BatchSpanProcessor(new OTLPTraceExporter({ url: `${endpoint}/v1/traces` }) as any),
   );
 } else {
   class ConsoleExporter {

@@ -34,6 +34,7 @@ def gate_lax() -> PolicyGate:
 
 # ── PolicyViolation ───────────────────────────────────────────────────────────
 
+
 class TestPolicyViolation:
     def test_rule_stored(self):
         v = PolicyViolation(rule="TestRule", message="bad")
@@ -54,6 +55,7 @@ class TestPolicyViolation:
 
 # ── GovernanceDecision ────────────────────────────────────────────────────────
 
+
 class TestGovernanceDecision:
     def test_passed_true(self):
         d = GovernanceDecision(passed=True)
@@ -71,6 +73,7 @@ class TestGovernanceDecision:
 
 
 # ── PolicyGate.evaluate ───────────────────────────────────────────────────────
+
 
 class TestPolicyGateHappyPath:
     def test_valid_inputs_pass(self, gate):
@@ -119,6 +122,7 @@ class TestPolicyGateCREPSanity:
 
     def test_crep_nan_blocked(self, gate):
         import math
+
         bad_crep = CREPResult(score=math.nan, emergence=False, channels=(), evaluated_at=0.0)
         result = gate.evaluate(bad_crep, _emerge(0.0), entropy=0.5)
         assert "CREPSanity" in [v.rule for v in result.violations]
@@ -192,6 +196,7 @@ class TestPolicyGateOpaInput:
 
 # ── EntropyGovernor ───────────────────────────────────────────────────────────
 
+
 class TestEntropyGovernor:
     @pytest.fixture()
     def gov(self) -> EntropyGovernor:
@@ -219,7 +224,7 @@ class TestEntropyGovernor:
         assert 0.4 <= mean <= 0.6
 
     def test_window_truncation(self, gov):
-        for i in range(20):
+        for _i in range(20):
             gov.observe(0.5)
         assert len(gov._history) <= gov.window
 

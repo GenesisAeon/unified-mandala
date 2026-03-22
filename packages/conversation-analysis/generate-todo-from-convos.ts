@@ -54,5 +54,5 @@ export function generateTodos(
 }
 
 if (require.main === module) {
-  generateTodos(process.argv[2], process.argv[3]);
+  generateTodos(process.argv[2] ? [process.argv[2]] : undefined, process.argv[3]);
 }

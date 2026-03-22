@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 import { createWriteStream, existsSync, mkdirSync, unlinkSync } from 'node:fs';
+import https from 'node:https';
 import path from 'node:path';
 import { pipeline } from 'node:stream/promises';
-import { request } from 'node:https';
 import { fileURLToPath } from 'node:url';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -16,7 +16,7 @@ const platformName = isWindows
   : process.platform === 'darwin'
     ? 'opa_darwin_amd64'
     : 'opa_linux_amd64_static';
-const downloadUrl = `https://openpolicyagent.org/downloads/${VERSION}/${platformName}`;
+const downloadUrl = `https://github.com/open-policy-agent/opa/releases/download/${VERSION}/${platformName}`;
 const targetPath = path.join(BIN_DIR, isWindows ? 'opa.exe' : 'opa');
 
 if (!existsSync(BIN_DIR)) {
@@ -30,22 +30,34 @@ if (existsSync(targetPath)) {
 
 console.log('Downloading', downloadUrl);
 
-try {
-  await new Promise((resolve, reject) => {
-    request(downloadUrl, (res) => {
-      if (res.statusCode !== 200) {
-        reject(new Error(`Failed to download OPA binary. HTTP ${res.statusCode}`));
-        res.resume();
-        return;
-      }
-
-      const output = createWriteStream(targetPath, { mode: 0o755 });
-      pipeline(res, output).then(resolve).catch(reject);
-    })
-      .on('error', reject)
-      .end();
+/** Follow up to maxRedirects 3xx responses, resolve with the final IncomingMessage. */
+function fetchFollowRedirects(url, maxRedirects = 10) {
+  return new Promise((resolve, reject) => {
+    https
+      .get(url, (res) => {
+        if (res.statusCode >= 300 && res.statusCode < 400 && res.headers.location) {
+          if (maxRedirects === 0) {
+            reject(new Error('Too many redirects'));
+            res.resume();
+            return;
+          }
+          res.resume();
+          resolve(fetchFollowRedirects(res.headers.location, maxRedirects - 1));
+          return;
+        }
+        resolve(res);
+      })
+      .on('error', reject);
   });
+}
 
+try {
+  const res = await fetchFollowRedirects(downloadUrl);
+  if (res.statusCode !== 200) {
+    throw new Error(`Failed to download OPA binary. HTTP ${res.statusCode}`);
+  }
+  const output = createWriteStream(targetPath, { mode: 0o755 });
+  await pipeline(res, output);
   console.log('Saved to', targetPath);
 } catch (error) {
   console.error('OPA download failed:', error instanceof Error ? error.message : error);

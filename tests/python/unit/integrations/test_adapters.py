@@ -53,6 +53,7 @@ PHASE_VALUES = [1, 3, 7, 17]
 
 # ── Generic contract tests ────────────────────────────────────────────────────
 
+
 @pytest.mark.parametrize("AdapterCls", ALL_ADAPTERS)
 class TestAdapterContract:
     def test_is_base_adapter_subclass(self, AdapterCls):
@@ -125,6 +126,7 @@ class TestAdapterContract:
 
 
 # ── Adapter-specific tests ────────────────────────────────────────────────────
+
 
 class TestGenesisOsAdapter:
     def test_golden_ratio_in_result(self):

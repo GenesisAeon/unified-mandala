@@ -16,8 +16,7 @@ validate
 
 from __future__ import annotations
 
-import sys
-from typing import Annotated, Optional
+from typing import Annotated
 
 import typer
 from rich.console import Console
@@ -53,6 +52,7 @@ def _build_orchestrator() -> MandalaOrchestrator:
 
 # ── Version callback ───────────────────────────────────────────────────────────
 
+
 def _version_cb(value: bool) -> None:
     if value:
         console.print(f"unified-mandala {__version__}")
@@ -62,7 +62,7 @@ def _version_cb(value: bool) -> None:
 @app.callback()
 def main(
     version: Annotated[
-        Optional[bool],
+        bool | None,
         typer.Option("--version", "-V", callback=_version_cb, is_eager=True, help="Show version."),
     ] = None,
 ) -> None:
@@ -71,15 +71,28 @@ def main(
 
 # ── cycle ──────────────────────────────────────────────────────────────────────
 
+
 @app.command()
 def cycle(
-    entropy: Annotated[float, typer.Option("--entropy", "-e", help="Entropy input ∈ [0, 1].")] = 0.618,
+    entropy: Annotated[
+        float, typer.Option("--entropy", "-e", help="Entropy input ∈ [0, 1].")
+    ] = 0.618,
     cycles: Annotated[int, typer.Option("--cycles", "-n", help="Number of cycles to run.")] = 1,
-    phases: Annotated[int, typer.Option("--phases", "-p", help="Resonance phase count per cycle.")] = 7,
-    simulate: Annotated[bool, typer.Option("--simulate", help="Use synthetic adapter data.")] = False,
-    visualize: Annotated[bool, typer.Option("--visualize", help="Render ASCII mandala glyphs.")] = False,
-    sonify: Annotated[bool, typer.Option("--sonify", help="Print sonification phase data.")] = False,
-    gui: Annotated[bool, typer.Option("--gui", help="Launch Gradio GUI (requires [gui] extras).")] = False,
+    phases: Annotated[
+        int, typer.Option("--phases", "-p", help="Resonance phase count per cycle.")
+    ] = 7,
+    simulate: Annotated[
+        bool, typer.Option("--simulate", help="Use synthetic adapter data.")
+    ] = False,
+    visualize: Annotated[
+        bool, typer.Option("--visualize", help="Render ASCII mandala glyphs.")
+    ] = False,
+    sonify: Annotated[
+        bool, typer.Option("--sonify", help="Print sonification phase data.")
+    ] = False,
+    gui: Annotated[
+        bool, typer.Option("--gui", help="Launch Gradio GUI (requires [gui] extras).")
+    ] = False,
     json_out: Annotated[bool, typer.Option("--json", help="Output results as JSON.")] = False,
 ) -> None:
     """Run N mandala cycles and report CREP, emergence, and governance results.
@@ -100,7 +113,7 @@ def cycle(
     governor = EntropyGovernor()
     results: list[CycleResult] = []
 
-    for i in range(cycles):
+    for _i in range(cycles):
         governed_entropy = governor.observe(entropy)
         result = orch.run_cycle(
             entropy=governed_entropy,
@@ -111,6 +124,7 @@ def cycle(
 
         if json_out:
             import json
+
             doc = {
                 "cycle_id": result.cycle_id,
                 "entropy": result.entropy_input,
@@ -143,7 +157,11 @@ def _print_cycle_result(
             f"[bold]{result.summary}[/bold]\n"
             f"  Sigillin: [bold cyan]{result.sigillin_glyph}[/bold cyan]\n"
             f"  Governance: [{status_color}]{'PASS' if result.governance_pass else 'BLOCK'}[/{status_color}]"
-            + (f"  [italic]notes: {'; '.join(result.governance_notes)}[/italic]" if result.governance_notes else ""),
+            + (
+                f"  [italic]notes: {'; '.join(result.governance_notes)}[/italic]"
+                if result.governance_notes
+                else ""
+            ),
             title=f"Cycle {result.cycle_id:04d}",
             border_style=emerge_color,
         )
@@ -198,8 +216,10 @@ def _launch_gui() -> None:
     try:
         import gradio as gr
     except ImportError:
-        console.print("[red]Error:[/red] Gradio not installed. Run: pip install unified-mandala[gui]")
-        raise typer.Exit(code=1)
+        console.print(
+            "[red]Error:[/red] Gradio not installed. Run: pip install unified-mandala[gui]"
+        )
+        raise typer.Exit(code=1) from None
 
     orch = _build_orchestrator()
 
@@ -222,6 +242,7 @@ def _launch_gui() -> None:
 
 # ── reflect ────────────────────────────────────────────────────────────────────
 
+
 @app.command()
 def reflect() -> None:
     """Print orchestrator self-reflection report."""
@@ -230,6 +251,7 @@ def reflect() -> None:
 
 
 # ── adapters ───────────────────────────────────────────────────────────────────
+
 
 @app.command()
 def adapters() -> None:
@@ -250,9 +272,12 @@ def adapters() -> None:
 
 # ── validate ───────────────────────────────────────────────────────────────────
 
+
 @app.command()
 def validate(
-    entropy: Annotated[float, typer.Option("--entropy", "-e", help="Entropy value to validate.")] = 0.5,
+    entropy: Annotated[
+        float, typer.Option("--entropy", "-e", help="Entropy value to validate.")
+    ] = 0.5,
 ) -> None:
     """Validate policy gates for a given entropy value.
 
