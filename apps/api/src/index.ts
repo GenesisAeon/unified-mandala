@@ -3,7 +3,6 @@ import cors from 'cors';
 import { z } from 'zod';
 import { askOpenAI } from '@unified-mandala/ai';
 import { requestAI } from './natsClient.js';
-import ports from '@config/ports';
 import { verifyEthics } from './middleware/verifyEthics.js';
 
 const app = (globalThis as any).__UM_TEST_EXPRESS_APP ?? express();
@@ -51,7 +50,7 @@ app.post('/api/ai/chat', verifyEthics, async (req: Request, res: Response) => {
   }
 });
 
-const port = ports.ai;
+const port = Number(process.env.AI_API_PORT) || 4000;
 if (process.env.NODE_ENV !== 'test' && process.env.VITEST !== '1') {
   app.listen(port, () => {
     console.log(`[api] listening on http://localhost:${port}`);

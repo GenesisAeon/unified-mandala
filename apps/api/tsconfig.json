@@ -10,12 +10,7 @@
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true,
     "resolveJsonModule": true,
-    "types": ["node"],
-    "baseUrl": "../../",
-    "paths": {
-      "@unified-mandala/ai": ["packages/ai/src/index.ts"],
-      "@config/*": ["config/*"]
-    }
+    "types": ["node"]
   },
   "include": ["src/**/*"]
 }
