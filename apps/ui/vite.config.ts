@@ -37,6 +37,9 @@ export default defineConfig({
   resolve: {
     alias: {
       '~config': path.resolve(__dirname, '../../config'),
+      '@mandala/boundary-core': path.resolve(__dirname, '../../packages/boundary-core/src/index.ts'),
+      '@mandala/boundary-engine': path.resolve(__dirname, '../../packages/boundary-engine/src/index.ts'),
+      '@mandala/boundary-ui': path.resolve(__dirname, '../../packages/boundary-ui/src/index.ts'),
     },
   },
   server: {

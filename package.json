@@ -12,7 +12,7 @@
     "build:agents": "tsc -p tsconfig.agents.json && node -e \"const fs=require('fs'),p='dist/agents/personhood/AIJuristicAgent.js';if(fs.existsSync(p))fs.renameSync(p,p.replace(/\\.js$/,'.cjs'));\"",
     "build": "tsc -p tsconfig.build.json && pnpm build:agents",
     "typecheck": "tsc -p tsconfig.json --noEmit",
-    "build:ui": "pnpm --filter ...mandala-ui build",
+    "build:ui": "pnpm -F mandala-ui build",
     "lint": "pnpm lint:types && pnpm lint:eslint",
     "lint:types": "tsc -p tsconfig.json --noEmit",
     "lint:format": "pnpm format:check",
