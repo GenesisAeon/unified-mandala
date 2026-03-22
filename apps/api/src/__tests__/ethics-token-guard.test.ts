@@ -66,7 +66,7 @@ function makeToken(
       exp: now + 60,
     },
     secret,
-    { algorithm: 'HS256', noTimestamp: true, header: kid ? { kid } : undefined },
+    { algorithm: 'HS256', noTimestamp: true, header: kid ? { kid, alg: 'HS256' as const } : undefined },
   );
 }
 
@@ -75,7 +75,7 @@ beforeAll(async () => {
   process.env.VERIFY_GATE_JWT_SECRETS = `kidA:${Buffer.from('guard-secret').toString('base64')}`;
   process.env.VERIFY_GATE_JWT_ACTIVE_KID = 'kidA';
   delete process.env.VERIFY_GATE_JWT_SECRET;
-  const mod = await import('../index');
+  const mod = await import('../index.js');
   app = mod.app;
 });
 

@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { type Request, type Response } from 'express';
 import cors from 'cors';
 import { z } from 'zod';
 import { askOpenAI } from '@unified-mandala/ai';
@@ -10,10 +10,10 @@ const app = (globalThis as any).__UM_TEST_EXPRESS_APP ?? express();
 app.use(cors());
 app.use(express.json({ limit: '1mb' }));
 
-app.get('/healthz', (_req, res) => {
+app.get('/healthz', (_req: Request, res: Response) => {
   res.json({ ok: true });
 });
-app.get('/health', (_req, res) => {
+app.get('/health', (_req: Request, res: Response) => {
   res.json({ ok: true });
 });
 
@@ -31,7 +31,7 @@ const ChatSchema = z.object({
   max_tokens: z.number().int().positive().optional(),
 });
 
-app.post('/api/ai/chat', verifyEthics, async (req, res) => {
+app.post('/api/ai/chat', verifyEthics, async (req: Request, res: Response) => {
   const parsed = ChatSchema.safeParse(req.body);
   if (!parsed.success) {
     res.status(400).json({ error: parsed.error.issues });
