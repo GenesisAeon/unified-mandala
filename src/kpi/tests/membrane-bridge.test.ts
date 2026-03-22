@@ -12,6 +12,7 @@ describe('kpi/membrane-bridge stepOrBypass', () => {
 
   afterEach(() => {
     process.env = ORIGINAL_ENV;
+    vi.unstubAllEnvs();
   });
 
   it('bypasses membrane when LOW_MEM=1 (membrane off)', async () => {
@@ -22,9 +23,10 @@ describe('kpi/membrane-bridge stepOrBypass', () => {
   });
 
   it('processes readings when membrane feature is enabled', async () => {
-    delete process.env.LOW_MEM;
-    process.env.MEMBRANE_ON = '1';
-    process.env.VITE_FEATURE_MEMBRANE = 'on';
+    vi.stubEnv('LOW_MEM', '0');
+    vi.stubEnv('VITE_LOW_MEM', 'off');
+    vi.stubEnv('MEMBRANE_ON', '1');
+    vi.stubEnv('VITE_FEATURE_MEMBRANE', 'on');
     const { FEATURES } = await import('../../config/featureFlags');
     expect(FEATURES.membrane).toBe('on');
     const mod = await import('../membrane-bridge');

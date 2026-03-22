@@ -10,6 +10,7 @@ describe('runtime and feature flags', () => {
   afterEach(() => {
     if (prev === undefined) delete process.env.LOW_MEM;
     else process.env.LOW_MEM = prev;
+    vi.unstubAllEnvs();
   });
 
   it('LOW_MEM true when env LOW_MEM=1', async () => {
@@ -19,7 +20,8 @@ describe('runtime and feature flags', () => {
   });
 
   it('LOW_MEM false when env not set', async () => {
-    delete process.env.LOW_MEM;
+    vi.stubEnv('LOW_MEM', '0');
+    vi.stubEnv('VITE_LOW_MEM', 'off');
     const runtime = await import('../runtimeFlags');
     expect(runtime.LOW_MEM).toBe(false);
   });
