@@ -12,8 +12,13 @@ degraded {
   input.degraded == true
 }
 
-min_ttl_sec := input.policy.min_ttl_sec with default := 20
-max_redirect_hops := input.policy.max_redirect_hops with default := 3
+default min_ttl_sec := 20
+
+min_ttl_sec := input.policy.min_ttl_sec
+
+default max_redirect_hops := 3
+
+max_redirect_hops := input.policy.max_redirect_hops
 
 # Private/verbotene Netze (IPv4/IPv6 inkl. Link-Local, ULA, NAT64, Teredo, 6to4)
 private_cidrs := {
