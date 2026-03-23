@@ -100,7 +100,9 @@ deny {
 
 risky_intent {
   input.boundary.severity_max == "high"
-} else = risky_intent {
+}
+
+risky_intent {
   input.flags.risky == true
 }
 
