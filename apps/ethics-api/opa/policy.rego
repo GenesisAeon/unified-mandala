@@ -31,8 +31,7 @@ private_cidrs := {
 }
 
 is_private(ip) {
-  some cidr in private_cidrs
-  net.cidr_contains(cidr, ip)
+  net.cidr_contains(private_cidrs[_], ip)
 }
 
 # ——— Deny-Bedingungen (produzieren Gründe) ———
