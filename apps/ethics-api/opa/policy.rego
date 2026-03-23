@@ -31,8 +31,7 @@ private_cidrs := {
 }
 
 is_private(ip) {
-  some cidr
-  cidr := private_cidrs[_]
+  some cidr in private_cidrs
   net.cidr_contains(cidr, ip)
 }
 
