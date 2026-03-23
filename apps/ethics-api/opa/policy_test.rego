@@ -52,7 +52,6 @@ test_deny_ttl_short {
   })
   ethics.deny with input as in
   reasons := ethics.output.reasons with input as in
-  some r
   r := reasons[_]
   startswith(r, "dns_ttl_below_min:")
 }

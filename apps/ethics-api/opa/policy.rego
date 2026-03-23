@@ -31,7 +31,6 @@ private_cidrs := {
 }
 
 is_private(ip) {
-  some cidr
   cidr := private_cidrs[_]
   net.cidr_contains(cidr, ip)
 }
@@ -102,7 +101,9 @@ deny {
 
 risky_intent {
   input.boundary.severity_max == "high"
-} else = risky_intent {
+}
+
+risky_intent {
   input.flags.risky == true
 }
 

@@ -1,3 +1,7 @@
+# Python artifacts
+.coverage
+uv.lock
+
 # Logs
 logs
 *.log

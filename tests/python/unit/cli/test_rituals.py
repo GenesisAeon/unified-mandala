@@ -2,6 +2,9 @@
 
 from __future__ import annotations
 
+import sys
+from unittest.mock import MagicMock, patch
+
 from typer.testing import CliRunner
 
 from unified_mandala.cli.rituals import app
@@ -13,12 +16,12 @@ class TestVersionCommand:
     def test_version_flag(self):
         result = runner.invoke(app, ["--version"])
         assert result.exit_code == 0
-        assert "0.1.0" in result.output
+        assert "0.2.0" in result.output
 
     def test_version_short_flag(self):
         result = runner.invoke(app, ["-V"])
         assert result.exit_code == 0
-        assert "0.1.0" in result.output
+        assert "0.2.0" in result.output
 
 
 class TestCycleCommand:
@@ -62,6 +65,25 @@ class TestCycleCommand:
     def test_cycle_output_contains_crep(self):
         result = runner.invoke(app, ["cycle", "--entropy", "0.5", "--simulate"])
         assert "CREP" in result.output or "cycle" in result.output.lower()
+
+
+class TestCycleGuiCommand:
+    def test_cycle_gui_no_gradio(self):
+        """--gui with gradio absent exits with error."""
+        with patch.dict(sys.modules, {"gradio": None}):
+            result = runner.invoke(app, ["cycle", "--gui"])
+        assert result.exit_code == 1
+        assert "Gradio" in result.output or "gradio" in result.output.lower()
+
+    def test_cycle_gui_with_mocked_gradio(self):
+        """--gui with mocked gradio launches demo."""
+        mock_demo = MagicMock()
+        mock_gr = MagicMock()
+        mock_gr.Interface.return_value = mock_demo
+        with patch.dict(sys.modules, {"gradio": mock_gr}):
+            result = runner.invoke(app, ["cycle", "--gui"])
+        assert result.exit_code == 0
+        mock_demo.launch.assert_called_once()
 
 
 class TestAdaptersCommand:

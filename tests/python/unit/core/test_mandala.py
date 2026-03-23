@@ -223,6 +223,19 @@ class TestMandalaOrchestratorSelfReflect:
         assert "φ" in report
 
 
+class TestMandalaOrchestratorEmptyRegistry:
+    def test_run_cycle_empty_registry_fallback_dist(self):
+        """Empty registry → dist falls back to [0.5] (line 160)."""
+        orch = MandalaOrchestrator(
+            registry=_make_registry(0),
+            policy_gate=PolicyGate(strict_ethics=False),
+            sigillin=SigillinBridge(),
+        )
+        result = orch.run_cycle(entropy=0.5, simulate=False)
+        assert isinstance(result, CycleResult)
+        assert result.adapter_states == {}
+
+
 class TestMandalaOrchestratorSimulated:
     def test_simulated_states_count(self):
         orch = _make_orch(5)
