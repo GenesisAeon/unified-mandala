@@ -72,6 +72,11 @@ function ensureCoverageBlock(report) {
   if (!report || typeof report !== 'object') {
     throw new Error('COVERAGE_REPORT_INVALID: expected JSON object');
   }
+  if (Array.isArray(report)) {
+    throw new Error(
+      'COVERAGE_MISSING: opa test output was an array — tests likely failed before coverage was collected',
+    );
+  }
   const coverage = report.coverage;
   if (!coverage || typeof coverage !== 'object') {
     throw new Error('COVERAGE_MISSING: expected report.coverage object');
@@ -85,6 +90,10 @@ function ensureCoverageBlock(report) {
 
 function countTestFailures(report) {
   if (!report || typeof report !== 'object') return 0;
+  // opa test --format=json emits a bare array of test results on failure
+  if (Array.isArray(report)) {
+    return report.filter((entry) => entry && entry.pass === false).length;
+  }
   if (Array.isArray(report.failures)) return report.failures.length;
   if (typeof report.failures === 'number') return report.failures;
   const results = Array.isArray(report.result) ? report.result : [];
