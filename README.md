@@ -1,16 +1,16 @@
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19168056.svg)](https://doi.org/10.5281/zenodo.19168056)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19184798.svg)](https://doi.org/10.5281/zenodo.19184798)
 [![PyPI version](https://img.shields.io/pypi/v/unified-mandala)](https://pypi.org/project/unified-mandala/)
-[![Tests](https://img.shields.io/badge/tests-100%25-green)](https://github.com/GenesisAeon/unified-mandala/actions)
+[![Tests](https://img.shields.io/badge/tests-99.76%25-green)](https://github.com/GenesisAeon/unified-mandala/actions)
 
 # unified-mandala
 
 **Holistisches selbstreflektierendes Mandala-Framework mit CREP, Sigillin & voller GenesisAeon-Integration**
 
-Version 0.1.0 – GenesisAeon Project
-**DOI**: 10.5281/zenodo.19168056
-**Zenodo Record**: https://zenodo.org/records/19168056
+Version 0.2.0 – GenesisAeon Project
+**DOI**: 10.5281/zenodo.19184798
+**Zenodo Record**: https://zenodo.org/records/19184798
 
-MandalaOrchestrator + CREP-Evaluator + SigillinBridge (17-Symbol-Ring) + PolicyGate + EntropyGovernor + AdapterRegistry für alle 18 Pakete (genesis-os v0.2.0, universums-sim v0.1.0, aeon-ai v0.2.0 u. a.). Built with diamond-setup --template genesis.
+MandalaOrchestrator + CREP-Evaluator + SigillinBridge (17-Symbol-Ring) + PolicyGate + EntropyGovernor + AdapterRegistry für alle 18 Pakete. CI-stabilisiert (pnpm, vite, RealMembrane, OPA v0.66). Built with diamond-setup --template genesis.
 
 ---
 

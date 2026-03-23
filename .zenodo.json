@@ -1,14 +1,14 @@
 {
-  "title": "GenesisAeon/unified-mandala: v0.1.0 – Holistisches CREP-Orchestrator-Framework mit Sigillin, Policy-Gates & voller GenesisAeon-Integration",
-  "version": "0.1.0",
-  "doi": "10.5281/zenodo.19168056",
+  "title": "GenesisAeon/unified-mandala: v0.2.0 – Holistisches CREP-Orchestrator-Framework mit Sigillin, Policy-Gates & voller GenesisAeon-Integration",
+  "version": "0.2.0",
+  "doi": "10.5281/zenodo.19184798",
   "creators": [
     {
       "name": "GenesisAeon Project"
     }
   ],
-  "description": "Revived holistisches Mandala-Framework: MandalaOrchestrator mit CREP-Evaluator, SigillinBridge Φ = σ(12·(C-0.72)), Policy-Gates, EntropyGovernor und auto-discovery für alle 18 GenesisAeon-Pakete.",
-  "keywords": ["unified-mandala", "CREP", "Sigillin", "Policy-Gate", "self-reflection", "GenesisAeon", "holistic-framework"],
+  "description": "Revived holistisches Mandala-Framework mit CREP-Evaluator, SigillinBridge Φ = σ(12·(C-0.72)), Policy-Gates, EntropyGovernor, AdapterRegistry für alle 18 Pakete und stabilisierter CI/CD-Pipeline.",
+  "keywords": ["unified-mandala", "CREP", "Sigillin", "Policy-Gate", "self-reflection", "GenesisAeon", "holistic-framework", "CI-stabilized"],
   "license": "MIT",
   "upload_type": "software",
   "access_right": "open"
