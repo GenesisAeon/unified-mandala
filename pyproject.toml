@@ -87,6 +87,30 @@ Zenodo = "https://doi.org/10.5281/zenodo.unified-mandala"
 [tool.hatch.build.targets.wheel]
 packages = ["src/unified_mandala"]
 
+[tool.hatch.build.targets.sdist]
+include = [
+  "src/unified_mandala/**/*",
+  "pyproject.toml",
+  "README.md",
+  "LICENSE",
+  "docs/**/*",
+]
+exclude = [
+  "apps/",
+  "packages/",
+  "node_modules/",
+  "dist/",
+  ".next/",
+  "*.log",
+  "*.cache",
+  "scripts/node/",
+  "**/__pycache__/",
+  "**/.coverage",
+  "**/uv.lock",
+  "**/pnpm-lock.yaml",
+  "**/node_modules",
+]
+
 [tool.hatch.envs.default]
 dependencies = ["unified-mandala[dev,full-stack]"]
 
