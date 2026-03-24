@@ -3,17 +3,31 @@
 [![Tests](https://github.com/GenesisAeon/unified-mandala/actions/workflows/python-ci.yml/badge.svg)](https://github.com/GenesisAeon/unified-mandala/actions/workflows/python-ci.yml)
 [![Coverage](https://img.shields.io/badge/coverage-100%25-brightgreen)](https://github.com/GenesisAeon/unified-mandala)
 
-# unified-mandala v0.3.0
+# unified-mandala v0.3.1
 
 **Holistisches Mandala-Orchestrator-Framework** mit thermodynamischer Stringenz, planetarer Kopplung und MetaQuest-Sigillins.
 **DOI**: [10.5281/zenodo.19206783](https://doi.org/10.5281/zenodo.19206783)
 
-> v0.3.0 — _Documentation & Test-Offensive + Thermodynamic Integration_
+> v0.3.1 — _Phase-3 Patch: Tension metric, regenerative architectures, neuromorphic + Landauer countermeasures_
 
 MandalaOrchestrator + CREP-Evaluator + SigillinBridge (19-adapter ring) + PolicyGate + EntropyGovernor +
 AdapterRegistry + **Thermodynamics** (Landauer · Hatano-Sasa · Esposito-Van den Broeck) +
 **Planetary Coupling** (IEA→CO₂→Albedo→Ice) + **MetaQuest-Sigillins** (AI-to-AI) +
 **Collapse Detector** (SDE · Tainter · Prigogine · φ=0.618).
+
+---
+
+## What's New in v0.3.1
+
+| Feature                       | Module                  | Description                                                      |
+| ----------------------------- | ----------------------- | ---------------------------------------------------------------- |
+| Tension metric                | `collapse_detector`     | `Tension(t) = Γ_Klima · Q_KI(t) / (V_Eis(t) + ε)`                |
+| Albedo-loss metric            | `collapse_detector`     | `albedo_loss = albedo_factor / (V + ε)`                          |
+| Regenerative SDE mode         | `collapse_detector`     | 87.2× neuromorphic noise damping (`--regenerative`)              |
+| `albedo_loss_metric`          | `planetary.coupling`    | Per-module albedo-loss function                                  |
+| Regenerative η-offset         | `planetary.coupling`    | `ΔF_regen = η · Q_waste / 87.2` waste-heat recycling             |
+| Neuromorphic counterquestions | `sigillins.metaquest`   | New SYNTHESIS-tier questions (neuromorphic + Landauer scenarios) |
+| `--regenerative` CLI flag     | `collapse`, `metaquest` | Activates regenerative countermeasure mode in both commands      |
 
 ---
 
@@ -33,10 +47,10 @@ AdapterRegistry + **Thermodynamics** (Landauer · Hatano-Sasa · Esposito-Van de
 
 ---
 
-## Python Quick Start (v0.3.0)
+## Python Quick Start (v0.3.1)
 
 ```bash
-pip install unified-mandala==0.3.0
+pip install unified-mandala==0.3.1
 ```
 
 ```python
@@ -58,13 +72,25 @@ engine = MetaQuestEngine()
 cq = engine.generate(phi=0.85, entropy=0.15)
 print(cq)
 
-# Collapse detection
+# Collapse detection (standard)
 det = CollapseDetector()
 traj = det.simulate(x0=0.4)
 print(f"Collapsed: {traj.collapsed} | Risk: {det.collapse_risk(traj):.3f}")
+
+# Phase-3: Tension metric + albedo loss
+from unified_mandala.collapse_detector import compute_tension_metric, albedo_loss
+tension = compute_tension_metric(gamma_klima=3.5, q_ki=8.0, v_ice=5000.0)
+a_loss = albedo_loss(albedo_factor=0.74, v_ice=5000.0)
+print(f"Tension(t) = {tension:.4f}  |  albedo_loss = {a_loss:.6e}")
+
+# Regenerative collapse mode (87.2× neuromorphic noise damping)
+from unified_mandala.collapse_detector import CollapseDetector, CollapseDetectorConfig
+det_regen = CollapseDetector(CollapseDetectorConfig(regenerative=True))
+traj_regen = det_regen.simulate(x0=0.4)
+print(f"Regenerative: risk = {det_regen.collapse_risk(traj_regen):.3f}")
 ```
 
-## CLI Commands (v0.3.0)
+## CLI Commands (v0.3.1)
 
 ```bash
 # Standard mandala cycle
@@ -76,8 +102,14 @@ unified-mandala thermodynamics --entropy 0.618 --temperature 300
 # Collapse detection (SDE + Tainter/Prigogine)
 unified-mandala collapse --entropy 0.72 --crep 0.6 --lambda 3.0 --runs 10
 
+# Collapse detection — regenerative mode (87.2× neuromorphic noise damping)
+unified-mandala collapse --entropy 0.72 --crep 0.6 --regenerative
+
 # MetaQuest counterquestions (4-tier epistemic protocol)
 unified-mandala metaquest --crep 0.85 --entropy 0.15 --n 5
+
+# MetaQuest — regenerative scenarios (neuromorphic + Landauer countermeasures)
+unified-mandala metaquest --crep 0.85 --entropy 0.15 --n 5 --regenerative
 
 # Planetary coupling chain (IEA→CO₂→Albedo→Ice)
 unified-mandala planetary --energy 620.0 --baseline-co2 421.0

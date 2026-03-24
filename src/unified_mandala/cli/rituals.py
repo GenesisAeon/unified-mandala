@@ -39,7 +39,7 @@ from unified_mandala.sigillin.bridge import SigillinBridge
 
 app = typer.Typer(
     name="unified-mandala",
-    help="Holistic self-reflecting mandala framework — GenesisAeon v0.3.0.",
+    help="Holistic self-reflecting mandala framework — GenesisAeon v0.3.1.",
     add_completion=False,
     rich_markup_mode="rich",
 )
@@ -399,14 +399,24 @@ def collapse(
     n_runs: Annotated[
         int, typer.Option("--runs", help="Monte Carlo ensemble size (1 = single run).")
     ] = 1,
+    regenerative: Annotated[
+        bool,
+        typer.Option(
+            "--regenerative",
+            help="Apply neuromorphic 87.2× noise damping (waste-heat recycling mode).",
+        ),
+    ] = False,
 ) -> None:
     """Run the SDE-based collapse detector (Euler-Maruyama + Tainter/Prigogine).
 
     Simulates systemic tension dynamics with fractal singularity at φ=0.618.
+    Use --regenerative to apply neuromorphic efficiency damping (87.2× noise
+    reduction), modelling waste-heat recycling as a collapse countermeasure.
 
     Example::
 
         unified-mandala collapse --entropy 0.72 --crep 0.6 --lambda 3.0
+        unified-mandala collapse --entropy 0.72 --crep 0.6 --regenerative
     """
     from unified_mandala.collapse_detector import (
         FRACTAL_SINGULARITY,
@@ -421,17 +431,22 @@ def collapse(
             noise_sigma=noise_sigma,
             t_max=t_max,
             seed=42,
+            regenerative=regenerative,
         )
     )
 
     x0 = det.systemic_tension_from_crep(crep_score=crep_score, entropy=entropy)
 
+    regen_label = (
+        "  [cyan]Regenerative mode:   87.2× noise damping active[/cyan]\n" if regenerative else ""
+    )
     if n_runs == 1:
         traj = det.simulate(x0=x0)
         risk = det.collapse_risk(traj)
         color = "red" if traj.collapsed else ("yellow" if risk > 0.5 else "green")
         console.print(
             Panel(
+                f"{regen_label}"
                 f"  Initial tension X₀:   {x0:.4f}\n"
                 f"  Peak tension:         {traj.systemic_tension_peak:.4f}\n"
                 f"  Final state:          {traj.final_state:.4f}\n"
@@ -481,15 +496,24 @@ def metaquest(
     agent_b: Annotated[
         str, typer.Option("--agent-b", help="Responding agent name.")
     ] = "GenesisAeon-Beta",
+    regenerative: Annotated[
+        bool,
+        typer.Option(
+            "--regenerative",
+            help="Issue regenerative-scenario questions (neuromorphic + Landauer countermeasures).",
+        ),
+    ] = False,
 ) -> None:
     """Generate MetaQuest counterquestions for the current system state.
 
     Selects questions from the appropriate epistemic tier (GROUNDING→SYNTHESIS)
-    based on the Sigillin field Φ and entropy H.
+    based on the Sigillin field Φ and entropy H.  Use --regenerative to focus
+    on neuromorphic efficiency and Landauer-minimal regenerative architectures.
 
     Example::
 
         unified-mandala metaquest --crep 0.85 --entropy 0.15 --n 5
+        unified-mandala metaquest --crep 0.85 --entropy 0.15 --regenerative
     """
     from unified_mandala.sigillins.metaquest import MetaQuestEngine
 
@@ -508,7 +532,9 @@ def metaquest(
         )
     )
 
-    questions = engine.generate_sequence(phi=phi, entropy=entropy, n=n_questions)
+    questions = engine.generate_sequence(
+        phi=phi, entropy=entropy, n=n_questions, regenerative=regenerative
+    )
     table = Table(title=f"Counterquestions ({agent_a} → {agent_b})", show_lines=True)
     table.add_column("#", justify="right", width=3)
     table.add_column("Sigil", justify="center", width=5)

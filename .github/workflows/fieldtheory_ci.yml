@@ -195,11 +195,11 @@ jobs:
         run: |
           python -c "
           from unified_mandala._version import __version__
-          assert __version__ == '0.3.0'
+          assert __version__ == '0.3.1'
           import json
           with open('.zenodo.json') as f:
               z = json.load(f)
-          assert z['version'] == '0.3.0'
+          assert z['version'] == '0.3.1'
           assert 'doi' in z
           print(f'✔ DOI {z[\"doi\"]} confirmed for v{__version__}')
           "

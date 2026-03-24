@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "unified-mandala"
-version = "0.3.0"
+version = "0.3.1"
 description = "Holistic self-reflecting Mandala framework with CREP, Sigillin, thermodynamics, planetary coupling, and full GenesisAeon integration"
 readme = "README.md"
 license = { text = "MIT" }
