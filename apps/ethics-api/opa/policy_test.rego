@@ -1,5 +1,7 @@
 package mandala.ethics_test
 
+import rego.v1
+
 import data.mandala.ethics
 
 base_ok := {
@@ -21,34 +23,34 @@ base_ok := {
   "policy": {
     "min_ttl_sec": 20,
     "max_redirect_hops": 3,
-  }
+  },
 }
 
-test_allow_when_all_good {
+test_allow_when_all_good if {
   ethics.allow with input as base_ok
   not ethics.deny with input as base_ok
   ethics.output.allow with input as base_ok
 }
 
-test_deny_when_degraded {
+test_deny_when_degraded if {
   in := object.union(base_ok, {"degraded": true})
   ethics.deny with input as in
   not ethics.allow with input as in
   ethics.output.deny with input as in
 }
 
-test_deny_private_ipv6 {
+test_deny_private_ipv6 if {
   in := object.union(base_ok, {
-    "network": object.union(base_ok.network, {"resolved_ip": "::1"})
+    "network": object.union(base_ok.network, {"resolved_ip": "::1"}),
   })
   ethics.deny with input as in
   reasons := ethics.output.reasons with input as in
   reasons[_] == "private_target"
 }
 
-test_deny_ttl_short {
+test_deny_ttl_short if {
   in := object.union(base_ok, {
-    "network": object.union(base_ok.network, {"ttl_sec": 5})
+    "network": object.union(base_ok.network, {"ttl_sec": 5}),
   })
   ethics.deny with input as in
   reasons := ethics.output.reasons with input as in
@@ -56,7 +58,7 @@ test_deny_ttl_short {
   startswith(r, "dns_ttl_below_min:")
 }
 
-test_deny_risky_needs_evidence {
+test_deny_risky_needs_evidence if {
   in := object.union(base_ok, {
     "boundary": object.union(base_ok.boundary, {"severity_max": "high"}),
     "evidence": object.union(base_ok.evidence, {
@@ -70,9 +72,9 @@ test_deny_risky_needs_evidence {
   reasons[_] == "need_strong_source"
 }
 
-test_allow_risky_with_evidence {
+test_allow_risky_with_evidence if {
   in := object.union(base_ok, {
-    "boundary": object.union(base_ok.boundary, {"severity_max": "high"})
+    "boundary": object.union(base_ok.boundary, {"severity_max": "high"}),
   })
   ethics.allow with input as in
   not ethics.deny with input as in
