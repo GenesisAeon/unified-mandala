@@ -103,9 +103,15 @@ def test_delta_temperature_linear(dT):
     assert math.isfinite(dT_back)
 
 
-@pytest.mark.parametrize("co2_a,co2_b", [
-    (300.0, 400.0), (350.0, 500.0), (421.0, 600.0), (280.0, 560.0),
-])
+@pytest.mark.parametrize(
+    "co2_a,co2_b",
+    [
+        (300.0, 400.0),
+        (350.0, 500.0),
+        (421.0, 600.0),
+        (280.0, 560.0),
+    ],
+)
 @pytest.mark.planetary
 def test_forcing_increases_with_co2(co2_a, co2_b):
     f_a = co2_forcing_W_per_m2(co2_a)
@@ -134,12 +140,19 @@ def test_different_baselines_change_forcing(baseline):
 
 
 # Stress level ordering tests
-@pytest.mark.parametrize("phase,expected", [
-    (0.1, "stable"), (0.5, "elevated"), (0.7, "critical"), (0.9, "extreme"),
-])
+@pytest.mark.parametrize(
+    "phase,expected",
+    [
+        (0.1, "stable"),
+        (0.5, "elevated"),
+        (0.7, "critical"),
+        (0.9, "extreme"),
+    ],
+)
 @pytest.mark.planetary
 def test_stress_level_classification(phase, expected):
     from unittest.mock import MagicMock
+
     chain = PlanetaryCouplingChain(
         energy_EJ=500.0,
         co2_ppm=421.0,

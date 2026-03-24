@@ -41,7 +41,7 @@ class TestLandauerCREPIntegration:
         crep_high = 0.9
         crep_low = 0.3
         n_high = 1.0 - crep_high  # fewer bits to erase
-        n_low = 1.0 - crep_low    # more bits to erase
+        n_low = 1.0 - crep_low  # more bits to erase
         e_high_crep = landauer_energy(T, n_bits=n_high)
         e_low_crep = landauer_energy(T, n_bits=n_low)
         assert e_low_crep > e_high_crep
@@ -108,17 +108,24 @@ class TestHatanoSasaCollapseIntegration:
     def test_collapse_risk_increases_with_sigma_tot(self):
         det = CollapseDetector()
         tensions = [0.1, 0.3, 0.5, 0.7, 0.9]
-        risks = [det.systemic_tension_from_crep(crep_score=1-t, entropy=t) for t in tensions]
+        risks = [det.systemic_tension_from_crep(crep_score=1 - t, entropy=t) for t in tensions]
         # Risks should increase with tension proxy
         for r1, r2 in itertools.pairwise(risks):
             assert r2 >= r1 - 1e-10
 
     def test_second_law_holds_for_collapse_trajectory(self):
         """The SDE dynamics respect the second law: mean entropy production ≥ 0."""
-        det = CollapseDetector(CollapseDetectorConfig(
-            tainter_lambda=2.0, prigogine_gamma=0.3, noise_sigma=0.05,
-            dt=0.05, t_max=3.0, x0=0.2, seed=42,
-        ))
+        det = CollapseDetector(
+            CollapseDetectorConfig(
+                tainter_lambda=2.0,
+                prigogine_gamma=0.3,
+                noise_sigma=0.05,
+                dt=0.05,
+                t_max=3.0,
+                x0=0.2,
+                seed=42,
+            )
+        )
         traj = det.simulate()
         # Mean tension proxy for entropy production rate
         hsp = HatanoSasaProduction(sigma_ex=traj.mean_tension, sigma_hk=0.0)
@@ -129,6 +136,7 @@ class TestHatanoSasaCollapseIntegration:
         # Use zero-production trajectories: Σ_ex = 0 → exp(0) = 1
         sigma_values = [0.0] * 100
         from unified_mandala.thermodynamics.hatano_sasa import integral_fluctuation_check
+
         assert integral_fluctuation_check(sigma_values) is True
 
 
@@ -150,10 +158,17 @@ class TestEspositoCollapseIntegration:
         assert result.dissipative_structure_forming
 
         # Corresponding collapse detector with high tension
-        det = CollapseDetector(CollapseDetectorConfig(
-            tainter_lambda=5.0, prigogine_gamma=0.1, noise_sigma=0.0,
-            x0=0.7, dt=0.05, t_max=5.0, seed=0,
-        ))
+        det = CollapseDetector(
+            CollapseDetectorConfig(
+                tainter_lambda=5.0,
+                prigogine_gamma=0.1,
+                noise_sigma=0.0,
+                x0=0.7,
+                dt=0.05,
+                t_max=5.0,
+                seed=0,
+            )
+        )
         traj = det.simulate()
         risk = det.collapse_risk(traj)
         assert risk > 0.3  # elevated risk expected
@@ -184,11 +199,17 @@ class TestEspositoCollapseIntegration:
         )
         assert result.dissipative_structure_forming
         # Map to collapse detector: this should be in the pre-collapse regime
-        det = CollapseDetector(CollapseDetectorConfig(
-            tainter_lambda=result.sigma_reorg,
-            prigogine_gamma=result.sigma_maint + 0.1,
-            noise_sigma=0.01, x0=0.5, dt=0.05, t_max=5.0, seed=7,
-        ))
+        det = CollapseDetector(
+            CollapseDetectorConfig(
+                tainter_lambda=result.sigma_reorg,
+                prigogine_gamma=result.sigma_maint + 0.1,
+                noise_sigma=0.01,
+                x0=0.5,
+                dt=0.05,
+                t_max=5.0,
+                seed=7,
+            )
+        )
         traj = det.simulate()
         assert isinstance(traj.prigogine_events, int)
 
@@ -219,7 +240,9 @@ class TestFullThermodynamicPipeline:
         # Step 1: CREP
         ev = CREPEvaluator()
         for name, phase in [("a", 0.6), ("b", 0.7), ("c", 0.8)]:
-            ev.add_channel(ResonanceChannel(name, phase=phase, weight=1.0, decay=0.0, timestamp=0.0))
+            ev.add_channel(
+                ResonanceChannel(name, phase=phase, weight=1.0, decay=0.0, timestamp=0.0)
+            )
         crep_result = ev.evaluate(now=0.0)
 
         # Step 2: Landauer cost
@@ -237,6 +260,7 @@ class TestFullThermodynamicPipeline:
     def test_thermodynamic_consistency_landauer_hatano(self):
         """Landauer entropy ≤ Hatano-Sasa total (upper bound relationship)."""
         from unified_mandala.thermodynamics.hatano_sasa import TrajectorySegment
+
         n_bits = 1.0
         s_landauer = landauer_entropy(n_bits)
 
@@ -257,6 +281,7 @@ class TestFullThermodynamicPipeline:
             HatanoSasaProduction,
             LandauerBound,
         )
+
         assert BOLTZMANN_K > 0
         assert EspositoDecomposition is not None
         assert HatanoSasaProduction is not None

@@ -96,7 +96,9 @@ class CounterQuestion:
     question_id: str = field(init=False)
 
     def __post_init__(self) -> None:
-        digest = hashlib.sha256(f"{self.text}{self.phi_value:.6f}{self.entropy:.6f}".encode()).hexdigest()[:8]
+        digest = hashlib.sha256(
+            f"{self.text}{self.phi_value:.6f}{self.entropy:.6f}".encode()
+        ).hexdigest()[:8]
         object.__setattr__(self, "question_id", digest)
 
     def __str__(self) -> str:
@@ -125,16 +127,31 @@ _TIER_LIBRARY: dict[QuestionTier, list[tuple[str, str]]] = {
     QuestionTier.CHALLENGE: [
         ("Does your model violate the Esposito non-negativity constraint on σ_reorg?", "⟁"),
         ("Can you construct a counter-example that falsifies this emergence claim?", "⊞"),
-        ("Is Tainter's law applicable here, or does Prigogine's minimum-entropy principle dominate?", "∞"),
+        (
+            "Is Tainter's law applicable here, or does Prigogine's minimum-entropy principle dominate?",
+            "∞",
+        ),
         ("What evidence would refute the planetary albedo feedback you assumed?", "❄"),
         ("Are you confusing correlation with causal forcing in the CO₂-ice coupling?", "⌬"),
     ],
     QuestionTier.SYNTHESIS: [
-        ("Synthesise Landauer bounds with Tainter collapse thresholds into a unified metric.", "✦"),
+        (
+            "Synthesise Landauer bounds with Tainter collapse thresholds into a unified metric.",
+            "✦",
+        ),
         ("How does the MetaQuest Φ-field integrate across Prigogine, Esposito, and Tainter?", "⧖"),
-        ("Propose a cross-domain mapping: thermodynamic σ_reorg → social reorganisation cost.", "⊛"),
-        ("Design a Sigillin ritual that encodes the planetary IEA→CO₂→Albedo→Ice causal chain.", "Ψ"),
-        ("What is the minimal SDE model that captures both collapse and dissipative-structure emergence?", "◉"),
+        (
+            "Propose a cross-domain mapping: thermodynamic σ_reorg → social reorganisation cost.",
+            "⊛",
+        ),
+        (
+            "Design a Sigillin ritual that encodes the planetary IEA→CO₂→Albedo→Ice causal chain.",
+            "Ψ",
+        ),
+        (
+            "What is the minimal SDE model that captures both collapse and dissipative-structure emergence?",
+            "◉",
+        ),
     ],
 }
 
@@ -359,7 +376,4 @@ class CollaborationSession:
 
     def __repr__(self) -> str:
         state = "open" if self.is_open else f"closed/{self.convergence_score:.2f}"
-        return (
-            f"<CollaborationSession {self.agent_a}→{self.agent_b} "
-            f"T{self.tier.value} [{state}]>"
-        )
+        return f"<CollaborationSession {self.agent_a}→{self.agent_b} T{self.tier.value} [{state}]>"

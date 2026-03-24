@@ -87,9 +87,18 @@ class TestPlanetaryCouplingAdapter:
 
     def test_all_required_keys_present(self, adapter):
         result = adapter.gather(entropy=0.5, phases=7)
-        required = {"phase", "weight", "decay", "energy_EJ", "co2_ppm",
-                    "forcing_W_per_m2", "delta_T_K", "ice_volume_1000km3",
-                    "surface_albedo", "stress_level"}
+        required = {
+            "phase",
+            "weight",
+            "decay",
+            "energy_EJ",
+            "co2_ppm",
+            "forcing_W_per_m2",
+            "delta_T_K",
+            "ice_volume_1000km3",
+            "surface_albedo",
+            "stress_level",
+        }
         assert required.issubset(result.keys())
 
     def test_finite_values(self, adapter):

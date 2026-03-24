@@ -98,13 +98,21 @@ class TestCounterQuestion:
         assert all(c in "0123456789abcdef" for c in sample_cq.question_id)
 
     def test_question_id_deterministic(self):
-        cq1 = CounterQuestion(text="Test?", tier=QuestionTier.PROBING, phi_value=0.7, entropy=0.2, sigil="∿")
-        cq2 = CounterQuestion(text="Test?", tier=QuestionTier.PROBING, phi_value=0.7, entropy=0.2, sigil="∿")
+        cq1 = CounterQuestion(
+            text="Test?", tier=QuestionTier.PROBING, phi_value=0.7, entropy=0.2, sigil="∿"
+        )
+        cq2 = CounterQuestion(
+            text="Test?", tier=QuestionTier.PROBING, phi_value=0.7, entropy=0.2, sigil="∿"
+        )
         assert cq1.question_id == cq2.question_id
 
     def test_question_id_varies_with_text(self):
-        cq1 = CounterQuestion(text="A?", tier=QuestionTier.PROBING, phi_value=0.7, entropy=0.2, sigil="∿")
-        cq2 = CounterQuestion(text="B?", tier=QuestionTier.PROBING, phi_value=0.7, entropy=0.2, sigil="∿")
+        cq1 = CounterQuestion(
+            text="A?", tier=QuestionTier.PROBING, phi_value=0.7, entropy=0.2, sigil="∿"
+        )
+        cq2 = CounterQuestion(
+            text="B?", tier=QuestionTier.PROBING, phi_value=0.7, entropy=0.2, sigil="∿"
+        )
         assert cq1.question_id != cq2.question_id
 
     def test_str_representation(self, sample_cq):
@@ -158,9 +166,16 @@ class TestSelectTier:
         tier = MetaQuestEngine.select_tier(phi=0.5, entropy=0.5)
         assert isinstance(tier, QuestionTier)
 
-    @pytest.mark.parametrize("phi,entropy", [
-        (0.0, 0.0), (0.5, 0.5), (1.0, 0.0), (0.618, 0.382), (0.9, 0.1),
-    ])
+    @pytest.mark.parametrize(
+        "phi,entropy",
+        [
+            (0.0, 0.0),
+            (0.5, 0.5),
+            (1.0, 0.0),
+            (0.618, 0.382),
+            (0.9, 0.1),
+        ],
+    )
     def test_always_valid_tier(self, phi, entropy):
         tier = MetaQuestEngine.select_tier(phi=phi, entropy=entropy)
         assert tier in list(QuestionTier)
@@ -387,9 +402,11 @@ class TestEngineSessionManagement:
         """Full AI-to-AI cycle: open → generate → close → score."""
         engine = MetaQuestEngine()
         session = engine.open_session(
-            "GenesisAeon-A", "GenesisAeon-B",
+            "GenesisAeon-A",
+            "GenesisAeon-B",
             "Evaluate planetary collapse risk for entropy=0.72",
-            phi=0.72, entropy=0.28,
+            phi=0.72,
+            entropy=0.28,
         )
         assert session.is_open
         cq = session.counterquestion

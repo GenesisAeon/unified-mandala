@@ -38,11 +38,11 @@ _PYTHAGOREAN_RATIOS: tuple[float, ...] = (1 / 2, 2 / 3, 3 / 4, 4 / 5, 5 / 6)
 
 # Platonic solid: {faces, vertices, edges, dihedral_angle_deg}
 _PLATONIC_SOLIDS: tuple[tuple[int, int, int, float], ...] = (
-    (4, 4, 6, 70.528),    # Tetrahedron
-    (6, 8, 12, 90.0),     # Cube (hexahedron)
+    (4, 4, 6, 70.528),  # Tetrahedron
+    (6, 8, 12, 90.0),  # Cube (hexahedron)
     (8, 6, 12, 109.471),  # Octahedron
-    (12, 20, 30, 116.565),# Dodecahedron
-    (20, 12, 30, 138.190),# Icosahedron
+    (12, 20, 30, 116.565),  # Dodecahedron
+    (20, 12, 30, 138.190),  # Icosahedron
 )
 
 
@@ -82,7 +82,7 @@ def _archimedean_phase(entropy: float, phases: int) -> float:
     theta = entropy * 2.0 * math.pi * phases
     r = _PHI + _PHI * theta / (2.0 * math.pi)
     # Phase from fractional spiral position
-    frac = (r % 1.0)
+    frac = r % 1.0
     return frac
 
 

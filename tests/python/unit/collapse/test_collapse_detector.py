@@ -76,7 +76,7 @@ class TestDriftDiffusion:
         # At x = phi_c, the Tainter term is zero
         f = det.drift(FRACTAL_SINGULARITY)
         # Only Prigogine term: -gamma × phi_c²
-        expected = -det.config.prigogine_gamma * FRACTAL_SINGULARITY ** 2
+        expected = -det.config.prigogine_gamma * FRACTAL_SINGULARITY**2
         assert f == pytest.approx(expected, rel=1e-6)
 
     def test_drift_at_zero_is_zero(self, det):
@@ -110,7 +110,7 @@ class TestDriftDiffusion:
         det.drift(0.3)
         f_zero = det.drift(0.3, lam=0.0)
         # With lam=0, only Prigogine term
-        expected = -det.config.prigogine_gamma * 0.3 ** 2
+        expected = -det.config.prigogine_gamma * 0.3**2
         assert f_zero == pytest.approx(expected, rel=1e-6)
 
 
@@ -122,17 +122,31 @@ class TestDriftDiffusion:
 class TestSimulate:
     @pytest.fixture()
     def det_noiseless(self):
-        return CollapseDetector(CollapseDetectorConfig(
-            noise_sigma=0.0, tainter_lambda=2.5, prigogine_gamma=0.4,
-            dt=0.01, t_max=5.0, x0=0.1, seed=42,
-        ))
+        return CollapseDetector(
+            CollapseDetectorConfig(
+                noise_sigma=0.0,
+                tainter_lambda=2.5,
+                prigogine_gamma=0.4,
+                dt=0.01,
+                t_max=5.0,
+                x0=0.1,
+                seed=42,
+            )
+        )
 
     @pytest.fixture()
     def det_noisy(self):
-        return CollapseDetector(CollapseDetectorConfig(
-            noise_sigma=0.1, tainter_lambda=3.0, prigogine_gamma=0.3,
-            dt=0.01, t_max=5.0, x0=0.05, seed=0,
-        ))
+        return CollapseDetector(
+            CollapseDetectorConfig(
+                noise_sigma=0.1,
+                tainter_lambda=3.0,
+                prigogine_gamma=0.3,
+                dt=0.01,
+                t_max=5.0,
+                x0=0.05,
+                seed=0,
+            )
+        )
 
     def test_returns_trajectory(self, det_noiseless):
         traj = det_noiseless.simulate()
@@ -181,19 +195,33 @@ class TestSimulate:
         assert t1.states == t2.states
 
     def test_high_tainter_lambda_tends_to_collapse(self):
-        det = CollapseDetector(CollapseDetectorConfig(
-            tainter_lambda=20.0, prigogine_gamma=0.0, noise_sigma=0.0,
-            x0=0.7, dt=0.01, t_max=20.0, seed=0,
-        ))
+        det = CollapseDetector(
+            CollapseDetectorConfig(
+                tainter_lambda=20.0,
+                prigogine_gamma=0.0,
+                noise_sigma=0.0,
+                x0=0.7,
+                dt=0.01,
+                t_max=20.0,
+                seed=0,
+            )
+        )
         traj = det.simulate()
         # High driving tends toward collapse
         assert traj.systemic_tension_peak > FRACTAL_SINGULARITY
 
     def test_strong_prigogine_damps_tension(self):
-        det = CollapseDetector(CollapseDetectorConfig(
-            tainter_lambda=1.0, prigogine_gamma=10.0, noise_sigma=0.0,
-            x0=0.3, dt=0.01, t_max=5.0, seed=0,
-        ))
+        det = CollapseDetector(
+            CollapseDetectorConfig(
+                tainter_lambda=1.0,
+                prigogine_gamma=10.0,
+                noise_sigma=0.0,
+                x0=0.3,
+                dt=0.01,
+                t_max=5.0,
+                seed=0,
+            )
+        )
         traj = det.simulate()
         # Strong damping should prevent collapse
         assert not traj.collapsed
@@ -237,16 +265,26 @@ class TestCollapseTrajectory:
 
     def test_empty_states_mean_zero(self):
         traj = CollapseTrajectory(
-            times=(), states=(), collapsed=False, emergence_triggered=False,
-            collapse_time=None, systemic_tension_peak=0.0, final_state=0.0,
+            times=(),
+            states=(),
+            collapsed=False,
+            emergence_triggered=False,
+            collapse_time=None,
+            systemic_tension_peak=0.0,
+            final_state=0.0,
             prigogine_events=0,
         )
         assert traj.mean_tension == 0.0
 
     def test_empty_states_variance_zero(self):
         traj = CollapseTrajectory(
-            times=(), states=(), collapsed=False, emergence_triggered=False,
-            collapse_time=None, systemic_tension_peak=0.0, final_state=0.0,
+            times=(),
+            states=(),
+            collapsed=False,
+            emergence_triggered=False,
+            collapse_time=None,
+            systemic_tension_peak=0.0,
+            final_state=0.0,
             prigogine_events=0,
         )
         assert traj.variance_tension == 0.0
@@ -269,12 +307,24 @@ class TestCollapseRisk:
 
     def test_higher_peak_higher_risk(self, det):
         low_peak_traj = CollapseTrajectory(
-            times=(0.0,), states=(0.1,), collapsed=False, emergence_triggered=False,
-            collapse_time=None, systemic_tension_peak=0.1, final_state=0.1, prigogine_events=0,
+            times=(0.0,),
+            states=(0.1,),
+            collapsed=False,
+            emergence_triggered=False,
+            collapse_time=None,
+            systemic_tension_peak=0.1,
+            final_state=0.1,
+            prigogine_events=0,
         )
         high_peak_traj = CollapseTrajectory(
-            times=(0.0,), states=(0.9,), collapsed=False, emergence_triggered=False,
-            collapse_time=None, systemic_tension_peak=0.9, final_state=0.9, prigogine_events=0,
+            times=(0.0,),
+            states=(0.9,),
+            collapsed=False,
+            emergence_triggered=False,
+            collapse_time=None,
+            systemic_tension_peak=0.9,
+            final_state=0.9,
+            prigogine_events=0,
         )
         assert det.collapse_risk(high_peak_traj) > det.collapse_risk(low_peak_traj)
 
@@ -308,10 +358,17 @@ class TestCollapseRisk:
 class TestMonteCarlo:
     @pytest.fixture()
     def det(self):
-        return CollapseDetector(CollapseDetectorConfig(
-            noise_sigma=0.05, tainter_lambda=2.5, prigogine_gamma=0.4,
-            dt=0.05, t_max=2.0, x0=0.1, seed=1,
-        ))
+        return CollapseDetector(
+            CollapseDetectorConfig(
+                noise_sigma=0.05,
+                tainter_lambda=2.5,
+                prigogine_gamma=0.4,
+                dt=0.05,
+                t_max=2.0,
+                x0=0.1,
+                seed=1,
+            )
+        )
 
     def test_zero_runs_raises(self, det):
         with pytest.raises(ValueError, match="n_runs"):
@@ -357,30 +414,51 @@ class TestMonteCarlo:
     @pytest.mark.slow
     @pytest.mark.collapse
     def test_large_ensemble_statistics(self):
-        det = CollapseDetector(CollapseDetectorConfig(
-            noise_sigma=0.05, tainter_lambda=2.5, prigogine_gamma=0.4,
-            dt=0.1, t_max=3.0, x0=0.15, seed=99,
-        ))
+        det = CollapseDetector(
+            CollapseDetectorConfig(
+                noise_sigma=0.05,
+                tainter_lambda=2.5,
+                prigogine_gamma=0.4,
+                dt=0.1,
+                t_max=3.0,
+                x0=0.15,
+                seed=99,
+            )
+        )
         result = det.monte_carlo(20)
         assert 0.0 <= result.collapse_probability <= 1.0
         assert 0.0 <= result.mean_risk <= 1.0
 
     def test_monte_carlo_with_collapse_runs(self):
         """High λ + high x0 guarantees at least some collapses → covers line 378."""
-        det = CollapseDetector(CollapseDetectorConfig(
-            tainter_lambda=30.0, prigogine_gamma=0.0, noise_sigma=0.0,
-            x0=0.9, dt=0.01, t_max=5.0, seed=7,
-        ))
+        det = CollapseDetector(
+            CollapseDetectorConfig(
+                tainter_lambda=30.0,
+                prigogine_gamma=0.0,
+                noise_sigma=0.0,
+                x0=0.9,
+                dt=0.01,
+                t_max=5.0,
+                seed=7,
+            )
+        )
         result = det.monte_carlo(3)
         # With these extreme params every run collapses
         assert result.collapse_probability > 0.0
 
     def test_monte_carlo_with_emergence_runs(self):
         """x0 above singularity + strong damping → X dips below singularity → covers line 380."""
-        det = CollapseDetector(CollapseDetectorConfig(
-            tainter_lambda=0.5, prigogine_gamma=5.0, noise_sigma=0.0,
-            x0=0.9, dt=0.01, t_max=10.0, seed=3,
-        ))
+        det = CollapseDetector(
+            CollapseDetectorConfig(
+                tainter_lambda=0.5,
+                prigogine_gamma=5.0,
+                noise_sigma=0.0,
+                x0=0.9,
+                dt=0.01,
+                t_max=10.0,
+                seed=3,
+            )
+        )
         result = det.monte_carlo(3)
         # Strong Prigogine damping pulls X back below singularity
         assert result.emergence_probability >= 0.0  # may be 0 depending on params
@@ -388,20 +466,34 @@ class TestMonteCarlo:
 
     def test_monte_carlo_with_x0_values(self):
         """Passing explicit x0_values list exercises the x0_values branch."""
-        det = CollapseDetector(CollapseDetectorConfig(
-            tainter_lambda=1.0, prigogine_gamma=0.5, noise_sigma=0.0,
-            x0=0.3, dt=0.1, t_max=2.0, seed=11,
-        ))
+        det = CollapseDetector(
+            CollapseDetectorConfig(
+                tainter_lambda=1.0,
+                prigogine_gamma=0.5,
+                noise_sigma=0.0,
+                x0=0.3,
+                dt=0.1,
+                t_max=2.0,
+                seed=11,
+            )
+        )
         result = det.monte_carlo(3, x0_values=[0.2, 0.5, 0.8])
         assert result.n_runs == 3
         assert len(result.peak_tensions) == 3
 
     def test_monte_carlo_none_seed_config(self):
         """seed=None config still produces valid results."""
-        det = CollapseDetector(CollapseDetectorConfig(
-            tainter_lambda=1.0, prigogine_gamma=0.3, noise_sigma=0.05,
-            x0=0.3, dt=0.1, t_max=1.0, seed=None,
-        ))
+        det = CollapseDetector(
+            CollapseDetectorConfig(
+                tainter_lambda=1.0,
+                prigogine_gamma=0.3,
+                noise_sigma=0.05,
+                x0=0.3,
+                dt=0.1,
+                t_max=1.0,
+                seed=None,
+            )
+        )
         result = det.monte_carlo(3)
         assert 0.0 <= result.collapse_probability <= 1.0
 

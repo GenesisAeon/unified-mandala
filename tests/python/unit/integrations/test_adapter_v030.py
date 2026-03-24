@@ -96,46 +96,55 @@ class TestNewAdaptersCREPIntegration:
 
     def test_nukleonscanner_contributes_to_crep(self, registry):
         from unified_mandala.core.crep import CREPEvaluator, ResonanceChannel
+
         adapter = registry.get("nukleonscanner")
         result = adapter.gather(entropy=0.5, phases=7)
         ev = CREPEvaluator()
-        ev.add_channel(ResonanceChannel(
-            "nukleon",
-            phase=result["phase"],
-            weight=result["weight"],
-            decay=result["decay"],
-            timestamp=0.0,
-        ))
+        ev.add_channel(
+            ResonanceChannel(
+                "nukleon",
+                phase=result["phase"],
+                weight=result["weight"],
+                decay=result["decay"],
+                timestamp=0.0,
+            )
+        )
         crep = ev.evaluate(now=0.0)
         assert 0.0 <= crep.score <= 1.0
 
     def test_greekmath_contributes_to_crep(self, registry):
         from unified_mandala.core.crep import CREPEvaluator, ResonanceChannel
+
         adapter = registry.get("greekmath")
         result = adapter.gather(entropy=0.618, phases=7)
         ev = CREPEvaluator()
-        ev.add_channel(ResonanceChannel(
-            "greekmath",
-            phase=result["phase"],
-            weight=result["weight"],
-            decay=result["decay"],
-            timestamp=0.0,
-        ))
+        ev.add_channel(
+            ResonanceChannel(
+                "greekmath",
+                phase=result["phase"],
+                weight=result["weight"],
+                decay=result["decay"],
+                timestamp=0.0,
+            )
+        )
         crep = ev.evaluate(now=0.0)
         assert 0.0 <= crep.score <= 1.0
 
     def test_planetary_contributes_to_crep(self, registry):
         from unified_mandala.core.crep import CREPEvaluator, ResonanceChannel
+
         adapter = registry.get("planetary-coupling")
         result = adapter.gather(entropy=0.5, phases=7)
         ev = CREPEvaluator()
-        ev.add_channel(ResonanceChannel(
-            "planetary",
-            phase=result["phase"],
-            weight=result["weight"],
-            decay=result["decay"],
-            timestamp=0.0,
-        ))
+        ev.add_channel(
+            ResonanceChannel(
+                "planetary",
+                phase=result["phase"],
+                weight=result["weight"],
+                decay=result["decay"],
+                timestamp=0.0,
+            )
+        )
         crep = ev.evaluate(now=0.0)
         assert 0.0 <= crep.score <= 1.0
 
@@ -143,6 +152,7 @@ class TestNewAdaptersCREPIntegration:
         from unified_mandala.core.mandala import MandalaOrchestrator
         from unified_mandala.governance.policy import PolicyGate
         from unified_mandala.sigillin.bridge import SigillinBridge
+
         orch = MandalaOrchestrator(
             registry=registry,
             policy_gate=PolicyGate(strict_ethics=False),

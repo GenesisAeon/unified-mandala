@@ -35,30 +35,36 @@ class TestVersionV030:
 
     def test_init_package_importable(self):
         import unified_mandala
+
         assert unified_mandala.__version__ == "0.3.0"
 
     def test_new_modules_importable(self):
         from unified_mandala import planetary, sigillins, thermodynamics
+
         assert thermodynamics is not None
         assert sigillins is not None
         assert planetary is not None
 
     def test_collapse_detector_importable(self):
         from unified_mandala.collapse_detector import CollapseDetector
+
         assert CollapseDetector is not None
 
     def test_metaquest_importable(self):
         from unified_mandala.sigillins.metaquest import MetaQuestEngine
+
         assert MetaQuestEngine is not None
 
     def test_planetary_coupling_importable(self):
         from unified_mandala.planetary.coupling import PlanetaryCouplingChain
+
         assert PlanetaryCouplingChain is not None
 
     def test_thermodynamics_sub_modules(self):
         from unified_mandala.thermodynamics.esposito import EspositoDecomposition
         from unified_mandala.thermodynamics.hatano_sasa import HatanoSasaProduction
         from unified_mandala.thermodynamics.landauer import landauer_energy
+
         assert landauer_energy is not None
         assert HatanoSasaProduction is not None
         assert EspositoDecomposition is not None

@@ -323,7 +323,8 @@ def thermodynamics(
         float, typer.Option("--marginal-return", help="Marginal return on complexity.")
     ] = 0.5,
     maintenance_cost: Annotated[
-        float, typer.Option("--maintenance-cost", help="Maintenance cost rate per complexity unit.")
+        float,
+        typer.Option("--maintenance-cost", help="Maintenance cost rate per complexity unit."),
     ] = 1.0,
 ) -> None:
     """Evaluate thermodynamic primitives (Landauer, Hatano-Sasa, Esposito-Tainter).
@@ -345,7 +346,9 @@ def thermodynamics(
 
     n_bits = max(0.0, 1.0 - entropy)
     lb = LandauerBound.compute(temperature_k, n_bits=n_bits)
-    tainter = EspositoDecomposition.tainter_decomposition(complexity, marginal_return, maintenance_cost)
+    tainter = EspositoDecomposition.tainter_decomposition(
+        complexity, marginal_return, maintenance_cost
+    )
 
     table = Table(title=f"Thermodynamic State at entropy={entropy:.4f}", show_lines=True)
     table.add_column("Quantity", style="bold")
@@ -391,12 +394,8 @@ def collapse(
     prigogine_gamma: Annotated[
         float, typer.Option("--gamma", help="Prigogine dissipation rate γ.")
     ] = 0.4,
-    noise_sigma: Annotated[
-        float, typer.Option("--sigma", help="SDE noise amplitude σ₀.")
-    ] = 0.05,
-    t_max: Annotated[
-        float, typer.Option("--t-max", help="Simulation horizon [s].")
-    ] = 10.0,
+    noise_sigma: Annotated[float, typer.Option("--sigma", help="SDE noise amplitude σ₀.")] = 0.05,
+    t_max: Annotated[float, typer.Option("--t-max", help="Simulation horizon [s].")] = 10.0,
     n_runs: Annotated[
         int, typer.Option("--runs", help="Monte Carlo ensemble size (1 = single run).")
     ] = 1,
@@ -415,13 +414,15 @@ def collapse(
         CollapseDetectorConfig,
     )
 
-    det = CollapseDetector(CollapseDetectorConfig(
-        tainter_lambda=tainter_lambda,
-        prigogine_gamma=prigogine_gamma,
-        noise_sigma=noise_sigma,
-        t_max=t_max,
-        seed=42,
-    ))
+    det = CollapseDetector(
+        CollapseDetectorConfig(
+            tainter_lambda=tainter_lambda,
+            prigogine_gamma=prigogine_gamma,
+            noise_sigma=noise_sigma,
+            t_max=t_max,
+            seed=42,
+        )
+    )
 
     x0 = det.systemic_tension_from_crep(crep_score=crep_score, entropy=entropy)
 
@@ -552,7 +553,12 @@ def planetary(
         baseline_co2_ppm=baseline_co2,
     )
 
-    stress_colors = {"stable": "green", "elevated": "yellow", "critical": "red", "extreme": "bold red"}
+    stress_colors = {
+        "stable": "green",
+        "elevated": "yellow",
+        "critical": "red",
+        "extreme": "bold red",
+    }
     color = stress_colors.get(chain.stress_level, "white")
 
     table = Table(title="Planetary Coupling Chain", show_lines=True)

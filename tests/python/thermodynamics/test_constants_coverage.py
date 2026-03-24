@@ -62,6 +62,7 @@ def test_tainter_zero_marginal_return_max_reorg(complexity):
     )
     assert result.sigma_reorg > 0
 
+
 @pytest.mark.parametrize("i", range(5))
 def test_entropydecomposition_immutable_tuple(i):
     ed = EntropyDecomposition(sigma_maint=float(i), sigma_reorg=float(i + 1))

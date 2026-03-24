@@ -21,10 +21,17 @@ X0_VALUES = [0.01, 0.1, 0.3, 0.5, FRACTAL_SINGULARITY, 0.8]
 @pytest.mark.parametrize("lam", LAMBDA_VALUES)
 @pytest.mark.collapse
 def test_simulate_finite_states_all_lambda(lam):
-    det = CollapseDetector(CollapseDetectorConfig(
-        tainter_lambda=lam, prigogine_gamma=0.3, noise_sigma=0.0,
-        dt=0.05, t_max=2.0, x0=0.1, seed=0,
-    ))
+    det = CollapseDetector(
+        CollapseDetectorConfig(
+            tainter_lambda=lam,
+            prigogine_gamma=0.3,
+            noise_sigma=0.0,
+            dt=0.05,
+            t_max=2.0,
+            x0=0.1,
+            seed=0,
+        )
+    )
     traj = det.simulate()
     assert all(math.isfinite(x) for x in traj.states)
 
@@ -32,10 +39,17 @@ def test_simulate_finite_states_all_lambda(lam):
 @pytest.mark.parametrize("gamma", GAMMA_VALUES)
 @pytest.mark.collapse
 def test_simulate_finite_states_all_gamma(gamma):
-    det = CollapseDetector(CollapseDetectorConfig(
-        tainter_lambda=2.0, prigogine_gamma=gamma, noise_sigma=0.0,
-        dt=0.05, t_max=2.0, x0=0.1, seed=0,
-    ))
+    det = CollapseDetector(
+        CollapseDetectorConfig(
+            tainter_lambda=2.0,
+            prigogine_gamma=gamma,
+            noise_sigma=0.0,
+            dt=0.05,
+            t_max=2.0,
+            x0=0.1,
+            seed=0,
+        )
+    )
     traj = det.simulate()
     assert all(math.isfinite(x) for x in traj.states)
 
@@ -43,10 +57,17 @@ def test_simulate_finite_states_all_gamma(gamma):
 @pytest.mark.parametrize("sigma", SIGMA_VALUES)
 @pytest.mark.collapse
 def test_simulate_states_in_unit_interval_all_sigma(sigma):
-    det = CollapseDetector(CollapseDetectorConfig(
-        tainter_lambda=2.0, prigogine_gamma=0.3, noise_sigma=sigma,
-        dt=0.05, t_max=2.0, x0=0.2, seed=7,
-    ))
+    det = CollapseDetector(
+        CollapseDetectorConfig(
+            tainter_lambda=2.0,
+            prigogine_gamma=0.3,
+            noise_sigma=sigma,
+            dt=0.05,
+            t_max=2.0,
+            x0=0.2,
+            seed=7,
+        )
+    )
     traj = det.simulate()
     assert all(0.0 <= x <= 1.0 for x in traj.states)
 
@@ -54,10 +75,17 @@ def test_simulate_states_in_unit_interval_all_sigma(sigma):
 @pytest.mark.parametrize("x0", X0_VALUES)
 @pytest.mark.collapse
 def test_simulate_all_x0_in_range(x0):
-    det = CollapseDetector(CollapseDetectorConfig(
-        tainter_lambda=2.0, prigogine_gamma=0.3, noise_sigma=0.0,
-        dt=0.05, t_max=2.0, x0=x0, seed=0,
-    ))
+    det = CollapseDetector(
+        CollapseDetectorConfig(
+            tainter_lambda=2.0,
+            prigogine_gamma=0.3,
+            noise_sigma=0.0,
+            dt=0.05,
+            t_max=2.0,
+            x0=x0,
+            seed=0,
+        )
+    )
     traj = det.simulate()
     assert all(0.0 <= x <= 1.0 for x in traj.states)
 
@@ -89,17 +117,25 @@ def test_diffusion_max_at_half_all_sigma(sigma):
 @pytest.mark.parametrize("x0", X0_VALUES)
 @pytest.mark.collapse
 def test_collapse_risk_in_range_all_x0(x0):
-    det = CollapseDetector(CollapseDetectorConfig(
-        noise_sigma=0.0, dt=0.1, t_max=2.0, x0=x0, seed=0
-    ))
+    det = CollapseDetector(
+        CollapseDetectorConfig(noise_sigma=0.0, dt=0.1, t_max=2.0, x0=x0, seed=0)
+    )
     traj = det.simulate()
     risk = det.collapse_risk(traj)
     assert 0.0 <= risk <= 1.0
 
 
-@pytest.mark.parametrize("crep,entropy", [
-    (0.0, 1.0), (0.3, 0.7), (0.5, 0.5), (0.72, 0.28), (0.9, 0.1), (1.0, 0.0),
-])
+@pytest.mark.parametrize(
+    "crep,entropy",
+    [
+        (0.0, 1.0),
+        (0.3, 0.7),
+        (0.5, 0.5),
+        (0.72, 0.28),
+        (0.9, 0.1),
+        (1.0, 0.0),
+    ],
+)
 @pytest.mark.collapse
 def test_systemic_tension_from_crep_range(crep, entropy):
     det = CollapseDetector()
@@ -110,9 +146,15 @@ def test_systemic_tension_from_crep_range(crep, entropy):
 @pytest.mark.parametrize("n_runs", [3, 5, 10])
 @pytest.mark.collapse
 def test_monte_carlo_collapse_prob_valid(n_runs):
-    det = CollapseDetector(CollapseDetectorConfig(
-        noise_sigma=0.05, dt=0.1, t_max=2.0, x0=0.2, seed=1,
-    ))
+    det = CollapseDetector(
+        CollapseDetectorConfig(
+            noise_sigma=0.05,
+            dt=0.1,
+            t_max=2.0,
+            x0=0.2,
+            seed=1,
+        )
+    )
     result = det.monte_carlo(n_runs)
     assert 0.0 <= result.collapse_probability <= 1.0
     assert result.n_runs == n_runs

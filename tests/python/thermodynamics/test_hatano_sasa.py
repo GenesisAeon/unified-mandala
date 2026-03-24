@@ -159,17 +159,13 @@ class TestHatanoSasaProduction:
         assert hsp.sigma_ex == pytest.approx(0.0)
 
     def test_from_segments_matches_direct(self):
-        segs = [
-            TrajectorySegment(x=0.5, lam=1.0, lam_dot=1.0, d_ln_pss_dlam=-1.0, dt=0.01)
-        ]
+        segs = [TrajectorySegment(x=0.5, lam=1.0, lam_dot=1.0, d_ln_pss_dlam=-1.0, dt=0.01)]
         direct = hatano_sasa_excess(segs)
         hsp = HatanoSasaProduction.from_segments(segs)
         assert hsp.sigma_ex == pytest.approx(direct, rel=1e-9)
 
     def test_from_segments_with_hk(self):
-        segs = [
-            TrajectorySegment(x=0.5, lam=1.0, lam_dot=1.0, d_ln_pss_dlam=-1.0, dt=0.01)
-        ]
+        segs = [TrajectorySegment(x=0.5, lam=1.0, lam_dot=1.0, d_ln_pss_dlam=-1.0, dt=0.01)]
         hsp = HatanoSasaProduction.from_segments(segs, sigma_hk=0.5)
         assert hsp.sigma_hk == 0.5
 
@@ -184,7 +180,13 @@ class TestHatanoSasaProduction:
         assert math.isfinite(hsp.sigma_ex)
 
     def test_from_gaussian_reproducible(self):
-        kwargs: dict = {"n_steps": 200, "drift_fn": lambda x: -0.5 * x, "diffusion": 0.2, "dt": 0.01, "seed": 7}
+        kwargs: dict = {
+            "n_steps": 200,
+            "drift_fn": lambda x: -0.5 * x,
+            "diffusion": 0.2,
+            "dt": 0.01,
+            "seed": 7,
+        }
         hsp1 = HatanoSasaProduction.from_gaussian_process(**kwargs)
         hsp2 = HatanoSasaProduction.from_gaussian_process(**kwargs)
         assert hsp1.sigma_ex == hsp2.sigma_ex

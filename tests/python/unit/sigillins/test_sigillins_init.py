@@ -47,8 +47,7 @@ class TestSigillinsPackageExports:
 
     def test_question_id_from_package(self):
         cq = CounterQuestion(
-            text="Test?", tier=QuestionTier.GROUNDING,
-            phi_value=0.5, entropy=0.5, sigil="⊙"
+            text="Test?", tier=QuestionTier.GROUNDING, phi_value=0.5, entropy=0.5, sigil="⊙"
         )
         assert len(cq.question_id) == 8
 
@@ -99,7 +98,9 @@ class TestSigillinsIntegrationWithCREP:
 
         ev = CREPEvaluator()
         for name, phase in [("a", 0.6), ("b", 0.7)]:
-            ev.add_channel(ResonanceChannel(name, phase=phase, weight=1.0, decay=0.0, timestamp=0.0))
+            ev.add_channel(
+                ResonanceChannel(name, phase=phase, weight=1.0, decay=0.0, timestamp=0.0)
+            )
         crep_result = ev.evaluate(now=0.0)
 
         bridge = SigillinBridge()
@@ -110,7 +111,9 @@ class TestSigillinsIntegrationWithCREP:
         assert isinstance(cq, CounterQuestion)
 
         det = CollapseDetector()
-        x0 = det.systemic_tension_from_crep(crep_score=crep_result.score, entropy=1.0 - crep_result.score)
+        x0 = det.systemic_tension_from_crep(
+            crep_score=crep_result.score, entropy=1.0 - crep_result.score
+        )
         traj = det.simulate(x0=x0)
         assert 0.0 <= det.collapse_risk(traj) <= 1.0
 
@@ -118,14 +121,11 @@ class TestSigillinsIntegrationWithCREP:
     def test_metaquest_tier_increases_with_crep(self):
         """Higher CREP (more coherence) → higher MetaQuest tier (more synthesis)."""
         from unified_mandala.sigillin.bridge import SigillinBridge
+
         bridge = SigillinBridge()
 
-        tier_low = MetaQuestEngine.select_tier(
-            phi=bridge.phi(0.2), entropy=0.8
-        )
-        tier_high = MetaQuestEngine.select_tier(
-            phi=bridge.phi(0.95), entropy=0.05
-        )
+        tier_low = MetaQuestEngine.select_tier(phi=bridge.phi(0.2), entropy=0.8)
+        tier_high = MetaQuestEngine.select_tier(phi=bridge.phi(0.95), entropy=0.05)
         assert tier_high >= tier_low
 
     @pytest.mark.metaquest
@@ -136,8 +136,11 @@ class TestSigillinsIntegrationWithCREP:
             phi = 0.5 + i * 0.08
             entropy = 1.0 - phi
             session = engine.open_session(
-                f"AgentA_{i}", f"AgentB_{i}",
-                f"Query {i}", phi=phi, entropy=entropy,
+                f"AgentA_{i}",
+                f"AgentB_{i}",
+                f"Query {i}",
+                phi=phi,
+                entropy=entropy,
             )
             if i % 2 == 0:
                 session.close(f"Response {i}", convergence_score=0.7 + i * 0.05)

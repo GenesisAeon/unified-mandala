@@ -80,9 +80,15 @@ def test_landauer_efficiency_below_one_for_excess(factor):
     assert eta < 1.0 + 1e-12
 
 
-@pytest.mark.parametrize("T1,T2", [
-    (1.0, 2.0), (77.0, 300.0), (300.0, 600.0), (1000.0, 5000.0),
-])
+@pytest.mark.parametrize(
+    "T1,T2",
+    [
+        (1.0, 2.0),
+        (77.0, 300.0),
+        (300.0, 600.0),
+        (1000.0, 5000.0),
+    ],
+)
 @pytest.mark.thermodynamics
 def test_landauer_energy_monotone_temperature(T1, T2):
     """E(T) is strictly monotone increasing in T."""
@@ -100,6 +106,7 @@ def test_landauer_energy_monotone_temperature(T1, T2):
 def test_hatano_sasa_excess_finite(n_segs, lam_dot):
     """Hatano-Sasa excess is always finite."""
     from unified_mandala.thermodynamics.hatano_sasa import hatano_sasa_excess
+
     segs = [
         TrajectorySegment(x=0.5, lam=1.0, lam_dot=lam_dot, d_ln_pss_dlam=-1.0, dt=0.01)
         for _ in range(n_segs)
@@ -108,9 +115,16 @@ def test_hatano_sasa_excess_finite(n_segs, lam_dot):
     assert math.isfinite(result)
 
 
-@pytest.mark.parametrize("sigma_ex,sigma_hk", [
-    (0.0, 0.0), (0.5, 0.5), (1.0, 0.0), (0.0, 1.0), (2.0, 3.0),
-])
+@pytest.mark.parametrize(
+    "sigma_ex,sigma_hk",
+    [
+        (0.0, 0.0),
+        (0.5, 0.5),
+        (1.0, 0.0),
+        (0.0, 1.0),
+        (2.0, 3.0),
+    ],
+)
 @pytest.mark.thermodynamics
 def test_hatano_sasa_sigma_tot(sigma_ex, sigma_hk):
     """σ_tot = σ_hk + σ_ex always holds."""
@@ -126,11 +140,14 @@ def test_hatano_sasa_second_law_non_negative_sigma_tot(sigma_ex):
     assert hsp.sigma_tot >= 0
 
 
-@pytest.mark.parametrize("drift,n", [
-    (lambda x: -x, 100),
-    (lambda x: -2 * x, 200),
-    (lambda x: 0.0, 50),
-])
+@pytest.mark.parametrize(
+    "drift,n",
+    [
+        (lambda x: -x, 100),
+        (lambda x: -2 * x, 200),
+        (lambda x: 0.0, 50),
+    ],
+)
 @pytest.mark.thermodynamics
 def test_hatano_sasa_from_gaussian_finite(drift, n):
     """from_gaussian_process always produces finite σ_ex."""
@@ -145,9 +162,17 @@ def test_hatano_sasa_from_gaussian_finite(drift, n):
 # ---------------------------------------------------------------------------
 
 
-@pytest.mark.parametrize("sigma_maint,sigma_reorg", [
-    (0.0, 0.0), (1.0, 0.0), (0.0, 1.0), (0.5, 0.5), (2.0, 1.0), (0.3, 3.0),
-])
+@pytest.mark.parametrize(
+    "sigma_maint,sigma_reorg",
+    [
+        (0.0, 0.0),
+        (1.0, 0.0),
+        (0.0, 1.0),
+        (0.5, 0.5),
+        (2.0, 1.0),
+        (0.3, 3.0),
+    ],
+)
 @pytest.mark.thermodynamics
 def test_esposito_sigma_tot(sigma_maint, sigma_reorg):
     """σ_tot = σ_maint + σ_reorg always holds."""
@@ -155,9 +180,15 @@ def test_esposito_sigma_tot(sigma_maint, sigma_reorg):
     assert ed.sigma_tot == pytest.approx(sigma_maint + sigma_reorg, rel=1e-9)
 
 
-@pytest.mark.parametrize("sigma_maint,sigma_reorg", [
-    (0.0, 0.0), (1.0, 0.0), (0.0, 1.0), (0.5, 0.5),
-])
+@pytest.mark.parametrize(
+    "sigma_maint,sigma_reorg",
+    [
+        (0.0, 0.0),
+        (1.0, 0.0),
+        (0.0, 1.0),
+        (0.5, 0.5),
+    ],
+)
 @pytest.mark.thermodynamics
 def test_esposito_reorg_fraction_range(sigma_maint, sigma_reorg):
     """reorg_fraction ∈ [0, 1] always."""
@@ -165,10 +196,17 @@ def test_esposito_reorg_fraction_range(sigma_maint, sigma_reorg):
     assert 0.0 <= ed.reorg_fraction <= 1.0 + 1e-12
 
 
-@pytest.mark.parametrize("complexity,marginal,maintenance", [
-    (0.0, 1.0, 0.5), (5.0, 2.0, 1.0), (5.0, 0.1, 2.0), (10.0, 0.0, 1.0),
-    (1.0, 1.0, 1.0), (100.0, 50.0, 10.0),
-])
+@pytest.mark.parametrize(
+    "complexity,marginal,maintenance",
+    [
+        (0.0, 1.0, 0.5),
+        (5.0, 2.0, 1.0),
+        (5.0, 0.1, 2.0),
+        (10.0, 0.0, 1.0),
+        (1.0, 1.0, 1.0),
+        (100.0, 50.0, 10.0),
+    ],
+)
 @pytest.mark.thermodynamics
 def test_tainter_non_negative_components(complexity, marginal, maintenance):
     """Tainter decomposition always produces non-negative components."""
@@ -177,12 +215,15 @@ def test_tainter_non_negative_components(complexity, marginal, maintenance):
     assert result.sigma_reorg >= -1e-12
 
 
-@pytest.mark.parametrize("affinities,currents", [
-    ([1.0], [1.0]),
-    ([1.0, -1.0], [1.0, 1.0]),
-    ([0.0, 0.0], [1.0, 1.0]),
-    ([2.0, 3.0, -1.0], [0.5, 0.5, 0.5]),
-])
+@pytest.mark.parametrize(
+    "affinities,currents",
+    [
+        ([1.0], [1.0]),
+        ([1.0, -1.0], [1.0, 1.0]),
+        ([0.0, 0.0], [1.0, 1.0]),
+        ([2.0, 3.0, -1.0], [0.5, 0.5, 0.5]),
+    ],
+)
 @pytest.mark.thermodynamics
 def test_prigogine_rates_non_negative(affinities, currents):
     """Prigogine decomposition components are always non-negative."""
@@ -191,13 +232,16 @@ def test_prigogine_rates_non_negative(affinities, currents):
     assert result.sigma_reorg >= 0
 
 
-@pytest.mark.parametrize("p,q", [
-    ([1.0], [1.0]),
-    ([0.5, 0.5], [0.5, 0.5]),
-    ([0.7, 0.3], [0.3, 0.7]),
-    ([0.9, 0.1], [0.5, 0.5]),
-    ([0.25, 0.25, 0.25, 0.25], [0.1, 0.2, 0.3, 0.4]),
-])
+@pytest.mark.parametrize(
+    "p,q",
+    [
+        ([1.0], [1.0]),
+        ([0.5, 0.5], [0.5, 0.5]),
+        ([0.7, 0.3], [0.3, 0.7]),
+        ([0.9, 0.1], [0.5, 0.5]),
+        ([0.25, 0.25, 0.25, 0.25], [0.1, 0.2, 0.3, 0.4]),
+    ],
+)
 @pytest.mark.thermodynamics
 def test_kl_divergence_non_negative(p, q):
     """D_KL(p||q) ≥ 0 (Gibbs inequality)."""
@@ -205,9 +249,14 @@ def test_kl_divergence_non_negative(p, q):
     assert kl >= -1e-12
 
 
-@pytest.mark.parametrize("p", [
-    [1.0], [0.5, 0.5], [0.25, 0.25, 0.25, 0.25],
-])
+@pytest.mark.parametrize(
+    "p",
+    [
+        [1.0],
+        [0.5, 0.5],
+        [0.25, 0.25, 0.25, 0.25],
+    ],
+)
 @pytest.mark.thermodynamics
 def test_kl_divergence_self_zero(p):
     """D_KL(p||p) = 0."""

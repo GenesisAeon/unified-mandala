@@ -115,7 +115,9 @@ def landauer_temperature_from_energy(energy_J: float, n_bits: float = 1.0) -> fl
     return energy_J / (n_bits * BOLTZMANN_K * _LN2)
 
 
-def landauer_efficiency(actual_energy_J: float, temperature_K: float, n_bits: float = 1.0) -> float:
+def landauer_efficiency(
+    actual_energy_J: float, temperature_K: float, n_bits: float = 1.0
+) -> float:
     """Landauer efficiency η = E_min / E_actual ∈ (0, 1].
 
     An efficiency of 1.0 means the process is thermodynamically ideal;
@@ -170,7 +172,11 @@ class LandauerBound:
         """
         e = landauer_energy(temperature_K, n_bits)
         s = landauer_entropy(n_bits)
-        eta = landauer_efficiency(actual_energy_J, temperature_K, n_bits) if actual_energy_J else None
+        eta = (
+            landauer_efficiency(actual_energy_J, temperature_K, n_bits)
+            if actual_energy_J
+            else None
+        )
         return cls(
             temperature_K=temperature_K,
             n_bits=n_bits,
