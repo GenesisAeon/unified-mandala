@@ -14,7 +14,6 @@ from typing import Any
 
 from unified_mandala.integrations.registry import BaseAdapter
 from unified_mandala.planetary.coupling import (
-    CO2_PREINDUSTRIAL_PPM,
     PlanetaryCouplingChain,
 )
 

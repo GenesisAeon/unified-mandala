@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-import pytest
-
 from unified_mandala._version import __version__
 
 
@@ -40,7 +38,7 @@ class TestVersionV030:
         assert unified_mandala.__version__ == "0.3.0"
 
     def test_new_modules_importable(self):
-        from unified_mandala import thermodynamics, sigillins, planetary
+        from unified_mandala import planetary, sigillins, thermodynamics
         assert thermodynamics is not None
         assert sigillins is not None
         assert planetary is not None
@@ -58,9 +56,9 @@ class TestVersionV030:
         assert PlanetaryCouplingChain is not None
 
     def test_thermodynamics_sub_modules(self):
-        from unified_mandala.thermodynamics.landauer import landauer_energy
-        from unified_mandala.thermodynamics.hatano_sasa import HatanoSasaProduction
         from unified_mandala.thermodynamics.esposito import EspositoDecomposition
+        from unified_mandala.thermodynamics.hatano_sasa import HatanoSasaProduction
+        from unified_mandala.thermodynamics.landauer import landauer_energy
         assert landauer_energy is not None
         assert HatanoSasaProduction is not None
         assert EspositoDecomposition is not None

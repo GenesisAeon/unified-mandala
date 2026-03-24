@@ -7,12 +7,11 @@ import math
 import pytest
 
 from unified_mandala.integrations.adapters.nukleonscanner_adapter import (
-    NukleonScannerAdapter,
     _LAMBDA_QCD_GEV,
     _T_CONFINEMENT_GEV,
+    NukleonScannerAdapter,
     _alpha_strong,
 )
-
 
 # ---------------------------------------------------------------------------
 # _alpha_strong

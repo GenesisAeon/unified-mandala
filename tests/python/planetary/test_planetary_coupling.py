@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import itertools
 import math
 
 import pytest
@@ -9,8 +10,8 @@ import pytest
 from unified_mandala.planetary.coupling import (
     ALBEDO_ICE,
     ALBEDO_OCEAN,
-    CO2_PREINDUSTRIAL_PPM,
     CLIMATE_SENSITIVITY_K,
+    CO2_PREINDUSTRIAL_PPM,
     ICE_VOLUME_REF_1000KM3,
     MYHRE_ALPHA,
     IceAlbedoFeedback,
@@ -21,7 +22,6 @@ from unified_mandala.planetary.coupling import (
     iea_to_co2_ppm,
 )
 
-
 # ---------------------------------------------------------------------------
 # Physical constants
 # ---------------------------------------------------------------------------
@@ -29,10 +29,10 @@ from unified_mandala.planetary.coupling import (
 
 class TestPhysicalConstants:
     def test_preindustrial_co2(self):
-        assert CO2_PREINDUSTRIAL_PPM == pytest.approx(278.0, rel=1e-6)
+        assert pytest.approx(278.0, rel=1e-6) == CO2_PREINDUSTRIAL_PPM
 
     def test_myhre_alpha(self):
-        assert MYHRE_ALPHA == pytest.approx(5.35, rel=1e-6)
+        assert pytest.approx(5.35, rel=1e-6) == MYHRE_ALPHA
 
     def test_climate_sensitivity_range(self):
         # IPCC AR6: likely range 2.5–4 K per doubling
@@ -90,7 +90,7 @@ class TestCO2Forcing:
     def test_monotonically_increasing(self):
         co2_values = [200.0, 300.0, 400.0, 500.0, 800.0]
         forcings = [co2_forcing_W_per_m2(c) for c in co2_values]
-        assert all(f1 < f2 for f1, f2 in zip(forcings, forcings[1:]))
+        assert all(f1 < f2 for f1, f2 in itertools.pairwise(forcings))
 
     def test_logarithmic_formula(self):
         for c in [300.0, 350.0, 421.0, 550.0, 700.0]:
@@ -260,7 +260,7 @@ class TestIceAlbedoFeedback:
         dT_values = [0.0, 1.0, 2.0, 3.0, 4.0, 5.0]
         albedos = [IceAlbedoFeedback.compute(dT).surface_albedo for dT in dT_values]
         # Albedo should be non-increasing with temperature
-        for a1, a2 in zip(albedos, albedos[1:]):
+        for a1, a2 in itertools.pairwise(albedos):
             assert a1 >= a2 - 1e-10  # allowing floating point tolerance
 
 
@@ -326,5 +326,5 @@ class TestPlanetaryCouplingChain:
         chains = [PlanetaryCouplingChain.evaluate(energy_EJ=e) for e in energy_levels]
         phases = [c.crep_phase for c in chains]
         # Phases should be non-decreasing
-        for p1, p2 in zip(phases, phases[1:]):
+        for p1, p2 in itertools.pairwise(phases):
             assert p1 <= p2 + 1e-10

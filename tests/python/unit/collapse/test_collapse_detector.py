@@ -16,7 +16,6 @@ from unified_mandala.collapse_detector import (
     MonteCarloResult,
 )
 
-
 # ---------------------------------------------------------------------------
 # Constants
 # ---------------------------------------------------------------------------
@@ -24,7 +23,7 @@ from unified_mandala.collapse_detector import (
 
 class TestConstants:
     def test_fractal_singularity_golden_ratio(self):
-        assert FRACTAL_SINGULARITY == pytest.approx(0.618_033_988_749_895, rel=1e-10)
+        assert pytest.approx(0.618_033_988_749_895, rel=1e-10) == FRACTAL_SINGULARITY
 
     def test_collapse_threshold_range(self):
         assert 0.5 < COLLAPSE_THRESHOLD < 1.0
@@ -108,7 +107,7 @@ class TestDriftDiffusion:
         assert det.diffusion(1.5) >= 0
 
     def test_drift_overridable_lambda(self, det):
-        f_default = det.drift(0.3)
+        det.drift(0.3)
         f_zero = det.drift(0.3, lam=0.0)
         # With lam=0, only Prigogine term
         expected = -det.config.prigogine_gamma * 0.3 ** 2
@@ -150,7 +149,7 @@ class TestSimulate:
 
     def test_times_non_decreasing(self, det_noiseless):
         traj = det_noiseless.simulate()
-        assert all(t1 <= t2 for t1, t2 in zip(traj.times, traj.times[1:]))
+        assert all(t1 <= t2 for t1, t2 in zip(traj.times, traj.times[1:], strict=False))
 
     def test_peak_at_least_initial(self, det_noiseless):
         traj = det_noiseless.simulate()

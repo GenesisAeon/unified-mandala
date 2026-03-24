@@ -12,7 +12,6 @@ from unified_mandala.collapse_detector import (
     CollapseDetectorConfig,
 )
 
-
 LAMBDA_VALUES = [0.5, 1.0, 2.0, 2.5, 3.0, 5.0, 10.0]
 GAMMA_VALUES = [0.0, 0.1, 0.3, 0.5, 1.0, 2.0, 5.0]
 SIGMA_VALUES = [0.0, 0.02, 0.05, 0.1, 0.2]

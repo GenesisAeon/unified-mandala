@@ -204,7 +204,7 @@ class RadiativeForcing:
         cls,
         co2_ppm: float,
         c0_ppm: float = CO2_PREINDUSTRIAL_PPM,
-    ) -> "RadiativeForcing":
+    ) -> RadiativeForcing:
         """Factory: compute full forcing record for a given CO₂ level.
 
         Args:
@@ -246,7 +246,7 @@ class IceAlbedoFeedback:
         delta_T_K: float,
         ice_sensitivity_1000km3_per_K: float = -2500.0,
         v_ref: float = ICE_VOLUME_REF_1000KM3,
-    ) -> "IceAlbedoFeedback":
+    ) -> IceAlbedoFeedback:
         """Compute ice-albedo feedback for a given temperature anomaly.
 
         Ice volume decreases linearly with warming:
@@ -308,7 +308,7 @@ class PlanetaryCouplingChain:
         energy_EJ: float,
         baseline_co2_ppm: float = CO2_PREINDUSTRIAL_PPM,
         mandala_weight: float = 1.8,
-    ) -> "PlanetaryCouplingChain":
+    ) -> PlanetaryCouplingChain:
         """Evaluate the full planetary coupling chain.
 
         Args:

@@ -8,7 +8,7 @@ from unified_mandala._version import __version__
 
 class TestVersion:
     def test_version_string(self):
-        assert __version__ == "0.2.0"
+        assert __version__ == "0.3.0"
 
     def test_version_importable(self):
         assert hasattr(unified_mandala, "__version__")
@@ -22,7 +22,7 @@ class TestVersion:
         assert int(__version__.split(".")[0]) == 0
 
     def test_minor_version(self):
-        assert int(__version__.split(".")[1]) == 2
+        assert int(__version__.split(".")[1]) == 3
 
     def test_patch_version(self):
         assert int(__version__.split(".")[2]) == 0

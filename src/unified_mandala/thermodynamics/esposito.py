@@ -42,7 +42,6 @@ Prigogine, I. (1978). Time, structure, and fluctuations.
 from __future__ import annotations
 
 import math
-from dataclasses import dataclass
 from typing import NamedTuple
 
 
@@ -124,7 +123,7 @@ class EspositoDecomposition:
         if len(p) != len(q):
             raise ValueError(f"p and q must have the same length, got {len(p)} vs {len(q)}.")
         kl = 0.0
-        for pi, qi in zip(p, q):
+        for pi, qi in zip(p, q, strict=False):
             if pi < 0 or qi < 0:
                 raise ValueError("All probabilities must be non-negative.")
             if pi == 0.0:
@@ -207,7 +206,7 @@ class EspositoDecomposition:
             raise ValueError("affinities and currents must have equal length.")
         sigma_maint = 0.0
         sigma_reorg = 0.0
-        for a, j in zip(affinities, currents):
+        for a, j in zip(affinities, currents, strict=False):
             contribution = a * j
             if contribution >= 0:
                 sigma_maint += contribution

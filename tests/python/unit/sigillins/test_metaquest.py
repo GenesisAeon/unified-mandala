@@ -8,12 +8,10 @@ import pytest
 
 from unified_mandala.sigillins.metaquest import (
     GOLDEN_RATIO,
-    CollaborationSession,
     CounterQuestion,
     MetaQuestEngine,
     QuestionTier,
 )
-
 
 # ---------------------------------------------------------------------------
 # Constants
@@ -22,7 +20,7 @@ from unified_mandala.sigillins.metaquest import (
 
 class TestConstants:
     def test_golden_ratio_value(self):
-        assert GOLDEN_RATIO == pytest.approx(0.618_033_988_749_895, rel=1e-10)
+        assert pytest.approx(0.618_033_988_749_895, rel=1e-10) == GOLDEN_RATIO
 
     def test_golden_ratio_is_positive(self):
         assert GOLDEN_RATIO > 0
@@ -32,7 +30,7 @@ class TestConstants:
 
     def test_golden_ratio_conjugate(self):
         # φ × (1 + φ) ≈ 1 (property of golden ratio)
-        assert GOLDEN_RATIO * (1.0 + GOLDEN_RATIO) == pytest.approx(1.0, rel=1e-9)
+        assert pytest.approx(1.0, rel=1e-9) == GOLDEN_RATIO * (1.0 + GOLDEN_RATIO)
 
 
 # ---------------------------------------------------------------------------
@@ -205,7 +203,7 @@ class TestMetaQuestEngineGenerate:
         assert len(cq.sigil) > 0
 
     def test_counter_increments(self, engine):
-        cq1 = engine.generate(phi=0.5, entropy=0.5)
+        engine.generate(phi=0.5, entropy=0.5)
         cq2 = engine.generate(phi=0.5, entropy=0.5)
         # Second call may produce same or different text depending on cycle
         assert isinstance(cq2, CounterQuestion)

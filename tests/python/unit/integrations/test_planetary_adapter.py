@@ -7,10 +7,10 @@ import math
 import pytest
 
 from unified_mandala.integrations.adapters.planetary_coupling_adapter import (
-    PlanetaryCouplingAdapter,
     _CO2_CURRENT_PPM,
     _IEA_MAX_EJ,
     _IEA_MIN_EJ,
+    PlanetaryCouplingAdapter,
 )
 
 

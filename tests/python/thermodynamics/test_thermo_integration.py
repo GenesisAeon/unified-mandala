@@ -6,6 +6,7 @@ Esposito) with the CREP evaluation and collapse detection pipeline.
 
 from __future__ import annotations
 
+import itertools
 import math
 
 import pytest
@@ -19,12 +20,10 @@ from unified_mandala.core.crep import CREPEvaluator, ResonanceChannel
 from unified_mandala.thermodynamics.esposito import EspositoDecomposition
 from unified_mandala.thermodynamics.hatano_sasa import HatanoSasaProduction
 from unified_mandala.thermodynamics.landauer import (
-    BOLTZMANN_K,
     LandauerBound,
     landauer_energy,
     landauer_entropy,
 )
-
 
 # ---------------------------------------------------------------------------
 # Landauer × CREP integration
@@ -111,7 +110,7 @@ class TestHatanoSasaCollapseIntegration:
         tensions = [0.1, 0.3, 0.5, 0.7, 0.9]
         risks = [det.systemic_tension_from_crep(crep_score=1-t, entropy=t) for t in tensions]
         # Risks should increase with tension proxy
-        for r1, r2 in zip(risks, risks[1:]):
+        for r1, r2 in itertools.pairwise(risks):
             assert r2 >= r1 - 1e-10
 
     def test_second_law_holds_for_collapse_trajectory(self):
@@ -175,7 +174,7 @@ class TestEspositoCollapseIntegration:
             )
             fractions.append(result.reorg_fraction)
         # Reorg fraction should be non-decreasing
-        for f1, f2 in zip(fractions, fractions[1:]):
+        for f1, f2 in itertools.pairwise(fractions):
             assert f2 >= f1 - 1e-10
 
     def test_prigogine_dissipative_structure_at_bifurcation(self):

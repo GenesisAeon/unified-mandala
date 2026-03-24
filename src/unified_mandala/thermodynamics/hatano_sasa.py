@@ -135,7 +135,7 @@ class HatanoSasaProduction:
         cls,
         segments: Sequence[TrajectorySegment],
         sigma_hk: float = 0.0,
-    ) -> "HatanoSasaProduction":
+    ) -> HatanoSasaProduction:
         """Compute Hatano-Sasa production from trajectory segments.
 
         Args:
@@ -158,7 +158,7 @@ class HatanoSasaProduction:
         sigma_hk: float = 0.0,
         *,
         seed: int = 42,
-    ) -> "HatanoSasaProduction":
+    ) -> HatanoSasaProduction:
         """Simulate a simple Langevin process and compute Σ_ex numerically.
 
         Uses the Euler-Maruyama scheme with a constant-diffusion SDE:

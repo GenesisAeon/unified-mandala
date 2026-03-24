@@ -13,13 +13,11 @@ import pytest
 from unified_mandala.thermodynamics.esposito import EntropyDecomposition, EspositoDecomposition
 from unified_mandala.thermodynamics.hatano_sasa import HatanoSasaProduction, TrajectorySegment
 from unified_mandala.thermodynamics.landauer import (
-    BOLTZMANN_K,
+    landauer_efficiency,
     landauer_energy,
     landauer_entropy,
-    landauer_efficiency,
     landauer_temperature_from_energy,
 )
-
 
 # ---------------------------------------------------------------------------
 # Exhaustive Landauer parametric tests

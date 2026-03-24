@@ -157,7 +157,7 @@ class LandauerBound:
         temperature_K: float,
         n_bits: float = 1.0,
         actual_energy_J: float | None = None,
-    ) -> "LandauerBound":
+    ) -> LandauerBound:
         """Factory: compute Landauer bound for given conditions.
 
         Args:

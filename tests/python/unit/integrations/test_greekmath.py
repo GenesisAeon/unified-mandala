@@ -7,16 +7,15 @@ import math
 import pytest
 
 from unified_mandala.integrations.adapters.greekmath_adapter import (
-    GreekMathAdapter,
     _PHI,
     _PLATONIC_SOLIDS,
     _PYTHAGOREAN_RATIOS,
+    GreekMathAdapter,
     _archimedean_phase,
     _golden_section_resonance,
     _platonic_resonance,
     _pythagorean_resonance,
 )
-
 
 # ---------------------------------------------------------------------------
 # Constants
@@ -25,7 +24,7 @@ from unified_mandala.integrations.adapters.greekmath_adapter import (
 
 class TestConstants:
     def test_phi_golden_ratio(self):
-        assert _PHI == pytest.approx(0.618_033_988_749_895, rel=1e-10)
+        assert pytest.approx(0.618_033_988_749_895, rel=1e-10) == _PHI
 
     def test_pythagorean_ratios_valid(self):
         for r in _PYTHAGOREAN_RATIOS:

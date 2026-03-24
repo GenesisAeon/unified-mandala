@@ -73,7 +73,7 @@ class TestSigillinsIntegrationWithCREP:
         bridge = SigillinBridge()
         phi = bridge.phi(result.score)
 
-        engine = MetaQuestEngine()
+        MetaQuestEngine()
         tier = MetaQuestEngine.select_tier(phi=phi, entropy=1.0 - result.score)
         assert tier in list(QuestionTier)
 
@@ -93,9 +93,9 @@ class TestSigillinsIntegrationWithCREP:
 
     def test_full_crep_metaquest_collapse_chain(self):
         """Full integration: CREP → MetaQuest → Collapse check."""
+        from unified_mandala.collapse_detector import CollapseDetector
         from unified_mandala.core.crep import CREPEvaluator, ResonanceChannel
         from unified_mandala.sigillin.bridge import SigillinBridge
-        from unified_mandala.collapse_detector import CollapseDetector
 
         ev = CREPEvaluator()
         for name, phase in [("a", 0.6), ("b", 0.7)]:

@@ -13,7 +13,6 @@ from unified_mandala.thermodynamics.hatano_sasa import (
     integral_fluctuation_check,
 )
 
-
 # ---------------------------------------------------------------------------
 # TrajectorySegment
 # ---------------------------------------------------------------------------
@@ -185,7 +184,7 @@ class TestHatanoSasaProduction:
         assert math.isfinite(hsp.sigma_ex)
 
     def test_from_gaussian_reproducible(self):
-        kwargs: dict = dict(n_steps=200, drift_fn=lambda x: -0.5 * x, diffusion=0.2, dt=0.01, seed=7)
+        kwargs: dict = {"n_steps": 200, "drift_fn": lambda x: -0.5 * x, "diffusion": 0.2, "dt": 0.01, "seed": 7}
         hsp1 = HatanoSasaProduction.from_gaussian_process(**kwargs)
         hsp2 = HatanoSasaProduction.from_gaussian_process(**kwargs)
         assert hsp1.sigma_ex == hsp2.sigma_ex

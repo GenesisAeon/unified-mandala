@@ -5,9 +5,6 @@ from __future__ import annotations
 import pytest
 
 from unified_mandala.collapse_detector import (
-    COLLAPSE_THRESHOLD,
-    EMERGENCE_BASIN_UPPER,
-    FRACTAL_SINGULARITY,
     CollapseDetector,
     CollapseDetectorConfig,
 )

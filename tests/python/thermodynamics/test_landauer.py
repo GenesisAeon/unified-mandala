@@ -13,12 +13,11 @@ import pytest
 from unified_mandala.thermodynamics.landauer import (
     BOLTZMANN_K,
     LandauerBound,
+    landauer_efficiency,
     landauer_energy,
     landauer_entropy,
-    landauer_efficiency,
     landauer_temperature_from_energy,
 )
-
 
 # ---------------------------------------------------------------------------
 # Physical constant checks
@@ -29,7 +28,7 @@ class TestBoltzmannConstant:
     """Verify BOLTZMANN_K matches the 2019 SI definition."""
 
     def test_value_approx(self):
-        assert BOLTZMANN_K == pytest.approx(1.380649e-23, rel=1e-9)
+        assert pytest.approx(1.380649e-23, rel=1e-9) == BOLTZMANN_K
 
     def test_positive(self):
         assert BOLTZMANN_K > 0

@@ -6,7 +6,6 @@ import pytest
 
 from unified_mandala.integrations.registry import AdapterRegistry
 
-
 # ---------------------------------------------------------------------------
 # Adapter discovery
 # ---------------------------------------------------------------------------
@@ -53,7 +52,7 @@ class TestAdapterDiscoveryV030:
 
     def test_gather_all_phases_present(self, registry):
         states = registry.gather_all(entropy=0.5, phases=7)
-        for name, state in states.items():
+        for _name, state in states.items():
             if "error" not in state:
                 assert "phase" in state
                 assert 0.0 <= state["phase"] <= 1.0
@@ -168,7 +167,7 @@ class TestNewAdaptersCREPIntegration:
     def test_all_adapters_at_boundary_zero(self, registry):
         """Entropy = 0 should not crash any adapter."""
         states = registry.gather_all(entropy=0.0, phases=1)
-        for name, state in states.items():
+        for _name, state in states.items():
             if "error" not in state:
                 assert "phase" in state
 
@@ -176,6 +175,6 @@ class TestNewAdaptersCREPIntegration:
     def test_all_adapters_at_boundary_one(self, registry):
         """Entropy = 1 should not crash any adapter."""
         states = registry.gather_all(entropy=1.0, phases=17)
-        for name, state in states.items():
+        for _name, state in states.items():
             if "error" not in state:
                 assert "phase" in state

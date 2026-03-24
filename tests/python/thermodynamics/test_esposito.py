@@ -11,7 +11,6 @@ from unified_mandala.thermodynamics.esposito import (
     EspositoDecomposition,
 )
 
-
 # ---------------------------------------------------------------------------
 # EntropyDecomposition NamedTuple
 # ---------------------------------------------------------------------------

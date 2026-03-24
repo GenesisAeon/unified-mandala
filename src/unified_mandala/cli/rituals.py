@@ -24,7 +24,6 @@ planetary
 
 from __future__ import annotations
 
-import math
 from typing import Annotated
 
 import typer
@@ -337,8 +336,8 @@ def thermodynamics(
 
         unified-mandala thermodynamics --entropy 0.618 --temperature 300
     """
-    from unified_mandala.thermodynamics.landauer import LandauerBound
     from unified_mandala.thermodynamics.esposito import EspositoDecomposition
+    from unified_mandala.thermodynamics.landauer import LandauerBound
 
     if not 0.0 <= entropy <= 1.0:
         console.print(f"[red]Error:[/red] entropy must be in [0, 1], got {entropy}")
@@ -365,7 +364,6 @@ def thermodynamics(
     table.add_row("σ_tot", f"{tainter.sigma_tot:.4f}", "k_B")
     table.add_row("Reorg fraction", f"{tainter.reorg_fraction:.2%}", "—")
 
-    collapse_color = "red" if tainter.dissipative_structure_forming else "green"
     prigogine_label = (
         "[red]BIFURCATION — dissipative structure forming[/red]"
         if tainter.dissipative_structure_forming
@@ -492,7 +490,7 @@ def metaquest(
 
         unified-mandala metaquest --crep 0.85 --entropy 0.15 --n 5
     """
-    from unified_mandala.sigillins.metaquest import MetaQuestEngine, QuestionTier
+    from unified_mandala.sigillins.metaquest import MetaQuestEngine
 
     bridge = SigillinBridge()
     phi = bridge.phi(crep_score)

@@ -258,7 +258,7 @@ class MetaQuestEngine:
         seed_prompt: str,
         phi: float,
         entropy: float,
-    ) -> "CollaborationSession":
+    ) -> CollaborationSession:
         """Open a new AI-to-AI collaboration session.
 
         Args:
@@ -287,7 +287,7 @@ class MetaQuestEngine:
         return len(self._sessions)
 
     @property
-    def completed_sessions(self) -> list["CollaborationSession"]:
+    def completed_sessions(self) -> list[CollaborationSession]:
         """All sessions that have received a response."""
         return [s for s in self._sessions if s.response is not None]
 

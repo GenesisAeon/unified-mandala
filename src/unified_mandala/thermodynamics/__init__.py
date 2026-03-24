@@ -23,7 +23,7 @@ Esposito, M., & Van den Broeck, C. (2010). Three faces of the second law.
     https://doi.org/10.1103/PhysRevE.82.011143
 """
 
-from unified_mandala.thermodynamics.esposito import EspositoDecomposition, EntropyDecomposition
+from unified_mandala.thermodynamics.esposito import EntropyDecomposition, EspositoDecomposition
 from unified_mandala.thermodynamics.hatano_sasa import HatanoSasaProduction, TrajectorySegment
 from unified_mandala.thermodynamics.landauer import (
     BOLTZMANN_K,
@@ -34,11 +34,11 @@ from unified_mandala.thermodynamics.landauer import (
 
 __all__ = [
     "BOLTZMANN_K",
+    "EntropyDecomposition",
+    "EspositoDecomposition",
+    "HatanoSasaProduction",
     "LandauerBound",
+    "TrajectorySegment",
     "landauer_energy",
     "landauer_entropy",
-    "HatanoSasaProduction",
-    "TrajectorySegment",
-    "EspositoDecomposition",
-    "EntropyDecomposition",
 ]

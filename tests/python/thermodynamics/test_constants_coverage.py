@@ -6,9 +6,9 @@ import math
 
 import pytest
 
-from unified_mandala.thermodynamics.landauer import BOLTZMANN_K, landauer_energy, landauer_entropy
+from unified_mandala.thermodynamics.esposito import EntropyDecomposition, EspositoDecomposition
 from unified_mandala.thermodynamics.hatano_sasa import TrajectorySegment, hatano_sasa_excess
-from unified_mandala.thermodynamics.esposito import EspositoDecomposition, EntropyDecomposition
+from unified_mandala.thermodynamics.landauer import landauer_energy, landauer_entropy
 
 
 # More Landauer edge cases

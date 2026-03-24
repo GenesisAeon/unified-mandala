@@ -49,7 +49,7 @@ from __future__ import annotations
 import math
 import random
 from collections.abc import Sequence
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 
 # ---------------------------------------------------------------------------
 # Constants
@@ -344,7 +344,7 @@ class CollapseDetector:
         self,
         n_runs: int,
         x0_values: Sequence[float] | None = None,
-    ) -> "MonteCarloResult":
+    ) -> MonteCarloResult:
         """Run N independent simulations and aggregate statistics.
 
         Args:

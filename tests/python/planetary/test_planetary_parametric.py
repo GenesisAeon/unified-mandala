@@ -8,15 +8,13 @@ import pytest
 
 from unified_mandala.planetary.coupling import (
     CO2_PREINDUSTRIAL_PPM,
-    MYHRE_ALPHA,
+    IceAlbedoFeedback,
     PlanetaryCouplingChain,
     RadiativeForcing,
-    IceAlbedoFeedback,
     co2_forcing_W_per_m2,
     delta_temperature_K,
     iea_to_co2_ppm,
 )
-
 
 CO2_LEVELS_PPM = [200.0, 278.0, 300.0, 350.0, 400.0, 421.0, 450.0, 500.0, 560.0, 700.0, 1000.0]
 ENERGY_EJ = [0.0, 100.0, 300.0, 400.0, 500.0, 600.0, 620.0]
