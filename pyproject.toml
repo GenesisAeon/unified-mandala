@@ -4,8 +4,8 @@ build-backend = "hatchling.build"
 
 [project]
 name = "unified-mandala"
-version = "0.2.0"
-description = "Holistic self-reflecting Mandala framework with CREP, Sigillin, and full GenesisAeon integration"
+version = "0.3.0"
+description = "Holistic self-reflecting Mandala framework with CREP, Sigillin, thermodynamics, planetary coupling, and full GenesisAeon integration"
 readme = "README.md"
 license = { text = "MIT" }
 requires-python = ">=3.11"
@@ -15,6 +15,8 @@ authors = [
 keywords = [
   "mandala", "crep", "sigillin", "entropy", "governance",
   "emergence", "holistic", "genesis-aeon", "cosmology", "ai",
+  "thermodynamics", "landauer", "hatano-sasa", "prigogine",
+  "planetary-coupling", "collapse-detection", "metaquest",
 ]
 classifiers = [
   "Development Status :: 3 - Alpha",
@@ -153,6 +155,10 @@ markers = [
   "governance: policy gate tests",
   "contract: contract tests between packages",
   "slow: tests that take >1 s",
+  "thermodynamics: thermodynamic contract tests",
+  "planetary: planetary coupling validation tests",
+  "metaquest: MetaQuest sigillin tests",
+  "collapse: collapse detector tests",
 ]
 
 [tool.coverage.run]

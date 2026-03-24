@@ -1,0 +1,205 @@
+name: FieldTheory CI — Thermodynamics + Planetary + Collapse
+
+on:
+  push:
+    branches: ["main", "claude/**"]
+    paths:
+      - "src/unified_mandala/thermodynamics/**"
+      - "src/unified_mandala/planetary/**"
+      - "src/unified_mandala/collapse_detector.py"
+      - "src/unified_mandala/sigillins/**"
+      - "src/unified_mandala/integrations/adapters/nukleonscanner_adapter.py"
+      - "src/unified_mandala/integrations/adapters/greekmath_adapter.py"
+      - "src/unified_mandala/integrations/adapters/planetary_coupling_adapter.py"
+      - "src/unified_mandala/integrations/adapters/fieldtheory.py"
+      - "tests/python/thermodynamics/**"
+      - "tests/python/planetary/**"
+      - "tests/python/unit/collapse/**"
+      - "tests/python/unit/sigillins/**"
+  pull_request:
+    paths:
+      - "src/unified_mandala/thermodynamics/**"
+      - "src/unified_mandala/planetary/**"
+      - "src/unified_mandala/collapse_detector.py"
+      - "src/unified_mandala/sigillins/**"
+      - "tests/**"
+
+jobs:
+  # ── Thermodynamic Contract Tests ─────────────────────────────────────────────
+  thermodynamics:
+    name: Thermodynamic Contracts (Landauer · Hatano-Sasa · Esposito)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - run: pip install -e ".[dev,full-stack]"
+      - name: Thermodynamic contract tests
+        run: |
+          pytest tests/python/thermodynamics \
+            -v --tb=short \
+            -m "thermodynamics or not slow" \
+            --cov=unified_mandala.thermodynamics \
+            --cov-report=term-missing
+      - name: Verify Landauer bound at physical constants
+        run: |
+          python -c "
+          from unified_mandala.thermodynamics.landauer import landauer_energy, BOLTZMANN_K
+          import math
+          e = landauer_energy(300.0)
+          expected = BOLTZMANN_K * 300.0 * math.log(2)
+          assert abs(e - expected) < 1e-30, f'Landauer mismatch: {e} vs {expected}'
+          print(f'✔ Landauer bound verified: {e:.4e} J at 300 K')
+          "
+
+  # ── Planetary Coupling Validation ─────────────────────────────────────────────
+  planetary:
+    name: Planetary Coupling Validation (IEA→CO₂→Ice)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - run: pip install -e ".[dev,full-stack]"
+      - name: Planetary causal chain tests
+        run: |
+          pytest tests/python/planetary \
+            -v --tb=short \
+            -m "planetary or not slow" \
+            --cov=unified_mandala.planetary \
+            --cov-report=term-missing
+      - name: Validate Myhre formula at 2×CO₂
+        run: |
+          python -c "
+          from unified_mandala.planetary.coupling import co2_forcing_W_per_m2, MYHRE_ALPHA, CO2_PREINDUSTRIAL_PPM
+          import math
+          f = co2_forcing_W_per_m2(CO2_PREINDUSTRIAL_PPM * 2)
+          expected = MYHRE_ALPHA * math.log(2)
+          assert abs(f - expected) < 1e-9, f'Myhre mismatch: {f} vs {expected}'
+          print(f'✔ Myhre 2×CO₂ forcing: {f:.4f} W m⁻²')
+          "
+
+  # ── Collapse Detector SDE Tests ───────────────────────────────────────────────
+  collapse:
+    name: Collapse Detector (SDE · Tainter · Prigogine)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - run: pip install -e ".[dev,full-stack]"
+      - name: Collapse detector tests
+        run: |
+          pytest tests/python/unit/collapse \
+            -v --tb=short \
+            -m "collapse or not slow" \
+            --cov=unified_mandala.collapse_detector \
+            --cov-report=term-missing
+      - name: Verify fractal singularity constant
+        run: |
+          python -c "
+          from unified_mandala.collapse_detector import FRACTAL_SINGULARITY
+          import math
+          phi = (math.sqrt(5) - 1) / 2
+          assert abs(FRACTAL_SINGULARITY - phi) < 1e-12, f'Singularity mismatch: {FRACTAL_SINGULARITY}'
+          print(f'✔ Fractal singularity φ = {FRACTAL_SINGULARITY:.15f}')
+          "
+
+  # ── MetaQuest-Sigillins Tests ─────────────────────────────────────────────────
+  metaquest:
+    name: MetaQuest-Sigillins (AI-to-AI Counterquestion Engine)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - run: pip install -e ".[dev,full-stack]"
+      - name: MetaQuest tests
+        run: |
+          pytest tests/python/unit/sigillins \
+            -v --tb=short \
+            -m "metaquest or not slow" \
+            --cov=unified_mandala.sigillins \
+            --cov-report=term-missing
+      - name: Verify MetaQuest tier selection
+        run: |
+          python -c "
+          from unified_mandala.sigillins.metaquest import MetaQuestEngine, QuestionTier
+          t = MetaQuestEngine.select_tier(phi=0.99, entropy=0.0)
+          assert t == QuestionTier.SYNTHESIS, f'Expected SYNTHESIS, got {t}'
+          t2 = MetaQuestEngine.select_tier(phi=0.01, entropy=0.99)
+          assert t2 == QuestionTier.GROUNDING, f'Expected GROUNDING, got {t2}'
+          print('✔ MetaQuest tier selection verified')
+          "
+
+  # ── New Adapters: NukleonScanner + GreekMath ──────────────────────────────────
+  adapters-v030:
+    name: v0.3.0 Adapters (NukleonScanner · GreekMath · Planetary)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - run: pip install -e ".[dev,full-stack]"
+      - name: Adapter tests
+        run: |
+          pytest tests/python/unit/integrations/test_nukleonscanner.py \
+                 tests/python/unit/integrations/test_greekmath.py \
+                 tests/python/unit/integrations/test_planetary_adapter.py \
+                 tests/python/unit/integrations/test_adapter_v030.py \
+            -v --tb=short
+      - name: Discover 19+ adapters
+        run: |
+          python -c "
+          from unified_mandala.integrations.registry import AdapterRegistry
+          r = AdapterRegistry.discover()
+          print(f'✔ Discovered {len(r)} adapters: {r.names}')
+          assert 'nukleonscanner' in r, 'NukleonScanner missing'
+          assert 'greekmath' in r, 'GreekMath missing'
+          assert 'planetary-coupling' in r, 'Planetary coupling missing'
+          assert len(r) >= 19, f'Expected ≥19 adapters, got {len(r)}'
+          "
+
+  # ── FieldTheory Adapter CI ────────────────────────────────────────────────────
+  fieldtheory:
+    name: FieldTheory Adapter + Wave Resonance
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - run: pip install -e ".[dev,full-stack]"
+      - name: FieldTheory adapter test
+        run: |
+          python -c "
+          from unified_mandala.integrations.adapters.fieldtheory import FieldtheoryAdapter
+          a = FieldtheoryAdapter()
+          for e in [0.0, 0.1, 0.5, 0.618, 1.0]:
+              result = a.gather(entropy=e, phases=7)
+              assert 0 <= result['phase'] <= 1, f'Phase out of range at e={e}: {result[\"phase\"]}'
+          print('✔ FieldTheory adapter verified across entropy range')
+          "
+      - name: DOI annotation check
+        run: |
+          python -c "
+          from unified_mandala._version import __version__
+          assert __version__ == '0.3.0'
+          import json
+          with open('.zenodo.json') as f:
+              z = json.load(f)
+          assert z['version'] == '0.3.0'
+          assert 'doi' in z
+          print(f'✔ DOI {z[\"doi\"]} confirmed for v{__version__}')
+          "

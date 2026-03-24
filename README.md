@@ -1,16 +1,92 @@
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19184798.svg)](https://doi.org/10.5281/zenodo.19184798)
 [![PyPI version](https://img.shields.io/pypi/v/unified-mandala)](https://pypi.org/project/unified-mandala/)
-[![Tests](https://img.shields.io/badge/tests-99.76%25-green)](https://github.com/GenesisAeon/unified-mandala/actions)
+[![Tests](https://img.shields.io/badge/tests-800%2B-brightgreen)](https://github.com/GenesisAeon/unified-mandala/actions)
+[![Coverage](https://img.shields.io/badge/coverage-%3E99%25-brightgreen)](https://github.com/GenesisAeon/unified-mandala/actions)
+[![Python](https://img.shields.io/badge/python-3.11%2B-blue)](https://pypi.org/project/unified-mandala/)
 
 # unified-mandala
 
-**Holistisches selbstreflektierendes Mandala-Framework mit CREP, Sigillin & voller GenesisAeon-Integration**
+**Holistic self-reflecting Mandala framework with CREP, Sigillin, Thermodynamics, Planetary Coupling & MetaQuest-Sigillins**
 
-Version 0.2.0 – GenesisAeon Project
-**DOI**: 10.5281/zenodo.19184798
-**Zenodo Record**: https://zenodo.org/records/19184798
+Version **0.3.0** — GenesisAeon Project · Built with `diamond-setup --template genesis`
+**DOI**: [10.5281/zenodo.19184798](https://doi.org/10.5281/zenodo.19184798)
 
-MandalaOrchestrator + CREP-Evaluator + SigillinBridge (17-Symbol-Ring) + PolicyGate + EntropyGovernor + AdapterRegistry für alle 18 Pakete. CI-stabilisiert (pnpm, vite, RealMembrane, OPA v0.66). Built with diamond-setup --template genesis.
+> v0.3.0 — *Documentation & Test-Offensive + Thermodynamic Integration*
+
+MandalaOrchestrator + CREP-Evaluator + SigillinBridge (19-adapter ring) + PolicyGate + EntropyGovernor +
+AdapterRegistry + **Thermodynamics** (Landauer · Hatano-Sasa · Esposito-Van den Broeck) +
+**Planetary Coupling** (IEA→CO₂→Albedo→Ice) + **MetaQuest-Sigillins** (AI-to-AI) +
+**Collapse Detector** (SDE · Tainter · Prigogine · φ=0.618).
+
+---
+
+## What's New in v0.3.0
+
+| Feature | Module | Description |
+|---|---|---|
+| Landauer principle | `thermodynamics.landauer` | Minimum energy per bit erasure: E = k_B T ln2 |
+| Hatano-Sasa | `thermodynamics.hatano_sasa` | Non-equilibrium excess entropy + IFT |
+| Esposito decomposition | `thermodynamics.esposito` | σ_maint + σ_reorg (Prigogine + Tainter) |
+| Planetary coupling | `planetary.coupling` | IEA→CO₂→ΔF→ΔT→Albedo→Ice→CREP |
+| MetaQuest-Sigillins | `sigillins.metaquest` | 4-tier AI-to-AI counterquestion engine |
+| Collapse detector | `collapse_detector` | Euler-Maruyama SDE + Tainter/Prigogine |
+| NukleonScanner v2 | adapter | QCD αs running coupling + QGP confinement |
+| GreekMath v2 | adapter | Pythagorean + golden section + Platonic |
+| 800+ tests | `tests/python/` | Thermodynamic/planetary/MetaQuest contracts |
+
+---
+
+## Python Quick Start (v0.3.0)
+
+```bash
+pip install unified-mandala==0.3.0
+```
+
+```python
+from unified_mandala.thermodynamics.landauer import LandauerBound
+from unified_mandala.planetary.coupling import PlanetaryCouplingChain
+from unified_mandala.sigillins.metaquest import MetaQuestEngine
+from unified_mandala.collapse_detector import CollapseDetector
+
+# Landauer bound at room temperature
+lb = LandauerBound.compute(temperature_K=300.0, n_bits=1.0)
+print(f"E_Landauer = {lb.energy_J:.3e} J")
+
+# Planetary coupling (IEA 2024)
+chain = PlanetaryCouplingChain.evaluate(energy_EJ=620.0, baseline_co2_ppm=421.0)
+print(f"Stress: {chain.stress_level} | CREP phase: {chain.crep_phase:.4f}")
+
+# MetaQuest counterquestion
+engine = MetaQuestEngine()
+cq = engine.generate(phi=0.85, entropy=0.15)
+print(cq)
+
+# Collapse detection
+det = CollapseDetector()
+traj = det.simulate(x0=0.4)
+print(f"Collapsed: {traj.collapsed} | Risk: {det.collapse_risk(traj):.3f}")
+```
+
+## CLI Commands (v0.3.0)
+
+```bash
+# Standard mandala cycle
+unified-mandala cycle --entropy 0.618 --phases 7 --simulate
+
+# Thermodynamic evaluation (Landauer + Esposito-Tainter)
+unified-mandala thermodynamics --entropy 0.618 --temperature 300
+
+# Collapse detection (SDE + Tainter/Prigogine)
+unified-mandala collapse --entropy 0.72 --crep 0.6 --lambda 3.0 --runs 10
+
+# MetaQuest counterquestions (4-tier epistemic protocol)
+unified-mandala metaquest --crep 0.85 --entropy 0.15 --n 5
+
+# Planetary coupling chain (IEA→CO₂→Albedo→Ice)
+unified-mandala planetary --energy 620.0 --baseline-co2 421.0
+```
+
+---
 
 ---
 
