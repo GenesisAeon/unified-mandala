@@ -353,9 +353,7 @@ class CollapseDetector:
         n_steps = int(cfg.t_max / dt)
 
         # Regenerative mode: neuromorphic efficiency reduces stochastic noise by 87.2×
-        effective_sigma_factor = (
-            1.0 / NEUROMORPHIC_EFFICIENCY_FACTOR if cfg.regenerative else 1.0
-        )
+        effective_sigma_factor = 1.0 / NEUROMORPHIC_EFFICIENCY_FACTOR if cfg.regenerative else 1.0
 
         x = x0 if x0 is not None else cfg.x0
         x = max(0.0, min(1.0, x))

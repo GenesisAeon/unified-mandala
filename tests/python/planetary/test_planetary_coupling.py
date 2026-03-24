@@ -17,9 +17,11 @@ from unified_mandala.planetary.coupling import (
     IceAlbedoFeedback,
     PlanetaryCouplingChain,
     RadiativeForcing,
+    albedo_loss_metric,
     co2_forcing_W_per_m2,
     delta_temperature_K,
     iea_to_co2_ppm,
+    regenerative_eta_offset,
 )
 
 # ---------------------------------------------------------------------------
@@ -328,3 +330,84 @@ class TestPlanetaryCouplingChain:
         # Phases should be non-decreasing
         for p1, p2 in itertools.pairwise(phases):
             assert p1 <= p2 + 1e-10
+
+
+# ---------------------------------------------------------------------------
+# Phase-3 coverage (v0.3.1) — albedo_loss_metric, regenerative_eta_offset,
+# PlanetaryCouplingChain regenerative branch
+# ---------------------------------------------------------------------------
+
+
+class TestAlbedoLossMetricCoverage:
+    """Covers albedo_loss_metric happy path + all ValueError branches."""
+
+    def test_basic_result(self):
+        result = albedo_loss_metric(0.74, v_ice=20000.0)
+        assert result > 0.0
+        assert math.isfinite(result)
+
+    def test_negative_albedo_factor_raises(self):
+        with pytest.raises(ValueError, match="albedo_factor"):
+            albedo_loss_metric(-0.1, v_ice=1000.0)
+
+    def test_negative_v_ice_raises(self):
+        with pytest.raises(ValueError, match="v_ice"):
+            albedo_loss_metric(0.5, v_ice=-1.0)
+
+    def test_zero_epsilon_raises(self):
+        with pytest.raises(ValueError, match="epsilon"):
+            albedo_loss_metric(0.5, v_ice=100.0, epsilon=0.0)
+
+
+class TestRegenerativeEtaOffsetCoverage:
+    """Covers regenerative_eta_offset happy path + all ValueError branches."""
+
+    def test_basic_result(self):
+        offset = regenerative_eta_offset(0.05, eta_regen=0.15)
+        assert offset >= 0.0
+        assert math.isfinite(offset)
+
+    def test_zero_waste_heat_gives_zero(self):
+        assert regenerative_eta_offset(0.0) == pytest.approx(0.0)
+
+    def test_negative_waste_heat_raises(self):
+        with pytest.raises(ValueError, match="waste_heat_W_per_m2"):
+            regenerative_eta_offset(-0.1)
+
+    def test_eta_above_one_raises(self):
+        with pytest.raises(ValueError, match="eta_regen"):
+            regenerative_eta_offset(0.05, eta_regen=1.5)
+
+    def test_neuromorphic_division_applied(self):
+        """Offset must be eta * waste / 87.2, not eta * waste."""
+        big = regenerative_eta_offset(87.2, eta_regen=1.0)
+        assert big == pytest.approx(1.0, rel=1e-6)
+
+
+class TestPlanetaryRegenerativeBranch:
+    """Covers the regenerative branch in PlanetaryCouplingChain.evaluate()."""
+
+    def test_regenerative_branch_executes(self):
+        """waste_heat_W_per_m2 > 0 triggers the regenerative offset branch."""
+        chain = PlanetaryCouplingChain.evaluate(
+            energy_EJ=620.0,
+            baseline_co2_ppm=421.0,
+            regenerative=True,
+            waste_heat_W_per_m2=0.5,
+        )
+        assert chain.regenerative is True
+        assert math.isfinite(chain.crep_phase)
+
+    def test_regenerative_zero_waste_heat_skips_branch(self):
+        """waste_heat_W_per_m2 = 0 → branch NOT taken (no offset)."""
+        chain = PlanetaryCouplingChain.evaluate(
+            energy_EJ=620.0,
+            baseline_co2_ppm=421.0,
+            regenerative=True,
+            waste_heat_W_per_m2=0.0,
+        )
+        chain_std = PlanetaryCouplingChain.evaluate(
+            energy_EJ=620.0,
+            baseline_co2_ppm=421.0,
+        )
+        assert chain.crep_phase == pytest.approx(chain_std.crep_phase, rel=1e-9)

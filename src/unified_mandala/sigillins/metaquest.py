@@ -346,7 +346,9 @@ class MetaQuestEngine:
         """
         if n <= 0:
             raise ValueError(f"n must be > 0, got {n}")
-        return [self.generate(phi=phi, entropy=entropy, regenerative=regenerative) for _ in range(n)]
+        return [
+            self.generate(phi=phi, entropy=entropy, regenerative=regenerative) for _ in range(n)
+        ]
 
     # ------------------------------------------------------------------
     # Collaboration session management

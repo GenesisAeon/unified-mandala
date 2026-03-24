@@ -437,7 +437,9 @@ def collapse(
 
     x0 = det.systemic_tension_from_crep(crep_score=crep_score, entropy=entropy)
 
-    regen_label = "  [cyan]Regenerative mode:   87.2× noise damping active[/cyan]\n" if regenerative else ""
+    regen_label = (
+        "  [cyan]Regenerative mode:   87.2× noise damping active[/cyan]\n" if regenerative else ""
+    )
     if n_runs == 1:
         traj = det.simulate(x0=x0)
         risk = det.collapse_risk(traj)
@@ -530,7 +532,9 @@ def metaquest(
         )
     )
 
-    questions = engine.generate_sequence(phi=phi, entropy=entropy, n=n_questions, regenerative=regenerative)
+    questions = engine.generate_sequence(
+        phi=phi, entropy=entropy, n=n_questions, regenerative=regenerative
+    )
     table = Table(title=f"Counterquestions ({agent_a} → {agent_b})", show_lines=True)
     table.add_column("#", justify="right", width=3)
     table.add_column("Sigil", justify="center", width=5)

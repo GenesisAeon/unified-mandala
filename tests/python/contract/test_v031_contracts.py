@@ -134,12 +134,23 @@ class TestCollapseDetectorRegenerative:
         """Regenerative mode dampens noise → lower or equal peak tension on average."""
         # Use high noise, zero drift so noise fully drives the trajectory
         cfg_base = CollapseDetectorConfig(
-            noise_sigma=0.3, tainter_lambda=0.0, prigogine_gamma=0.0,
-            seed=13, dt=0.01, t_max=3.0, x0=0.5,
+            noise_sigma=0.3,
+            tainter_lambda=0.0,
+            prigogine_gamma=0.0,
+            seed=13,
+            dt=0.01,
+            t_max=3.0,
+            x0=0.5,
         )
         cfg_regen = CollapseDetectorConfig(
-            noise_sigma=0.3, tainter_lambda=0.0, prigogine_gamma=0.0,
-            seed=13, dt=0.01, t_max=3.0, x0=0.5, regenerative=True,
+            noise_sigma=0.3,
+            tainter_lambda=0.0,
+            prigogine_gamma=0.0,
+            seed=13,
+            dt=0.01,
+            t_max=3.0,
+            x0=0.5,
+            regenerative=True,
         )
         # With same seed and zero drift, regenerative noise is 87.2× smaller
         # → states must stay much closer to x0=0.5
@@ -157,7 +168,9 @@ class TestCollapseDetectorRegenerative:
         assert cfg.regenerative is True
 
     def test_regenerative_states_in_unit_interval(self):
-        cfg = CollapseDetectorConfig(noise_sigma=0.3, seed=5, regenerative=True, dt=0.05, t_max=2.0)
+        cfg = CollapseDetectorConfig(
+            noise_sigma=0.3, seed=5, regenerative=True, dt=0.05, t_max=2.0
+        )
         traj = CollapseDetector(cfg).simulate()
         assert all(0.0 <= x <= 1.0 for x in traj.states)
 
