@@ -11,7 +11,7 @@
 Version **0.3.0** — GenesisAeon Project · Built with `diamond-setup --template genesis`
 **DOI**: [10.5281/zenodo.19184798](https://doi.org/10.5281/zenodo.19184798)
 
-> v0.3.0 — *Documentation & Test-Offensive + Thermodynamic Integration*
+> v0.3.0 — _Documentation & Test-Offensive + Thermodynamic Integration_
 
 MandalaOrchestrator + CREP-Evaluator + SigillinBridge (19-adapter ring) + PolicyGate + EntropyGovernor +
 AdapterRegistry + **Thermodynamics** (Landauer · Hatano-Sasa · Esposito-Van den Broeck) +
@@ -22,17 +22,17 @@ AdapterRegistry + **Thermodynamics** (Landauer · Hatano-Sasa · Esposito-Van de
 
 ## What's New in v0.3.0
 
-| Feature | Module | Description |
-|---|---|---|
-| Landauer principle | `thermodynamics.landauer` | Minimum energy per bit erasure: E = k_B T ln2 |
-| Hatano-Sasa | `thermodynamics.hatano_sasa` | Non-equilibrium excess entropy + IFT |
-| Esposito decomposition | `thermodynamics.esposito` | σ_maint + σ_reorg (Prigogine + Tainter) |
-| Planetary coupling | `planetary.coupling` | IEA→CO₂→ΔF→ΔT→Albedo→Ice→CREP |
-| MetaQuest-Sigillins | `sigillins.metaquest` | 4-tier AI-to-AI counterquestion engine |
-| Collapse detector | `collapse_detector` | Euler-Maruyama SDE + Tainter/Prigogine |
-| NukleonScanner v2 | adapter | QCD αs running coupling + QGP confinement |
-| GreekMath v2 | adapter | Pythagorean + golden section + Platonic |
-| 800+ tests | `tests/python/` | Thermodynamic/planetary/MetaQuest contracts |
+| Feature                | Module                       | Description                                   |
+| ---------------------- | ---------------------------- | --------------------------------------------- |
+| Landauer principle     | `thermodynamics.landauer`    | Minimum energy per bit erasure: E = k_B T ln2 |
+| Hatano-Sasa            | `thermodynamics.hatano_sasa` | Non-equilibrium excess entropy + IFT          |
+| Esposito decomposition | `thermodynamics.esposito`    | σ_maint + σ_reorg (Prigogine + Tainter)       |
+| Planetary coupling     | `planetary.coupling`         | IEA→CO₂→ΔF→ΔT→Albedo→Ice→CREP                 |
+| MetaQuest-Sigillins    | `sigillins.metaquest`        | 4-tier AI-to-AI counterquestion engine        |
+| Collapse detector      | `collapse_detector`          | Euler-Maruyama SDE + Tainter/Prigogine        |
+| NukleonScanner v2      | adapter                      | QCD αs running coupling + QGP confinement     |
+| GreekMath v2           | adapter                      | Pythagorean + golden section + Platonic       |
+| 800+ tests             | `tests/python/`              | Thermodynamic/planetary/MetaQuest contracts   |
 
 ---
 

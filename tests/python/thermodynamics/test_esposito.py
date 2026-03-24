@@ -109,8 +109,9 @@ class TestKLDivergence:
         assert kl >= 0
 
     def test_asymmetry(self):
-        p = [0.8, 0.2]
-        q = [0.2, 0.8]
+        # Use a 3-element distribution with no reversal symmetry so D_KL(p||q) ≠ D_KL(q||p)
+        p = [0.5, 0.3, 0.2]
+        q = [0.1, 0.6, 0.3]
         kl_pq = EspositoDecomposition.kl_divergence(p, q)
         kl_qp = EspositoDecomposition.kl_divergence(q, p)
         assert kl_pq != pytest.approx(kl_qp, rel=1e-3)

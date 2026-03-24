@@ -157,7 +157,12 @@ class TestNewAdaptersCREPIntegration:
         """Golden ratio entropy φ = 0.618 should not crash any adapter."""
         states = registry.gather_all(entropy=0.618, phases=7)
         for name, state in states.items():
-            assert "error" not in state, f"Adapter {name} failed: {state}"
+            # 'error' may be a domain field (e.g. control error signal); only
+            # fail if it is a string exception message
+            if "error" in state:
+                assert not isinstance(state["error"], str), (
+                    f"Adapter {name} raised an exception: {state['error']}"
+                )
 
     @pytest.mark.integration
     def test_all_adapters_at_boundary_zero(self, registry):
