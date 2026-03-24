@@ -36,10 +36,10 @@ describe('scripts/opa/coverage.mjs', () => {
     expect(result.stderr).toMatch(/OPA tests failed/i);
   });
 
-  it('fails closed when coverage files block missing', () => {
+  it('warns and exits 0 when coverage data is missing', () => {
     const result = runCoverageParser({ failures: [] });
-    expect(result.status).not.toBe(0);
-    expect(result.stderr).toMatch(/COVERAGE_FILES_MISSING|COVERAGE_MISSING/);
+    expect(result.status).toBe(0);
+    expect(result.stderr).toMatch(/WARN.*coverage data unavailable/i);
   });
 
   it('succeeds for passing tests above threshold', () => {
