@@ -12,6 +12,14 @@ adapters
     List all discovered adapter names and versions.
 validate
     Validate that all policy gates pass for a given entropy value.
+thermodynamics
+    Evaluate Landauer / Hatano-Sasa / Esposito-Tainter at a given entropy.
+collapse
+    Run SDE collapse detector and report systemic tension + risk score.
+metaquest
+    Generate MetaQuest counterquestions for the current system state.
+planetary
+    Evaluate the IEA→CO₂→Albedo→Ice planetary coupling chain.
 """
 
 from __future__ import annotations
@@ -31,7 +39,7 @@ from unified_mandala.sigillin.bridge import SigillinBridge
 
 app = typer.Typer(
     name="unified-mandala",
-    help="Holistic self-reflecting mandala framework — GenesisAeon revival v0.2.0.",
+    help="Holistic self-reflecting mandala framework — GenesisAeon v0.3.0.",
     add_completion=False,
     rich_markup_mode="rich",
 )
@@ -295,6 +303,280 @@ def validate(
         console.print(f"  · {note}")
 
     raise typer.Exit(code=0 if result.governance_pass else 1)
+
+
+# ── thermodynamics ─────────────────────────────────────────────────────────────
+
+
+@app.command()
+def thermodynamics(
+    entropy: Annotated[
+        float, typer.Option("--entropy", "-e", help="Entropy input ∈ [0, 1].")
+    ] = 0.618,
+    temperature_k: Annotated[
+        float, typer.Option("--temperature", "-T", help="Temperature [K] for Landauer bound.")
+    ] = 300.0,
+    complexity: Annotated[
+        float, typer.Option("--complexity", help="Tainter complexity C ≥ 0.")
+    ] = 5.0,
+    marginal_return: Annotated[
+        float, typer.Option("--marginal-return", help="Marginal return on complexity.")
+    ] = 0.5,
+    maintenance_cost: Annotated[
+        float,
+        typer.Option("--maintenance-cost", help="Maintenance cost rate per complexity unit."),
+    ] = 1.0,
+) -> None:
+    """Evaluate thermodynamic primitives (Landauer, Hatano-Sasa, Esposito-Tainter).
+
+    Computes the Landauer erasure cost at the given entropy state,
+    the Hatano-Sasa steady-state approximation, and the Esposito-Tainter
+    collapse decomposition.
+
+    Example::
+
+        unified-mandala thermodynamics --entropy 0.618 --temperature 300
+    """
+    from unified_mandala.thermodynamics.esposito import EspositoDecomposition
+    from unified_mandala.thermodynamics.landauer import LandauerBound
+
+    if not 0.0 <= entropy <= 1.0:
+        console.print(f"[red]Error:[/red] entropy must be in [0, 1], got {entropy}")
+        raise typer.Exit(code=1)
+
+    n_bits = max(0.0, 1.0 - entropy)
+    lb = LandauerBound.compute(temperature_k, n_bits=n_bits)
+    tainter = EspositoDecomposition.tainter_decomposition(
+        complexity, marginal_return, maintenance_cost
+    )
+
+    table = Table(title=f"Thermodynamic State at entropy={entropy:.4f}", show_lines=True)
+    table.add_column("Quantity", style="bold")
+    table.add_column("Value", justify="right")
+    table.add_column("Unit")
+
+    table.add_row("Temperature T", f"{temperature_k:.1f}", "K")
+    table.add_row("Bits to erase (1−entropy)", f"{n_bits:.4f}", "bits")
+    table.add_row("Landauer energy E_min", f"{lb.energy_J:.4e}", "J")
+    table.add_row("Landauer energy E_min", f"{lb.energy_eV:.4e}", "eV")
+    table.add_row("Landauer entropy ΔS_min", f"{lb.entropy_J_per_K:.4e}", "J K⁻¹")
+    table.add_row("─" * 20, "", "")
+    table.add_row("Tainter complexity C", f"{complexity:.2f}", "—")
+    table.add_row("σ_maint", f"{tainter.sigma_maint:.4f}", "k_B")
+    table.add_row("σ_reorg", f"{tainter.sigma_reorg:.4f}", "k_B")
+    table.add_row("σ_tot", f"{tainter.sigma_tot:.4f}", "k_B")
+    table.add_row("Reorg fraction", f"{tainter.reorg_fraction:.2%}", "—")
+
+    prigogine_label = (
+        "[red]BIFURCATION — dissipative structure forming[/red]"
+        if tainter.dissipative_structure_forming
+        else "[green]near-equilibrium maintenance[/green]"
+    )
+
+    console.print(table)
+    console.print(f"  Prigogine regime: {prigogine_label}")
+
+
+# ── collapse ───────────────────────────────────────────────────────────────────
+
+
+@app.command()
+def collapse(
+    entropy: Annotated[
+        float, typer.Option("--entropy", "-e", help="Entropy input ∈ [0, 1].")
+    ] = 0.618,
+    crep_score: Annotated[
+        float, typer.Option("--crep", "-c", help="CREP score ∈ [0, 1] for initial tension.")
+    ] = 0.5,
+    tainter_lambda: Annotated[
+        float, typer.Option("--lambda", help="Tainter driving coefficient λ.")
+    ] = 2.5,
+    prigogine_gamma: Annotated[
+        float, typer.Option("--gamma", help="Prigogine dissipation rate γ.")
+    ] = 0.4,
+    noise_sigma: Annotated[float, typer.Option("--sigma", help="SDE noise amplitude σ₀.")] = 0.05,
+    t_max: Annotated[float, typer.Option("--t-max", help="Simulation horizon [s].")] = 10.0,
+    n_runs: Annotated[
+        int, typer.Option("--runs", help="Monte Carlo ensemble size (1 = single run).")
+    ] = 1,
+) -> None:
+    """Run the SDE-based collapse detector (Euler-Maruyama + Tainter/Prigogine).
+
+    Simulates systemic tension dynamics with fractal singularity at φ=0.618.
+
+    Example::
+
+        unified-mandala collapse --entropy 0.72 --crep 0.6 --lambda 3.0
+    """
+    from unified_mandala.collapse_detector import (
+        FRACTAL_SINGULARITY,
+        CollapseDetector,
+        CollapseDetectorConfig,
+    )
+
+    det = CollapseDetector(
+        CollapseDetectorConfig(
+            tainter_lambda=tainter_lambda,
+            prigogine_gamma=prigogine_gamma,
+            noise_sigma=noise_sigma,
+            t_max=t_max,
+            seed=42,
+        )
+    )
+
+    x0 = det.systemic_tension_from_crep(crep_score=crep_score, entropy=entropy)
+
+    if n_runs == 1:
+        traj = det.simulate(x0=x0)
+        risk = det.collapse_risk(traj)
+        color = "red" if traj.collapsed else ("yellow" if risk > 0.5 else "green")
+        console.print(
+            Panel(
+                f"  Initial tension X₀:   {x0:.4f}\n"
+                f"  Peak tension:         {traj.systemic_tension_peak:.4f}\n"
+                f"  Final state:          {traj.final_state:.4f}\n"
+                f"  Fractal singularity:  φ = {FRACTAL_SINGULARITY:.4f}\n"
+                f"  Prigogine events:     {traj.prigogine_events}\n"
+                f"  Emerged:              {'✔' if traj.emergence_triggered else '·'}\n"
+                f"  Collapsed:            {'[red]YES[/red]' if traj.collapsed else '[green]NO[/green]'}\n"
+                f"  Collapse risk score:  [{color}]{risk:.4f}[/{color}]",
+                title="Collapse Detection",
+                border_style=color,
+            )
+        )
+    else:
+        result = det.monte_carlo(n_runs)
+        color = "red" if result.critical else "green"
+        console.print(
+            Panel(
+                f"  Runs:                 {result.n_runs}\n"
+                f"  Collapse probability: [{color}]{result.collapse_probability:.2%}[/{color}]\n"
+                f"  Emergence probability:{result.emergence_probability:.2%}\n"
+                f"  Mean risk score:      {result.mean_risk:.4f}\n"
+                f"  Mean peak tension:    {result.mean_peak_tension:.4f}\n"
+                f"  Critical regime:      {'[red]YES[/red]' if result.critical else '[green]NO[/green]'}",
+                title=f"Monte Carlo Collapse ({n_runs} runs)",
+                border_style=color,
+            )
+        )
+
+
+# ── metaquest ──────────────────────────────────────────────────────────────────
+
+
+@app.command()
+def metaquest(
+    entropy: Annotated[
+        float, typer.Option("--entropy", "-e", help="System entropy H ∈ [0, 1].")
+    ] = 0.382,
+    crep_score: Annotated[
+        float, typer.Option("--crep", "-c", help="CREP score for Φ computation.")
+    ] = 0.72,
+    n_questions: Annotated[
+        int, typer.Option("--n", "-n", help="Number of counterquestions to generate.")
+    ] = 3,
+    agent_a: Annotated[
+        str, typer.Option("--agent-a", help="Initiating agent name.")
+    ] = "GenesisAeon-Alpha",
+    agent_b: Annotated[
+        str, typer.Option("--agent-b", help="Responding agent name.")
+    ] = "GenesisAeon-Beta",
+) -> None:
+    """Generate MetaQuest counterquestions for the current system state.
+
+    Selects questions from the appropriate epistemic tier (GROUNDING→SYNTHESIS)
+    based on the Sigillin field Φ and entropy H.
+
+    Example::
+
+        unified-mandala metaquest --crep 0.85 --entropy 0.15 --n 5
+    """
+    from unified_mandala.sigillins.metaquest import MetaQuestEngine
+
+    bridge = SigillinBridge()
+    phi = bridge.phi(crep_score)
+    engine = MetaQuestEngine()
+    tier = MetaQuestEngine.select_tier(phi=phi, entropy=entropy)
+
+    console.print(
+        Panel(
+            f"  CREP score: {crep_score:.4f}  →  Φ = {phi:.4f}\n"
+            f"  Entropy H:  {entropy:.4f}\n"
+            f"  Selected tier: [bold]{tier.name}[/bold] (T{tier.value})",
+            title="MetaQuest-Sigillins",
+            border_style="cyan",
+        )
+    )
+
+    questions = engine.generate_sequence(phi=phi, entropy=entropy, n=n_questions)
+    table = Table(title=f"Counterquestions ({agent_a} → {agent_b})", show_lines=True)
+    table.add_column("#", justify="right", width=3)
+    table.add_column("Sigil", justify="center", width=5)
+    table.add_column("Tier", width=10)
+    table.add_column("Question")
+
+    for i, cq in enumerate(questions, 1):
+        table.add_row(
+            str(i),
+            cq.sigil,
+            cq.tier.name,
+            cq.text,
+        )
+
+    console.print(table)
+
+
+# ── planetary ──────────────────────────────────────────────────────────────────
+
+
+@app.command()
+def planetary(
+    energy_ej: Annotated[
+        float, typer.Option("--energy", "-e", help="IEA primary energy [EJ/yr].")
+    ] = 620.0,
+    baseline_co2: Annotated[
+        float, typer.Option("--baseline-co2", help="Baseline CO₂ concentration [ppm].")
+    ] = 421.0,
+) -> None:
+    """Evaluate the IEA→CO₂→Radiative Forcing→ΔT→Albedo→Ice planetary coupling chain.
+
+    Computes the full causal chain from energy consumption to planetary CREP phase.
+
+    Example::
+
+        unified-mandala planetary --energy 620.0 --baseline-co2 421.0
+    """
+    from unified_mandala.planetary.coupling import PlanetaryCouplingChain
+
+    chain = PlanetaryCouplingChain.evaluate(
+        energy_EJ=energy_ej,
+        baseline_co2_ppm=baseline_co2,
+    )
+
+    stress_colors = {
+        "stable": "green",
+        "elevated": "yellow",
+        "critical": "red",
+        "extreme": "bold red",
+    }
+    color = stress_colors.get(chain.stress_level, "white")
+
+    table = Table(title="Planetary Coupling Chain", show_lines=True)
+    table.add_column("Stage", style="bold")
+    table.add_column("Value", justify="right")
+    table.add_column("Unit")
+
+    table.add_row("IEA primary energy", f"{chain.energy_EJ:.1f}", "EJ/yr")
+    table.add_row("CO₂ concentration", f"{chain.co2_ppm:.2f}", "ppm")
+    table.add_row("Radiative forcing ΔF", f"{chain.forcing.forcing_W_per_m2:.3f}", "W m⁻²")
+    table.add_row("Temperature anomaly ΔT", f"{chain.forcing.delta_T_K:.3f}", "K")
+    table.add_row("Ice volume", f"{chain.ice_albedo.ice_volume_1000km3:.0f}", "× 10³ km³")
+    table.add_row("Surface albedo α", f"{chain.ice_albedo.surface_albedo:.4f}", "—")
+    table.add_row("CREP phase", f"{chain.crep_phase:.4f}", "∈ [0,1]")
+    table.add_row("Stress level", f"[{color}]{chain.stress_level.upper()}[/{color}]", "—")
+    table.add_row("2×CO₂ reached", "YES" if chain.forcing.doubled_co2 else "NO", "—")
+
+    console.print(table)
 
 
 if __name__ == "__main__":  # pragma: no cover

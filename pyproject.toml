@@ -4,8 +4,8 @@ build-backend = "hatchling.build"
 
 [project]
 name = "unified-mandala"
-version = "0.2.0"
-description = "Holistic self-reflecting Mandala framework with CREP, Sigillin, and full GenesisAeon integration"
+version = "0.3.0"
+description = "Holistic self-reflecting Mandala framework with CREP, Sigillin, thermodynamics, planetary coupling, and full GenesisAeon integration"
 readme = "README.md"
 license = { text = "MIT" }
 requires-python = ">=3.11"
@@ -15,6 +15,8 @@ authors = [
 keywords = [
   "mandala", "crep", "sigillin", "entropy", "governance",
   "emergence", "holistic", "genesis-aeon", "cosmology", "ai",
+  "thermodynamics", "landauer", "hatano-sasa", "prigogine",
+  "planetary-coupling", "collapse-detection", "metaquest",
 ]
 classifiers = [
   "Development Status :: 3 - Alpha",
@@ -128,7 +130,14 @@ src = ["src", "tests"]
 
 [tool.ruff.lint]
 select = ["E", "W", "F", "I", "UP", "B", "C4", "SIM", "RUF"]
-ignore = ["E501"]
+ignore = [
+  "E501",
+  # Ambiguous Unicode in scientific notation: Greek letters (σ, γ, α) and math chars (×, −, –)
+  # are intentional in thermodynamics/physics docstrings and string literals.
+  "RUF001",
+  "RUF002",
+  "RUF003",
+]
 per-file-ignores = { "tests/**" = ["S101", "S105", "S106"] }
 
 [tool.ruff.lint.isort]
@@ -153,6 +162,10 @@ markers = [
   "governance: policy gate tests",
   "contract: contract tests between packages",
   "slow: tests that take >1 s",
+  "thermodynamics: thermodynamic contract tests",
+  "planetary: planetary coupling validation tests",
+  "metaquest: MetaQuest sigillin tests",
+  "collapse: collapse detector tests",
 ]
 
 [tool.coverage.run]

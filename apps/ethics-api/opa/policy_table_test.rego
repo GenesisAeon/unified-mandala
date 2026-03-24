@@ -1,7 +1,8 @@
 package mandala.ethics_table_test
 
+import rego.v1
+
 import data.mandala.ethics as E
-import future.keywords.every
 
 base_input := {
   "content": "example",
@@ -44,15 +45,15 @@ cases := [
   },
 ]
 
-merge_key(current, base, patch, key) = out {
+merge_key(current, base, patch, key) := out if {
   patch[key]
   out := object.union(current, {key: object.union(base[key], patch[key])})
-} else = out {
+} else := out if {
   not patch[key]
   out := current
 }
 
-compose(base, patch) = out {
+compose(base, patch) := out if {
   initial := object.union(base, patch)
   step1 := merge_key(initial, base, patch, "network")
   step2 := merge_key(step1, base, patch, "evidence")
@@ -60,7 +61,7 @@ compose(base, patch) = out {
   out := merge_key(step3, base, patch, "policy")
 }
 
-test_all_cases() {
+test_all_cases if {
   every c in cases {
     inp := compose(base_input, c.patch)
     deny := E.deny with input as inp

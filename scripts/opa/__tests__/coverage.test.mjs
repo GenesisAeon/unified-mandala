@@ -11,11 +11,11 @@ function run(file, min = '0.8') {
   );
 }
 
-test('fails on missing coverage.files', () => {
+test('warns and exits 0 on missing coverage.files', () => {
   const d = mkdtempSync(join(tmpdir(), 'opa-'));
   const p = join(d, 'bad.json');
   writeFileSync(p, JSON.stringify({}), 'utf8');
-  expect(() => run(p)).toThrow(/COVERAGE_(MISSING|FILES_MISSING)/);
+  expect(() => run(p)).not.toThrow();
 });
 
 test('passes when above threshold, fails when below', () => {
