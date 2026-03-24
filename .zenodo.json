@@ -1,43 +1,14 @@
 {
-  "title": "unified-mandala v0.3.0 — Thermodynamic Anchors, Planetary Coupling & MetaQuest-Sigillins",
+  "title": "unified-mandala: Thermodynamische + planetare Integration mit MetaQuest-Sigillins, Collapse-Detector und reaktivierten Adaptern",
   "version": "0.3.0",
-  "doi": "10.5281/zenodo.19184798",
+  "doi": "10.5281/zenodo.19206783",
   "creators": [
-    {
-      "name": "GenesisAeon Contributors",
-      "affiliation": "GenesisAeon Project"
-    }
+    {"name": "GenesisAeon Collective"}
   ],
-  "description": "unified-mandala v0.3.0 — Documentation & Test-Offensive + Thermodynamic Integration. New in v0.3.0: (1) Thermodynamics module: Landauer erasure principle, Hatano-Sasa entropy production, Esposito-Van den Broeck decomposition (maintenance vs. reorganisation), Prigogine dissipative structures, Tainter collapse law; (2) Planetary coupling chain: IEA-Energy→CO₂→Radiative Forcing→ΔT→Ice-Albedo Feedback→CREP phase; (3) MetaQuest-Sigillins: adaptive 4-tier counterquestion engine for AI-to-AI epistemic collaboration; (4) Collapse detector: Euler-Maruyama SDE + Tainter/Prigogine dynamics + fractal singularity at φ=0.618; (5) Reactivated NukleonScanner v2 (QCD αs + QGP confinement) and GreekMath v2 (Pythagorean + golden section + Archimedean + Platonic) adapters; (6) 800+ pytest thermodynamic/planetary/MetaQuest contract tests; (7) Zenodo-ready with full scientific citation chain.",
-  "keywords": [
-    "unified-mandala", "CREP", "Sigillin", "entropy", "governance", "emergence",
-    "holistic", "genesis-aeon", "cosmology", "AI",
-    "thermodynamics", "Landauer-principle", "Hatano-Sasa", "Esposito-Van-den-Broeck",
-    "Prigogine", "dissipative-structures", "Tainter", "collapse-detection",
-    "planetary-coupling", "CO2-forcing", "ice-albedo-feedback",
-    "MetaQuest", "counterquestion-engine", "AI-to-AI-collaboration",
-    "stochastic-differential-equations", "Euler-Maruyama",
-    "non-equilibrium-thermodynamics", "Python"
-  ],
+  "description": "Diamond-setup package with Landauer, Hatano-Sasa, Esposito decomposition, Prigogine/Tainter indicators, IEA→CO₂→Albedo→Ice coupling, MetaQuest-Sigillins and Collapse-Detector (φ=0.618).",
+  "keywords": ["genesis-aeon", "thermodynamics", "prigogine", "tainter", "landauer", "metaquest", "collapse-detector", "planetary-coupling", "mandala-orchestrator"],
   "license": "MIT",
-  "upload_type": "software",
-  "access_right": "open",
   "related_identifiers": [
-    {
-      "identifier": "10.5281/zenodo.19184798",
-      "relation": "isNewVersionOf",
-      "scheme": "doi"
-    }
-  ],
-  "references": [
-    "Landauer, R. (1961). Irreversibility and heat generation in the computing process. IBM J. Res. Dev., 5(3), 183-191. doi:10.1147/rd.53.0183",
-    "Hatano, T., & Sasa, S. (2001). Steady-state thermodynamics of Langevin systems. Phys. Rev. Lett., 86(16), 3463. doi:10.1103/PhysRevLett.86.3463",
-    "Esposito, M., & Van den Broeck, C. (2010). Three faces of the second law. Phys. Rev. E, 82(1), 011143. doi:10.1103/PhysRevE.82.011143",
-    "Prigogine, I. (1978). Time, structure, and fluctuations. Science, 201(4358), 777-785. doi:10.1126/science.201.4358.777",
-    "Tainter, J. A. (1988). The Collapse of Complex Societies. Cambridge University Press.",
-    "Myhre, G., et al. (1998). New estimates of radiative forcing. Geophys. Res. Lett., 25(14), 2715. doi:10.1029/98GL01908",
-    "IEA (2024). World Energy Outlook 2024. International Energy Agency.",
-    "IPCC AR6 WG1 (2021). The Physical Science Basis, Chapter 7.",
-    "Kloeden, P. E., & Platen, E. (1992). Numerical Solution of SDEs. Springer. doi:10.1007/978-3-662-12616-5"
+    {"relation": "isPartOf", "identifier": "10.5281/zenodo.19168056", "resource_type": "publication"}
   ]
 }

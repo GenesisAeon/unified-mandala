@@ -1,15 +1,10 @@
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19184798.svg)](https://doi.org/10.5281/zenodo.19184798)
-[![PyPI version](https://img.shields.io/pypi/v/unified-mandala)](https://pypi.org/project/unified-mandala/)
-[![Tests](https://img.shields.io/badge/tests-800%2B-brightgreen)](https://github.com/GenesisAeon/unified-mandala/actions)
-[![Coverage](https://img.shields.io/badge/coverage-%3E99%25-brightgreen)](https://github.com/GenesisAeon/unified-mandala/actions)
-[![Python](https://img.shields.io/badge/python-3.11%2B-blue)](https://pypi.org/project/unified-mandala/)
-
-# unified-mandala
-
-**Holistic self-reflecting Mandala framework with CREP, Sigillin, Thermodynamics, Planetary Coupling & MetaQuest-Sigillins**
-
-Version **0.3.0** — GenesisAeon Project · Built with `diamond-setup --template genesis`
-**DOI**: [10.5281/zenodo.19184798](https://doi.org/10.5281/zenodo.19184798)
+[![PyPI](https://img.shields.io/pypi/v/unified-mandala)](https://pypi.org/project/unified-mandala/)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19206783.svg)](https://doi.org/10.5281/zenodo.19206783)
+[![Tests](https://github.com/GenesisAeon/unified-mandala/actions/workflows/python-ci.yml/badge.svg)](https://github.com/GenesisAeon/unified-mandala/actions/workflows/python-ci.yml)
+[![Coverage](https://img.shields.io/badge/coverage-100%25-brightgreen)](https://github.com/GenesisAeon/unified-mandala)
+# unified-mandala v0.3.0
+**Holistisches Mandala-Orchestrator-Framework** mit thermodynamischer Stringenz, planetarer Kopplung und MetaQuest-Sigillins.
+**DOI**: [10.5281/zenodo.19206783](https://doi.org/10.5281/zenodo.19206783)
 
 > v0.3.0 — _Documentation & Test-Offensive + Thermodynamic Integration_
 

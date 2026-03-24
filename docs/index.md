@@ -1,10 +1,8 @@
-# unified-mandala
+# Unified Mandala
 
-**DOI**: [10.5281/zenodo.19184798](https://doi.org/10.5281/zenodo.19184798)
-**Zenodo**: [https://zenodo.org/records/19184798](https://zenodo.org/records/19184798)
+**DOI**: [10.5281/zenodo.19206783](https://doi.org/10.5281/zenodo.19206783)
 
-**v0.1.0** — Holistic self-reflecting Mandala framework integrating CREP,
-Sigillin, and the full GenesisAeon ecosystem (17 adapters).
+Das zentrale holistische Framework des GenesisAeon-Ökosystems – jetzt mit vollständiger thermodynamischer und planetarer Schicht.
 
 ---
 
