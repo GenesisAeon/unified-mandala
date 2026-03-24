@@ -23,13 +23,11 @@ from unified_mandala.collapse_detector import (
     compute_tension_metric,
 )
 from unified_mandala.planetary.coupling import (
-    EPSILON_V,
     PlanetaryCouplingChain,
     albedo_loss_metric,
     regenerative_eta_offset,
 )
 from unified_mandala.sigillins.metaquest import MetaQuestEngine, QuestionTier
-
 
 # ---------------------------------------------------------------------------
 # 1. compute_tension_metric — Tension(t) = Γ_Klima · Q_KI / (V_Eis + ε)
@@ -130,7 +128,7 @@ class TestAlbedoLoss:
 class TestCollapseDetectorRegenerative:
     def test_neuromorphic_factor_value(self):
         """NEUROMORPHIC_EFFICIENCY_FACTOR must be 87.2."""
-        assert NEUROMORPHIC_EFFICIENCY_FACTOR == pytest.approx(87.2)
+        assert pytest.approx(87.2) == NEUROMORPHIC_EFFICIENCY_FACTOR
 
     def test_regenerative_reduces_peak_tension(self):
         """Regenerative mode dampens noise → lower or equal peak tension on average."""

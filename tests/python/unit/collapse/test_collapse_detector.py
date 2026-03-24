@@ -601,7 +601,7 @@ class TestNeuromorphicConstants:
     """Tests for Phase-3 constants."""
 
     def test_neuromorphic_efficiency_factor(self):
-        assert NEUROMORPHIC_EFFICIENCY_FACTOR == pytest.approx(87.2)
+        assert pytest.approx(87.2) == NEUROMORPHIC_EFFICIENCY_FACTOR
 
     def test_epsilon_positive(self):
         assert EPSILON > 0.0
