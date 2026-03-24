@@ -19,15 +19,15 @@ AdapterRegistry + **Thermodynamics** (Landauer · Hatano-Sasa · Esposito-Van de
 
 ## What's New in v0.3.1
 
-| Feature                        | Module                   | Description                                                       |
-| ------------------------------ | ------------------------ | ----------------------------------------------------------------- |
-| Tension metric                 | `collapse_detector`      | `Tension(t) = Γ_Klima · Q_KI(t) / (V_Eis(t) + ε)`               |
-| Albedo-loss metric             | `collapse_detector`      | `albedo_loss = albedo_factor / (V + ε)`                           |
-| Regenerative SDE mode          | `collapse_detector`      | 87.2× neuromorphic noise damping (`--regenerative`)               |
-| `albedo_loss_metric`           | `planetary.coupling`     | Per-module albedo-loss function                                   |
-| Regenerative η-offset          | `planetary.coupling`     | `ΔF_regen = η · Q_waste / 87.2` waste-heat recycling             |
-| Neuromorphic counterquestions  | `sigillins.metaquest`    | New SYNTHESIS-tier questions (neuromorphic + Landauer scenarios)  |
-| `--regenerative` CLI flag      | `collapse`, `metaquest`  | Activates regenerative countermeasure mode in both commands       |
+| Feature                       | Module                  | Description                                                      |
+| ----------------------------- | ----------------------- | ---------------------------------------------------------------- |
+| Tension metric                | `collapse_detector`     | `Tension(t) = Γ_Klima · Q_KI(t) / (V_Eis(t) + ε)`                |
+| Albedo-loss metric            | `collapse_detector`     | `albedo_loss = albedo_factor / (V + ε)`                          |
+| Regenerative SDE mode         | `collapse_detector`     | 87.2× neuromorphic noise damping (`--regenerative`)              |
+| `albedo_loss_metric`          | `planetary.coupling`    | Per-module albedo-loss function                                  |
+| Regenerative η-offset         | `planetary.coupling`    | `ΔF_regen = η · Q_waste / 87.2` waste-heat recycling             |
+| Neuromorphic counterquestions | `sigillins.metaquest`   | New SYNTHESIS-tier questions (neuromorphic + Landauer scenarios) |
+| `--regenerative` CLI flag     | `collapse`, `metaquest` | Activates regenerative countermeasure mode in both commands      |
 
 ---
 

@@ -419,3 +419,41 @@ class TestEngineSessionManagement:
         assert not session.is_open
         assert session.convergence_score == pytest.approx(0.88)
         assert session.duration_s >= 0.0
+
+
+# ---------------------------------------------------------------------------
+# Phase-3 regenerative mode coverage (v0.3.1)
+# ---------------------------------------------------------------------------
+
+
+class TestMetaQuestRegenerativeCoverage:
+    """Covers the regenerative=True branch in MetaQuestEngine.generate() (lines 302-305)."""
+
+    def test_regenerative_returns_synthesis_tier(self):
+        engine = MetaQuestEngine()
+        cq = engine.generate(phi=0.8, entropy=0.2, regenerative=True)
+        assert cq.tier == QuestionTier.SYNTHESIS
+
+    def test_regenerative_sigil_is_recycling(self):
+        engine = MetaQuestEngine()
+        cq = engine.generate(phi=0.5, entropy=0.5, regenerative=True)
+        assert cq.sigil == "♻"
+
+    def test_regenerative_text_nonempty(self):
+        engine = MetaQuestEngine()
+        cq = engine.generate(phi=0.7, entropy=0.3, regenerative=True)
+        assert len(cq.text) > 0
+
+    def test_regenerative_cycles_through_library(self):
+        """Counter advances through _REGENERATIVE_LIBRARY for varied questions."""
+        engine = MetaQuestEngine()
+        questions = [engine.generate(phi=0.9, entropy=0.1, regenerative=True) for _ in range(5)]
+        texts = [cq.text for cq in questions]
+        # All 5 regenerative library entries should be unique
+        assert len(set(texts)) == 5
+
+    def test_generate_sequence_regenerative(self):
+        engine = MetaQuestEngine()
+        cqs = engine.generate_sequence(phi=0.8, entropy=0.2, n=3, regenerative=True)
+        assert all(cq.tier == QuestionTier.SYNTHESIS for cq in cqs)
+        assert all(cq.sigil == "♻" for cq in cqs)
