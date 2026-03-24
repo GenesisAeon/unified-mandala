@@ -1,14 +1,14 @@
 {
-  "title": "unified-mandala: Phase-3 Patch — Tension Metric, Regenerative Architectures, Neuromorphic and Landauer Countermeasures",
+  "title": "unified-mandala: Phase-3 SDE + Tension Metric + Regenerative Countermeasures",
   "version": "0.3.1",
-  "doi": "10.5281/zenodo.19206783",
+  "doi": "10.5281/zenodo.19209147",
   "creators": [
     {"name": "GenesisAeon Collective"}
   ],
-  "description": "Diamond-setup package with Landauer, Hatano-Sasa, Esposito decomposition, Prigogine/Tainter indicators, IEA→CO₂→Albedo→Ice coupling, MetaQuest-Sigillins and Collapse-Detector (φ=0.618). Phase-3 patch (v0.3.1) adds the exact SDE Tension metric Tension(t)=Γ_Klima·Q_KI/(V_Eis+ε), albedo_loss=albedo_factor/(V+ε), regenerative η-offset for waste-heat recycling, neuromorphic efficiency factor (87.2× noise reduction), and Landauer regenerative countermeasures as MetaQuest synthesis scenarios.",
-  "keywords": ["genesis-aeon", "thermodynamics", "prigogine", "tainter", "landauer", "metaquest", "collapse-detector", "planetary-coupling", "mandala-orchestrator", "neuromorphic", "regenerative", "albedo", "tension-metric"],
+  "description": "Diamond-setup package delivering exact SDE physics with compute_tension_metric, albedo_loss feedback, regenerative η-offset, neuromorphic efficiency (87.2×) and MetaQuest regenerative counterquestions.",
+  "keywords": ["genesis-aeon", "thermodynamics", "prigogine", "tainter", "landauer", "metaquest", "collapse-detector", "planetary-coupling", "regenerative-architectures", "mandala-orchestrator"],
   "license": "MIT",
   "related_identifiers": [
-    {"relation": "isPartOf", "identifier": "10.5281/zenodo.19168056", "resource_type": "publication"}
+    {"relation": "isPartOf", "identifier": "10.5281/zenodo.19206783", "resource_type": "publication"}
   ]
 }
