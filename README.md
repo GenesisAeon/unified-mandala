@@ -2,7 +2,9 @@
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19206783.svg)](https://doi.org/10.5281/zenodo.19206783)
 [![Tests](https://github.com/GenesisAeon/unified-mandala/actions/workflows/python-ci.yml/badge.svg)](https://github.com/GenesisAeon/unified-mandala/actions/workflows/python-ci.yml)
 [![Coverage](https://img.shields.io/badge/coverage-100%25-brightgreen)](https://github.com/GenesisAeon/unified-mandala)
+
 # unified-mandala v0.3.0
+
 **Holistisches Mandala-Orchestrator-Framework** mit thermodynamischer Stringenz, planetarer Kopplung und MetaQuest-Sigillins.
 **DOI**: [10.5281/zenodo.19206783](https://doi.org/10.5281/zenodo.19206783)
 
