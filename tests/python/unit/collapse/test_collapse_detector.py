@@ -9,11 +9,15 @@ import pytest
 from unified_mandala.collapse_detector import (
     COLLAPSE_THRESHOLD,
     EMERGENCE_BASIN_UPPER,
+    EPSILON,
     FRACTAL_SINGULARITY,
+    NEUROMORPHIC_EFFICIENCY_FACTOR,
     CollapseDetector,
     CollapseDetectorConfig,
     CollapseTrajectory,
     MonteCarloResult,
+    albedo_loss,
+    compute_tension_metric,
 )
 
 # ---------------------------------------------------------------------------
@@ -507,3 +511,115 @@ class TestMonteCarlo:
             peak_tensions=(),
         )
         assert result.mean_peak_tension == 0.0
+
+
+# ---------------------------------------------------------------------------
+# Phase-3 metric functions (v0.3.1)
+# ---------------------------------------------------------------------------
+
+
+class TestComputeTensionMetric:
+    """Tests for compute_tension_metric: Tension(t) = Γ·Q_KI / (V + ε)."""
+
+    def test_basic_positive_result(self):
+        t = compute_tension_metric(2.0, q_ki=5.0, v_ice=10000.0)
+        assert t > 0.0
+        assert math.isfinite(t)
+
+    def test_zero_gamma_gives_zero(self):
+        assert compute_tension_metric(0.0, q_ki=5.0, v_ice=1000.0) == pytest.approx(0.0)
+
+    def test_zero_q_ki_gives_zero(self):
+        assert compute_tension_metric(2.0, q_ki=0.0, v_ice=1000.0) == pytest.approx(0.0)
+
+    def test_zero_ice_uses_epsilon(self):
+        t = compute_tension_metric(1.0, q_ki=1.0, v_ice=0.0, epsilon=EPSILON)
+        assert math.isfinite(t)
+        assert t == pytest.approx(1.0 / EPSILON)
+
+    def test_tension_increases_with_q_ki(self):
+        t_low = compute_tension_metric(2.0, q_ki=1.0, v_ice=5000.0)
+        t_high = compute_tension_metric(2.0, q_ki=10.0, v_ice=5000.0)
+        assert t_high > t_low
+
+    def test_tension_decreases_with_v_ice(self):
+        t_small = compute_tension_metric(2.0, q_ki=5.0, v_ice=100.0)
+        t_large = compute_tension_metric(2.0, q_ki=5.0, v_ice=25000.0)
+        assert t_small > t_large
+
+    def test_negative_gamma_raises(self):
+        with pytest.raises(ValueError, match="gamma_klima"):
+            compute_tension_metric(-1.0, q_ki=1.0, v_ice=1.0)
+
+    def test_negative_q_ki_raises(self):
+        with pytest.raises(ValueError, match="q_ki"):
+            compute_tension_metric(1.0, q_ki=-1.0, v_ice=1.0)
+
+    def test_negative_v_ice_raises(self):
+        with pytest.raises(ValueError, match="v_ice"):
+            compute_tension_metric(1.0, q_ki=1.0, v_ice=-1.0)
+
+    def test_zero_epsilon_raises(self):
+        with pytest.raises(ValueError, match="epsilon"):
+            compute_tension_metric(1.0, q_ki=1.0, v_ice=1.0, epsilon=0.0)
+
+
+class TestAlbedoLoss:
+    """Tests for albedo_loss: albedo_factor / (V + ε)."""
+
+    def test_basic_positive_result(self):
+        result = albedo_loss(0.74, v_ice=20000.0)
+        assert result > 0.0
+        assert math.isfinite(result)
+
+    def test_zero_albedo_factor_gives_zero(self):
+        assert albedo_loss(0.0, v_ice=5000.0) == pytest.approx(0.0)
+
+    def test_zero_ice_finite_via_epsilon(self):
+        result = albedo_loss(0.74, v_ice=0.0, epsilon=EPSILON)
+        assert math.isfinite(result)
+
+    def test_increases_as_ice_melts(self):
+        loss_icy = albedo_loss(0.74, v_ice=25000.0)
+        loss_melted = albedo_loss(0.74, v_ice=500.0)
+        assert loss_melted > loss_icy
+
+    def test_negative_albedo_factor_raises(self):
+        with pytest.raises(ValueError, match="albedo_factor"):
+            albedo_loss(-0.1, v_ice=1000.0)
+
+    def test_negative_v_ice_raises(self):
+        with pytest.raises(ValueError, match="v_ice"):
+            albedo_loss(0.5, v_ice=-1.0)
+
+    def test_zero_epsilon_raises(self):
+        with pytest.raises(ValueError, match="epsilon"):
+            albedo_loss(0.5, v_ice=100.0, epsilon=0.0)
+
+
+class TestNeuromorphicConstants:
+    """Tests for Phase-3 constants."""
+
+    def test_neuromorphic_efficiency_factor(self):
+        assert NEUROMORPHIC_EFFICIENCY_FACTOR == pytest.approx(87.2)
+
+    def test_epsilon_positive(self):
+        assert EPSILON > 0.0
+
+    def test_epsilon_small(self):
+        assert EPSILON < 1e-6
+
+    def test_regenerative_config_default_false(self):
+        cfg = CollapseDetectorConfig()
+        assert cfg.regenerative is False
+
+    def test_regenerative_config_settable(self):
+        cfg = CollapseDetectorConfig(regenerative=True)
+        assert cfg.regenerative is True
+
+    def test_regenerative_states_in_unit_interval(self):
+        cfg = CollapseDetectorConfig(
+            noise_sigma=0.3, seed=5, regenerative=True, dt=0.05, t_max=2.0
+        )
+        traj = CollapseDetector(cfg).simulate()
+        assert all(0.0 <= x <= 1.0 for x in traj.states)
