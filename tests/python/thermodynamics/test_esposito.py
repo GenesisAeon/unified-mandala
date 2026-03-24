@@ -153,7 +153,8 @@ class TestFromDistributions:
         # Very different distributions → large sigma_reorg
         p = [0.99, 0.01]
         q = [0.01, 0.99]
-        result = EspositoDecomposition.from_distributions(p, q, sigma_tot=10.0)
+        # D_KL(p||q) ≈ 4.503; sigma_tot=8.0 ensures sigma_reorg > sigma_maint
+        result = EspositoDecomposition.from_distributions(p, q, sigma_tot=8.0)
         assert result.dissipative_structure_forming
 
 
