@@ -1,8 +1,8 @@
 # Unified Mandala
 
-**DOI**: [10.5281/zenodo.19206783](https://doi.org/10.5281/zenodo.19206783)
+**DOI**: [10.5281/zenodo.19209147](https://doi.org/10.5281/zenodo.19209147)
 
-Das zentrale holistische Framework des GenesisAeon-Ökosystems – jetzt mit vollständiger thermodynamischer und planetarer Schicht.
+The central holistic framework of the GenesisAeon ecosystem – now with full Phase-3 thermodynamic and planetary depth.
 
 ---
 

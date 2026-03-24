@@ -1,12 +1,12 @@
 [![PyPI](https://img.shields.io/pypi/v/unified-mandala)](https://pypi.org/project/unified-mandala/)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19206783.svg)](https://doi.org/10.5281/zenodo.19206783)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19209147.svg)](https://doi.org/10.5281/zenodo.19209147)
 [![Tests](https://github.com/GenesisAeon/unified-mandala/actions/workflows/python-ci.yml/badge.svg)](https://github.com/GenesisAeon/unified-mandala/actions/workflows/python-ci.yml)
 [![Coverage](https://img.shields.io/badge/coverage-100%25-brightgreen)](https://github.com/GenesisAeon/unified-mandala)
 
 # unified-mandala v0.3.1
 
-**Holistisches Mandala-Orchestrator-Framework** mit thermodynamischer Stringenz, planetarer Kopplung und MetaQuest-Sigillins.
-**DOI**: [10.5281/zenodo.19206783](https://doi.org/10.5281/zenodo.19206783)
+**Holistic Mandala Orchestrator Framework** with complete Phase-3 thermodynamic and planetary integration.
+**DOI**: [10.5281/zenodo.19209147](https://doi.org/10.5281/zenodo.19209147)
 
 > v0.3.1 — _Phase-3 Patch: Tension metric, regenerative architectures, neuromorphic + Landauer countermeasures_
 
