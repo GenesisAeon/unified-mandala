@@ -123,6 +123,16 @@ _TIER_LIBRARY: dict[QuestionTier, list[tuple[str, str]]] = {
         ("Trace the Landauer cost of each information erasure step in your reasoning.", "⊕"),
         ("Which adapter channel dominates the CREP score — and why?", "⋈"),
         ("How does the Hatano-Sasa excess Σ_ex evolve if the protocol rate doubles?", "∿"),
+        (
+            "By what factor does neuromorphic architecture reduce the Landauer erasure cost "
+            "per inference cycle relative to CMOS (target: 87.2×)?",
+            "⊕",
+        ),
+        (
+            "How does the albedo_loss metric albedo_factor / (V + ε) diverge "
+            "as ice volume V approaches zero?",
+            "⟳",
+        ),
     ],
     QuestionTier.CHALLENGE: [
         ("Does your model violate the Esposito non-negativity constraint on σ_reorg?", "⟁"),
@@ -133,6 +143,11 @@ _TIER_LIBRARY: dict[QuestionTier, list[tuple[str, str]]] = {
         ),
         ("What evidence would refute the planetary albedo feedback you assumed?", "❄"),
         ("Are you confusing correlation with causal forcing in the CO₂-ice coupling?", "⌬"),
+        (
+            "Does the Tension metric Γ_Klima · Q_KI / (V_Eis + ε) satisfy dimensional "
+            "homogeneity, and what are its physical units?",
+            "⟁",
+        ),
     ],
     QuestionTier.SYNTHESIS: [
         (
@@ -152,8 +167,52 @@ _TIER_LIBRARY: dict[QuestionTier, list[tuple[str, str]]] = {
             "What is the minimal SDE model that captures both collapse and dissipative-structure emergence?",
             "◉",
         ),
+        (
+            "Construct a regenerative architecture in which neuromorphic waste-heat recycling "
+            "(87.2× efficiency) offsets the Landauer cost of AI inference at planetary scale.",
+            "✦",
+        ),
+        (
+            "How does the Landauer limit kT ln2 per bit erasure constrain the maximum "
+            "information throughput of a net-zero AI data centre?",
+            "⧖",
+        ),
+        (
+            "Integrate the Tension metric Γ_Klima · Q_KI / (V_Eis + ε) with the CREP "
+            "collapse detector to define a climate-aware governance threshold.",
+            "◉",
+        ),
     ],
 }
+
+# Regenerative scenario questions — issued when regenerative=True in generate()
+_REGENERATIVE_LIBRARY: list[tuple[str, str]] = [
+    (
+        "Model the regenerative η-offset: ΔF_regen = η · Q_waste / 87.2.  "
+        "At what η does AI become radiatively neutral?",
+        "♻",
+    ),
+    (
+        "Design a Landauer-minimal inference pipeline in which every bit erasure "
+        "is paired with a neuromorphic waste-heat recovery step.",
+        "♻",
+    ),
+    (
+        "Quantify the albedo restoration potential of replacing CMOS data centres "
+        "with neuromorphic equivalents: ΔV_ice from reduced radiative forcing.",
+        "♻",
+    ),
+    (
+        "Synthesise the regenerative SDE: dX = f(X)dt + (σ/87.2)dW.  "
+        "How does the 87.2× noise reduction shift the collapse probability?",
+        "♻",
+    ),
+    (
+        "Propose a planetary CREP ritual that couples Landauer erasure costs to "
+        "ice-volume recovery via neuromorphic efficiency gains.",
+        "♻",
+    ),
+]
 
 
 # ---------------------------------------------------------------------------
@@ -215,19 +274,41 @@ class MetaQuestEngine:
     # Question generation
     # ------------------------------------------------------------------
 
-    def generate(self, phi: float, entropy: float) -> CounterQuestion:
+    def generate(
+        self,
+        phi: float,
+        entropy: float,
+        regenerative: bool = False,
+    ) -> CounterQuestion:
         """Generate an adaptive counterquestion for the current system state.
 
         Cycles through the tier library deterministically so that repeated
         calls at similar (Φ, H) produce varied but appropriate questions.
 
+        When *regenerative* is True, the question is drawn from the
+        regenerative-scenario library (_REGENERATIVE_LIBRARY) which focuses
+        on neuromorphic efficiency, Landauer-minimal architectures, and
+        waste-heat recycling countermeasures.
+
         Args:
             phi: Sigillin field Φ ∈ [0, 1].
             entropy: System entropy H ∈ [0, 1] (higher = more uncertain).
+            regenerative: If True, issue a regenerative-scenario counterquestion.
 
         Returns:
             CounterQuestion ready to issue to a peer AI agent.
         """
+        if regenerative:
+            idx = self._counter % len(_REGENERATIVE_LIBRARY)
+            self._counter += 1
+            text, sigil = _REGENERATIVE_LIBRARY[idx]
+            return CounterQuestion(
+                text=text,
+                tier=QuestionTier.SYNTHESIS,
+                phi_value=phi,
+                entropy=entropy,
+                sigil=sigil,
+            )
         tier = self.select_tier(phi, entropy)
         library = _TIER_LIBRARY[tier]
         idx = self._counter % len(library)
@@ -246,6 +327,7 @@ class MetaQuestEngine:
         phi: float,
         entropy: float,
         n: int,
+        regenerative: bool = False,
     ) -> list[CounterQuestion]:
         """Generate a sequence of *n* counterquestions for the given state.
 
@@ -253,6 +335,8 @@ class MetaQuestEngine:
             phi: Sigillin field Φ.
             entropy: System entropy H.
             n: Number of questions to generate (> 0).
+            regenerative: If True, all questions are regenerative-scenario
+                counterquestions (neuromorphic + Landauer countermeasures).
 
         Returns:
             List of *n* CounterQuestion objects with escalating diversity.
@@ -262,7 +346,7 @@ class MetaQuestEngine:
         """
         if n <= 0:
             raise ValueError(f"n must be > 0, got {n}")
-        return [self.generate(phi=phi, entropy=entropy) for _ in range(n)]
+        return [self.generate(phi=phi, entropy=entropy, regenerative=regenerative) for _ in range(n)]
 
     # ------------------------------------------------------------------
     # Collaboration session management

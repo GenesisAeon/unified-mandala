@@ -1,4 +1,4 @@
-"""Planetary coupling chain: IEA energy → CO₂ → Radiative forcing → Albedo → Ice volume.
+"""Planetary coupling chain: IEA energy → CO₂ → Radiative forcing → Albedo → Ice volume (v0.3.1).
 
 Models the causal chain connecting global primary energy consumption (IEA
 data) to downstream climate indicators that feed into the unified-mandala
@@ -95,6 +95,97 @@ CARBON_INTENSITY_KG_CO2_PER_GJ: float = 56.0
 """Global average carbon intensity of primary energy [kg CO₂ per GJ] (IEA 2023)."""
 
 _EJ_TO_GJ: float = 1e9  # 1 EJ = 10⁹ GJ
+
+NEUROMORPHIC_EFFICIENCY_FACTOR: float = 87.2
+"""Neuromorphic computing efficiency gain over CMOS (87.2× energy reduction).
+
+Used as a regenerative η-offset damping factor for waste-heat recycling scenarios.
+Reference: Davies et al. (2021). Advancing neuromorphic computing with Loihi.
+    *Proceedings of the IEEE*, 109(5), 911–934.
+"""
+
+EPSILON_V: float = 1e-9
+"""Numerical stability floor ε for ice-volume denominators."""
+
+
+# ---------------------------------------------------------------------------
+# Phase-3 metric functions (v0.3.1)
+# ---------------------------------------------------------------------------
+
+
+def albedo_loss_metric(
+    albedo_factor: float,
+    v_ice: float,
+    epsilon: float = EPSILON_V,
+) -> float:
+    """Compute the albedo-loss metric for a given ice volume.
+
+    Quantifies how much reflective forcing capacity is lost per unit
+    remaining ice volume.  Diverges as V → 0 (ice-free state).
+
+    .. math::
+
+       \\text{albedo\\_loss} = \\frac{\\text{albedo\\_factor}}{V + \\varepsilon}
+
+    Args:
+        albedo_factor: Albedo forcing coefficient (dimensionless, ≥ 0).
+        v_ice: Ice volume V [10³ km³] ≥ 0.
+        epsilon: Numerical stability floor ε > 0 (default: 1e-9).
+
+    Returns:
+        albedo_loss ≥ 0.
+
+    Raises:
+        ValueError: If albedo_factor < 0, v_ice < 0, or epsilon ≤ 0.
+    """
+    if albedo_factor < 0:
+        raise ValueError(f"albedo_factor must be ≥ 0, got {albedo_factor}")
+    if v_ice < 0:
+        raise ValueError(f"v_ice must be ≥ 0, got {v_ice}")
+    if epsilon <= 0:
+        raise ValueError(f"epsilon must be > 0, got {epsilon}")
+    return albedo_factor / (v_ice + epsilon)
+
+
+def regenerative_eta_offset(
+    waste_heat_W_per_m2: float,
+    eta_regen: float = 0.15,
+) -> float:
+    """Compute the regenerative η-offset from waste-heat recycling.
+
+    Models the fraction of AI/digital waste heat that is recovered and
+    re-injected as useful work, partially offsetting radiative forcing.
+
+    .. math::
+
+       \\Delta F_{\\text{regen}} = \\eta_{\\text{regen}} \\cdot Q_{\\text{waste}}
+
+    where :math:`\\eta_{\\text{regen}}` is the regenerative recovery efficiency
+    (default 15 %, consistent with state-of-the-art thermoelectric systems).
+
+    The neuromorphic efficiency factor (87.2×) reduces the gross waste-heat
+    term before applying η:
+
+    .. math::
+
+       Q_{\\text{waste,neuro}} = Q_{\\text{waste}} / 87.2
+
+    Args:
+        waste_heat_W_per_m2: Gross AI/digital waste-heat flux [W m⁻²] ≥ 0.
+        eta_regen: Regenerative recovery efficiency η ∈ [0, 1] (default: 0.15).
+
+    Returns:
+        Recovered energy offset ΔF_regen [W m⁻²] ≥ 0.
+
+    Raises:
+        ValueError: If waste_heat_W_per_m2 < 0 or eta_regen not in [0, 1].
+    """
+    if waste_heat_W_per_m2 < 0:
+        raise ValueError(f"waste_heat_W_per_m2 must be ≥ 0, got {waste_heat_W_per_m2}")
+    if not 0.0 <= eta_regen <= 1.0:
+        raise ValueError(f"eta_regen must be in [0, 1], got {eta_regen}")
+    neuromorphic_waste = waste_heat_W_per_m2 / NEUROMORPHIC_EFFICIENCY_FACTOR
+    return eta_regen * neuromorphic_waste
 
 
 # ---------------------------------------------------------------------------
@@ -293,6 +384,8 @@ class PlanetaryCouplingChain:
         ice_albedo: IceAlbedoFeedback evaluation.
         crep_phase: Normalised CREP resonance phase derived from albedo ∈ [0,1].
         mandala_weight: Adapter weight for CREP integration.
+        albedo_loss_value: albedo_factor / (V + ε) for the current ice state.
+        regenerative: True if waste-heat regenerative offset was applied.
     """
 
     energy_EJ: float
@@ -301,6 +394,8 @@ class PlanetaryCouplingChain:
     ice_albedo: IceAlbedoFeedback
     crep_phase: float
     mandala_weight: float = 1.8
+    albedo_loss_value: float = 0.0
+    regenerative: bool = False
 
     @classmethod
     def evaluate(
@@ -308,6 +403,9 @@ class PlanetaryCouplingChain:
         energy_EJ: float,
         baseline_co2_ppm: float = CO2_PREINDUSTRIAL_PPM,
         mandala_weight: float = 1.8,
+        regenerative: bool = False,
+        waste_heat_W_per_m2: float = 0.0,
+        eta_regen: float = 0.15,
     ) -> PlanetaryCouplingChain:
         """Evaluate the full planetary coupling chain.
 
@@ -315,19 +413,34 @@ class PlanetaryCouplingChain:
             energy_EJ: Annual IEA primary energy [EJ/yr].
             baseline_co2_ppm: Starting CO₂ concentration [ppm].
             mandala_weight: CREP adapter weight for this channel.
+            regenerative: If True, subtract the regenerative η-offset from
+                radiative forcing before computing ΔT (waste-heat recycling).
+            waste_heat_W_per_m2: Gross AI waste-heat flux [W m⁻²] used when
+                regenerative=True.
+            eta_regen: Regenerative recovery efficiency η ∈ [0, 1].
 
         Returns:
             PlanetaryCouplingChain with all intermediate values.
         """
         co2 = iea_to_co2_ppm(energy_EJ, baseline_co2_ppm=baseline_co2_ppm)
         forcing = RadiativeForcing.compute(co2)
-        ice = IceAlbedoFeedback.compute(forcing.delta_T_K)
+
+        effective_forcing = forcing.forcing_W_per_m2
+        if regenerative and waste_heat_W_per_m2 > 0.0:
+            offset = regenerative_eta_offset(waste_heat_W_per_m2, eta_regen=eta_regen)
+            effective_forcing = max(0.0, effective_forcing - offset)
+
+        delta_T = delta_temperature_K(effective_forcing)
+        ice = IceAlbedoFeedback.compute(delta_T)
 
         # CREP phase: lower albedo (more warming, less ice) → higher tension
         # We invert: high albedo (cold, icy) = low CREP phase (stable)
         #            low albedo (warm, ice-free) = high CREP phase (stressed)
         crep_phase = 1.0 - (ice.surface_albedo - ALBEDO_OCEAN) / (ALBEDO_ICE - ALBEDO_OCEAN)
         crep_phase = max(0.0, min(1.0, crep_phase))
+
+        # albedo_loss: use ice surface albedo as albedo_factor proxy
+        a_loss = albedo_loss_metric(ice.surface_albedo, ice.ice_volume_1000km3)
 
         return cls(
             energy_EJ=energy_EJ,
@@ -336,6 +449,8 @@ class PlanetaryCouplingChain:
             ice_albedo=ice,
             crep_phase=crep_phase,
             mandala_weight=mandala_weight,
+            albedo_loss_value=a_loss,
+            regenerative=regenerative,
         )
 
     @property

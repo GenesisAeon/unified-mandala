@@ -1,4 +1,4 @@
-"""Collapse detector — SDE-based systemic-collapse model.
+"""Collapse detector — SDE-based systemic-collapse model (Phase-3 patch v0.3.1).
 
 Models the onset of systemic collapse using a stochastic differential
 equation (SDE) whose deterministic skeleton encodes:
@@ -29,6 +29,24 @@ where:
 * :math:`\\phi_c = 0.618` — fractal singularity (golden ratio)
 * :math:`\\gamma` — Prigogine dissipation rate (self-organisation damping)
 * :math:`\\sigma(X) = \\sigma_0 \\sqrt{X(1-X)}` — state-dependent noise
+
+**Phase-3 additions (v0.3.1):**
+
+Tension metric coupling climate forcing to AI energy load and ice volume:
+
+.. math::
+
+   \\text{Tension}(t) = \\frac{\\Gamma_{\\text{Klima}} \\cdot Q_{\\text{KI}}(t)}{V_{\\text{Eis}}(t) + \\varepsilon}
+
+Albedo-loss proxy (normalised):
+
+.. math::
+
+   \\text{albedo\\_loss} = \\frac{\\text{albedo\\_factor}}{V + \\varepsilon}
+
+Regenerative mode: applies neuromorphic efficiency damping (87.2× noise
+reduction) to the SDE diffusion term, modelling waste-heat recycling as a
+stochastic-noise damper.
 
 Numerical integration uses the **Euler-Maruyama** scheme.
 
@@ -63,6 +81,97 @@ COLLAPSE_THRESHOLD: float = 0.85
 
 EMERGENCE_BASIN_UPPER: float = FRACTAL_SINGULARITY
 """X < FRACTAL_SINGULARITY → system in emergence basin (away from collapse)."""
+
+NEUROMORPHIC_EFFICIENCY_FACTOR: float = 87.2
+"""Neuromorphic computing efficiency gain over CMOS (87.2× noise reduction).
+
+Applied as a damping divisor on SDE noise when regenerative mode is active,
+modelling waste-heat recycling via neuromorphic architectures.
+
+Reference: Davies et al. (2021). Advancing neuromorphic computing with Loihi.
+    *Proceedings of the IEEE*, 109(5), 911–934.
+"""
+
+EPSILON: float = 1e-9
+"""Numerical stability floor ε to prevent division by zero in tension/albedo metrics."""
+
+
+# ---------------------------------------------------------------------------
+# Phase-3 metric functions
+# ---------------------------------------------------------------------------
+
+
+def compute_tension_metric(
+    gamma_klima: float,
+    q_ki: float,
+    v_ice: float,
+    epsilon: float = EPSILON,
+) -> float:
+    """Compute the climate-AI-ice tension metric Tension(t).
+
+    Couples radiative climate forcing (Γ_Klima), AI energy load (Q_KI), and
+    ice volume (V_Eis) into a single scalar systemic tension indicator.
+
+    .. math::
+
+       \\text{Tension}(t) = \\frac{\\Gamma_{\\text{Klima}} \\cdot Q_{\\text{KI}}(t)}
+                                   {V_{\\text{Eis}}(t) + \\varepsilon}
+
+    Args:
+        gamma_klima: Climate forcing coefficient Γ_Klima ≥ 0 [W m⁻²].
+        q_ki: AI / digital infrastructure energy load Q_KI(t) ≥ 0 [EJ].
+        v_ice: Ice volume V_Eis(t) ≥ 0 [10³ km³].
+        epsilon: Numerical floor ε > 0 (default: 1e-9).
+
+    Returns:
+        Tension(t) ≥ 0.  Large values indicate high climate-AI coupling stress.
+
+    Raises:
+        ValueError: If any argument is negative or epsilon ≤ 0.
+    """
+    if gamma_klima < 0:
+        raise ValueError(f"gamma_klima must be ≥ 0, got {gamma_klima}")
+    if q_ki < 0:
+        raise ValueError(f"q_ki must be ≥ 0, got {q_ki}")
+    if v_ice < 0:
+        raise ValueError(f"v_ice must be ≥ 0, got {v_ice}")
+    if epsilon <= 0:
+        raise ValueError(f"epsilon must be > 0, got {epsilon}")
+    return (gamma_klima * q_ki) / (v_ice + epsilon)
+
+
+def albedo_loss(
+    albedo_factor: float,
+    v_ice: float,
+    epsilon: float = EPSILON,
+) -> float:
+    """Compute the normalised albedo-loss proxy.
+
+    Measures how much reflective capacity is lost per unit ice volume,
+    diverging as ice volume approaches zero (ice-free ocean state).
+
+    .. math::
+
+       \\text{albedo\\_loss} = \\frac{\\text{albedo\\_factor}}{V + \\varepsilon}
+
+    Args:
+        albedo_factor: Albedo forcing coefficient (dimensionless, ≥ 0).
+        v_ice: Ice volume V ≥ 0 [10³ km³].
+        epsilon: Numerical floor ε > 0 (default: 1e-9).
+
+    Returns:
+        albedo_loss ≥ 0.  Increases as ice melts toward zero.
+
+    Raises:
+        ValueError: If albedo_factor < 0, v_ice < 0, or epsilon ≤ 0.
+    """
+    if albedo_factor < 0:
+        raise ValueError(f"albedo_factor must be ≥ 0, got {albedo_factor}")
+    if v_ice < 0:
+        raise ValueError(f"v_ice must be ≥ 0, got {v_ice}")
+    if epsilon <= 0:
+        raise ValueError(f"epsilon must be > 0, got {epsilon}")
+    return albedo_factor / (v_ice + epsilon)
 
 
 # ---------------------------------------------------------------------------
@@ -142,6 +251,9 @@ class CollapseDetectorConfig:
         t_max: Simulation horizon [s].
         x0: Initial systemic tension X(0) ∈ [0, 1].
         seed: RNG seed for reproducibility (None = non-deterministic).
+        regenerative: If True, apply neuromorphic efficiency damping
+            (÷ NEUROMORPHIC_EFFICIENCY_FACTOR = 87.2) to the SDE noise,
+            modelling waste-heat recycling via neuromorphic architectures.
     """
 
     tainter_lambda: float = 2.5
@@ -151,6 +263,7 @@ class CollapseDetectorConfig:
     t_max: float = 10.0
     x0: float = 0.1
     seed: int | None = 42
+    regenerative: bool = False
 
 
 class CollapseDetector:
@@ -239,6 +352,11 @@ class CollapseDetector:
         sqrt_dt = math.sqrt(dt)
         n_steps = int(cfg.t_max / dt)
 
+        # Regenerative mode: neuromorphic efficiency reduces stochastic noise by 87.2×
+        effective_sigma_factor = (
+            1.0 / NEUROMORPHIC_EFFICIENCY_FACTOR if cfg.regenerative else 1.0
+        )
+
         x = x0 if x0 is not None else cfg.x0
         x = max(0.0, min(1.0, x))
 
@@ -271,9 +389,9 @@ class CollapseDetector:
                 collapsed = True
                 collapse_time = t
 
-            # Euler-Maruyama step
+            # Euler-Maruyama step (noise damped in regenerative mode)
             f = self.drift(x)
-            sigma = self.diffusion(x)
+            sigma = self.diffusion(x) * effective_sigma_factor
             dW = rng.gauss(0.0, sqrt_dt)
             x = x + f * dt + sigma * dW
             x = max(0.0, min(1.0, x))  # keep in [0, 1]
