@@ -26,10 +26,10 @@ from unified_mandala.integrations.adapters.fieldtheory import (
     _WAVE_NUMBER,
     FieldtheoryAdapter,
     _dispersion_omega,
+    _dispersion_resonance,
     _euclidean_propagator,
     _lagrangian_density,
     _standing_wave_amplitude,
-    _dispersion_resonance,
 )
 
 

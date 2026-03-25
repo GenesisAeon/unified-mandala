@@ -19,15 +19,15 @@ AdapterRegistry + **Thermodynamics** (Landauer · Hatano-Sasa · Esposito-Van de
 
 ## What's New in v0.3.2
 
-| Feature                              | Module                              | Description                                                              |
-| ------------------------------------ | ----------------------------------- | ------------------------------------------------------------------------ |
-| NukleonScanner v2.1.0                | `integrations.adapters.nukleonscanner_adapter` | Two-loop QCD αs(Q) + string-tension confinement φ_string      |
-| GreekMath v2.1.0                     | `integrations.adapters.greekmath_adapter`      | Logarithmic (golden-angle) spiral + Fibonacci ratio resonance |
-| FieldTheory v2.0.0                   | `integrations.adapters.fieldtheory`            | Klein-Gordon scalar field, dispersion ω²=k²+m², Euclidean propagator, Lagrangian density |
-| CLI: `nukleon`                       | `cli.rituals`                       | `unified-mandala nukleon --entropy 0.618 --phases 7`                     |
-| CLI: `greekmath`                     | `cli.rituals`                       | `unified-mandala greekmath --entropy 0.618 --phases 7`                   |
-| CLI: `fieldtheory`                   | `cli.rituals`                       | `unified-mandala fieldtheory --entropy 0.618 --phases 7`                 |
-| +45 new tests                        | `tests/python/unit/integrations/`  | Unit + contract tests for all three adapters                             |
+| Feature               | Module                                         | Description                                                                              |
+| --------------------- | ---------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| NukleonScanner v2.1.0 | `integrations.adapters.nukleonscanner_adapter` | Two-loop QCD αs(Q) + string-tension confinement φ_string                                 |
+| GreekMath v2.1.0      | `integrations.adapters.greekmath_adapter`      | Logarithmic (golden-angle) spiral + Fibonacci ratio resonance                            |
+| FieldTheory v2.0.0    | `integrations.adapters.fieldtheory`            | Klein-Gordon scalar field, dispersion ω²=k²+m², Euclidean propagator, Lagrangian density |
+| CLI: `nukleon`        | `cli.rituals`                                  | `unified-mandala nukleon --entropy 0.618 --phases 7`                                     |
+| CLI: `greekmath`      | `cli.rituals`                                  | `unified-mandala greekmath --entropy 0.618 --phases 7`                                   |
+| CLI: `fieldtheory`    | `cli.rituals`                                  | `unified-mandala fieldtheory --entropy 0.618 --phases 7`                                 |
+| +45 new tests         | `tests/python/unit/integrations/`              | Unit + contract tests for all three adapters                                             |
 
 ---
 
