@@ -304,3 +304,146 @@ class TestPlanetaryCommand:
     def test_doubled_co2_flag(self):
         result = runner.invoke(app, ["planetary", "--energy", "1500.0"])
         assert result.exit_code == 0
+
+
+class TestNukleonCommand:
+    def test_default_invocation(self):
+        result = runner.invoke(app, ["nukleon"])
+        assert result.exit_code == 0
+
+    def test_golden_ratio_entropy(self):
+        result = runner.invoke(app, ["nukleon", "--entropy", "0.618"])
+        assert result.exit_code == 0
+
+    def test_alpha_s_shown(self):
+        result = runner.invoke(app, ["nukleon", "--entropy", "0.5"])
+        assert result.exit_code == 0
+        assert "s" in result.output.lower()
+
+    def test_crep_phase_shown(self):
+        result = runner.invoke(app, ["nukleon", "--entropy", "0.5"])
+        assert result.exit_code == 0
+        assert "CREP" in result.output or "phase" in result.output.lower()
+
+    def test_q_gev_shown(self):
+        result = runner.invoke(app, ["nukleon", "--entropy", "0.5"])
+        assert result.exit_code == 0
+        assert "GeV" in result.output
+
+    def test_string_phase_shown(self):
+        result = runner.invoke(app, ["nukleon", "--entropy", "0.5"])
+        assert result.exit_code == 0
+        assert "string" in result.output.lower() or "String" in result.output
+
+    def test_phases_param(self):
+        result = runner.invoke(app, ["nukleon", "--entropy", "0.5", "--phases", "3"])
+        assert result.exit_code == 0
+
+    def test_invalid_entropy_exits_1(self):
+        result = runner.invoke(app, ["nukleon", "--entropy", "1.5"])
+        assert result.exit_code == 1
+
+    def test_zero_entropy(self):
+        result = runner.invoke(app, ["nukleon", "--entropy", "0.0"])
+        assert result.exit_code == 0
+
+    def test_one_entropy(self):
+        result = runner.invoke(app, ["nukleon", "--entropy", "1.0"])
+        assert result.exit_code == 0
+
+
+class TestGreekMathCommand:
+    def test_default_invocation(self):
+        result = runner.invoke(app, ["greekmath"])
+        assert result.exit_code == 0
+
+    def test_golden_ratio_entropy(self):
+        result = runner.invoke(app, ["greekmath", "--entropy", "0.618"])
+        assert result.exit_code == 0
+
+    def test_phi_shown(self):
+        result = runner.invoke(app, ["greekmath", "--entropy", "0.618"])
+        assert result.exit_code == 0
+        assert "phi" in result.output.lower() or "φ" in result.output
+
+    def test_crep_phase_shown(self):
+        result = runner.invoke(app, ["greekmath", "--entropy", "0.5"])
+        assert result.exit_code == 0
+        assert "CREP" in result.output or "phase" in result.output.lower()
+
+    def test_fibonacci_shown(self):
+        result = runner.invoke(app, ["greekmath", "--entropy", "0.5"])
+        assert result.exit_code == 0
+        assert "Fibonacci" in result.output or "fibonacci" in result.output.lower()
+
+    def test_logarithmic_shown(self):
+        result = runner.invoke(app, ["greekmath", "--entropy", "0.5"])
+        assert result.exit_code == 0
+        assert "Logarithmic" in result.output or "logarithmic" in result.output.lower()
+
+    def test_phases_param(self):
+        result = runner.invoke(app, ["greekmath", "--entropy", "0.5", "--phases", "3"])
+        assert result.exit_code == 0
+
+    def test_invalid_entropy_exits_1(self):
+        result = runner.invoke(app, ["greekmath", "--entropy", "-0.1"])
+        assert result.exit_code == 1
+
+    def test_zero_entropy(self):
+        result = runner.invoke(app, ["greekmath", "--entropy", "0.0"])
+        assert result.exit_code == 0
+
+    def test_one_entropy(self):
+        result = runner.invoke(app, ["greekmath", "--entropy", "1.0"])
+        assert result.exit_code == 0
+
+
+class TestFieldtheoryCommand:
+    def test_default_invocation(self):
+        result = runner.invoke(app, ["fieldtheory"])
+        assert result.exit_code == 0
+
+    def test_golden_ratio_entropy(self):
+        result = runner.invoke(app, ["fieldtheory", "--entropy", "0.618"])
+        assert result.exit_code == 0
+
+    def test_mass_shown(self):
+        result = runner.invoke(app, ["fieldtheory", "--entropy", "0.5"])
+        assert result.exit_code == 0
+        assert "mass" in result.output.lower() or "GeV" in result.output
+
+    def test_crep_phase_shown(self):
+        result = runner.invoke(app, ["fieldtheory", "--entropy", "0.5"])
+        assert result.exit_code == 0
+        assert "CREP" in result.output or "phase" in result.output.lower()
+
+    def test_propagator_shown(self):
+        result = runner.invoke(app, ["fieldtheory", "--entropy", "0.5"])
+        assert result.exit_code == 0
+        assert "propagator" in result.output.lower() or "Propagator" in result.output
+
+    def test_dispersion_shown(self):
+        result = runner.invoke(app, ["fieldtheory", "--entropy", "0.5"])
+        assert result.exit_code == 0
+        assert "dispersion" in result.output.lower() or "Dispersion" in result.output
+
+    def test_lagrangian_shown(self):
+        result = runner.invoke(app, ["fieldtheory", "--entropy", "0.5"])
+        assert result.exit_code == 0
+        assert "Lagrangian" in result.output or "lagrangian" in result.output.lower()
+
+    def test_phases_param(self):
+        result = runner.invoke(app, ["fieldtheory", "--entropy", "0.5", "--phases", "3"])
+        assert result.exit_code == 0
+
+    def test_invalid_entropy_exits_1(self):
+        result = runner.invoke(app, ["fieldtheory", "--entropy", "2.0"])
+        assert result.exit_code == 1
+
+    def test_zero_entropy(self):
+        result = runner.invoke(app, ["fieldtheory", "--entropy", "0.0"])
+        assert result.exit_code == 0
+
+    def test_one_entropy(self):
+        result = runner.invoke(app, ["fieldtheory", "--entropy", "1.0"])
+        assert result.exit_code == 0
