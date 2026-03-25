@@ -32,7 +32,6 @@ from unified_mandala.integrations.adapters.fieldtheory import (
     _standing_wave_amplitude,
 )
 
-
 # ── Constants ──────────────────────────────────────────────────────────────────
 
 
