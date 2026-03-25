@@ -290,25 +290,25 @@ pnpm smoke:ui
 
 > Common pitfalls on Windows can be avoided with a few targeted commands.
 
-| Purpose                              | Command                                                      | Note                                                                                                                     |
-| ------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
-| Run pytest via project venv          | `.\.venv\Scripts\python.exe -m pytest -q`                    | Guaranteed to use the repository-provisioned environment; works even when `pytest` is not in `%PATH%`.                   |
-| Alternative pytest launcher          | `.\.venv\Scripts\pytest.exe -q`                              | Direct call to the `pytest` CLI if PowerShell blocks module execution.                                                   |
-| Headless Chrome for Mermaid CLI      | `pnpm exec puppeteer browsers install chrome-headless-shell` | Installs the Chrome binary expected by `@mermaid-js/mermaid-cli` locally in the pnpm store.                              |
-| Prepare Cypress binary               | `pnpm exec cypress install`                                  | Downloads the pinned Cypress version (14.5.1) and ensures `pnpm cy:run` starts without version conflicts.                |
+| Purpose                         | Command                                                      | Note                                                                                                      |
+| ------------------------------- | ------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------- |
+| Run pytest via project venv     | `.\.venv\Scripts\python.exe -m pytest -q`                    | Guaranteed to use the repository-provisioned environment; works even when `pytest` is not in `%PATH%`.    |
+| Alternative pytest launcher     | `.\.venv\Scripts\pytest.exe -q`                              | Direct call to the `pytest` CLI if PowerShell blocks module execution.                                    |
+| Headless Chrome for Mermaid CLI | `pnpm exec puppeteer browsers install chrome-headless-shell` | Installs the Chrome binary expected by `@mermaid-js/mermaid-cli` locally in the pnpm store.               |
+| Prepare Cypress binary          | `pnpm exec cypress install`                                  | Downloads the pinned Cypress version (14.5.1) and ensures `pnpm cy:run` starts without version conflicts. |
 
 ## Build, Test & Policy Bundles
 
 Use the bundled pnpm commands to replicate the CI/governance gates described in DevTalk74 locally:
 
-| Purpose                   | Command                    | Included Checks                                                                                                                        |
-| ------------------------- | -------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
-| Pre-Commit Heavy Gate     | `pnpm check:precommit`     | lint-staged, TypeScript linting, Vitest unit tests, schema/maps/repomap validation, repo sanity, policy suite                          |
-| Pre-Push Heavy Gate       | `pnpm check:prepush`       | Vitest coverage run plus policy suite                                                                                                  |
-| CI Core Parity            | `pnpm check:ci`            | Typecheck, Vitest unit tests, schema/maps/repomap validation, repo sanity, policy suite                                                |
-| CI Verification Bundle    | `pnpm ci:verify`           | Aggregator script (`scripts/ci-verify.mjs`) runs type, test, coverage, policy, and sanity gates                                        |
-| Governance & Policy Sweep | `pnpm policy:check`        | OPA, guardrails, Kyverno, and sigillin reports (`out/policy/`)                                                                         |
-| Observability Smoke       | `pnpm observability:check` | Prometheus `/api/v1/targets` and Grafana `/api/health` checks (respects `PROMETHEUS_REQUIRE_ACTIVE` & `OBSERVABILITY_SKIP_GRAFANA`)     |
+| Purpose                   | Command                    | Included Checks                                                                                                                     |
+| ------------------------- | -------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| Pre-Commit Heavy Gate     | `pnpm check:precommit`     | lint-staged, TypeScript linting, Vitest unit tests, schema/maps/repomap validation, repo sanity, policy suite                       |
+| Pre-Push Heavy Gate       | `pnpm check:prepush`       | Vitest coverage run plus policy suite                                                                                               |
+| CI Core Parity            | `pnpm check:ci`            | Typecheck, Vitest unit tests, schema/maps/repomap validation, repo sanity, policy suite                                             |
+| CI Verification Bundle    | `pnpm ci:verify`           | Aggregator script (`scripts/ci-verify.mjs`) runs type, test, coverage, policy, and sanity gates                                     |
+| Governance & Policy Sweep | `pnpm policy:check`        | OPA, guardrails, Kyverno, and sigillin reports (`out/policy/`)                                                                      |
+| Observability Smoke       | `pnpm observability:check` | Prometheus `/api/v1/targets` and Grafana `/api/health` checks (respects `PROMETHEUS_REQUIRE_ACTIVE` & `OBSERVABILITY_SKIP_GRAFANA`) |
 
 ---
 
