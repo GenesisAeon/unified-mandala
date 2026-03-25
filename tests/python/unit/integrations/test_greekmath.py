@@ -190,10 +190,11 @@ class TestFibonacciResonance:
             assert 0.0 <= _fibonacci_resonance(e) <= 1.0
 
     def test_peaks_near_phi(self):
-        """Fibonacci ratios converge to φ → resonance peaks near 0.618."""
+        """Fibonacci ratios converge to φ → resonance elevated near 0.618.
+        Compare against 0.3 which is far from all Fibonacci ratio values."""
         r_phi = _fibonacci_resonance(_PHI)
-        r_zero = _fibonacci_resonance(0.0)
-        assert r_phi > r_zero
+        r_far = _fibonacci_resonance(0.3)
+        assert r_phi > r_far
 
     def test_finite(self):
         for e in [0.0, 0.5, 1.0]:
@@ -320,7 +321,8 @@ class TestGreekMathContract:
             assert math.isfinite(r["phase"])
 
     def test_fibonacci_elevated_near_phi(self, adapter):
-        """Fibonacci ratios converge to φ → fibonacci primitive peaks near 0.618."""
+        """Fibonacci ratios converge to φ → fibonacci primitive elevated near 0.618.
+        Compare against 0.3 which is far from all Fibonacci ratio values."""
         r_phi = adapter.gather(entropy=_PHI, phases=7)["fibonacci"]
-        r_zero = adapter.gather(entropy=0.05, phases=7)["fibonacci"]
-        assert r_phi > r_zero
+        r_far = adapter.gather(entropy=0.3, phases=7)["fibonacci"]
+        assert r_phi > r_far
