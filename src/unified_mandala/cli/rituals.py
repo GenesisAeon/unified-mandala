@@ -619,9 +619,7 @@ def nukleon(
     entropy: Annotated[
         float, typer.Option("--entropy", "-e", help="CREP entropy input ∈ [0, 1].")
     ] = 0.618,
-    phases: Annotated[
-        int, typer.Option("--phases", "-p", help="Phase sample count.")
-    ] = 7,
+    phases: Annotated[int, typer.Option("--phases", "-p", help="Phase sample count.")] = 7,
 ) -> None:
     """Query the NukleonScanner adapter (QCD αs, QGP proximity, string tension).
 
@@ -775,9 +773,7 @@ def fieldtheory(
     table.add_row("Euclidean propagator Δ_E", f"{result['propagator']:.4f}", "∈ (0,1]")
     table.add_row("Lagrangian density L", f"{result['lagrangian']:.6f}", "GeV⁴")
     table.add_row("─" * 20, "", "")
-    table.add_row(
-        "[bold]CREP phase[/bold]", f"[bold]{result['phase']:.4f}[/bold]", "∈ [0,1]"
-    )
+    table.add_row("[bold]CREP phase[/bold]", f"[bold]{result['phase']:.4f}[/bold]", "∈ [0,1]")
     table.add_row("Weight", f"{result['weight']:.2f}", "—")
 
     console.print(table)

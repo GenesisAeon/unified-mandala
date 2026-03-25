@@ -78,9 +78,9 @@ _PYTHAGOREAN_RATIOS: tuple[float, ...] = (1 / 2, 2 / 3, 3 / 4, 4 / 5, 5 / 6)
 
 # Platonic solid: (faces, vertices, edges, dihedral_angle_deg)
 _PLATONIC_SOLIDS: tuple[tuple[int, int, int, float], ...] = (
-    (4, 4, 6, 70.528),      # Tetrahedron
-    (6, 8, 12, 90.0),       # Cube (hexahedron)
-    (8, 6, 12, 109.471),    # Octahedron
+    (4, 4, 6, 70.528),  # Tetrahedron
+    (6, 8, 12, 90.0),  # Cube (hexahedron)
+    (8, 6, 12, 109.471),  # Octahedron
     (12, 20, 30, 116.565),  # Dodecahedron
     (20, 12, 30, 138.190),  # Icosahedron
 )
@@ -88,8 +88,7 @@ _PLATONIC_SOLIDS: tuple[tuple[int, int, int, float], ...] = (
 # Fibonacci ratios F(n+1)/F(n), fractional parts (converge to φ)
 _FIB_SEQUENCE: tuple[int, ...] = (1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233)
 _FIB_RATIOS: tuple[float, ...] = tuple(
-    (_FIB_SEQUENCE[i + 1] / _FIB_SEQUENCE[i]) % 1.0
-    for i in range(len(_FIB_SEQUENCE) - 1)
+    (_FIB_SEQUENCE[i + 1] / _FIB_SEQUENCE[i]) % 1.0 for i in range(len(_FIB_SEQUENCE) - 1)
 )
 """Fractional parts of F(n+1)/F(n) — converge to φ % 1 = φ ≈ 0.618."""
 
@@ -238,14 +237,7 @@ class GreekMathAdapter(BaseAdapter):
         fib = _fibonacci_resonance(entropy)
 
         w = self._WEIGHTS
-        phase = (
-            w[0] * pyth
-            + w[1] * gold
-            + w[2] * log_s
-            + w[3] * arch
-            + w[4] * plat
-            + w[5] * fib
-        )
+        phase = w[0] * pyth + w[1] * gold + w[2] * log_s + w[3] * arch + w[4] * plat + w[5] * fib
         phase = max(0.0, min(1.0, phase))
 
         return {

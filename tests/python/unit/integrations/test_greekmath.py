@@ -244,8 +244,14 @@ class TestGreekMathAdapter:
 
     def test_all_primitive_scores_in_dict(self, adapter):
         result = adapter.gather(entropy=0.618, phases=7)
-        for key in ["pythagorean", "golden_section", "logarithmic",
-                    "archimedean", "platonic", "fibonacci"]:
+        for key in [
+            "pythagorean",
+            "golden_section",
+            "logarithmic",
+            "archimedean",
+            "platonic",
+            "fibonacci",
+        ]:
             assert key in result
             assert 0.0 <= result[key] <= 1.0
 
@@ -273,8 +279,16 @@ class TestGreekMathAdapter:
     def test_all_required_keys_present(self, adapter):
         result = adapter.gather(entropy=0.5, phases=7)
         required = {
-            "phase", "weight", "decay", "pythagorean", "golden_section",
-            "logarithmic", "archimedean", "platonic", "fibonacci", "phi",
+            "phase",
+            "weight",
+            "decay",
+            "pythagorean",
+            "golden_section",
+            "logarithmic",
+            "archimedean",
+            "platonic",
+            "fibonacci",
+            "phi",
         }
         assert required.issubset(result.keys())
 

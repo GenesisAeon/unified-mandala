@@ -217,11 +217,7 @@ def _lagrangian_density(entropy: float, phases: int) -> float:
     """
     phi = math.sin(_WAVE_NUMBER * entropy) * math.exp(-_GAMMA_DAMP * phases)
     phi_t = -_GAMMA_DAMP * phi
-    phi_x = (
-        math.cos(_WAVE_NUMBER * entropy)
-        * _WAVE_NUMBER
-        * math.exp(-_GAMMA_DAMP * phases)
-    )
+    phi_x = math.cos(_WAVE_NUMBER * entropy) * _WAVE_NUMBER * math.exp(-_GAMMA_DAMP * phases)
     return 0.5 * phi_t**2 - 0.5 * phi_x**2 - 0.5 * _MASS_GEV**2 * phi**2
 
 
@@ -281,9 +277,7 @@ class FieldtheoryAdapter(BaseAdapter):
         omega_on_shell = _dispersion_omega(k, _MASS_GEV)
 
         raw_phase = (
-            _W_AMPLITUDE * amplitude
-            + _W_DISPERSION * dispersion
-            + _W_PROPAGATOR * propagator
+            _W_AMPLITUDE * amplitude + _W_DISPERSION * dispersion + _W_PROPAGATOR * propagator
         )
         phase = max(0.0, min(1.0, raw_phase))
 

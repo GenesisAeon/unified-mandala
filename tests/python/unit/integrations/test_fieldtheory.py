@@ -306,9 +306,17 @@ class TestFieldtheoryAdapter:
     def test_all_required_keys_present(self, adapter):
         result = adapter.gather(entropy=0.5, phases=7)
         required = {
-            "phase", "weight", "decay", "amplitude", "dispersion",
-            "propagator", "lagrangian", "omega_on_shell", "wave_number",
-            "damping", "mass_gev",
+            "phase",
+            "weight",
+            "decay",
+            "amplitude",
+            "dispersion",
+            "propagator",
+            "lagrangian",
+            "omega_on_shell",
+            "wave_number",
+            "damping",
+            "mass_gev",
         }
         assert required.issubset(result.keys())
 

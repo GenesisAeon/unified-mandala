@@ -234,9 +234,16 @@ class TestNukleonScannerAdapter:
     def test_all_required_keys_present(self, adapter):
         result = adapter.gather(entropy=0.5, phases=7)
         required = {
-            "phase", "weight", "decay", "alpha_s", "q_gev",
-            "qgp_proximity", "string_phase", "n_flavors",
-            "lambda_qcd_gev", "sigma_string_gev2",
+            "phase",
+            "weight",
+            "decay",
+            "alpha_s",
+            "q_gev",
+            "qgp_proximity",
+            "string_phase",
+            "n_flavors",
+            "lambda_qcd_gev",
+            "sigma_string_gev2",
         }
         assert required.issubset(result.keys())
 
