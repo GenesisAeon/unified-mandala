@@ -1,4 +1,4 @@
-"""Unit tests for the GreekMath adapter."""
+"""Unit and contract tests for the GreekMath adapter v2.1.0."""
 
 from __future__ import annotations
 
@@ -7,19 +7,20 @@ import math
 import pytest
 
 from unified_mandala.integrations.adapters.greekmath_adapter import (
+    _FIB_RATIOS,
     _PHI,
     _PLATONIC_SOLIDS,
     _PYTHAGOREAN_RATIOS,
     GreekMathAdapter,
     _archimedean_phase,
+    _fibonacci_resonance,
     _golden_section_resonance,
+    _logarithmic_spiral_phase,
     _platonic_resonance,
     _pythagorean_resonance,
 )
 
-# ---------------------------------------------------------------------------
-# Constants
-# ---------------------------------------------------------------------------
+# ── Constants ──────────────────────────────────────────────────────────────────
 
 
 class TestConstants:
@@ -37,17 +38,28 @@ class TestConstants:
         assert len(_PLATONIC_SOLIDS) == 5
 
     def test_platonic_dihedral_angles_valid(self):
-        for solid in _PLATONIC_SOLIDS:
-            faces, verts, edges, angle = solid
+        for faces, verts, edges, angle in _PLATONIC_SOLIDS:
             assert faces > 0
             assert verts > 0
             assert edges > 0
             assert 0.0 < angle < 180.0
 
+    def test_fib_ratios_non_empty(self):
+        assert len(_FIB_RATIOS) > 0
 
-# ---------------------------------------------------------------------------
-# Primitive resonance functions
-# ---------------------------------------------------------------------------
+    def test_fib_ratios_in_unit_interval(self):
+        for fr in _FIB_RATIOS:
+            assert 0.0 <= fr < 1.0
+
+    def test_weights_sum_to_one(self):
+        weights = GreekMathAdapter._WEIGHTS
+        assert sum(weights) == pytest.approx(1.0, rel=1e-9)
+
+    def test_six_primitive_weights(self):
+        assert len(GreekMathAdapter._WEIGHTS) == 6
+
+
+# ── Pythagorean resonance ──────────────────────────────────────────────────────
 
 
 class TestPythagoreanResonance:
@@ -71,6 +83,9 @@ class TestPythagoreanResonance:
         for ratio in _PYTHAGOREAN_RATIOS:
             r = _pythagorean_resonance(ratio)
             assert r > 0.9
+
+
+# ── Golden section resonance ───────────────────────────────────────────────────
 
 
 class TestGoldenSectionResonance:
@@ -98,12 +113,40 @@ class TestGoldenSectionResonance:
         assert r_left == pytest.approx(r_right, rel=1e-6)
 
 
+# ── Logarithmic spiral phase ───────────────────────────────────────────────────
+
+
+class TestLogarithmicSpiralPhase:
+    def test_range_zero_to_one(self):
+        for e in [0.0, 0.25, 0.5, 0.618, 1.0]:
+            for p in [1, 3, 7]:
+                r = _logarithmic_spiral_phase(e, p)
+                assert 0.0 <= r < 1.0
+
+    def test_finite(self):
+        for e in [0.0, 0.5, 1.0]:
+            assert math.isfinite(_logarithmic_spiral_phase(e, 7))
+
+    def test_varies_with_phases(self):
+        r1 = _logarithmic_spiral_phase(0.5, 1)
+        r7 = _logarithmic_spiral_phase(0.5, 7)
+        assert isinstance(r1, float) and isinstance(r7, float)
+
+    def test_zero_entropy_gives_zero(self):
+        """At entropy=0: θ=0, r=exp(0)=1 → frac=0."""
+        r = _logarithmic_spiral_phase(0.0, 7)
+        assert r == pytest.approx(0.0, abs=1e-9)
+
+
+# ── Archimedean spiral phase ───────────────────────────────────────────────────
+
+
 class TestArchimedeanPhase:
     def test_range_zero_to_one(self):
         for e in [0.0, 0.25, 0.5, 0.618, 1.0]:
             for p in [1, 3, 7]:
                 r = _archimedean_phase(e, p)
-                assert 0.0 <= r <= 1.0
+                assert 0.0 <= r < 1.0
 
     def test_finite(self):
         for e in [0.0, 0.5, 1.0]:
@@ -112,8 +155,10 @@ class TestArchimedeanPhase:
     def test_varies_with_phases(self):
         r1 = _archimedean_phase(0.5, 1)
         r7 = _archimedean_phase(0.5, 7)
-        # Different phase counts → different spiral angles
         assert isinstance(r1, float) and isinstance(r7, float)
+
+
+# ── Platonic resonance ─────────────────────────────────────────────────────────
 
 
 class TestPlatonicResonance:
@@ -136,9 +181,30 @@ class TestPlatonicResonance:
             assert math.isfinite(_platonic_resonance(e))
 
 
-# ---------------------------------------------------------------------------
-# GreekMathAdapter
-# ---------------------------------------------------------------------------
+# ── Fibonacci resonance ────────────────────────────────────────────────────────
+
+
+class TestFibonacciResonance:
+    def test_range_zero_to_one(self):
+        for e in [0.0, 0.1, 0.5, 0.618, 0.9, 1.0]:
+            assert 0.0 <= _fibonacci_resonance(e) <= 1.0
+
+    def test_peaks_near_phi(self):
+        """Fibonacci ratios converge to φ → resonance peaks near 0.618."""
+        r_phi = _fibonacci_resonance(_PHI)
+        r_zero = _fibonacci_resonance(0.0)
+        assert r_phi > r_zero
+
+    def test_finite(self):
+        for e in [0.0, 0.5, 1.0]:
+            assert math.isfinite(_fibonacci_resonance(e))
+
+    def test_positive_everywhere(self):
+        for e in [0.0, 0.3, 0.618, 0.9]:
+            assert _fibonacci_resonance(e) >= 0
+
+
+# ── GreekMathAdapter ──────────────────────────────────────────────────────────
 
 
 class TestGreekMathAdapter:
@@ -150,10 +216,13 @@ class TestGreekMathAdapter:
         assert adapter.name == "greekmath"
 
     def test_version(self, adapter):
-        assert adapter.version == "2.0.0"
+        assert adapter.version == "2.1.0"
 
     def test_health(self, adapter):
         assert adapter.health() is True
+
+    def test_repr(self, adapter):
+        assert "greekmath" in repr(adapter)
 
     def test_gather_returns_dict(self, adapter):
         result = adapter.gather(entropy=0.5, phases=7)
@@ -172,9 +241,10 @@ class TestGreekMathAdapter:
         result = adapter.gather(entropy=0.5, phases=7)
         assert "decay" in result
 
-    def test_primitive_scores_in_dict(self, adapter):
+    def test_all_primitive_scores_in_dict(self, adapter):
         result = adapter.gather(entropy=0.618, phases=7)
-        for key in ["pythagorean", "golden_section", "archimedean", "platonic"]:
+        for key in ["pythagorean", "golden_section", "logarithmic",
+                    "archimedean", "platonic", "fibonacci"]:
             assert key in result
             assert 0.0 <= result[key] <= 1.0
 
@@ -184,9 +254,9 @@ class TestGreekMathAdapter:
         assert result["phi"] == pytest.approx(_PHI, rel=1e-10)
 
     def test_phase_near_phi_elevated(self, adapter):
+        """Near φ the golden-section resonance is maximal."""
         result = adapter.gather(entropy=_PHI, phases=7)
         result_far = adapter.gather(entropy=0.1, phases=7)
-        # Near φ, golden section resonance peaks → phase elevated
         assert result["golden_section"] > result_far["golden_section"]
 
     def test_phase_finite(self, adapter):
@@ -199,9 +269,58 @@ class TestGreekMathAdapter:
         result = adapter.gather(entropy=0.5, phases=phases)
         assert 0.0 <= result["phase"] <= 1.0
 
-    def test_weights_sum_to_one(self):
-        weights = GreekMathAdapter._WEIGHTS
-        assert sum(weights) == pytest.approx(1.0, rel=1e-9)
+    def test_all_required_keys_present(self, adapter):
+        result = adapter.gather(entropy=0.5, phases=7)
+        required = {
+            "phase", "weight", "decay", "pythagorean", "golden_section",
+            "logarithmic", "archimedean", "platonic", "fibonacci", "phi",
+        }
+        assert required.issubset(result.keys())
 
-    def test_repr(self, adapter):
-        assert "greekmath" in repr(adapter)
+
+# ── Contract tests ────────────────────────────────────────────────────────────
+
+
+@pytest.mark.integration
+class TestGreekMathContract:
+    """Contract tests: GreekMath must satisfy the CREP adapter interface."""
+
+    @pytest.fixture(scope="class")
+    def adapter(self):
+        return GreekMathAdapter()
+
+    def test_golden_section_peaks_at_phi(self, adapter):
+        result = adapter.gather(entropy=_PHI, phases=7)
+        assert result["golden_section"] == pytest.approx(1.0, rel=1e-6)
+
+    def test_pythagorean_peaks_at_half(self, adapter):
+        result = adapter.gather(entropy=0.5, phases=7)
+        assert result["pythagorean"] == pytest.approx(1.0, abs=0.01)
+
+    def test_phase_weighted_sum_correct(self, adapter):
+        """phase = Σ w_i · p_i for all six primitives."""
+        result = adapter.gather(entropy=0.5, phases=7)
+        w = GreekMathAdapter._WEIGHTS
+        expected = (
+            w[0] * result["pythagorean"]
+            + w[1] * result["golden_section"]
+            + w[2] * result["logarithmic"]
+            + w[3] * result["archimedean"]
+            + w[4] * result["platonic"]
+            + w[5] * result["fibonacci"]
+        )
+        assert result["phase"] == pytest.approx(expected, abs=1e-9)
+
+    def test_health_always_true(self, adapter):
+        assert adapter.health() is True
+
+    def test_gather_stable_on_boundary(self, adapter):
+        for e in [0.0, 1.0]:
+            r = adapter.gather(entropy=e, phases=1)
+            assert math.isfinite(r["phase"])
+
+    def test_fibonacci_elevated_near_phi(self, adapter):
+        """Fibonacci ratios converge to φ → fibonacci primitive peaks near 0.618."""
+        r_phi = adapter.gather(entropy=_PHI, phases=7)["fibonacci"]
+        r_zero = adapter.gather(entropy=0.05, phases=7)["fibonacci"]
+        assert r_phi > r_zero

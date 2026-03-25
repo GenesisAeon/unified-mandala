@@ -20,6 +20,12 @@ metaquest
     Generate MetaQuest counterquestions for the current system state.
 planetary
     Evaluate the IEA→CO₂→Albedo→Ice planetary coupling chain.
+nukleon
+    Query the NukleonScanner adapter (QCD αs + QGP + string tension).
+greekmath
+    Query the GreekMath adapter (Pythagorean + golden section + spirals + Fibonacci).
+fieldtheory
+    Query the FieldTheory adapter (Klein-Gordon scalar field + propagator).
 """
 
 from __future__ import annotations
@@ -39,7 +45,7 @@ from unified_mandala.sigillin.bridge import SigillinBridge
 
 app = typer.Typer(
     name="unified-mandala",
-    help="Holistic self-reflecting mandala framework — GenesisAeon v0.3.1.",
+    help="Holistic self-reflecting mandala framework — GenesisAeon v0.3.2.",
     add_completion=False,
     rich_markup_mode="rich",
 )
@@ -601,6 +607,178 @@ def planetary(
     table.add_row("CREP phase", f"{chain.crep_phase:.4f}", "∈ [0,1]")
     table.add_row("Stress level", f"[{color}]{chain.stress_level.upper()}[/{color}]", "—")
     table.add_row("2×CO₂ reached", "YES" if chain.forcing.doubled_co2 else "NO", "—")
+
+    console.print(table)
+
+
+# ── nukleon ────────────────────────────────────────────────────────────────────
+
+
+@app.command()
+def nukleon(
+    entropy: Annotated[
+        float, typer.Option("--entropy", "-e", help="CREP entropy input ∈ [0, 1].")
+    ] = 0.618,
+    phases: Annotated[
+        int, typer.Option("--phases", "-p", help="Phase sample count.")
+    ] = 7,
+) -> None:
+    """Query the NukleonScanner adapter (QCD αs, QGP proximity, string tension).
+
+    Evaluates the two-loop running strong coupling αs(Q), QGP crossover
+    proximity, and string-tension confinement phase at the energy scale
+    determined by the entropy input.
+
+    Example::
+
+        unified-mandala nukleon --entropy 0.618 --phases 7
+    """
+    from unified_mandala.integrations.adapters.nukleonscanner_adapter import (
+        NukleonScannerAdapter,
+    )
+
+    if not 0.0 <= entropy <= 1.0:
+        console.print(f"[red]Error:[/red] entropy must be in [0, 1], got {entropy}")
+        raise typer.Exit(code=1)
+
+    adapter = NukleonScannerAdapter()
+    result = adapter.gather(entropy=entropy, phases=phases)
+
+    table = Table(
+        title=f"NukleonScanner v{adapter.version}  —  entropy={entropy:.4f}",
+        show_lines=True,
+    )
+    table.add_column("Quantity", style="bold")
+    table.add_column("Value", justify="right")
+    table.add_column("Unit / Note")
+
+    table.add_row("Energy scale Q", f"{result['q_gev']:.4f}", "GeV")
+    table.add_row("αs(Q) two-loop", f"{result['alpha_s']:.4f}", "dimensionless")
+    table.add_row("QGP proximity φ_QGP", f"{result['qgp_proximity']:.4f}", "∈ (0,1]")
+    table.add_row("String-tension φ_str", f"{result['string_phase']:.4f}", "∈ [0,1]")
+    table.add_row("σ_string", f"{result['sigma_string_gev2']:.3f}", "GeV²")
+    table.add_row("Λ_QCD", f"{result['lambda_qcd_gev']:.3f}", "GeV (MSbar)")
+    table.add_row("N_f (active flavors)", str(result["n_flavors"]), "—")
+    table.add_row("─" * 20, "", "")
+    table.add_row("[bold]CREP phase[/bold]", f"[bold]{result['phase']:.4f}[/bold]", "∈ [0,1]")
+    table.add_row("Weight", f"{result['weight']:.2f}", "—")
+    table.add_row("Decay", f"{result['decay']:.4f}", "—")
+
+    console.print(table)
+
+
+# ── greekmath ──────────────────────────────────────────────────────────────────
+
+
+@app.command()
+def greekmath(
+    entropy: Annotated[
+        float, typer.Option("--entropy", "-e", help="CREP entropy input ∈ [0, 1].")
+    ] = 0.618,
+    phases: Annotated[
+        int, typer.Option("--phases", "-p", help="Phase sample count for spiral primitives.")
+    ] = 7,
+) -> None:
+    """Query the GreekMath adapter (Pythagorean, golden section, spirals, Fibonacci).
+
+    Evaluates six classical Greek-mathematics resonance primitives and returns
+    their weighted aggregate CREP phase.
+
+    Example::
+
+        unified-mandala greekmath --entropy 0.618 --phases 7
+    """
+    from unified_mandala.integrations.adapters.greekmath_adapter import GreekMathAdapter
+
+    if not 0.0 <= entropy <= 1.0:
+        console.print(f"[red]Error:[/red] entropy must be in [0, 1], got {entropy}")
+        raise typer.Exit(code=1)
+
+    adapter = GreekMathAdapter()
+    result = adapter.gather(entropy=entropy, phases=phases)
+
+    table = Table(
+        title=f"GreekMath v{adapter.version}  —  entropy={entropy:.4f}",
+        show_lines=True,
+    )
+    table.add_column("Primitive", style="bold")
+    table.add_column("Score", justify="right")
+    table.add_column("Weight", justify="right")
+
+    primitives = [
+        ("Pythagorean harmony", result["pythagorean"], 0.25),
+        ("Golden section φ", result["golden_section"], 0.30),
+        ("Logarithmic spiral", result["logarithmic"], 0.15),
+        ("Archimedean spiral", result["archimedean"], 0.10),
+        ("Platonic solid resonance", result["platonic"], 0.10),
+        ("Fibonacci ratios", result["fibonacci"], 0.10),
+    ]
+    for name, score, weight in primitives:
+        table.add_row(name, f"{score:.4f}", f"{weight:.2f}")
+
+    table.add_row("─" * 25, "", "")
+    table.add_row(
+        "[bold]CREP phase[/bold]",
+        f"[bold]{result['phase']:.4f}[/bold]",
+        "[bold]1.00[/bold]",
+    )
+
+    console.print(table)
+    console.print(f"  φ (golden ratio) = {result['phi']:.6f}")
+
+
+# ── fieldtheory ────────────────────────────────────────────────────────────────
+
+
+@app.command()
+def fieldtheory(
+    entropy: Annotated[
+        float, typer.Option("--entropy", "-e", help="CREP entropy / spatial coordinate ∈ [0, 1].")
+    ] = 0.618,
+    phases: Annotated[
+        int, typer.Option("--phases", "-p", help="Phase count / time step for wave damping.")
+    ] = 7,
+) -> None:
+    """Query the FieldTheory adapter (Klein-Gordon scalar field, propagator).
+
+    Evaluates the free massive scalar quantum field observables: standing-wave
+    amplitude, on-shell dispersion resonance, and Euclidean Feynman propagator.
+
+    Example::
+
+        unified-mandala fieldtheory --entropy 0.618 --phases 7
+    """
+    from unified_mandala.integrations.adapters.fieldtheory import FieldtheoryAdapter
+
+    if not 0.0 <= entropy <= 1.0:
+        console.print(f"[red]Error:[/red] entropy must be in [0, 1], got {entropy}")
+        raise typer.Exit(code=1)
+
+    adapter = FieldtheoryAdapter()
+    result = adapter.gather(entropy=entropy, phases=phases)
+
+    table = Table(
+        title=f"FieldTheory v{adapter.version}  —  entropy={entropy:.4f}",
+        show_lines=True,
+    )
+    table.add_column("Quantity", style="bold")
+    table.add_column("Value", justify="right")
+    table.add_column("Unit / Note")
+
+    table.add_row("m (scalar mass)", f"{result['mass_gev']:.4f}", "GeV (neutral pion)")
+    table.add_row("k (wave number)", f"{result['wave_number']:.4f}", "GeV (= π)")
+    table.add_row("γ (damping)", f"{result['damping']:.4f}", "GeV⁻¹")
+    table.add_row("ω on-shell √(k²+m²)", f"{result['omega_on_shell']:.4f}", "GeV")
+    table.add_row("─" * 20, "", "")
+    table.add_row("Standing-wave amplitude A", f"{result['amplitude']:.4f}", "∈ [0,1]")
+    table.add_row("Dispersion resonance", f"{result['dispersion']:.4f}", "∈ (0,1]")
+    table.add_row("Euclidean propagator Δ_E", f"{result['propagator']:.4f}", "∈ (0,1]")
+    table.add_row("Lagrangian density L", f"{result['lagrangian']:.6f}", "GeV⁴")
+    table.add_row("─" * 20, "", "")
+    table.add_row(
+        "[bold]CREP phase[/bold]", f"[bold]{result['phase']:.4f}[/bold]", "∈ [0,1]"
+    )
+    table.add_row("Weight", f"{result['weight']:.2f}", "—")
 
     console.print(table)
 

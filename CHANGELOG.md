@@ -19,6 +19,15 @@ Alle relevanten Änderungen dieses Projekts werden in diesem Dokument festgehalt
 - **Docs** – `thermodynamic_anchors.md`, `planetary_resonance.md`, `metaquest_sigillins.md`
 - 2344 tests @ 100 % coverage · ruff-clean · mypy-clean
 
+## [0.3.2] - 2026-03-25
+
+### New Features
+- **NukleonScanner v2.1.0** – Two-loop QCD αs(Q) running coupling (β₁ correction) + string-tension confinement phase φ_string = exp(−σ/Q²)
+- **GreekMath v2.1.0** – Logarithmic (golden-angle equiangular) spiral primitive + Fibonacci ratio proximity; 6 weighted primitives (sum=1)
+- **FieldTheory v2.0.0** – Full Klein-Gordon scalar field: standing-wave amplitude, dispersion relation ω²=k²+m², Euclidean propagator Δ_E=m²/(p_E²+m²), Lagrangian density L
+- **CLI commands** – `unified-mandala nukleon`, `greekmath`, `fieldtheory` with `--entropy` and `--phases` flags
+- **+45 tests** – Unit + contract tests for all three adapters; adapter registry v0.3.0 test updated for v2.1.0/v2.0.0 versions
+
 ## [Unreleased]
 
 - Verfeinerte Symbolzuordnung in `aeon_processor.assign_symbol`
