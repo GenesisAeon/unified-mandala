@@ -1,14 +1,41 @@
 {
-  "title": "unified-mandala: Phase-3 SDE + Tension Metric + Regenerative Countermeasures",
-  "version": "0.3.1",
+  "title": "unified-mandala: NukleonScanner v2.1.0 + GreekMath v2.1.0 + FieldTheory v2.0.0 Reactivation",
+  "version": "0.3.2",
   "doi": "10.5281/zenodo.19209147",
   "creators": [
-    {"name": "GenesisAeon Collective"}
+    {
+      "name": "GenesisAeon Collective"
+    }
   ],
-  "description": "Diamond-setup package delivering exact SDE physics with compute_tension_metric, albedo_loss feedback, regenerative η-offset, neuromorphic efficiency (87.2×) and MetaQuest regenerative counterquestions.",
-  "keywords": ["genesis-aeon", "thermodynamics", "prigogine", "tainter", "landauer", "metaquest", "collapse-detector", "planetary-coupling", "regenerative-architectures", "mandala-orchestrator"],
+  "description": "Diamond-setup patch reactivating three physics adapters: NukleonScanner v2.1.0 (two-loop QCD \u03b1s + string tension), GreekMath v2.1.0 (logarithmic spiral + Fibonacci ratios), and FieldTheory v2.0.0 (Klein-Gordon scalar field, dispersion relation, Euclidean propagator, Lagrangian density). Includes +45 new contract tests and three new CLI commands.",
+  "keywords": [
+    "genesis-aeon",
+    "thermodynamics",
+    "qcd",
+    "klein-gordon",
+    "quantum-field-theory",
+    "greek-mathematics",
+    "golden-ratio",
+    "fibonacci",
+    "prigogine",
+    "tainter",
+    "landauer",
+    "metaquest",
+    "collapse-detector",
+    "planetary-coupling",
+    "mandala-orchestrator"
+  ],
   "license": "MIT",
   "related_identifiers": [
-    {"relation": "isPartOf", "identifier": "10.5281/zenodo.19206783", "resource_type": "publication"}
+    {
+      "relation": "isNewVersionOf",
+      "identifier": "10.5281/zenodo.19209147",
+      "resource_type": "software"
+    },
+    {
+      "relation": "isPartOf",
+      "identifier": "10.5281/zenodo.19206783",
+      "resource_type": "publication"
+    }
   ]
 }

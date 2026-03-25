@@ -1,4 +1,4 @@
-"""Version sanity tests for v0.3.1."""
+"""Version sanity tests for v0.3.2."""
 
 from __future__ import annotations
 
@@ -7,7 +7,7 @@ from unified_mandala._version import __version__
 
 class TestVersionV030:
     def test_version_is_031(self):
-        assert __version__ == "0.3.1"
+        assert __version__ == "0.3.2"
 
     def test_version_is_string(self):
         assert isinstance(__version__, str)
@@ -26,7 +26,7 @@ class TestVersionV030:
 
     def test_version_patch_one(self):
         patch = int(__version__.split(".")[2])
-        assert patch == 1
+        assert patch == 2
 
     def test_version_gt_030(self):
         parts = [int(x) for x in __version__.split(".")]
@@ -36,7 +36,7 @@ class TestVersionV030:
     def test_init_package_importable(self):
         import unified_mandala
 
-        assert unified_mandala.__version__ == "0.3.1"
+        assert unified_mandala.__version__ == "0.3.2"
 
     def test_new_modules_importable(self):
         from unified_mandala import planetary, sigillins, thermodynamics

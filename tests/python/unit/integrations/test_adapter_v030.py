@@ -1,4 +1,4 @@
-"""v0.3.0 adapter registry tests — verifying 19 adapters discovered."""
+"""v0.3.0/v0.3.2 adapter registry tests — verifying 19+ adapters discovered."""
 
 from __future__ import annotations
 
@@ -75,13 +75,46 @@ class TestAdapterDiscoveryV030:
         assert 0.0 <= result["phase"] <= 1.0
         assert "co2_ppm" in result
 
-    def test_nukleonscanner_version_v2(self, registry):
+    def test_nukleonscanner_version_v21(self, registry):
         adapter = registry.get("nukleonscanner")
+        assert adapter.version == "2.1.0"
+
+    def test_greekmath_version_v21(self, registry):
+        adapter = registry.get("greekmath")
+        assert adapter.version == "2.1.0"
+
+    def test_fieldtheory_version_v20(self, registry):
+        adapter = registry.get("fieldtheory")
         assert adapter.version == "2.0.0"
 
-    def test_greekmath_version_v2(self, registry):
+    def test_fieldtheory_gather(self, registry):
+        adapter = registry.get("fieldtheory")
+        result = adapter.gather(entropy=0.5, phases=7)
+        assert 0.0 <= result["phase"] <= 1.0
+        assert "amplitude" in result
+        assert "dispersion" in result
+        assert "propagator" in result
+
+    def test_nukleonscanner_string_phase(self, registry):
+        """v2.1.0 must expose string_phase key."""
+        adapter = registry.get("nukleonscanner")
+        result = adapter.gather(entropy=0.618, phases=7)
+        assert "string_phase" in result
+        assert 0.0 <= result["string_phase"] <= 1.0
+
+    def test_greekmath_fibonacci(self, registry):
+        """v2.1.0 must expose fibonacci key."""
         adapter = registry.get("greekmath")
-        assert adapter.version == "2.0.0"
+        result = adapter.gather(entropy=0.618, phases=7)
+        assert "fibonacci" in result
+        assert 0.0 <= result["fibonacci"] <= 1.0
+
+    def test_greekmath_logarithmic(self, registry):
+        """v2.1.0 must expose logarithmic key."""
+        adapter = registry.get("greekmath")
+        result = adapter.gather(entropy=0.618, phases=7)
+        assert "logarithmic" in result
+        assert 0.0 <= result["logarithmic"] <= 1.0
 
 
 # ---------------------------------------------------------------------------

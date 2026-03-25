@@ -3,17 +3,31 @@
 [![Tests](https://github.com/GenesisAeon/unified-mandala/actions/workflows/python-ci.yml/badge.svg)](https://github.com/GenesisAeon/unified-mandala/actions/workflows/python-ci.yml)
 [![Coverage](https://img.shields.io/badge/coverage-100%25-brightgreen)](https://github.com/GenesisAeon/unified-mandala)
 
-# unified-mandala v0.3.1
+# unified-mandala v0.3.2
 
-**Holistic Mandala Orchestrator Framework** with complete Phase-3 thermodynamic and planetary integration.
+**Holistic Mandala Orchestrator Framework** with complete Phase-3 thermodynamic, planetary, and QFT integration.
 **DOI**: [10.5281/zenodo.19209147](https://doi.org/10.5281/zenodo.19209147)
 
-> v0.3.1 — _Phase-3 Patch: Tension metric, regenerative architectures, neuromorphic + Landauer countermeasures_
+> v0.3.2 — _Reactivation Patch: NukleonScanner v2.1.0 + GreekMath v2.1.0 + FieldTheory v2.0.0_
 
 MandalaOrchestrator + CREP-Evaluator + SigillinBridge (19-adapter ring) + PolicyGate + EntropyGovernor +
 AdapterRegistry + **Thermodynamics** (Landauer · Hatano-Sasa · Esposito-Van den Broeck) +
 **Planetary Coupling** (IEA→CO₂→Albedo→Ice) + **MetaQuest-Sigillins** (AI-to-AI) +
 **Collapse Detector** (SDE · Tainter · Prigogine · φ=0.618).
+
+---
+
+## What's New in v0.3.2
+
+| Feature               | Module                                         | Description                                                                              |
+| --------------------- | ---------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| NukleonScanner v2.1.0 | `integrations.adapters.nukleonscanner_adapter` | Two-loop QCD αs(Q) + string-tension confinement φ_string                                 |
+| GreekMath v2.1.0      | `integrations.adapters.greekmath_adapter`      | Logarithmic (golden-angle) spiral + Fibonacci ratio resonance                            |
+| FieldTheory v2.0.0    | `integrations.adapters.fieldtheory`            | Klein-Gordon scalar field, dispersion ω²=k²+m², Euclidean propagator, Lagrangian density |
+| CLI: `nukleon`        | `cli.rituals`                                  | `unified-mandala nukleon --entropy 0.618 --phases 7`                                     |
+| CLI: `greekmath`      | `cli.rituals`                                  | `unified-mandala greekmath --entropy 0.618 --phases 7`                                   |
+| CLI: `fieldtheory`    | `cli.rituals`                                  | `unified-mandala fieldtheory --entropy 0.618 --phases 7`                                 |
+| +45 new tests         | `tests/python/unit/integrations/`              | Unit + contract tests for all three adapters                                             |
 
 ---
 
@@ -47,10 +61,10 @@ AdapterRegistry + **Thermodynamics** (Landauer · Hatano-Sasa · Esposito-Van de
 
 ---
 
-## Python Quick Start (v0.3.1)
+## Python Quick Start (v0.3.2)
 
 ```bash
-pip install unified-mandala==0.3.1
+pip install unified-mandala==0.3.2
 ```
 
 ```python
@@ -90,7 +104,7 @@ traj_regen = det_regen.simulate(x0=0.4)
 print(f"Regenerative: risk = {det_regen.collapse_risk(traj_regen):.3f}")
 ```
 
-## CLI Commands (v0.3.1)
+## CLI Commands (v0.3.2)
 
 ```bash
 # Standard mandala cycle
@@ -113,6 +127,15 @@ unified-mandala metaquest --crep 0.85 --entropy 0.15 --n 5 --regenerative
 
 # Planetary coupling chain (IEA→CO₂→Albedo→Ice)
 unified-mandala planetary --energy 620.0 --baseline-co2 421.0
+
+# NukleonScanner — QCD αs + QGP proximity + string tension (v2.1.0)
+unified-mandala nukleon --entropy 0.618 --phases 7
+
+# GreekMath — Pythagorean + golden section + spirals + Fibonacci (v2.1.0)
+unified-mandala greekmath --entropy 0.618 --phases 7
+
+# FieldTheory — Klein-Gordon scalar field + propagator + dispersion (v2.0.0)
+unified-mandala fieldtheory --entropy 0.618 --phases 7
 ```
 
 ---
