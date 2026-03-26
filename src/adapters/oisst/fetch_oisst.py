@@ -1,6 +1,7 @@
 import os
 import sys
 from pathlib import Path
+
 from adapters.shared.fixture import write_synthetic_cube
 
 
@@ -16,7 +17,9 @@ def main(argv: list[str] | None = None) -> int:
     if len(args) != 3:
         print("usage: python -m adapters.oisst.fetch_oisst YEAR MONTH OUTPUT_DIR", file=sys.stderr)
         return 2
-    year = int(args[0]); month = int(args[1]); outdir = args[2]
+    year = int(args[0])
+    month = int(args[1])
+    outdir = args[2]
     Path(outdir).mkdir(parents=True, exist_ok=True)
     out = fetch_oisst(year, month, outdir)
     print(out)

@@ -2,7 +2,7 @@ from datetime import datetime
 from os.path import relpath
 from pathlib import Path
 
-from .types import STACItem, PathLike, BBox
+from .types import BBox, PathLike, STACItem
 
 WORLD: BBox = (-180.0, -90.0, 180.0, 90.0)
 

@@ -1,8 +1,12 @@
-/* @jest-environment node */
 import fs from 'fs';
 import path from 'path';
+import { fileURLToPath } from 'url';
+import { describe, it, expect, vi, beforeAll, afterAll } from 'vitest';
 
-describe.skip('Plugin Sandbox', () => {
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+describe('Plugin Sandbox', () => {
   const pluginsDir = path.join(__dirname, '..', 'plugins');
   const tmpPluginDir = path.join(pluginsDir, 'sandboxTest');
 
@@ -31,11 +35,11 @@ describe.skip('Plugin Sandbox', () => {
     fs.rmSync(tmpPluginDir, { recursive: true, force: true });
   });
 
-  it('blocks unauthorized imports', () => {
-    const spy = jest.spyOn(console, 'error').mockImplementation(() => {});
-    jest.resetModules();
+  it('blocks unauthorized imports', async () => {
+    const spy = vi.spyOn(console, 'error').mockImplementation(() => {});
+    vi.resetModules();
     process.env.NODE_ENV = 'test';
-    const loader = require('../services/plugin-loader');
+    const loader = await import('../services/plugin-loader');
     const plugin = loader.getPlugin('sandboxTest');
     expect(plugin).toBeUndefined();
     expect(spy).toHaveBeenCalled();

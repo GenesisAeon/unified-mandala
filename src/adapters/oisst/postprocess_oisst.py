@@ -1,12 +1,16 @@
 # pyright: reportUnknownMemberType=false, reportUnknownVariableType=false, reportUnknownArgumentType=false, reportUnknownParameterType=false, reportMissingTypeArgument=false, reportAttributeAccessIssue=false, reportUnusedImport=false, reportPrivateUsage=false
 from __future__ import annotations
-import json, sys
+
+import json
+import sys
+from datetime import UTC, datetime
 from pathlib import Path
+
 import numpy as np
 import xarray as xr
-from datetime import datetime, timezone
-from adapters.shared.xarray_utils import open_dataset
+
 from adapters.core.stac import _normalise_href
+from adapters.shared.xarray_utils import open_dataset
 
 
 def _crep_from_stats(ds: xr.Dataset) -> dict[str, object]:
@@ -64,13 +68,16 @@ def main(argv: list[str] | None = None) -> int:
         return 2
 
     raw_nc = Path(args[0])
-    out_proc = Path(args[1]); out_stac = Path(args[2]); out_metrics = Path(args[3])
+    out_proc = Path(args[1])
+    out_stac = Path(args[2])
+    out_metrics = Path(args[3])
     out_proc.mkdir(parents=True, exist_ok=True)
     out_stac.mkdir(parents=True, exist_ok=True)
     out_metrics.mkdir(parents=True, exist_ok=True)
 
     if not raw_nc.exists():
-        print(f"raw not found: {raw_nc}", file=sys.stderr); return 3
+        print(f"raw not found: {raw_nc}", file=sys.stderr)
+        return 3
 
     ds = open_dataset(str(raw_nc))
     try:
@@ -82,7 +89,7 @@ def main(argv: list[str] | None = None) -> int:
         stamp = (
             raw_nc.stem.split("_")[-1]
             if "_" in raw_nc.stem
-            else datetime.now(timezone.utc).strftime("%Y%m")
+            else datetime.now(UTC).strftime("%Y%m")
         )
         proc_nc = out_proc / f"oisst_{stamp}.nc"
         ds.to_netcdf(proc_nc)
@@ -91,7 +98,7 @@ def main(argv: list[str] | None = None) -> int:
         lat: np.ndarray = ds.coords["lat"].values
         lon: np.ndarray = ds.coords["lon"].values
         bbox = _bbox_from_coords(lat, lon)
-        dt_iso = datetime.now(timezone.utc).isoformat()
+        dt_iso = datetime.now(UTC).isoformat()
         item_id = f"oisst-{stamp}"
         href = _normalise_href(proc_nc, stac_item_dir=out_stac)
         stac: dict[str, object] = _stac_item(item_id, bbox, href, dt_iso)

@@ -1,6 +1,7 @@
 # pyright: reportAttributeAccessIssue=false
 import os
 import sys
+
 import numpy as np  # type: ignore
 
 # Ensure repository root on path for direct module import
@@ -42,7 +43,7 @@ def test_debug_detection():
 
 
 def test_energy_to_mass_conversion():
-    field, metrics = simulate_nullfield_wave(
+    _field, metrics = simulate_nullfield_wave(
         length=1.0,
         duration=0.2,
         dx=0.1,

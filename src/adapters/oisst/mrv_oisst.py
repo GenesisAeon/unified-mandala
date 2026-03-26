@@ -1,8 +1,12 @@
 from __future__ import annotations
+
 from pathlib import Path
+
 # pyright: reportUnknownMemberType=false, reportUnknownVariableType=false, reportAttributeAccessIssue=false
 import xarray as xr  # type: ignore
+
 from adapters.shared.types import Dataset, PathLike
+
 
 def to_mrv_parquet(input_path: PathLike, output_path: PathLike) -> Path:
     ds: Dataset = xr.open_dataset(str(input_path), engine="netcdf4")

@@ -1,9 +1,8 @@
-/* @jest-environment node */
 import { getPlugin } from '../services/plugin-loader';
 import { EventEmitter } from 'events';
 
-describe.skip('mandalaHaiku plugin', () => {
-  it('emits haiku_response on high-energy alert', (done) => {
+describe('mandalaHaiku plugin', () => {
+  it('emits haiku_response on high-energy alert', () => {
     const plugin = getPlugin('mandalaHaiku');
     expect(plugin).toBeDefined();
 
@@ -12,16 +11,18 @@ describe.skip('mandalaHaiku plugin', () => {
     const logs: string[] = [];
     plugin.initialize({ io, logger: (msg: string) => logs.push(msg) });
 
-    socket.on('haiku_response', (data: any) => {
-      expect(typeof data.haiku).toBe('string');
-      expect(data.sigil).toBe('aeon:2025-0626-HIGH-ENERGY');
-      done();
-    });
+    return new Promise<void>((resolve) => {
+      socket.on('haiku_response', (data: any) => {
+        expect(typeof data.haiku).toBe('string');
+        expect(data.sigil).toBe('aeon:2025-0626-HIGH-ENERGY');
+        resolve();
+      });
 
-    socket.emit('sigil_alert', {
-      id: 'aeon:2025-0626-HIGH-ENERGY',
-      crep: 0.9,
-      symbol: '\ud83c\udf1f',
+      socket.emit('sigil_alert', {
+        id: 'aeon:2025-0626-HIGH-ENERGY',
+        crep: 0.9,
+        symbol: '\ud83c\udf1f',
+      });
     });
   });
 });
