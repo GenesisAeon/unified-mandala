@@ -1,10 +1,10 @@
-[build-system]
+﻿[build-system]
 requires = ["hatchling>=1.21.0"]
 build-backend = "hatchling.build"
 
 [project]
 name = "unified-mandala"
-version = "0.3.2"
+version = "0.3.1"
 description = "Holistic self-reflecting Mandala framework with CREP, Sigillin, thermodynamics, planetary coupling, and full GenesisAeon integration"
 readme = "README.md"
 license = { text = "MIT" }
@@ -132,7 +132,7 @@ src = ["src", "tests"]
 select = ["E", "W", "F", "I", "UP", "B", "C4", "SIM", "RUF"]
 ignore = [
   "E501",
-  # Ambiguous Unicode in scientific notation: Greek letters (σ, γ, α) and math chars (×, −, –)
+  # Ambiguous Unicode in scientific notation: Greek letters (Ïƒ, Î³, Î±) and math chars (Ã—, âˆ’, â€“)
   # are intentional in thermodynamics/physics docstrings and string literals.
   "RUF001",
   "RUF002",
@@ -189,3 +189,4 @@ typeCheckingMode = "basic"
 reportMissingTypeStubs = false
 reportUnknownArgumentType = "warning"
 reportUnknownVariableType = "warning"
+
