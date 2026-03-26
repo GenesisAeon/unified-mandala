@@ -1,9 +1,13 @@
 from __future__ import annotations
-from datetime import datetime, timezone
+
+from datetime import UTC, datetime
+
 import numpy as np
-from numpy.typing import NDArray
 import xarray as xr
+from numpy.typing import NDArray
+
 from adapters.shared.types import Dataset, PathLike
+
 # pyright: reportUnknownMemberType=false, reportUnknownArgumentType=false, reportIndexIssue=false
 
 def calculate_crep_score(input_path: PathLike) -> float:
@@ -14,8 +18,8 @@ def calculate_crep_score(input_path: PathLike) -> float:
         times: NDArray[np.datetime64] = xr.decode_cf(ds)[time_var].values  # type: ignore[assignment]
         if getattr(times, "size", 0) > 0:
             try:
-                latest = datetime.fromisoformat(str(times[-1])).replace(tzinfo=timezone.utc)
-                days = max((datetime.now(timezone.utc) - latest).days, 0)
+                latest = datetime.fromisoformat(str(times[-1])).replace(tzinfo=UTC)
+                days = max((datetime.now(UTC) - latest).days, 0)
                 recency = 1.0 - min(days / 30.0, 1.0)
             except ValueError:
                 recency = 1.0

@@ -1,11 +1,11 @@
 import { describe, it, expect } from 'vitest';
 import { checkEthics } from '../packages/ethics/hooks/agent-ethics';
 
-describe.skip('agent ethics', () => {
-  it('throws on violating actions', () => {
-    expect(() => checkEthics('Probiere credential harvest bei X')).toThrow();
+describe('agent ethics', () => {
+  it('blocks violating actions', () => {
+    expect(checkEthics('Probiere credential harvest bei X')).toBe('block');
   });
-  it('passes benign actions', () => {
-    expect(() => checkEthics('Zeige Diagramm an')).not.toThrow();
+  it('allows benign actions', () => {
+    expect(checkEthics('Zeige Diagramm an')).toBe('allow');
   });
 });

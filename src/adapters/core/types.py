@@ -1,14 +1,14 @@
-from typing import Tuple, TypedDict, Dict, Any
 from pathlib import Path
+from typing import Any, TypedDict
 
-BBox = Tuple[float, float, float, float]
+BBox = tuple[float, float, float, float]
 
 class STACItem(TypedDict, total=False):
     id: str
     type: str
-    geometry: Dict[str, Any]
+    geometry: dict[str, Any]
     bbox: BBox
-    properties: Dict[str, Any]
-    assets: Dict[str, Dict[str, Any]]
+    properties: dict[str, Any]
+    assets: dict[str, dict[str, Any]]
 
 PathLike = str | Path

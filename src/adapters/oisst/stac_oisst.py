@@ -1,8 +1,9 @@
 import os
+from typing import Any
+
 # pyright: reportMissingImports=false, reportUnknownMemberType=false, reportUnknownVariableType=false, reportUnknownParameterType=false
 import pystac  # type: ignore
-import xarray as xr  # type: ignore
-from typing import Any
+
 from adapters.core.stac import make_stac_item
 from adapters.shared.xarray_utils import open_dataset
 
@@ -10,7 +11,7 @@ from adapters.shared.xarray_utils import open_dataset
 def create_oisst_item(nc_path: str) -> pystac.Item:
     ds = open_dataset(nc_path)
     try:
-        time_var = [str(v) for v in ds.coords if "time" in str(v).lower()][0]
+        time_var = next(str(v) for v in ds.coords if "time" in str(v).lower())
         ds_var: Any = ds[time_var]
         _ = str(ds_var.values[0])
         item_dict = make_stac_item(

@@ -239,10 +239,42 @@ describe('RetryPolicy', () => {
     });
   });
 
-  // Decorator test skipped - requires experimental decorators in tsconfig
-  describe.skip('Retryable Decorator', () => {
-    it('should add retry logic to method', async () => {
-      // Test skipped - decorators require experimental configuration
+  describe('Retryable Decorator', () => {
+    it('should add retry logic to method via descriptor mutation', async () => {
+      let callCount = 0;
+      const descriptor: PropertyDescriptor = {
+        value: async () => {
+          callCount++;
+          if (callCount < 3) throw new Error('transient');
+          return 'decorated-success';
+        },
+      };
+
+      Retryable({ maxRetries: 3, initialBackoffMs: 0, maxBackoffMs: 0, backoffMultiplier: 1 })(
+        {},
+        'testMethod',
+        descriptor,
+      );
+
+      const result = await descriptor.value();
+      expect(result).toBe('decorated-success');
+      expect(callCount).toBe(3);
+    });
+
+    it('should exhaust retries and propagate error', async () => {
+      const descriptor: PropertyDescriptor = {
+        value: async () => {
+          throw new Error('permanent');
+        },
+      };
+
+      Retryable({ maxRetries: 2, initialBackoffMs: 0, maxBackoffMs: 0, backoffMultiplier: 1 })(
+        {},
+        'testMethod',
+        descriptor,
+      );
+
+      await expect(descriptor.value()).rejects.toThrow('permanent');
     });
   });
 

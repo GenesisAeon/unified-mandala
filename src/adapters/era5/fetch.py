@@ -1,9 +1,13 @@
 from __future__ import annotations
+
 import os
 from pathlib import Path
-from adapters.shared.types import PathLike
-from adapters.shared.fixture import write_synthetic_cube
+
 from dotenv import load_dotenv
+
+from adapters.shared.fixture import write_synthetic_cube
+from adapters.shared.types import PathLike
+
 load_dotenv()
 
 CDS_API_KEY = os.getenv("CDS_API_KEY")

@@ -1,9 +1,11 @@
 import os
 from pathlib import Path
+
 import pytest
+
+from adapters.oisst.crep_score_oisst import calculate_crep_score
 from adapters.oisst.fetch_oisst import fetch_oisst
 from adapters.oisst.resample_oisst import resample_oisst
-from adapters.oisst.crep_score_oisst import calculate_crep_score
 
 pytestmark = pytest.mark.slow
 

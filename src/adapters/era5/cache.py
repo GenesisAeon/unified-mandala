@@ -1,5 +1,7 @@
 from __future__ import annotations
+
 import requests_cache  # type: ignore[import]
+
 # pyright: reportUnknownMemberType=false
 
 
