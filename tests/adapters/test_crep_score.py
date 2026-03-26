@@ -1,9 +1,13 @@
-import xarray as xr
+import os
+import sys
+
 import numpy as np
 import pandas as pd
-import sys, os
+import xarray as xr
+
 sys.path.insert(0, os.path.abspath('.'))
 from src.adapters.era5.crep_score import calculate_crep_score
+
 
 def test_crep_score_range(tmp_path):
     times = pd.date_range('2024-01-01', periods=1)  # type: ignore[attr-defined]

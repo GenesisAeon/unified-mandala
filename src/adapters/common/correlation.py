@@ -1,7 +1,9 @@
-import numpy as np  # type: ignore
 import json
 import os
+
+import numpy as np  # type: ignore
 import xarray as xr  # type: ignore
+
 from adapters.shared.xarray_utils import open_dataset
 
 # pyright: reportUnknownArgumentType=false, reportUnknownMemberType=false, reportUnknownVariableType=false, reportAttributeAccessIssue=false

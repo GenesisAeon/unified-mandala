@@ -1,6 +1,6 @@
 from pathlib import Path
+
 # pyright: reportUnknownMemberType=false, reportUnknownVariableType=false, reportAttributeAccessIssue=false
-import pandas as pd  # type: ignore
 from adapters.shared.types import Dataset, PathLike
 from adapters.shared.xarray_utils import open_dataset
 

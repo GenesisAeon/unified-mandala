@@ -1,8 +1,10 @@
 from __future__ import annotations
-# pyright: reportUnknownMemberType=false, reportUnknownArgumentType=false
 
+from collections.abc import Iterable, Sequence
+
+# pyright: reportUnknownMemberType=false, reportUnknownArgumentType=false
 from os import fspath
-from typing import Iterable, Sequence, Any
+from typing import Any
 
 import xarray as xr
 

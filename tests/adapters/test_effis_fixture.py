@@ -1,8 +1,9 @@
-from src.adapters.effis.fetch_effis import fetch_effis
-from pathlib import Path
-from pytest import MonkeyPatch
 import os
+from pathlib import Path
+
 import pytest
+from pytest import MonkeyPatch
+from src.adapters.effis.fetch_effis import fetch_effis
 
 pytestmark = pytest.mark.slow
 

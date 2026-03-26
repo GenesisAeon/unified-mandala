@@ -2,10 +2,11 @@
 from __future__ import annotations
 
 import json
+from collections.abc import Iterable
 from dataclasses import dataclass
 from pathlib import Path
 from random import Random
-from typing import Any, Iterable
+from typing import Any
 
 ROOT = Path(__file__).resolve().parents[3]
 OUT_DIR = ROOT / "analysis" / "cosmic-web"

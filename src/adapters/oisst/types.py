@@ -1,5 +1,6 @@
 from __future__ import annotations
-from typing import TypedDict, Literal
+
+from typing import Literal, TypedDict
 
 
 class CrepWeights(TypedDict, total=False):

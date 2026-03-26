@@ -138,7 +138,7 @@ ignore = [
   "RUF002",
   "RUF003",
 ]
-per-file-ignores = { "tests/**" = ["S101", "S105", "S106"] }
+per-file-ignores = { "tests/**" = ["S101", "S105", "S106", "E402"] }
 
 [tool.ruff.lint.isort]
 known-first-party = ["unified_mandala"]

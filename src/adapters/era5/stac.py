@@ -1,7 +1,10 @@
 import os
+
 # pyright: reportMissingImports=false, reportUnknownMemberType=false, reportUnknownParameterType=false, reportUnknownVariableType=false
 import pystac  # type: ignore
+
 from ..core.stac import make_stac_item
+
 
 def create_stac_item(nc_path: str, variable: str) -> pystac.Item:
     item_dict = make_stac_item(

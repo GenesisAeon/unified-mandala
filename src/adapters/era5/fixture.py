@@ -1,5 +1,8 @@
 from pathlib import Path
-import numpy as np, xarray as xr
+
+import numpy as np
+import xarray as xr
+
 # pyright: reportUnknownMemberType=false, reportUnknownVariableType=false, reportAttributeAccessIssue=false
 
 def write_synthetic_era5(path: str) -> str:

@@ -1,7 +1,9 @@
 from __future__ import annotations
+
 # pyright: reportUnknownMemberType=false, reportInvalidTypeArguments=false, reportAttributeAccessIssue=false
 from pathlib import Path
 from typing import Protocol, TypedDict
+
 import numpy as np
 import xarray as xr
 from numpy.typing import NDArray

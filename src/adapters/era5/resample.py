@@ -1,8 +1,11 @@
 from pathlib import Path
+
 # pyright: reportUnknownMemberType=false, reportUnknownVariableType=false, reportAttributeAccessIssue=false
 import numpy as np  # type: ignore
+
 from adapters.shared.types import Dataset, NDArrayFloat, PathLike
 from adapters.shared.xarray_utils import open_dataset
+
 
 def resample_era5(nc_in: PathLike, nc_out: PathLike, step_deg: float = 0.5) -> Path:
     ds: Dataset = open_dataset(str(nc_in))
