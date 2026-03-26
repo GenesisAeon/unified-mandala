@@ -1,12 +1,8 @@
-import os
-import sys
-
 import numpy as np
 import pandas as pd
 import xarray as xr
 
-sys.path.insert(0, os.path.abspath('.'))
-from src.adapters.era5.crep_score import calculate_crep_score
+from adapters.era5.crep_score import calculate_crep_score
 
 
 def test_crep_score_range(tmp_path):

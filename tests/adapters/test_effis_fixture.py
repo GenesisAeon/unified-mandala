@@ -3,7 +3,8 @@ from pathlib import Path
 
 import pytest
 from pytest import MonkeyPatch
-from src.adapters.effis.fetch_effis import fetch_effis
+
+from adapters.effis.fetch_effis import fetch_effis
 
 pytestmark = pytest.mark.slow
 
