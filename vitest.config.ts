@@ -197,6 +197,7 @@ export default defineConfig({
     include: [
       'tests/**/*.{test,spec}.ts',
       'src/**/tests/**/*.{test,spec}.ts',
+      'src/**/__tests__/**/*.{test,spec}.{ts,tsx}',
       'packages/**/test/**/*.{test,spec}.ts',
       'packages/**/src/**/*.{test,spec}.ts',
       'apps/**/src/**/*.{test,spec}.ts',

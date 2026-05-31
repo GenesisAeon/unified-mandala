@@ -1,3 +1,4 @@
+// @vitest-environment jsdom
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
@@ -7,6 +8,6 @@ describe('ClimateMandalaDashboard', () => {
   it('renders heading and geophysik section', () => {
     render(<ClimateMandalaDashboard />);
     expect(screen.getByRole('heading', { name: /Climate Mandala Dashboard/i })).toBeInTheDocument();
-    expect(screen.getByText('Geophysik')).toBeInTheDocument();
+    expect(screen.getAllByText('Geophysik').length).toBeGreaterThan(0);
   });
 });

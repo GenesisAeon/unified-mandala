@@ -46,6 +46,7 @@ dependencies = [
 full-stack = [
   "pandas>=2.2.0",
   "xarray>=2024.1.0",
+  "netCDF4>=1.6.0",
   "matplotlib>=3.8.0",
   "plotly>=5.18.0",
   "requests>=2.31.0",
