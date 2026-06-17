@@ -61,6 +61,14 @@ AdapterRegistry + **Thermodynamics** (Landauer · Hatano-Sasa · Esposito-Van de
 
 ---
 
+## Installation
+
+```bash
+pip install unified-mandala
+```
+
+---
+
 ## Python Quick Start (v0.3.2)
 
 ```bash
@@ -531,6 +539,22 @@ Small, focused PRs (docs, adapters, agents). Before merge: `pnpm build:ui` + `pn
 ## License
 
 MIT. Data sources: respect their respective terms of use.
+
+## Citation
+
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.PLACEHOLDER.svg)](https://doi.org/10.5281/zenodo.PLACEHOLDER)
+
+DOI will be assigned automatically on first GitHub Release once
+Zenodo–GitHub integration is enabled for this repo. In the meantime, the
+DOI badge at the top of this README (`10.5281/zenodo.19219948`) points to
+the most recent published Zenodo record for this package.
+
+## Role in the GenesisAeon Ecosystem
+
+`unified-mandala` is **P-MANDALA** in the GenesisAeon ecosystem registry —
+the orchestration core (UI, CREP, agents) that wires the CREP evaluator,
+SigillinBridge, PolicyGate, and the 17+ adapter registry together into a
+single self-reflecting cycle (`MandalaOrchestrator.run_cycle`).
 
 ## Repo Cartography & Flows
 

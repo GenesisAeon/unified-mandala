@@ -28,6 +28,20 @@ Alle relevanten Änderungen dieses Projekts werden in diesem Dokument festgehalt
 - **CLI commands** – `unified-mandala nukleon`, `greekmath`, `fieldtheory` with `--entropy` and `--phases` flags
 - **+45 tests** – Unit + contract tests for all three adapters; adapter registry v0.3.0 test updated for v2.1.0/v2.0.0 versions
 
+## [1.0.0] - 2026
+
+### Added
+- Ecosystem-wide GenesisAeon v1.0.0 release: standardized release tooling
+  (`.zenodo.json`, GitHub Actions release workflow, `RELEASE_GUIDE.md`,
+  bug/feature issue templates).
+- Diamond Interface completed on `MandalaOrchestrator`: `get_crep_state`,
+  `get_utac_state`, `get_phase_events`, `to_zenodo_record` (joins the
+  pre-existing `run_cycle`).
+
+### Changed
+- Project metadata (`pyproject.toml`) version bumped to `1.0.0` as part of
+  the ecosystem-wide milestone.
+
 ## [Unreleased]
 
 - Verfeinerte Symbolzuordnung in `aeon_processor.assign_symbol`
