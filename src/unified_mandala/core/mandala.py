@@ -95,6 +95,8 @@ class MandalaOrchestrator:
         self._phi_prev: float = 0.0
         # Start 1 second in the past so first cycle has a sensible delta_t.
         self._t_prev: float = time.monotonic() - 1.0
+        self._history: list[CycleResult] = []
+        self._phase_events: list[dict[str, Any]] = []
 
     # ------------------------------------------------------------------
     # Public API
@@ -188,7 +190,7 @@ class MandalaOrchestrator:
             f"gov={'PASS' if gov_decision.passed else 'BLOCK'}"
         )
 
-        return CycleResult(
+        result = CycleResult(
             cycle_id=cid,
             entropy_input=entropy,
             crep=crep_result,
@@ -199,6 +201,18 @@ class MandalaOrchestrator:
             adapter_states=adapter_states,
             duration_s=duration,
         )
+        self._history.append(result)
+        if crep_result.emergence or not gov_decision.passed:
+            self._phase_events.append(
+                {
+                    "cycle_id": cid,
+                    "timestamp": result.timestamp,
+                    "kind": "emergence" if crep_result.emergence else "governance_block",
+                    "crep_score": crep_result.score,
+                    "governance_notes": list(gov_decision.notes),
+                }
+            )
+        return result
 
     def self_reflect(self) -> str:
         """Introspective report: CREP state, adapter health, cycle count.
@@ -218,6 +232,50 @@ class MandalaOrchestrator:
             lines.append(f"    · {name}")
         lines.append("╚══════════════════════════════════════════╝")
         return "\n".join(lines)
+
+    def get_crep_state(self) -> dict[str, Any]:
+        """Current CREP (resonance) state snapshot for the GenesisAeon Diamond Interface."""
+        last = self._history[-1] if self._history else None
+        return {
+            "cycle_id": self._cycle_counter,
+            "phi": self._phi_prev,
+            "score": last.crep.score if last else 0.0,
+            "emergence": last.crep.emergence if last else False,
+            "threshold": self._crep.threshold,
+            "channel_count": len(self._crep.channels),
+        }
+
+    def get_utac_state(self) -> dict[str, Any]:
+        """Current UTAC-analog (emergence-rate) state snapshot.
+
+        unified-mandala has no dedicated UTAC-ODE engine of its own; it
+        reports the :class:`EmergenceRate` computation it already performs
+        each cycle, which plays the equivalent role within this package.
+        """
+        last = self._history[-1] if self._history else None
+        return {
+            "cycle_id": self._cycle_counter,
+            "emergence_rate": last.emergence.rate if last else 0.0,
+            "phi_prev": self._phi_prev,
+            "adapter_count": len(self._registry),
+        }
+
+    def get_phase_events(self) -> list[dict[str, Any]]:
+        """Recorded phase-transition events (emergence onsets, governance blocks)."""
+        return list(self._phase_events)
+
+    def to_zenodo_record(self) -> dict[str, Any]:
+        """Export current orchestrator state as a Zenodo-style metadata record."""
+        last = self._history[-1] if self._history else None
+        return {
+            "title": "unified-mandala orchestrator state export",
+            "package_id": "P-MANDALA",
+            "cycles_completed": self._cycle_counter,
+            "crep_state": self.get_crep_state(),
+            "utac_state": self.get_utac_state(),
+            "phase_events": self.get_phase_events(),
+            "last_summary": last.summary if last else None,
+        }
 
     # ------------------------------------------------------------------
     # Private helpers
