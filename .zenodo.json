@@ -7,7 +7,7 @@
       "name": "GenesisAeon Collective"
     }
   ],
-  "description": "Diamond-setup patch reactivating three physics adapters: NukleonScanner v2.1.0 (two-loop QCD \u03b1s + string tension), GreekMath v2.1.0 (logarithmic spiral + Fibonacci ratios), and FieldTheory v2.0.0 (Klein-Gordon scalar field, dispersion relation, Euclidean propagator, Lagrangian density). Includes +45 new contract tests and three new CLI commands.",
+  "description": "Diamond-setup patch reactivating three physics adapters: NukleonScanner v2.1.0 (two-loop QCD \u03b1s + string tension), GreekMath v2.1.0 (logarithmic spiral + Fibonacci ratios), and FieldTheory v2.0.0 (Klein-Gordon scalar field, dispersion relation, Euclidean propagator, Lagrangian density). Includes +45 new contract tests and three new CLI commands. <p>This repository is dual-licensed: source code under GPL-3.0-or-later, documentation under CC BY 4.0 (see LICENSE-DOCS in the repository).</p>",
   "keywords": [
     "genesis-aeon",
     "thermodynamics",
@@ -25,7 +25,7 @@
     "planetary-coupling",
     "mandala-orchestrator"
   ],
-  "license": "MIT",
+  "license": "GPL-3.0-or-later",
   "related_identifiers": [
     {
       "relation": "isNewVersionOf",
