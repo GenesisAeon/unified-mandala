@@ -1,21 +1,26 @@
-MIT License
+unified-mandala — Dual License
 
-Copyright (c) 2025 GenesisAeon
+This repository is dual-licensed:
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+1. SOURCE CODE (everything under `src/`, `tests/`, `scripts/`, and all
+   other executable/program code in this repository) is licensed under
+   the GNU General Public License, version 3 or (at your option) any
+   later version (GPL-3.0-or-later).
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+   See `LICENSE-CODE` for the full license text, or
+   https://www.gnu.org/licenses/gpl-3.0.html
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+2. DOCUMENTATION (README.md, files under `docs/`, Markdown guides,
+   diagrams, and other non-code written material in this repository) is
+   licensed under the Creative Commons Attribution 4.0 International
+   License (CC BY 4.0).
+
+   See `LICENSE-DOCS` for the full license text, or
+   https://creativecommons.org/licenses/by/4.0/
+
+If a particular file's license is ambiguous from this split, check for a
+per-file or per-directory header/notice; in its absence, source files
+(by file extension/role) fall under GPL-3.0-or-later and documentation
+files fall under CC BY 4.0.
+
+Copyright (c) 2025-2026 GenesisAeon

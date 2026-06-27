@@ -538,7 +538,18 @@ Small, focused PRs (docs, adapters, agents). Before merge: `pnpm build:ui` + `pn
 
 ## License
 
-MIT. Data sources: respect their respective terms of use.
+This repository is **dual-licensed**:
+
+- **Source code** (`src/`, `tests/`, `scripts/`, and other program code)
+  is licensed under the **GNU General Public License v3.0 or later
+  (GPL-3.0-or-later)** — see [`LICENSE-CODE`](LICENSE-CODE).
+- **Documentation** (this README, files under `docs/`, and other written
+  Markdown material) is licensed under **Creative Commons Attribution
+  4.0 International (CC BY 4.0)** — see [`LICENSE-DOCS`](LICENSE-DOCS).
+
+See [`LICENSE`](LICENSE) for the full dual-license notice. Data sources
+are not covered by either license and remain subject to their own
+respective terms of use.
 
 ## Citation
 

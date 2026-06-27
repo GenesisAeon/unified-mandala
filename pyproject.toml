@@ -7,7 +7,12 @@ name = "unified-mandala"
 version = "1.0.0"
 description = "Holistic self-reflecting Mandala framework with CREP, Sigillin, thermodynamics, planetary coupling, and full GenesisAeon integration"
 readme = "README.md"
-license = { text = "MIT" }
+license = { text = "GPL-3.0-or-later" }
+# Dual-licensed repository: source code is GPL-3.0-or-later (see
+# LICENSE-CODE); documentation (README, docs/) is CC BY 4.0 (see
+# LICENSE-DOCS). See LICENSE for the full dual-license notice. The
+# `license` field above reflects the code license, since that is what
+# this packaged distribution (the Python code) is governed by.
 requires-python = ">=3.11"
 authors = [
   { name = "GenesisAeon Contributors", email = "genesis@aeon.dev" },
@@ -21,7 +26,7 @@ keywords = [
 classifiers = [
   "Development Status :: 3 - Alpha",
   "Intended Audience :: Science/Research",
-  "License :: OSI Approved :: MIT License",
+  "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
   "Programming Language :: Python :: 3",
   "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.12",
