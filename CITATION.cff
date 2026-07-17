@@ -1,0 +1,21 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+type: software
+title: "unified-mandala"
+version: "1.0.0"
+date-released: "2026-06-17"
+authors:
+  - name: "GenesisAeon Contributors"
+    email: genesis@aeon.dev
+repository-code: "https://github.com/GenesisAeon/unified-mandala"
+license: GPL-3.0-or-later
+abstract: "Holistic self-reflecting Mandala framework with CREP, Sigillin, thermodynamics, planetary coupling, and full GenesisAeon integration"
+keywords:
+  - GenesisAeon
+  - UTAC
+  - CREP
+  - open-science
+  - mandala
+  - crep
+  - sigillin
+  - entropy
