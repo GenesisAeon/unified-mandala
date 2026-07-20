@@ -32,8 +32,15 @@ jobs:
           labels = [label.strip() for label in os.environ.get('PROVENANCE_LABELS', '').split(',') if label.strip()]
           source_labels = [label for label in labels if label.startswith('source:')]
 
+          if len(source_labels) == 0:
+              # auto-provenance runs concurrently and adds the label shortly after PR
+              # is opened; this run will be superseded by the re-run on the 'labeled'
+              # event, so exit without error rather than creating a permanently-red check.
+              print('⏭ No source:* label yet — skipping until auto-provenance labels this PR.')
+              sys.exit(0)
+
           if len(source_labels) != 1:
-              print('❌ PR needs exactly one source:* label.')
+              print('❌ PR has multiple source:* labels; exactly one is required.')
               sys.exit(1)
 
           label = source_labels[0]
