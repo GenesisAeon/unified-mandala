@@ -9,6 +9,7 @@ Alle relevanten Änderungen dieses Projekts werden in diesem Dokument festgehalt
 ## [0.3.0] - 2026-03-24
 
 ### New Features
+
 - **Thermodynamics Module** – Landauer bound (`E = k_B T ln2`), Hatano-Sasa non-equilibrium decomposition, Esposito maintenance/reorganization entropy (σ_maint + σ_reorg)
 - **Planetary Coupling** – IEA→CO₂→ΔF→ΔT→Albedo→Ice→CREP chain with Systemic-Vulnerability metric
 - **MetaQuest-Sigillins** – 4-tier adaptive counterquestion engine for AI-to-AI collaboration
@@ -22,6 +23,7 @@ Alle relevanten Änderungen dieses Projekts werden in diesem Dokument festgehalt
 ## [0.3.2] - 2026-03-25
 
 ### New Features
+
 - **NukleonScanner v2.1.0** – Two-loop QCD αs(Q) running coupling (β₁ correction) + string-tension confinement phase φ_string = exp(−σ/Q²)
 - **GreekMath v2.1.0** – Logarithmic (golden-angle equiangular) spiral primitive + Fibonacci ratio proximity; 6 weighted primitives (sum=1)
 - **FieldTheory v2.0.0** – Full Klein-Gordon scalar field: standing-wave amplitude, dispersion relation ω²=k²+m², Euclidean propagator Δ_E=m²/(p_E²+m²), Lagrangian density L
@@ -31,6 +33,7 @@ Alle relevanten Änderungen dieses Projekts werden in diesem Dokument festgehalt
 ## [1.0.0] - 2026
 
 ### Added
+
 - Ecosystem-wide GenesisAeon v1.0.0 release: standardized release tooling
   (`.zenodo.json`, GitHub Actions release workflow, `RELEASE_GUIDE.md`,
   bug/feature issue templates).
@@ -39,10 +42,13 @@ Alle relevanten Änderungen dieses Projekts werden in diesem Dokument festgehalt
   pre-existing `run_cycle`).
 
 ### Changed
+
 - Project metadata (`pyproject.toml`) version bumped to `1.0.0` as part of
   the ecosystem-wide milestone.
 
 ## [Unreleased]
+
+- fix: release job's own commits were blocked by its own pre-commit hook
 
 - **Lizenzwechsel**: Repository ist jetzt dual-lizenziert — Quellcode unter
   GPL-3.0-or-later (`LICENSE-CODE`), Dokumentation unter CC BY 4.0
