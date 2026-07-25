@@ -3,6 +3,10 @@ on:
   push:
     branches: [main]
   pull_request:
+
+permissions:
+  contents: write
+
 jobs:
   map:
     runs-on: ubuntu-latest

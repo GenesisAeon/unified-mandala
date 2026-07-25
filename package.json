@@ -147,7 +147,7 @@
     "ghost-shell:server": "node scripts/run-dist.mjs services/ghost-shell/server.ts",
     "generate:ghostshell-nginx": "node scripts/run-dist.mjs scripts/generate-ghostshell-nginx.ts",
     "store:commit-memory": "node GenesisAeonZIPMEM/commitMemory/commit-memory.js",
-    "generate:changelog": "node scripts/generate-changelog.js",
+    "generate:changelog": "node scripts/generate-changelog.cjs",
     "compile:agents-manifest": "node scripts/compile_agents_manifest.js",
     "cy:run": "cypress run",
     "smoke:ui": "node scripts/smoke/ui-dev-smoke.mjs",

@@ -569,7 +569,7 @@
           "name": "Generate changelog",
           "command": "pnpm generate:changelog",
           "type": "pnpm",
-          "runs": "node scripts/generate-changelog.js",
+          "runs": "node scripts/generate-changelog.cjs",
           "description": "Outputs changelog entries from commit metadata.",
           "source": ["package.json#scripts.generate:changelog"]
         },

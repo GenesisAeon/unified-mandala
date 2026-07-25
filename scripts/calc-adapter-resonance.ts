@@ -1,5 +1,5 @@
 import fs from 'fs';
-import { interAdapterResonance } from '../src/utils/resonance';
+import { interAdapterResonance } from '../src/utils/resonance/index.js';
 
 type AdapterScore = { id: string; source: string; crepScore?: number };
 

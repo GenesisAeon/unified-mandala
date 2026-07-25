@@ -1,2 +1,2 @@
-export * from './interAdapterResonance';
-export * from './classification';
+export * from './interAdapterResonance.js';
+export * from './classification.js';

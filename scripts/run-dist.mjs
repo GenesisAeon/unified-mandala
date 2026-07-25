@@ -118,6 +118,7 @@ function ensureDistReady(distRelative, distAbsolute) {
     buildResult = spawnSync(pnpmCommand, ['-s', 'build'], {
       cwd: repoRoot,
       stdio: 'inherit',
+      shell: process.platform === 'win32',
     });
   }
 

@@ -1350,7 +1350,7 @@
   },
   {
     "commit": "Add changelog generator",
-    "path": "scripts/generate-changelog.js",
+    "path": "scripts/generate-changelog.cjs",
     "task": "Generate CHANGELOG.md from commit messages",
     "test": "",
     "status": "done"

@@ -2,7 +2,81 @@ const fs = require('node:fs');
 const path = require('node:path');
 const YAML = require('yaml');
 const matter = require('gray-matter');
-const stripJsonComments = require('strip-json-comments');
+
+// strip-json-comments@5 is ESM-only, so it can't be require()'d from this
+// CommonJS module. Vendored inline (MIT, same algorithm as the package)
+// rather than pinning the whole workspace back to a CJS-era major version.
+const singleComment = Symbol('singleComment');
+const multiComment = Symbol('multiComment');
+const stripWithWhitespace = (string, start, end) => string.slice(start, end).replace(/\S/g, ' ');
+
+function isEscaped(jsonString, quotePosition) {
+  let index = quotePosition - 1;
+  let backslashCount = 0;
+  while (jsonString[index] === '\\') {
+    index -= 1;
+    backslashCount += 1;
+  }
+  return Boolean(backslashCount % 2);
+}
+
+function stripJsonComments(jsonString) {
+  let insideString = false;
+  let insideComment = false;
+  let offset = 0;
+  let result = '';
+
+  for (let i = 0; i < jsonString.length; i++) {
+    const currentCharacter = jsonString[i];
+    const nextCharacter = jsonString[i + 1];
+
+    if (!insideComment && currentCharacter === '"') {
+      if (!isEscaped(jsonString, i)) {
+        insideString = !insideString;
+      }
+    }
+
+    if (insideString) {
+      continue;
+    }
+
+    if (!insideComment && currentCharacter + nextCharacter === '//') {
+      result += jsonString.slice(offset, i);
+      offset = i;
+      insideComment = singleComment;
+      i++;
+    } else if (insideComment === singleComment && currentCharacter + nextCharacter === '\r\n') {
+      i++;
+      insideComment = false;
+      result += stripWithWhitespace(jsonString, offset, i);
+      offset = i;
+      continue;
+    } else if (insideComment === singleComment && currentCharacter === '\n') {
+      insideComment = false;
+      result += stripWithWhitespace(jsonString, offset, i);
+      offset = i;
+    } else if (!insideComment && currentCharacter + nextCharacter === '/*') {
+      result += jsonString.slice(offset, i);
+      offset = i;
+      insideComment = multiComment;
+      i++;
+      continue;
+    } else if (insideComment === multiComment && currentCharacter + nextCharacter === '*/') {
+      i++;
+      insideComment = false;
+      result += stripWithWhitespace(jsonString, offset, i + 1);
+      offset = i + 1;
+      continue;
+    }
+  }
+
+  return (
+    result +
+    (insideComment
+      ? stripWithWhitespace(jsonString, offset, jsonString.length)
+      : jsonString.slice(offset))
+  );
+}
 
 function readText(file) {
   return fs.readFileSync(file, 'utf8');

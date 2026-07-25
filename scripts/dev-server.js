@@ -1,9 +1,9 @@
-const express = require('express');
-const path = require('path');
+import express from 'express';
+import path from 'path';
 
 const app = express();
 const PORT = Number(process.env.PORT || 3000);
-const UI_DIST = process.env.UI_DIST || path.resolve('apps/mandala-ui/dist');
+const UI_DIST = process.env.UI_DIST || path.resolve('apps/ui/dist');
 
 app.use(express.static(UI_DIST, { index: 'index.html', fallthrough: true }));
 
