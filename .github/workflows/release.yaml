@@ -10,6 +10,14 @@ permissions:
 jobs:
   release:
     runs-on: ubuntu-latest
+    env:
+      # postinstall installs husky's hooks, so any git commit made further
+      # down this job (the changelog commit, and npm version's own internal
+      # commit) would otherwise run the full pre-commit hook chain including
+      # `pnpm test:unit` - appropriate for a human commit, not for this
+      # automated version-bump bot. UM_SKIP_HEAVY_HOOKS is the repo's own
+      # documented opt-out (see .husky/pre-commit); lint-staged still runs.
+      UM_SKIP_HEAVY_HOOKS: '1'
     steps:
       - uses: actions/checkout@v3
       - uses: pnpm/action-setup@v4
@@ -20,6 +28,12 @@ jobs:
           node-version: '18'
       - run: pnpm install
       - run: node scripts/generate-changelog.cjs
+      - name: Commit changelog
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add CHANGELOG.md
+          git diff --cached --quiet || git commit -m "docs: update CHANGELOG.md [skip ci]"
       - name: Bump version and tag
         run: |
           git config user.name "github-actions[bot]"
