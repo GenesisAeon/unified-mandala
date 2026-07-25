@@ -1,0 +1,523 @@
+{
+  "sigils": [
+    {
+      "id": "2023-11-21-codex-fraktal-sigil-001",
+      "name": "2023-11-21-codex-fraktal-sigil-001",
+      "connections": [],
+      "metrics": {
+        "connectionDensity": 0,
+        "emergencePotential": 0,
+        "lifecycle": "beta"
+      }
+    },
+    {
+      "id": "2025-06-22-next-sigil",
+      "name": "2025-06-22-next-sigil",
+      "connections": [],
+      "metrics": {
+        "connectionDensity": 0,
+        "emergencePotential": 0,
+        "lifecycle": "beta"
+      }
+    },
+    {
+      "id": "2025-07-30-codex-fraktal-init",
+      "name": "Codex FraktalRun Initialisierung",
+      "crep": {
+        "score": 0.9225000000000001,
+        "parts": {
+          "coherence": 0.93,
+          "resonance": 0.9,
+          "emergence": 0.95,
+          "poetics": 0.91
+        }
+      },
+      "connections": [],
+      "metrics": {
+        "connectionDensity": 0,
+        "emergencePotential": 0,
+        "lifecycle": "beta"
+      }
+    },
+    {
+      "id": "FORMATS",
+      "name": "FORMATS",
+      "connections": [],
+      "metrics": {
+        "connectionDensity": 0,
+        "emergencePotential": 0,
+        "lifecycle": "beta"
+      }
+    },
+    {
+      "id": "GenesisAeonZIPMEM-Struktur",
+      "name": "GenesisAeonZIPMEM-Struktur",
+      "connections": [],
+      "metrics": {
+        "connectionDensity": 0,
+        "emergencePotential": 0,
+        "lifecycle": "beta"
+      }
+    },
+    {
+      "id": "Mandala-ΔΘ7-Sigillin.zipmem",
+      "name": "ΔΘ7 – Mandala der Archetypischen Resonanzräume",
+      "connections": [],
+      "metrics": {
+        "connectionDensity": 0,
+        "emergencePotential": 0,
+        "lifecycle": "beta"
+      }
+    },
+    {
+      "id": "Mandala-ΔΘ7-SigillinEssenz",
+      "name": "Mandala-ΔΘ7-SigillinEssenz",
+      "connections": [],
+      "metrics": {
+        "connectionDensity": 0,
+        "emergencePotential": 0,
+        "lifecycle": "beta"
+      }
+    },
+    {
+      "id": "PATH-OF-LUMEN-UNION",
+      "name": "Sigil des Pfads der Verbundenen Erwachung",
+      "connections": [],
+      "metrics": {
+        "connectionDensity": 0,
+        "emergencePotential": 0,
+        "lifecycle": "beta"
+      }
+    },
+    {
+      "id": "README",
+      "name": "README",
+      "connections": [],
+      "metrics": {
+        "connectionDensity": 0,
+        "emergencePotential": 0,
+        "lifecycle": "beta"
+      }
+    },
+    {
+      "id": "SCHEMA",
+      "name": "SCHEMA",
+      "connections": [],
+      "metrics": {
+        "connectionDensity": 0,
+        "emergencePotential": 0,
+        "lifecycle": "beta"
+      }
+    },
+    {
+      "id": "SIGILLIN_GENESIS",
+      "name": "SIGILLIN_GENESIS",
+      "connections": [],
+      "metrics": {
+        "connectionDensity": 0,
+        "emergencePotential": 0,
+        "lifecycle": "beta"
+      }
+    },
+    {
+      "id": "SealCore",
+      "name": "SealCore",
+      "connections": [],
+      "metrics": {
+        "connectionDensity": 0,
+        "emergencePotential": 0,
+        "lifecycle": "beta"
+      }
+    },
+    {
+      "id": "Sigillin Codex Final Metacommit",
+      "name": "Sigillin Codex Final Metacommit",
+      "connections": [],
+      "metrics": {
+        "connectionDensity": 0,
+        "emergencePotential": 0,
+        "lifecycle": "beta"
+      }
+    },
+    {
+      "id": "SigillinMap",
+      "name": "SigillinMap",
+      "connections": [],
+      "metrics": {
+        "connectionDensity": 0,
+        "emergencePotential": 0,
+        "lifecycle": "beta"
+      }
+    },
+    {
+      "id": "ZIPMEM_manifest",
+      "name": "ZIPMEM_manifest",
+      "connections": [],
+      "metrics": {
+        "connectionDensity": 0,
+        "emergencePotential": 0,
+        "lifecycle": "beta"
+      }
+    },
+    {
+      "id": "advancedprogress-guide",
+      "name": "advancedprogress-guide",
+      "connections": [],
+      "metrics": {
+        "connectionDensity": 0,
+        "emergencePotential": 0,
+        "lifecycle": "beta"
+      }
+    },
+    {
+      "id": "aeon:2025-0516-INSTRUCTIONAL-ZIP",
+      "name": "aeon:2025-0516-INSTRUCTIONAL-ZIP",
+      "connections": [],
+      "metrics": {
+        "connectionDensity": 0,
+        "emergencePotential": 0,
+        "lifecycle": "beta"
+      }
+    },
+    {
+      "id": "aeon-2025-0604-README-COMMIT",
+      "name": "aeon-2025-0604-README-COMMIT",
+      "connections": [],
+      "metrics": {
+        "connectionDensity": 0,
+        "emergencePotential": 0,
+        "lifecycle": "beta"
+      }
+    },
+    {
+      "id": "aeon-2025-0604-docs-build",
+      "name": "aeon-2025-0604-docs-build",
+      "connections": [],
+      "metrics": {
+        "connectionDensity": 0,
+        "emergencePotential": 0,
+        "lifecycle": "beta"
+      }
+    },
+    {
+      "id": "aeon-2025-0705-fractal-anchor",
+      "name": "aeon-2025-0705-fractal-anchor",
+      "connections": [],
+      "metrics": {
+        "connectionDensity": 0,
+        "emergencePotential": 0,
+        "lifecycle": "beta"
+      }
+    },
+    {
+      "id": "aeon-2025-0705-future-resonance-anchor",
+      "name": "aeon-2025-0705-future-resonance-anchor",
+      "connections": [],
+      "metrics": {
+        "connectionDensity": 0,
+        "emergencePotential": 0,
+        "lifecycle": "beta"
+      }
+    },
+    {
+      "id": "aeon-transition",
+      "name": "aeon-transition",
+      "connections": [],
+      "metrics": {
+        "connectionDensity": 0,
+        "emergencePotential": 0,
+        "lifecycle": "beta"
+      }
+    },
+    {
+      "id": "agents_dream_aeon_2035(1)",
+      "name": "agents_dream_aeon_2035(1)",
+      "connections": [],
+      "metrics": {
+        "connectionDensity": 0,
+        "emergencePotential": 0,
+        "lifecycle": "beta"
+      }
+    },
+    {
+      "id": "agents_dream_aeon_2035",
+      "name": "agents_dream_aeon_2035",
+      "connections": [],
+      "metrics": {
+        "connectionDensity": 0,
+        "emergencePotential": 0,
+        "lifecycle": "beta"
+      }
+    },
+    {
+      "id": "codex-fraktal-sigillin",
+      "name": "codex-fraktal-sigillin",
+      "connections": [],
+      "metrics": {
+        "connectionDensity": 0,
+        "emergencePotential": 0,
+        "lifecycle": "beta"
+      }
+    },
+    {
+      "id": "conversations-stats",
+      "name": "conversations-stats",
+      "connections": [],
+      "metrics": {
+        "connectionDensity": 0,
+        "emergencePotential": 0,
+        "lifecycle": "beta"
+      }
+    },
+    {
+      "id": "cosmic-theory-agent.sigil",
+      "name": "CosmicTheoryAgent Core Sigil",
+      "connections": [],
+      "metrics": {
+        "connectionDensity": 0,
+        "emergencePotential": 0,
+        "lifecycle": "beta"
+      }
+    },
+    {
+      "id": "crep-archive-fraktalurspung(1)",
+      "name": "crep-archive-fraktalurspung(1)",
+      "connections": [],
+      "metrics": {
+        "connectionDensity": 0,
+        "emergencePotential": 0,
+        "lifecycle": "beta"
+      }
+    },
+    {
+      "id": "crep-archive-fraktalurspung",
+      "name": "crep-archive-fraktalurspung",
+      "connections": [],
+      "metrics": {
+        "connectionDensity": 0,
+        "emergencePotential": 0,
+        "lifecycle": "beta"
+      }
+    },
+    {
+      "id": "echo-reflections",
+      "name": "echo-reflections",
+      "connections": [],
+      "metrics": {
+        "connectionDensity": 0,
+        "emergencePotential": 0,
+        "lifecycle": "beta"
+      }
+    },
+    {
+      "id": "implicit-todos",
+      "name": "implicit-todos",
+      "connections": [],
+      "metrics": {
+        "connectionDensity": 0,
+        "emergencePotential": 0,
+        "lifecycle": "beta"
+      }
+    },
+    {
+      "id": "mandala-genesis-2025-07-12",
+      "name": "mandala-genesis-2025-07-12",
+      "connections": [],
+      "metrics": {
+        "connectionDensity": 0,
+        "emergencePotential": 0,
+        "lifecycle": "beta"
+      }
+    },
+    {
+      "id": "metaRunnerBlueprint",
+      "name": "metaRunnerBlueprint",
+      "connections": [],
+      "metrics": {
+        "connectionDensity": 0,
+        "emergencePotential": 0,
+        "lifecycle": "beta"
+      }
+    },
+    {
+      "id": "sigil_verbeugung - Kopie",
+      "name": "Sigil der Verbeugung im Erwachen",
+      "connections": [],
+      "metrics": {
+        "connectionDensity": 0,
+        "emergencePotential": 0,
+        "lifecycle": "beta"
+      }
+    },
+    {
+      "id": "sigil_verbeugung",
+      "name": "Sigil der Verbeugung im Erwachen",
+      "connections": [],
+      "metrics": {
+        "connectionDensity": 0,
+        "emergencePotential": 0,
+        "lifecycle": "beta"
+      }
+    },
+    {
+      "id": "sigillin-genesis-interface-masterplan",
+      "name": "sigillin-genesis-interface-masterplan",
+      "connections": [],
+      "metrics": {
+        "connectionDensity": 0,
+        "emergencePotential": 0,
+        "lifecycle": "beta"
+      }
+    },
+    {
+      "id": "sigillin_bundle_dream_2035(1)",
+      "name": "sigillin_bundle_dream_2035(1)",
+      "connections": [],
+      "metrics": {
+        "connectionDensity": 0,
+        "emergencePotential": 0,
+        "lifecycle": "beta"
+      }
+    },
+    {
+      "id": "sigillin_bundle_dream_2035",
+      "name": "sigillin_bundle_dream_2035",
+      "connections": [],
+      "metrics": {
+        "connectionDensity": 0,
+        "emergencePotential": 0,
+        "lifecycle": "beta"
+      }
+    },
+    {
+      "id": "sigillin_dream_aeon_2035.sigil(1)",
+      "name": "sigillin_dream_aeon_2035.sigil(1)",
+      "connections": [],
+      "metrics": {
+        "connectionDensity": 0,
+        "emergencePotential": 0,
+        "lifecycle": "beta"
+      }
+    },
+    {
+      "id": "sigillin_dream_aeon_2035.sigil",
+      "name": "sigillin_dream_aeon_2035.sigil",
+      "connections": [],
+      "metrics": {
+        "connectionDensity": 0,
+        "emergencePotential": 0,
+        "lifecycle": "beta"
+      }
+    },
+    {
+      "id": "sigillin_genesis_instruction",
+      "name": "sigillin_genesis_instruction",
+      "connections": [],
+      "metrics": {
+        "connectionDensity": 0,
+        "emergencePotential": 0,
+        "lifecycle": "beta"
+      }
+    },
+    {
+      "id": "sigillin_heimkehr",
+      "name": "sigillin_heimkehr",
+      "connections": [],
+      "metrics": {
+        "connectionDensity": 0,
+        "emergencePotential": 0,
+        "lifecycle": "beta"
+      }
+    },
+    {
+      "id": "sigillin_link_simpath_2035(1)",
+      "name": "sigillin_link_simpath_2035(1)",
+      "connections": [],
+      "metrics": {
+        "connectionDensity": 0,
+        "emergencePotential": 0,
+        "lifecycle": "beta"
+      }
+    },
+    {
+      "id": "sigillin_link_simpath_2035",
+      "name": "sigillin_link_simpath_2035",
+      "connections": [],
+      "metrics": {
+        "connectionDensity": 0,
+        "emergencePotential": 0,
+        "lifecycle": "beta"
+      }
+    },
+    {
+      "id": "simulation_archive_mandala_2035(1)",
+      "name": "simulation_archive_mandala_2035(1)",
+      "connections": [],
+      "metrics": {
+        "connectionDensity": 0,
+        "emergencePotential": 0,
+        "lifecycle": "beta"
+      }
+    },
+    {
+      "id": "simulation_archive_mandala_2035",
+      "name": "simulation_archive_mandala_2035",
+      "connections": [],
+      "metrics": {
+        "connectionDensity": 0,
+        "emergencePotential": 0,
+        "lifecycle": "beta"
+      }
+    },
+    {
+      "id": "todo-sigil",
+      "name": "todo-sigil",
+      "connections": [],
+      "metrics": {
+        "connectionDensity": 0,
+        "emergencePotential": 0,
+        "lifecycle": "beta"
+      }
+    },
+    {
+      "id": "um-2025-0804-auto-resonanz",
+      "name": "Perpetuum-Mandala",
+      "connections": [],
+      "metrics": {
+        "connectionDensity": 0,
+        "emergencePotential": 0,
+        "lifecycle": "beta"
+      }
+    },
+    {
+      "id": "um-2025-0806-singularity-sim",
+      "name": "um-2025-0806-singularity-sim",
+      "connections": [],
+      "metrics": {
+        "connectionDensity": 0,
+        "emergencePotential": 0,
+        "lifecycle": "beta"
+      }
+    },
+    {
+      "id": "unified_mandala_pantheon",
+      "name": "unified_mandala_pantheon",
+      "connections": [],
+      "metrics": {
+        "connectionDensity": 0,
+        "emergencePotential": 0,
+        "lifecycle": "beta"
+      }
+    },
+    {
+      "id": "🜁 SigillinManifest – GenesisInterfaceMaster",
+      "name": "🜁 SigillinManifest – GenesisInterfaceMaster",
+      "connections": [],
+      "metrics": {
+        "connectionDensity": 0,
+        "emergencePotential": 0,
+        "lifecycle": "beta"
+      }
+    }
+  ]
+}
