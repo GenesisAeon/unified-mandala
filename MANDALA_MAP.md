@@ -530,6 +530,48 @@ AeonSigillinVault.ts`, mit Test) — ist aber tatsächlich nur ein
 - `docs/sigillin.examples/`: triviale Referenzbeispiele, nichts
   Weiteres zu vermerken.
 
+**`docs/sigils/` selbst nachgeholt** (74 Dateien — beim ersten Blick
+nur wegen der beiden ~100MB-Rohexport-JSONs erfasst, jetzt vollständig
+durchgesehen, auf Johanns Nachfrage):
+
+- **`silent-agents.ts`** (+ eine Variante `silent-agents(1).ts`, per
+  Diff verifiziert: nur ein auskommentierter Testblock unterscheidet
+  sie): echter, funktionierender kleiner Agentencode — drei konkrete
+  Klassen (`ListeningAgent`, `MirrorAgent`, `SilenceAgent`) mit einem
+  gemeinsamen `SilentAgent`-Interface und `process(signal: CREPSignal)`.
+  Liegt aber nur in `docs/`, nicht in `packages/` — kein aktiver Code
+  dieses Repos im engeren Sinn, aber auch kein Blueprint: echte,
+  kleine, isolierte Logik ohne Integration.
+- **Sigillin-Indexer-Toolchain bestätigt real** (`README.md`,
+  `SCHEMA.md`, `FORMATS.md`, `manifest_export.test.ts`): `pnpm
+sigils:index`/`sigils:index:strict` → `scripts/build-sigillin-index.mjs`,
+  `scripts/export-sigil-manifest.ts` — beide verifiziert vorhanden,
+  ins CI eingebunden (`ci:sigils`). Normalisiert CREP-Werte aus
+  mehreren Schreibweisen (`score`, `C/R/E/P`, `coherence/resonance/
+emergence/poetics`, verschachtelt). Passt zum bereits gefundenen
+  `scripts/fix-sigillin.ts` — dieser ganze Werkzeugkasten ist real und
+  gepflegt, nicht nur dokumentiert.
+- **`conversations-stats.md`**: aggregierte Statistik über Johanns
+  eigenes Konversationsarchiv (262 Konversationen, 28.888 Nachrichten,
+  2.279 TODOs, Zeitraum ca. März 2023–Juni 2025) — nur die Zahlen hier
+  übernommen, nicht die enthaltene Titelliste (Metadaten über
+  Metadaten, aber aus Zurückhaltung nicht dupliziert).
+- **ZIP-Bundles** (nur Struktur via `analyze_zip.py` geprüft, nicht
+  entpackt): `genesismodul_mandala_silentagents_2035.zip` (7 Dateien,
+  passt zu `silent-agents.ts`), `CodexAgentBundle.zip` (10 Dateien,
+  Doku-Bundle), `mandala_sync_{codex_sync,integration}_yamls.zip`
+  (klein). **`AeonProj.zip` (104 Dateien, 2,75 MB, davon 46 `.tsx`,
+  38 `.json`, 8 verschachtelte `.zip`)** ist deutlich größer als der
+  Rest — nicht entpackt/geöffnet, aber als größtes noch unerforschtes
+  Bundle hier vermerkt, falls ein sechster Durchgang gewünscht ist.
+- **`SealCore.yaml`**: byte-identisch mit `GenesisAeonZIPMEM/
+Codex-Instructions/SealCore.yaml` (per Diff verifiziert) — dieselbe
+  Datei, bereits über `aeon-sealcore` (P54) bekannt, keine neue
+  Information.
+- Rest (viele kleine `sigillin_*`/`*_2035.yaml`-Dateien): poetische/
+  konzeptionelle Sigillin-Artefakte im bereits etablierten Muster,
+  nicht einzeln katalogisiert.
+
 Noch nicht vertieft in `docs/`: `docs/genesis`, `docs/mandala`,
 `docs/membrane`, `docs/research`, `docs/roadmap`, `docs/maps`,
 `docs/blueprints`, sowie generische Projekt-Docs (Tutorials/Guides/
