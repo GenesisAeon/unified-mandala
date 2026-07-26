@@ -69,6 +69,14 @@ Python- und Node-Ökosystem. Erstes dokumentiertes Release: `v0.1.0`
   kennt nur ein einfaches `TaskInput{ID, Score}` gegen einen externen
   ML-Dienst. Ist das Beispiel Vision für ein zukünftiges Schema, oder
   veraltete Dokumentation?
+- **Bestätigt im 5. Durchgang (docs/-Archäologie, 2026-07-26)**: nicht
+  nur das Beispiel, auch `docs/go-agent/ml-prioritization.md` und
+  `docs/go-agent/policy-guide.md` beschreiben durchgängig nicht
+  gebaute Funktionalität — `go-agent/pkg/ml/` (dort wo laut Doku die
+  ML-Modelle liegen sollen) und `config/policies/` (dort wo laut Doku
+  Policy-YAMLs liegen sollen) existieren beide nicht. Beide Docs sind
+  vollständige Blueprints, keine teilweise veraltete Dokumentation
+  eines echten Features.
 
 ## Kontakt / Maintainer
 
