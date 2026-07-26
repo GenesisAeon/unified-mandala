@@ -79,11 +79,56 @@ in diesem Durchgang gemacht).
 
 ## 🔵 Paket-Kandidaten
 
-| Cluster                                                                                                                                           | Zeilen (Kern)                                                                                                             | Konzept                                                                                                                                                                                                                                                                                                                                | Empfehlung                                                                                                                                                                                                                                     |
-| ------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `unifiedmandala-neural/` + `unifiedmandala-orchestrator/`                                                                                         | ~150 Python + `server.ts`                                                                                                 | 4 separate Docker-Microservices (GNN/HGNN, KAN-Physik-Sim, Liquid Neural Net, SNN-Haptik) plus ein Orchestrator (FastAPI `app.py` + `sigillin_scheduler.py` + Node-Server). Echter, lauffähiger Code (z. B. `gnn_hgnn/main.py`: echtes `torch_geometric`-Training), aber Demo-Reife (Loss auf Zufallszielen, keine echte Supervision). | Paket-Kandidat, aber erst nach Ausbau zu echtem Training/Datensatz sinnvoll extrahierbar. Kein bekanntes Ökosystem-Äquivalent gefunden.                                                                                                        |
-| `GenesisAeonZIPMEM/{seal_core,self_organizing_memory,master_coordinator,dynamic_task_allocator,advanced_ai_system,aeon_seal_ai,fractal_agent}.py` | ~390 Zeilen gesamt                                                                                                        | "AeonSealAI" / SealCore-Cluster: `SealCore`-Klasse mit echtem Threshold-Adaptions-/Feedback-Loop (`seal_core.py`, 129 Zeilen, klar keine Stub-Logik). Sitzt aber mitten im Log-Archiv-Verzeichnis (`GenesisAeonZIPMEM`) — genau die im Prompt erwähnte hybride Struktur.                                                               | Paket-Kandidat, sollte aber zuerst aus dem Log-Verzeichnis herausgelöst werden (Verwechslungsgefahr mit den dortigen `.zip`-Logs).                                                                                                             |
-| `GenesisAeonAdvancedAi/`                                                                                                                          | 38 `.py`-Dateien, davon 37 mit echten Klassen/Funktionen (`aeon_processor.py` 253 Zeilen, `advanced_agent.py` 187 Zeilen) | Größerer, ernsthafter Agenten-Prototyp (`aeon_agent.py`, `aeon_cli.py`, `aeon_web.py`, `archetype_tools.py` u. a.), begleitet von 9 Blueprint-/Konzept-Markdowns (`AeonMembraneBlueprint.md`, `AeonNeurNetzKonzeptPapier.md`, `AeonNeurNetzPublikation.md`).                                                                           | Größter gefundener Kandidat — **braucht eigene, tiefere Session**: zu groß (55 Dateien) für einen Blick im Rahmen dieses Durchgangs. Vor Extraktion prüfen, ob es mit dem bestehenden `aeon-ai`-Paket überlappt (Namensähnlichkeit auffällig). |
+| Cluster                                                                                                                                           | Zeilen (Kern)                                                                                                             | Konzept                                                                                                                                                                                                                                                                                                                                | Empfehlung                                                                                                                                                                                                                                                                                                                 |
+| ------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `unifiedmandala-neural/` + `unifiedmandala-orchestrator/`                                                                                         | ~150 Python + `server.ts`                                                                                                 | 4 separate Docker-Microservices (GNN/HGNN, KAN-Physik-Sim, Liquid Neural Net, SNN-Haptik) plus ein Orchestrator (FastAPI `app.py` + `sigillin_scheduler.py` + Node-Server). Echter, lauffähiger Code (z. B. `gnn_hgnn/main.py`: echtes `torch_geometric`-Training), aber Demo-Reife (Loss auf Zufallszielen, keine echte Supervision). | Paket-Kandidat, aber erst nach Ausbau zu echtem Training/Datensatz sinnvoll extrahierbar. Kein bekanntes Ökosystem-Äquivalent gefunden.                                                                                                                                                                                    |
+| `GenesisAeonZIPMEM/{seal_core,self_organizing_memory,master_coordinator,dynamic_task_allocator,advanced_ai_system,aeon_seal_ai,fractal_agent}.py` | ~390 Zeilen gesamt                                                                                                        | "AeonSealAI" / SealCore-Cluster: `SealCore`-Klasse mit echtem Threshold-Adaptions-/Feedback-Loop (`seal_core.py`, 129 Zeilen, klar keine Stub-Logik). Sitzt aber mitten im Log-Archiv-Verzeichnis (`GenesisAeonZIPMEM`) — genau die im Prompt erwähnte hybride Struktur.                                                               | Paket-Kandidat, sollte aber zuerst aus dem Log-Verzeichnis herausgelöst werden (Verwechslungsgefahr mit den dortigen `.zip`-Logs).                                                                                                                                                                                         |
+| `GenesisAeonAdvancedAi/`                                                                                                                          | 38 `.py`-Dateien, davon 37 mit echten Klassen/Funktionen (`aeon_processor.py` 253 Zeilen, `advanced_agent.py` 187 Zeilen) | Größerer, ernsthafter Agenten-Prototyp (`aeon_agent.py`, `aeon_cli.py`, `aeon_web.py`, `archetype_tools.py` u. a.), begleitet von 9 Blueprint-/Konzept-Markdowns (`AeonMembraneBlueprint.md`, `AeonNeurNetzKonzeptPapier.md`, `AeonNeurNetzPublikation.md`, `masterplan.md`, `Trikaya.md`, `agents.md`).                               | **`aeon-ai`-Diff durchgeführt (siehe unten): kein Duplikat.** Eigenständige, aktive Initiative mit eigenem Masterplan (Meilensteine bis Q2 2027) — Paket-Kandidat, nicht als P52-Erweiterung von `aeon-ai`, sondern eigenständig. 3 von 17 Kernmodulen könnten gegen `aeon-ai`s modernere Äquivalente konsolidiert werden. |
+
+### `GenesisAeonAdvancedAi` vs. `aeon-ai` — Diff-Ergebnis (2026-07-26)
+
+Klassen-/Funktionssignaturen beider Seiten verglichen (17 reale Module in
+`GenesisAeonAdvancedAi`, ohne `test_*.py`, gegen `aeon-ai/src/aeon_ai/`s
+9 Module). **Ergebnis: kein Duplikat, geringe Überschneidung (~3 von 17
+Modulen, ~20%).**
+
+- **Echte konzeptionelle Überschneidung** (vermutlich durch `aeon-ai`s
+  sauberere, typisierte Neufassung ablösbar): `crep_eval.py`
+  (`evaluate_crep`) ↔ `aeon-ai`s `CREPEvaluator`/`CREPScore`
+  (harmonic_mean/weighted_mean/shannon_entropy/coherence/resonance/
+  emergence — deutlich ausgereifter); `sigil_loader.py`
+  (`load_sigil`/`load_start_sigil`, reines YAML-Laden) ↔ `aeon-ai`s
+  `SigillinBridge`/`Sigil` (Matching + Activation-Scoring, klar
+  mächtiger); `aeon_agent.py`/`advanced_agent.py` ↔ `aeon-ai`s
+  `Orchestrator`/`OrchestratorResult` (ähnliche Rolle, andere,
+  modernere Architektur).
+- **Keine Entsprechung in `aeon-ai`** (~10 von 17 Modulen, genuin
+  eigenständig): `trikaya.py` (CREP-Wert → PRÄSENZ/LEERE/AUFLÖSUNG/
+  UNBEKANNT-Zustandsklassifikation, dokumentiert in `Trikaya.md`,
+  aktiv genutzt von `aeon_cli.py`), `adaptive_threshold.py`
+  (`auto_adapt_crep_threshold` — Schwellenwert-Selbstanpassung),
+  `aeon_processor.py`s `fraktal_feedback*`-Familie (Graph +
+  Metriken) und Haiku-/Poesie-Generierung, `mandala_visualizer.py`
+  (`plot_crep_mandala` — tatsächliches Mandala-Plotting),
+  `memory_store.py` (persistenter JSON-Store mit Trend-/
+  Volatilitäts-Metriken über Zeit), `plugin_loader.py` (Plugin-
+  Manifest-System), `archetype_tools.py`, `performance_monitor.py`,
+  `aeon_web.py` (Flask-Endpunkte `/act`, `/summary`), `aeon_logger.py`,
+  `symbol_tools.py`.
+- **`AeonMembraneBlueprint.md`/`masterplan.md`/`Trikaya.md`/`agents.md`**
+  beschreiben eine eigene, laufende Initiative ("AeonNeuroNetz" mit
+  numerisch-symbolischen "AeonMembraneLayern", Agentenrollen wie
+  VisualAgent/SoundAgent/SymbolAgent, Meilensteine "ProtoDeploy Q1
+  2026" → "Fraktale Optimierung Q2 2027") — kein verwaistes Konzept,
+  sondern ein aktiv verfolgter, eigener Plan. `trikaya.py` ist bereits
+  echte, produktiv genutzte Umsetzung von `Trikaya.md`, kein Stub.
+
+**Empfehlung**: nicht als Ganzes VERALTET markieren. Die 3 überlappenden
+Module sind Konsolidierungskandidaten (prüfen, ob `GenesisAeonAdvancedAi`
+darauf umgestellt werden kann, statt eigener Reimplementierung); die
+übrigen ~14 Module (inkl. aller Blueprints) sind eigenständig und real
+aktiv — Kandidat für eine eigene Extraktion, nicht für eine Fusion in
+`aeon-ai`.
 
 ---
 
@@ -133,7 +178,6 @@ identifiziert. Eine echte Veraltet-Bewertung braucht den MIGRIERT-Abgleich
 
 | Cluster                                                                                               | Warum unklar                                                                          | Optionen                                                                   |
 | ----------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
-| `GenesisAeonAdvancedAi/` (gesamt)                                                                     | Zu groß für diesen Durchgang; Überlappung mit `aeon-ai`-Paket unklar                  | Eigene Session: Diff gegen `aeon-ai`, dann neu klassifizieren              |
 | `experiments/`, `agents/` (Top-Level, 32 Unterordner), `simulations/`, `sims/`, `demos/`, `examples/` | Noch nicht inhaltlich gesichtet                                                       | Nächster Durchgang: gleiche Heuristik (Zeilen/Klassen/Funktionen) anwenden |
 | `go-agent/`, `go-bridge/` (122 `.go`-Dateien insgesamt im Repo)                                       | Go-Code nicht mit den Python-Heuristiken des Prompts geprüft                          | Eigene Go-spezifische Sichtung                                             |
 | MIGRIERT-Status generell                                                                              | Ohne Datei-Hash-/Namens-Diff gegen alle ~52 Ökosystem-Repos nicht seriös feststellbar | Dedizierter Abgleichs-Task                                                 |
@@ -163,8 +207,13 @@ identifiziert. Eine echte Veraltet-Bewertung braucht den MIGRIERT-Abgleich
 | BLUEPRINT                     | 2              |
 | LOG                           | 6              |
 | VERALTET                      | 0              |
-| UNKLAR                        | 4              |
-| **Gesamt (dieser Durchgang)** | **16**         |
+| UNKLAR                        | 3              |
+| **Gesamt (dieser Durchgang)** | **15**         |
+
+*(`GenesisAeonAdvancedAi/` war zunächst doppelt gezählt — als
+PAKET_KANDIDAT *und* als offene UNKLAR-Frage zur `aeon-ai`-Überlappung.
+Nach dem Diff vom 2026-07-26 [siehe oben] ist die Überlappungsfrage
+beantwortet; der Cluster zählt nur noch einmal, als PAKET_KANDIDAT.)*
 
 Dies ist explizit **kein vollständiger Datei-Zensus** — siehe Hinweis zum
 Umfang oben. Große Teile des Repos (insbesondere `experiments/`, die 32
