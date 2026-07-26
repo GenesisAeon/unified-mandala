@@ -62,6 +62,13 @@ Python- und Node-Ökosystem. Erstes dokumentiertes Release: `v0.1.0`
   dieselbe Organisation vereinheitlicht werden?
 - Kein verifizierter Aufrufer für `go-agent`s NATS-Scheduler in diesem
   Repo — ist das absichtlich eigenständig, oder fehlt eine Integration?
+- `examples/go-agent/prioritization-example.yaml` (gefunden im 3.
+  MANDALA_MAP-Archäologie-Durchgang, 2026-07-26) beschreibt ein
+  Job-Schema (`features.size,urgency`, `policy.tags,maxRuntime`), das
+  von keinem aktuellen Go-Code geparst wird — `pkg/plugin/prioritizer.go`
+  kennt nur ein einfaches `TaskInput{ID, Score}` gegen einen externen
+  ML-Dienst. Ist das Beispiel Vision für ein zukünftiges Schema, oder
+  veraltete Dokumentation?
 
 ## Kontakt / Maintainer
 

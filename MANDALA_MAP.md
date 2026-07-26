@@ -143,6 +143,9 @@ aktiv — Kandidat für eine eigene Extraktion, nicht für eine Fusion in
 | `analysis/devtalkNNN-evaluation.md` (27 Dateien)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         | Niedrig    | Sind Auswertungen/Bewertungen von `DevTalk.txt`-Abschnitten — eher log-nah als eigenständige Blueprints; brauchen eigene Sichtung ob sie Konzept- oder Rückblick-Charakter haben.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
 | `experiments/emergence_study/emergence_analysis.ipynb` (2. Durchgang, 2026-07-26)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        | Niedrig    | Reines Konzept, kein Code: das Notebook hat genau eine Markdown-Zelle ("Steps: load graph data, train GNN, compute AUC, correlate with CREP logs"), keine einzige Code-Zelle.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 | `agents/*` — 29 von 32 Unterordnern (2. Durchgang, 2026-07-26): `art`, `catalyst`, `contrastive_training`, `cosmic_events`, `defensive_shield`, `desert_tracker`, `digital_twin`, `drift_detection`, `echo`, `ethics_policy`, `federated_meta`, `forest_dynamics`, `gamification`, `glacier_balance`, `global_events`, `governance_simulator`, `impact`, `iot_sensor`, `island_loss`, `meta_tuner`, `news_climate` (5 Service-Dateien), `newsbot`, `provenance`, `review`, `review_checkpoint`, `security_scanner`, `sentiment`, `singularity_simulator`, `symbolmapper` | Niedrig    | Identisches Muster über alle 29: ein winziger FastAPI-Microservice (Python) oder eine freistehende Funktion (TS), die hartkodierte/Dummy-/Platzhalter-Werte zurückgibt (12–125 Zeilen, viele davon explizit als "placeholder"/"dummy"/"stub" selbst-dokumentiert, z. B. `climate_service.py`: "This stub currently returns zero values"; `newsbot/orchestrator.py`: "The methods are placeholders"). `desert_tracker` und `art` haben etwas mehr echte Logik (Fallback-Handling bzw. ein echter, wenn auch trivialer ASCII-Art-Generator), ändern aber nichts am Gesamtbild: kein funktionierendes Multi-Agent-System, nur ein Gerüst mit 29 Domain-Namen. Einzige echte Ausnahme: `personhood` — mittlerweile extrahiert als `aeon-jurist` (P55), siehe MIGRIERT-Tabelle oben. |
+| `sims/{fractal_universe_tree,universe_tree_optimism}.py` (3. Durchgang, 2026-07-26)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | Niedrig    | Beide vollständig gelesen (80 + 53 Zeilen). `fractal_universe_tree.py` ist im eigenen Docstring selbst als "Toy... simulation" mit "EVC and CREP placeholders" beschrieben — `evc = random.random()`/`crep = random.random()` sind buchstäblich Zufallsrauschen, keine echte Berechnung; die Baum-Verzweigungsmechanik selbst (Branching, CSV-Export) ist real, aber ohne echtes Fitness-Signal. `universe_tree_optimism.py` ist ein eigenständiges Spielzeug-Scoring-Modell (Tech- vs. Society-Branch für "sustainable mobility") mit frei erfundenen Parametern (0.9/0.5/0.7 etc.), ohne jeden GenesisAeon-Bezug.                                                                                                                                                             |
+| `demos/universe_pulse_e2e.ts` (3. Durchgang, 2026-07-26)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 | Niedrig    | Echtes, funktionierendes E2E-Demo-Skript für `packages/universum-simulationen`s `simulatePulse()` — Import und Funktionssignatur verifiziert (existiert wirklich, kein toter Link). Da `packages/` laut Struktur-Hinweis oben bereits "aktiver Code dieses Repos selbst" ist, ist dieses Demo nur ein dünner, echter Nutzungsbeleg dafür — kein eigenständiger Archäologie-Fund.                                                                                                                                                                                                                                                                                                                                                                                                |
+| `examples/go-agent/prioritization-example.yaml` (3. Durchgang, 2026-07-26)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               | Niedrig    | Beispiel-Jobkonfiguration (`job`/`features.size,urgency`/`policy.tags,maxRuntime`) — **verifiziert, nicht angenommen**: dieses Schema wird von keinem Go-Code in `go-agent` tatsächlich geparst (repo-weite Suche nach `maxRuntime`/`policy.tags` ergab nichts). Das echte `pkg/plugin/prioritizer.go` kennt nur ein einfaches `TaskInput{ID, Score}` gegen einen externen ML-Dienst (`localhost:9000/rank`). Das Beispiel ist der Dokumentation/Vision voraus, nicht Beleg für vorhandene Funktionalität — als offene Frage auch in `go-agent/GOVERNANCE.md` nachgetragen.                                                                                                                                                                                                     |
 
 Ursprünglich hier vorgemerkt, jetzt im 2. Durchgang (2026-07-26)
 gesichtet: `experiments/`, `agents/` (32 Unterordner), Go-Code
@@ -314,8 +317,38 @@ MIGRIERT.)_
   `apps/sharedream-interface` (Node/TypeScript), nicht mit einem
   Python-Paket.
 
-Beide Durchgänge zusammen sind weiterhin **kein vollständiger
-Datei-Zensus** — siehe Hinweis zum Umfang oben. `sims/`, `demos/`,
-`examples/`, `packages/{socialgoodmesh,userfriendship}` und
-`services/{chat-writer,vector-indexer}` bleiben ungesichtet/unentschieden
-für einen dritten Durchgang.
+### Dritter Durchgang (2026-07-26): sims/, demos/, examples/
+
+Alle drei Verzeichnisse waren winzig (181 Zeilen gesamt über 5
+Dateien) — vollständig gelesen, keine Stichprobe nötig. Kein neuer
+Paket-Kandidat:
+
+- `sims/fractal_universe_tree.py`: im eigenen Docstring als "Toy...
+  simulation" mit "EVC and CREP placeholders" deklariert — die
+  Fitness-Werte sind buchstäblich `random.random()`, keine echte
+  Berechnung. Baum-Verzweigungsmechanik selbst ist real.
+- `sims/universe_tree_optimism.py`: eigenständiges Spielzeug-
+  Scoring-Modell ohne GenesisAeon-Bezug, frei erfundene Parameter.
+- `demos/universe_pulse_e2e.ts`: echtes, funktionierendes Demo für
+  `packages/universum-simulationen`s `simulatePulse()` — verifiziert
+  (kein toter Import), aber da `packages/` bereits als aktiver
+  Repo-eigener Code gilt, kein eigenständiger Fund.
+- `examples/go-agent/prioritization-example.yaml`: beschreibt ein
+  Job-Schema, das **verifiziert** von keinem aktuellen `go-agent`-Code
+  geparst wird (`pkg/plugin/prioritizer.go` kennt nur ein einfaches
+  `TaskInput{ID, Score}`) — Beispiel ist der Implementierung voraus,
+  als offene Frage in `go-agent/GOVERNANCE.md` nachgetragen.
+
+Damit sind `sims/`, `demos/`, `examples/` jetzt vollständig gesichtet.
+
+Alle drei Durchgänge zusammen sind weiterhin **kein vollständiger
+Datei-Zensus** — siehe Hinweis zum Umfang oben. Noch offen:
+`packages/{socialgoodmesh,userfriendship}` und
+`services/{chat-writer,vector-indexer}` (bereits gelesen, aber ohne
+Johanns Einschätzung nicht entscheidbar, siehe ❓-Tabelle), sowie die
+32 Top-Level-Agenten-Ordner außerhalb von `agents/` (`experiments/`,
+`agents/` selbst, `simulations/`, `sims/`, `demos/`, `examples/` sind
+jetzt alle abgedeckt — die verbleibenden ~30 nicht-agentenbezogenen
+Top-Level-Verzeichnisse aus der Strukturübersicht oben, z. B.
+`ingest/`, `integration/`, `pipelines/`, `plugins/`, `validation/`,
+wurden in keinem der drei Durchgänge geprüft).
