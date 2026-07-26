@@ -48,6 +48,8 @@ Alle relevanten Änderungen dieses Projekts werden in diesem Dokument festgehalt
 
 ## [Unreleased]
 
+- docs: GenesisAeonAdvancedAi vs aeon-ai diff - not a duplicate
+
 - docs: MANDALA_MAP.md - first-pass content archaeology of unified-mandala
 
 - fix: release job's own commits were blocked by its own pre-commit hook
