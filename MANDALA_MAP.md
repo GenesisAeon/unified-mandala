@@ -572,7 +572,58 @@ Codex-Instructions/SealCore.yaml` (per Diff verifiziert) — dieselbe
   konzeptionelle Sigillin-Artefakte im bereits etablierten Muster,
   nicht einzeln katalogisiert.
 
-Noch nicht vertieft in `docs/`: `docs/genesis`, `docs/mandala`,
-`docs/membrane`, `docs/research`, `docs/roadmap`, `docs/maps`,
-`docs/blueprints`, sowie generische Projekt-Docs (Tutorials/Guides/
-Runbooks/Onboarding) — niedrige Priorität, siehe ursprünglichen Plan.
+### Fünfter Durchgang, Phase 5 (2026-07-27): niedrig priorisierte Restdocs — abgeschlossen
+
+Alle verbleibenden `docs/`-Unterordner gesichtet
+(`genesis`/`mandala`/`membrane`/`research`/`roadmap`/`maps`/
+`blueprints`/`teamboards`/`tutorials`/`guides`/`runbooks`/`onboarding`/
+`getting-started`/`community`/`troubleshooting`). Zwei substanzielle
+Funde, Rest überwiegend Blueprint/Ops-Dokumentation:
+
+- **`docs/membrane/real-membrane-v0.1.md`**: **kein Blueprint, sondern
+  Dokumentation eines echten, reifen Features** — `RealMembrane`, ein
+  deterministischer Anomalie-/Zustandsdetektor (Ringpuffer-Statistik,
+  Amplitude/Dynamik-Schwellenwerte, Zustandsmaschine subcritical/
+  apparent/event mit Hysterese) für KPI-Metriken. Verifiziert: `src/
+membrane/{config,index,metrics,real-membrane,registry}.ts` +
+  eigene Tests existieren echt, `src/kpi/membrane-bridge.ts` (auch mit
+  Test) konfiguriert es konkret für drei Klima-Metriken (`t2m`,
+  `wildfire`, `groundwater`) mit Feature-Flags (`MEMBRANE_ON`,
+  `LOW_MEM`-Fallback). Aktiver Code dieses Repos (`src/`), kein
+  Extraktions-Kandidat, aber der reifste Einzelfund im gesamten
+  `docs/`-Durchgang.
+- **`docs/roadmap/stub-replacement-roadmap.md`**: ein echter, konkreter,
+  teilweise umgesetzter Fahrplan für genau die Stubs, die in dieser
+  Session schon aufgefallen waren (`stubs/kan_network.py` — derselbe
+  `KANLayer`-Stub, der beim `kan-physics`-P53-Check crashte —,
+  `stubs/liquid_time_constant_network.py`, `stubs/norse/`,
+  `stubs/torch_geometric/`). Erklärt auch, warum `keys/` leer ist: eine
+  Kyverno-Policy (`policies/kyverno.yaml`, verifiziert vorhanden)
+  erzwingt das absichtlich. Statusabgleich: Phase C Punkt 1
+  (Keys-Governance) ist **erledigt** (`keys/.gitignore`+`.gitkeep`
+  verifiziert, sonst nichts). Alles andere (`scripts/check-stub-
+usage.mjs`, `packages/agents-kan`, `docs/pre-map.md`) **existiert
+  nicht** — offene Checkbox-Punkte im Dokument stimmen mit der Realität
+  überein, ehrliche Roadmap statt Wunschdenken.
+- `docs/maps/RepoMap.{md,yaml,json}`: eine dritte, andere Karte neben
+  `MANDALA_MAP.md` (Inhalts-Archäologie) und dem in der Einleitung
+  erwähnten `MandalaMap.{md,json,yaml}` (CI-Inventar) — ein einfacheres,
+  per `pnpm maps:build` (`scripts/repo-map.ts`, real) generiertes
+  Verzeichnis von `packages/`/`services/`. Reine Tooling-Ausgabe, kein
+  Archäologie-Cluster.
+- Rest (`docs/genesis`, `docs/mandala`, `docs/research`,
+  `docs/blueprints`, `docs/teamboards`, `docs/tutorials`, `docs/guides`,
+  `docs/runbooks`, `docs/onboarding`, `docs/getting-started`,
+  `docs/community`, `docs/troubleshooting`): überwiegend winzige,
+  selbst als "Blueprint" bezeichnete Konzeptnotizen (u. a. eine
+  Keilschrift-3D-Scan-ML-Idee, Klima-Dashboard-Visionen, Zivilisations-
+  Sandboxen) oder legitime, knappe Ops-/Troubleshooting-Dokumentation
+  für bereits bekannte reale Tools (`pnpm sigils:index:strict`,
+  `pnpm ci:adapters-offline`, `pnpm stac:validate`). Nichts davon
+  einzeln katalogisiert — Umfang und Wiederholungsmuster rechtfertigen
+  keine tiefere Einzelprüfung.
+
+**`docs/` (758 Dateien) ist damit vollständig durchgesehen.** Die
+vier Durchgänge des ursprünglichen Plans (Parsing-Tools, `docs/
+pantheon`, `docs/agents`, Querverweis-Batch, `docs/sigils`
+nachgeholt, Restdocs) sind abgeschlossen.
