@@ -560,10 +560,8 @@ emergence/poetics`, verschachtelt). Passt zum bereits gefundenen
   entpackt): `genesismodul_mandala_silentagents_2035.zip` (7 Dateien,
   passt zu `silent-agents.ts`), `CodexAgentBundle.zip` (10 Dateien,
   Doku-Bundle), `mandala_sync_{codex_sync,integration}_yamls.zip`
-  (klein). **`AeonProj.zip` (104 Dateien, 2,75 MB, davon 46 `.tsx`,
-  38 `.json`, 8 verschachtelte `.zip`)** ist deutlich größer als der
-  Rest — nicht entpackt/geöffnet, aber als größtes noch unerforschtes
-  Bundle hier vermerkt, falls ein sechster Durchgang gewünscht ist.
+  (klein). **`AeonProj.zip`** — siehe eigenen Abschnitt "Sechster
+  Durchgang" unten, mittlerweile entpackt und ausgewertet.
 - **`SealCore.yaml`**: byte-identisch mit `GenesisAeonZIPMEM/
 Codex-Instructions/SealCore.yaml` (per Diff verifiziert) — dieselbe
   Datei, bereits über `aeon-sealcore` (P54) bekannt, keine neue
@@ -627,3 +625,87 @@ usage.mjs`, `packages/agents-kan`, `docs/pre-map.md`) **existiert
 vier Durchgänge des ursprünglichen Plans (Parsing-Tools, `docs/
 pantheon`, `docs/agents`, Querverweis-Batch, `docs/sigils`
 nachgeholt, Restdocs) sind abgeschlossen.
+
+---
+
+## Sechster Durchgang (2026-07-27): `AeonProj.zip`
+
+**Korrektur des Auftrags-Prompts** (`aeonproj_zip_scan_prompt.md`):
+der angenommene Pfad `GenesisAeonZIPMEM/AeonProj.zip` existiert nicht —
+die Datei liegt tatsächlich unter `docs/sigils/AeonProj.zip` (dort
+beim 5. Durchgang gefunden). Entpackt in einem temporären Job-
+Verzeichnis außerhalb des Repos, nach Auswertung wieder gelöscht.
+
+**Klassifikation: 📋 BLUEPRINT — Prototypen-Archiv mit echtem, aber
+nie integriertem Code** (kein reines Konzept-Blueprint wie sonst
+üblich, aber auch kein Paket-Kandidat, da nirgends im aktiven Repo
+verankert).
+
+**Struktur** (104 Dateien, 2,75 MB):
+
+- **`Music/` und `Musik/` sind vollständige, byte-identische Duplikate**
+  derselben 26 Dateien (per Diff verifiziert) — vermutlich ein
+  Export-Versehen (englischer + deutscher Windows-Ordnername für
+  denselben synchronisierten Ordner). Effektiv nur ~52 statt 104
+  eindeutige Dateien.
+- **23 einzigartige `.tsx`-Dateien** (in beiden Kopien): mehrere
+  Iterationen einer "Fraktaler Sigillin-Kreis"/"SigillinMandalaLogic"-
+  UI (V1 bis V6), `GenesisAeonBuilder.tsx`, `GenesisMandalaUi.tsx`,
+  `MandalaTree.tsx` u. a. **Verifiziert, nicht angenommen**: mindestens
+  `SigillinMandalaLogicV6.tsx` (143 Zeilen) ist echter, funktionierender
+  React-Code — interaktive Mandala-Visualisierung mit `localStorage`-
+  Persistenz, Ritual-Trigger, Nachtmodus, SVG-Knotenverbindungen,
+  `framer-motion`. Keine dieser 23 Dateien existiert irgendwo sonst im
+  Repo (`packages/`, `apps/`, `docs/` — per Grep geprüft) — reine
+  Orphan-Prototypen, nie integriert.
+- **`Sigilarchiv/`** (9 Dateien je Kopie): **fast identisch** mit
+  bereits bekannten Dateien aus `docs/sigils/` (z. B.
+  `SIGILLIN_GENESIS.md`, `aeonecho_resonanzraum.sigil.json`) — per
+  Diff verifiziert: inhaltlich nahezu gleich, nur unterschiedliche
+  Markdown-Formatierung (Sternchen- vs. Unterstrich-Kursivschrift,
+  Zeilenumbrüche). Keine neue Information, ältere/andere Formatierung
+  derselben Quelle.
+- **`genesis_mandala_sigillin/`** (11 `.sigil.json`-Dateien, z. B.
+  `sigillin_core_root`, `sigillin_crep_axis`, `sigillin_gpt_aeonpoet`,
+  `sigillin_manifest`): existieren nirgends sonst als eigenständige
+  Dateien im Repo (nur als Erwähnung innerhalb der riesigen
+  Rohexport-JSONs gefunden, nicht als Datei) — echte, bisher
+  unbekannte Sigillin-Artefakte, aber reine Konfig-/Konzeptdaten, kein
+  Code.
+- **3 eindeutige verschachtelte ZIPs** (in beiden Kopien, also
+  effektiv 3 statt 8 — nur Inhaltsverzeichnis geprüft, nicht
+  entpackt):
+  - `Archiv/Aeon.zip`: echte JS/TS-Module (`AeonModul TemporalMem n
+Goalengine.ts`, `Aeontoolkitv5.js`/`V6.js`, `genesismindloop.js`,
+    `mindintendengine.js`, `selfreflectengine.js`) plus ein
+    `genesis-aeon/`-Unterordner mit 7 kleinen, aber echten
+    React-Komponenten (`AeonBuilder.tsx` liest dynamisch aus
+    `orchestration.json` und lädt benannte Sub-Komponenten) und einer
+    weiteren verschachtelten `genesis-aeon.7z` (nicht mehr geöffnet —
+    dritte Verschachtelungsebene).
+  - `Archiv/AeonShell_Showcase_v0.1.zip`: ein Demo-/Präsentationspaket
+    (README, `master_systemprompt.txt`, `crepjudge_prompt.txt`,
+    Sigillin-Schema JSON+YAML, `python_demo.py`, Mermaid-Flowchart).
+  - `Archiv/aeonshell-genesis-sigillin.zip`: trivial, 2 Dateien, passt
+    zu bereits bekanntem `docs/sigils/aeonshell-genesis.sigil.json`.
+
+**GenesisAeon-Bezug:** ja, durchgehend (CREP-Werte, Sigillin-Konzept,
+Trikaya-Sprache), aber überall auf hartkodierte Demo-Werte gestützt
+(z. B. `CREP = {C:0.95, R:0.92, E:0.98, P:0.94}` fest im Code), nicht
+auf echte Berechnung.
+
+**Begründung:** Das Archiv ist Johanns persönliches
+Experimentierarchiv (die Ordnernamen "Music"/"Musik" deuten auf einen
+zweckentfremdeten Windows-Musikordner hin, kein offizieller
+Projekt-Export) mit mehreren echten, funktionierenden UI-Prototyp-
+Iterationen — deutlich mehr als reine Konzeptdokumente, aber nie in
+`packages/`/`apps/` überführt und stark redundant (halbe Datenmenge
+sind exakte Duplikate).
+
+**Empfehlung:** Keine Extraktion in diesem Sprint (wie im Auftrag
+vorgegeben). Falls die Sigillin-Mandala-UI-Idee (`SigillinMandalaLogicV6.tsx`)
+später aufgegriffen werden soll, wäre das der reifste Ausgangspunkt.
+Die 3 eindeutigen inneren ZIPs wurden nur inventarisiert, nicht
+entpackt — `Aeon.zip`s verschachtelte `genesis-aeon.7z` bleibt
+ungeöffnet (vierte Ebene, abnehmender Ertrag). Temporäres
+Scan-Verzeichnis nach Auswertung gelöscht, nichts davon committet.
