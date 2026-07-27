@@ -167,13 +167,22 @@ betrachten.
 
 **Provenienz (Johanns Einordnung, 2026-07-27)**: das System begann mit
 OpenAI Codex als treibendem Agenten (daher die durchgängige
-`codex*`-Namensgebung); ab einem Meilenstein namens "Feldtheorie" kam
-Claude als weiterer Agent hinzu. Nicht unabhängig dateibasiert
-verifizierbar — der einzige Repo-Treffer für "Feldtheorie" liegt in
-den beiden großen Rohexport-JSONs (`docs/sigils/{conversations,
-newadvancedconversations}.json`), die aus Privatsphäre-Gründen nicht
-gelesen wurden — aber konsistent mit der durchgängigen `codex*`-
-Namenskonvention und passt als mündliche Provenienz-Einordnung.
+`codex*`-Namensgebung); ab `Feldtheorie` — Johanns zweitem großen
+Projekt neben `unified-mandala`, ein eigenes Repo unter
+`D:\mandala\Feldtheorie` (verifiziert vorhanden, hier nicht weiter
+untersucht, da außerhalb des Scopes dieser `unified-mandala`-Karte) —
+kam Claude als weiterer Agent hinzu.
+
+**Ergänzung (Johann)**: `docs/sigils/{conversations,
+newadvancedconversations}.json` ("Advancedconversations") sind die
+**Haupt-Referenz für die meisten Loops** — deckt sich exakt mit dem
+technischen Befund oben: `codexwork.yaml` verweist explizit auf
+`docs/sigils/conversations.json` als primäre Datenquelle, `kontext.json`
+ist wörtlich "Automatisch generiert aus 233 Gesprächen", und
+`ToDoAI.json` extrahiert seinerseits Fragmente derselben Quelle. Die
+Konversations-Exporte sind damit nicht nur Archivmaterial, sondern der
+tatsächliche Input, aus dem die gesamte mehrstufige ToDo-/Fraktal-
+Pipeline oben ihre Aufgaben ableitet.
 
 ---
 
