@@ -73,12 +73,107 @@ Konfigurationsdaten, kein eigener Archäologie-Fund, aber wichtig zum
 Verständnis. `schemas/`/`types/` sind unterstützende JSON-Schemas
 (Sigil-Message-, Event-Bus-, MandalaMap-Validierung) bzw. TS-Ambient-
 Type-Deklarationen für Drittbibliotheken — ebenfalls unterstützende
-Infrastruktur, keine eigenen Cluster. `codex/`, `codex-sync/`,
-`codexbuild/`, `codexfeedback/`, `advancedToDo_parts/` sind Build-/
-Feedback-Log-Daten eines Codex-Automatisierungssystems (pro-"Fraktalrun"-
-Feedback-YAMLs) — Tooling-Logs, keine Domänenlogik, ein Blick in
+Infrastruktur, keine eigenen Cluster.
+
+**Korrektur (2026-07-27, auf Johanns Nachfrage "ist das Codexwork-System
+noch nachvollziehbar?")**: `codex/`, `codex-sync/`, `codexbuild/`,
+`codexfeedback/`, `advancedToDo_parts/` wurden hier ursprünglich zu
+knapp als reine "Tooling-Logs" abgetan. Tatsächlich ist das ein
+**echtes, mehrfach durchlaufenes, selbstdokumentierendes
+Automatisierungssystem** für autonome Coding-Agenten gegen dieses
+Repo — vollständig nachvollziehbar über eine klare Beweiskette:
+
+1. **`codexwork.yaml`** (Repo-Root): Einstiegsanweisung für Agenten
+   (wo Konversationsdaten liegen, welche Skripte zu nutzen sind).
+2. **`codexinstructions.yaml`**: der Workflow in Schritten
+   (`kontext.yaml` lesen → `codexwork.yaml` ausführen → TODOs sammeln
+   → `repositorypflege/` beachten → committen → neue TODOs ableiten).
+3. **`kontext.json`/`kontext.yaml`** (Repo-Root): **das verifizierte
+   Ergebnis eines echten Laufs** — `kontext.json` enthält wörtlich
+   "Automatisch generiert aus 233 Gesprächen", sauber nach Themen
+   sortiert (Codex, GenesisOS, UnifiedMandala, AeonShell,
+   Nukleon-Scanner, Sigillin, ...). Genau das von `codexwork.yaml`
+   verlangte Artefakt — der Loop lief nachweislich mindestens einmal
+   vollständig durch.
+4. **`ToDo.yaml`** (241 Zeilen) und **`docs/sigils/todo-sigil.yaml`**
+   (109 Zeilen): konkrete Aufgabenlisten mit Status
+   (`erledigt`/`offen`) — mehrere `erledigt`-Einträge decken sich mit
+   in dieser Session unabhängig verifizierten Funden (Nukleon-Scanner,
+   `Agents.md`, `runDryAgent.ts`, CI-Integration, Sigillin-Lint).
+5. **`repositorypflege/`**: ein echtes, getestetes Tool-Set
+   (`advanced-todo-report.js`, `update-advanced-progress.js`,
+   `generate-initial-tasks.js` u. a., alle mit `__tests__/`) plus
+   `feedback.md` mit einem konkreten Änderungsprotokoll (TaskRouter-
+   Modul, CoIntel-Orchestrator, CLI-Flags für Report-Formate).
+6. **`codexfeedback/`**: **65 durchnummerierte "Fraktal"-Läufe**
+   (Fraktal 44 bis Fraktal 116, teils mit Lücken). Die neueste
+   (`codexfeedback-latest.md`, "Fraktal 116") beschreibt CI-/OPA-
+   Coverage-Gate-Härtung — **stichprobenartig verifiziert**: die dort
+   genannten Dateien (`docs/governance/primer.md`,
+   `scripts/opa/coverage.mjs`, `scripts/opa/run-opa-cover.mjs`,
+   `tests/scripts/opa/coverage.test.ts`) existieren alle wirklich.
+7. **`ToDoAI.json`** (Repo-Root): mit >166.000 Tokens das größte
+   Artefakt im System — ein extrahiertes Fragment-Archiv der
+   Konversationen (enthält reale Gesprächsauszüge). Nur Struktur
+   geprüft (Fragment-IDs, Größenordnung), Inhalt nicht weiter
+   gelesen — Privatsphäre.
+
+**Nachtrag (2026-07-27, Johann: "es gab sogar mehrere Ebenen in dem
+Agentenloop")** — das Aufgaben-Tracking selbst ist mehrstufig, nicht
+nur `ToDo.yaml`:
+
+- **`advancedToDo.yaml`/`.json`** (Repo-Root, **14.039 bzw. 15.015
+  Zeilen**): die eigentliche, granulare Historie — **2.123 Einträge**
+  im Schema `commit`/`path`/`task`/`test`/`status`, **1.246 davon
+  `status: done`**. Stichprobe von 4 zufälligen "done"-Einträgen
+  gegen den echten Dateibaum geprüft — **alle 4 existieren wirklich**
+  (`packages/universum-simulationen/modules/fusion_evolution.py`,
+  `packages/shared-utils/jsonFragmenter.ts`,
+  `scripts/validate-newadvanced-conversations.ts`,
+  `packages/unifiedmandala-ui/components/CREPTooltip.tsx`) — das
+  Logbuch ist verifiziert zuverlässig, kein Wunschdenken. Die letzten
+  Einträge der Datei sind selbstreferentiell: "Erzeuge initiale
+  Aufgaben" → "Verzweige in Unteraufgaben" → "Bewerte CREP und depth"
+  → "Commitiere Ergebnisse" — der rekursive/fraktale Task-Generierungs-
+  Zyklus selbst, als eigene ToDo-Einträge erfasst.
+- **`advancedToDo_parts/`** (10 Teile, je JSON+YAML): dieselbe Liste in
+  Chunks aufgeteilt, vermutlich für Verarbeitung/Archivierung
+  (`scripts/autoArchiveTodos.py`, `scripts/archive-old-todos.ts`,
+  `scripts/archive-todos.ts` existieren real dafür).
+- **`repositorypflege/generate-initial-tasks.js`** (echtes,
+  funktionierendes Skript, verifiziert): liest `advancedToDo.json`,
+  `.yaml` und alle Teile aus `advancedToDo_parts/`, filtert auf
+  `status` ≠ done/closed/fertig, schließt Konversations-Einträge per
+  Default aus, schreibt das Ergebnis zeitgestempelt in
+  `repositorypflege/initial-tasks.json`. **`initial-tasks.json`
+  selbst enthält einen echten, datierten Lauf** (`generatedAt:
+2025-09-04T06:06:59.561Z`, 20 offene Aufgaben) — u. a. eine
+  ambitionierte "UM"-Multi-Service-Stack-Vision (Identity-/ACL-API,
+  Federation-Bridge, Windows-Service-Installer, Docker-Compose).
+- Damit ergibt sich eine klare Ebenen-Hierarchie: `ToDoAI.json`
+  (Rohmaterial aus Konversationen) → `advancedToDo.yaml`/`.json` +
+  `_parts/` (granulare, commit-genaue Historie) →
+  `generate-initial-tasks.js` (Filter auf offene Aufgaben) →
+  `initial-tasks.json` (aktueller Arbeits-Snapshot) →
+  `codexfeedback/` (Fraktal-Lauf-Ergebnisberichte) →
+  `docs/sigils/todo-sigil.yaml`/`ToDo.yaml` (grobkörnige, für Menschen
+  lesbare Zusammenfassungen). Jede Ebene per Stichprobe gegen echten
+  Code verifiziert, nicht nur angenommen.
+
 `codex-sync/answer-suggestions.js` (18 Zeilen, liest `codex/
-suggestions.yaml` und druckt sie) bestätigt das.
+suggestions.yaml` und druckt sie) bleibt für sich genommen trivial,
+ist aber Teil desselben größeren, echten Systems, nicht isoliert zu
+betrachten.
+
+**Provenienz (Johanns Einordnung, 2026-07-27)**: das System begann mit
+OpenAI Codex als treibendem Agenten (daher die durchgängige
+`codex*`-Namensgebung); ab einem Meilenstein namens "Feldtheorie" kam
+Claude als weiterer Agent hinzu. Nicht unabhängig dateibasiert
+verifizierbar — der einzige Repo-Treffer für "Feldtheorie" liegt in
+den beiden großen Rohexport-JSONs (`docs/sigils/{conversations,
+newadvancedconversations}.json`), die aus Privatsphäre-Gründen nicht
+gelesen wurden — aber konsistent mit der durchgängigen `codex*`-
+Namenskonvention und passt als mündliche Provenienz-Einordnung.
 
 ---
 
