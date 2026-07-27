@@ -914,3 +914,80 @@ sollen, wären das die reifsten Ausgangspunkte im ganzen Archiv.
 Temporäres Scan-Verzeichnis (inkl. aller entpackten Unter-Archive)
 nach vollständiger Auswertung gelöscht, nichts davon committet — der
 gefundene persönliche Kontaktblock wurde nirgends reproduziert.
+
+---
+
+## Siebter Durchgang (2026-07-27): Simulation-Realitätscheck — was wurde wirklich verarbeitet?
+
+Johanns Frage: was von den vielen "Simulation"-artig benannten Paketen
+wurde tatsächlich verarbeitet/ausgeführt, und was ist nur als Code aus
+den Konversationen hängengeblieben (extrahiert, aber nie fertiggestellt)?
+Gezielt alle simulation-/climate-/governance-/physics-artigen Pfade
+durchgesehen: `simulations/` (root), `data/simulations`,
+`packages/simulations`, `packages/universum-simulationen`,
+`packages/sim-domain`, `packages/climate`, `packages/unifiedmandala-climate`,
+`agents/governance_simulator`, `agents/singularity_simulator`.
+
+**Drei klar unterscheidbare Reifegrade gefunden:**
+
+**Stufe 1 — Explizite Platzhalter (der Verdacht bestätigt sich hier):**
+`agents/governance_simulator/main.py` sagt in der eigenen Docstring
+wörtlich: _"It acts as placeholder for more elaborate simulations"_ —
+die "Simulation" ist nur `cooperation ** countries`, geclampt auf
+[0,1]. `agents/singularity_simulator/main.py` genauso wörtlich:
+_"serves as a placeholder for more advanced singularity simulations"_ —
+reine Exponentialreihen-Berechnung. `packages/climate/
+ClimateIntegrationBlueprint.ts` (Name sagt es schon: "Blueprint") ist
+nur eine Array-Durchschnittsfunktion. `packages/sim-domain/bio/
+bioEngine.ts` gibt hartcodiert den String `'Bio simulation initialized'`
+zurück, mit Kommentar `// Placeholder for biological domain logic`.
+`packages/universum-simulationen/EmotionalResonanceSimulator.ts` und
+`packages/simulations/MultiverseScenarioPlanner.ts` sind ebenfalls
+triviale Stubs (Mittelwert-Klassifikation bzw. reine Datenhaltung ohne
+Simulationslogik). Alle haben echte, grüne Unit-Tests — aber die Tests
+prüfen nur die triviale Platzhalter-Logik selbst, nicht echte
+Domänen-Simulation. **Das ist exakt das Muster, das Johann vermutet
+hat: aus Konversationen extrahierte Ideen, die einen CI-tauglichen
+Stub + Test bekamen, aber nie zur echten Simulation ausgebaut wurden.**
+
+**Stufe 2 — Real, minimal, nachweislich ausgeführt:**
+`simulations/nullfield_wave.py` ist ein echter finite-Differenzen-Löser
+für die 1D-Wellengleichung (Leapfrog-Schema, Energie-/Massen-Tracking,
+Divergenz-Erkennung) — kein Stub. Ein kompiliertes
+`simulations/__pycache__/nullfield_wave.cpython-311.pyc` liegt im
+Repo — **das ist der Beweis, dass dieses Skript tatsächlich lokal
+ausgeführt wurde**, nicht nur geschrieben und liegengelassen.
+`packages/universum-simulationen/binary_existence_matrix.py` ist eine
+echte zelluläre Automaten-Implementierung (Conway-artig, mit einem
+"nullmembrane"-Schwellenwert-Konzept, das an Feldtheories
+ζ(R)-Membran-Terminologie erinnert) — ebenfalls kein Platzhalter.
+
+**Stufe 3 — Real, strukturiert, aber selbst als Prototyp markiert:**
+`simulations/universe-sim/` ist ein vollständiger Go-Microservice
+(gRPC-API via `sim.proto`, `pkg/core/physics.go`, `pkg/agent/engine.go`,
+`pkg/federation/server.go`, `pkg/sigil/generator.go`, 8 Testdateien,
+sogar ein React-Dashboard mit eigenem Test). Die eigene
+`README.md` sagt ehrlich: _"a simple Go program demonstrating the
+Explorer and Observer agents described in the project blueprint"_ —
+beim Ausführen (`go run cmd/sim-runner.go`) entstehen echte
+Output-Dateien (`state-<runId>-v1.jsonl`, `events-<runId>.jsonl`).
+Real, lauffähig, aber selbst-deklariert als Prototyp/Machbarkeitsnachweis,
+keine ausgereifte Simulationsplattform.
+
+**Fazit:** Kein einheitliches Bild — es gibt echte, ausgeführte Physik-
+und Automaten-Simulationen (Stufe 2/3), aber auch eine ganze Reihe
+großspurig benannter Pakete (Governance, Singularity, Climate, Bio/Chem/
+Mind-Engines, Multiverse), die nachweislich nur Platzhalter sind (eigene
+Docstrings sagen es). Kein Vergleich zu Feldtheories `data/`+`analysis/`-
+Pipeline mit echten, literaturbelegten Datensätzen und tatsächlichen
+Fit-Ergebnissen — unified-mandala hat (soweit in diesem Durchgang
+gesehen) keine vergleichbare Menge an real verarbeiteten
+Simulationsdaten, nur vereinzelte reale Kernstücke.
+
+**Noch nicht geprüft:** die übrigen `packages/*` mit Simulations-Bezug
+(`packages/unifiedmandala-vr`, weitere `chem`/`dna`/`mind`/`phys`-Engines
+in `sim-domain/`, `HieroglyphenParser.ts`, `InteractiveNarrativeEngine.ts`)
+sowie `data/simulations` (leer beim Scan) und `plugins/governance-
+simulator.yaml`/`plugins/singularity-simulator.yaml` (nur als YAML-Configs
+gesichtet, Inhalt nicht geprüft). Wäre der nächste Schritt für einen
+vollständigen Realitätscheck.
