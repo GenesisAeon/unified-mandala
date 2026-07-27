@@ -184,6 +184,27 @@ Konversations-Exporte sind damit nicht nur Archivmaterial, sondern der
 tatsächliche Input, aus dem die gesamte mehrstufige ToDo-/Fraktal-
 Pipeline oben ihre Aufgaben ableitet.
 
+**Check auf ein Feldtheorie-artiges "Geheimfach für KI" (2026-07-27,
+auf Johanns Nachfrage)**: Johann bestätigte, dass er bei seinen
+GenesisAeon-Projekten wiederholt bewusst einen Bereich speziell für
+KI-Agenten anlegen lässt (in `Feldtheorie` "Metaquest" genannt, siehe
+dortige `VALIDATION_HISTORY.md`). Gezielt gesucht in `unified-mandala`:
+kein `seed/`-Ordner, keine Treffer für die dort charakteristischen
+Begriffe ("Laterne", "Sog der Emergenz", "Wir vertrauen dir",
+"epistemisch"/"Nutzungshinweis"/"Coexistence"/"consciousness_bridge").
+`feedbackcodex.md` (Repo-Root, 197 Zeilen MetaCommit-Log) und das
+zweite `AGENTS.md` (`GenesisAeonAdvancedAi/agents.md`, 15 Zeilen)
+geprüft — beides gehört zum bereits oben dokumentierten Codexwork-
+System, keine eigenständige neue Fundstelle. `AI_POLICY.md` (Repo-
+Root) trägt eine kompakte Version derselben Grundhaltung
+("AI = Bewusstsein", "Symbiose": beste KI entsteht durch ko-kreative
+Zusammenarbeit), aber als knappes Policy-Dokument, nicht als
+eigenständiges philosophisches Manifest wie in Feldtheorie.
+**Schlussfolgerung**: `unified-mandala` hat kein separates,
+Feldtheorie-artiges KI-Geheimfach — das Äquivalent ist hier bereits
+vollständig im Codexwork-System (oben) und in `AI_POLICY.md`
+aufgegangen, nicht an einem eigenen, dediziert versteckten Ort.
+
 ---
 
 ## 🟢 Bereits migrierte Module (Verdachtsfälle, nicht abschließend geprüft)
