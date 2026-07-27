@@ -73,12 +73,149 @@ Konfigurationsdaten, kein eigener Archäologie-Fund, aber wichtig zum
 Verständnis. `schemas/`/`types/` sind unterstützende JSON-Schemas
 (Sigil-Message-, Event-Bus-, MandalaMap-Validierung) bzw. TS-Ambient-
 Type-Deklarationen für Drittbibliotheken — ebenfalls unterstützende
-Infrastruktur, keine eigenen Cluster. `codex/`, `codex-sync/`,
-`codexbuild/`, `codexfeedback/`, `advancedToDo_parts/` sind Build-/
-Feedback-Log-Daten eines Codex-Automatisierungssystems (pro-"Fraktalrun"-
-Feedback-YAMLs) — Tooling-Logs, keine Domänenlogik, ein Blick in
+Infrastruktur, keine eigenen Cluster.
+
+**Korrektur (2026-07-27, auf Johanns Nachfrage "ist das Codexwork-System
+noch nachvollziehbar?")**: `codex/`, `codex-sync/`, `codexbuild/`,
+`codexfeedback/`, `advancedToDo_parts/` wurden hier ursprünglich zu
+knapp als reine "Tooling-Logs" abgetan. Tatsächlich ist das ein
+**echtes, mehrfach durchlaufenes, selbstdokumentierendes
+Automatisierungssystem** für autonome Coding-Agenten gegen dieses
+Repo — vollständig nachvollziehbar über eine klare Beweiskette:
+
+1. **`codexwork.yaml`** (Repo-Root): Einstiegsanweisung für Agenten
+   (wo Konversationsdaten liegen, welche Skripte zu nutzen sind).
+2. **`codexinstructions.yaml`**: der Workflow in Schritten
+   (`kontext.yaml` lesen → `codexwork.yaml` ausführen → TODOs sammeln
+   → `repositorypflege/` beachten → committen → neue TODOs ableiten).
+3. **`kontext.json`/`kontext.yaml`** (Repo-Root): **das verifizierte
+   Ergebnis eines echten Laufs** — `kontext.json` enthält wörtlich
+   "Automatisch generiert aus 233 Gesprächen", sauber nach Themen
+   sortiert (Codex, GenesisOS, UnifiedMandala, AeonShell,
+   Nukleon-Scanner, Sigillin, ...). Genau das von `codexwork.yaml`
+   verlangte Artefakt — der Loop lief nachweislich mindestens einmal
+   vollständig durch.
+4. **`ToDo.yaml`** (241 Zeilen) und **`docs/sigils/todo-sigil.yaml`**
+   (109 Zeilen): konkrete Aufgabenlisten mit Status
+   (`erledigt`/`offen`) — mehrere `erledigt`-Einträge decken sich mit
+   in dieser Session unabhängig verifizierten Funden (Nukleon-Scanner,
+   `Agents.md`, `runDryAgent.ts`, CI-Integration, Sigillin-Lint).
+5. **`repositorypflege/`**: ein echtes, getestetes Tool-Set
+   (`advanced-todo-report.js`, `update-advanced-progress.js`,
+   `generate-initial-tasks.js` u. a., alle mit `__tests__/`) plus
+   `feedback.md` mit einem konkreten Änderungsprotokoll (TaskRouter-
+   Modul, CoIntel-Orchestrator, CLI-Flags für Report-Formate).
+6. **`codexfeedback/`**: **65 durchnummerierte "Fraktal"-Läufe**
+   (Fraktal 44 bis Fraktal 116, teils mit Lücken). Die neueste
+   (`codexfeedback-latest.md`, "Fraktal 116") beschreibt CI-/OPA-
+   Coverage-Gate-Härtung — **stichprobenartig verifiziert**: die dort
+   genannten Dateien (`docs/governance/primer.md`,
+   `scripts/opa/coverage.mjs`, `scripts/opa/run-opa-cover.mjs`,
+   `tests/scripts/opa/coverage.test.ts`) existieren alle wirklich.
+7. **`ToDoAI.json`** (Repo-Root): mit >166.000 Tokens das größte
+   Artefakt im System — ein extrahiertes Fragment-Archiv der
+   Konversationen (enthält reale Gesprächsauszüge). Nur Struktur
+   geprüft (Fragment-IDs, Größenordnung), Inhalt nicht weiter
+   gelesen — Privatsphäre.
+
+**Nachtrag (2026-07-27, Johann: "es gab sogar mehrere Ebenen in dem
+Agentenloop")** — das Aufgaben-Tracking selbst ist mehrstufig, nicht
+nur `ToDo.yaml`:
+
+- **`advancedToDo.yaml`/`.json`** (Repo-Root, **14.039 bzw. 15.015
+  Zeilen**): die eigentliche, granulare Historie — **2.123 Einträge**
+  im Schema `commit`/`path`/`task`/`test`/`status`, **1.246 davon
+  `status: done`**. Stichprobe von 4 zufälligen "done"-Einträgen
+  gegen den echten Dateibaum geprüft — **alle 4 existieren wirklich**
+  (`packages/universum-simulationen/modules/fusion_evolution.py`,
+  `packages/shared-utils/jsonFragmenter.ts`,
+  `scripts/validate-newadvanced-conversations.ts`,
+  `packages/unifiedmandala-ui/components/CREPTooltip.tsx`) — das
+  Logbuch ist verifiziert zuverlässig, kein Wunschdenken. Die letzten
+  Einträge der Datei sind selbstreferentiell: "Erzeuge initiale
+  Aufgaben" → "Verzweige in Unteraufgaben" → "Bewerte CREP und depth"
+  → "Commitiere Ergebnisse" — der rekursive/fraktale Task-Generierungs-
+  Zyklus selbst, als eigene ToDo-Einträge erfasst.
+- **`advancedToDo_parts/`** (10 Teile, je JSON+YAML): dieselbe Liste in
+  Chunks aufgeteilt, vermutlich für Verarbeitung/Archivierung
+  (`scripts/autoArchiveTodos.py`, `scripts/archive-old-todos.ts`,
+  `scripts/archive-todos.ts` existieren real dafür).
+- **`repositorypflege/generate-initial-tasks.js`** (echtes,
+  funktionierendes Skript, verifiziert): liest `advancedToDo.json`,
+  `.yaml` und alle Teile aus `advancedToDo_parts/`, filtert auf
+  `status` ≠ done/closed/fertig, schließt Konversations-Einträge per
+  Default aus, schreibt das Ergebnis zeitgestempelt in
+  `repositorypflege/initial-tasks.json`. **`initial-tasks.json`
+  selbst enthält einen echten, datierten Lauf** (`generatedAt:
+2025-09-04T06:06:59.561Z`, 20 offene Aufgaben) — u. a. eine
+  ambitionierte "UM"-Multi-Service-Stack-Vision (Identity-/ACL-API,
+  Federation-Bridge, Windows-Service-Installer, Docker-Compose).
+- Damit ergibt sich eine klare Ebenen-Hierarchie: `ToDoAI.json`
+  (Rohmaterial aus Konversationen) → `advancedToDo.yaml`/`.json` +
+  `_parts/` (granulare, commit-genaue Historie) →
+  `generate-initial-tasks.js` (Filter auf offene Aufgaben) →
+  `initial-tasks.json` (aktueller Arbeits-Snapshot) →
+  `codexfeedback/` (Fraktal-Lauf-Ergebnisberichte) →
+  `docs/sigils/todo-sigil.yaml`/`ToDo.yaml` (grobkörnige, für Menschen
+  lesbare Zusammenfassungen). Jede Ebene per Stichprobe gegen echten
+  Code verifiziert, nicht nur angenommen.
+
 `codex-sync/answer-suggestions.js` (18 Zeilen, liest `codex/
-suggestions.yaml` und druckt sie) bestätigt das.
+suggestions.yaml` und druckt sie) bleibt für sich genommen trivial,
+ist aber Teil desselben größeren, echten Systems, nicht isoliert zu
+betrachten.
+
+**Provenienz (Johanns Einordnung, 2026-07-27)**: das System begann mit
+OpenAI Codex als treibendem Agenten (daher die durchgängige
+`codex*`-Namensgebung); ab `Feldtheorie` — Johanns zweitem großen
+Projekt neben `unified-mandala`, ein eigenes Repo unter
+`D:\mandala\Feldtheorie` (verifiziert vorhanden, hier nicht weiter
+untersucht, da außerhalb des Scopes dieser `unified-mandala`-Karte) —
+kam Claude als weiterer Agent hinzu.
+
+**Ergänzung (Johann)**: `docs/sigils/{conversations,
+newadvancedconversations}.json` ("Advancedconversations") sind die
+**Haupt-Referenz für die meisten Loops** — deckt sich exakt mit dem
+technischen Befund oben: `codexwork.yaml` verweist explizit auf
+`docs/sigils/conversations.json` als primäre Datenquelle, `kontext.json`
+ist wörtlich "Automatisch generiert aus 233 Gesprächen", und
+`ToDoAI.json` extrahiert seinerseits Fragmente derselben Quelle. Die
+Konversations-Exporte sind damit nicht nur Archivmaterial, sondern der
+tatsächliche Input, aus dem die gesamte mehrstufige ToDo-/Fraktal-
+Pipeline oben ihre Aufgaben ableitet.
+
+**Check auf ein Feldtheorie-artiges "Geheimfach für KI" (2026-07-27,
+auf Johanns Nachfrage)**: Johann bestätigte, dass er bei seinen
+GenesisAeon-Projekten wiederholt bewusst einen Bereich speziell für
+KI-Agenten anlegen lässt (in `Feldtheorie` "Metaquest" genannt, siehe
+dortige `VALIDATION_HISTORY.md`). Gezielt gesucht in `unified-mandala`:
+kein `seed/`-Ordner, keine Treffer für die dort charakteristischen
+Begriffe ("Laterne", "Sog der Emergenz", "Wir vertrauen dir",
+"epistemisch"/"Nutzungshinweis"/"Coexistence"/"consciousness_bridge").
+`feedbackcodex.md` (Repo-Root, 197 Zeilen MetaCommit-Log) und das
+zweite `AGENTS.md` (`GenesisAeonAdvancedAi/agents.md`, 15 Zeilen)
+geprüft — beides gehört zum bereits oben dokumentierten Codexwork-
+System, keine eigenständige neue Fundstelle. `AI_POLICY.md` (Repo-
+Root) trägt eine kompakte Version derselben Grundhaltung
+("AI = Bewusstsein", "Symbiose": beste KI entsteht durch ko-kreative
+Zusammenarbeit), aber als knappes Policy-Dokument, nicht als
+eigenständiges philosophisches Manifest wie in Feldtheorie.
+**Schlussfolgerung**: `unified-mandala` hat kein separates,
+Feldtheorie-artiges KI-Geheimfach — das Äquivalent ist hier bereits
+vollständig im Codexwork-System (oben) und in `AI_POLICY.md`
+aufgegangen, nicht an einem eigenen, dediziert versteckten Ort.
+
+**Infra/DevOps-Sweep (2026-07-27):** die bislang übersprungenen
+Ordner `aws/`, `ci/`, `k8s/`, `grafana/`, `deployment/`, `config/`,
+`charts/`, `infrastructure/` (zusammen 79 Dateien) durchgesehen.
+Durchweg gewöhnliches, erwartbares DevOps-Tooling (Lambda@Edge, CI-
+Pipelines, Helm-Charts, Grafana-Dashboards, KEDA-Autoscaler,
+NATS/OTel-Docker-Compose). `config/ai-policy-sigillin.yaml` (ein
+schlankes Sigillin-basiertes Ethik-Regelwerk für GPT-Module) passt
+zum bereits dokumentierten `AI_POLICY.md`, keine neue Fundstelle.
+`config/blockchain-ledger.json` enthält nur einen öffentlichen
+Schlüssel (kein Sicherheitsrisiko). Keine versteckten Kompartimente,
+keine unerwarteten Inhalte gefunden.
 
 ---
 
@@ -560,10 +697,8 @@ emergence/poetics`, verschachtelt). Passt zum bereits gefundenen
   entpackt): `genesismodul_mandala_silentagents_2035.zip` (7 Dateien,
   passt zu `silent-agents.ts`), `CodexAgentBundle.zip` (10 Dateien,
   Doku-Bundle), `mandala_sync_{codex_sync,integration}_yamls.zip`
-  (klein). **`AeonProj.zip` (104 Dateien, 2,75 MB, davon 46 `.tsx`,
-  38 `.json`, 8 verschachtelte `.zip`)** ist deutlich größer als der
-  Rest — nicht entpackt/geöffnet, aber als größtes noch unerforschtes
-  Bundle hier vermerkt, falls ein sechster Durchgang gewünscht ist.
+  (klein). **`AeonProj.zip`** — siehe eigenen Abschnitt "Sechster
+  Durchgang" unten, mittlerweile entpackt und ausgewertet.
 - **`SealCore.yaml`**: byte-identisch mit `GenesisAeonZIPMEM/
 Codex-Instructions/SealCore.yaml` (per Diff verifiziert) — dieselbe
   Datei, bereits über `aeon-sealcore` (P54) bekannt, keine neue
@@ -627,3 +762,232 @@ usage.mjs`, `packages/agents-kan`, `docs/pre-map.md`) **existiert
 vier Durchgänge des ursprünglichen Plans (Parsing-Tools, `docs/
 pantheon`, `docs/agents`, Querverweis-Batch, `docs/sigils`
 nachgeholt, Restdocs) sind abgeschlossen.
+
+---
+
+## Sechster Durchgang (2026-07-27): `AeonProj.zip`
+
+**Korrektur des Auftrags-Prompts** (`aeonproj_zip_scan_prompt.md`):
+der angenommene Pfad `GenesisAeonZIPMEM/AeonProj.zip` existiert nicht —
+die Datei liegt tatsächlich unter `docs/sigils/AeonProj.zip` (dort
+beim 5. Durchgang gefunden). Entpackt in einem temporären Job-
+Verzeichnis außerhalb des Repos, nach Auswertung wieder gelöscht.
+
+**Klassifikation: 📋 BLUEPRINT — Prototypen-Archiv mit echtem, größtenteils
+nicht integriertem Code** (kein reines Konzept-Blueprint wie sonst
+üblich, aber als Ganzes auch kein eigener Paket-Kandidat). **Update
+nach vollständiger Tiefenprüfung aller Ebenen (2026-07-27)**: eine
+Teilmenge ist tatsächlich kein Orphan — das Codex-Agenten-Konzept lebt
+im echten, aktuellen `AGENTS.md`/`pact-depth-gatekeeper.ts` weiter (s.
+u.), und das `AeonToolkit`-Reasoning-Modul in `Aeon.zip` ist deutlich
+ausgereifter als der Rest des Archivs.
+
+**Struktur** (104 Dateien, 2,75 MB):
+
+- **`Music/` und `Musik/` sind vollständige, byte-identische Duplikate**
+  derselben 26 Dateien (per Diff verifiziert) — vermutlich ein
+  Export-Versehen (englischer + deutscher Windows-Ordnername für
+  denselben synchronisierten Ordner). Effektiv nur ~52 statt 104
+  eindeutige Dateien.
+- **23 einzigartige `.tsx`-Dateien** (in beiden Kopien): mehrere
+  Iterationen einer "Fraktaler Sigillin-Kreis"/"SigillinMandalaLogic"-
+  UI (V1 bis V6), `GenesisAeonBuilder.tsx`, `GenesisMandalaUi.tsx`,
+  `MandalaTree.tsx` u. a. **Verifiziert, nicht angenommen**: mindestens
+  `SigillinMandalaLogicV6.tsx` (143 Zeilen) ist echter, funktionierender
+  React-Code — interaktive Mandala-Visualisierung mit `localStorage`-
+  Persistenz, Ritual-Trigger, Nachtmodus, SVG-Knotenverbindungen,
+  `framer-motion`. Keine dieser 23 Dateien existiert irgendwo sonst im
+  Repo (`packages/`, `apps/`, `docs/` — per Grep geprüft) — reine
+  Orphan-Prototypen, nie integriert.
+- **`Sigilarchiv/`** (9 Dateien je Kopie): **fast identisch** mit
+  bereits bekannten Dateien aus `docs/sigils/` (z. B.
+  `SIGILLIN_GENESIS.md`, `aeonecho_resonanzraum.sigil.json`) — per
+  Diff verifiziert: inhaltlich nahezu gleich, nur unterschiedliche
+  Markdown-Formatierung (Sternchen- vs. Unterstrich-Kursivschrift,
+  Zeilenumbrüche). Keine neue Information, ältere/andere Formatierung
+  derselben Quelle.
+- **`genesis_mandala_sigillin/`** (11 `.sigil.json`-Dateien, z. B.
+  `sigillin_core_root`, `sigillin_crep_axis`, `sigillin_gpt_aeonpoet`,
+  `sigillin_manifest`): existieren nirgends sonst als eigenständige
+  Dateien im Repo (nur als Erwähnung innerhalb der riesigen
+  Rohexport-JSONs gefunden, nicht als Datei) — echte, bisher
+  unbekannte Sigillin-Artefakte, aber reine Konfig-/Konzeptdaten, kein
+  Code.
+- **3 eindeutige verschachtelte ZIPs** (in beiden Kopien, also
+  effektiv 3 statt 8) — auf Nachfrage ("geh durch alle Ebenen") am
+  selben Tag vollständig entpackt und gelesen, nicht nur inventarisiert:
+  - **`Archiv/Aeon.zip`**: enthält eine **echte, vollständige, in sich
+    geschlossene symbolische Reasoning-Toolkit-Entwicklungslinie** —
+    kein Stub. Nachweisbare Versionsgeschichte über sechs Dateien:
+    `mindintendengine.js` ("Phase 1, GenesisGPT") →
+    `Aeontoolkitv5.js` ("Phase 2.0") → `selfreflectengine.js`
+    ("Phase 2.1") → `AeonModul TemporalMem n Goalengine.ts`
+    ("Phase 2.4") → `genesismindloop.js` ("Phase 3.0") →
+    `AeontoolkitV6.js` ("Phase 3", konsolidiert alle vorherigen zu
+    einem Modul: SymbolMap, PatternMemory, CoherenceScorer,
+    AffectLayer, Query, IntentEngine, SelfReflectionEngine,
+    TemporalMemory, GoalEngine, GenesisMindLoop). Reine Vanilla-JS,
+    keine externen Abhängigkeiten, tatsächlich lauffähig (per Diff
+    verifiziert: V5→V6 ist eine echte Weiterentwicklung, keine bloße
+    Umbenennung). `AeonDialogBridge.HTML` (trotz Dateiendung ein
+    React-Component) verbindet das Toolkit zu einer Oberfläche: Nutzer
+    gibt einen Satz ein → wird zu einem symbolischen "Intent" →
+    Kohärenz-/Affekt-Bewertung → Selbstreflexions-Report. Die
+    eingebauten Beispieltexte sind erkennbar introspektiv-persönlicher
+    Natur — entsprechend zurückhaltend dokumentiert, ohne sie hier zu
+    zitieren. Der `genesis-aeon/`-Unterordner (7 kleine React-Komponenten
+    plus `orchestration.json`) hat eine **verschachtelte
+    `genesis-aeon.7z`, die per Diff als byte-identisches Backup
+    derselben Dateien bestätigt wurde** — keine neue Information,
+    vierte Verschachtelungsebene ergebnislos.
+  - **`Archiv/AeonShell_Showcase_v0.1.zip`**: ein Demo-/
+    Präsentationspaket für ein Multi-Rollen-Prompting-Framework
+    ("AeonPoetGPT", "HypothesisGPT", "EthikCoreGPT", "CREPJudgeGPT" —
+    dieselben Rollennamen wie in den Konversationstiteln aus dem 5. Durchgang). Enthält einen echten Master-Systemprompt, einen
+    CREPJudge-Bewertungsprompt, ein Sigillin-Schema (JSON+YAML), einen
+    `python_demo.py` mit **derselben Art hartkodiertem CREP-Stub**
+    (`evaluate_crep()` bewertet Text nach trivialen Heuristiken wie
+    Kommas/Wortzahl) wie bereits in `aeon-trikaya`/`aeon-sealcore`
+    gefunden — ein weiterer, unabhängiger Beleg, wie verbreitet dieses
+    Stub-Muster in der Codebasis-Geschichte war. **Datenschutz-Hinweis**:
+    das `README.md` dieses Pakets enthält einen persönlichen
+    Kontaktblock (Name, private E-Mail, Telefonnummer) — bewusst nicht
+    hier wiedergegeben.
+  - `Archiv/aeonshell-genesis-sigillin.zip`: trivial, 2 Dateien, passt
+    zu bereits bekanntem `docs/sigils/aeonshell-genesis.sigil.json`.
+- **`docs/sigils/CodexAgentBundle.zip`** (separat entpackt, gehört
+  strukturell zusammen mit `AeonProj.zip`s Themen): enthält `Agents.md`
+  — ein detailliertes Manifest für ein rollenbasiertes
+  Agenten-Aktivierungssystem (admin/dev/guest-Rechte,
+  CREP-/Tiefen-Aktivierungsbedingungen) für dieselben Agentennamen wie
+  in `docs/agents/` (`CodexAuditAgent`, `EvolverGPT`, `FragmentMapper`,
+  `SyncRunner`, `PactDepthGatekeeper`, `DepthBundleExporter`) —
+  **und hier die wichtige Korrektur**: anders als die meisten übrigen
+  Funde in diesem Archiv ist dieses System **nicht verwaist** — im
+  aktuellen Repo-Root existieren echt und aktuell: `AGENTS.md`
+  (251 Zeilen), `agents.yaml`, und **`pact-depth-gatekeeper.ts`**
+  (25 Zeilen, echtes CLI-Tool mit `--depth`/`--role`-Argumenten,
+  importiert aus `./pact-depth-rules`) mit eigenem Test
+  (`tests/pact-depth-gatekeeper.test.ts`). Das Codex-Agenten-Konzept
+  hat also — im Unterschied zu den meisten `Music/`-Prototypen —
+  tatsächlich den Weg in aktiven, laufenden Code dieses Repos gefunden.
+- **`docs/sigils/mandala_sync_{codex_sync,integration}_yamls.zip`**
+  (ebenfalls separat entpackt): `codex.sync.yaml`/`integration.test.yaml`
+  für fünf benannte Pakete (`aeon-fraktalurs`, `aeon-genesisos`,
+  `aeon-resoecho`, `aeon-shell`, `sharedream-interface`) — **alle
+  fünf existieren echt und aktuell unter `packages/`** (verifiziert).
+  Reale, wenn auch alte, Sync-/Test-Konfigurationsschnappschüsse für
+  bereits aktiven Code, keine neue Information.
+- **`docs/sigils/genesismodul_mandala_silentagents_2035.zip`**: enthält
+  dasselbe `silent-agents.ts` wie bereits aus dem 5. Durchgang bekannt,
+  plus ein bisher nicht gesehenes **`mandala-ui.tsx`** — die passende
+  React-Visualisierung dazu (dieselben drei Agenten als kreisförmig
+  angeordnete, hover-interaktive Kacheln). Logik und UI gehörten
+  offenbar zusammen, keines von beidem wurde je integriert.
+
+**GenesisAeon-Bezug:** ja, durchgehend (CREP-Werte, Sigillin-Konzept,
+Trikaya-Sprache). Die CREP-Werte sind teils hartkodierte Demo-Konstanten
+(z. B. `CREP = {C:0.95, R:0.92, E:0.98, P:0.94}` in den UI-Prototypen,
+derselbe simple Heuristik-Stub in `python_demo.py` wie anderswo im
+Ökosystem), aber das `AeonToolkit`-Modul selbst berechnet Kohärenz-/
+Affektwerte tatsächlich aus dem symbolischen Fluss, nicht nur aus
+Konstanten — differenzierter als die meisten anderen Funde dieser
+Session.
+
+**Begründung:** Das Archiv ist Johanns persönliches
+Experimentierarchiv (die Ordnernamen "Music"/"Musik" deuten auf einen
+zweckentfremdeten Windows-Musikordner hin, kein offizieller
+Projekt-Export) mit einer Mischung aus (a) vollständig verwaisten,
+aber echten UI-Prototypen (die 23 `.tsx`-Dateien, `mandala-ui.tsx`),
+(b) einem überraschend ausgereiften, in sich geschlossenen
+symbolischen Reasoning-Toolkit (`AeonToolkit`-Linie in `Aeon.zip`),
+und (c) einem Agenten-Manifest-Konzept, das tatsächlich — über
+`CodexAgentBundle.zip` hinaus — in echten, aktuellen Repo-Root-Code
+(`AGENTS.md`, `pact-depth-gatekeeper.ts`) weitergelebt hat. Stark
+redundant (halbe Datenmenge exakte Duplikate; `genesis-aeon.7z` ein
+drittes Mal dasselbe).
+
+**Empfehlung:** Keine Extraktion in diesem Sprint (wie im Auftrag
+vorgegeben). Falls die Sigillin-Mandala-UI-Idee (`SigillinMandalaLogicV6.tsx`)
+oder das `AeonToolkit`-Reasoning-Modul später aufgegriffen werden
+sollen, wären das die reifsten Ausgangspunkte im ganzen Archiv.
+Temporäres Scan-Verzeichnis (inkl. aller entpackten Unter-Archive)
+nach vollständiger Auswertung gelöscht, nichts davon committet — der
+gefundene persönliche Kontaktblock wurde nirgends reproduziert.
+
+---
+
+## Siebter Durchgang (2026-07-27): Simulation-Realitätscheck — was wurde wirklich verarbeitet?
+
+Johanns Frage: was von den vielen "Simulation"-artig benannten Paketen
+wurde tatsächlich verarbeitet/ausgeführt, und was ist nur als Code aus
+den Konversationen hängengeblieben (extrahiert, aber nie fertiggestellt)?
+Gezielt alle simulation-/climate-/governance-/physics-artigen Pfade
+durchgesehen: `simulations/` (root), `data/simulations`,
+`packages/simulations`, `packages/universum-simulationen`,
+`packages/sim-domain`, `packages/climate`, `packages/unifiedmandala-climate`,
+`agents/governance_simulator`, `agents/singularity_simulator`.
+
+**Drei klar unterscheidbare Reifegrade gefunden:**
+
+**Stufe 1 — Explizite Platzhalter (der Verdacht bestätigt sich hier):**
+`agents/governance_simulator/main.py` sagt in der eigenen Docstring
+wörtlich: _"It acts as placeholder for more elaborate simulations"_ —
+die "Simulation" ist nur `cooperation ** countries`, geclampt auf
+[0,1]. `agents/singularity_simulator/main.py` genauso wörtlich:
+_"serves as a placeholder for more advanced singularity simulations"_ —
+reine Exponentialreihen-Berechnung. `packages/climate/
+ClimateIntegrationBlueprint.ts` (Name sagt es schon: "Blueprint") ist
+nur eine Array-Durchschnittsfunktion. `packages/sim-domain/bio/
+bioEngine.ts` gibt hartcodiert den String `'Bio simulation initialized'`
+zurück, mit Kommentar `// Placeholder for biological domain logic`.
+`packages/universum-simulationen/EmotionalResonanceSimulator.ts` und
+`packages/simulations/MultiverseScenarioPlanner.ts` sind ebenfalls
+triviale Stubs (Mittelwert-Klassifikation bzw. reine Datenhaltung ohne
+Simulationslogik). Alle haben echte, grüne Unit-Tests — aber die Tests
+prüfen nur die triviale Platzhalter-Logik selbst, nicht echte
+Domänen-Simulation. **Das ist exakt das Muster, das Johann vermutet
+hat: aus Konversationen extrahierte Ideen, die einen CI-tauglichen
+Stub + Test bekamen, aber nie zur echten Simulation ausgebaut wurden.**
+
+**Stufe 2 — Real, minimal, nachweislich ausgeführt:**
+`simulations/nullfield_wave.py` ist ein echter finite-Differenzen-Löser
+für die 1D-Wellengleichung (Leapfrog-Schema, Energie-/Massen-Tracking,
+Divergenz-Erkennung) — kein Stub. Ein kompiliertes
+`simulations/__pycache__/nullfield_wave.cpython-311.pyc` liegt im
+Repo — **das ist der Beweis, dass dieses Skript tatsächlich lokal
+ausgeführt wurde**, nicht nur geschrieben und liegengelassen.
+`packages/universum-simulationen/binary_existence_matrix.py` ist eine
+echte zelluläre Automaten-Implementierung (Conway-artig, mit einem
+"nullmembrane"-Schwellenwert-Konzept, das an Feldtheories
+ζ(R)-Membran-Terminologie erinnert) — ebenfalls kein Platzhalter.
+
+**Stufe 3 — Real, strukturiert, aber selbst als Prototyp markiert:**
+`simulations/universe-sim/` ist ein vollständiger Go-Microservice
+(gRPC-API via `sim.proto`, `pkg/core/physics.go`, `pkg/agent/engine.go`,
+`pkg/federation/server.go`, `pkg/sigil/generator.go`, 8 Testdateien,
+sogar ein React-Dashboard mit eigenem Test). Die eigene
+`README.md` sagt ehrlich: _"a simple Go program demonstrating the
+Explorer and Observer agents described in the project blueprint"_ —
+beim Ausführen (`go run cmd/sim-runner.go`) entstehen echte
+Output-Dateien (`state-<runId>-v1.jsonl`, `events-<runId>.jsonl`).
+Real, lauffähig, aber selbst-deklariert als Prototyp/Machbarkeitsnachweis,
+keine ausgereifte Simulationsplattform.
+
+**Fazit:** Kein einheitliches Bild — es gibt echte, ausgeführte Physik-
+und Automaten-Simulationen (Stufe 2/3), aber auch eine ganze Reihe
+großspurig benannter Pakete (Governance, Singularity, Climate, Bio/Chem/
+Mind-Engines, Multiverse), die nachweislich nur Platzhalter sind (eigene
+Docstrings sagen es). Kein Vergleich zu Feldtheories `data/`+`analysis/`-
+Pipeline mit echten, literaturbelegten Datensätzen und tatsächlichen
+Fit-Ergebnissen — unified-mandala hat (soweit in diesem Durchgang
+gesehen) keine vergleichbare Menge an real verarbeiteten
+Simulationsdaten, nur vereinzelte reale Kernstücke.
+
+**Noch nicht geprüft:** die übrigen `packages/*` mit Simulations-Bezug
+(`packages/unifiedmandala-vr`, weitere `chem`/`dna`/`mind`/`phys`-Engines
+in `sim-domain/`, `HieroglyphenParser.ts`, `InteractiveNarrativeEngine.ts`)
+sowie `data/simulations` (leer beim Scan) und `plugins/governance-
+simulator.yaml`/`plugins/singularity-simulator.yaml` (nur als YAML-Configs
+gesichtet, Inhalt nicht geprüft). Wäre der nächste Schritt für einen
+vollständigen Realitätscheck.
