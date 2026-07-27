@@ -205,6 +205,18 @@ Feldtheorie-artiges KI-Geheimfach — das Äquivalent ist hier bereits
 vollständig im Codexwork-System (oben) und in `AI_POLICY.md`
 aufgegangen, nicht an einem eigenen, dediziert versteckten Ort.
 
+**Infra/DevOps-Sweep (2026-07-27):** die bislang übersprungenen
+Ordner `aws/`, `ci/`, `k8s/`, `grafana/`, `deployment/`, `config/`,
+`charts/`, `infrastructure/` (zusammen 79 Dateien) durchgesehen.
+Durchweg gewöhnliches, erwartbares DevOps-Tooling (Lambda@Edge, CI-
+Pipelines, Helm-Charts, Grafana-Dashboards, KEDA-Autoscaler,
+NATS/OTel-Docker-Compose). `config/ai-policy-sigillin.yaml` (ein
+schlankes Sigillin-basiertes Ethik-Regelwerk für GPT-Module) passt
+zum bereits dokumentierten `AI_POLICY.md`, keine neue Fundstelle.
+`config/blockchain-ledger.json` enthält nur einen öffentlichen
+Schlüssel (kein Sicherheitsrisiko). Keine versteckten Kompartimente,
+keine unerwarteten Inhalte gefunden.
+
 ---
 
 ## 🟢 Bereits migrierte Module (Verdachtsfälle, nicht abschließend geprüft)
