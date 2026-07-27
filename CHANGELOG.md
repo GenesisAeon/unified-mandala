@@ -48,6 +48,8 @@ Alle relevanten Änderungen dieses Projekts werden in diesem Dokument festgehalt
 
 ## [Unreleased]
 
+- Merge pull request #1837 from GenesisAeon/sealcore-mandala-map-update
+
 - docs: GenesisAeonAdvancedAi extracted as aeon-trikaya (P52), MIGRIERT
 
 - docs: note kan_physics is non-functional, P53 extraction sourced from resilience-core instead
