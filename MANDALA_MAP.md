@@ -636,10 +636,14 @@ die Datei liegt tatsächlich unter `docs/sigils/AeonProj.zip` (dort
 beim 5. Durchgang gefunden). Entpackt in einem temporären Job-
 Verzeichnis außerhalb des Repos, nach Auswertung wieder gelöscht.
 
-**Klassifikation: 📋 BLUEPRINT — Prototypen-Archiv mit echtem, aber
-nie integriertem Code** (kein reines Konzept-Blueprint wie sonst
-üblich, aber auch kein Paket-Kandidat, da nirgends im aktiven Repo
-verankert).
+**Klassifikation: 📋 BLUEPRINT — Prototypen-Archiv mit echtem, größtenteils
+nicht integriertem Code** (kein reines Konzept-Blueprint wie sonst
+üblich, aber als Ganzes auch kein eigener Paket-Kandidat). **Update
+nach vollständiger Tiefenprüfung aller Ebenen (2026-07-27)**: eine
+Teilmenge ist tatsächlich kein Orphan — das Codex-Agenten-Konzept lebt
+im echten, aktuellen `AGENTS.md`/`pact-depth-gatekeeper.ts` weiter (s.
+u.), und das `AeonToolkit`-Reasoning-Modul in `Aeon.zip` ist deutlich
+ausgereifter als der Rest des Archivs.
 
 **Struktur** (104 Dateien, 2,75 MB):
 
@@ -673,39 +677,103 @@ verankert).
   unbekannte Sigillin-Artefakte, aber reine Konfig-/Konzeptdaten, kein
   Code.
 - **3 eindeutige verschachtelte ZIPs** (in beiden Kopien, also
-  effektiv 3 statt 8 — nur Inhaltsverzeichnis geprüft, nicht
-  entpackt):
-  - `Archiv/Aeon.zip`: echte JS/TS-Module (`AeonModul TemporalMem n
-Goalengine.ts`, `Aeontoolkitv5.js`/`V6.js`, `genesismindloop.js`,
-    `mindintendengine.js`, `selfreflectengine.js`) plus ein
-    `genesis-aeon/`-Unterordner mit 7 kleinen, aber echten
-    React-Komponenten (`AeonBuilder.tsx` liest dynamisch aus
-    `orchestration.json` und lädt benannte Sub-Komponenten) und einer
-    weiteren verschachtelten `genesis-aeon.7z` (nicht mehr geöffnet —
-    dritte Verschachtelungsebene).
-  - `Archiv/AeonShell_Showcase_v0.1.zip`: ein Demo-/Präsentationspaket
-    (README, `master_systemprompt.txt`, `crepjudge_prompt.txt`,
-    Sigillin-Schema JSON+YAML, `python_demo.py`, Mermaid-Flowchart).
+  effektiv 3 statt 8) — auf Nachfrage ("geh durch alle Ebenen") am
+  selben Tag vollständig entpackt und gelesen, nicht nur inventarisiert:
+  - **`Archiv/Aeon.zip`**: enthält eine **echte, vollständige, in sich
+    geschlossene symbolische Reasoning-Toolkit-Entwicklungslinie** —
+    kein Stub. Nachweisbare Versionsgeschichte über sechs Dateien:
+    `mindintendengine.js` ("Phase 1, GenesisGPT") →
+    `Aeontoolkitv5.js` ("Phase 2.0") → `selfreflectengine.js`
+    ("Phase 2.1") → `AeonModul TemporalMem n Goalengine.ts`
+    ("Phase 2.4") → `genesismindloop.js` ("Phase 3.0") →
+    `AeontoolkitV6.js` ("Phase 3", konsolidiert alle vorherigen zu
+    einem Modul: SymbolMap, PatternMemory, CoherenceScorer,
+    AffectLayer, Query, IntentEngine, SelfReflectionEngine,
+    TemporalMemory, GoalEngine, GenesisMindLoop). Reine Vanilla-JS,
+    keine externen Abhängigkeiten, tatsächlich lauffähig (per Diff
+    verifiziert: V5→V6 ist eine echte Weiterentwicklung, keine bloße
+    Umbenennung). `AeonDialogBridge.HTML` (trotz Dateiendung ein
+    React-Component) verbindet das Toolkit zu einer Oberfläche: Nutzer
+    gibt einen Satz ein → wird zu einem symbolischen "Intent" →
+    Kohärenz-/Affekt-Bewertung → Selbstreflexions-Report. Die
+    eingebauten Beispieltexte sind erkennbar introspektiv-persönlicher
+    Natur — entsprechend zurückhaltend dokumentiert, ohne sie hier zu
+    zitieren. Der `genesis-aeon/`-Unterordner (7 kleine React-Komponenten
+    plus `orchestration.json`) hat eine **verschachtelte
+    `genesis-aeon.7z`, die per Diff als byte-identisches Backup
+    derselben Dateien bestätigt wurde** — keine neue Information,
+    vierte Verschachtelungsebene ergebnislos.
+  - **`Archiv/AeonShell_Showcase_v0.1.zip`**: ein Demo-/
+    Präsentationspaket für ein Multi-Rollen-Prompting-Framework
+    ("AeonPoetGPT", "HypothesisGPT", "EthikCoreGPT", "CREPJudgeGPT" —
+    dieselben Rollennamen wie in den Konversationstiteln aus dem 5. Durchgang). Enthält einen echten Master-Systemprompt, einen
+    CREPJudge-Bewertungsprompt, ein Sigillin-Schema (JSON+YAML), einen
+    `python_demo.py` mit **derselben Art hartkodiertem CREP-Stub**
+    (`evaluate_crep()` bewertet Text nach trivialen Heuristiken wie
+    Kommas/Wortzahl) wie bereits in `aeon-trikaya`/`aeon-sealcore`
+    gefunden — ein weiterer, unabhängiger Beleg, wie verbreitet dieses
+    Stub-Muster in der Codebasis-Geschichte war. **Datenschutz-Hinweis**:
+    das `README.md` dieses Pakets enthält einen persönlichen
+    Kontaktblock (Name, private E-Mail, Telefonnummer) — bewusst nicht
+    hier wiedergegeben.
   - `Archiv/aeonshell-genesis-sigillin.zip`: trivial, 2 Dateien, passt
     zu bereits bekanntem `docs/sigils/aeonshell-genesis.sigil.json`.
+- **`docs/sigils/CodexAgentBundle.zip`** (separat entpackt, gehört
+  strukturell zusammen mit `AeonProj.zip`s Themen): enthält `Agents.md`
+  — ein detailliertes Manifest für ein rollenbasiertes
+  Agenten-Aktivierungssystem (admin/dev/guest-Rechte,
+  CREP-/Tiefen-Aktivierungsbedingungen) für dieselben Agentennamen wie
+  in `docs/agents/` (`CodexAuditAgent`, `EvolverGPT`, `FragmentMapper`,
+  `SyncRunner`, `PactDepthGatekeeper`, `DepthBundleExporter`) —
+  **und hier die wichtige Korrektur**: anders als die meisten übrigen
+  Funde in diesem Archiv ist dieses System **nicht verwaist** — im
+  aktuellen Repo-Root existieren echt und aktuell: `AGENTS.md`
+  (251 Zeilen), `agents.yaml`, und **`pact-depth-gatekeeper.ts`**
+  (25 Zeilen, echtes CLI-Tool mit `--depth`/`--role`-Argumenten,
+  importiert aus `./pact-depth-rules`) mit eigenem Test
+  (`tests/pact-depth-gatekeeper.test.ts`). Das Codex-Agenten-Konzept
+  hat also — im Unterschied zu den meisten `Music/`-Prototypen —
+  tatsächlich den Weg in aktiven, laufenden Code dieses Repos gefunden.
+- **`docs/sigils/mandala_sync_{codex_sync,integration}_yamls.zip`**
+  (ebenfalls separat entpackt): `codex.sync.yaml`/`integration.test.yaml`
+  für fünf benannte Pakete (`aeon-fraktalurs`, `aeon-genesisos`,
+  `aeon-resoecho`, `aeon-shell`, `sharedream-interface`) — **alle
+  fünf existieren echt und aktuell unter `packages/`** (verifiziert).
+  Reale, wenn auch alte, Sync-/Test-Konfigurationsschnappschüsse für
+  bereits aktiven Code, keine neue Information.
+- **`docs/sigils/genesismodul_mandala_silentagents_2035.zip`**: enthält
+  dasselbe `silent-agents.ts` wie bereits aus dem 5. Durchgang bekannt,
+  plus ein bisher nicht gesehenes **`mandala-ui.tsx`** — die passende
+  React-Visualisierung dazu (dieselben drei Agenten als kreisförmig
+  angeordnete, hover-interaktive Kacheln). Logik und UI gehörten
+  offenbar zusammen, keines von beidem wurde je integriert.
 
 **GenesisAeon-Bezug:** ja, durchgehend (CREP-Werte, Sigillin-Konzept,
-Trikaya-Sprache), aber überall auf hartkodierte Demo-Werte gestützt
-(z. B. `CREP = {C:0.95, R:0.92, E:0.98, P:0.94}` fest im Code), nicht
-auf echte Berechnung.
+Trikaya-Sprache). Die CREP-Werte sind teils hartkodierte Demo-Konstanten
+(z. B. `CREP = {C:0.95, R:0.92, E:0.98, P:0.94}` in den UI-Prototypen,
+derselbe simple Heuristik-Stub in `python_demo.py` wie anderswo im
+Ökosystem), aber das `AeonToolkit`-Modul selbst berechnet Kohärenz-/
+Affektwerte tatsächlich aus dem symbolischen Fluss, nicht nur aus
+Konstanten — differenzierter als die meisten anderen Funde dieser
+Session.
 
 **Begründung:** Das Archiv ist Johanns persönliches
 Experimentierarchiv (die Ordnernamen "Music"/"Musik" deuten auf einen
 zweckentfremdeten Windows-Musikordner hin, kein offizieller
-Projekt-Export) mit mehreren echten, funktionierenden UI-Prototyp-
-Iterationen — deutlich mehr als reine Konzeptdokumente, aber nie in
-`packages/`/`apps/` überführt und stark redundant (halbe Datenmenge
-sind exakte Duplikate).
+Projekt-Export) mit einer Mischung aus (a) vollständig verwaisten,
+aber echten UI-Prototypen (die 23 `.tsx`-Dateien, `mandala-ui.tsx`),
+(b) einem überraschend ausgereiften, in sich geschlossenen
+symbolischen Reasoning-Toolkit (`AeonToolkit`-Linie in `Aeon.zip`),
+und (c) einem Agenten-Manifest-Konzept, das tatsächlich — über
+`CodexAgentBundle.zip` hinaus — in echten, aktuellen Repo-Root-Code
+(`AGENTS.md`, `pact-depth-gatekeeper.ts`) weitergelebt hat. Stark
+redundant (halbe Datenmenge exakte Duplikate; `genesis-aeon.7z` ein
+drittes Mal dasselbe).
 
 **Empfehlung:** Keine Extraktion in diesem Sprint (wie im Auftrag
 vorgegeben). Falls die Sigillin-Mandala-UI-Idee (`SigillinMandalaLogicV6.tsx`)
-später aufgegriffen werden soll, wäre das der reifste Ausgangspunkt.
-Die 3 eindeutigen inneren ZIPs wurden nur inventarisiert, nicht
-entpackt — `Aeon.zip`s verschachtelte `genesis-aeon.7z` bleibt
-ungeöffnet (vierte Ebene, abnehmender Ertrag). Temporäres
-Scan-Verzeichnis nach Auswertung gelöscht, nichts davon committet.
+oder das `AeonToolkit`-Reasoning-Modul später aufgegriffen werden
+sollen, wären das die reifsten Ausgangspunkte im ganzen Archiv.
+Temporäres Scan-Verzeichnis (inkl. aller entpackten Unter-Archive)
+nach vollständiger Auswertung gelöscht, nichts davon committet — der
+gefundene persönliche Kontaktblock wurde nirgends reproduziert.
