@@ -30,6 +30,7 @@ fieldtheory
 
 from __future__ import annotations
 
+import sys
 from typing import Annotated
 
 import typer
@@ -38,6 +39,14 @@ from rich.panel import Panel
 from rich.table import Table
 
 from unified_mandala._version import __version__
+
+# Windows consoles default to a non-UTF-8 codepage, which breaks the Greek
+# letters and math symbols used throughout this CLI's output with
+# UnicodeEncodeError. Force UTF-8 stdout/stderr so behavior matches
+# Linux/macOS terminals.
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8")
+    sys.stderr.reconfigure(encoding="utf-8")
 from unified_mandala.core.mandala import CycleResult, MandalaOrchestrator
 from unified_mandala.governance.policy import EntropyGovernor, PolicyGate
 from unified_mandala.integrations.registry import AdapterRegistry
@@ -45,7 +54,7 @@ from unified_mandala.sigillin.bridge import SigillinBridge
 
 app = typer.Typer(
     name="unified-mandala",
-    help="Holistic self-reflecting mandala framework — GenesisAeon v0.3.2.",
+    help=f"Holistic self-reflecting mandala framework — GenesisAeon v{__version__}.",
     add_completion=False,
     rich_markup_mode="rich",
 )
@@ -69,7 +78,7 @@ def _build_orchestrator() -> MandalaOrchestrator:
 
 def _version_cb(value: bool) -> None:
     if value:
-        console.print(f"unified-mandala {__version__}")
+        console.print(f"unified-mandala {__version__}", highlight=False)
         raise typer.Exit()
 
 

@@ -7,6 +7,7 @@ from unittest.mock import MagicMock, patch
 
 from typer.testing import CliRunner
 
+from unified_mandala._version import __version__
 from unified_mandala.cli.rituals import app
 
 runner = CliRunner()
@@ -16,12 +17,12 @@ class TestVersionCommand:
     def test_version_flag(self):
         result = runner.invoke(app, ["--version"])
         assert result.exit_code == 0
-        assert "0.3.2" in result.output
+        assert __version__ in result.output
 
     def test_version_short_flag(self):
         result = runner.invoke(app, ["-V"])
         assert result.exit_code == 0
-        assert "0.3.2" in result.output
+        assert __version__ in result.output
 
 
 class TestCycleCommand:
