@@ -8,24 +8,29 @@ from unified_mandala._version import __version__
 
 class TestVersion:
     def test_version_string(self):
-        assert __version__ == "0.3.2"
+        assert isinstance(__version__, str)
+        assert __version__
 
     def test_version_importable(self):
         assert hasattr(unified_mandala, "__version__")
 
     def test_version_format_semver(self):
+        # Allow a trailing "+unknown" fallback suffix on the patch segment
+        # (used when the package isn't installed, e.g. running from source).
         parts = __version__.split(".")
         assert len(parts) == 3
-        assert all(p.isdigit() for p in parts)
+        assert parts[0].isdigit()
+        assert parts[1].isdigit()
+        assert parts[2].split("+")[0].isdigit()
 
     def test_major_version(self):
-        assert int(__version__.split(".")[0]) == 0
+        assert int(__version__.split(".")[0]) >= 0
 
     def test_minor_version(self):
-        assert int(__version__.split(".")[1]) == 3
+        assert int(__version__.split(".")[1]) >= 0
 
     def test_patch_version(self):
-        assert int(__version__.split(".")[2]) == 2
+        assert int(__version__.split(".")[2].split("+")[0]) >= 0
 
     def test_version_not_empty(self):
         assert __version__

@@ -1,3 +1,9 @@
 """Package version — single source of truth."""
 
-__version__ = "0.3.2"
+from importlib.metadata import PackageNotFoundError
+from importlib.metadata import version as _version
+
+try:
+    __version__ = _version("unified-mandala")
+except PackageNotFoundError:  # pragma: no cover - not installed, e.g. running from source
+    __version__ = "0.0.0+unknown"
