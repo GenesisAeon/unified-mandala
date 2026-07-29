@@ -30,6 +30,7 @@ fieldtheory
 
 from __future__ import annotations
 
+import io
 import sys
 from typing import Annotated
 
@@ -44,8 +45,9 @@ from unified_mandala._version import __version__
 # letters and math symbols used throughout this CLI's output with
 # UnicodeEncodeError. Force UTF-8 stdout/stderr so behavior matches
 # Linux/macOS terminals.
-if hasattr(sys.stdout, "reconfigure"):
+if isinstance(sys.stdout, io.TextIOWrapper):
     sys.stdout.reconfigure(encoding="utf-8")
+if isinstance(sys.stderr, io.TextIOWrapper):
     sys.stderr.reconfigure(encoding="utf-8")
 from unified_mandala.core.mandala import CycleResult, MandalaOrchestrator
 from unified_mandala.governance.policy import EntropyGovernor, PolicyGate
