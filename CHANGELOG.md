@@ -48,6 +48,8 @@ Alle relevanten Änderungen dieses Projekts werden in diesem Dokument festgehalt
 
 ## [Unreleased]
 
+- Merge pull request #1839 from GenesisAeon/worktree-unified-mandala-ci-fix
+
 - Merge pull request #1838 from GenesisAeon/sealcore-mandala-map-update
 
 - Merge pull request #1837 from GenesisAeon/sealcore-mandala-map-update
