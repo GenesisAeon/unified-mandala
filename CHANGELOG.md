@@ -48,6 +48,8 @@ Alle relevanten Änderungen dieses Projekts werden in diesem Dokument festgehalt
 
 ## [Unreleased]
 
+- docs: fix incorrect/placeholder Zenodo DOI from GenesisAeon community record
+
 - Merge pull request #1840 from GenesisAeon/hotfix-lint
 
 - Merge pull request #1839 from GenesisAeon/worktree-unified-mandala-ci-fix
