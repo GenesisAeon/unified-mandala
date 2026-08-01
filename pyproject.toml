@@ -90,7 +90,7 @@ Homepage = "https://github.com/GenesisAeon/unified-mandala"
 Documentation = "https://genesisaeon.github.io/unified-mandala"
 Repository = "https://github.com/GenesisAeon/unified-mandala"
 "Bug Tracker" = "https://github.com/GenesisAeon/unified-mandala/issues"
-Zenodo = "https://doi.org/10.5281/zenodo.unified-mandala"
+Zenodo = "https://doi.org/10.5281/zenodo.20974263"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/unified_mandala"]

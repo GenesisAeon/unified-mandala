@@ -1,12 +1,12 @@
 [![PyPI](https://img.shields.io/pypi/v/unified-mandala)](https://pypi.org/project/unified-mandala/)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19219948.svg)](https://doi.org/10.5281/zenodo.19219948)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20974263.svg)](https://doi.org/10.5281/zenodo.20974263)
 [![Tests](https://github.com/GenesisAeon/unified-mandala/actions/workflows/python-ci.yml/badge.svg)](https://github.com/GenesisAeon/unified-mandala/actions/workflows/python-ci.yml)
 [![Coverage](https://img.shields.io/badge/coverage-100%25-brightgreen)](https://github.com/GenesisAeon/unified-mandala)
 
 # unified-mandala v0.3.2
 
 **Holistic Mandala Orchestrator Framework** with complete Phase-3 thermodynamic, planetary, and QFT integration.
-**DOI**: [10.5281/zenodo.19219948](https://doi.org/10.5281/zenodo.19219948)
+**DOI**: [10.5281/zenodo.20974263](https://doi.org/10.5281/zenodo.20974263)
 
 > v0.3.2 — _Reactivation Patch: NukleonScanner v2.1.0 + GreekMath v2.1.0 + FieldTheory v2.0.0_
 
@@ -553,12 +553,7 @@ respective terms of use.
 
 ## Citation
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.PLACEHOLDER.svg)](https://doi.org/10.5281/zenodo.PLACEHOLDER)
-
-DOI will be assigned automatically on first GitHub Release once
-Zenodo–GitHub integration is enabled for this repo. In the meantime, the
-DOI badge at the top of this README (`10.5281/zenodo.19219948`) points to
-the most recent published Zenodo record for this package.
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20974263.svg)](https://doi.org/10.5281/zenodo.20974263)
 
 ## Role in the GenesisAeon Ecosystem
 
