@@ -1,3 +1,5 @@
+**GenesisAeon Package P61**
+
 [![PyPI](https://img.shields.io/pypi/v/unified-mandala)](https://pypi.org/project/unified-mandala/)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20974263.svg)](https://doi.org/10.5281/zenodo.20974263)
 [![Tests](https://github.com/GenesisAeon/unified-mandala/actions/workflows/python-ci.yml/badge.svg)](https://github.com/GenesisAeon/unified-mandala/actions/workflows/python-ci.yml)
@@ -557,7 +559,7 @@ respective terms of use.
 
 ## Role in the GenesisAeon Ecosystem
 
-`unified-mandala` is **P-MANDALA** in the GenesisAeon ecosystem registry —
+`unified-mandala` is **P61** (formerly informally "P-MANDALA") in the GenesisAeon ecosystem registry —
 the orchestration core (UI, CREP, agents) that wires the CREP evaluator,
 SigillinBridge, PolicyGate, and the 17+ adapter registry together into a
 single self-reflecting cycle (`MandalaOrchestrator.run_cycle`).
