@@ -48,6 +48,8 @@ Alle relevanten Änderungen dieses Projekts werden in diesem Dokument festgehalt
 
 ## [Unreleased]
 
+- docs: assign canonical GenesisAeon package number P61 (registry sprint 2026-08-02)
+
 - docs: fix incorrect/placeholder Zenodo DOI from GenesisAeon community record
 
 - Merge pull request #1840 from GenesisAeon/hotfix-lint
