@@ -239,3 +239,99 @@ todos:
   - id: todo-80
     beschreibung: 'ZIPMEM-Fragment-Generator in CI integrieren'
     status: offen
+  - id: todo-44
+    beschreibung: "CREPConversationScanner.ts implementieren für Analyse von conversations.json"
+    status: offen
+  - id: todo-45
+    beschreibung: "ChronoPoemExtractor.ts erstellen, um poetische Timelines zu generieren"
+    status: offen
+  - id: todo-46
+    beschreibung: "SymbolEchoLayer.ts entwickeln zur Erzeugung von Echomustern"
+    status: offen
+  - id: todo-47
+    beschreibung: "useCREPMemoryPattern.ts schreiben, um CREP-Memory als Hook bereitzustellen"
+    status: offen
+  - id: todo-48
+    beschreibung: "GPTExpressionWeaver.ts kombinieren CREP, Symbolzeit und Themenfokus"
+    status: offen
+  - id: todo-49
+    beschreibung: "CREPToDoLinker.ts implementieren, um CREP-Änderungen mit ToDos zu verknüpfen"
+    status: offen
+  - id: todo-50
+    beschreibung: "CREPChronoMonitor.ts erzeugt tägliche CREP-Snapshot-Reports"
+    status: offen
+  - id: todo-51
+    beschreibung: "ResonanceActionPrompt.tsx UI-Komponente für Aktionsvorschläge"
+    status: offen
+  - id: todo-52
+    beschreibung: "PoeticMotifGenerator.ts für metaphorische Strukturerzeugung"
+    status: offen
+  - id: todo-53
+    beschreibung: "echo-reflections.yaml anlegen als Sammlung kollektiver Symbolmuster"
+    status: offen
+  - id: todo-54
+    beschreibung: "SigillinSuggestionEngine.ts erstellt neue Sigillin basierend auf CREP-Peaks"
+    status: offen
+  - id: todo-55
+    beschreibung: "CREPFeedbackLoop.ts generiert automatisierte Micro-Tasks"
+    status: offen
+  - id: todo-56
+    beschreibung: "SigillinOnDemandGenerator.ts für dynamische Sigillin-Templates"
+    status: offen
+  - id: todo-57
+    beschreibung: "CREPToDoPrioritizer.ts priorisiert ToDos nach CREP-Trends"
+    status: offen
+  - id: todo-58
+    beschreibung: "CREPConvoHeatmap.tsx visualisiert CREP-Fluktuationen"
+    status: offen
+  - id: todo-59
+    beschreibung: "CREPSyncService.ts implementieren für Realtime-Synchronisation"
+    status: offen
+  - id: todo-60
+    beschreibung: "CREPConversationScanner.test.ts für Unit- und Snapshot-Tests"
+    status: offen
+  - id: todo-61
+    beschreibung: "export-crep-docs.ts generiert Dokumentation aus CREP-Reports"
+    status: offen
+  - id: todo-62
+    beschreibung: "CREPPromptAdapter.ts passt GPT-Prompts dynamisch an"
+    status: offen
+  - id: todo-63
+    beschreibung: "CREPGuard.ts überwacht ToDo-Generierung auf Policy-Verstöße"
+    status: offen
+  - id: todo-64
+    beschreibung: "CLI-Erweiterung aeon.sh crep-analyze --watch für Echtzeit-Monitoring"
+    status: offen
+  - id: todo-65
+    beschreibung: "EmotionScanner.ts analysiert Sentiment in conversations.json"
+    status: offen
+  - id: todo-66
+    beschreibung: "ConvoClusterer.ts gruppiert Gesprächssegmente thematisch"
+    status: offen
+  - id: todo-67
+    beschreibung: "ChronoPoemVisualizer.tsx rendert CHRONOPOEM_TIMELINE interaktiv"
+    status: offen
+  - id: todo-68
+    beschreibung: "VoiceChronoPlayer.ts gibt Chronopoems per TTS aus"
+    status: offen
+  - id: todo-69
+    beschreibung: "CREPMultiSync.ts ermöglicht Multi-User-Synchronisation"
+    status: offen
+  - id: todo-70
+    beschreibung: "ci/sigillin-lint-and-validate.sh für automatische Sigillin-Prüfung"
+    status: offen
+  - id: todo-71
+    beschreibung: "CREPQuestEngine.ts verteilt symbolische Quests"
+    status: offen
+  - id: todo-72
+    beschreibung: "ResonanceReminderWidget.tsx erinnert bei niedrigem CREP"
+    status: offen
+  - id: todo-73
+    beschreibung: "CREPKPIMonitor.tsx zeigt CREP-Kennzahlen im Dashboard"
+    status: offen
+  - id: todo-74
+    beschreibung: "PoeticMotifMiner.ts extrahiert wiederkehrende Metaphern"
+    status: offen
+  - id: todo-75
+    beschreibung: "SigillinEvolutionEngine.ts erzeugt Versionen bestehender Sigillin"
+    status: offen

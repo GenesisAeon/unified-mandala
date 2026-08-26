@@ -107,3 +107,39 @@ aufgaben:
   - id: task-35
     beschreibung: 'Repos für AeonShell + AeonGenesisOS initialisieren"'
     status: offen
+  - id: task-171
+    beschreibung: "CREPConversationScanner.ts um Gespräche auf CREP-Signaturen zu scannen"
+    status: offen
+  - id: task-172
+    beschreibung: "ChronoPoemExtractor.ts generiert poetische Timelines aus conversations.json"
+    status: offen
+  - id: task-173
+    beschreibung: "SymbolEchoLayer.ts erzeugt Echomuster für GPT-Reaktionen"
+    status: offen
+  - id: task-174
+    beschreibung: "GPTExpressionWeaver.ts verbindet CREP, Symbolzeit und Themen"
+    status: offen
+  - id: task-175
+    beschreibung: "CREPToDoLinker.ts koppelt CREP-Änderungen an ToDo-Vorschläge"
+    status: offen
+  - id: task-176
+    beschreibung: "SigillinSuggestionEngine.ts schlägt neue Sigillin auf Basis von CREP vor"
+    status: offen
+  - id: task-177
+    beschreibung: "CREPFeedbackLoop.ts erstellt periodische Micro-Tasks"
+    status: offen
+  - id: task-178
+    beschreibung: "CREPQuestEngine.ts verteilt symbolische Quests an Teilnehmende"
+    status: offen
+  - id: task-179
+    beschreibung: "EmotionScanner.ts ergänzt CREPConvoReport um Sentiment"
+    status: offen
+  - id: task-180
+    beschreibung: "ConvoClusterer.ts gruppiert Gespräche thematisch"
+    status: offen
+  - id: task-181
+    beschreibung: "ChronoPoemVisualizer.tsx stellt CHRONOPOEM_TIMELINE grafisch dar"
+    status: offen
+  - id: task-182
+    beschreibung: "VoiceChronoPlayer.ts liest ChronoPoems per TTS vor"
+    status: offen
